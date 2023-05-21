@@ -35,7 +35,7 @@ public class Utils {
                 String replyToLineId = lineArr[4];
                 String sentence = lineArr[5];
                 Line obj = new Line(lineId, movieTitle, movieLineNr, character, replyToLineId, sentence);
-                String txt = output + obj.movieTitle + ".adoc";
+                String txt = output + "/" + obj.movieTitle + ".adoc";
                 File outputFile = new File(txt);
 
                 String str = "*" + obj.character.trim() + "*: " + obj.sentence.trim() + "\n\n";
