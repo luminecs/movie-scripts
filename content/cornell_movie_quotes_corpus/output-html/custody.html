@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>custody</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="custody">custody</h1>
+<p><strong>rick</strong>: Helluva talent, that kid.</p>
+<p><strong>rick</strong>: Probably be in the bigs in another year.</p>
+<p><strong>melanie</strong>: Zach? Are you ready? Mommy, can’t be late
+again.</p>
+<p><strong>zach</strong>: I’m ready.</p>
+<p><strong>melanie</strong>: Come on baby. Don’t do this to mommy. Not
+today.</p>
+<p><strong>zach</strong>: I don’t want to go. Melanie hastily dresses
+her son.</p>
+<p><strong>melanie</strong>: Zach, do you want mommy to get fired?</p>
+<p><strong>zach</strong>: Yes.</p>
+<p><strong>melanie</strong>: If I get fired we won’t have the money to
+go to Six Flags. Zach quickly dresses himself.</p>
+<p><strong>rick</strong>: Must be something to have that kind of talent.
+He’s just a kid, nineteen, twenty tops, and if he stays healthy and he
+stays focused, the world is his oyster. Guys like you and me, we
+squandered those opportunities long ago.</p>
+<p><strong>john</strong>: You.</p>
+<p><strong>rick</strong>: Huh?</p>
+<p><strong>john</strong>: Guys like you…</p>
+<p><strong>rick</strong>: And me…</p>
+<p><strong>john</strong>: … squandered opportunities. I, on the other
+hand, knew where I was going. I had that kind of drive, I just never had
+the talent.</p>
+<p><strong>rick</strong>: You knew where you were going?</p>
+<p><strong>john</strong>: Absolutely.</p>
+<p><strong>rick</strong>: At nineteen?</p>
+<p><strong>john</strong>: Without question.</p>
+<p><strong>rick</strong>: The only thing I knew for certain was that I
+would run to the corner store every day for beer.</p>
+<p><strong>melanie</strong>: Lock your door. I’ll be right back. Melanie
+opens her door.</p>
+<p><strong>zach</strong>: Mom?</p>
+<p><strong>melanie</strong>: What?</p>
+<p><strong>zach</strong>: I’m not thirteen. It’s against the law to
+leave me alone in a car until I’m thirteen.</p>
+<p><strong>melanie</strong>: Come on.</p>
+<p><strong>john</strong>: I had priorities. I understood what it meant
+to have an attention span.</p>
+<p><strong>rick</strong>: You could focus?</p>
+<p><strong>john</strong>: I was the King of Focus.</p>
+<p><strong>rick</strong>: The Duke of Diligence?</p>
+<p><strong>john</strong>: The Count of Concentration.</p>
+<p><strong>rick</strong>: Duck.</p>
+<p><strong>john</strong>: Huh?</p>
+<p><strong>rick</strong>: The Polestar Prince.</p>
+<p><strong>melanie</strong>: Did you decide?</p>
+<p><strong>zach</strong>: I want Coke.</p>
+<p><strong>melanie</strong>: Get one.</p>
+<p><strong>zach</strong>: No, Pepsi. No, Seven-Up. Maybe root beer.</p>
+<p><strong>melanie</strong>: Make up your mind already.</p>
+<p><strong>zach</strong>: So many choices. A glance to her watch.</p>
+<p><strong>john</strong>: I’m just saying grow up. You can’t keep
+drifting.</p>
+<p><strong>rick</strong>: I thought I did grow up…</p>
+<p><strong>john</strong>: When you got married?</p>
+<p><strong>rick</strong>: Yeah…</p>
+<p><strong>john</strong>: You matured a little.</p>
+<p><strong>rick</strong>: It’s a process.</p>
+<p><strong>john</strong>: No Bueller, it’s a decision. One you need to
+make. You can’t keep running without direction. If you don’t know where
+you’re going you’ll never get what you want.</p>
+<p><strong>zach</strong>: I want Sobe.</p>
+<p><strong>melanie</strong>: Too bad.</p>
+<p><strong>zach</strong>: I don’t want Coke. I want Sobe.</p>
+<p><strong>melanie</strong>: We’ll take the soda.</p>
+<p><strong>clerk</strong>: Two dollars and…</p>
+<p><strong>melanie</strong>: Hold on a minute. Please?</p>
+<p><strong>customer</strong>: Come on lady.</p>
+<p><strong>melanie</strong>: Get your Sobe.</p>
+<p><strong>rick</strong>: I thought I got direction…</p>
+<p><strong>john</strong>: When Cindy had kids?</p>
+<p><strong>rick</strong>: Yeah…</p>
+<p><strong>john</strong>: They gave you purpose. But purpose, my friend,
+is not direction.</p>
+<p><strong>rick</strong>: East.</p>
+<p><strong>john</strong>: Huh?</p>
+<p><strong>rick</strong>: My direction is east. I parked in the
+deck.</p>
+<p><strong>john</strong>: I’m right around the…</p>
+<p><strong>rick</strong>: Corner?</p>
+<p><strong>john</strong>: Yeah.</p>
+<p><strong>rick</strong>: We’re always going in different
+directions.</p>
+<p><strong>john</strong>: Mine are much more productive.</p>
+<p><strong>rick</strong>: And much less adventurous.</p>
+<p><strong>john</strong>: Well, I’m gonna…</p>
+<p><strong>rick</strong>: Go?</p>
+<p><strong>john</strong>: Yeah.</p>
+<p><strong>rick</strong>: Then go.</p>
+<p><strong>john</strong>: That’s what I’m going to do. Responsibility
+calls.</p>
+<p><strong>zach</strong>: Sobe sucks. I want Coke.</p>
+<p><strong>john</strong>: You want to…</p>
+<p><strong>rick</strong>: Get a beer?</p>
+<p><strong>john</strong>: Yeah.</p>
+<p><strong>rick</strong>: Can’t.</p>
+<p><strong>john</strong>: Can’t?</p>
+<p><strong>rick</strong>: Gotta get home.</p>
+<p><strong>john</strong>: Why?</p>
+<p><strong>rick</strong>: Family, my man. Take time off for a ballgame
+ya should probably tend to the family too. You should try it
+sometime.</p>
+<p><strong>john</strong>: In the grand scheme of things family is a
+liability, not an asset. Rick continues on.</p>
+<p><strong>john</strong>: Do you even know what you’re doing or where
+you’re going?</p>
+<p><strong>rick</strong>: East.</p>
+<p><strong>john</strong>: East leads nowhere, my friend. You should be
+heading south. The bar is south. East takes you places you don’t want to
+go.</p>
+<p><strong>boss</strong>: You’re late.</p>
+<p><strong>melanie</strong>: I know, but…</p>
+<p><strong>boss</strong>: No buts. You’re late.</p>
+<p><strong>melanie</strong>: But…</p>
+<p><strong>boss</strong>: It’s the third time this week Mel. You put me
+in a rough spot here. My boss wants me to let you go. His boss wants me
+to let you go. I gotta let you go.</p>
+<p><strong>melanie</strong>: But…</p>
+<p><strong>boss</strong>: If a person isn’t responsible enough to be
+prompt to their job, they’re not responsible enough to work for me.</p>
+<p><strong>melanie</strong>: But…</p>
+<p><strong>boss</strong>: You’re fired Mel. Just get your things and
+go.</p>
+<p><strong>boss</strong>: We still on for dinner?</p>
+<p><strong>officer one</strong>: Is that…?</p>
+<p><strong>officer two</strong>: You think…?</p>
+<p><strong>officer one</strong>: Naw…</p>
+<p><strong>officer two</strong>: Can’t tell from here…</p>
+<p><strong>officer one</strong>: Too far away. Let’s roost him.</p>
+<p><strong>officer two</strong>: Call it in.</p>
+<p><strong>officer two</strong>: It’s him… get him, get him, get him.
+They curb the car in front of Rick.</p>
+<p><strong>ext. akron’s buchtel ave - day</strong>: Rick appears
+dumbfounded as the officers exit the cruiser with guns drawn. Officer
+One remains stationary. Officer Two circles behind Rick.</p>
+<p><strong>officer one</strong>: Get em up. Up I said… up.</p>
+<p><strong>rick</strong>: Huh?</p>
+<p><strong>officer two</strong>: Get <code>em where we can see</code>em
+slimeball.</p>
+<p><strong>officer one</strong>: Oh, we got ourselves a litterbug
+here.</p>
+<p><strong>rick</strong>: What?</p>
+<p><strong>rick</strong>: What’s going…</p>
+<p><strong>officer one</strong>: Shaddup!</p>
+<p><strong>officer two</strong>: You know your rights, cretin, but just
+in case you don’t…</p>
+<p><strong>rick</strong>: What the hell? Officer Two spins Rick to face
+him.</p>
+<p><strong>officer two</strong>: You have the right to shut the hell up.
+Do you understand this right?</p>
+<p><strong>rick</strong>: Yes.</p>
+<p><strong>officer one</strong>: Shut him the hell up, Jimmy.</p>
+<p><strong>officer two</strong>: If you don’t shut the hell up my
+partner might exercise his right to shoot you. Do you understand?</p>
+<p><strong>officer one</strong>: He’s looking at me funny, Jimmy.</p>
+<p><strong>officer two</strong>: You have the right not to look at my
+partner in any way that might be construed as `funny’ which could result
+in harm to your person. Do you understand this right?</p>
+<p><strong>officer one</strong>: He twitching?</p>
+<p><strong>officer two</strong>: Really? I don’t think he is. Are you
+twitching boy?</p>
+<p><strong>rick</strong>: No Sir.</p>
+<p><strong>officer one</strong>: Look at him, he’s twitching. Nothing
+pisses me off more than twitching and talking. If he doesn’t stop I’m
+gonna waste him.</p>
+<p><strong>officer two</strong>: You have the right not to twitch or
+shiver or make any other odd movements that might encourage my partner
+to discharge his weapon, do you understand?</p>
+<p><strong>boss</strong>: You never answered about tonight.</p>
+<p><strong>melanie</strong>: You’re making a huge mistake.</p>
+<p><strong>detective johnson</strong>: What do we got here boys?</p>
+<p><strong>officer two</strong>: It’s him. We got him.</p>
+<p><strong>officer one</strong>: He’s a twitcher… a twitcher and a
+talker. Boy, I tell you, if he’d twitched one more time I would’ve
+deposited large amounts of hot lead in his ass.</p>
+<p><strong>detective johnson</strong>: I’ll take it from here boys.</p>
+<p><strong>officer two</strong>: Report too?</p>
+<p><strong>detective johnson</strong>: No, that’s your job.</p>
+<p><strong>officer one</strong>: If we have to write the report I say I
+get to shoot him.</p>
+<p><strong>detective johnson</strong>: No one’s getting shot today,
+Bobby.</p>
+<p><strong>officer one</strong>: Can’t I just wing him or something?</p>
+<p><strong>detective johnson</strong>: Jimmy; get him out of here.</p>
+<p><strong>melanie</strong>: Tell me I’m not responsible… asshole. I
+have a kid. He has a goldfish. I have my dignity.</p>
+<p><strong>detective johnson</strong>: You don’t want to piss Bobby off.
+He’s a little unstable.</p>
+<p><strong>rick</strong>: A little? He represents your force?</p>
+<p><strong>detective johnson</strong>: Affirmative action. We have to
+hire our fair share of disabled — Quota thing.</p>
+<p><strong>rick</strong>: His psychosis doesn’t appear disabling.</p>
+<p><strong>melanie</strong>: Where’s Zach?</p>
+<p><strong>mrs. nelson</strong>: Fired again?</p>
+<p><strong>melanie</strong>: I don’t want to talk about it.</p>
+<p><strong>mrs. nelson</strong>: The first thing I learned when I
+retired was that time management is an asset.</p>
+<p><strong>detective johnson</strong>: Take your time, Ma’am. We need
+you to be certain.</p>
+<p><strong>lady in black</strong>: Can I see their profiles?</p>
+<p><strong>detective johnson</strong>: Turn to your left. The men follow
+their instruction.</p>
+<p><strong>lady in black</strong>: I just… I just don’t know…</p>
+<p><strong>detective johnson</strong>: Back to front.</p>
+<p><strong>detective johnson</strong>: All of you face forward. The two
+turn forward.</p>
+<p><strong>lady in black</strong>: Number three…</p>
+<p><strong>detective johnson</strong>: Are you sure?</p>
+<p><strong>lady in black</strong>: Could you have him step forward?</p>
+<p><strong>detective johnson</strong>: Number three take two steps
+forward.</p>
+<p><strong>lady in black</strong>: That’s him.</p>
+<p><strong>detective johnson</strong>: You’re positive?</p>
+<p><strong>lady in black</strong>: I’m positive. That’s the man that
+needs to be in custody.</p>
+<p><strong>detective johnson</strong>: Okay number three step back. Rick
+does as he’s told.</p>
+<p><strong>detective johnson</strong>: Turn to your right — all of
+you…</p>
+<p><strong>detective johnson</strong>: …and exit.</p>
+<p><strong>judge</strong>: Order in the court.</p>
+<p><strong>judge</strong>: Order in the court, I say.</p>
+<p><strong>prosecutor</strong>: Have a seat.</p>
+<p><strong>judge</strong>: Do you know why you’re here today,
+Mr. Stevens?</p>
+<p><strong>rick</strong>: Why am I here?</p>
+<p><strong>judge</strong>: Are you being rhetorical?</p>
+<p><strong>rick</strong>: Are you asking me?</p>
+<p><strong>judge</strong>: You stand here today an accused man.</p>
+<p><strong>rick</strong>: Accused? Accused of what?</p>
+<p><strong>judge</strong>: You have been placed in custody of your
+children.</p>
+<p><strong>rick</strong>: Huh?</p>
+<p><strong>prosecutor</strong>: Your children, Mr. Stevens. You do
+realize you have children, don’t you?</p>
+<p><strong>rick</strong>: Yes, but…</p>
+<p><strong>prosecutor</strong>: But nothing Mr. Stevens, either you have
+children or you don’t.</p>
+<p><strong>rick</strong>: I do.</p>
+<p><strong>prosecutor</strong>: So, you accept responsibility for
+bringing young life into the world?</p>
+<p><strong>rick</strong>: I guess…</p>
+<p><strong>prosecutor</strong>: There’s no guessing, Mr. Stevens, either
+you’re responsible for siring offspring or you aren’t.</p>
+<p><strong>rick</strong>: I am, but I’m not sure it was responsible.</p>
+<p><strong>prosecutor</strong>: A crime of passion, Mr. Stevens? How
+convenient. And you accept the consequences of said actions?</p>
+<p><strong>rick</strong>: Why am I here?</p>
+<p><strong>prosecutor</strong>: Why are you here, Mr. Stevens? Why are
+you here? I’ll tell you why you’re here. Are you familiar with
+Ms. Cynthia Stevens?</p>
+<p><strong>rick</strong>: Yeah, she’s my wife.</p>
+<p><strong>prosecutor</strong>: Was your wife, Sir. Was your wife. She
+recently filed for divorce. Were you aware of that?</p>
+<p><strong>rick</strong>: No, no I wasn’t.</p>
+<p><strong>prosecutor</strong>: Well, she did. She also named you as her
+coconspirator in the act of having children. Were you aware of that,
+Mr. Stevens?</p>
+<p><strong>rick</strong>: Again, no.</p>
+<p><strong>prosecutor</strong>: Mr. Stevens, you just told the court
+that you aware you had children. You have also admitted that Ms. Cynthia
+Stevens was, in fact, your wife.</p>
+<p><strong>rick</strong>: Yes, but…</p>
+<p><strong>prosecutor</strong>: Then why, Mr. Stevens, do you continue
+to deny culpability in this situation?</p>
+<p><strong>judge</strong>: Answer the question.</p>
+<p><strong>audience</strong>: Answer the question.</p>
+<p><strong>prosecutor</strong>: The question, Mr. Stevens.</p>
+<p><strong>rick</strong>: How can you be sure it was me?</p>
+<p><strong>prosecutor</strong>: She picked you out of a lineup, Sir.
+What more do you need?</p>
+<p><strong>rick</strong>: Time.</p>
+<p><strong>prosecutor</strong>: Time is not an option, Mr. Stevens. Time
+— is not — an option.</p>
+<p><strong>prosecutor</strong>: You don’t deny being married to
+Ms. Stevens, nor do you deny the act of procreation. You seem to
+understand that your actions bear consequence. You seem to understand
+that with parenthood, came responsibility.</p>
+<p><strong>rick</strong>: Yes, yes I did.</p>
+<p><strong>prosecutor</strong>: It’s time to pay the piper, Mr. Stevens.
+It is the recommendation of the State that Richard C. Stevens been
+sentenced to the fullest capacity allowed by law.</p>
+<p><strong>rick</strong>: What about Cindy?</p>
+<p><strong>prosecutor</strong>: Excuse me?</p>
+<p><strong>rick</strong>: My ex, Cindy, what about her responsibilities
+to the children?</p>
+<p><strong>prosecutor</strong>: She cut a deal, Rick. You were the one
+we wanted. You were the one we got. She took the plea. Sure, it costs
+her financially. But what is freedom worth?</p>
+<p><strong>judge</strong>: I see no reason to extend this any further.
+Mr. Stevens you have been found competent by the State and by this
+Court. You are completely cognizant of your surroundings, and you leave
+me no choice. This court finds you guilty as charged.</p>
+<p><strong>rick</strong>: Guilty of what?</p>
+<p><strong>judge</strong>: You are hereby remanded to custody of your
+children for no less than a lifetime. This Court is adjourned.</p>
+<p><strong>rick</strong>: I can’t do this alone. Don’t make me do this
+alone. I’ll never make it…</p>
+<p><strong>judge</strong>: If you can’t do the time, Mr. Stevens, then
+don’t do the crime.</p>
+<p><strong>melanie</strong>: Highly Effective Strategies of Time
+Management for the Single Parent?</p>
+<p><strong>mrs. nelson</strong>: Learn it. Live it.</p>
+<p><strong>melanie</strong>: It was written by a man… a married man.</p>
+<p><strong>mrs. nelson</strong>: Lots of single parents are married.</p>
+<p><strong>kris</strong>: Daddy!</p>
+<p><strong>rick</strong>: Hi guys.</p>
+<p><strong>phillip</strong>: I love you daddy.</p>
+<p><strong>rick</strong>: I love you too, Phillip.</p>
+<p><strong>nicholas</strong>: I love you more.</p>
+<p><strong>rick</strong>: I love you more.</p>
+<p><strong>nicholas</strong>: I love YOU more.</p>
+<p><strong>kris</strong>: Daddy, how come you’re in jail?</p>
+<p><strong>phillip</strong>: Is this where we live?</p>
+<p><strong>kris</strong>: When can we see mommy?</p>
+<p><strong>rick</strong>: Come here guys. I want to talk to you. The
+boys gather round.</p>
+<p><strong>phillip</strong>: What’s wrong Daddy?</p>
+<p><strong>rick</strong>: I don’t know when we’re going to see your mom
+again.</p>
+<p><strong>kris</strong>: Is she okay?</p>
+<p><strong>rick</strong>: She’s kind of mad at daddy.</p>
+<p><strong>nicholas</strong>: Mommy mad at me too?</p>
+<p><strong>rick</strong>: No, baby, not at all. Your mom needs time to
+work through some things. So, for awhile, it’s just going to be us…</p>
+<p><strong>kris</strong>: What’s she need time for?</p>
+<p><strong>rick</strong>: To figure out who she is, where she’s going,
+what she wants.</p>
+<p><strong>nicholas</strong>: I miss mommy.</p>
+<p><strong>rick</strong>: She misses you too, baby. And this isn’t
+permanent… we’re going to fight this… we’re going to appeal. We’ll take
+it to the Supreme Court if we have to.</p>
+<p><strong>kris</strong>: You don’t want us either?</p>
+<p><strong>rick</strong>: Of course I want you. I just don’t think I
+should have to do this alone.</p>
+<p><strong>jailer</strong>: I feel for you, I really do, but I’ve seen
+your kind before. You’re a lifer. Whether it’s fair or not. Whether
+justice was served. It doesn’t matter. You’re here for the duration.</p>
+<p><strong>zach</strong>: What’s wrong mommy?</p>
+<p><strong>melanie</strong>: Nothing.</p>
+<p><strong>zach</strong>: Why are you crying? Did I do something
+wrong?</p>
+<p><strong>melanie</strong>: Nothing at all baby.</p>
+<p><strong>zach</strong>: Tell me a story?</p>
+<p><strong>melanie</strong>: Once upon a time, a very long time ago…</p>
+<p><strong>jailer</strong>: Get yourself cleaned up.</p>
+<p><strong>rick</strong>: Huh?</p>
+<p><strong>jailer</strong>: You have visitors… in the courtyard.</p>
+<p><strong>ext. summit county jail - courtyard - day</strong>: Shaved
+and wearing sunglasses, Rick approaches his parents. He reaches his
+FATHER, , first.</p>
+<p><strong>father</strong>: Quite the pickle you’ve got yourself in.</p>
+<p><strong>rick</strong>: So it seems.</p>
+<p><strong>mother</strong>: She was no good for you. I knew it from the
+start.</p>
+<p><strong>rick</strong>: Mom, don’t… okay?</p>
+<p><strong>mother</strong>: Just saying…</p>
+<p><strong>rick</strong>: I know, but what’s done is done.</p>
+<p><strong>father</strong>: There’s my boys.</p>
+<p><strong>mother</strong>: You’re dad and I are here for you.</p>
+<p><strong>rick</strong>: I know mom.</p>
+<p><strong>mother</strong>: Are you eating?</p>
+<p><strong>rick</strong>: Yeah, I guess.</p>
+<p><strong>mother</strong>: Do you need anything? Food? Money?</p>
+<p><strong>rick</strong>: Watch the kids one night? I could use some
+time to myself.</p>
+<p><strong>mother</strong>: Um… Yeah… okay… I suppose that would be all
+right… we’d have to ask your father, but I don’t see why that would be a
+problem. Other than that everything’s okay?</p>
+<p><strong>rick</strong>: We’re okay…</p>
+<p><strong>mother</strong>: Because it doesn’t have to be like this.
+Mary Ryan, a friend of mine, her son had the same thing happen to him.
+Wife just up and left with no warning at all. He didn’t waste a day. No
+sir, he was up and at `em almost instantly. You can leave here, you
+know? Mary Ryan’s son did.</p>
+<p><strong>rick</strong>: I like it here, mom.</p>
+<p><strong>mother</strong>: What’s to like? It’s dingy and filthy. It’s
+no place to raise children.</p>
+<p><strong>rick</strong>: It’s home and it’s stable. The one thing the
+boys need right now is stability.</p>
+<p><strong>mother</strong>: You can’t keep hiding forever.</p>
+<p><strong>rick</strong>: It’s been five days, mom. I’m not hiding. I
+just need time to adjust.</p>
+<p><strong>mother</strong>: Mary Ryan’s son thinks you’re hiding.</p>
+<p><strong>rick</strong>: Do I know this guy?</p>
+<p><strong>mother</strong>: No, but I think you should. I hate that
+woman. How can a mother abandon her kids? How could she do this to my
+babies?</p>
+<p><strong>cindy</strong>: Scott? Scott?</p>
+<p><strong>scott</strong>: Yeah baby?</p>
+<p><strong>mother</strong>: I hope she’s living in hell too.</p>
+<p><strong>zach</strong>: What ya doing?</p>
+<p><strong>melanie</strong>: Looking for a job.</p>
+<p><strong>zach</strong>: I know what you could do.</p>
+<p><strong>melanie</strong>: What’s that?</p>
+<p><strong>zach</strong>: You could stay home with me.</p>
+<p><strong>melanie</strong>: What do you pay?</p>
+<p><strong>zach</strong>: Sixty-five cents.</p>
+<p><strong>melanie</strong>: A day?</p>
+<p><strong>zach</strong>: A week.</p>
+<p><strong>melanie</strong>: You can afford that?</p>
+<p><strong>zach</strong>: If it keeps my mommy home with me.</p>
+<p><strong>frank</strong>: So, needless to say, I understand your
+situation. My old lady, she took off and left me with the kids five
+years ago. That bitch. But I’m not bitter or anything. I found me a good
+day care and moved on with my life. You should too.</p>
+<p><strong>rick</strong>: It’s hard…</p>
+<p><strong>frank</strong>: Of course it’s hard, sometimes feels like
+you’re in prison, but you gotta be a man… stand up for yourself… provide
+for your family.</p>
+<p><strong>rick</strong>: And you can help?</p>
+<p><strong>frank</strong>: Me? I’ll put ya to work. Some long hours, but
+it all pays off. Keeps you off the welfare system if ya know what I
+mean.</p>
+<p><strong>rick</strong>: Yeah.</p>
+<p><strong>frank</strong>: I’d rather pay you than pay the government to
+pay you. You can start Monday.</p>
+<p><strong>frank</strong>: Here’s the number to the day-care. Tell them
+you know me, they’ll cut you a break.</p>
+<p><strong>ms. heath</strong>: And when school starts we have a bus
+service that will take the two oldest to and from school. We have story
+hour at Eleven, lunch at noon, and nap time at Twelve- thirty. Rest
+assured our programs are designed to be nurturing, caring environments
+that provide the parental guidance your children need in those hours you
+can’t be with them. So, are there any questions?</p>
+<p><strong>rick</strong>: No, you seemed to cover everything. Ms. Heath
+bends down to the kid’s level.</p>
+<p><strong>ms. heath</strong>: You’re going to like it here.</p>
+<p><strong>kris and phillip</strong>: No, daddy, don’t leave us
+here.</p>
+<p><strong>ms. heath</strong>: They’ll be just fine.</p>
+<p><strong>first interviewer</strong>: I’m sorry. It would be really
+nice to have you on board, but you’re just a little too qualified.</p>
+<p><strong>second interviewer</strong>: Too Qualified.</p>
+<p><strong>third interviewer</strong>: Over qualified.</p>
+<p><strong>fourth interviewer</strong>: You’re just not qualified.</p>
+<p><strong>fifth interviewer</strong>: I don’t think I’ve seen such a
+perfect candidate.</p>
+<p><strong>melanie</strong>: Really?</p>
+<p><strong>provider</strong>: You are bad, bad children.</p>
+<p><strong>fifth interviewer</strong>: Education level. Work experience.
+You really fit the billet.</p>
+<p><strong>rick</strong>: So, did everything go okay?</p>
+<p><strong>provider</strong>: They were angels.</p>
+<p><strong>rick</strong>: Did you have fun boys?</p>
+<p><strong>rick</strong>: Get those seat belts on. The kids reluctantly
+comply.</p>
+<p><strong>rick</strong>: So, how was your day?</p>
+<p><strong>rick</strong>: Didn’t they feed you? They said they would
+feed you. The brochure said meals provided.</p>
+<p><strong>kris</strong>: We didn’t eat nuffin.</p>
+<p><strong>phillip</strong>: Daddy, I’m hungry.</p>
+<p><strong>fifth interviewer</strong>: Unfortunately we filled the
+position earlier today. WHIP PAN to cell doors slamming closed.</p>
+<p><strong>frank</strong>: So, how was your first week?</p>
+<p><strong>rick</strong>: Thirteen hours a day doesn’t leave me much
+time for my kids, But a job’s a job, right?</p>
+<p><strong>frank</strong>: Now you’re talking.</p>
+<p><strong>rick</strong>: Two hundred and fifty bucks?</p>
+<p><strong>frank</strong>: Pretty good, huh?</p>
+<p><strong>rick</strong>: Two-hundred-and-fifty-bucks?</p>
+<p><strong>frank</strong>: Don’t spend it all in one place.</p>
+<p><strong>rick</strong>: I give you sixty-five hours of my time and you
+give me two hundred fifty bucks?</p>
+<p><strong>frank</strong>: It’s the American way. This country was
+founded on low paying, back breaking, long hour jobs. Why, work like
+this makes you a bona fide patriot. Ya gotta love it.</p>
+<p><strong>rick</strong>: What’s not to love?</p>
+<p><strong>ms. heath</strong>: That will be two hundred seventy- five
+dollars and thirty-six cents.</p>
+<p><strong>rick</strong>: I’m a little short.</p>
+<p><strong>ms. heath</strong>: We take checks too.</p>
+<p><strong>rick</strong>: Checks?</p>
+<p><strong>ms. heath</strong>: Those things you use when you don’t have
+money.</p>
+<p><strong>rick</strong>: I’m sorry, I’m clueless. My wife handled the
+checks.</p>
+<p><strong>ms. heath</strong>: Ah.</p>
+<p><strong>rick</strong>: Does it help that I know Frank Ryan? He told
+me to mention his name.</p>
+<p><strong>ms. heath</strong>: You know Frank?</p>
+<p><strong>rick</strong>: I work for him.</p>
+<p><strong>ms. heath</strong>: That changes everything.</p>
+<p><strong>rick</strong>: Great.</p>
+<p><strong>ms. heath</strong>: Two hundred ninety-five dollars and
+thirty-six cents.</p>
+<p><strong>rick</strong>: Huh?</p>
+<p><strong>ms. heath</strong>: Frank owes me money and one way or
+another, I will collect.</p>
+<p><strong>rick</strong>: So, I’m forty-five dollars short…</p>
+<p><strong>ms. heath</strong>: And thirty-six cents. Don’t worry about
+it. It’s your first week. You didn’t know, so, we’ll let it ride and
+just add it to next week’s balance. A beat as Rick turns to leave.</p>
+<p><strong>ms. heath</strong>: You know there is a way you could save
+quite a bit of money.</p>
+<p><strong>rick</strong>: Really?</p>
+<p><strong>ms. heath</strong>: Potty train the toddler.</p>
+<p><strong>rick</strong>: Potty train? Nicky?</p>
+<p><strong>ms. heath</strong>: The toddler.</p>
+<p><strong>zach</strong>: Mommy?</p>
+<p><strong>melanie</strong>: Yes, baby?</p>
+<p><strong>zach</strong>: When are we going to have a normal life.</p>
+<p><strong>melanie</strong>: We do have a normal life… for us.</p>
+<p><strong>zach</strong>: I mean when are we going to be like other
+people?</p>
+<p><strong>nicholas</strong>: Big boy go potty.</p>
+<p><strong>rick</strong>: Are you a big boy?</p>
+<p><strong>nicholas</strong>: Huge-mong-gus.</p>
+<p><strong>int. grocery store</strong>: Rick and the boys are in the
+baby isle. Rick picks up a pack of Pull-Ups studies it for a moment and
+throws it in the cart. On a community bulletin board he sees a flyer for
+baby sitting. He pulls the flyer, folds it and stuffs it in his
+pocket.</p>
+<p><strong>rick</strong>: Big boys go potty on the potty, Nicholas.
+Nicholas go potty on the potty?</p>
+<p><strong>rick</strong>: You’re brothers go potty on the potty. Daddy
+goes potty on the potty. Nicholas go potty on the potty?</p>
+<p><strong>rick</strong>: Daddy will buy Nicky a toy from the store.</p>
+<p><strong>nicholas</strong>: Okay.</p>
+<p><strong>rick</strong>: If Nicky goes potty on the potty.</p>
+<p><strong>nicholas</strong>: I want a toy!</p>
+<p><strong>nicholas</strong>: I have to go potty?</p>
+<p><strong>rick</strong>: Really?</p>
+<p><strong>nicholas</strong>: All done.</p>
+<p><strong>ms. heath</strong>: How’s the potty training coming?</p>
+<p><strong>rick</strong>: I think we’re making progress.</p>
+<p><strong>ms. heath</strong>: Three hundred forty and…</p>
+<p><strong>rick</strong>: Seventy-two cents. Here’s two- fifty.</p>
+<p><strong>ms. heath</strong>: You’re still short.</p>
+<p><strong>rick</strong>: I know and I’m working on that.</p>
+<p><strong>ms. heath</strong>: May I remind you that we’re not a
+charity? If you need credit go to a bank. I run a reputable business and
+I need the balance by next Wednesday, or maybe you should consider other
+arrangements.</p>
+<p><strong>kris</strong>: I didn’t do it.</p>
+<p><strong>mother</strong>: What happened? Where is he? Is he going to
+be okay?</p>
+<p><strong>rick</strong>: He’s going to be fine. They’re working on him
+now. From what they told me it’s just a few stitches.</p>
+<p><strong>father</strong>: Boys will be boys. A NURSE peeks out.</p>
+<p><strong>nurse</strong>: Mr. Stevens can you come back? The doctor
+could use your help in calming the child down.</p>
+<p><strong>rick</strong>: Mom?</p>
+<p><strong>mother</strong>: Just go. I’ll watch these two.</p>
+<p><strong>doctor</strong>: Thank God.</p>
+<p><strong>rick</strong>: How can I help?</p>
+<p><strong>doctor</strong>: Well, I need to give him a local so that I
+can sew the laceration, but he’s not cooperating. Maybe hold his hand
+and distract him?</p>
+<p><strong>rick</strong>: Hi little buddy.</p>
+<p><strong>phillip</strong>: Hi Daddy.</p>
+<p><strong>rick</strong>: I need you to be a good boy, okay?</p>
+<p><strong>phillip</strong>: Okay daddy.</p>
+<p><strong>rick</strong>: So, did you have fun today.</p>
+<p><strong>phillip</strong>: Uh huh.</p>
+<p><strong>rick</strong>: Did you play with all your friends?</p>
+<p><strong>phillip</strong>: Uh huh.</p>
+<p><strong>phillip</strong>: That fuckin’ hurts!</p>
+<p><strong>rick</strong>: Phillip!</p>
+<p><strong>phillip</strong>: But daddy, it does.</p>
+<p><strong>rick</strong>: That’s a big people word. You’re a little
+people, and little people don’t use big people words.</p>
+<p><strong>phillip</strong>: Okay.</p>
+<p><strong>rick</strong>: I’m sorry.</p>
+<p><strong>phillip</strong>: Do that again and my daddy’s going to kick
+your ass.</p>
+<p><strong>rick</strong>: Look I’m really sorry.</p>
+<p><strong>doctor</strong>: Can I ask you something?</p>
+<p><strong>rick</strong>: Sure, I guess.</p>
+<p><strong>doctor</strong>: My son’s a wuss. He cries over hangnails. My
+wife and I have tried everything to toughen him up, but nothing works. I
+was wondering if our kids could play together. Maybe some of Phillip’s
+“boy” would rub off on Junior.</p>
+<p><strong>rick</strong>: Insurance?</p>
+<p><strong>receptionist</strong>: Yeah, Insurance. That thing that
+covers medical emergencies?</p>
+<p><strong>rick</strong>: I don’t think I have any.</p>
+<p><strong>receptionist</strong>: Everybody has insurance.</p>
+<p><strong>rick</strong>: I don’t think I do.</p>
+<p><strong>receptionist</strong>: Okay.</p>
+<p><strong>pov</strong>: the bill he holds shows a balance due of</p>
+<p><strong>rick</strong>: Can I run a tab?</p>
+<p><strong>receptionist</strong>: You don’t have a check?</p>
+<p><strong>rick</strong>: I’m not even responsible for myself. How am I
+suppose to raise three kids?</p>
+<p><strong>mother</strong>: It can be done.</p>
+<p><strong>rick</strong>: I don’t see how.</p>
+<p><strong>mother</strong>: Find a way. Everything happens for a reason.
+God doesn’t abandon his children, and neither will you.</p>
+<p><strong>rick</strong>: God doesn’t pay day-care.</p>
+<p><strong>mother</strong>: There are other things out there… less
+expensive ways.</p>
+<p><strong>rick</strong>: Could you watch them?</p>
+<p><strong>mother</strong>: Oh… uh… well… I don’t think your father is
+willing to do that. We raised our kids, Rick.</p>
+<p><strong>rick</strong>: How `bout tonight, so I can catch a
+breath?</p>
+<p><strong>mother</strong>: What? My watching them while you were in
+there with Phillip wasn’t enough? Make me feel guilty.</p>
+<p><strong>rick</strong>: I’ll just ask God to watch them. He never
+abandons his children.</p>
+<p><strong>mother</strong>: Take this.</p>
+<p><strong>rick</strong>: I don’t want your money mom.</p>
+<p><strong>mother</strong>: Take the money.</p>
+<p><strong>nicholas</strong>: I can’t do it Daddy.</p>
+<p><strong>rick</strong>: You can do it.</p>
+<p><strong>nicholas</strong>: I can’t do it.</p>
+<p><strong>rick</strong>: Would you do it for a nickel?</p>
+<p><strong>nicholas</strong>: I can’t do it.</p>
+<p><strong>rick</strong>: Watch daddy.</p>
+<p><strong>rick</strong>: Daddy go potty in the potty.</p>
+<p><strong>nicholas</strong>: Daddy?</p>
+<p><strong>rick</strong>: Yes, Nicky?</p>
+<p><strong>nicholas</strong>: I peed.</p>
+<p><strong>rick</strong>: Hi.</p>
+<p><strong>melanie</strong>: I’m Melanie… The baby-sitter…</p>
+<p><strong>rick</strong>: Oh, right, I’m glad you could…</p>
+<p><strong>nicholas</strong>: My daddy has a big pee-pee.</p>
+<p><strong>rick</strong>: I was just demonstrating the art of…</p>
+<p><strong>melanie</strong>: It’s okay. I saw.</p>
+<p><strong>rick</strong>: Great.</p>
+<p><strong>rick</strong>: You have a kid.</p>
+<p><strong>melanie</strong>: So do you.</p>
+<p><strong>rick</strong>: Not criticizing, just surprised. I don’t
+believe anyone at their old day-care had kids. If they did they kept
+them in a closet and only brought them out on special occasions.
+Christmas, Easter, an occasional birthday, and maybe when they had
+friends over for dinner, but only as a status symbol. It was like they’d
+say, “Here’s the white picket fence. Here’s the SUV. Here’s the dog. Oh
+yes, here’s the 2.5 children. Kids you can get back in the closet
+now.”</p>
+<p><strong>melanie</strong>: You’d could make a fortune with a Renta-
+Kid business.</p>
+<p><strong>rick</strong>: That has potential.</p>
+<p><strong>melanie</strong>: I’ve often thought of renting mine. Why pay
+for a baby-sitter when thousands of people would pay good money to set
+your kid on the mantle for a few hours?</p>
+<p><strong>rick</strong>: So, what’s his name?</p>
+<p><strong>zach</strong>: I’m Zach.</p>
+<p><strong>rick</strong>: Hello Zach. I’m Rick.</p>
+<p><strong>zach</strong>: You’re old.</p>
+<p><strong>rick</strong>: You got me there. I am old.</p>
+<p><strong>zach</strong>: How old?</p>
+<p><strong>rick</strong>: Older than dirt. When I was a kid we didn’t
+have dirt. We had rocks and we had hammers. If we wanted dirt we banged
+a few rocks with really big hammers, and then we had dirt.</p>
+<p><strong>melanie</strong>: Worked the chain gangs?</p>
+<p><strong>zach</strong>: You’re too old for my mom.</p>
+<p><strong>rick</strong>: This is Kristian. This is Phillip, and the
+little guy from the potty, is Nicholas. Guys, this is Zach and…</p>
+<p><strong>melanie</strong>: Mel.</p>
+<p><strong>rick</strong>: Mel.</p>
+<p><strong>melanie</strong>: Beautiful kids.</p>
+<p><strong>rick</strong>: Thanks. So’s your’s.</p>
+<p><strong>melanie</strong>: Ever try Cheerios?</p>
+<p><strong>rick</strong>: Huh?</p>
+<p><strong>melanie</strong>: For potty training. Give him something to
+aim at. Drop a Cheerio or two in the toilet and let him pee away.</p>
+<p><strong>rick</strong>: I’ll have to try that. So, any questions about
+the job? Melanie moves towards the boys.</p>
+<p><strong>melanie</strong>: I’m going to go talk to them for a little
+bit. I’ll let you know.</p>
+<p><strong>zach</strong>: My mom tells great stories.</p>
+<p><strong>kris</strong>: We don’t have a mom.</p>
+<p><strong>zach</strong>: That’s okay, I don’t have a dad.</p>
+<p><strong>melanie</strong>: Once upon a time…</p>
+<p><strong>melanie</strong>: The end…</p>
+<p><strong>boys in unison</strong>: Read it again. Read it again. Read
+it again.</p>
+<p><strong>melanie</strong>: I’m gonna talk to your dad.</p>
+<p><strong>boys in unison</strong>: Please.</p>
+<p><strong>melanie</strong>: We’ll read another one in a little bit.</p>
+<p><strong>rick</strong>: You have a real knack there.</p>
+<p><strong>melanie</strong>: Not a knack really. It’s just about finding
+hope in places there should be none.</p>
+<p><strong>rick</strong>: Whatever it is, I’ve never seen them take to a
+woman like that. Melanie smiles.</p>
+<p><strong>rick</strong>: You want the job?</p>
+<p><strong>melanie</strong>: I’d like that.</p>
+<p><strong>woman</strong>: You’re really funny… and kinda cute.</p>
+<p><strong>rick</strong>: Maybe we should…</p>
+<p><strong>woman</strong>: Go out sometime? I’d like that. When?</p>
+<p><strong>rick</strong>: I don’t know… maybe…</p>
+<p><strong>woman</strong>: Tonight?</p>
+<p><strong>int. small suburban home</strong>: Melanie on the phone.</p>
+<p><strong>melanie</strong>: No problem.</p>
+<p><strong>kris</strong>: Who was that?</p>
+<p><strong>melanie</strong>: That was your daddy.</p>
+<p><strong>phillip</strong>: I love daddy.</p>
+<p><strong>kris</strong>: Is he coming home?</p>
+<p><strong>melanie</strong>: No, he’s going to be late. He has a
+date.</p>
+<p><strong>melanie</strong>: So, I guess you have to deal with me a
+little while longer.</p>
+<p><strong>boys in unison</strong>: Yeah!</p>
+<p><strong>woman</strong>: You’re a single father? That’s wonderful. So
+many men refuse to accept any responsibility for their kids. So, how
+many do you have?</p>
+<p><strong>rick</strong>: Um… three.</p>
+<p><strong>woman</strong>: That’s amazing. I’m sure they’re just
+angels.</p>
+<p><strong>woman</strong>: My sister has three. She said when the second
+one was born it doubled the work. She didn’t realize the third would
+double the work load would again. And to think you do it all by
+yourself.</p>
+<p><strong>rick</strong>: Um… kinda.</p>
+<p><strong>woman</strong>: You’re a terrific man. Did I tell you I love
+kids? They love me. It just comes so instinctively even though I’ve
+never had kids myself. I get lots of practice with my nephews though.
+So, when can I meet your boys?</p>
+<p><strong>kris</strong>: You’re not my mom.</p>
+<p><strong>phillip and nicky</strong>: Yeah!</p>
+<p><strong>int. luigis - night</strong>: Rick motions for the check.</p>
+<p><strong>rick</strong>: You can’t.</p>
+<p><strong>woman 2</strong>: A guy like you is so hard to find. I think
+I love you and I think you need to love me too.</p>
+<p><strong>int. small suburban home</strong>: Melanie lights a candle on
+a table set for two.</p>
+<p><strong>rick</strong>: That was incredible.</p>
+<p><strong>woman 3</strong>: Yeah.</p>
+<p><strong>rick</strong>: I know I haven’t known you very long, but I
+there’s something I need to say…</p>
+<p><strong>rick</strong>: Was it something I said?</p>
+<p><strong>melanie</strong>: Did you have a good time?</p>
+<p><strong>rick</strong>: Yeah, it was good… kinda okay… pretty much
+sucked.</p>
+<p><strong>melanie</strong>: What happened?</p>
+<p><strong>rick</strong>: Why can’t I find a woman like you?</p>
+<p><strong>melanie</strong>: You’re trying too hard.</p>
+<p><strong>rick</strong>: I feel bad for the boys. They don’t have a
+“mom”. She’ll always be their mother, but she’ll never be their mom.</p>
+<p><strong>melanie</strong>: Quit trying so hard. You’re forcing issues
+that can’t be forced. Relax. Everything happens when and how it’s
+suppose to. It’s about spirit and finding the will to love again, for
+you and the boys.</p>
+<p><strong>rick</strong>: You want to stay and…</p>
+<p><strong>melanie</strong>: I’m going to get…</p>
+<p><strong>rick</strong>: Going?</p>
+<p><strong>melanie</strong>: Yeah.</p>
+<p><strong>rick</strong>: You sure?</p>
+<p><strong>melanie</strong>: Positive.</p>
+<p><strong>nicholas</strong>: Daddy, I have to potty.</p>
+<p><strong>melanie</strong>: I’ll see you tomorrow.</p>
+<p><strong>rick</strong>: Ok.</p>
+<p><strong>int. bath room</strong>: Rick is on his hands and knees
+wiping the floor around the toilet.</p>
+<p><strong>nicholas</strong>: Nicky almost do’d it.</p>
+<p><strong>rick</strong>: Almost, baby boy. Almost.</p>
+<p><strong>carrie</strong>: Finally had to grow up?</p>
+<p><strong>rick</strong>: Yeah, I…</p>
+<p><strong>john</strong>: You’ve got direction.</p>
+<p><strong>rick</strong>: I suppose. I don’t know if you’d call it
+direction, but there’s a definite sense of purpose.</p>
+<p><strong>carrie</strong>: Good for you.</p>
+<p><strong>rick</strong>: Yeah, but is it good for the kids?</p>
+<p><strong>john</strong>: Do the kids have direction?</p>
+<p><strong>rick</strong>: Only two kinds of people make it in this
+world, boy; Those that are smart and those that are strong. If you don’t
+want to be smart and do your homework then you can be strong and do
+pushups.</p>
+<p><strong>rick</strong>: I’m probably not as demanding of them as I
+should be.</p>
+<p><strong>john</strong>: You have to instill a sense of direction at a
+very early age.</p>
+<p><strong>mother</strong>: So, Phillip what do you want to be when you
+grow up?</p>
+<p><strong>phillip</strong>: Daddy says I can do three things when I
+grow up.</p>
+<p><strong>mother</strong>: And what are those? Phillip takes a deep
+breath.</p>
+<p><strong>phillip</strong>: I can go to college and move the hell out
+of his house. I can join the military and move the hell out of his
+house, or I can get a job and…</p>
+<p><strong>rick</strong>: … move the hell out of my house.</p>
+<p><strong>mother</strong>: Rick!</p>
+<p><strong>rick</strong>: Ya gotta let them be what they’re going to
+be.</p>
+<p><strong>john</strong>: No, you have to mold them early. If you don’t
+mold them they’ll grow up to be Democrats.</p>
+<p><strong>rick</strong>: And you do this with your kids?</p>
+<p><strong>john</strong>: That’s not the point, is it, Carrie?</p>
+<p><strong>carrie</strong>: I think Rick is doing a wonderful job.</p>
+<p><strong>rick</strong>: It’s a struggle, going at it alone, but…</p>
+<p><strong>carrie</strong>: Excuse me, gentleman, I need to powder my
+nose.</p>
+<p><strong>john</strong>: I can’t believe you.</p>
+<p><strong>rick</strong>: What?</p>
+<p><strong>john</strong>: Whining about being single. Married men would
+kill to be in your situation!</p>
+<p><strong>rick</strong>: I’m just saying it’s hard.</p>
+<p><strong>john</strong>: You have your sons to raise without feminine
+interference. Do you understand the significance of your situation? Do
+you understand the power in your circumstance?</p>
+<p><strong>int. night club - night</strong>: Rick takes a swig of his
+beer.</p>
+<p><strong>john</strong>: Men, all over the world, would kill for that
+kind of power.</p>
+<p><strong>john</strong>: You have the kids and she pays child support…
+and you sit here and whine about things being hard? Give me a break.</p>
+<p><strong>rick</strong>: It does have its advantages, I suppose.</p>
+<p><strong>john</strong>: Another?</p>
+<p><strong>rick</strong>: Uh…</p>
+<p><strong>john</strong>: On me.</p>
+<p><strong>rick</strong>: Sure.</p>
+<p><strong>rick</strong>: He went to grab a couple beers.</p>
+<p><strong>carrie</strong>: You know Rick, someday some girl is going to
+realize what a good man you are.</p>
+<p><strong>rick</strong>: Carrie, I don’t even have the funds to buy my
+own beer.</p>
+<p><strong>carrie</strong>: Love isn’t about money. Love is about truth
+and selflessness and discovering who you are and who’ll be. Someday,
+someone will find you.</p>
+<p><strong>melanie</strong>: I’ll call you back.</p>
+<p><strong>melanie</strong>: What?</p>
+<p><strong>melanie</strong>: What was that for?</p>
+<p><strong>rick</strong>: For finding me.</p>
+<p><strong>nicholas</strong>: Have to potty, daddy.</p>
+<p><strong>rick</strong>: Go potty, buddy.</p>
+<p><strong>int. frank ryan’s office - day</strong>: Frank sits at his
+desk.</p>
+<p><strong>rick</strong>: I thank you for everything, but it’s time to
+move on.</p>
+<p><strong>frank</strong>: Where are you going? What will you do?</p>
+<p><strong>rick</strong>: I don’t know, Frank, but I’m worth more than
+this.</p>
+<p><strong>frank</strong>: You’ll never make it without me!</p>
+<p><strong>rick</strong>: Phillip, what’s wrong?</p>
+<p><strong>phillip</strong>: Well, I wanted that piece and Kris took
+that piece, and I really, really wanted that piece.</p>
+<p><strong>melanie</strong>: What’s so important about that piece?</p>
+<p><strong>kris</strong>: It’s bigger.</p>
+<p><strong>rick</strong>: Easy on the drinks guys.</p>
+<p><strong>melanie</strong>: What’s wrong, Phillip?</p>
+<p><strong>phillip</strong>: I gotta pee and Kris…</p>
+<p><strong>rick</strong>: We’re not going to fight over the
+bathroom.</p>
+<p><strong>melanie</strong>: What’s that?</p>
+<p><strong>rick</strong>: Huh? Oh, this? Nothing!</p>
+<p><strong>phillip</strong>: This time mine’s bigger.</p>
+<p><strong>cindy</strong>: I’m really glad you could make it.</p>
+<p><strong>rick</strong>: I took off work to be here.</p>
+<p><strong>cindy</strong>: Thank you.</p>
+<p><strong>rick</strong>: So, what do you want?</p>
+<p><strong>cindy</strong>: I want to see your boys.</p>
+<p><strong>rick</strong>: I don’t think that’s a good idea.</p>
+<p><strong>cindy</strong>: I’m their mother.</p>
+<p><strong>rick</strong>: You forfeited that obligation, remember?</p>
+<p><strong>cindy</strong>: That’s not fair!</p>
+<p><strong>rick</strong>: You abandoned your kids!</p>
+<p><strong>cindy</strong>: I did not. I left them in the care of their
+loving father. There’s a difference.</p>
+<p><strong>rick</strong>: Is there?</p>
+<p><strong>cindy</strong>: I just want to see the boys.</p>
+<p><strong>rick</strong>: You think they even know who you are?</p>
+<p><strong>cindy</strong>: I’m their mother.</p>
+<p><strong>rick</strong>: You keep saying that.</p>
+<p><strong>cindy</strong>: I know things can never go back to the way
+they were before.</p>
+<p><strong>man</strong>: Next…</p>
+<p><strong>cindy</strong>: Rick? Rick? Rick?</p>
+<p><strong>rick</strong>: Huh?</p>
+<p><strong>cindy</strong>: Let’s keep the attorneys out of this and
+settle things like civil adults.</p>
+<p><strong>rick</strong>: Hi guys.</p>
+<p><strong>melanie</strong>: This is a surprise. Leave work to spend the
+day with us?</p>
+<p><strong>rick</strong>: Come on guys. Someone is here to see you.</p>
+<p><strong>melanie</strong>: Rick? Rick?</p>
+<p><strong>cindy</strong>: Thank you.</p>
+<p><strong>rick</strong>: Three hours.</p>
+<p><strong>cindy</strong>: They’ll be here.</p>
+<p><strong>rick</strong>: Where are you going.</p>
+<p><strong>melanie</strong>: Anywhere you’re not.</p>
+<p><strong>rick</strong>: What about the boys? What about me?</p>
+<p><strong>melanie</strong>: I’m all about second chances, but not when
+I come in second place.</p>
+<p><strong>rick</strong>: What are you talking about?</p>
+<p><strong>melanie</strong>: Why was she here? What was that?</p>
+<p><strong>rick</strong>: She’s their mother.</p>
+<p><strong>melanie</strong>: Mother? I’ve been more of a mother than she
+ever was.</p>
+<p><strong>rick</strong>: She’s their mother.</p>
+<p><strong>melanie</strong>: Who willingly walked out of their
+lives.</p>
+<p><strong>rick</strong>: She’s their mother.</p>
+<p><strong>melanie</strong>: You keep saying that.</p>
+<p><strong>rick</strong>: You think this is easy? You think raising
+these boys is something I want to do alone? Every day is like a prison
+sentence. Every thing I do, every decision I make is directly affected
+by the boundaries of my responsibility. I have three children, but I
+have no me. Everywhere I go people stare at me…</p>
+<p><strong>rick</strong>: They stare at me, and I know what they’re
+thinking…</p>
+<p><strong>ext. city streets - day</strong>: A PEDESTRIAN drops a coin
+in ricks coffer.</p>
+<p><strong>pedestrian</strong>: You poor, poor man. You poor, poor
+children. How unfortunate to only have your father. How terrible it must
+be not to know your mother.</p>
+<p><strong>melanie</strong>: What about Zach? How noble of you to be the
+only single parent in the world. How stoic you are… so concerned with
+the best interests of your children. Too bad. Their best interest is
+walking out the door.</p>
+<p><strong>kris</strong>: When can we see you again?</p>
+<p><strong>cindy</strong>: Someday.</p>
+<p><strong>phillip</strong>: Is someday tomorrow?</p>
+<p><strong>cindy</strong>: Someday is someday, baby.</p>
+<p><strong>rick</strong>: Give your Mom a hug, guys, then get in the
+house.</p>
+<p><strong>cindy</strong>: I’m sorry.</p>
+<p><strong>rick</strong>: For?</p>
+<p><strong>cindy</strong>: I thought things had changed.</p>
+<p><strong>rick</strong>: But?</p>
+<p><strong>cindy</strong>: I am who I am, Rick. I’m not cut out to be a
+mommy.</p>
+<p><strong>rick</strong>: I could have told you that.</p>
+<p><strong>cindy</strong>: I had to give it a shot. Rick turns to walk
+away.</p>
+<p><strong>rick</strong>: At whose expense? Huh, Cindy? At whose
+expense? Who’s going to dry their tears tomorrow when they realize your
+never coming back? Who’s going to rock them to sleep at night when they
+ask why mommy doesn’t love them?</p>
+<p><strong>cindy</strong>: You are, and you wouldn’t have it any other
+way.</p>
+<p><strong>phillip</strong>: Is Mel coming today?</p>
+<p><strong>rick</strong>: I don’t know, buddy.</p>
+<p><strong>nicholas</strong>: Daddy?</p>
+<p><strong>rick</strong>: Yes Nicky?</p>
+<p><strong>nicholas</strong>: I love Mel.</p>
+<p><strong>rick</strong>: She loves you too.</p>
+<p><strong>kris</strong>: Daddy… Daddy… Dad!</p>
+<p><strong>rick</strong>: Don’t you yell! If you have something to say,
+come here and tell me.</p>
+<p><strong>kris</strong>: Dad?</p>
+<p><strong>rick</strong>: Yeah?</p>
+<p><strong>kris</strong>: Phillip’s in the closet</p>
+<p><strong>rick</strong>: What were you doing in there?</p>
+<p><strong>phillip</strong>: Being Daddy.</p>
+<p><strong>rick</strong>: Who locked the door?</p>
+<p><strong>kris</strong>: Wasn’t me…</p>
+<p><strong>phillip</strong>: I did.</p>
+<p><strong>mother</strong>: Rick?… Rick?… Rick?</p>
+<p><strong>mother</strong>: Take care of my babies.</p>
+<p><strong>father</strong>: What are you giving him money for?</p>
+<p><strong>mother</strong>: To help him through the hard times. He’s a
+good father, just having a rough go.</p>
+<p><strong>father</strong>: I’ve never met a good father that couldn’t
+support his kids.</p>
+<p><strong>father</strong>: You could watch the boys while he works.</p>
+<p><strong>mother</strong>: I’m too old for that. The better side of
+life has passed me by. What if they fall? I don’t hear like I used to.
+What if one of them was seriously hurt and I didn’t hear their cry? I
+hate that the only thing I feel competent to do is give them money. I
+love my son and I love my grandbabies, but how would I live with myself
+if something happened to those children?</p>
+<p><strong>representative</strong>: Sir, you’re 3 months behind on your
+electric bill.</p>
+<p><strong>representative</strong>: It’s a start, but not nearly
+enough.</p>
+<p><strong>jailer</strong>: I always knew you were a lifer.</p>
+<p><strong>adoption agent</strong>: Because of their age it may take
+awhile. We’ll start them out in foster care, but eventually they’ll all
+be placed in loving, nurturing environments.</p>
+<p><strong>int. adoption agency</strong>: Rick snaps back from his
+daydream.</p>
+<p><strong>rick</strong>: They’ll be together though, right?</p>
+<p><strong>adoption agent</strong>: Mr. Stevens, I wish I could make
+that promise, but the odds of an adoptive family willing to take them
+all is astronomical.</p>
+<p><strong>rick</strong>: Come on guys we’re out of here.</p>
+<p><strong>adoption agent</strong>: Mr. Stevens?</p>
+<p><strong>rick</strong>: I’m sorry, I made a mistake.</p>
+<p><strong>rick</strong>: Can I get some help here.</p>
+<p><strong>rick</strong>: Can you help me?</p>
+<p><strong>convict</strong>: Can you help him?</p>
+<p><strong>rick</strong>: I don’t know.</p>
+<p><strong>convict</strong>: What does he need?</p>
+<p><strong>rick</strong>: I don’t know.</p>
+<p><strong>convict</strong>: He needs a father, not a book reading
+baby-sitter.</p>
+<p><strong>rick</strong>: I can’t fucking do this.</p>
+<p><strong>convict</strong>: Yes you can.</p>
+<p><strong>convict</strong>: Use your mind and your heart. It’s
+different than it ever should have been… but different isn’t wrong.</p>
+<p><strong>rick</strong>: But I…</p>
+<p><strong>convict</strong>: Use what you have. There is a vein of
+wealth inside you just waiting to be mined. Think differently than you
+have ever thought before. Worker harder than you ever thought you could.
+Love these children like they’ve never been loved before.</p>
+<p><strong>rick</strong>: How?</p>
+<p><strong>convict</strong>: The answer lies within. Quit worrying about
+how these misguided events have torn your life apart. Quit dwelling on
+all of your misgivings. Look around you. You’re not alone. But you, and
+you alone, will make the difference.</p>
+<p><strong>rick</strong>: It’s not worth a lot, maybe a few hundred
+bucks, but it might keep you in soap for a year.</p>
+<p><strong>case worker</strong>: Mr. Stevens, I can see you now. Rick
+and the Pregnant Woman lock eyes.</p>
+<p><strong>pregnant woman</strong>: I ain’t some charity case. I know
+what you think when you look at me. You think; Look at that poor, poor
+woman. Look at those poor, poor children. How unfortunate it must be
+that they only have a mother. How terrible it must be not to know their
+father.</p>
+<p><strong>case worker</strong>: Mr. Stevens?</p>
+<p><strong>rick</strong>: I didn’t mean it like that?</p>
+<p><strong>pregnant woman</strong>: No one ever does.</p>
+<p><strong>case worker</strong>: Mr. Stevens?</p>
+<p><strong>case worker</strong>: Mr. Stevens? I can see you now.</p>
+<p><strong>rick</strong>: I’m sorry, I’m going to have to
+reschedule.</p>
+<p><strong>case worker</strong>: Excuse me?</p>
+<p><strong>rick</strong>: Responsibility calls.</p>
+<p><strong>nicholas</strong>: Please daddy? Please? Rick opens the book
+so all can see.</p>
+<p><strong>rick</strong>: Once upon a time…</p>
+<p><strong>nicholas</strong>: Daddy, I’m hungry.</p>
+<p><strong>nicholas</strong>: It’s very, very empty.</p>
+<p><strong>phillip</strong>: Daddy, I’m thirsty.</p>
+<p><strong>rick</strong>: Get your coats on.</p>
+<p><strong>kris</strong>: We’re leaving guys.</p>
+<p><strong>clerk</strong>: Thirty-two hundred and fifty-six dollars.</p>
+<p><strong>older woman</strong>: Think it’s bad now? Wait til they’re
+teenagers.</p>
+<p><strong>rick</strong>: Mom, I have an idea, but I need your help.</p>
+<p><strong>rick</strong>: Put your checkbook away. What I need you can’t
+buy.</p>
+<p><strong>mother</strong>: What do you need.</p>
+<p><strong>rick</strong>: For you to believe in me.</p>
+<p><strong>melanie</strong>: I know you.</p>
+<p><strong>cindy</strong>: Excuse me?</p>
+<p><strong>melanie</strong>: Rick’s ex-wife?</p>
+<p><strong>cindy</strong>: And you are?</p>
+<p><strong>melanie</strong>: Can I ask you a question? What is Phillip’s
+favorite color?</p>
+<p><strong>cindy</strong>: Huh?</p>
+<p><strong>melanie</strong>: Blue. His favorite color is blue. How many
+teeth has Kris lost?</p>
+<p><strong>cindy</strong>: I don’t know. Why?</p>
+<p><strong>melanie</strong>: Four. Two on top and two on bottom. He got
+a quarter for the first one, fifty cents for the next two and he
+parlayed the last into an even dollar. Nicholas cries at night because
+he thinks the house is filled with ghosts. Kiss him once on the
+forehead, once on the cheek and sing The Cradle Will Rock and he’ll
+sleep the whole night through. Kris’ favorite subject is math. He loves
+to read and write, but he doesn’t do so well in social studies. He knows
+how to ride a bike. Why? Because I taught him. Phillip wants to learn
+but he’s always afraid he’ll fall. Nicky just likes to Flintstone his
+tricycle. Phillip’s favorite cartoon is Tunenami.</p>
+<p><strong>cindy</strong>: What’s your point?</p>
+<p><strong>melanie</strong>: I’m more their mom than you’ll ever be.</p>
+<p><strong>cindy</strong>: So, why are you here with slick and not with
+“your” kids?</p>
+<p><strong>melanie</strong>: Things change.</p>
+<p><strong>cindy</strong>: Yeah… yeah they do. Now if you’ll excuse me I
+need to find the asparagus. I couldn’t do it, ya know?</p>
+<p><strong>melanie</strong>: Do what?</p>
+<p><strong>cindy</strong>: I always thought I wanted to be a parent, and
+I was really good at being pregnant, but I sucked as a mom. I know that
+now. I don’t have what it takes.</p>
+<p><strong>melanie</strong>: I don’t think I’ve ever felt as much pity
+for anyone as I do for you right now.</p>
+<p><strong>cindy</strong>: Take care of my boys… all of them.</p>
+<p><strong>rick</strong>: Well, guys, I guess this is it.</p>
+<p><strong>kris</strong>: We can do it daddy.</p>
+<p><strong>rick</strong>: Yes we can.</p>
+<p><strong>climber</strong>: You can do it.</p>
+<p><strong>rick</strong>: Yes we can.</p>
+<p><strong>rick</strong>: What is it, Kris?</p>
+<p><strong>kris</strong>: Look daddy.</p>
+<p><strong>ext. gorge park - day</strong>: Rick holds a college
+pamphlet. Rick’s POV: He looks at the pamphlet then up to see they
+aren’t even close to the top. They have just reached a plateau along the
+way.</p>
+<p><strong>phillip</strong>: We can do it.</p>
+<p><strong>rick</strong>: Yes we can.</p>
+<p><strong>ext. the chapel - day</strong>: Rick and the boys, hand in
+hand, walk toward the church.</p>
+<p><strong>rick</strong>: Kris!</p>
+<p><strong>kris</strong>: Hey!</p>
+<p><strong>boyfriend</strong>: What’s wrong? What did I do?</p>
+<p><strong>melanie</strong>: Not you, it’s me.</p>
+<p><strong>boyfriend</strong>: What then?</p>
+<p><strong>melanie</strong>: I’m sorry.</p>
+<p><strong>rick</strong>: Put the stone down.</p>
+<p><strong>phillip</strong>: But…</p>
+<p><strong>rick</strong>: No buts: Put the stone down.</p>
+<p><strong>rick</strong>: I knew this was a hard climb, but…</p>
+<p><strong>resting climber</strong>: Long way up.</p>
+<p><strong>rick</strong>: Yeah.</p>
+<p><strong>resting climber</strong>: Long way down for that matter.</p>
+<p><strong>rick</strong>: That too.</p>
+<p><strong>rick</strong>: So, what’s your point.</p>
+<p><strong>resting climber</strong>: No point, just an observation.
+Drink?</p>
+<p><strong>rick</strong>: I’m okay.</p>
+<p><strong>resting climber</strong>: For the boys.</p>
+<p><strong>nicholas</strong>: Daddy, I’m thirsty. Rick studies the
+climber for a moment.</p>
+<p><strong>rick</strong>: Go ahead.</p>
+<p><strong>resting climber</strong>: You know, if you stop here, halfway
+between a long way up and a long way down you really haven’t
+accomplished much, have you?</p>
+<p><strong>rick</strong>: We’re not stopping. We’re just resting.</p>
+<p><strong>resting climber</strong>: That’s what I said, fourteen years
+ago. Rick looks toward the top.</p>
+<p><strong>rick</strong>: We can do this.</p>
+<p><strong>resting climber</strong>: Yes you can.</p>
+<p><strong>rick</strong>: We can do this!</p>
+<p><strong>boys in unison</strong>: Yes we can!</p>
+<p><strong>prosecutor</strong>: What is so important Mr. Stevens that
+you would burden this court with convening today?</p>
+<p><strong>rick</strong>: I just needed clarification.</p>
+<p><strong>prosecutor</strong>: On what, Mr. Stevens? On what?</p>
+<p><strong>rick</strong>: I know if I have to, I can do this alone, but
+do I have to do this alone? A hushed MURMUR rises in the audience. The
+Judge RAPS his gavel on the bench.</p>
+<p><strong>judge</strong>: Order in this court! A beat as things quiet
+down.</p>
+<p><strong>judge</strong>: Your inquiry, Mr. Stevens? Is it in the best
+interest of the children or in the best interest of you?</p>
+<p><strong>rick</strong>: I don’t know.</p>
+<p><strong>prosecutor</strong>: He doesn’t know. He just doesn’t
+know.</p>
+<p><strong>rick</strong>: I don’t know.</p>
+<p><strong>judge</strong>: Then this court sees no reason to amend the
+original verdict. The order stands.</p>
+<p><strong>rick</strong>: But…</p>
+<p><strong>prosecutor</strong>: Tell it to someone who cares,
+Mr. Stevens.</p>
+<p><strong>rick</strong>: I have. I have laid my heart out on the line
+time and time again, only to walk away empty handed. This love, this
+caring, this sharing of life, it’s a sentence and my heart has been
+condemned. It doesn’t matter who I’ve told, what’s in my heart is never
+quite enough. The people I have cared for most have shunned me in life
+and in love. Unanswered phone calls… Unnoticed displays of affection… A
+rose that withers on the doorstep… No matter what I do, it’s never
+enough. Just once, just one fucking time, I want to be enough.</p>
+<p><strong>prosecutor</strong>: Your only condemnation is self- pity.
+You have people that care all around you, but you’re too blind to see
+them. If you don’t pull yourself together soon, my friend, they soon
+will all be gone.</p>
+<p><strong>melanie</strong>: What do you want?</p>
+<p><strong>rick</strong>: I’m a proud man, sometimes foolish.</p>
+<p><strong>melanie</strong>: Go on.</p>
+<p><strong>rick</strong>: I have a long way to go before I could ever be
+the man you need me to be.</p>
+<p><strong>melanie</strong>: And?</p>
+<p><strong>rick</strong>: And I got confused between what I should have
+done and what I thought was right.</p>
+<p><strong>melanie</strong>: Yes you did.</p>
+<p><strong>rick</strong>: I put you on a pedestal and then I knocked you
+down. It wasn’t fair.</p>
+<p><strong>melanie</strong>: Life’s not fair Rick.</p>
+<p><strong>rick</strong>: You were more a mother to my boys than they
+have ever known. You were more a woman to me than I have ever
+deserved.</p>
+<p><strong>melanie</strong>: You’re right.</p>
+<p><strong>rick</strong>: You’re not going to make this easy, are
+you?</p>
+<p><strong>melanie</strong>: Cut the bullshit, Rick.</p>
+<p><strong>rick</strong>: I can live my life alone. I can raise my kids
+alone. I can walk this path alone. I’d much rather do it with you.</p>
+<p><strong>melanie</strong>: I can’t.</p>
+<p><strong>rick</strong>: Can’t?</p>
+<p><strong>melanie</strong>: I won’t.</p>
+<p><strong>rick</strong>: I shouldn’t have come here.</p>
+<p><strong>melanie</strong>: No, you shouldn’t have.</p>
+<p><strong>melanie</strong>: You just don’t get it do you?</p>
+<p><strong>rick</strong>: Get what?</p>
+<p><strong>melanie</strong>: You’re here for you, you selfish prick.</p>
+<p><strong>melanie</strong>: Days go by when I lose me. There are nights
+when I lay in bed and I can hear Zach through the walls. He’s crying out
+for me, and I lay there motionless, wishing I was anyone but me,
+anywhere but here, thinking that somewhere, sometime, there has to be
+room for me. But that someday never seems to come. You’re dangerous.
+Loving you means I lose me. And I will never lose let that happen.</p>
+<p><strong>kris</strong>: I could have looked sad.</p>
+<p><strong>phillip</strong>: I can look sad too.</p>
+<p><strong>kris</strong>: But I look sadder.</p>
+<p><strong>nicholas</strong>: I sad.</p>
+<p><strong>phillip</strong>: Don’t quit, daddy.</p>
+<p><strong>kris</strong>: Daddy doesn’t quit.</p>
+<p><strong>john</strong>: You love her?</p>
+<p><strong>rick</strong>: I think so… I don’t know.</p>
+<p><strong>john</strong>: If you think you’re in love you are.</p>
+<p><strong>rick</strong>: I suppose I am.</p>
+<p><strong>john</strong>: Does your heart skip a beat when she walks
+by?</p>
+<p><strong>rick</strong>: She’s my best friend… or was.</p>
+<p><strong>john</strong>: Does your heart skip a beat when she walks
+by?</p>
+<p><strong>rick</strong>: Yes.</p>
+<p><strong>john</strong>: Do your palms sweat when you think about
+her?</p>
+<p><strong>rick</strong>: Yes.</p>
+<p><strong>john</strong>: Does she inspire you?</p>
+<p><strong>rick</strong>: With music and poetry.</p>
+<p><strong>john</strong>: And is there passion?</p>
+<p><strong>rick</strong>: There’s fire.</p>
+<p><strong>john</strong>: And have you ever told her this?</p>
+<p><strong>rick</strong>: She knows.</p>
+<p><strong>john</strong>: Have you ever told her this?</p>
+<p><strong>rick</strong>: No.</p>
+<p><strong>john</strong>: Don’t you think you should?</p>
+<p><strong>rick</strong>: It only confuses things.</p>
+<p><strong>john</strong>: Loving your best friend confuses things? I
+can’t think of a love more lucid. Rick stands to leave.</p>
+<p><strong>john</strong>: You know I’ll never forgive you for this,
+don’t you? You had the power and the dream at your fingertips and you’re
+giving it all away.</p>
+<p><strong>rick</strong>: You didn’t marry your best friend?</p>
+<p><strong>john</strong>: No.</p>
+<p><strong>rick</strong>: I thought you had things all planned out.</p>
+<p><strong>john</strong>: Affairs of the heart and those of the mind are
+two different things.</p>
+<p><strong>rick</strong>: It’s not too late, you know?</p>
+<p><strong>rick</strong>: Go Home, John. Go home and talk to your best
+friend the way you talk to me.</p>
+<p><strong>rick</strong>: I need you to watch the boys.</p>
+<p><strong>mother</strong>: But you’re father…</p>
+<p><strong>father</strong>: Woman, enough.</p>
+<p><strong>mother</strong>: But…</p>
+<p><strong>father</strong>: No more excuses. It’s time to live life and
+enjoy our grandkids. Go. The boys will be fine.</p>
+<p><strong>mother</strong>: Can’t we just give him money to pay for a
+baby-sitter?</p>
+<p><strong>int. restaurant</strong>: Melanie is working as a waitress.
+She’s pouring coffee when she sees Rick.</p>
+<p><strong>melanie</strong>: Oh shit.</p>
+<p><strong>customer</strong>: Whoa!</p>
+<p><strong>melanie</strong>: Sorry.</p>
+<p><strong>customer</strong>: Pay attention, would ya?</p>
+<p><strong>melanie</strong>: What do you want?</p>
+<p><strong>rick</strong>: To talk.</p>
+<p><strong>melanie</strong>: I’m working.</p>
+<p><strong>rick</strong>: I know.</p>
+<p><strong>melanie</strong>: So, where are the boys?</p>
+<p><strong>rick</strong>: They’re at my parents.</p>
+<p><strong>melanie</strong>: What? Not going to use them to try to
+persuade me with guilt?</p>
+<p><strong>rick</strong>: Is that what you thought?</p>
+<p><strong>melanie</strong>: I have a son of my own. I know when people
+are using their kids.</p>
+<p><strong>customer 2</strong>: Ma’am.</p>
+<p><strong>rick</strong>: Excuse us for a moment okay?</p>
+<p><strong>customer 2</strong>: I’d just like some coffee.</p>
+<p><strong>customer 2</strong>: Excuse me, Miss?</p>
+<p><strong>rick</strong>: What is your problem?</p>
+<p><strong>customer 2</strong>: Cold.</p>
+<p><strong>rick</strong>: What?</p>
+<p><strong>customer 2</strong>: The coffee, it’s cold.</p>
+<p><strong>rick</strong>: Quit your bitching.</p>
+<p><strong>melanie</strong>: I can’t believe you came here.</p>
+<p><strong>rick</strong>: I can’t believe you’re a waitress.</p>
+<p><strong>melanie</strong>: Beats chasing around after snot nosed brats
+all day.</p>
+<p><strong>rick</strong>: I thought you liked my kids.</p>
+<p><strong>melanie</strong>: I was talking about you.</p>
+<p><strong>rick</strong>: I deserved that.</p>
+<p><strong>melanie</strong>: So, what do the kids need? A babysitter? A
+surrogate mom?</p>
+<p><strong>rick</strong>: This isn’t about the kids.</p>
+<p><strong>melanie</strong>: Then what’s it about?</p>
+<p><strong>rick</strong>: It’s about me, the selfish prick.</p>
+<p><strong>melanie</strong>: About you?</p>
+<p><strong>rick</strong>: Hear me out, okay?</p>
+<p><strong>melanie</strong>: You have 15 seconds.</p>
+<p><strong>rick</strong>: Okay, okay.</p>
+<p><strong>melanie</strong>: Ten.</p>
+<p><strong>rick</strong>: Melanie, there is a grace about you that
+reminds me how clumsy I am. There is an honesty about you that reminds
+me how deceitful I can be. There is a beauty in your eyes that reminds
+me how ugly I’ve become. There is a kindness in your voice that
+contradicts my coarseness. There is a glow around you that illuminates
+my dullness. There is spirit in you that challenges my laziness, but
+most of all, there is a woman in you, that sparks my desire, a desire to
+be graceful and honest and beautiful and kind. A desire to be better
+than I am or ever thought I could be.</p>
+<p><strong>melanie</strong>: Go on.</p>
+<p><strong>rick</strong>: I think my ten seconds are up.</p>
+<p><strong>melanie</strong>: Who’s counting?</p>
+<p><strong>customer 2</strong>: Miss… My coffee?</p>
+<p><strong>melanie</strong>: Get it yourself.</p>
+<p><strong>rick</strong>: I love you.</p>
+<p><strong>melanie</strong>: I don’t think I heard you.</p>
+<p><strong>rick</strong>: If I give you my heart will you promise to
+treat it softly? Kiss it when it hurts? Put it in a box and know that it
+belongs to you?</p>
+<p><strong>melanie</strong>: That’s not what you said.</p>
+<p><strong>rick</strong>: I said I love you.</p>
+<p><strong>melanie</strong>: As brutal as that can be?</p>
+<p><strong>rick</strong>: I love you. I love you, I love you, I love
+you.</p>
+<p><strong>melanie</strong>: I kind of like you too.</p>
+<p><strong>melanie</strong>: I never thought you’d make it.</p>
+<p><strong>rick</strong>: Been waiting long?</p>
+<p><strong>melanie</strong>: I never thought you’d find me.</p>
+<p><strong>rick</strong>: I had to find me first. I hope you plan on
+walking, cause I’m not sure I can carry you.</p>
+<p><strong>melanie</strong>: So, how do we do this? The two begin the
+ascent together.</p>
+<p><strong>rick</strong>: One step at a time?</p>
+<p><strong>melanie</strong>: Side by side?</p>
+<p><strong>rick</strong>: Maybe you could carry me?</p>
+<p><strong>jailer</strong>: Getting out of here, huh?</p>
+<p><strong>rick</strong>: It’s time to move on.</p>
+<p><strong>jailer</strong>: If you leave don’t ever come back.</p>
+<p><strong>rick</strong>: Not even…</p>
+<p><strong>jailer</strong>: Not even on a visit. You’re a very ugly man.
+I’d hate to explain to the other guards why you’d come to visit me.</p>
+<p><strong>kris</strong>: Grandma?</p>
+<p><strong>mother</strong>: Yes, Kris?</p>
+<p><strong>kris</strong>: Grandma I love you.</p>
+<p><strong>phillip</strong>: I love her more.</p>
+<p><strong>nicholas</strong>: I love her the whole universe.</p>
+<p><strong>mother</strong>: I love you all the whole universe plus
+one.</p>
+<p><strong>melanie</strong>: So, this is where it all happened.</p>
+<p><strong>rick</strong>: It’s funny, the tricks the mind can play on
+you… but the Judge, he sat right over there… and the jury sat right
+there… and the audience was filled with all these people who didn’t
+really give a shit about me.</p>
+<p><strong>melanie</strong>: A bunch of innocent bystanders?</p>
+<p><strong>rick</strong>: And they all sat passing judgement on me, not
+knowing the situation, just staring over their schoolmarm spectacles and
+pointing their crooked fingers.</p>
+<p><strong>melanie</strong>: All the world’s a stage.</p>
+<p><strong>rick</strong>: Always casting dispersions.</p>
+<p><strong>judge</strong>: Guilty as charged.</p>
+<p><strong>melanie</strong>: Did you hear that?</p>
+<p><strong>rick</strong>: Hear what?</p>
+<p><strong>melanie</strong>: Nothing… nothing at all.</p>
+<p><strong>john</strong>: The secret of life, Melanie, is to always pay
+attention…</p>
+<p><strong>john</strong>: … always be prepared for what’s right around
+the corner. The CRACK of the bat.</p>
+<p><strong>rick</strong>: Duck!</p>
+<p><strong>john</strong>: Huh?</p>
+</body>
+</html>

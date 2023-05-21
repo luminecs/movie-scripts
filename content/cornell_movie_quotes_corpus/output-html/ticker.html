@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ticker</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="ticker">ticker</h1>
+<p><strong>rice</strong>: Know what the problem is, kid? You’re too ugly
+to get propositioned.</p>
+<p><strong>reilly</strong>: Look who’s talking, old man.</p>
+<p><strong>rice</strong>: C’mon, it’s a quiet night.</p>
+<p><strong>rice</strong>: Next week we work the park.</p>
+<p><strong>reilly</strong>: I gotta get back on top. Get off the sleaze
+detail.</p>
+<p><strong>rice</strong>: You will, one day at a time. I’ll be old and
+grey when it happens…</p>
+<p><strong>bag lady</strong>: A small gift, sir, for the Queen …</p>
+<p><strong>rice</strong>: Here you go, your Highness.</p>
+<p><strong>bag lady</strong>: Thank you, officer.</p>
+<p><strong>reilly</strong>: So what’ll you do? After they give you the
+gold watch.</p>
+<p><strong>rice</strong>: Hell, I got a gold watch… it just don’t work.
+Maybe they’ll give me a new fishing pole, or something useful.</p>
+<p><strong>reilly</strong>: You don’t fish.</p>
+<p><strong>rice</strong>: How hard can it be? The grand kids been
+buggin’ me about taking them camping.</p>
+<p><strong>reilly</strong>: You outta the city… that’s a fish out of
+water. What’s with all this family talk lately, anyway?</p>
+<p><strong>rice</strong>: One of these days you’re gonna get tired of
+fighting the shit. When that happens, you’ll wish you had family.</p>
+<p><strong>reilly</strong>: No thanks. I got close but it never woulda
+worked.</p>
+<p><strong>rice</strong>: Why don’t you just shoot it and put it out of
+its misery?</p>
+<p><strong>reilly</strong>: What are you talking about, it’s purring
+like a kitty.</p>
+<p><strong>rice</strong>: I thought you said what’s-her-name’s brother
+was going to fix it.</p>
+<p><strong>reilly</strong>: She didn’t work out, had to cut her
+loose.</p>
+<p><strong>rice</strong>: What was it this time?</p>
+<p><strong>reilly</strong>: She wanted to cook me breakfast.</p>
+<p><strong>rice</strong>: We’re vice, I didn’t see no pimps or hookers
+in that van. But if you’re so gung-ho, we’d best call it in for some
+back-up.</p>
+<p><strong>reilly</strong>: Nah, let’s just take a look-see.</p>
+<p><strong>reilly</strong>: Ow! Son-of-a-bitch.</p>
+<p><strong>rice</strong>: You okay?</p>
+<p><strong>reilly</strong>: Yeah, just a nick …</p>
+<p><strong>rice</strong>: Freeze! Police!</p>
+<p><strong>reilly</strong>: Drop it!</p>
+<p><strong>swan</strong>: Let her go.</p>
+<p><strong>earring</strong>: We gotta get outta here!</p>
+<p><strong>reilly</strong>: Tell them to drop it - now!</p>
+<p><strong>swan</strong>: You have no idea how sorry you’re going to be.
+Don’t worry.</p>
+<p><strong>rice</strong>: Mike…</p>
+<p><strong>reilly</strong>: Don’t talk.</p>
+<p><strong>rice</strong>: Take your time… one day at a time, kid…</p>
+<p><strong>reilly</strong>: It don’t work-</p>
+<p><strong>rice</strong>: Ain’t that a shit–</p>
+<p><strong>harry</strong>: Hey, Reilly, Captain’s looking for you.</p>
+<p><strong>winters</strong>: Prints?</p>
+<p><strong>pluchinsky</strong>: Nothing so far.</p>
+<p><strong>winters</strong>: What about the ballistics report?</p>
+<p><strong>pluchinsky</strong>: Lab’s backed up, we’re still waiting for
+it.</p>
+<p><strong>reilly</strong>: Captain…</p>
+<p><strong>winters</strong>: Reilly, what the hell happened out there?
+Why didn’t you call for back-up?</p>
+<p><strong>reilly</strong>: Sir, I–</p>
+<p><strong>reilly</strong>: I want to work this.</p>
+<p><strong>pluchinsky</strong>: You’re vice, not homicide. Besides, you
+don’t have the experience and you’re too personally involved.</p>
+<p><strong>reilly</strong>: But sir–</p>
+<p><strong>winters</strong>: You know the rules. You’re off the street
+`til I.A.D. clears the investigation. Now go home and clean yourself up,
+get some rest…</p>
+<p><strong>harry</strong>: She won’t talk. Look at this shit, no I.D.,
+nothing…</p>
+<p><strong>pluchinsky</strong>: What’s that?</p>
+<p><strong>harry</strong>: Bracelet she was wearing.</p>
+<p><strong>reilly</strong>: Looks like the stuff my dad used to use to
+blow up tree stumps back in Scranton.</p>
+<p><strong>pluchinsky</strong>: Maybe she knows your old man.</p>
+<p><strong>winters</strong>: Take it down to the Bomb Squad, Artie-</p>
+<p><strong>reilly</strong>: I’ll do it.</p>
+<p><strong>winters</strong>: Okay, kid. Run this down to the Cave.</p>
+<p><strong>bev</strong>: May I help you?</p>
+<p><strong>reilly</strong>: I’m looking for the Bomb Squad.</p>
+<p><strong>bev</strong>: They’re not here.</p>
+<p><strong>reilly</strong>: Where are they?</p>
+<p><strong>bev</strong>: And you are…?</p>
+<p><strong>reilly</strong>: Officer Reilly, vice.</p>
+<p><strong>bev</strong>: There out on a call, perhaps I can help
+you-</p>
+<p><strong>reilly</strong>: -Where?</p>
+<p><strong>bev</strong>: 2600 block of Lakefront. A limousine. But,
+I-</p>
+<p><strong>reilly</strong>: Thanks.</p>
+<p><strong>reilly</strong>: Bomb Squad.</p>
+<p><strong>pooch</strong>: Smell anything, Schnoz? Me, neither.</p>
+<p><strong>t.j.</strong>: Shhh, I hear something….</p>
+<p><strong>glass</strong>: Who the heck’re you?</p>
+<p><strong>reilly</strong>: You the Bomb Squad?</p>
+<p><strong>t.j.</strong>: No, we’re terrorists, stay back or we’ll
+blow.</p>
+<p><strong>glass</strong>: We’re a bit busy at the moment, I’ll give you
+a statement in a few minutes if we’re still alive.</p>
+<p><strong>reilly</strong>: Reilly, Vice. I-</p>
+<p><strong>t.j.</strong>: Quiet!</p>
+<p><strong>pooch</strong>: Schnoz says it’s loaded. Good boy,
+Schnozzie.</p>
+<p><strong>glass</strong>: Alright boys, look close. Let’s assess.</p>
+<p><strong>pooch</strong>: Whadaya think, “boy” or “girl”?</p>
+<p><strong>glass</strong>: It’s a “girl” !</p>
+<p><strong>t.j.</strong>: That guy’s wife must be pretty pissed off to
+play a trick like that.</p>
+<p><strong>pooch</strong>: No shit. I better send Meg flowers just in
+case.</p>
+<p><strong>reilly</strong>: Who’s in charge here?</p>
+<p><strong>pooch</strong>: He is!</p>
+<p><strong>reilly</strong>: Look, it’s important.</p>
+<p><strong>t.j.</strong>: Make an appointment.</p>
+<p><strong>reilly</strong>: It’s about this.</p>
+<p><strong>glass</strong>: Where did you get this?</p>
+<p><strong>reilly</strong>: Off a girl’s wrist. A suspect…</p>
+<p><strong>reilly</strong>: What?</p>
+<p><strong>glass</strong>: High-grade det cord. This girl, either she’s
+got strange taste in jewelry or she’s into serious demolition.</p>
+<p><strong>reilly</strong>: What do you mean?</p>
+<p><strong>pooch</strong>: Fire in the hole!</p>
+<p><strong>glass</strong>: Sorry about that. That’s an inch of the
+stuff, imagine what the whole thing’d do.</p>
+<p><strong>reilly</strong>: Thanks.</p>
+<p><strong>glass</strong>: Hey wait a minute-</p>
+<p><strong>t.j.</strong>: Vice… Jesus.</p>
+<p><strong>pooch</strong>: That’d be some explosive pussy he’s got his
+hands on.</p>
+<p><strong>earring</strong>: They’re holding her downtown.</p>
+<p><strong>swan</strong>: What about the cop?</p>
+<p><strong>beard</strong>: If you’d let me waste him.</p>
+<p><strong>earring</strong>: What if she talks?</p>
+<p><strong>swan</strong>: She won’t.</p>
+<p><strong>beard</strong>: I say we split town. Come back to this job
+when things cool. We’ve got other contracts - Denver, Seattle…</p>
+<p><strong>swan</strong>: I want her back and we do the job.</p>
+<p><strong>beard</strong>: I thought we agreed, the personal can’t
+interfere with the professional.</p>
+<p><strong>earring</strong>: Besides, we’re on a schedule and the cops
+won’t let her go.</p>
+<p><strong>swan</strong>: Unless we make them.</p>
+<p><strong>earring</strong>: Hey…</p>
+<p><strong>reilly</strong>: Captain-</p>
+<p><strong>officer</strong>: Captain, line one!</p>
+<p><strong>winters</strong>: I thought I told you–</p>
+<p><strong>officer</strong>: He says it’s important, something about the
+Rice shooting.</p>
+<p><strong>winters</strong>: Winters.</p>
+<p><strong>swan’s voice</strong>: I said release the girl or alot of
+people are going to die.</p>
+<p><strong>winters</strong>: Wait, what do you mean–?</p>
+<p><strong>pluchinsky</strong>: What the hell was that?</p>
+<p><strong>reilly</strong>: A ticking bomb…</p>
+<p><strong>winters</strong>: What?</p>
+<p><strong>reilly</strong>: It’s detonation cord, for a bomb.</p>
+<p><strong>pluchinsky</strong>: It’s a bluff. The guy’s full of
+crap.</p>
+<p><strong>winters</strong>: We can’t take the chance. Ring down to the
+Bomb Squad. I want them on alert.</p>
+<p><strong>reilly</strong>: I’ll do it.</p>
+<p><strong>winters</strong>: Goddamit, Reilly–</p>
+<p><strong>reilly</strong>: Look, I saw these guys, I can i.d. them.</p>
+<p><strong>winters</strong>: I know you’re anxious to get back but… just
+stay out of homicide’s way or I’ll have you classifying fingerprints,
+understand?</p>
+<p><strong>reilly</strong>: Yes, sir.</p>
+<p><strong>pooch</strong>: No, honey, I’m fine. Yeah, well, you’re
+welcome. You deserve flowers more often.</p>
+<p><strong>glass</strong>: Bev, you’re the greatest…</p>
+<p><strong>t.j.</strong>: Hey, I’m next.</p>
+<p><strong>bev</strong>: Hey, that’s the guy-</p>
+<p><strong>reilly</strong>: We just got a bomb threat upstairs.</p>
+<p><strong>glass</strong>: Alright, let’s check it out.</p>
+<p><strong>reilly</strong>: We can start in the area where the robbery
+occurred.</p>
+<p><strong>t.j.</strong>: Vice cop on a homicide?</p>
+<p><strong>reilly</strong>: Captain assigned me to assist you.</p>
+<p><strong>pooch</strong>: Assist? What the hell you know about tickers
+anyway?</p>
+<p><strong>glass</strong>: Easy, guys.</p>
+<p><strong>reilly</strong>: What’re you talking about?</p>
+<p><strong>glass</strong>: When you need us, you love us, when you
+don’t, we’re shunned by the rest of the department.</p>
+<p><strong>reilly</strong>: We’ve got one hour. Are you coming or
+not?</p>
+<p><strong>t.j.</strong>: Those vice cops, around all that pussy, so
+pent up.</p>
+<p><strong>pooch</strong>: What do you think?</p>
+<p><strong>glass</strong>: Call upstairs, see what you can find out.</p>
+<p><strong>pooch</strong>: Right.</p>
+<p><strong>glass</strong>: T.J., run a trace on this, see if you can pin
+down where it came from. Whoever these people are, let’s hope they’re
+all talk.</p>
+<p><strong>swan</strong>: What time is it?</p>
+<p><strong>earring</strong>: Twenty after.</p>
+<p><strong>beard</strong>: Swan, it’s no use. Look, we can still make
+Houston–</p>
+<p><strong>swan</strong>: Shut up!</p>
+<p><strong>earring</strong>: Hey, beautiful, can I buy you some bangers
+and mash? Pint of Guiness?</p>
+<p><strong>knockout</strong>: Fuck off, pal.</p>
+<p><strong>fire chief</strong>: Eight dead, so far.</p>
+<p><strong>pluchinsky</strong>: What’re you doing here?</p>
+<p><strong>reilly</strong>: You touch me again and–</p>
+<p><strong>pluchinsky</strong>: And what, you’ll shoot me? Hey, don’t
+mistake me for one of your partners, I’d like to make retirement in one
+piece.</p>
+<p><strong>winters</strong>: What the hell’s going on?</p>
+<p><strong>pluchinsky</strong>: Son-of-a-bitch… my nose… This fuck-up is
+interfering with-</p>
+<p><strong>winters</strong>: Reilly, what’re you doing here?</p>
+<p><strong>reilly</strong>: Sir…</p>
+<p><strong>winters</strong>: I thought I told you–</p>
+<p><strong>glass</strong>: He’s with us.</p>
+<p><strong>t.j.</strong>: Yeah, he’s helping us work up a profile on
+this thing.</p>
+<p><strong>glass</strong>: Hope you don’t mind, Captain, might help us
+catch these guys that much sooner. Coming?</p>
+<p><strong>winters</strong>: Go ahead, kid.</p>
+<p><strong>pluchinsky</strong>: I’m filing charges against that
+mother-</p>
+<p><strong>winters</strong>: Can it, Pluchinsky. And shove some cotton
+up your nose.</p>
+<p><strong>reilly</strong>: What was-? Why…?</p>
+<p><strong>glass</strong>: That cop who bought it… you didn’t tell us he
+was your partner.</p>
+<p><strong>t.j.</strong>: We’ve lost brothers too, we know what that’s
+like.</p>
+<p><strong>glass</strong>: Let’s get something straight. We’re doing you
+a favor. You’re not exactly a guy we want around explosives.</p>
+<p><strong>reilly</strong>: What?</p>
+<p><strong>glass</strong>: This isn’t bumper cars, it’s brain surgery.
+You wanna work with us, you do it our way, understand?</p>
+<p><strong>reilly</strong>: Now wait just a fucking-</p>
+<p><strong>glass</strong>: Be cool around my men, they don’t trust
+strangers. And try not to swear so much, it’s unattractive.</p>
+<p><strong>glass</strong>: By the way, I’m Glass. This is T.J., and
+Pooch.</p>
+<p><strong>reilly</strong>: Mike Reilly.</p>
+<p><strong>t.j.</strong>: Uh-huh…</p>
+<p><strong>pooch</strong>: That there’s Schnoz, mascot and ace bomb
+sniffer. Say hi, Schnozzie.</p>
+<p><strong>t.j.</strong>: Flame racer, partial P.C.L. See this wave
+pattern? Definitely self-contained.</p>
+<p><strong>pooch</strong>: Nitro, dash of Semtrex, vegetable oil …</p>
+<p><strong>reilly</strong>: What kind of bomb was it?</p>
+<p><strong>t.j.</strong>: Device.</p>
+<p><strong>reilly</strong>: Huh?</p>
+<p><strong>glass</strong>: We don’t use the b-word. Bad luck.</p>
+<p><strong>reilly</strong>: So you’re the “Device Squad”… and you defuse
+“devices”?</p>
+<p><strong>glass</strong>: Treat. We treat devices.</p>
+<p><strong>reilly</strong>: Anything else I should know?</p>
+<p><strong>glass</strong>: Don’t push it, slick.</p>
+<p><strong>t.j.</strong>: Pooch, can you move it?</p>
+<p><strong>pooch</strong>: I don’t know…</p>
+<p><strong>t.j.</strong>: Yes, baby, yes …</p>
+<p><strong>pooch</strong>: Good boy, Schnoz. Daddy loves you.</p>
+<p><strong>t.j.</strong>: Scorch marks… looks like they used silly
+putty.</p>
+<p><strong>glass</strong>: C4, plastic explosive.</p>
+<p><strong>t.j.</strong>: Helluva fuck factor.</p>
+<p><strong>pooch</strong>: Hey, check this out?</p>
+<p><strong>glass</strong>: Lemme see that.</p>
+<p><strong>t.j.</strong>: Computer device?</p>
+<p><strong>glass</strong>: Unlikely. Probably, cash register or
+something.</p>
+<p><strong>reilly</strong>: I’ll get back to you.</p>
+<p><strong>winters</strong>: Let’s go, we gotta jump on him the second
+he calls again.</p>
+<p><strong>pluchinsky</strong>: You were lucky today, vice boy. Captain
+said to leave it alone, but just remember, I’m watching you.</p>
+<p><strong>reilly</strong>: I’m sorry, detective, but you’re just not my
+type.</p>
+<p><strong>officer</strong>: Captain, it’s him!</p>
+<p><strong>winters</strong>: Winters here.</p>
+<p><strong>swan’s voice</strong>: Don’t make me send another.</p>
+<p><strong>winters</strong>: Look, we’re prepared to talk, what do you
+want–?</p>
+<p><strong>reilly</strong>: Where’s the girl? The one I brought in.</p>
+<p><strong>booking officer</strong>: Upstairs, interrogation.</p>
+<p><strong>bored cop</strong>: Three hours. She’s tough.</p>
+<p><strong>harry</strong>: Tough? Tough is “Fuck you, where’s my
+lawyer?”. This chick doesn’t say boo.</p>
+<p><strong>reilly</strong>: Any luck?</p>
+<p><strong>harry</strong>: Bupkiss. Sorry about Rice.</p>
+<p><strong>reilly</strong>: Captain said I could give it a crack.</p>
+<p><strong>harry</strong>: She ain’t no hooker. This is a murder
+investigation.</p>
+<p><strong>reilly</strong>: She was my collar. Maybe I’ll get lucky.
+But, if you got a problem with that, talk to the Captain.</p>
+<p><strong>harry</strong>: I’ll be in the can.</p>
+<p><strong>reilly</strong>: You remember me.</p>
+<p><strong>reilly</strong>: Let me be very clear about this. The police
+won’t let you go. When your boyfriend realizes this, I have a feeling a
+lot of innocent people are going to die. Kids, families. I know you
+don’t want that to happen.</p>
+<p><strong>pooch</strong>: We missed you, where’d you go?</p>
+<p><strong>t.j.</strong>: Fuckin A, I think I got two partial prints
+here!</p>
+<p><strong>pooch</strong>: Awright! How bout you, Glass, how’s that chip
+shaking?</p>
+<p><strong>t.j.</strong>: Glass, what is it?</p>
+<p><strong>glass</strong>: I was wrong… this didn’t come from any cash
+register.</p>
+<p><strong>pooch</strong>: Whadaya mean?</p>
+<p><strong>glass</strong>: It’s from an IRA.</p>
+<p><strong>pooch</strong>: Oh shit…</p>
+<p><strong>reilly</strong>: A what?</p>
+<p><strong>t.j.</strong>: IRA - instant retirement account.</p>
+<p><strong>glass</strong>: I.R.A. device. Deadliest class of tickers in
+existence. Computerized, multiple sensors, booby traps, the works. First
+showed up in a series of I.R.A. bombings in London couple years ago. One
+of their boys tripped it on himself and they went back to a less
+complicated timers. The Girl, is she Irish?</p>
+<p><strong>reilly</strong>: She’s not talking. But, she could be. So,
+obviously, you’ve seen one of these devices before?</p>
+<p><strong>glass</strong>: Only once, at Redstone.</p>
+<p><strong>reilly</strong>: Where…?</p>
+<p><strong>t.j.</strong>: That’s one more time than any of the rest of
+us have seen it.</p>
+<p><strong>pooch</strong>: Shit. We’re fucked.</p>
+<p><strong>glass</strong>: Relax, Pooch, it’s just a ticker, it’s not
+personal.</p>
+<p><strong>t.j.</strong>: Let’s face it, we all knew it would happen
+sooner or later. The guy who can build a mousetrap that’s better than we
+are …</p>
+<p><strong>bev</strong>: Stop it…</p>
+<p><strong>t.j.</strong>: And what’s he doing to help?</p>
+<p><strong>pooch</strong>: Shut up, T.J.!</p>
+<p><strong>bev</strong>: Be nice Pooch!</p>
+<p><strong>reilly</strong>: All of you, shut the fuck up!</p>
+<p><strong>glass</strong>: Nice performance back there. Where’d you
+learn that, Mike Ditka Sensitivity Seminar?</p>
+<p><strong>reilly</strong>: Hey, look–</p>
+<p><strong>glass</strong>: No you look, mister! First, you don’t go
+calling my men names. It’s bad for morale. Second, us “punks” happen to
+know a heck of alot more about police work than any vice cop ever
+did.</p>
+<p><strong>reilly</strong>: Oh yeah? Prove it.</p>
+<p><strong>glass</strong>: Drive.</p>
+<p><strong>reilly</strong>: The place has already be combed. Forensics
+pulled over a hundred sets of prints inside.</p>
+<p><strong>glass</strong>: Then let’s go see what they missed.</p>
+<p><strong>glass</strong>: So what were they doing here?</p>
+<p><strong>reilly</strong>: I don’t know. You tell me?</p>
+<p><strong>glass</strong>: An abandoned machine shop… nice place to
+build devices. Low rent, too. But, you and Rice ruined their perfect
+hideout.</p>
+<p><strong>reilly</strong>: You mentioned something called Redstone.</p>
+<p><strong>glass</strong>: Redstone’s the army training center in
+Alabama where they send the cream of the crop to learn about
+tickers.</p>
+<p><strong>reilly</strong>: Cream of the crop, huh? You?</p>
+<p><strong>glass</strong>: Top of my class at West Point, thank you very
+much. Then off to Redstone. First half of the course we learned how to
+build devices… second half, we’d take them apart. Everything from
+firecrackers to hydrogen bombs.</p>
+<p><strong>reilly</strong>: Sounds like terrorist heaven.</p>
+<p><strong>glass</strong>: There were a few guys in my class with names
+like John Smith, Bill Jones. I’d see them up ahead in the hall, call
+their name, but they wouldn’t turn around. C.I.A. Funny thing, they’d
+always disappear after the first half of the course.</p>
+<p><strong>reilly</strong>: Just how easy is it to build a… device?</p>
+<p><strong>glass</strong>: With a little training, you could go into a
+house and just from stuff in the bathroom and kitchen make something
+that’d finish off that alleged car of yours. Heck, didn’t you ever watch
+MacGyver?</p>
+<p><strong>reilly</strong>: Girl was here. The guy in charge was over
+there with one of his men, the other one was back there.</p>
+<p><strong>glass</strong>: Typical profile, usually losers, nobodies
+that’re afraid to confront their victims. They like scaring people.
+That’s why they call in their threats. Same mentality as obscene phone
+callers.</p>
+<p><strong>reilly</strong>: Except they’ll blow you up if you don’t play
+along.</p>
+<p><strong>glass</strong>: No, ninety-ninety percent of them are full of
+baloney. They’re into the power trip, not the damage. What scares me is
+that this guy is so sophisticated he could blow up whatever he wants,
+then disappear. The worst of the bunch, they love the challenge of
+creating the wildest device ever… and they love the carnage.</p>
+<p><strong>glass</strong>: This is where the van was parked.</p>
+<p><strong>reilly</strong>: Yep.</p>
+<p><strong>glass</strong>: Then, it’s gotta be here somewhere …</p>
+<p><strong>reilly</strong>: Look, it’s a longshot…</p>
+<p><strong>glass</strong>: Bingo!</p>
+<p><strong>t.j.</strong>: No question, it was definitely the one used to
+l-light the butt. Finger pressure suggests a male, average build,
+height… no prints, trace of nylon fiber… he wore a glove.</p>
+<p><strong>t.j.</strong>: This is strange.</p>
+<p><strong>reilly</strong>: Nitro-cellulose. What is that, some kind of
+explosive?</p>
+<p><strong>glass</strong>: Industrial wood oil. Separately, any one of
+these things could lead in several directions, but together …</p>
+<p><strong>pooch</strong>: Ka-Boooom.</p>
+<p><strong>bev</strong>: They make bowling balls out of vulcanized
+rubber …</p>
+<p><strong>pooch</strong>: Resin…</p>
+<p><strong>t.j.</strong>: Lane oil…</p>
+<p><strong>glass</strong>: A bowling alley.</p>
+<p><strong>t.j.</strong>: Got it! Ace Match Company, Flint,
+Michigan.</p>
+<p><strong>reilly</strong>: You mean you just–? … You keep a record of…
+matches?</p>
+<p><strong>glass</strong>: Hey, matches are a very big thing in our line
+of work.</p>
+<p><strong>pooch</strong>: “Punks”, huh?</p>
+<p><strong>glass</strong>: Bev, give `em a call, find out what bowling
+alleys they supply in this area.</p>
+<p><strong>bev</strong>: Right!</p>
+<p><strong>glass</strong>: Pooch, why don’t you e-mail your buddies at
+Langley and on the other side of the pond, see if any IRAs been popping
+up lately?</p>
+<p><strong>pooch</strong>: You got it.</p>
+<p><strong>glass</strong>: We work fast enough for you?</p>
+<p><strong>reilly</strong>: T.J., what’re you doing?</p>
+<p><strong>t.j.</strong>: My first undercover assignment. I gotta look
+good, right?</p>
+<p><strong>t.j.</strong>: So what’re we looking for?</p>
+<p><strong>reilly</strong>: Someone who smokes French cigarettes.</p>
+<p><strong>t.j.</strong>: In this crowd? It’s gonna be Marlboros,
+Camels, and maybe a few Kools.</p>
+<p><strong>glass</strong>: How long are we going to stay?</p>
+<p><strong>reilly</strong>: `Til we get a better lead.</p>
+<p><strong>pooch</strong>: Unsolved bombings in the last year… Boston,
+New York, Philadelphia… but no real match</p>
+<p><strong>reilly</strong>: Insurance?</p>
+<p><strong>glass</strong>: Political.</p>
+<p><strong>pooch</strong>: Exactly my thinking. Except, none of the
+targets can actually be linked to government, political or special
+interest concerns. They seem to be just unrelated industrial companies.
+Some insured, some not.</p>
+<p><strong>glass</strong>: Not bad for Bomb squad, eh?</p>
+<p><strong>reilly</strong>: What not bad. You’ve got a series of bombs,
+devices, that may or may not be connected, set by one or many nutjobs,
+who may or may not be linked.</p>
+<p><strong>glass</strong>: Right.</p>
+<p><strong>reilly</strong>: Well… it’s more than we had ten minutes
+ago.</p>
+<p><strong>pooch</strong>: I got a friend over at Scotland Yard who’s
+gonna try and reach out to a undercover guy who would know if any of the
+rightwingers are circulating over here. Bev’s following up on the
+briefcase manufacturers, too.</p>
+<p><strong>t.j.</strong>: Pooch, you’re up. Rack `em.</p>
+<p><strong>pooch</strong>: How’re you guys doing?</p>
+<p><strong>reilly</strong>: Still waiting for a miracle. Go ahead.</p>
+<p><strong>glass</strong>: It’s a small fraternity, everyone knows
+everyone. I’m always recruiting. Pooch is ex- D.O.D., military expert…
+claymores, grenades. He played linebacker at Boston College, worked a
+K-9 unit - that led him to the Bomb Squad… great nose, lousy fingers, we
+try to keep him away from the tickers. T.J. is a heck of chemist, Texas
+A&amp;M engineering degree. Found him in a Militia chat room - turns out
+we were both monitoring the same groups. Bev is the natural born hacker,
+we stole her from dispatch. She had the Cave reorganized and
+ultra-high-tech in two months. Captain has no idea how much hardware
+she’s “found” for us.</p>
+<p><strong>reilly</strong>: You guys seem pretty tight.</p>
+<p><strong>glass</strong>: We’ve gotta be. In this business, you don’t
+exactly make alot of outside commitments.</p>
+<p><strong>reilly</strong>: Why do you do it?</p>
+<p><strong>glass</strong>: I don’t know, it’s strange… it’s not the best
+career path, but when you get the bug, there’s nothing you can do about
+it. See, when you beat one of these things…</p>
+<p><strong>t.j.</strong>: Lesbians.</p>
+<p><strong>reilly</strong>: Looks like Pooch’s doing okay.</p>
+<p><strong>t.j.</strong>: He’s married, he don’t even know what a
+lesbian is.</p>
+<p><strong>reilly</strong>: There he goes. He was here the whole
+time.</p>
+<p><strong>reilly</strong>: Say, thanks for the back up–</p>
+<p><strong>glass</strong>: He set one, the son-of-a…</p>
+<p><strong>t.j.</strong>: Clear the area, please.</p>
+<p><strong>reilly</strong>: You heard him, get the fuck away, it’s a
+bomb!</p>
+<p><strong>glass</strong>: Alright. Let’s assess.</p>
+<p><strong>pooch</strong>: Oh shit…</p>
+<p><strong>t.j.</strong>: Fuck factor ten.</p>
+<p><strong>glass</strong>: Okay, I’m going in, nobody breathe.</p>
+<p><strong>reilly</strong>: So cut both.</p>
+<p><strong>glass</strong>: One shuts it down, one turns arms it.</p>
+<p><strong>reilly</strong>: Which one’s which?</p>
+<p><strong>glass</strong>: I don’t know. There’s an old saying, when in
+doubt, cut the yellow wire.</p>
+<p><strong>reilly</strong>: No, I’m with you.</p>
+<p><strong>glass</strong>: Is this a great job or what?</p>
+<p><strong>reilly</strong>: Nothing. Nothing traceable.</p>
+<p><strong>pooch</strong>: I don’t know, honey. I’ll see. No,
+everything’s fine, it was nothing.</p>
+<p><strong>t.j.</strong>: What do ay say?</p>
+<p><strong>glass</strong>: Meg’s lasagna. Good eats, Reilly. C’mon.</p>
+<p><strong>reilly</strong>: Got work to do, don’t we?</p>
+<p><strong>pooch</strong>: In case you change your mind.</p>
+<p><strong>winters</strong>: What’s this?</p>
+<p><strong>reilly</strong>: Report on the case so far.</p>
+<p><strong>winters</strong>: You know after a shooting I would normally
+take your badge and weapon, but Glass called in already and confirmed it
+was clean.</p>
+<p><strong>reilly</strong>: Yes, sir.</p>
+<p><strong>winters</strong>: But from now on, any leads on this case go
+to Pluchinsky. He’s primary investigator and you are unofficially
+assigned to the Bomb Squad… you and your new friends are not to be
+playing detective any more. Got it?</p>
+<p><strong>reporter</strong>: To recap, a gunman carrying what police
+described as a phony bomb was shot and killed less than an hour ago.</p>
+<p><strong>beard</strong>: She talked.</p>
+<p><strong>meg</strong>: More coffee, T.J.?</p>
+<p><strong>t.j.</strong>: No thanks, Meg. Hawed Pooch ever get so
+lucky?</p>
+<p><strong>meg</strong>: Mr. Reilly?</p>
+<p><strong>reilly</strong>: Mike. No thanks, I’m fine.</p>
+<p><strong>pooch</strong>: Time for bed, kiddos. Say goodnight.</p>
+<p><strong>tommy</strong>: Can Uncle Teej tuck us in?</p>
+<p><strong>t.j.</strong>: C’mon, champ, I’ll even give you a
+piggyback.</p>
+<p><strong>janie</strong>: Goodnight Uncle Charlie, goodnight Uncle
+Mike.</p>
+<p><strong>reilly</strong>: `Night…</p>
+<p><strong>glass</strong>: How long were you hooked?</p>
+<p><strong>reilly</strong>: What?</p>
+<p><strong>glass</strong>: You don’t have to talk about it.</p>
+<p><strong>reilly</strong>: Pittsburgh, two years ago. Partner died, no
+back-up, I was too gung-ho. As usual.</p>
+<p><strong>glass</strong>: Take a tip from the Bomb Boys, always assess,
+if only for a second.</p>
+<p><strong>reilly</strong>: I know. I was working a drug ring, deep
+cover. Played the part too well. When they pulled me out, I wasn’t a cop
+anymore. My fiance had dumped me. Next thing I knew, I was out here on
+the street, doped up, auditioning for the morgue when this tough old
+vice cop found me, cleaned me up, gave me a second chance. He promised
+Captain Winters he’d look out for me.</p>
+<p><strong>glass</strong>: Your partner?</p>
+<p><strong>reilly</strong>: I guess I didn’t realize how much I needed
+him. He kept me straight. It’s been tough every second since.</p>
+<p><strong>glass</strong>: Let me see.</p>
+<p><strong>reilly</strong>: I terrible with mechanical things.</p>
+<p><strong>glass</strong>: No you’re not, you just don’t understand
+them. Here, do what I tell you.</p>
+<p><strong>reilly</strong>: It’s working.</p>
+<p><strong>glass</strong>: Congratulations, you just built your first
+ticker.</p>
+<p><strong>reilly</strong>: Okay, hit it.</p>
+<p><strong>glass</strong>: Alright!</p>
+<p><strong>t.j.</strong>: We’ve created a monster.</p>
+<p><strong>glass</strong>: Any word?</p>
+<p><strong>pooch</strong>: Nothing. Maybe they gave up, split town.</p>
+<p><strong>reilly</strong>: Don’t bet on it.</p>
+<p><strong>reilly</strong>: How’s the print coming?</p>
+<p><strong>bev</strong>: One partial from the handle matches the suspect
+from last night. Name’s Carl Taylor. Long record of arson, assault, the
+works. The other print - we got nothing from our data base or the FBI or
+CIA… still waiting for Interpol.</p>
+<p><strong>reilly</strong>: Damn.</p>
+<p><strong>bev</strong>: Coffee, Mike?</p>
+<p><strong>reilly</strong>: No thanks, Bev.</p>
+<p><strong>bev</strong>: Yes, sir. He’s here. I’ll tell him.</p>
+<p><strong>winters</strong>: Yes … no, of course not but … yes, sir, I
+understand.</p>
+<p><strong>reilly</strong>: Yes, sir.</p>
+<p><strong>winters</strong>: She’s refused to say a word to anyone. What
+made you think you could get her to talk?</p>
+<p><strong>reilly</strong>: I didn’t. But I had to try.</p>
+<p><strong>winter</strong>: Reilly, I think I’ve shown that I’m a
+patient man. Rice was your biggest fan and I’ve tried to honor him by
+giving you some slack. But you are very close to running out of
+slack.</p>
+<p><strong>reilly</strong>: Yes, sir.</p>
+<p><strong>winters</strong>: I read your report. Impressive. I’d say
+it’s got detective written all over it. But… you cross the line one more
+time… you’re gone. Are we clear?</p>
+<p><strong>reilly</strong>: Yes, sir.</p>
+<p><strong>harry</strong>: I’ll be outside.</p>
+<p><strong>the girl</strong>: Hello.</p>
+<p><strong>reilly</strong>: Hello.</p>
+<p><strong>the girl</strong>: My name is Mary Jordan. We were hired to
+take out some industrial sites. Insurance.</p>
+<p><strong>reilly</strong>: But they weren’t all insured.</p>
+<p><strong>mary</strong>: Cover. It was suppose to be abandoned
+buildings, y’know. No one was suppose to get hurt. The night you busted
+us…We were checking to make sure there weren’t any vagrants around.
+Scare them away.</p>
+<p><strong>reilly</strong>: Who is he?</p>
+<p><strong>mary</strong>: Alex Swan. My brother. The other two are
+called Taylor and Leveau.</p>
+<p><strong>reilly</strong>: Taylor’s dead.</p>
+<p><strong>mary</strong>: There is a motel downtown, near the Machine
+Shop… the Suncrest. Room 138.</p>
+<p><strong>reilly</strong>: Thank you.</p>
+<p><strong>mary</strong>: He’s my brother…</p>
+<p><strong>reilly</strong>: Then why tell me?</p>
+<p><strong>mary</strong>: People are dying.</p>
+<p><strong>glass</strong>: Ex-girlfriend?</p>
+<p><strong>reilly</strong>: Be right back.</p>
+<p><strong>bag lady</strong>: No.</p>
+<p><strong>reilly</strong>: No, of course not… well, thanks anyway. Here
+you go, Your Highness.</p>
+<p><strong>bag lady</strong>: On second thought, maybe I did.</p>
+<p><strong>bag lady</strong>: Lemme see… yeah, here it is, 11:18 this
+morning. Very disrespectful. He used to drive a van, but he got a new
+car. You want the license number?</p>
+<p><strong>reilly</strong>: You’re beautiful!</p>
+<p><strong>reilly</strong>: We’re back in business!</p>
+<p><strong>harry</strong>: Ran the license plate - car was rented early
+this morning from a Hertz office downtown.</p>
+<p><strong>pluchinsky</strong>: Alex Swan - demolitions expert, trained
+at Redstone, dropped out, freelanced in the middle East for awhile, then
+disappeared, no criminal record. The other one, Leveau, is French
+Canadian, he’s a mercenary, record in half a dozen countries.</p>
+<p><strong>winters</strong>: Get out an APB, now!</p>
+<p><strong>pluchinsky</strong>: Yes, sir.</p>
+<p><strong>dispatcher</strong>: … suspects driving a dark green Ford
+Grenada, license number one Two Eight Michael Vincent Edward …</p>
+<p><strong>beard</strong>: We’ve got company.</p>
+<p><strong>reilly</strong>: Glass, there they are. Pooch right in front
+of you, you got <code>em, you got</code>em.</p>
+<p><strong>t.j.</strong>: Dispatch, this is Bomb Squad. Suspects sighted
+on Fern Street, two blocks from HQ. In pursuit.</p>
+<p><strong>dispatcher</strong>: Roger that. All available units…</p>
+<p><strong>t.j.</strong>: Police, freeze!</p>
+<p><strong>pooch</strong>: Oh… damn.</p>
+<p><strong>winters</strong>: Glass, sorry about Pooch, he was a good
+man. We don’t have time to give you a break right now, we’re going ahead
+and-</p>
+<p><strong>reilly</strong>: My God, you’re going to use her, aren’t
+you?</p>
+<p><strong>winters</strong>: Glass, you’re to stand by with your
+team.</p>
+<p><strong>reilly</strong>: I promised her she’d be safe.</p>
+<p><strong>winters</strong>: It’s our only option.</p>
+<p><strong>reilly</strong>: It won’t work, he’ll know it’s a trap…</p>
+<p><strong>winters</strong>: Reilly, you’re done for now. What the hell
+were you thinking directing the Bomb Squad Team into hot pursuit. They
+had no business-</p>
+<p><strong>reilly</strong>: I know.</p>
+<p><strong>winters</strong>: You’ve been at the center of two suspect
+fatalities and two Police Officer fatalities. I’ll need your badge and
+your weapon.</p>
+<p><strong>reilly</strong>: Glass–!</p>
+<p><strong>harry</strong>: It’s him!</p>
+<p><strong>winters</strong>: Winters here.</p>
+<p><strong>swan’s voice</strong>: You motherfuckers, you don’t learn, do
+you?!</p>
+<p><strong>winters</strong>: We’re prepared to talk-</p>
+<p><strong>swan’s voice</strong>: Shut up! Shut up!</p>
+<p><strong>tracer</strong>: 15…</p>
+<p><strong>swan’s voice</strong>: You have exactly thirty minutes to
+release the girl where you found her.</p>
+<p><strong>tracer</strong>: Twelve …</p>
+<p><strong>swan’s voice</strong>: Thirty minutes.</p>
+<p><strong>tracer</strong>: Nine …</p>
+<p><strong>winters</strong>: How do we know you’ll keep your word?</p>
+<p><strong>winters</strong>: Okay, let’s move!</p>
+<p><strong>pluchinsky</strong>: Get out and go to the machine shop -</p>
+<p><strong>wino</strong>: She’s out of the bag.</p>
+<p><strong>wino</strong>: Position Four. Turning on Elm.</p>
+<p><strong>truck driver</strong>: Six. She’s crossing to Main.</p>
+<p><strong>winters</strong>: Seal the building! Let’s move.</p>
+<p><strong>truck driver</strong>: We have contact. Black Camaro-</p>
+<p><strong>truck driver</strong>: -license number HQW-256.</p>
+<p><strong>swan</strong>: You okay?</p>
+<p><strong>mary</strong>: Alex-</p>
+<p><strong>swan</strong>: I know. I warned them.</p>
+<p><strong>mary</strong>: What is that?</p>
+<p><strong>swan</strong>: Security.</p>
+<p><strong>dealer</strong>: C’mon, cowboy, you’re next.</p>
+<p><strong>dealer</strong>: Okay, what’s it gonna be? I got China White,
+Snow Flake, Ivory Pearl…</p>
+<p><strong>reporter on tv</strong>: We’re coming to you live near the
+scene of that latest, explosion that ripped through a downtown alley
+less than half an hour ago.</p>
+<p><strong>dealer</strong>: Hey, asshole …</p>
+<p><strong>reporter on tv</strong>: Despite growing fears and talk of a
+coverup, police have sealed off the area and are refusing to comment
+about fatalities, or the rumor that terrorists may be involved.</p>
+<p><strong>dealer</strong>: Hey, I’m talking to you–</p>
+<p><strong>swan</strong>: You hungry? We could get something to eat.</p>
+<p><strong>swan</strong>: What’s the matter?</p>
+<p><strong>mary</strong>: Nothing… just tired.</p>
+<p><strong>mary</strong>: Why are we stopping here?</p>
+<p><strong>swan</strong>: We’re moving’ on. I have to pick up the
+supplies. Just two little boxes.</p>
+<p><strong>mary</strong>: No… No more killing.</p>
+<p><strong>swan</strong>: Stay here.</p>
+<p><strong>mary</strong>: Alex, please.</p>
+<p><strong>swan</strong>: Stay in the truck.</p>
+<p><strong>operator</strong>: Operator.</p>
+<p><strong>mary</strong>: Get me the police!</p>
+<p><strong>operator</strong>: Is this an emergency?</p>
+<p><strong>mary</strong>: Yes! Please, hurry!</p>
+<p><strong>sergeant’s voice</strong>: Police, Sergeant Doyle
+speaking.</p>
+<p><strong>mary</strong>: Please, I need help, my name is–</p>
+<p><strong>sergeant doyle’s voice</strong>: Whoa, slow down, lady. Now
+what’s that again?</p>
+<p><strong>swan</strong>: Who are you calling, sis?</p>
+<p><strong>mary</strong>: What? Nobody, I-</p>
+<p><strong>mary</strong>: Alex, please-</p>
+<p><strong>swan</strong>: Shut up! Who is this?</p>
+<p><strong>sergeant doyle’s voice</strong>: Sergeant Doyle, Metro P.D.
+Look, what’s going on–?</p>
+<p><strong>mary</strong>: Help!</p>
+<p><strong>boy</strong>: Hey–?</p>
+<p><strong>reilly</strong>: C’mon, move it.</p>
+<p><strong>dispatcher voice</strong>: All units, 211 reported at 8th and
+Sycamore. Suspect is a Caucasian male, armed with an automatic weapon,
+last seen heading east with female hostage in a U-Haul truck …</p>
+<p><strong>reilly</strong>: Dispatch, this is Reilly.</p>
+<p><strong>dispatcher voice</strong>: Go ahead.</p>
+<p><strong>reilly</strong>: Patch me through to the Bomb Squad.</p>
+<p><strong>dispatcher voice</strong>: Aren’t you on suspension?</p>
+<p><strong>reilly</strong>: Just do it.</p>
+<p><strong>dispatcher voice</strong>: Hang on.</p>
+<p><strong>t.j.’s voice</strong>: T.J. here.</p>
+<p><strong>reilly</strong>: T.J., it’s Reilly, put Glass on!</p>
+<p><strong>glass</strong>: What’s up?</p>
+<p><strong>reilly</strong>: Where you guys at?</p>
+<p><strong>glass</strong>: Driving in circles, waiting for-</p>
+<p><strong>reilly</strong>: Catch that alert? That’s him in the
+U-Haul.</p>
+<p><strong>glass</strong>: How do you know?</p>
+<p><strong>reilly</strong>: Cuz he got the girl, now he’s leaving
+town.</p>
+<p><strong>glass</strong>: Should we head for the Interstate?</p>
+<p><strong>reilly</strong>: Would you?</p>
+<p><strong>glass</strong>: No, I’d slip out past the hotel district,
+behind Greyhound…</p>
+<p><strong>reilly</strong>: Me, too.</p>
+<p><strong>reilly</strong>: Glass, Eighth Street, alley behind Grand
+Hotel. Cut him off.</p>
+<p><strong>glass</strong>: You got it.</p>
+<p><strong>reilly</strong>: All units, suspect spotted heading down
+alley behind Grand Hotel.</p>
+<p><strong>winters</strong>: Reilly, what the hell are you-?</p>
+<p><strong>reilly</strong>: Fire me later. Close in and we got the
+bastard.</p>
+<p><strong>winters</strong>: Pull back. You’re only an observer.</p>
+<p><strong>winters</strong>: Reilly, what’s happening? Reilly! Reilly!
+Do not engage. We’re five minutes-</p>
+<p><strong>reilly</strong>: We’ll keep him pinned in, you guys hurry
+up!</p>
+<p><strong>t.j.</strong>: Jesus…</p>
+<p><strong>glass</strong>: Reilly! He’s loaded!</p>
+<p><strong>reilly</strong>: Glass, you guys take cover, goddammit!</p>
+<p><strong>swan</strong>: I want out, right now. Or the whole city block
+is gone.</p>
+<p><strong>glass</strong>: Reilly, he’s got enough to do it.</p>
+<p><strong>swan</strong>: Drop it.</p>
+<p><strong>mary</strong>: Take him!</p>
+<p><strong>glass</strong>: Hold on to that thing tight.</p>
+<p><strong>reilly</strong>: Fuck factor?</p>
+<p><strong>glass</strong>: Off the scale.</p>
+<p><strong>reilly</strong>: What do we do?</p>
+<p><strong>glass</strong>: Can you hold it?</p>
+<p><strong>reilly</strong>: Talk to me. Let’s assess.</p>
+<p><strong>glass</strong>: Right.</p>
+<p><strong>reilly</strong>: C’mon, talk to me! We can do it!</p>
+<p><strong>glass</strong>: He has a timer going as back-up, in case we
+got a hold of the remote. Okay… first, run your fingers along the edges,
+feel for a sensor.</p>
+<p><strong>glass</strong>: Good, now the other side.</p>
+<p><strong>reilly</strong>: Nothing.</p>
+<p><strong>glass</strong>: Okay, let’s go in.</p>
+<p><strong>reilly</strong>: Keep talking.</p>
+<p><strong>glass</strong>: Close your eyes, feel your fingertips. Tell
+me everything you feel.</p>
+<p><strong>reilly</strong>: Wires… metal, cold… something soft…</p>
+<p><strong>glass</strong>: Don’t touch that.</p>
+<p><strong>reilly</strong>: More metal… sharp edge…</p>
+<p><strong>glass</strong>: Stay to your left.</p>
+<p><strong>t.j.</strong>: Get outta here, Swan’s down, but they’re
+chilling a device.</p>
+<p><strong>reilly</strong>: Something round, two wires …</p>
+<p><strong>glass</strong>: That’s the blasting cap - good! Okay, now
+grab it by the base and pull it straight up. No, Wait…</p>
+<p><strong>reilly</strong>: What’s wrong?</p>
+<p><strong>glass</strong>: Too easy. There’s gotta be something else in
+there, another cap maybe.</p>
+<p><strong>reilly</strong>: Make up your mind, trigger.</p>
+<p><strong>glass</strong>: Ease your thumb over to the right - feel
+anything?</p>
+<p><strong>reilly</strong>: Yeah, another round thing.</p>
+<p><strong>glass</strong>: Okay, one of the caps turns it on, the other
+shuts it down.</p>
+<p><strong>reilly</strong>: Which one’s which?</p>
+<p><strong>glass</strong>: I don’t know.</p>
+<p><strong>reilly</strong>: What… ?</p>
+<p><strong>glass</strong>: When in doubt, pull the yellow wire.</p>
+<p><strong>reilly</strong>: How the hell do you feel yellow?</p>
+<p><strong>glass</strong>: No excuses, just do it!</p>
+<p><strong>reilly</strong>: Thanks.</p>
+<p><strong>glass</strong>: All clear, but we need an ambulance!</p>
+<p><strong>t.j.</strong>: Nice work.</p>
+<p><strong>winters</strong>: Mayor loves a hero.</p>
+<p><strong>reilly</strong>: Thank you, Captain.</p>
+<p><strong>bev</strong>: Hey, you look great.</p>
+<p><strong>glass</strong>: You’re late.</p>
+<p><strong>reilly</strong>: Nice to be here.</p>
+<p><strong>t.j.</strong>: That feeling won’t last long.</p>
+</body>
+</html>

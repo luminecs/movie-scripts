@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>do-the-right-thing</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="do-the-right-thing">do-the-right-thing</h1>
+<p><strong>place</strong>: Brooklyn, New York</p>
+<p><strong>time</strong>: Present</p>
+<p><strong>weather</strong>: Hot as shit!</p>
+<p><strong>mister se�or love daddy</strong>: Waaaake up! Wake up! Wake
+up! Wake up! Up ya wake! Up ya wake! Up ya wake!</p>
+<p><strong>camera moves back slowly to reveal mister se�or love
+daddy,</strong>: a DJ, a radio personality, behind a microphone.</p>
+<p><strong>mister se�or love daddy</strong>: This is Mister Se�or Love
+Daddy. Your voice of choice. The world’s only twelve-hour strongman,
+here on WE LOVE radio, 108 FM. The last on your dial, but the first in
+ya hearts, and that’s the truth, Ruth!</p>
+<p><strong>mister se�or love daddy</strong>: Here I am. Am I here?
+Y’know it. It ya know. This is Mister Se�or Love Daddy, doing the nasty
+to ya ears, ya ears to the nasty. I’se play only da platters dat matter,
+da matters dat platter and that’s the truth, Ruth.</p>
+<p><strong>mister se�or love daddy</strong>: Doing da ying and yang da
+flip and flop da hippy and hoppy Yo da lay he hoo. I have today’s
+forecast.</p>
+<p><strong>da mayor</strong>: Damn, it’s hot.</p>
+<p><strong>jade</strong>: Don’t you have enough sense not to bother
+people when they’re sleeping?</p>
+<p><strong>mookie</strong>: Wake up!</p>
+<p><strong>jade</strong>: Wake up? Saturday is the lone day I get to
+sleep late.</p>
+<p><strong>mookie</strong>: It’s gonna be hot today.</p>
+<p><strong>jade</strong>: Good! Leave me alone when I’m sleeping. I’m
+gonna get a lock on my door, to keep ya ass outta here.</p>
+<p><strong>mookie</strong>: Don’t ya love ya brother Mookie anymore? I
+loves ya, Jade.</p>
+<p><strong>jade</strong>: Do me a favor. Go to work.</p>
+<p><strong>mookie</strong>: Later. Gotta get paid.</p>
+<p><strong>sal</strong>: Pino, get a broom and sweep out front.</p>
+<p><strong>pino</strong>: Vito, get a broom and sweep out front.</p>
+<p><strong>vito</strong>: See, Pop. That’s just what I was talkin’
+about. Every single time you tell Pino to do something, he gives it to
+me.</p>
+<p><strong>pino</strong>: He’s nuts.</p>
+<p><strong>sal</strong>: The both of youse, shaddup.</p>
+<p><strong>vito</strong>: Tell Pino.</p>
+<p><strong>pino</strong>: Get the broom.</p>
+<p><strong>vito</strong>: I ain’t getting shit.</p>
+<p><strong>sal</strong>: Hey! Watch it.</p>
+<p><strong>pino</strong>: I didn’t want to come to work anyway. I hate
+this freakin’ place.</p>
+<p><strong>sal</strong>: Can you do better? C’mere.</p>
+<p><strong>sal</strong>: Can you do better? I didn’t think so. This is a
+respectable business. Nuthin’ wrong with it. Get dat broom.</p>
+<p><strong>pino</strong>: Tell Vito.</p>
+<p><strong>vito</strong>: Pop asked you.</p>
+<p><strong>sal</strong>: I’m gonna kill somebody today.</p>
+<p><strong>mother sister</strong>: Good morning, Mookie.</p>
+<p><strong>mookie</strong>: Good morning to you.</p>
+<p><strong>mother sister</strong>: Now, Mookie, don’t work too hard
+today. The man said it’s gonna be HOT as the devil. I don’t want ya
+falling out from the heat. You hear me, son?</p>
+<p><strong>mookie</strong>: I hear ya, Mother Sister. I hear you.</p>
+<p><strong>mother sister</strong>: Good. I’ll be watching ya, son.
+Mother Sister always watches.</p>
+<p><strong>pino</strong>: Mookie, late again. How many times I gotta
+tell you?</p>
+<p><strong>mookie</strong>: Hello, Sal. Hello, Vito.</p>
+<p><strong>sal</strong>: How ya doin’, Mookie?</p>
+<p><strong>vito</strong>: Whaddup?</p>
+<p><strong>mookie</strong>: Just coolin’.</p>
+<p><strong>pino</strong>: You’re still late.</p>
+<p><strong>sal</strong>: Pino, relax, will ya.</p>
+<p><strong>pino</strong>: Here, take the broom. The front needs
+sweeping.</p>
+<p><strong>mookie</strong>: Wait a minute. Wait a minute. I just got
+here. You sweep. I betcha Sal asked you first anyhow.</p>
+<p><strong>vito</strong>: That’s right.</p>
+<p><strong>pino</strong>: Shaddup, Vito.</p>
+<p><strong>mookie</strong>: Fuck dat shit. I deliver pizzas. That’s what
+I get paid for.</p>
+<p><strong>pino</strong>: You get paid to do what we say.</p>
+<p><strong>mookie</strong>: What we say. I didn’t hear Sal say
+nuthin’.</p>
+<p><strong>pino</strong>: Who’s working for who?</p>
+<p><strong>sal</strong>: Come on in, Mayor.</p>
+<p><strong>da mayor</strong>: Good morning, gentlemens. It’s gonna be a
+scorcher today, that’s for sure. Need any work done around here?</p>
+<p><strong>da mayor</strong>: It will be the cleanest sidewalk in
+Brooklyn. Clean as the Board of Health.</p>
+<p><strong>pino</strong>: Pop, I don’t believe this shit. We runnin’
+welfare or somethin’? Every day you give dat bum–</p>
+<p><strong>mookie</strong>: Da Mayor ain’t no bum.</p>
+<p><strong>pino</strong>: Give dat bum a dollar for sweeping our
+sidewalk. What do we pay Mookie for? He don’t even work. I work harder
+than him and I’m your own son.</p>
+<p><strong>mookie</strong>: Who don’t work? Let’s see you carry six
+large pies up six flights of stairs. No elevator either and shit.</p>
+<p><strong>sal</strong>: Both of youse–shaddup. This is a place of
+business.</p>
+<p><strong>vito</strong>: Tell ’em, Pop.</p>
+<p><strong>pino</strong>: Me and you are gonna have a talk.</p>
+<p><strong>vito</strong>: Sez who?</p>
+<p><strong>pino</strong>: Sez me.</p>
+<p><strong>sal</strong>: Hey! What did I say?</p>
+<p><strong>mookie</strong>: Who doesn’t work? Don’t start no shit, won’t
+be no shit.</p>
+<p><strong>sal</strong>: Mookie, no cursing in the store.</p>
+<p><strong>mookie</strong>: Talk to your son.</p>
+<p><strong>ella</strong>: What’s keeping him?</p>
+<p><strong>punchy</strong>: You call him, then.</p>
+<p><strong>ella</strong>: Yo, Ahmad!</p>
+<p><strong>punchy</strong>: I coulda done dat.</p>
+<p><strong>ella</strong>: Yo, Ahmad!</p>
+<p><strong>ella</strong>: Punchy, if ya want to do some more screaming,
+be my guest. I’m too through.</p>
+<p><strong>ahmad</strong>: Who’s yelling my name?</p>
+<p><strong>ella</strong>: Punchy told me to.</p>
+<p><strong>ahmad</strong>: Don’t listen to him, it will get ya in
+trouble.</p>
+<p><strong>ella</strong>: Heard that, Punchy.</p>
+<p><strong>ahmad</strong>: Ella, you have a brain, use it.</p>
+<p><strong>radio raheem</strong>: Peace, y’all.</p>
+<p><strong>ella</strong>: Peace, Radio Raheem.</p>
+<p><strong>cee</strong>: Peace.</p>
+<p><strong>punchy</strong>: You the man, Radio Raheem.</p>
+<p><strong>ahmad</strong>: It’s your world.</p>
+<p><strong>cee</strong>: In a big way.</p>
+<p><strong>ahmad</strong>: My people. My people.</p>
+<p><strong>da mayor</strong>: Where’s the Bud? Where’s the Bud?</p>
+<p><strong>korean clerk</strong>: No mo’ Bud. You look what we have and
+buy.</p>
+<p><strong>da mayor</strong>: No more Bud. What kind of joint is this?
+How come no mo’ Bud? Doctor, this ain’t Korea, China, or wherever you
+come from. Get some Budweiser in this motherfucker.</p>
+<p><strong>korean clerk</strong>: You buy ’nother beer.</p>
+<p><strong>da mayor</strong>: Alright. Alright. Y’know you’re asking a
+lot to make a man change his beer, that’s asking a lot, Doctor.</p>
+<p><strong>mother sister</strong>: You ole drunk. What did I tell ya
+about drinking in front of my stoop? Move on, you’re blocking my
+view.</p>
+<p><strong>mother sister</strong>: You ugly enough. Don’t stare at
+me.</p>
+<p><strong>mother sister</strong>: The evil eye doesn’t work on me.</p>
+<p><strong>da mayor</strong>: Mother Sister, you’ve been talkin’ ’bout
+me the last eighteen years. What have I ever done to you?</p>
+<p><strong>mother sister</strong>: You’re a drunk fool.</p>
+<p><strong>da mayor</strong>: Besides that. Da Mayor don’t bother
+nobody. Nobody don’t bother Da Mayor but you. Da Mayor just mind his
+business. I love everybody. I even love you.</p>
+<p><strong>mother sister</strong>: Hold your tongue. You don’t have that
+much love.</p>
+<p><strong>da mayor</strong>: One day you’ll be nice to me. We might
+both be dead and buried, but you’ll be nice. At least civil.</p>
+<p><strong>tina</strong>: Hector, I shouldn’t be telling you this but
+you would find out sooner or later. Ya father ain’t no real father. He’s
+a bum, a two-bit bum in a hundred-dollar world. Your father is to the
+curb. You’re smart. I see that look on ya face. You’re saying if he’s
+such a bum why am I with him? Good question. Like I said before, you’re
+no dummy. He talked his way into my panties, I thought being a mother
+would make me happy, make me whole. He’s a mistake, but you are not.</p>
+<p><strong>ml</strong>: The way I see it, if this hot weather continues,
+it will surely melt the polar caps and the whole wide world–the parts
+that ain’t water already–will be flooded.</p>
+<p><strong>coconut sid</strong>: You a dumb-ass simple motherfucker.
+Where did you read that?</p>
+<p><strong>ml</strong>: Don’t worry about it. But when it happens and
+I’m in my boat and ya black ass is drowning, don’t ask me to throw you a
+lifesaver either.</p>
+<p><strong>sweet dick willie</strong>: Fool, you’re thirty cents away
+from a quarter. How you gonna get a boat?</p>
+<p><strong>ml</strong>: Don’t worry about it.</p>
+<p><strong>sweet dick willie</strong>: You’re raggedy as a roach. You
+eat the holes out of donuts.</p>
+<p><strong>ml</strong>: I’ll be back on my feet. Soon enough.</p>
+<p><strong>sweet dick willie</strong>: So when is all this ice suppose
+to melt?</p>
+<p><strong>sal</strong>: You paying now or on layaway?</p>
+<p><strong>buggin’ out</strong>: How much?</p>
+<p><strong>sal</strong>: You come in here at least three times a day.
+You a retard? A buck fifty.</p>
+<p><strong>buggin’ out</strong>: Damn, Sal, put some more cheese on that
+motherfucker.</p>
+<p><strong>sal</strong>: Extra cheese is two dollars. Y’know dat.</p>
+<p><strong>buggin’ out</strong>: Two dollars! Forget it!</p>
+<p><strong>buggin’ out</strong>: Mookie.</p>
+<p><strong>mookie</strong>: What?</p>
+<p><strong>buggin’ out</strong>: How come you ain’t got no brothers
+up?</p>
+<p><strong>mookie</strong>: Ask Sal.</p>
+<p><strong>buggin’ out</strong>: Sal, how come you ain’t got no brothers
+up on the wall here?</p>
+<p><strong>sal</strong>: You want brothers up on the Wall of Fame, you
+open up your own business, then you can do what you wanna do. My
+pizzeria, Italian Americans up on the wall.</p>
+<p><strong>vito</strong>: Take it easy, Pop.</p>
+<p><strong>sal</strong>: Don’t start on me today.</p>
+<p><strong>buggin’ out</strong>: Sal, that might be fine, you own this,
+but rarely do I see any Italian Americans eating in here. All I’ve ever
+seen is Black folks. So since we spend much money here, we do have some
+say.</p>
+<p><strong>sal</strong>: You a troublemaker?</p>
+<p><strong>pino</strong>: You making trouble.</p>
+<p><strong>buggin’ out</strong>: Put some brothers up on this Wall of
+Fame. We want Malcolm X, Angela Davis, Michael Jordan tomorrow.</p>
+<p><strong>sal</strong>: Don’t come back, either.</p>
+<p><strong>buggin’ out</strong>: Boycott Sal’s. Boycott Sal’s.</p>
+<p><strong>mookie</strong>: Buggin’ Out, I gotta work here.</p>
+<p><strong>buggin’ out</strong>: I’m cool. I’m cool.</p>
+<p><strong>mookie</strong>: Come back in a week, it will be
+squashed.</p>
+<p><strong>sal</strong>: Mookie, if your friends can’t behave, they’re
+not welcome.</p>
+<p><strong>mookie</strong>: I got no say over people.</p>
+<p><strong>pino</strong>: You talk to ’em.</p>
+<p><strong>mookie</strong>: People are free to do what they wanna
+do.</p>
+<p><strong>sal</strong>: I know, this is America, but I don’t want no
+trouble.</p>
+<p><strong>da mayor</strong>: Mookie.</p>
+<p><strong>mookie</strong>: Gotta go.</p>
+<p><strong>da mayor</strong>: C’mere, Doctor.</p>
+<p><strong>da mayor</strong>: Doctor, this is Da Mayor talkin’.</p>
+<p><strong>da mayor</strong>: Doctor, always try to do the right
+thing.</p>
+<p><strong>mookie</strong>: That’s it?</p>
+<p><strong>da mayor</strong>: That’s it.</p>
+<p><strong>mookie</strong>: I got it.</p>
+<p><strong>nilda</strong>: I hope it’s not cold.</p>
+<p><strong>mookie</strong>: No, it’s not cold. Twelve dollars for the
+pie.</p>
+<p><strong>mookie</strong>: Hold it. Let me count this first.</p>
+<p><strong>mookie</strong>: You’re short.</p>
+<p><strong>nilda</strong>: I counted the twelve dollars myself.</p>
+<p><strong>mookie</strong>: Twelve is right, but no tip.</p>
+<p><strong>nilda</strong>: No tip.</p>
+<p><strong>mookie</strong>: Look, lady. I carried your pizza up five
+flights of stairs and shit. The cheese didn’t slide over to one side
+like it sometimes does with delivery people who don’t care. I do care.
+May I get paid?</p>
+<p><strong>nilda</strong>: Wait here.</p>
+<p><strong>mookie</strong>: I’ll wait.</p>
+<p><strong>mookie</strong>: Gracias mucho.</p>
+<p><strong>mookie</strong>: A dollar! Cheap bastard! Your pizza is gonna
+be fucked next time.</p>
+<p><strong>mother sister</strong>: Jade, you’re late.</p>
+<p><strong>jade</strong>: I know, Mother Sister, but I’m here now.
+Where’s the stuff?</p>
+<p><strong>mother sister</strong>: Seen your brother, just walked
+by.</p>
+<p><strong>jade</strong>: This might take some time.</p>
+<p><strong>mother sister</strong>: I got nowhere to go. We haven’t had a
+good sit-down for a long while.</p>
+<p><strong>mother sister</strong>: Tender-headed runs in my family. You
+tender-headed?</p>
+<p><strong>jade</strong>: Yeah, me too.</p>
+<p><strong>mother sister</strong>: That’s why I don’t fool with it. Only
+let you touch it…Ouch!</p>
+<p><strong>jade</strong>: Sorry, comb got caught.</p>
+<p><strong>mother sister</strong>: Be gentle, child. Mother Sister is an
+old woman.</p>
+<p><strong>jade</strong>: How are you holding up in this weather?</p>
+<p><strong>mother sister</strong>: I’ll do.</p>
+<p><strong>jade</strong>: I don’t know why you still haven’t bought an
+air conditioner.</p>
+<p><strong>mother sister</strong>: Don’t like ’em. A fan will do.</p>
+<p><strong>da mayor</strong>: I didn’t know you had such beautiful
+hair.</p>
+<p><strong>mother sister</strong>: Fool, there’s a lot in this world you
+don’t know.</p>
+<p><strong>da mayor</strong>: I’m not stopping. I’m on my way.</p>
+<p><strong>jade</strong>: You are too cruel to Da Mayor, it isn’t
+right.</p>
+<p><strong>mother sister</strong>: I’m not studying no Mayor. Besides,
+he reminds me of my least favorite peoples. My tenants and my ex-
+husband–Goddamn-bless his soul.</p>
+<p><strong>mother sister</strong>: Number One: I got some jive, late-
+rent-paying trifling Negroes in this house. Every year I keep
+threatening to sell it.</p>
+<p><strong>jade</strong>: And move to Long Island…</p>
+<p><strong>mother sister</strong>: And move to Long Island. Number Two:
+my ex-husband lost all my property, all my money in his scheme to build
+a Black business empire. Needless to say what happened, this house is
+it, all I got. I’m too through with yar people.</p>
+<p><strong>jade</strong>: Whew!</p>
+<p><strong>ella</strong>: Ahmad! Put me down! Put me down! I can’t get
+wet! I’m not playing!</p>
+<p><strong>ahmad</strong>: Yo!</p>
+<p><strong>ella</strong>: No!</p>
+<p><strong>charlie</strong>: I’m not playing. There’s gonna be trouble
+if you fuck around.</p>
+<p><strong>punchy</strong>: Go ’head. You got it. You got it.</p>
+<p><strong>charlie</strong>: This is an expensive car.</p>
+<p><strong>cee</strong>: You won’t get wet.</p>
+<p><strong>charlie</strong>: I’m warning you.</p>
+<p><strong>punchy</strong>: C’mon.</p>
+<p><strong>cee</strong>: Hurry up. We ain’t got all day.</p>
+<p><strong>charlie</strong>: I’m fucking soaked. If I ever catch those
+fucks they’ll be sorry. Cocksucking sonabitches!</p>
+<p><strong>charlie</strong>: You people make me sick.</p>
+<p><strong>charlie</strong>: Officers, I want an arrest made. Now.</p>
+<p><strong>officer ponte</strong>: What happened?</p>
+<p><strong>charlie</strong>: Two Black kids soaked me and my car. It’s
+fucking ruined.</p>
+<p><strong>officer long</strong>: Where are they?</p>
+<p><strong>charlie</strong>: Where are they? What kind of fucking
+asshole question is that? They ran the fuck away.</p>
+<p><strong>officer ponte</strong>: Do you wish to file a complaint?</p>
+<p><strong>charlie</strong>: A complaint. I want those fucks locked
+under the jail.</p>
+<p><strong>officer ponte</strong>: This hydrant better not come back on
+or there’s gonna be hell to pay.</p>
+<p><strong>charlie</strong>: What about my car? I want justice.</p>
+<p><strong>officer long</strong>: You know anything about this?</p>
+<p><strong>charlie</strong>: He knows. He’s a witness. They all know. He
+saw the whole thing.</p>
+<p><strong>officer long</strong>: Who were the punks?</p>
+<p><strong>da mayor</strong>: Those who’ll tell don’t know. Those who
+know won’t tell.</p>
+<p><strong>officer ponte</strong>: A wise guy.</p>
+<p><strong>mookie</strong>: Let’s go, Mayor.</p>
+<p><strong>officer long</strong>: Keep this hydrant off. You want to
+swim, go to Coney Island.</p>
+<p><strong>charlie</strong>: He’s leaving? What about me?</p>
+<p><strong>officer ponte</strong>: I suggest you get in your car quick,
+before these people start to strip it clean.</p>
+<p><strong>officer long</strong>: Let’s go, break it up. Go back to your
+jobs.</p>
+<p><strong>officer ponte</strong>: What jobs?</p>
+<p><strong>sal</strong>: Mookie, what took you so long? I got a business
+to run.</p>
+<p><strong>mookie</strong>: Run it then.</p>
+<p><strong>sal</strong>: Here, this goes to the radio station.</p>
+<p><strong>vito</strong>: Pop, I’m gonna go with Mookie.</p>
+<p><strong>sal</strong>: Good, make sure he don’t jerk around.</p>
+<p><strong>pino</strong>: Yeah, hurry back, it’s getting crowded.</p>
+<p><strong>vito</strong>: Mister Se�or Love Daddy is cool.</p>
+<p><strong>mookie</strong>: Ya like him, huh?</p>
+<p><strong>vito</strong>: Yeah.</p>
+<p><strong>mookie</strong>: Y’know, Vito, I know Pino is ya brother and
+shit, but the next time he hits ya, the next time he touches ya, you
+should “house him.” Kick his ass.</p>
+<p><strong>vito</strong>: I don’t know.</p>
+<p><strong>mookie</strong>: If you don’t make a stand, he’s gonna be
+beating ya like a egg for the rest of your life.</p>
+<p><strong>vito</strong>: That’s what you think?</p>
+<p><strong>mookie</strong>: That’s what I think.</p>
+<p><strong>vito</strong>: I don’t like to fight.</p>
+<p><strong>mookie</strong>: Do it this one time and he’ll never touch
+you again.</p>
+<p><strong>mister se�or love daddy</strong>: Peoples, my stomach’s been
+grumbling but help has arrived. My main man Mookie has saved the day,
+straight from Sal’s Famous Pizzeria, down the block. Come up to the
+mike, Mookie.</p>
+<p><strong>mister se�or love daddy</strong>: C’mon, don’t be shy. Mmm,
+smells good. This is ya Love Daddy talkin’ to ya, starvin’ like Marvin.
+Say something, Mookie.</p>
+<p><strong>mookie</strong>: Mister Se�or Love Daddy, I’d like to
+dedicate the next record to my heart, Tina.</p>
+<p><strong>mister se�or love daddy</strong>: Alright. Let me play this
+record while I go to work on my chicken Parmigiana hero with extra
+cheese and extra sauce.</p>
+<p><strong>vo</strong>: I just looove you so much Mister Se�or Love
+Daddy. WE LOVE RADIO,</p>
+<p><strong>mister se�or love daddy</strong>: Here ya are. Keep the
+change.</p>
+<p><strong>mookie</strong>: That’s right on time. This is my friend,
+Vito. His pops is Sal.</p>
+<p><strong>mister se�or love daddy</strong>: Tell ya father he makes the
+best heros in Brooklyn.</p>
+<p><strong>vito</strong>: I’ll do that.</p>
+<p><strong>mookie</strong>: We’re outta here.</p>
+<p><strong>mister se�or love daddy</strong>: Thanks for stopping by. WE
+LOVE Radio, 108 FM.</p>
+<p><strong>stevie</strong>: You got it, bro.</p>
+<p><strong>mookie</strong>: You the man.</p>
+<p><strong>buggin’ out</strong>: You the man.</p>
+<p><strong>mookie</strong>: No, you the man.</p>
+<p><strong>buggin’ out</strong>: No. I’m just a struggling Black man
+trying to keep my dick hard in a cruel and harsh world.</p>
+<p><strong>mookie</strong>: Vito is down.</p>
+<p><strong>buggin’ out</strong>: Yo!</p>
+<p><strong>buggin’ out</strong>: Yo!</p>
+<p><strong>clifton</strong>: Yes?</p>
+<p><strong>buggin’ out</strong>: You almost knocked me down. The word is
+“excuse me.”</p>
+<p><strong>clifton</strong>: Excuse me. I’m very sorry.</p>
+<p><strong>buggin’ out</strong>: Not only did you knock me down, you
+stepped on my new white Air Jordans that I just bought and that’s all
+you can say, “Excuse me?”</p>
+<p><strong>buggin’ out</strong>: I’ll fuck you up quick two times.</p>
+<p><strong>buggin’ out</strong>: Who told you to step on my sneakers?
+Who told you to walk on my side of the block? Who told you to be in my
+neighborhood?</p>
+<p><strong>clifton</strong>: I own a brownstone on this block.</p>
+<p><strong>buggin’ out</strong>: Who told you to buy a brownstone on my
+block, in my neighborhood on my side of the street?</p>
+<p><strong>buggin’ out</strong>: What do you want to live in a Black
+neighborhood for? Motherfuck gentrification.</p>
+<p><strong>clifton</strong>: I’m under the assumption that this is a
+free country and one can live where he pleases.</p>
+<p><strong>buggin’ out</strong>: A free country?</p>
+<p><strong>buggin’ out</strong>: I should fuck you up just for that
+stupid shit alone.</p>
+<p><strong>ahmad</strong>: Your Jordans are dogged.</p>
+<p><strong>cee</strong>: You might as well throw ’em out.</p>
+<p><strong>punchy</strong>: They looked good before he messed them
+up.</p>
+<p><strong>ella</strong>: You used to be so fine.</p>
+<p><strong>ahmad</strong>: How much did you pay for them?</p>
+<p><strong>cee</strong>: A hundred bucks.</p>
+<p><strong>ahmad</strong>: A hundred bucks!</p>
+<p><strong>buggin’ out</strong>: You’re lucky the Black man has a loving
+heart. Next time you see me coming, cross the street quick.</p>
+<p><strong>ahmad</strong>: He’s dissing you.</p>
+<p><strong>buggin’ out</strong>: Damn, my brand-new Jordans. You should
+buy me another pair.</p>
+<p><strong>clifton</strong>: I’m gonna leave now.</p>
+<p><strong>buggin’ out</strong>: If I wasn’t a righteous Black man you’d
+be in serious trouble.</p>
+<p><strong>buggin’ out</strong>: Move back to Connecticut.</p>
+<p><strong>sal</strong>: I should have Vito go with you all the
+time.</p>
+<p><strong>pino</strong>: Yeah, no more ninety-minute deliveries around
+the corner.</p>
+<p><strong>mookie</strong>: Pino, I work hard like everybody in
+here.</p>
+<p><strong>vito</strong>: He’s right.</p>
+<p><strong>pino</strong>: C’mere. Don’t get too friendly with da
+Mook.</p>
+<p><strong>sal</strong>: That’s gonna be the last time you hit Vito.</p>
+<p><strong>mookie</strong>: Smack him back.</p>
+<p><strong>pino</strong>: What?</p>
+<p><strong>mookie</strong>: Remember what I said.</p>
+<p><strong>pino</strong>: Are you gonna listen to this Mook? Listen to
+him tell you to smack me? Your only brother?</p>
+<p><strong>pino</strong>: I didn’t think so.</p>
+<p><strong>officer ponte</strong>: What a waste.</p>
+<p><strong>coconut sid</strong>: As I was saying before we were so
+rudely interrupted by the finest.</p>
+<p><strong>ml</strong>: What was you saying?</p>
+<p><strong>sweet dick willie</strong>: Motherfucker wasn’t saying
+shit.</p>
+<p><strong>ml</strong>: Look at that.</p>
+<p><strong>coconut sid</strong>: Look at what?</p>
+<p><strong>ml</strong>: It’s a fucking shame.</p>
+<p><strong>sweet dick willie</strong>: What is?</p>
+<p><strong>ml</strong>: Sweet Dick Willie.</p>
+<p><strong>sweet dick willie</strong>: That’s my name.</p>
+<p><strong>ml</strong>: Do I have to spell it out?</p>
+<p><strong>coconut sid</strong>: Make it plain.</p>
+<p><strong>ml</strong>: OK, but listen up. I’m gonna break it down.</p>
+<p><strong>sweet dick willie</strong>: Let it be broke.</p>
+<p><strong>ml</strong>: Can ya dig it?</p>
+<p><strong>sweet dick willie</strong>: It’s dug.</p>
+<p><strong>ml</strong>: Look at those Korean motherfuckers across the
+street. I betcha they haven’t been a year off da motherfucking boat
+before they opened up their own place.</p>
+<p><strong>coconut sid</strong>: It’s been about a year.</p>
+<p><strong>ml</strong>: A motherfucking year off the motherfucking boat
+and got a good business in our neighborhood occupying a building that
+had been boarded up for longer than I care to remember and I’ve been
+here a long time.</p>
+<p><strong>sweet dick willie</strong>: It has been a long time.</p>
+<p><strong>coconut sid</strong>: How long?</p>
+<p><strong>ml</strong>: Too long! Too long. Now for the life of me, I
+haven’t been able to figger this out. Either dem Koreans are geniuses or
+we Blacks are dumb.</p>
+<p><strong>coconut sid</strong>: It’s gotta be cuz we’re Black. No other
+explanation, nobody don’t want the Black man to be about shit.</p>
+<p><strong>sweet dick willie</strong>: Old excuse.</p>
+<p><strong>ml</strong>: I’ll be one happy fool to see us have our own
+business right here. Yes, sir. I’d be the first in line to spend the
+little money I got.</p>
+<p><strong>sweet dick willie</strong>: It’s Miller time. Let me go give
+these Koreans s’more business.</p>
+<p><strong>ml</strong>: It’s a motherfucking shame.</p>
+<p><strong>coconut sid</strong>: Ain’t that a bitch.</p>
+<p><strong>da mayor</strong>: Sonny! Sonny!</p>
+<p><strong>da mayor</strong>: Doctor, what’s your name?</p>
+<p><strong>eddie</strong>: Eddie Lovell.</p>
+<p><strong>da mayor</strong>: How old are you?</p>
+<p><strong>eddie</strong>: Ten.</p>
+<p><strong>da mayor</strong>: What makes Sammy run?</p>
+<p><strong>eddie</strong>: My name is Eddie.</p>
+<p><strong>da mayor</strong>: What makes Sammy run?</p>
+<p><strong>eddie</strong>: I said my name is Eddie Lovell.</p>
+<p><strong>da mayor</strong>: Relax, Eddie, I want you to go to the
+corner store. How much will it cost me?</p>
+<p><strong>eddie</strong>: How would I know how much it’s gonna cost if
+I don’t know what I’m buying?</p>
+<p><strong>da mayor</strong>: Eddie, you’re too smart for your own
+britches. Listen to me. How much do you want to run to the store for Da
+Mayor?</p>
+<p><strong>eddie</strong>: Fifty cents.</p>
+<p><strong>da mayor</strong>: You got a deal.</p>
+<p><strong>da mayor</strong>: Git me a quart of beer, Budweiser, say
+it’s for your father, if they bother you.</p>
+<p><strong>ahmad</strong>: Who told him he was Da Mayor of this
+block?</p>
+<p><strong>cee</strong>: He’s self-appointed.</p>
+<p><strong>ella</strong>: Leave him alone.</p>
+<p><strong>punchy</strong>: Shut up.</p>
+<p><strong>da mayor</strong>: Go on now. Leave me be.</p>
+<p><strong>ahmad</strong>: You walk up and down this block like you own
+it.</p>
+<p><strong>cee</strong>: Da Mayor.</p>
+<p><strong>punchy</strong>: You’re old.</p>
+<p><strong>ahmad</strong>: A old drunk bum.</p>
+<p><strong>ahmad</strong>: What do you have to say?</p>
+<p><strong>da mayor</strong>: What do you know ’bout me? Y’all can’t
+even pee straight. What do you know? Until you have stood in the doorway
+and heard the hunger of your five children, unable to do a damn thing
+about it, you don’t know shit. You don’t know my pain, you don’t know
+me. Don’t call me a bum, don’t call me a drunk, you don’t know me, and
+it’s disrespectful. I know your parents raised you better.</p>
+<p><strong>ella</strong>: He told you off.</p>
+<p><strong>mookie</strong>: I know I haven’t seen you in four days. I’m
+a working man.</p>
+<p><strong>tina</strong>: I work too, but I still make time.</p>
+<p><strong>mookie</strong>: Tina, what do you want me to do?</p>
+<p><strong>tina</strong>: I want you to spend some time with me. I want
+you to try and make this relationship work. If not, I’d rather not be
+bothered.</p>
+<p><strong>mookie</strong>: Alright. Alright. I’ll be over there
+sometime today.</p>
+<p><strong>tina</strong>: When?</p>
+<p><strong>mookie</strong>: Before I get off work.</p>
+<p><strong>tina</strong>: Bring some ice cream, I’m burning up. Do you
+love me?</p>
+<p><strong>mookie</strong>: Do I love you?</p>
+<p><strong>sal</strong>: Mookie, get offa da phone.</p>
+<p><strong>mookie</strong>: Be off in a second. Tina, I dedicated a
+record on Mister Se�or Love Daddy’s show to you.</p>
+<p><strong>tina</strong>: Big deal.</p>
+<p><strong>sal</strong>: Mookie! How is anybody gonna call in?</p>
+<p><strong>mookie</strong>: Big deal? If that’s not LOVE, I don’t know
+what is.</p>
+<p><strong>pino</strong>: You deaf or what?</p>
+<p><strong>mookie</strong>: Gotta go. See ya soon. Everybody happy
+now?</p>
+<p><strong>pino</strong>: Sal’s Famous Pizzeria, yeah, two large pizzas,
+pepperoni and anchovies, hold on… See, Pop, Mookie fucking talking on
+the phone and people are trying to call in orders. He’s making us lose
+business.</p>
+<p><strong>sal</strong>: Mookie, you’re fucking up.</p>
+<p><strong>pino</strong>: Twenty minutes. How come you niggers are so
+stupid?</p>
+<p><strong>mookie</strong>: If ya see a nigger here, kick his ass.</p>
+<p><strong>pino</strong>: Fuck you and stay off the phone.</p>
+<p><strong>vito</strong>: Forget it, Mookie.</p>
+<p><strong>mookie</strong>: Who’s your favorite basketball player?</p>
+<p><strong>pino</strong>: Magic Johnson.</p>
+<p><strong>mookie</strong>: And not Larry Bird? Who’s your favorite
+movie star?</p>
+<p><strong>pino</strong>: Eddie Murphy.</p>
+<p><strong>mookie</strong>: Last question: Who’s your favorite rock
+star?</p>
+<p><strong>mookie</strong>: Barry Manilow?</p>
+<p><strong>mookie</strong>: Pino, no joke. C’mon, answer.</p>
+<p><strong>vito</strong>: It’s Prince. He’s a Prince freak.</p>
+<p><strong>pino</strong>: Shut up. The Boss! Bruuucce!!!!</p>
+<p><strong>mookie</strong>: Sounds funny to me. As much as you say
+nigger this and nigger that, all your favorite people are “niggers.”</p>
+<p><strong>pino</strong>: It’s different. Magic, Eddie, Prince are not
+niggers, I mean, are not Black. I mean, they’re Black but not really
+Black. They’re more than Black. It’s different.</p>
+<p><strong>mookie</strong>: Pino, I think secretly that you wish you
+were Black. That’s what I think. Vito, what do you say?</p>
+<p><strong>pino</strong>: Y’know, I’ve been listening and reading ’bout
+Farrakhan, ya didn’t know that, did you?</p>
+<p><strong>mookie</strong>: I didn’t know you could read.</p>
+<p><strong>pino</strong>: Fuck you. Anyway, Minister Farrakhan always
+talks about the so-called “day” when the Black man will rise. “We will
+one day rule the earth as we did in our glorious past.” You really
+believe that shit?</p>
+<p><strong>mookie</strong>: It’s e-vit-able.</p>
+<p><strong>pino</strong>: Keep dreaming.</p>
+<p><strong>mookie</strong>: Fuck you, fuck pizza, and fuck Frank
+Sinatra, too.</p>
+<p><strong>pino</strong>: Well, fuck you, too, and fuck Michael
+Jordan.</p>
+<p><strong>mookie</strong>: Dago, wop, garlic-breath, guinea,
+pizza-slinging, spaghetti-bending, Vic Damone, Perry Como, Luciano
+Pavarotti, Sole Mio, nonsinging motherfucker.</p>
+<p><strong>pino</strong>: You gold-teeth, gold-chain-wearing,
+fried-chicken-and-biscuit-eatin’, monkey, ape, baboon, big thigh,
+fast-running, three-hundred-sixty- degree-basketball-dunking spade
+Moulan Yan.</p>
+<p><strong>stevie</strong>: You slant-eyed, me-no-speak- American, own
+every fruit and vegetable stand in New York, Reverend Moon, Summer
+Olympics ’88, Korean kick-boxing bastard.</p>
+<p><strong>officer long</strong>: Goya bean-eating, fifteen in a car,
+thirty in an apartment, pointed shoes, red-wearing, Menudo, meda- meda
+Puerto Rican cocksucker.</p>
+<p><strong>korean clerk</strong>: It’s cheap, I got a good price for
+you, Mayor Koch, “How I’m doing,” chocolate-egg-cream-drinking, bagel
+and lox, B’nai B’rith asshole.</p>
+<p><strong>mister se�or love daddy</strong>: Yo! Hold up! Time out! Time
+out! Y’all take a chill. Ya need to cool that shit out… and that’s the
+truth, Ruth.</p>
+<p><strong>mookie</strong>: Sal, can you do me a favor?</p>
+<p><strong>sal</strong>: Depends.</p>
+<p><strong>mookie</strong>: Can you pay me now?</p>
+<p><strong>sal</strong>: Can’t do.</p>
+<p><strong>mookie</strong>: Sal, just this once, do me that solid.</p>
+<p><strong>sal</strong>: You know you don’t get paid till we close
+tonight. We’re still open.</p>
+<p><strong>mookie</strong>: I would like to get paid now.</p>
+<p><strong>sal</strong>: Tonight, when we close.</p>
+<p><strong>mookie</strong>: Whaddup. Money?</p>
+<p><strong>radio raheem</strong>: I was going to buy a slice.</p>
+<p><strong>mookie</strong>: I’ll be back after I make this delivery.</p>
+<p><strong>radio raheem</strong>: On the rebound.</p>
+<p><strong>mookie</strong>: That’s the dope.</p>
+<p><strong>radio raheem</strong>: I just copped them. Let me tell you
+the story of Right-Hand–Left- Hand–the tale of Good and Evil.</p>
+<p><strong>mookie</strong>: I’m listening.</p>
+<p><strong>radio raheem</strong>: It was with this hand that Brother
+Cain iced his brother. LOVE!</p>
+<p><strong>radio raheem</strong>: See these fingers, they lead straight
+to the soul of man. The right hand. The hand of LOVE!</p>
+<p><strong>radio raheem</strong>: The story of Life is this…</p>
+<p><strong>radio raheem</strong>: STATIC! One hand is always fighting
+the other. Left Hand Hate is kicking much ass and it looks like Right
+Hand Love is finished. Hold up. Stop the presses! Love is coming back,
+yes, it’s Love. Love has won. Left Hand Hate KO’ed by Love.</p>
+<p><strong>radio raheem</strong>: Brother, Mookie, if I love you I love
+you, but if I hate you…</p>
+<p><strong>mookie</strong>: I understand.</p>
+<p><strong>radio raheem</strong>: I love you, my brother.</p>
+<p><strong>mookie</strong>: I love you, Black.</p>
+<p><strong>radio raheem</strong>: Two slices.</p>
+<p><strong>sal</strong>: No service till you turn dat shit off.</p>
+<p><strong>radio raheem</strong>: Two slices.</p>
+<p><strong>pino</strong>: Turn it off.</p>
+<p><strong>sal</strong>: Mister Radio Raheem, I can’t even hear myself
+think. You are disturbing me and you are disturbing my customers.</p>
+<p><strong>radio raheem</strong>: Two slices, extra cheese.</p>
+<p><strong>sal</strong>: When you come in Sal’s Famous Pizzeria, no
+music. No rap, no music. Capisce? Understand?… This is a place of
+business. Extra cheese is two dollars.</p>
+<p><strong>mookie</strong>: Thanks.</p>
+<p><strong>mookie</strong>: Jade.</p>
+<p><strong>jade</strong>: I’m in here.</p>
+<p><strong>jade</strong>: How come you’re not at Sal’s?</p>
+<p><strong>mookie</strong>: I’m working.</p>
+<p><strong>jade</strong>: Is this another one of your patented two-hour
+lunches?</p>
+<p><strong>mookie</strong>: I just come home to take a quick shower.</p>
+<p><strong>jade</strong>: Sal’s gonna be mad.</p>
+<p><strong>mookie</strong>: Later for Sal. Y’know, sometimes I think
+you’re more concerned with him than me.</p>
+<p><strong>jade</strong>: I think no such a thing. Sal pays you, you
+should work.</p>
+<p><strong>mookie</strong>: Slavery days are over. My name ain’t Kunta
+Kinte. Sis, I don’t want to argue, stop pressing me.</p>
+<p><strong>jade</strong>: I just don’t want you to lose the one job
+you’ve been able to keep, that’s all. I’m carrying you as it is.</p>
+<p><strong>mookie</strong>: Don’t worry ’bout me. I always get paid.</p>
+<p><strong>jade</strong>: Yeah, then ya should take better care of your
+responsibilities.</p>
+<p><strong>mookie</strong>: What responsibilities?</p>
+<p><strong>jade</strong>: I didn’t stutter. Take care of your
+responsibilities. Y’know exactly what I’m talking about.</p>
+<p><strong>sal</strong>: I’m beat.</p>
+<p><strong>pino</strong>: Pop, I think we should sell this place, get
+outta here while we’re still ahead…and alive.</p>
+<p><strong>sal</strong>: Since when do you know what’s best for us?</p>
+<p><strong>pino</strong>: Couldn’t we sell this and open up a new one in
+our own neighborhood?</p>
+<p><strong>sal</strong>: Too many pizzerias already there.</p>
+<p><strong>pino</strong>: Then we could try something else.</p>
+<p><strong>sal</strong>: We don’t know nuthin’ else.</p>
+<p><strong>pino</strong>: I’m sick of niggers, it’s a bad neighborhood.
+I don’t like being around them, they’re animals.</p>
+<p><strong>vito</strong>: Some are OK.</p>
+<p><strong>pino</strong>: My friends laugh at me all the time, laugh
+right in my face, tell me go feed the Moulies.</p>
+<p><strong>sal</strong>: Do your friends put money in your pocket? Pay
+your rent? Food on ya plate?</p>
+<p><strong>sal</strong>: I didn’t think so.</p>
+<p><strong>pino</strong>: Pop, what else can I say? I don’t wanna be
+here, they don’t want us here. We should stay in our own neighborhood,
+stay in Bensonhurst.</p>
+<p><strong>sal</strong>: So what if this is a Black neighborhood, so
+what if we’re a minority. I’ve never had no trouble with dese people,
+don’t want none either, so don’t start none. This is America. Sal’s
+Famous Pizzeria is here for good. You think you know it all? Well, you
+don’t. I’m your father, you better remember that.</p>
+<p><strong>jade</strong>: Hurry up and get dressed.</p>
+<p><strong>mookie</strong>: I’m coming.</p>
+<p><strong>jade</strong>: I’m going with you.</p>
+<p><strong>buggin’ out</strong>: Da Mayor, we need your leadership.</p>
+<p><strong>da mayor</strong>: Doctor, what are you talkin’ bout?</p>
+<p><strong>buggin’ out</strong>: I’m organizing a boycott of Sal’s
+Famous Pizzeria.</p>
+<p><strong>da mayor</strong>: Keep walkin’, Doctor. I don’t want to hear
+none of your foolishness.</p>
+<p><strong>ml</strong>: No!</p>
+<p><strong>coconut sid</strong>: No!</p>
+<p><strong>sweet dick willie</strong>: Hell no! Goddamnit. Sal ain’t
+never done me no harm. You either.</p>
+<p><strong>buggin’ out</strong>: Would you like to sign a petition to
+boycott Sal’s Famous Pizzeria.</p>
+<p><strong>buggin’ out</strong>: I’ll do it without your help.</p>
+<p><strong>buggin’ out</strong>: Sal, we’re gonna boycott ya fat
+ass.</p>
+<p><strong>buggin’ out</strong>: It’s so nice to see a family hanging
+out together.</p>
+<p><strong>mookie</strong>: We’re not hanging out. I’m being escorted
+back to work.</p>
+<p><strong>jade</strong>: That’s not even true. I just want a slice.</p>
+<p><strong>buggin’ out</strong>: Jade, you don’t know this, but I’m
+organizing a boycott of Sal’s Famous Pizzeria.</p>
+<p><strong>jade</strong>: What did he do this time?</p>
+<p><strong>buggin’ out</strong>: Y’know all those pictures he has
+hanging on the Wall of Fame?</p>
+<p><strong>jade</strong>: So?</p>
+<p><strong>buggin’ out</strong>: Have you noticed something about
+them?</p>
+<p><strong>jade</strong>: No.</p>
+<p><strong>mookie</strong>: Yo, I’m gone.</p>
+<p><strong>jade</strong>: I’ll see ya there.</p>
+<p><strong>buggin’ out</strong>: Peace.</p>
+<p><strong>buggin’ out</strong>: Every single one of those pictures is
+somebody Italian.</p>
+<p><strong>jade</strong>: And?</p>
+<p><strong>buggin’ out</strong>: And I–we–want some Black people up.</p>
+<p><strong>jade</strong>: Did you ask Sal?</p>
+<p><strong>buggin’ out</strong>: Yeah, I asked him. I don’t want nobody
+in there, nobody spending good money in Sal’s. He should get no mo’
+money from the community till he puts some Black faces up on that
+motherfucking wall.</p>
+<p><strong>jade</strong>: Buggin’ Out, I don’t mean to be disrespectful,
+but you can really direct your energies in a more useful way.</p>
+<p><strong>buggin’ out</strong>: So, in other words, you are not
+down.</p>
+<p><strong>jade</strong>: I’m down, but for a worthwhile cause.</p>
+<p><strong>buggin’ out</strong>: Jade, I still love you.</p>
+<p><strong>jade</strong>: I still love you too.</p>
+<p><strong>sal</strong>: Mookie, you are pushing it. You’re really
+pushing it. I’m not paying you good money to fucking jerk me around.</p>
+<p><strong>sal</strong>: You’re gonna be in the street with the rest of
+your homeboys.</p>
+<p><strong>pino</strong>: ’Bout time, Pop.</p>
+<p><strong>sal</strong>: Jade, we’ve been wondering when ya would pay us
+a visit.</p>
+<p><strong>jade</strong>: Hi, Sal, Pino, Vito.</p>
+<p><strong>jade</strong>: What’s happening, Jade?</p>
+<p><strong>jade</strong>: Nuthin’ really. How are you treating my
+brother?</p>
+<p><strong>sal</strong>: The Mook? Great. Mookie’s a good kid.</p>
+<p><strong>pino</strong>: Pop, stop lying.</p>
+<p><strong>sal</strong>: Shaddup! Jade, what can I fix you?</p>
+<p><strong>jade</strong>: What’s good?</p>
+<p><strong>sal</strong>: Everything, but for you I’m gonna make up
+something special. Take a seat. There, that’s a clean table.</p>
+<p><strong>jade</strong>: You still letting Pino push you around?</p>
+<p><strong>vito</strong>: Who told you that? He doesn’t push me, who
+told you, Mookie tell you that? I hold my own.</p>
+<p><strong>jade</strong>: Forget about it, Vito. Forget I even brought
+it up.</p>
+<p><strong>vito</strong>: Pino picks on me, but I don’t let him push me
+around. Mookie tell you that?</p>
+<p><strong>jade</strong>: Alright already.</p>
+<p><strong>radio raheem</strong>: Twenty “D” Duracells.</p>
+<p><strong>korean clerk</strong>: Twenty “C” Duracells.</p>
+<p><strong>radio raheem</strong>: D, not C.</p>
+<p><strong>korean clerk</strong>: C Duracell.</p>
+<p><strong>radio raheem</strong>: D! D! D! You dumb motherfucker. Learn
+how to speak English first. D.</p>
+<p><strong>korean clerk</strong>: How many you say?</p>
+<p><strong>radio raheem</strong>: Twenty! Motherfucker! Twenty!</p>
+<p><strong>korean clerk</strong>: Motherfucker you.</p>
+<p><strong>radio raheem</strong>: Motherfucker you. You’re alright.
+You’re alright. Just gimme my twenty Duracells, please.</p>
+<p><strong>da mayor</strong>: I’d thought you might like these… I guess
+not.</p>
+<p><strong>da mayor</strong>: Ain’t nuthin’ like the smell of fresh
+flowers. Don’t you agree, Miss Mother Sister?</p>
+<p><strong>da mayor</strong>: Summertime, all ya can smell is the
+garbage. Stink overpowers everything, especially soft sweet smells like
+flowers.</p>
+<p><strong>da mayor</strong>: If you don’t mind, I’m gonna set right
+here, catch a breeze or two, then be on my way.</p>
+<p><strong>da mayor</strong>: Thank the Lord, the sun is going down,
+it’s hot as blazes. Yes Jesus.</p>
+<p><strong>ml</strong>: What can you say?</p>
+<p><strong>coconut sid</strong>: I don’t know how he does it.</p>
+<p><strong>ml</strong>: What?</p>
+<p><strong>sweet dick willie</strong>: ML, hold this for me.</p>
+<p><strong>ml</strong>: That’s OK. At least my moms didn’t name me Sweet
+Dick Willie.</p>
+<p><strong>sweet dick willie</strong>: Why you gotta talk ’bout my
+moms?</p>
+<p><strong>ml</strong>: Nobody talkin’ ’bout ya moms.</p>
+<p><strong>sweet dick willie</strong>: I didn’t say nobody, I said
+you.</p>
+<p><strong>ml</strong>: Sweet Dick, I didn’t mean it like that.</p>
+<p><strong>sweet dick willie</strong>: Yes you did.</p>
+<p><strong>coconut sid</strong>: Squash it.</p>
+<p><strong>ml</strong>: I just wanted to know who named ya Sweet Dick
+Willie?</p>
+<p><strong>sweet dick willie</strong>: It’s just a name.</p>
+<p><strong>coconut sid</strong>: And what does ML stand for?</p>
+<p><strong>ml</strong>: ML stands for ML. That’s it.</p>
+<p><strong>sweet dick willie</strong>: Naw, that’s some stupid shit. Now
+you know how I got that name.</p>
+<p><strong>ml</strong>: Negroes kill me, always holdin’ onto, talkin’
+’bout their dicks.</p>
+<p><strong>coconut sid</strong>: I don’t know ’bout you, but it’s too
+hot to fuck.</p>
+<p><strong>sweet dick willie</strong>: Never too hot, never too cold for
+fucking.</p>
+<p><strong>eddie</strong>: Ice cream. Ice cream.</p>
+<p><strong>da mayor</strong>: Doctor, you know better to run out in the
+street… Stop crying, son.</p>
+<p><strong>da mayor</strong>: Doctor, there’s nothing to cry about.
+You’re OK.</p>
+<p><strong>louise</strong>: What’s wrong?</p>
+<p><strong>eddie</strong>: Mayor knocked me down.</p>
+<p><strong>louise</strong>: You should be ashamed of yourself.</p>
+<p><strong>da mayor</strong>: Ma’am, the boy is just scared to death.
+What actually happened is that I was minding my business when I saw your
+son about to be run over. I ran into the street to save him and I had to
+knock him down to keep the both of us from getting hit.</p>
+<p><strong>louise</strong>: Eddie, is that the truth?</p>
+<p><strong>louise</strong>: Eddie, you hear me talkin’ to you?</p>
+<p><strong>louise</strong>: I’m talkin’ to you, boy.</p>
+<p><strong>da mayor</strong>: Miss, the boy is fine.</p>
+<p><strong>louise</strong>: What I tell you ’bout lying?</p>
+<p><strong>louise</strong>: What did I tell you ’bout playing in the
+street?</p>
+<p><strong>eddie</strong>: Mommy! Mommy! I’m sorry. I’m sorry.</p>
+<p><strong>louise</strong>: Get upstairs now.</p>
+<p><strong>louise</strong>: And when your father comes home, he’s gonna
+wear ya little narrow behind out too.</p>
+<p><strong>da mayor</strong>: You didn’t have to hit your son; he’s
+scared to death as it was.</p>
+<p><strong>louise</strong>: I appreciate ya helping my Eddie. I truly
+do, but I’ll have nobody question how I raise him, not even his
+Daddy.</p>
+<p><strong>da mayor</strong>: You’re right.</p>
+<p><strong>jade</strong>: Sal, that was delicious.</p>
+<p><strong>sal</strong>: Anytime.</p>
+<p><strong>jade</strong>: Thanks.</p>
+<p><strong>mookie</strong>: I’ll see you out.</p>
+<p><strong>jade</strong>: See ya around.</p>
+<p><strong>sal</strong>: Don’t wait too long to come back.</p>
+<p><strong>mookie</strong>: Jade, I don’t want you coming in here no
+mo’.</p>
+<p><strong>jade</strong>: Stop tripping.</p>
+<p><strong>mookie</strong>: No, you’re tripping. Don’t come in Sal’s.
+Alright, read my lips.</p>
+<p><strong>jade</strong>: What are you so worked up about?</p>
+<p><strong>mookie</strong>: Over Sal, the way he talks and the way he
+looks at you.</p>
+<p><strong>jade</strong>: He’s just being nice.</p>
+<p><strong>mookie</strong>: Nice!</p>
+<p><strong>jade</strong>: He’s completely innocent.</p>
+<p><strong>mookie</strong>: Innocent!</p>
+<p><strong>jade</strong>: I didn’t stutter. You heard me.</p>
+<p><strong>mookie</strong>: You should see the way he looks at you. All
+Sal wants to do is hide the salami.</p>
+<p><strong>jade</strong>: You are too crude.</p>
+<p><strong>mookie</strong>: I might be, but you’re not welcome here.</p>
+<p><strong>jade</strong>: Stop trying to play big brother. I’m a grown
+woman. You gotta lotta nerve. Mookie, you can hardly pay your rent and
+you’re gonna tell me what to do. Come off it.</p>
+<p><strong>mookie</strong>: One has nuthin’ to do with the other.</p>
+<p><strong>jade</strong>: Oh, it doesn’t, huh! You got your little 250
+dollars a week plus tips…</p>
+<p><strong>mookie</strong>: I’m getting paid…</p>
+<p><strong>jade</strong>: …peanuts.</p>
+<p><strong>mookie</strong>: Pretty soon I’ll be making a move.</p>
+<p><strong>jade</strong>: I truly hope so. I’m tired of supporting a
+grown man.</p>
+<p><strong>mister se�or love daddy</strong>: As the evening slowly falls
+upon us living here in Brooklyn, New York, this is ya Love Daddy rappin’
+to you. Right now we’re gonna open up the Love Lines. Hello, you’re on
+Love Daddy’s Love Line. No names, please. Let’s keep it anonymous.</p>
+<p><strong>female voice #1</strong>: Hi, Mister Se�or Love Daddy. I’d
+kiss your feet every morning, that’s how much I love you.</p>
+<p><strong>mister se�or love daddy</strong>: How nice of you.</p>
+<p><strong>female voice #2</strong>: I think you have the sexiest voice
+in the world. All you have to do is talk.</p>
+<p><strong>mister se�or love daddy</strong>: Love Line, you’re on.</p>
+<p><strong>female voice #3</strong>: You give me fever.</p>
+<p><strong>mister se�or love daddy</strong>: She’s feeling it.</p>
+<p><strong>female voice #4</strong>: Love Daddy, I’d work in Mickey D’s
+24, 7, and 365 just to call you my own. Give you all my money,
+honey.</p>
+<p><strong>mister se�or love daddy</strong>: That was the last call for
+tonight on Mister Se�or Love Daddy’s Love Line. I love you. You I
+love.</p>
+<p><strong>mother sister</strong>: Mister Mayor, I saw what you did.</p>
+<p><strong>mother sister</strong>: That was a foolish act, but it was
+brave. That chile owes you his life.</p>
+<p><strong>da mayor</strong>: I wasn’t trying to be a hero. I saw what
+was about to happen and I reacted, didn’t even think. If I did, I might
+not have done it in second thought. Da Mayor is an old man, haven’t run
+that fast in years.</p>
+<p><strong>da mayor</strong>: I went from first to home on a bunt
+single, scored the winning run, the bottom of the ninth, two out, August
+1, 1939, Snow Hill, Alabama. Maybe I should be heroic more often.</p>
+<p><strong>mother sister</strong>: Maybe you shouldn’t. Don’t get happy.
+This changes nothing between you and me. You did a good thing and Mother
+Sister wanted to thank you for it.</p>
+<p><strong>da mayor</strong>: I thank you.</p>
+<p><strong>mother sister</strong>: You’re welcome.</p>
+<p><strong>mookie</strong>: Sal, I don’t care if you fire me this exact
+minute, leave my sister alone.</p>
+<p><strong>sal</strong>: Mookie, I don’t know what you’re talking about,
+plus I don’t want to hear it.</p>
+<p><strong>mookie</strong>: Sal, just do me a favor, leave Jade
+alone.</p>
+<p><strong>sal</strong>: Here, you gotta delivery.</p>
+<p><strong>mookie</strong>: Is this the right name and address?</p>
+<p><strong>sal</strong>: Yeah, do you know ’em?</p>
+<p><strong>mookie</strong>: No, just checking.</p>
+<p><strong>mookie</strong>: Delivery from Sal’s Famous Pizzeria.</p>
+<p><strong>tina</strong>: What took you so long? Is it hot?</p>
+<p><strong>mookie</strong>: Hot. Hot.</p>
+<p><strong>tina</strong>: Come in then.</p>
+<p><strong>mookie</strong>: Tina, you are too slick.</p>
+<p><strong>tina</strong>: How else was I going to get you here? I
+haven’t seen you in a week.</p>
+<p><strong>mookie</strong>: I’ve been working hard, getting paid.</p>
+<p><strong>tina</strong>: Where’s the ice cream? The H�agen- Dazs butter
+pecan?</p>
+<p><strong>mookie</strong>: Shit! I forgot.</p>
+<p><strong>tina</strong>: Your memory is really getting bad.</p>
+<p><strong>mookie</strong>: I just forgot.</p>
+<p><strong>tina</strong>: And I really wanted some ice cream too.</p>
+<p><strong>mookie</strong>: I can run out and get it.</p>
+<p><strong>tina</strong>: No! No! You won’t come back either.</p>
+<p><strong>mookie</strong>: I can’t be staying long anyway.</p>
+<p><strong>tina</strong>: How long then?</p>
+<p><strong>mookie</strong>: Long enough for us to do the nasty.</p>
+<p><strong>tina</strong>: That’s out. No! It’s too hot! You think I’m
+gonna let you get some, put on your clothes, then run outta here and
+never see you again in who knows when?</p>
+<p><strong>mookie</strong>: A quickie is good every once in a blue
+moon.</p>
+<p><strong>tina</strong>: You a blue-moon fool.</p>
+<p><strong>mookie</strong>: Then we’ll do something else.</p>
+<p><strong>tina</strong>: What else?</p>
+<p><strong>mookie</strong>: Trust me.</p>
+<p><strong>tina</strong>: Trust you? Because of trusting you we have a
+son. Remember your son?</p>
+<p><strong>mookie</strong>: Trust me.</p>
+<p><strong>mookie</strong>: I’m gonna take off ya clothes.</p>
+<p><strong>tina</strong>: Mookie, I told you already it’s too fucking
+hot to make love.</p>
+<p><strong>mookie</strong>: Why you gotta curse?</p>
+<p><strong>tina</strong>: I’m sorry, but no rawness is jumping off
+tonight.</p>
+<p><strong>mookie</strong>: No rawness.</p>
+<p><strong>mookie</strong>: Tina, you’re sweating.</p>
+<p><strong>tina</strong>: Of course I’m sweating. I’m burning up. It’s
+hot, moron, only a hundred degrees in here.</p>
+<p><strong>mookie</strong>: Lie down, please.</p>
+<p><strong>mookie</strong>: Hello, Mrs. Rampolla.</p>
+<p><strong>tina</strong>: It’s cold.</p>
+<p><strong>mookie</strong>: It’s ’pose to be cold.</p>
+<p><strong>tina</strong>: Later for you.</p>
+<p><strong>mookie</strong>: Meda. Meda.</p>
+<p><strong>tina</strong>: What?</p>
+<p><strong>mookie</strong>: Tina, you don’t have a forehead, you got a
+eight-head.</p>
+<p><strong>mister se�or love daddy</strong>: Yes, children, this is the
+Cool Out Corner. We’re slowing it down for all the lovers in the house.
+I’ll be giving you all the help you need, musically, that is.</p>
+<p><strong>mookie</strong>: Thank God for thighs.</p>
+<p><strong>mookie</strong>: Thank God for buttocks.</p>
+<p><strong>mookie</strong>: Thank God for the right nipple… Thank God
+for the left nipple…</p>
+<p><strong>tina</strong>: Feels good.</p>
+<p><strong>mookie</strong>: Yes, yes, Lord. Isn’t this better than
+Haagen-Dazs butter pecan ice cream?</p>
+<p><strong>mookie</strong>: I’ll be back tonight.</p>
+<p><strong>sal</strong>: It’s almost ready.</p>
+<p><strong>officer long</strong>: What time you closing tonight?</p>
+<p><strong>sal</strong>: Ten.</p>
+<p><strong>sal</strong>: Here you go.</p>
+<p><strong>officer ponte</strong>: What do we owe you?</p>
+<p><strong>sal</strong>: Nine-fifty.</p>
+<p><strong>officer ponte</strong>: Here.</p>
+<p><strong>sal</strong>: Thanks. Enjoy.</p>
+<p><strong>officer long</strong>: Vito, Pino, see ya later.</p>
+<p><strong>mookie</strong>: Sal, if you want me to deliver any faster,
+get me a jet rocket or something, cuz I can’t run with pizzas, all the
+cheese ends up on one side and shit.</p>
+<p><strong>sal</strong>: I didn’t say nuthin’. You must have a guilty
+conscience. What are you guilty of?</p>
+<p><strong>mookie</strong>: I’m not guilty of nuthin’.</p>
+<p><strong>sal</strong>: You must be guilty of something or you would
+have never come in saying the things you said.</p>
+<p><strong>mookie</strong>: C’mon, Sal.</p>
+<p><strong>sal</strong>: Where we goin’?</p>
+<p><strong>pino</strong>: Vito, I want you to listen to me. I’m your
+brother. I may smack you around once in awhile, boss you around, but I’m
+still your brother.</p>
+<p><strong>vito</strong>: I know this.</p>
+<p><strong>pino</strong>: I love you.</p>
+<p><strong>vito</strong>: I’m listening.</p>
+<p><strong>pino</strong>: Good. I want you to listen.</p>
+<p><strong>vito</strong>: Jesus Christ on the cross, I said I’m
+listening.</p>
+<p><strong>pino</strong>: Good. Vito, you trust that Mook too much. So
+does Pop.</p>
+<p><strong>vito</strong>: Mookie’s OK.</p>
+<p><strong>pino</strong>: You listening to me?</p>
+<p><strong>vito</strong>: Stop busting my balls. I said I’m listening
+ten fucking times already.</p>
+<p><strong>pino</strong>: Mookie is not to be trusted. No Moulan Yan can
+be trusted. The first time you turn your back, boom, a knife right here.
+In the back.</p>
+<p><strong>vito</strong>: How do you know this?</p>
+<p><strong>pino</strong>: I know.</p>
+<p><strong>vito</strong>: You really think so?</p>
+<p><strong>pino</strong>: I know so. He, them, they’re not to be
+trusted.</p>
+<p><strong>vito</strong>: So what do you want me to do?</p>
+<p><strong>pino</strong>: Be on guard. Mookie has Pop conned already, so
+we have to look out for him.</p>
+<p><strong>vito</strong>: I like Mookie a lot.</p>
+<p><strong>pino</strong>: And that’s exactly what I’m talkin’ ’bout.</p>
+<p><strong>sal</strong>: Vito! Pino! Let’s go.</p>
+<p><strong>pino</strong>: Be right there, Pop. Listen to what I
+said.</p>
+<p><strong>vito</strong>: You don’t listen to me, never have. Just run
+your big fucking mouth always playing big brother. You don’t listen, but
+Mookie does.</p>
+<p><strong>buggin’ out</strong>: How you be?</p>
+<p><strong>radio raheem</strong>: I be. I’m living large.</p>
+<p><strong>buggin’ out</strong>: Is that the only tape you got?</p>
+<p><strong>radio raheem</strong>: You don’t like Public Enemy? It’s the
+dope shit.</p>
+<p><strong>buggin’ out</strong>: I like ’em, but you don’t play anything
+else.</p>
+<p><strong>radio raheem</strong>: I don’t like anything else.</p>
+<p><strong>buggin’ out</strong>: Check this out. Y’know Sal’s.</p>
+<p><strong>radio raheem</strong>: Yeah, I know dat motherfucker.</p>
+<p><strong>buggin’ out</strong>: I’m trying to organize a boycott of
+Sal’s pizza joint. Ya see what I’m saying?</p>
+<p><strong>radio raheem</strong>: I almost had to yoke him this
+afternoon. Tell me, tell me, Radio Raheem, to turn my music down. Didn’t
+even say please. Who the fuck he think he is? Don Corleone and shit.</p>
+<p><strong>buggin’ out</strong>: He makes all his money off us Black
+people and I don’t see nuthin’ but Italians all up in there, Sylvester
+Stallone and motherfuckers. Ya see what I’m saying, homeboy?</p>
+<p><strong>radio raheem</strong>: Talk to me.</p>
+<p><strong>buggin’ out</strong>: We shouldn’t buy a single slice, spend
+a single penny in that motherfucker till some people of color are put up
+in there.</p>
+<p><strong>radio raheem</strong>: That’s what I’m talkin’ ‘bout. That’s
+what I’m talkin’ ’bout.</p>
+<p><strong>buggin’ out</strong>: You got my back.</p>
+<p><strong>radio raheem</strong>: Ya back is got.</p>
+<p><strong>buggin’ out</strong>: My brother.</p>
+<p><strong>radio raheem</strong>: My brother.</p>
+<p><strong>mookie</strong>: Sal, it’s almost quitting time so please
+start counting my pay. I gotta get paid.</p>
+<p><strong>sal</strong>: We did good business today. We got a good thing
+going. Nothing like a family in business working together. One day the
+both of you will take over…and Mookie, there will always be a place for
+you at Sal’s Famous Pizzeria. Y’know, it should be Sal’s and Sons Famous
+Pizzeria.</p>
+<p><strong>sal</strong>: We’re about to close.</p>
+<p><strong>ahmad</strong>: Just four slices, regular slices. Please. To
+go!</p>
+<p><strong>sal</strong>: OK, but that’s it. It’s been a long day.</p>
+<p><strong>mookie</strong>: Look, I want you to get your slices, then
+outta here. No playing around.</p>
+<p><strong>ahmad</strong>: You got it.</p>
+<p><strong>mookie</strong>: Good. No joke. We all wanna go home.</p>
+<p><strong>sal</strong>: What did I tell ya ’bout dat noise?</p>
+<p><strong>buggin’ out</strong>: What did I tell ya ’bout dem
+pictures?</p>
+<p><strong>sal</strong>: What da fuck! Are you deaf?</p>
+<p><strong>buggin’ out</strong>: No, are you? We want some Black people
+up on the Wall of Fame.</p>
+<p><strong>sal</strong>: Turn that JUNGLE MUSIC off. We ain’t in
+Africa.</p>
+<p><strong>buggin’ out</strong>: Why it gotta be about jungle music and
+Africa?</p>
+<p><strong>sal</strong>: It’s about turning that shit off and getting
+the fuck outta my pizzeria.</p>
+<p><strong>pino</strong>: Radio Raheem.</p>
+<p><strong>radio raheem</strong>: Fuck you.</p>
+<p><strong>sal</strong>: What ever happened to nice music with words you
+can understand?</p>
+<p><strong>radio raheem</strong>: This is music. My music.</p>
+<p><strong>vito</strong>: We’re closed.</p>
+<p><strong>buggin’ out</strong>: You’re closed alright, till you get
+some Black people up on that wall.</p>
+<p><strong>radio raheem</strong>: My music!</p>
+<p><strong>eddie</strong>: Fight! Fight!</p>
+<p><strong>da mayor</strong>: Break it up. This is crazy.</p>
+<p><strong>officer long</strong>: Get up! Get up!</p>
+<p><strong>officer long</strong>: Quit faking.</p>
+<p><strong>officer ponte</strong>: Let’s get him outta here.</p>
+<p><strong>da mayor</strong>: Good people, let’s all go home. Somebody’s
+gonna get hurt.</p>
+<p><strong>crowd</strong>: Yeah, you!</p>
+<p><strong>da mayor</strong>: If we don’t stop this now, we’ll all
+regret it. Sal and his two boys had nothing to do with what the police
+did.</p>
+<p><strong>crowd</strong>: Get out of the way, old man. You a Tom
+anyway.</p>
+<p><strong>da mayor</strong>: Let ’em be.</p>
+<p><strong>sal</strong>: There it goes. Why?</p>
+<p><strong>da mayor</strong>: You was there. First white folks they saw.
+You was there.</p>
+<p><strong>pino</strong>: Fuckin’ niggers.</p>
+<p><strong>mother sister</strong>: Burn it down. Burn it down.</p>
+<p><strong>ml</strong>: It’s your turn.</p>
+<p><strong>korean clerk</strong>: Me no white. Me no white. Me Black. Me
+Black. Me Black.</p>
+<p><strong>ml</strong>: Me Black. Me Black.</p>
+<p><strong>sweet dick willie</strong>: Korea man is OK. Let’s leave him
+alone.</p>
+<p><strong>ml</strong>: Him no white. Him no white.</p>
+<p><strong>coconut sid</strong>: Him Black. Him Black.</p>
+<p><strong>jade</strong>: Mookie! Mookie!</p>
+<p><strong>police loudspeaker</strong>: Good people. Please disperse.
+Please disperse.</p>
+<p><strong>police loudspeaker</strong>: Please disperse! Please
+disperse!</p>
+<p><strong>police loudspeaker</strong>: Good people, we’re giving you
+one more warning. Please go back home.</p>
+<p><strong>mookie</strong>: This is our home.</p>
+<p><strong>mother sister</strong>: This is our neighborhood.</p>
+<p><strong>police loudspeaker</strong>: You’ve had your warning!</p>
+<p><strong>mister se�or love daddy</strong>: My people. My people. What
+can I say? Say what I can. I saw it but I didn’t believe it. I didn’t
+believe it what I saw. Are we gonna live together? Together are we gonna
+live? This is ya Mister Se�or Love Daddy here on WE LOVE RADIO, 108 FM
+on your dial, and that’s the truth, Ruth.</p>
+<p><strong>mister se�or love daddy</strong>: Today’s weather.</p>
+<p><strong>mookie</strong>: Fuck! My money!</p>
+<p><strong>tina</strong>: Where are you going?</p>
+<p><strong>mookie</strong>: To get my money.</p>
+<p><strong>tina</strong>: Mookie, you must think I’m stupid or
+something. You’re gonna run outta here and I won’t see your black ass
+for another week.</p>
+<p><strong>mookie</strong>: Tina, it’s not like that.</p>
+<p><strong>tina</strong>: You don’t care about me and you definately
+don’t care ’bout your son.</p>
+<p><strong>mookie</strong>: Tina, I’ll be right back.</p>
+<p><strong>tina</strong>: Be a man.</p>
+<p><strong>mookie</strong>: I am a man.</p>
+<p><strong>tina</strong>: Act like one then. Be a man.</p>
+<p><strong>mookie</strong>: Later.</p>
+<p><strong>tina</strong>: You’re to the curb. You better step off. Get a
+life.</p>
+<p><strong>mother sister</strong>: Good morning.</p>
+<p><strong>da mayor</strong>: Is it a good morning?</p>
+<p><strong>mother sister</strong>: Yes indeed. You almost got yourself
+killed last night.</p>
+<p><strong>da mayor</strong>: I’ve done that before.</p>
+<p><strong>da mayor</strong>: Where did you sleep?</p>
+<p><strong>mother sister</strong>: I didn’t.</p>
+<p><strong>da mayor</strong>: I hope the block is still standing.</p>
+<p><strong>mother sister</strong>: We’re still standing.</p>
+<p><strong>sal</strong>: Whatdafuck do you want?</p>
+<p><strong>mookie</strong>: I wants my money. I wants to get paid.</p>
+<p><strong>sal</strong>: Mookie, I always liked you. Not the smartest
+kid, but you’re honest. Don’t make me dislike you.</p>
+<p><strong>mookie</strong>: Sal, I want my money.</p>
+<p><strong>sal</strong>: Don’t even ask about your money. Your money
+wouldn’t even pay for that window you smashed.</p>
+<p><strong>mookie</strong>: Motherfuck a window, Radio Raheem is
+dead.</p>
+<p><strong>sal</strong>: You’re right, a kid is dead, but Mook, this
+isn’t the time.</p>
+<p><strong>mookie</strong>: Fuck dat. The time is fuckin’ now. Y’know
+I’m sorry ’bout Sal’s Famous Pizzeria, but I gotta live, too. I gotta
+get paid.</p>
+<p><strong>sal</strong>: We both do.</p>
+<p><strong>mookie</strong>: We all know you’re gonna get over with the
+insurance money anyway! Ya know da deal.</p>
+<p><strong>sal</strong>: Do we now?</p>
+<p><strong>mookie</strong>: Quit bullshitting.</p>
+<p><strong>sal</strong>: You don’t know shit about shit.</p>
+<p><strong>mookie</strong>: I know I wants to get my money.</p>
+<p><strong>sal</strong>: How much? How much do I owe you?</p>
+<p><strong>mookie</strong>: My salary. Two-fifty.</p>
+<p><strong>sal</strong>: One, two, three, four, five.</p>
+<p><strong>sal</strong>: Are you happy now? That’s five fucking hundred
+dollars. You just got paid. Mookie, you are a rich man, now ya life is
+set, you’ll never have another worry, a care in the world. Mookie, ya
+wealthy, a fuckin’ Rockefeller.</p>
+<p><strong>sal</strong>: Ya just got paid, so leave me the fuck
+alone.</p>
+<p><strong>mookie</strong>: You only pay me two-fifty a week. I owe you
+fifty bucks.</p>
+<p><strong>sal</strong>: Keep it.</p>
+<p><strong>mookie</strong>: You keep it.</p>
+<p><strong>sal</strong>: Christmas came early.</p>
+<p><strong>mookie</strong>: This is the hottest Christmas I’ve
+known.</p>
+<p><strong>sal</strong>: It’s supposed to be even hotter today.</p>
+<p><strong>mookie</strong>: You gonna open up another Sal’s Famous
+Pizzeria?</p>
+<p><strong>sal</strong>: No. What are you gonna do?</p>
+<p><strong>mookie</strong>: Make dat money. Get paid.</p>
+<p><strong>sal</strong>: Yeah!…I’m goin’ to the beach for the first day
+in fifteen years. Gonna take the day off and go to the beach.</p>
+<p><strong>mookie</strong>: I can dig it. It’s gonna be HOT as a
+motherfucker.</p>
+<p><strong>sal</strong>: Mookie?</p>
+<p><strong>mookie</strong>: Gotta go.</p>
+<p><strong>sal</strong>: C’mere, Doctor.</p>
+<p><strong>sal</strong>: Doctor, this is Sal talkin’.</p>
+<p><strong>sal</strong>: Doctor, always try to do the right thing.</p>
+<p><strong>mookie</strong>: That’s it?</p>
+<p><strong>sal</strong>: That’s it.</p>
+<p><strong>mookie</strong>: I got it.</p>
+</body>
+</html>

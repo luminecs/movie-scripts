@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>nick-of-time</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="nick-of-time">nick-of-time</h1>
+<p><strong>announcer</strong>: Amtrack 2 64, the San Diegan, from San
+Diego, Del Mar…</p>
+<p><strong>announcer</strong>: …San Clemente, San Juan Capistrano, and
+Irvine is now arriving at Gate Nine.</p>
+<p><strong>announcer</strong>: Amtrack 264 will be departing in fifteen
+minutes from Gate Nine for Oxnard, Ventura…</p>
+<p><strong>announcer</strong>: …Santa Barbara, Lompoc…</p>
+<p><strong>announcer</strong>: …Santa Maria, San Luis Obispo…</p>
+<p><strong>announcer</strong>: …and points north.</p>
+<p><strong>mr. smith</strong>: Look sharp.</p>
+<p><strong>ms. jones</strong>: That one.</p>
+<p><strong>mr. smith</strong>: Nah. Hates his wife.</p>
+<p><strong>ms. jones</strong>: I hate rollerblades.</p>
+<p><strong>gene</strong>: Lynn! Lynn!!</p>
+<p><strong>gene</strong>: Lynn, don’t walk ahead of me, OK?</p>
+<p><strong>gene</strong>: I’m serious, honey. Don’t get out of my sight,
+all right? I want you to stay right by me. Will you do that for me?</p>
+<p><strong>lynn</strong>: Nods solemnly. GENE reaches the platform and
+gives out an exaggerated sigh.</p>
+<p><strong>gene</strong>: We made it.</p>
+<p><strong>lynn</strong>: We made it.</p>
+<p><strong>ms. jones</strong>: Skate-boarders I don’t mind, even though
+they dress like fuckin’ idiots, but when I see some pin-head on
+rollerblades, I get the definite urge to grease the grill of my car with
+’em.</p>
+<p><strong>mr. smith</strong>: Keep your eyes peeled.</p>
+<p><strong>ms. jones</strong>: What about them?</p>
+<p><strong>mr. smith</strong>: Too old.</p>
+<p><strong>mr. jones</strong>: Him!</p>
+<p><strong>mr. smith</strong>: If you ever had an idea it would die of
+malnutrition. First those blue hairs then some Spic. Leave this to me. I
+know people. It’s my job. I’m a people person.</p>
+<p><strong>ms. jones</strong>: What the fuck are you looking for?</p>
+<p><strong>mr. smith</strong>: I’m looking for them.</p>
+<p><strong>ms. jones</strong>: Where?</p>
+<p><strong>mr. smith</strong>: Right there.</p>
+<p><strong>gene</strong>: I gotta make a phone call, Lynn. Do you see a
+phone?</p>
+<p><strong>gene</strong>: Come on, you.</p>
+<p><strong>gene</strong>: Haven’t you ever seen anybody kiss like
+that?</p>
+<p><strong>lynn</strong>: On TV.</p>
+<p><strong>gene</strong>: You never saw your Mom and me kiss like
+that?</p>
+<p><strong>gene</strong>: Hey, it’s OK to talk about her. You can talk
+about her all you want. You know that, don’t you?</p>
+<p><strong>gene</strong>: So, come on. You never saw us kiss like
+that?</p>
+<p><strong>lynn</strong>: No way.</p>
+<p><strong>gene</strong>: How did you see us kiss?</p>
+<p><strong>gene</strong>: That’s it? That little peck of a kiss? Oh,
+brother, you missed some kisses.</p>
+<p><strong>gene</strong>: Ooh, I’m gonna be late. I gotta call.</p>
+<p><strong>mr. smith</strong>: Look at ’em. He’d do anything for
+her.-</p>
+<p><strong>ms. jones</strong>: Young love.</p>
+<p><strong>mr. smith</strong>: Foreigners! Fuck!</p>
+<p><strong>ms. jones</strong>: Frogs. They copy our blue jeans and when
+we need their help in Kuwait, where the fuck are they?</p>
+<p><strong>gene</strong>: Hello, is Mr. Conners there? I have an
+interview with him at twelve- thirty. Hi, Mr. Conners, this is Gene
+Watson. Sorry to call you at the last minute like this but… Hey,
+hey!</p>
+<p><strong>gene</strong>: Watch that! Lynn, come here!</p>
+<p><strong>gene</strong>: Sorry. There’s some crazy kids on skates.
+Listen, the train just got in, I’m afraid I’m going to be a few minutes
+late.</p>
+<p><strong>gene</strong>: Great. OK, I’ll get there as soon as I can.
+Bye, now.</p>
+<p><strong>gene</strong>: Ready?</p>
+<p><strong>lynn</strong>: Nods.</p>
+<p><strong>gene</strong>: Let’ s do it.</p>
+<p><strong>gene</strong>: Whoops.</p>
+<p><strong>gene</strong>: Now, see, this is why you should always wear a
+helmet and knee pads. You never know when you’re going to fall down and
+go boom. Right?</p>
+<p><strong>lynn</strong>: Right.</p>
+<p><strong>mr. smith</strong>: Perfect.</p>
+<p><strong>ms. jones</strong>: Perfect.</p>
+<p><strong>mr. smith</strong>: Could I see some identification, sir?</p>
+<p><strong>gene</strong>: What?</p>
+<p><strong>ms. jones</strong>: I.D. Could we see some?</p>
+<p><strong>gene</strong>: Uh, sure. What’s, what’s the problem? Will a
+driver’s license do?</p>
+<p><strong>mr. smith</strong>: That’ll do just fine.</p>
+<p><strong>gene</strong>: Is this about those kids? Look, I’m sorry
+about that. But they darn near…</p>
+<p><strong>mr. smith</strong>: You’re from Santa Maria, Mr. Watson?</p>
+<p><strong>gene</strong>: Yes.</p>
+<p><strong>ms. jones</strong>: Where’s that?</p>
+<p><strong>gene</strong>: Near Lompoc, north. What’s…</p>
+<p><strong>mr. smith</strong>: Come with us, sir.</p>
+<p><strong>gene</strong>: I’d like to know what…</p>
+<p><strong>mr.”smith</strong>: Don’t cause a ruckus, sir.</p>
+<p><strong>mr. smith</strong>: You don’t want to cause a ruckus, with
+the little girl and all.</p>
+<p><strong>ms. jones</strong>: Come with me, honey.</p>
+<p><strong>gene</strong>: Hey! I’ll take the girl. I’ll take the
+girl!</p>
+<p><strong>mr. smith</strong>: Don’t worry. She’s good with kids.</p>
+<p><strong>lynn</strong>: You stole that.</p>
+<p><strong>ms. jones</strong>: No, I didn’t. I confiscated it. There’s a
+difference.</p>
+<p><strong>gene</strong>: What is going on?</p>
+<p><strong>mr. smith</strong>: Into the van, Mr. Watson. Front seat.</p>
+<p><strong>ms. jones</strong>: Let’s get your seatbelt on. Always gotta
+wear your seatbelt, isn’t that right?</p>
+<p><strong>lynn</strong>: I want my daddy.</p>
+<p><strong>ms. jones</strong>: There’s your daddy. See? We’re your
+daddy’s friends.</p>
+<p><strong>mr. smith</strong>: That’s right. The policeman is your
+friend. Isn’t that right, Daddy?</p>
+<p><strong>mr. smith</strong>: Daddy?</p>
+<p><strong>gene</strong>: Yes. It’s OK, Lynn. These are our friends.</p>
+<p><strong>ms. jones</strong>: Hey, would you look at this crazy car?
+Everybody has their own radio. What do you think of that?</p>
+<p><strong>lynn</strong>: Everybody does?</p>
+<p><strong>ms. jones</strong>: Yep. And you can listen to it without
+anybody else listening. Let’s try it out.</p>
+<p><strong>ms. jones</strong>: This is what they call the jack. Hi,
+Jack!</p>
+<p><strong>lynn</strong>: Laughs.</p>
+<p><strong>ms. jones</strong>: It goes in that little hole.</p>
+<p><strong>lynn</strong>: Let me do it.</p>
+<p><strong>lynn</strong>: It’s loud!</p>
+<p><strong>ms jones</strong>: Removes a Pro Label Machine from under the
+seat. She begins to type in several characters.</p>
+<p><strong>mr. smith</strong>: Let’s get down to business.</p>
+<p><strong>gene</strong>: Who are you? You’re not the police.</p>
+<p><strong>ms. jones</strong>: Brilliant.</p>
+<p><strong>mr. smith</strong>: Pay attention, Mr. Watson. Pay attention
+and your daughter won’t be hurt.</p>
+<p><strong>gene</strong>: You wouldn’t…</p>
+<p><strong>ms. jones</strong>: Try us.</p>
+<p><strong>gene</strong>: Get your hands off her.</p>
+<p><strong>mr. smith</strong>: Mr. Watson, you’re not paying attention.
+Your daughter’s life depends on you. Do you understand that?</p>
+<p><strong>gene</strong>: Yes, yes, I understand.</p>
+<p><strong>mr. smith</strong>: Good.</p>
+<p><strong>mr. smith</strong>: This is for you. In it there is a picture
+of a woman and an itinerary. It is her itinerary. She is presently - are
+you listening, Mr. Watson?</p>
+<p><strong>gene</strong>: Yes, I’m listening.</p>
+<p><strong>mr. smith</strong>: She is presently at the Bonaventure
+Hotel. That’s right near here.</p>
+<p><strong>mr. smith</strong>: When you leave this van you will get
+yourself a cab and take it to the Bonaventure Hotel. Then you will take
+this.</p>
+<p><strong>mr. smith</strong>: …and you will kill the woman whose
+picture is in there. Not just shoot her, mind,! kill her. I’d recommend
+you empty the gun into her. Close up. Got all that?</p>
+<p><strong>gene</strong>: You’re out of your mind.</p>
+<p><strong>mr. smith</strong>: What’s your point?</p>
+<p><strong>gene</strong>: I will do no such thing.</p>
+<p><strong>mr. smith</strong>: Yes, you will, Mr. Watson.</p>
+<p><strong>ms. jones</strong>: Don’t worry. We’ll take good care of the
+kid.</p>
+<p><strong>mr. smith</strong>: It is now 12:16. If the woman in the
+picture is alive at 1:30… …I call my partner, your daughter is dead.</p>
+<p><strong>mr. smith</strong>: And what happens if I don’t call you?</p>
+<p><strong>ms. jones</strong>: I kill her anyway.</p>
+<p><strong>mr. smith</strong>: Did you hear that, Mr. Watson? Do you
+understand?</p>
+<p><strong>mr. smith</strong>: The woman in the picture…</p>
+<p><strong>mr. smith</strong>: …or your daughter.</p>
+<p><strong>gene</strong>: Oh, my God…</p>
+<p><strong>mr. smith</strong>: God can’t help her, Mr. Watson. Only you
+can help her.</p>
+<p><strong>ms. jones</strong>: Only you.</p>
+<p><strong>mr. smith</strong>: You’re wasting time.</p>
+<p><strong>lynn</strong>: Where is my daddy going?</p>
+<p><strong>ms. jones</strong>: He’s going to help the police. Your daddy
+is going to be a hero.</p>
+<p><strong>lynn</strong>: My daddy is going to be a hero? Like Power
+Rangers?</p>
+<p><strong>ms. jones</strong>: Just like Power Rangers.</p>
+<p><strong>mr. smith</strong>: Let’s test this thing. You on?</p>
+<p><strong>ms. jones</strong>: Reading you.</p>
+<p><strong>mr. smith</strong>: You’11 need some cash. I’ll hang onto
+this for the time being. Oh, and…</p>
+<p><strong>mr. smith</strong>: You’ll need these.</p>
+<p><strong>mr. smith</strong>: Get moving, Mr. Watson. Time’s a
+wastin’.</p>
+<p><strong>little girl</strong>: Mama!</p>
+<p><strong>mr. smith</strong>: You talk to a cop, you even look at a cop
+too long and your daughter is dead. Do it.</p>
+<p><strong>ms. jones</strong>: Go ahead, sugar Die.</p>
+<p><strong>lynn</strong>: Lynn calling Daddy. Lynn calling Daddy. Come
+in, Daddy.</p>
+<p><strong>gene</strong>: Lynn!</p>
+<p><strong>lynn</strong>: I can hear you good. Can you hear me?</p>
+<p><strong>gene</strong>: Yes. Yes, I can hear you.</p>
+<p><strong>mr. smith</strong>: That’s enough.</p>
+<p><strong>ms. jones</strong>: ’Daddy has to go now.</p>
+<p><strong>lynn</strong>: He has to say “over and out”. Daddy, you have
+to say “over and out”.</p>
+<p><strong>gene</strong>: Over and out.</p>
+<p><strong>mr. smith</strong>: Look at your watch. Look at it! At
+one-thirty your little girl is dead. Say it with me. At one-thirty my
+little girl is dead. Say it. Say it!</p>
+<p><strong>gene</strong>: At one thirty my little girl is dead.</p>
+<p><strong>mr. smith</strong>: Unless you do what you’re told. Go do
+it!</p>
+<p><strong>mr. smith</strong>: And don’t forget I’ll be watching
+you.</p>
+<p><strong>cabbie</strong>: Where to, sir?</p>
+<p><strong>gene</strong>: The Bonaventure. The Bonaventure Hotel. Do you
+know where that is?</p>
+<p><strong>cabbie</strong>: Amtrack?</p>
+<p><strong>gene</strong>: What?</p>
+<p><strong>cabbie</strong>: You just come in on Amtrack?</p>
+<p><strong>gene</strong>: Uh, yes..</p>
+<p><strong>cabbie</strong>: Business or pleasure?</p>
+<p><strong>gene</strong>: Business.</p>
+<p><strong>cabbie</strong>: Where’d you come from?</p>
+<p><strong>gene</strong>: San Diego.</p>
+<p><strong>cabbie</strong>: Oh, San Diego? I’ve thought about moving to
+San Diego. It’s hard to make a living in this town. These short hops.
+Can’t make a dime on ’em. To LAX, Pasadena, then I can make a buck.
+These little hops cost me money.</p>
+<p><strong>gene</strong>: Sorry.</p>
+<p><strong>cabbie</strong>: ’S okay. What do you think?</p>
+<p><strong>gene</strong>: Huh?</p>
+<p><strong>cabbie</strong>: Better in San Diego? More opportunity there?
+What?</p>
+<p><strong>gene</strong>: I really don’t know. I don’t live there. I was
+just visiting…a grave.</p>
+<p><strong>cabbie</strong>: Aw, too bad.</p>
+<p><strong>cabbie</strong>: Somebody close?</p>
+<p><strong>gene</strong>: What?</p>
+<p><strong>cabbie</strong>: The grave. Somebody close?</p>
+<p><strong>gene</strong>: Wife. Ex-wife. Almost ex. We were separated.
+She was thinking about a divorce.</p>
+<p><strong>gene</strong>: Look…I’ve… I’ve got a problem. A big
+problem…</p>
+<p><strong>cabbie</strong>: Oh, yeah?</p>
+<p><strong>cabbie</strong>: Jesus! Watch it, buddy!</p>
+<p><strong>cabbie</strong>: I’d love to hear about your problem, but the
+ride’s over. Three-fifty.</p>
+<p><strong>cabbie</strong>: Three-fifty. I hope your problem doesn’t
+have anything to do with my three-fifty.</p>
+<p><strong>gene</strong>: Right. Right.</p>
+<p><strong>cabbie</strong>: What do I want with an accountant?</p>
+<p><strong>doorman</strong>: I got one for the airport. You free?</p>
+<p><strong>cabbie</strong>: You bet.</p>
+<p><strong>gene</strong>: Oh, my God. Oh, no.</p>
+<p><strong>gene</strong>: Oh, shit.</p>
+<p><strong>gene</strong>: Oh, sweet Jesus…</p>
+<p><strong>gene</strong>: Could you tell me where the Emerald Bay Room
+is?</p>
+<p><strong>gustino</strong>: Third floor. Yellow stairwell. Follow the
+signs.</p>
+<p><strong>gene</strong>: Oh, thanks. Thanks a lot.</p>
+<p><strong>gustino</strong>: No problem.</p>
+<p><strong>brendan grant</strong>: Whoops!</p>
+<p><strong>brendan grant</strong>: Nice body check.</p>
+<p><strong>brendan grant</strong>: You know my wife has a deeply
+personal reason for going after repeat drunk drivers. They are felons
+and they should be treated as such. A drivers license is a privilege,
+not a right.</p>
+<p><strong>gene</strong>: Excuse me, is the…thing over?</p>
+<p><strong>woman</strong>: Yes. You didn’t miss much. The food…chicken
+again.</p>
+<p><strong>gene</strong>: Eleanor Grant is gone?</p>
+<p><strong>woman</strong>: Yes. Nice speech. But it’s the same at all
+these…</p>
+<p><strong>mr. smith</strong>: Check your itinerary. Move along.</p>
+<p><strong>gene</strong>: This says “invitation only”.</p>
+<p><strong>mr. smith</strong>: Of course you’re invited. You’re a big
+donor to the campaign. They love you.</p>
+<p><strong>mr. smith</strong>: This’11 get you in anywhere. Red
+Elevator. Thirty-fifth floor.</p>
+<p><strong>gene</strong>: Where did you get these? Who are you?</p>
+<p><strong>mr. smith</strong>: I’m the guy who’s going to kill your
+daughter if you don’t get moving.</p>
+<p><strong>eleanor grant</strong>: They-didn’t hear a word I said. The
+mike was too low on the podium.</p>
+<p><strong>krista</strong>: How much did we pay for that room?</p>
+<p><strong>chief aide</strong>: We didn’t.</p>
+<p><strong>eleanor grant</strong>: Somebody did.</p>
+<p><strong>krist</strong>: A Have Nolin pre-check the PA systems.</p>
+<p><strong>bodyguard</strong>: Excuse me, sir, this car is for the
+Governor. You can take the next one.</p>
+<p><strong>eleanor grant</strong>: Don’t you dare, Franco. This is one
+of our biggest supporters.</p>
+<p><strong>eleanor grant</strong>: Eleanor Grant, gubernatorial
+incumbent. That’s a mouthful isn’t- it? I love saying that.</p>
+<p><strong>eleanor grant</strong>: Whose idea was it to have a lunch
+right after the brunch? I’m about to bust as it is.</p>
+<p><strong>krista</strong>: We’ll just walk through, do a little
+grip-and-grin, then get ready for the press con.</p>
+<p><strong>gene</strong>: Governor…</p>
+<p><strong>gene</strong>: I need your help.</p>
+<p><strong>eleanor grant</strong>: What can I do for you Mr….Watson?</p>
+<p><strong>gene</strong>: Its’…ah…about my daughter….</p>
+<p><strong>mr. smith</strong>: Room for one more?</p>
+<p><strong>eleanor grant</strong>: I think we can accommodate you.</p>
+<p><strong>eleanor grant</strong>: Eleanor Grant, gubernatorial
+incumbent.</p>
+<p><strong>mr. smith</strong>: A pleasure to meet you, Governor.</p>
+<p><strong>eleanor grant</strong>: You were saying? Your daughter….?</p>
+<p><strong>eleanor grant</strong>: Yes?</p>
+<p><strong>gene</strong>: She ..ahh…wanted me to… be sure to get your
+autograph.</p>
+<p><strong>eleanor grant</strong>: Of course. I wish everything were
+that easy.</p>
+<p><strong>krista</strong>: I’ve got the pen if you’ve got the
+paper.</p>
+<p><strong>krista</strong>: How about that?</p>
+<p><strong>krista</strong>: Is that something precious?</p>
+<p><strong>gene</strong>: No, that’s,..that’s fine</p>
+<p><strong>eleanor grant</strong>: What’s her name?</p>
+<p><strong>gene</strong>: Her name? Her name is Lynn.</p>
+<p><strong>krista</strong>: It’s funny. I don’t even keep a pad of paper
+with me anymore, everything’s gone so electronic.</p>
+<p><strong>krista</strong>: If it wasn’t for double A batteries I’d be
+in big trouble.</p>
+<p><strong>eleanor grant</strong>: Are you all right? Elevators make me
+queasy, too.</p>
+<p><strong>mr. smith</strong>: She was right in front of you! What’s
+wrong with you!?</p>
+<p><strong>mr. smith</strong>: Are you ’fucking with me!?</p>
+<p><strong>gene</strong>: The gun…</p>
+<p><strong>mr. smith</strong>: What about the gun?</p>
+<p><strong>gene</strong>: It wasn’t loaded. I didn’t put the bullets in
+it.</p>
+<p><strong>mr. smith</strong>: You…</p>
+<p><strong>mr. smith</strong>: You won’t get many chances like that,
+Mr. Watson. That’s the way life works. Don’t blow the next one.</p>
+<p><strong>ms. jones</strong>: That’s pretty good.</p>
+<p><strong>lynn</strong>: I’ve done much better ones than this.</p>
+<p><strong>ms. jones</strong>: You have, huh?</p>
+<p><strong>lynn</strong>: Oh, yes. I’ll show you. I have much more
+colors at home.</p>
+<p><strong>ms. jones</strong>: That’s good. That’s good, sweetie
+pie.</p>
+<p><strong>mr. smith</strong>: There, all loaded. Ready for the
+hunt.</p>
+<p><strong>huey</strong>: Having a rough day? Down at the heels as
+they…?</p>
+<p><strong>huey</strong>: You don’t see your face, you don’t pay!</p>
+<p><strong>huey</strong>: Having a rough day? Down at the heels as they
+say? What you need is a shoe shine, shoe shine, shoe shine today.</p>
+<p><strong>huey</strong>: Take ten, take a break, take a seat, take a
+load off. Put the world in perspective.</p>
+<p><strong>huey</strong>: So, are you a visitor or lucky enough to live
+in The City of Angels?</p>
+<p><strong>gene</strong>: I’m…I’m visiting.</p>
+<p><strong>huey</strong>: What do you do, if I may be so bold?</p>
+<p><strong>gene</strong>: I’m just an accountant.</p>
+<p><strong>huey</strong>: Don’t denigrate yourself, my friend. Where
+would the government be without accountants? They wouldn’t know how hard
+they can squeeze us before we pop, isn’t that right?</p>
+<p><strong>huey</strong>: Now you take tips. Time was a tip was between
+a man and his customer. Not any more. They’ve figured out what they call
+a formulae, don’t laugh, it ain’t for babies. They take your sales, see,
+and slap a percentile on there, figuring that somewhere between your
+lies and your bad luck they’ll hit on the mean amount, mean meaning “in
+the middle”, but if you ask me it means “just plain mean”. Why you can
+have Uncle Scrooge wring a nickel over your poor out-stretched palm, or
+Daddy Warbucks dropping pearl stick-pins like manna from heaven, don’t
+make no difference, they’ll tax your behind according to that same
+figure. Doesn’t seem quite right., does it?</p>
+<p><strong>gene</strong>: No. No, it doesn’t.</p>
+<p><strong>gustino</strong>: Hey, Huey, how’s it hangin’?</p>
+<p><strong>huey</strong>: It’s a load, my friend, but somebody’s got to
+carry it.</p>
+<p><strong>gene</strong>: I have to do something.</p>
+<p><strong>huey</strong>: What’s that? You have to speak up. I’m a
+little deaf in this ear. Between that and my wooden leg I’m a mess.
+Compliments of the United States Army Artillery Corps.</p>
+<p><strong>gene</strong>: I said I have to do something.</p>
+<p><strong>huey</strong>: I’ll have you out of here in two shakes o’f a
+lamb’s tail.</p>
+<p><strong>gene</strong>: Is within himself.</p>
+<p><strong>gene</strong>: Drove me crazy. There must have been one on
+me. I didn’t add up so she left. That’s what attracted me to her In the
+first place. She made up her mind and she did it. She wouldn’t sit
+around waiting for…whatever. She’d do something. She’d do something.</p>
+<p><strong>huey</strong>: Yes, well, you know, for a quality shoe you
+can’t beat a good wingtip. Wears like iron. You’re a wise man. There ya’
+go. Two bucks.</p>
+<p><strong>huey</strong>: You got anything smaller?</p>
+<p><strong>gene</strong>: Keep it.</p>
+<p><strong>huey</strong>: It’s a twenty.</p>
+<p><strong>gene</strong>: Keep it.</p>
+<p><strong>huey</strong>: Well…thanks muchly…</p>
+<p><strong>gene</strong>: Can I get out to Flower Street from here?</p>
+<p><strong>huey</strong>: Sure. Go down past the bar. Take you right out
+there.</p>
+<p><strong>gene</strong>: Thanks.</p>
+<p><strong>mr. smith</strong>: You get another chance in ten
+minutes.</p>
+<p><strong>gene</strong>: Then I have time for a drink.</p>
+<p><strong>mr. smith</strong>: All right, Mr. Watson, but make it just
+one. I don’t want you…</p>
+<p><strong>reporter</strong>: So where was I?</p>
+<p><strong>bartender</strong>: I don’t know. Something about the
+Governor’s new regime.</p>
+<p><strong>reporter</strong>: Oh yeah. She’s dumping the Good Old Boys
+like yesterday’s newspapers.</p>
+<p><strong>reporter</strong>: The white boys are in for it. When they
+got her elected they never thought she was gonna make the Governor’s
+office look like the United Nations.</p>
+<p><strong>reporter</strong>: We’re talking Custer’s Last Stand here.
+The only minorities not on her staff are the ones still lost in the Rain
+Forest.</p>
+<p><strong>gene</strong>: Lynn!</p>
+<p><strong>ms. jones</strong>: Shhh. You’ll wake the baby up.</p>
+<p><strong>ms. jones</strong>: What we have here is what they call a
+Mexican standoff. The thing you gotta ask yourself is, “What’s behind
+the seat?” Now, a twenty-two’d go right through it, but even a button
+will throw a twenty-two off so there’s a good chance it’d get screwed up
+somewhere along the way, miss the target. Maybe a thirty-eight? A
+thirty-eight’11 drill pretty straight, unless it hits metal, then it’ll
+bust up in little bitty pieces. They’ll keep going but they’ll be slowed
+down quite a bit. How’s about a three-fifty-seven? It’ll go through the
+seat, her, you, the dashboard, shit, it’ll go through the engine block
+before it knows it’s hit anything, end up in some pedestrian three
+blocks away. What do you think? What’s my poison?</p>
+<p><strong>ms. jones</strong>: Well it’s a comfort to know you’ve got
+the co-Jones to pull that thing out. Whether you’ve got the balls to
+pull the trigger we’ve still got to see.</p>
+<p><strong>ms. jones</strong>: He’s coming back in.</p>
+<p><strong>mr. smith</strong>: I’ve got him in the crosshairs.</p>
+<p><strong>gene</strong>: Pool Deck?</p>
+<p><strong>hector</strong>: Fourth Floor. Take that escalator.</p>
+<p><strong>brendan grant</strong>: My wife is not interested in negative
+campaigning. She wants to accentuate the positive. I don’t know about
+you but I find that refreshing.</p>
+<p><strong>a reporter</strong>: Have you ever thought of running for
+office yourself?</p>
+<p><strong>brendan grant</strong>: Me?</p>
+<p><strong>brendan grant</strong>: I’m just a business man.</p>
+<p><strong>mr. smith</strong>: I know what you’re thinking.</p>
+<p><strong>gene</strong>: What would you do in my place?</p>
+<p><strong>mr. smith</strong>: Me?</p>
+<p><strong>mr. smith</strong>: The bitch would be dead. Course I ain’t
+sayin’ which bitch.</p>
+<p><strong>gene</strong>: There’s a plot to kill the Governor. If you
+don’t believe me, check that guy right there. He has a gun.</p>
+<p><strong>officer trust</strong>: So do you, Mr. Watson.</p>
+<p><strong>officer trust</strong>: You got this under control?</p>
+<p><strong>mr. smith</strong>: Yeah.</p>
+<p><strong>officer trust</strong>: It doesn’t look like it.</p>
+<p><strong>mr. smith</strong>: It’s under control.</p>
+<p><strong>officer trust</strong>: It better be.</p>
+<p><strong>mr. smith</strong>: I oughta throw you after that walkie-
+talkie but I’m going to give you a break because you’re an amateur.</p>
+<p><strong>waiter m</strong>: Gentlemen…</p>
+<p><strong>mr. smith</strong>: Yeah, thanks. Have a cracker.</p>
+<p><strong>mr. smith</strong>: Have a cracker, Mr. Watson.</p>
+<p><strong>mr. smith</strong>: There was this guy. Big guy. Irish-
+Italian. Red-faced, black-haired, jolly son-of-a-bitch.</p>
+<p><strong>mr. smith</strong>: Nobody could make me laugh like him. We
+closed more bars together than I can count. He was my pal. I loved that
+crazy mick, I’m not ashamed to say it. But he was fuck-up. He had this
+image of himself. Thought he was con man. Always trying to shave the
+edge. Nickel and dime. I’ll always miss him. Tell me why.</p>
+<p><strong>gene</strong>: What…?</p>
+<p><strong>mr. smith</strong>: Tell me why I miss him.</p>
+<p><strong>gene</strong>: He’s dead?</p>
+<p><strong>mr. smith</strong>: That’s right. He’s dead. Tell me why.</p>
+<p><strong>gene</strong>: How should I…?</p>
+<p><strong>mr. smith</strong>: Tell me why he’s dead.</p>
+<p><strong>gene</strong>: You killed him.</p>
+<p><strong>mr. smith</strong>: That’s right, I killed him. He fucked up
+one too many times so I put a bullet in his eye. Then I put two more
+into him just to make sure. Now that was somebody I loved.</p>
+<p><strong>mr. smith</strong>: I loved that motherfucker but I got the
+call and I put him down like a sick animal. So if you’ve got any doubts
+about what’s going to happen if you don’t deliver let me tell you
+something. I’d make gravy out of your little girl just to season that
+black Irish cocksucker’s meat.</p>
+<p><strong>mr. smith</strong>: Do what you’re supposed to do. Do it
+now.</p>
+<p><strong>mr. smith</strong>: Shit!</p>
+<p><strong>tom bradley</strong>: It is my extreme pleasure this
+afternoon to introduce to you…</p>
+<p><strong>tom bradley</strong>: …a woman who can only be characterized
+as a one-of-a-kind.</p>
+<p><strong>krista</strong>: Feeling better?</p>
+<p><strong>tom bradley</strong>: An iconoclast with class…</p>
+<p><strong>krista</strong>: The elevator. You weren’t feeling well.</p>
+<p><strong>tom bradley</strong>: A genuine lady who’s not afraid to get
+into the trenches…</p>
+<p><strong>krista</strong>: Are you better now?</p>
+<p><strong>tom bradley</strong>: …and go to the mat with greedy special
+interests…</p>
+<p><strong>tom bradley</strong>: The finest Governor our state has ever
+had…</p>
+<p><strong>tom bradley</strong>: My friend and yours, Governor Eleanor
+Grant!</p>
+<p><strong>gene</strong>: My wife always said I had a problem trusting
+people.</p>
+<p><strong>krista</strong>: Well, you can trust Eleanor Samara
+Grant.</p>
+<p><strong>gene</strong>: You don’t understand. I’m going to trust you.
+And you have to trust me.</p>
+<p><strong>krista</strong>: Yes, you’re right, I don’t understand.</p>
+<p><strong>gene</strong>: Look…my daughter … she’s going to die…unless
+you can help me.</p>
+<p><strong>krista</strong>: Sure, sure, I’ll help you. Let me get
+Mr. White. I’m sure he can assist you, he’s our…</p>
+<p><strong>gene</strong>: No! You have to listen to me.</p>
+<p><strong>krista</strong>: I’m listening, I’m listening.</p>
+<p><strong>eleanor grant</strong>: My friends, my good friends…</p>
+<p><strong>gene</strong>: Please…please…you have to believe me… They
+have my daughter. They want me to kill Eleanor Grant � or they’ll kill
+my daughter.</p>
+<p><strong>krista</strong>: All right, let’s just…let’s get security in
+on this.</p>
+<p><strong>gene</strong>: No! You can’t! They’re in on it.</p>
+<p><strong>krista</strong>: I don’t see how they could be in on it.
+They’re the best. They’re hand- picked.</p>
+<p><strong>gene</strong>: I don’t know. One of them is following me. If
+he knew what I’d just told you they’d…</p>
+<p><strong>gene</strong>: Look, how did I get in here with this!?</p>
+<p><strong>krista</strong>: I don’t know.</p>
+<p><strong>gene</strong>: You’ve got to trust me. I’m putting my
+daughter’s life in your hands. She’s only six. She’s just a little girl.
+Please, please, trust me.</p>
+<p><strong>krista</strong>: It’s a little hard to trust you under the
+circumstances.</p>
+<p><strong>gene</strong>: You’re right, it is. Here.</p>
+<p><strong>gene</strong>: Will you trust me now?</p>
+<p><strong>krista</strong>: I guess I’ll have to. Come on, there’s one
+person we can go to.</p>
+<p><strong>gene</strong>: The man following me has a walkie- talkie. If
+he sees I’m not here he’ll call his partner. I do anything out of line
+and he’ll send the word to kill my daughter.</p>
+<p><strong>krista</strong>: He’ll think you’re in the crowd until the
+end of the speech. Wait a minute.</p>
+<p><strong>eleanor grant</strong>: …I remember that horrible night as if
+it were yesterday. A phone call pulling me out of sleep, the terrible
+news…</p>
+<p><strong>eleanor grant</strong>: My husband and child senselessly
+killed by a drunk driver.</p>
+<p><strong>krista</strong>: We’ve got about ten minutes.</p>
+<p><strong>gene</strong>: Are you sure?</p>
+<p><strong>krista</strong>: I’ve heard this speech a lot. Come on. We’ll
+take care of him. We will.</p>
+<p><strong>gene</strong>: But…</p>
+<p><strong>krista</strong>: Trust me. You asked me for help. Let me
+help. Trust me.</p>
+<p><strong>gene</strong>: Okay…</p>
+<p><strong>gene</strong>: Hey.</p>
+<p><strong>gene</strong>: I think you better put that away.</p>
+<p><strong>krista</strong>: I think you’re right.</p>
+<p><strong>eleanor grant</strong>: But tragedy, if it doesn’t destroy
+us, has a curious way of giving us strength.</p>
+<p><strong>eleanor grant</strong>: I doubt if I would be before you now,
+if I hadn’t been put through that crucible of loss.</p>
+<p><strong>eleanor grant</strong>: And though I can never forget William
+and Bill Junior or the love I felt for them…</p>
+<p><strong>eleanor grant</strong>: I have found joy again in serving
+this great state. I have found love again in my second husband
+Brendan…</p>
+<p><strong>gene</strong>: Where are we going?</p>
+<p><strong>hall guard</strong>: Ms. Brooks …</p>
+<p><strong>krista</strong>: Is he in?</p>
+<p><strong>hall guard</strong>: Yes, ma’am.</p>
+<p><strong>gene</strong>: Who is this? Are you sure we can trust
+him?</p>
+<p><strong>krista</strong>: I’m sure. It’s her husband. He’s her
+Campaign Manager.</p>
+<p><strong>brendan grant</strong>: What is it? Is there a problem?</p>
+<p><strong>krista</strong>: We need to see you, Brendan.</p>
+<p><strong>gene</strong>: We have to hurry.</p>
+<p><strong>krista</strong>: I know. Brendan, listen to me. Someone is
+trying to kill Eleanor.</p>
+<p><strong>brendan grant</strong>: What? What are you talking about?</p>
+<p><strong>krista</strong>: We need people we can “trust. We only have a
+few moments…</p>
+<p><strong>brendan grant</strong>: This is…this is insane. How do you
+know this?</p>
+<p><strong>gene</strong>: I know it because I’m the one who’s supposed
+to kill her.</p>
+<p><strong>brendan grant</strong>: You are!? You brought this man here!?
+You brought this man to my room!?</p>
+<p><strong>krista</strong>: I had to. Her Security people may be
+involved…</p>
+<p><strong>mystery man</strong>: Is there a problem, Brendan?</p>
+<p><strong>brendan grant</strong>: There certainly is. This man says
+he’s been hired to kill Eleanor.</p>
+<p><strong>gene</strong>: Not hired. They’re blackmailing me.</p>
+<p><strong>mystery man</strong>: Who is this “they”?</p>
+<p><strong>gene</strong>: I don’t…I don’t know. Please, Mr. Grant! They
+have my daughter. I’m not some lunatic. Your wife is in trouble. Someone
+is trying to kill her. Someone is trying to make me kill her. Please,
+listen…</p>
+<p><strong>mystery man</strong>: And on the strength of this story, you
+bring this man to Brendan’s suite? Does that show good judgment,
+Ms. Brooks? I’m just a friend of Brendan’s, but it seems to me…</p>
+<p><strong>krista</strong>: He brought a gun onto the pool deck.</p>
+<p><strong>mystery man</strong>: What?</p>
+<p><strong>krista</strong>: He got onto the pool deck with a gun. How
+did he get past her Security carrying a</p>
+<p><strong>mystery man</strong>: I see. Where is this gun?</p>
+<p><strong>krista i</strong>: Have it.</p>
+<p><strong>mystery man</strong>: Well, is it real? Do we know anything
+about it?</p>
+<p><strong>krista</strong>: It looks real. I don’t know anything about
+guns.</p>
+<p><strong>mystery man</strong>: Could I see it?</p>
+<p><strong>mystery man</strong>: My goodness. It certainly looks
+real.</p>
+<p><strong>mystery man</strong>: What’s your opinion? You’re the expert
+in these matters, supposedly.</p>
+<p><strong>brendan grant</strong>: Jesus Christ!</p>
+<p>****: Yeah, I’d say it’s real.</p>
+<p><strong>mystery man</strong>: Are you out of your fucking mind!?</p>
+<p><strong>officer trust</strong>: Somebody mind telling me… What the
+hell happened!?</p>
+<p><strong>mr. smith</strong>: Help me get her off the rug.</p>
+<p><strong>brendan grant</strong>: What have you done to me!? Christ
+almighty!</p>
+<p><strong>gene</strong>: No!</p>
+<p><strong>mr. smith</strong>: You fucked up.</p>
+<p><strong>mystery man</strong>: That’s enough.</p>
+<p><strong>mr. smith</strong>: You want me to kill your kid!? You want
+me to kill you!?</p>
+<p><strong>mystery man</strong>: Don’t let him go!</p>
+<p><strong>gene</strong>: I killed you.</p>
+<p><strong>mr. smith</strong>: You fucked up.</p>
+<p><strong>mystery man</strong>: You nearly killed him, too, you
+idiot!</p>
+<p><strong>mr. smith</strong>: Nearly doesn’t count.</p>
+<p><strong>brendan grant</strong>: I’m on record. I never wanted this. I
+wanted simplicity; a telescopic sight, a powerful rifle, but no. What
+was good enough for Oswald wasn’t good enough for you two. You had to
+get fancy. Drag some shmuck in off the street, stick a gun in his
+hand.</p>
+<p><strong>mystery man</strong>: It’s academic now. She had to be
+killed.</p>
+<p><strong>mr. smith</strong>: What were you going to do, Brendan? Lock
+her in a closet? You’re in the fucking kitchen now. Get used to the
+heat. He’s been seen all over the hotel, looking like some Loony Tunes.
+We even got him on video. It’ll work. Don’t worry about it.</p>
+<p><strong>mystery man</strong>: Is he awake?</p>
+<p><strong>mr. smith</strong>: Yeah.</p>
+<p><strong>brendan grant</strong>: Oh Great. Why don’t we just give him
+our home phone numbers while we’re at it?</p>
+<p><strong>mr. smith</strong>: It doesn’t matter what he hears.</p>
+<p><strong>mr. smith</strong>: That’s what it looks like. She was alive
+a minute ago. Now she’s dead. Because you wouldn’t do what I told you to
+do.</p>
+<p><strong>mystery man</strong>: Get going. You’ve only got a few
+minutes to pull it together.</p>
+<p><strong>mystery man</strong>: It’s too late for that.</p>
+<p><strong>brendan grant</strong>: There is a dead woman on my bathroom
+floor!</p>
+<p><strong>mystery mam</strong>: What about it? She’s Eleanor’s
+assistant and they will have been shot with the same gun, by the same
+lunatic. Some, anonymous loser who went over the edge.</p>
+<p><strong>brendan grant</strong>: Only thing better would be if he were
+a postal worker.</p>
+<p><strong>officer trust</strong>: He won’t be doing any work once I get
+through with him.</p>
+<p><strong>mystery man</strong>: And in a few months you’re in the
+Governor’s mansion. The people’d make you king of California if they
+could.</p>
+<p><strong>gene</strong>: I’m not stupid.. I know how this is supposed,
+to work.</p>
+<p><strong>mr. smith</strong>: Do you now, Mr. Watson?</p>
+<p><strong>gene</strong>: I kill her - and you kill me.</p>
+<p><strong>mr. smith</strong>: Keep your voice down.</p>
+<p><strong>gene</strong>: Even if you don’t, Her Security men will.</p>
+<p><strong>gene</strong>: How am I supposed to get away?</p>
+<p><strong>mr. smith</strong>: That’s not my problem, Mr. Watson</p>
+<p><strong>mr. smith</strong>: Come back.</p>
+<p><strong>gene</strong>: How do I know you won’t kill my daughter once
+I’m gone?</p>
+<p><strong>mr. smith</strong>: Come Back….Fucking Radio.</p>
+<p><strong>mr.smith</strong>: I told you she’d be alright, if you do
+your job.</p>
+<p><strong>gene</strong>: And I’m supposed to trust you?</p>
+<p><strong>mr. smith</strong>: What choice do you have?</p>
+<p><strong>mr. smith</strong>: After you.</p>
+<p><strong>mr. smith</strong>: Look out there! You see the van?</p>
+<p><strong>mr. smith</strong>: You see it?!</p>
+<p><strong>mr. smith</strong>: Come back.</p>
+<p><strong>ms. jones</strong>: Yeah.</p>
+<p><strong>mr. smith</strong>: Do it!</p>
+<p><strong>lynn</strong>: Daddy…?</p>
+<p><strong>gene</strong>: Lynn!</p>
+<p><strong>mr. smith</strong>: Security. Take the next car.</p>
+<p><strong>mr. smith</strong>: Again.</p>
+<p><strong>gene</strong>: No, please…</p>
+<p><strong>mr. smith</strong>: You got one last chance. Half an hour and
+that kid is dead. I’ll kill her myself. I’ll rip her fucking head off
+right in front of you!</p>
+<p><strong>lynn</strong>: Daddy, did you hear me scream?</p>
+<p><strong>lynn</strong>: She told me to scream as loud as I could. Did
+you hear me?</p>
+<p><strong>mr. smith</strong>: The next time I tell you to do something,
+you goddamn well do it!</p>
+<p><strong>ms. jones</strong>: Hey, fuck you! You want to baby-sit a
+screaming kid in traffic, come out here and do it yourself. He got the
+message, didn’t he?</p>
+<p><strong>huey</strong>: Having a rough day? Down at the heels as they
+say? What you need is a shoe shine, shoe shine, shoe shine today.</p>
+<p><strong>huey</strong>: Take ten, take a break, take a seat, take a
+load off. Put the world in perspective.</p>
+<p><strong>huey</strong>: So, are you a visitor or are you lucky enough
+to…</p>
+<p><strong>huey</strong>: You got a complaint?</p>
+<p><strong>gene</strong>: You remember me?</p>
+<p><strong>huey</strong>: I remember. The big tipper.</p>
+<p><strong>gene</strong>: Something is going to happen. When it’s over
+you’ll know what I was talking about.</p>
+<p><strong>huey</strong>: Oh, man…</p>
+<p><strong>gene</strong>: Please. Something is going to happen…</p>
+<p><strong>huey</strong>: What? The end of the world? Man, don’t give me
+your mad rap. I’m not a bartender. I don’t want to hear it. I raise a
+family doing this bullshit. Do me a favor. Get your crazy white ass out
+of my chair.</p>
+<p><strong>gene</strong>: Please…</p>
+<p><strong>huey</strong>: Hey, a big tip doesn’t give you the right to
+crap in my ear. You want change? You got it, brother. What was that you
+gave me, a twenty?</p>
+<p><strong>mr. smith</strong>: Come on, let’s get some privacy.</p>
+<p><strong>gene</strong>: He’s deaf.</p>
+<p><strong>gene</strong>: He can’t hear a word we’re saying.</p>
+<p><strong>mr. smith</strong>: You wouldn’t be kidding me now, would
+you, Mr. Watson? Hey, nigger! Is that right? You can’t hear me?
+Nigger?</p>
+<p><strong>huey</strong>: Why, looky-here. My customer-quotient just got
+multiplied by two. What do you think of that? You’ll have to forgive me,
+sir. Didn’t hear your approach. Fact of the matter is, I’m deef as a
+post. Compliments of the United States Army… …Artillery Corps. Can I
+give you a shine, sir? You don’t see your face, you don’t pay.</p>
+<p><strong>mr. smith</strong>: Yeah, sure, give me a shine… …shine.</p>
+<p><strong>mr. smith</strong>: I’m putting your toy back in your pocket,
+Mr. Watson.</p>
+<p><strong>mr. smith</strong>: It’s all wound up. Now let’s get out your
+itinerary.</p>
+<p><strong>gene</strong>: One thirty. California Ballroom.</p>
+<p><strong>mr. smith</strong>: That’s right. That gives you…</p>
+<p><strong>mr. smith</strong>: …twenty-six minutes to get your shit
+together.</p>
+<p><strong>gene</strong>: Let me talk to her again.</p>
+<p><strong>mr. smith</strong>: No.</p>
+<p><strong>gene</strong>: I want’to talk to her.</p>
+<p><strong>mr. smith</strong>: Forget about it.</p>
+<p><strong>gene</strong>: I talk to her or you can forget about it.</p>
+<p><strong>mr. smith</strong>: Don’t you threaten me.</p>
+<p><strong>gene</strong>: What are you going to do about it, shoot
+me?</p>
+<p><strong>mr. smith</strong>: You know what I’m gonna do.</p>
+<p><strong>gene</strong>: What? Walk out there and twist her arm
+off?</p>
+<p><strong>gene</strong>: It would be a lot less trouble just to let me
+talk to her.</p>
+<p><strong>mr. smith</strong>: Come Back.</p>
+<p><strong>ms. jones</strong>: Yeah.</p>
+<p><strong>mr. smith</strong>: Put her on.</p>
+<p><strong>ms. jones</strong>: What gives?</p>
+<p><strong>mr. smith</strong>: Just put her on.</p>
+<p><strong>lynn</strong>: Daddy?</p>
+<p><strong>gene</strong>: Yes, sweetie, it’s me.</p>
+<p><strong>lynn</strong>: I’m tired. I want to.go now.</p>
+<p><strong>gene</strong>: I know you do, honey.</p>
+<p><strong>lynn</strong>: Can we go now?</p>
+<p><strong>gene</strong>: Not just yet, baby. There’s…there’s something
+Daddy has to do.</p>
+<p><strong>lynn</strong>: To be a hero?</p>
+<p><strong>gene</strong>: No, honey, not to be a hero. But I want you to
+remember something for me, all right?</p>
+<p><strong>lynn</strong>: All right.</p>
+<p><strong>gene</strong>: He’s doing it for you. No matter what anybody
+tells you, no matter who they are, he’s doing it for you, because he
+loves you.</p>
+<p><strong>mr. smith</strong>: That’s enough.</p>
+<p><strong>gene</strong>: Will you promise me that?</p>
+<p><strong>lynn</strong>: I promise.</p>
+<p><strong>gene</strong>: All right. Kisses to you.</p>
+<p><strong>lynn</strong>: No…kisses to you.</p>
+<p><strong>gene</strong>: No. Kisses to you.</p>
+<p><strong>lynn</strong>: No, kisses to…</p>
+<p><strong>mr. smith</strong>: I don’t care who the fuck you do it for
+just so you do it. Hey.</p>
+<p><strong>mr. smith</strong>: You done yet?</p>
+<p><strong>huey</strong>: Just about.</p>
+<p><strong>huey</strong>: Two dollars, if it pleases you.</p>
+<p><strong>mr. smith</strong>: It doesn’t. I remember when it was a
+fuckin’ quarter.</p>
+<p><strong>mr. smith</strong>: Twenty-five minutes.</p>
+<p><strong>huey</strong>: Thanks for the tip.</p>
+<p><strong>huey</strong>: Mister, what are you dragging me into?</p>
+<p><strong>gene</strong>: I’m not dragging you into anything. I don’t
+expect…</p>
+<p><strong>huey</strong>: Cover your mouth.</p>
+<p><strong>gene</strong>: What?</p>
+<p><strong>huey</strong>: This gorilla’s watching you, is that
+right?</p>
+<p><strong>gene</strong>: That’s right.</p>
+<p><strong>huey</strong>: Then don’t let him be seeing you talking to
+me. I don’t want him twisting my arm off.</p>
+<p><strong>huey</strong>: That was your kid on the walkie- talkie?</p>
+<p><strong>gene</strong>: My daughter. They have her in a van across the
+street. They say they’ll kill her if I don’t do something for them.</p>
+<p><strong>huey</strong>: In twenty-five minutes in the California
+Ballroom.</p>
+<p><strong>gene</strong>: There was a woman. She was trying to help me.
+I watched him murder her.</p>
+<p><strong>huey</strong>: What are you supposed to do?</p>
+<p><strong>gene</strong>: Kill the Governor.</p>
+<p><strong>huey</strong>: I knew I should have packed up and gone home
+as soon as I got that twenty. What am I supposed to do about this
+situation?</p>
+<p><strong>gene</strong>: One of them is in on it. He might even be in
+charge. Her Security is in on it. There’s only one person I know for
+sure isn’t in on it.</p>
+<p><strong>huey</strong>: Who?</p>
+<p><strong>gene</strong>: The Governor. If I could just talk to her…</p>
+<p><strong>huey</strong>: Oh, Jesus …</p>
+<p><strong>gene</strong>: No way, there’s nothing you can do to help
+me.</p>
+<p><strong>huey</strong>: Then why’d you drag me into it?</p>
+<p><strong>gene</strong>: It’s my kid. I’ve got to…to somehow…do right
+by my little girl.</p>
+<p><strong>gene</strong>: It’s about time I did. I was one of those
+guys, workaholics. I worked my ass off for them - my wife, my daughter.
+That’s just what I thought I was supposed to do.</p>
+<p><strong>huey</strong>: Yeah, all right, listen…</p>
+<p><strong>gene</strong>: So when she wanted a divorce…I was…I didn’t
+know what I’d done wrong. I didn’t see it. I didn’t see it….</p>
+<p><strong>huey</strong>: Why don’t you tell me about the early years
+some other time?</p>
+<p><strong>gene</strong>: I’m sorry. You understand I don’t mind dying
+if I could save my daughter. I mean that.</p>
+<p><strong>huey</strong>: Yeah, now listen. I can’t mess with these
+shoes any more or it’s gonna look funny. You go down get yourself
+something to drink. Make sure Godzilla there, follows you.</p>
+<p><strong>gene</strong>: What are you going to do?</p>
+<p><strong>huey</strong>: I haven’t the faintest idea. Go on now. I’ll
+get word to you.</p>
+<p><strong>gene</strong>: If nothing else, someone heard my story.</p>
+<p><strong>gene</strong>: Keep the change.</p>
+<p><strong>huey</strong>: Don’t think I won’t.</p>
+<p><strong>gene</strong>: I need a drink.</p>
+<p><strong>game show host</strong>: …and time is running out…</p>
+<p><strong>gene</strong>: Give me a …a gingerale?</p>
+<p><strong>t.v. news technician 1</strong>: Man, I thought she was going
+to get out the violins.</p>
+<p><strong>tv reporter</strong>: No shit. If I hear that stop the
+violence routine one more time I’m going to shoot somebody.</p>
+<p><strong>waitress</strong>: Here’s your Ginger Ale, sir.</p>
+<p><strong>down the bar:</strong>: T.V. NEWS TECHNICIAN 1
+Politicians.</p>
+<p><strong>tv reporter</strong>: They’re all the same.</p>
+<p><strong>tv reporter</strong>: You know what bothers me?</p>
+<p><strong>tv reporter</strong>: When they get all weepy eyed about the
+“ordinary citizen”, the “regular Joe”, the “normal American”. Gimme a
+break. There ain’t no such animal. We’re a nation of two hundred forty
+million special interest groups.</p>
+<p><strong>gene</strong>: Well, I’m just a regular guy.</p>
+<p><strong>tv reporter</strong>: Is that right?</p>
+<p><strong>gene</strong>: Yeah, that’s right. But I’ve built a good
+solid business out of nothing. Don’t underestimate the regular guy.</p>
+<p><strong>bartender</strong>: Sir, you haven’t paid.</p>
+<p><strong>gene</strong>: It’s on the Special Interest at the end of the
+bar.</p>
+<p><strong>bartender</strong>: Hey, Sir, don’t make me call a cop.</p>
+<p><strong>t.v. news technician 1</strong>: Left field bleachers heard
+from.</p>
+<p><strong>t.v. reporter</strong>: Laughs.</p>
+<p><strong>officer trust</strong>: Where is he? Did you lose him?</p>
+<p><strong>mr. smith</strong>: Shut up.</p>
+<p><strong>gene</strong>: Let’s all hope so.</p>
+<p><strong>huey</strong>: Quick, off with the shoes and pants. Trade
+with Gustino. The big guy’s coming.</p>
+<p><strong>huey</strong>: C’mon, ladies. No time to be shy.</p>
+<p><strong>huey</strong>: Gustino! Drop ’em!</p>
+<p><strong>huey</strong>: And cover up them socks. Man, who dresses
+you?</p>
+<p><strong>janitor</strong>: Fue.</p>
+<p><strong>huey</strong>: Meet Irene.</p>
+<p><strong>gene</strong>: Hi.</p>
+<p><strong>huey</strong>: Irene is going to help.</p>
+<p><strong>gene</strong>: Thank you.</p>
+<p><strong>gene</strong>: Where am I going?</p>
+<p><strong>huey</strong>: You said there was only one person you knew
+wasn’t in on this thing.</p>
+<p><strong>gene</strong>: Yeah.</p>
+<p><strong>huey</strong>: You’re going to go see her.</p>
+<p><strong>gene</strong>: What!?</p>
+<p><strong>huey</strong>: You sure she’s asleep?</p>
+<p><strong>irene</strong>: I took up extra pillows. She take a nap
+before her big speech.</p>
+<p><strong>gene</strong>: What am I supposed to say to her?</p>
+<p><strong>huey</strong>: It’ll come to you. See if you can stop this
+thing ’fore it gets started. Save us all considerable embarrassment.</p>
+<p><strong>huey</strong>: Irene…?</p>
+<p><strong>gene</strong>: Excuse me…</p>
+<p><strong>eleanor grant</strong>: Who the hell are you?</p>
+<p><strong>gene</strong>: No, please.</p>
+<p><strong>gene</strong>: Mrs. Grant, Governor…I won’t hurt you.</p>
+<p><strong>eleanor grant</strong>: My security people are right next
+door.</p>
+<p><strong>gene</strong>: I appreciate that.</p>
+<p><strong>eleanor grant</strong>: One loud scream will bring them in
+here instantly. You won’t get very far. Think it over.</p>
+<p><strong>gene</strong>: If I were here to hurt you I would have done
+it already.</p>
+<p><strong>eleanor grant</strong>: That’s…a comfort to hear.</p>
+<p><strong>gene</strong>: I have a problem.</p>
+<p><strong>eleanor grant</strong>: Ah.</p>
+<p><strong>gene</strong>: Only you can help me. I’m also sorry to say,
+my problem is your problem, Mrs. Grant.</p>
+<p><strong>eleanor grant</strong>: I remember you…in the elevator.</p>
+<p><strong>gene</strong>: That’s right.</p>
+<p><strong>eleanor grant</strong>: You were very nervous.</p>
+<p><strong>gene</strong>: It was because I had this…in my pocket</p>
+<p><strong>gene</strong>: I need you to listen to me. Carefully. Three
+lives depend on you listening very carefully to what I have to say.</p>
+<p><strong>eleanor grant</strong>: Of course. But suppose we set up an
+appointment. I have an important speech to deliver and you’re cutting
+into my nap time.</p>
+<p><strong>gene</strong>: Krista Brooks is dead.</p>
+<p><strong>eleanor grant</strong>: How do you know that?</p>
+<p><strong>gene</strong>: I saw her die. She was shot. With this
+gun.</p>
+<p><strong>eleanor grant</strong>: You shot her?</p>
+<p><strong>gene</strong>: No.</p>
+<p><strong>eleanor grant</strong>: Who did?</p>
+<p><strong>gene</strong>: I don’t know. The only thing I know about him
+is that he works for your husband.</p>
+<p><strong>eleanor grant</strong>: What?</p>
+<p><strong>gene</strong>: And your husband works for somebody else.</p>
+<p><strong>eleanor grant</strong>: What the hell are you saying?</p>
+<p><strong>hector</strong>: He’s gone.</p>
+<p><strong>hector</strong>: Hey, Gustino, what takes you so long? You
+need to eat more fiber.</p>
+<p><strong>gustino</strong>: You got anything to read?</p>
+<p><strong>gene</strong>: I knew you wouldn’t believe me.</p>
+<p><strong>eleanor grant</strong>: I said I’d listen to you, not
+necessarily believe you. You’re telling me my people are in a plot
+against me. You’re telling me my husband wants me killed. What do you
+expect?</p>
+<p><strong>gene</strong>: I don’t blame you. I don’t have any proof. But
+nothing like this occurs in a vacuum. You can’t be totally oblivious.
+You must suspect something. You’re doing things which are making people
+angry. People who have been in power a long time are losing their jobs.
+You know them better than me. How much does it mean to them? How far
+would they go to hang onto it?</p>
+<p><strong>gene</strong>: There’s only one way to find out for sure. Try
+to cancel the last speech.</p>
+<p><strong>eleanor grant</strong>: I’d prefer we didn’t refer to it as
+my last speech.</p>
+<p><strong>gene</strong>: It’s the last chance they have for me to kill
+you. Try to get out of it. They won’t let you. They can’t. Try to change
+the schedule and you’ll know I’m right. What have you got to lose? It
+comes down to who you trust, them or me? Test them.</p>
+<p><strong>eleanor grant</strong>: I love it when pistolero’s talk of
+trust.</p>
+<p><strong>gene</strong>: This? I’ve never even fired one.</p>
+<p><strong>eleanor grant</strong>: Indeed.</p>
+<p><strong>eleanor grant</strong>: Franco! Franco.’</p>
+<p><strong>franco</strong>: What is it, Governor!? What’s wrong!?</p>
+<p><strong>eleanor grant</strong>: I…I’m afraid I’ve had a bad dream,
+Franco.</p>
+<p><strong>huey</strong>: Well?</p>
+<p><strong>gene</strong>: I don’t know.</p>
+<p><strong>huey</strong>: What are you going to do now?</p>
+<p><strong>gene</strong>: I don’t know. I have to get back.</p>
+<p><strong>huey</strong>: What are you going to do!?</p>
+<p><strong>gene</strong>: This is about power and you haven’t got any.
+There’s nothing more you can do. I’m sorry. Thanks for trying.</p>
+<p><strong>officer trust</strong>: Where is he?</p>
+<p><strong>mr. smith</strong>: In the john.</p>
+<p><strong>officer trust</strong>: Get moving.</p>
+<p><strong>mr. smith</strong>: You’ oughta learn to relax. I told you
+I’ve got it under control.</p>
+<p><strong>officer trust</strong>: It’s time. It’s time now.</p>
+<p><strong>lynn</strong>: Where are we going?</p>
+<p><strong>ms. jones</strong>: Not very far, honey-pie. Not far at
+all.</p>
+<p><strong>mr. smith</strong>: Out of there, Mr. Watson! Your time’s
+up!</p>
+<p><strong>mr. smith</strong>: You forgot to wash your hands.</p>
+<p><strong>mr. smith</strong>: I’ve got faith in you, Mr. Watson. I know
+you’re not just a regular guy, see, I know that. Even if you don’t know
+it yourself. Maybe that’s why I picked you.</p>
+<p><strong>gene</strong>: I know what I have to do. I’ll do it. Let’s
+go.</p>
+<p><strong>brendan grant</strong>: Hey, El, how’s the head?</p>
+<p><strong>mystery man</strong>: Eleanor.</p>
+<p><strong>eleanor grant</strong>: Lousy. And I have siesta hair. I’m
+thinking of canceling the speech.</p>
+<p><strong>brendan grant</strong>: It’s an important speech.</p>
+<p><strong>mystery man</strong>: I’d say critical, not that it’s any of
+my business.</p>
+<p><strong>eleanor grant</strong>: It’s just another speech in a Tower
+of Babel so high that Nimrod himself would be put to shame. Cancel. Make
+my apologies.</p>
+<p><strong>brendan grant</strong>: Excuse me.</p>
+<p><strong>mystery man</strong>: I’ll trot along. Nice to see you,
+Eleanor.</p>
+<p><strong>brendan grant</strong>: During a campaign every speech is
+important. This is free media exposure. Primetime news coverage that we
+couldn’t buy.</p>
+<p><strong>eleanor grant</strong>: What’s he doing here?</p>
+<p><strong>brendan grant</strong>: Who, him? Just visiting.</p>
+<p><strong>eleanor grant t</strong>: Hings have changed, Brendan. I
+thought you understood that.</p>
+<p><strong>brendan grant</strong>: He’s my friend. And he did help you
+to get elected, after all.</p>
+<p><strong>eleanor grant</strong>: Don’t remind me.</p>
+<p><strong>brendan grant</strong>: What happened here?</p>
+<p><strong>eleanor grant</strong>: Nothing. I broke a lamp.</p>
+<p><strong>brendan grant</strong>: Eleanor, please. I’ll put it this
+way. This speech or a half-dozen rubber chicken-fund raisers. What do
+you say?</p>
+<p><strong>eleanor grant</strong>: Truth is, besides the headache I’ve
+come down with a little lower intestinal havoc. Make my apologies.</p>
+<p><strong>brendan grant</strong>: Come on, El, you’re a trooper. I’ll
+get you some Pepto, you’ll make one of your patented tributes to the
+common person, then back to Sacramento. This is no time to lay down on
+the job. I don’t care what the polls say, you can’t afford to relax.
+Look what happened to Bush. Tell you what, if you want to blow off the
+Sacramento speech, fine. But do this one and we’ll get out of the
+smog.</p>
+<p><strong>eleanor grant</strong>: All right, I’ll do it.</p>
+<p><strong>brendan grant</strong>: That’s my girl.</p>
+<p><strong>eleanor grant</strong>: But I want to make some changes. Get
+Krista in here right away won’t you?</p>
+<p><strong>brendan grant</strong>: Aw, gee. I sent her on an errand.</p>
+<p><strong>eleanor grant</strong>: You sent my assistant on an
+errand.</p>
+<p><strong>brendan grant</strong>: I’ve been a bad boy.</p>
+<p><strong>politico</strong>: Ladies, gentlemen, it is my great pleasure
+to introduce to you the esteemed spouse of our Governor. Let’s give a
+big L.A. welcome to Mr. Brendan Grant.</p>
+<p><strong>brendan grant</strong>: Ladies and gentlemen of the press,
+campaign volunteers, and those of you who were looking for any excuse to
+take off work for the afternoon…</p>
+<p><strong>brendan grant</strong>: We have with us today the first woman
+Governor of our great state…</p>
+<p><strong>brendan grant</strong>: Governor Eleanor Samara Grant. What
+can I say about her….that won’t get me in trouble when I get home
+tonight.</p>
+<p><strong>t.v. news technician</strong>: Charlie. Charlie. Charlie, are
+you reading me?</p>
+<p><strong>brendan grant</strong>: She’s a woman who loves our great
+state.</p>
+<p><strong>t.v. news technician</strong>: Charlie… I can’t get shit on
+this stupid radio.</p>
+<p><strong>brendan grant</strong>: A brilliant legislator.</p>
+<p><strong>brendan grant</strong>: …who will soon win her second term as
+the greatest Governor California has ever seen!</p>
+<p><strong>t.v. news technician</strong>: Somebody’s going to ave to run
+down to the truck. Tell them this radio’s fucked.</p>
+<p><strong>t.v. news technician</strong>: I can’t get through.
+Walkie-Talkies don’t work from here. There’s too much concrete and
+stuff.</p>
+<p><strong>brendan grant</strong>: Ladies and gentlemen…</p>
+<p><strong>t.v. news technician</strong>: Nothin’s getting out.</p>
+<p><strong>brendan grant</strong>: I am honored to present to you our
+esteemed Governor and my beloved wife, Eleanor Samara Grant!</p>
+<p><strong>eleanor grant</strong>: Thank you! Thank you all!</p>
+<p><strong>gene</strong>: Look out! Look out!</p>
+<p><strong>gene</strong>: Look out!</p>
+<p><strong>brendan grant</strong>: My God, he did it!</p>
+<p><strong>officer trust</strong>: You little son of a bitch.</p>
+<p><strong>eleanor grant</strong>: Are you all right, Franco?</p>
+<p><strong>franco</strong>: I’d be better if they’d put sleeves on these
+damn vests.</p>
+<p><strong>ms. jones</strong>: It’s time….You read me? I don’t hear from
+you I’m going ahead now.</p>
+<p><strong>lynn</strong>: Why do you keep looking at me?</p>
+<p><strong>ms. jones</strong>: That’s my job. I’m your babysitter.</p>
+<p><strong>lynn</strong>: I’m not a baby.</p>
+<p><strong>ms. jones</strong>: You’re a big girl, huh?</p>
+<p><strong>lynn</strong>: I’m not a big girl but I’m not a baby.</p>
+<p><strong>ms. jones</strong>: Close your eyes.</p>
+<p><strong>lynn</strong>: Why?</p>
+<p><strong>ms. jones</strong>: I’ve got something for you.</p>
+<p><strong>lynn</strong>: A surprise?</p>
+<p><strong>ms. jones</strong>: You ask too many questions. You want the
+surprise or not?</p>
+<p><strong>huey</strong>: Good afternoon, madam. Hello there, little
+girl.</p>
+<p><strong>ms. jones</strong>: Hey, hey, what are you doing!?</p>
+<p><strong>huey</strong>: Just giving you the gift of a clean
+windshield. Only cost you a dollar.</p>
+<p><strong>ms. jones</strong>: I don’t want my windshield cleaned.</p>
+<p><strong>huey</strong>: You just think you don’t want your windshield
+cleaned.</p>
+<p><strong>ms. jones</strong>: No, I know I don’t want it cleaned. Get
+out of here.</p>
+<p><strong>huey</strong>: Don’t be like that. Think of me as the Moses
+of dirty windshields leading you through the desert of dead bugs.</p>
+<p><strong>ms. jones</strong>: For the last time, I don’t want it
+cleaned. Now get the hell out of here!</p>
+<p><strong>huey</strong>: It’s already done. I’ve already done it. You
+have to pay me now.</p>
+<p><strong>ms. jones</strong>: I don’t have to pay you nothin’.</p>
+<p><strong>huey</strong>: You’re going to deny me a lousy dollar after
+I’ve sweated like a pig giving you the gift of a clean windsheild?</p>
+<p><strong>ms. jones</strong>: Fuckin’ A.</p>
+<p><strong>huey</strong>: I don’t think so.</p>
+<p><strong>ms. jones</strong>: Hey!</p>
+<p><strong>huey</strong>: I think this is worth a dollar.</p>
+<p><strong>ms. jones</strong>: Goddamnit! Gimme that!</p>
+<p><strong>huey</strong>: Oh, we’ll have to do better than that.</p>
+<p><strong>ms. jones</strong>: You worthless piece of shit! Gimme
+that!</p>
+<p><strong>ms. jones</strong>: Goddamnit, you fuckin’ bum, come
+here!</p>
+<p><strong>huey</strong>: Gimme a dollar.</p>
+<p><strong>ms. jones</strong>: Fuck you!</p>
+<p><strong>ms. jones</strong>: Gimme that thing!</p>
+<p><strong>ms. jones</strong>: Goddammit, give it to me, you
+Sunnavabitch!</p>
+<p><strong>mr. smith</strong>: Daddy blew it.</p>
+<p><strong>mr. smith</strong>: Very good…Mr. Watson. I told them…I could
+make a killer out of you.</p>
+<p><strong>huey</strong>: There’s nothing like a good wing- tip.</p>
+<p><strong>huey</strong>: What time is it?</p>
+<p><strong>gene</strong>: Lost my watch.</p>
+<p><strong>eleanor grant</strong>: Any comment at this time would be
+most premature. Please, we’ll have something for you in a couple of
+hours. Please…</p>
+<p><strong>eleanor grant</strong>: I…1 would like to…thank you, Mister
+Wat… Gene.</p>
+<p><strong>eleanor grant</strong>: I would also like to apologize.</p>
+<p><strong>gene</strong>: For what?</p>
+<p><strong>eleanor grant</strong>: For not believing you.</p>
+<p><strong>gene</strong>: Believe me, I don’t blame you. This is the
+Governor, Lynn. Say hello.</p>
+<p><strong>eleanor grant</strong>: You have a very brave father,
+Lynn.</p>
+<p><strong>lynn</strong>: He’s a hero.</p>
+<p><strong>eleanor grant</strong>: Yes, yes he is.</p>
+<p><strong>lynn</strong>: Dads are like that.</p>
+<p><strong>gene</strong>: Can we go now?</p>
+<p><strong>eleanor grant</strong>: Of course. I’ll get a car to drive
+you.</p>
+<p><strong>gene</strong>: No, that’s… That’s OK. We don’t need any help.
+We’ll be just fine. Won’t we, Lynn?</p>
+<p><strong>eleanor grant</strong>: Good luck.</p>
+<p><strong>gene</strong>: Same to you.</p>
+<p><strong>gene</strong>: Thanks for the shine.</p>
+<p><strong>huey</strong>: Thanks for the tip.</p>
+<p><strong>gene</strong>: Come on, kid. I gotta make a phone call.</p>
+<p><strong>huey</strong>: Kisses to you.</p>
+<p><strong>lynn</strong>: No, kisses to you!</p>
+<p><strong>huey</strong>: No, kisses to you.</p>
+</body>
+</html>

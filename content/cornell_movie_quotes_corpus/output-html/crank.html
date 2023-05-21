@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>crank</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="crank">crank</h1>
+<p><strong>video screen</strong>: 1</p>
+<p><strong>extreme cu</strong>: PACMAN, from the old video game, just a
+yellow ball with a mouth, fills the screen in all it’s lo-res glory. The
+camera tracks along as it rolls along a tight corridor, gobbling
+dots.</p>
+<p><strong>extreme cu</strong>: A RED GHOST follows, in hot pursuit.</p>
+<p><strong>extreme cu</strong>: PACMAN gives it the slip, cuts down and
+gobbles a big dot.</p>
+<p><strong>extreme cu</strong>: RED GHOST transforms into BLUE GHOST,
+changes direction and runs. PACMAN chases … P.. but just before he
+catches up the BLUE GHOST transforms back to RED and changes direction
+again. PACMAN barely escapes.</p>
+<p><strong>int chelios living room, continuous</strong>: 3 3</p>
+<p><strong>int chelios kitchen, continuous 4</strong>: … the kitchen,
+with a black marble island and hanging copper.</p>
+<p><strong>chelios</strong>: Whathufuck?</p>
+<p><strong>5a 5a</strong>: It’s RICKY VERONA on the SCREEN, a young,
+irritatingly slick EASTERN EURO … little to no accent - fast talking,
+sarcastic, a complete dick …</p>
+<p><strong>verona</strong>: What’s shaking, douchebag? Thought I’d give
+you the heads up. You’re dead.</p>
+<p><strong>verona</strong>: Yeah, that’s right, you little bitch … if
+you’re watching this tape it means that I somehow resisted the urge to
+dismember you and shove the pieces down the garbage disposal … opting
+instead to poison you in your sleep. Yeah, you heard me…</p>
+<p><strong>verona</strong>: … I fucking poisoned you in your sleep. How
+sick is that?… for the satisfaction of watching you squirm out your last
+minutes knowing it was me that did it to you, and there’s nothing you
+can do about it…</p>
+<p><strong>5a 5a</strong>: … that’s right, you’re on candid camera, try
+not to embarrass yourself…</p>
+<p><strong>continued: verona</strong>: the shit I gave you is some
+fucking high tech sci-fi Chinese synthetic shit that even I don’t know
+exactly what the fuck it is. All I know is once it binds with your blood
+cells, you’re fucked, baby… and believe me, it’s done binded. By now
+you’ll be feeling your joints stiffen up… hard to breath…</p>
+<p><strong>verona</strong>: … your heartbeat is slowing down like
+there’s rust in your veins… you’re like the Tin Man in the Wizard of
+freaking Oz…</p>
+<p><strong>lex</strong>: “If he only had a brain.”</p>
+<p><strong>erona</strong>: Scarecrow. Whatever. You get the point.
+You’re fucked. You got maybe an hour, max, tough guy … baby … sexy …</p>
+<p><strong>verona</strong>: Hey, it’s been real. Probably should’ve
+thought twice before you whacked Don Kim. Experiencing a little 20/20
+hindsight? I thought so. Have a nice death…</p>
+<p><strong>verona</strong>: … asshole.</p>
+<p><strong>int chev’s apartment building, continuous</strong>: 8 8</p>
+<p><strong>sportscar guy</strong>: This is a eighty thousand dollar
+ride, cockwipe!</p>
+<p><strong>sportscar guy</strong>: You’re a dead man!</p>
+<p><strong>int chev’s audi, moments later</strong>: 10 10</p>
+<p><strong>int eve’s apartment, simultaneous</strong>: 11 11</p>
+<p><strong>oman</strong>: Hey, this is Eve…</p>
+<p><strong>eve</strong>: I’m glad you called, but I’m not here. Can you
+leave me a message? Unless you’re trying to sell something, because I’m
+absolutely not interested. But if you’re not …</p>
+<p><strong>eve</strong>: … then just … oh, wait … time’s up -</p>
+<p><strong>int eve’s apartment, same time</strong>: 13 13</p>
+<p><strong>sound</strong>: beeep!</p>
+<p><strong>int chev’s audi, same time</strong>: 14 14</p>
+<p><strong>s</strong>: hit!</p>
+<p><strong>ote</strong>: Through it all, the low beating of the heart -
+from slow to fast - sometimes barely audible, sometimes mixed way out
+front - clues us into the state of his adrenaline.</p>
+<p><strong>chev</strong>: Come on …</p>
+<p><strong>answering service</strong>: Doctor Miles’ office, may I help
+you?</p>
+<p><strong>chev</strong>: Let me talk to him.</p>
+<p><strong>int chocolate’s apartment, simultaneous</strong>: 15 15</p>
+<p><strong>hocolate</strong>: I’m sorry, the doctor isn’t in the office
+at this time, may I take -</p>
+<p><strong>chev</strong>: Where is he?</p>
+<p><strong>chocolate</strong>: I beg your pardon sir?</p>
+<p><strong>chev</strong>: Where - thefuck - is - he?</p>
+<p><strong>chocolate</strong>: I don’t know sir, this is his answering
+service, would you like me to have him paged?</p>
+<p><strong>chev</strong>: Fine, yes, please let the doctor know that
+Chev Chelios is a dead man if he can’t call me back within the hour… got
+that? C</p>
+<p><strong>hocolate</strong>: Can you spell that for me sir?</p>
+<p><strong>chev</strong>: D-E-A-D. Chelios… got it?</p>
+<p><strong>chocolate</strong>: Yes sir…</p>
+<p><strong>chev</strong>: Thank you.</p>
+<p><strong>kaylo</strong>: Hello?</p>
+<p><strong>chev</strong>: Kaylo. My man. So, where were you last
+night?</p>
+<p><strong>int kaylo’s house - simultaneous</strong>: 16 16</p>
+<p><strong>aylo</strong>: h, what’s up Chev?</p>
+<p><strong>chev</strong>: I said, where were you last night?</p>
+<p><strong>in a screen within a screen we see him dressing up in
+drag,</strong>: 17 17</p>
+<p><strong>int chev’s audi - simultaneous</strong>: 8 18</p>
+<p><strong>kaylo</strong>: I … uhh …</p>
+<p><strong>hev</strong>: Yeah, yeah. You wanna know what I was
+doing?</p>
+<p><strong>kaylo</strong>: What?</p>
+<p><strong>kaylo</strong>: What?</p>
+<p><strong>hev</strong>: What? What? You heard me. That son of a bitch
+Ricky Verona.</p>
+<p><strong>aylo</strong>: Ricky Verona …</p>
+<p><strong>chev</strong>: Who would’ve thought that little bastard had
+the stones to come whack me in my own crib… it’s inconceivable… and yet,
+here we are.</p>
+<p><strong>kaylo</strong>: Where are we?</p>
+<p><strong>chev</strong>: I’m dead and you’re simple. Now listen: you
+put the word out I’m looking for Ricky Verona. Anyone sees him you call
+me.</p>
+<p><strong>chev</strong>: I’m going to get that little son of a bitch if
+it’s the last thing I do… it may actually be the last thing I do,
+understand that? Copy me on that?</p>
+<p><strong>kaylo</strong>: Ricky Verona?</p>
+<p><strong>chev</strong>: Find him!</p>
+<p><strong>int. black sabbath clubhouse, continuous</strong>: 20 20</p>
+<p><strong>chev</strong>: Where’s Verona!!</p>
+<p><strong>orlando</strong>: It’s cool it’s cool it’s cool!</p>
+<p><strong>chev</strong>: Talk!!</p>
+<p><strong>orlando</strong>: I’m talking! What are we talking about?</p>
+<p><strong>chev</strong>: Don’t fuck with me!!</p>
+<p><strong>orlando</strong>: OK, nobody’s fucking with you, just calm
+down …</p>
+<p><strong>biker</strong>: O-land-o! What’s up!</p>
+<p><strong>orlando</strong>: There’s a white man with a gun in here, I
+would prefer that he not cap my ass, so please refrain from any sudden
+ass bullshit! Now you see that? I’m trying to help you here.</p>
+<p><strong>chev</strong>: Look, I got to find Ricky Verona …</p>
+<p><strong>orlando</strong>: Why would I know where … ?</p>
+<p><strong>chev</strong>: … right, I know, you don’t know where he is,
+but you’re going to tell me where he is, or I’m going to BLOW YOUR
+BRAINS</p>
+<p><strong>s</strong>: ILENCE - just the sound of CHEV’S heartbeat,
+pumping.</p>
+<p><strong>orlando</strong>: Can we all just get along? Can we?</p>
+<p><strong>orlando</strong>: Now Chevy here has something he would like
+to discuss. So we are going to discuss it. In a civilized manner. Chevy?
+I believe you had a question, or some point you were trying to make?</p>
+<p><strong>chev</strong>: Where’s Verona.</p>
+<p><strong>orlando</strong>: OK. I am not affiliated with Ricky
+Verona.</p>
+<p><strong>chev</strong>: You pulled the Anselmo job together, don’t try
+to bullshit me …</p>
+<p><strong>orlando</strong>: Easy … easy … now things are beginning to
+clarify … you see how that works? How discussion can lead to
+clarity?</p>
+<p><strong>orlando</strong>: Clearly you are operating under a false
+pretense. Ricky Verona and myself did not “pull the Anselmo job
+together.” In fact, Ricky Verona fucked me on the Anselmo job. In fact,
+Ricky Verona owes me seventy five hunna dollars.</p>
+<p><strong>chev</strong>: That’s not how I heard it.</p>
+<p><strong>orlando</strong>: But that’s the way it is. That’s the way it
+is. So you see, I don’t know where Ricky Verona is. Because if I knew
+where he is, I would probably be there right now, beating his Gucci ass
+down.</p>
+<p><strong>s</strong>: tandoff. CHEV holds the gun with an unsteady
+hand, studying ORLANDO’S eyes, evaluating.</p>
+<p><strong>chev</strong>: Alright.</p>
+<p><strong>orlando</strong>: Thank you. That’s what I’m talking about.
+That resembles civility.</p>
+<p><strong>orlando</strong>: Shit dude, what’s the matter with you?</p>
+<p><strong>chev</strong>: Forget it. I just gotta find Ricky Verona,
+that little bitch …</p>
+<p><strong>orlando</strong>: I understand that. You’ve made that point
+abundantly clear to all of us.</p>
+<p><strong>orlando</strong>: Now what can I do to help you?</p>
+<p><strong>chev</strong>: Look, just give me some coke, OK? You got any
+coke?</p>
+<p><strong>orlando</strong>: OK, now you’re insulting me.</p>
+<p><strong>chev</strong>: Come on, man, I know you got coke.</p>
+<p><strong>orlando</strong>: You think every brother is carrying, is
+that it?</p>
+<p><strong>chev</strong>: Come on, I don’t have time for this, just give
+me something … I’m really dying here …</p>
+<p><strong>orlando</strong>: I can see that.</p>
+<p><strong>chev</strong>: No. You don’t understand, I’m really fucking
+dying … if I don’t … May I just have some coke, please?</p>
+<p><strong>orlando</strong>: So this is medicinal use coke, that’s what
+you’re telling me.</p>
+<p><strong>chev</strong>: That’s right.</p>
+<p><strong>orlando</strong>: Well?</p>
+<p><strong>w</strong>: hat?</p>
+<p><strong>orlando</strong>: You got something for me, or what?</p>
+<p><strong>orlando</strong>: Chevy … come on, man…</p>
+<p><strong>chev</strong>: OK, that’s good. That’s good.</p>
+<p><strong>rlando</strong>: Oh that’s good, right?</p>
+<p><strong>w</strong>: hy you looking for Verona anyway?</p>
+<p><strong>chev</strong>: Seems like some Chinese assholes hired him to
+kill me…</p>
+<p><strong>orlando</strong>: Ah, so this is about the Don Kim
+situation.</p>
+<p><strong>chev</strong>: What do you know about it?</p>
+<p><strong>orlando</strong>: I know you pulled the trigger.</p>
+<p><strong>chev</strong>: Of course I pulled the trigger! WHY</p>
+<p><strong>orlando</strong>: O…kay…</p>
+<p><strong>orlando</strong>: Whoa, Chelios. You good, man?</p>
+<p><strong>chev</strong>: his shit’s not working.</p>
+<p><strong>orlando</strong>: Beg your pardon?</p>
+<p><strong>hev</strong>: I think I know what I have to do.</p>
+<p><strong>orlando</strong>: Well, a man’s got to do what a man’s got to
+do. Uhh… what exactly is it that you got to do?</p>
+<p><strong>hev</strong>: Got to kick… some black… ass.</p>
+<p><strong>orlando</strong>: What?</p>
+<p><strong>rlando</strong>: There he goes again.</p>
+<p><strong>ound</strong>: CHEV’s HEARTBEAT starts to rev up.</p>
+<p><strong>chev</strong>: Alright … who wants white meat?</p>
+<p><strong>ext outside the black sabbath clubhouse, moments
+later</strong>: 1 21</p>
+<p><strong>still brandishing the pool cue, he somehow holds them off as
+22</strong>: 22</p>
+<p><strong>jackhammer.</strong>: 2</p>
+<p><strong>int chev’s car, moments later</strong>: 3 23</p>
+<p><strong>chev</strong>: Doc?</p>
+<p><strong>in a split screen we see it’s verona.</strong>: 24 24</p>
+<p><strong>verona</strong>: ey, what’s up, Doc!</p>
+<p><strong>3a 23a</strong>: You motherfucker!</p>
+<p><strong>verona</strong>: ude, aren’t you dead yet? What the hell are
+you doing out there?</p>
+<p><strong>23a 23a</strong>: I’m coming for you, asshole, believe
+me.</p>
+<p><strong>verona</strong>: eah, whatever. Look, just thought you’d like
+to know that I’m all about hooking up with that mystery girl you’ve been
+banging as soon as your ass is underground … I forgot to say so on that
+gay James Bond tape I left for you…</p>
+<p><strong>23a 23a</strong>: Yeah, yeah, then you’re going to rape my
+grandmother, blah blah blah. What do you think Carlito is going to think
+when he finds out what you did? Your whole crew is history.</p>
+<p><strong>chev</strong>: Great.</p>
+<p><strong>23b</strong>: more and more out of control. Now a SQUAD CAR
+has pulled up behind him, cherry top flashing, broadcasting a warning to
+“PULL OVER” out of its intercom.</p>
+<p><strong>verona</strong>: arlito? That’s funny, I guess you didn’t
+know… Carlito’s my boy now, we’re tight.</p>
+<p><strong>chev</strong>: You haven’t been tight since your brother
+fucked you in 3rd grade.</p>
+<p><strong>verona</strong>: lever. Snappy. Did you pretty good, didn’t
+I, Chelios? Come on, you can admit it.</p>
+<p><strong>chev</strong>: We’ll see.</p>
+<p><strong>verona</strong>: Right, right, and the best part about it
+is…</p>
+<p><strong>hev</strong>: Sorry, I must take this. See you later.</p>
+<p><strong>verona</strong>: I doubt it.</p>
+<p><strong>c</strong>: HEV pushes “answer” and picks up the new
+call.</p>
+<p><strong>25a 25a</strong>: Yeah.</p>
+<p><strong>hev</strong>: Doc! Shit, it’s about time.</p>
+<p><strong>ext las vegas airport, simultaneous</strong>: 25 25</p>
+<p><strong>doc miles</strong>: Sorry baby, I just got the message.</p>
+<p><strong>25a 25a</strong>: OK, forget it, listen: I’m dying. I’ve been
+poisoned with some kind of Chinese synthetic shit.</p>
+<p><strong>oc miles</strong>: Woah!</p>
+<p><strong>chev</strong>: You’ve got to do something for me, it feels so
+crazy, like it’s in my blood …</p>
+<p><strong>doc miles</strong>: Alright, slow down. You say you’ve been
+poisoned. Can you describe the symptoms?</p>
+<p><strong>chev</strong>: It’s like… it’s like… like I’m slowing down…
+like I’m caught in a tar pit…</p>
+<p><strong>doc miles</strong>: Blurred vision?</p>
+<p><strong>chev</strong>: Yeah.</p>
+<p><strong>doc miles</strong>: Dizziness?</p>
+<p><strong>s</strong>: ure.</p>
+<p><strong>doc miles</strong>: Pain in your chest?</p>
+<p><strong>chev</strong>: Not really. Actually I’m feeling pretty good
+right now.</p>
+<p><strong>doc miles</strong>: What are you doing?</p>
+<p><strong>int. fox hills mall, continuous</strong>: 26 26</p>
+<p><strong>chev</strong>: Driving through a mall with five cops chasing
+me.</p>
+<p><strong>doc miles</strong>: The flow of adrenaline is keeping you
+alive.</p>
+<p><strong>chev</strong>: I’m having a little trouble hearing you,
+Doc.</p>
+<p><strong>doc miles</strong>: Listen, Chev - you have to keep
+moving.</p>
+<p><strong>chev</strong>: Explain.</p>
+<p><strong>doc miles</strong>: If I’m right, they gave you the Beijing
+Cocktail… very nasty … works on your adrenal gland, blocking your
+receptors. The only way to slow it down is to keep the flow of
+adrenaline constant.</p>
+<p><strong>26a 26a</strong>: e hops out with cell phone to his ear and
+takes a ride to the second floor, RIDING THE SMASHED CAR UP THE
+ESCALATOR.</p>
+<p><strong>doc miles</strong>: Meaning: if you stop, you die.</p>
+<p><strong>chev</strong>: What’s that?</p>
+<p><strong>doc miles</strong>: If you stop, you die.</p>
+<p><strong>int. fox hills mall - day</strong>: 28 28</p>
+<p><strong>chev</strong>: That’s what I’m trying to do… just keep
+moving… keep the blood pumping… every time I slow down it’s like my
+veins start to rust…</p>
+<p><strong>doc miles</strong>: Have you taken anything?</p>
+<p><strong>chev</strong>: A couple grams of coke.</p>
+<p><strong>doc miles</strong>: Oh boy. Well, that’s a start. Look, I’ll
+be back in LA in an hour. I’ll call you as soon as I land. Keep yourself
+pumped up. Don’t stop, don’t quit, I’ll be there.</p>
+<p><strong>c</strong>: HEV gives the cops the slip and heads into a
+…</p>
+<p><strong>int clothing store, continuous</strong>: 7 27</p>
+<p><strong>chev</strong>: Yo! Right here!</p>
+<p><strong>chev</strong>: Go.</p>
+<p><strong>cabbie</strong>: Where we go?</p>
+<p><strong>chev</strong>: Straight. Now.</p>
+<p><strong>chev</strong>: Make a right.</p>
+<p><strong>30 t 30</strong>: he CABBIE pulls a CALIFORNIA ROLLER to the
+right - the TIRES</p>
+<p><strong>30a 3</strong>: opposite way.</p>
+<p><strong>29a 2</strong>: down.</p>
+<p><strong>chev</strong>: ey, crank the music.</p>
+<p><strong>chev</strong>: No, CRANK IT.</p>
+<p><strong>chev</strong>: Pull over. Come on, right here. Thank you.</p>
+<p><strong>chev</strong>: OK, I’ll be back in one minute. Don’t go
+anywhere.</p>
+<p><strong>cabbie</strong>: OK, cowboy.</p>
+<p><strong>ext 7-11 street, seconds later</strong>: 31 31</p>
+<p><strong>int 7-11 convenience store, continuous</strong>: 32 32</p>
+<p><strong>chev</strong>: You move, you die …</p>
+<p><strong>oman</strong>: Hey, this is Eve …</p>
+<p><strong>int cab, seconds later</strong>: 33 33</p>
+<p><strong>cabbie</strong>: Where you want to go, man?</p>
+<p><strong>hev</strong>: Beverly Hills.</p>
+<p><strong>ext rooftop of carlito’s building, minutes later</strong>: 34
+34</p>
+<p><strong>i</strong>: t’s CHEV, fully dressed. He meets CARLITO face to
+face underwater and points up with his index finger.</p>
+<p><strong>carlito</strong>: Chevy.</p>
+<p><strong>chev</strong>: Hey boss.</p>
+<p><strong>carlito</strong>: I’m surprised to see you.</p>
+<p><strong>chev</strong>: Well, something urgent has come up.</p>
+<p><strong>carlito</strong>: Ha! So I’ve heard.</p>
+<p><strong>chev</strong>: Then you know what happened?</p>
+<p><strong>carlito</strong>: Word travels fast. You amaze me, my
+friend.</p>
+<p><strong>chev</strong>: What can I say. Look, Carlito, I need your
+help. I don’t have much time.</p>
+<p><strong>arlito</strong>: No, not much.</p>
+<p><strong>chev</strong>: We’ve got to find an antidote or
+something.</p>
+<p><strong>chev</strong>: What’s the matter?</p>
+<p><strong>carlito</strong>: The shit they gave you … it’s the Chinese
+shit. There is no antidote. I wish there was something I could do.</p>
+<p><strong>chev</strong>: What, so that’s it?</p>
+<p><strong>carlito</strong>: Honestly, you should be dead already. It’s
+a miracle.</p>
+<p><strong>chev</strong>: A miracle.</p>
+<p><strong>carlito</strong>: We give that shit to horses …</p>
+<p><strong>hev</strong>: I can’t believe it.</p>
+<p><strong>carlito</strong>: C I’m sorry.</p>
+<p><strong>chev</strong>: Well you don’t have to be so damn cool about
+it.</p>
+<p><strong>carlito</strong>: What do you expect me to do?</p>
+<p><strong>chev</strong>: Tell me you’re going to find that punk Verona
+and his whole fuckin’ crew and feed `em to a cage of wolverines.</p>
+<p><strong>chev</strong>: What is this? Are you boys now or
+something?</p>
+<p><strong>carlito</strong>: Verona? That’s just a small time punk. But…
+that’s not to say there isn’t an opportunity here.</p>
+<p><strong>chev</strong>: Opportunity.</p>
+<p><strong>carlito</strong>: Everyone knows the love I have for you,
+Chev. Maybe this can even the score for the Don Kim hit, which was
+perhaps ill- advised.</p>
+<p><strong>chev</strong>: Ill advised?</p>
+<p><strong>carlito</strong>: The heat from Hong Kong has been more than
+we anticipated.</p>
+<p><strong>chev</strong>: Oh. That’s outstanding, Carlito. I’m glad to
+know that my death can be of some use to you.</p>
+<p><strong>carlito</strong>: Don’t be difficult.</p>
+<p><strong>chev</strong>: Am I being difficult? Is this what you call
+difficult? I don’t know if you noticed, but I’m having a DIFFICULT</p>
+<p><strong>carlito</strong>: re you disrespecting me, Chev? Is that what
+you’re doing?</p>
+<p><strong>chev</strong>: orget it, I’m out of here.</p>
+<p><strong>ext street, in front of carlito’s building, moments
+later</strong>: 35 35</p>
+<p><strong>c</strong>: door.</p>
+<p><strong>cabbie</strong>: You’re not getting into my cab wet.</p>
+<p><strong>chev</strong>: I just gave you 200 dollars to wait for 3
+minutes.</p>
+<p><strong>cabbie</strong>: You are not getting into my car no way.</p>
+<p><strong>t</strong>: he whole restaurant, OLD LADIES included, dogpile
+the poor CABBIE, wildly protesting in a thick accent.</p>
+<p><strong>cabbie</strong>: I love America! I love Bush!</p>
+<p><strong>int cab, moments later</strong>: 36 36</p>
+<p><strong>chev</strong>: Yeah.</p>
+<p><strong>36a 36a</strong>: My flight’s delayed.</p>
+<p><strong>chev</strong>: Shit.</p>
+<p><strong>doc miles</strong>: Relax. I mean don’t relax. Listen to me.
+The shit they gave you is cutting off your adrenaline.</p>
+<p><strong>oc miles</strong>: xcitement, fear, danger … it causes your
+body to manufacture a chemical called ephedrine … it binds with
+receptors in your blood to keep you alive … what they’ve done is
+introduce an inhibitor into your system … it blocks the receptors so
+your body’s ephedrine can’t bind … and that’s what’s killing you.</p>
+<p><strong>int las vegas international airport, same time</strong>: 38
+38</p>
+<p><strong>doc miles</strong>: Your only shot is to massively increase
+the level of ephedrine in your body … to force out the inhibitors …</p>
+<p><strong>chev</strong>: In English, doc. Please.</p>
+<p><strong>doc miles</strong>: You’ve got to get to an emergency room
+and get yourself some epinephrine … it’s artificial adrenaline … it
+comes in 10 milligram syringes … the shit’s potent so don’t overdo it …
+probably a fifth of an injection will do.</p>
+<p><strong>oc miles</strong>: Did you get all of that Chev?</p>
+<p><strong>chev</strong>: Epi … something …</p>
+<p><strong>doc miles</strong>: nephrin. Epi-nephrin.</p>
+<p><strong>chev</strong>: OK, OK. I gotta go.</p>
+<p><strong>doc miles</strong>: I’ll call you -</p>
+<p><strong>chev</strong>: Yeah.</p>
+<p><strong>kaylo</strong>: Chev!</p>
+<p><strong>36b 36b</strong>: Yeah.</p>
+<p><strong>kaylo</strong>: Chev?</p>
+<p><strong>chev</strong>: Yeah, what is it?</p>
+<p><strong>kaylo</strong>: Hello?</p>
+<p><strong>kaylo</strong>: Chev?</p>
+<p><strong>chev</strong>: Uh huh.</p>
+<p><strong>kaylo</strong>: Chev! I just saw Verona’s brother going into
+Charlie O’s.</p>
+<p><strong>c</strong>: downtown L.A.</p>
+<p><strong>hev</strong>: Interesting. Downtown Charlie O’s?</p>
+<p><strong>kaylo</strong>: Yeah. I was just down here getting a taco. He
+went right in, like, 2 minutes ago.</p>
+<p><strong>chev</strong>: Where are you now?</p>
+<p><strong>kaylo</strong>: I’m across the street, getting a taco. Where
+are you?</p>
+<p><strong>chev</strong>: I’m there. Meet me on 3rd and Flower.</p>
+<p><strong>ext. taco stand, day</strong>: 3 43</p>
+<p><strong>ext. city street - day</strong>: 45 45</p>
+<p><strong>chev</strong>: He’s in there now?</p>
+<p><strong>chev</strong>: Did anyone go in with him?</p>
+<p><strong>a</strong>: lright, wait here.</p>
+<p><strong>int charlie o’s, same time</strong>: 46 46</p>
+<p><strong>waitress</strong>: What was that?</p>
+<p><strong>alex</strong>: I just saw a ghost.</p>
+<p><strong>int charlie o’s kitchen, same time</strong>: 47 47</p>
+<p><strong>a</strong>: LEX continues through the kitchen with a distinct
+lack of caution - everyone’s been afraid of the big man all his life -
+drawing a gun from inside his coat as he goes.</p>
+<p><strong>ext alley, same time</strong>: 48 48</p>
+<p><strong>chev</strong>: How you like that one, tough guy? How freaking
+awesome was that?</p>
+<p><strong>chev</strong>: You feel like talking to me? Where’s your
+brother?</p>
+<p><strong>alex</strong>: Doing your mother like an Iraqi prisoner, you
+bitch.</p>
+<p><strong>chev</strong>: Nice … wonder how many steaks I could get out
+of you …</p>
+<p><strong>a</strong>: LEX rolls onto his knees, and with a burst of
+energy throws himself at CHEV. HE SMASHES CHEV INTO THE ALLEY WALL and
+lands on him with his full weight.</p>
+<p><strong>chev</strong>: Jesus … nothing’s easy …</p>
+<p><strong>chev</strong>: You want to hold hands?</p>
+<p><strong>verona</strong>: Talk to me, bro.</p>
+<p><strong>chev</strong>: Hey Ricky, whadya think about sucking me off,
+ya in the mood? Maybe let me lick your ass or sumtink?</p>
+<p><strong>int verona’s crib, same time</strong>: 49 49</p>
+<p><strong>erona</strong>: Who is this? Chelios? IS THIS FUCKING</p>
+<p><strong>chev</strong>: That’s right, bro. You wanna guess how I got
+your brother’s cell phone?</p>
+<p><strong>chev</strong>: I can tell you have it all figured out. Looks
+like you should’ve cut me up when you had the chance.</p>
+<p><strong>ext alley, same time</strong>: 50 50</p>
+<p><strong>chev</strong>: What’s that? I can’t hear you … experiencing
+some 20/20 hindsight?</p>
+<p><strong>verona</strong>: You’re supposed to be dead!!!</p>
+<p><strong>hev</strong>: You know, man, I kind of like that shit you put
+in me. Think you can get me some more?</p>
+<p><strong>verona</strong>: struggling to find a heinous</p>
+<p><strong>chev</strong>: I know, I know … hey, what’s this?</p>
+<p><strong>chev</strong>: A necklace? You guys really are faggots aren’t
+you?</p>
+<p><strong>verona</strong>: You motherfucker, my grandfather gave that
+medallion to my father, and then to - .. fuck you, man, shove that thing
+up your ass.</p>
+<p><strong>chev</strong>: No thanks, but you know I believe I’ll hang
+onto it… looks like you’ll have to come find me after all. Fucked up
+that you killed your own brother.</p>
+<p><strong>verona</strong>: You -</p>
+<p><strong>chev</strong>: Out.</p>
+<p><strong>chev</strong>: What was that… epi… shit… 10 milligrams…</p>
+<p><strong>h</strong>: e shakes his head to clear it.</p>
+<p><strong>kaylo</strong>: What?</p>
+<p><strong>chev</strong>: Huh? Oh. I’m taking off.</p>
+<p><strong>chev</strong>: I’d get out of here if I were you.</p>
+<p><strong>ext la county hospital, afternoon</strong>: 51 51</p>
+<p><strong>int la county hospital, same time</strong>: 52 52</p>
+<p><strong>int hospital pharmacy, moments later</strong>: 53 53</p>
+<p><strong>old man</strong>: Asshole.</p>
+<p><strong>chev</strong>: I’m looking for something … starts with</p>
+<p><strong>pharmacist</strong>: England?</p>
+<p><strong>chev</strong>: That’s funny. No, I’m talking about some kind
+of artificial adrenaline … some shit … you know …</p>
+<p><strong>harmacist</strong>: Artificial adrenaline.</p>
+<p><strong>chev</strong>: I have heart problems.</p>
+<p><strong>pharmacist</strong>: Epinephrine?</p>
+<p><strong>chev</strong>: Yes! Yes … that’s it … you have it?</p>
+<p><strong>harmacist</strong>: I can’t give you epinephrine.</p>
+<p><strong>chev</strong>: Why?</p>
+<p><strong>pharmacist</strong>: Just a minute.</p>
+<p><strong>chev</strong>: Come on, what is that…</p>
+<p><strong>eenager</strong>: Nasal spray, dude.</p>
+<p><strong>chev</strong>: What?</p>
+<p><strong>teenager</strong>: Nasal spray.</p>
+<p><strong>teenager</strong>: It’s got epinephrine in it. Get you
+tweaked, man.</p>
+<p><strong>int la county hospital, moments later</strong>: 54 54</p>
+<p><strong>int la county hospital, moments later</strong>: 56 56</p>
+<p><strong>cop</strong>: Hey!</p>
+<p><strong>t</strong>: he COPS turn the corner. CHEV is still trying to
+play it off.</p>
+<p><strong>cop</strong>: Hey. You.</p>
+<p><strong>int stairwell, moments later</strong>: 57 57</p>
+<p><strong>int emergency room, moments later</strong>: 58 58</p>
+<p><strong>b</strong>: ehind the gurney a RESIDENT pushes a CRASH CART
+along with them … the crash cart houses the DEFIBRILLATOR and various
+supplies …</p>
+<p><strong>hev</strong>: I know you motherfuckers have epinephrine!</p>
+<p><strong>cop</strong>: Hold it right there, bro!</p>
+<p><strong>chev</strong>: You’ve got epinephrine on this cart! I want
+that shit!</p>
+<p><strong>tech 1</strong>: He’s dropping! Stand by to defibrillate!</p>
+<p><strong>fat man</strong>: My cart…</p>
+<p><strong>chev</strong>: What?</p>
+<p><strong>fat man</strong>: Asshole…!</p>
+<p><strong>chev</strong>: Yeah, yeah.</p>
+<p><strong>tech 2</strong>: hat is this? What the hell do you think
+you’re doing? THIS IS A HOSPITAL!</p>
+<p><strong>hev</strong>: You. Get me some … I need …</p>
+<p><strong>resident</strong>: You wanted … epinephrine, is that
+right?</p>
+<p><strong>chev</strong>: Give me that.</p>
+<p><strong>at man</strong>: … asshole…</p>
+<p><strong>chev</strong>: Not going to tell you again.</p>
+<p><strong>chev</strong>: Now juice me.</p>
+<p><strong>resident</strong>: You … but … I …</p>
+<p><strong>chev</strong>: I haven’t got all day, just do it, will
+you?</p>
+<p><strong>int elevator, going down, moments later</strong>: 59 59</p>
+<p><strong>hev</strong>: OK … needles, hate needles …</p>
+<p><strong>chev</strong>: How much of this stuff did he say to take?</p>
+<p><strong>chev</strong>: Woah. Woah. Woah.</p>
+<p><strong>int hospital lobby, the next moment</strong>: 60 60</p>
+<p><strong>ext city streets - moments later</strong>: 62 62</p>
+<p><strong>montage: ext city streets - day</strong>: 63 63</p>
+<p><strong>int. airplane - day</strong>: 64 64</p>
+<p><strong>doc miles</strong>: Chevy!</p>
+<p><strong>chev</strong>: Yep.</p>
+<p><strong>doc miles</strong>: I’m in the air, man. Did you get the
+stuff I told you?</p>
+<p><strong>chev</strong>: Got it.</p>
+<p><strong>doc miles</strong>: You took it?</p>
+<p><strong>hev</strong>: Took it.</p>
+<p><strong>doc miles</strong>: You shot the whole thing, didn’t you?</p>
+<p><strong>chev</strong>: Yep.</p>
+<p><strong>doc miles</strong>: Oh boy. I said a fifth of a syringe, you
+idiot. Now you’re dead for sure.</p>
+<p><strong>chev</strong>: Right.</p>
+<p><strong>doc miles</strong>: Chest is on fire.</p>
+<p><strong>chev</strong>: Check.</p>
+<p><strong>doc miles</strong>: But you’re cold.</p>
+<p><strong>chev</strong>: Check.</p>
+<p><strong>doc miles</strong>: You got a steel hard on.</p>
+<p><strong>chev</strong>: Let me check.</p>
+<p><strong>chev</strong>: Check.</p>
+<p><strong>doc miles</strong>: That’s the stimulation of the blood
+vessels … your urinary sphincter is tight as a knot … couldn’t pee to
+save your life …</p>
+<p><strong>chev</strong>: Urinary sphincter … check …</p>
+<p><strong>doc miles</strong>: Maybe you can get a hold of some vicadin
+… you still at the hospital?</p>
+<p><strong>chev</strong>: Negative.</p>
+<p><strong>doc miles</strong>: Maybe some weed … I don’t know …</p>
+<p><strong>chev</strong>: Check.</p>
+<p><strong>doc miles</strong>: Well, that shit should be out of your
+system in a half hour or so, if you live that long … this air phone is
+costing me a fortune … look, I’ll be in LA in twenty minutes. I’ll call
+you when I hit the ground.</p>
+<p><strong>chev</strong>: Copy.</p>
+<p><strong>doc miles</strong>: You’re a good kid, Chev. Nice knowing
+you.</p>
+<p><strong>chev</strong>: Copy. Out.</p>
+<p><strong>ext store window, day</strong>: 65 65</p>
+<p><strong>anchor</strong>: Police have declined to release the name of
+the West Hollywood man they say is still at large on a citywide rampage
+that has left one man dead, dozens injured and hundreds of thousands of
+dollars of property damage in its smoking, bloody wake.</p>
+<p><strong>a helicopter view of chev driving his car into fox
+hills</strong>: 66 66</p>
+<p><strong>nchor</strong>: However, Eyewitness News has learned that the
+suspect is a professional killer with ties to organized crime and an
+extensive police record. He is considered armed and highly
+dangerous.</p>
+<p><strong>anchor</strong>: We want to get you back to our regularly
+scheduled programming, but keep it tuned right here to ABC for
+continuing coverage of this bizarre story as it unfolds.</p>
+<p><strong>announcer</strong>: We now return you to “Dr. Phil” …</p>
+<p><strong>h</strong>: e looks around and spots a COP on a motorcycle,
+waiting at a stoplight.</p>
+<p><strong>ext. street in front of tv store</strong>: 67 67</p>
+<p><strong>chev</strong>: You want it? You want this?</p>
+<p><strong>cop</strong>: You son of a bitch!</p>
+<p><strong>ext road, montage, 30 seconds later</strong>: 68 ” 68</p>
+<p><strong>end: “everybody’s talking”</strong>: 6</p>
+<p><strong>ext restaurant, moments later</strong>: 9 69</p>
+<p><strong>chev</strong>: Yeah.</p>
+<p><strong>eve</strong>: Hey. Did you try to call?</p>
+<p><strong>int eve’s apartment, same time</strong>: 70 70</p>
+<p><strong>chev</strong>: You’ve been home all day?</p>
+<p><strong>eve</strong>: I was sleeping in.</p>
+<p><strong>chev</strong>: You were sleeping in, that’s great, Eve …
+super great … you all rested now?</p>
+<p><strong>ve</strong>: Yep.</p>
+<p><strong>chev</strong>: Well, I’m glad to hear that. Listen, I’ve been
+fatally poisoned, there’s probably a psychopath heading over there to
+torture and kill you as we speak, but don’t bother getting out of bed,
+I’ll be there in a flash … Maybe you could fry me up a waffle or
+something, kay?</p>
+<p><strong>ve</strong>: Sure, come on over, I’ll be here.</p>
+<p><strong>chev</strong>: Right, you’ll be there, OK.</p>
+<p><strong>int. verona’s crib - day</strong>: 71 71</p>
+<p><strong>cu</strong>: VERONA stares straight down at the CAMERA.</p>
+<p><strong>reverse</strong>: VERONA’S POV - ALEX’S severed hand, frozen
+stiff in a trigger-pulling position.</p>
+<p><strong>verona</strong>: Right, so… let’s go get the bitch.</p>
+<p><strong>int eve’s apartment, 4 minutes later</strong>: 72 72</p>
+<p><strong>ve</strong>: I hate you …</p>
+<p><strong>eve</strong>: Just a minute.</p>
+<p><strong>eve</strong>: Alright, alright, Jesus …</p>
+<p><strong>eve</strong>: … calm down, what the hell …</p>
+<p><strong>eve</strong>: Oh. My. God.</p>
+<p><strong>chev</strong>: Hey doll.</p>
+<p><strong>eve</strong>: Is this your new look or something?</p>
+<p><strong>chev</strong>: That’s right. You into it?</p>
+<p><strong>eve</strong>: It’s … completely appalling. Very you,
+Chev.</p>
+<p><strong>chev</strong>: Thank you.</p>
+<p><strong>eve</strong>: Are you looking for my other boyfriend?</p>
+<p><strong>chev</strong>: You haven’t turned on the TV today, right?</p>
+<p><strong>eve</strong>: No. Why?</p>
+<p><strong>chev</strong>: Didn’t think so. Listen, we’ve got to get out
+of here.</p>
+<p><strong>eve</strong>: What are you talking about? Don’t be such a
+freak.</p>
+<p><strong>eve</strong>: Actually, I’m glad you’re here. Can you change
+the clock on the microwave?</p>
+<p><strong>chev</strong>: What?</p>
+<p><strong>eve</strong>: I never changed it back.</p>
+<p><strong>chev</strong>: The microwave.</p>
+<p><strong>eve</strong>: Yeah. I never changed it back. You know,
+daylight savings time.</p>
+<p><strong>hev</strong>: I bought you some flowers, but they got fucked
+up on the way over here.</p>
+<p><strong>eve</strong>: That’s sweet. Are you OK? You look like you’re
+on drugs or something.</p>
+<p><strong>chev</strong>: You love me, right?</p>
+<p><strong>eve</strong>: Yes.</p>
+<p><strong>chev</strong>: Then I need you to do something for me.</p>
+<p><strong>eve</strong>: What is it? What’s wrong?</p>
+<p><strong>chev</strong>: I need you to put some clothes on and come
+with me right now.</p>
+<p><strong>eve</strong>: But … I …</p>
+<p><strong>chev</strong>: I’ll change the clock on the microwave.</p>
+<p><strong>extreme cu</strong>: in ULTRA SLO-MOTION the digital readout
+on the clock switches from 11 to NOON with a sound like an 18- wheeler
+being dragged on it’s side through a cathedral.</p>
+<p><strong>hev</strong>: That shit’s wearing off …</p>
+<p><strong>eve</strong>: Oh darn! I forgot, the waffle iron’s on if you
+want to make one.</p>
+<p><strong>chev</strong>: Great, great …</p>
+<p><strong>ound</strong>: a stomach churning SEAR AND SIZZLE.</p>
+<p><strong>eve</strong>: You’re so stressed out, do you want some
+pot?</p>
+<p><strong>chev</strong>: Yes. No! … thanks …</p>
+<p><strong>eve</strong>: What’s the matter?</p>
+<p><strong>chev</strong>: Nothing … burned my hand …</p>
+<p><strong>ve</strong>: Oh my God, are you OK? Let me see…</p>
+<p><strong>chev</strong>: It’s nothing… don’t worry about it… let’s get
+out of here …</p>
+<p><strong>eve</strong>: Come on, let me see …</p>
+<p><strong>eve</strong>: That was just totally uncalled for.</p>
+<p><strong>chev</strong>: I’m sorry … look, can we just …</p>
+<p><strong>eve</strong>: Fine.</p>
+<p><strong>chev</strong>: Shit!</p>
+<p><strong>int. hallway, eve’s building - day</strong>: 74 74</p>
+<p><strong>chev</strong>: I’m parked out back.</p>
+<p><strong>eve</strong>: Oh darn… the thing.</p>
+<p><strong>chev</strong>: The thing. What thing.</p>
+<p><strong>eve</strong>: The waffle thing. I forgot to turn it off.</p>
+<p><strong>ext. front porch, eve’s building - day</strong>: 75 75</p>
+<p><strong>int. hallway, eve’s building - day</strong>: 6 76</p>
+<p><strong>ve</strong>: Alright, alright…!</p>
+<p><strong>int. eve’s apartment, continuous</strong>: 77 77</p>
+<p><strong>eve</strong>: Hello?</p>
+<p><strong>ext. front porch, eve’s building - day</strong>: 78 78</p>
+<p><strong>ve</strong>: Hello? Hello? Alright, very funny…</p>
+<p><strong>int. hallway, eve’s building - day</strong>: 79 79</p>
+<p><strong>ve</strong>: I hate that…</p>
+<p><strong>chev</strong>: You trying to burn down the building?</p>
+<p><strong>chev</strong>: Whoa whoa whoa…</p>
+<p><strong>ext. rear exit, eve’s building - day</strong>: 80 80</p>
+<p><strong>hev</strong>: Aww, damn it, I’m sorry baby…</p>
+<p><strong>eve</strong>: Nice one.</p>
+<p><strong>ve</strong>: I swear to God, Chev, I don’t know what you’re
+on these days but it is not working for you…</p>
+<p><strong>int. senior citizen’s apartment - continuous</strong>: 81 81
+8</p>
+<p><strong>eve</strong>: You know, I could use a little help here.</p>
+<p><strong>chev</strong>: Is this yours?</p>
+<p><strong>eve</strong>: Where’s your car?</p>
+<p><strong>chev</strong>: My car. Actually… I took a cab.</p>
+<p><strong>ext. down the block - day</strong>: 83 83</p>
+<p><strong>ext l.a. chinatown, 8 minutes later</strong>: 4 84</p>
+<p><strong>montage</strong>: Chinatown is bustling with activity.
+Vendors haggle … workers hustle down the sidewalk with baskets of
+chickens, sides of meat … tourists wander … motorists argue and punch
+their horns … and the lunch hour crowd converges on a hundred eateries
+…</p>
+<p><strong>e</strong>: and jogger.</p>
+<p><strong>ve</strong>: You’re embarrassing.</p>
+<p><strong>chev</strong>: You know, I didn’t have a lot of time to pick
+this out …</p>
+<p><strong>eve</strong>: Hm. So why are we here?</p>
+<p><strong>int noodle house, moments later</strong>: 85 85</p>
+<p><strong>continued: chev</strong>: “This isn’t going to be easy” … as
+they say …</p>
+<p><strong>chev</strong>: Alright, here it is. I told you I was a video
+game programmer. That was a lie. Actually…</p>
+<p><strong>chev</strong>: I kill people. I’m a professional hitman. I
+freelance for a major West Coast crime syndicate.</p>
+<p><strong>chev</strong>: Last night was a job like a hundred others. A
+high dollar hit. Nothing special.</p>
+<p><strong>hev</strong>: And then out of nowhere this insane idea comes
+in through the back of my head like a .45 slug at close range…</p>
+<p><strong>s</strong>: ilence hangs heavy in the room… CHEV holds the
+gun to DON KIM’S head, paralyzed with indecision.</p>
+<p><strong>don kim</strong>: Well? What are you waiting for?</p>
+<p><strong>hev</strong>: Congratulations.</p>
+<p><strong>don kim</strong>: Did I win something?</p>
+<p><strong>chev</strong>: Your life, jackass. A hundred grand wants you
+dead, so sooner or later it’s going to happen. But I’m not doing it.</p>
+<p><strong>don kim</strong>: I see.</p>
+<p><strong>chev</strong>: nstead, you’re going to do something for me.
+You’re going to get out of town. Disappear. I don’t care where you go, I
+don’t care what you do, so long as you’re invisible for 48 hours. That’s
+all I ask.</p>
+<p><strong>don kim</strong>: 48 hours.</p>
+<p><strong>chev</strong>: Or if you prefer, we can do it the other way,
+the way where I go to work and you go meet Buddah.</p>
+<p><strong>chev</strong>: See: I quit. I quit the business. For you.</p>
+<p><strong>eve</strong>: For me?</p>
+<p><strong>chev</strong>: figure I call you that night. I tell</p>
+<p><strong>continued: chev</strong>: We get on a plane together and
+leave all this shit behind. Never come back. Pretty crazy, huh?</p>
+<p><strong>ve</strong>: You are so weird. Are we going on a trip?</p>
+<p><strong>chev</strong>: Yeah, well… I may be going on a trip, but
+you’re not coming with me…</p>
+<p><strong>eve</strong>: I don’t understand.</p>
+<p><strong>ext chinatown, outdoor plaza, moments later</strong>: 86
+86</p>
+<p><strong>chev</strong>: Eve… baby… please!</p>
+<p><strong>eve</strong>: Mob hits, Chev? Chinese poison? Do you know how
+ridiculous you sound? If you’re going to break up with me, at least you
+can tell me the truth.</p>
+<p><strong>chev</strong>: You think it sounds crazy? How do you think I
+feel - I’ve gotta live this shit…</p>
+<p><strong>ve</strong>: Oh my God, Chev… what’s the matter with you?</p>
+<p><strong>chev</strong>: … just need…</p>
+<p><strong>eve</strong>: Chev, you’re scaring me.</p>
+<p><strong>chev</strong>: Wait a minute. Do you trust me?</p>
+<p><strong>eve</strong>: No.</p>
+<p><strong>chev</strong>: Make love to me.</p>
+<p><strong>eve</strong>: What?</p>
+<p><strong>chev</strong>: Come on. I think it’ll help.</p>
+<p><strong>eve</strong>: Help what?</p>
+<p><strong>eve</strong>: Get off! Are you kidding me?</p>
+<p><strong>chev</strong>: Take your clothes off.</p>
+<p><strong>eve</strong>: No!</p>
+<p><strong>chev</strong>: You always say you want to be more
+spontaneous.</p>
+<p><strong>ve</strong>: You’re insane. You’re like some adrenaline
+junkie with no soul.</p>
+<p><strong>chev</strong>: Save me, Eve. Save my life.</p>
+<p><strong>eve</strong>: Stop it!</p>
+<p><strong>eve</strong>: Oh my God, Chev!</p>
+<p><strong>eve</strong>: You filthy animal …</p>
+<p><strong>eve</strong>: Take me right here in front of everyone.</p>
+<p><strong>ve</strong>: That’s it… do it …</p>
+<p><strong>ve</strong>: Come on, put it in me…</p>
+<p><strong>eve</strong>: What are you waiting for?</p>
+<p><strong>eve</strong>: Tell me you’re joking. Now you can’t get it
+up?</p>
+<p><strong>chev</strong>: I’ll fucking get it up!</p>
+<p><strong>eve</strong>: God damn it, Chev …!</p>
+<p><strong>chev</strong>: Shut up!</p>
+<p><strong>hev</strong>: What was that?</p>
+<p><strong>eve</strong>: Oh God… Oh God… yes…</p>
+<p><strong>chev</strong>: Shit!</p>
+<p><strong>ve</strong>: What are you doing?!!</p>
+<p><strong>chev</strong>: Yeah.</p>
+<p><strong>int don kim’s shirt factory, same time</strong>: 87 87</p>
+<p><strong>kaylo</strong>: I’ve got Verona.</p>
+<p><strong>chev</strong>: Kaylo?</p>
+<p><strong>kaylo</strong>: I’ve got Verona, man.</p>
+<p><strong>eve</strong>: What???</p>
+<p><strong>chev</strong>: No shit. Where are you?</p>
+<p><strong>87a 87a</strong>: KAYLO sweats, looks off camera. A hand
+presses the knife closer to his throat.</p>
+<p><strong>kaylo</strong>: Don Kim’s shirt factory. Upstairs.</p>
+<p><strong>86b 86b</strong>: CHEV finishes zipping up.</p>
+<p><strong>eve</strong>: What’s the matter with you?!!</p>
+<p><strong>chev</strong>: Shh. Downtown?</p>
+<p><strong>kaylo</strong>: Yeah.</p>
+<p><strong>chev</strong>: Listen to me. You don’t let that motherfucker
+out of your sight. I’ll be there in ten minutes. You got that?</p>
+<p><strong>kaylo</strong>: OK, Chevy …</p>
+<p><strong>chev</strong>: Out.</p>
+<p><strong>int don kim’s shirt factory, moments later</strong>: 88
+88</p>
+<p><strong>86d 86d</strong>: CHEV turns his attention back to EVE.</p>
+<p><strong>chev</strong>: I have to go. Please understand.</p>
+<p><strong>eve</strong>: No. Chev. I DO NOT UNDERSTAND.</p>
+<p><strong>chev</strong>: hit!</p>
+<p><strong>chev</strong>: I’ll call you!</p>
+<p><strong>haitian cabbie</strong>: Hey.</p>
+<p><strong>haitian cabbie</strong>: Hey man. What’s the matter with you?
+You a crackhead?</p>
+<p><strong>chev</strong>: Right… just step on it, alright?</p>
+<p><strong>haitian cabbie</strong>: Hey, you not gonna die in my cab,
+crackhead.</p>
+<p><strong>haitian cabbie</strong>: I got something for you.</p>
+<p><strong>haitian cabbie</strong>: You drink this Haitian shit,
+crackhead. This right here is some hardcore shit. Made from plant
+shit.</p>
+<p><strong>chev</strong>: Nice.</p>
+<p><strong>haitian cabbie</strong>: What are you laughing at? Look at
+this!</p>
+<p><strong>aitian cabbie</strong>: You see that? That’s what a man looks
+like, crackhead. That’s the power. Now look at you.</p>
+<p><strong>chev</strong>: What the hell.</p>
+<p><strong>chev</strong>: Tastes like ass.</p>
+<p><strong>haitian cabbie</strong>: That’s right, devil. You wait.</p>
+<p><strong>92 c 92</strong>: HEV’S eyes are glazed, staring through the
+window.</p>
+<p><strong>ext cab, time unknown</strong>: 93 93</p>
+<p><strong>wide shot</strong>: the CAB cruises by … a low sound builds
+to a DEAFENING ROAR … following the CAB, a giant RED PACMAN GHOST
+rumbles down the street, animated, two dimensional …</p>
+<p><strong>haitian cabbie</strong>: We’re here.</p>
+<p><strong>chev</strong>: What’d you say was in this stuff?</p>
+<p><strong>haitian cabbie</strong>: I told you: it’s hardcore.</p>
+<p><strong>chev</strong>: Wow.</p>
+<p><strong>aitian cabbie</strong>: Five fifty five.</p>
+<p><strong>chev</strong>: It’s all you, man. Keep it.</p>
+<p><strong>haitian cabbie</strong>: Have a nice day, devil.</p>
+<p><strong>chev</strong>: Right…</p>
+<p><strong>int don kim’s shirt factory, upstairs, same time</strong>: 95
+95</p>
+<p><strong>high angle</strong>: From an upper floor window someone is
+watching CHEV survey the building as the cab pulls away.</p>
+<p><strong>chev</strong>: Wait a minute, wait a minute …</p>
+<p><strong>chev</strong>: This is fucked.</p>
+<p><strong>int don kim’s shirt factory, upstairs, same time</strong>: 97
+97</p>
+<p><strong>hood #1</strong>: Where’s he going?</p>
+<p><strong>ext don kim’s shirt factory, same time</strong>: 98 98</p>
+<p><strong>int don kim’s shirt factory, packing room, same
+time</strong>: 9 99</p>
+<p><strong>int freight elevator, same time</strong>: 100 100</p>
+<p><strong>int don kim’s shirt factory, 4th floor, seconds
+later</strong>: 101 101</p>
+<p><strong>ext fire escape, continuous</strong>: 102 102</p>
+<p><strong>ext roof, seconds later</strong>: 103 103</p>
+<p><strong>hood #2</strong>: How the hell should I know? He went in
+where they load the boxes. Alright, alright …</p>
+<p><strong>h</strong>: e clicks off - and CHEV is on him, snatching up
+the HOOD’S gun, spinning him around and poking it into the soft flesh
+under his chin.</p>
+<p><strong>chev</strong>: Hey, what a coincidence, you like this spot
+too?</p>
+<p><strong>hood #2</strong>: Chevy! Shit!</p>
+<p><strong>hev</strong>: What the fuck is this, you working for the
+Chinese now?</p>
+<p><strong>hood #2</strong>: The Chinese… are you crazy?</p>
+<p><strong>chev</strong>: Yeah I am. Where’s Kaylo?</p>
+<p><strong>hood #2</strong>: Chevy … I’m sorry, man … I didn’t …</p>
+<p><strong>chev</strong>: OK, ding, time’s up …</p>
+<p><strong>hood #2</strong>: You son of a … !</p>
+<p><strong>int don kim’s shirt factory, 5th floor, moments
+later</strong>: 04 104</p>
+<p><strong>a</strong>: half dozen more HOODS are gathered in front of
+the freight</p>
+<p><strong>chev</strong>: Alright, where is that motherfucker?</p>
+<p><strong>ood #3</strong>: Uh … hey, Chev.</p>
+<p><strong>chev</strong>: What the fuck is this?</p>
+<p><strong>ood #1</strong>: Chevy, baby, take it easy.</p>
+<p><strong>hev</strong>: ike this? WHERE’S VERONA?</p>
+<p><strong>hood #1</strong>: Verona got nothing to do with this.</p>
+<p><strong>chev</strong>: What?</p>
+<p><strong>hood #1</strong>: Don Carlos wants you off the street.</p>
+<p><strong>chev</strong>: Carlito?</p>
+<p><strong>hood #1</strong>: You’ve totally lost your shit, dude …
+you’re all over the TV … destroying property, making unauthorized hits …
+you’re causing the organization a great deal of embarrassment.</p>
+<p><strong>chev</strong>: Carlito ordered this?</p>
+<p><strong>hood #1</strong>: Look, forget about Verona. We’ll take care
+of him. The best thing for you to do is to find a nice, dark, quiet
+place and just … die.</p>
+<p><strong>chev</strong>: Just die.</p>
+<p><strong>hood #1</strong>: Yeah. Just … die.</p>
+<p><strong>chev</strong>: Maybe you’re right.</p>
+<p><strong>hood #1</strong>: I mean we all gotta die sometime,
+right?</p>
+<p><strong>chev</strong>: That’s true … we all gotta die …</p>
+<p><strong>chev</strong>: Right … so … let’s all die …</p>
+<p><strong>hood #1</strong>: Eh?</p>
+<p><strong>hood #1</strong>: What the…?</p>
+<p><strong>int don kim’s shirt factory, 4th floor, seconds
+later</strong>: 05 105</p>
+<p><strong>supervisor</strong>: You! Assholes! What you want!</p>
+<p><strong>chev</strong>: Nice.</p>
+<p><strong>ext fire escape, seconds later</strong>: 106 106</p>
+<p><strong>eve</strong>: I had to see if you were telling the truth… oh,
+and you have my purse.</p>
+<p><strong>chev</strong>: Come on! Wait -</p>
+<p><strong>chev</strong>: … OK, now come on.</p>
+<p><strong>eve</strong>: Darn it, I forgot to take my birth control
+pill.</p>
+<p><strong>chev</strong>: here’s the keys?</p>
+<p><strong>e</strong>: VE holds out her hand, where she’s had them all
+along.</p>
+<p><strong>chev</strong>: Cool.</p>
+<p><strong>eve</strong>: My stuff…</p>
+<p><strong>eve</strong>: You weren’t lying.</p>
+<p><strong>chev</strong>: Welcome to my life.</p>
+<p><strong>eve</strong>: No, I mean: that you were going to give it all
+up for me.</p>
+<p><strong>chev</strong>: Oh. Yeah.</p>
+<p><strong>eve</strong>: And the other part?</p>
+<p><strong>chev</strong>: The poison? Yeah, that’s true too.</p>
+<p><strong>eve</strong>: Then… that means…</p>
+<p><strong>chev</strong>: Pretty much.</p>
+<p><strong>eve</strong>: How can we stop it?</p>
+<p><strong>chev</strong>: Adrenaline. It’s the only thing that slows it
+down.</p>
+<p><strong>ve</strong>: So… when we were in Chinatown…?</p>
+<p><strong>chev</strong>: Yeah. Sorry.</p>
+<p><strong>chev</strong>: What are you doing?</p>
+<p><strong>eve</strong>: his will get you going.</p>
+<p><strong>eve</strong>: Come on, let’s finish what you started.</p>
+<p><strong>chev</strong>: Oh boy…</p>
+<p><strong>chev</strong>: Oh yeah, that’s… that’s really working for
+me…</p>
+<p><strong>ve</strong>: You like that?</p>
+<p><strong>chev</strong>: Stay down.</p>
+<p><strong>chev</strong>: That’s it that’s it that’s it… just a
+little…</p>
+<p><strong>chev</strong>: What’s the matter?</p>
+<p><strong>ve</strong>: So you can fall asleep like you always do? I
+don’t think so.</p>
+<p><strong>eve</strong>: Are they… OK?</p>
+<p><strong>chev</strong>: They’re dead.</p>
+<p><strong>eve</strong>: How can you… how can you do that…?</p>
+<p><strong>chev</strong>: I told you, baby… I quit.</p>
+<p><strong>chev</strong>: Wait here.</p>
+<p><strong>chev</strong>: Jesus Christ! Now what…?</p>
+<p><strong>eve</strong>: What’s the matter?</p>
+<p><strong>chev</strong>: Stay.</p>
+<p><strong>int hardware store, seconds later</strong>: 123 123</p>
+<p><strong>stock clerk</strong>: He’s got a gun!</p>
+<p><strong>chev</strong>: I can’t feel my leg.</p>
+<p><strong>h</strong>: ello?</p>
+<p><strong>doc miles</strong>: Chevy! Holy shit, man, I’ve been trying
+to reach you for a half hour.</p>
+<p><strong>chev</strong>: Where are you?</p>
+<p><strong>int chocolate’s apartment, simultaneous</strong>: 124 124</p>
+<p><strong>doc miles</strong>: I’m at my office. Can you get here?</p>
+<p><strong>int hardware store, simultaneous</strong>: 125 125</p>
+<p><strong>chev</strong>: Sure, why not?</p>
+<p><strong>int chocolate’s apartment, 9 minutes later</strong>: 126
+126</p>
+<p><strong>hev</strong>: I owe you again, Doc.</p>
+<p><strong>doc miles</strong>: You’re my best customer.</p>
+<p><strong>chev</strong>: gesturing with his head at the</p>
+<p>****: What is this stuff?</p>
+<p><strong>doc miles</strong>: Synthetic ephedrine, diluted with
+saline.</p>
+<p><strong>chev</strong>: It feels sort of good.</p>
+<p><strong>doc miles</strong>: Oh, I also gave you a little meth. That’s
+the endorphins rushing into to your brain that you’re feeling.</p>
+<p><strong>chev</strong>: So I’m not… better?</p>
+<p><strong>doc miles</strong>: Fuck no. You’re in such shit shape it’s
+stunning. I’ve never seen a heart take this kind of punishment and keep
+ticking. You should be in a fucking medical journal or something.</p>
+<p><strong>chev</strong>: So… what are you going to do?</p>
+<p><strong>doc miles</strong>: The solution I’m giving you is acting as
+a competitive inhibitor… meaning it pushes the poison out of your
+receptors and replaces it with a chemical… it’s a temporary fix…</p>
+<p><strong>chev</strong>: Then what?</p>
+<p><strong>doc miles</strong>: Look, if we put you on life support we
+could maybe string you out for a few days, but at some point you’d
+almost certainly lapse into a coma… and then…</p>
+<p><strong>chev</strong>: Does she know?</p>
+<p><strong>eve</strong>: I hate television.</p>
+<p><strong>doc miles</strong>: f you want, I can load you up with
+something, you’ll go out in a beautiful dream.</p>
+<p><strong>chev</strong>: A dream.</p>
+<p><strong>flash cut</strong>: A RED GHOST, pulsing.</p>
+<p><strong>doc miles</strong>: Can I do that for you, Chev?</p>
+<p><strong>chev</strong>: No… no, that’s not what I want.</p>
+<p><strong>doc miles</strong>: Then … what?</p>
+<p><strong>chev</strong>: One hour.</p>
+<p><strong>chev</strong>: I want one hour.</p>
+<p><strong>int humvee limousine, day</strong>: 127 127</p>
+<p><strong>verona</strong>: Give me a fucking break…</p>
+<p><strong>announcer</strong>: 27 127</p>
+<p><strong>hood</strong>: Maybe we shoulda give him more of that Chinese
+shit.</p>
+<p><strong>verona</strong>: Oh … you think? Jesus …</p>
+<p><strong>verona</strong>: It’s him. Alright, shut up.</p>
+<p><strong>verona</strong>: What’s up, corpse.</p>
+<p><strong>chev</strong>: Hey douchebag, thought you might be interested
+in a little deal.</p>
+<p><strong>erona</strong>: A deal? You’re mental, dude.</p>
+<p><strong>chev</strong>: I want the antidote.</p>
+<p><strong>verona</strong>: Oh, the antidote, huh?</p>
+<p><strong>chev</strong>: That’s right.</p>
+<p><strong>verona</strong>: And what are you prepared to give me.
+Asshole.</p>
+<p><strong>chev</strong>: How about the jewelry I got off your faggot
+brother, you cocksucker?</p>
+<p><strong>verona</strong>: Hmmm.</p>
+<p><strong>chev</strong>: Thinking about it?</p>
+<p><strong>verona</strong>: Alright.</p>
+<p><strong>chev</strong>: You like that deal?</p>
+<p><strong>verona</strong>: Whatever.</p>
+<p><strong>chev</strong>: I’ll be at Downtown Standard in twenty
+minutes. You know the spot?</p>
+<p><strong>verona</strong>: Of course.</p>
+<p><strong>chev</strong>: Don’t be late, or I’ll trade this thing to
+some whore for a hand job …</p>
+<p><strong>verona</strong>: I’ll be there.</p>
+<p><strong>verona</strong>: What the hell are you looking at?</p>
+<p><strong>erona</strong>: Verona. You’re not going to believe the call
+I just got.</p>
+<p><strong>ext los angeles, day</strong>: 129 129</p>
+<p><strong>montage to music</strong>: more of L.A. at 3 f.p.s. - the
+traffic flowing, trains zapping by, commuters commuting, everything at a
+thousand miles an hour.</p>
+<p><strong>chev</strong>: It’s going to be alright, baby.</p>
+<p><strong>ext los angeles, day</strong>: 130 130</p>
+<p><strong>eve</strong>: But… you said…</p>
+<p><strong>chev</strong>: I know. But things have changed. There’s an
+antidote. I can make a deal for it, but I’ve got to go alone.</p>
+<p><strong>ve</strong>: I’m scared.</p>
+<p><strong>chev</strong>: Of course. But you’ll be safe now. And I’ll be
+back.</p>
+<p><strong>eve</strong>: Do you promise?</p>
+<p><strong>chev</strong>: I promise.</p>
+<p><strong>ext standard hotel, downtown los angeles - day</strong>: 131
+131</p>
+<p><strong>int lobby, standard hotel - continuous</strong>: 132 132</p>
+<p><strong>int bathroom, standard hotel - continuous</strong>: 33
+133</p>
+<p><strong>everse</strong>: CHEV adjusts a tiny knob on the device. His
+face is shiny with perspiration.</p>
+<p><strong>c</strong>: spine, taped up with white adhesive.</p>
+<p><strong>int lobby, standard hotel - continuous</strong>: 134 134</p>
+<p><strong>int elevator, standard hotel - continuous</strong>: 135
+135</p>
+<p><strong>chev</strong>: What’s happening, brother?</p>
+<p><strong>karen chelios</strong>: Where did I go wrong?</p>
+<p><strong>chev</strong>: Did you say something?</p>
+<p><strong>karen chelios</strong>: Like talking to the wall…</p>
+<p><strong>hev</strong>: Mom?</p>
+<p><strong>karen chelios</strong>: I’m amazed you remember you have a
+mother.</p>
+<p><strong>karen chelios</strong>: You never call, you never write… I
+haven’t seen you since you ran out at 16…</p>
+<p><strong>chev</strong>: Right, with you popping Valium like Tic Tacs
+and balling some new asshole every two weeks… why wouldn’t I stick
+around for entertainment like that?</p>
+<p><strong>karen chelios</strong>: That’s hurtful.</p>
+<p><strong>chev</strong>: Mom, I got no time for this…</p>
+<p><strong>orlando</strong>: You got no time, period.</p>
+<p><strong>chev</strong>: Orlando?</p>
+<p><strong>rlando</strong>: ou a persistent motherfucker, Chev Chelios,
+I’ll give you that.</p>
+<p><strong>chev</strong>: This is weird.</p>
+<p><strong>orlando</strong>: But you know this has got to stop sometime.
+What do you think you are, Michael Myers? They pop you and you just keep
+gettin up?</p>
+<p><strong>chev</strong>: I’m the Terminator.</p>
+<p><strong>alex</strong>: You was that, maybe. But there’s a new gun in
+town.</p>
+<p><strong>chev</strong>: Don’t tell me you’re talking about your bro,
+Def Lepard.</p>
+<p><strong>alex</strong>: He did you pretty good, didn’t he?</p>
+<p><strong>chev</strong>: Yeah, not so much. I don’t get it - why didn’t
+you guys just cut me up alive when you had the chance?</p>
+<p><strong>alex</strong>: Verona said you was Chev Chelios - A.K.A.
+Death On Two Legs.</p>
+<p><strong>continued: alex</strong>: He said you probably been a
+contract killer since grade school.</p>
+<p><strong>mirror chev</strong>: Bipolar. Sadomasochistic tendencies.
+Adrenaline junkie. Addicted to violence… probably spends every day of
+his life looking for the big thrill, the big rush. Cutting up a guy like
+that while he screams in his own blood and excrement would be like… like
+a GIFT… a warrior’s death… hell, you’d probably get off on it…</p>
+<p><strong>hev</strong>: Did you rehearse this?</p>
+<p><strong>mirror chev</strong>: No, this was the best way for a guy
+like you: a slow, ticking clock… winding down… inevitable…
+non-negotiable… until…</p>
+<p><strong>chev</strong>: Who the hell are you, anyway?</p>
+<p><strong>mirror chev</strong>: Don’t you know?</p>
+<p><strong>chev</strong>: I think I’m starting to figure it out.</p>
+<p><strong>mirror chev</strong>: Yeah, well, better late than never. You
+know you’re going to die up there.</p>
+<p><strong>chev</strong>: Yeah, maybe.</p>
+<p><strong>chev</strong>: But I’m taking you with me.</p>
+<p><strong>reverse, cu</strong>: The JAPANESE BUSINESSMAN has
+TRANSFORMED INTO A GIANT BLUE GHOST, pulsing silently.</p>
+<p><strong>cut to</strong>: wide angle TWO SHOT, CHEV and the flat, two
+dimensional, computer animated GHOST, facing each other at opposite ends
+of the elevator.</p>
+<p><strong>sound</strong>: the CHIME SOUNDS, signalling they’ve reached
+the top floor.</p>
+<p><strong>c</strong>: HEV glances at the lit floor number display, then
+back.</p>
+<p><strong>chev</strong>: Some pills, Doc.</p>
+<p><strong>chev</strong>: Easy …</p>
+<p><strong>goon</strong>: This way.</p>
+<p><strong>int restaurant, standard hotel - continuous</strong>: 136
+136</p>
+<p><strong>int smoking lounge, standard hotel - continuous</strong>: 137
+137</p>
+<p><strong>verona</strong>: What’s up, dead?</p>
+<p><strong>chev</strong>: Looks like everyone’s here.</p>
+<p><strong>carlito</strong>: Chelios… what a fucking mess you are.</p>
+<p><strong>chev</strong>: No shit.</p>
+<p><strong>carlito</strong>: Why don’t you sit down?</p>
+<p><strong>verona</strong>: Wait a minute. Pat him down again. He’s
+carrying something.</p>
+<p><strong>carlito</strong>: Let me see that.</p>
+<p><strong>carlito</strong>: Clever … what is this, an insulin pump?</p>
+<p><strong>chev</strong>: Basically.</p>
+<p><strong>verona</strong>: What the fuck is insulin?</p>
+<p><strong>carlito</strong>: Ephedrine, right?</p>
+<p><strong>carlito</strong>: Very resourceful …</p>
+<p><strong>hev</strong>: Found a new master, you little bitch, is that
+it?</p>
+<p><strong>verona</strong>: I’m nobody’s little bitch.</p>
+<p><strong>chev</strong>: We’ll see what kind of a bitch you are when
+Carlito hires you for half what he used to pay me… and you take it.</p>
+<p><strong>carlito</strong>: That’s enough.</p>
+<p><strong>chev</strong>: You’ll probably throw boss a nice little
+reach-around just to show what a good bitch you are.</p>
+<p><strong>verona</strong>: I’m nobody’s little bitch, you hear me?
+He’ll pay what I tell him to pay…!</p>
+<p><strong>carlito</strong>: I said that’s enough. It’s been a long day.
+But in the end, you must agree, it all works out quite nicely. Don Kim
+gets his bullet, thanks to you…</p>
+<p><strong>arlito</strong>: … and Hong Kong gets a goat to take the
+fall. Please understand, Chev, it’s truly nothing personal.</p>
+<p><strong>verona</strong>: Speak for yourself.</p>
+<p><strong>chev</strong>: Is that what I think it is?</p>
+<p><strong>carlito</strong>: The Chinese shit. Hold him down.</p>
+<p><strong>chev</strong>: Not so fast, motherfucker.</p>
+<p><strong>verona</strong>: Dude’s gone dipsy doodle…</p>
+<p><strong>verona</strong>: Whatever, psycho…</p>
+<p><strong>carlito</strong>: I’m afraid the Houdini act is over,
+Chelios.</p>
+<p><strong>chev</strong>: Booosh!</p>
+<p><strong>verona</strong>: Ourfather whoartinheaven hallowedbethy -</p>
+<p><strong>carlito</strong>: Shut up, Verona.</p>
+<p><strong>don kim</strong>: So this is how it is.</p>
+<p><strong>erona</strong>: What… you… he…</p>
+<p><strong>chev</strong>: Presto.</p>
+<p><strong>carlito</strong>: Get me out of here! NOW!</p>
+<p><strong>pilot</strong>: Yes sir.</p>
+<p><strong>carlito</strong>: I’ll kill you for this, Chelios!</p>
+<p><strong>chev</strong>: Too late!</p>
+<p><strong>carlito</strong>: Get down!</p>
+<p><strong>goon</strong>: Thanks, boss.</p>
+<p><strong>carlito</strong>: Ronnie James Dio…!</p>
+<p><strong>chev</strong>: Oh no you don’t…</p>
+<p><strong>a</strong>: TV REPORTER is sending a live feed amidst the
+pandemonium.</p>
+<p><strong>reporter</strong>: Police have moved to surround the Downtown
+Standard Hotel, where the suspect … the unidentified madman … is
+believed to be holed up and making a desperate last stand …!</p>
+<p><strong>ext. standard hotel, pool area - simultaneous</strong>: 145
+145</p>
+<p><strong>chev</strong>: Present from Kaylo.</p>
+<p><strong>verona</strong>: Now what? Now say shit!</p>
+<p><strong>carlito</strong>: Jesus, man, where the fuck where you?</p>
+<p><strong>verona</strong>: That’s right, motherfucker! FLY!</p>
+<p><strong>on kim</strong>: Do not use a hatchet to remove a fly from
+your friend’s forehead.</p>
+<p><strong>don kim</strong>: Confucius.</p>
+<p><strong>ext the sky above los angeles, seconds later</strong>: 146
+146</p>
+<p><strong>live television broadcast</strong>: An announcer babbles over
+phenomenal live video of CHEV and VERONA struggling in the
+helicopter.</p>
+<p><strong>ext the sky above los angeles, simultaneous</strong>: 148
+148</p>
+<p><strong>verona</strong>: You’re dead, you’re dead, you’re dead!</p>
+<p><strong>c</strong>: HEV swoons; his eyes roll back in his head … he
+starts to go limp, fall backwards …</p>
+<p><strong>chev</strong>: I told you I’d kill you, you son of a
+bitch!</p>
+<p><strong>hev</strong>: There.</p>
+<p><strong>ext the sky above los angeles</strong>: 49 149</p>
+<p><strong>int eve’s apartment, same time</strong>: 150 150</p>
+<p><strong>eve</strong>: … leave a message.</p>
+<p><strong>chev</strong>: Hey doll. Looks like I let you down again. You
+were right about me … funny, you really have time to reflect on things
+when you know you’re going to die … seems like all my life I’ve just
+been going, going, going … I wish I’d taken more time to stop and smell
+the roses, so to speak, but well, I guess it’s too late now… you were
+the greatest, baby.</p>
+<p><strong>ext street, in front of highrise, 1 second later</strong>:
+151 151</p>
+</body>
+</html>

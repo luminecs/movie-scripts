@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>slither</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="slither">slither</h1>
+<p><strong>closeup</strong>: A slender woman’s hand writes on a
+chalkboard, in teacherly cursive.</p>
+<p><strong>starla</strong>: When Darwin said ‘fittest,’ he didn’t
+necessarily mean the strongest or the most intelligent, or any one trait
+– he merely meant those organisms most well-suited to their
+environment.</p>
+<p><strong>starla</strong>: We humans think we’re more fit, more
+evolved, because we’re smarter. But we’re neophytes. We’ve been around
+two million years, give or take. The cockroach has been here for 350
+million. You tell me who’s the more successful species.</p>
+<p><strong>starla</strong>: Will.</p>
+<p><strong>will</strong>: How’s all this go with how the Bible says
+there ain’t no dinosaurs?</p>
+<p><strong>starla</strong>: We’ll tackle that tomorrow… Everyone bring
+your boxing gloves.</p>
+<p><strong>jack</strong>: Get the fuck out of the way, cocksucker!</p>
+<p><strong>mother</strong>: Mornin’, Mayor.</p>
+<p><strong>kylie</strong>: Prolly go find it later, sell it on eBay.</p>
+<p><strong>grant</strong>: Just a tremor, boys.</p>
+<p><strong>trevor</strong>: Did ya’ feel that?!</p>
+<p><strong>trevor</strong>: I always get afraid when that happens,
+‘cause what if the ground cracks open and you fall inside? It’s so hot
+in there you get all burnt to nothin’ like that – Happened to my uncle
+Barry.</p>
+<p><strong>wally</strong>: Who told you that story, Trevor?</p>
+<p><strong>trevor</strong>: My aunt.</p>
+<p><strong>bill</strong>: Your uncle Barry left her for a stripper up in
+Winnsboro.</p>
+<p><strong>shelby</strong>: Chief! We got a ’mergency over at the
+diner!</p>
+<p><strong>waitress</strong>: Back there, Bill!</p>
+<p><strong>waitress</strong>: She slipped in, was eating trash. We seen
+it on TV, how they kill ya’–</p>
+<p><strong>bill</strong>: Right.</p>
+<p><strong>waitress</strong>: So we thought we best call in.</p>
+<p><strong>bill</strong>: Come on now, honey, door’s this way.</p>
+<p><strong>margaret</strong>: It’s open season. Let’s shoot her.</p>
+<p><strong>bill</strong>: She’s just scared, Margaret.</p>
+<p><strong>wally</strong>: Also, Bill likes to take a female through the
+back door any chance he gets.</p>
+<p><strong>bill</strong>: She ain’t a bull, Trevor!</p>
+<p><strong>margaret</strong>: Goddamn bambi-rat!</p>
+<p><strong>bill</strong>: Get back.</p>
+<p><strong>bill</strong>: It’s okay, sweetheart. Nobody’s gonna hurt
+you.</p>
+<p><strong>bill</strong>: That’s right. Just gonna pull this cord out.
+It’s gonna be all right.</p>
+<p><strong>bill</strong>: Hell, she took a phone. Now them forest
+critters are gonna be calling us all hours of the night.</p>
+<p><strong>wally</strong>: Chief of police there? This a squirrel. Bring
+me a bag of peanuts, motherfucker!</p>
+<p><strong>secretary</strong>: ’Night, Mr. Grant.</p>
+<p><strong>grant</strong>: See ya’, Ashley.</p>
+<p><strong>grant</strong>: So I get home today, phone’s ringing. It’s
+Hank Wilcox.</p>
+<p><strong>grant</strong>: Callin’ for you. What the hell? I said,
+‘Hank, that’s a little bit outta line don’t’cha think, a single man
+callin’ someone’s wife?’ At night, nonetheless.</p>
+<p><strong>starla</strong>: He’s teaching environmental science, Grant.
+Probably wants to borrow my lesson plans from last semester.</p>
+<p><strong>grant</strong>: Oh yeah, that’s what he wants to borrow, this
+guy.</p>
+<p><strong>starla</strong>: It’s just a work thing.</p>
+<p><strong>grant</strong>: Work thing hell, Starla. He just wants to get
+in your pussy. Him and most these other ones around here. That’s where
+their minds is at, them sick fucks.</p>
+<p><strong>grant</strong>: I’ll tell you, sugarplum, you’re lucky you
+got me. You’re too damn trusting. Without me to protect you, you’d get
+kilt one of these days.</p>
+<p><strong>grant</strong>: Sugarplum, you coming into bed?</p>
+<p><strong>starla</strong>: Just a second.</p>
+<p><strong>starla</strong>: Grant, no – I’m sorry, I’m just – I’m not in
+the mood.</p>
+<p><strong>grant</strong>: Come on, baby, it’s –</p>
+<p><strong>starla</strong>: I’m sorry. I don’t just have some
+switch.</p>
+<p><strong>grant</strong>: Sure you do.</p>
+<p><strong>grant</strong>: Flip.</p>
+<p><strong>grant</strong>: Flip.</p>
+<p><strong>starla</strong>: That’s disrespectful.</p>
+<p><strong>grant</strong>: When are you in the mood, exactly? Seems to
+me that mood’s as rare as winnin’ the Goddamn lotto.</p>
+<p><strong>starla</strong>: Where are you going?</p>
+<p><strong>grant</strong>: I’m just some big clown to you, ain’t I?</p>
+<p><strong>starla</strong>: That’s not true – Where are you-?</p>
+<p><strong>grant</strong>: Out.</p>
+<p><strong>grant</strong>: Hit me again there, killer.</p>
+<p><strong>barkeep</strong>: Hey, Grant, how’s it you come to have the
+same last name as first?</p>
+<p><strong>grant</strong>: Parents thought it sounded pleasant, I
+s’pose. Joke on me, ain’t it?</p>
+<p><strong>brenda</strong>: Megan Halesy’ little sister.</p>
+<p><strong>grant</strong>: Shit. You’re kidding me.</p>
+<p><strong>brenda</strong>: Nope. Brenda!</p>
+<p><strong>grant</strong>: Hell, you were –</p>
+<p><strong>brenda</strong>: I was! And I’ll tell you somethin’, Grant
+Grant. I’s in love with you.</p>
+<p><strong>brenda</strong>: My sister Megan, she’s a big fat cow. Was
+then, even more so now. I’d be thinking, what’d you see in her ain’t in
+me?</p>
+<p><strong>grant</strong>: Shit, girl, you couldn’t’a been eleven.</p>
+<p><strong>brenda</strong>: Hell, I was game!</p>
+<p><strong>grant</strong>: Who’s the lucky fella?</p>
+<p><strong>brenda</strong>: Fuck lucky. Never marry a damn
+half-Mexican.</p>
+<p><strong>grant</strong>: Already ain’t. Married a gal named –</p>
+<p><strong>brenda</strong>: Starla Covington. Don’t be ignorant.
+Everyone knows that. Fucking prom queen.</p>
+<p><strong>grant</strong>: Yeah.</p>
+<p><strong>brenda</strong>: Where you goin’?</p>
+<p><strong>grant</strong>: Starla, she gets real worried ’bout me I stay
+out too late. Loves me too much, that one.</p>
+<p><strong>grant</strong>: What the…?</p>
+<p><strong>grant</strong>: Hey, anybody ’round here? ’Lo?</p>
+<p><strong>grant</strong>: Ow! Fuck!</p>
+<p><strong>camper</strong>: Over here!</p>
+<p><strong>camper</strong>: Hey, man. You all right?… Dude?… Oh
+shit.</p>
+<p><strong>camper</strong>: I think he’s d –</p>
+<p><strong>grant</strong>: It’s taking… my… brain.</p>
+<p><strong>camper</strong>: Buddy?</p>
+<p><strong>camper</strong>: You all right, man?</p>
+<p><strong>camper</strong>: That might of been a stroke, buddy. You
+better take it easy.</p>
+<p><strong>neighbor</strong>: Hey ya’, Grant.</p>
+<p><strong>neighbor</strong>: What were ya’, night-fishing again? You
+catch anything?</p>
+<p><strong>grant</strong>: I caught a little somethin’, yeah.</p>
+<p><strong>grant</strong>: Hey there, sugarplum.</p>
+<p><strong>starla</strong>: Haven’t heard this for a while.</p>
+<p><strong>starla</strong>: I never danced in a towel before.</p>
+<p><strong>grant</strong>: Wearing white, just like on our… wedding day.
+I remember it.</p>
+<p><strong>grant</strong>: I’m sorry about last night. I get a little
+insecure sometimes, want to hold on too tight. It’s just ’cause you’re
+precious to me, Starla.</p>
+<p><strong>grant</strong>: But I swear to God, baby, I’m turning over a
+new Goddamn leaf. Okay?</p>
+<p><strong>grant</strong>: I love you, sugarplum.</p>
+<p><strong>starla</strong>: Grant, what’s that?</p>
+<p><strong>grant</strong>: Just a little bug bite is all.</p>
+<p><strong>janene</strong>: What are you so smiley about, girl?</p>
+<p><strong>starla</strong>: Oh, nothin’.</p>
+<p><strong>starla</strong>: Just, Grant and I had a nice morning. It’s
+been a while.</p>
+<p><strong>janene</strong>: Oh! You got that fresh-fucked glow, don’t
+you?</p>
+<p><strong>starla</strong>: Janene.</p>
+<p><strong>janene</strong>: You slut.</p>
+<p><strong>starla</strong>: Hush.</p>
+<p><strong>janene</strong>: No shame. You’re a married woman.</p>
+<p><strong>starla</strong>: He was… considerate. Maybe this is the start
+of a real change in Grant.</p>
+<p><strong>grant</strong>: Meat.</p>
+<p><strong>grant</strong>: Meat.</p>
+<p><strong>butcher</strong>: Howdy, Mr. Grant. You goin’ to the Deer
+Cheer this weekend?</p>
+<p><strong>grant</strong>: Sure thing, killer.</p>
+<p><strong>butcher</strong>: What can I do you for?</p>
+<p><strong>grant</strong>: Thinkin’ ‘bout getting me a couple of these
+big ol’ rib eyes.</p>
+<p><strong>butcher</strong>: How many you need?</p>
+<p><strong>grant</strong>: Well… having us a little dinner party… I’d
+say… eight. No, no… fourteen…</p>
+<p><strong>grant</strong>: Hell, what am I holding back for? Why don’t
+you just give me everything you got here?</p>
+<p><strong>butcher</strong>: All the rib eyes?</p>
+<p><strong>grant</strong>: Yep. And while you’re at it, get me a few of
+them chicken wings… some pork loins… and, ooo, what’s this here? Osso
+buco?…</p>
+<p><strong>grant</strong>: Meat.</p>
+<p><strong>grant</strong>: You’re meat.</p>
+<p><strong>grant</strong>: Welcome home.</p>
+<p><strong>starla</strong>: Grant? Why are there – did you put locks on
+the garage?</p>
+<p><strong>starla</strong>: You drilled into the driveway.</p>
+<p><strong>grant</strong>: Yeahhhh. I’m sorry. I just got so excited
+about… your present.</p>
+<p><strong>starla</strong>: My present?</p>
+<p><strong>grant</strong>: You’re my princess, aren’t you?</p>
+<p><strong>starla</strong>: Okay.</p>
+<p><strong>grant</strong>: I got a super-special birthday present for
+you this year. I couldn’t risk you finding it, so I had to put them
+locks on the doors.</p>
+<p><strong>starla</strong>: All right… I have to clean up before
+dinner.</p>
+<p><strong>grant</strong>: You’re meat.</p>
+<p><strong>starla</strong>: What?</p>
+<p><strong>grant</strong>: Oh, nothin’. Nothin’. See you in a sec.</p>
+<p><strong>grant</strong>: Meat.</p>
+<p><strong>starla</strong>: Roscoe’s gone?</p>
+<p><strong>boy</strong>: You haven’t seen him, have you?</p>
+<p><strong>starla</strong>: I’m sure he’ll show up, Tim.</p>
+<p><strong>starla</strong>: Grant, are you almost ready?</p>
+<p><strong>grant</strong>: Yeah, hon, I’ll be right there!</p>
+<p><strong>starla</strong>: What are you doing?</p>
+<p><strong>grant</strong>: You’re pretty.</p>
+<p><strong>grant</strong>: Who’s that?</p>
+<p><strong>starla</strong>: It’s just one of my students, Grant.</p>
+<p><strong>trevor</strong>: What’s she see in that douchebag?</p>
+<p><strong>bill</strong>: That’s the mystery of the ages there, Trev.
+Starla was seventeen when they got engaged. He was, like, in his
+thirties. No one even knew they were goin’ out till she had that ring on
+her finger.</p>
+<p><strong>margaret</strong>: Ain’t no mystery to it. She’s raised in
+them shanties off St. Luc. Dirt-poor.</p>
+<p><strong>trevor</strong>: Gold-digger, huh?</p>
+<p><strong>bill</strong>: Hell, you don’t know that, Margaret.</p>
+<p><strong>jack</strong>: Bill, you’re Chief of police now.</p>
+<p><strong>jack</strong>: Comes with some Goddamn responsibility, like
+keeping your people in line.</p>
+<p><strong>bill</strong>: You’re right, Jack. Margaret, you’re
+fired.</p>
+<p><strong>starla</strong>: Janene!</p>
+<p><strong>janene</strong>: Hey, Grant.</p>
+<p><strong>grant</strong>: Why don’t you two catch up? I’ll go see what
+the boys are doing.</p>
+<p><strong>starla</strong>: He’s been strange the past couple days.</p>
+<p><strong>brenda</strong>: Hey there, handsome.</p>
+<p><strong>brenda</strong>: Must be fate, us meeting again like
+this.</p>
+<p><strong>grant</strong>: Well, you might be right…</p>
+<p><strong>grant</strong>: You’re lookin’ awful pretty.</p>
+<p><strong>brenda</strong>: Shut up.</p>
+<p><strong>grant</strong>: Where’s the old half-Mexican?</p>
+<p><strong>brenda</strong>: Took the kids to his Mom’s for the
+weekend.</p>
+<p><strong>brenda</strong>: Where you takin’ me, you bad boy!</p>
+<p><strong>grant</strong>: Take off your shirt, doll.</p>
+<p><strong>grant</strong>: Guess it’s hard to explain how amazin’ a
+human brain is to someone who that’s all they know.</p>
+<p><strong>brenda</strong>: What?</p>
+<p><strong>grant</strong>: Stuff you can never imagine. Feelings. Big
+thoughts. And love. Yeah. I’m inclined to parlay it into somethin’ more.
+So, go ahead there, beautiful, and take off your shirt.</p>
+<p><strong>grant</strong>: Nice.</p>
+<p><strong>brenda</strong>: Grant!? What – ?!</p>
+<p><strong>brenda</strong>: No, no, we –</p>
+<p><strong>starla</strong>: Hey, Bill!</p>
+<p><strong>bill</strong>: Don’t worry. The lurker ain’t around. I
+checked.</p>
+<p><strong>starla</strong>: That’s not funny.</p>
+<p><strong>bill</strong>: Sorry.</p>
+<p><strong>starla</strong>: Whatcha’ doin’?</p>
+<p><strong>bill</strong>: Tryin’ to get a buzz on. But I’m too buff. Too
+much muscle mass.</p>
+<p><strong>bill</strong>: What you up to?</p>
+<p><strong>starla</strong>: Just checking out the lights.</p>
+<p><strong>bill</strong>: Pretty, ain’t they?</p>
+<p><strong>starla</strong>: I don’t know. I’ve seen them so many times
+before. I guess any spot gets boring after awhile.</p>
+<p><strong>bill</strong>: Well that’s only if you’re in the wrong
+spot.</p>
+<p><strong>bill</strong>: There’s a place over there on the bluffs. When
+the fog is just right, like tonight, the lights of Main look like a
+kaleidoscope.</p>
+<p><strong>starla</strong>: Oh, yeah?</p>
+<p><strong>bill</strong>: Mm hm. But only a few folks know how to get
+there. Wally. Rollo Linkski coulda taken you, but ’course he got hit by
+that train. Me.</p>
+<p><strong>starla</strong>: I’ll get Wally to show me sometime then.</p>
+<p><strong>bill</strong>: Oh, will you now?</p>
+<p><strong>starla grant</strong>: Or Rollo’s ghost. Starla.</p>
+<p><strong>starla</strong>: Grant, where’d you go?</p>
+<p><strong>bill</strong>: Hey, Grant.</p>
+<p><strong>grant</strong>: You ready, sugarplum?</p>
+<p><strong>starla</strong>: Bye.</p>
+<p><strong>wally</strong>: Surprised you’re able to lift a mug after
+carrying that torch for so long.</p>
+<p><strong>bill</strong>: Hey, Wally. Glad you’re here. There was
+something I wanted to tell you…</p>
+<p><strong>wally</strong>: What?</p>
+<p><strong>bill</strong>: Oh yeah. Fuck you, fat ass.</p>
+<p><strong>margaret</strong>: Sir, may I help – ?</p>
+<p><strong>brenda’s husband</strong>: My wife, Brenda. I think something
+has happened to her!</p>
+<p><strong>starla</strong>: Grant?</p>
+<p><strong>starla</strong>: Damn fuse.</p>
+<p><strong>starla</strong>: Grant?</p>
+<p><strong>starla</strong>: Grant, where are y – ?</p>
+<p><strong>starla</strong>: Grant. Oh my God. What happened to your –
+?</p>
+<p><strong>grant</strong>: Heh. It ain’t as bad as it looks, sugarplum.
+Dr. Carl was just here. I had a reaction to a bee sting. He gave me a
+prescription. Said I should be fine, in a couple days.</p>
+<p><strong>grant</strong>: Don’t look at me like that, baby. Please? I’m
+gonna go get my… prescription filled.</p>
+<p><strong>starla</strong>: I’ll get if for you.</p>
+<p><strong>grant</strong>: No! No. Heh. I’ll be right back.</p>
+<p><strong>brenda</strong>: Grant? Grant, I’m hungry. I’m so fuckin’
+hungry I think I’m gonna die.</p>
+<p><strong>grant</strong>: Brought you munchies.</p>
+<p><strong>grant</strong>: Been saving for a rainy day.</p>
+<p><strong>closeup</strong>: Brenda’s face, still mostly in darkness.
+She stares at the meat, simultaneously excited and repulsed.</p>
+<p><strong>brenda</strong>: Grant, I’m sorry if I did something wrong! I
+think I gotta – I think I should go to a hospital!</p>
+<p><strong>wally</strong>: Grant around?</p>
+<p><strong>starla</strong>: No. He went to the pharmacy.</p>
+<p><strong>wally</strong>: Pharmacy?</p>
+<p><strong>starla</strong>: He’s got a… rash.</p>
+<p><strong>bill</strong>: Starla, you know Brenda Gutierrez?</p>
+<p><strong>bill</strong>: Maybe she’s ever called the house, or – ?</p>
+<p><strong>starla</strong>: No. What…?</p>
+<p><strong>bill</strong>: She disappeared Friday night. We got reason to
+believe foul play might be involved.</p>
+<p><strong>wally</strong>: Some kids found her necklace near Tipper
+Creek, as well as what might be her blood on a rock.</p>
+<p><strong>bill</strong>: The problem, Starla, is, the last person
+anyone saw her talking to was Grant.</p>
+<p><strong>bill</strong>: The Deer Cheer. And Wally and me, we also saw
+him that night, with mud all over his slacks.</p>
+<p><strong>bill</strong>: Have him call me right away, okay?</p>
+<p><strong>sherry</strong>: You’ve reached Chief Pardy at the Wheelsy
+Police Department. Please leave a message and your call will be returned
+as soon as possible.</p>
+<p><strong>starla</strong>: Bill, it’s Starla!</p>
+<p><strong>starla</strong>: It’s – I think you better come over right
+away – I think Grant’s sick, he –</p>
+<p><strong>grant</strong>: Why’d you betray me, sugarplum?!</p>
+<p><strong>starla</strong>: Grant, no!</p>
+<p><strong>grant</strong>: I loved you. I loved –</p>
+<p><strong>starla</strong>: Grant, you’re sick!</p>
+<p><strong>grant</strong>: I wanted you by my side, but you – I can’t
+trust you now!</p>
+<p><strong>starla</strong>: Noooo!</p>
+<p><strong>bill</strong>: Starla?!! Starla, are you in there?!</p>
+<p><strong>bill</strong>: Starla?!</p>
+<p><strong>trevor</strong>: Fuck!</p>
+<p><strong>pastor</strong>: Jesus, these past few days have been a
+trying time for us.</p>
+<p><strong>pastor</strong>: We ask you now for the safe return of our
+beloved Brenda.</p>
+<p><strong>pastor</strong>: Our sister. Our daughter. Our mother. Our
+wife.</p>
+<p><strong>pastor</strong>: And we ask that you keep your light alive in
+her heart, wherever she may be. We ask all this in your name, Lord.
+Amen</p>
+<p><strong>bill congregation</strong>: Amen. Amen.</p>
+<p><strong>bill</strong>: Starla.</p>
+<p><strong>bill</strong>: I talked to the CDC. They didn’t have nothin’
+on file consistent with Grant’s… symptoms.</p>
+<p><strong>starla</strong>: How about Brenda?</p>
+<p><strong>bill</strong>: New? No. We’re hoping we find Grant, he’ll
+lead us to her.</p>
+<p><strong>bill</strong>: You all right?</p>
+<p><strong>starla</strong>: Yeah.</p>
+<p><strong>jack</strong>: Bill!</p>
+<p><strong>bill</strong>: Shit.</p>
+<p><strong>jack</strong>: Bill, we need to talk!</p>
+<p><strong>bill</strong>: ‘Mornin’, Jack.</p>
+<p><strong>jack</strong>: Bill, this Brenda’s Randy Flagg’s niece. We
+need to find Grant yesterday! The town council has lit a Roman candle
+and stuck it up my ass!</p>
+<p><strong>bill</strong>: Hell, Jack, your leisure activities ain’t my
+business.</p>
+<p><strong>jack</strong>: Don’t fuck with me, Bill. Your post here as
+Chief is in dire straits you don’t work this shit out.</p>
+<p><strong>bill</strong>: Don’t worry, we’ll find him. Anything new?</p>
+<p><strong>jack</strong>: How are you going to find him?</p>
+<p><strong>bill</strong>: Dude’s a half-squid. Ain’t many places he can
+hide. Sea World, maybe.</p>
+<p><strong>jack</strong>: That young lady heard you say ‘squid.’ She’s
+gonna go out and create a Goddamn hysteria!</p>
+<p><strong>bill</strong>: Sherry, you gonna create a hysteria?</p>
+<p><strong>sherry</strong>: Not today, Bill.</p>
+<p><strong>jack</strong>: Still, quit that talk! You yourself said it
+was dark in there! You don’t know what you saw!</p>
+<p><strong>trevor</strong>: We saw his arm was all bendy.</p>
+<p><strong>jack</strong>: Bastard obviously got lyme disease!</p>
+<p><strong>bill</strong>: What?</p>
+<p><strong>jack</strong>: Touch some deer feces out in the forest. Eat a
+sandwich without washing your hands. Then you got lyme disease.</p>
+<p><strong>bill</strong>: And that makes you look like a squid?</p>
+<p><strong>jack</strong>: I’ll tell you what, no one with lyme disease
+gonna win any damn handsome contests!</p>
+<p><strong>jack</strong>: Well, screw you all for laughin’.</p>
+<p><strong>shelby</strong>: Bill!</p>
+<p><strong>shelby</strong>: Another ranch attack! Up at the
+Castavets’.</p>
+<p><strong>jack</strong>: ‘Ranch a -’? What ‘ranch attacks’?</p>
+<p><strong>pov</strong>: A dead rottweiler is lying on its back in the
+long grass, its gut split open and intestines spilling out, almost
+perfectly symmetrical.</p>
+<p><strong>wally</strong>: It looks like one of them psyche tests. What
+do they call it?</p>
+<p><strong>bill</strong>: Rorschach.</p>
+<p><strong>wally</strong>: What do you see? I see a butterfly.</p>
+<p><strong>bill</strong>: I see we’re fucked. Three ranches in three
+days.</p>
+<p><strong>margaret</strong>: So, I think I got it part-way figured. You
+want to hear it?</p>
+<p><strong>margaret</strong>: So Grant – I mean, we’re saying this is
+Grant, right?</p>
+<p><strong>margaret</strong>: Grant kills a cow right about here. See
+there’s the blood, musta slit its neck.</p>
+<p><strong>margaret</strong>: So he drags the cow backwards here. Only
+he prolly didn’t know ’bout the Castavets had them dogs.</p>
+<p><strong>trevor</strong>: Hey, look!</p>
+<p><strong>trevor</strong>: He knocked this’n’s head clear over
+here!</p>
+<p><strong>wally</strong>: Put that down, numbnuts!</p>
+<p><strong>margaret</strong>: So the dogs attacked, somehow he slew ’em
+all, and he stole off with the cow into the forest.</p>
+<p><strong>bill</strong>: He’s gotta be in the forest. All three ranches
+run alongside it.</p>
+<p><strong>trevor</strong>: Think we should get up a search party, head
+in there?</p>
+<p><strong>wally</strong>: It’s a hundred thousand acres. Be finding a
+needle in a fuckstack.</p>
+<p><strong>bill</strong>: Wally, come on. Trevor and Margaret, get some
+folks together. I think I know where he’s gonna hit next.</p>
+<p><strong>closeup</strong>: A property map of Wheelsy is tacked to a
+bulletin board. Red Magic Marker circles are around various ranch
+properties on the edge of the city, next to an enormous forest. A finger
+points to one of the red circles.</p>
+<p><strong>bill</strong>: So the night after Grant ran off, a calf went
+missing from here, the Raglans’ ranch.</p>
+<p><strong>bill</strong>: Two nights ago, a mare was stolen from this
+property, run by Fitzgibbon, that old rancher with the cleft palate.</p>
+<p><strong>wally</strong>: Looks like a chipmunk.</p>
+<p><strong>bill</strong>: Your momma wasn’t too proud when you came out
+neither, Wally.</p>
+<p><strong>bill</strong>: And then we get here, the Castavets’, where
+last night’s shit-storm took place.</p>
+<p><strong>trevor</strong>: I see. It’s like as if he’s going in a
+pattern. Is that what you’re saying, Bill?</p>
+<p><strong>bill</strong>: And if he sticks to that pattern he’ll be here
+next. Belongs to a family, the Strutemyers’. Now I know y’all are tired
+and you’ve barely seen your families. But we’re gonna have to go there
+tonight, lie low and wait.</p>
+<p><strong>redneck</strong>: Let’s get that son-of-a-bitch, Chief.</p>
+<p><strong>bill</strong>: Just remember, we don’t know what we’re up
+against here. So let’s be careful.</p>
+<p><strong>trevor</strong>: Hey, Bill, we got that grenade we
+confiscated from them jokers wanted to use it fish for trout?</p>
+<p><strong>bill</strong>: Can’t hurt.</p>
+<p><strong>jack</strong>: I didn’t know the Russkies were invading
+there, folks.</p>
+<p><strong>margaret</strong>: You seen this guy, you’d wished they
+was.</p>
+<p><strong>starla</strong>: Bill, I heard what you’re doing. I think I
+should go along.</p>
+<p><strong>bill</strong>: Why? Listen, it doesn’t matter. I gotta
+go.</p>
+<p><strong>starla</strong>: Wait! Dammit, Bill, if that girl’s still out
+there, how will you find her? How, unless you bring Grant in alive? Your
+best chance of doing that is with me. I can talk to him –</p>
+<p><strong>bill</strong>: He tried to kill you, Starla.</p>
+<p><strong>starla</strong>: He did. I know. But I got him angry ’cause I
+wasn’t calm. This time I could –</p>
+<p><strong>starla</strong>: Please, Bill. What happened, it’s my fault,
+I know it.</p>
+<p><strong>bill</strong>: Starla, it ain’t –</p>
+<p><strong>starla</strong>: It is. He’d been acting strange. And the
+physical changes. I should have told someone right away… But I was just
+blind. I wanted to pretend it wasn’t happening… If I don’t do what I can
+to help now, I just couldn’t live with it.</p>
+<p><strong>kylie’s mom</strong>: Kylie! What’d you do to your
+fingers?</p>
+<p><strong>kylie</strong>: Kiri Goshima done ’em. She’s Japanese.</p>
+<p><strong>kylie’s dad</strong>: Looks like Pokemons done ’em to me!</p>
+<p><strong>kylie</strong>: Foreign stuff is classy if you knew
+something.</p>
+<p><strong>kylie’s dad</strong>: Oh. There’s Jack. I want y’all to stay
+inside tonight. All right?</p>
+<p><strong>jack</strong>: This turns out to be a mountain lion we’re
+gonna look like a damn bunch of idiots.</p>
+<p><strong>redneck</strong>: Didn’t know it was date night.</p>
+<p><strong>redneck</strong>: I’ll be expecting you toss my salad at the
+end of all this then, Charlie.</p>
+<p><strong>good ol’ boy</strong>: Shut up.</p>
+<p><strong>bill</strong>: Hey, Starla, remember that time when you were
+a kid and you came knocking on my window in the middle of the night?</p>
+<p><strong>bill</strong>: Starla here’s twelve. Guess I was fourteen. I
+said, ‘Starla, what the hell you doing out there?’ She tells me she’s
+running away to Hollywood to become a big star. She said she knew I was
+in ROTC, and she was gonna need a bodyguard. Invited me along.</p>
+<p><strong>bill</strong>: I said, ‘Starla, if there’s anybody can take
+care of herself, I think it’s you. I’m gonna have to decline.’</p>
+<p><strong>wally</strong>: How far’d you get?</p>
+<p><strong>starla</strong>: About the bus stop. Ranger Rick here called
+my dad.</p>
+<p><strong>wally</strong>: Ha! A cop from the get-go! You
+son-of-a-bitch!</p>
+<p><strong>starla</strong>: You fucked up our fame and fortune, Bill
+Pardy.</p>
+<p><strong>bill</strong>: Yeah, maybe I did.</p>
+<p><strong>starla</strong>: Grant?</p>
+<p><strong>jack</strong>: You said ‘squid’!</p>
+<p><strong>trevor</strong>: It got worse.</p>
+<p><strong>wally</strong>: What we gonna do now, Bill? Cuffs won’t even
+fit on ’im.</p>
+<p><strong>bill</strong>: Starla, where you…?</p>
+<p><strong>starla</strong>: Grant?</p>
+<p><strong>starla</strong>: Grant? It’s okay.</p>
+<p><strong>starla</strong>: You’re just sick is all. But we’ll take you
+to get help right now. I’ll stay by your side, Grant, just like I swore
+I would. For better or worse. Remember?</p>
+<p><strong>starla</strong>: Okay?</p>
+<p><strong>starla</strong>: Okay, Grant? It’s gonna be all right.</p>
+<p><strong>good ol’ boy</strong>: You stop right there, you son of a
+bitch. I don’t care what kinda leprosy you got. We need to find that
+girl. Now you can make this peaceful, or you can make it hard.</p>
+<p><strong>bill</strong>: Fire! Fire!</p>
+<p><strong>wally</strong>: There he is! Over there!</p>
+<p><strong>trevor</strong>: Where’d he go?</p>
+<p><strong>margaret</strong>: We ain’t never gonna find that girl
+now.</p>
+<p><strong>redneck</strong>: I’ll kill that asshole what he did to
+Charlie.</p>
+<p><strong>bill</strong>: Starla, get the hell out of here!</p>
+<p><strong>margaret</strong>: Bill!!</p>
+<p><strong>trevor</strong>: What the hell’s that smell?</p>
+<p><strong>wally</strong>: It’s something dead.</p>
+<p><strong>jack</strong>: It’s coming from in there, ain’t it?</p>
+<p><strong>margaret</strong>: Think he’s inside?</p>
+<p><strong>bill</strong>: Oh…</p>
+<p><strong>older cop</strong>: Oh, shit!</p>
+<p><strong>brenda</strong>: Something’s wrong with me.</p>
+<p><strong>wally</strong>: Uh, yeah.</p>
+<p><strong>bill</strong>: Brenda, um…</p>
+<p><strong>brenda</strong>: I didn’t want no one to be seeing me like
+this.</p>
+<p><strong>brenda</strong>: How are my boys, Bill? Are they all
+right?</p>
+<p><strong>bill</strong>: Boys are fine, Brenda. Uh, what’s – what’s
+happening here, exactly?</p>
+<p><strong>brenda</strong>: I’m so fucking hungry, Bill. I’m so hungry.
+I just never knew anybody could be so hungry.</p>
+<p><strong>brenda</strong>: Would you mind handing me a piece of that
+possum there at your feet? Little bit?</p>
+<p><strong>bill</strong>: I think we best get you to a hospital right
+quick.</p>
+<p><strong>wally</strong>: What the fuck they gonna do with her in a
+hospital, Bill?</p>
+<p><strong>older cop</strong>: Why’s she doing that?!</p>
+<p><strong>redneck</strong>: Her tumors is moving.</p>
+<p><strong>jack</strong>: Bill, get her to stop that shit!</p>
+<p><strong>brenda</strong>: It hurts!</p>
+<p><strong>brenda</strong>: Help me!! Help!!</p>
+<p><strong>starla</strong>: Bill!</p>
+<p><strong>brenda</strong>: Little fuckers are tearing me aparrrr- !</p>
+<p><strong>bill</strong>: He led us here.</p>
+<p><strong>bill</strong>: Margaret, cover your mouth!</p>
+<p><strong>bill</strong>: Don’t let ’em in your mouths!</p>
+<p><strong>trevor</strong>: They wanted us to eat ’em! Why would they
+want that!?</p>
+<p><strong>kylie’s mom</strong>: Kylie! You’re gonna turn into a plum in
+there!</p>
+<p><strong>kylie</strong>: Prune, Mom. Plums turn into prunes.</p>
+<p><strong>kylie’s mom</strong>: I know what turns into what. You got
+school tomorrow. Finish up in there and get to bed.</p>
+<p><strong>kylie’s mom</strong>: Time to turn in, ladies.</p>
+<p><strong>kylie’s sister 1</strong>: Just a couple more pages, Mom?</p>
+<p><strong>kylie’s mom</strong>: Come on now.</p>
+<p><strong>kylie’s mom</strong>: G’night.</p>
+<p><strong>kylie’s sister 1 kylie’s sister 2</strong>: Night, Mom.
+Night.</p>
+<p><strong>kylie’s mom</strong>: Sleep tight. Don’t let the bed bugs
+bite.</p>
+<p><strong>kylie</strong>: Mom!!</p>
+<p><strong>kylie</strong>: Mom!!!</p>
+<p><strong>kylie</strong>: Mom!! Mom!!!</p>
+<p><strong>kylie</strong>: Emily!! Jenna!!</p>
+<p><strong>kylie</strong>: No!! Nooo!!</p>
+<p><strong>bill</strong>: 11-41. We’re gonna need paramedics out here
+right away. We got four men down.</p>
+<p><strong>bill</strong>: Shelby, you there?</p>
+<p><strong>bill</strong>: Shelby, this is Bill. We got an emergency
+here.</p>
+<p><strong>bill</strong>: Goddammit.</p>
+<p><strong>bill</strong>: Shelby?</p>
+<p><strong>margaret</strong>: Is he alive?</p>
+<p><strong>margaret</strong>: Praise Jesus.</p>
+<p><strong>trevor</strong>: ‘Praise Jesus?’ That’s fucking pushing it,
+Margaret.</p>
+<p><strong>trevor</strong>: What the hell were those things?! You ever
+seen anything like that? You ever heard of anything like that?</p>
+<p><strong>trevor</strong>: Me neither. And I watch ‘Animal Planet’ all
+the fuckin’ time!</p>
+<p><strong>bill</strong>: No reception out here.</p>
+<p><strong>starla</strong>: Bill, I’ll run out to your car, call for
+paramedics from there.</p>
+<p><strong>margaret</strong>: That’s a long ways. Them worms are out
+there.</p>
+<p><strong>starla</strong>: I’ll keep my mouth covered.</p>
+<p><strong>bill</strong>: No. I’ll go. The three of you, you wait here.
+Get these folks, out of the barn. The stench and rot can’t be any good
+for ’em.</p>
+<p><strong>starla</strong>: Be careful, Bill.</p>
+<p><strong>trevor</strong>: It’s got to be some Goddamn biological
+weapons. Government’s testin’ ’em out on us! ’Cause who gives a shit if
+Wheelsy disappears, right?!</p>
+<p><strong>trevor</strong>: I hope it ain’t contagious. I’ll be pissed
+as hell I turn into a big mollusk. I’ll fuckin’ sue, I swear to God.</p>
+<p><strong>wally</strong>: Hey, sugarplum.</p>
+<p><strong>starla</strong>: What?</p>
+<p><strong>wally</strong>: Marriage. It’s a sacred bond. Just like you
+said.</p>
+<p><strong>wally</strong>: I’m sorry ‘bout trying to strangle you and
+all. I lost – Lost my head. I didn’t want to do none of the things I
+done. Not kill them pets. Not make Brenda a womb. But it’s my nature,
+ain’t it? How can you blame a one for actin’ according to his
+nature?</p>
+<p><strong>wally</strong>: I wanted to tell you what was going on. But I
+didn’t - didn’t think you’d love me no more. I never knew… love, Starla,
+I –</p>
+<p><strong>margaret</strong>: Wally?</p>
+<p><strong>margaret</strong>: You all right?</p>
+<p><strong>margaret</strong>: Maybe you better sit back down. You don’t
+look so good.</p>
+<p><strong>trevor</strong>: Margaret.</p>
+<p><strong>kylie’s dad</strong>: Kylie, honey, you okay? Come on
+out.</p>
+<p><strong>kylie’s sister 2</strong>: Hi, Kylie. It’s me.</p>
+<p><strong>kylie’s mom</strong>: Open the door, sweetie. I know we don’t
+look so good, but your mommy and daddy love you.</p>
+<p><strong>kylie</strong>: Get away!!</p>
+<p><strong>kylie’s mom</strong>: Now, Kylie, there’s no excuse why not
+to be with your family. This is family fun day, isn’t it?</p>
+<p><strong>kylie’s sister 1</strong>: Kyyy-leee, this is your last cha-
+ance.</p>
+<p><strong>bill</strong>: Hey!</p>
+<p><strong>bill</strong>: What’s – ?</p>
+<p><strong>bill</strong>: What’s going on here?</p>
+<p><strong>kylie’s dad</strong>: Well, hello there, Pardy.</p>
+<p><strong>bill</strong>: What happened to you, Dwight?</p>
+<p><strong>kylie’s dad</strong>: Poison ivy out back, maybe?</p>
+<p><strong>kylie’s sisters</strong>: We’re itchy!</p>
+<p><strong>kylie</strong>: They’re not my… They killed…</p>
+<p><strong>bill</strong>: Okay. Y’all just wait in this spot. I’m gonna
+call the paramedics for you. Kylie can come with –</p>
+<p><strong>rancher</strong>: Hey there, killer.</p>
+<p><strong>bill</strong>: Come on.</p>
+<p><strong>margaret</strong>: Now, what’d I say?! Y’all just sit down!
+You need to get some Goddamn rest! You’re sick!</p>
+<p><strong>trevor</strong>: Let go!!</p>
+<p><strong>margaret</strong>: It burns!!</p>
+<p><strong>margaret</strong>: What’d you do to my fuckin’ hand?!</p>
+<p><strong>older cop</strong>: Meat.</p>
+<p><strong>starla</strong>: Let him go!</p>
+<p><strong>starla</strong>: Trevor, come on.</p>
+<p><strong>starla</strong>: What’d you do to her?!</p>
+<p><strong>jack</strong>: There you go, sugarplum! Why you choosing
+camps ’fore you hear –</p>
+<p><strong>jack redneck</strong>: Both sides of the story!? Both sides
+of the story!?</p>
+<p><strong>starla</strong>: Why are you talking like Grant?!</p>
+<p><strong>wally</strong>: ’Cause I am Grant!</p>
+<p><strong>wally redneck</strong>: I’m you husband – I’m you husband,
+Goddammit –</p>
+<p><strong>jack</strong>: You swore to honor and obey –</p>
+<p><strong>older cop redneck</strong>: Obey me – Obey me, so put that
+Goddamn</p>
+<p><strong>starla</strong>: Don’t come any closer. I’ll… shoot.</p>
+<p><strong>wally</strong>: You ain’t gonna shoot me! You always needed
+me to protect you! You for damn sure ain’t got the balls to –</p>
+<p><strong>trevor</strong>: Oh shit oh shit oh shit oh shit!</p>
+<p><strong>bill</strong>: Shit. Ammo’s in the trunk.</p>
+<p><strong>bill</strong>: Trevor! Margaret!</p>
+<p><strong>trevor</strong>: They killed Margaret!</p>
+<p><strong>bill</strong>: Where are you?!</p>
+<p><strong>trevor</strong>: We’re coming your way, man!</p>
+<p><strong>kylie</strong>: Go! Go! Please!</p>
+<p><strong>bill</strong>: My friends are still in the forest.</p>
+<p><strong>bill</strong>: We need their weight.</p>
+<p><strong>bill</strong>: Dumbshits.</p>
+<p><strong>bill</strong>: Come on!</p>
+<p><strong>older cop</strong>: Starla!!</p>
+<p><strong>bill</strong>: Shelby?</p>
+<p><strong>bill</strong>: Shelby, you there?</p>
+<p><strong>shelby</strong>: Yo, Chief. How y’all doin’?</p>
+<p><strong>shelby</strong>: You dig that rat out of the hole?</p>
+<p><strong>bill</strong>: Listen, you got any reports of… I don’t know
+what you call ’em. They look like big slugs, only fast.</p>
+<p><strong>shelby</strong>: Slugs? No. ‘Less you talkin’ about that new
+waitress down at Sloan’s! Ha ha!</p>
+<p><strong>bill</strong>: Shelby –</p>
+<p><strong>shelby</strong>: Oh, shit! I hope she ain’t a police radio
+aficionado. If so, I apolog -</p>
+<p><strong>bill</strong>: Shelby, shut up. Keep an eye out for these
+things. If you see ’em, keep your mouth covered. Otherwise they’ll go
+straight down it. All right?</p>
+<p><strong>bill</strong>: Are you nodding?</p>
+<p><strong>shelby</strong>: Yeah.</p>
+<p><strong>bill</strong>: I can’t hear when you’re nodding.</p>
+<p><strong>shelby</strong>: Sorry.</p>
+<p><strong>bill</strong>: We’ll be there in ten minutes.</p>
+<p><strong>kylie</strong>: The worms are in their brains.</p>
+<p><strong>kylie</strong>: Drivin’ ’em around…</p>
+<p><strong>starla</strong>: She’s right. We saw one – one came out of
+Wally’s head.</p>
+<p><strong>trevor</strong>: Yeah. Sort of his eye, it came out there
+–</p>
+<p><strong>starla</strong>: Kylie, how do you –</p>
+<p><strong>starla</strong>: Kylie, how do you know that?</p>
+<p><strong>bill</strong>: Kylie, honey. Please.</p>
+<p><strong>bill</strong>: A lot of bad things have happened to you
+today, we know. But we need your help to find out what’s going on.</p>
+<p><strong>kylie</strong>: I was in the bath. It tried to go inside me
+and I – for a minute I became it.</p>
+<p><strong>bill</strong>: The worm?</p>
+<p><strong>kylie</strong>: I got it out.</p>
+<p><strong>trevor</strong>: What are they?</p>
+<p><strong>kylie</strong>: Part of him.</p>
+<p><strong>bill</strong>: Who? Who?</p>
+<p><strong>kylie</strong>: Mrs. Grant’s husband.</p>
+<p><strong>kylie</strong>: But not always. I was – He was… other stuff
+too.</p>
+<p><strong>starla</strong>: What other stuff?</p>
+<p><strong>trevor</strong>: He’s a fucking Martian?!</p>
+<p><strong>bill</strong>: A Martian is from Mars, Trevor.</p>
+<p><strong>kylie</strong>: For real it looks like a needle. Its real
+face. But it always gots another.</p>
+<p><strong>kylie</strong>: He goes from place to place, worlds… planets…
+killing ’em. He takes over half of what’s alive and eats the other half.
+Till they’re gone.</p>
+<p><strong>kylie</strong>: Now he’s here. He went in Mr. Grant.</p>
+<p><strong>starla</strong>: Through a wound on his stomach?</p>
+<p><strong>kylie</strong>: He took him over. His body. His – his brain,
+everything what he knew. He’s only been dumb stuff before -
+amoeba-things, and rhino-things. He liked being human. Didn’t want to
+change.</p>
+<p><strong>starla</strong>: And you said the worms are part of him.
+They’re all linked, like one creature?</p>
+<p><strong>kylie</strong>: When one sees you they all see you.</p>
+<p><strong>starla</strong>: An animal that doesn’t procreate. It
+spreads, grows. A living disease.</p>
+<p><strong>bill</strong>: So the way to stop this thing is to stop
+Grant?</p>
+<p><strong>bill</strong>: Shit.</p>
+<p><strong>bill</strong>: Shelby, we broke down on 22, a mile outside
+town. Come pick us up.</p>
+<p><strong>shelby</strong>: I got to leave my post.</p>
+<p><strong>bill</strong>: Do it.</p>
+<p><strong>bill</strong>: Hey, Starla.</p>
+<p><strong>bill</strong>: Was always curious why you… married Grant in
+the first place… Just never seemed outta love.</p>
+<p><strong>starla</strong>: I know what people say, Bill. I… Remember,
+back in high school I worked at my father’s gas station?</p>
+<p><strong>starla</strong>: Grant used to get filled up every day. I
+knew it was just to see me. He was too old – But he was handsome. And he
+had that big ol’ Lincoln then. I flirted with him.</p>
+<p><strong>bill</strong>: Well, big ol’ Lincoln, sure. Guess I would
+have flirted with him too.</p>
+<p><strong>starla</strong>: My father, he was – he was real close to
+evil. People didn’t know. Still don’t. From the time I was a toddler
+he’d beat the hell out of me. I don’t mean just like a smack for
+smart-mouthing… he took a real enjoyment in it. And when I turned eleven
+or twelve, things… well, they got worse.</p>
+<p><strong>bill</strong>: When you wanted to run away, I called your
+dad.</p>
+<p><strong>starla</strong>: That wasn’t a good night, no.</p>
+<p><strong>bill</strong>: I’m sorry.</p>
+<p><strong>starla</strong>: Anyway, Grant rolls in one day. I fill his
+tank with like an eighth- a-gallon as usual. And he notices my lip’s all
+swollen up, and starts asking me how it happened. I don’t know why I
+chose then, why Grant – I guess I saw an opportunity. And I told him
+everything, first time I told anyone. Grant was furious. He picked up a
+tire iron, walked straightaway into the garage, and beat my father half
+to death. You say it’s not about love, Bill. But that was the closest
+thing to it I ever knew.</p>
+<p><strong>starla</strong>: Grant asked me to marry him a few weeks
+later. I felt… safe with him.</p>
+<p><strong>starla</strong>: After all this shit tonight, I know for sure
+now you regret not running off with me to Hollywood!</p>
+<p><strong>bill</strong>: Hell, Starla. I always regretted that.</p>
+<p><strong>trevor</strong>: Don’t worry, kid. Pretty soon, we’ll be in
+town, everything’ll be fine.</p>
+<p><strong>starla</strong>: What’s that?</p>
+<p><strong>trevor</strong>: They musta hit a deer. Probably got out to
+see if it’s okay.</p>
+<p><strong>bill</strong>: Fuck me.</p>
+<p><strong>trevor</strong>: Bambi-rats!</p>
+<p><strong>starla</strong>: Get in!</p>
+<p><strong>bill</strong>: Shelby!</p>
+<p><strong>trevor</strong>: When I buy my zoo, I’m leaving them things
+the hell out!</p>
+<p><strong>bill</strong>: Shelby!</p>
+<p><strong>shelby</strong>: Hey there, Chief.</p>
+<p><strong>bill</strong>: Shelby! We need people out here at Cosgrove
+and McCammon right away!</p>
+<p><strong>shelby</strong>: Don’t worry, Chief.</p>
+<p><strong>shelby</strong>: Already on our way.</p>
+<p><strong>diseased townsfolk</strong>: Starrrrrlaaaaaa!!</p>
+<p><strong>bill</strong>: Come on.</p>
+<p><strong>trevor</strong>: What the hell are we going to do?!</p>
+<p><strong>bill</strong>: Just block the doors, any way you can.</p>
+<p><strong>trevor</strong>: Goddamn snakes!!</p>
+<p><strong>starla</strong>: This is stupid.</p>
+<p><strong>bill</strong>: What are you doing?!</p>
+<p><strong>starla</strong>: We can’t make it. Just get away, when you
+get the chance.</p>
+<p><strong>bill</strong>: What?</p>
+<p><strong>starla</strong>: He wants me, Bill! I’m going to get him to
+take me to him! See if you can follow me, and kill him!</p>
+<p><strong>bill</strong>: No, Starla! No!</p>
+<p><strong>bill</strong>: Nooo!</p>
+<p><strong>diseased woman diseased kid</strong>: Starlaaaaaaa!
+Starlaaaa!</p>
+<p><strong>smashed-face man</strong>: You said for better or worse! You
+lied!</p>
+<p><strong>no longer pretty brenda’s husband</strong>: I gave you
+everything! I. Loved. You!</p>
+<p><strong>shelby fat sick guy</strong>: It’s not just about lesson I
+wanted you by my side, plans! Hank Wilcox wants sugarplum. But I’m too
+your pussy! ugly now, huh!!?</p>
+<p><strong>mr. inappropriate waitress</strong>: Your daddy’d still be
+You always thought I was a fucking your every hole joke, ain’t you?
+weren’t it for me!!</p>
+<p><strong>brenda’s husband</strong>: You like Pardy better’n me? That’s
+who you want to screw now?!</p>
+<p><strong>starla</strong>: Grant… Please…</p>
+<p><strong>starla</strong>: I’m sorry… I know I haven’t behaved how you
+– how you want. I know. Don’t… hurt… me.</p>
+<p><strong>starla</strong>: We need… to… talk.</p>
+<p><strong>diseased man brenda’s husband</strong>: Then talk. Then
+talk.</p>
+<p><strong>starla</strong>: Not here, though, okay? Not all of you. I’m
+not used to – I want to talk to your face, Grant. Your more real face.
+Your –</p>
+<p><strong>smashed-face man</strong>: Pardy?!! Where are you,
+Pardy!!</p>
+<p><strong>diseased woman shelby</strong>: Pardy. Pardy. Pardy. Come on
+out, Pardy.</p>
+<p><strong>pastor</strong>: We’ve surrounded the town, you prick! Ain’t
+no way outta here!</p>
+<p><strong>starla</strong>: Grant?</p>
+<p><strong>starla</strong>: Grant? We should talk.</p>
+<p><strong>starla</strong>: Grant?</p>
+<p><strong>starla</strong>: Hey, Grant.</p>
+<p><strong>starla</strong>: You did some real interesting decorating
+here.</p>
+<p><strong>starla</strong>: Hey.</p>
+<p><strong>starla</strong>: Look, the sun’s starting to come up.</p>
+<p><strong>starla</strong>: Sorry. I didn’t – I didn’t know you wanted
+it dark.</p>
+<p><strong>starla</strong>: You like these memories, huh, Grant?</p>
+<p><strong>starla</strong>: You like being called Grant, don’t you?</p>
+<p><strong>starla</strong>: I think you do. You really do. You like
+being Grant. Like when we danced. And when you… made love to me here on
+the bed. Remember that?</p>
+<p><strong>starla</strong>: I know you’ve been alone, Grant. Almost
+forever. From here to there to there to here, there’s never been another
+one for you.</p>
+<p><strong>starla</strong>: Grant. Grant, I could help you. Be with you
+the way you want. See, I want to live. I’ve never had much use for this
+world, not really. You and I, together, we –</p>
+<p><strong>starla</strong>: You don’t trust me, I know. That’s why I
+brought you someone, Grant.</p>
+<p><strong>starla</strong>: It’s Bill. He’s in the house next door. Just
+look.</p>
+<p><strong>starla</strong>: See? I brought him here for you! As an
+offering! To prove I love you more than him!</p>
+<p><strong>starla</strong>: Now, Bill!! Kill the motherfucker!!</p>
+<p><strong>grant</strong>: Er…?</p>
+<p><strong>starla</strong>: Hey.</p>
+<p><strong>bill</strong>: Hey.</p>
+<p><strong>bill</strong>: Starla, over here.</p>
+<p><strong>healthy human beings</strong>: men and women and children –
+going about their daily chores. Tears come to her eyes.</p>
+<p><strong>starla</strong>: We can probably get some first aid and food
+at this gas station up here.</p>
+<p><strong>bill</strong>: Yeah. Good.</p>
+<p><strong>cashier</strong>: Comes to 32.87.</p>
+<p><strong>bill</strong>: There you go.</p>
+<p><strong>starla</strong>: Shit. I- I forgot… I wanted to get
+aspirin.</p>
+<p><strong>bill</strong>: I’ll get it for you. Ibuprofen or aspirin?</p>
+<p><strong>starla</strong>: Aspirin.</p>
+<p><strong>bill</strong>: We’ll just head up here into Bishopville, get
+checked up in the hospital. Then maybe we’ll head off to Hollywood after
+all, huh?</p>
+<p><strong>starla</strong>: Okay.</p>
+<p><strong>bill</strong>: Please, Starla. I’m gonna do my best not to
+hurt anybody –</p>
+<p><strong>starla</strong>: You took Bill.</p>
+<p><strong>bill</strong>: It’s my nature.</p>
+<p><strong>starla</strong>: And this is mine.</p>
+</body>
+</html>

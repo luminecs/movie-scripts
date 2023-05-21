@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>panic-room</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="panic-room">panic-room</h1>
+<p><strong>lydia</strong>: – seventeen feet wide, fifty-five feet deep,
+forty-two hundred square feet, four floors with a rentable basement
+apartment, so five altogether, courtyard in back –</p>
+<p><strong>meg</strong>: Could you slow down a little? Or we could wait
+for the car…</p>
+<p><strong>lydia</strong>: No cars. Feet are faster.</p>
+<p><strong>meg</strong>: How many more do we have after this?</p>
+<p><strong>lydia</strong>: None, there’s nothing else, you know how
+tight the market is.</p>
+<p><strong>meg</strong>: This is it? I told you on the phone, I have to
+be moved in in two weeks. Sarah, please don’t bounce that here.</p>
+<p><strong>sarah</strong>: Mom, it’s the sidewalk.</p>
+<p><strong>lydia</strong>: Oh, that miserable little prick is already
+leaving.</p>
+<p><strong>evan</strong>: One day you will learn to respect other
+people’s time, Lydia, one day you –</p>
+<p><strong>lydia</strong>: Evan, I am so sorry, you were a saint to wait
+for us!</p>
+<p><strong>evan</strong>: This is the middle of the house, the entry
+floor, living room’s over there. The kitchen floor’s below us and
+there’s two bedroom floors above.</p>
+<p><strong>evan</strong>: It’s an enormous amount of space for the money
+and I’ll be perfectly honest, the family is in no hurry whatsoever.</p>
+<p><strong>evan</strong>: I don’t have to tell you there is an acute
+shortage of living space in Manhattan right now and this is a highly
+unique property.</p>
+<p><strong>lydia</strong>: No ball, kid.</p>
+<p><strong>evan</strong>: Working elevator. Mr. Pearlstine, the previous
+owner, was disabled the last ten years of his life. Highly unusual, the
+elevator, you will not find this in ninety percent of brownstones.</p>
+<p><strong>meg</strong>: Will they take asking price? I need a two week
+escrow and I’m already approved for the loan.</p>
+<p><strong>evan</strong>: What say we see the house before we dicker,
+hmm? I have to warn you, this is exactly the response we expected to
+get. It’s a very emotional property.</p>
+<p><strong>lydia</strong>: Who taught you to negotiate?</p>
+<p><strong>sarah</strong>: It’s not like Saks’, Mom, you don’t have to
+pay the price on the tag.</p>
+<p><strong>meg</strong>: I’m sorry. Apartments, and… money, and… this is
+more my husband’s area.</p>
+<p><strong>meg</strong>: Was. His area. I’m not very good at…</p>
+<p><strong>meg</strong>: Things, and if I can’t prove to my soon to-be
+ex-husband that I can provide a suitable place for our daughter to live
+in the next fourteen days, it’s going to get ugly between us.
+Uglier.</p>
+<p><strong>evan</strong>: It would be so lovely if I could shot the
+property before I leave!</p>
+<p><strong>evan</strong>: Top floor. Two bedrooms, one bathroom.</p>
+<p><strong>evan</strong>: Third floor, spare bedroom, den, what have
+you. Mr. Pearlstine used it as an office.</p>
+<p><strong>lydia</strong>: He’s talking about Bernard Pearlstine.</p>
+<p><strong>evan</strong>: Master bath.</p>
+<p><strong>lydia</strong>: The hotel guy? It’s been in the papers
+lately. His kids are all suing each other over his estate. He was a
+total recluse, paranoid, rich as hell, he was worth thirty million or
+something, now it turns out they can’t find half of it. Somebody took
+something didn’t belong to them!</p>
+<p><strong>evan</strong>: I hardly see how family gossip is germane to
+showing the property.</p>
+<p><strong>lydia</strong>: Stop calling it the property, you sound
+ridiculous.</p>
+<p><strong>evan</strong>: Master closet.</p>
+<p><strong>evan</strong>: Could the child please stop that?</p>
+<p><strong>evan</strong>: And we emerge in the master bedroom.</p>
+<p><strong>meg</strong>: Something’s weird.</p>
+<p><strong>lydia</strong>: What?</p>
+<p><strong>meg</strong>: I don’t know, doesn’t that corner seem funny to
+you?</p>
+<p><strong>evan</strong>: I was waiting to see if you’d notice! On
+caravan, no one from our office had the slightest idea.</p>
+<p><strong>evan</strong>: It’s called a panic room.</p>
+<p><strong>meg</strong>: A what?</p>
+<p><strong>evan</strong>: A safe room. An inner sanctum. A castle keep,
+in medieval times.</p>
+<p><strong>lydia</strong>: Oh, I’ve seen these…</p>
+<p><strong>evan</strong>: It’s quite in vogue in high end construction
+right now. One really can’t be too careful about home invasion.</p>
+<p><strong>lydia</strong>: Hey, this is perfect for you… Absolutely!
+You’re a woman, you’re living alone now. Your alarm goes off, or you
+head glass break, or for whatever reason you think someone’s broken into
+your home in the middle of the night. What are you going to do? Call the
+police and wait until they get here on Tuesday? Traipse downstairs in
+your sexy little underthings and check it out? I think not!</p>
+<p><strong>evan</strong>: Reinforced steel core walls. Buried phone
+line, completely separate, not connected to the house’s main line and
+never exposed throughout the house’s infrastructure or outside the house
+– you can call the police; nobody can cut you off. Your own ventilation
+system, complete with oxygen scrubber, so you’ve got plenty of fresh air
+for as long as you like. And a bank of video monitors –</p>
+<p><strong>evan</strong>: – covering almost every corner of the
+house.</p>
+<p><strong>meg</strong>: Makes me nervous.</p>
+<p><strong>lydia</strong>: Why?</p>
+<p><strong>meg</strong>: Ever read any Poe?</p>
+<p><strong>lydia</strong>: I don’t think so, but I love her album.</p>
+<p><strong>meg</strong>: No, Edgar Allen.</p>
+<p><strong>lydia</strong>: The furniture guy?</p>
+<p><strong>meg</strong>: What’s to keep them from prying open the
+door?</p>
+<p><strong>evan</strong>: Steel, four inches thick.</p>
+<p><strong>evan</strong>: Everything’s spring-loaded, even if the
+power’s out it’s fully functional.</p>
+<p><strong>meg</strong>: Open it.</p>
+<p><strong>lydia</strong>: Old Bernie didn’t miss a trick with this
+room, did he?</p>
+<p><strong>meg</strong>: Open the door.</p>
+<p><strong>lydia</strong>: And with kids like he’s got, no wonder he
+wanted a place to hide.</p>
+<p><strong>evan</strong>: That’s highly inappropriate.</p>
+<p><strong>meg</strong>: I said open the door.</p>
+<p><strong>sarah</strong>: My room. Definitely my room.</p>
+<p><strong>lydia</strong>: That door is a safely hazard.</p>
+<p><strong>evan</strong>: Not at all.</p>
+<p><strong>evan</strong>: Infrared. Like the beam in an elevator
+doorway. Won’t let the door close if something’s blocking it.</p>
+<p><strong>evan</strong>: Watch.</p>
+<p><strong>evan</strong>: Push that button for me, will you?</p>
+<p><strong>meg</strong>: Don’t!</p>
+<p><strong>sarah</strong>: Too many stairs.</p>
+<p><strong>meg</strong>: Got us in here, didn’t I?</p>
+<p><strong>sarah</strong>: Shoulda got an apartment.</p>
+<p><strong>meg</strong>: Well, I know that now.</p>
+<p><strong>sarah</strong>: 478-0150.</p>
+<p><strong>meg</strong>: Battery’s dead.</p>
+<p><strong>meg</strong>: The phone works. Hey, I hooked up the
+phone.</p>
+<p><strong>sarah</strong>: The crowd goes wild.</p>
+<p><strong>meg</strong>: 478…</p>
+<p><strong>sarah</strong>: 0150.</p>
+<p><strong>voice</strong>: Perry’s Pizza, please hold.</p>
+<p><strong>sarah</strong>: Fuck him.</p>
+<p><strong>meg</strong>: Don’t.</p>
+<p><strong>sarah</strong>: Fuck her too.</p>
+<p><strong>meg</strong>: I agree. But don’t.</p>
+<p><strong>sarah</strong>: “Tom’s throat felt so dry and tight that it
+was a moment before he could make any sound come out.”Dad!” He croaked.
+“I’m - inside - the - machine!” “Great Scott!” The elder scientist
+gasped. He dashed across the laboratory and switched off the
+repelatron’s motor. “What happened, son?” “The Durafoam hardened, Dad.
+Get a solvent, quick – you know the formula!”</p>
+<p><strong>meg</strong>: Bypass non-ready zones… shunt, enter, zone
+number…</p>
+<p><strong>meg</strong>: Bypass non-ready zones… ah, shunt, enter, shunt
+again, zone number… wait…</p>
+<p><strong>junior</strong>: Fuck.</p>
+<p><strong>burnham</strong>: I know.</p>
+<p><strong>raoul</strong>: What?</p>
+<p><strong>burnham</strong>: A woman and a little girl, both asleep
+upstairs.</p>
+<p><strong>junior</strong>: Fuck!</p>
+<p><strong>burnham</strong>: Keep your voice down.</p>
+<p><strong>junior</strong>: They’re not supposed to be here!</p>
+<p><strong>burnham</strong>: This was your department, Junior.</p>
+<p><strong>junior</strong>: They’re not supposed to be here!</p>
+<p><strong>burnham</strong>: That’s why the key didn’t work, they
+changed the locks.</p>
+<p><strong>junior</strong>: Fourteen day escrow, man, that’s almost
+three weeks! They shouldn’t be here for another week! They don’t own
+this house yet!</p>
+<p><strong>burnham</strong>: Exactly how is fourteen days almost three
+weeks?</p>
+<p><strong>junior</strong>: Fourteen business days. Escrow is always
+business days.</p>
+<p><strong>junior</strong>: I mean, right? Isn’t it?</p>
+<p><strong>burnham</strong>: You’re an idiot.</p>
+<p><strong>raoul</strong>: Watch your mouth.</p>
+<p><strong>junior</strong>: It’s okay, Raoul.</p>
+<p><strong>burnham</strong>: Who is this guy?</p>
+<p><strong>junior</strong>: Raoul is cool. That’s all you need to
+know.</p>
+<p><strong>burnham</strong>: This is insane. I’m outta here.</p>
+<p><strong>junior</strong>: Wait a minute, wait a minute. We can still
+handle this. Can we still handle this?</p>
+<p><strong>raoul</strong>: It’s just the woman and the kid?</p>
+<p><strong>burnham</strong>: Unless Daddy comes back later.</p>
+<p><strong>junior</strong>: Daddy’s not coming back, she’s in the middle
+of a divorce, it’s just the two of them. We’re okay, here. We can do
+this, right?</p>
+<p><strong>raoul</strong>: You’re fuckin’ A we can do this.</p>
+<p><strong>burnham</strong>: Not with me. Not with people.</p>
+<p><strong>junior</strong>: Forty-five minutes. That’s all you said you
+need. That’s like nothing.</p>
+<p><strong>burnham</strong>: She’ll call the cops, they’ll be here
+before I get unpacked.</p>
+<p><strong>junior</strong>: So we keep an eye on her. Raoul can totally
+administrate that part.</p>
+<p><strong>raoul</strong>: No problem.</p>
+<p><strong>burnham</strong>: I don’t want Raoul to administrate that
+part.</p>
+<p><strong>junior</strong>: They won’t get hurt.</p>
+<p><strong>burnham</strong>: What about us? What if she has a gun?</p>
+<p><strong>junior</strong>: Raoul, what in God’s name do we do if she
+has a gun?</p>
+<p><strong>burnham</strong>: Asshole.</p>
+<p><strong>junior</strong>: A guy shows you a gun, Burnham, and you
+insult him? Hey, who’s the idiot? Huh?</p>
+<p><strong>burnham</strong>: Where did you get this clown?</p>
+<p><strong>junior</strong>: I met him at the tables, same as you. And
+frankly, I’m grateful we have a little muscle right about now.</p>
+<p><strong>burnham</strong>: What tables? I’ve never seen him
+before.</p>
+<p><strong>junior</strong>: Different tables.</p>
+<p><strong>burnham</strong>: The fuck did you bring a gun for?</p>
+<p><strong>raoul</strong>: You’re welcome.</p>
+<p><strong>burnham</strong>: Peace out.</p>
+<p><strong>junior</strong>: We can’t do it without you, Burnham.</p>
+<p><strong>junior</strong>: It’s still a good plan. It’s just… got a
+twist.</p>
+<p><strong>burnham</strong>: Yeah. Kidnapping.</p>
+<p><strong>junior</strong>: Not if we keep ’em here. You can’t kidnap
+somebody in their own house. It’s just breaking and entering, unless we
+take ’em someplace. Or something like that, I’m pretty sure.</p>
+<p><strong>burnham</strong>: Pure idiot.</p>
+<p><strong>junior</strong>: I am. I’m an idiot’s son. An idiot’s
+grandson. I’m third- generation idiot. But for once in my life I had a
+good idea, and I’m not giving up so easy. You are? Are you actually
+telling me that for the first time in your life you’re gonna throw your
+cards on the table and go home early? I can’t believe my eyes. Fourteen
+million dollars upstairs, Burnham. You’ll be out of the hole. Baby,
+you’ll be so far out of the hole you could draw bricks every night for
+the next twenty years and still shit green. Come on, Buddy. One more
+hand.</p>
+<p><strong>raoul</strong>: No face.</p>
+<p><strong>junior</strong>: Top floor, get the little girl and keep her
+there. I’ll bring the woman up. Gimme.</p>
+<p><strong>junior</strong>: Stay here. Nobody gets past you.</p>
+<p><strong>meg</strong>: Wake up… wake up…</p>
+<p><strong>meg</strong>: Wake up…come on, come on…</p>
+<p><strong>sarah</strong>: What’s going on?!</p>
+<p><strong>meg</strong>: People. In the house.</p>
+<p><strong>meg</strong>: He’s going down.</p>
+<p><strong>sarah</strong>: That room!</p>
+<p><strong>meg</strong>: What?!</p>
+<p><strong>sarah</strong>: No. you gotta…</p>
+<p><strong>meg</strong>: Damn it!</p>
+<p><strong>sarah</strong>: It doesn’t work?!</p>
+<p><strong>meg</strong>: Different phone line, I never hooked it up!</p>
+<p><strong>burnham</strong>: Tell me… tell me they’re not in there…</p>
+<p><strong>meg</strong>: Can’t hear a thing.</p>
+<p><strong>sarah</strong>: What do they want?</p>
+<p><strong>meg</strong>: I don’t know. Rob us. I don’t know.</p>
+<p><strong>sarah</strong>: What do we do?</p>
+<p><strong>meg</strong>: Wait.</p>
+<p><strong>sarah</strong>: What if they get in here?</p>
+<p><strong>meg</strong>: They can’t. They can’t get in here. No. They
+can’t.</p>
+<p><strong>sarah</strong>: I heard you.</p>
+<p><strong>meg</strong>: Feel okay?</p>
+<p><strong>sarah</strong>: Yeah.</p>
+<p><strong>meg</strong>: Shaky?</p>
+<p><strong>sarah</strong>: Nope.</p>
+<p><strong>meg</strong>: Chills?</p>
+<p><strong>sarah</strong>: Huh uh.</p>
+<p><strong>sarah</strong>: Don’t worry about me.</p>
+<p><strong>meg</strong>: Hey…</p>
+<p><strong>sarah</strong>: Go ahead.</p>
+<p><strong>sarah</strong>: You can do it.</p>
+<p><strong>meg</strong>: Excuse me.</p>
+<p><strong>meg</strong>: The police are on their way.</p>
+<p><strong>meg</strong>: I suggest you leave.</p>
+<p><strong>meg</strong>: How’d he know that?</p>
+<p><strong>meg</strong>: Take what you want and get out.</p>
+<p><strong>meg</strong>: “What we want is in that room.”</p>
+<p><strong>sarah</strong>: They’re coming in here, aren’t they?</p>
+<p><strong>meg</strong>: No, I told you, they can’t. It’s not a
+possibility.</p>
+<p><strong>meg</strong>: What do you know about this room?</p>
+<p><strong>meg</strong>: We’re not coming out. We’re not letting you in.
+Get out of my house.</p>
+<p><strong>sarah</strong>: Say fuck.</p>
+<p><strong>meg</strong>: Fuck.</p>
+<p><strong>sarah</strong>: “Get the fuck out of my house.”</p>
+<p><strong>meg</strong>: Get the fuck out of my house!</p>
+<p><strong>sarah</strong>: Answer.</p>
+<p><strong>meg</strong>: Oh, please.</p>
+<p><strong>sarah</strong>: Give me a break.</p>
+<p><strong>meg</strong>: Conversation’s over.</p>
+<p><strong>burnham</strong>: Got her right where you want her,
+Junior.</p>
+<p><strong>junior</strong>: Shut up.</p>
+<p><strong>burnham</strong>: When you said you’d let ’em go I thought
+she’d come running right out for sure.</p>
+<p><strong>junior</strong>: Shut up and let me think.</p>
+<p><strong>burnham</strong>: I’m afraid to let you think, Junior. Things
+get worse when you think. Oh, that’s gonna help.</p>
+<p><strong>junior</strong>: Okay, fuckball, you think. What are we gonna
+do?</p>
+<p><strong>raoul</strong>: What if she called the cops?</p>
+<p><strong>burnham</strong>: She didn’t.</p>
+<p><strong>junior</strong>: She said she did.</p>
+<p><strong>burnham</strong>: She lied. Cops woulda been here by now if
+she called ’em. Besides, Junior cut the phones.</p>
+<p><strong>raoul</strong>: What the fuck is funny about this?</p>
+<p><strong>burnham</strong>: God.</p>
+<p><strong>raoul</strong>: There is not one thing funny here.</p>
+<p><strong>burnham</strong>: Who else but God could think this shit up?
+I spend ten years building those fucking rooms to keep people out, now I
+gotta figure out how to get in. God, man, He just loves the irony.</p>
+<p><strong>junior</strong>: Yes. Yes, it’s all terrible ironic and
+amusing. You fuck. Now how are you gonna get us into that room?</p>
+<p><strong>burnham</strong>: Can’t. Whole point. Can’t get in the
+room.</p>
+<p><strong>raoul</strong>: So what the fuck are we supposed to do?!</p>
+<p><strong>burnham</strong>: Make her come out. And when she does,
+that’s when we gotta be careful. She can’t get out of this house. She
+can’t even think she can get out of this house. We just keep them here
+and keep them quiet for forty-five minutes. And I don’t want Joe Pesci
+here standing over them with his fat sweaty finger on the trigger.
+That’s a sure way for us to end up with two dead bodies and little puffs
+of smoke burning out of our heads up in Greenhaven. So we’re gonna seal
+the place up. They wanna hole up in here? Fine, we’ll help ’em. Make it
+impossible for them to leave. Once they come out of that room.</p>
+<p><strong>junior</strong>: And why exactly would they want to come
+out?</p>
+<p><strong>burnham</strong>: Workin’ on it.</p>
+<p><strong>meg</strong>: Hey. Relax, okay?</p>
+<p><strong>meg</strong>: I mean it, lie down. You get your adrenaline up
+and you know what’s gonna happen.</p>
+<p><strong>sarah</strong>: Are you freaking out?</p>
+<p><strong>meg</strong>: Little bit. Yeah.</p>
+<p><strong>sarah</strong>: Small space?</p>
+<p><strong>meg</strong>: Don’t though.</p>
+<p><strong>sarah</strong>: Why did the chicken cross the road?</p>
+<p><strong>meg</strong>: What am I, a five year old?</p>
+<p><strong>sarah</strong>: Why did the chicken cross the road?</p>
+<p><strong>meg</strong>: I don’t know, why?</p>
+<p><strong>sarah</strong>: To prove he wasn’t chicken.</p>
+<p><strong>meg</strong>: What the hell are they doing?</p>
+<p><strong>meg</strong>: … locking us in…</p>
+<p><strong>sarah</strong>: Mom?</p>
+<p><strong>sarah</strong>: Are you okay?</p>
+<p><strong>meg</strong>: Not here… not here… someplace else… someplace
+else…</p>
+<p><strong>sarah</strong>: Mom?! Mom!!</p>
+<p><strong>sarah</strong>: Mom, please!!</p>
+<p><strong>meg</strong>: I am. I’m here.</p>
+<p><strong>meg</strong>: I’m here. I’m here.</p>
+<p><strong>meg</strong>: We’re fine. We’re okay.</p>
+<p><strong>junior</strong>: Open it.</p>
+<p><strong>burnham</strong>: I did.</p>
+<p><strong>raoul</strong>: He said open it.</p>
+<p><strong>burnham</strong>: Just sending a message. She’ll get the
+point.</p>
+<p><strong>raoul</strong>: We ain’t playin’, here.</p>
+<p><strong>sarah</strong>: What, what, what is it?!</p>
+<p><strong>meg</strong>: On the floor! Get on the floor!</p>
+<p><strong>burnham</strong>: Look, don’t be stupid…</p>
+<p><strong>junior</strong>: Be quiet.</p>
+<p><strong>burnham</strong>: We’re trying to scare them, not kill
+them!</p>
+<p><strong>junior</strong>: They’re coughing.</p>
+<p><strong>burnham</strong>: They’re gonna die in there!</p>
+<p><strong>junior</strong>: Nobody is gonna die, man, will you please
+have the balls to follow through with a good idea? Think about it, what
+would you do if you were them, stay in there and choke to death, or come
+out?! Huh? We’re just getting them to come out for forty-five minutes,
+forty-five fucking minutes! The worst that’s gonna happen is they pass
+out, we drag ’em out here into the fresh air, and they’ll be fine.</p>
+<p><strong>burnham</strong>: Junior, you gigantic idiot, how are we
+supposed to get into the room if they pass out?</p>
+<p><strong>junior</strong>: Cut it back a little bit.</p>
+<p><strong>raoul</strong>: No fucking way.</p>
+<p><strong>junior</strong>: He’s right, we can’t get into the room if
+they’re dead!</p>
+<p><strong>burnham</strong>: Oh.</p>
+<p><strong>sarah</strong>: Neighbor!</p>
+<p><strong>raoul</strong>: We’re gonna talk. Downstairs.</p>
+<p><strong>raoul</strong>: You stay. Make sure she don’t come out.</p>
+<p><strong>meg</strong>: Morse code?</p>
+<p><strong>sarah</strong>: Dot dot dot, dash dash dash, dot dot dot.</p>
+<p><strong>meg</strong>: Where’d you learn S.O.S.?</p>
+<p><strong>sarah</strong>: “Titanic.”</p>
+<p><strong>meg</strong>: Got him!</p>
+<p><strong>sarah</strong>: Come on, come on…</p>
+<p><strong>meg</strong>: Yes, yes, yes, yes…</p>
+<p><strong>sarah</strong>: We’re never getting out of here.</p>
+<p><strong>meg</strong>: Shhh…</p>
+<p><strong>junior</strong>: We’re not gonna do anything about him, he’s
+fine.</p>
+<p><strong>raoul</strong>: If you think I’m gonna let my half of the
+fourteen million bucks slip away because of –</p>
+<p><strong>junior</strong>: “Half?” What did you, take a nap in math
+class? Three people, three shares, one third. Four point six six six
+repeating.</p>
+<p><strong>raoul</strong>: I’m just saying, the man is a problem. And
+he’s your problem. Wasn’t me idea to bring him along.</p>
+<p><strong>junior</strong>: That’s right, Raoul, it wasn’t your idea,
+none of this was your idea, it was mine, it’s my family we’re ripping
+off, it’s my prick grandfather who built that fucking room, it was my
+idea to get the plans, I found the floor safe, and it was my idea to ask
+a guy who builds these rooms to help break into one! Me, me, me, I, I,
+I, at no point did I say “you” or Raoul,” got it?</p>
+<p><strong>raoul</strong>: He puts his hands on me again I’ll bury a
+slug in his ear.</p>
+<p><strong>junior</strong>: No, you will not, because without Burnham
+there’s no way in hell we’re gonna get into that safe, so as far as I’m
+concerned he can paint your ass blue and run it up a flagpole and you
+won’t lay a finger on him, you understand me?</p>
+<p><strong>raoul</strong>: Don’t take no tone of voice with me,
+Homes.</p>
+<p><strong>junior</strong>: What is this shit you’re talking all of a
+sudden? You’re a bus driver, “Homes,” you live in Flatbush, so please
+don’t start spouting some Elmore Leonard shit you just heard because I
+saw that movie too,</p>
+<p><strong>meg</strong>: Damn.</p>
+<p><strong>meg</strong>: Oh yes, yes…</p>
+<p><strong>meg</strong>: … the hell is he?</p>
+<p><strong>sarah</strong>: Do it.</p>
+<p><strong>meg</strong>: Yeah, but where’s the third guy?</p>
+<p><strong>sarah</strong>: Not in the bedroom. Do it!</p>
+<p><strong>meg</strong>: If it looks like I can’t get back, just close
+the door.</p>
+<p><strong>sarah</strong>: No.</p>
+<p><strong>meg</strong>: Close it!</p>
+<p><strong>burnham</strong>: Oh, hell…</p>
+<p><strong>burnham</strong>: What’d she get, what’d she get, what’d she
+get…</p>
+<p><strong>burnham</strong>: Cell phone.</p>
+<p><strong>junior</strong>: Shit!</p>
+<p><strong>meg</strong>: Oh, no. No, no, no no no no no…</p>
+<p><strong>meg</strong>: Oh come on, come on, come on…</p>
+<p><strong>burnham</strong>: I don’t think we’ll be talking on our cell
+phone from in there…</p>
+<p><strong>meg</strong>: Wires…</p>
+<p><strong>burnham</strong>: Phone…</p>
+<p><strong>meg</strong>: … wires.</p>
+<p><strong>sarah</strong>: What are you doing?</p>
+<p><strong>meg</strong>: I saw something, I saw…</p>
+<p><strong>meg</strong>: … phone wires!</p>
+<p><strong>meg</strong>: I may not have hooked up the phone in here, but
+I hooked up the main line, and there’s a jack at the base of this wall
+outside, I saw it!</p>
+<p><strong>burnham</strong>: Say, while we’re on the subject of
+phones…</p>
+<p><strong>burnham</strong>: When I said cut the line, did you cut the
+main line at the junction box in the basement like I said, and which I
+repeated, or did you just cut the cord on the phone in the kitchen?</p>
+<p><strong>junior</strong>: I, uh, I…</p>
+<p><strong>junior</strong>: … hit a little snag finding the one in the
+basement.</p>
+<p><strong>meg</strong>: Strip ’em, expose the ends, try blue first,
+blue is phones!</p>
+<p><strong>sarah</strong>: Blue is phones?</p>
+<p><strong>meg</strong>: Yes, no, I don’t know, do ’em all!</p>
+<p><strong>burnham</strong>: God damn it!</p>
+<p><strong>operator</strong>: 911 emergency –</p>
+<p><strong>meg</strong>: I’m at 26 West –</p>
+<p><strong>operator</strong>: – please hold.</p>
+<p><strong>meg</strong>: Damn it!</p>
+<p><strong>sarah</strong>: Call Dad!</p>
+<p><strong>meg</strong>: On it!</p>
+<p><strong>voice</strong>: Hello?</p>
+<p><strong>meg</strong>: Listen to me! There are three –</p>
+<p><strong>meg</strong>: Hello? Don’t… are…</p>
+<p><strong>meg</strong>: He’ll do something.</p>
+<p><strong>sarah</strong>: Uh uh.</p>
+<p><strong>meg</strong>: He’ll know we’re in trouble. He heard me, I
+said “There are three…”</p>
+<p><strong>sarah</strong>: He won’t even know who it was.</p>
+<p><strong>meg</strong>: What would you think, in the middle of the
+night? I mean, three what, three bears? He’ll call the police.</p>
+<p><strong>sarah</strong>: Stop it.</p>
+<p><strong>meg</strong>: He’s just across the park, this is why we got
+places so close to each other, in case we needed each other, we’re still
+a family, he’ll help us…</p>
+<p><strong>sarah</strong>: He –</p>
+<p><strong>meg</strong>: He WILL.</p>
+<p><strong>meg</strong>: I’m sorry.</p>
+<p><strong>sarah</strong>: I’m sorry.</p>
+<p><strong>meg</strong>: Why?</p>
+<p><strong>sarah</strong>: I was trying not to tell you…</p>
+<p><strong>meg</strong>: What?</p>
+<p><strong>sarah</strong>: I’m dizzy and thirsty.</p>
+<p><strong>junior</strong>: She’s never coming out.</p>
+<p><strong>burnham</strong>: Hey.</p>
+<p><strong>junior</strong>: And we’re never getting in.</p>
+<p><strong>burnham</strong>: Do me a favor and don’t talk.</p>
+<p><strong>junior</strong>: Jesus, what was I thinking?</p>
+<p><strong>meg</strong>: Come on, come on… stay with me… you gotta
+drink…</p>
+<p><strong>meg</strong>: Okay, listen, honey, you went double digit
+here, you must have been shooting out adrenaline like crazy, we gotta
+bring your blood sugar back up, okay? Can you hear me?</p>
+<p><strong>sarah</strong>: I’m dizzy, not deaf.</p>
+<p><strong>meg</strong>: Hey, she’s still a smart ass, excellent sign.
+Did you see any sugar in here? Any candy bars, anything sweet?</p>
+<p><strong>sarah</strong>: Huh uh.</p>
+<p><strong>meg</strong>: Okay, you just gotta calm yourself down, that’s
+all, just stay calm and your adrenaline will go back to normal and
+you’ll be fine.</p>
+<p><strong>sarah</strong>: What if I keep dropping?</p>
+<p><strong>meg</strong>: Not an option.</p>
+<p><strong>sarah</strong>: What if I do?</p>
+<p><strong>junior</strong>: We’re leaving.</p>
+<p><strong>raoul</strong>: The hell we are.</p>
+<p><strong>burnham</strong>: Hey man, after all we went through I am not
+walking out when we’re this close.</p>
+<p><strong>junior</strong>: Close? Are you insane? We’re nowhere near
+close! Fuck this, I’ll make an anonymous phone call on Monday, they’ll
+find the floor safe, and I’ll inherit the shit. Little piece of it,
+anyway, it’s better than nothing.</p>
+<p><strong>burnham</strong>: What about us?</p>
+<p><strong>junior</strong>: Here. For your time.</p>
+<p><strong>junior</strong>: Five hundred bucks here.</p>
+<p><strong>junior</strong>: Suit yourself.</p>
+<p><strong>raoul</strong>: Nobody leaves.</p>
+<p><strong>junior</strong>: Observe.</p>
+<p><strong>burnham</strong>: We’re not leaving. I’m getting in that
+room, and I’m opening that safe.</p>
+<p><strong>junior</strong>: Lookin’ doubtful there, Big Guy, but ten out
+of ten for attitude.</p>
+<p><strong>sarah</strong>: What if I spazz out?</p>
+<p><strong>meg</strong>: No biggie, we’ve been through it a dozen times,
+I just jab you with the Glucogen.</p>
+<p><strong>sarah</strong>: Where is the Glucogen?</p>
+<p><strong>meg</strong>: Oh, you know, it’s uh… it’s in the little
+fridge in your room.</p>
+<p><strong>sarah</strong>: I’m sorry, Mom.</p>
+<p><strong>meg</strong>: Hey, quit apologizing, you’re starting to sound
+like Grandma. You’re not gonna have an attack. Okay?</p>
+<p><strong>sarah</strong>: Okay.</p>
+<p><strong>burnham</strong>: Would you wait? Would you please just wait
+a minute?</p>
+<p><strong>burnham</strong>: You walk out that door and you lose your
+share of the money.</p>
+<p><strong>junior</strong>: Yeah, whatever.</p>
+<p><strong>burnham</strong>: I mean it!</p>
+<p><strong>junior</strong>: Adios.</p>
+<p><strong>raoul</strong>: Nobody leaves.</p>
+<p><strong>burnham</strong>: Oh God… oh, my God…</p>
+<p><strong>raoul</strong>: You should see the look on your face.</p>
+<p><strong>burnham</strong>: The fuck did you do that for?!</p>
+<p><strong>raoul</strong>: Fuckin’ asshole, thinks he knows me. Drives
+his German car up to 125th Street a couple of times, buys a few rounds,
+thinks he’s a tough guy, thinks he knows me. You don’t know one thing
+about me!</p>
+<p><strong>voice</strong>: What the h –</p>
+<p><strong>burnham</strong>: Stop it! Stop it!</p>
+<p><strong>raoul</strong>: Who’s the clown now? Huh?! Who’s the fucking
+clown now?!</p>
+<p><strong>burnham</strong>: Me. I am.</p>
+<p><strong>raoul</strong>: That’s right.</p>
+<p><strong>burnham</strong>: Burning me. It’s burning my eye.</p>
+<p><strong>raoul</strong>: I have the gun.</p>
+<p><strong>burnham</strong>: Yes.</p>
+<p><strong>raoul</strong>: Remember that.</p>
+<p><strong>burnham</strong>: Please…</p>
+<p><strong>burnham</strong>: What? What do you want me to do?</p>
+<p><strong>raoul</strong>: What do you think? Get us into that room.</p>
+<p><strong>burnham</strong>: I can’t.</p>
+<p><strong>raoul</strong>: You can. You’re full of ideas. You just need
+to squeeze one out.</p>
+<p><strong>burnham</strong>: I can’t…</p>
+<p><strong>raoul</strong>: You got till the count of three. Then you end
+up like him.</p>
+<p><strong>raoul</strong>: One. Squeeze.</p>
+<p><strong>burnham</strong>: This is ridiculous…</p>
+<p><strong>raoul</strong>: Two. Squeeze harder.</p>
+<p><strong>burnham</strong>: I can’t just…</p>
+<p><strong>raoul</strong>: Th –</p>
+<p><strong>burnham</strong>: Okay, okay! Okay.</p>
+<p><strong>raoul</strong>: You got an idea?</p>
+<p><strong>burnham</strong>: Yeah. Yeah, I got an idea. I gotta check
+something.</p>
+<p><strong>burnham</strong>: Okay, look. I know you can hear me. Your
+wife and kid are in there. You’re gonna get ’em to come out. Or –</p>
+<p><strong>burnham</strong>: Or I can’t stop what he’s gonna do. Do you
+understand?</p>
+<p><strong>burnham</strong>: Good.</p>
+<p><strong>meg</strong>: Oh God, oh my God…</p>
+<p><strong>sarah</strong>: You gotta jab me, Mommy…</p>
+<p><strong>raoul</strong>: If you leave the house, we’ll kill her.</p>
+<p><strong>raoul</strong>: If I see a uniform in the house, we’ll kill
+her.</p>
+<p><strong>meg</strong>: Oh… oh…</p>
+<p><strong>raoul</strong>: You understand?</p>
+<p><strong>burnham</strong>: I just… I just need forty-five minutes.</p>
+<p><strong>raoul</strong>: Saw my face, man. Saw my face.</p>
+<p><strong>raoul</strong>: Shut up.</p>
+<p><strong>meg</strong>: – cine, she needs the MEDICINE!</p>
+<p><strong>burnham</strong>: It’s gonna be cool, kid. Be outta here
+before you know it.</p>
+<p><strong>burnham</strong>: Are you okay?</p>
+<p><strong>raoul</strong>: Hurry up, for Christ’s sake!</p>
+<p><strong>burnham</strong>: The hell does she want?</p>
+<p><strong>raoul</strong>: I don’t know, she keeps screamin’ the same
+thing over and over.</p>
+<p><strong>raoul</strong>: Drugs. She wants drugs. What the fuck?</p>
+<p><strong>burnham</strong>: Oh, man…</p>
+<p><strong>burnham</strong>: What is it?</p>
+<p><strong>sarah</strong>: I need…</p>
+<p><strong>burnham</strong>: Yeah?</p>
+<p><strong>sarah</strong>: … ’jection…</p>
+<p><strong>burnham</strong>: An injection?</p>
+<p><strong>burnham</strong>: That stuff?</p>
+<p><strong>burnham</strong>: Can you do it yourself?</p>
+<p><strong>burnham</strong>: Well, I don’t know how.</p>
+<p><strong>raoul</strong>: I don’t fucking believe this. You gotta
+wait.</p>
+<p><strong>burnham</strong>: Yeah, just like a half hour, maybe a little
+more, and your mom’ll give it to you. You can wait a half hour, can’t
+you?</p>
+<p><strong>raoul</strong>: Yeah. She can. She’s fine, she’s just like,
+tired, she’s gotta rest. You rest, Kid. Half an hour.</p>
+<p><strong>raoul</strong>: Come on.</p>
+<p><strong>burnham</strong>: Tell me the truth, okay? What’s gonna
+happen if you don’t get this?</p>
+<p><strong>sarah</strong>: Coma. Die.</p>
+<p><strong>burnham</strong>: I understand. I’ll give her the shot.</p>
+<p><strong>raoul</strong>: You’re wasting your fucking time, man, you’re
+wasting my time. You don’t know how to do this, and the longer we stay
+in here, the more likely she’s gonna lose it and call the cops!</p>
+<p><strong>burnham</strong>: Are you gonna open the safe?</p>
+<p><strong>burnham</strong>: Then shut up and get out of my way.</p>
+<p><strong>raoul</strong>: Don’t look at me.</p>
+<p><strong>burnham</strong>: Okay, kid, all I know about this is what
+I’ve seen on TV, you gotta talk me through it.</p>
+<p><strong>burnham</strong>: Okay. No talking. No problem. TV don’t lie,
+right?</p>
+<p><strong>burnham</strong>: You seem like a good kid. Your mom… only
+saw her for a second, but, woah. Beautiful, huh?</p>
+<p><strong>burnham</strong>: Hey, nod or something, show me you’re still
+alive, will ya?</p>
+<p><strong>burnham</strong>: Attagirl. That too tight?</p>
+<p><strong>burnham</strong>: You guys are pretty rich, huh?</p>
+<p><strong>burnham</strong>: Yeah, you don’t think about that stuff.
+Good for you.</p>
+<p><strong>burnham</strong>: I know, I know. I really screwed the pooch
+this time. I never did anything like this before. Break into somebody’s
+house? Not even close. Bad cards, Kid. I swear to God, I been on the
+wrong end of maybe six straight years of bad cards. House. Car. Wife.
+Those are some seriously bad cards. And still, every time I pick up a
+fresh hand I swear to God, the rush comes so hot and prickly I feel it
+right down to my toes because this time, this one time, it might be
+there, this time it might be that hand, that perfect hand, that monster
+hand. And you thought you were sick.</p>
+<p><strong>burnham</strong>: Feel better?</p>
+<p><strong>burnham</strong>: Woulda been a hell of a dad.</p>
+<p><strong>raoul</strong>: She’s okay. Now sit down and wait.</p>
+<p><strong>raoul</strong>: Congratulations. You saved her life for ten
+minutes.</p>
+<p><strong>harris</strong>: Police.</p>
+<p><strong>meg</strong>: You called the police?</p>
+<p><strong>harris</strong>: You… scared…</p>
+<p><strong>meg</strong>: Don’t. Say. A word.</p>
+<p><strong>raoul</strong>: Holy shit… holy shit…</p>
+<p><strong>raoul</strong>: She’s fuckin’ crazy, she killed the kid! She
+just killed her own kid!</p>
+<p><strong>burnham</strong>: It’s not her fault, it’s not her fault, the
+guy must have called them. Look, look, look, she’s telling us.</p>
+<p><strong>burnham</strong>: She’s gonna handle it.</p>
+<p><strong>raoul</strong>: She better.</p>
+<p><strong>meg</strong>: Yeah?</p>
+<p><strong>cop 1</strong>: Everything okay?</p>
+<p><strong>meg</strong>: Huh?</p>
+<p><strong>cop 2</strong>: Are you all right?</p>
+<p><strong>meg</strong>: What are you guys – what time is it?</p>
+<p><strong>cop 1</strong>: ’Bout four o’clock.</p>
+<p><strong>meg</strong>: I don’t get it.</p>
+<p><strong>cop 2</strong>: We got a call…</p>
+<p><strong>meg</strong>: Somebody called you?</p>
+<p><strong>cop 1</strong>: Can we come in?</p>
+<p><strong>meg</strong>: What do you want?</p>
+<p><strong>cop 1</strong>: We’d like to come in.</p>
+<p><strong>meg</strong>: No, you can’t come in.</p>
+<p><strong>cop 2</strong>: Are you okay?</p>
+<p><strong>meg</strong>: I’m fine.</p>
+<p><strong>cop 1</strong>: Can we come in?</p>
+<p><strong>meg</strong>: Stop asking me that. I’m fine. Who called
+you?</p>
+<p><strong>cop 1</strong>: You don’t look so good.</p>
+<p><strong>meg</strong>: You wake me out of a sound sleep at four in the
+morning and then tell me I look like hell? Of course I look like hell,
+you don’t look so hot yourself, Jack. I’m freezing here, thank you for
+checking, can I go?</p>
+<p><strong>cop 1</strong>: Your husband says you said “There are three…”
+right before you got cut off.</p>
+<p><strong>meg</strong>: Oh, that phone call…</p>
+<p><strong>cop 1</strong>: Ma’am, if there’s something you want to say
+to us right now that maybe you can’t say to us right now, maybe you just
+want to make a signal, by blinking a few times, something like that.</p>
+<p><strong>cop 1</strong>: That’s something you could do. Safely.</p>
+<p><strong>meg</strong>: Man, you are good! You mean, like, if somebody
+was in the house or something? That’s great, they really train you guys
+these days, don’t they?</p>
+<p><strong>meg</strong>: No. I’m fine. Cross my heart.</p>
+<p><strong>cop 1</strong>: May I ask what the rest of that sentence was
+going to be?</p>
+<p><strong>meg</strong>: Huh?</p>
+<p><strong>cop 1</strong>: The sentence that started “There are three.”
+What was the rest?</p>
+<p><strong>meg</strong>: Okay, look. My husband and I just broke up.
+It’s my first night in the new house, and I was feeling a little lonely
+and a little drunk. The sentence, if you insist on knowing, was going to
+be “There are three things I’ll do for you if you come over right now
+and get in bed with me.”</p>
+<p><strong>meg</strong>: But thank God I came to my senses before I said
+all that and hung up instead, so nobody would ever know what I was
+thinking, unless, of course, two policemen showed up in the middle of
+the night to interrogate me about it.</p>
+<p><strong>cop 2</strong>: You want her to show you which three things,
+Rick, or should we just go?</p>
+<p><strong>raoul</strong>: She saw my face. The kid too.</p>
+<p><strong>burnham</strong>: That’s your problem.</p>
+<p><strong>raoul</strong>: That’s their problem.</p>
+<p><strong>burnham</strong>: Let me fucking finish this so we can get
+out of here.</p>
+<p><strong>raoul</strong>: You finish. Then we finish.</p>
+<p><strong>burnham</strong>: – posed to mean?</p>
+<p><strong>raoul</strong>: You’re here with me, you’re already on the
+hook for one. Buy one, you get the rest for the same price. You know
+that.</p>
+<p><strong>burnham</strong>: Get the fuck away from me.</p>
+<p><strong>raoul</strong>: The kid in here. The other two when we come
+out.</p>
+<p><strong>burnham</strong>: Bullshit.</p>
+<p><strong>raoul</strong>: You know how this gotta end.</p>
+<p><strong>raoul</strong>: They stay in the house.</p>
+<p><strong>meg</strong>: Fourteen.</p>
+<p><strong>meg</strong>: No camera, no camera, no camera…</p>
+<p><strong>raoul</strong>: Hey!</p>
+<p><strong>sarah</strong>: Sorry. Can’t control it sometimes.</p>
+<p><strong>sarah</strong>: Won’t happen again.</p>
+<p><strong>neighbor</strong>: What the hell do you think you’re doing,
+young lady?!</p>
+<p><strong>raoul</strong>: The walls are steel, right?</p>
+<p><strong>burnham</strong>: Not that one.</p>
+<p><strong>burnham</strong>: Hey man, it’s the neighbor’s house, who
+breaks in through the neighbor’s house?!</p>
+<p><strong>raoul</strong>: We’ve got the Kid! WE’VE GOT YOUR KID!! What
+the fuck is she thinking?!</p>
+<p><strong>burnham</strong>: She’s got your gun, that’s what she’s
+thinking! The FUCK you had to bring a gun for?!</p>
+<p><strong>burnham</strong>: Almost there…</p>
+<p><strong>cop 1</strong>: Put your hands up.</p>
+<p><strong>burnham</strong>: Monster hand.</p>
+<p><strong>sarah</strong>: I mean, uptown is close to Dad’s place, but
+somebody at school said the Village is really cool, so… I don’t know,
+it’s so great to be close to the park and everything… What do you think,
+I mean, give me a clue, here, where are we gonna live?</p>
+</body>
+</html>

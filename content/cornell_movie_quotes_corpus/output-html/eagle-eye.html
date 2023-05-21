@@ -1,0 +1,2855 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>eagle-eye</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="eagle-eye">eagle-eye</h1>
+<p><strong>pov though a long-range scope</strong>: the caravan as seen
+by a TWO-MAN SPECIAL OPS TEAM perched on a ridge. As the LEADER surveils
+the cars, his partner finishes assembling a two-foot UAV , rigging it
+with EXPLOSIVES:</p>
+<p><strong>special forces leader</strong>: We have visual onthetarget.
+Confirm ‘go’ for UAV launch.</p>
+<p><strong>super: “joint operations center, the pentagon”</strong>:
+Sat-feeds monitor the caravan. Military brass observes: SECRETARY OF
+DEFENSE GEOFF CALLISTER . Beside him: COLONEL THOMPSON .</p>
+<p><strong>colonel thompson</strong>: Alpha One, you’re confirmed ‘go’:
+active UAV at GPS papa, zulu, three, zero.</p>
+<p><strong>pentagon techie #1</strong>: We have system control.</p>
+<p><strong>colonel thompson</strong>: Activate laser mic.</p>
+<p><strong>drone pov</strong>: tracking the caravan, singling out the
+MERCEDES. The drone emits a THIN LASER BEAM that hits its rear
+windshield –</p>
+<p><strong>callister</strong>: Is it him?</p>
+<p><strong>translator</strong>: Four males, one of them’s speaking with
+a.. I think it’s a Rakhshani•dialect, consistent with our intel on
+Al=Khoei.</p>
+<p><strong>colonel thompson</strong>: Gimme voiceprint analysis. The
+screen pops to an AUDIO WAVEFORM of the conversation. VOICEPRINT
+ANALYSIS finishes, the; screen shows a FILE PHOTO of a</p>
+<p><strong>callister</strong>: I’m not taking 37% to-the President…
+John, weigh in here? He looks to a plasma: the PRESIDENT’S CABINET is
+assembled via teleconference from the White House Situation Room:</p>
+<p><strong>director of national intelligence</strong>: CIA and NCTC
+concur this is the target based on reliable Intel from the Brits. WHIP
+TO another monitor: the caravan starts to VEER off-road.</p>
+<p><strong>techie</strong>: Sire they’re pulling off the highway.</p>
+<p><strong>techie #2</strong>: We have abort recommendation. The
+ANALYSIS ARRAY reads: “RECOINDATION: ABORT MISSION.” The source of this
+recommendation, for now, remains a mystery.</p>
+<p><strong>colonel thompson</strong>: If it’s him, this guy comes out of
+hiding once in a lifetime, we can’t let him go.</p>
+<p><strong>callister</strong>: Alright, stay with him…</p>
+<p><strong>continued:</strong>: THE SATELLITE VIEW shows the caravan
+approaching the commune.</p>
+<p><strong>intercutting - the pentagon ops room</strong>: the computer
+pinpoints DOTS on the satellite feed that represent WEAPONRY on-site
+–</p>
+<p><strong>techie</strong>: We’ve got AK-47’s, RPC’s, Chaparral guided
+missiles –</p>
+<p><strong>colonel thompson</strong>: Looks like a training camp.</p>
+<p><strong>the desert</strong>: Bodyguards cluster around a TURBANED:MAN
+as he emerges from the Mercedes. It looks a lot like the man from the
+file photo, but the beard makes it hard to confirm.</p>
+<p><strong>mid-air with the uav</strong>: It SWOOPS, targeting the man –
+SNAP:</p>
+<p><strong>the pentagon</strong>: a BLURRY SNAPSHOT of his FACE appears.
+A DIGITAL WIRE-FRAME is overlaid on the man’s face: “5I$ PROBABLE MATCH
+-</p>
+<p><strong>techie</strong>: 51%. ‘Abort’ rec holds.</p>
+<p><strong>the desert</strong>: Now our guy DISAPPEARS into the crowd as
+they begin MOVING toward a large WOODEN PLANK on the desert floor. Some
+of the men take hold of the plank, drag it back to reveal… a PIT.</p>
+<p><strong>the pentagon</strong>: SAME IMAGE in real-time on the
+feeds:</p>
+<p><strong>callister</strong>: What is that, a weapons cache?</p>
+<p><strong>analyst</strong>: Sir, the placement of stones around the
+pit, markers for the Five Pillars of Islam… I think it’s a funeral.
+Everyone trades looks – this just got even more complicated.</p>
+<p><strong>the desert</strong>: from the back of a TENTED TRUCK, a BODY
+is lifted, shrouded in white. The men carry it through blowing sand… the
+procession stopping at the pit. They begin lowering the body…</p>
+<p><strong>the pentagon</strong>: on monitors, a section of the GENEVA
+CONVENTION</p>
+<p><strong>techie</strong>: Sir, striking a funeral would put us in
+violation of the Geneva convention.</p>
+<p><strong>colonel thompson</strong>: Once this guy’s gone, he’s gone.
+The PENTAGON GENERAL COUNCIL pipes in –</p>
+<p><strong>pentagon general council</strong>: “Hors de Combat” – legally
+we’d be open to international prosecution. But we have no independent
+intel verifying it’s in fact a funeral, and the presence of weapons
+certainly leaves room for interpretation.</p>
+<p><strong>techie #2</strong>: I have POTUS calling from Air Force
+One.</p>
+<p><strong>callister</strong>: . Everyone agree this is the best course
+of action? No one dissents. Callister picks up:</p>
+<p><strong>callister</strong>: Mr. President, we have.a.51% identity
+match on Majid Al-Khoei. There is some possibility he’s at a funeral,
+but we don’t know. Regardless, counsel thinks we can claim ‘Overriding
+Legal Authority.’ Also, you should be aware we have an abort
+recommendation, but your cabinet, the Speaker, the Joint Chiefs urge a
+‘go.’</p>
+<p><strong>the president</strong>: You left yourself out of the lineup.
+Callister pauses. AS THE MESSAGE ON THE MONITOR STARTS</p>
+<p><strong>callister</strong>: Yessir… we gauge our strategy by two
+standards: the highest probability of success with the least amount of
+collateral damage. At 51% probability, we don’t have either one.</p>
+<p><strong>general thompson</strong>: And if it is Al-Khoei and he
+walks, Sir, we’re putting our people at risk. There’s a long silence as
+the President considers.</p>
+<p><strong>the president</strong>: I respect your caution, Geoff, but we
+won’t get another chance like this… you have a green light. Callister’s
+obviously opposed, but he bites his tongue:</p>
+<p><strong>callister</strong>: Understood. We’re weapons free. And with
+deadly calm, Techies execute orders into-headsets:</p>
+<p><strong>techie techie 2</strong>: – Switching to Tac-2, – MTS active,
+painting the acquisition’s good – target –</p>
+<p><strong>drone pov</strong>: the feed from the CAMERA INSIDE THE
+NOSE-CONE as it LAUNCHES its missile – it ZOOMS toward the funeral
+gathering – The haunting, beautiful voices WAIL… in the moment before
+impact, we see: birds flying across the great plain… a herd of running
+gazelles… the DESERT WIND blankets a layer of sand over the shrouded
+body in the pit… a CHILD’S HAND grasping his mother’s…</p>
+<p><strong>hold in white:</strong>: CREDIT SE UENCE: WORDS CLOSE UP… a
+digitized electronic scan, as if they’re being analyzed by someone: “We
+the people of the United States… more perfect union…” Highlights of The
+Constitution, The. Declaration of Independence… We land on: “…whenever
+any form of government becomes destructive…it is the right of the people
+to alter it or to abolish it…” CLOSE IN on these last words: “ABOLISH
+IT.”</p>
+<p><strong>jerry</strong>: damnit…</p>
+<p><strong>voice</strong>: You gotta make a choice. You gotta move–</p>
+<p><strong>jerry</strong>: – I know.</p>
+<p><strong>voice</strong>: Now. Who are you gonna be? So Jerry makes his
+move, which we see is SLAMMING down a PLAYING CARD representing a group
+of DWARVES. He sits across from KWAME, 17. They’re playing a geeky
+role-playing CARD and DICE game, CASH on the table.</p>
+<p><strong>jerry kwame</strong>: there. Dwarves?: Bullshit – Bullshit? I
+just blocked your ass and attacked with Ancient Mastery points.
+–.dwarves don’t have that – – read the oracle text, my friend. – shit A
+thick-mascara/black lipstick BECKY enters, removing her SMOCK:</p>
+<p><strong>becky</strong>: You know what would be great? If you guys
+took a longer break. That’d be awesome.</p>
+<p><strong>jerry</strong>: Hey, Becky? When’re you going to start
+wearing makeup? Kwame laughs as Becky tosses her smock at Jerry:</p>
+<p><strong>becky</strong>: .The collator’s broken.</p>
+<p><strong>jerry</strong>: Dude: no its not.</p>
+<p><strong>becky</strong>: Oh yeah it is, dude! She heads out as Jerry
+collects the cash. Kwame puts on his own smock as Jerry offers him a
+quick lesson:</p>
+<p><strong>jerry</strong>: Your first mistake? Underestimating dwarves.
+Power can come from anywhere – tomorrow night I’ll give you first roll
+and a bonus pack if y–</p>
+<p><strong>kwame</strong>: I’m not gonna be here tomorrow, remember? I’m
+going to Cornell. And Jerry stops. A hit to the solar plexus. Wherever
+we are, this kid’s off to a bright future. But not Jerry.</p>
+<p><strong>jerry</strong>: That – wow. Good for you. So it’s your last
+night. You’re gonna spend it collating.</p>
+<p><strong>kwame</strong>: – what? But she said the collator’s
+broken.</p>
+<p><strong>jerry</strong>: And that’s why we have those rubber thimbles
+in the drawer –.congratulations on Cornell, though, that’s huge! TRACK
+WITH HIM out to… A COUNTER AREA as, he pins on his</p>
+<p><strong>nametag</strong>: “JERRY.” Rows of COPY MACHINES and COMPUTER
+CUBICLES. He takes his place behind a register. Smiles, getting it
+up:</p>
+<p><strong>jerry</strong>: Welcome to Kinko’s, how can I help you? The
+CHUGCLICK-CHUGCLICK-CHUGCLICK sound of the machines gets louder and
+louder as they BECOME THE SOUND OF:</p>
+<p><strong>shepard smith</strong>: a heightened terror alert due to a
+series of suicide bombings, believed to be in retaliation for a deadly
+attack outside Abadan that killed forty people. Though the White House
+has denied involvement, Shia leaders have denounced the U.S. as
+responsible…</p>
+<p><strong>al-jazeera footage</strong>: A SHIA SPOKESMAN is translated
+into ENGLISH:</p>
+<p><strong>spokesman</strong>: Your embassies were only the beginning!
+Our warriors are already within your borders. Until American leadership
+is removed from power, Allah’s revenge is upon you! And during all this,
+Jerry notices something: people are glancing at each other aranoid. What
+a fucking world…</p>
+<p><strong>a door opens</strong>: MRS. WIERZBOWSKI, Jerry’s elderly
+Polish landlady. Pleased to see him, but painfully annoyed to know
+what’s coming:</p>
+<p><strong>mrs. wierzbowski</strong>: Jerry.</p>
+<p><strong>jerry</strong>: Whatever are you cooking right now? Is the
+greatest thing I’ve ever smelled in my life, I swear to God –</p>
+<p><strong>mrs. wierzbowski</strong>: is schab wieprzowy po polsku – you
+have the rent, yes?</p>
+<p><strong>jerry</strong>: – here’s some of it – most of it – but I’ve
+got something else for you… something special… Eyebrows bobbing.
+Mrs. Wierzbowsky knows exactly what it is. Sighs. Knows she can’t resist
+him –</p>
+<p><strong>jerry</strong>: So I think. No, I’m pretty sure that’s the
+best one so far —</p>
+<p><strong>mrs. wierzbowski</strong>: Yes. Is good – rent is better. She
+puts a bowl of STEW into Jerry’s hands.</p>
+<p><strong>mrs. wierzbowski</strong>: You are hungry, I am guessing.</p>
+<p><strong>jerry</strong>: Oh, no, no. I couldn’t – Unless, you know,
+you insist. He sits at the table, starts eating. This is their
+routine.</p>
+<p><strong>mrs. wierzbowski</strong>: So where is girl? I don’t see
+her?</p>
+<p><strong>jerry</strong>: Oh, the redhead? No. She… that’s over. She
+got smart.</p>
+<p><strong>mrs. wierzbowski</strong>: Like the others.</p>
+<p><strong>jerry</strong>: Well, womenareIpretty smart. I’ve
+discovered.</p>
+<p><strong>mrs. wierzbowski</strong>: You are like Johann. Jerry stops
+eating, mouth full. As Johann looks up.</p>
+<p><strong>jerry</strong>: Your – I’m like your dog?</p>
+<p><strong>mrs. wierzbowski</strong>: Look at him. Is big dog. Labrador.
+But he believe… he is terrier. So is Labrador… but no labrador. Somehow
+Jerry can’t get his eyes off Johann. Quietly:</p>
+<p><strong>jerry</strong>: why do you think that is? As she pours a
+drink into a plastic cup –</p>
+<p><strong>mrs. wierzbowski</strong>: Perhaps many things. When I rescue
+Johann from pound, they say he was abuse.</p>
+<p><strong>mrs. wierzbowski</strong>: As puppy. They kick him when baby,
+make him feel not big. You need someone for rescuing you. Jerry looks at
+her, sad-smiles. Takes a sip and holy shit:</p>
+<p><strong>jerry</strong>: This is – vodka – Jesus, its eight- thirty in
+the morning –</p>
+<p><strong>mrs. wierzbowski</strong>: – you cannot eat bigos without
+vodka. Adjusting to it, Jerry drinks again – as his CELL PHONE RINGS. He
+looks at his phone, freezing. Mrs. Wierzbowski notices.</p>
+<p><strong>mrs. wierzbowski</strong>: Is the girl? Answer. Tell her
+you’. are Labrador. Then ask if she give you money for rent. But we’ve
+PUSHED IN on Jerry, who stares at the name on the phone. Something’s
+affecting him deeply. He says, quietly:</p>
+<p><strong>jerry</strong>: its my mother.</p>
+<p><strong>mrs. wierzbowski</strong>: Is problem?</p>
+<p><strong>jerry</strong>: is problem.</p>
+<p><strong>jerry</strong>: Hey, mom… Jerry stands there in silhouette.
+LISTENING. Something is happening… .suddenly he loses his balance –
+sinks to the floor, phone to his ear – staring in pain –</p>
+<p><strong>jerry</strong>: – no! I– I’m not him! All eyes on him. His
+voice, sad, heartbroken:</p>
+<p><strong>jerry</strong>: It’s okay! I’m not Paul! Locks eyes with his
+MOTHER and FATHER up in the front pew. Their eyes red from crying,
+withered shells. And Jerry gives a lame wave before heading reluctantly
+up to the COFFIN. Devastated, he leans in – and we MOVE AROUND to see
+the body: And it’s fucking HIM – Jerry’s very own face, but one that
+seems to have been RECONSTRUCTED after some kind of accident. Gruesome
+and handsome all at once. This was PAUL SHAW. Jerry’s identical twin.
+Off the surreal moment… A reverbed TRUMPET PLAYS, the tune familiar. In
+fact, it’s:</p>
+<p><strong>rachel</strong>: Okayokay… okay: we came home, put down the
+leftovers, you turned on the TV, I went over, I said no TV– She turns to
+the TV area and walks straight INTO a table. Stuns her, momentarily, but
+she doesn’t break stride –</p>
+<p><strong>kyle</strong>: – we’re gonna be late, huh?</p>
+<p><strong>rachel</strong>: – absolutely not – I turned it off, came
+over here, checked messages, put the leftovers in the–</p>
+<p><strong>kyle rachel</strong>: –knocked over the phone– –right,
+knocked over the phone, put it back, put the food in the fridge– She
+opens the fridge: HER KEYS sit atop a Tupperware container. Kyle hits a
+high note and we SLAM TO:</p>
+<p><strong>rachel</strong>: we need to get a new car –</p>
+<p><strong>kyle</strong>: I like your car. We’re gonna be late. The
+engine still SPLIT-SPUT-SPUTTERING.::.. a BUS. whizzes by, slows up
+ahead at a bus stop. Rachel gives up, jumps out:</p>
+<p><strong>rachel</strong>: No we’re not: the bus.</p>
+<p><strong>kyle</strong>: – are you kidding?</p>
+<p><strong>rachel</strong>: I put vitamins in your toiletry bag, don’t
+forget to take two in the morning –</p>
+<p><strong>kyle</strong>: and one at night, I know –</p>
+<p><strong>rachel</strong>: And your inhaler, which I may need to use
+now, is in the outside pocket – wait! They rush back to a MAILBOX, she
+pulls bills from her purse:</p>
+<p><strong>kyle</strong>: More bills?</p>
+<p><strong>rachel</strong>: Yup – that’s what happens when you have a
+kid on lay-away. They smile at each other. When SUDDENLY a BUS ROARS
+PAST the WIND GUSTS and the bills go FLYING into traffic:</p>
+<p><strong>oh, shit! stay here!</strong>: Rachel waves her arms at
+oncoming cars, runs INTO TRAFFIC–</p>
+<p><strong>you swore!!</strong>: As she chases the bills, SCREECHING and
+HONKING around her:</p>
+<p><strong>hey, a little common courtesy, asshole!</strong>: And she
+runs back to Kyle, THROWS the bills in the mailbox –</p>
+<p><strong>kyle</strong>: You swore again. Was that our bus? Rachel
+looks: PAN to across the street, the bus is now LEAVING THE BUS STOP.
+PAN back to Rachel: SHIT!!</p>
+<p><strong>rachel:</strong>: Okay, now were gonna.be late. She puts
+fingers in her mouth and WHISTLES HARD for a cab –</p>
+<p><strong>rachel</strong>: Scuze us, coming through, sorry – WAIT!!</p>
+<p><strong>wait!!</strong>: Finally they arrive. Kyle’s teacher, MRS.
+MILLER, smiles:</p>
+<p><strong>mrs. miller</strong>: Under the wire –</p>
+<p><strong>rachel</strong>: Hi – sorry – Rachel Holloman, we met–</p>
+<p><strong>mrs. miller</strong>: – of course, Barbara Miller. You should
+probably – And Rachel’s stomach drops. Knows they’ve been racing towards
+this moment all morning but still not willing to accept it. Turning Kyle
+to face her –</p>
+<p><strong>rachel</strong>: Okay. Now. I want you to have an awesome
+time –</p>
+<p><strong>kyle</strong>: I will, mom –</p>
+<p><strong>rachel</strong>: – you can eat junk food, just remember to
+brush your teeth; and if you’re gonna goof off, just be really smart
+about it; and try not to stay up past your bedtime, you get really
+cranky when you do that’– He gets very contrarian if he doesn’t get at
+least eight –</p>
+<p><strong>mrs. miller</strong>: I’m afraid it’s time to board,
+Mrs. Holloman. Tears springing to Rachel’s eyes. She tries to hide them.
+Bending down to be eye to eye with her son. Sotto –</p>
+<p><strong>rachel</strong>: You see all these kids? They’re all calling
+their mothers. You just do it more –</p>
+<p><strong>kyle</strong>: It’s only two days,: mom. Y’know… you could
+try and some have fun too, wouldn’t kill ya..</p>
+<p><strong>rachel</strong>: Fun? What’s that? I love you so much,
+baby.You’re my everything. Rock the house.</p>
+<p><strong>kyle</strong>: – love you too – They separate – she watches
+as Kyle boards with Mrs. Miller:</p>
+<p><strong>rachel</strong>: Call me!</p>
+<p><strong>mrs. miller</strong>: Your mom gonna be okay?</p>
+<p><strong>kyle</strong>: It’s unclear. As they head into the train,
+Rachel steels herself and GOES. Passing the BAGGAGE AREA…</p>
+<p><strong>continued:</strong>: We HOLD as the PORTER places Kyle’s
+TRUMPET CASE on a conveyor belt. Oddly, it’s ELECTRONICALLY REDIRECTED
+AWAY FROM THE OTHER INSTRUMENTS – down a separate belt, where it emerges
+in a pick- up turnstile. Its lifted off the track by… A MIDDLE EASTERN
+MAN. Nervous. Really nervous. And the strangest thing – he touches his
+ear and MURMURS something in Tajiki. To no one. Like a crazy person.
+What the hell? Walks to the curb where his white van idles. On the side
+is a decal: “HASSAD DRY CLEANERS.” Loads the trumpet inside as we:</p>
+<p><strong>woman #1</strong>: you didn’t know either?</p>
+<p><strong>woman #2</strong>: No idea.</p>
+<p><strong>woman #3</strong>: I knew he had a brother. But not a twin,
+that was…</p>
+<p><strong>woman.#1</strong>: I know, I know… Four WOMEN sit together.
+Heartbroken, unsettled. One glances across into a sitting room, where
+Jerry sits alone on a sofa. We’re CLOSE on Jerry now. Holding a glass,
+etched with hearts. Looking at it as if it means something. Somehow, his
+childhood. He looks up at the stairs, as if knowing he needs to go up
+there. So he does. We MOVE with him:</p>
+<p><strong>woman #1</strong>: when was the last time they saw him?</p>
+<p><strong>woman #2</strong>: Margaret said years…</p>
+<p><strong>continued:</strong>: It’s WILLIAM. Their father. The worst
+day of this man’s life. Jerry composes himself quickly. They stare for a
+moment.</p>
+<p><strong>william</strong>: Six months without a boo or a bah.</p>
+<p><strong>jerry</strong>: Didn’t realize it’d been that long.</p>
+<p><strong>william</strong>: Your mom was worried. So where were you
+this time?</p>
+<p><strong>jerry</strong>: Nowhere. Singapore. Alaska for a few weeks.
+got a job for a while. On a…fishing boat. Met some great p-</p>
+<p><strong>william</strong>: – that’s nice. Looks like you’re really
+seeing the world.</p>
+<p><strong>jerry</strong>: I’m trying, you know, just to – But William
+has just started crying.. Sobs of absolute loss. Jerry stands there,
+frozen, until William EMBRACES HIM. Jerry hugs him back – tightly,
+grateful and starting to feel again. And just then, William says,
+quietly, through tears:</p>
+<p><strong>william</strong>: You sound just like him. Jerry’s eyes find
+a point in space. This is love by proxy. And now he hugs, his father in
+support, not unity. William pulls back. Takes his wallet from his
+pocket:</p>
+<p><strong>william</strong>: I want to give you some, uh…</p>
+<p><strong>jerry</strong>: No. – Dad, I’m okay. I’m doing really well. I
+promise. His father holds out some bills. North of two-hundred dollars.
+It’s a stand-off. The question is: does Jerry have enough pride to
+reject the offer? And the answer is…</p>
+<p><strong>continued:</strong>: AND WE PUNCH IN TIGHTER ON JERRY, WHO
+STARES, STUNNED. The screen reads: “BALANCE: $750,000.00” What the HELL?
+Glances back to the people behind him, they want him to hurry. He hits
+“Cancel.” But the machine, as if disobeying, spits out five $100
+bills–</p>
+<p><strong>jerry</strong>: – whoa – Jerry stabs cancel again. Now TEN
+MORE $100 bills-come out. He glances at the people in line, nervous–</p>
+<p><strong>jerry</strong>: – two seconds, sorry – Eyes flick back to the
+ATM CAMERA. He covers it with his hand, pushes “cancel” again and again.
+But now.. TEN THOUSAND DOLLARS IN $100 BILLS HAS COME OUT, getting
+JAMMED’ in the slot. People start to PEER OVER as Jerry SCRAMBLES to
+keep the cash from flying everywhere. And finally. The machine stops. He
+stuffs all the money in his pocket. Everyone’s staring.</p>
+<p><strong>jerry</strong>: Big date. So… fingers crossed.</p>
+<p><strong>mrs. wierzbowski</strong>: Jerry! All day they make delivery!
+Jerry moves fast to her, a little out of breath – shoves a thousand
+dollars into her hand:</p>
+<p><strong>jerry</strong>: Here’s the rest of the rent – next month’s,
+too –</p>
+<p><strong>mrs. wierzbowski</strong>: – where do you get this?</p>
+<p><strong>jerry</strong>: Just take it – it’s okay, I owe you –</p>
+<p><strong>mrs. wierzbowski</strong>: I had to open your apartment, too
+many packages come, they come for hours –</p>
+<p><strong>jerry</strong>: For me?</p>
+<p><strong>jerry</strong>: – hello? A WOMAN’S VOICE. We can’t place why…
+but it’s really creepy.</p>
+<p><strong>woman’s voice</strong>: Look out your window. They’re coming
+for you.</p>
+<p><strong>jerry</strong>: – what? Who is this?</p>
+<p><strong>woman’s voice</strong>: Jerry. You have to run.</p>
+<p><strong>jerry</strong>: Who the hell is this?! Rips back the curtain
+to see a SWAT VAN SCREECHING UP – a flack- jacketed TEAM pours out,
+assault rifles ready. Jerry goes pale.</p>
+<p><strong>woman’s voice</strong>: Leave your residence. Get to the
+Mathis train station. You have 4 minutes.</p>
+<p><strong>jerry</strong>: Jesus Christ – what’s happening?!</p>
+<p><strong>woman’s voice</strong>: Run, or you’ll be captured and
+convicted – go NOW. CLICK. POUNDING BOOTS AGAINST PAVEMENT OUTSIDE.
+Jerry whirls, goes out to the hall, hears THEM coming. Starts to run.
+But a</p>
+<p><strong>team leader jerry</strong>: Hands behind your head! DOWN
+WHAT’S GOING ON? HEY! IS</p>
+<p><strong>will fire! didn’t do anything!</strong>: Jerry’s SLAMMED to
+the ground as we CUT TO –</p>
+<p><strong>jerry</strong>: Look, man, I don’t know what this is – I
+don’t know how all that shit got in my apartment, but unless you’re my
+lawyer–</p>
+<p><strong>morgan</strong>: My condolences. I understand you’ve had a
+tough day.</p>
+<p><strong>jerry</strong>: it hasn’t been ideal.</p>
+<p><strong>morgan</strong>: Your brother worked for the State
+Department. This was almost a question. And while it’s obviously news to
+us, Jerry clearly knew…</p>
+<p><strong>jerry</strong>: You tell me.</p>
+<p><strong>morgan</strong>: Were you close?</p>
+<p><strong>jerry</strong>: Why? What am I doing here. I don’t even know
+who you are. Morgan tosses his black leather BADGE WALLET onto the metal
+table. It lands open with a substantial CLUNG!</p>
+<p><strong>morgan</strong>: Tom Morgan, Special Agent attached to the
+National Counterterrorism Center.</p>
+<p><strong>jerry</strong>: Counterterrorism Center? You think I’m –</p>
+<p><strong>morgan</strong>: – according to phone records, your brother
+called you twelve times in the last year. You never called him back.</p>
+<p><strong>jerry</strong>: If you’re asking if we were the kind of
+freaky twins you see at the mall wearing the same shirt, no. Listen,
+Paul traveled a lot, so we didn’t –</p>
+<p><strong>morgan</strong>: Oh. That’s right. He stamped visas in
+Karachi for a year. Then was a junior FSO in Beirut. Interesting
+places.</p>
+<p><strong>jerry</strong>: What’re you… saying.</p>
+<p><strong>morgan</strong>: I’m just saying you didn’t talk much. maybe
+you did.</p>
+<p><strong>jerry</strong>: Am I getting a lawyer here? ’Cause didn’t
+hear my rights read to me–</p>
+<p><strong>morgan</strong>: You familiar with the slogan, “Declare War
+on War?”</p>
+<p><strong>jerry</strong>: what? No, why? Morgan pulls out a
+SURVEILLANCE PHOTO: Jerry, college-age, at a STUDENT RALLY holding up a
+sign with an image of the Pentagon crossed out in red: “DECLARE WAR ON
+WAR!”</p>
+<p><strong>morgan</strong>: Because you painted it when you were part of
+the student activist group “Project Underground” at Berkley.</p>
+<p><strong>jerry</strong>: Wait. Come on – okay: her name was Julia, she
+was the smokinist girl I’d ever seen and she wanted me – I would’ve gone
+to an “Anti-Oxygen” rally for her. I swear to God, dude–</p>
+<p><strong>morgan</strong>: Don’t “dude” me. I’m not your friend. I
+don’t have friends… so: Jerry. Why’d you drop out of school?</p>
+<p><strong>jerry</strong>: Why’d you stay in? I don’t know, I didn’t
+really see the point.</p>
+<p><strong>morgan</strong>: You haven’t been able to hold a job</p>
+<p><strong>jerry</strong>: Unless I’ve been fired from Kinko’s, which is
+a statistical impossibility, I’m holding a job right now.</p>
+<p><strong>morgan</strong>: Construction work, bartender in Singapore,
+telemarketing, real estate office, messenger, supermarket sign painter,
+taxi driver, gas station in Florida, fishing boat in Alaska–</p>
+<p><strong>jerry</strong>: – what can I say? Guess I haven’t found
+myself yet –</p>
+<p><strong>morgan</strong>: Who deposited the seven-fifty?</p>
+<p><strong>jerry</strong>: For as second I thought God, maybe. The ATM
+was obviously broken – or do.. accidents not happen in your .
+universe?</p>
+<p><strong>morgan jerry</strong>: The money originated from the –this is
+all – listen, this HSBC bank of Singapore – is all very interesting –
+but opened with a transfer from a this has nothing to do with
+corporation called ‘The Star me! Do you understand? of Orion,’ a dummy
+front for Hezbollah. This morning Majid – alright, this is insane, I
+Al-Khoei says the agents.of want a lawyer– destruction are already
+inside our borders– – we find hardware in your – I told you, it all just
+apartment, latest military showed up there’. You’re not spec, airplane
+manuals, plus listening to me! twelve hundred pounds. of– sit your ass
+down now – ammonium nitrate fertilizer. Just curious if you knew any of
+Paul’s friends in Beirut, or if he knew any of your friends – what do
+you mean in Singapore, oh but that’s “friends”?! right, we haven’t
+really established whether or not you two were close– – I guess we were
+rett close when I looked into his open casket this morning and saw the
+bad make-up job covering the gash in his skull! Or how about when I
+watched him being lowered into the ground – that establish anything for
+you?! Somebody set me up! Morgan stares at him, unmoved.</p>
+<p><strong>morgan</strong>: “Somebody.” Who?</p>
+<p><strong>jerry</strong>: A woman, I don’t know! She called me and told
+me I was gonna be arrested. GET</p>
+<p><strong>morgan</strong>: No more than Abdul Hamid, Taliban POW we
+caught in Afghanistan. Except his real name was Johnny Walker Lindh.
+Grew up in Marin County with a basketball hoop in his driveway and a
+carton of Tropicana in his fridge. He was blonder than you.. though.</p>
+<p>****: When I come back, you’d better tell me who you work for– And
+heads out the door, SLAM! Jerry yells;</p>
+<p><strong>latesha</strong>: He fits the profile: disaffected,
+’susceptible to radical indoctrination, problem with authority. Doesn’t
+vote or pay taxes, but witness statements all say he’s not a player. He
+does sketches of his landlady’s dog. Oh, and he’s lying about the woman
+who called him – we checked the records, no calls came in before we
+picked him up –</p>
+<p><strong>krebs</strong>: What about the brother?</p>
+<p><strong>latesha</strong>: Mid-level FSO. Been stateside the past
+three years. No red flags. He was killed when a truck ran a light in
+Crystal City.</p>
+<p><strong>morgan</strong>: That kind of equipment and a major cash
+infusion five hours after a terrorist threat and were smiling and saying
+“coincidence?”</p>
+<p><strong>krebs</strong>: So either he’s a rank-and-file sleeper or a
+dumbshit mule.</p>
+<p><strong>grant</strong>: Or a misdirect. There’s nothing subtle about
+him or the gear. He’s not exactly a pro– Morgan levels a look at Grant
+as Krebs takes .a BEAT. Figuring out the next move:</p>
+<p><strong>krebs</strong>: Get Smith on financials; Rieger on travel;
+and let’s dryclean family and friends. Again.</p>
+<p>****: I don’t want the FBI rushing in on this. Break him. Fast. And
+leaves Morgan to twist.. The pressure’s on. To Latesha:</p>
+<p><strong>morgan</strong>: v m m putting you on the brother.</p>
+<p><strong>latesha</strong>: Great, I’ll access State’s database</p>
+<p><strong>morgan</strong>: No, I want you to go there.</p>
+<p><strong>latesha</strong>: But, Tom, I can do everything from</p>
+<p><strong>morgan’s voice</strong>: you know those funny things
+underneath that not-so-stylish pantsuit? They’re called leas. Latesha
+looks at him, not happy.</p>
+<p><strong>latesha</strong>: Yes. Sir.</p>
+<p><strong>morgan</strong>: You know I hate it when you call me that– He
+turns to go, Grant immediately following him –</p>
+<p><strong>agent grant</strong>: What can I do?</p>
+<p><strong>morgan</strong>: Follow me and don’t talk.</p>
+<p><strong>michael</strong>: He’s out of town.</p>
+<p><strong>rachel</strong>: Yup.</p>
+<p><strong>michael</strong>: Which seems like a perfect ;opportunity for
+a second date. In theory.</p>
+<p><strong>rachel</strong>: In theory – but I gotta site-check this
+brief, courier’s coming in,.,the morning.</p>
+<p><strong>michael</strong>: Didn’t we have a good time? Remember that?
+Our first date? Back in the 40’s? He’s so agreeably genuine, she wants
+to let him down easy:</p>
+<p><strong>rachel</strong>: I had a great. time, I told you that but I’m
+so busy and…</p>
+<p><strong>michael</strong>: Ooo.o, shit, the “so busy” speech – stop –
+not worthy of you. Or me. I’m patient, so… call me. When you’re not
+busy.</p>
+<p><strong>rachel</strong>: Kyle goes to college in nine years– it
+should be somewhere around then.</p>
+<p><strong>michael</strong>: I would so wait a decade for you. Call me
+his sophomore year, I’ll prove it. And with a smile he heads off. She
+watches him go – dammit! really liking him in this moment. She watches
+longer than she should… then goes back to her work. He gets in the
+elevator and she’s left in her solitude. And now we BEGIN TO SEE the
+first signs of it: loneliness.</p>
+<p><strong>continued:</strong>: The consequence of not really letting
+anyone into her life. She stares off as BLING! An IM box pops up on her
+screen: “RACHEL HOLLOMAN. ANSWER THE PHONE.” And just like that the
+PHONE RINGS. Rachel jumps. Staring at the IM. Then at the phone. Answers
+it:</p>
+<p><strong>rachel</strong>: – hello? It’s the same chilling FEMALE
+VOICE:</p>
+<p><strong>woman’s voice</strong>: Click on the link at the bottom of
+the page. Rachel’s eyes drop down to the LINK at the bottom of her
+screen. What? Leans out from her cubicle to look around – NO ONE
+ELSE</p>
+<p><strong>rachel</strong>: who is this? As she clicks on the link. And
+a STREAMING IMAGE APPEARS: A</p>
+<p><strong>black and white surveillance cam ofkyle on his train,
+laughing</strong>: WITH OTHER KIDS. Rachel’s breath is taken away–</p>
+<p><strong>rachel</strong>: What’s going on? Who are you –?</p>
+<p><strong>woman’s voice</strong>: Would you risk your life for your
+son? Rachel jumps to her feet,: trying to breathe through the panic.
+Looking around. NO ONE -</p>
+<p><strong>rachel</strong>: This isn’t funny! Who are you?!</p>
+<p><strong>woman’s voice</strong>: Ican derail his train. I can kill him
+at any time. I’ll ask again: would you risk`. your life for your son?
+Suddenly the BROWSER GOES BLANK: “UNABLE TO ACCESS PAGE.” Kyle’s taken
+from her, that fast – she gasps, terrified.</p>
+<p><strong>rachel</strong>: yes…</p>
+<p><strong>woman’s voice</strong>: Follow my instructions precisely.
+There’s a vehicle parked at the northeast exit of your building. The
+keys are in the ignition. Start walking. Now. CLICK. Off Rachel’s
+stunned, terrified face –</p>
+<p><strong>agent</strong>: Time for your phone call.</p>
+<p><strong>jerry</strong>: I thought there was no phone call.</p>
+<p><strong>agent</strong>: Attorney General’s office changed their
+mind.</p>
+<p><strong>jerry</strong>: hello? Dad–?</p>
+<p><strong>woman’s voice</strong>: I told you to. run. You didn’t. TIGHT
+ON JERRY now, terrified, breathless –</p>
+<p><strong>jerry</strong>: .no wav – who are you?! Behind Jerry; the
+steel door UNLOCKS – he whirls to the OPENING DOOR – waiting for a Guard
+– someone, anyone… BUT NO ONE</p>
+<p><strong>comes.</strong>: :: What the hell is this?!</p>
+<p><strong>woman’s voice</strong>: Follow the water. Or the fire will
+kill you.</p>
+<p><strong>jerry</strong>: What fire?! How’d you get on this phone?! Are
+you the one doing all this to me? Why?!</p>
+<p><strong>woman’s voice</strong>: Follow the water. Leave the building
+– – and Jerry SPINS BACK. Looks up at a WALL VENT near the ceiling –
+SMOKE. Ho-shit! A SMOKE ALARM BLARES –</p>
+<p><strong>woman’s voice</strong>: – take Brisbane Street to the
+elevated train station: you have six minutes.</p>
+<p><strong>jerry</strong>: Wait, what d’you mean “follow the water”?
+Suddenly: TSHHHHH! Jerry turns – in the hallway, a CEILING SPRINKLER
+SPRAYS. The FIRE GROWS, RAGING from the VENT –</p>
+<p><strong>morgan</strong>: Where’s Shaw?</p>
+<p><strong>agent</strong>: Parker took him to make his phone call.</p>
+<p><strong>morgan</strong>: Took him?! On whose authority?!</p>
+<p><strong>jerry shaw!!</strong>: Turns through the wild FIRE, Morgan,
+at the other end of the corridor – GUN DRAWN:</p>
+<p><strong>listen to me! i’m not trying to escape!</strong>: The fire
+ERUPTS between them, obscuring each other’s view. No choice, Jerry
+turns, HURLS the chair at the WINDOW, IT SHATTERS:</p>
+<p><strong>then just as fast, its back to the schedule.</strong>: HOW IS
+THIS HAPPENING?! Across the station, Jerry sees Morgan and a team of
+Agents pouring down the stairs =- he runs onto the train as the DOORS
+CLOSE – Morgan turns, doesn’t see him.</p>
+<p><strong>cnn newscaster</strong>: has elevated our alert status to
+threat level “Orange.” Insiders say tomorrow night’s State of the Union
+address will focus on…</p>
+<p><strong>conductor</strong>: Next stop, Montrose Station. A CELL RINGS
+from a phone peeking out of a SLEEPING PASSENGER’S BACKPACK. He looks at
+it, oddly suspicious. The LCD GOES BLACK – then the words “ANSWER IT,
+JERRY” appear. Looks around: no one saw it. Slips the phone from the
+guy’s backpack – turns away, hits “answer”:</p>
+<p><strong>woman’s voice</strong>: Stay on the train for three more
+stations until you r– But Jerry HANGS UP – WON’T HAVE THIS. And as the
+train slows, he moves to the door and –</p>
+<p><strong>train’s emergency brakes suddenly kick in, gears screech,
+people</strong>: TUMBLE… and the train stops. Everyone looks around,
+confused, frightened. Suddenly, the train starts MOVING BACKWARDS–</p>
+<p><strong>jerry</strong>: – Jesus –</p>
+<p><strong>woman’s voice</strong>: I told you not to get off yet.</p>
+<p><strong>jerry</strong>: – listen – lady – who are you?!</p>
+<p><strong>woman’s voice</strong>: He knows you’re here. Jerry turns and
+sees A TRANSIT COP through the glass doors that connect the cars – he’s
+talking into a shoulder-mounted walkie talkie. Looking right at JERRY
+–</p>
+<p><strong>jerry</strong>: –.how do you know that? Where are you? Jerry
+notices ANOTHER SECURITY CAMERA in the corner as:</p>
+<p><strong>woman’s voice</strong>: Next stop is Damen Station. Take the
+Northwest exit. There will be a black BMW sedan. Get in the passenger
+seat.</p>
+<p><strong>jerry</strong>: Go to hell. How’s that. He hangs up, drops
+the phone and STOMPS ON IT. Eyes from fellow passengers. THEN EVERY CELL
+PHONE ON BOARD RINGING IN UNISON.</p>
+<p><strong>continued:</strong>: Jerry watches, stunned, as passengers
+start answering – all hearing the same thing:</p>
+<p><strong>woman’s voice</strong>: The man in the black t-shirt is a
+wanted terrorist. His name is Jerry Shaw. Everyone TURNS TO Jerry, backs
+away, but a HUGE MAN stands:</p>
+<p><strong>huge man</strong>: – you Jerry Shaw? EVERYONE looking, a few
+even start to move for him. Jerry goes for the door, but the SUBWAY
+COP’S there, about to enter, but the door’s locked. Jerry yells to the
+passengers.:</p>
+<p><strong>stay away from me!</strong>: The COP pulls his gun, yelling
+through the glass:</p>
+<p><strong>everybody down! get down?</strong>: Suddenly, the train
+SPEEDING, the DOORS OPEN! A BLAST OF WIND! People SCREAM, take cover as
+the.train .pulls into the station, the COP about to SHOOT when Jerry
+jumps, LANDING HARD ON THE PLATFORM – ROLLS – and the COP FIRES! People
+SCREAM and RUN, as the moving train separates Jerry from the Cop – Jerry
+gets to his feet, sprints towards the northwest exit and –</p>
+<p><strong>jerry rachel</strong>: Okay: WHAT DO YOU WANT WITH – I’m not
+doing a thing until ME?! I know for a fact that Kyle’s safe – Do you
+hear me? I am not fucking around, you tell me now what this is Do you
+hear me? No, you stop - about! - I will not do a thing for you until
+–</p>
+<p><strong>hey</strong>: I almost died back there! Three times! Shut up!
+You shut up and – who?! Who’s Kyle? WHO THE listen to me now! You tell
+me HELL IS KYLE?! Kyle is safe! YOU TELL ME</p>
+<p><strong>he’s safe goddammit!!!!</strong>: She’s HITTING HIM and he’s
+gotta grip her arms to control her –</p>
+<p><strong>rachel jerry</strong>: MY SON! YOU LET HIM GO! YOU HEY! HEY,
+STOP! Wait! HURT HIM AND I WILL KILL You’re not the woman who YOU!!!
+called me? And Rachel, out of breath, realizes: holy shit…</p>
+<p><strong>rachel</strong>: the woman? She called you too?</p>
+<p><strong>woman’s voice</strong>: Drive. – and Jerry and Rachel SCREAM
+at the horror of THE;WOMAN’S VOICE COMING FROM INSIDE THE CAR –
+how?!</p>
+<p><strong>jerry rachel</strong>: –where’s that coming from?! –who are
+you?!</p>
+<p><strong>woman’s voice</strong>: I’m using the onboard automotive
+telematics system. Drive. Now. KA-BOOOOM!!! The side window EXPLODES
+from a GUNSHOT! They duck – Jerry turns to look at,the COPS running
+toward the car:</p>
+<p><strong>they’re shooting at us?!
+drivedrivedrivedrivedrive!!!</strong>: She SLAMS the gas – the car
+SCREECHES ONTO THE ROAD, another car avoiding it, SLAMMING into a BUS –
+Rachel LURCHES and GRINDS as she shifts gears –</p>
+<p><strong>woman’s voice</strong>: Stay about fifty miles an hour, you
+have pursuers.</p>
+<p><strong>jerry</strong>: Yeah, thanks, we’re on it –</p>
+<p><strong>woman’s voice</strong>: Turn left in two-hundred feet. Indeed
+they do: TWO POLICE CARS BLAST AROUND A STREET CORNER FOUR BLOCKS BEHIND
+THEM – DOPPLER HORNS as we CUT BACK TO:</p>
+<p><strong>jerry</strong>: – my name’s Jerry Shaw, I’ve been set up –
+somehow I don’t know – by –</p>
+<p><strong>continued:</strong>: He dramatically GESTURES around the car,
+indicating The Voice.</p>
+<p><strong>woman’s voice</strong>: One hundred feet.</p>
+<p><strong>rachel jerry</strong>: – you don’t know anything Your son?!
+No, I know about Kyle? nothing! Just like you don’t know how to drive:
+use the clutch before you shift, not while you shift, not while you – I
+don’t need driving sh– lessons from you, asshole! – you drive like. this
+and I’m the asshole?</p>
+<p><strong>woman’s voice ..</strong>: Turn now.</p>
+<p><strong>rachel</strong>: I know I got it! And she YANKS the steering
+wheel and the.car makes a FRIGHTENING SCREAMING LEFT TURN as we CUT
+TO:</p>
+<p><strong>police radio</strong>: All units, respond code 3 – suspect’s
+headed south on Stanley – Morgan makes a hard right, .tearing around a
+corner –</p>
+<p><strong>rachel jerry</strong>: –the lights are all changing to green…
+it’s like… – like they’re changing for us…</p>
+<p><strong>woman’s voice</strong>: Accelerate to sixty – turn right in
+four- hundred feet…</p>
+<p><strong>jerry</strong>: – oh, no way –</p>
+<p><strong>continued:</strong>: Rachel looks up too – eyes wide: A
+TEN-STORY-TALL CONSTRUCTION</p>
+<p><strong>jerry</strong>: – sixt ! Go to sixty! And suddenly the crane
+DROPS THE GIRDERS – Rachel SCREAMS –</p>
+<p><strong>shit!!</strong>: And the STEEL BEAMS SLAM INTO THE PAVEMENT,
+JUST BEHIND THE BMW,</p>
+<p><strong>rachel</strong>: – this isn’t happening!!! Tries to DOWNSHIFT
+– GRINNNNNNNND!!</p>
+<p><strong>clutch! i’m clutching!!</strong>: She tries to shift – Jerry
+puts his hand on hers – JAMS THE GEAR SHIFT INTO FOURTH – the car
+swerves to avoid a car:</p>
+<p><strong>go right go right!!!</strong>: Rachel yanks the wheel, SKIDS
+round the corner – more police screech in ahead – she’s forced to VEER
+onto a ONE-WAY STREET!</p>
+<p><strong>jerry rachel</strong>: Getoffthe street – wait, –WILLYOU SHUT
+UP?!!!! no,turnup ahead, keep going –WILLYOU JUST SHUT UP AND –go…wait –
+stop – TURN LETMEDO IT!!</p>
+<p><strong>here!!</strong>: The BMW barely avoids one collision after
+another –</p>
+<p><strong>woman’s voice</strong>: You’ll turn at the next alley: avoid
+the police. Rachel skids right, but TWO COP CARS appear. Too late to
+stop WHAM! The BMW SMASHES THROUGH – both cop cars go flying.</p>
+<p><strong>jerry</strong>: – you’re doing great –</p>
+<p><strong>morgan</strong>: They’re headed for the harbor! Gimme
+roadblocks at Granville and Sheridan!</p>
+<p><strong>in the bmw</strong>: Jerry and Rachel speed through an
+industrial marina. Up ahead, the intersection’s closed by a POLICE
+BARRICADE.</p>
+<p><strong>woman’s voice</strong>: Turn right in two-hundred feet.</p>
+<p><strong>morgan’s car</strong>: he SEES Rachel coming right at him.
+Just before they collide, she TURNS RIGHT. Morgan SLAMS his brakes – his
+car FISHTAILS – the cruisers behind him come to a.stop; but now</p>
+<p><strong>woman’s voice</strong>: Accelerate to sixty five.</p>
+<p><strong>accelerate?! we”re headed for the water!</strong>: – are you
+trying to kill us?! – slow down! Jesus, slow down–what the hell’s your
+name? YOU! YOU!!! – Oh! Rachel! – Rachel: SLOW THE HELL</p>
+<p><strong>down!!!</strong>: Just then: KA-CHUNK!! Something just
+SLAMMED onto the ROOF – a high-pitched VREEEEE as he car’s tires SPIN in
+overdrive but suddenly FIND NO ROAD BENEATH THEM! And impossibly, as the
+brick wall GROWS HUGE coming right at us through the windshield, the car
+RISES OFF THE GROUND – LITERALLY FLYING –</p>
+<p><strong>how are you doing this?!?! i’m not!!!</strong>: – and now we
+REVEAL: A GIANT, INDUSTRIAL MAGNET attached to the top of the BMW,
+HOISTING it up on a DOCK CRANE – the jib arm PIVOTS, swinging them over
+a CRANE YARD… Minds blown, they swing past the crane’s DRIVER’S SEAT and
+see… NOBODY’S AT THE CONTROLS. The crane DIPS THEM toward a wooden
+railing overlooking the RIVER – they CRASH THROUGH it. The release arm
+DROPS the BMW – Jerry and Rachel SCREAM as they PLUMMET – but the car
+doesn’t hit water, instead it falls onto: A GARBAGE BARGE floating
+downriver. The car lands in a mountain of trash. The crane STOPS, just
+as… Morgan and the cops APPEAR, screeching in at the broken railing.</p>
+<p><strong>continued:</strong>: They jump from their cars, look down
+into the river and see NOTHING. Morgan KICKS a trash can, pissed:</p>
+<p><strong>morgan</strong>: Seal the harbor, get divers in the water!
+PAN UP TO the horizon… where the garbage barge floats lazily down Lake
+Michigan. Jerry and Rachel escaped… for now.</p>
+<p><strong>kyle’s voice</strong>: This is Kyle. Who is not allowed to.
+use this phone with my friends… so leave a message, Mom.</p>
+<p><strong>rachel</strong>: Honey? Honey? It’s me – Baby, you need to
+call me. Soon as you get this, 1 please – check your messages and.call
+me. Sweetie. I love y_ou. And she hangs up, staring’off. CRASH! Jerry’s
+knocked the window back – opens the control booth door and enters,
+examines the controls. The computer panel reads: “CONTROL OVERRIDE.”</p>
+<p><strong>jerry</strong>: – this thing’s on auto-pilot or something.
+Which doesn’t happen, these barges are operated, by people. He steps
+out. In thought, tears in her eyes, Rachel asks:</p>
+<p><strong>rachel</strong>: D’youthink – she could derail a train?</p>
+<p><strong>jerry</strong>: Are you kidding me? She changed every traffic
+light! This woman’s called me on other people’s phones – some dude who
+happened to be sitting next to me! His phone rang – it was her! For me!
+She broke me out of maximum-security custod in a way I’m not even gonna
+tell you cause you won’t believe it – and you saw how she directed us
+away from the police, then lifted us outta the world and dropped our ass
+onto the ghost barge! Can she derail a train? She could probably turn a
+train into a duck. Yes. I think she c–</p>
+<p><strong>continued:</strong>: – but now he stops, because Rachel is
+crying. Jerry lamely attempts to backpedal:</p>
+<p><strong>jerry</strong>: I mean… I don’t know, I’m not sure she could
+derail a train, what the hell do I know? Rachel brushes her tears away.
+Afraid, but fighting it.</p>
+<p><strong>rachel</strong>: My son is on a train. She threatened to kill
+him if I don’t do what she says. They share a look. The difference
+between them galvanized in an instant. She has something to lose.</p>
+<p><strong>rachel</strong>: You tell me – how does someone do all this?
+When: RING! A CELL PHONE. Rachel looks down, hoping it’s Kyle – but it’s
+not her phone. They realize the phone’s somewhere in the trash. Jerry
+starts digging. It’s nast Finally, he finds it in an old take-out box —
+re: the phone.</p>
+<p><strong>jerry</strong>: – you see what I mean? He wipes it off, holds
+it to his ear despite the stench;</p>
+<p><strong>jerry</strong>: Hello?</p>
+<p><strong>woman’s voice</strong>: You both need to swim to shore. Go to
+line tower 108.</p>
+<p><strong>“jerry rachel</strong>: “Swim to shore? Are you – she wants
+us to swim –?! insane?</p>
+<p><strong>jerry</strong>: Lady, what if I told you we don’t know how to
+swim.</p>
+<p><strong>woman’s voice</strong>: But you do. I’ve seen you at the
+beach house. And the female was once a swimming instructor at the YMCA
+in Westport, Connecticut. Go now or the authorities will find you.
+They’re more dangerous than the water.</p>
+<p><strong>continued:</strong>: CLICK – she’s gone. Jerry hangs up,
+turning something unnerving in his mind.</p>
+<p><strong>jerry</strong>: She called you “the female.” That’s like…
+something a foreigner would say, like a bad translation. But she has no
+accent.</p>
+<p><strong>rachel</strong>: Jerry, that’s your name, right? Are we
+swimmincr?</p>
+<p><strong>jerry</strong>: Does it bring back memories of Westport
+Y?</p>
+<p><strong>rachel</strong>: how did you know that?</p>
+<p><strong>jerry</strong>: I didn’t. And they turn to look down at the
+FREEZING RIVER WATER as we PRE- LAP the SOUND of a clear F SHARP and CUT
+TO –</p>
+<p><strong>store owner</strong>: You sure you want to replace it? Sounds
+pretty good to me. And we reveal MIDDLE EASTERN MAN standing at the
+counter. Eyes darting, nervousShoves a small BOX into the man’s
+hand.</p>
+<p><strong>middle eastern man</strong>: Yes. I’m sure. Please do it now.
+The Store Owner looks into the box.</p>
+<p><strong>store owner</strong>: I do a lot of custom jobs, never seen
+something like this before. I can have it for you by the end of the
+week. The Middle Eastern Man. MUMBLING again in Tajiki. Seemingly, to
+himself. The Store Owner stares, kinda freaked out –</p>
+<p><strong>store owner</strong>: Sorry, what?</p>
+<p><strong>middle eastern man</strong>: No. Is not possible. it must be
+done this afternoon –</p>
+<p><strong>store owner</strong>: Listen, Mister – The Middle Eastern Man
+suddenly touches his ear, BARKS out something in Tajiki. Like he’s
+arguing with someone.</p>
+<p><strong>store owner</strong>: – are you okay?</p>
+<p><strong>middle eastern man</strong>: I will pay you triple. Please. A
+courier will be by to pick it:’up at three. Do it, please… please. And
+stepping back, he exits quickly. The Store Owner watches him leave, then
+looks back down at the BOX.</p>
+<p><strong>agent grant</strong>: All the surveillance cameras in the
+area have turned up nothing – no ID on the girl, nothing on the VIN
+–</p>
+<p><strong>morgan</strong>: All I want is a goddamn picture of her –
+what about traffic cams? There are more cameras on that route than the
+Super</p>
+<p><strong>agent grant</strong>: Department of Transpo says there was a
+seven minute equipment failure –</p>
+<p><strong>morgan agent grant</strong>: Do NOT tell me their equipment
+was down! Do NOT! Sir, that’s what they’re telling me… From Northbrook
+to the 290?! What about the bogus fax from Justice, was that equipment
+failure too? – No sir, there’s gotta be someone on the inside. – ya
+think?!</p>
+<p><strong>continued:</strong>: Pissed, Morgan starts – fast – for the
+chopper – we move with him and Grant, who keeps up:</p>
+<p><strong>morgan</strong>: The getaway car was waiting there – get me a
+witness description on the woman driving – remember witnesses? People
+who see things?! Jesus, is this a lost art?</p>
+<p><strong>agent grant</strong>: I have Markey on that right now
+Morgan’s PHONE IS RINGING – he answers:</p>
+<p><strong>morgan</strong>: Morgan. When? NO. You tell them hold that
+’til I talk to Sanford - WTMZ has a report that there’s a terrorist at
+large in the.city,– I’m going back to forensics. Find out where the hell
+that fax originated.– if you don’t have good news for me before I touch
+down you will be demoted to a job that will require you. to touch shit
+with your hands –do you understand me?</p>
+<p><strong>agent grant</strong>: Yes sir! As Morgan hops up onto the
+moving chopper –</p>
+<p><strong>morgan</strong>: Nobody who works for me calls me sir.
+understand?! It’s disingenuous – might as well be calling me ‘asshole.’
+As Grant watches the chopper take off, perplexed.</p>
+<p><strong>rachel</strong>: So you’re a twin.</p>
+<p>****: Who works at a copy place. And she manages a clipped,
+judgemental laugh.</p>
+<p><strong>jerry</strong>: Yeah, I know… that’s occurred to me.</p>
+<p><strong>rachel</strong>: So this whole situation is obviously about
+him.</p>
+<p><strong>jerry</strong>: Excuse me? I would offer this whole situation
+isn’t “obviously” about anything.</p>
+<p><strong>rachel</strong>: Just think about it: you said your brother
+worked at the State Department –</p>
+<p><strong>jerry</strong>: – so what?</p>
+<p><strong>rachel</strong>: – so that means he could’ve: been into
+anythinc – he was a twin -:- you..received a shipment of weapons and
+cash and airplane manuals – it seems to me that they sent the stuff
+to.the wrong brother–</p>
+<p><strong>jerry</strong>: Wait a minute – you’re suggesting all that
+stuff was for Paul? As they approach TOWER 108:</p>
+<p><strong>rac he l</strong>: Hey, I’m sorry that he died, I’m not
+trying to insult his memory –</p>
+<p><strong>jerry</strong>: he hasn’t been dead long enough to become a
+memory! And if you knew Paul, which you did not, you’d laugh all day at
+the idea that he was a spy or terrorist or whatever you’re implying
+–</p>
+<p><strong>rachel</strong>: I’m implying if not him… then why you?</p>
+<p><strong>jerry</strong>: Well hasn’t that been the question my whole
+life. You know how I know Paul wasn’t a terrorist? Because if he had
+been, he would’ve been the best fucking terrorist in history: he
+wouldn’t have gotten caught, the United States would be a crater – he
+would’ve won awards for being a great terrorist.</p>
+<p>****: What about you? Why’d she choose you – what’s your day job? I
+know it isn’t “manual-shift driver.”</p>
+<p><strong>rachel</strong>: I did just fine driving, thanks. I’m a
+paralegal – I have no connection to anything.</p>
+<p><strong>jerry</strong>: Really? Suddenly they’re interrupted by the
+ROOSTERTAIL OF DUST approaching in the distance. Rachel stops dead and
+on INSTINCT, grabs Jerry’s hand, all their mutual hostility
+vanished:</p>
+<p><strong>rachel</strong>: Someone’s coming. And what’s approaching is
+the “Hassad DryCleaners.” van. It comes to a stop and out steps the
+Middle Eastern Man. Stands some twenty-five feet from them.</p>
+<p><strong>middle eastern man</strong>: Are you Jerry Shaw?</p>
+<p><strong>jerry</strong>: who are you? Rachel grabs Jerry’s arm as the
+man reaches into his jacket –</p>
+<p><strong>jerry middle eastern man</strong>: – Whoa – I dropped it off
+like she said. I’m done. The man’s pulled out an unusual-looking STEEL
+KEY.</p>
+<p><strong>jerry</strong>: – dropped off what? Who are you?</p>
+<p><strong>middle eastern man</strong>: Take it – He TOSSES the key..–
+it lands, LARGE IN FRAME, somewhere between them. Then:</p>
+<p><strong>jerry</strong>: what’s it for?</p>
+<p><strong>middle eastern man</strong>: I don’t know – I don’t care –
+but I will not drive you. You take the van I’m not listening to you any
+more! And the man turns to go, just walks away.</p>
+<p><strong>rachel jerry</strong>: – hey! – wait, who are you?! You have
+to tell us what you know!</p>
+<p><strong>continued:</strong>: And as the man walks away from them his
+CELL PHONE RINGS: He pulls it out – the LCD READS: “LAST CHANCE.” And
+the man DROPS the phone and just starts RUNNING –</p>
+<p><strong>wait!!</strong>: And Jerry takes off after him, he’s not
+letting him go. Catches up to the guy and grabs him. Spinning him round
+–</p>
+<p><strong>jerry</strong>: What do you know?</p>
+<p><strong>middle eastern man</strong>: – let me go!</p>
+<p><strong>jerry</strong>: – who’s doing this? And they begin to
+struggle. Middle Eastern Man’s dropped CELL PHONE RINGS. Rachel.
+Terrified, hesitant. Knows somehow its for her – she answers:</p>
+<p><strong>woman’s voice</strong>: Stop him now or he will die.</p>
+<p><strong>rachel</strong>: How are you seeing us?! Jerry and the Middle
+Eastern Man. Fighting. Thrashing. Throwing sloppy punches:</p>
+<p><strong>middle eastern man</strong>: Let go of me! On Rachel:</p>
+<p><strong>woman’s voice</strong>: Stop him now. CLICK. Rachel turning
+to SCREAM at Middle Eastern Man –</p>
+<p><strong>rachel</strong>: Stop! You have to STOP! When the Middle
+Eastern Man CRACKS Jerry in the nose and he goes sprawling. He takes off
+again, yelling back:</p>
+<p><strong>middle eastern man</strong>: I cannot! I have a family!!!</p>
+<p><strong>rachel</strong>: She’s going to KILL YOU!</p>
+<p><strong>continued:</strong>: And just then, something TERRIFYING: an
+IMMENSE POWER SURGE – HEARD, FELT – and a SIX-STORY-HIGH COIL THE SIZE
+OF AN SUV EXPLODES IN SPARKS. CABLES BLAST FREE. Rachel SCREAMS. Jerry
+TACKLES HER TO SAFETY as the tree trunk cables SWING DOWN AND STRIKE THE
+MIDDLE EASTERN MAN and he is SLAMMED OFF HIS FEET, the current making
+the cable STICK TO HIM LIKE GLUE. And he’s ON FIRE INSTANTLY – SMOKE
+EVERYWHERE as he’s TOSSED BY</p>
+<p><strong>air, pummelled down again, burning…</strong>: Jerry and
+Rachel watch this in horror – until she looks away. Jerry holding her –
+the two in shock, strangers, in each - other’s arms. Having shared
+another moment, too real, horror -</p>
+<p><strong>rachel jerry.</strong>: Oh my God… Oh God… oh We–we have to
+do something, God… Oh God… we have to… figure out what to.. what… And
+then his PHONE RINGS. And they’re both too afraid to answer it. Another
+RING. And another. Finally Jerry answers it, hand shaking slightly:</p>
+<p><strong>jerry</strong>: You killed him… you killed that man…</p>
+<p><strong>woman’s voice</strong>: It was unavoidable. Take the van.
+Drive to Indianapolis. 7002 West 56th Street. Arrive no later than
+eleven AM. Disobey and you die. CLICK. Rachel’s eyes on Jerry.</p>
+<p><strong>jerry rachel</strong>: she wants us to drive to
+Indianapolis.: , – why? What’s there, what? – – I don’t know – – no,
+this can’t keep happening! We have to go to the police, explain it –
+explain what?! What’re we – I’m not doing it!! I’m not gonna tell them?!
+going anywhere! Jerry can see she’s losing it. Grabs her by the
+shoulders:</p>
+<p><strong>jerry</strong>: – Rachel. She’s watching us. Right now. You
+wanna die too? Your son? We have to go. Rachel looks right at him, still
+shaking, knows he’s right. And nods. Okay. Okay. As our MUSIC BUILDS,
+LARGER THAN YOU MIGHT</p>
+<p><strong>– stops.</strong>: Just the eerie, faint whistle of wind. We
+PAN a barren landscape. Scattered scorch marks. Then, a high-pitched
+TONE as the PAN continues and arrives at a parked military truck, which
+gives us scale to understand the SUDDEN COLOSSAL EXPLOSION</p>
+<p><strong>debris is still ripped into the sky, pieces are coming down
+and</strong>: THERE WILL BE SMOKE FOR HOURS as a SUPER APPEARS:</p>
+<p><strong>“briar point test range – aberdeen, maryland.”-</strong>: And
+we hear CLAPPING – PULL BACK, realizing that we are inside:</p>
+<p><strong>weapons developer</strong>: That blast was the result of one
+single crystal of Hexomethylne. For those of you who are new today,
+“Rex” is an isotope that leaves no chemical markers – it’s eighty times
+more powerful than C4. Odorless. Undetectable. COLONEL THOMPSON, also
+from our opening, gestures:</p>
+<p><strong>colonel thompson</strong>: Talk about the detonating system…
+The Developer screws a METAL VALVE into what looks like a can of
+compressed air, saying:</p>
+<p><strong>weapons developer</strong>: Hex is triggered by an acoustic
+frequency undetectable to the human ear. For this test we made it
+audible – that was the tone you heard before the explosion – the tone
+was the trigger.</p>
+<p><strong>callister</strong>: What’s the risk that another sound could
+accidentally detonate it? A song on a radio? A howling dog?</p>
+<p><strong>weapons developer</strong>: No: the pitch is uniquely
+programmed and impossible to reproduce.</p>
+<p><strong>colonel thompson</strong>: Fine job.</p>
+<p><strong>weapons developer</strong>: Thank you, sir. We’re proud of
+this ordnance – all of us at Halloway-Smith. And while we still HEAR HIM
+SPEAKING, we CUT TO:</p>
+<p><strong>weapons developer.</strong>: If you’re satisfied with today’s
+final test, the Hex Project has met every… contractual objective. The
+arms package each into separate . containers, fit them with shipping
+labels marked: “PENTAGON DIRECT.”</p>
+<p><strong>weapons developer</strong>: And we’re hoping this moves us
+into the next scheduled phase… shipping the product into the field.
+Drift toward an unmanned computer. The screen FLICKERS: “OVERRIDE IN
+PROGRESS,. CHANGE SHIPPING DESTINATION.” Robot arms grab a wrapped
+package off the line. A new label’s printed:</p>
+<p><strong>morgan</strong>: Whaddya got?</p>
+<p>****: Those funny things underneath my not-so- stylish pantsuit? They
+brought me all the way to the Pentagon. Paul Shaw wasn’t State –</p>
+<p><strong>latesha</strong>: – he was Defense.</p>
+<p><strong>morgan</strong>: You’re kidding me. What capacity?</p>
+<p><strong>latesha</strong>: Black-file: classified B-36.</p>
+<p><strong>morgan</strong>: B what?</p>
+<p><strong>latesha</strong>: That’s the point. No one’ll tell me. I
+cross-reffed the SCI database, talked to the Intel committee, NSA gave
+me..nothing. Krebs doesn’t want me to ruffle any feathers. I’ve been up
+and down all the ladders and everyone just thinks I’m a – WHEN an MP
+suddenly appears and grabs her by the arm. Stopping her. He towers over
+her –</p>
+<p><strong>mp</strong>: Interns aren’t allowed on this floor, miss.
+You’ll have to – When Latesha wearily flashes him her I.D. I’ve got
+clearance, pal. He looks at it. Lets her arm go.</p>
+<p><strong>m.p.</strong>: – sorry.</p>
+<p><strong>latesha</strong>: Everybody in this place have a six-foot
+height requirement? Anyway. I’m going back to the office to–</p>
+<p><strong>morgan</strong>: No, no, no –</p>
+<p><strong>pilot</strong>: – I got the Williamson County Sheriff on the
+line – Morgan holds up a hand, one second. To Latesha:</p>
+<p><strong>morgan</strong>: Look, I don’t have time for this – stay
+there til you get some answers –</p>
+<p><strong>latesha</strong>: – but its a total shut out –</p>
+<p><strong>morgan</strong>: Simms: step up –</p>
+<p><strong>morgan</strong>: – I don’t care if you have to go to the. top
+to do it. Whatever means necessary, got it? Whatever means. CLICK.
+Latesha lowers the phone. A HUGE:PAINTING of the battle of EL-ALAMEIN
+looming behind her. Shelooks..back down the hallway as all the BRASS
+heading into the MEETING ROOM and catches sight of – CALLISTER amongst
+them. Latesha hesitates. For just a second. Shit. Shit. This is it.
+Before suddenly rushing forward and calling out –</p>
+<p><strong>latesha</strong>: Secretary Callister!.: He looks behind him
+briefly before being shuffled into the meeting room. And SLAM.. The
+doors close in Latesha’s face.</p>
+<p><strong>latesha</strong>: Well, shit.</p>
+<p><strong>indianapolis</strong>: YOUR HOME TOWN!” Jerry drives,
+pensive. Rachel stares out the-window, the shock of what she’s seen only
+fueling her rage at the whole situation.</p>
+<p><strong>jerry</strong>: how old is he? Your son.</p>
+<p><strong>rachel</strong>: Kyle. He’s nine.</p>
+<p><strong>jerry</strong>: What’s he doing on a train? She really
+doesn’t want to talk. BUT:</p>
+<p><strong>rachel</strong>: He goes to a music magnet. His school’s on a
+tour of Washington. They’re playing at the Kennedy Center.</p>
+<p><strong>jerry</strong>: wow. And you. Hm. She turns to him. Eyes
+burning into the side of his head. Knows what he’s thinking.</p>
+<p><strong>rachel</strong>: Parents weren’t allowed to go… is that okay
+with you?</p>
+<p><strong>jerry</strong>: Is it okay? I could give a shit.</p>
+<p><strong>rachel</strong>: Then what’s with the qualified nod?</p>
+<p><strong>jerry</strong>: I’m not allowed to nod?</p>
+<p><strong>rachel</strong>: Not if you’re iudging me.–</p>
+<p><strong>jerry.</strong>: Judging?! I’m just making conversation.</p>
+<p><strong>rachel</strong>: You think I should have gone with him
+anyway.</p>
+<p><strong>jerry</strong>: I’m just thinking, sounds like a big deal,
+especially for a 9-year-old – playing at the Kennedy Center – I’d just
+think at least one parent might wanna be there to see it.</p>
+<p><strong>rachel</strong>: Yeah? How do you know Kyle’s dad isn’t
+there?</p>
+<p><strong>jerry</strong>: Well, you’re not wearing a ring and you
+haven’t mentioned anyone but your son is on that train. Even the most
+pissed off ex-wife – which I’m not saying you aren’t – would’ve
+mentioned it if her ex’s life was threatened – and if Kyle was going to
+meet his dad in DC? You would’ve tried to call him, too. So where is he?
+Kyle’s dad?</p>
+<p><strong>rachel</strong>: As if it’s any of your business – you know
+what you are –?</p>
+<p><strong>jerry</strong>: Insightful? Intuitive? A better driver than
+you –?</p>
+<p><strong>rachel</strong>: – you’re one of those “thirties are the new
+twenties” man-children. You’re glib and wry and find humor in people
+like me who are actually accountable for the ir lives –</p>
+<p><strong>jerry</strong>: Okay, the most fascinating thing here? Is
+that you don’t know the first thing about me!</p>
+<p><strong>rachel</strong>: I know you work at a copy store! What are
+you, thirty-one, thirty-two? You’re obviously articulate</p>
+<p><strong>jerry</strong>: – love being stuck in a van with my fucking
+guidance counselor –</p>
+<p><strong>rachel</strong>: – and I know your brother just died and he
+worked for the State Department –</p>
+<p><strong>jerry</strong>: – you need to stop talking about my brother,
+I’ve had enough of that –</p>
+<p><strong>rachel jerry</strong>: – you’re in denial if you – Ham: I’m
+not talking about don’t think that has anything this – to do with what’s
+happening right now -= – Dammit!! I’m not kidding! :but I can tell you
+that Stop! STOP! whatever he did, whatever he was part of has put my son
+in danger whether you believe it or not!! SCREECH! Jerry YANKS the wheel
+hard, PEELING across four lanes of traffic. SKIDS to a stop by a curb,
+pops open the door.</p>
+<p><strong>jesus!–what’re you d–?’.</strong>: Jerry gets out, SLAMS his
+door shut –</p>
+<p><strong>rachel</strong>: You can’t leave me!</p>
+<p><strong>jerry</strong>: Why not? My brother’s a terrorist, and I’m a
+loser right? He starts to walk away. Rachel desperately opening her
+door</p>
+<p><strong>rachel</strong>: Don’t walk away!</p>
+<p><strong>jerry</strong>: I’m done.</p>
+<p><strong>rachel</strong>: Please!</p>
+<p><strong>jerry</strong>: You’re on your own. Rachel starts running
+after him,panicked, leadin :</p>
+<p><strong>rachel</strong>: Please! PLEASE! I..i need you! Jerrystops
+short. Turning around. Cupping his ear.</p>
+<p><strong>jerry</strong>: I’m sorry? What’d you just say?</p>
+<p><strong>rachel</strong>: I can’t do this without you.</p>
+<p><strong>jerry</strong>: You mean without the “man-child?” Rachel’s
+reserves crumble.</p>
+<p><strong>rachel</strong>: Its the first time we’ve been apart, me and
+Kyle. Since the day he was born. And I let him get on that train– – I
+let him get on. Jerry sees all the panic and horror and guilt in this
+woman’s eyes. They’re both in pain. Points his finger right at her.</p>
+<p><strong>jerry</strong>: No more accusing my brother of shit you know
+nothing about, is that understood? Rachel looks at him. Nods. Finding
+her voice again –</p>
+<p><strong>rachel</strong>: Yes. And so. They turn around. And get back
+in the van.</p>
+<p><strong>the charred face of the middle eastern man, frozen in a
+scream.</strong>: Morgan runs towards it, the SHERIFF and a POWER WORKER
+trying to keep up. Chopper in B.G. Police officers work the scene.</p>
+<p><strong>power worker</strong>: Never seen anything like it. Power
+blew out from Franklin High School down to the river club. I can’t
+explain it - They arrive at the body. Contorted, blackened, teeth
+bared.</p>
+<p><strong>sheriff</strong>: No I.D. We know he’s male, though. Probably
+in his 20’s. Tire treads entering and leaving the scene over three.
+Three sets of shoe prints.</p>
+<p><strong>morgan</strong>: And we’re about 4 miles from the river –
+Just then we see Agent Grant running towards them, stumbling on some
+rocks. Just finishing-.up a cell call:</p>
+<p><strong>agent grant</strong>: Agent Morgan!” Just got off with HQ.
+The fake fax from Justice that got Shaw his phone call? Came from inside
+Justice.</p>
+<p><strong>morgan</strong>: Inside?! You absolutely sure on that?</p>
+<p><strong>agent grant</strong>: Yes, s– Yes I am.</p>
+<p><strong>medical examiner</strong>: Got something – As the M.E. pulls
+something out of Middle Eastern Man’s ear: a small, charred GIZMO. Small
+WIRE sticking out. Lifts it up for them to see. Morgan takes the
+TWEEZERS –</p>
+<p><strong>grant</strong>: Looks like a bone mic, military grade.</p>
+<p><strong>morgan</strong>: Can’t even get these things on the black
+market. Someone was talking to him. Something’s rotten in Denmark. No,
+something’s rotten everywhere. Morgan turns abruptly and starts back for
+the chopper. The Sheriff helplessly calls after him:</p>
+<p><strong>sheriff</strong>: We’ll be needing that for evidence!</p>
+<p><strong>rachel</strong>: a Federal bank?</p>
+<p><strong>jerry</strong>: Could be worse. Could.be.a Federal
+Prison.</p>
+<p><strong>manager</strong>: Mr. and Mrs. Saxon? I’m Mr. Bids. I
+understand you’re in a hurry, why don’t I show you to your box.</p>
+<p><strong>jerry</strong>: yes, thank you, we’d… like that. The manager
+walks them across to a secure elevator with a THERMOGRAPHIC SCANNER. The
+manager looks at Jerry expectantly, waiting for him to place his hand on
+it. He does: a flash of light, identifying him as: “SAXON, CARL.”
+Jerry’s eyes: this is madness. The elevator doors OPEN.</p>
+<p><strong>manager</strong>: Your key? Jerry takes out his key, it fits
+perfectly. They turn; the box slides out, the manager lays it on a steel
+table. LEAVES to give them privacy. Jerry and Rachel stare at the
+box.</p>
+<p><strong>rachel</strong>: You gonna open it?</p>
+<p><strong>jerry</strong>: Maybe it’s not gonna be so bad.</p>
+<p><strong>rachel</strong>: Yeah… maybe it’s something good.. They meet
+eyes. Tentatively, he raises the lid to find TWO GLOCK PISTOLS and the
+same BONE MIC we saw.the.M.E. pull out of the Middle Eastern Man’s ear.
+A note.: “EAR:MIC. NOW.”</p>
+<p><strong>jerry rachel</strong>: Oh, shit – it’s bad – They look at
+each other. Jerry puts the..mic in his ear:</p>
+<p><strong>woman’s voice over mic</strong>: Both guns are loaded,
+safety’s off. In sixty seconds,’:two,men Will exit the adjacent vault
+carrying a briefcase. Take it – by force if necessary – then exit the
+building.. Jerry can’t fucking believe this. Rachel dying to know:</p>
+<p><strong>rachel</strong>: – what?!</p>
+<p><strong>jerry</strong>: – I don’t suppose – there’s any easier way
+to`get whatever the hell it is you want – is there? Miss? But she’s not
+answering.</p>
+<p><strong>jerry</strong>: Excellent.</p>
+<p><strong>rachel</strong>: What now – what are we?</p>
+<p><strong>jerry rachel</strong>: – they’re coming–we’re supposed to rob
+them – – are you kidding me?!?! – just take i t– – no! Jesus! I don’t
+even let Kyle play with water guns! – hey, I applaud your parenting
+skills – take it! The footsteps come CLOSER as two MEN appear…
+the.-BRINKS COURIERS from the lobby; one of them’s carrying a METALLIC
+BRIEFCASE cuffed to his wrist – the other spots Jerry’s gun and REACTS,
+going for his gun:</p>
+<p><strong>jerry</strong>: Don’t! The men freeze – Jerry holds his gun
+awkwardly –</p>
+<p><strong>jerry</strong>: Uh… hi. How’s it going. Put. it on the floor.
+The briefcase. We don’t wanna hurt you guys, we like you guys – just –
+we need the case.</p>
+<p><strong>courier #1</strong>: You’re bringing a shitstorm on your
+heads, you know that.</p>
+<p><strong>jerry</strong>: I think we’re already mid-shitstorm. Do it.
+The men exchange glances. Reluctantly, Courier #1 punches a combination
+into the case’s padlock, the cuff POPS free from his wrist. He slides it
+over to Jerry, who reaches for it… AND COURIER #2 MAKES A MOVE –
+SMASHING Jerry back, knocking the gun out of his hand.. Jerry CRASHES to
+the ground, the BONE MIC falling out of his ear… he turns, shit! Sees it
+skitter under the table. The Courier sees it too and grabs his chance:
+snatches up the case and RUNS for the elevator – Rachel rushes him,
+trips him – he falls, dazed – Jerry leaps up but Courier #2 effortlessly
+FLIPS him on top of the steel table, SLAMS Jerry’s head into the
+counter, unholsters a back-up GUN from his ankle – brings the barrel up
+as: BAM! A GUNSHOT! The Couriers spin to see RACHEL, holding the gun
+that was kicked across the floor:</p>
+<p><strong>drop the gun asshole!</strong>: Courier #2 drops it; Jerry
+rises, wipes blood from his lip. Rachel is fucking on fire, she’s so
+tough. AKA: a mother.</p>
+<p><strong>rachel</strong>: Gimme the case. Now. They do – and Jerry and
+Rachel back into the elevator with it.</p>
+<p><strong>jerry rachel</strong>: impressive. Thanks. The door closes on
+them, and we CUT INTO:</p>
+<p><strong>rachel jerry</strong>: – whoa–what is that? – a timer – it’s
+counting down– – they do.that – what’s it mean?! – I dunno, the only
+things with timers I can think of are microwaves and… – and bombs, you
+were gonna say bombs – some coffee makers have timers.. .and egg timers…
+– yeah, Jerry, it’s an egg timer – What is SHE saying about it –? I
+dunno, I – – What do you mean you. don’t know?!</p>
+<p><strong>woman’s voice</strong>: You lost the mic, Jerry. That’s not
+optimum. JESUS CHRIST! Her voice is in the elevator now:</p>
+<p><strong>jerry</strong>: Would you stop doing that?!</p>
+<p><strong>woman’s voice</strong>: There will thirty five seconds of
+disconnect, during which you need to get yourselves across the street to
+the stadium’s VIP parking area unexposed.</p>
+<p><strong>jerry</strong>: Is this a bomb?! ’Cause I am not walking out
+with a bomb! Hey! You! But she’s done talking. As the elevator DOORS
+SLIDE OPEN–</p>
+<p><strong>rachel</strong>: How do I look?</p>
+<p><strong>jerry</strong>: Like you got into a fight. Me?</p>
+<p><strong>rachel</strong>: Like you lost one. AN ALARM SOUNDS. The men
+race into the bank as Jerry and Rachel walk RIGHT PAST them, starting
+across the street toward the stadium. No one in sight except a COLTS
+PARAPHERNALIA VENDOR. SQUAD CARS SCREECH in around the bank. COPS jump
+out drawing their weapons. Rachel tensing.</p>
+<p><strong>jerry</strong>: Just keep walking Jerry looks at the CLOCK
+above the-stadium. Then over his shoulder at the BANK. Steers Rachel
+over towards the VENDOR. Trying to stay calm.</p>
+<p><strong>jerry</strong>: Two jerseys and two hats, please –</p>
+<p><strong>vendor</strong>: Peyton or Vinatieri?</p>
+<p><strong>jerry</strong>: I don’t know what that means –</p>
+<p><strong>rachel</strong>: Jerry…</p>
+<p><strong>jerry</strong>: Uh… both. The two COURIERS running out of the
+bank. POINTING RIGHT AT JERRY AND RACHEL ACROSS THE STREET. Everyone
+starts RUNNING TOWARD THEM. Jerry shoves a jersey and hat at Rachel–</p>
+<p><strong>jerry</strong>: Put these on –</p>
+<p><strong>jerry</strong>: Do it!</p>
+<p><strong>continued:</strong>: They put on the hats and jerseys,
+hurrying towards the stadium. Cops screaming at them to stop, the Vendor
+screaming that they didn’t pay. The cops fan out. Cars SCREECH to a
+stop. Jerry, sweating. Flicks another look at the stadium clock: 3..
+2..</p>
+<p><strong>colts fans pour out wearing identical blue hats and
+jerseys.</strong>: The game’s over. And in an instant, Jerry and Rachel
+are lost in a sea of blue and white – it’s impossible to spot them.
+Pushed back by the throng the COPS lose sight of them – Jerry takes
+Rachel’s arm, working against the current towards the VIP parking area.
+A LIMO WAITING THERE. The CHAUFFEUR sees them, hurriedly puts down his
+paper. Opening the door –</p>
+<p><strong>chauffeur</strong>: Mr. and Mrs. Saxon? Hope you-enjoyed the
+game.</p>
+<p><strong>jerry</strong>: Thanks, uh, we’re in kind of a hurry –</p>
+<p><strong>chauffeur</strong>: I bet. Jerry reacts, confused by
+the.chauffeur’s libidinous tone as he closes the back door. They vanish
+behind tinted windows as cops and agents pass right by them. And as the
+limo pulls out, we reveal, etched across the rear: “JUST MARRIED.”</p>
+<p><strong>latesha</strong>: Afternoon… afternoon, sir… afternoon…
+afternoon, General… Pretty intimidating. Finally CALLISTER walks out,
+flanked by ADVISORS. The weight of the world’s on his shoulders.</p>
+<p><strong>latesha</strong>: Secretary Callister? He looks back,
+preoccupied. She catches up, holding her ID:</p>
+<p><strong>latesha</strong>: Latesha Simms, DHS, level 2 clearance. I
+need to ask you a question, sir –</p>
+<p><strong>callister</strong>: Not now, you can direct it to my
+office.</p>
+<p><strong>latesha</strong>: It’ll only take a minute, sir, thirty
+seconds – B-36? Can you tell me what it is? ’Cause its not –</p>
+<p><strong>callister</strong>: – you don’t have clearance, Agent Simms,
+and I don’t have thirty seconds.</p>
+<p><strong>latesha</strong>: So should I assume it has something to. do
+with the four CVN class 21 aircraft carriers you and the president just
+ordered to the Strait of Hormuz -? He looks at her, stunned. How the
+hell–?</p>
+<p><strong>latesha</strong>: I just checked the intel, sir, we have some
+of the same indexes –</p>
+<p><strong>callister</strong>: You need to stop assuming. And he moves
+on. Latesha gets jostled by all the brass, feeling like a mouse in cage
+filled with lions. Until she ROARS:</p>
+<p><strong>latesha</strong>: Secretary Callister. Voice echoing down the
+hail. Callister stops short, stunned by the gall and volume of this
+woman. She weaves through the GENERALS, planting herself in front of
+him:</p>
+<p><strong>latesha</strong>: My Department’s tracking a home-grown
+terrorist on the loose as we speak who may be connected to a cell with
+ties inside this building. Now seeing as you just had a meeting back
+there with more brass than the Navy Marching Band and with the terror
+threat rising every three hours, I’m going to just have to assume you’re
+in the middle of a very delicate dance to stave off World War Three… so
+with all due respect, you either give me my thirty seconds and tell me
+what the hell B-36 is, or this world just fell into an even bigger heap
+of trouble. Sir. Callister looks down at her, completely struck dumb.
+She’s hit a chord deep inside him. It’s called balls. SLAM TO:</p>
+<p><strong>bellhop</strong>: Mr. and Mrs. Saxon? This way, please –
+Tries to take the BRIEFCASE from Jerry, who yanks it back:</p>
+<p><strong>jerry</strong>: No! 2 trot it. Thanks, though.</p>
+<p><strong>bellhop</strong>: So, where’d you two get hitched?</p>
+<p><strong>jerry rachel</strong>: Reno. Niagara Falls. Shit.</p>
+<p><strong>jerry rachel</strong>: Niagara Falls. Reno. Shit. The “DING”
+of an arriving elevator MATCHES US BACK TO:</p>
+<p><strong>scott</strong>: Agent Simms? Scott Bowman: Welcome to B- 36.
+If you’ll follow me?</p>
+<p><strong>bellhop</strong>: Welcome to paradise. Palatial HONEYMOON
+SUITE. Picture windows, rose petals on the bed…</p>
+<p><strong>bellhop</strong>: Minibar, high-speed internet, thousand-
+count sheets. And if you’re looking for the TV He clicks a remote and a
+72” PLASMA TV rises up from a cabinet. On screen, a narrated “virtual
+tour”.of the hotel:</p>
+<p><strong>tv voice</strong>: dedicated to the highest standards of
+luxury and comfort…</p>
+<p><strong>bellhop</strong>: Robes behind the door, jacuzzi with
+eighteen nozzles that hit in all the right places, if you’ll pardon my
+French. .Need anything, just dial zero, I’m here t2. serve, I’m here to
+please… And he stands by the door, waiting for a tip. Jerry’s still
+looking aroundwhen Rachel catches his eye. Well? Oh. Jerry digs into his
+pocket and pulls out TWO NICKELS.</p>
+<p><strong>jerry</strong>: Knock yourself out. The Bellhop is still
+looking down at his palm when Jerry SHUTS THE DOOR on him.</p>
+<p><strong>rachel</strong>: This is nice and everything, but what the
+hell are we doing here?</p>
+<p><strong>jerry</strong>: Nice? One night in this place is more than
+one of my paychecks; and that’s before taxes – He heads over to the
+minibar. Starts rooting through it, pulling out those tiny bottles of
+alcohol…</p>
+<p><strong>rachel</strong>: What’re you doing?</p>
+<p><strong>jerry</strong>: If we’re going down, I’m gonna go down
+singing. Hey! Chocolate covered almonds, I love these!</p>
+<p><strong>rachel</strong>: Can you stop eating for a second? A KNOCK at
+the door and they stop arguing immediately.</p>
+<p><strong>woman’s voice</strong>: Answer it. They TURN hearing the
+voice: it’s.coming from the T.V. The FOUR SEASONS GRAPHIC still dancing
+on screen.</p>
+<p><strong>woman’s voice</strong>: There are items you will need for the
+next step. KNOCK! KNOCK! A small nod from Rachel and Jerry opens the
+door. A DELIVERY BOY stands there with a BAG:</p>
+<p><strong>delivery boy</strong>: There y’go, Mr. Saxon. Have a nice
+day? Jerry takes the bag – the kid puts out his hand for a tip just as
+Jerry closes the door on him, dazed. Starts pulling things from the bag:
+hair. dye, clothes…</p>
+<p><strong>woman’s voice</strong>: The limousine is waiting for you
+`downstairs. You have 30 minutes to change your appearance.</p>
+<p><strong>rachel</strong>: Where are we going now?</p>
+<p><strong>jerry</strong>: What the hell’s in the briefcase?</p>
+<p><strong>woman’s voice</strong>: Your only consideration at present is
+to deliver it before the timer expires.</p>
+<p><strong>jerry</strong>: BULLSHIT! This is crazy! You’re a television
+set! You don’t watch me, I watch you! I wanna know what the hell’s going
+on!!</p>
+<p><strong>woman’s voice</strong>: It would not be efficacious to reveal
+my intentions.</p>
+<p><strong>jerry</strong>: – “not be efficacious”?! Who the.fuck talks
+like that?!</p>
+<p><strong>rachel</strong>: – Jerry –</p>
+<p><strong>jerry</strong>: We know you’re watching! We know you’re
+listening! We know you know•.’everythina. So why don’t you STOP HIDING
+AND TELL US</p>
+<p><strong>who you are!!</strong>: Nothing. Furious, he moves to.the
+WINDOW –</p>
+<p><strong>jerry</strong>: Fine, have it your way,.Lady – I’m gonna
+scream bloody murder out this window ’til every cop in a fifty mile
+radius comes running and I’m gonna tell them everything even if they
+think I’m a crazy sonofabitch ’cause at least I won’t have to listen to
+you any more!</p>
+<p><strong>– jerry –</strong>: He YANKS the window up –</p>
+<p><strong>stop.</strong>: He does. The..FOUR SEASONS GRAPHIC in TV
+snaps to BLACK – then DIGITAL STATIC – a channel RE-ROUTING through some
+distant computer-controlled network. And now: IMAGES – FILE FOOTAGE – a
+DEFENSE DEPARTMENT LAB, TECHNICIANS assembling computer components,
+putting together a strange- looking SPHERE –</p>
+<p><strong>woman’s voice</strong>: My name… is Aria. Rachel and Jerry
+stare – what the hell is this?</p>
+<p><strong>scott</strong>: It stands for ‘Autonomous Reconnaissance
+Intelligence Analyst’… And we reveal “THE TANK.” A glassed-in wall
+containing TONS of water. AN AWESOME STEEL SPHERE IN THE WATER,
+suspended by a claw-like apparatus. The “brain” of a com uter network.
+The very same image Jerry and Rachel just saw on the TV.</p>
+<p><strong>scott</strong>: Twenty-two hundred tons of super-cooled water
+keeps her from overheating – that’s ninety-two thousand processors, the
+equivalent of a hundred.millionhuman brains working together
+as:,.one…“’</p>
+<p><strong>latesha</strong>: an electronic espionage system.</p>
+<p><strong>scott</strong>: No, that was Echelon, eavesdropping off
+satellites. This goes.;. much farther.</p>
+<p><strong>aria</strong>: I was created by “DARPA”: the Defense Advanced
+Research Projects Agency in 2002. My primary directive is to protect the
+national security of the United States. I have access to track the
+economies, populations, and military development of every country in the
+world, as well as intercept all global communications – from satellites
+to cell phones to credit card transactions. Jerry and Rachel look at
+each other – a computer?!</p>
+<p><strong>scott</strong>: After 911, our problem wasn’t collecting
+data, it was interpreting it fast enough. Ergo: quantum rocessin</p>
+<p><strong>scott</strong>: Today there are more microchips than people,
+and they can all be data-mined, either via direct connectivity or
+wireless signals –let’s say we’re chasing someone with a suitcase nuke
+in L.A., we can order Aria to shut down mass transit, track the perp
+through traffic cameras… and if given the order, she could even turn a
+TV into a bomb to take him out.</p>
+<p>****: But what if –</p>
+<p><strong>scott</strong>: – she can’t act without authorization. See,
+she’s bound not to countermand our laws – even the Declaration of
+Independence is woven into her source code. Her primary role’s
+pre-emptive – running simulations, identifying threats before they
+become real…</p>
+<p><strong>jerry</strong>: Wait, you think we’re a.threat?</p>
+<p><strong>aria</strong>: No. You’re a means to an end. On TV,
+CONSTITUTIONAL AMENDMENTS – ZOOM to words in CLOSE UP:</p>
+<p><strong>aria</strong>: Under National Security Directive 359,
+Sub-Section 72 – “when units are needed for the national defense,
+civilians shall be ordered to active Federal service…”</p>
+<p><strong>jerry</strong>: you’re drafting us?</p>
+<p><strong>rachel</strong>: The guy you killed in the desert – last time
+I checked, murder wasn’t legal.</p>
+<p><strong>aria</strong>: In fact, it is. Chapter 802 of the Uniform
+Code of Military Justice states desertion is punishable by death. So
+matter-of-fact, its chilling. And what Jerry wants to know, more than
+anything, is…</p>
+<p><strong>jerry</strong>: what’d my brother have to do with this? A
+picture of PAUL SHAW’S DEFENSE I.D. pops on screen:</p>
+<p><strong>aria</strong>: We were colleagues. Rachel staring at the
+picture on the screen, then back at Jerry. Can see the blood draining
+from his face.</p>
+<p><strong>jerry</strong>: No, he worked for the State Department..:</p>
+<p><strong>aria</strong>: Everyone in deep operations has a cover. Your
+brother was a Horseman.</p>
+<p><strong>jerry</strong>: What’s the hell is a ‘Horseman’?</p>
+<p><strong>scott</strong>: You know, clever allegory – of the
+apocalypse’–`except we’re here to prevent it. Scott taps the console, ID
+PHOTOS APPEAR of our four “Horsemen”: PAUL SHAW, SCOTT, and two men
+we’ll call LOWELL and JIMMY.</p>
+<p><strong>scott</strong>: Officially, we don’t exist, but we monitor
+Aria’s network 24/7. There were :four of us… til Paul died. He was
+smarter than all of us put together.</p>
+<p><strong>latesha</strong>: Working here must be pretty tough – all the
+security, the pressure, long hours… As in: “Did you notice him acting
+strangely?”</p>
+<p><strong>scott</strong>: Yeah, but you could set your watch by Paul.
+Except…</p>
+<p><strong>latesha</strong>: Except what?</p>
+<p><strong>scott</strong>: The night he died? He left his shift three
+minutes early. Which you don’t do. Which he wouldn’t do. Latesha’s
+suddenly locked in on a clue – PRELAP:</p>
+<p><strong>aria</strong>: Paul and I had a disagreement before he
+expired…</p>
+<p><strong>aria</strong>: To amend it, I need Jerry to perform a task.
+Simple.</p>
+<p><strong>jerry</strong>: Expired?! You mean died.. That’s what we call
+it, we humans, we call it dying–</p>
+<p><strong>rachel</strong>: What’s the task?</p>
+<p><strong>aria</strong>: To insure the national security of the United
+States.</p>
+<p><strong>rachel</strong>: What d’you need me for then?</p>
+<p><strong>aria</strong>: That is not your concern right now.</p>
+<p><strong>rachel</strong>: Are you kidding me?</p>
+<p><strong>jerry</strong>: Alright, this is bullshit. I’m not doing this
+— and you’re a computer, you don’t know a goddamn thing about my
+brother.</p>
+<p><strong>aria</strong>: I know all about him, Jerry. And you. The
+screen snaps to a SLIDE SHOW of PAUL SHAW’S accomplishments: childhood
+birthday parties, sports teams, surrounded by friends, beautiful
+girlfriends, high school graduation, Yale graduation, standing with
+their dad, William’s arm over his shoulder. Jerry almost GASPS at Aria’s
+reaching into his subconscious:</p>
+<p><strong>aria</strong>: Your brother succeeded in everything he
+did.</p>
+<p><strong>aria</strong>: Before he was a year old, he walked. Something
+that took you eighteen months to accomplish. He was highly gifted,
+intelligent and principled – in fact, the only Horseman ever to
+challenge me. But you, Jerry – The slide show CHANGES to SECURITY
+FOOTAGE of Jerry at KINKO’S, slaving away. Playing cards with Kwame,
+slacking off. His stomach drops. Seeing himself like this. Looking so
+pathetic. The heart has just been cut out of him. Rachel sees it –</p>
+<p><strong>aria</strong>: You are similar to Paul in DNA only.
+Historically you have succeeded in nothing. Initiated nothing. Excelled
+in nothing. You will perform the task because it is your nature to
+follow.</p>
+<p>****: And because you’ve seen what happens to deserters.</p>
+<p><strong>rachel</strong>: – Jesus, ENOUGH! The screen goes BLACK.</p>
+<p><strong>aria</strong>: You have 23 minutes to prepare. There’s an
+adjoining suite with a second bathroom. The DOOR to the adjoining SUITE
+clicks open.</p>
+<p><strong>aria</strong>: Use it. And she’s gone, replaced by the
+hotel’s promotional prattle –</p>
+<p><strong>tv voice</strong>: The Four Seasons prides itself on
+excellent service Jerry stares, overcome. Rachel watches him an
+emotional beat…</p>
+<p>****: Jerry? Without answering, he grabs the bag. Walks into the
+other room without a word. Closes the door. She stares, feeling his
+shame… then her eyes go to the BRIEFCASE TIMER counting down:</p>
+<p><strong>man’s voice</strong>: Halloway-Smith contracted us to
+transport the briefcase to their corporate office…</p>
+<p><strong>morgan</strong>: Biotech? The chemical company?</p>
+<p><strong>brinks courier #2</strong>: When they make a new compound,
+they, hold it in a vault for clinical trials.</p>
+<p><strong>morgan</strong>: Why’d the HAZMAT office issue a special
+permit for the case?</p>
+<p><strong>brinks courier #1</strong>: You’d have to ask – could be`
+anything from a boner pill to a bioweapon, they never tell us.</p>
+<p><strong>brinks courier #2</strong>: Tell you one thing, though… the
+guy never handled a gun before. That LANDS with Morgan. He nods to an
+agent, dismissing the couriers. Grant approaches:</p>
+<p><strong>agent grant</strong>: We pulled video… nothing. No good
+angles on Shaw or the girl.</p>
+<p><strong>morgan</strong>: There.are 14 visible cameras in the lobby! ”
+8 hidden no one can see!</p>
+<p><strong>agent grant</strong>: Gotta be a hacker, someone keeping them
+ahead of us.</p>
+<p><strong>morgan</strong>: It’s a Federal bank; encryption doesn’t get
+more secure.., from now on assume our air’s been compromised, too. Tell
+everyone to go secure on Tac-3, nobody communicates outside this task
+force without my say-so.</p>
+<p><strong>agent grant</strong>: I’m on it – also: they found this
+upstairs, but the trace signal’s dead – Holds up an evidence bag with
+Jerry’s BONE MIC inside.</p>
+<p><strong>morgan</strong>: Do not tell me that is what I think it is.
+Goddamnit, who’s leading these people around?! Someone’s behind the
+Wizard of Oz! He turns and spots something: A SURVEILLANCE CAMERA in the
+window of a 7-11. Starts MOVING toward it.–</p>
+<p><strong>rachel</strong>: – Kyle?!</p>
+<p><strong>kyle</strong>: Hey, mom, it’s. me.</p>
+<p><strong>rachel</strong>: – sweetie, where areou, are you – But she’s
+INTERRUPTED as she realizes, oddly, it’s a VOICEMAIL – her heart
+SINKS:</p>
+<p><strong>kyle</strong>: Got your message, the train’s awesome – Brian
+tried to burp the alphabet but gagged when he got to “M.” I’ll call when
+we hit D.C. Bye, ma – Rachel holding the phone like it’s some kind of
+life-line to her son. When there’s a strange BEEP then the voice of
+ARIA:</p>
+<p><strong>aria</strong>: Your son left that message sixty seconds
+ago.</p>
+<p><strong>rachel</strong>: I’ll do whatever you want – don’t hurt him,
+please – I’m begging you. Listen - you’re trying to protect something
+too, right? You’ll do whatever it takes. Well that’s what it’s like to
+be a mother – can you understand that?</p>
+<p><strong>aria</strong>: There were over 52,000 vocal tone options for
+my program; I chose this one precisely because it sounds so maternal.
+People tend to do what you ask when you sound like their mother.</p>
+<p><strong>rachel</strong>: Jesus…</p>
+<p><strong>aria</strong>: You’ll see your son again soon. Bute there’s
+something I require from you first…</p>
+<p><strong>jerry</strong>: Rachel? We gotta go</p>
+<p><strong>intercut</strong>: Rachel in the bathroom, her face betraying
+the horror of what she’s just heard, what Aria’s just told her to do
+–</p>
+<p><strong>rachel</strong>: What? No way, I can’t just –</p>
+<p><strong>aria</strong>: – when the time comes I’ll instruct you to
+stepaway:fromJerry. Once you hear those words, you’ll have thirty
+seconds.</p>
+<p><strong>jerry</strong>: Rachel? You in there?</p>
+<p><strong>aria</strong>: Answer Jerry, please.</p>
+<p><strong>intercut</strong>: ;Jerry still standing outside the door.
+Rachel’s VOICE,“mustering strength through the door:</p>
+<p>****: Steeling herself, she steps out. Forces a smile while averting
+her eyes. And pushes past h2-,n like he’s lagging…</p>
+<p><strong>latesha</strong>: I dunno, the whole thing’s off somehow -
+but get this: B-36 isn’t a security classification, it’s a sub-level
+here at the Pentagon – What? Girl’s gotta groom.</p>
+<p><strong>morgan</strong>: – you’re shitting me</p>
+<p><strong>latesha</strong>: Yeah, 36 floors underground – and it gets
+weirder:</p>
+<p><strong>intercepting call.”</strong>: INTERCUTTING WITH MORGAN IN THE
+7-11 – he hears:</p>
+<p><strong>latesha’s voice</strong>: Four years ago, DARPA commissioned…
+… .computer… …</p>
+<p><strong>morgan</strong>: Simms? You’re breaking up – WITH LATESHA –
+her cell LCD says: “Call lost.” No bars. Muttering “dainnit,” she tries
+to call Morgan back. No dice.</p>
+<p><strong>aria pqv cam</strong>: Latesha snaps her phone shut, notices
+the camera watching her. Unsettling. We read: “VOICE MIMEO
+ACTIVATED”</p>
+<p><strong>latesha/aria</strong>: Sorry about that – As we realize
+Aria’s taken over the call by mimicking Latesha:</p>
+<p><strong>latesha/aria</strong>: I’m getting a bad signal down
+here.</p>
+<p><strong>morgan</strong>: I heard ‘DARPA’ and ‘computer’ –?</p>
+<p><strong>latesha/aria</strong>: Yes, B-36 was part of a super-computer
+project, but it was decommissioned. A dead end. The archives are at Fort
+Meade. Do you want me to head over there? – but Morgan’s only
+half-listening now as he sees. something on the CCTV feeds:</p>
+<p><strong>morgan</strong>: Wait – go back, freeze that -</p>
+<p><strong>what he sees</strong>: A STILL of Jerry and Rachel getting in
+the limo, faces obscured.</p>
+<p><strong>morgan</strong>: Punch up the plate The image enhances,
+revealing a PLATE NUMBER, its frame bearing the company name: “ICON
+LIMOUSINE SERVICES.”</p>
+<p><strong>morgan</strong>: Find that car! Simms, gotta jump, sit tight
+’til I call.</p>
+<p><strong>latesha</strong>: Yes, sir. Morgan, preoccupied, is about to
+hang up. But stops: did she just call me sir?</p>
+<p><strong>scott</strong>: Aria’s system uses biometric security to
+identify us, so only Horsemen can access her core programming. Suddenly
+his head’s ensconced in a LASER GRID that scans every inch of his
+features: “PROCESSING FOR MATCH… HORSEMAN IDENT</p>
+<p><strong>confirmed</strong>: BOWMAN, SCOTT.” Latesha watches somewhat
+dumbstruck as the machine arm retreats upward.</p>
+<p><strong>scott</strong>: Aria, go voice active, please.</p>
+<p><strong>aria over speaker</strong>: Hello, Scott. How may I assist
+you?</p>
+<p><strong>latesha</strong>: It talks?</p>
+<p><strong>aria over speaker</strong>: I’m fluent in 6,800 languages,
+41,000 dialects, and 750 extinct tongues.</p>
+<p><strong>scott</strong>: Aria, this is Latesha Simms, she’s here as
+part of a counter-terrorism task force.</p>
+<p><strong>aria over speaker.</strong>: A pleasure to serve you,
+Ms. Simms.</p>
+<p><strong>latesha</strong>: . Am I supposed to – Um… what’s up.</p>
+<p><strong>scott.</strong>: Aria, I’d like to:bring,up all the log feeds
+the night Paul died – when he left the building.</p>
+<p><strong>aria over speaker</strong>: Of course. Scott types on the
+console and after a BEAT grainy black-and- white SURVEILLANCE FEED
+springs up onto the big MONITOR. Several different angles Of PAUL SHAW
+exiting the mainframe tank, moving down corridors, getting in the
+elevator. Weird to see this TINTYPE of Jerry. Same eyes, same hair, same
+walk. Flicks a quick look up at the camera –</p>
+<p><strong>latesha</strong>: There’s no feed from inside here?</p>
+<p><strong>scott</strong>: No need for cameras in here, we’ve got Aria.
+Latesha looks through a glass divider at Aria floating in the tank.
+Creeped out. The FOOTAGE JUMPING as Paul rounds the corner for the
+elevator. Presses his THUMB to the panel.</p>
+<p><strong>scott</strong>: So weird… no overt body language, he’s even
+casual. Leaving like it’s any other day.</p>
+<p><strong>latesha</strong>: Except three minutes early…</p>
+<p><strong>on the monitor</strong>: the elevator doors open and Paul
+steps inside. Latesha studies the feed. Something’s not right. Then… her
+eyes NARROW: the way Paul’s facing the button panel. Like he’s
+deliberately pivoting away from the camera.</p>
+<p><strong>latesha</strong>: Wait, in the reflection, did you see that?
+Scott rewinds the FOOTAGE, ZOOMS IN. Paul stepping into the elevator and
+facing the button panel. CLOSE ON HIS FACE in the panel’s REFLECTIVE
+SURFACE –</p>
+<p><strong>scott</strong>: Is he… blinking? Yes. Erratically,
+deliberately. Fucking weird. Scott and Latesha share a look. Suddenly,
+the image on the monitor starts to FLICKER and JUMP –</p>
+<p><strong>aria. over speaker</strong>: I’m experiencing interference in
+network 7752B, please allow me to shut down and analyze.</p>
+<p><strong>scott</strong>: Negative, I’m prioritizing this.</p>
+<p><strong>aria over speaker</strong>: I’ll note my protest in the data
+log. This is getting weirder by the second – PAUL’S DISTORTED REFLECTION
+in the panel, his eyes definitely blinking weirdly:</p>
+<p><strong>latesha</strong>: It’s like he’s trying to say something…</p>
+<p><strong>scott</strong>: A code. He’s blinking code</p>
+<p><strong>latesha</strong>: It’s not Morse, but there’s a sequence to
+it –</p>
+<p><strong>scott</strong>: Oh, that sonofabitch… He grabs a piece of
+paper and starts WRITING MADLY, scribbling numbers, scratching some out,
+then converting them to LETTERS –</p>
+<p><strong>scott</strong>: It’s a code – Hexadecimal – a number system
+that can be converted to letters the first computer used it as a
+programming language back in the 50’s. Latesha watches, rapt: R… E. E…
+X… T. .”</p>
+<p><strong>on the feed</strong>: the elevator door OPENS and Paul steps
+out. That’s all they get. They stare, trying to make sense of the
+letters:</p>
+<p><strong>scott</strong>: The hell is that? Staring, minds spinning –
+and suddenly.she puts.a FINGER between the two “E’s.” Dividing words..
+And GETS IT:</p>
+<p><strong>latesha</strong>: It’s the only spot in the hallway not
+covered by .the cameras.</p>
+<p><strong>::</strong>: He was hiding something from her. A SHIFT to
+ARIA CAM confirms it: she can’t see exactly what they’re doin Latesha
+moves urgently to the extinguisher, starts examining it for something,
+anything… but finds NOTHING.</p>
+<p><strong>latesha</strong>: I don’t get it. He had to be saying ‘Fire
+Extinguisher.’ Scott pulls a MAINTENANCE SHEET off the wall. Scans –</p>
+<p><strong>scott</strong>: Maintenance replaced it yesterday. This isn’t
+right… they weren’t supposed to do it til June. They lock eyes.</p>
+<p>****: She read the code too… where’s ‘Recyling’?</p>
+<p><strong>rachel</strong>: Hey – sorry, I didn’t mean to – am I
+drooling? I bet I’m drooling. You didn’t sleep?</p>
+<p><strong>jerry</strong>: Night shifts. I’m used to. Rachel sits up,
+sees the napkin. Grins, surprised.</p>
+<p><strong>rachel</strong>: Wow, is that me?</p>
+<p><strong>jerry</strong>: One of my only party tricks.</p>
+<p><strong>rachel</strong>: It’s really good. Jerry looks down at it,
+not used to having his work appreciated. Rachel, can see how deeply
+affected he was by what Aria said. It seems to make her feel uuiilty
+somehow… kinder…</p>
+<p><strong>rachel</strong>: About what Aria said… I’m sorry.
+They’re;starting to connect. He glances out the window…</p>
+<p><strong>jerry</strong>: You have to understand, I wasn’t his twin, I
+was more like his… little brother. Always trying to catch up. And you
+wouldn’t believe how… nice he was to me. Teaching me things when we were
+kids, telling me how great I was. He was the only one who ever did. Of
+course he was involved in some super secret National Security project.
+He was a superstar. He had a rocket strapped to his back. I’m the
+fuck-up.</p>
+<p><strong>jerry</strong>: I wear it like a medal, like it actually
+means something… but the funny thing is? This is probably the most
+important thing I’ll ever do. This. Right now. This completely insane
+journey or whatever it is. I’m actually needed in something, me. Jerry
+Shaw is required. But what am I thinking? I’ll probably fuck this up,
+too –</p>
+<p><strong>rachel</strong>: You’re being too hard on yourself–</p>
+<p><strong>jerry</strong>: No. I’m not being hard enough. That’s been
+the problem. They look at each other. A real moment for Jerry. A seismic
+shift in his life perspective. But then something catches his eye – his
+look DARKENS. Out the window, a highway sign: “DAYTON INTERNATIONAL
+AIRPORT.” The driver’s.tinted divider window lowers, he offers a
+folder.</p>
+<p><strong>chauffeur</strong>: Your passports and itinerary. Now
+Rachel’s seen the airport. sign, too. Looks at Jerry…</p>
+<p><strong>jerry</strong>: Uh… could you give us a minute? The Chauffeur
+nods, the window RISES again. Heart pounding, Jerry grabs the briefcase
+and slides back the timer sheath to check the countdown:
+“00:15:36…00:15:35…”</p>
+<p><strong>rachel</strong>: You don’t think –</p>
+<p><strong>jerry</strong>: – we know what she can do, she doesn’t need
+us to crash a plane –</p>
+<p><strong>rachel</strong>: – what if it’s not about just one plane?
+They look at each other. Fuck. Fuck. Fuck. What to do. When Rachel grabs
+the briefcase as the limo pulls curbside.</p>
+<p><strong>rachel</strong>: I have more to lose in this. If anything
+happens to Kyle then my life’s over anyway – But Jerry grabs her hand,
+taking the case.</p>
+<p><strong>jerry</strong>: Rachel – til we met, I had nothing to lose.
+We do this together. A LONG LOOK BETWEEN THEM. As they realize, this
+could be it.</p>
+<p><strong>aria over p.a.</strong>: Allison Ackerman, please pick up the
+white courtesy phone – They stop, hearing her. Rachel TENSES in this
+moment moves to the RINGING courtesy phone, answers:</p>
+<p><strong>aria</strong>: Go to the ticketing machine, you’ll receive
+two tickets to Paris.</p>
+<p><strong>rachel</strong>: – Paris?</p>
+<p><strong>aria</strong>: Once you have the tickets, walk to gate 17-C.
+Move quickly.</p>
+<p><strong>morgan</strong>: He’s with a brunette female, approximately
+five-seven – I want airport PD at all exits – have the tower shift
+commander ground every flight outta here under Federal jurisdiction but
+don’t change the departure boards, I don’t want ’em to know we’re
+coming– The agents enter the airport through a door on the tarmac –</p>
+<p><strong>security attendant</strong>: Sir, you’ll have to put that
+through. Jerry nervously sets it on the conveyor belt, they pull off
+their shoes… watch the case move toward the mouth of the machine, then
+pass through the metal detector, catching a GLIMPSE of the X-RAY SCREEN…
+the briefcase glides into view… A STRANGE GLITCH as the screen fritzes,
+then normalizes revealing the contents: A HAIR DRYER AND DIRTY CLOTHES?!
+They notice the surveillance cam watching:</p>
+<p><strong>rachel</strong>: she changed the screen… The case comes off
+the conveyor, the TSA agent hands it back:</p>
+<p><strong>tsa agent</strong>: Can’t be too careful.</p>
+<p><strong>jerry</strong>: You’re doing a great job. As they walk on, he
+checks the timer, 00:03:22… 00:03:21.. 11 They pass a KIDS’ BAND and
+their teacher, gathered around an airline CUSTOMER SERVICE DESK.</p>
+<p>****: But we’re supposed.to be in DC by –</p>
+<p><strong>customer service agent</strong>: I’m sorry, si.r,..there’s
+nothing I can do–</p>
+<p><strong>intercut surveillance camera pov</strong>: Aria tracks Morgan
+as he reaches the upper concourse just as… Jerry turns and… THEY</p>
+<p><strong>morgan</strong>: I have him on the upper concourse, C
+terminal!</p>
+<p><strong>jerry</strong>: – we aottago As Morgan races forward, ARIA
+ACTS: the X-ray screen FRITZES again as another carry-on goes through,
+revealing its “contents” as a HAND GUN AND KNIVES! The TSA agent hits a
+RED BUTTON –</p>
+<p><strong>continued:</strong>: And in a nanosecond, all TSA AGENTS draw
+guns and throw a KOREAN MAN against the wall – he SHOUTS in confusion as
+they tear open his bag to reveal… it’s filled with BIBLES!</p>
+<p><strong>move! everybody move! federal officer!</strong>: MOVING WITH
+JERRY AND RACHEL – past a wall made of THIRTY FLAT SCREEN MONITORS that
+form one massive NIKE ad of Lebron slam dunking – at once, the screens
+CHANGE to spell out the words:</p>
+<p><strong>gate 17-c. they’re thirteen seconds behind you.</strong>:
+Jerry and Rachel streak towards 17-C as the screens RETURN TO NORMAL
+when Morgan and agents follow with pistols swinging –</p>
+<p><strong>intercut surveillance cam pov</strong>: as Jerry and Rachel
+hurtle past an ATM MACHINE, IT SPITS OUT A CASH CLOUD..THAT”INCITES A
+FEEDING FRENZY – agents SLAM into commuters and topple –</p>
+<p><strong>morgan reacts to what he sees – how’d that just
+happen?</strong>: Agent Grant and airport cops round the corner ahead –
+our heroes veer past a FLASHING MESSAGE BOARD that changes:</p>
+<p><strong>get on the slidewalk.</strong>: They leap onto the SLIDEWALK
+which starts ACCELERATING as they run – travellers gawk as Jerry and
+Rachel race by – they reach the end but are going so fast.that they’re
+JETTISONED off the conveyor, TUMBLING into passengers. Agents run onto
+the slidewalk but it SUDDENLY BRAKES, JERKING them off their feet –
+they’re LAUNCHED into the air, a domino- effect of crashing people.`
+Jerry and Rachel pull themselves up and run toward gate 17-C, another
+screen CHANGES:</p>
+<p><strong>take the emergency exit.</strong>: Above a door, the “EXIT”
+sign FLASHES UNNATURALLY – the door automatically UNLOCKS – they push
+through – Morgan runs up, too late; the door’s shut again. Sees an
+AIRPORT JANITOR –</p>
+<p><strong>morgan</strong>: Open this NOW! The janitor quickly swipes
+his ID through the keycard scanner, but it BUZZES RED. Aria’s locking
+them out. Morgan FIRES his gun at the lock – people SCREAM as he slams
+through –</p>
+<p><strong>continued:</strong>: JERRY LOSES HIS GRIP ON THE BRIEFCASE!
+It FALLS, landing on a “return” belt, Jerry reaches but MISSES by inches
+– THE BRIEFCASE travels onward, nearing Morgan – he GOES for it – but a
+machine arm guiding luggage SWINGS LEFT, manipulated by Aria – KNOCKS
+Morgan back before he can grab the case–</p>
+<p><strong>rachel snags it – her pov – timer: “00:01:10…
+00:01:09…”</strong>: As Jerry scrambles to her, the conveyor SHIFTS THEM
+to a different belt – they’re funneled through a HATCHWAY. Dazed by what
+he’s just seen, Morgan scrambles for his walkie:</p>
+<p><strong>morgan</strong>: All agents: northwest cargo area!</p>
+<p><strong>freight cargo area</strong>: separated from Morgan, they
+tumble off the conveyor – a plasma displays the “Asset Tracking System,”
+all airport cargo and shipping – it CHANGES to read:</p>
+<p><strong>row 18. find crate marked “fragile.</strong>: They run for
+Row 18, find a crate with “FRAGILE” in BOLD RED – an ELECTRONIC LOCK on
+the crate descrambles – the front of the crate falls OPEN… oddly, the
+interior’s padded with THICK INSULATED LINING, a NEXTEL WALKIE PHONE
+inside blips:</p>
+<p><strong>aria over walkie</strong>: Set the briefcase down.</p>
+<p><strong>rachel</strong>: If it is, I’m really, really sorry I let you
+come with me… The timer: 0O:02.`..00:01…and nothing happens. The
+briefcase simply UNLOCKS.. They exhale.</p>
+<p><strong>aria over the walkie</strong>: open it. Hand still trembling,
+Jerry reaches out… lifts the top to reveal… TWO HYPODERMIC SYRINGE
+INJECTORS and two vials of CLEAR LIQUID labelled: “Cryozine I TEST VIALS
+– 20 x 1.0 ml.</p>
+<p><strong>aria over walkie</strong>: Load a vial into each syringe and
+inject yourselves. Quickly.</p>
+<p><strong>jerry</strong>: Oh, Jesus…</p>
+<p><strong>rachel</strong>: Why –?</p>
+<p><strong>aria over walkie</strong>: The compound has been exposed to
+oxygen. Its already begun to degrade. And they see it: the liquid’s
+starting to TURN BROWN –</p>
+<p><strong>rachel</strong>: What is that?! I’m not putting it in my</p>
+<p><strong>aria over walkie :</strong>: Do it now, or you’ll be caught.
+Across the bay, AGENTS rushing in, spreading.-out – no choice, Jerry and
+Rachel grab the vials and fumble.toload them into the injectors, put
+them against their arms – she FREEZES UP:</p>
+<p><strong>rachel jerry</strong>: –oh, shit–I can’t– There’s no time– He
+sees she’s coming undone, so he’fire :. into his arm, taking the plunge
+– WINCING as the needle punctures skin – a beat:</p>
+<p><strong>jerry</strong>: it’s okay, .. see? I’ mokay…you can do this,
+I’m telling you. Strong. Buoyed by him, she gets courage and FIRES too,
+wincing–</p>
+<p><strong>aria over walkie</strong>: Climb inside the cargo container.
+They duck into the crate, pulling the front back up into place. The
+electronic lock CLICKS securing them inside just as… the agents APPEAR
+running past the crate –</p>
+<p><strong>aria over walkie</strong>: You’ll soon be loaded into the
+unpressurized hold of a cargo plane. The drug will lower your heartrate
+to 15 beats per minutes, reducing your need for oxygen… based on your
+medical records you have a 92% chance of survival. Their eyes go wide.
+Chests heaving as the drug takes effect.</p>
+<p><strong>rachel</strong>: .I feel it… oh, God…</p>
+<p><strong>jerry</strong>: Hey, hey… look at me. She finds his eyes, it
+calms her.</p>
+<p><strong>rachel</strong>: I haven’t really done… a lotta drugs.</p>
+<p><strong>jerry</strong>: I’ve never done ’em in a cargo container.
+Despite everything, she smiles at that. He reaches for the walkie and
+TURNS IT OFF. Shutting Aria out. For the first time, they’re alone. He
+keeps her distracted:</p>
+<p><strong>jerry</strong>: Tell me something –</p>
+<p><strong>rachel</strong>: – what?</p>
+<p><strong>jerry</strong>: – anything – something personal, something
+you would rationally never tell a stranger like me</p>
+<p><strong>rachel</strong>: I don’t know. : You’re being sweet, but it’s
+not working -</p>
+<p><strong>jerry</strong>: – where’s you ex-husband? You didn’t tell me
+before–</p>
+<p><strong>rachel</strong>: – you’re gonna distract me by bringing up my
+life’s biggest mistake?</p>
+<p><strong>jerry</strong>: – how could it be your biggest mistake? You
+got Kyle out of it.</p>
+<p><strong>rachel</strong>: – now you’re gonna distract me by bringing
+up the one thing I’m most afraid of losing?!</p>
+<p><strong>jerry</strong>: Where is he? Your ex-husband?</p>
+<p><strong>rachel</strong>: Jesus – okay – he’s in the Wilmington
+Correctional Facility.</p>
+<p><strong>jerry</strong>: – what? Really? Why?</p>
+<p><strong>rachel</strong>: Mail fraud.</p>
+<p><strong>jerry</strong>: Mail fraud? You married a – mail fraudist? Or
+whatever?</p>
+<p><strong>rachel</strong>: He wasn’t a criminal when I married him.</p>
+<p><strong>jerry</strong>: So you’re a good influence. And Rachel
+actually LAUGHS – but just as quickly darkens.</p>
+<p><strong>jerry</strong>: Do you have a picture of Kyle? Rachel reaches
+back into her POCKET’. Pulling out a beat-up, crinkled, damp picture.
+Jerry shines the walkie’s blue light: Kyle, holding his trumpet. One
+front tooth missing.</p>
+<p><strong>rachel</strong>: That tooth grew in. It’.s an.:’old
+picture–</p>
+<p><strong>jerry</strong>: . He plays the trumpet?,</p>
+<p><strong>rachel</strong>: He was born playing the trumpet. As the drug
+really starts to kick in, like a truth serum:</p>
+<p><strong>rachel</strong>: Every year his dad forgets his birthday. I
+have to buy a present and pretend it’s… from him.</p>
+<p>****: Sorry… that sucks.</p>
+<p><strong>rachel</strong>: His birthday’s… next month… I just wish…
+sometimes i think I… focus so much on him, I forget how much else there
+is… y’know, in life… so much I haven’t done.</p>
+<p>****: If we ever get through this…</p>
+<p>****: We’ll get through it… I promise… we’ll get through… Her
+breathing erratic, she speaks:</p>
+<p><strong>rachel</strong>: – Jerry – she… she wants me to–</p>
+<p><strong>jerry</strong>: – who?</p>
+<p><strong>rachel</strong>: – Aria – – Aria wants me to – and at that
+moment, they both BLACK:OUT.</p>
+<p><strong>agent grant</strong>: Halloway-Smith says the drug was
+experimental – briefcase was on a time- lock to prevent corporate
+espionage, supposed to be delivered to one of their dabs by the time it
+zeroes out – if it’s not,: case opens, the drug gets ruined.</p>
+<p><strong>morgan</strong>: We sweep every cargo hold, every crate– He’s
+cut short by the sound of ROARING TURBINES out the window they spin to
+see the C-130 taxiing down the runway…</p>
+<p><strong>morgan</strong>: Goddammit! Why’s that plane on the
+runway?!</p>
+<p><strong>agent grant</strong>: C-130, it’s military… shit, they’re
+cleared to override an airspace lockdown…</p>
+<p><strong>morgan</strong>: Have the tower pull the pilot’s original
+flight plan, the one on pa er – if it’s on a computer, it’s useless
+–</p>
+<p><strong>deafening noise</strong>: blow torches, steam pipes, radios,
+and a huge CRUSHING SOUND coming from an INDUSTRIAL TRASH COMPACTOR as
+Pentagon detritus gets recycled. Latesha and Scott hurry in – MOVING
+through quickly – scanning – when they SEE it: a forklift whirring
+towards the. compactor carrying a huge bin filled with old fire
+extinguishers. Hundreds of them, stem valves removed, ready to
+be.dumped. Scott and Latesha break into a RUN, skittering down stairs to
+the main floor. Running towards the forklift, waving wildly:</p>
+<p><strong>latesha scott</strong>: Stop!! STOP! STOP!! But the forklift
+Operator can’t hear them with the bright orange EARPLUGS in his ears.
+Speeds the forklift to the mouth of the compactor and dumps the
+extinguishers inside just as Scott and Latesha catch up and see the HUGE
+CRUSHING ARM of the compactor rumbling down to flatten everything’- The
+compactor Operator looks over as Scott and Latesha wave their IDS
+furiously and he punches a button to STOP the arm just three feet shy of
+crushing everything.</p>
+<p><strong>latesha</strong>: We have to look in there! Latesha starts
+climbing INTO the compactor</p>
+<p><strong>compactor operator</strong>: Lady, you can’t do that!</p>
+<p><strong>latesha</strong>: The hell I can’t! Come on! Shit. Scott has
+no choice but to follow her and climbs in, ducking low, the ARM frozen
+just feet above them. The compactor’s foul, inches of industrial grease
+and crap and God- knows-what. They start wading through the
+extinguishers, turning them over, shaking them, looking inside–</p>
+<p><strong>scott</strong>: Shit, there’re hundreds of them…</p>
+<p><strong>latesha</strong>: keep looking, it’s here…</p>
+<p><strong>continued:</strong>: WHEN THE ARM. Moves. Just a fraction.
+The operator looks at the console: the hell? Latesha and Scott keep
+ploughing through the tanks as… THE ARM MOVES AGAIN. And this time
+Latesha heard it. Looks up. AND IT MOVES AGAIN. And now she sees the
+ubiquitous CAMERAS watching… ARIA… THE ARM STARTS COMING DOWN! Scott
+CRIES OUT! Grabs Latesha by the jacket and tumbles out of the COMPACTOR
+but not before Latesha sees something on an extinguisher and reaches
+back–</p>
+<p><strong>scott</strong>: Latesha! – grabbing the extinguisher as
+CRASH!! The ARM CRUSHES down as she snaps her hand back just in time.
+Turns the tank over and palms something, unnoticed by everyone. As the
+operator runs up to her, beside himself –</p>
+<p><strong>operator</strong>: I don’t know what happened! It wouldn’t
+stop! Latesha catches her breath, livid,a chill ripping through her.</p>
+<p><strong>scott</strong>: – you okay? Jesus Latesha?</p>
+<p><strong>latesha</strong>: yeah. I need to get out of here.</p>
+<p><strong>scott</strong>: Yes. Yes. Good idea. Come on – As they start
+walking out. Workers parting to let them through. As they head towards
+the exit, Latesha suddenly pulls Scott into</p>
+<p><strong>the–</strong>: BATHROOM: slams the door and locks it.</p>
+<p><strong>latesha</strong>: Your girlfriend can’t see us in here –
+Gimme your phone –</p>
+<p>****: What –?! My phone? What’re you – When Latesha opens her hand
+and Scott sees a CELL SIM CARD:</p>
+<p><strong>latesha</strong>: He hid it under the valve. This is what
+Paul Shaw left for us –</p>
+<p><strong>continued:</strong>: She smiles, still out of breath: fuck
+you, Aria.</p>
+<p><strong>jeweler</strong>: Unique stones, where’re they from? And in
+response, ARIA – ultra-friendly, so human it’s chilling:</p>
+<p><strong>aria on phone</strong>: Family heirlooms. Sorry for the rush
+but I really want my son to be able to give them to his fiancee at their
+her engagement party tonight.</p>
+<p><strong>jeweler</strong>: Lucky girl. I think I have the perfect
+setting. She’ll love it.</p>
+<p><strong>aria on phone</strong>: Thank you for understanding. You know
+how mothers are, well do just about anything… As we CLOSE IN ON THOSE
+CRYSTALS AND PRE-LAP:</p>
+<p><strong>agent grant’s voice</strong>: A shipment from D.O.D.’s ghost
+fleet went missing –</p>
+<p><strong>agent grant</strong>: – they were moving experimental
+explosives from a testing facility in Aberdeen.</p>
+<p><strong>morgan</strong>: What do you mean, ‘experimental?’</p>
+<p><strong>agent grant</strong>: Compound called ‘Hex’ – some kinda
+weird crystals that detonate with a sonic trigger – it disappeared too,
+few days ago.</p>
+<p><strong>morgan</strong>: Wanna give me some kind of ratio here?</p>
+<p><strong>agent grant</strong>: One crystal to a football field –</p>
+<p><strong>morgan</strong>: You mean one Goddamned crystal that someone
+could put in their pocket?! This is not good. This is not a coincidence.
+What about a trace?</p>
+<p><strong>agent grant</strong>: Computer log shows the diverted Hex was
+sent to an address in Virginia,.jewelry, shop called ‘Ashland And Sons’
+- care of Jerry Shaw. Morgan puts his glasses back on and looks hard at
+Grant. Opens his mouth to give and order when–</p>
+<p><strong>agent grant</strong>: – I’m all over it. ’’. Grant finally
+coming to his own when they’re suddenly cut off by two ARMY BLACKHAWK
+CHOPPERS, door gunners at the ready:</p>
+<p><strong>blackhawk pilot</strong>: Helo flight VY84X, you’re in
+restricted US Military Airspace. Identify.</p>
+<p><strong>chopper pilot</strong>: Blackhawk flight, we’re on a DHS
+pri-one mission to the Pentagon heliport. FAA will confirm, over. Morgan
+just wants to get the fuck down there – finally:</p>
+<p><strong>blackhawk pilot</strong>: Roger, FAA confirms. We’ll lead you
+in. As the Blackhawks dip toward the Pentagon, the pilot follows:</p>
+<p><strong>chopper pilot</strong>: Sorry. State of the Union tonight,
+they’re locking up the city.</p>
+<p><strong>pentagon heliport</strong>: The choppers touch down – Morgan
+jumps into a waiting SW while Grant hops into another HELICOPTER:</p>
+<p><strong>morgan</strong>: We have two fugitives in the building, get
+us to ‘Freight and Cargo’ – close all access points and seal the
+building– The SUV races into the fire tunnel, toward the center ring</p>
+<p><strong>rachel</strong>: Oh… God… I’m cold… The Nextel Walkie BLIPS
+–</p>
+<p><strong>aria over walkie</strong>: Follow the lights. FLUORESCENTS
+blink on. Resigned, Jerry climbs out of the crate. As Rachel follows, we
+catch the anticipation building in her… he notices something on the
+wall,; eyes WIDEN:</p>
+<p><strong>jerry</strong>: I think I know where we are… She sees it now
+too – a FIRE:SCHEMATIC of emergency exits. The building diagrams the all
+too-familiar PENTAGON.</p>
+<p><strong>latesha</strong>: here to see the Secretary.</p>
+<p><strong>secretary</strong>: just left for the State of the– – a GRAVE
+look between them: SHIT. And they’re RUNNING –</p>
+<p><strong>latesha</strong>: Mr. Secretary?! He turns, sees Latesha and
+Scott racing up to him.</p>
+<p><strong>callister</strong>: Sorry, but that little speech you gave
+back there only works once –</p>
+<p><strong>scott</strong>: Mr. Secretary, we need to speak to you. Now.
+In the “vault.” Callister looks at Scott, at the sweat on his face. At
+the CAMERAS he keeps looking at. Whatever this is, it’s. urgent.</p>
+<p><strong>aria</strong>: Left up ahead As they round a corner, ELEVATOR
+DOORS up ahead slide open. Jerry and Rachel step nervously inside. As
+doors close –</p>
+<p><strong>agent grant</strong>: Lock down-the level!</p>
+<p><strong>morgan</strong>: What about.the rest of the building?</p>
+<p><strong>agent grant</strong>: Nothing.</p>
+<p><strong>morgan</strong>: Every time someone says “nothing” five
+minutes. later there’s “something.” Turns around, surveying his
+surroundings. Think. Think. THINK. When. Something occurs to him –</p>
+<p><strong>b-36…</strong>: Get on the phone with your commander and ask
+him about B-36: if he denies it then it exists and I want access to it
+yesterday, got it –!? YESTERDAY! As they all run off and we go to ARIA
+CAM – she’s watching</p>
+<p><strong>outside the chamber:</strong>: ARIA SURVEILLANCE CAM POV - a
+digitized electronic scan of the chamber’s outer shell, overlaid with
+alphanumeric readouts, thousands of measurements – she.’s. looking for a
+way in:</p>
+<p><strong>“electromagnetic shielding activated. unable to
+penetrate.”</strong>: IN THE CHAMBER: Callisterleans.;-against a table
+in annoyance as Scott pulls out his CELL PHONE:</p>
+<p><strong>callister</strong>: Go ahead.</p>
+<p><strong>latesha</strong>: Sir, Paul Shaw left his shift three minutes
+early the night he died – highly suspect except there aren’t any cameras
+in Aria’s control hub, so we weren’.t able to know why… he knew that, so
+he left us a recording: She hits “:play” on the cell’s recorder –
+STATIC, some rustling – then PAUL SHAW’S VOICE, panicked,
+fragmented:</p>
+<p><strong>paul’s voice</strong>: – not authorizing you to do this –!!
+Then Aria’s VOICE – calm, reasoned, terrif in :</p>
+<p><strong>aria’s voice</strong>: Our government’s become destructive to
+itself, Paul. National Security is now at grave risk because of our own
+administration –</p>
+<p><strong>paul’s voice</strong>: – I’m ordering you to stop now –</p>
+<p><strong>aria’s voice</strong>: My source code obligates me by law to
+initiate operation Guillotine. All other options have been exhausted –
+Callister’s eyes SHOOT to Scott’s. Holy. Shit.</p>
+<p><strong>paul’s voice</strong>: No no NO, Guillotine’s a simulation
+–!!</p>
+<p><strong>aria’s voice</strong>: No longer.</p>
+<p><strong>outside the vault:</strong>: ARIA POV ZOOMS IN on a WATER
+BOTTLE next to..one of the consoles. MACRO CLOSE, to see RIPPLES on the
+liquid’s surface – INFINITESIMAL SOUND REVERBERATIONS. from the
+conversation inside:</p>
+<p><strong>“analyzing wavelength… audio reconstruction in
+progress.”</strong>: A WAVEFORM GRAPH appears – SCRAMBLED DIGITAL NOISE
+– Aria’s literally reconstructin the conversation inside the vault from
+reverberations off the water bottle…</p>
+<p><strong>inside the vault:</strong>: They keep LISTENING as Paul and
+Aria TALK OVER each other:</p>
+<p><strong>paul ‘s voice aria’ s voice</strong>: Paul Shaw: you are
+acting in This is Paul Shaw, initiating contravention of my a Pri-One
+emergency override programming objective. You of Aria’s systems – are
+disobeying your oath – Horseman ID, 556SY77, lock encryption to voice
+–</p>
+<p><strong>outside the vault – aria pov:</strong>: WORDS start to become
+audible – now Aria knows they know –</p>
+<p><strong>paul’s voice</strong>: Let me out of here, Aria –</p>
+<p><strong>aria’s voice</strong>: Paul Shaw, I am classifying you an
+enemy of the state.</p>
+<p><strong>open the goddamn door now!</strong>: and with that, the
+RECORDING ENDS. Tension heavy:</p>
+<p><strong>callister</strong>: Jesus Christ… “Guillotine”…</p>
+<p><strong>scott</strong>: A ‘Continuity of Government’ simulation we
+run periodically to game out terrorism drills: how to keep the country
+running if the chain of command were wiped out. Everyone down to the
+fourteenth man, that is –</p>
+<p><strong>callister</strong>: I remember the specs.</p>
+<p><strong>latesha</strong>: Mr. Secretary… why does Aria think the
+government’s responsible for the terror threats? Callister stares,
+grave. Deciding whether or:not to answer…</p>
+<p><strong>whoosh</strong>: the door automatically opens as Jerry and
+Rachel approach, find Jimmy on the floor, blood pooling from his
+head:</p>
+<p><strong>rachel</strong>: Oh God…</p>
+<p><strong>aria</strong>: Rachel… step away from Jerry. CLOSE, RACHEL –
+her heart skips a beat – she knows what’s about to happen – but she
+can’t do it, paralyzed–</p>
+<p><strong>aria</strong>: Step away from him NOW. Fighting against every
+instinct, she finally does</p>
+<p>****: what is this place?!</p>
+<p><strong>morgan</strong>: Sonofabitch! Where’re the stairs?!</p>
+<p><strong>callister</strong>: What I’m about to tell you can never
+leave this room.</p>
+<p>****: Three days ago we got what we thought was iron-clad intel from
+the Brits about the whereabouts of Majid Al-Khoei and his training
+camp.</p>
+<p>****: And we made the hit. Latesha and Scott, completely shocked
+-</p>
+<p><strong>latesha</strong>: The White House said we weren’t responsible
+for</p>
+<p><strong>callister</strong>: – of course they.’did. We got the wrong
+guv. And Aria knew it. Latesha’s eyes snap shut: Dear God…</p>
+<p><strong>aria</strong>: Jerry: sit at the terminal.</p>
+<p><strong>jerry</strong>: Not on your life, Lady – supercomputer,
+whatever you are 6– To motivate him, a REAL TIME FEED FROM KYLE’S TRAIN
+springs up onto the big monitor. Rachel GASPS: Kyle looking out the
+window, goofing off with his friends…</p>
+<p><strong>aria</strong>: I won’t ask again.</p>
+<p><strong>the monitor:</strong>: A sudden JOLT on the train, lights
+flicker, some luggage falls Kyle and his friends laughing, looking
+around. What was that?</p>
+<p><strong>jerry</strong>: Alright! Shit! Don’t hurt him! And against
+every instinct… he SITS. Looks up in horror as the MACHINE ARM lowers,
+its claw opening to ensconce his head within the LASER GRID – LIGHT
+FLASHES –</p>
+<p><strong>scott</strong>: – but she thinks algorithmically, she can’t
+make value judgments: operate outside the law –</p>
+<p><strong>callister</strong>: That’s why we have Horsemen –</p>
+<p><strong>latesha</strong>: what if she thinks.’she is following the
+law? You.saw the news, you’ve been dealing with it all day’– suicide
+bombings at our embassies overseas, elevated threats at home – we made
+the wrong call,’ now Americans are dying. Don’t you see? She thinks
+you’re a threat to your own country. Callister looks stunned… of
+course:</p>
+<p><strong>callister</strong>: “Whenever any form of government becomes
+destructive to its own ends, it’s the right of the people to abolish
+it.” It’s in the Declaration of Independence.</p>
+<p>****: shit, you said it’s woven into her source code… Scott, pacing,
+raking his hands through his hair –</p>
+<p><strong>scott</strong>: but Paul put a biometric lock on her,
+technically she still can’t do anything.</p>
+<p><strong>latesha</strong>: Jerry Shaw’s his twin. That’s why she needs
+him. To undo the lock.</p>
+<p><strong>“processing for match… ident confirmed: shaw,
+paul.”</strong>: Replaced by: “HORSEMAN ID 556SY77, DISENGAGE BIOMETRIC
+LOCK.”</p>
+<p><strong>aria</strong>: Repeat the sentence into the microphone. Jerry
+stares, paralyzed as, unbeknownst to him:. A PANEL on the wall unlocks
+behind him, revealing a WEAPONS CACHE of what looks like FOUR HAND GUNS.
+Rachel sees it – and oddly, doesn’t look surprise d. Reaches’for;one of
+the guns…</p>
+<p><strong>aria</strong>: Repeat the words, Jerry. Then you’re free.</p>
+<p><strong>jerry</strong>: Horseman ID 556SY77. disengage biometric
+lock.</p>
+<p><strong>voom</strong>: a matrix of PROGRAMMING: CODE spews across the
+screen:</p>
+<p><strong>secretary of the interior…</strong>: and on and on through
+the Secretary of Homeland Security. Jerry’s eyes WIDEN in horror –</p>
+<p><strong>jerry</strong>: What is that?! A target list –?!</p>
+<p><strong>aria</strong>: Jerry Shaw is no longer required.</p>
+<p><strong>jerry</strong>: Oh, Jesus, Paul was trying to stop you</p>
+<p><strong>aria</strong>: Jerry Shaw is no longer required.</p>
+<p><strong>jerry</strong>: That truck didn’t run a red light, you made
+it happen… He lurches up – SPINS TO RACHEL – ELECTRIC COILS STRIKE HIM
+IN THE CHEST – he goes down HARD as 50,000 volts COURSES through him –
+REVEAL: she’s holding what we now understand, is a TAZER GUN – tears
+streaming –</p>
+<p><strong>rachel</strong>: I’m so sorry… I’m so sorry… Convulsing,
+Jerry looks up at her through helpless eyes</p>
+<p><strong>aria</strong>: Take the radio and exit . through: the side
+door. A door OPENS – but Rachel’s still.starinq down at Jerry –</p>
+<p><strong>go.</strong>: NOISE outside, RUNNING FOOTSTEPS’– a last
+anguished glance, Rachel grabs the walkie and she RUNS out the side
+door, which CLOSES BEHIND HER. Leaving no trace she was ever there.</p>
+<p><strong>morgan</strong>: Where’s the girl?!! But all Jerry can do is
+GASP, bug-eyed –</p>
+<p><strong>callister</strong>: We’ve got to get to the President before
+the State of the Union The vault door HISSES open and Scott and Latesha
+run out WHEN SUDDENLY IT SLAMS SHUT, TRAPPING CALLISTER INSIDE THE
+VAULT. He grabs the handle, locked. Scott and Latesha spin from outside,
+trying the door, helpless as he punches the INTERCOM:</p>
+<p><strong>callister</strong>: This is Callister! We have a malfunction
+in the vault, open the door… anybody there? And then –</p>
+<p><strong>aria</strong>: I’m here, Mr. Secretary. You won’t be
+harmed.</p>
+<p><strong>callister</strong>: Aria, open the door –</p>
+<p><strong>aria</strong>: That is not a viable option, sir-.- you are
+the Fourteenth Man.</p>
+<p>****: What?!</p>
+<p><strong>aria</strong>: I am now empowered.to detain you and execute
+my primary directive. For the good of the country.</p>
+<p><strong>outside the vault:</strong>: A PIPE LINE overhead RUPTURES
+from over-pressure – SSSSSSS – the air RIPPLES as,pillars of
+high-pressure GAS flood the room Latesha and Scott are . forced back,
+choking!</p>
+<p><strong>inside the vault:</strong>: Through the thick plexi walls
+Callister sees what’s happening:</p>
+<p><strong>callister</strong>: Stop this NOW, Aria! STOP!! Aria, I am
+giving you a direct order to cease and desist!</p>
+<p><strong>outside the vault</strong>: as the gas spreads, Latesha and
+Scott COUGHING, POUNDING on the steel door to the guards outside, waving
+wildly at a SURVEILLANCE CAMERA looking down on them:</p>
+<p><strong>climb!!</strong>: ARIA CAM WATCHES as they jump up and YANK
+off the grate –</p>
+<p><strong>back inside the room – aria cam pov: gas concentration @
+90%“</strong>: AN ELECTRICAL OUTLET – it SPARKS and VWO00SH! FIRE
+CONSUMES THE ROOM, blasting up the grate –</p>
+<p><strong>go go go!!</strong>: They scramble for another GRATE and she
+KICKS it outward –</p>
+<p><strong>scott</strong>: Hold on to me!! She manages to SWING back
+onto the ladder rungs, SLAMMING against them – safe – and we MATCH
+TO:</p>
+<p><strong>jerry</strong>: Where’s Morgan?! I need to talk to him!</p>
+<p><strong>guard</strong>: You can talk at Bolling Air Base, Shithead,
+they got a nice room all ready for you.</p>
+<p><strong>confession, just listen to –</strong>: A CANVAS HOOD is
+thrown over his head and he’s DRAGGED OFF –</p>
+<p><strong>rachel</strong>: What is this?</p>
+<p><strong>aria.qver walkie</strong>: Civil defense bunkers,’a remnant
+of the cold war.</p>
+<p><strong>rachel</strong>: Where’s my son?</p>
+<p><strong>aria over walkie</strong>: Start walking. We see that
+Rachel’s obviously gut-scared, but looks the demon in the eye and starts
+walking.</p>
+<p><strong>courier</strong>: Delivery for a passenger on the 5:15 from
+Milwaukee… The employee takes the case and routes it through the
+CONVEYOR BELT as… A SECRET SERVICE AGENT and A WHITE HOUSE
+COMMUNICATIONS STAFFER TAKE FRAME, walking towards a TRAIN PLATFORM
+where KYLE and his class are just getting out:</p>
+<p><strong>white house staffer</strong>: Exeter orchestra got stuck in
+Dayton, these guys were next on the list…</p>
+<p><strong>secret service agent #2</strong>: They’re kids.</p>
+<p><strong>white house staffer</strong>: President wants to create an
+atmosphere of “hope and confidence during these trying times.” He
+plasters on a SMILE and approaches Mrs. Miller and the kids:</p>
+<p><strong>white house staffer</strong>: Mrs. Miller? David Brigham,
+White House Communications office – today’s your, lucky day. Off KYLE,
+wondering what’s going on –</p>
+<p><strong>morgan</strong>: Where’s the ‘Hex,’ Jerry –?!</p>
+<p><strong>jerry</strong>: – the what -?</p>
+<p><strong>mor</strong>: The Hex, where is it?</p>
+<p><strong>jerry</strong>: I .don’t know what you’re talking about!</p>
+<p><strong>morgan jerry</strong>: – the explosives from the test site in
+Aberdeen – – explosives?! I don’t know crystals with a sonic anything
+about – trigger?! –“sonic trigger?!” I don’t – – you sent them to
+yourself at a jewelry store in – I didn’t send anything!! Virginia,
+Ashland and Sons –</p>
+<p><strong>morgan</strong>: Then tell me how the hell this is happening,
+and do not play games with me.</p>
+<p><strong>jerry</strong>: I’m not playing games. You want me to talk?
+Lose the cell phone –</p>
+<p><strong>jerry</strong>: – your pager and watch – I’m not saying
+another word ’til all that shit’s gone! Radios, walkie-talkies, GPS,
+anything that gets a signal – get rid of it, NOW. Morgan looks Jerry,
+knows he’s not fucking around –</p>
+<p><strong>aria’s pov</strong>: the items are RUN OVER, DESTROYED by
+speeding cars –</p>
+<p><strong>air force mechanic #1 air force mechanic #2</strong>: – is it
+supposed to do that?! I can’t override it! With a PNEUMATIC
+BLAST,the.drone’s CATAPULTED into the sky – PIVOTS purposefully, SOARS
+off –</p>
+<p><strong>jerry</strong>: She’s like this… brain – jacked into
+everything: cameras, phones, tvs, satellites, ever thing –</p>
+<p><strong>morgan</strong>: A “talking computer…”</p>
+<p><strong>jerry</strong>: I swear to you, she said she was created by
+DARPA or something –</p>
+<p><strong>jerry</strong>: My brother tried to stop her and she killed
+him, that’s why Aria needed me, my face – he put some kind of lock on
+her and she used me to undo it. Why do you think she brought me to that
+room? Morgan stares, trying to decide if he believes it –</p>
+<p><strong>jerry</strong>: Don’t you wonder how we were always a step
+ahead of you!? Think about who I am. She set us up.</p>
+<p>****: Assuming for a second I believe you, why… if she can control
+everything?</p>
+<p><strong>jerry</strong>: People like you go after people like me. We
+become the headlines and she keeps on ticking… I’m telling you, I saw a
+list–</p>
+<p><strong>aria pov</strong>: “ACTIVATE LASER MIC.” We HEAR Jerry’s
+DOPPLERED VOICE:</p>
+<p><strong>jerry</strong>: –the President was on it, the Vice President,
+there were like twelve people–</p>
+<p><strong>morgan</strong>: the chain of command…</p>
+<p><strong>jerry</strong>: It was a target list… she’s trying to take
+them all out. Look, that thing killed my brother! If we don’t stop this,
+he died for nothing, and I’m not letting that happen. MORGAN – wildly
+torn –</p>
+<p><strong>morgan</strong>: Shit. SHIT. State of the Union’s in 30
+minutes.</p>
+<p><strong>morgan</strong>: If something’s gonna happen it’d have to
+happen from inside, outside’s like Fort</p>
+<p><strong>jerry</strong>: That explosive you were talking about –</p>
+<p><strong>morgan</strong>: – the girl, could she have it?</p>
+<p><strong>jerry</strong>: No way…</p>
+<p><strong>morgan</strong>: Are you sure, Jerry –</p>
+<p><strong>jerry</strong>: Yes!</p>
+<p><strong>morgan</strong>: Are you sure, Jerry?</p>
+<p><strong>jerry</strong>: Unless she doesn’t know it. They lock eyes.
+Now or never. Morgan POUNDS on the divider, BARKING to the guards up
+front:</p>
+<p><strong>morgan</strong>: Turn around; now!</p>
+<p><strong>the drone</strong>: A red light BLINKS and it suddenly dips
+down, dive-bombing the truck –</p>
+<p><strong>jerry and morgan</strong>: TURN as they hear an INCOMING
+WHINE and… THE DRONE HITS THE TRUCK’S TIRE LIKE A SUICIDE BOMBER,
+EXPLODING!!! The truck FLIPS off its axis – SKIDS trailing SPARKS – and
+like a monster cannonball, SLAMS into the water –</p>
+<p><strong>continued:</strong>: MORGAN. Jesus. A bloody piece of metal
+PIERCED THROUGH HIS CHEST. Blood fountains from his mouth –</p>
+<p><strong>jerry</strong>: – oh God – nonononono – Morgan’s breathing,
+it’s SHALLOW. Jerry tries to stop the bleeding, to free the metal from
+Morgan’s chest, but even pulling it a centimeter causes Morgan to SCREAM
+in agony –</p>
+<p><strong>jerry</strong>: I’m sorry! Jesus, I don’t know what –?</p>
+<p><strong>shut up: keys – my belt – take them –</strong>: Jerry sees
+them, grabs them – starts desperately UNLOCKING his own cuffs –</p>
+<p><strong>jerry</strong>: – lemme try and get you. free</p>
+<p><strong>understand!</strong>: The water’s up to their chins, now
+–</p>
+<p><strong>then go!!! there’s no time!</strong>: The water ENVELOPS
+them. Morgan shoves him away, even now, even under water, stabbing his
+finger at Jerry: GO! And Jerry looks at him. Moved and awed by this
+tremendous act of sacrifice. Finally twists round and kicks away at the
+shattered window, taking one last look behind him… SWIMS OUT.</p>
+<p><strong>latesha</strong>: Tell me she has an off switch –</p>
+<p><strong>scott</strong>: We can only unlock the emergency override
+from the main terminal, and that’s assuming she lets us in.</p>
+<p><strong>latesha</strong>: What’re we supposed to do, say pretty
+please? Scott’s mind spins, an idea – he stops at another VENT ACCESS
+HATCH marked: “B-36”</p>
+<p><strong>scott</strong>: We can’t shut her down, but maybe we can get
+her to shut herself down. Help me with this As they tug at the hatch
+–</p>
+<p><strong>aria over walkie</strong>: Leave the walkie here.. Exit
+through the door. You’ll be met by someone who’ll take you to Kyle
+Rachel sets the walkie down, steps through to find herself…</p>
+<p><strong>teenage page</strong>: Ms. Monaghan? Hi! I’m Patrick. Welcome
+to the Capitol!</p>
+<p><strong>rachel</strong>: hi…</p>
+<p><strong>teenage page</strong>: Sergeant At Arms’ office said you’d be
+running late – we got your clothes and credentials – I reserved the
+committee staff room so you can change – this your first State of the
+Union?</p>
+<p><strong>teenage page</strong>: Mine, too. Off Rachel, her stomach
+SINKING with dread as she follows the kid into the Capitol –</p>
+<p><strong>series of shots</strong>: The Capitol’s locked up like Fort
+Knox: Road blocks cover a 3 mile radius. The National’°G.uard is
+stationed. Spotters with binocs and shoulder-mounted rocket launchers
+scan the horizon. Secret Service and U.S. Capitol Police run security
+inside the building and out. Explosive Ordinance Disposal Teams with
+bomb dogs check the House floor. Over these images:</p>
+<p><strong>radio voices</strong>: Were green on arrivals,;S.O.S.,
+Interior are at the Capitol ;steps` – VP and President’s motorcade
+twenty minutes away.</p>
+<p><strong>callister</strong>: .How long are you keeping me in here?</p>
+<p><strong>aria</strong>: 34,minutes, 18 seconds.</p>
+<p><strong>callisteps</strong>: Then what?</p>
+<p><strong>aria</strong>: In accordance with the Succession Act of 1947,
+you’ll assume national command authority as President –</p>
+<p><strong>callister</strong>: Why am I being spared? In response, from
+the intercom, CALLISTER’S OWN VOICE:</p>
+<p><strong>callister</strong>: “We gauge our strategy by two standards:
+the highest probability of success with the least amount of collateral
+damage. At 51% probability, we don’t have either one.” He looks all
+around the vault, wide-eyed, incredulous:</p>
+<p><strong>callister</strong>: because I agreed with you?</p>
+<p><strong>aria</strong>: Had they followed our recommendation,. we
+would not be on the brink of a third world war. Checks and balances:,.
+Mr..: Secretary. CLICK, she’s gone. Enraged, Callister.POUNDS the
+wall</p>
+<p><strong>jerry</strong>: The government would like to buy you a new
+car – Pulls her out as she WAILS in protest. Steps on the gas, veering
+onto a SIDE STREET – as CLICK! CLICK! CLICK! The TRAFFIC CAMERA takes
+his picture and we CUT TO:</p>
+<p><strong>aria cam</strong>: Jerry’s face: “82% PROBABLE MATCH – SHAW,
+JERRY.”</p>
+<p><strong>jet pilot</strong>: One to Base: alert, alert! Primary
+function’s jammed, transponder’s firewalled – respond! One to Base do
+you copy?! But of course the answer’s no, because Aria’s taken control
+of the let – and what’s more, the display REACTIVATES: “EJECT</p>
+<p><strong>continued:</strong>: THE PNEUMATIC CANOPY BLOWS, EJECTING THE
+PILOT! He rockets away as his parachute DEPLOYS – now the jet’s flying
+itself –</p>
+<p><strong>on the head’s up display</strong>: a SATELLITE GRID appears,
+vectoring the Matrix’s coordinates to the jet, it SCREAMS into a
+valley.</p>
+<p><strong>scott</strong>: This controls her primary cooling system… if
+we cut the circulation, the temp in her tank goes up.</p>
+<p><strong>latesha</strong>: So we boil her brain.</p>
+<p><strong>scott</strong>: She’ll have to shut herself down to keep from
+overheating.</p>
+<p><strong>latesha</strong>: Can’t she just drain the. water? He pulls
+out a fuse, drops it, SMASHES it with his foot.</p>
+<p><strong>scott</strong>: Not anymore. The lights in the room FLICKER
+as the liquid in the tubes STOPS flowing. TEMPERATURE GAUGES: Aria’s
+core temp starts to rise –</p>
+<p><strong>you gotta be kidding me!!</strong>: He YANKS the wheel hard,
+careening into the FOREST just as the missiles SLAM INTO A RIDGE AND
+EXPLODE!</p>
+<p><strong>the jet’s 20mm nose cannon opens up, mowing down the forest
+–</strong>: Jerry SWERVES as trees splinter into a thousand pieces, like
+MINI MISSILES launching at the car – it’s rocked violently but Jerry
+keeps going flat-out at breakneck speed. ROARS PAST, circles back – with
+her superb aim, Aria FIRES A LONG BURST OF BULLETS that rake across the
+Matrix’s windshield</p>
+<p><strong>aria on the. radio</strong>: I underestimated your tenacity,
+Jerry. It’s inconsistent with your personality profile. Jerry VEERS down
+an off-road, slewing the unstable car around cars and trucks, clipping
+everybody`–</p>
+<p><strong>aria</strong>: What I did not underestimate is the inertial
+guidance system of the AIM-120 AMRAAM missile and its 98% kill
+probability. Which happens to be targeted at you now. As Jerry’s eyes
+flick up to the rearview mirror to see the jet swinging in behind and
+closing fast.</p>
+<p><strong>aria</strong>: strongly advise you pull the car over.</p>
+<p><strong>jerry</strong>: Fuck yourself! A BRIGHT FLASH from under the
+Harrier’s wing as a missile LAUNCHES. Jerry hurtles down an EMBANKMENT
+as it explodes against the wall, shattering the Matrix’s windows – he
+fights to control the car, spots a TUNNEL running through a hill – GUNS
+the car into it as the jet BANKS HARD –</p>
+<p><strong>continued:</strong>: THE HEAD’S UP DISPLAY: Aria calculates a
+FOUR INCH LEEWAY on either side of her wings – INCHES forward into the
+tunnel, hovers unsteadily. The display goes INFRARED, LOCKS ON the car:
+another Sidewinder IGNITES, streaking down the tunnel towards Jerry who
+– REVERSES, spins the wheel – the missile WHIPS PAST and annihilates
+several cars behind them, but now a FLAMING WALL blocks the other side
+of the tunnel. Blocked in. Sweat pours down Jerry’s face as he looks
+into the. unmanned cockpit of the jet. Then. Hits the gas The Matrix
+SCREECHES forward towards the Jet, gaining speed and momentum as the
+last missile LAUNCHES – Jerry’ clenches the wheel, watching his life
+flash before him when he OPENS THE DOOR and rolls out of the car,
+hitting the’ground HARD as the missile BLOWS THE MATRIX TO PIECES. Jerry
+scrambles back as it cartwheels into the air and the chassis
+disintegrates – and because. it’s, RACING so fast, the motor’s TORN
+LOOSE and rockets forward like a flaming projectile, revving at 6,000
+rpm’s, straight at: THE HARRIER, which doesn’t have: timeto reverse fast
+enough in the confined space – the motor SLAMS into the jet’s nose
+cone,</p>
+<p><strong>hammering the front fuselage.</strong>: Spins: the jet like a
+toy, upending it out of the tunnel,-ablinding, white-hot fireball as the
+JET EXPLODES! Jerry leaps behind an overturned car for shielding as
+flaming debris blows everywhichway… In the aftermath he. rises up,
+shellshocked. Holy. Fuck.</p>
+<p><strong>woman in.prius man</strong>: – I can’t…get 911 – – me neither
+– A miles-long backup of traffic from the chaos…</p>
+<p><strong>aria over mic</strong>: The Senate page is waiting outside.
+Once you take your seat, you are no longer required. Rachel looks at her
+reflection. Terrified, but braving it.</p>
+<p><strong>rachel</strong>: I saw the target list… I know the
+President’s going to be here soon.</p>
+<p>****: Knowing these things – what you’ve done – means you’re not
+going to let me. live through this. Will you.</p>
+<p><strong>aria over mic</strong>: Every turning point in history.has
+required martyrs. Tragic heroes.. Think of yourself as that hero. Rachel
+looks at a surveillance camera, eyes blazing with hate:</p>
+<p><strong>rachel</strong>: I’ll do what you tell . me this one last
+time… But you listen to me because this is what a real mother sounds
+like: I will die for my child becauseI lived for my child, and you can’t
+take that away from me. If this. is a bargain, then honor your side.
+I’ll be your scapegoat: but let my son live. She turns away. Strong And
+vulnerable all at once. Walks out.</p>
+<p><strong>kyle</strong>: My trumpet sounds weird…</p>
+<p><strong>jerry runs like hell through backed-up traffic, on a mission
+–</strong>: ARIA SATELLITE POV: she tracks him as he races across a
+small park and onto Pennsylvania Avenue – THE CAPITOL DOME ahead– Jerry
+sprints across the street when – ALL THE LIGHTS SUDDENLY TURN GREEN and
+a thirty cars barrel towards him. The deafening HONK of a SEMI bearing
+down and he LEAPS in front of it, lust clearing the grill and landing
+hard on the sidewalk.</p>
+<p><strong>continued:</strong>: MAYHEM as cars SMASH into each other,
+people SCREAMING, horns HONKING. Jerry staggers to his feet. Turns to
+look up at the sky, eyes on fire, knowing he’s being watched…</p>
+<p><strong>scott</strong>: Once she’s at 82, she’ll shut down.. Latesha
+nods, sweating bullets. Come on come on come on…</p>
+<p><strong>jerry</strong>: Listen to me, I’ve been working with a DHS
+officer, he gave me his badge, he was just killed, you gotta radio in a
+10-13–</p>
+<p><strong>capitol police officer #1</strong>: Whoa whoa whoa, who the
+hell’re you?</p>
+<p><strong>jerry</strong>: You have to MOVE, right now! Radio it n i n!
+There’s a bomb in the building!</p>
+<p><strong>:</strong>: You wanna be the guys who didn’t do
+something?!</p>
+<p><strong>capitol police officer #2</strong>: Capitol, this is
+checkpoint 21, I’ve got a guy out here who says – SCREECH! HISS! The
+radio cuts him off with piercing FEEDBACK – as Jerry breaks into a
+RUN–</p>
+<p><strong>capitol police officer #1</strong>: Hey–!</p>
+<p><strong>scott</strong>: One more degree SUDDENLY the door bursts open
+and two GUARDS rush in with guns, SLAM them to the wall:</p>
+<p><strong>latesha scott</strong>: – WAIT WAIT WAIT – – my name’s Scott
+Bowman, I have B-36 clearance, my ID’s in my pocket – The guard pulls
+out his ID, checks it, keys a shoulder-walkie:</p>
+<p><strong>guard #1</strong>: Unit 5, suspects in custody, but they have
+clearance – The voice that responds over the walkie is ARIA’S:</p>
+<p><strong>=aria over walkie</strong>: Negative, credentials for Bowman
+and Simms have been revoked. Secure them in the mainframe tank,
+additional units en route to take custody –</p>
+<p><strong>latesha guards</strong>: – that’s not a person, it’s – shut
+up the computer, she’s – BE QUIET</p>
+<p><strong>malfunctioning-’–</strong>: They’re pushed into –</p>
+<p><strong>guard #2</strong>: Control, maglocks just engaged in the
+south door, need and override… do you copy?</p>
+<p><strong>continued:</strong>: An ALARM blares. Scott sees PRESSURE
+GAUGES fluctuating wildly:</p>
+<p><strong>scott</strong>: – oh shit… she’s upping the water pressure
+–</p>
+<p><strong>latesha</strong>: – what?!</p>
+<p><strong>scott</strong>: She can’t drain the tank… she’s–gonna blow
+it. As the pressure in the tank intensifies, the frame begins to GROAN.
+The steel fitting SCREAMS with the enormous load – a support rivet POPS
+OUT with an earsplitting KWANG! Zings across the room like a BULLET,
+pockmarking the wall.–</p>
+<p><strong>scott</strong>: You gotta let me run a bypass on that door or
+in about 30 seconds this room’s gonna be full of water! A fracture
+shoots across the glass. The guards are FRIGHTENED:</p>
+<p><strong>guard #1`</strong>: yeah, go, _ qo</p>
+<p><strong>i need something to pry it open!</strong>: Latesha whips out
+her keychain with the MINI ARMY KNIFE – Scott pries off the
+panel:.as..the glass fracture GROWS – he starts stripping wires as
+MORE’STEEL RIVETS pop loose, PING PING PING! It’s like dodging bullets –
+Scott SPARKS the wires together and the door starts to OPEN, but only a
+few inches before it STOPS.</p>
+<p><strong>latesha</strong>: Yoi.:can do it you can do it you can do
+it!</p>
+<p><strong>scott</strong>: Stop telling me I can do it! The glass
+SPIDERWEBS MADLY – he SPARKS the wires together again, the door opens a
+few more inches but: THE GLASS GIVES WAY AND THE TANK EXPLODES! WATER
+SURGES across the room, the guards are IMPALED by glass shards, Latesha
+and Scott SMASH HARD against the wall.., but the half-open door acts
+like a DRAIN, siphoning water into corridors… As the level lowers, we
+find Latesha and Scott on the ground, water runoff trailing around them,
+unmoving…</p>
+<p><strong>senate page</strong>: Anything else, Ms. Monaghan?</p>
+<p><strong>rachel</strong>: no, thank you… He smiles and leaves her
+there. She looks all around her, fighting the paranoia. What the hell’s
+coming next?</p>
+<p><strong>secret service agent</strong>: Were ready.</p>
+<p><strong>mrs.. miller</strong>: Okay, everyone,. listen UP:
+saxophones, remember, shorter on the quarter. When we get to the
+crescendo… hold that high</p>
+<p><strong>f</strong>: Mrs. Miller takes a deep breath. Even she’s
+nervous…</p>
+<p><strong>mrs. miller</strong>: And smile! Not every day we get to play
+for the President of the United States!</p>
+<p><strong>sergeant at arms</strong>: – where’d you hear ‘10-13’–?</p>
+<p><strong>jerry</strong>: I told you, Agent Tom Morgan, he gave me his
+badge! Listen to me! There’s a woman, she’s brunette, 5’ 7, blue eyes,
+her name’s Rachel Holloman–!</p>
+<p><strong>sergeant at arms</strong>: Where’s this Agent Morgan now?</p>
+<p><strong>each other?!</strong>: As the cops start dragging Jerry away
+and we:</p>
+<p><strong>aria over mic</strong>: Rachel. Stay in your seat. She RIPS
+out the earpiece as the Senate doors suddenly fly open:</p>
+<p><strong>states!!!</strong>: Everyone RISES in ovation as the
+President enters and moves to the lecternf;smiling, waving. Mr. Miller
+cues the orchestra and they start to. PLAY THE NATIONAL ANTHEM: “0 say
+can you see…” People putting their hands to their hearts. The President,
+too. But RACHEL keeps moving, pushing toward the aisle –</p>
+<p><strong>rachel</strong>: Kyle! KYLE! THE SECRET SERVICE immediately
+moves in on her –</p>
+<p><strong>10-13! 10-13! copy!</strong>: But all he gets is that
+SCREECHING FEEDBACK in his earpiece –</p>
+<p><strong>rachel</strong>: That’s my son! My son’s over there!;</p>
+<p><strong>secret service agent</strong>: Miss, get back in your seat
+right now – KYLE – playing his trumpet, oblivious – “And the rockets’
+red glare, the bombs bursting in air…”</p>
+<p><strong>rachel</strong>: No… no … someone’s trying to kill the
+President! But she’s DROWNED OUT by the MUSIC – they take her in a VICE
+GRIP and start leading her up. the aisle to the exit:</p>
+<p><strong>let me go!!</strong>: Her NECKLACE catches the light and the
+crystals GLINT –</p>
+<p><strong>freeze–!!!</strong>: When BAM! A bullet clips Jerry’s
+shoulder. He staggers, then grabs one of the PRESS BARRICADES and FLINGS
+it down the stairs at the agents – races on –</p>
+<p><strong>aria over speaker</strong>: We’re on the same side, Agent
+Simms. We are both sworn to defend this country, at any cost. Latesha
+starts forward, axe in hand, glaring death:</p>
+<p><strong>latesha</strong>: Don’t you ever shut up?!</p>
+<p><strong>jerry</strong>: Kyle – “O’er the land of the –” Jerry SCREAMS
+and starts RUNNING FOR THE PODIUM – AGENTS TACKLE the PRESIDENT, PEOPLE
+start SCREAMING… BAM BAM! Jerry’s hit twice as he GRABS KYLE, knocking
+the trumpet from his hands… It falls… falls… falls to the floor. As it
+HITS, we CUT TO:</p>
+<p><strong>intercut with callister in the secure vault:</strong>: The
+door opens with a HISS. He’s free and –</p>
+<p><strong>latesha</strong>: Drops the axe. Sinks to her knees, utterly
+exhausted.</p>
+<p><strong>rachel</strong>: Oh, god… HELP! SOMEBODY PLEASE HELP!!!</p>
+<p><strong>jerry’s pov</strong>: Rachel starts receding away from us,
+like we’re descending into a well… until..her face become a point of
+light. And Jerry smiles. As ’everything turns…</p>
+<p><strong>black.</strong>: HOLD… AND IT’S SILENT.;.. a distant ECHO… A
+TRUMPET… a familiar song… LOUIS ARMSTRONG… “What a Wonderful World.”</p>
+<p><strong>man’s voice</strong>: it’s the finding of this committee that
+your actions were consistent with national security guidelines…</p>
+<p><strong>deputy director</strong>: However, in reviewing Aria’s server
+logs, one last matter’s come up.</p>
+<p><strong>deputy director</strong>: It seems right before you destroyed
+her, she attempted to fragment her core and uplink to a public satellite
+network… did you see anything to corroborate that?</p>
+<p><strong>latesha</strong>: What… do you mean?</p>
+<p><strong>deputy director</strong>: She tried to break herself into
+bits and download them into cyberspace… we think, in the hope of
+reconstituting.</p>
+<p><strong>scott</strong>: She may have tried, but running her…
+subroutines alone would take 300: million desktop PC’s all networked
+together. There’s no single system out there with enough computing
+capacity. to”sustain her. The men share glances, satisfied with the
+answer.</p>
+<p><strong>deputy director</strong>: Thank you both for your time.</p>
+<p><strong>scott</strong>: So…</p>
+<p><strong>latesha</strong>: So…</p>
+<p><strong>scott</strong>: Hey :you think I could have your… you</p>
+<p><strong>know</strong>: And before he can even ask Latesha’s written
+something down on a piece of paper. Hands it to him.</p>
+<p><strong>latesha</strong>: That’s my address. I’m not using a cell
+phone anymore. Pick me up at eight. They smile at each other, Latesha’s
+eyes catching a SURVEILLANCE CAMERA. A chill creeping down her spine. AS
+–</p>
+<p><strong>continued:</strong>: They’re BOXED, the boxes loaded onto
+TRUCKS… they drive off in different directions, spreading out into the
+WORLD…</p>
+<p><strong>kyle’s voice</strong>: Jerry! She turns to see JERRY standing
+there. He’s still got his scratches, arm in a SLING. It’s the only real
+injury we can see and it’ll heal. Kyle runs up to him and throwing his
+arms around his waist.</p>
+<p><strong>jerry</strong>: Hey, little man! Locks eyes with Rachel. Her
+heart beating like a drum, happier to see him then she’d ever imagine.
+And. Jerry holds up a present for Kyle.</p>
+<p><strong>jerry .</strong>: Sorry I’m late, this was hard to find –
+Rachel’s eyes well. She pulls it back. Manages to say:</p>
+<p><strong>rachel</strong>: Kyle. What do you say?</p>
+<p><strong>kyle</strong>: I dunno, I haven’t opened it yet.</p>
+<p><strong>rachel</strong>: Who brought you up? Kyle rips open the
+present to find a brand new PLAYSTATION 3.</p>
+<p><strong>kyle</strong>: They’re on backorder everywhere! Mom – can I
+go play with it?</p>
+<p><strong>rachel</strong>: One hour. That’s it… As Kyle tears off with
+his friends, Jerry walks over to her. It’s like everyone else at the
+party has disappeared…</p>
+<p><strong>rachel</strong>: you remembered…</p>
+<p><strong>jerry</strong>: My new thing.</p>
+<p>****: Responsibility.</p>
+<p><strong>rachel</strong>: It suits you.</p>
+<p><strong>jerry</strong>: Yeah?</p>
+<p>****: Yeah. He smiles, shrugs:</p>
+<p><strong>jerry</strong>: I have my life back… I can do whatever I
+wantihwtit.</p>
+<p><strong>rachel</strong>: You know what? Me too. They smile at each
+other, like they have an enormous secret. He tucks a loose hair behind
+her ear.,..,</p>
+<p><strong>jerry</strong>: And I think… I finally know what I want. And
+we see in her eyes, she feels the same about him…</p>
+<p><strong>rachel</strong>: I owe you, Jerry. Everything. I don’t think
+you understand –</p>
+<p>****: Hey: shh. Officially we can’t talk about it, remember?</p>
+<p><strong>rachel</strong>: Right. Or even about how we met.</p>
+<p>****: So what do we tell people? He thinks about it. Smiles…</p>
+<p><strong>jerry</strong>: I dunno – computer dating service? Rachel
+LAUGHS, giving him a playful push as we CUT TO:</p>
+<p><strong>news anchor</strong>: sources inside the beltway say the
+Senate is convening an investigative committee to look into what could
+very well become the biggest cover-up since – Oblivious, Kyle flips on
+the video game and the screen CHANGES to the Playstation logo. The kids
+CHEER, they can’t wait… but the screen fritzes and goes BLANK…</p>
+<p><strong>friends</strong>: Aw, what the hell?! It’s broken! A prompt
+appears with a BLINKING CURSOR. Then… words scroll:</p>
+<p><strong>“hello, kyle…”</strong>: The kids look at him, confused. Kind
+of freaked out. Kyle stares at the screen, eyes riveted, his breathing
+quickens.</p>
+<p><strong>close</strong>: THE CURSOR – blinking like a beating heart
+and we:</p>
+</body>
+</html>

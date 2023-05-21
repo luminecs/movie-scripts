@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>krull</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="krull">krull</h1>
+<p><strong>guard</strong>: Open the gate!</p>
+<p><strong>rowan</strong>: You were attacked in the forest?</p>
+<p><strong>turold</strong>: Yes. We lost five.</p>
+<p><strong>rowan</strong>: You were lucky. I lost thirty there.</p>
+<p><strong>rowan</strong>: I tried to reach Ynyr, the old one. I led a
+hundred men to his place in Granite Needle, but it was surrounded. The
+Dark Ones guard it by night and by day they call out the Slayers. Ynyr
+cannot get out and no one can get in.</p>
+<p><strong>turold</strong>: How many did you lose?</p>
+<p><strong>rowan</strong>: Sixty at the needle, another thirty in the
+forest. Only ten of us made it back.</p>
+<p><strong>turold</strong>: We will have to try again. His knowledge is
+great. Without it, we cannot hope to win.</p>
+<p><strong>councilor</strong>: Lord Turold and his son, my lady.</p>
+<p><strong>queen</strong>: He has turned out well.</p>
+<p><strong>turold</strong>: Middling well.</p>
+<p><strong>turold</strong>: Though a touch too tall for <u>my</u>
+taste.</p>
+<p><strong>queen</strong>: My daughter is in the north tower. Go to
+her.</p>
+<p><strong>colwyn</strong>: In my armor?</p>
+<p><strong>queen</strong>: If she’s to marry a warrior, she’d best get
+used to it.</p>
+<p><strong>queen</strong>: What news from our friends?</p>
+<p><strong>turold</strong>: Barak is still strong in the north, and
+Tendo holds the high passes. But the great desert forts have fallen.</p>
+<p><strong>queen</strong>: Freylag’s stronghold?</p>
+<p><strong>turold</strong>: It has been taken, Freylag and all his
+people slaughtered.</p>
+<p><strong>queen</strong>: It is only a few weeks and already half our
+strong places have fallen.</p>
+<p><strong>turold</strong>: The attacks are unceasing: by night, the
+Dark Ones; by day, those of our people who have sold themselves to them,
+those traitors who are called the Slayers.</p>
+<p><strong>queen</strong>: It is the way of all invaders. Those they
+would conquer they divide, buying allies with promises of land and
+power.</p>
+<p><strong>turold</strong>: We will hold. Their power is not
+unlimited.</p>
+<p><strong>colwyn</strong>: I’m Colwyn.</p>
+<p><strong>colwyn</strong>: Are you Lyssa?</p>
+<p><strong>colwyn</strong>: I don’t care what arrangements were made by
+our parents. You don’t have to go through with it!</p>
+<p><strong>colwyn</strong>: They can’t force you. I won’t let them!</p>
+<p><strong>lyssa</strong>: I’m sorry. I couldn’t help it.</p>
+<p><strong>colwyn</strong>: I don’t have to go through with it
+either.</p>
+<p><strong>lyssa</strong>: You don’t understand. I’m just so
+<u>relieved</u>. I was <u>sure</u> you’d turn out to be short and fat
+and gimpy.</p>
+<p><strong>colwyn</strong>: Oh. That. I know what you mean. I had
+nightmares all week.</p>
+<p><strong>lyssa</strong>: Me too.</p>
+<p><strong>colwyn</strong>: Last night was the worst. I dreamt you had
+one leg shorter than the other, and walked like a penguin.</p>
+<p><strong>lyssa</strong>: Mine was worse: I dreamt you picked your nose
+in public.</p>
+<p><strong>colwyn</strong>: That’s worse.</p>
+<p><strong>lyssa</strong>: You’re really not bad looking. Almost
+handsome.</p>
+<p><strong>colwyn</strong>: Well, you’re beautiful.</p>
+<p><strong>lyssa</strong>: You <u>might</u> be handsome. I can’t tell
+through all that grime. Besides, you reek of sweat and horses.</p>
+<p><strong>colwyn</strong>: If you’re going to marry a warrior, you’d
+best get used to it.</p>
+<p><strong>lyssa</strong>: I have no intention of getting used to
+it.</p>
+<p><strong>lyssa</strong>: Take off your clothes. I’m going to scrub you
+down.</p>
+<p><strong>colwyn</strong>: <u>What</u>?</p>
+<p><strong>lyssa</strong>: We’re almost married.</p>
+<p><strong>colwyn</strong>: We’re not married <u>yet</u>.</p>
+<p><strong>lyssa</strong>: Well, then you can go up to the parapet and
+I’ll hand the buckets up to you.</p>
+<p><strong>colwyn</strong>: Do I have to? I have to.</p>
+<p><strong>queen</strong>: Lord Rowan is one of Lyssa’s godfathers. He
+will defend her in the ceremony. I wish that Lord Modred were here. He
+is a godfather of her own blood.</p>
+<p><strong>turold</strong>: Modred has treated with the Dark Ones.</p>
+<p><strong>rowan</strong>: Modred! Impossible!</p>
+<p><strong>turold</strong>: He leads a group of Slayers, under the
+leopard banner.</p>
+<p><strong>queen</strong>: For some, the lure of power is stronger than
+the ties of blood. No matter. I had hoped to have the wedding next
+spring, Lord Turold, with all the nobles of the kingdom in attendance.
+But Fate and this war have ordained otherwise.</p>
+<p><strong>turold</strong>: It is important to assure the
+succession.</p>
+<p><strong>queen</strong>: Yes.</p>
+<p><strong>queen</strong>: I will tell you something you did not know,
+Turold. Had it been my choice, all those years ago, I would have chosen
+you for my king. But my parents chose otherwise.</p>
+<p><strong>turold</strong>: I knew.</p>
+<p><strong>queen</strong>: You knew! You are a rude bumpkin!</p>
+<p><strong>turold</strong>: That I am, my lady.</p>
+<p><strong>turold</strong>: And, it seems, so is my son.</p>
+<p><strong>colwyn</strong>: Just hand me the bucket! What are you
+doing!</p>
+<p><strong>lyssa</strong>: I don’t trust you to wash behind your
+ears.</p>
+<p><strong>colwyn</strong>: Never mind my ears! Go away!</p>
+<p><strong>turold</strong>: A girl of some spirit, your daughter.</p>
+<p><strong>queen</strong>: A match for your son, I think.</p>
+<p><strong>turold</strong>: A fine match.</p>
+<p><strong>queen</strong>: They will have the life that you and I might
+have had.</p>
+<p><strong>lyssa</strong>: There. Now you look like someone I might want
+to marry.</p>
+<p><strong>colwyn</strong>: Maybe you’d better look around for another
+candidate. I don’t think my skin is tough enough to survive a lifetime
+of you and your brush.</p>
+<p><strong>lyssa</strong>: I don’t have to look around. I’ve found the
+husband I want. You can kiss me now.</p>
+<p><strong>colwyn</strong>: Thank you, but I can wait.</p>
+<p><strong>lyssa</strong>: I can’t.</p>
+<p><strong>colwyn</strong>: I lied.</p>
+<p><strong>lyssa</strong>: About what?</p>
+<p><strong>colwyn</strong>: I can’t wait either.</p>
+<p><strong>turold</strong>: You’ll both wait. At least for five hours.
+The wedding is at three.</p>
+<p><strong>colwyn</strong>: It was a platonic kiss, Father.</p>
+<p><strong>turold</strong>: Of course it was.</p>
+<p><strong>colwyn</strong>: I am Colwyn, son of Turold, of the eagle’s
+blood, and I am come to take your daughter from you.</p>
+<p><strong>rowan</strong>: You shall not!</p>
+<p><strong>lyssa</strong>: I am Lyssa, daughter of the Queen, of the
+leopard’s blood, and I am come to take your son from you.</p>
+<p><strong>turold</strong>: You shall not!</p>
+<p><strong>turold</strong>: Let it be done then.</p>
+<p><strong>rowan</strong>: It is done.</p>
+<p><strong>turold</strong>: Slayers! To arms!</p>
+<p><strong>queen</strong>: Help me up. I will die on my feet.</p>
+<p><strong>queen</strong>: And I will not die alone.</p>
+<p><strong>colwyn</strong>: They have Lyssa!</p>
+<p><strong>turold</strong>: You can’t reach her! Through the door.
+Quickly!</p>
+<p><strong>turold</strong>: The passage. Open it.</p>
+<p><strong>turold</strong>: You will go alone.</p>
+<p><strong>colwyn</strong>: I won’t leave you here.</p>
+<p><strong>turold</strong>: You will do as I tell you. You will try to
+reach Ynyr, the old one.</p>
+<p><strong>colwyn</strong>: I must follow the Slayers. They’ve taken
+Lyssa.</p>
+<p><strong>turold</strong>: You will not follow the Slayers, you will
+obey my command! You have no chance alone, boy. You must try to break
+through to Ynyr. He has great knowledge. Only with his help can you save
+Lyssa.</p>
+<p><strong>turold</strong>: Go now. Go! I command you!</p>
+<p><strong>turold</strong>: Spare him, Modred. Have you never loved
+anyone?</p>
+<p><strong>modred</strong>: If I spare him, they will kill me.</p>
+<p><strong>turold</strong>: He is your godson now. He and Lyssa were
+married.</p>
+<p><strong>colwyn</strong>: The old man must sleep sometime.</p>
+<p><strong>slayer</strong>: Yes, sometime. But when?</p>
+<p><strong>colwyn</strong>: Perhaps now.</p>
+<p><strong>slayer</strong>: Perhaps you’d like to stroll across the
+bridge and find out.</p>
+<p><strong>colwyn</strong>: Perhaps I will.</p>
+<p><strong>2nd slayer</strong>: Go right ahead, brother, and let the old
+man put you to sleep forever … … along with them.</p>
+<p><strong>colwyn</strong>: I am Colwyn, son of Turold!</p>
+<p><strong>slayer</strong>: There is no way out. He will die there with
+the old man.</p>
+<p><strong>colwyn</strong>: The White Castle has fallen.</p>
+<p><strong>ynyr</strong>: Does the Queen live?</p>
+<p><strong>colwyn</strong>: The new Queen lives.</p>
+<p><strong>ynyr</strong>: Turold’s son was to marry her.</p>
+<p><strong>colwyn</strong>: We were married. Then she was taken by the
+Slayers. You must help me.</p>
+<p><strong>ynyr</strong>: I have lived in this place, like my fathers
+before me, guarding the old knowledge. I knew, when I had no son, that
+the Great War would come in my time, and that I would be the one to pass
+on the old knowledge to a new king. Come.</p>
+<p><strong>ynyr</strong>: It is night. The Slayers have gone to their
+tents and the bridge is guarded by Dark Ones. They will not cross, for
+they have no power in this place.</p>
+<p><strong>ynyr</strong>: This is not the first time the Dark Ones have
+attacked our world. They came once before, a thousand years ago. A young
+king and queen, with extraordinary powers, were given to us then, to
+lead the struggle. My fore-father was their Councilor, as I will be
+yours.</p>
+<p><strong>colwyn</strong>: I have no extraordinary powers.</p>
+<p><strong>ynyr</strong>: Your powers are greater than you know. Have
+you ever seen one of these?</p>
+<p><strong>colwyn</strong>: In the old books. It’s called a glaive.</p>
+<p><strong>ynyr</strong>: This belonged to the young king who fought the
+Dark Ones a thousand years ago. Now it is yours.</p>
+<p><strong>ynyr</strong>: With two or three days’ practice, you’ll be
+able to use it as well as I can. Then we’ll have a chance of fighting
+our way out of here.</p>
+<p><strong>colwyn</strong>: Two or three days! While Lyssa is in their
+hands?</p>
+<p><strong>ynyr</strong>: There is no other way.</p>
+<p><strong>colwyn</strong>: But there is another entrance to this
+place.</p>
+<p><strong>ynyr</strong>: Yes.</p>
+<p><strong>ynyr</strong>: But it opens onto the sheer wall of the
+Needle. There’s no way down.</p>
+<p><strong>colwyn</strong>: You have rope?</p>
+<p><strong>ynyr</strong>: I am too old to climb down a rope.</p>
+<p><strong>colwyn</strong>: You won’t have to.</p>
+<p><strong>ynyr</strong>: Focus on the glaive.</p>
+<p><strong>ynyr</strong>: Reach out with your mind. Reach out to
+Lyssa.</p>
+<p><strong>colwyn</strong>: There is nothing.</p>
+<p><strong>ynyr</strong>: Reach out farther. Call to her.</p>
+<p><strong>colwyn</strong>: Lyssa … Lyssa …</p>
+<p><strong>colwyn</strong>: Lyssa … Lyssa …</p>
+<p><strong>lyssa</strong>: Colwyn.</p>
+<p><strong>colwyn</strong>: Have they harmed you?</p>
+<p><strong>lyssa</strong>: No. They watch me closely, but they haven’t
+harmed me.</p>
+<p><strong>ynyr</strong>: Where? We must know where she is.</p>
+<p><strong>colwyn</strong>: Lyssa. Where are they keeping you?</p>
+<p><strong>lyssa</strong>: In a great fortress in the mountains. Wait.
+Something’s happening.</p>
+<p><strong>lyssa</strong>: Everything’s changed. Now the fortress is in
+the jungle.</p>
+<p><strong>ynyr</strong>: Enough, boy.</p>
+<p><strong>ynyr</strong>: Enough!</p>
+<p><strong>ynyr</strong>: You must break when the strain becomes too
+great, or you will harm yourself. And you must concentrate your powers
+for when they are needed most. What did she answer?</p>
+<p><strong>colwyn</strong>: She was in a great fortress, first in the
+mountains, then in the jungle. How is that possible?</p>
+<p><strong>ynyr</strong>: It is the Fortress of Krull. I know it only
+from the stories of wars on other worlds. They did not use it on our
+world in the first great war, for it costs them enormous power. This
+time they mean to conquer, at all costs.</p>
+<p><strong>colwyn</strong>: The Fortress moves?</p>
+<p><strong>ynyr</strong>: Yes. Each dawn it rises in a different land:
+sometimes in the mountains, sometimes in the jungle, sometimes the
+desert, sometimes the sea. Never in the same place twice.</p>
+<p><strong>colwyn</strong>: Then even if Lyssa tells us where she is,
+we’ll never be able to reach her, for they will never allow the Fortress
+to rise near us.</p>
+<p><strong>ynyr</strong>: No. They occupy the Fortress, but they cannot
+control its movement. It is moved by Fate. And, sooner or later, Fate
+will place it near us.</p>
+<p><strong>colwyn</strong>: Then we must be ready. Five leagues from
+here is the Eastern Tower. I know the Barons who hold it. Good men, and
+brave. They will help us.</p>
+<p><strong>ynyr</strong>: You have not slept in two days.</p>
+<p><strong>colwyn</strong>: Nor will I, till my bride is beside me.</p>
+<p><strong>lyssa</strong>: Colwyn. Colwyn.</p>
+<p><strong>ergo</strong>: Help! Help! I’m drowning!</p>
+<p><strong>colwyn</strong>: I doubt it. The water is only an inch
+deep.</p>
+<p><strong>ergo</strong>: It could have been quicksand! I might have
+been sucked to my death. Where is this place?</p>
+<p><strong>colwyn</strong>: A forest near the Valley of Needles.</p>
+<p><strong>ergo</strong>: Blast! A thousand miles off course. Well, I
+was rushed. There was a certain difference of opinion concerning a
+venison pie. The foolish man left it sitting on his windowsill. What did
+he expect?</p>
+<p><strong>colwyn</strong>: Perhaps he expected to eat it.</p>
+<p><strong>ergo</strong>: For that rudeness, peasant lout, I am going to
+leave you hanging by your heels when I depart. Which is right now.</p>
+<p><strong>ergo</strong>: Get me down from here!</p>
+<p><strong>ergo</strong>: My spells always go wrong when I am observed.
+Be gone!</p>
+<p><strong>ynyr</strong>: The forest is not safe these days. You’d best
+travel with us.</p>
+<p><strong>ergo</strong>: I just remembered I have urgent business in
+this direction.</p>
+<p><strong>colwyn</strong>: What business?</p>
+<p><strong>ergo</strong>: Staying alive.</p>
+<p><strong>torquil</strong>: The lad is quick, very quick.</p>
+<p><strong>torquil</strong>: But also very young. Six to one is no odds,
+boy.</p>
+<p><strong>ergo</strong>: Get me down from here you louts or I’ll turn
+you all into pigs!</p>
+<p><strong>ergo</strong>: They’ll soon learn the price of snaring Ergo
+the Magnificent.</p>
+<p><strong>torquil</strong>: When your enemies outnumber you, boy, craft
+is more profitable than courage. Smile and go along and, sooner or
+later, they will grow careless. And then … … sst!</p>
+<p><strong>colwyn</strong>: I don’t think you’ll grow careless.</p>
+<p><strong>torquil</strong>: Smart as well as quick. Now what do you
+have to give us?</p>
+<p><strong>colwyn</strong>: Fame.</p>
+<p><strong>torquil</strong>: Fame? Thank you, no. Fame is the burial
+ground of contentment. Eat it and go hungry; count it and go broke; seek
+it and grow mad. Fame is what fools yearn for and wise men shun.</p>
+<p><strong>colwyn</strong>: Fame is what you leave to your sons.</p>
+<p><strong>torquil</strong>: How did you know I had sons?</p>
+<p><strong>colwyn</strong>: Because you would not rob if you had no
+children to provide for.</p>
+<p><strong>torquil</strong>: Hah! You don’t know me, boy.</p>
+<p><strong>colwyn</strong>: I know you.</p>
+<p><strong>ynyr</strong>: You choose these?</p>
+<p><strong>colwyn</strong>: Yes. They will be more help than high-born
+barons.</p>
+<p><strong>torquil</strong>: They stand at the edge of the grave and
+make jokes. Do you know who I am, sprout? I am Torquil, Lord of the
+forest. My men follow no man but me, and I follow no man at all.</p>
+<p><strong>colwyn</strong>: You will follow me.</p>
+<p><strong>torquil</strong>: And in the few seconds before I dice you to
+crow-food, tell me why I am going to follow you.</p>
+<p><strong>colwyn</strong>: So your sons will speak of you to your
+grandsons, and your grandsons to their grandsons.</p>
+<p><strong>torquil</strong>: And where do you lead, boy?</p>
+<p><strong>colwyn</strong>: To the place where Death lives.</p>
+<p><strong>torquil</strong>: It should be an interesting journey,
+then.</p>
+<p><strong>colwyn</strong>: That I promise you.</p>
+<p><strong>torquil</strong>: I compel no man to follow me on this
+journey.</p>
+<p><strong>kegan</strong>: We owe you our lives, Torquil. If you follow
+the boy, so also do we.</p>
+<p><strong>sweyn</strong>: I follow the man who follows gold. He who
+follows glory travels without me.</p>
+<p><strong>torquil</strong>: Go then, and let greed be your
+gravestone.</p>
+<p><strong>torquil</strong>: What have we here? Roast pork for
+dinner.</p>
+<p><strong>colwyn</strong>: He needs his book.</p>
+<p><strong>ergo</strong>: Put me down, you lout!</p>
+<p><strong>torquil</strong>: You had better manners as a pig.</p>
+<p><strong>ergo</strong>: I am Ergo the Magnificent, and I do not travel
+with thieves and robbers.</p>
+<p><strong>ergo</strong>: Except when necessary.</p>
+<p><strong>torquil</strong>: When did you last sleep, boy?</p>
+<p><strong>colwyn</strong>: I’m all right.</p>
+<p><strong>torquil</strong>: They burn many villages. Even walled cities
+fall to them.</p>
+<p><strong>colwyn</strong>: Why do they burn the villages? There’s
+nothing to gain.</p>
+<p><strong>ynyr</strong>: There’s terror to gain. Their wealth is fear:
+they get it with fire, they spend it to rule.</p>
+<p><strong>torquil</strong>: We’ll stop here to hunt. Even those who
+don’t sleep must eat.</p>
+<p><strong>colwyn</strong>: I’m not hungry.</p>
+<p><strong>torquil</strong>: Not sleepy, either?</p>
+<p><strong>colwyn</strong>: No.</p>
+<p><strong>ergo</strong>: Bring me a deer! No deer, no supper.</p>
+<p><strong>ergo</strong>: What are you doing with my dear? Stop!
+Thieves!</p>
+<p><strong>torquil</strong>: Many villagers are hiding in the forest.
+They need food.</p>
+<p><strong>ergo</strong>: And do you think I live on air?</p>
+<p><strong>torquil</strong>: We have plenty of hares.</p>
+<p><strong>ergo</strong>: Food for crows.</p>
+<p><strong>torquil</strong>: Surely a sorcerer of the sauce pan can make
+rabbit taste like venison.</p>
+<p><strong>ergo</strong>: I am being exploited! Where are you going?</p>
+<p><strong>torquil</strong>: I must take the old man to see some sick
+children. Kegan will guard you.</p>
+<p><strong>ergo</strong>: One with red eyes, the other with one eye,
+both trying to kill me.</p>
+<p><strong>ynyr</strong>: The one with red eyes was a Dark One, the
+other was a Cyclops, and it was not you he meant to kill.</p>
+<p><strong>ergo</strong>: He was aiming a huge spear right at me!</p>
+<p><strong>ynyr</strong>: If that were so, you’d be dead now. He was
+aiming at the Dark One, for there is ancient hatred between them. Once
+his race had two eyes, like other men, until his forefathers bargained
+with the Dark Ones: they gave up one of their eyes in return for the
+power to see the future. But they were cheated, for the only future they
+were permitted to see was the time of their own death.</p>
+<p><strong>colwyn</strong>: They know when they’re going to die?</p>
+<p><strong>ynyr</strong>: Everyone of his race is born knowing the day
+of his death.</p>
+<p><strong>torquil</strong>: Knowledge I wouldn’t want.</p>
+<p><strong>ynyr</strong>: No. They are sad, solitary creatures, rarely
+seen.</p>
+<p><strong>ergo</strong>: Once is enough, thank you.</p>
+<p><strong>colwyn</strong>: He saved our lives.</p>
+<p><strong>torquil</strong>: But not our supper.</p>
+<p><strong>ergo</strong>: Oh, my poor stew!</p>
+<p><strong>torquil</strong>: Oh, my poor stomach.</p>
+<p><strong>colwyn</strong>: I can’t reach her.</p>
+<p><strong>ynyr</strong>: What do you see?</p>
+<p><strong>colwyn</strong>: Darkness. Tunnels and corridors. Wait.</p>
+<p><strong>colwyn</strong>: Lyssa …</p>
+<p><strong>lyssa</strong>: Colwyn …</p>
+<p><strong>colwyn</strong>: Where is the Fortress?</p>
+<p><strong>lyssa</strong>: I don’t know. It’s a maze of tunnels. I can’t
+see out.</p>
+<p><strong>colwyn</strong>: I will find you. I will be with you.</p>
+<p><strong>lyssa</strong>: I know it.</p>
+<p><strong>colwyn</strong>: I love you, Lyssa, I love you …</p>
+<p><strong>lyssa</strong>: Colwyn. Colwyn. I love you, Colwyn.</p>
+<p><strong>colwyn</strong>: She can’t see out. She can’t tell us where
+the Fortress is.</p>
+<p><strong>ynyr</strong>: Yes, they knew of your first contact, so they
+drove her below.</p>
+<p><strong>colwyn</strong>: She was very faint. I was barely able to
+reach her.</p>
+<p><strong>ynyr</strong>: The deeper she goes, the harder it is to
+contact her. Once she is below the second level, you will not be able to
+reach her at all.</p>
+<p><strong>colwyn</strong>: I will find her!</p>
+<p><strong>ynyr</strong>: We’ll seek an Emerald Seer. They have great
+powers of vision.</p>
+<p><strong>torquil</strong>: There’s an Emerald Circle a few leagues
+from here. We’ll find her.</p>
+<p><strong>colwyn</strong>: Forgive me. It’s childish to cry.</p>
+<p><strong>torquil</strong>: Those are not child’s tear. A child cries
+for himself, a man cries for those he loves.</p>
+<p><strong>torquil</strong>: We can save half a day by crossing the
+Stone Lake.</p>
+<p><strong>ynyr</strong>: Many have perished in that maze.</p>
+<p><strong>torquil</strong>: No maze to me, my fried. It is where we
+take refuge when they hunt us.</p>
+<p><strong>colwyn</strong>: Lead us across.</p>
+<p><strong>ergo</strong>: I wish you’d tell me why that foolish boy
+decided to join up with these thieves.</p>
+<p><strong>ynyr</strong>: He didn’t join them. They joined him.</p>
+<p><strong>ergo</strong>: And who is <u>he</u> that they should join
+<u>him</u>?</p>
+<p><strong>ynyr</strong>: He is the King.</p>
+<p><strong>ergo</strong>: Well, at least I’m glad to see you have a
+sense of humor. That’s the first smile I’ve seen on that gloomy face of
+your’s … … isn’t it? It isn’t. Oh no. Oh dear. Oh now I’ve gone and done
+it.</p>
+<p><strong>ergo</strong>: Your kingship … your lord high mightiness …
+when I called you a … a … whatever I called you, I didn’t realize that
+you were … were …</p>
+<p><strong>colwyn</strong>: I was hoping I might be your friend.</p>
+<p><strong>ergo</strong>: My <u>friend</u>.</p>
+<p><strong>colwyn</strong>: I have need of friends.</p>
+<p><strong>ergo</strong>: No more, my lord - my friend. With Ergo the
+Magnificent by your side, your enemies are dead men.</p>
+<p><strong>ergo</strong>: Argh! I’m dying!</p>
+<p><strong>colwyn</strong>: Not yet, my friend. It’s your tomato that’s
+dying.</p>
+<p><strong>ergo</strong>: Oh, my poor baby.</p>
+<p><strong>ergo</strong>: I liked you better gloomy, old man.</p>
+<p><strong>torquil</strong>: So. You’re something more than a seeker of
+fame.</p>
+<p><strong>torquil</strong>: Well, I’m not impressed.</p>
+<p><strong>colwyn</strong>: I knew you would not be. That’s why I chose
+you.</p>
+<p><strong>torquil</strong>: I’m a <u>little</u> impressed.</p>
+<p><strong>seer</strong>: Eight come here, Brother. They have traveled
+far. Fetch bread and wine.</p>
+<p><strong>titch</strong>: Yes, Brother.</p>
+<p><strong>ynyr</strong>: We seek the Fortress of Krull.</p>
+<p><strong>seer</strong>: Such a vision will be opposed. Who seeks
+it?</p>
+<p><strong>ynyr</strong>: The new King.</p>
+<p><strong>seer</strong>: With an old voice?</p>
+<p><strong>ynyr</strong>: You know the voice.</p>
+<p><strong>seer</strong>: Yes. You have left your place in the Needle.
+It is the time, then.</p>
+<p><strong>ynyr</strong>: It is the time.</p>
+<p><strong>seer</strong>: I will seek the Fortress for you.</p>
+<p><strong>seer</strong>: Can you see?</p>
+<p><strong>ynyr</strong>: Yes. It is the Western Ocean.</p>
+<p><strong>colwyn</strong>: There is a prisoner there.</p>
+<p><strong>seer</strong>: Yes.</p>
+<p><strong>colwyn</strong>: Lyssa.</p>
+<p><strong>colwyn</strong>: Are you hurt?</p>
+<p><strong>seer</strong>: No. The Dark Ones do not like curious Seers
+poking into their affairs.</p>
+<p><strong>colwyn</strong>: Can you tell us where the Fortress will rise
+tomorrow?</p>
+<p><strong>seer</strong>: I cannot see the future, only the present. But
+at dawn tomorrow, I can see where the fortress has risen that day - and
+every day thereafter, until Fate brings it near us.</p>
+<p><strong>ynyr</strong>: The Dark Ones will appose you with all their
+power.</p>
+<p><strong>seer</strong>: They will fail for, during the day, the power
+of the Circle is greater than theirs. Only at night can they pierce the
+Circle.</p>
+<p><strong>ergo</strong>: Bread is for peasants, and wine makes me
+sneeze. Got any gumdrops?</p>
+<p><strong>titch</strong>: No.</p>
+<p><strong>ergo</strong>: Sugarballs?</p>
+<p><strong>titch</strong>: No.</p>
+<p><strong>ergo</strong>: What kind of a boy are you? Boys always have
+candy.</p>
+<p><strong>titch</strong>: I have a cinnamon bar.</p>
+<p><strong>ergo</strong>: You do?</p>
+<p><strong>titch</strong>: You can have half.</p>
+<p><strong>ergo</strong>: I am Ergo the Magnificent … … short in stature
+… … tall in power … … narrow of purpose … … wide of vision.</p>
+<p><strong>titch</strong>: I … … am Titch.</p>
+<p><strong>colwyn</strong>: I cannot reach her.</p>
+<p><strong>ynyr</strong>: She is too deep. The curved tunnel we saw is
+part of the Vortex, the place of The Beast.</p>
+<p><strong>torquil</strong>: The leader of the Dark Ones?</p>
+<p><strong>ynyr</strong>: Yes. Like you, a King. A King of many worlds.
+All enslaved.</p>
+<p><strong>colwyn</strong>: The first time, when they attacked long ago,
+was The Beast here?</p>
+<p><strong>ynyr</strong>: No. Then they were led by his underlings. But
+I knew he had come this time, from the ferocity of their onslaught, from
+their use of The Fortress. They use up much of their strength to do
+these things. They are taking great risks.</p>
+<p><strong>ynyr</strong>: I’m not sure.</p>
+<p><strong>colwyn</strong>: But you suspect.</p>
+<p><strong>ynyr</strong>: You will know, in good time.</p>
+<p><strong>ergo</strong>: Rabbits and squirrels. Where is my deer!</p>
+<p><strong>keegan</strong>: We saw nothing but does and fawns, and we
+shoot only stags.</p>
+<p><strong>ergo</strong>: Nothing worse than lower-class boors with
+upper-class morals.</p>
+<p><strong>cyclops</strong>: Would you settle for a boar?</p>
+<p><strong>ergo</strong>: A <u>boar</u>? Those incompetent louts
+couldn’t catch a piglet, much less a boar.</p>
+<p><strong>ergo</strong>: You!</p>
+<p><strong>cyclops</strong>: Me. May I eat with you tonight?</p>
+<p><strong>ergo</strong>: Tonight and every night, my friend, for this
+is the second time you’ve saved my life. I am Ergo the Magnificent,
+short in stature, tall in power, etcetera, etcetera.</p>
+<p><strong>cyclops</strong>: I am Quell.</p>
+<p><strong>titch</strong>: I’m hungry.</p>
+<p><strong>ergo</strong>: Smart lad. Bring me my spices!</p>
+<p><strong>titch</strong>: I must fetch my master. I’m Titch.</p>
+<p><strong>seer</strong>: Is that you, Brother?</p>
+<p><strong>changeling</strong>: It is me, Brother.</p>
+<p><strong>changeling</strong>: Is that you, Brother?</p>
+<p><strong>titch</strong>: It is me, Brother.</p>
+<p><strong>torquil</strong>: Passable, pimple, very passable.</p>
+<p><strong>ergo</strong>: The greatest boon of your otherwise worthless
+life, blockhead, is the privilege of dining on boar roasted by the hand
+of Ergo the Magnificent.</p>
+<p><strong>torquil</strong>: Your boast is a bigger mouthful than your
+roast, Magnificence.</p>
+<p><strong>torquil</strong>: You’ve eaten nothing.</p>
+<p><strong>colwyn</strong>: We must try to get horses.</p>
+<p><strong>torquil</strong>: Yes. It will double our range. I know at
+least a dozen ways to get horses. All cheap.</p>
+<p><strong>colwyn</strong>: These we’ll pay for.</p>
+<p><strong>torquil</strong>: Lad, you have an unnatural desire to pay
+for things. It stunts the mind and shrivels the imagination.</p>
+<p><strong>colwyn</strong>: Hand over your dinner.</p>
+<p><strong>torquil</strong>: A flicker of talent.</p>
+<p><strong>torquil</strong>: But I can’t tell yet whether it’s a talent
+for theft or gluttony.</p>
+<p><strong>ergo</strong>: If I could wish … … for anything, I’d wish for
+a venison pie the size of a … … mountain. No, that’s too greedy. I’d
+settle for one the size of a house.</p>
+<p><strong>titch</strong>: I’d wish for a puppy.</p>
+<p><strong>ergo</strong>: One puppy? Why not wish for a hundred?</p>
+<p><strong>titch</strong>: I only want one.</p>
+<p><strong>ergo</strong>: A foolish wish. And you, Quell?</p>
+<p><strong>cyclops</strong>: Ignorance.</p>
+<p><strong>bardolph</strong>: Who’s there?</p>
+<p><strong>changeling</strong>: It’s me, Brother. I am thirsty.</p>
+<p><strong>bardolph</strong>: Here, I’ll guide you.</p>
+<p><strong>colwyn</strong>: Where is Bardolph, Brother?</p>
+<p><strong>changeling</strong>: He heard something and went to
+investigate, Brother.</p>
+<p><strong>changeling</strong>: Lead me to the stream, Brother.</p>
+<p><strong>cyclops</strong>: A Changeling.</p>
+<p><strong>ynyr</strong>: Yes. It chose the Seer’s form so it wouldn’t
+have to show its eyes.</p>
+<p><strong>colwyn</strong>: How did you know?</p>
+<p><strong>cyclops</strong>: I found the body of the Seer in the
+stream.</p>
+<p><strong>colwyn</strong>: If he had not agreed to help us, they would
+not have killed him. He gave his life for us.</p>
+<p><strong>titch</strong>: He was my only family.</p>
+<p><strong>colwyn</strong>: We’re your family now.</p>
+<p><strong>ynyr</strong>: I must go to the widow. Perhaps she will
+help.</p>
+<p><strong>torquil</strong>: The Widow of the Web?</p>
+<p><strong>ynyr</strong>: Yes.</p>
+<p><strong>torquil</strong>: That creature helps no one. And none who go
+there return.</p>
+<p><strong>ynyr</strong>: She has the power of vision.</p>
+<p><strong>torquil</strong>: She has the power to kill.</p>
+<p><strong>ynyr</strong>: Perhaps she will not kill me, for I know her
+name.</p>
+<p><strong>torquil</strong>: Her name is Death.</p>
+<p><strong>ynyr</strong>: She had another name once.</p>
+<p><strong>colwyn</strong>: No. We will find another way to locate the
+Fortress.</p>
+<p><strong>ynyr</strong>: There is no other way. You asked me why the
+Beast had come this time.</p>
+<p><strong>colwyn</strong>: Yes.</p>
+<p><strong>ynyr</strong>: He has come for Lyssa.</p>
+<p><strong>colwyn</strong>: Lyssa? <u>Why</u>?</p>
+<p><strong>ynyr</strong>: Like you, she has extraordinary powers. He
+would make her his Queen.</p>
+<p><strong>colwyn</strong>: Can she be forced?</p>
+<p><strong>ynyr</strong>: No. She must agree of her own free will.</p>
+<p><strong>colwyn</strong>: Never.</p>
+<p><strong>ynyr</strong>: You are young. You don’t understand the
+attraction of great power, and you forget the pain of long waiting.</p>
+<p><strong>colwyn</strong>: Then we must reach her before she feels that
+pain.</p>
+<p><strong>ynyr</strong>: Yes.</p>
+<p><strong>voice of the beast</strong>: Do not be afraid. You are safe
+here. You are protected by my power.</p>
+<p><strong>voice of the beast</strong>: I am not one of those trivial
+ones who have been guarding you. They are my slaves. They are to me as
+drops to an ocean. <u>I rule here</u>.</p>
+<p><strong>voice of the beast</strong>: I rule <u>all</u> here.</p>
+<p><strong>voice of the beast</strong>: Nature is my slave here.</p>
+<p><strong>voice of the beast</strong>: Its laws are mine to break.</p>
+<p><strong>voice of the beast</strong>: Such is my power. It can be
+yours.</p>
+<p><strong>ergo</strong>: I still say it was a foolish wish.</p>
+<p><strong>ergo</strong>: What is that awful looking place?</p>
+<p><strong>cyclops</strong>: The Swamp of Betrayal. Be glad we don’t
+have to cross it.</p>
+<p><strong>ergo</strong>: I’m glad. I’m very glad.</p>
+<p><strong>colwyn</strong>: Slayers!</p>
+<p><strong>cyclops</strong>: We must enter the swamp.</p>
+<p><strong>ynyr</strong>: Few have survived it.</p>
+<p><strong>torquil</strong>: Fewer will survive them.</p>
+<p><strong>colwyn</strong>: Yes, it’s our only chance. They can’t use
+their horses there. Quickly.</p>
+<p><strong>cyclops</strong>: Do not let the waters touch you.</p>
+<p><strong>colwyn</strong>: What will happen?</p>
+<p><strong>ynyr</strong>: You will be devoured by your own mind.</p>
+<p><strong>torquil</strong>: Take hold!</p>
+<p><strong>torquil</strong>: Let him drown.</p>
+<p><strong>lyssa</strong>: Yes. Then we’ll marry and you will be my
+king.</p>
+<p><strong>colwyn</strong>: Traitor! She’ll marry you in hell!</p>
+<p><strong>ynyr</strong>: He thinks you betray him with Lyssa. Colwyn!
+The waters deceive you!</p>
+<p><strong>ynyr</strong>: I have delivered him into your hands. Now pay
+me the price we agreed on.</p>
+<p><strong>colwyn</strong>: I will melt that gold and pour it down your
+throat, old man!</p>
+<p><strong>ynyr</strong>: He sees betrayal everywhere. He will attack us
+so long as he is conscious.</p>
+<p><strong>ergo</strong>: Your axe! Lay it out!</p>
+<p><strong>torquil</strong>: I can’t hold the weight of both of you!</p>
+<p><strong>ergo</strong>: Hush!</p>
+<p><strong>chief slayer</strong>: Traitor!</p>
+<p><strong>colwyn</strong>: Forgive me, my friends. I saw terrible
+things.</p>
+<p><strong>torquil</strong>: They do not exist, except in the waters of
+the Swamp, where they will remain.</p>
+<p><strong>ynyr</strong>: From here, I must go alone.</p>
+<p><strong>colwyn</strong>: You will tell me her name and we will go
+together.</p>
+<p><strong>ynyr</strong>: You must never know her name. If more than one
+approaches, she will certainly kill them. Alone I may have a chance.</p>
+<p><strong>torquil</strong>: Each to his fate, lad.</p>
+<p><strong>ynyr</strong>: Each to his fate. Wait for me at the inn. If I
+am not back by dawn, you will know my fate, and you must go on without
+me.</p>
+<p><strong>ergo</strong>: Where are you going?</p>
+<p><strong>cyclops</strong>: We’ll meet you at the inn.</p>
+<p><strong>ergo</strong>: Can’t I come, too?</p>
+<p><strong>cyclops</strong>: No.</p>
+<p><strong>cyclops</strong>: Over there.</p>
+<p><strong>colwyn</strong>: Go, join them.</p>
+<p><strong>torquil</strong>: What kind of friend do you think I am?</p>
+<p><strong>colwyn</strong>: The best. But my unhappiness is not made
+lighter by adding your’s to it.</p>
+<p><strong>torquil</strong>: Well, it is true that if I received a royal
+command I couldn’t very well disobey it, could I?</p>
+<p><strong>colwyn</strong>: Go. I command you.</p>
+<p><strong>torquil</strong>: Yes, my lord.</p>
+<p><strong>ergo</strong>: Try your tricks on me and I’ll turn myself
+back into a snake and bite you.</p>
+<p><strong>colwyn</strong>: You and I will guard the fire.</p>
+<p><strong>ergo</strong>: What else is left for a man without
+friends.</p>
+<p><strong>widow</strong>: Someone comes here.</p>
+<p><strong>widow</strong>: This is his time.</p>
+<p><strong>ynyr</strong>: I am Ynyr. I seek the Widow.</p>
+<p><strong>ynyr</strong>: Lyssa!</p>
+<p><strong>widow</strong>: Who speaks that name!</p>
+<p><strong>ynyr</strong>: Ynyr!</p>
+<p><strong>widow</strong>: It is fifty years since I heard that
+name.</p>
+<p><strong>ynyr</strong>: It is fifty years since I spoke it to you.</p>
+<p><strong>widow</strong>: I was beautiful then.</p>
+<p><strong>ynyr</strong>: The most beautiful woman in the world.</p>
+<p><strong>widow</strong>: But you would not stay with me.</p>
+<p><strong>ynyr</strong>: Could not. Could not betray the girl to whom I
+was betrothed.</p>
+<p><strong>widow</strong>: She was not as beautiful.</p>
+<p><strong>ynyr</strong>: No, she was not as beautiful.</p>
+<p><strong>widow</strong>: She bore you many children?</p>
+<p><strong>ynyr</strong>: We had no children.</p>
+<p><strong>widow</strong>: You had a son.</p>
+<p><strong>ynyr</strong>: You said nothing. You told me nothing.</p>
+<p><strong>widow</strong>: You had left me! I kept silent out of
+rage.</p>
+<p><strong>ynyr</strong>: Where is he? My son.</p>
+<p><strong>widow</strong>: I killed him when he was born. This place is
+my punishment.</p>
+<p><strong>widow</strong>: Do not try your trickery on me!</p>
+<p><strong>ynyr</strong>: It is no trickery.</p>
+<p><strong>widow</strong>: Those are reflections. <u>This</u> is my
+face!</p>
+<p><strong>ynyr</strong>: You see?</p>
+<p><strong>widow</strong>: Yes.</p>
+<p><strong>ynyr</strong>: Memory is no trick, it is a power. The power
+to see.</p>
+<p><strong>widow</strong>: Power you have given me. What can my power
+give you?</p>
+<p><strong>ynyr</strong>: Knowledge.</p>
+<p><strong>widow</strong>: Of what?</p>
+<p><strong>ynyr</strong>: The Fortress of Krull. When will it come near
+here?</p>
+<p><strong>widow</strong>: Why must you know?</p>
+<p><strong>ynyr</strong>: There is a girl there. Her name is Lyssa.</p>
+<p><strong>widow</strong>: You lie!</p>
+<p><strong>ynyr</strong>: Could I lie to you and still see your
+beauty?</p>
+<p><strong>widow</strong>: No.</p>
+<p><strong>ynyr</strong>: A young man seeks her. A young man about the
+age I was when I met you.</p>
+<p><strong>widow</strong>: Tomorrow, the Fortress of Krull will rise
+with the sun in the Valley of Reeds. But the knowledge is of no use to
+you. No man has ever escaped the Web. And soon the creature will come
+for you, even here.</p>
+<p><strong>widow</strong>: It will not help.</p>
+<p><strong>ynyr</strong>: Then the other Lyssa will share your fate. She
+will grow old in the Fortress as you have grown old here.</p>
+<p><strong>widow</strong>: Hold out your hand.</p>
+<p><strong>widow</strong>: Those are the sands of my life. So long as
+they remain in your hand, the creature cannot harm you.</p>
+<p><strong>ynyr</strong>: I cannot stop the sand.</p>
+<p><strong>widow</strong>: You cannot stop time. Go now, before it runs
+out.</p>
+<p><strong>ynyr</strong>: You will come with me.</p>
+<p><strong>widow</strong>: There is sand enough for only one life. Go
+now, save the other.</p>
+<p><strong>titch</strong>: Ergo?</p>
+<p><strong>titch</strong>: Sir Ergo? … My honorable Lord Ergo? …</p>
+<p><strong>ergo</strong>: First, you desert me, and now you mock me. Go
+back to your one-eyed friend.</p>
+<p><strong>ergo</strong>: What? Now you poke me in the nose as well?</p>
+<p><strong>titch</strong>: I don’t think it’s working.</p>
+<p><strong>ergo</strong>: Not working? This nose? This nose works day
+and night. This nose has never loafed an hour in its life. This nose …
+What? Impossible. This nose asleep while venison fills the air? Where is
+it, boy? Tell me where it is and I forgive you everything.</p>
+<p><strong>titch</strong>: It’s right behind you.</p>
+<p><strong>ergo</strong>: A venison pie as big as a house.</p>
+<p><strong>cyclops</strong>: A small house.</p>
+<p><strong>ergo</strong>: And what do you think a small person lives in,
+you one-eyed fool? Leaving me here to mope while you and the boy were
+arranging my assassination.</p>
+<p><strong>titch</strong>: We meant only to please you.</p>
+<p><strong>ergo</strong>: And do you think I’m not going to eat myself
+to death this very night? Huh?</p>
+<p><strong>ergo</strong>: Look at its beauty. Look at its grace.</p>
+<p><strong>torquil</strong>: Look at its insides.</p>
+<p><strong>ergo</strong>: No! Not yet! Let me hug it and kiss it a
+little. Let me run my fingers over its lovely skin. Let me climb to the
+top and sing to it.</p>
+<p><strong>ergo</strong>: Henceforth I am Lord Ergo, for now I have an
+estate to rule.</p>
+<p><strong>ergo</strong>: Let us go then, you and I, my sweet and hot
+and lovely pie …</p>
+<p><strong>titch</strong>: Ergo? Are you all right?</p>
+<p><strong>ergo</strong>: Here lies Lord Ergo, drowned in a venison pie.
+He died with a smile and a belch, goodbye, goodbye …</p>
+<p><strong>cyclops</strong>: Lift him out.</p>
+<p><strong>vella</strong>: It’s the little man called Ergo, isn’t
+it?</p>
+<p><strong>cyclops</strong>: Yes.</p>
+<p><strong>vella</strong>: He must care a lot for the boy.</p>
+<p><strong>cyclops</strong>: Yes.</p>
+<p><strong>innkeeper</strong>: You lazy slut! I don’t pay you to stand
+around jawing with the guests!</p>
+<p><strong>colwyn</strong>: Leave her be. She’s worked hard all day.</p>
+<p><strong>innkeeper</strong>: She’ll work till dawn if I choose!</p>
+<p><strong>colwyn</strong>: Her working day is over. She’ll rest
+now.</p>
+<p><strong>voice of the beast</strong>: Have you considered?</p>
+<p><strong>lyssa</strong>: I do not want your power. It is hideous.</p>
+<p><strong>voice of the beast</strong>: You know nothing of power, you
+foolish girl. You think power is a mighty sword, or a strong castle, or
+the paltry magic of an Emerald Seer. Power is none of these.</p>
+<p><strong>voice of the beast</strong>: Power is beauty.</p>
+<p><strong>voice of the beast</strong>: Power is friendship.</p>
+<p><strong>voice of the beast</strong>: Power is joy.</p>
+<p><strong>voice of the beast</strong>: Power is desire.</p>
+<p><strong>vella</strong>: The cruelest fate is to be far from the one
+you love, not knowing whether you will ever see him again.</p>
+<p><strong>vella</strong>: I was betrothed to a boy from my village. We
+were to be married this summer, but he traveled across the sea and his
+ship was lost. They say he drowned, but I know he is alive. I know he
+will come back to me.</p>
+<p><strong>colwyn</strong>: I know the cruelty of such a fate.</p>
+<p><strong>vella</strong>: Perhaps you think no man would return to
+me.</p>
+<p><strong>colwyn</strong>: I don’t think that.</p>
+<p><strong>vella</strong>: Am I not worth returning to?</p>
+<p><strong>colwyn</strong>: Yes.</p>
+<p><strong>vella</strong>: Am I not beautiful enough to be loved?</p>
+<p><strong>colwyn</strong>: Yes.</p>
+<p><strong>vella</strong>: Even by you?</p>
+<p><strong>colwyn</strong>: Yes.</p>
+<p><strong>voice of the beast</strong>: This I tell you: our children
+will be princes. They will have the power of my darkness and the power
+of your blood. They will conquer galaxies.</p>
+<p><strong>voice of the beast</strong>: They will make you a queen. A
+queen of worlds uncountable.</p>
+<p><strong>voice of the beast</strong>: These are the galaxies you will
+rule.</p>
+<p><strong>voice of the beast</strong>: These are the worlds of your
+empire.</p>
+<p><strong>voice of the beast</strong>: These are the beings who will be
+your slaves.</p>
+<p><strong>lyssa</strong>: I do not want your worlds or your slaves.</p>
+<p><strong>voice of the beast</strong>: Then look!</p>
+<p><strong>lyssa</strong>: It’s a lie!</p>
+<p><strong>voice of the beast</strong>: These walls do not lie! He will
+betray you.</p>
+<p><strong>lyssa</strong>: He will not!</p>
+<p><strong>voice of the beast</strong>: Then he will die!</p>
+<p><strong>vella</strong>: You too are lonely.</p>
+<p><strong>colwyn</strong>: I ache with it.</p>
+<p><strong>vella</strong>: Let me comfort you.</p>
+<p><strong>colwyn</strong>: I cannot take comfort when she has none.</p>
+<p><strong>vella</strong>: Then give me comfort. Sleep with me
+tonight.</p>
+<p><strong>colwyn</strong>: I cannot betray my bride.</p>
+<p><strong>vella</strong>: One night is no betrayal. Have pity on me.
+Please, I beg you, do not refuse me. You do not know the price.</p>
+<p><strong>colwyn</strong>: I feel your pain, but I cannot betray
+her.</p>
+<p><strong>vella</strong>: You will not, then?</p>
+<p><strong>colwyn</strong>: I cannot.</p>
+<p><strong>vella</strong>: My master told me: make him betray her; if he
+will not, kill him.</p>
+<p><strong>vella</strong>: Yes, <u>he</u> is my master.</p>
+<p><strong>vella</strong>: These talons were a heartbeat from your
+throat. I could have killed you in an instant.</p>
+<p><strong>vella</strong>: But in the hour I knew you, I loved you. That
+love is life for you and death for me. Remember me.</p>
+<p><strong>lyssa</strong>: It is you who are betrayed.</p>
+<p><strong>colwyn</strong>: Have faith, Lyssa. I will come.</p>
+<p><strong>lyssa</strong>: He will come for me.</p>
+<p><strong>voice of the beast</strong>: He will not come. You will be my
+queen.</p>
+<p><strong>ynyr</strong>: We must reach the Valley of Reeds before the
+next dawn.</p>
+<p><strong>torquil</strong>: It’s a hundred leagues from here.</p>
+<p><strong>colwyn</strong>: We could reach it on fire-mares.</p>
+<p><strong>torquil</strong>: Those beasts cannot be saddled by mortal
+men.</p>
+<p><strong>cyclops</strong>: They can be saddled.</p>
+<p><strong>colwyn</strong>: You have done it?</p>
+<p><strong>cyclops</strong>: I road them often in my youth.</p>
+<p><strong>colwyn</strong>: Saddles.</p>
+<p><strong>torquil</strong>: The innkeeper.</p>
+<p><strong>ynyr</strong>: It is dangerous for you.</p>
+<p><strong>cyclops</strong>: It will only be a few hours. Then I will
+accept my fate.</p>
+<p><strong>ergo</strong>: They’ll trample him to death!</p>
+<p><strong>ynyr</strong>: No. He will master the leader.</p>
+<p><strong>ergo</strong>: Quell?</p>
+<p><strong>cyclops</strong>: I cannot go with you, my friend.</p>
+<p><strong>colwyn</strong>: It is today?</p>
+<p><strong>cyclops</strong>: Yes. It is today.</p>
+<p><strong>ergo</strong>: My heart stays here.</p>
+<p><strong>cyclops</strong>: And mine goes with you.</p>
+<p><strong>colwyn</strong>: You’re too young to come with us, lad. Stay
+with our friend.</p>
+<p><strong>colwyn</strong>: Each to his fate.</p>
+<p><strong>cyclops</strong>: Each to his fate.</p>
+<p><strong>ynyr</strong>: He ran a great risk, helping us today. If he
+opposes his fate, his death will be terribly painful.</p>
+<p><strong>colwyn</strong>: Let us wish him peace.</p>
+<p><strong>torquil</strong>: We must cover a hundred leagues before
+sunrise.</p>
+<p><strong>colwyn</strong>: At the gallop!</p>
+<p><strong>gatekeeper</strong>: If they’re nobles, it’ll cost ’em
+gold.</p>
+<p><strong>gatekeeper</strong>: I would’ve settled for silver.</p>
+<p><strong>leader</strong>: To your places. If they resist, show no
+mercy!</p>
+<p><strong>leader</strong>: Hold, or you are dead men!</p>
+<p><strong>colwyn</strong>: It’s almost dawn! Flank them!</p>
+<p><strong>colwyn</strong>: Up the wall! Quickly!</p>
+<p><strong>torquil</strong>: Look out!</p>
+<p><strong>colwyn</strong>: On them!</p>
+<p><strong>cyclops</strong>: A man can ask nothing more than that his
+death help his friends.</p>
+<p><strong>torquil</strong>: I’ll stay behind and keep them busy.</p>
+<p><strong>ynyr</strong>: It is not necessary. They will not follow.</p>
+<p><strong>torquil</strong>: Look.</p>
+<p><strong>ynyr</strong>: Yes, they are weakening. It takes great power
+to maintain the Fortress, and they have expended much.</p>
+<p><strong>torquil</strong>: They’re gaining on us. We must slow them up
+with steel.</p>
+<p><strong>colwyn</strong>: Better stone than steel.</p>
+<p><strong>torquil</strong>: You’re resourceful, my lad. I tell you, one
+year under my tutelage and I could make you the Prince of Thieves.</p>
+<p><strong>colwyn</strong>: Subject to the King, no doubt.</p>
+<p><strong>torquil</strong>: Naturally.</p>
+<p><strong>torquil</strong>: A good thrust, my friend. Another second
+and there’d have been nothing between my head and shoulders but bad
+memories.</p>
+<p><strong>colwyn</strong>: I intend to keep you alive, your majesty. So
+you can abdicate your throne and become my Warlord.</p>
+<p><strong>torquil</strong>: Perhaps. If the pay is good.</p>
+<p><strong>colwyn</strong>: Stay together.</p>
+<p><strong>old torquil</strong>: Torquil …</p>
+<p><strong>old torquil</strong>: Do not let this happen, Torquil.</p>
+<p><strong>priestess</strong>: It need not happen, Torquil. Drink the
+rainbow. It is youth.</p>
+<p><strong>priestess</strong>: It is <u>your</u> youth, Torquil.</p>
+<p><strong>ynyr</strong>: This is the Cavern of Age. Touch nothing, take
+nothing, or the future will be plunged into your heart.</p>
+<p><strong>priestess</strong>: Drink the rainbow, Torquil. Youth is
+yours. I am yours. Take me, Torquil.</p>
+<p><strong>colwyn</strong>: She lies, my friend.</p>
+<p><strong>old ergo</strong>: Ergo, save yourself. Save yourself from
+this.</p>
+<p><strong>fairy priestess</strong>: Drink from my hand, Ergo. I can
+save you.</p>
+<p><strong>titch</strong>: Ergo!</p>
+<p><strong>ergo</strong>: Oh, she was so beautiful - and I was so
+<u>ugly</u>.</p>
+<p><strong>titch</strong>: Would you desert your friends?</p>
+<p><strong>ergo</strong>: No, no. I’m with you, boy.</p>
+<p><strong>old kegan</strong>: Disease and pain, Kegan. This is your
+future.</p>
+<p><strong>very young priestess</strong>: Oh please, Kegan, don’t let
+this happen. Come to me as you were.</p>
+<p><strong>very young priestess</strong>: Come to me young, Kegan.</p>
+<p><strong>very young priestess</strong>: Your youth is in the goblet,
+come to me in the rainbow.</p>
+<p><strong>torquil</strong>: Kegan!</p>
+<p><strong>ynyr</strong>: It is too late. He has drunk.</p>
+<p><strong>ergo</strong>: Keep a tight hold, boy, in case I get any more
+crazy ideas.</p>
+<p><strong>ynyr</strong>: They will hold Lyssa in the Center of the
+Vortex, the place of the Beast, where its power is greatest. No man can
+match it there. Lyssa must try to move toward us. For as we enter the
+Vortex and move closer …</p>
+<p><strong>colwyn</strong>: The Beast will kill her.</p>
+<p><strong>ynyr</strong>: Yes. To keep her from you. But now that we are
+inside the Fortress, you will be able to contact her.</p>
+<p><strong>colwyn</strong>: Lyssa …</p>
+<p><strong>lyssa</strong>: Colwyn …</p>
+<p><strong>colwyn</strong>: You must move away from the Center.</p>
+<p><strong>lyssa</strong>: All the passages are guarded.</p>
+<p><strong>ynyr</strong>: She must make a glaive.</p>
+<p><strong>colwyn</strong>: Lyssa, your bracelets. Bend them straight
+and cross them.</p>
+<p><strong>colwyn</strong>: Now grip them in your hand.</p>
+<p><strong>colwyn</strong>: Will your power outward.</p>
+<p><strong>lyssa</strong>: I don’t know how.</p>
+<p><strong>colwyn</strong>: You have the power. <u>Will it</u>.</p>
+<p><strong>lyssa</strong>: Yes. I can do it.</p>
+<p><strong>ynyr</strong>: West.</p>
+<p><strong>colwyn</strong>: Take the western passage.</p>
+<p><strong>lyssa</strong>: All directions are the same here.</p>
+<p><strong>ynyr</strong>: The spiral begins in the west.</p>
+<p><strong>colwyn</strong>: Where the spiral begins.</p>
+<p><strong>lyssa</strong>: Yes.</p>
+<p><strong>colwyn</strong>: Move quickly. We are coming for you. We are
+in the Fortress.</p>
+<p><strong>lyssa</strong>: I knew you would come.</p>
+<p><strong>lyssa</strong>: Colwyn. Where are you, Colwyn?</p>
+<p><strong>ynyr</strong>: We should have reached her by now.</p>
+<p><strong>colwyn</strong>: Lyssa …</p>
+<p><strong>lyssa</strong>: Come quickly, Colwyn. I can see the eyes of
+the Beast.</p>
+<p><strong>colwyn</strong>: Lyssa, touch the wall of your passage.</p>
+<p><strong>colwyn</strong>: She’s on the other side of this wall. I can
+feel it!</p>
+<p><strong>ynyr</strong>: I chose the wrong passage.</p>
+<p><strong>colwyn</strong>: She can see the Beast!</p>
+<p><strong>ynyr</strong>: Use your sword.</p>
+<p><strong>colwyn</strong>: What use is my sword? I can’t reach her!</p>
+<p><strong>ynyr</strong>: Cut. <u>Cut</u>!</p>
+<p><strong>ynyr</strong>: You must move quickly. The Beast will stop at
+nothing now.</p>
+<p><strong>colwyn</strong>: You’re coming with us.</p>
+<p><strong>ynyr</strong>: It is my fate to die in the Fortress.</p>
+<p><strong>colwyn</strong>: No! You cannot know that!</p>
+<p><strong>ynyr</strong>: I can. Because I choose it.</p>
+<p><strong>colwyn</strong>: I forbid you!</p>
+<p><strong>colwyn</strong>: I didn’t mean it that way. But you cannot
+stay.</p>
+<p><strong>ynyr</strong>: Go now. Quell was wise. He knew that a man
+cannot ask more of his death than it help his friends.</p>
+<p><strong>torquil</strong>: That is true.</p>
+<p><strong>ynyr</strong>: Take care of Ergo.</p>
+<p><strong>titch</strong>: Yes, sir.</p>
+<p><strong>colwyn</strong>: Quickly, or he will waste his life for
+nothing.</p>
+<p><strong>ynyr</strong>: You and I were destined to meet, my
+friend.</p>
+<p><strong>ynyr</strong>: And I am not so old that I can be swatted like
+a fly.</p>
+<p><strong>ynyr</strong>: No, not so old as that, my black beauty.</p>
+<p><strong>ynyr</strong>: Yes, you will have to attack me directly to
+kill me. I will cost you power, my dark friend. Much power.</p>
+<p><strong>colwyn</strong>: We must find a smaller passage, where it
+cannot follow.</p>
+<p><strong>torquil</strong>: Which one?</p>
+<p><strong>lyssa</strong>: Where is the Fortress?</p>
+<p><strong>colwyn</strong>: In the Arctic ice.</p>
+<p><strong>lyssa</strong>: That way. I can feel the cold.</p>
+<p><strong>colwyn</strong>: She’s right. Look.</p>
+<p><strong>colwyn</strong>: Make for the wall. I’ll catch up.</p>
+<p><strong>torquil</strong>: Colwyn, don’t be a fool. You can’t do
+battle with that thing.</p>
+<p><strong>colwyn</strong>: There’s no way to outrun it. You know that.
+This is what Ynyr was preparing me for. It’s what he died for.</p>
+<p><strong>lyssa</strong>: You’ll be killed.</p>
+<p><strong>torquil</strong>: Don’t worry. I’ll tap him on the head with
+my sword hilt if I have to.</p>
+<p><strong>colwyn</strong>: You’ll lead the others to the wall as I tell
+you. <u>Now</u>.</p>
+<p><strong>colwyn</strong>: I am no feeble old man for you to crush with
+two blows. This is for that old man.</p>
+<p><strong>torquil</strong>: I’ll get him. Make for the wall.</p>
+<p><strong>ergo</strong>: Quickly, quickly to the wall.</p>
+<p><strong>colwyn</strong>: Wait!</p>
+<p><strong>colwyn</strong>: Away from the wall!</p>
+<p><strong>colwyn</strong>: It’s a fitting monument for Ynyr and Quell
+and the others.</p>
+<p><strong>lyssa</strong>: That’s a better one.</p>
+<p><strong>colwyn</strong>: Yes.</p>
+<p><strong>lyssa</strong>: Where’s Ergo?</p>
+</body>
+</html>

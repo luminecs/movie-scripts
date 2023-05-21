@@ -1,0 +1,1927 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>yes-man</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="yes-man">yes-man</h1>
+<p><strong>kath</strong>: You don’t do anything more. You used to be
+fun. Now you hardly ever even leave your apartment.</p>
+<p><strong>carl</strong>: I’m here, aren’t I?</p>
+<p><strong>kath</strong>: That’s because it’s New Year’s Eve. You have
+to be here. Besides, it’s not only social stuff. You used to have
+dreams. You wanted to go to business school, you wanted to work for the
+World Bank.</p>
+<p><strong>carl</strong>: So I discovered b-school’s not for me. People
+grow.</p>
+<p><strong>kath</strong>: Growing is “X is not for me so I’ll do Y.” You
+went X is not for me and so I guess I’ll sit on the couch for the rest
+of my life.</p>
+<p>****: Well, look, this sucks, but I understand where you’re coming
+from.</p>
+<p><strong>kath</strong>: This is the problem. You don’t even care that
+I’m breaking up with you.</p>
+<p><strong>carl</strong>: Of course I care. But I also understand.</p>
+<p><strong>kath</strong>: You shouldn’t just understand. You should be
+mad. Or upset. Or sad. Or something.</p>
+<p><strong>carl</strong>: We’re at different places in our lives. I get
+it.</p>
+<p><strong>kath</strong>: Your girlfriend of two years breaks up with
+you right before New Year’s Eve and all you can say is “I get it?” It is
+completely within your right to call me a bitch.</p>
+<p><strong>carl</strong>: That would be inappropriate.</p>
+<p><strong>kath</strong>: I can’t believe I’ve been dating someone so
+emotionless.</p>
+<p><strong>carl</strong>: C’mere. It’ll be OK.</p>
+<p><strong>patrons</strong>: Three, two, one… happy New Year!</p>
+<p>****: Should auld acquaintance be forgot and never brought to mind?
+Should auld acquaintance be forgot and days of auld lang syne?</p>
+<p><strong>carl</strong>: Well, that was fantastic. Good night,
+guys.</p>
+<p><strong>peter</strong>: You’re going, already?</p>
+<p><strong>kath</strong>: We haven’t even finished the song yet.</p>
+<p><strong>carl</strong>: I saw the ball drop and hugged all of you.
+Aliens didn’t invade. Our computers are still working. What else could
+possibly happen?</p>
+<p><strong>lucy</strong>: Rooney might throw up.</p>
+<p><strong>rooney</strong>: It’s true. I’m very close.</p>
+<p><strong>carl</strong>: I see that happen like every night. Good night
+and Happy New Year.</p>
+<p><strong>lucy</strong>: How did he take the break-up?</p>
+<p>****: Like a robot. Two years, and nothing.</p>
+<p><strong>lucy</strong>: I’m so sorry.</p>
+<p><strong>renee</strong>: Wanna rock out tonight?</p>
+<p><strong>carl</strong>: I don’t rock out.</p>
+<p><strong>dunkin donuts cashier</strong>: Would you like an
+Italian-inspired coffee flavoring?</p>
+<p><strong>carl</strong>: No thanks.</p>
+<p><strong>dunkin donuts cashier</strong>: How about the double doughnut
+special?</p>
+<p><strong>carl</strong>: No.</p>
+<p><strong>carl</strong>: Dear Trusted Foreigner, Allow me to introduce
+myself. I am the deposed King of Nigeria and I wish to propose a
+confidential transaction. Allow me to delete you, my liege.</p>
+<p><strong>norman</strong>: My teller reporting for duty.</p>
+<p><strong>carl</strong>: I’m not a soldier.</p>
+<p><strong>norman</strong>: You’re a soldier on the front line of
+finance.</p>
+<p><strong>carl</strong>: I’m out of town.</p>
+<p><strong>bank customer</strong>: Hey, I need to speak to a loan
+specialist and there’s no one on the floor.</p>
+<p><strong>carl</strong>: Sorry. Today I’m officially a greeter.</p>
+<p><strong>bank customer</strong>: But there’s no one around.</p>
+<p><strong>carl</strong>: Someone might come. And if I’m not here, they
+won’t be greeted.</p>
+<p><strong>bank customer</strong>: You’re really not going to help
+me?</p>
+<p><strong>carl</strong>: Until I’m relieved as a greeter, my hands are
+tied.</p>
+<p><strong>chris parker</strong>: Hey, there. I’m Chris Parker. The new
+president of Southwest Bank. Just wanted to come by and personally
+introduce myself to every branch manager.</p>
+<p><strong>norman</strong>: That would be me. Norman Calhoun.</p>
+<p><strong>carl</strong>: I’m Carl Kendall. Just a teller.</p>
+<p><strong>chris parker</strong>: I was “just a teller.” And now I’m
+“just president of the largest bank in the Southwest.” You need
+anything, you let corporate know. You hear?</p>
+<p><strong>norman</strong>: Definitely.</p>
+<p><strong>carl</strong>: Yeah, if you’re into fake breasts and German
+engineering.</p>
+<p><strong>norman</strong>: Check and check.</p>
+<p><strong>bank customer</strong>: Can you help me now?</p>
+<p><strong>carl</strong>: No, but this gentleman can.</p>
+<p><strong>norman</strong>: Think about my party, Carl!</p>
+<p><strong>carl</strong>: Will do!</p>
+<p><strong>dunkin donuts cashier</strong>: Would you like an Italian
+–</p>
+<p><strong>carl</strong>: No thanks.</p>
+<p><strong>dunkin donuts cashier</strong>: How about –</p>
+<p><strong>carl</strong>: No.</p>
+<p><strong>norman</strong>: Valentine party. Just wear something
+red!</p>
+<p><strong>carl</strong>: Can’t.</p>
+<p><strong>carl</strong>: No.</p>
+<p><strong>norman</strong>: Dress as your favorite animal –</p>
+<p><strong>carl</strong>: Sorry.</p>
+<p><strong>norman</strong>: – historical figure –</p>
+<p><strong>carl</strong>: No can do.</p>
+<p><strong>carl</strong>: Hello?</p>
+<p><strong>peter</strong>: Carl. It’s Peter. Where are you?</p>
+<p><strong>carl</strong>: I’m in bed. Why? What happened? Did someone
+die?</p>
+<p><strong>peter</strong>: No. It’s just – we’re at Rudy’s. Celebrating
+New Year’s.</p>
+<p><strong>carl</strong>: It’s already 11:15. I don’t think I can make
+it.</p>
+<p><strong>peter</strong>: Oh, c’mon, Carl. No one’s seen you for like
+forever. Please swing by?</p>
+<p><strong>carl</strong>: No.</p>
+<p><strong>alex</strong>: Carl Kendall?</p>
+<p><strong>carl</strong>: Alex Eberts? What’s up, buddy?</p>
+<p><strong>alex</strong>: Too much! How’ve you been? I can’t believe
+you’re still working here.</p>
+<p><strong>carl</strong>: Where’ve you been? Norman’s been heartbroken
+since you quit.</p>
+<p><strong>alex</strong>: Where’ve I been? You mean, where haven’t I
+been? This year. Dude. I have lived. I climbed Mt. Kilmanjaro. I ate bat
+in Laos. I shot a cow with a bazooka. I’m not proud of that last one but
+I did it. How’s the bank?</p>
+<p><strong>carl</strong>: Same old same old.</p>
+<p><strong>alex</strong>: See? That’s the problem. That’s everyone’s
+problem. You’ve got one life. Why waste it on the same old same old?</p>
+<p><strong>carl</strong>: You kidding? Every day it’s impossible not to
+throw rocks at the place.</p>
+<p>****: Since you don’t work here anymore, you want to throw a
+couple?</p>
+<p><strong>alex</strong>: Yes.</p>
+<p><strong>carl</strong>: What’re you doing! Stop that! I was
+kidding!</p>
+<p><strong>norman</strong>: What do you think you’re doing? Alex Eberts!
+Is this an alumnae prank? I love pranks!</p>
+<p><strong>alex</strong>: Hey, Norman!</p>
+<p><strong>norman</strong>: We have a situation.</p>
+<p><strong>alex</strong>: Go to the seminar, Carl! You won’t be
+sorry!</p>
+<p>****: Carl, it’s Peter. I know you don’t do things anymore, but it’d
+mean a lot if you’d come by Rudy’s tonight. Lucy and I are celebrating
+our engagement.</p>
+<p><strong>carl</strong>: What are you doing here?</p>
+<p><strong>peter</strong>: This is an intervention. You’ve missed your
+last event.</p>
+<p><strong>carl</strong>: What’re you talking about?</p>
+<p><strong>peter</strong>: Our engagement party.</p>
+<p><strong>carl</strong>: I’m sorry. I’m just really busy.</p>
+<p><strong>peter</strong>: You’re watching Hell’s Kitchen. That’s not
+even B-list reality TV.</p>
+<p><strong>carl</strong>: So I don’t want to go out tonight. Maybe I
+have to wake up early tomorrow. You don’t know.</p>
+<p><strong>peter</strong>: It’s bigger than that. You and Kath broke up
+over a year ago and you still aren’t dating anyone.</p>
+<p><strong>carl</strong>: What? So? I’m like a sexual camel. I only need
+it once every couple years.</p>
+<p><strong>peter</strong>: I don’t mean to be harsh but everyone’s
+moving forward. It’s like you’re still wearing a Timex while the rest of
+us each have entry level Rolexes.</p>
+<p><strong>carl</strong>: You wear a Rolex?</p>
+<p><strong>peter</strong>: Thanks for noticing. It’s an Oyster Perpetual
+Yachtmaster. Sapphire crystal, self-winding. Four Gs. But that’s not the
+point I’m trying to make.</p>
+<p><strong>carl</strong>: So I don’t have an oyster watch. All you and
+Lucy and Kath do is sit around and talk about real estate and Crate and
+Barrel.</p>
+<p><strong>peter</strong>: What’s wrong with Crate and Barrel? They have
+adorable stuff at reasonable prices.</p>
+<p><strong>carl</strong>: Forget Crate and Barrel. Maybe I’m just
+getting more mature. I don’t need the lifestyle ever night.</p>
+<p><strong>peter</strong>: Lifestyle? You have to have a life to have a
+style of life. You never leave your apartment. You never meet anyone
+new.</p>
+<p><strong>carl</strong>: I hate meeting people.</p>
+<p><strong>peter</strong>: You’ve become a complete cave dweller.</p>
+<p><strong>carl</strong>: I am not a cave dweller. Just the other day,
+we all went to Summerfest and snuck backstage and you bet me I wouldn’t
+steal something and so I stole a drumstick from that horrible Swedish
+hillbilly band. That’s not very cave dweller of me.</p>
+<p><strong>peter</strong>: Just the other day? That was seven years
+ago.</p>
+<p><strong>carl</strong>: But that’s not possible – I was already
+working at the bank by then.</p>
+<p><strong>peter</strong>: You had started there three years earlier.
+Why you’ve worked at that place for so long is beyond me. You had so
+much potential. You shouldn’t be a teller. You should be the guy who
+tells the guy who tells the teller what to do.</p>
+<p>****: I’ve been a teller at Southwest Bank for ten years? How the
+hell did that happen? Ten years… if I had had a child, he’d be
+toilet-trained by now.</p>
+<p><strong>peter</strong>: Actually, he’d be in fourth grade.</p>
+<p><strong>carl</strong>: I was making out with chicks by fourth grade.
+I was a little man by fourth grade.</p>
+<p>****: Whatever. I don’t need this shit right now. I’m an adult man. I
+can live my life as I see fit. Can you please leave?</p>
+<p><strong>wiry, crunchy woman</strong>: Is this your first time at one
+of Sanji’s lectures?</p>
+<p>****: Uh, yeah.</p>
+<p>****: Have you been to this before?</p>
+<p><strong>wiry, crunchy woman</strong>: Only like fifty-eight times.
+Sanji’s a genius. Like seriously… he will blow your mind all over the
+goddamn room. He’s like a mind grenade.</p>
+<p><strong>carl</strong>: I don’t know if I want that.</p>
+<p><strong>wiry, crunchy woman</strong>: Oh you do not. But you need it.
+And that’s why you are here.</p>
+<p><strong>carl</strong>: Cool. Do you want anything from the
+refreshment area?</p>
+<p><strong>wiry, crunchy woman</strong>: You kidding? That processed
+shit will kill you faster than a pleasure cruise to Chernobyl.</p>
+<p><strong>sanji</strong>: Life. We are all living it.</p>
+<p><strong>crowd</strong>: Yes!</p>
+<p><strong>sanji</strong>: I am sorry, my friends. But I cannot hear
+you?</p>
+<p><strong>crowd</strong>: Yes!</p>
+<p><strong>sanji</strong>: Shhhhhhh.</p>
+<p><strong>wiry, crunchy woman</strong>: He is!</p>
+<p><strong>sanji</strong>: Come on up, Future Yes Man!</p>
+<p><strong>carl</strong>: That’s OK. I’m just auditing.</p>
+<p><strong>sanji</strong>: You can’t audit life! Now get on up here!</p>
+<p><strong>carl</strong>: I’m cool right here.</p>
+<p><strong>sanji</strong>: Then I will come to you!</p>
+<p><strong>carl</strong>: Carl.</p>
+<p><strong>sanji</strong>: Let me guess, Carl. This was not your idea to
+come here, Carl.</p>
+<p><strong>carl</strong>: I wouldn’t say that.</p>
+<p><strong>sanji</strong>: You can tell me, Carl. We are all alone,
+Carl.</p>
+<p><strong>carl</strong>: It wasn’t exactly my idea.</p>
+<p><strong>sanji</strong>: That’s what I thought, Carl. And you think
+this is all bullshit, Carl, isn’t that right, Carl?</p>
+<p><strong>carl</strong>: Honestly?</p>
+<p><strong>sanji</strong>: Is there any other way?</p>
+<p><strong>carl</strong>: This whole thing seems retarded.</p>
+<p><strong>sanji</strong>: But you are stuck in your life, Carl? Am I
+right?</p>
+<p><strong>carl</strong>: I wouldn’t necessarily –</p>
+<p><strong>sanji</strong>: You once had a dream? You wanted to own a
+boat? A house? A fancy car? You wanted to a doctor, a lawyer… a business
+man?</p>
+<p><strong>carl</strong>: A little.</p>
+<p><strong>sanji</strong>: It’s odd that ten years can pass just like
+that.</p>
+<p><strong>carl</strong>: It is.</p>
+<p><strong>sanji</strong>: I want you to do something for me, Carl.
+Tomorrow, I want you only to say yes. Can you do that for me? For one
+day, Carl?</p>
+<p><strong>carl</strong>: I’m not sure –</p>
+<p><strong>sanji</strong>: Please, Carl. Do it for me and you will be
+doing it for yourself. If you don’t have the best day in ten years then
+I am the uncle of a monkey. Will you do it for me Carl? Just for a
+day?</p>
+<p><strong>carl</strong>: Yes?</p>
+<p><strong>sanji</strong>: Welcome to the world of yes!</p>
+<p><strong>carl</strong>: Yello.</p>
+<p><strong>peter</strong>: Carl, it’s Peter. I just wanted to apologize
+about barging in yesterday. You were right. It’s your life to live.</p>
+<p><strong>carl</strong>: Don’t worry about it.</p>
+<p><strong>peter</strong>: Me, Lucy and Kath are all going out for
+brunch. You have any interest in joining?</p>
+<p><strong>carl</strong>: Oh, thanks for the invite, but…</p>
+<p><strong>sanji</strong>: Will you do it for me Carl? Just for a
+day?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>peter</strong>: Excuse me?</p>
+<p><strong>carl</strong>: Yes. I will come to brunch.</p>
+<p>****: Morning, Carl. This is a surprise.</p>
+<p><strong>carl</strong>: Why?</p>
+<p><strong>kath</strong>: Because I’ve never seen you at brunch. Like
+ever.</p>
+<p><strong>carl</strong>: You kidding? I love brunch.</p>
+<p><strong>carl</strong>: Why do people wait an hour for breakfast? It’s
+so hot and bright and we haven’t even had coffee yet.</p>
+<p><strong>peter</strong>: If you don’t want to be here, you don’t have
+to be.</p>
+<p><strong>carl</strong>: Of course I want to be here. I love waiting an
+hour for eggs. It’s fun. Although I will point out that you have
+sunglasses which is probably making this wait a lot easier.</p>
+<p><strong>peter</strong>: Oakleys, polarized lenses, indestructible.
+Two fifty but worth every penny.</p>
+<p><strong>waitress</strong>: Lowell, party of five.</p>
+<p><strong>carl</strong>: We were definitely before those Lowell
+people.</p>
+<p><strong>kath</strong>: I hate when people jump ahead.</p>
+<p><strong>carl</strong>: Why does no one ever say anything?</p>
+<p><strong>peter</strong>: If you want to be sitting so bad, why don’t
+you say something?</p>
+<p><strong>carl</strong>: Yes. I will.</p>
+<p><strong>waitress</strong>: No you weren’t.</p>
+<p><strong>carl</strong>: Yes, we were.</p>
+<p><strong>waitress</strong>: I have the list, dude. The list doesn’t
+lie.</p>
+<p><strong>carl</strong>: Well, this time the list lied.</p>
+<p><strong>lucy</strong>: It’s OK, Carl. It’s just brunch.</p>
+<p><strong>carl</strong>: You all know that we were up before you! And
+you have to live with that knowledge through your delightful brunch!</p>
+<p><strong>peter</strong>: What’s going on with you?</p>
+<p><strong>carl</strong>: I just want transparency in terms of the
+brunch seating order.</p>
+<p><strong>kath</strong>: Great. Now we’re going to get into a
+fight.</p>
+<p><strong>brunch dude</strong>: We talked about what you said… you’re
+right. You guys were here before us. Sorry we didn’t pipe up sooner. We
+cool, brother?</p>
+<p>****: Yeah. We cool.</p>
+<p><strong>lucy</strong>: It’s a two bedroom duplex with harbor views.
+It’d be perfect for you Kath.</p>
+<p><strong>kath</strong>: Washer/Dryer in the building?</p>
+<p>****: I didn’t realize you were looking to buy a place. I thought you
+and I would be renters to the end.</p>
+<p><strong>peter</strong>: She’s a fancy lawyer making bank. It’s about
+time she was buying.</p>
+<p>****: Shut up.</p>
+<p><strong>peter</strong>: What’re you looking at?</p>
+<p><strong>carl</strong>: Bacon and eggs.</p>
+<p><strong>kath</strong>: How unadventurous.</p>
+<p><strong>carl</strong>: I don’t want an adventure first thing in the
+morning.</p>
+<p><strong>waitress</strong>: I just want to tell you about my specials.
+We have a double fruit burnt sugar waffle. Any of you interested in
+that?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>waitress</strong>: Alrighty. Then, on the savory side, we
+have a smoked whitefish omelet with hash browns on the side. Any
+takers?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p>****: You want both?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>waitress</strong>: Would you like toast with that?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>waitress</strong>: Any side? Bacon.</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>waitress</strong>: Sausage.</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>waitress</strong>: Turkey sausage?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>waitress</strong>: A side of our famous maple pancakes –</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>waitress</strong>: Wow. Someone’s really hungry.</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>waitress</strong>: Coffee or juice?</p>
+<p><strong>carl</strong>: Coffee. And juice.</p>
+<p><strong>waitress</strong>: We also have smoothies?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>waitress</strong>: Is that all?</p>
+<p>****: Yes.</p>
+<p>****: What would you all like to order?</p>
+<p><strong>waitress</strong>: Would you like some pepper?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>waitress</strong>: Would you like more?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>peter</strong>: I don’t think I’ve ever seen a waiter tap one
+of those pepper mills.</p>
+<p><strong>carl</strong>: I’m just addicted to the stuff. Chinese
+cultures say it’s good for digestion.</p>
+<p>****: You’re all welcome to have some.</p>
+<p><strong>lucy</strong>: That’s… OK. Do you want a bite of mine?</p>
+<p>****: Yes.</p>
+<p><strong>peter</strong>: Because you ordered a latte.</p>
+<p><strong>norman</strong>: Hey, Carl. We’re a little short on our
+Saturday staff. I know this is going against ten years of precedent, but
+you have any interest in coming in today?</p>
+<p><strong>carl</strong>: I don’t think… there’s any reason why I
+shouldn’t? On a Saturday there’s nothing I like more than the inside of
+a bank.</p>
+<p><strong>norman</strong>: There really is something magical about this
+place.</p>
+<p><strong>dunkin donuts cashier</strong>: Would you like an
+Italian-inspired coffee flavoring?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>dunkin donuts cashier</strong>: Sugar, Splenda or
+Nutrasweet?</p>
+<p><strong>carl</strong>: All of them please.</p>
+<p><strong>dunkin donuts cashier</strong>: We’re having a special on
+Munchkins?</p>
+<p><strong>renee</strong>: Want a flier? Oh, it’s you. Never mind.</p>
+<p><strong>carl</strong>: Of course I’ll take a flier.</p>
+<p>****: The Flying Buttresses.</p>
+<p><strong>renee</strong>: I knew after a year and a half of wearing you
+down, you’d give in. I’m Renee by the way.</p>
+<p><strong>carl</strong>: Carl.</p>
+<p><strong>renee</strong>: Carl. Cool. I like to thank everyone
+personally who comes to our performances. It gives it a nice intimate
+touch. See you soon Carl.</p>
+<p><strong>norman</strong>: Morning, Carl. Thanks for coming in and
+being part of the Saturday banking experience. Oooh, Munchkins. Are
+those for the office, you dirty devil?</p>
+<p><strong>carl</strong>: Yeah. I just though it would be a fun way to
+lighten things up.</p>
+<p><strong>norman</strong>: You didn’t approve this with petty cash.</p>
+<p><strong>carl</strong>: I spent my own money on them…</p>
+<p><strong>norman</strong>: Kidding! Munchkins are always approved.
+Although, I can’t reimburse you. Today is free Munchkin day. That’s
+right! Free Munchkin day!</p>
+<p><strong>bank employees</strong>: Carl rules./You’re the best./Finally
+I have a reason to live today.</p>
+<p><strong>carl</strong>: How may I help you?</p>
+<p><strong>bank customer</strong>: I need to speak to a loan
+specialist.</p>
+<p><strong>carl</strong>: While loans aren’t normally in my
+jurisdiction, I’d be happy to help you.</p>
+<p><strong>bank customer</strong>: I want to refi my house and spend the
+capital on my personal business. I see you’ve got a 5.25 7 year ARM, but
+over at Chase they’re offering 5.00 7 year ARM. Can you refi lower, like
+at 4.85 par example, or am I going to have to bring my beeswax
+elsewhere?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>bank customer</strong>: Yes? That’s it?</p>
+<p><strong>carl</strong>: Yup. What’s your business?</p>
+<p><strong>bank customer</strong>: Selling beanie babies online.</p>
+<p><strong>carl</strong>: Adorable.</p>
+<p><strong>bank customer</strong>: More like highly profitable. I’ve
+crunched the numbers.</p>
+<p><strong>carl</strong>: Let me just get final approval on this.</p>
+<p><strong>norman</strong>: You’re a teller, not a loan specialist.</p>
+<p><strong>carl</strong>: No, I know, so if you think this is a bad idea
+for a loan that’s fine but can you please tell her yourself?</p>
+<p><strong>norman</strong>: What’s this?</p>
+<p><strong>carl</strong>: Her business plan.</p>
+<p><strong>norman</strong>: Inta-maresting. My grandma loves beanie
+babies. Although unfortunately, we have a minimum loan floor of ten
+thousand dollars. She only wants five.</p>
+<p><strong>carl</strong>: That’s silly. How’re you supposed to start a
+tiny business if you can’t get a tiny business loan?</p>
+<p><strong>norman</strong>: I don’t make the rules, I just break
+`em.</p>
+<p>****: I don’t break them. I just wanted to rhyme. If she wants us to
+loan her ten thousand or more, great. Otherwise, I think her only option
+is a loan shark.</p>
+<p>****: So, what’d he say?</p>
+<p><strong>carl</strong>: Do you maybe have any interest in borrowing
+ten thousand?</p>
+<p><strong>bank customer</strong>: I can’t afford the payments on ten.
+You can’t do five thousand? This is the fifth bank I’ve been to.
+Please?</p>
+<p><strong>carl</strong>: Of course we can. One moment please.</p>
+<p><strong>norman</strong>: Oooh, thank you. Feed the addiction, am I
+right?</p>
+<p><strong>carl</strong>: It’s approved.</p>
+<p><strong>bank customer</strong>: Thank you so much! I promise I won’t
+let you down, Mr. Kendall. On me.</p>
+<p><strong>carl</strong>: Thanks, Marge. We don’t like to make other
+customers jealous so can we keep this between you and I?</p>
+<p><strong>bank customer</strong>: Of course. Aren’t you just a
+dear?</p>
+<p><strong>norman</strong>: Carl, could I see you for a moment?</p>
+<p><strong>norman</strong>: Earlier today, you showed some initiative.
+And I loved it. What do you say to a permanent spot at the loan
+desk?</p>
+<p><strong>carl</strong>: That seems like a lot of responsibility.</p>
+<p><strong>norman</strong>: We need a loan specialist a lot more than we
+need a teller and greeter. Besides, you’d have a starting salary of
+52.</p>
+<p><strong>carl</strong>: Grand?</p>
+<p><strong>norman</strong>: No, dollars. What is this Darfur? Sorry,
+Patricia, that was inappropriate. Of course grand. To celebrate, next
+Saturday, I’m throwing a party. Dress up as your favorite character from
+Heroes.</p>
+<p>****: Save the cheerleader, save the world.</p>
+<p><strong>carl</strong>: Next Saturday… sounds great.</p>
+<p><strong>norman</strong>: Don’t dress as Hiro. I got dibs.</p>
+<p><strong>carl</strong>: Wouldn’t think of it.</p>
+<p><strong>rooney</strong>: Carl Kendall? Out in the world? Are you some
+kind of ghost? Am I having a religious vision?</p>
+<p><strong>carl</strong>: Believe it. Because this guy just got a
+promotion.</p>
+<p><strong>lucy</strong>: Congrats, Carl!</p>
+<p><strong>rooney</strong>: Well let’s get you a beer. You want a 20
+ouncer? I’m just joking - -</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>peter</strong>: A normal-sized beer is fine with me.</p>
+<p><strong>lucy</strong>: I think I’m done actually.</p>
+<p><strong>rooney</strong>: Two twenty ouncers and one tiny, little
+beer, barkeep.</p>
+<p><strong>bartender</strong>: Please don’t call me that. We’re not in
+the middle ages.</p>
+<p><strong>rooney</strong>: I can’t believe you’re out here. I’m giddy.
+I feel like a child whose best friend has strict Chinese parents who
+never let him come out and play but now his Chinese parents are away for
+the Chinese New Year. You have any interest in pounding this shit?</p>
+<p><strong>carl</strong>: Why not?</p>
+<p><strong>rooney</strong>: What do you say we have another?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>rooney</strong>: You are a beast!</p>
+<p><strong>lucy</strong>: Well, it’s been fun watching you guys recreate
+freshman year, but Peter and I have some furniture errands to run.</p>
+<p><strong>carl</strong>: Have a good day yuppifying your lives.</p>
+<p><strong>peter</strong>: We need a sofa, Carl. We’re not buying a
+second home.</p>
+<p><strong>rooney</strong>: Whatever, yuppy sellouts.</p>
+<p><strong>lucy</strong>: It was good seeing you. You should come out
+more often.</p>
+<p><strong>carl</strong>: Please don’t leave me here with him.</p>
+<p><strong>carl</strong>: I have not been this drunk in years! The room
+is spinning in a bad way!</p>
+<p><strong>rooney</strong>: Barkeep! Two more double pints s’il vous
+plait!</p>
+<p><strong>bartender</strong>: That was the last `barkeep.’ I am cutting
+you off.</p>
+<p><strong>rooney</strong>: Well fortunately you’re not the only game in
+town! Let’s go to some place with class.</p>
+<p><strong>carl</strong>: Where’s the class?</p>
+<p><strong>rooney</strong>: They wear uniforms here.</p>
+<p><strong>senor frog’s waitress</strong>: Jello shot?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>rooney</strong>: I am hot.</p>
+<p><strong>senor frog’s waitress</strong>: Another jello shot?</p>
+<p><strong>carl rooney</strong>: Yes. I think I’m done.</p>
+<p><strong>senor frog’s dj</strong>: Senor Frog’s famous karoake contest
+is starting now! Sign up and sweep us off our feet!</p>
+<p><strong>rooney</strong>: You gotta do karoake.</p>
+<p><strong>carl</strong>: Sign me up, bitch.</p>
+<p><strong>senor frog’s dj</strong>: We’ve got our first victim… I mean,
+singer.</p>
+<p><strong>music cue</strong>: The opening notes of White Town’s “Your
+Woman”</p>
+<p>****: As you read this part, I recommend listening to White Town’s
+“Your Woman.” It will bring it to life in a</p>
+<p><strong>carl</strong>: Just tell me what you’ve got to say to me,
+I’ve been waiting for so long to hear the truth, It comes as no surprise
+at all you see, So cut the crap and tell me that we’re through. Now I
+know your heart, I know your mind, You don’t even know you’re being
+unkind, So much for all your highbrow Marxist ways, Just use me up and
+then you walk away, Boy you can’t play me that way.</p>
+<p><strong>brutish boyfriend</strong>: Were you just flirting with my
+girlfriend?</p>
+<p><strong>carl</strong>: It depends – is that your girlfriend?</p>
+<p><strong>brutish boyfriend</strong>: Yes.</p>
+<p><strong>carl</strong>: Then yes.</p>
+<p><strong>hot girl</strong>: Hey, c’mon. Be cool. He was just screwing
+around.</p>
+<p><strong>brutish boyfriend</strong>: Let me handle this, Crystal. So,
+you want to have sex with my girlfriend?</p>
+<p><strong>carl</strong>: Yes, I do. Very much.</p>
+<p><strong>brutish boyfriend</strong>: Are you starting a fight?</p>
+<p><strong>rooney</strong>: C’mon, Carl, let’s go –</p>
+<p><strong>carl</strong>: Yes, I am.</p>
+<p><strong>brutish boyfriend</strong>: Then bring it.</p>
+<p><strong>carl</strong>: I will.</p>
+<p><strong>brutish boyfriend</strong>: What was that?</p>
+<p><strong>carl</strong>: Me bringing it.</p>
+<p><strong>rooney</strong>: You popped that guy! He didn’t know what hit
+him.</p>
+<p><strong>carl</strong>: You do not cross Carl Kendall.</p>
+<p><strong>hot girl</strong>: Hey. I’m sorry about Domingo. He likes to
+think he’s my boyfriend but he’s not. You’re cute.</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>hot girl</strong>: My fiance called. He was like really sorry
+about last night. I have to go.</p>
+<p><strong>carl</strong>: Your fiance?</p>
+<p><strong>hot girl</strong>: Domingo. The guy who punched you in the
+face.</p>
+<p><strong>carl</strong>: I thought you said you two weren’t even
+dating?</p>
+<p><strong>hot girl</strong>: We were broken up last night. It was fun
+hanging out.</p>
+<p><strong>carl</strong>: Hi… is there a Sanji Gupta staying here?</p>
+<p><strong>receptionist</strong>: Room 125.</p>
+<p><strong>carl</strong>: I’m Carl. The guy from yesterday.</p>
+<p><strong>sanji</strong>: Of course, of course! Please come in!</p>
+<p><strong>carl</strong>: No thanks. I just wanted to thank you for that
+inspiration.</p>
+<p><strong>sanji</strong>: Fantastic. So how do you plan on continuing
+with your journey?</p>
+<p><strong>carl</strong>: You know, just living every day to it’s
+fullest. And, like, learning to continue to experience life or
+whatever.</p>
+<p><strong>sanji</strong>: Outstanding, Carl. Except for one</p>
+<p><strong>thing:</strong>: You are completely bullshitting me!</p>
+<p><strong>carl</strong>: I just said I’m going to keep experiencing
+life. I thought you’d be happy.</p>
+<p><strong>sanji</strong>: You’re like a cigarette addict, Carl. Except
+you’re addicted to boredom. On the way in here, Carl, I offered you a
+coffee and you refused. Perhaps that would have been the most delicious
+cup of coffee you would have ever had. Who’s to say? Not you, Carl,
+because you said no! Anyone can quit smoking for a day. But for a
+lifetime? No.</p>
+<p><strong>carl</strong>: So what should I do?</p>
+<p><strong>sanji</strong>: Behold, Carl, – the Maniyesto.</p>
+<p><strong>carl</strong>: Until New Year’s Eve, I must say The yes
+cannot distort the truth.</p>
+<p>****: You cannot say “Yes, the world is flat” because that is an
+untruth.</p>
+<p><strong>carl</strong>: If someone discovers you are a yes man, you do
+not have to say yes To avoid yes, you cannot avoid contact. Therefore,
+you must always answer your phone, the door, your postal mail, your
+email, etc and so on and so forth. You must choose a yesponsor to keep
+you on the straight and narrow. Who should that be?</p>
+<p><strong>sanji</strong>: A close friend who will not tell a soul.</p>
+<p><strong>carl</strong>: I hereby void the “do you want” loophole. What
+is that?</p>
+<p><strong>sanji</strong>: If someone asks you “do you want to go to the
+art museum” and you do not want to, you may not use this lack of desire
+as an excuse to not go. And finally, a warning.</p>
+<p>****: If you say `no’, even once, even for a cup of coffee, be
+prepared to lose every single little thing you’ve gained.</p>
+<p>****: So what do you say, Carl?</p>
+<p>****: What do you say?</p>
+<p><strong>carl</strong>: I say… yes.</p>
+<p><strong>sanji</strong>: And here.</p>
+<p><strong>carl</strong>: Is this like a legal document?</p>
+<p><strong>sanji</strong>: Kind of. And finally, my friend, please hold
+out your hand.</p>
+<p><strong>sanji</strong>: That should heal by New Year’s. Until then,
+you are a Yes Man.</p>
+<p><strong>peter</strong>: For a whole year?</p>
+<p><strong>carl</strong>: Yesterday I got promoted and beat up and
+hooked up with this chick and I have a massive headache today and I
+still might throw up, but I don’t care because it was the best time I’ve
+had in like forever. Not to mention finding out that, despite what you
+might think, smoked whitefish in an omelette is delicious, even if
+covered in a thick layer of pepper.</p>
+<p><strong>peter</strong>: But for a whole year?</p>
+<p><strong>carl</strong>: You don’t understand. I got promoted. Do you
+know how long I’ve been waiting for some kind of financial step forward?
+I said `yes’ and it arrived.</p>
+<p><strong>peter</strong>: Well, someone sounds like they’re yuppifying
+their life.</p>
+<p><strong>carl</strong>: Excuse me for wanting an appliance in my
+kitchen besides a hot pot.</p>
+<p><strong>peter</strong>: There’s no way you can do this for a whole
+year.</p>
+<p><strong>carl</strong>: That’s where you come in. You’re my
+“Yesponsor.”</p>
+<p><strong>peter</strong>: Yesponsor?</p>
+<p><strong>carl</strong>: Like in AA. I need you to hold me to it.</p>
+<p><strong>peter</strong>: You aren’t going to last for more than a
+week.</p>
+<p><strong>carl</strong>: I look forward to proving you wrong.</p>
+<p><strong>peter</strong>: Cavalli. Silk and cotton blend. Seven
+fifty.</p>
+<p><strong>lucy</strong>: My girlfriends are being such bitches. It’s
+been two weeks and no one’s offered to throw me a wedding shower.</p>
+<p><strong>peter</strong>: That’s too bad. I’m sure someone will
+offer.</p>
+<p>****: Hey, you want to throw my wedding shower?</p>
+<p><strong>carl</strong>: I’d be happy to.</p>
+<p><strong>lucy</strong>: I was kidding. Wedding showers are thrown by
+girls.</p>
+<p><strong>carl</strong>: That’s sexist. Please. I insist.</p>
+<p><strong>lucy</strong>: Thanks. That means a lot to me.</p>
+<p><strong>rooney</strong>: That was some good times last night. You
+back for more?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>rooney</strong>: I’ve got no cash. You mind spotting me and
+my buddies?</p>
+<p><strong>peter</strong>: Sorry, didn’t bring my wallet.</p>
+<p>****: Yes.</p>
+<p><strong>rooney’s friends/rooney</strong>: As long as you’re buying, I
+want a Grey Goose straight up./Kir Royale/Whatever’s in that dusty
+bottle back there that you never take down.</p>
+<p><strong>carl</strong>: Black coffee, large.</p>
+<p><strong>dunkin donuts cashier</strong>: Would you like…</p>
+<p><strong>carl</strong>: To have a wonderful day? I would.</p>
+<p>****: And could I also have a Mocha Caramel Coolata.</p>
+<p><strong>dunkin donuts cashier</strong>: With whipped cream?</p>
+<p><strong>renee</strong>: Hey, give that back. You already took
+one.</p>
+<p><strong>carl</strong>: What’s the hurt in taking another?</p>
+<p><strong>renee</strong>: Destroys the Earth. Also, they cost me ten
+cents a copy. Besides, are you even going to come?</p>
+<p><strong>carl</strong>: Of course. I couldn’t say `no.’</p>
+<p><strong>renee</strong>: See you tonight, Carl!</p>
+<p><strong>carl</strong>: Dear deposed King of Nigeria. I would love to
+help you anyway I can with your confidential transaction. Please let me
+know what I can do. Yours, Carl Kendall.</p>
+<p><strong>high school girl</strong>: You Carl Kendall?</p>
+<p><strong>carl</strong>: Yeah.</p>
+<p><strong>high school girl</strong>: I hear that you do small
+loans.</p>
+<p><strong>carl</strong>: Where did you hear that?</p>
+<p><strong>high school girl</strong>: Marge. The lady my mom buys her
+beanie babies from.</p>
+<p><strong>carl</strong>: I told her not to say anything.</p>
+<p><strong>high school girl</strong>: I only need five hundred bucks.
+I’m starting college next year and I need it for books. I can’t afford
+them now but I can pay them off over the course of the year.</p>
+<p><strong>carl</strong>: I might have some stuff to pawn./I will
+definitely check out your gun selection./I would like to learn
+Korean.</p>
+<p><strong>berlitz flier guy</strong>: If you’re interested, intro to
+Korean is starting right now.</p>
+<p>****:</p>
+<p><strong>renee</strong>: Hello Jake, Penelope, Carl and Rodrigo. We
+are the Flying Buttresses!</p>
+<p>****: Everyday, the unicorns they play/Among lingonberry fields/They
+silently bay/The king has no crown/Just a vest of grass/The queen loves
+the Jester/The Jester has the last laugh.</p>
+<p>****: You are my minotaur/With your cloven hooves!/Half man, half
+horse/You are all boy to me</p>
+<p><strong>bartender</strong>: Nice, show Renee. One virgin mint soda
+coming right up.</p>
+<p><strong>renee</strong>: I don’t think I hit a high enough octave in
+Fairy Dream Song.</p>
+<p><strong>carl</strong>: I disagree. I think you hit some pretty high
+octaves.</p>
+<p><strong>renee</strong>: But I can hit like way higher. Like check
+this out. I think this tone might be more appropriate for my water nymph
+song?</p>
+<p><strong>carl</strong>: I don’t know – I’ve known some water nymphs
+with big balls. From the high level of testosterone.</p>
+<p><strong>renee</strong>: I’ve got to write a song about that. I could
+call it…</p>
+<p><strong>carl</strong>: “Big Balled Water Nymph”? It’s a working
+title.</p>
+<p><strong>renee</strong>: I like it. I can work with that.</p>
+<p><strong>leeore</strong>: Um, excuse me, but we have to clear the
+stage.</p>
+<p><strong>renee</strong>: I gotta clear.</p>
+<p>****: Unless of course, you want to help?</p>
+<p><strong>carl</strong>: Sure. I love clearing stages.</p>
+<p><strong>renee</strong>: Well, thanks for coming, Carl. I must bid
+good night.</p>
+<p><strong>carl</strong>: So early? It’s only 8:00?</p>
+<p><strong>renee</strong>: I lead a jogging, photo group for people who
+want to both exercise and practice photography.</p>
+<p><strong>carl</strong>: You’re a photographer too?</p>
+<p><strong>renee</strong>: Amateur, but yeah. I show every Friday.</p>
+<p><strong>carl</strong>: What time do you leave?</p>
+<p><strong>renee</strong>: Five. So we can see the sunrise.</p>
+<p><strong>carl</strong>: Wow. I haven’t seen the sunrise maybe
+ever.</p>
+<p>****: I guess now I’ll be doing that tomorrow.</p>
+<p><strong>renee</strong>: Oh, it’s beautiful. Makes great photos. Nice
+meeting you, Carl.</p>
+<p><strong>flier guy</strong>: You interested in learning Spanish?</p>
+<p><strong>kath</strong>: Thinking of learning a couple foreign
+languages?</p>
+<p><strong>carl</strong>: Hey, Kath. Would you like one? I’m going to
+learn Swahili.</p>
+<p><strong>kath</strong>: Maybe next week. There’s someone you should
+probably meet. Carl, this is Seb.</p>
+<p><strong>carl</strong>: Seb? What is that? Swedish?</p>
+<p><strong>seb</strong>: Yes.</p>
+<p><strong>carl</strong>: You’re on a date then?</p>
+<p><strong>kath</strong>: Yeah. Met him at my firm.</p>
+<p><strong>carl</strong>: He’s very tall.</p>
+<p><strong>kath</strong>: I guess so, yeah.</p>
+<p><strong>carl</strong>: Well, it was nice meeting you, Seb. So I’ll be
+going.</p>
+<p><strong>seb</strong>: Unless… you’d like to join us?</p>
+<p><strong>carl</strong>: I’d love to. Join you guys.</p>
+<p><strong>kath</strong>: What?</p>
+<p><strong>carl</strong>: So, how did you guys meet?</p>
+<p><strong>kath</strong>: I told you. Through the firm.</p>
+<p><strong>waiter</strong>: Would you like to order some wine?</p>
+<p><strong>kath/carl/seb</strong>: Yes.</p>
+<p><strong>carl</strong>: Oh, this is good.</p>
+<p>****: I was walking past Pizza Hut the other day, and for a second I
+was sure the sign said “Pizza Hat.” And then I thought, wouldn’t it be
+funny if there was a shop that sold hats shaped like pizzas? You know.
+Because it sounds like “Pizza Hut” only it’s a hat shop.</p>
+<p><strong>seb</strong>: Look, Carl, why don’t you just eat your fish
+and fuck off?</p>
+<p><strong>carl</strong>: Shit.</p>
+<p><strong>rooney</strong>: What’s up Carl? It’s Rooney! What do you say
+we grab a couple brewskis?</p>
+<p><strong>nigerian king</strong>: Dear brother Carl, Thank you for your
+last note you sent me. But we must move quickly. I must have your bank
+details right now. Send them to me. Your Associate, Omar, King of
+Nigeria</p>
+<p><strong>carl</strong>: Dear Omar, While I appreciate the gravity of
+your situation, perhaps a goodwill branch is in order. Could you perhaps
+loan me a million and take it out of my final cut? Then I will happily
+send you my bank details. Sincerely, Carl.</p>
+<p><strong>persian cartoon genie</strong>: Sa’laam, Carl. You have
+sixty-five winks. Allah Akbar.</p>
+<p><strong>carl</strong>: Good morning.</p>
+<p><strong>renee</strong>: Wow. You look tired.</p>
+<p><strong>carl</strong>: Well, it is five in the morning.</p>
+<p><strong>renee</strong>: Mammals are meant to be up at dawn. It’s how
+we’re built biologically. Where’s your camera?</p>
+<p><strong>carl</strong>: I thought I’d use my phone.</p>
+<p><strong>renee</strong>: Awesome idea. So light.</p>
+<p><strong>carl</strong>: That’s what I thought.</p>
+<p><strong>renee</strong>: Let’s hit it.</p>
+<p><strong>renee</strong>: Alright! Enough standing around!</p>
+<p><strong>iranian woman</strong>: It was delightful meeting you,
+Carl.</p>
+<p><strong>carl</strong>: As it was meeting you Farinoush.</p>
+<p><strong>iranian woman</strong>: Although I must say I was surprised
+to discover that you are in no way Persian. Nor are you six foot two.
+You should change that on your profile.</p>
+<p><strong>carl</strong>: Will do. Should I call you?</p>
+<p><strong>iranian woman</strong>: Sorry, I want a tall guy.</p>
+<p><strong>lucy</strong>: Who was that?</p>
+<p><strong>carl</strong>: Farinoush Azzam. Great girl, but I don’t think
+we’re right for each other.</p>
+<p><strong>lucy</strong>: How’d you meet?</p>
+<p><strong>carl</strong>: PersianWifeFinder.com. Let’s talk wedding
+shower.</p>
+<p><strong>lucy</strong>: So, I know it’s just a wedding shower, so who
+cares really? And it’s like so lame? But I’ve made an appointment at a
+stationery store. Are you going to totally kill me?</p>
+<p><strong>carl</strong>: You kidding? I love stationery.</p>
+<p><strong>stationery proprietess</strong>: This one is nice. I
+especially love it in cream.</p>
+<p><strong>lucy</strong>: Ooooh, pretty. What do you think?</p>
+<p><strong>carl</strong>: Looks good to me.</p>
+<p><strong>lucy</strong>: Thanks for your opinion.</p>
+<p><strong>stationery proprietess</strong>: It’s always difficult to get
+the husband-to-be’s opinion.</p>
+<p><strong>lucy</strong>: I’m not marrying him.</p>
+<p><strong>carl</strong>: I’m just helping throw the shower.</p>
+<p><strong>stationery proprietess</strong>: Oh. What’s the party going
+to be like? Sometimes it helps to know that before you pick an
+invitation.</p>
+<p><strong>lucy</strong>: Nothing special. Just hors d’oeuvres and
+wine.</p>
+<p><strong>carl</strong>: Look at this – Bridal Bingo. What’s Bridal
+Bingo?</p>
+<p><strong>stationery proprietess</strong>: It’s bingo, except you yell
+out embarrassing facts about the bride and whoever fills their card
+first wins.</p>
+<p><strong>carl</strong>: That sounds fun.</p>
+<p><strong>lucy</strong>: I’m not doing Bridal Bingo.</p>
+<p><strong>carl</strong>: How about a calendar shower?</p>
+<p><strong>lucy</strong>: Can we concentrate at the task at hand?</p>
+<p><strong>carl</strong>: Do you even know what a calendar shower is?
+Maybe a calendar shower is awesome.</p>
+<p><strong>stationery proprietess</strong>: Every guest gets assigned a
+month and brings a gift that the bride and groom can use during that
+month.</p>
+<p><strong>lucy</strong>: That’s kind of cute.</p>
+<p><strong>carl</strong>: I think that’s really cute.</p>
+<p><strong>stationery proprietess</strong>: The bride and groom ride in
+on a white stallion.</p>
+<p><strong>carl</strong>: You have got to do that. Like it’s not even a
+choice.</p>
+<p><strong>lucy</strong>: That seems a little extreme.</p>
+<p><strong>carl</strong>: You only get married once.</p>
+<p><strong>stationery proprietess</strong>: Your friend happens to be
+right.</p>
+<p><strong>lucy</strong>: You’re really good at this. You mind helping
+me with the wedding invitations?</p>
+<p><strong>arab guy</strong>: I love cell phones. I breathe cell phones.
+I own, myself, thirty-five cell phones. My brother is an idiot and he’s
+selling cell phones hand over fist. What do you have? A Nokia 9850?</p>
+<p><strong>carl</strong>: How much do you need?</p>
+<p><strong>arab guy</strong>: Eighty five hundred.</p>
+<p><strong>carl</strong>: Done.</p>
+<p><strong>ten year old girl</strong>: I was with my sister? And we had
+this lemonade stand? And we sold like a hundred cups of lemonade in two
+days? And so I want to expand?</p>
+<p><strong>jittery guy</strong>: Just give me the cash.</p>
+<p><strong>carl</strong>: You promise you’ll pay it back?</p>
+<p><strong>jittery guy</strong>: Basically.</p>
+<p><strong>norman</strong>: May I speak to you, Carl?</p>
+<p><strong>norman</strong>: I know what you’re doing.</p>
+<p><strong>carl</strong>: What am I doing?</p>
+<p><strong>norman</strong>: You’re loaning below our minimum.</p>
+<p><strong>carl</strong>: I’m sorry, but it’s absurd that if you need a
+small amount of money you have to go to a loan shark. Only rich people
+can pay back loans over ten grand. A bank’s job is not to just help the
+rich. It’s to help anyone with a dream achieve it.</p>
+<p><strong>norman</strong>: I know. These microloans are pretty
+interesting. So I’ll you spearhead a little pilot program at the
+bank.</p>
+<p><strong>carl</strong>: Thank you so much.</p>
+<p><strong>norman</strong>: If corporate finds out, you’re the one who’s
+getting fired. So keep it quiet.</p>
+<p><strong>carl</strong>: What do you need a loan for?</p>
+<p><strong>rooney</strong>: I don’t. I was wondering if you were around
+tonight to help me move?</p>
+<p><strong>carl</strong>: Why don’t you hire movers?</p>
+<p><strong>rooney</strong>: Because it’s cheaper to ask you.</p>
+<p><strong>rooney</strong>: Can you carry the fridge alone?</p>
+<p>****: Yes.</p>
+<p><strong>rooney</strong>: You OK?</p>
+<p><strong>carl</strong>: Yes. Do you want to help at all?</p>
+<p><strong>rooney</strong>: I wish I could, but I hurt my back trying to
+move that fridge.</p>
+<p><strong>rooney’s mom</strong>: I’m going to miss you, baby.</p>
+<p><strong>rooney</strong>: And I’m going to miss you, ma.</p>
+<p><strong>rooney’s mom</strong>: I can’t watch you go.</p>
+<p><strong>carl</strong>: Where are you moving?</p>
+<p><strong>music cue</strong>: “JUMP” by the Pointer Sisters</p>
+<p><strong>norman</strong>: We need a volunteer to think up local
+marketing ideas</p>
+<p><strong>norman</strong>: We need someone to be a weekend cashier.</p>
+<p><strong>tony</strong>: Do you want to change your life through
+Mahayana Buddhism?</p>
+<p><strong>carl</strong>: I’m kind of in a rush…</p>
+<p><strong>tony</strong>: My place is right around the corner.</p>
+<p><strong>tony</strong>: It is only through the four noble truths and
+the destruction of desire that we can end suffering.</p>
+<p><strong>carl</strong>: Well, that’s really neat. So, thanks for the
+books and the jasmine tea and the vegan curry, but I have to go –</p>
+<p><strong>tony</strong>: Do you like Dionne Warwick?</p>
+<p><strong>carl</strong>: It was really great meeting you –</p>
+<p><strong>tony</strong>: C’mon, Carl. Shake your groove thang.</p>
+<p><strong>carl</strong>: I really have to go.</p>
+<p><strong>tony</strong>: Want to go into my bedroom?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>carl</strong>: Do you have any candles? I just love
+candles.</p>
+<p><strong>tony</strong>: Sure.</p>
+<p><strong>carl</strong>: How about wine? Like a bottle of
+Beaujolais?</p>
+<p><strong>tony</strong>: I only have Beaujolais Nouveau.</p>
+<p><strong>carl</strong>: I have herpes.</p>
+<p><strong>tony</strong>: Upstairs or downstairs?</p>
+<p><strong>carl</strong>: Downstairs?</p>
+<p><strong>tony</strong>: Front door or back door?</p>
+<p><strong>carl</strong>: It’s a swinging door!</p>
+<p><strong>tony</strong>: Just give it!</p>
+<p><strong>peter</strong>: What’s with the kitten?</p>
+<p><strong>carl</strong>: I just adopted her. If you’re interested,
+they’re giving them away in front of Petco.</p>
+<p><strong>peter</strong>: I don’t want a kitten.</p>
+<p><strong>carl</strong>: Neither did I.</p>
+<p><strong>peter’s secretary</strong>: Andy Solomon on line two.</p>
+<p><strong>peter</strong>: Hey, asshole, we’re not talking until you
+sign that goddamn contract.</p>
+<p><strong>carl</strong>: Seems like a nice guy.</p>
+<p><strong>peter</strong>: She was upset you went on her date.</p>
+<p><strong>carl</strong>: He asked me to join them.</p>
+<p><strong>peter</strong>: I think you’re taking this too far.</p>
+<p><strong>carl</strong>: I have no choice. I’m a yes man. I must say
+yes. If Seb asks me to join them on their date, I must. If some dude
+asks me for a loan I have to give it to them even if it’s clearly never
+going to be paid back. If a guy asks me into his bedroom, I must hook up
+with him.</p>
+<p><strong>peter</strong>: You hooked up with a dude?</p>
+<p><strong>carl</strong>: It’s like hooking up with a strong woman. I
+honestly don’t see what the big deal is. I am guided by yes. Yes has
+become my superpower. And let me tell, yes is turning out to be a pretty
+sweet deal. Now if you’ll excuse me I’m late for Korean class.</p>
+<p><strong>peter</strong>: You hate Korean food.</p>
+<p><strong>carl</strong>: That’s no reason to write off an entire,
+vibrant culture. See you later, buddy.</p>
+<p><strong>carl</strong>: You really are displaying that.</p>
+<p><strong>renee</strong>: That’s probably my best photo ever. My
+collages aren’t bad. But personally, I think I excel at pottery.</p>
+<p><strong>carl</strong>: Wow. That’s really big. How do you have time
+for all this stuff?</p>
+<p><strong>renee</strong>: How do you have time to come to every one of
+my rocks shows even the one in Fairfield county that was seventy-five
+miles from here? I almost skipped that one.</p>
+<p><strong>carl</strong>: You gave me the flier, so I had to go.</p>
+<p><strong>renee</strong>: At first I thought you were a weird stalker
+and I was scared. But now I think you’re just a really shy dude with a
+crush. And while it’s been suspenseful to see when/if you’d ask me out
+–</p>
+<p><strong>carl</strong>: Do you want to go out sometime?</p>
+<p><strong>renee</strong>: Yes, I would.</p>
+<p><strong>carl</strong>: By the way, I do other stuff besides follow
+you around.</p>
+<p><strong>renee</strong>: Like what?</p>
+<p><strong>carl</strong>: I take Korean.</p>
+<p><strong>renee</strong>: In that case, what do you say we do
+Korean?</p>
+<p><strong>renee</strong>: Do you want any more squid hot pot? It’s
+really good here.</p>
+<p><strong>carl</strong>: I think I’m good. To have some more.</p>
+<p><strong>renee</strong>: What do you mean?</p>
+<p><strong>carl</strong>: Like, do you want to open a store?</p>
+<p><strong>renee</strong>: Where I can sell my photos and pottery? Of
+course not. They’re terrible.</p>
+<p><strong>carl</strong>: They’re not terrible.</p>
+<p><strong>renee</strong>: Yeah, they’re awful.</p>
+<p><strong>carl</strong>: I think you’re being hard on yourself –</p>
+<p><strong>renee</strong>: I’m not asking for sympathy. My voice is way
+too high-pitched, my pottery looks like poo, and my photos are blurry
+and subjectless. But who gives a shit? Not everything needs a goal. The
+world is a playground. You know that as a kid but then somewhere along
+the way everyone forgets.</p>
+<p><strong>carl</strong>: When? Like in a couple years?</p>
+<p><strong>renee</strong>: I bought a ticket for four months from
+now.</p>
+<p><strong>carl</strong>: People always talk about that, but you’re
+actually doing it.</p>
+<p><strong>renee</strong>: Honestly, I’m terrified.</p>
+<p>****: How about you? Do you like the bank?</p>
+<p><strong>carl</strong>: It’s lame, but you know, it’s pretty funny. My
+boss Norman always throws theme parties.</p>
+<p><strong>renee</strong>: So if it’s lame why do you work there?</p>
+<p><strong>carl</strong>: Because… it’s actually not lame.</p>
+<p>****: I just gave the answer I’ve automatically given for years. I’m
+actually enjoying the bank for the first time maybe ever. I started this
+pilot program that gives out microloans.</p>
+<p><strong>renee</strong>: What’s that?</p>
+<p><strong>carl</strong>: Like say you need three hundred bucks to pay
+for paint so you can start a house painting business. Rather than paying
+a loan shark who charges you 300%, now you can come to Southwest Bank.
+Whatever. It’s kind of dorky.</p>
+<p><strong>renee</strong>: That actually sounds really cool.</p>
+<p>****:</p>
+<p><strong>renee</strong>: So, what do you say we hit this crazy
+party?</p>
+<p><strong>carl</strong>: Funny, not crazy. My boss is white noise.</p>
+<p><strong>renee</strong>: White noise?</p>
+<p><strong>carl</strong>: You know, like totally boring.</p>
+<p><strong>renee</strong>: I don’t know anyone who’s totally boring.
+Crack a person’s shell – there’s always something creepy underneath.</p>
+<p><strong>norman</strong>: Carl! Welcome. Or should I say,
+uerukamu!</p>
+<p><strong>renee</strong>: What’s going on?</p>
+<p><strong>carl</strong>: I wouldn’t bother.</p>
+<p><strong>norman</strong>: You didn’t tell her? This is a dress-up as
+your favorite character from Heroes. Do you watch?</p>
+<p><strong>renee</strong>: I currently don’t have a television.</p>
+<p><strong>norman</strong>: I don’t know what to do with that
+information. There are drinks, chips, dips, various and sundry noshes. I
+entreat you to make friends. Let’s get this party started!</p>
+<p><strong>carl</strong>: We don’t have to stay long.</p>
+<p><strong>renee</strong>: It’s a party. Let’s socialize.</p>
+<p><strong>carl</strong>: I’m Carl. This is Renee.</p>
+<p><strong>khatoon</strong>: Hey. I’m Khatoon.</p>
+<p><strong>carl</strong>: I don’t think so.</p>
+<p><strong>khatoon</strong>: Are you listed on
+Persianwifefinder.com?</p>
+<p><strong>carl</strong>: So, how do you know Norman?</p>
+<p><strong>khatoon</strong>: Karate Club.</p>
+<p><strong>norman</strong>: Baked Lays people! It is on!</p>
+<p><strong>carl</strong>: You’re in a karate club?</p>
+<p><strong>party guests</strong>: Norman! Norman! Norman!</p>
+<p><strong>renee</strong>: Told ya there was something weird under that
+white noise shell.</p>
+<p><strong>khatoon</strong>: You’re totally on persianwifefinder.com.
+SultanCarl.</p>
+<p><strong>carl</strong>: Khatoon, Norman! You guys should spar!</p>
+<p><strong>jason</strong>: Well, isn’t that cute? We’ve got a full match
+on. Hey, I’m Jason.</p>
+<p><strong>carl</strong>: I’m Carl. What do you do?</p>
+<p><strong>jason</strong>: Work for the INS.</p>
+<p><strong>carl</strong>: Cool.</p>
+<p><strong>jason</strong>: I hate it. Everyday I have to dash some poor
+guy’s dream. I’m a professional dream dasher.</p>
+<p><strong>carl</strong>: It can’t be that bad.</p>
+<p><strong>jason</strong>: The other day, I turned down a guy who had
+literally been a professor at the University of Cuba.</p>
+<p><strong>cuban professor</strong>: What? But I’ve already lived here
+for five years. I’ve received a steady paycheck and paid taxes for five
+years. I speak fluent English. I can’t go back.</p>
+<p><strong>jason</strong>: I’m sorry but no can do.</p>
+<p><strong>cuban professor</strong>: I’ve passed the citizenship test
+ten times. I bet you couldn’t pass that test.</p>
+<p><strong>jason</strong>: You’re probably right.</p>
+<p><strong>cuban professor</strong>: Do you know the location of the
+Spanish-American war?</p>
+<p><strong>jason</strong>: Spain?</p>
+<p><strong>cuban professor</strong>: No.</p>
+<p><strong>jason</strong>: America?</p>
+<p><strong>cuban professor</strong>: No.</p>
+<p>****: Spainerica?</p>
+<p><strong>cuban professor</strong>: You are an insult to your
+country.</p>
+<p><strong>carl</strong>: So did you let him in?</p>
+<p><strong>jason</strong>: I sent him back to Cuba. I send them all
+back.</p>
+<p><strong>carl</strong>: If you hate your job so much, why do you do
+it?</p>
+<p><strong>jason</strong>: Because I have to eat.</p>
+<p><strong>carl</strong>: You’re a no man.</p>
+<p><strong>jason</strong>: Excuse me?</p>
+<p>****: I’m not supposed to tell anyone this except for my Yesponsor,
+but you can change your life. I’ve changed mine. If I tell you how, will
+you promise not to tell anyone?</p>
+<p>****: Yeah, sure, whatever.</p>
+<p><strong>carl</strong>: I say yes. To everything. Say Yes More. It’s
+that simple.</p>
+<p><strong>jason</strong>: That’s the most retarded idea I’ve ever
+heard.</p>
+<p><strong>renee</strong>: What did I miss?</p>
+<p>****: Nothing. Do you want to go?</p>
+<p><strong>renee</strong>: You work for the ASPCA?</p>
+<p><strong>carl</strong>: I just love pets. This is Veronica, King
+George, Owen, Carl jr., Carl the III, Carl IV, Bubbles, Greedo, Cat 1,
+Cat 2 and Cat 3. At the end there, I got kind of bored of naming
+them.</p>
+<p><strong>carl</strong>: You don’t need to do that.</p>
+<p><strong>renee</strong>: You have a lot of Mexican Viagra.</p>
+<p><strong>carl</strong>: I have a congenital heart thing it helps. And
+it’s cheaper than the stuff that’s made here.</p>
+<p><strong>renee</strong>: You better not be a criminal. Because one
+time I dated this guy who jacked cars for a living and I did not enjoy
+living on the edge as much as I thought I would.</p>
+<p><strong>carl</strong>: It’s cheaper to buy in bulk. Is that a
+crime?</p>
+<p><strong>renee</strong>: A hundred boxes of Mexican prescription drugs
+borders on something vaguely criminal.</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>rooney</strong>: You must be Renee. I have heard so much
+about you. Can I watch?</p>
+<p><strong>renee</strong>: No, you can’t watch.</p>
+<p><strong>renee</strong>: You know what I would love? A massage.</p>
+<p><strong>carl</strong>: I give great massages.</p>
+<p><strong>renee</strong>: Oooh. Yeah. Oooh, right there.</p>
+<p><strong>carl</strong>: How much does a Schwinn cost?</p>
+<p><strong>large man</strong>: Three hundred fifty three dollars. It’ll
+really help me get my one hour delivery business off the ground. I’ve
+tried on foot. I only have a two mile radius.</p>
+<p><strong>carl</strong>: Done and done.</p>
+<p><strong>norman</strong>: Hey, the boys upstairs are here to speak
+with you.</p>
+<p><strong>carl</strong>: Really? Because I have a thing at one…</p>
+<p><strong>norman</strong>: He asked for you specifically. Ixnay on the
+small loans-ay.</p>
+<p><strong>chris parker</strong>: Carl Kendall? I’m Chris Parker.
+President of Southwest Bank.</p>
+<p><strong>carl</strong>: I actually met you when I was just a
+teller.</p>
+<p>****: Of course! Pet-a-Puppy day. Free cookie day. Free half hour on
+the bank’s punching bag day. You’ve upped walk-in traffic by 35%. Not
+only that – you’ve also taken charge of corporate day care. I like a
+team player.</p>
+<p><strong>carl</strong>: Thank you.</p>
+<p><strong>chris parker</strong>: But then I got suspicious. What drives
+a man in his mid to late thirties who’s still at the absolute lowest
+level of our corporate family? Generous helpfulness? Or raging
+revenge?</p>
+<p><strong>carl</strong>: Generous helpfulness?</p>
+<p><strong>chris parker</strong>: Which is when I got the numbers from
+your loan desk.</p>
+<p><strong>carl</strong>: Uh huh.</p>
+<p><strong>chris parker</strong>: You’ve given out over 682 below
+minimum loans. One of them was literally for fifteen dollars and eighty
+seven cents.</p>
+<p><strong>carl</strong>: Janice Peabody’s ant farm rental business.</p>
+<p><strong>chris parker</strong>: How do you explain yourself?</p>
+<p><strong>carl</strong>: I’ve started a microloan project. I figure
+that if someone needs less than ten grand why should they go to a loan
+shark when they can come to a legitimate banking institution?</p>
+<p><strong>chris parker</strong>: Because the paperwork makes any profit
+moot. Unless you’re raiding our coffers.</p>
+<p><strong>carl</strong>: No. I wouldn’t do that.</p>
+<p><strong>chris parker</strong>: I would if I could, so why wouldn’t
+you?</p>
+<p><strong>carl</strong>: Thank you.</p>
+<p><strong>chris parker</strong>: You’re the kind of person we want in
+corporate. We’re taking some clients on a golfing trip. You golf?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>chris parker</strong>: You free tomorrow?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>chris parker</strong>: Of course you are. I better watch my
+back around you, Carl Kendall. Soon you’ll be taking my job. See you on
+the links.</p>
+<p><strong>lucy</strong>: What happened?</p>
+<p><strong>carl</strong>: I’m sorry – bank meeting stuff.</p>
+<p><strong>lucy</strong>: I’ve never heard of a Wedding Shower cake.</p>
+<p><strong>carl</strong>: You have to have one. Modern Bride calls them
+a necessity.</p>
+<p><strong>lucy</strong>: I’m sorry, it’s just you’ve been so great at
+all this while my husband- to-be has been completely absent. Do you have
+time to grab a cup of tea?</p>
+<p><strong>lucy</strong>: Is he scared to get married? Is that why he
+doesn’t care?</p>
+<p><strong>carl</strong>: You know Peter. He’s a man’s man. He cares, he
+just doesn’t know how to show it.</p>
+<p><strong>lucy</strong>: You know how to show it. A wedding is a huge
+deal. I’m so scared.</p>
+<p><strong>carl</strong>: You guys are perfect for each other.</p>
+<p><strong>lucy</strong>: I know that and yet I’m still so scared.</p>
+<p><strong>carl</strong>: Maybe if you’re just honest with him about how
+you’re feeling it’ll be OK.</p>
+<p><strong>lucy</strong>: He can be just so closed off.</p>
+<p><strong>carl</strong>: Sorry, the bank, you know? The UFO conference
+is tonight? No, that’s fine, I’ll definitely be there.</p>
+<p><strong>lucy</strong>: You’ve been so good to me. I’ve really come to
+depend on you. I want to pay you back.</p>
+<p><strong>carl</strong>: Not necessary.</p>
+<p><strong>lucy</strong>: Peter tells me you might have some disposable
+income these days.</p>
+<p><strong>carl</strong>: For some reason, the bank keeps promoting
+me.</p>
+<p><strong>lucy</strong>: If you want to look at some open houses, I’m
+happy to waive my fee.</p>
+<p><strong>lucy</strong>: So this is at the very top end of what you
+could probably afford. Are you interested?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>lucy</strong>: Are you sure? I mean, this is the first place
+you’ve looked –</p>
+<p><strong>carl</strong>: Yes. I’ve got to run.</p>
+<p><strong>lucy</strong>: I’m looking forward to meeting Renee
+tonight.</p>
+<p><strong>carl</strong>: What?</p>
+<p><strong>lucy</strong>: We’re all having dinner. Tonight.
+Remember?</p>
+<p><strong>carl</strong>: Right. Of course.</p>
+<p><strong>carl</strong>: I just think if we’re going to be rolling out
+a no interest financing campaign we should commit hard.</p>
+<p><strong>nurse</strong>: If you’re interested in donating plasma, feel
+free to sign up.</p>
+<p><strong>weird professor</strong>: Between 1996 and 2000 England’s
+Ministry of Defence paid security cleared experts to research UFOs. This
+classified study was code named Project Condign.</p>
+<p><strong>carl</strong>: I’m sorry I’m late.</p>
+<p><strong>renee</strong>: That’s fine. It’s only the very first time
+I’ve met your friends.</p>
+<p><strong>carl</strong>: It was work, it went crazy late.</p>
+<p><strong>renee</strong>: What’s with the “They’re Out There” and “I
+Gave” button?</p>
+<p><strong>carl</strong>: Long story. Miss, could I have an orange
+juice? Like fast?</p>
+<p><strong>carl</strong>: Your wife found me a really great place. Built
+in Bose surround sound, a 100 inch LCD flat screen TV, roof deck with
+jacuzzi.</p>
+<p><strong>lucy</strong>: Least I could do. At least he’s involved with
+our wedding.</p>
+<p><strong>peter</strong>: I likey your suit-ey. Hugo Boss?</p>
+<p><strong>carl</strong>: Oh, this old thing? Prada, I think.</p>
+<p><strong>renee</strong>: You think? We went to three different Prada
+stores to find the right fit.</p>
+<p><strong>lucy</strong>: What do yo do for a living, Renee?</p>
+<p><strong>renee</strong>: I paint. I’m in a band. I do volunteer work
+at a shelter. I teach ESL. I do balloon animal art. You know, a little
+of this, a little of that.</p>
+<p><strong>carl</strong>: You should check out her pottery. It’s really
+big.</p>
+<p><strong>renee</strong>: It is big. How about you guys?</p>
+<p><strong>lucy</strong>: Real estate broker.</p>
+<p><strong>peter/kath/seb</strong>: Lawyer.</p>
+<p><strong>peter</strong>: If you’ll excuse me.</p>
+<p><strong>waiter</strong>: Have you made a decision about the wine?</p>
+<p><strong>carl</strong>: Well, we’re kind of in a celebratory mood.</p>
+<p><strong>waiter</strong>: In that case, may I suggest a 97 Petit
+Rothschild?</p>
+<p><strong>carl</strong>: Maybe we should wait for Peter to decide.</p>
+<p><strong>lucy</strong>: He doesn’t know crap about wine. Just pick
+one, Carl.</p>
+<p><strong>carl</strong>: Why not? Let’s celebrate.</p>
+<p><strong>waiter</strong>: With six people, I’d recommend two
+bottles.</p>
+<p><strong>lucy</strong>: Do you rent or own?</p>
+<p><strong>renee</strong>: I sublet. I have this corner of a loft.</p>
+<p><strong>carl</strong>: It’s a really nice corner though.</p>
+<p><strong>lucy</strong>: If you’re ever interested in buying, you
+should ring me up.</p>
+<p><strong>renee</strong>: I hate owning things. Because when you own
+something, you suddenly are invested in that thing not breaking. And I
+break everything. I’ve gone through three TVS in three years.</p>
+<p><strong>seb</strong>: How did you break them?</p>
+<p><strong>renee</strong>: I smashed one with a hammer, dropped one off
+my roof and the third one just went on the fritz. So I set it on
+fire.</p>
+<p><strong>carl</strong>: It’s on me! I’d like to split it between an
+Advanta Blue Business, Mastercard, a Diners Club and my South Dakota
+Bank Visa Check card.</p>
+<p><strong>peter</strong>: Nice job with Renee. She’s definitely odd,
+but that’s not necessarily –</p>
+<p><strong>carl</strong>: I just spent $1500 on dinner.</p>
+<p><strong>peter</strong>: What? Why?</p>
+<p><strong>carl</strong>: Because the waiter asked me if I wanted the
+expensive wine and you weren’t there to stop me!</p>
+<p><strong>peter</strong>: Don’t get mad at me about it. You can just
+stop.</p>
+<p><strong>carl</strong>: No I can’t. If I didn’t say yes to the band
+flier, I never would have met Renee. If I hadn’t said yes to taking
+charge of bank day care and then yes to becoming a loan specialist and
+then yes to the president’s golf trip, I wouldn’t be moving up. Each yes
+leads to the next one. If I stop, it could all fall apart.</p>
+<p><strong>peter</strong>: You’ve gone from a passive guy who always
+said no to a passive guy who always says yes. Just saying yes is not a
+legitimate life philosophy.</p>
+<p><strong>carl</strong>: I don’t know why I should be taking advice
+from a guy who’s wife is pissed he’s not involved at all with the
+wedding planning.</p>
+<p><strong>peter</strong>: I’m involved.</p>
+<p><strong>carl</strong>: You told her you don’t care whether the
+invite’s cream or ivory.</p>
+<p><strong>peter</strong>: I can’t see the difference. Honestly, I’m
+terrified.</p>
+<p><strong>carl</strong>: What? Why?</p>
+<p><strong>peter</strong>: It’s marriage, you know? The biggest thing
+ever.</p>
+<p><strong>carl</strong>: But you guys have dated for years.</p>
+<p><strong>peter</strong>: I know.</p>
+<p><strong>carl</strong>: You’re perfect for each other.</p>
+<p><strong>peter</strong>: I know.</p>
+<p><strong>carl</strong>: She’s terrified too.</p>
+<p><strong>peter</strong>: Really?</p>
+<p><strong>carl</strong>: Of course she is. I think you’ll both be a lot
+less terrified if you’re terrified together.</p>
+<p><strong>peter</strong>: But what if I really can’t tell the
+difference between ivory and cream? Does that make me a bad husband?</p>
+<p><strong>carl</strong>: What matters is that you pretend you can see
+the difference.</p>
+<p><strong>girls</strong>: It was wonderful meeting you!/I loved it!/Let
+me know when you throw your next art thing!</p>
+<p><strong>renee</strong>: It was great meeting your friends.</p>
+<p><strong>carl</strong>: They’re a little stiff.</p>
+<p><strong>renee</strong>: They are a little stiff. What do you feel
+like doing?</p>
+<p><strong>carl</strong>: I’m actually going rollerblading with
+Ralph.</p>
+<p><strong>renee</strong>: Ralph?</p>
+<p><strong>carl</strong>: You know, crazy rollerblading guitar man.</p>
+<p><strong>renee</strong>: The guy who plays at the promenade?</p>
+<p><strong>carl</strong>: Any interest?</p>
+<p><strong>renee</strong>: No. It’s ten on a Friday night. And that
+guy’s crazy. Don’t you want to go home and make out?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p>****: Just go.</p>
+<p><strong>crazy rollerblading guitar man</strong>: Which is why the
+merman is not to be trusted, especially with the fisherman’s computer
+brain.</p>
+<p><strong>carl</strong>: That is really good to know.</p>
+<p><strong>crazy rollerblading guitar man</strong>: You want to come see
+the merman?</p>
+<p>****: Yes.</p>
+<p><strong>chris parker</strong>: What happened to you?</p>
+<p><strong>carl</strong>: I do this whole Habitat for Humanity
+Thing.</p>
+<p><strong>chris parker</strong>: I love the concept of charity. It’s
+awesome.</p>
+<p>****:</p>
+<p><strong>chris parker</strong>: You speak Korean?</p>
+<p><strong>carl</strong>: Just a little.</p>
+<p><strong>chris parker</strong>: You sneaky devil. I knew I should
+watch my back around you.</p>
+<p><strong>carl</strong>: Is it a problem if I’ve never played golf
+before?</p>
+<p><strong>chris parker</strong>: You’re a funny one, Carl Kendall.
+Remember, they have to win. In Asian cultures, there’s a concept called
+Saving Face. You have to let them win. But if they smell for a second
+that you haven’t tried your hardest, they’ll commit hari kari.</p>
+<p><strong>carl</strong>: Metaphorically?</p>
+<p><strong>chris parker</strong>: Who knows? It’s a delicate balance,
+Kendall. Like two little girls on a see saw with a crocodile beneath
+them. Make the wrong move, and the little girl will end up in the croc’s
+maw.</p>
+<p><strong>chris parker</strong>: Alright, buddy. It’s all you.</p>
+<p><strong>carl</strong>: I do.</p>
+<p><strong>carl</strong>:</p>
+<p><strong>chris parker</strong>: What was that?</p>
+<p><strong>carl</strong>: Just keeping them on their toes. Reverse
+psychology. Tiger Woods does it.</p>
+<p>****: Apartment.</p>
+<p>****: I prefer light beer.</p>
+<p>****: Three to five times a week.</p>
+<p>****: Orlando.</p>
+<p><strong>carl</strong>: Chris, you hit a 90. Nice one.</p>
+<p><strong>chris parker</strong>: I bogied the fifth hole. I’m still
+pissed about that.</p>
+<p><strong>carl</strong>: Joo-Chan hit a 95. Nice work. As for Seung
+Kim. You hit 453.</p>
+<p><strong>seung kim</strong>: Yes!</p>
+<p><strong>carl</strong>: I’m sorry to say that team Korean Bank
+International has won.</p>
+<p><strong>pretty korean banker</strong>:</p>
+<p><strong>pretty korean banker</strong>: Kiss me? Please?</p>
+<p>****: Yes.</p>
+<p><strong>pretty korean banker</strong>: Am I not sexy? Have you not
+heard of saving face?</p>
+<p><strong>carl</strong>: You’re very sexy.</p>
+<p><strong>chris parker</strong>: I’m promoting you to bank manager.
+I’ve got my eye on you, boy. Don’t you forget it.</p>
+<p><strong>renee</strong>: What’s up, chicken butt?</p>
+<p><strong>carl</strong>: I just got promoted to bank manager.</p>
+<p><strong>renee</strong>: Congratulations!</p>
+<p><strong>renee</strong>: I was kidding. Not as sexy as it seems. It
+gets in like everywhere. What should we do to celebrate?</p>
+<p><strong>carl</strong>: Have dinner?</p>
+<p><strong>renee</strong>: How about Korean? Oh, no, you probably
+already had some today.</p>
+<p>****: No, we just had American food, American fare.</p>
+<p><strong>renee</strong>: You’ve just been so busy – it’d be fun to
+have a night just the two of us. I wish we could just go to the airport
+and hop on the first flight outta here.</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>renee</strong>: I think we’re going to London.</p>
+<p><strong>carl</strong>: Oaxaca, senorita.</p>
+<p><strong>renee</strong>: Moscow, Russia, comrade.</p>
+<p>****: Singapore.</p>
+<p><strong>renee</strong>: What was that?</p>
+<p><strong>carl</strong>: My Singaporean accent. Pretty good, right?</p>
+<p>****: We want two tickets on the next plane out of here.</p>
+<p><strong>airline rep</strong>: Two tickets to… Lincoln, Nebraska. Have
+a good time.</p>
+<p><strong>carl</strong>: Lincoln, Nebraska! Here we come, baby!</p>
+<p><strong>airline rep</strong>: That’ll be twelve hundred and thirty
+three dollars.</p>
+<p><strong>renee</strong>: Maybe we shouldn’t do this.</p>
+<p><strong>carl</strong>: I’ve been promoted. I’ve got money to
+burn.</p>
+<p><strong>tony</strong>: Do you want to change your life through
+Mahayana Buddhism?</p>
+<p><strong>carl</strong>: Tony.</p>
+<p><strong>tony</strong>: How’ve you been? You… never called.</p>
+<p><strong>carl</strong>: I’m sorry. I’ve been busy.</p>
+<p><strong>tony</strong>: Yeah, well, I’ve been busy too.</p>
+<p><strong>renee</strong>: Hey, who’s your friend?</p>
+<p><strong>tony</strong>: I’m Tony. I’m an old, close friend of
+Carl’s.</p>
+<p><strong>announcer</strong>: Flight 2036 to Lincoln, Nebraska, now
+boarding.</p>
+<p><strong>carl</strong>: That’s our flight. We should probably get
+going.</p>
+<p><strong>renee</strong>: It was nice meeting you.</p>
+<p><strong>carl</strong>: See you soon.</p>
+<p><strong>tony</strong>: Have fun. You abigail.</p>
+<p><strong>young woman</strong>: Hi, there. Would you mind switching
+places with me? I want to be across the aisle from my mom.</p>
+<p><strong>renee</strong>: We’re actually flying together.</p>
+<p><strong>young woman</strong>: It would really mean a great deal.
+She’s very scared of flying.</p>
+<p><strong>carl</strong>: Where’s your seat?</p>
+<p><strong>mom</strong>: I’m really scared of flying.</p>
+<p><strong>renee</strong>: So, now that we’re here, what should we
+do?</p>
+<p><strong>carl</strong>: Well, clearly we should go there.</p>
+<p><strong>carl</strong>: I had no idea that the earliest switchboard
+operator headsets weighed ten and a half pounds. That is
+fascinating.</p>
+<p><strong>renee</strong>: It is?</p>
+<p><strong>carl</strong>: Not at all.</p>
+<p><strong>elderly tour guide</strong>: I’ll connect you to the coast in
+an instant with Alexander Graham Bell’s brand new invention – the
+telephone! Just a haypenny per ten minutes.</p>
+<p><strong>renee</strong>: We don’t have to do this.</p>
+<p><strong>carl</strong>: We’re here. We might as well.</p>
+<p><strong>carl</strong>: There’s, uhh, no power steering.</p>
+<p><strong>tractor driver</strong>: It’s a tractor, not a Toyota.</p>
+<p><strong>carl</strong>: I’m sorry about the barn.</p>
+<p><strong>tractor driver</strong>: Been meaning to tear this sucker
+down anyway.</p>
+<p><strong>renee</strong>: I think I might have whiplash from that
+tractor ride.</p>
+<p><strong>carl</strong>: Just don’t sue me.</p>
+<p><strong>renee</strong>: Watch your back, Carl. I mean it. I’m very
+litigious.</p>
+<p><strong>carl</strong>: This day has been so randomly incredible.</p>
+<p><strong>renee</strong>: Would you… want to… travel around the world
+with me?</p>
+<p>****: I mean, I know we haven’t really been seeing each other for
+that long, but I don’t know…</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>renee</strong>: Yes?</p>
+<p><strong>carl</strong>: Definitely.</p>
+<p><strong>renee</strong>: I think I’m falling, you know… Are you… ?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>renee</strong>: Before our flight, what do you say we grab a
+couple Nebraskan steaks?</p>
+<p><strong>carl</strong>: I’m definitely falling for you.</p>
+<p><strong>old woman</strong>: Excuse me. Would you mind bringing this
+to my son?</p>
+<p><strong>carl</strong>: Like you want me to bring it with me? On the
+plane?</p>
+<p><strong>old woman</strong>: Fedex is so expensive and this needs to
+get to him today.</p>
+<p><strong>carl</strong>: Yeah. Sure. I’d be happy to.</p>
+<p><strong>old woman</strong>: He’s a tall, blond fellow named Sheldon
+Winkleton. He’ll be holding a sign in the terminal with his name on it.
+You are a dear.</p>
+<p><strong>renee</strong>: I got US Weekly, Star and, for a little
+culture, the National Enquirer.</p>
+<p><strong>carl</strong>: National Enquirer?</p>
+<p><strong>renee</strong>: They have movie reviews. What’s in the
+package?</p>
+<p><strong>carl</strong>: Just a gift for some buddies back home.</p>
+<p><strong>renee</strong>: I’m sorry, I have to go to the bathroom.</p>
+<p><strong>dea agent</strong>: Put the package down! Put it down!</p>
+<p><strong>renee</strong>: What the hell is that?</p>
+<p><strong>carl</strong>: I don’t know!</p>
+<p><strong>good cop bob</strong>: I’m Bob.</p>
+<p><strong>bad cop bob</strong>: And I’m Bob.</p>
+<p><strong>carl</strong>: Yes. I’m sorry. Just let the girl go. She
+doesn’t know anything.</p>
+<p><strong>bad cop bob</strong>: We’ll see about that, Carl.</p>
+<p><strong>carl</strong>: Some old lady gave me a package in the Lincoln
+airport to deliver to her son, Sheldon Winkleton. That was really stupid
+of me and I realize that now. I don’t know anything about anything.</p>
+<p><strong>good cop bob</strong>: Just answer a few questions and I’m
+sure we’ll get this all sorted out. Have you ever used illegal
+drugs?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>good cop bob</strong>: Pot?</p>
+<p><strong>carl</strong>: Yes. But that’s all.</p>
+<p><strong>bad cop bob</strong>: How about shrooms?</p>
+<p><strong>carl</strong>: But that’s the only bad shit I’ve done. I
+swear.</p>
+<p><strong>bad cop bob</strong>: Never cheated on a girlfriend?</p>
+<p>****: Yes, I have. But I was in high school. I was a mess. She had
+cheated on me –</p>
+<p><strong>bad cop bob</strong>: You disgust me.</p>
+<p><strong>good cop bob</strong>: He’s a moron. But I think he’s telling
+the truth.</p>
+<p><strong>bad cop bob</strong>: I agree. No one ever admits to the
+cheating question.</p>
+<p><strong>renee</strong>: What the hell happened?</p>
+<p><strong>carl</strong>: I can explain.</p>
+<p><strong>renee</strong>: So explain. Are you a drug smuggler?</p>
+<p><strong>carl</strong>: Look, when the nice lady asked me to take them
+on the plane, I thought they were chocolates.</p>
+<p><strong>renee</strong>: You expect me to believe a nice lady asked
+you to bring chocolates on a plane?</p>
+<p><strong>carl</strong>: I know how it sounds.</p>
+<p><strong>renee</strong>: I don’t think you do.</p>
+<p><strong>carl</strong>: Wait! I’ll explain better.</p>
+<p><strong>renee</strong>: So you’ve just been saying yes to
+everything.</p>
+<p><strong>carl</strong>: Yes.</p>
+<p>****: Pardon the pun.</p>
+<p><strong>renee</strong>: Oh.</p>
+<p><strong>carl</strong>: See? Do you get it now? It’s nothing, just a
+glitch really.</p>
+<p><strong>renee</strong>: I thought we had so much in common but if you
+just yes to everything I don’t know that we do. How do I know if you
+even like Korean food?</p>
+<p><strong>carl</strong>: I don’t.</p>
+<p><strong>renee</strong>: Do you even want to travel around the world
+at all or do you want to work at that bank and buy a lot of Prada
+suits?</p>
+<p>****: Yes. And yes.</p>
+<p><strong>renee</strong>: When I asked if you were falling for me all
+you said was yes.</p>
+<p><strong>carl</strong>: It wasn’t a lie.</p>
+<p><strong>renee</strong>: Yes. It was.</p>
+<p><strong>nurse</strong>: It’ll be over soon.</p>
+<p><strong>carl</strong>: I don’t care. Just take it all.</p>
+<p><strong>secretary</strong>: Chris will be with you in a moment. Would
+you like something to drink?</p>
+<p><strong>chris parker</strong>: So I got a call from the police
+department.</p>
+<p><strong>carl</strong>: I’m not a drug dealer –</p>
+<p><strong>chris parker</strong>: I spent a couple years in prison
+myself. So I backdated some stock options. Excuse me for trying to help
+our bottom line, right?</p>
+<p><strong>carl</strong>: You got to do what you got to do to help
+Mr. And Mrs. Shareholder.</p>
+<p><strong>chris parker</strong>: We are their slaves.</p>
+<p><strong>carl</strong>: Totally.</p>
+<p><strong>chris parker</strong>: Honestly, I prefer for all my top guys
+to have been in the Big House. We’ve all eaten the slop. There’s a trust
+there you can’t break.</p>
+<p>****: Yes.</p>
+<p><strong>carl</strong>: That’s right, we’re dropping the minimum loan
+to one dollar, bank- wide.</p>
+<p><strong>chris parker</strong>: Could you look through these numbers
+and let me know which of our five branches have been lagging behind in
+profit?</p>
+<p><strong>carl</strong>: I thought I was just implementing the
+microloan program.</p>
+<p><strong>chris parker</strong>: You’re a VP, buddy. You do it all
+now.</p>
+<p><strong>carl</strong>: Sorry about that.</p>
+<p><strong>chris parker</strong>: Carl, I’m glad you could join us. So,
+to keep you all updated, we should be merging with Korean Bank
+International within the year.</p>
+<p><strong>carl</strong>: You can’t close the Maple Branch!</p>
+<p><strong>chris parker</strong>: I know that Maple’s where you got your
+start, but if I don’t lay those people off then I get laid off. It’s a
+vicious cycle.</p>
+<p><strong>carl</strong>: You don’t have to if you don’t want to.</p>
+<p><strong>chris parker</strong>: If we don’t close these branches than
+KBI will buy our competitor instead of us and put us all out of
+business. If you want to be an executive and get to do fun stuff like
+your microloan project, then you also have to be the bad guy who lays
+people off. That’s why we get paid the big bucks. To make the hard
+decisions.</p>
+<p><strong>norman</strong>: The bank’s all I’ve got. Every morning I
+restock the hard candy, polish the safe, write today’s interest rates on
+the board.</p>
+<p><strong>carl</strong>: There are other banks.</p>
+<p><strong>rooney</strong>: We have to protest the merger. Get some
+grassroots action going. Grass looks weak, but it grows everywhere.</p>
+<p><strong>carl</strong>: You don’t even work at the bank.</p>
+<p><strong>norman</strong>: You should protest with us!</p>
+<p><strong>rooney</strong>: Yeah! Protest with your employees! It will
+only make you more popular!</p>
+<p><strong>employees</strong>: Hell no! We won’t go! Hell no! We won’t
+go!</p>
+<p><strong>rooney</strong>: Throw a rock at him.</p>
+<p><strong>norman</strong>: Yeah, throw a rock!</p>
+<p><strong>chris parker</strong>: Some asshole protestor threw a rock at
+my head.</p>
+<p><strong>carl</strong>: Those dicks.</p>
+<p><strong>chris parker</strong>: I wish using hoses wasn’t such bad</p>
+<p><strong>carl</strong>: I think I made a mistake letting Renee go like
+that. What if I’m supposed to go on that trip?</p>
+<p><strong>peter</strong>: You own an apartment because of that job.
+People don’t generally leave good jobs.</p>
+<p><strong>carl</strong>: But the bank doesn’t feel right…</p>
+<p><strong>peter</strong>: Hey, honey. I think we should go with the
+tulips. I know roses are more romantic, but they’re also much more
+clich�d. Babe, can you wait a second? I’m going to be on for a while.
+Ask your guru. He’s the one who sent you on this retarded quest in the
+first place.</p>
+<p><strong>carl</strong>: Hi, Sanji. I’m Carl. Kendall.</p>
+<p><strong>sanji</strong>: Of course! Would you like to purchase my new
+book, “The Power of Yes: Life is Yessy”?</p>
+<p><strong>carl</strong>: Actually, I had a question for you…</p>
+<p><strong>sanji</strong>: Well, this line is for book customers
+only.</p>
+<p><strong>carl</strong>: I’m sorry to bother you again –</p>
+<p><strong>sanji</strong>: Can’t you see that I’m eating?</p>
+<p><strong>carl</strong>: I have a really important question. I have to
+choose between traveling around the world with a girl I’m really into or
+choosing a job that will make me pretty well off. I don’t know which yes
+to take.</p>
+<p><strong>sanji</strong>: How well off?</p>
+<p><strong>carl</strong>: I don’t know why that’s important.</p>
+<p><strong>sanji</strong>: I should know all the data.</p>
+<p><strong>carl</strong>: A lot, OK?</p>
+<p><strong>sanji</strong>: This is what I recommend. Every winter, I
+throw a two week long seminar in Aspen. It’s only ten grand a week and
+it will open your mind up –</p>
+<p><strong>carl</strong>: I don’t want to go to a seminar. I just need
+help with this question.</p>
+<p><strong>sanji</strong>: For you, eight grand a week. I have helped
+celebrities like Cher and Jack Welch. You will love it –</p>
+<p>****: You’re a total con artist.</p>
+<p><strong>sanji</strong>: I am not a con artist. Have I not set you on
+the life path you desire?</p>
+<p>****: I’ve put my life into the hands of a con artist! And because of
+you I have this retarded yes branded on my hand for life!</p>
+<p>****: This man is a con artist! Don’t listen to this man! He is a con
+artist!</p>
+<p><strong>rooney</strong>: You are dead, AnalDestroyer832!</p>
+<p><strong>carl</strong>: Out!</p>
+<p><strong>rooney</strong>: What? Why?</p>
+<p><strong>carl</strong>: You’ve slept on my couch for four weeks.
+You’re a grown man. Now sack up and get the hell out of here.</p>
+<p><strong>rooney</strong>: Will you let me stay here please?</p>
+<p><strong>carl</strong>: Are you deaf?</p>
+<p><strong>rooney</strong>: You have to say yes if I ask you.</p>
+<p><strong>carl</strong>: You knew?</p>
+<p><strong>rooney</strong>: I may not seem like I get it, but I get
+everything. Lucy and Kath? Made out one time in the bathroom at
+Rudy’s.</p>
+<p><strong>carl</strong>: Get the hell out of here.</p>
+<p><strong>nigerian king</strong>: Dear Carl, It is vitally important
+you send me your bank account information. The government will be
+closing in on my account in the very near future. Your good friend,
+Omar, Former King of Nigeria.</p>
+<p><strong>carl</strong>: Omar, Let’s cut the crap. You are not a king.
+You’re probably just a teenage con artist jerking off somewhere in
+Russia. Write me again and I will find you and beat your stupid lying
+face in. Dick. Sincerely, Carl Kendall.</p>
+<p><strong>flier guy</strong>: You want to pawn –</p>
+<p><strong>carl</strong>: No.</p>
+<p><strong>dunkin donuts cashier</strong>: Would you like an –</p>
+<p><strong>carl</strong>: No.</p>
+<p><strong>carl</strong>: Hey, Luce. What’re you doing all the way over
+here?</p>
+<p><strong>lucy</strong>: It’s been hard to reach you.</p>
+<p><strong>carl</strong>: I’ve been a little swamped.</p>
+<p><strong>lucy</strong>: Everything OK?</p>
+<p><strong>carl</strong>: Yeah. Things are great.</p>
+<p><strong>lucy</strong>: I was wondering when you want to meet with the
+florist.</p>
+<p><strong>carl</strong>: Sorry, but I’m too busy these days. Don’t have
+time to help with the party anymore. Good luck.</p>
+<p><strong>lucy</strong>: You’re just stopping, just like that?</p>
+<p><strong>carl</strong>: I’m not the one marrying you. Maybe you should
+ask him for some help.</p>
+<p><strong>lucy</strong>: He is helping. Here I was thinking we were
+actual friends.</p>
+<p><strong>chris parker</strong>: What is the best way for us to enter
+the teenage credit card market?</p>
+<p><strong>vp</strong>: Give away a free iPod.</p>
+<p><strong>chris parker</strong>: Yes.</p>
+<p><strong>another vp</strong>: Include one with cans of Mountain Dew
+Code Red.</p>
+<p><strong>chris parker</strong>: Nice. Anyone else? Carl?</p>
+<p><strong>carl</strong>: Have you guys thought that teenagers don’t
+have the financial knowhow to use a credit card?</p>
+<p><strong>chris parker</strong>: That’s why they’re such a ripe market.
+Any ideas on how to pick that low hanging fruit?</p>
+<p><strong>carl</strong>: Include a Mastercard with every xBox.</p>
+<p><strong>chris parker</strong>: I like that. I like that a lot.</p>
+<p>****: Hey, Carl. Peter here. Long time no see. Sorry to hear you
+won’t be planning our engagement party. Although I guess that makes you
+less gay than I thought you were. We’ll be watching the game at Rudy’s
+tonight, if you’re interested.</p>
+<p><strong>jason</strong>: Dear Carl. I know this is kind of random, but
+I thought I should write you. We met at that party at Norman’s
+apartment. I was the INS guy who hated his life and hated you. I just
+wanted to tell you that I took your advice. I quit my job and have
+founded a home in Botswana for elderly orangutans. I’ve never been
+happier. You told me to say “yes” and it has turned out to be
+incredible. Thank you. Yours truly, Jason Newmark</p>
+<p><strong>carl’s secretary</strong>: The executives are gathering in
+the conference room to officially greet the KBI Officials.</p>
+<p><strong>carl</strong>: It’s an elderly orangutan actually. Could you
+please call everyone on this list and tell them to show up at Rudy’s Bar
+&amp; Grille this evening at 9PM?</p>
+<p><strong>carl’s secretary</strong>: Will do.</p>
+<p><strong>carl</strong>: I just want to say, it was really great having
+you as my first secretary.</p>
+<p><strong>carl’s secretary</strong>: You’re not firing me, are you?</p>
+<p><strong>carl</strong>: I don’t think I’m going to be working here
+much longer.</p>
+<p><strong>carl</strong>: I need to talk to you.</p>
+<p><strong>chris parker</strong>: And I need to talk to you. You mind
+doing a little ceremonial translating?</p>
+<p><strong>carl</strong>: I don’t know if I’m good enough at Korean
+–</p>
+<p><strong>chris parker</strong>: Believe in yourself and the world
+believes in you.</p>
+<p><strong>chris parker</strong>: KBI is the at the forefront of the
+financial world. With your help, Southwest will be as well.</p>
+<p>****:</p>
+<p><strong>chris parker</strong>: We look forward to working together
+and extending our reach across the globe.</p>
+<p>****:</p>
+<p><strong>carl</strong>:</p>
+<p><strong>chris parker</strong>: So with this hand shake, I make
+official the acquisition of Southwest by Korean Bank International.</p>
+<p><strong>carl</strong>:</p>
+<p><strong>seung kim</strong>: No.</p>
+<p><strong>chris parker</strong>: Excuse me?</p>
+<p><strong>seung kim</strong>: We have a traitor in our midst. This man
+just called me a son of a dog and informed me that my hand is covered in
+fecal matter. He is clearly trying to sabotage the merger.</p>
+<p><strong>carl</strong>: You speak English?</p>
+<p><strong>seung kim</strong>: You think an international bank financier
+wouldn’t speak fluent English? For whom do you work, traitor? Shanghai
+Bank? Chinatrust?</p>
+<p><strong>carl</strong>: For myself.</p>
+<p><strong>seung kim</strong>: Fine. Keep it secret. Unfortunately, I
+cannot approve a merger with a company so incompetent as to have a
+business saboteur this high up. Good day.</p>
+<p><strong>carl</strong>: I quit.</p>
+<p><strong>peter</strong>: Why does he want us here?</p>
+<p><strong>lucy</strong>: I have no idea.</p>
+<p><strong>kath</strong>: You guys get the call as well?</p>
+<p><strong>iranian woman</strong>: I’m Farinoush.</p>
+<p><strong>rooney</strong>: I’m Rooney.</p>
+<p><strong>iranian woman</strong>: You’re tall.</p>
+<p><strong>music cue</strong>: Rocky Theme.</p>
+<p><strong>carl</strong>: Announcing the pending marriage of Peter
+Carlton and Lucy Giuliano!</p>
+<p><strong>peter</strong>: Wow. There’s a horse in here.</p>
+<p><strong>lucy</strong>: Who are all these people?</p>
+<p><strong>carl</strong>: I didn’t have much time to throw this
+together. I got a stallion, didn’t I?</p>
+<p><strong>lucy</strong>: Thanks, Carl.</p>
+<p><strong>music cue</strong>: The Black-Eyed Peas “My Humps”</p>
+<p><strong>peter</strong>: What’re you doing out here?</p>
+<p><strong>carl</strong>: I entrust you to sell all my shit.</p>
+<p><strong>peter</strong>: What’re you talking about?</p>
+<p><strong>music cue</strong>: ABBA’s “One Night in Bangkok”</p>
+<p><strong>renee</strong>: What’re you doing here?</p>
+<p><strong>carl</strong>: Yes.</p>
+<p><strong>renee</strong>: I didn’t ask you a question.</p>
+<p><strong>carl</strong>: Well, if you do that’s what my answer will
+be.</p>
+<p><strong>renee</strong>: Are you here because you want to be here?</p>
+<p><strong>carl</strong>: I just flew twenty-two hours. What do you
+think? Now can I please kiss you?</p>
+<p><strong>young thai man</strong>:</p>
+<p><strong>norman</strong>:</p>
+<p><strong>old thai man</strong>:</p>
+<p><strong>chyron</strong>: Makurdi, Nigeria</p>
+<p><strong>machine gun guard</strong>: What do you want?</p>
+<p><strong>carl</strong>: I’m here to see Omar. The former King of
+Nigeria.</p>
+<p><strong>omar, former king of nigeria</strong>: Is that Carl
+Kendall?</p>
+<p><strong>carl</strong>: Omar! It’s wonderful to meet you in person</p>
+<p><strong>omar, former king of nigeria</strong>: And this must be
+Renee? What a delight!</p>
+<p><strong>renee</strong>: Thank you, your majesty.</p>
+<p><strong>omar, former king of nigeria</strong>: Please, call me
+Omar.</p>
+<p><strong>carl</strong>: I’m sorry for calling you a masturbatory
+Russian teenager.</p>
+<p><strong>omar, former king of nigeria</strong>: Water under the
+bridge. What do you say to having a feast?</p>
+</body>
+</html>

@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>deep-cover</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="deep-cover">deep-cover</h1>
+<p><strong>joe stevens</strong>: Your mother okay?</p>
+<p><strong>joe jr.</strong>: Yes, sir.</p>
+<p><strong>joe stevens</strong>: Don’t you do this shit, boy. Don’t you
+ever fuckin’ touch it, you hear me?</p>
+<p><strong>joe stevens</strong>: You hear me, goddam it?</p>
+<p><strong>joe stevens</strong>: What do you want for Christmas?</p>
+<p><strong>joe jr.</strong>: I don’t know.</p>
+<p><strong>joe stevens</strong>: You don’t know?? You gotta know what
+you want, boy, if you ever expect to get it.</p>
+<p><strong>joe stevens</strong>: Wait here. This won’t take a
+minute.</p>
+<p><strong>joe jr.</strong>: Daddy!!</p>
+<p><strong>store owner</strong>: Fuckin’ niggers… fuckin’ niggers…</p>
+<p><strong>joe stevens</strong>: Fifty bucks… fifty goddam bucks. I’m
+sorry…</p>
+<p><strong>joe jr.</strong>: Please, Mister…</p>
+<p><strong>carver</strong>: Officer Leland? You know the difference
+between a black man and nigger?</p>
+<p><strong>carver</strong>: Yeah, most niggers don’t.</p>
+<p><strong>carver</strong>: Nice to meet you.</p>
+<p><strong>carver</strong>: So, Winston, what’s the difference between a
+black man and a nigger?</p>
+<p><strong>winston</strong>: Who the fuck do you think you’re talking
+to?</p>
+<p><strong>carver</strong>: Thanks for coming in.</p>
+<p><strong>stevens</strong>: The nigger’s the one who falls for your
+bullshit.</p>
+<p><strong>carver</strong>: Gerald Carver, United States District
+Attorney. Call me Gerry.</p>
+<p><strong>on a tv screen</strong>: a grainy black-and-white tape, date
+and time stamped at the bottom. A grungy street, palm trees. The light
+from the monitor dimly illuminates Carver and Stevens.</p>
+<p><strong>stevens</strong>: He ought to be wearing a sign.</p>
+<p><strong>carver</strong>: You can tell he’s a cop?</p>
+<p><strong>stevens</strong>: He keeps looking for his back-up. Now, the
+other guy knows it, too.</p>
+<p><strong>carver</strong>: Then why’s he taking him to the room?</p>
+<p><strong>stevens</strong>: To rip him off.</p>
+<p><strong>on screen</strong>: The figures disappear into the motel. We
+hear their voices. DEALER: “Here, try some of it.” UNDERCOVER</p>
+<p><strong>cop</strong>: “Uhh… No, I don’t…” DEALER: “Why not, you
+sonofabitch?” Two bursts of SOUND DISTORTION.</p>
+<p><strong>stevens</strong>: Too late.</p>
+<p><strong>on screen</strong>: The CAMERA nears the open motel door.
+Taft is bent over the Undercover Cop’s body.</p>
+<p><strong>taft</strong>: Oh, Bobby… Jesus, Jesus… Get an ambulance –
+and back up. Now!</p>
+<p><strong>stevens</strong>: Who is he?</p>
+<p><strong>carver</strong>: Charles Taft. LAPD Narcotics.</p>
+<p><strong>stevens</strong>: He’s a good cop.</p>
+<p><strong>carver</strong>: He’s a great cop. Two and a . As tough as
+they come and twice as honest.</p>
+<p><strong>stevens</strong>: But the cops aren’t getting it done here,
+are they? Gotta try something new…</p>
+<p><strong>stevens</strong>: Who’s John Hull?</p>
+<p><strong>carver</strong>: You are. If you want to be. Most undercover
+guys don’t know what they’re doing because it’s a day gig. I need
+somebody who goes under and stays there; six months, a year, five
+years…</p>
+<p><strong>stevens</strong>: What does he have to do?</p>
+<p><strong>carver</strong>: Buy drugs. Sell drugs. Feed me
+information.</p>
+<p><strong>stevens</strong>: He’s a snitch.</p>
+<p><strong>carver</strong>: He’s a drug dealer. A criminal. A scumbag.
+But for the right side. I want you to come to Los Angeles on loan to the
+Justice Department as a federal agent. Your experience there will be
+credited toward your seniority here. And you’ll come back to Cleveland a
+P3 or higher.</p>
+<p><strong>stevens</strong>: I can’t do that. I’ve got a wife and
+kids.</p>
+<p><strong>carver</strong>: You’re separated from your wife, she’s
+filled for divorce. You see your kids every other weekend.</p>
+<p><strong>stevens</strong>: All my life I’ve stayed away from that
+stuff. I’ve never touched drugs.</p>
+<p><strong>carver</strong>: Come on, a little grass…?</p>
+<p><strong>stevens</strong>: Not grass. Not nothing. I never even had a
+drink. Never have, never will. You don’t understand. I made a choice in
+my life.</p>
+<p><strong>carver</strong>: What’s to understand? You saw your father
+killed when you were ten, and you decided you wouldn’t be like that. I’m
+God, I know everything. You wanted to be a good boy, so you became a
+cop. Hiding out in uniform… That’s why you got the hard-on for Taft.</p>
+<p><strong>stevens</strong>: It’s not that simple.</p>
+<p><strong>carver</strong>: I’ll tell the truth, Joe. You’re never going
+to be a Taft.</p>
+<p><strong>stevens</strong>: I don’t believe that.</p>
+<p><strong>carver</strong>: You ever take a look at your psychological
+profile? You score almost like a criminal. “Resents authority…”</p>
+<p><strong>stevens</strong>: I do not.</p>
+<p><strong>carver</strong>: “…Exaggerated moral standards, but with no
+underlying value system.” Look at the anger, the repressed violence,
+it’s almost off the scale…</p>
+<p><strong>stevens</strong>: Let me see that…</p>
+<p><strong>carver</strong>: Why’d you join the force?</p>
+<p><strong>stevens</strong>: I wanted to be of use.</p>
+<p><strong>carver</strong>: Well, now you can be. You won’t be Taft, but
+maybe you’ll be something more… interesting. There’s a man named Ramon
+Gallegos who supplies 60% of the cocaine to the West Coast. He’s smart,
+smooth, and sufficiently elusive that we don’t even have an adult
+photograph of him. However, his uncle is Hector Guzman, an important
+Latin American political figure. Gallegos uses Uncle’s connections to
+get product into the country, and everyone we’ve sent after him has
+ended up like that…</p>
+<p><strong>stevens</strong>: Why would I be different?</p>
+<p><strong>carver</strong>: You already are, that’s the point… You’ve
+got the ability and the personality to go underground and blend in
+completely. That’s what the others couldn’t. Some part of them showed.
+That’s why they’re dead. See, there’s only one rule in this game.</p>
+<p><strong>carver</strong>: Don’t blow your cover.</p>
+<p><strong>stevens</strong>: Joe-J, Carmen…</p>
+<p><strong>stevens</strong>: What were you doing with those kids?</p>
+<p><strong>joe-j &amp; carmen</strong>: Playing…</p>
+<p><strong>stevens</strong>: Your mom lets you play with them?</p>
+<p><strong>joe-j &amp; carmen</strong>: Yes, sir… Yes, sir.</p>
+<p><strong>stevens</strong>: I thought we talked about this. The older
+brother up there’s got a sheet with –</p>
+<p><strong>terry</strong>: Lay off it. They’re just kids…</p>
+<p><strong>tito</strong>: Hey, Joe.</p>
+<p><strong>stevens</strong>: Tito…</p>
+<p><strong>stevens</strong>: They’re real nice, honey. Is that a
+horse?</p>
+<p><strong>carmen</strong>: Daddy! It’s a bunny…</p>
+<p><strong>carmen</strong>: I don’t want you to go away, Daddy.</p>
+<p><strong>stevens</strong>: It’s my work. I’ve got to.</p>
+<p><strong>stevens</strong>: What happened to you there, baby?</p>
+<p><strong>carmen</strong>: Tito did it.</p>
+<p><strong>stevens</strong>: He hit you?! God damn it, what’s he doing
+touching her? I’m gonna…</p>
+<p><strong>terry</strong>: She was running behind his chair when he got
+up. It was an accident. A complete… total… accident.</p>
+<p><strong>blonde woman</strong>: Television mostly. I was on “Sky King”
+twice, “Ramar of the Jungle.” That was a silly show. The jungle was
+mostly flats…</p>
+<p><strong>blonde woman</strong>: You want my advice, I’d stay away from
+that bitch.</p>
+<p>****: Throughout the film, Hull continually checks himself out in
+mirrors, both to adjust his appearance to the circumstances and as if in
+an attempt to recall who he</p>
+<p><strong>eddie</strong>: On the day of the King’s castration, all the
+counts and no accounts were down on the deck with Georgia Tech taking
+turns in the back seat…</p>
+<p><strong>hull</strong>: Whatta you got?</p>
+<p><strong>13-year-old dealer</strong>: Nickel rock, dime rock.
+Excellent shit.</p>
+<p><strong>ivy</strong>: What the fuck I tell you about being here?</p>
+<p><strong>13-year-old dealer</strong>: No, wait…</p>
+<p><strong>ivy</strong>: Too fuckin’ late.</p>
+<p><strong>ivy</strong>: Get down, motherfuckers!</p>
+<p><strong>crowd</strong>: Who is he?… Why’d they shoot him?… Ivy did
+him, man… He’s in the wrong fuckin’ place… That poor boy… Get his
+beeper…</p>
+<p><strong>eddie</strong>: He done done, ain’t he?</p>
+<p><strong>bartender</strong>: How’s it going, John?</p>
+<p><strong>hull</strong>: I’m in there.</p>
+<p><strong>eddie</strong>: “Where’s the Queen,” said the King. “She’s in
+bed with laryngitis.” “Is that bastard still in town?… Fuck the Queen,”
+said the King, and ten thousand knights straaaained at their utmost…
+Pina colada times two and a white wine.</p>
+<p><strong>eddie</strong>: How you doin’, Dudley…</p>
+<p><strong>hull</strong>: John.</p>
+<p><strong>eddie</strong>: John, man, right…</p>
+<p>****: Hull invariably meets Carver in this anonymous room,
+distinguished only by the green blotter and a view of the city. This
+simple regularity suggest visits to a psychiatrist, Carver probing,
+testing, teasing, trying to draw Hull out.</p>
+<p><strong>hull</strong>: Eddie something… a motormouth… he supplies the
+street dealers… buys from him… David Elias… who apparently buys from a
+guy named Barbolla or something. But I haven’t seen him.</p>
+<p><strong>carver</strong>: Barbosa, Felix.</p>
+<p><strong>hull</strong>: There was also a woman, but she’s not here. I
+saw a kid killed. Twelve, thirteen at the most. Turf war.</p>
+<p><strong>carver</strong>: Get to Elias. Then to Barbosa.</p>
+<p><strong>hull</strong>: You can’t rush this stuff.</p>
+<p><strong>carver</strong>: Rush it, please. I want art, John, not
+reality. Budget hearings start in April, and I need Gallegos by then.
+They won’t give us funding for three ounce buys.</p>
+<p><strong>hull</strong>: We’re not just doing this for the funding, are
+we?</p>
+<p><strong>carver</strong>: Without funding, we aren’t doing it at
+all.</p>
+<p><strong>eddie</strong>: My man, Dudley, he’s so fud-ley…</p>
+<p><strong>hull</strong>: Eddie, man, I need…</p>
+<p><strong>chorus of comments</strong>: Whatever happened to that Drug
+Czar motherfucker?… He gave up ’cause he finally realized he didn’t know
+nothing about any of that shit…</p>
+<p><strong>eddie</strong>: So what is it you need so bad, blood? Need,
+need, need??</p>
+<p><strong>hull</strong>: A whole K, quick as you can get it.</p>
+<p><strong>eddie</strong>: Comin’ in the world, Dudley.</p>
+<p><strong>hull</strong>: All because of my man…</p>
+<p><strong>eddie</strong>: Give me a day.</p>
+<p><strong>eddie</strong>: Stick around, let the bitch Hoover you,
+too.</p>
+<p><strong>hull</strong>: Only if you Clorox him first.</p>
+<p><strong>taft</strong>: Eddie Shitface! Where you been, boy?</p>
+<p><strong>taft</strong>: Eddie, I don’t think I introduced you to my
+new partner, Michael Hernandez…</p>
+<p><strong>hernandez</strong>: Pleased to meet you, Mr. Shitface…</p>
+<p><strong>hernandez</strong>: You have the right to remain silent… You
+have the right to an attorney… You have the right to go back to Ontario
+for eight-to-ten on a second offense…</p>
+<p><strong>eddie</strong>: Oh, man, I can’t go back in there, I just
+can’t.</p>
+<p><strong>taft</strong>: ’Course you can’t, child, ’course you can’t.
+That’s why you’re gonna start giving us some help.</p>
+<p><strong>elias</strong>: Again. Three times four.</p>
+<p><strong>miranda</strong>: Seven.</p>
+<p><strong>elias</strong>: No. You’re adding again, you have to
+multiply. Three and four is seven. Three times four is…</p>
+<p><strong>miranda</strong>: Twelve.</p>
+<p><strong>elias</strong>: Three times five.</p>
+<p><strong>nancy</strong>: Can you get that?</p>
+<p><strong>miranda</strong>: Eight.</p>
+<p><strong>elias</strong>: about the answer</p>
+<p><strong>miranda</strong>: Why can’t I just use a calculator?</p>
+<p><strong>elias</strong>: What are you doing here?</p>
+<p><strong>barbosa</strong>: We’ve got a problem, David.</p>
+<p><strong>elias</strong>: Call me on the phone.</p>
+<p><strong>barbosa</strong>: Your friend Eddie just started bending over
+for the cops.</p>
+<p><strong>barbosa</strong>: They busted him, and he’s dealing to save
+his ass.</p>
+<p><strong>gopher</strong>: Which is how he’ll lose the skinny little
+thing.</p>
+<p><strong>elias</strong>: Did he give us up?</p>
+<p><strong>barbosa</strong>: Not yet, but he will if he has to, and
+eventually he’ll have to.</p>
+<p><strong>miranda</strong>: Daddy! I thought we were doing my
+homework.</p>
+<p><strong>elias</strong>: I don’t think he’d talk about us. He’d try
+not to.</p>
+<p><strong>barbosa</strong>: If we whack him, he definitely won’t.</p>
+<p><strong>miranda</strong>: Daddy!!</p>
+<p><strong>elias</strong>: Just a second. Not yet. Let me check on this,
+first.</p>
+<p><strong>barbosa</strong>: Nobody said you had to do the dirty work,
+David. I’ll take care of –</p>
+<p><strong>elias</strong>: Felix, if he’s a problem, we’ll kill him.
+I’ll kill him myself.</p>
+<p><strong>elias</strong>: Nancy, get out of here.</p>
+<p><strong>nancy</strong>: For you; it’s Eddie.</p>
+<p><strong>barbosa</strong>: You got a tasty wife, David. No wonder you
+don’t want us coming here.</p>
+<p><strong>elias</strong>: Don’t talk about her that way.</p>
+<p><strong>gopher</strong>: He can’t help it, David, it’s his
+nature.</p>
+<p><strong>elias</strong>: Eddie… Sure, man, what do you need?</p>
+<p><strong>eddie</strong>: David, this is John, John, David. Eddie, this
+is Eddie. Everybody ready?</p>
+<p><strong>hull</strong>: So what’s this, you want to meet me?</p>
+<p><strong>elias</strong>: I like to know the important customers.</p>
+<p><strong>elias</strong>: You’re taking a lot of weight for a guy we
+hardly know. Where’re you moving this stuff, John? We haven’t seen you
+around. We like to have a sense who your customers are.</p>
+<p><strong>hull</strong>: Ah, come on, man, do Macy’s tell the Gimbel
+motherfuckers?</p>
+<p><strong>elias</strong>: Eddie, forget this guy, he’s a cop.</p>
+<p><strong>hull</strong>: What is this shit, Eddie? I thought you were
+the man.</p>
+<p><strong>eddie</strong>: Nobody’s the fuckin’ man. Go to your place.
+I’ll call you.</p>
+<p><strong>taft</strong>: This is our collar?</p>
+<p><strong>taft</strong>: Who is he?</p>
+<p><strong>hernandez</strong>: Some scumbag…</p>
+<p><strong>eddie</strong>: He’s no cop, David. He’s an animal. You see
+his eyes? You never see a cop with those eyes. I know this shit, man,
+you don’t.</p>
+<p><strong>elias</strong>: What’s going on, Eddie?</p>
+<p><strong>eddie</strong>: Twenty-six thousand cash is what. We need it,
+David. We’re behind.</p>
+<p><strong>elias</strong>: I want him to get it all, Eddie.</p>
+<p><strong>belinda</strong>: Mr. Hull… Mr. Hull…</p>
+<p><strong>hull</strong>: What’s happening, Belinda?</p>
+<p><strong>belinda</strong>: Now you know, Mr. Hull, I was to the
+welfare this afternoon, but the bus, you know what I’m saying?… the one
+bus, and then the other, and when I got there they’d gone and changed
+the time on me, without notification. They’s supposed to give
+notification, ain’t they? They said I got a thing in the mail, but I
+don’t remember, I don’t think they sent it, so now I’m off the welfare,
+plus I forgot to take James for his shot… for the school? Which
+otherwise they let him go. And he’s gotta learn, he’s gotta learn, don’t
+he, Mr. Hull, you tell him, so’s he can better hisself.</p>
+<p><strong>hull</strong>: You had any food today, James?</p>
+<p><strong>james</strong>: I had Ding-Dongs.</p>
+<p><strong>hull</strong>: You go to the Mexican place over there, and
+get the chicken tostada or the beef and bean burrito or both. And a
+milk.</p>
+<p><strong>james</strong>: I don’t like milk. I want a –</p>
+<p><strong>hull</strong>: You get the milk! And get something for your
+mother, too. What do you want?</p>
+<p><strong>belinda</strong>: Now, Mr. Hull, if you just –</p>
+<p><strong>hull</strong>: Two tostadas, two burritos, two milks.</p>
+<p><strong>belinda</strong>: You now, I look out for my James best I
+can, Mr. Hull, but it’s hard. Now you like the boy, don’t you?</p>
+<p><strong>belinda</strong>: I know you do. And I was thinkin’ if you
+wanted to take care of him, that might be good for him. Give him a male
+figure to look up to.</p>
+<p><strong>hull</strong>: Look, Belinda, I can’t…</p>
+<p><strong>belinda</strong>: If you could just give me something for
+him. Say five thousand dollars… Or maybe four thousand. I couldn’t give
+up my boy for less than four thousand…</p>
+<p><strong>hull</strong>: It’s me. I’m here… Where?… five minutes.</p>
+<p><strong>belinda</strong>: Or you could just give me a part now…</p>
+<p><strong>belinda</strong>: Let me do somethin’ for you, Mr. Hull. Let
+me do a little somethin’ for you.</p>
+<p><strong>blonde woman</strong>: No solicitin’ in the halls. I told you
+that before.</p>
+<p><strong>belinda</strong>: I ain’t doin’ shit. Bitch…</p>
+<p><strong>amplified voice</strong>: This is the police. Remain inside
+the vehicle. Place your open hands against the windshield so that they
+are clearly visible…</p>
+<p><strong>hull</strong>: Christ…</p>
+<p><strong>eddie</strong>: Spread the floor, Dudley. A-ga, a-ga, a-ga,
+a-ga…</p>
+<p><strong>taft</strong>: Thank you kindly…</p>
+<p><strong>taft</strong>: How you doin’, child?…</p>
+<p><strong>hull</strong>: You…</p>
+<p><strong>taft</strong>: Me? Of course, it’s me. You know me?</p>
+<p><strong>taft</strong>: Hurts, huh?</p>
+<p><strong>taft</strong>: Here, I want to show you something. You have
+kids?</p>
+<p><strong>taft</strong>: These are mine. Aren’t they the most beautiful
+children you ever saw?</p>
+<p><strong>taft</strong>: Yeah, I know, they kind of leave you
+speechless. So let me ask, if someone put a gun to your baby’s head,
+wouldn’t you kill him if you could?</p>
+<p><strong>taft</strong>: Me, too. And you’re the bastard with the
+gun.</p>
+<p><strong>hull</strong>: You know the difference between a nigger and a
+black man?</p>
+<p><strong>taft</strong>: Don’t jive me, boy.</p>
+<p><strong>hull</strong>: The nigger’s the one covers Whitey’s ass by
+puttin’ the brothers in jail.</p>
+<p><strong>taft</strong>: You ain’t my brother.</p>
+<p><strong>public defender</strong>: Hi, I’m Shelley Weissbrod. This is
+only an arraignment, a preliminary hearing, but if you don’t have money
+for an attorney, the Public Defender’s office can…</p>
+<p><strong>bailiff</strong>: You’ve got counsel. Over there.</p>
+<p><strong>hull</strong>: You’re a lawyer??</p>
+<p><strong>elias</strong>: I’m your lawyer.</p>
+<p><strong>hull</strong>: Who hired you?</p>
+<p><strong>elias</strong>: It’s pro bono. If you don’t want me, there’s
+Shelley. She’s good. She just can’t provide special services…</p>
+<p><strong>hull</strong>: Like what?</p>
+<p><strong>voice</strong>: John Hull…</p>
+<p><strong>elias</strong>: Getting your case called first.</p>
+<p><strong>elias</strong>: Your Honor, I believe the preliminary police
+toxicology report will show that the substance seized from my client was
+Mannitol, a baby laxative. We move for immediate dismissal.</p>
+<p><strong>elias</strong>: We’re out of here, Dude.</p>
+<p><strong>taft</strong>: Baby laxative, they sold you some bad
+shit.</p>
+<p><strong>drunken prisoner</strong>: You have a constipated baby, and
+you’re in jail? What kind of a father are you?</p>
+<p><strong>taft</strong>: A father who don’t know his own children,
+ain’t that right?</p>
+<p><strong>hull</strong>: You sold me Mannitol, motherfucker.</p>
+<p><strong>elias</strong>: If it hadn’t been, asshole, you’d be in jail
+right now… Come on, I want you to meet some people.</p>
+<p><strong>eddie</strong>: Dudley, Dudley, Fo-Fudley…</p>
+<p><strong>elias</strong>: Surprised to see him, Eddie?</p>
+<p><strong>elias</strong>: John got busted and kept his mouth shut.
+Can’t say that for everybody, can we?</p>
+<p><strong>eddie</strong>: What are you saying? Are you saying me? Are
+you saying something about me?</p>
+<p><strong>gopher</strong>: Tell the truth, Eddie. Be honorable. It’s
+all you got left.</p>
+<p><strong>eddie</strong>: Shut up, you little faggot.</p>
+<p><strong>elias</strong>: The cops made you give them somebody. We know
+it.</p>
+<p><strong>eddie</strong>: All right, so what? I mean, so what, man? You
+got the money. Twenty-six G. Twenty-six, David. Count it.</p>
+<p><strong>elias</strong>: Next time you might trade us.</p>
+<p><strong>eddie</strong>: Never. Never, Felix, never. Come on, man, you
+know I’d never…</p>
+<p><strong>barbosa</strong>: I know you never will.</p>
+<p><strong>eddie</strong>: Felix, no. Don’t be… I’m worth money to you.
+Let me give you money.</p>
+<p><strong>barbosa</strong>: Why? You don’t owe me anything.</p>
+<p><strong>eddie</strong>: Another twenty-six grand… Just to show you…
+Fifty.</p>
+<p><strong>barbosa</strong>: Why not a hundred?</p>
+<p><strong>eddie</strong>: A hundred??? Felix…</p>
+<p><strong>eddie</strong>: Okay, a hundred.</p>
+<p><strong>barbosa</strong>: Give it.</p>
+<p><strong>eddie</strong>: Tomorrow. Twenty-four hours.</p>
+<p><strong>barbosa</strong>: Now. Ten seconds.</p>
+<p><strong>eddie</strong>: Felix, I need time. I –</p>
+<p><strong>barbosa</strong>: One… two…</p>
+<p><strong>eddie</strong>: I don’t have it right now. But I can –</p>
+<p><strong>gopher</strong>: Then goodbye, Eddie. I forgive you for what
+you said to me.</p>
+<p><strong>eddie</strong>: Twelve hours. Tomorrow morning.</p>
+<p><strong>barbosa</strong>: Six… seven… You want to do it, David?</p>
+<p><strong>barbosa</strong>: Nine…</p>
+<p><strong>barbosa</strong>: Piece of shit!</p>
+<p><strong>barbosa</strong>: What’d you think?</p>
+<p><strong>hull</strong>: At least it was clean.</p>
+<p><strong>barbosa</strong>: What about you, bar mitzvah body? First
+time you saw somebody die?</p>
+<p><strong>elias</strong>: No. At camp… when I was fourteen… a friend of
+mine was water skiing… The motorboat ran him over… A junior counsellor
+was driving.</p>
+<p><strong>barbosa</strong>: You should kill a man some day, David, it’s
+liberating… Summer camp. I’m in business with somebody who went to
+summer camp.</p>
+<p><strong>elias</strong>: Eddie, man… He was always nice to my
+daughter.</p>
+<p><strong>hull</strong>: How’d a guy like you get into this?</p>
+<p><strong>elias</strong>: The way most drug lawyers do: clients paid me
+in product, and I had to move it. Soon I was doing more dealing than
+law. But this was ’83, ’84, there was so much money we thought it would
+never end.</p>
+<p><strong>hull</strong>: Yeah. And now…?</p>
+<p><strong>elias</strong>: The road gets rougher. Cocaine’s a dying
+business.</p>
+<p><strong>hull</strong>: Then what are we doing here?</p>
+<p><strong>elias</strong>: People are always going to want to get high.
+Every society has ways to alter consciousness.</p>
+<p><strong>hull</strong>: Because they can’t bear reality.</p>
+<p><strong>elias</strong>: We all need our delusions, only the means
+change: psychedelics, opiates, prayer, orgies, human sacrifice…</p>
+<p><strong>hull</strong>: What’s next?</p>
+<p><strong>hull</strong>: Why aren’t you selling it?</p>
+<p><strong>elias</strong>: I know how to make it and market it. But I
+need capital. That’s the only reason I’m hanging out with an asshole
+like Barbosa. And because I can’t get to the big guys.</p>
+<p><strong>hull</strong>: Who are the big guys?</p>
+<p><strong>elias</strong>: Gallegos, et cetera.</p>
+<p><strong>hull</strong>: Why can’t you get to them?</p>
+<p><strong>elias</strong>: What do you care?</p>
+<p><strong>elias</strong>: Anyway, designer drugs have a bad name: ice,
+ecstasy, tar – there’s a limited market for Parkinson’s disease. But
+what about completely safe, almost legal, terrific shit you can go to
+work on and do your job better than you ever did it straight?</p>
+<p><strong>hull</strong>: Sounds like a dream.</p>
+<p><strong>elias</strong>: In dreams begin responsibilities.</p>
+<p><strong>hull</strong>: Tell me about this new shit.</p>
+<p><strong>elias</strong>: Some other time, John, when we know each
+other better. Hey, bunnela. Five times two.</p>
+<p><strong>miranda</strong>: It’s too early. Don’t bother me.</p>
+<p><strong>miranda</strong>: Seven.</p>
+<p><strong>miranda</strong>: Oh, yeah… Ten… Who’s he?</p>
+<p><strong>elias</strong>: That’s my friend, John. This is Miranda.</p>
+<p><strong>hull</strong>: Hi, Miranda.</p>
+<p><strong>nancy</strong>: Come on, honey…</p>
+<p><strong>elias</strong>: Nancy, this is John.</p>
+<p><strong>elias</strong>: That’s not about you. It’s, she’s… judgmental
+about what I do.</p>
+<p><strong>hull</strong>: That’s more than I bought.</p>
+<p><strong>elias</strong>: Half we owe you. The other half’s on
+consignment. A token of our esteem.</p>
+<p><strong>hull</strong>: You’re having trouble moving it.</p>
+<p><strong>hull</strong>: Make me your partner. I’ll help you get your
+capital.</p>
+<p><strong>elias</strong>: I don’t need a partner. I need a
+salesman.</p>
+<p><strong>carver</strong>: I can’t buy this much shit. I haven’t got it
+in the budget.</p>
+<p><strong>hull</strong>: What am I supposed to do with it?</p>
+<p><strong>carver</strong>: You’re a drug dealer, John. Deal drugs.</p>
+<p><strong>hull</strong>: You know how this goes, Gerry. It won’t stop
+here. You know what they’re going to ask me to do pretty soon, to prove
+I’m down. What am I supposed to do then?</p>
+<p><strong>carver</strong>: Don’t blow your Carver.</p>
+<p><strong>carver</strong>: You’re still thinking like a cop, John.
+Forget that. Cross the line. Be what you are. You’re a criminal. You
+don’t give a shit about other people. You’re just trying to survive.</p>
+<p><strong>hull</strong>: I can’t do this shit. I just can’t.</p>
+<p><strong>carver</strong>: But you want to be of use. You want to get
+drugs off the street, don’t you?</p>
+<p><strong>hull</strong>: That’s why I’m here.</p>
+<p><strong>carver</strong>: Well, this is the cost. Pay it or go grow
+flowers someplace.</p>
+<p><strong>hull</strong>: You can’t back down with them. You’ve got to
+project strength, from inside, you know?</p>
+<p><strong>hull</strong>: Cocksucker…</p>
+<p><strong>dealer</strong>: What’d you do that for?</p>
+<p><strong>hull</strong>: ’Cause I can, motherfucker, ’cause I can.</p>
+<p><strong>hull</strong>: …Touch her again, motherfuckers, I’m gonna
+mess you up.</p>
+<p><strong>hull</strong>: Is David Elias here?</p>
+<p><strong>elias</strong>: Momentito…</p>
+<p><strong>elias</strong>: Jacqueline, ho-ney…</p>
+<p><strong>elias</strong>: “Who’s making love to your old lady… while
+you’re out make love…?” How come I like balling black chicks so
+much?</p>
+<p><strong>hull</strong>: ’Cause you’re a racist asshole. You feel like
+you’re fucking a slave, and it gets you off.</p>
+<p><strong>elias</strong>: Oh, don’t mau mau me with the Malcolm X shit.
+Tell me you’re not chasin’ white pussy every chance you get.</p>
+<p><strong>hull</strong>: I don’t dig white women. Even if I did, it
+wouldn’t mean the same thing.</p>
+<p><strong>elias</strong>: Sure, it’d be the slave fucking the master.
+Hegel talks about it. Just like me, but the other way around.</p>
+<p><strong>hull</strong>: Fuck Hegel. Who the fuck is Hegel? Some
+smart-ass kike that talks backwards?</p>
+<p><strong>elias</strong>: Everybody digs the other, John. They dig
+their own, and they dig the other.</p>
+<p><strong>hull</strong>: Does your wife dig black guys, David? Did she
+fuck Eddie? Does she want to fuck me?</p>
+<p><strong>elias</strong>: Ooo… you mean with that great big purple dick
+of yours? I hope not. She’d never be impressed with my little thing
+again.</p>
+<p><strong>hull</strong>: You think what impresses her now is your
+dick?</p>
+<p><strong>elias</strong>: What does impress her?</p>
+<p><strong>elias</strong>: Betty, this is John, my new associate.</p>
+<p><strong>mccutcheon</strong>: Your new Eddie. I hear the old one wore
+out.</p>
+<p><strong>elias</strong>: Factory recall. John’s going to be a good
+customer. He does a lot of wash.</p>
+<p><strong>hull</strong>: So how’s this place work?</p>
+<p><strong>elias</strong>: Betty wires the money to a store in Aruba in
+payment for things they never sent her. They deposit the money in a bank
+there that turns around and loans her money she never has to repay. That
+way it doesn’t turn up as income for the IRS. Welcome to the
+laundromat.</p>
+<p><strong>mccutcheon</strong>: David, you talk too much.</p>
+<p><strong>elias</strong>: She doesn’t trust you.</p>
+<p><strong>hull</strong>: How much is this?</p>
+<p><strong>mccutcheon</strong>: More than you can afford.</p>
+<p><strong>hull</strong>: I’ll take it.</p>
+<p><strong>elias</strong>: By all means.</p>
+<p><strong>mccutcheon</strong>: Come on, Eddie 2… you’re up.</p>
+<p><strong>hull</strong>: No, thanks.</p>
+<p><strong>note</strong>: Betty is acutely attuned to Hull, and in his
+refusal she senses – albeit unconsciously – two things: first, that he
+doesn’t trust himself on drugs, therefore, he’s a dangerous guy and,
+therefore, exciting; and, second, more important, the refusal bespeaks a
+repudiation of the violence and danger and, thus, a longing for
+goodness. Despite the seeming contradiction, she finds this even more
+attractive. But because she feels herself to be bad, his goodness seems
+only a judgment against her, and so she thinks she hates him.</p>
+<p><strong>mccutcheon</strong>: Who is he, my mother?</p>
+<p><strong>hull</strong>: Never have, never will.</p>
+<p><strong>mccutcheon</strong>: Oooh… Cocaine, I love it and I hate it
+and I love it. The disease is the cure.</p>
+<p><strong>mccutcheon</strong>: Don’t look at me. Elias, tell him not to
+look at me. I don’t like the fucker.</p>
+<p><strong>elias</strong>: John’s an ascetic Negro; he wants to make
+sure you know he’s not a jungle bunny.</p>
+<p><strong>hull</strong>: Watch your mouth, David.</p>
+<p><strong>elias</strong>: But he’s got another side. You should seen
+him on the street the other day with these two USC kids. Do the spade
+bit for her, John. I’m gonna mess you up, muthafugga…</p>
+<p><strong>hull</strong>: Don’t call me a spade. And don’t tell me to
+play black.</p>
+<p><strong>elias</strong>: Come on, John, you do it so well. Ah ain’t
+playin’, muthafucka. Ah ain’t playin’.</p>
+<p><strong>elias</strong>: Don’t fuckin’ dis me, muthafucka. Fucka…
+fucka… fucka a… fucka b… fuck b-hive… fucka, fucka, fucka…</p>
+<p><strong>hull</strong>: Say it again, and I’ll kill you.</p>
+<p><strong>mccutcheon</strong>: Grow up, assholes!</p>
+<p><strong>dealer</strong>: …The guy ripped me off, man, so I don’t got
+the money, I don’t got the stuff and –</p>
+<p><strong>hull</strong>: You gotta pay anyway.</p>
+<p><strong>dealer</strong>: Oh, but, man…</p>
+<p><strong>hull</strong>: Shit…</p>
+<p><strong>hull</strong>: Bijoux!!</p>
+<p><strong>elias</strong>: It wasn’t your fault. What could you have
+done?</p>
+<p><strong>hull</strong>: She worked for me. I’m supposed to protect
+her.</p>
+<p><strong>elias</strong>: We have to kill him.</p>
+<p><strong>elias</strong>: Or we lose all authority with the other
+dealers. And one of them’ll kill you.</p>
+<p><strong>elias</strong>: You’ve got to assert now, or you’re dead.</p>
+<p><strong>elias</strong>: And if we kill Ivy, we control this whole
+territory.</p>
+<p><strong>hull</strong>: That guy who works for Barbosa can do it,
+Chino.</p>
+<p><strong>elias</strong>: No. If we use Chino, it’s Barbosa who’s
+asserting. It’ll be Barbosa’s territory. It’s gotta be us.</p>
+<p><strong>hull</strong>: Right.</p>
+<p><strong>elias</strong>: And if it’s us, it’s gotta be you.</p>
+<p><strong>hull</strong>: Don’t blow your cover.</p>
+<p><strong>elias</strong>: What?</p>
+<p><strong>hull</strong>: If I do this, we’re partners. Equal partners
+on everything.</p>
+<p><strong>hull</strong>: Let’s go.</p>
+<p><strong>elias</strong>: Now…?</p>
+<p><strong>hull</strong>: Go wait around back.</p>
+<p><strong>elias</strong>: I want to see you in that alley.</p>
+<p><strong>ivy</strong>: What’re you looking at?</p>
+<p><strong>ivy</strong>: You want to suck it, bitch? Or drink it?</p>
+<p><strong>ivy</strong>: Oh, I know you. You’re the bitch whose whore I
+wasted tonight, ain’t you?</p>
+<p><strong>ivy</strong>: I gotta take care of you, too, huh?</p>
+<p><strong>hull</strong>: …Carmen, it’s me. It’s Daddy…</p>
+<p><strong>carmen</strong>: Daddy!!</p>
+<p><strong>hull</strong>: Hi, baby. How are you? I miss you!</p>
+<p><strong>carmen</strong>: What?</p>
+<p><strong>hull</strong>: I miss you…</p>
+<p><strong>carmen</strong>: I miss you, too, Daddy…</p>
+<p><strong>voice</strong>: The maze leads in two directions. At one end
+the rat can obtain a food pellet. At the other… …it receives electrical
+stimulus to a very specific area of the cerebellum…</p>
+<p><strong>voice</strong>: This rat, like 86% of the others in the
+experiment, chose the electrical stimulus repeatedly and exclusively. It
+continued to do so until it died of malnutrition.</p>
+<p><strong>cal tech</strong>: This is an addictive amphetamine with
+time-space distortion, delusions of grandeur – or maybe they’re real –
+tending to be impulsive, sometimes violent behavior. Psychotropic
+adaptation for late monopoly capitalism. It’s illegal, and you can buy
+it on any street corner.</p>
+<p><strong>cal tech</strong>: This increases energy, attention,
+cognitive powers, yet with a smooth, almost opiate-like emotional
+surface. Ideal for the post-political, post- rationalist global
+marketplace and 24 hour lifestyles. It’s completely legal and can only
+get it here, in my lab.</p>
+<p><strong>elias</strong>: Randy’s a genius. His professor told him he
+could win the Nobel prize.</p>
+<p><strong>cal tech</strong>: Nobel prizes are for wussies.</p>
+<p><strong>hull</strong>: What does this shit do to you?</p>
+<p><strong>cal tech</strong>: I’m on it now. It’s like cocaine only
+better. Want some?</p>
+<p><strong>hull</strong>: I don’t take drugs.</p>
+<p><strong>cal tech</strong>: Your mistake. This is designed for the top
+end of the market. For people who want to master reality, not avoid it.
+Because it’s synthetic, you don’t grow it, refine it, or – best of all –
+import it.</p>
+<p><strong>elias</strong>: What would it take to manufacture this stuff
+in quantity?</p>
+<p><strong>cal tech</strong>: With a million dollars, I could produce
+enough for a limited market at about two bucks a pop. But then with five
+million, or better yet ten, the cost would drop to thirty cents, and
+we’d have enough for the whole world.</p>
+<p><strong>elias</strong>: I’m going to put two hundred fifty thousand
+into your corporate account. You cheat me, Randy, I’ll use your bladder
+for a bagpipe. We’re going to put Barbosa out of business.</p>
+<p><strong>carver</strong>: Synthetic shit?? Sounds like a 20/20
+segment…</p>
+<p><strong>carver</strong>: So, what was it like?</p>
+<p><strong>hull</strong>: What was what like?</p>
+<p><strong>carver</strong>: Popping Ivy…</p>
+<p><strong>hull</strong>: You knew.</p>
+<p><strong>carver</strong>: I’m God, remember?</p>
+<p><strong>hull</strong>: Then you should know how it was.</p>
+<p><strong>carver</strong>: You didn’t clear it with me. You’re getting
+independent. That’s good.</p>
+<p><strong>carver</strong>: How’re we coming on Gallegos?</p>
+<p><strong>hull</strong>: He supplies Barbosa. To get to him we’ll have
+to take quantity.</p>
+<p><strong>carver</strong>: Then you’ve got to –</p>
+<p><strong>hull</strong>: That’s what killing Ivy did. I’ll get to him
+soon.</p>
+<p><strong>hull</strong>: Is that it?</p>
+<p><strong>carver</strong>: I want you to get a new apartment. Something
+expensive.</p>
+<p><strong>hull</strong>: I like where I am.</p>
+<p><strong>carver</strong>: That shithole? You’re big time now. Act it.
+And get some clothes. Spend money. Have fun. That’s an order.</p>
+<p><strong>hull</strong>: Whether I’m here or not, no one else uses that
+room. And change the linen twice a week, just like now. And make sure
+James gets what he needs. And something for you.</p>
+<p><strong>elias</strong>: Nice place. Nice suit.</p>
+<p><strong>hull</strong>: Hey…!</p>
+<p><strong>elias</strong>: You pick all this shit out yourself?</p>
+<p><strong>hull</strong>: A Jewish lady in the store helped me.</p>
+<p><strong>elias</strong>: Aw… Very nice. Understated. I’m
+impressed.</p>
+<p><strong>hull</strong>: Fifty bucks, fifty fucking bucks…</p>
+<p><strong>elias</strong>: You sold it all?</p>
+<p><strong>elias</strong>: I’ll order a couple more keys from
+Barbosa.</p>
+<p><strong>hull</strong>: Order ten.</p>
+<p><strong>elias</strong>: Ten??</p>
+<p><strong>hull</strong>: Better twenty.</p>
+<p><strong>elias</strong>: I don’t want to push it.</p>
+<p><strong>hull</strong>: I do. We’ve got a bigger territory, we need
+more product. I want to deal directly with Gallegos. It would save us
+money.</p>
+<p><strong>elias</strong>: Barbosa’ll never let us near him.</p>
+<p><strong>hull</strong>: If we buy twenty, Gallegos’ll come to us
+himself.</p>
+<p><strong>elias</strong>: How do you know?</p>
+<p><strong>hull</strong>: When I bought a key from Eddie, you came to
+me.</p>
+<p><strong>hull</strong>: Who’s above Gallegos?</p>
+<p><strong>elias</strong>: Guzman, but he’s… Don’t ask so many
+questions.</p>
+<p><strong>hull</strong>: How else will I learn? Call Barbosa, David,
+put in our order… Because we have to split this, and there isn’t enough
+here for both of us.</p>
+<p><strong>betty’s voice</strong>: Nobody’s home, go away.</p>
+<p><strong>mccutcheon</strong>: Look, I’m tired, why don’t you…</p>
+<p><strong>mccutcheon</strong>: Why do you look at me like that?</p>
+<p><strong>hull</strong>: How do I look at you?</p>
+<p><strong>mccutcheon</strong>: Like you know something I don’t. Like
+you’re better than me.</p>
+<p><strong>hull</strong>: I don’t think I’m better than you. I don’t
+think I’m better than anybody.</p>
+<p><strong>hull</strong>: But I do know something… You can’t stop
+thinking about me.</p>
+<p><strong>mccutcheon</strong>: Let’s go back here…</p>
+<p><strong>mccutcheon</strong>: Do this… do it with me.</p>
+<p><strong>mccutcheon</strong>: This is where I’m at. You want to be
+with me, it’s gotta be there.</p>
+<p><strong>hull</strong>: I don’t do that.</p>
+<p><strong>mccutcheon</strong>: Never have, never will.</p>
+<p><strong>hull</strong>: It’s for fuck-ups.</p>
+<p><strong>mccutcheon</strong>: What do you think, you’re not a nigger?
+You’re a nigger as much as me.</p>
+<p><strong>hull</strong>: More.</p>
+<p><strong>elias</strong>: Having fun? I talked to Barbosa. He’ll see us
+now.</p>
+<p><strong>barbosa</strong>: Ten kilos? You’re always late on two.</p>
+<p><strong>hull</strong>: Not ten… twenty.</p>
+<p><strong>hull</strong>: The more we have, the more we can move.
+There’re markets we can’t open because we don’t have the inventory.</p>
+<p><strong>barbosa</strong>: Finally some balls on this team… Come work
+for me, John. I’ll give you your own franchise. You can supply Elias,
+lean on him when he’s late.</p>
+<p><strong>elias</strong>: Go fuck yourself.</p>
+<p><strong>hull</strong>: I’m with David.</p>
+<p><strong>barbosa</strong>: Why? He give you his “designer drugs”
+pitch. He’s never going to do it. He’s a shmuck.</p>
+<p><strong>elias</strong>: Don’t talk to me that way.</p>
+<p><strong>barbosa</strong>: I’m not talking to you at all. I’m talking
+to John.</p>
+<p><strong>gopher</strong>: It’s the cocaine. Don’t listen to him.
+Felix, you’ve had enough…</p>
+<p><strong>barbosa</strong>: Shmuck.</p>
+<p><strong>gopher</strong>: Praise God they don’t let guns in here.</p>
+<p><strong>calming voices</strong>: “None of that in here…” “Take it
+outside…”</p>
+<p><strong>barbosa</strong>: David, you’ve been working out, you’re
+getting strong. Are you quick, too? Come on, I’ll give you a shot at
+me.</p>
+<p><strong>elias</strong>: Any time, any place.</p>
+<p><strong>barbosa</strong>: Right here, right now. Do this.</p>
+<p><strong>elias</strong>: This? What is this?</p>
+<p><strong>barbosa</strong>: You know, you slap me, I slap you. Come on,
+it’s fun. Like summer camp.</p>
+<p><strong>hull</strong>: Don’t waste your time.</p>
+<p><strong>barbosa</strong>: Stay out of this. Come on, you can do it,
+David, you’re not a shmuck.</p>
+<p><strong>barbosa</strong>: Slap my hands. Just slap them.</p>
+<p><strong>barbosa</strong>: Now it’s my turn.</p>
+<p><strong>gopher</strong>: It’s Barbosa’s turn. He’s gonna kill the
+white boy.</p>
+<p><strong>elias</strong>: One more.</p>
+<p><strong>barbosa</strong>: No, you went, Davey, now it’s my turn.
+First to four wins, like the World Series.</p>
+<p><strong>gopher</strong>: Oh, God, I can’t look.</p>
+<p><strong>on the hands</strong>: Barbosa tenses his hands. Elias yanks
+back. Barbosa’s hands haven’t moved.</p>
+<p><strong>barbosa</strong>: You remember the rules? If you flinch, I
+get to hit you.</p>
+<p><strong>barbosa</strong>: Again, shmuck.</p>
+<p><strong>gopher</strong>: One.</p>
+<p><strong>elias</strong>: That was two.</p>
+<p><strong>barbosa</strong>: No, this is two.</p>
+<p><strong>gopher</strong>: Oh, and it hurts. Mercy, it hurts.</p>
+<p><strong>gopher</strong>: Three.</p>
+<p><strong>a voice</strong>: Felix! No mas. Finito.</p>
+<p><strong>someone</strong>: Gallegos…</p>
+<p><strong>gopher</strong>: The fight is over! The Ambassador from the
+South has spoken!</p>
+<p><strong>elias</strong>: One more.</p>
+<p><strong>elias</strong>: One more! We’re not finished! Four was the
+match.</p>
+<p><strong>barbosa</strong>: Four.</p>
+<p><strong>hull</strong>: Okay, that’s it. Get away.</p>
+<p><strong>elias</strong>: Look at me. Look at me, damn it!</p>
+<p><strong>hull</strong>: Why did you do it?</p>
+<p><strong>elias</strong>: I needed it. They taught me what I needed to
+know. That I’m not part of them, and I never will be. That they don’t
+respect me. That I don’t deserve respect. Because I’m a shmuck, John.
+I’m a shmuck…</p>
+<p><strong>barbosa</strong>: David, I’m sorry. It’s a crazy time, and…
+you know… I’m doing a little too much coca… I’ll buy your kid a pony…
+anything you want… Let’s forget about it.</p>
+<p><strong>gopher</strong>: I am so proud of you. You can be cruel, and
+you can be kind. And just now you were kind. Proud, proud, and more
+proud. That’s me.</p>
+<p><strong>barbosa</strong>: Shut up.</p>
+<p><strong>barbosa</strong>: I got nothing to give you, my man. I’m an
+il-liquid son of a bitch.</p>
+<p><strong>hernandez</strong>: Felix, I keep telling them, “I have
+informants down there, I’m working guys, I can’t say who…” If you don’t
+have money, give me busts, or they’re gonna start wondering about
+me.</p>
+<p><strong>gopher</strong>: They’re already wondering.</p>
+<p><strong>barbosa</strong>: You can have Gopher.</p>
+<p><strong>gopher</strong>: Oh Gawd…</p>
+<p><strong>barbosa</strong>: How about a lawyer?</p>
+<p><strong>gopher</strong>: Felix, don’t do this.</p>
+<p><strong>hernandez</strong>: Great, lawyers are great, Jewish is best.
+But I need spades, too. The politicians want dark facts to scare the
+suburbs so they’ll vote Republican.</p>
+<p><strong>barbosa</strong>: Lawyers and spades; I got the trifecta: two
+dealers and a girl who does their wash. Two niggers and a kike; all
+Democrats.</p>
+<p><strong>hernandez</strong>: You’re my man. And afterwards…</p>
+<p><strong>barbosa</strong>: When this is over, I’ll send you to Hawaii,
+Maui. It’s very beautiful in Maui, it’s a very spiritual place.</p>
+<p><strong>hernandez</strong>: I just want money.</p>
+<p><strong>gopher</strong>: I wouldn’t trust that man when he’s out of
+rifle range.</p>
+<p><strong>gopher</strong>: premonition of</p>
+<p><strong>barbosa</strong>: David, you’re awake, I’m impressed… I’m
+sorry about what happened… Listen, I’ll get you twenty boxes, like you
+wanted. You were right, you should have what you need… Tomorrow night…
+Bring your partner and that girl with the store, Betty… I need her
+advice on something. I want us to have fun, like we used to. We’ll go to
+that shrimp place, okay?… Good… Me, too, David. Yes!</p>
+<p><strong>hull</strong>: We’re getting twenty kilograms tomorrow.
+Tonight. I made it happen. I pushed Elias, now he doesn’t make a move
+without me.</p>
+<p><strong>carver</strong>: You run Elias.</p>
+<p><strong>hull</strong>: I control him. Barbosa’s selling it to us
+because he thinks I can move it… And last night I met Ramon
+Gallegos.</p>
+<p><strong>hull</strong>: We’re getting the dope from him; it’s still
+coming through Barbosa, but Gallegos will approach me soon on his own.
+We’re going to get him, Gerry. We’re going to bring him and the whole
+thing down.</p>
+<p><strong>hull</strong>: What’s your problem?</p>
+<p><strong>carver</strong>: My problem? My problem is that you don’t
+really know what’s happening.</p>
+<p><strong>hull</strong>: Oh, so, tell me what’s happening, Gerry.</p>
+<p><strong>carver</strong>: Barbosa is setting you up tonight.</p>
+<p><strong>hull</strong>: Bullshit.</p>
+<p><strong>carver</strong>: He’s dealing you to Taft and Hernandez.
+You’re going to be taken down as you receive the drugs. They’re putting
+together the arrest team right now.</p>
+<p><strong>hull</strong>: What do we do?</p>
+<p><strong>carver</strong>: You stay away. We’re going to take them
+down.</p>
+<p><strong>hull</strong>: Who? Elias and Betty? Don’t be silly.</p>
+<p><strong>carver</strong>: My boss wants a bust right now. He goes
+before the oversight committee next week. He needs something to justify
+the budget.</p>
+<p><strong>hull</strong>: I’ll get him something. Give me ten days, and
+I’ll get him Gallegos on a plate.</p>
+<p><strong>carver</strong>: Too late. The whole thing’s set up.</p>
+<p><strong>hull</strong>: Gerry, what are you telling me? I need Elias…
+and Betty. You arrest them, and you’re throwing away everything I’ve set
+up.</p>
+<p><strong>carver</strong>: It’s out of my hands.</p>
+<p><strong>carver</strong>: John, don’t go near that bust.</p>
+<p><strong>hull</strong>: We shouldn’t go to them. Maybe them come to
+us.</p>
+<p><strong>elias</strong>: He wouldn’t.</p>
+<p><strong>hernandez</strong>: Here they are. Nobody move until we see
+the green suitcase.</p>
+<p><strong>barbosa</strong>: I’m sorry for dragging you out so late, but
+I have to be careful.</p>
+<p><strong>mccutcheon</strong>: It gives me confidence.</p>
+<p><strong>hull</strong>: Let’s see what we’ve got.</p>
+<p><strong>hull</strong>: the police van in</p>
+<p><strong>barbosa</strong>: What is this?</p>
+<p><strong>hull</strong>: Something’s wrong. What’s that van doing
+there?</p>
+<p><strong>hull</strong>: This is a bust. The minute we take the stuff,
+they’ll be over us.</p>
+<p><strong>barbosa</strong>: He’s crazy, David. I thought you were the
+crazy one, but it’s him.</p>
+<p><strong>hull</strong>: Chino, pick up the suitcase and give it to
+Elias. I’ll only kill him if something goes wrong.</p>
+<p><strong>barbosa</strong>: No!!</p>
+<p><strong>elias</strong>: Fucking A, John…</p>
+<p><strong>hull</strong>: Okay, everybody in the car.</p>
+<p><strong>taft</strong>: We have a problem.</p>
+<p><strong>hernandez</strong>: Shit! Shit! Shit! Enough of this…</p>
+<p><strong>taft</strong>: No!</p>
+<p><strong>barbosa</strong>: Don’t shoot… Don’t shoot…</p>
+<p><strong>taft</strong>: Goddam it, what the hell are you doing?</p>
+<p><strong>mccutcheon</strong>: I asked for this… I asked for it… It’s
+my fault…</p>
+<p><strong>hull</strong>: Relax. We’ll make it.</p>
+<p><strong>barbosa</strong>: He’s a cop. He has to be. How else would he
+have known?</p>
+<p><strong>hull</strong>: If I was cop, you’d be face down back
+there.</p>
+<p><strong>mccutcheon</strong>: How did you know?</p>
+<p><strong>hull</strong>: The whole thing smelled. Changing his mind
+about the stuff. Meeting us way out here. And I’d seen cops in that van
+before. Hernandez is dirty, that’s who he’s using.</p>
+<p><strong>elias</strong>: Get out of the car.</p>
+<p><strong>hull</strong>: David, not now.</p>
+<p><strong>elias</strong>: Yes, now!</p>
+<p><strong>taft</strong>: Who are you, man? Who the fuck are you?</p>
+<p><strong>hernandez</strong>: I’m me.</p>
+<p><strong>elias</strong>: He traded us to the cops. Just like Eddie.
+Eddie, who was nice to my daughter, had to die because that’s the rule.
+And you were vulgar about my wife, Felix, so at the very least the same
+rule applies to you.</p>
+<p><strong>barbosa</strong>: I’ll give you money. I’ll give you a
+million. Anything you want.</p>
+<p><strong>elias</strong>: I want you to get out of the car. Get out of
+the fucking car. Out of the fucking –</p>
+<p><strong>mccutcheon</strong>: No, no… we can’t do this.</p>
+<p><strong>hull</strong>: Stop it, David, or we’re…</p>
+<p><strong>elias</strong>: Look at my hands!</p>
+<p><strong>elias</strong>: Get out of the car.</p>
+<p><strong>mccutcheon</strong>: No!</p>
+<p><strong>hull</strong>: Goddammit!</p>
+<p><strong>elias</strong>: Stay out of this, or you’ll die. You’ll both
+die. Everyone’ll die.</p>
+<p><strong>barbosa</strong>: I can’t…</p>
+<p><strong>elias</strong>: I had him!</p>
+<p><strong>hull</strong>: You want to kill a cop?? Don’t be stupid.</p>
+<p><strong>elias</strong>: Everything is different. We’re the Colombians
+now. This is the greatest night of my life. Terrible but great. Felix
+was right…</p>
+<p><strong>mccutcheon</strong>: About what?</p>
+<p><strong>elias</strong>: He said I should kill a man. He was
+right.</p>
+<p><strong>mccutcheon</strong>: My God.</p>
+<p><strong>elias</strong>: Barbosa was a roach. Do you miss him? Will
+anybody in the world miss him?</p>
+<p><strong>mccutcheon</strong>: Are you a roach, too?</p>
+<p><strong>elias</strong>: Yes. Thank God.</p>
+<p><strong>mccutcheon</strong>: What about you?</p>
+<p><strong>mccutcheon</strong>: Stop the car.</p>
+<p><strong>mccutcheon</strong>: Stop it!</p>
+<p><strong>mccutcheon</strong>: No more laundering, no more anything.
+I’m finished with this.</p>
+<p><strong>elias</strong>: She knows too much. We have to kill her.</p>
+<p><strong>hull</strong>: No! She’s with me. She’s not going to talk.
+You touch her, I’ll kill you.</p>
+<p><strong>elias</strong>: She’s your responsibility then.</p>
+<p><strong>elias</strong>: We’re going to get the money now, John.
+Enough for the new drug. We’re going to be rich. We’re going to be so
+rich that we’re going to leave the world of ordinary people and going to
+a higher realm. I mean that.</p>
+<p><strong>hull</strong>: They’re going to come after us.</p>
+<p><strong>elias</strong>: It’s a hardball game. We’re hardball
+players.</p>
+<p><strong>hernandez</strong>: It wasn’t my fault.</p>
+<p><strong>molto</strong>: It never is.</p>
+<p><strong>mccutcheon</strong>: Don’t kill me. I’m not going to talk. I
+swear. Please.</p>
+<p><strong>mccutcheon</strong>: Don’t look…</p>
+<p><strong>hull</strong>: Tell me about you.</p>
+<p><strong>mccutcheon</strong>: Everything worth knowing you just found
+you.</p>
+<p><strong>hull</strong>: Don’t hurt her.</p>
+<p><strong>elias</strong>: Who’s grave?</p>
+<p><strong>gallegos</strong>: My wife’s. She died of leukemia three
+years ago. I like to be among the dead. They never interrupt you. Felix
+Barbosa started out as a skinny fourteen-year-old fucking Yankee
+businessman in Bogata hotels. He grew up. He made himself strong and
+rich, but getting there made him sick, and that killed him. So he lost
+everything for the same reason he’d gotten it in the first place. Now
+we’ll see if you can do as well.</p>
+<p><strong>gallegos</strong>: Felix owed me one million eight hundred
+thousand dollars.</p>
+<p><strong>gallegos</strong>: When you killed him, you bought the debt;
+now you owe it to me; you get to keep thirty percent, like he did. You
+have three days.</p>
+<p><strong>hull</strong>: Who did Barbosa collect from?</p>
+<p><strong>gallegos</strong>: If you don’t know, you shouldn’t have
+killed him.</p>
+<p><strong>gallegos</strong>: Cute… Can I have that?</p>
+<p><strong>gopher</strong>: I don’t want you in here. You killed the
+man, and I loved him. I don’t want to have anything to do with you.</p>
+<p><strong>gopher</strong>: I’m a sixty-three-year-old man! I’m a
+grandfather! Would you hit a sixty- three-year-old white man? Would you
+hit your own grandfather?</p>
+<p><strong>elias</strong>: Listen, you fucking monkey, you know who owed
+him money, and we know you know. Tell us or –</p>
+<p><strong>hull</strong>: He’ll tell us. Gopher, just…</p>
+<p><strong>gopher</strong>: You can’t tell anyone it was me.</p>
+<p><strong>hull</strong>: Where the hell is all the money? We’re still a
+million short.</p>
+<p><strong>elias</strong>: I gotta get laid.</p>
+<p><strong>hull</strong>: David, we’ve got thirty-six hours.</p>
+<p><strong>elias</strong>: Pick me up at Jacqueline’s in the
+morning.</p>
+<p><strong>hull</strong>: Sooner than that.</p>
+<p><strong>carver</strong>: Get in.</p>
+<p><strong>hull</strong>: What are you doing here? You’re going to get
+me killed.</p>
+<p><strong>carver</strong>: Where the hell have you been?</p>
+<p><strong>hull</strong>: Doing my job.</p>
+<p><strong>carver</strong>: You violated a direct order to stay away
+from that bust. As a result, a police informant is dead, a state senator
+was critically injured in the tunnel pile up and a city policeman was
+subsequently murdered.</p>
+<p><strong>hull</strong>: I didn’t blow my cover.</p>
+<p><strong>carver</strong>: Don’t get smart with me, motherfucker.</p>
+<p><strong>hull</strong>: Don’t be a shmuck, Gerry. I’m talking to
+Gallegos. I’m collecting his money. We can set him up right now.</p>
+<p>****: Carver arrives somewhere and parks. To be discussed, but let’s
+say, for now,</p>
+<p><strong>carver</strong>: Never have, never will. I want you to give
+me your gun. You’re coming in right now.</p>
+<p><strong>hull</strong>: Coming in where?</p>
+<p><strong>carver</strong>: Your assignment has been terminated. You’re
+not going out there again. If I have to, I’ll put you in custody.</p>
+<p><strong>hull</strong>: I’m going to have Gallegos in two days.</p>
+<p><strong>hull</strong>: You’re protecting him. You’re protecting
+Gallegos.</p>
+<p><strong>hull</strong>: No, of course. That’s why you wanted to bust
+Elias and Betty. I was getting close, and you wanted to cut this off
+then… What is he, the new Noriega? Helps you fight commies, so you let
+him sell drugs to the niggers. Two birds with one stone.</p>
+<p><strong>carver</strong>: You violated orders, so you’re through.
+Don’t make a conspiracy theory out of it.</p>
+<p><strong>hull</strong>: I’m through…? Then, I might as well have a
+drink after all.</p>
+<p><strong>hull</strong>: Now tell me the truth or they’re going to
+decide your troubles got the best of you.</p>
+<p><strong>carver</strong>: You’re insane.</p>
+<p><strong>hull</strong>: All the more reason to do what I say. Jesus,
+Ger, I’m having trouble holding on…</p>
+<p><strong>carver</strong>: All right!</p>
+<p><strong>hull</strong>: Say it!</p>
+<p><strong>carver</strong>: It’s the State Department.</p>
+<p><strong>carver</strong>: I told you, Gallegos’s uncle is a big deal
+down there.</p>
+<p><strong>hull</strong>: Guzman.</p>
+<p><strong>carver</strong>: Guzman, right. Our government supports
+Guzman because he’s a moderate. That’s a right-winger who’s pro-U.S. If
+Gallegos got busted here, it would hurt Guzman’s political career there.
+It’s politics, John, not drugs.</p>
+<p><strong>hull</strong>: Drugs is politics. Politics is drugs… Christ,
+Gerry, I dealt drugs. I killed a man. Others died. What did I do all
+this for? For nothing.</p>
+<p><strong>carver</strong>: I’m going to Washington, John. I’ll bring
+you with me. We’ll have clout, money…</p>
+<p><strong>hull</strong>: I didn’t do this for clout or money. You said
+we were gonna do some good.</p>
+<p><strong>carver</strong>: We tried.</p>
+<p><strong>hull</strong>: Trying’s for college boys. If all there is is
+power and money… If all there is… then what am I doing here? ’Cause I
+can get more power and money out on the street, I got more there
+already, than I’d ever get kissing your ass in Washington…</p>
+<p><strong>carver</strong>: But you can’t do that, John. It’s not
+you.</p>
+<p><strong>hull</strong>: Me? There is no me. We took care of that.
+First I was a cop pretending to be a dealer. Now I’m just a dealer
+pretending to be a cop. Why not stop pretending…? Quit the force. Be a
+dealer.</p>
+<p><strong>carver</strong>: It’s not that simple.</p>
+<p><strong>hull</strong>: My assignment’s already terminated. All I have
+to do is quit. I hereby quit. My first one. Not so bad.</p>
+<p><strong>carver</strong>: Don’t blow your cover.</p>
+<p><strong>mccutcheon</strong>: What’s the matter?</p>
+<p><strong>hull</strong>: Who are you, my mother?</p>
+<p><strong>mccutcheon</strong>: Tell me.</p>
+<p><strong>hull</strong>: Tell you what?</p>
+<p><strong>mccutcheon</strong>: What you came to say.</p>
+<p><strong>hull</strong>: What did I come to say?</p>
+<p><strong>mccutcheon</strong>: Then tell me anything. Something about
+you. Something real.</p>
+<p><strong>hull</strong>: When I was young, I occasionally stole things.
+My father died when I was ten. Right in front of me.</p>
+<p><strong>hull</strong>: Heart attack. He just fell down. He said, “I
+love you,” then died in my arms.</p>
+<p><strong>mccutcheon</strong>: Oh, baby…</p>
+<p><strong>mccutcheon</strong>: Tell me what’s going on, John?</p>
+<p><strong>hull</strong>: You’re not doing the stuff anymore, are
+you?</p>
+<p><strong>mccutcheon</strong>: No. Don’t change the subject.</p>
+<p><strong>hull</strong>: How is that?</p>
+<p><strong>mccutcheon</strong>: It’s hard. John…!</p>
+<p><strong>hull</strong>: Things are getting, they’re getting a little…
+confusing. I had certain plans, and people haven’t come through exactly
+as they promised.</p>
+<p><strong>mccutcheon</strong>: What do you expect with those
+people?</p>
+<p><strong>hull</strong>: It’s not just those people. It’s… it’s bigger
+than that. It’s of everybody. Present company excluded.</p>
+<p><strong>mccutcheon</strong>: You’ve got to stop this, John, you know
+that. You gotta get out.</p>
+<p><strong>hull</strong>: I can’t.</p>
+<p><strong>mccutcheon</strong>: Of course, you can.</p>
+<p><strong>hull</strong>: No! This is what I’m supposed to do.</p>
+<p><strong>mccutcheon</strong>: Supposed to? Who said you’re supposed
+to?</p>
+<p><strong>hull</strong>: The whole fuckin’ world. You think I didn’t
+try something else? But everything funnels you right back here. Like
+it’s where you had to go all along.</p>
+<p><strong>mccutcheon</strong>: But you know what you’re doing, don’t
+you, selling this stuff? Doing to our own.</p>
+<p><strong>hull</strong>: If I tried to get out now, they’d kill me.</p>
+<p><strong>mccutcheon</strong>: I can’t be with somebody’s who involved
+in drugs.</p>
+<p><strong>hull</strong>: There’ve got to be more. We have a million
+two, we owe Gallegos one eight.</p>
+<p><strong>gopher</strong>: I told you everyone. Everyone who owed him,
+everyone he… One eight? He’s lying. Barbosa barely owed him a
+million.</p>
+<p><strong>taft</strong>: I got every money transfer, every phone call,
+all your laundry tickets.</p>
+<p><strong>mccutcheon</strong>: What do you want?</p>
+<p><strong>taft</strong>: John Hull.</p>
+<p><strong>mccutcheon</strong>: I can’t!</p>
+<p><strong>taft</strong>: Or you’ll go away ’til you’re a dried up old
+woman, and when you come out, ain’t nobody gonna want you.</p>
+<p><strong>hull</strong>: What are you laughing at?</p>
+<p><strong>hull</strong>: It isn’t one eight. It’s a million one. That’s
+all Barbosa owed, it’s all we’re paying.</p>
+<p><strong>gallegos</strong>: Big brass balls. Collecting money makes
+you strong.</p>
+<p><strong>elias</strong>: What’s that?</p>
+<p><strong>gallegos</strong>: I’m telling our suppliers they got paid.
+They’ll be very happy. I’m happy.</p>
+<p><strong>elias</strong>: And we’re happy. Everybody’s happy. It’s a
+happy world.</p>
+<p><strong>gallegos</strong>: So, how can I express my gratitude for a
+job well done?</p>
+<p><strong>elias</strong>: We want Barbosa’s business.</p>
+<p><strong>gallegos</strong>: Done. Of course.</p>
+<p><strong>elias</strong>: And, also, your business. All this. Your
+money, your dope, everything.</p>
+<p><strong>gallegos</strong>: You’re tougher than I thought, but not
+that tough.</p>
+<p><strong>elias</strong>: How tough is enough?</p>
+<p><strong>hull</strong>: No!</p>
+<p><strong>elias</strong>: Thank you, John. I couldn’t have done that
+without you.</p>
+<p><strong>hull</strong>: Jesus Christ…</p>
+<p><strong>elias</strong>: You taught me to take my work seriously.</p>
+<p><strong>hull</strong>: What’s going on here, David?</p>
+<p><strong>elias</strong>: We’re taking over.</p>
+<p><strong>hull</strong>: You’re doing too much stuff.</p>
+<p><strong>elias</strong>: No, I’m very clear. I’m very, very clear.
+Ahora, usted nos assistamos. Enteindo?</p>
+<p><strong>elias</strong>: Donde esta?</p>
+<p><strong>hull</strong>: What the fuck’s the matter with you?</p>
+<p><strong>elias</strong>: It works, John. It works.</p>
+<p><strong>hull</strong>: Jesus…</p>
+<p><strong>elias</strong>: Disce a Senor Guzman que… …that we have his
+money, and we’re willing to talk as soon as he comes to town. We’ll know
+how to reach him. Okay?</p>
+<p><strong>elias</strong>: Approximating the cubic capacity and
+depending on the denominations of the bills, it’s somewhere between
+fifty million and two hundred million dollars. Right back there.</p>
+<p><strong>elias</strong>: Think I’m crazy?</p>
+<p><strong>hull</strong>: Yes. I can’t believe you got us into this. All
+of fucking Latin America is going to be after our asses, including
+Renaldo Guzman who’s friends with fucking George Bush.</p>
+<p><strong>elias</strong>: I know they’re coming after us. I want them
+to. We’ll give them the money, but we’ll make a deal for ourselves.
+We’ll get what we need for the synthetic drugs. I’ve thought it all out.
+I’ve been thinking it out for years.</p>
+<p><strong>elias</strong>: We’re going to have everything. Don’t you
+want everything, John?</p>
+<p><strong>hull</strong>: They’re going to get your family, David.
+They’ll kill your wife and daughter.</p>
+<p><strong>elias</strong>: Nancy and Miranda left the country two days
+ago.</p>
+<p><strong>hull</strong>: You knew about this then?</p>
+<p><strong>hull</strong>: What about Betty?</p>
+<p><strong>mccutcheon</strong>: Hi, my name is Betty.</p>
+<p><strong>everyone in the room</strong>: Hi, Betty!</p>
+<p><strong>mccutcheon</strong>: My name is Betty, I’m a drug addict. And
+I’ve been clean for nineteen days.</p>
+<p><strong>mccutcheon</strong>: I’ve been using drugs and selling them,
+and I’ve wanted to stop for a long time, and the only way I did was
+because I met a man I loved and who loved me. I know that’s not what I’m
+supposed to say. I’m supposed to say there was a higher power, and maybe
+there was, behind it all, but this man is strong and his love made me
+strong enough that I could start, or at least think about a life that
+didn’t have drugs in it…</p>
+<p><strong>mccutcheon</strong>: I’ve got to get clothes.</p>
+<p><strong>hull</strong>: You can’t go back.</p>
+<p><strong>blonde woman</strong>: She got a fever and just burned up.
+She just burned up all of a sudden. It must have been bad stuff.</p>
+<p><strong>mccutcheon</strong>: He shouldn’t be here.</p>
+<p><strong>blonde woman</strong>: Come on, James, we’ll go get a
+burrito.</p>
+<p><strong>taft</strong>: Cute kids…</p>
+<p><strong>hull</strong>: Give me that.</p>
+<p><strong>taft</strong>: Tell me something, who the fuck are you?</p>
+<p><strong>taft</strong>: ’Cause I don’t think you’re quite the asshole
+you’re trying to be.</p>
+<p><strong>hull</strong>: Look, Mr. Taft, that’s your name, right? Leave
+me alone. I got things on my mind.</p>
+<p><strong>taft</strong>: I’d think you would. You better have your
+goddamn life on your mind, or it’s gonna get away from you. It’s gonna
+burn up like that poor woman across the way. Like all of you’s gonna
+burn…</p>
+<p><strong>hull</strong>: And what do you do, Mr. Taft, except chase bad
+guys up and down the street with your dirty partner, never catching
+anybody important?</p>
+<p><strong>taft</strong>: I do what I can. Do you do what you can? Maybe
+my partner was dirty. Maybe the chief’s dirty. And the mayor. And the
+President. Maybe God Himself’s taking something on the side. That’s
+their problem. But I’ll bust ’em if I can.</p>
+<p><strong>hull</strong>: Get out of my room.</p>
+<p><strong>taft</strong>: Don’t deny who you are.</p>
+<p><strong>hull</strong>: They’re my children. They live in Cleveland
+with their mother. I’m divorced from her. I haven’t seen them in… some
+time. I want to, but I haven’t been able to arrange it.</p>
+<p><strong>mccutcheon</strong>: How much else don’t I know about
+you?</p>
+<p><strong>hull</strong>: Everything else… Everything else is… I don’t
+know.</p>
+<p><strong>mccutcheon</strong>: Taft has all the evidence about my
+laundering.</p>
+<p><strong>mccutcheon</strong>: He’s going to put me in jail for a long
+time unless I give you up.</p>
+<p><strong>hull</strong>: Do it.</p>
+<p><strong>mccutcheon</strong>: I can’t. So, I’ve got to get away. Far
+away. But I need money.</p>
+<p><strong>hull</strong>: Money? I got money…</p>
+<p><strong>hull</strong>: International terminal. I’ll meet you there in
+a week.</p>
+<p><strong>mccutcheon</strong>: You know the first time, when I saw you
+in the bar…?</p>
+<p><strong>hull</strong>: You wouldn’t even look at me.</p>
+<p><strong>mccutcheon</strong>: ’Cause I knew what you were thinking.
+You were judging me.</p>
+<p><strong>hull</strong>: No, I wasn’t, I was…</p>
+<p><strong>mccutcheon</strong>: You were. Your eyes were like an angel
+in my heart telling me I should be good, and I didn’t want to hear
+it.</p>
+<p><strong>mccutcheon</strong>: That’s you, too. Maybe this is you, I
+don’t know, but I know that’s you.</p>
+<p><strong>hull</strong>: What if we forget all this? Take ten million
+each and disappear. Leave the country. New identities, new lives…</p>
+<p><strong>elias</strong>: What’s the matter, John? Having doubts?</p>
+<p><strong>hull</strong>: Yeah.</p>
+<p><strong>elias</strong>: Yes… Where?… No! No way… We pick the time and
+place… Otherwise no meet… Got a pencil?</p>
+<p><strong>elias</strong>: We have a proposal to make. We regret what
+happened to your nephew…</p>
+<p><strong>guzman</strong>: Say what you have to say.</p>
+<p><strong>elias</strong>: We all know that your cousin’s business is
+coming to an end. Costs have climbed while profits and the market –</p>
+<p><strong>elias</strong>: We have developed a new product: simpler,
+cheaper to manufacture, superior quality and completely synthetic.
+Therefore, no growing, no refining, no peasants, no importing, no
+customs agents… Here’s a detailed prospectus with anticipated cash flow
+and so forth.</p>
+<p><strong>guzman</strong>: The racist Americans just want to cut us
+poor Hispanics out of the market.</p>
+<p><strong>elias</strong>: There are no Americans anymore, Mr. Guzman,
+you know that. No Hispanics, no Japanese, no blacks, no whites, no
+anything. There are only rich people and poor people. We’re rich, so
+we’re on the same side.</p>
+<p><strong>taft</strong>: Do they have money in there?</p>
+<p><strong>gopher</strong>: I don’t know.</p>
+<p><strong>taft</strong>: They wouldn’t meet here otherwise.</p>
+<p><strong>taft</strong>: Okay, everybody, here’s the play…</p>
+<p><strong>elias</strong>: We’re prepared to give you 80% of the money.
+The remainder you invest in our business with proceeds paid out
+according to the figures there.</p>
+<p><strong>guzman</strong>: This looks interesting. I’d have to confirm
+everything, of course. Do you have a sample of the product?</p>
+<p><strong>molto</strong>: Buy it!</p>
+<p><strong>guzman</strong>: Where is our money?</p>
+<p><strong>guzman</strong>: You set this up.</p>
+<p><strong>hull</strong>: They’re after us, not you.</p>
+<p><strong>taft</strong>: Where are the rest of them?</p>
+<p><strong>elias</strong>: We did it. Twenty million. Twenty fucking
+million. We’re going to have synthetics. We’re gonna be rich. We’re
+gonna…</p>
+<p><strong>elias</strong>: What’s the matter, John? Be happy. Your whole
+life has just been solved.</p>
+<p><strong>voice</strong>: Stop! Police!</p>
+<p><strong>elias</strong>: John, where are you going?</p>
+<p><strong>hull</strong>: Oh, Jesus, no…</p>
+<p><strong>elias</strong>: John, what the hell are you doing? Let’s get
+out of here.</p>
+<p><strong>hull</strong>: He’s dying.</p>
+<p><strong>elias</strong>: Let him die. Let him die twice. Come one.</p>
+<p><strong>hull</strong>: Get help.</p>
+<p><strong>elias</strong>: Are you kidding me?</p>
+<p><strong>taft</strong>: Oh, man, you’re a cop. You’re a cop, aren’t
+you?</p>
+<p><strong>hull</strong>: Yeah, I’m a cop. I’m a fucking cop…</p>
+<p><strong>elias</strong>: Oh, really? Where’s you badge?</p>
+<p><strong>hull</strong>: I don’t have one. I’m undercover. Get help,
+David.</p>
+<p><strong>elias</strong>: John, that’s a cop. He tried to kill you.</p>
+<p><strong>hull</strong>: He didn’t know.</p>
+<p><strong>elias</strong>: Oh, he didn’t know. I don’t know. Maybe you
+don’t know. Maybe you think you’re a cop because… because…</p>
+<p><strong>hull</strong>: Drop the gun, put your hands against the car.
+Spread your legs… Police!</p>
+<p><strong>hull</strong>: My God! Please…</p>
+<p><strong>elias</strong>: Okay, let’s say you’re a cop. Be a cop.</p>
+<p><strong>elias</strong>: We’ve still got the money. We put it into
+Randy’s chemistry set. In five years we’re worth five hundred million
+each, minimum. You’ll be one of the richest black men in America. Richer
+than Cosby. Who gives a shit how you got it? You think the white ones
+were honest?</p>
+<p><strong>elias</strong>: Is this asshole all that stands between you
+and greatness? Let me do you a favor.</p>
+<p><strong>elias</strong>: Gee, John, that’s kind of an extreme
+reaction.</p>
+<p><strong>policeman</strong>: Fucking nigger…</p>
+<p><strong>hull</strong>: What about Guzman?</p>
+<p><strong>carver</strong>: He vanished, thank God, or we’d both be in
+deep doo-doo. At least you got Gallegos.</p>
+<p><strong>hull</strong>: Elias did. And everything goes on as
+before.</p>
+<p><strong>carver</strong>: That’s the drug game. Plus a change… I want
+you to come back to work for me. You’ll beat all charges on a
+technicality and go back to who you were.</p>
+<p><strong>hull</strong>: Who was I, Ger?</p>
+<p><strong>carver</strong>: Does anyone really know?</p>
+<p><strong>hull</strong>: I have other things to do.</p>
+<p><strong>carver</strong>: Like travel? Tangiers, maybe?</p>
+<p><strong>carver</strong>: I’m God, remember?</p>
+<p><strong>carver</strong>: Go back to work, she walks out of here.
+Otherwise, she’s up on multiple counts, and I’ll see to it the judge
+runs them consecutively.</p>
+<p><strong>mccutcheon</strong>: They want me to testify against you. I
+said I wouldn’t.</p>
+<p><strong>hull</strong>: You have to. It’s all set up. That’s how
+you’re getting off.</p>
+<p><strong>hull</strong>: My father didn’t have a heart attack.</p>
+<p><strong>hull</strong>: He was shot robbing a liquor store. Trying to
+rob it. I lied about that.</p>
+<p><strong>mccutcheon</strong>: Baby, why are you telling me this?</p>
+<p><strong>hull</strong>: I had to start somewhere… There’re other
+things you don’t know…</p>
+<p><strong>carver</strong>: Betty walked out of court free this morning.
+That’s my side of the deal.</p>
+<p><strong>hull</strong>: You two run on ahead.</p>
+<p><strong>carver</strong>: Her probation gets revoked the minute you
+fuck up. I want you to stay away from her altogether.</p>
+<p><strong>hull</strong>: You know the difference between a black man
+and a nigger?</p>
+<p><strong>hull</strong>: The nigger’s the one who’d even think about
+doing what you tell him.</p>
+<p><strong>carver</strong>: Don’t blow your cover.</p>
+</body>
+</html>

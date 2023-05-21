@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>five-easy-pieces</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="five-easy-pieces">five-easy-pieces</h1>
+<p><strong>1st photo</strong>: A man stands in front of the raised
+sounding board of a piano, playing the viola. Seated on the piano bench,
+accompanying him, is a woman in a maternity dress:</p>
+<p><strong>2nd photo</strong>: A boy of 11, wearing conductor’s tails
+and holding a raised baton in his right hand as if about to gesture a
+downbeat:</p>
+<p><strong>3rd photo</strong>: Another boy of approximately 9, in the
+act of playing the violin:</p>
+<p><strong>4th photo</strong>: The two boys are now poised behind the
+piano. Seated on its bench is a girl of 6, her hands resting on the
+keyboard. Written beneath:</p>
+<p><strong>5th photo</strong>: The above family group, seated on the
+porch of the Dupea home. All eyes but Isabelle’s are faced toward the
+camera. She beams upon a 3 year-old asleep in her arms, his head resting
+against her bosom. His figure is encircled by the pen’s marking and
+preceding his name is the configuration of a small heart:</p>
+<p><strong>wynette</strong>: “And if you love him/Oh be proud of him/For
+after all, he’s just a man…”</p>
+<p><strong>wynette</strong>: “Stand by your man/And show the world you
+love him/Keep giving all the love you can/Stand by your man.”</p>
+<p><strong>rayette</strong>: I’m gonna play it again…</p>
+<p><strong>bobby</strong>: You’re not going to play it again.</p>
+<p><strong>rayette</strong>: Well, lemme play the other side then.</p>
+<p><strong>bobby</strong>: No.</p>
+<p><strong>rayette</strong>: Now quit, Bobby. You said you’re goin’ a
+help me pick a song.</p>
+<p><strong>bobby</strong>: You said.</p>
+<p><strong>rayette</strong>: Well, lemme sing the one I picked an’ see
+what you think… “When there’s a fire in your heart/Break the glass/Sound
+the alarm…”</p>
+<p><strong>rayette</strong>: Oh, you prick…</p>
+<p><strong>rayette</strong>: How ’bout if I just cut off your damn
+water?</p>
+<p><strong>bobby</strong>: I’m too moved by your gentility to speak.</p>
+<p><strong>rayette</strong>: Sugar, you know how I feel about you, don’t
+you? I’m just tryin’ to get you to take an interest in my kind a things,
+an’ what I’m tryin’ to do with myself… You know, there id’n anything in
+the world I wouldn’t do for you, baby. I started livin’ the day I found
+you, you know that?</p>
+<p><strong>bobby</strong>: You’re playing the other side.</p>
+<p><strong>bobby</strong>: Cerveza.</p>
+<p><strong>rayette</strong>: Serveza yourself!</p>
+<p><strong>bobby</strong>: Now, now.</p>
+<p><strong>rayette</strong>: No, dammit, I would easy.</p>
+<p><strong>bobby</strong>: But you heal fast.</p>
+<p><strong>rayette</strong>: You can play the piano, an’ your whole damn
+family can play on some type a musical instrument. An’ all I’m askin’ is
+for you to listen to my singing for one single little second…</p>
+<p><strong>rayette</strong>: But you think you would? No, you’re too
+damn selfish…</p>
+<p><strong>bobby</strong>: Why’nt you take ‘at sign off your tit, Ray,
+an’ let’s go on out.</p>
+<p><strong>rayette</strong>: Out where?</p>
+<p><strong>bobby</strong>: I don’t know, I’ll holler up Elton an’
+Stoney…</p>
+<p><strong>rayette</strong>: I’ll go out with you, or I’ll stay here,
+and do anything you’d like for me to do… if you’ll just do one thing. If
+you’ll tell me that you love me.</p>
+<p><strong>bobby</strong>: You can sing the song.</p>
+<p><strong>rayette</strong>: You know what, you are never satisfied.</p>
+<p><strong>bobby</strong>: That’s right, hand.</p>
+<p><strong>rayette</strong>: Oh, now, baby…</p>
+<p><strong>elton</strong>: Your ball, Ray.</p>
+<p><strong>rayette</strong>: Is this suppose to be fun?</p>
+<p><strong>bobby</strong>: Go on, get up there…</p>
+<p><strong>bobby</strong>: … and stay relaxed this time.</p>
+<p><strong>bobby</strong>: Now don’t loft it, just release it like I
+told you.</p>
+<p><strong>rayette</strong>: The ball’s too heavy for me, honey…</p>
+<p><strong>bobby</strong>: It’s not the damn ball.</p>
+<p><strong>rayette</strong>: I’m tryin’, baby, so don’t start gettin’
+mad now.</p>
+<p><strong>bobby</strong>: No, I’m not mad at you, hand. It’ll be all
+right. Just spot and follow through…</p>
+<p><strong>bobby</strong>: Shit.</p>
+<p><strong>bobby</strong>: Nice ball, El.</p>
+<p><strong>rayette</strong>: Id’n he somethin’ to see?</p>
+<p><strong>rayette</strong>: Is it my turn again?</p>
+<p><strong>bobby</strong>: Right. Now show me a little somethin’ this
+time, okay? Give me some form…</p>
+<p><strong>rayette</strong>: I can’t help it, honey, the ball just keeps
+goin’ cocky wobbly on me…</p>
+<p><strong>bobby</strong>: Will you just do what the hell I tell
+you…</p>
+<p><strong>rayette</strong>: I did, didn’ I, El?</p>
+<p><strong>bobby</strong>: You got another ball comin’.</p>
+<p><strong>elton</strong>: Atta boy, Ray!</p>
+<p><strong>rayette</strong>: That was damn good, wad’n it? I finally did
+it…</p>
+<p><strong>bobby</strong>: Yeah, great. Why don’t you throw Z’s for 19
+frames, and then roll a strike on the last ball in the last frame of a
+losing game? Just wonderful.</p>
+<p><strong>bobby</strong>: Wasn’t it, ladies?</p>
+<p><strong>twinky</strong>: Are you talking to us?</p>
+<p><strong>rayette</strong>: I’m gonna go wait in the car.</p>
+<p><strong>bobby</strong>: Yeah, why don’t you do that.</p>
+<p><strong>stoney</strong>: Wait an I’ll I go with you, honey…</p>
+<p><strong>elton</strong>: We gotta get on home an’ relieve the sitter.
+Why’nt you an’ Ray come on over.</p>
+<p><strong>bobby</strong>: Okay. Go ahead. I’ll settle up for the beers…
+An’ walk Rayette over with you, will you.</p>
+<p><strong>waitress</strong>: Can I get you anything else?</p>
+<p><strong>bobby</strong>: No. How much do I owe you?</p>
+<p><strong>waitress</strong>: Five’ll do it.</p>
+<p><strong>twinky</strong>: We been wantin’ to ask you something. Are
+you the guy on YV?</p>
+<p><strong>bobby</strong>: Am I on TV?</p>
+<p><strong>twinky</strong>: She says you’re the one that sells all the
+cars on TV.</p>
+<p><strong>bobby</strong>: Well, I don’t claim to have sold ’em all.
+They still have some left, I believe.</p>
+<p><strong>betty</strong>: See, I told you it was him… Your name’s
+Donnie something, right?</p>
+<p><strong>bobby</strong>: I leave it to you.</p>
+<p><strong>betty</strong>: My name is Shirley, but they call me Betty,
+and her name’s Twinky.</p>
+<p><strong>bobby</strong>: Twinky?</p>
+<p><strong>betty</strong>: Yeah, ’cause she’s so “twinky”…</p>
+<p><strong>bobby</strong>: Well, Betty and Twinky, it sure is nice
+talking to you girls. I just wish I had more time…</p>
+<p><strong>betty</strong>: That’s a wig you wear, isn’t it?</p>
+<p><strong>bobby</strong>: A wig?</p>
+<p><strong>betty</strong>: Yeah, I told her it was you, but that you’re
+wearing a wig, ’cause on TV you’re mostly bald in the front.</p>
+<p><strong>bobby</strong>: Your little friend’s real sharp there… Yeah,
+I don’t like to wear the wig on TV, because with two and a half million
+people watching you, you’ve gotta be sincere. I just like to wear it
+when I’m out slippin’ around bowling alleys an’ things like that. I
+think it gives me a little more class, don’t you?</p>
+<p><strong>twinky</strong>: Oh, definitely…</p>
+<p><strong>betty</strong>: Yeah, but I can see a little bitty of the net
+up there, that’s what give it away.</p>
+<p><strong>twinky</strong>: It’s so weird to see you in person, but
+that’s who she says you are.</p>
+<p><strong>betty</strong>: It is him, he said it’s him. Aren’t you.</p>
+<p><strong>bobby</strong>: Yeah, you could say it’s me.</p>
+<p><strong>twinky</strong>: I’m gonna give you our number, Donnie, just
+in case… We’re both professionals, if you didn’t guess.</p>
+<p><strong>bobby</strong>: Well, you seem very professional…</p>
+<p><strong>twinky</strong>: I always tell everyone the same thing. I got
+rolled and beat up real bad recently, and since then it’s two for one,
+an’ I work strictly in tandem with Betty…</p>
+<p><strong>bobby</strong>: Yeah, I can see how she’d come in handy.</p>
+<p><strong>bobby</strong>: Come on. We’re goin’ over to Elton’s.</p>
+<p><strong>rayette</strong>: I’m not.</p>
+<p><strong>bobby</strong>: You just going to sit there?</p>
+<p><strong>rayette</strong>: Yes.</p>
+<p><strong>bobby</strong>: Okay. Hope no one hits on you.</p>
+<p><strong>rayette</strong>: I hope they do.</p>
+<p><strong>bobby</strong>: See you later, then…</p>
+<p><strong>bobby</strong>: No one would want to hit on you, you look too
+pathetic.</p>
+<p><strong>bobby</strong>: Come on, DiPesto. We can still have a good
+time.</p>
+<p><strong>rayette</strong>: You’re the pathetic one, not me.</p>
+<p><strong>bobby</strong>: I’m going on over there…</p>
+<p><strong>rayette</strong>: I’m not some piece a crap.</p>
+<p><strong>bobby</strong>: I know you’re not.</p>
+<p><strong>rayette</strong>: You treat me like I was.</p>
+<p><strong>bobby</strong>: I’m sorry.</p>
+<p><strong>rayette</strong>: You go slippin’ around in front a my face,
+an’ in front a Elton an’ Stoney. What do you imagine they think a
+someone you treat that way…</p>
+<p><strong>bobby</strong>: Now, hand…</p>
+<p><strong>bobby</strong>: Elton and Stoney know how I feel about you.
+An’ they’re just goin’ to think I’m not too nice a guy, which I’m not,
+an’ that you’re a hell of a person puttin’ up with me, that’s all.</p>
+<p><strong>rayette</strong>: You’re goin’ a find me dead one time.</p>
+<p><strong>bobby</strong>: Sssh, come on now… Be a good girl.</p>
+<p><strong>rayette</strong>: If you really want a get up an’ leave me,
+you can read about it in the newsprint.</p>
+<p><strong>bobby</strong>: I’m not going to get up an’ leave you. Now
+let’s go over to El’s an’ have a good time.</p>
+<p><strong>rayette</strong>: Do you love me, Bobby?</p>
+<p><strong>bobby</strong>: Well now, what do you think?</p>
+<p><strong>elton</strong>: God, id’n she the cutest damn thing in your
+life!</p>
+<p><strong>bobby</strong>: Can you believe this shit?</p>
+<p><strong>bobby</strong>: Goddamned freeway… Jesus Christ…</p>
+<p><strong>elton</strong>: Give ’em the horn, Bob.</p>
+<p><strong>bobby</strong>: Look at these assholes! What the hell are
+they doing?!</p>
+<p><strong>bobby</strong>: I can’t take this shit anymore.</p>
+<p><strong>driver</strong>: Hey, get off my car!</p>
+<p><strong>elton</strong>: Where the hell’s he goin’?</p>
+<p><strong>elton</strong>: Hey, Bob! Come on! Quit foolin’ around!</p>
+<p><strong>elton</strong>: Shit, what’s he doin’?</p>
+<p><strong>elton</strong>: You better get your butt off there, Bob! Come
+on, now!!</p>
+<p><strong>bobby</strong>: I was with Elton last night, Ray.</p>
+<p><strong>bobby</strong>: It’s the truth.</p>
+<p><strong>bobby</strong>: Rayette…</p>
+<p><strong>rayette</strong>: You son of a bitch.</p>
+<p><strong>elton</strong>: I swore to God I’d never hire on to this type
+a work again. Christ, I don’t know how the hell I let you talk me into
+it…</p>
+<p><strong>rayette</strong>: Give me a swig, hon’.</p>
+<p><strong>elton</strong>: You didn’ know I was a derrickman once, did
+you?</p>
+<p><strong>elton</strong>: Down in the southern fields, an’ man, did I
+hate it. An’ Stoney’s brother was a well-puller, wad’n he, honey? The
+one with three fingers?</p>
+<p><strong>stoney</strong>: My brother Cruser, yeah…</p>
+<p><strong>elton</strong>: I once hung suspendered 90 feet up on a tour,
+like a damn circus artist…</p>
+<p><strong>rayette</strong>: Honey, took at this little bugger.</p>
+<p><strong>elton</strong>: Near broke my damn neck…</p>
+<p><strong>rayette</strong>: Id’n he the cutest little guy?</p>
+<p><strong>bobby</strong>: Very cute… Put it down, an’ let’s go.</p>
+<p><strong>elton</strong>: You know, you oughta get you one them things,
+Bob.</p>
+<p><strong>bobby</strong>: Yeah… An’ I oughta live in a trailer park
+with my front teeth poked out…</p>
+<p><strong>elton</strong>: Well, what if she was, Bob? I can’t see
+nothin’ so bad in it…</p>
+<p><strong>elton</strong>: What if I was to let you in on the little
+fact that she is.</p>
+<p><strong>elton</strong>: That’s right. She told me. An’ she’s all tore
+up about it, which I hate a see.</p>
+<p><strong>elton</strong>: Hell, id’n it just somethin’ to face up to?
+I’ll tell you, somewhere along the line, you even get to likin’ the
+whole idea…</p>
+<p><strong>elton</strong>: I recall when Stoney first give me the news,
+I could a shit…</p>
+<p><strong>elton</strong>: Well, id’n that nice.</p>
+<p><strong>bobby</strong>: It’s ridiculous! I’m sitting here, listening
+to some asshole cracker compare his life to mine!</p>
+<p><strong>bobby</strong>: Just keep telling me about the good life,
+Elton, if you want a see me puke my lunch!</p>
+<p><strong>elton</strong>: If you’re sayin’ you’re somethin’ better’n
+what I am, that’s one thing. But I can’t say much a someone who’d run
+off an’ leave a woman in a situation like this an’ feel easy about it.
+An’ that’s all I gotta say.</p>
+<p><strong>bobby</strong>: I hope that’s all you gotta say, El, ‘cause
+I’m about as tired of your mouth as I am workin’ this stinkin’ hole!</p>
+<p><strong>elton</strong>: Shit ass!!</p>
+<p><strong>bobby</strong>: Hey, Longcipher! I’m quitting!</p>
+<p><strong>bobby</strong>: Longcipher! I’m talking to you!</p>
+<p><strong>bobby</strong>: Did you hear me?! I said I’m quitting!</p>
+<p><strong>driller</strong>: I don’t give a shit what you do. You ben
+more trouble than you’re worth, an’ I’m damn glad to be rid of both a
+you assholes.</p>
+<p><strong>bobby</strong>: Hey! What’s goin’ on?!</p>
+<p><strong>elton</strong>: Don’t do that, Bob!! It’s the Law!</p>
+<p><strong>elton</strong>: It’s the Law, Bob, don’t mix in!</p>
+<p><strong>elton</strong>: Look out behind!</p>
+<p><strong>elton</strong>: Hey, don’t do that. Don’t you think you could
+just leave him…</p>
+<p><strong>elton</strong>: Sure as hell he wouldn’ a done that if he’d
+known who you was… Would you, Bob?</p>
+<p><strong>bobby</strong>: Christ Almighty, what’s happening here?</p>
+<p><strong>second man</strong>: Okay, let him go.</p>
+<p><strong>bobby</strong>: Tell me what in the hell’s going on,
+Elton!</p>
+<p><strong>elton</strong>: I got accused a robbin’ a fillin’station down
+in the Indian Nation, didn’ I tell you…</p>
+<p><strong>second man</strong>: Come on.</p>
+<p><strong>elton</strong>: I got wild an’ jumped my bail…</p>
+<p><strong>second man</strong>: Move it!</p>
+<p><strong>elton</strong>: An’ here they come runnin’ after me a year
+later… Ain’t that somethin’?</p>
+<p><strong>elton</strong>: Tell Stoney for me, will you?! Tell her to
+come get me…</p>
+<p><strong>twinky</strong>: Donnie, oh Donnie…</p>
+<p><strong>first engineer</strong>: There she goes again.</p>
+<p><strong>second engineer</strong>: My 1-year-old can carry a tune
+better than that.</p>
+<p><strong>second engineer</strong>: Miss Dupea.</p>
+<p><strong>second engineer</strong>: Miss Dupea.</p>
+<p><strong>tita</strong>: Yes.</p>
+<p><strong>second engineer</strong>: I’d like to remind you again, this
+isn’t an opera or a musical comedy.</p>
+<p><strong>tita</strong>: Oh… I’m sorry. Was I singing again?</p>
+<p><strong>second engineer</strong>: If you want to call it that.</p>
+<p><strong>tita</strong>: Well, you have to simply tell me, that’s
+all.</p>
+<p><strong>second engineer</strong>: That’s exactly what I am doing,
+again.</p>
+<p><strong>tita</strong>: Do you have to let me get halfway through the
+movement first? This is tiring me.</p>
+<p><strong>second engineer</strong>: I have a suggestion. Why don’t we
+take a break.</p>
+<p><strong>tita</strong>: Oh, for pity’s sake…</p>
+<p><strong>first engineer</strong>: Is she going to cry again?</p>
+<p><strong>tita</strong>: I don’t want to take a break.</p>
+<p><strong>second engineer</strong>: What would you like in your
+coffee?</p>
+<p><strong>tita</strong>: Tea.</p>
+<p><strong>bobby</strong>: Would you tell her Bobby’s here?</p>
+<p><strong>second engineer</strong>: Miss Dupea, Bobby’s here.</p>
+<p><strong>tita</strong>: Oh my goodness… Bobby…</p>
+<p><strong>bobby</strong>: Hi, Tita.</p>
+<p><strong>tita</strong>: Robert Eroica…</p>
+<p><strong>bobby</strong>: Now don’t…</p>
+<p><strong>tita</strong>: No, I’m not… I’m not.</p>
+<p><strong>bobby</strong>: That’s good.</p>
+<p><strong>tita</strong>: I just can’t look at you.</p>
+<p><strong>bobby</strong>: Don’t, then.</p>
+<p><strong>tita</strong>: You always do this to me.</p>
+<p><strong>bobby</strong>: Well, I don’t mean to. Here’s your tea,
+Tita.</p>
+<p><strong>tita</strong>: Thank you… Oh no, don’t put it on there…</p>
+<p><strong>bobby</strong>: Sorry.</p>
+<p><strong>tita</strong>: This is a very special, very old CB 275…</p>
+<p><strong>bobby</strong>: Oh.</p>
+<p><strong>tita</strong>: You know who it once belonged to?</p>
+<p><strong>bobby</strong>: No.</p>
+<p><strong>tita</strong>: Waldnit von Schnechter. Prewar.</p>
+<p><strong>bobby</strong>: No kidding.</p>
+<p><strong>tita</strong>: It has absolutely no objectionable
+idiosyncrasies…</p>
+<p><strong>tita</strong>: Robert…</p>
+<p><strong>bobby</strong>: Very nice.</p>
+<p><strong>tita</strong>: I have to talk seriously with you…</p>
+<p><strong>bobby</strong>: Everybody still up on the Island?</p>
+<p><strong>tita</strong>: Well, Herbert’s mostly on the mainland because
+of the orchestra, so at the moment, there’s just Daddy, Carl and myself…
+and Van Oost.</p>
+<p><strong>bobby</strong>: Who’s Van Oost?</p>
+<p><strong>tita</strong>: Catherine – she’s a pianist. She’s working
+with Carl.</p>
+<p><strong>bobby</strong>: Carl’s a fiddler. What’s he doing coaching
+piano?</p>
+<p><strong>tita</strong>: Well, 11 months ago he was on his bicycle, on
+his way to the post office in La Roche… and he ran into a Jeep and
+sprained his neck…</p>
+<p><strong>bobby</strong>: Sprained his neck?</p>
+<p><strong>tita</strong>: It’s not funny. He permanently sprained his
+neck, and since then it’s been extremely difficult for him to tuck the
+violin.</p>
+<p><strong>bobby</strong>: Crashes into a Jeep and totals his neck.
+That’s Carl…</p>
+<p><strong>tita</strong>: Robert, I have to tell you something…</p>
+<p><strong>bobby</strong>: What?</p>
+<p><strong>tita</strong>: Daddy’s very ill.</p>
+<p><strong>bobby</strong>: Oh, well, what, what’s he…</p>
+<p><strong>tita</strong>: He’s had two strokes.</p>
+<p><strong>tita</strong>: He’s not… They feel he… maybe he might not
+recover, and that he’ll either…</p>
+<p><strong>bobby</strong>: Don’t tell me about this…</p>
+<p><strong>tita</strong>: But don’t you think it’s right, though, that
+you should see him, at least once…</p>
+<p><strong>second engineer’s voice</strong>: We’re ready Miss Dupea.</p>
+<p><strong>tita</strong>: Just a minute, please! Robert, don’t you think
+it’s right that you should see him?</p>
+<p><strong>bobby</strong>: Yeah… I guess so…</p>
+<p><strong>tita</strong>: I’m going back up tonight. Will you go with
+me?</p>
+<p><strong>bobby</strong>: No…</p>
+<p><strong>bobby</strong>: I’d rather drive up myself and… maybe go into
+Canada after… And I can’t stay long, Tita, probably a week, at the
+most.</p>
+<p><strong>tita</strong>: I know.</p>
+<p><strong>bobby</strong>: Well… I better let you…</p>
+<p><strong>tita</strong>: Wait…</p>
+<p><strong>tita</strong>: I’ll walk out with you…</p>
+<p><strong>tita</strong>: I’ll be back in two minutes!</p>
+<p><strong>second engineer’s voice</strong>: Cut that in half, will
+you?</p>
+<p><strong>tita</strong>: They hate me, I feel.</p>
+<p><strong>bobby</strong>: Maybe you better stay, then.</p>
+<p><strong>tita</strong>: No, I need to talk to you, about so many
+things…</p>
+<p><strong>bobby</strong>: Well, I’ll be seeing you in a couple of days,
+won’t I?</p>
+<p><strong>tita</strong>: Oh God, I’m so glad, Robert, that you’re
+coming…</p>
+<p><strong>bobby</strong>: Yeah, me, too…</p>
+<p><strong>tita</strong>: It’ll be so good for you, and for Daddy,
+because you know, you’ve never really…</p>
+<p><strong>bobby</strong>: Tita, I’ve got to go…</p>
+<p><strong>tita</strong>: All right…</p>
+<p><strong>tita</strong>: Okay.</p>
+<p><strong>bobby</strong>: Hello?!</p>
+<p><strong>bobby</strong>: You have the day off?!</p>
+<p><strong>bobby</strong>: Are you sick?</p>
+<p><strong>bobby</strong>: You heard about Elton, I guess.</p>
+<p><strong>bobby</strong>: Okay, I get your point.</p>
+<p><strong>bobby</strong>: Hope you didn’t strain yourself, getting in
+here and into your pose before I hit the door.</p>
+<p><strong>bobby</strong>: I have to go home. My father’s sick.</p>
+<p><strong>bobby</strong>: Yeah, it’s very funny.</p>
+<p><strong>bobby</strong>: I’ll be gone two or three weeks.</p>
+<p><strong>rayette</strong>: You’ll be gone, period.</p>
+<p><strong>bobby</strong>: I’ll try and call you from up there.</p>
+<p><strong>bobby</strong>: Come on, DiPesto. I never told you it would
+work out to anything. Did</p>
+<p><strong>bobby</strong>: I’ll send you some money, that’s all I can
+do.</p>
+<p><strong>bobby</strong>: And… I’ll call you, like I said… Bye,
+Ray.</p>
+<p><strong>bobby</strong>: Do you want to go with me, Ray?</p>
+<p><strong>rayette</strong>: “There’s been hot spells/An’ cold spells
+ever since we met/I’ve seen your small fires/Your big fires/But I won’t
+give up yet/Oh someday you’ll yearn/’Cause your heart’s gonna burn/For
+that old familiar glow/You’ll be burned…”</p>
+<p><strong>rayette</strong>: You like it?</p>
+<p><strong>bobby</strong>: I love it.</p>
+<p><strong>rayette</strong>: “You’ll be burned out/Or smoked out/An’
+come back to me, I know…”</p>
+<p><strong>rayette</strong>: “Every trail that you blaze/Makes me…”</p>
+<p><strong>bobby</strong>: What the hell is that?</p>
+<p><strong>rayette</strong>: Is it an accident?</p>
+<p><strong>bobby</strong>: Hey! What’s going on, what’s the
+trouble?!</p>
+<p><strong>palm</strong>: Rotate, mack!</p>
+<p><strong>rayette</strong>: What’d she say?</p>
+<p><strong>palm</strong>: Look at my car! Piece of shit! I just bought
+it brand new from a used-car lot, and the steering goes to the pot on
+me!</p>
+<p><strong>bobby</strong>: You’re lucky no one was hurt.</p>
+<p><strong>palm</strong>: Seven hundred dollars, down the toilet! I’d
+like to go back and punch the son of a bitch out! Can you give us a
+lift?</p>
+<p><strong>palm</strong>: Come on, Terry, we got a ride!</p>
+<p><strong>rayette</strong>: Jesus, what a rude person…</p>
+<p><strong>bobby</strong>: What’s your name?</p>
+<p><strong>palm</strong>: Palm Apodaca.</p>
+<p><strong>rayette</strong>: An’ what’s your name?</p>
+<p><strong>terry</strong>: Terry Grouse.</p>
+<p><strong>bobby</strong>: What?</p>
+<p><strong>rayette</strong>: I’ll tell you… … l-a-t-e-r.</p>
+<p><strong>palm</strong>: How far are you going to?</p>
+<p><strong>bobby</strong>: Washington.</p>
+<p><strong>palm</strong>: We’ll get off in Washington and hook another
+ride.</p>
+<p><strong>bobby</strong>: Where are you going?</p>
+<p><strong>palm</strong>: Alaska.</p>
+<p><strong>bobby</strong>: Alaska? Are you on vacation?</p>
+<p><strong>terry</strong>: She wants to live there, because she thinks
+it’s cleaner.</p>
+<p><strong>bobby</strong>: Cleaner than what?</p>
+<p><strong>palm</strong>: You don’t have to tell everybody about it.
+Pretty soon they’ll all go there and it won’t be so clean.</p>
+<p><strong>bobby</strong>: How do you know it’s clean?</p>
+<p><strong>palm</strong>: I saw a picture of it. Alaska is very clean.
+It appeared to look very white to me… Don’t you think?</p>
+<p><strong>bobby</strong>: Yeah. That’s before the big thaw.</p>
+<p><strong>palm</strong>: Before the what?</p>
+<p><strong>palm</strong>: I had to leave this place. I got depressed,
+seeing all the crap. And the thing is, they’re making more crap, you
+know? They’ve got so many stores and stuff and junk full of crap, I
+can’t believe it.</p>
+<p><strong>bobby</strong>: Who?</p>
+<p><strong>palm</strong>: Who? People, that’s who! Pretty soon there
+won’t be room for anyone. They’re selling more crap that people go and
+buy than you can imagine. Oofh! Crap! I believe everybody should have a
+big hole where they throw in all this stuff and burn it.</p>
+<p><strong>rayette</strong>: There’d never be a hole big enough. Now
+took at me, for instance, when I was just one person, before Bobby, I
+had so much garbage collectin’ onto me every day, I was thinkin’ about
+gettin a dispose all…</p>
+<p><strong>palm</strong>: A dispose-all, what’s that but more crap? I’ve
+never seen such crap. Oofh, I don’t know how people get up in the
+morning.</p>
+<p><strong>terry</strong>: Mass production is what does it.</p>
+<p><strong>palm</strong>: What do you mean “mass”… I have to come out
+and tell you, you’re not that clean, either.</p>
+<p><strong>terry</strong>: Wait a minute. I’m not that neat, maybe, but
+I am clean.</p>
+<p><strong>palm</strong>: Well, you’re not that bad, but some people… I
+mean, people’s homes, just filth. I’ve been in people’s homes…</p>
+<p><strong>terry</strong>: In my personal observation, I think that more
+people are neat than are clean…</p>
+<p><strong>palm</strong>: In my personal thing, I don’t see that. I’m
+seeing more filth. A lot of filth. What they need to do every day, no,
+once in a while, is a cockroach thing, where they spray the homes. And
+uh… can you imagine, if their doors were painted a pretty color, and
+they had a pot outside, with…</p>
+<p><strong>terry</strong>: Yeah, it could be adorable…</p>
+<p><strong>palm</strong>: And they picked up! I mean, it wouldn’t be
+filthy, with Coke bottles and whiskey, and those signs everywhere…</p>
+<p><strong>palm</strong>: … they oughta be erased! All those signs,
+selling crap, and more crap, and, I don’t know, it’s disgusting, I don’t
+even want to talk about it!</p>
+<p><strong>bobby</strong>: Well…</p>
+<p><strong>palm</strong>: It’s just filthy. People are dirty. I think
+that’s the biggest thing that’s wrong with people. I think they wouldn’t
+be as violent if they were clean, because then they wouldn’t have
+anybody to pick on… Oofh… Dirt…</p>
+<p><strong>rayette</strong>: Well…</p>
+<p><strong>palm</strong>: Not dirt. See, dirt isn’t bad. It’s filth.
+Filth is bad. That’s what starts maggots and riots…</p>
+<p><strong>palm</strong>: Hey, follow that truck. They know the best
+places to stop.</p>
+<p><strong>rayette</strong>: That’s an old maid’s tale.</p>
+<p><strong>palm</strong>: Bullshit! Truck drivers know the best eating
+places on the road.</p>
+<p><strong>rayette</strong>: Salesmen and cops are the ones. If you’d
+ever waitressed, honey, you’d know.</p>
+<p><strong>palm</strong>: Don’t call me “honey,” mack.</p>
+<p><strong>rayette</strong>: Don’t call me “mack,” honey.</p>
+<p><strong>palm</strong>: I wouldn’t be a waitress. They’re nasty and
+full of crap.</p>
+<p><strong>rayette</strong>: You better hold onto your tongue!</p>
+<p><strong>palm</strong>: Hold onto this.</p>
+<p><strong>rayette</strong>: Just one minute, you! Don’t you ever talk
+to me like that!</p>
+<p><strong>bobby</strong>: Shut up! All of you!</p>
+<p><strong>bobby</strong>: I’ll have an omelette, no potatoes. Give me
+tomatoes instead, and wheat toast instead of rolls.</p>
+<p><strong>waitress</strong>: No substitutions.</p>
+<p><strong>bobby</strong>: What does that mean? You don’t have any
+tomatoes?</p>
+<p><strong>waitress</strong>: No. We have tomatoes.</p>
+<p><strong>bobby</strong>: But I can’t have any. Is that what you
+mean?</p>
+<p><strong>waitress</strong>: Only what’s on the menu… A Number Two:
+Plain omelette. It comes with cottage fries and rolls.</p>
+<p><strong>bobby</strong>: I know what it comes with, but that’s not
+what I want.</p>
+<p><strong>waitress</strong>: I’ll come back when you’ve made up your
+mind…</p>
+<p><strong>bobby</strong>: Wait, I’ve made up my mind. I want a plain
+omelette, forget the tomatoes, don’t put potatoes on the plate, and give
+me a side of wheat toast and a cup of coffee.</p>
+<p><strong>waitress</strong>: I’m sorry, we don’t have side orders of
+toast. I can give you an English muffin or a coffee roll.</p>
+<p><strong>bobby</strong>: What do you mean, you don’t have side orders
+of toast? You make sandwiches, don’t you?</p>
+<p><strong>waitress</strong>: Would you like to talk to the manager?</p>
+<p><strong>palm</strong>: Hey, mack!</p>
+<p><strong>bobby</strong>: Shut up. You have bread, don’t you, and a
+toaster of some kind?</p>
+<p><strong>waitress</strong>: I don’t make the rules.</p>
+<p><strong>bobby</strong>: Okay, I’ll make it as easy for you as I can.
+Give me an omelette, plain, and a chicken salad sandwich on wheat toast
+– no butter, no mayonnaise, no lettuce – and a cup of coffee.</p>
+<p><strong>waitress</strong>: One Number Two, and a chicken sal san –
+hold the butter, the mayo, the lettuce – and a cup of coffee… Anything
+else?</p>
+<p><strong>bobby</strong>: Now all you have to do is hold the chicken,
+bring me the toast, charge me for the sandwich, and you haven’t broken
+any rules.</p>
+<p><strong>waitress</strong>: You want me to hold the chicken.</p>
+<p><strong>bobby</strong>: Yeah. I want you to hold it between your
+knees.</p>
+<p><strong>waitress</strong>: You see that sign, sir?!</p>
+<p><strong>waitress</strong>: You’ll all have to leave, I’m not taking
+any more of your smartness and your sarcasm!</p>
+<p><strong>bobby</strong>: You see this sign?</p>
+<p><strong>palm</strong>: Fantastic! That you could figure all that out,
+and lay that down on her, to come up with a way you could get your
+toast.</p>
+<p><strong>bobby</strong>: I didn’t get it, did I?</p>
+<p><strong>palm</strong>: No, but it was very clever… I would of just
+punched her out.</p>
+<p><strong>palm</strong>: People… Oofh… Animals are not like that…
+They’re always cleaning themselves. Did you ever see… What are they
+called? Pigeons!</p>
+<p><strong>palm</strong>: He’s always picking on himself and his
+friends. They’re always picking bugs out of their hair…</p>
+<p><strong>palm</strong>: Monkeys, too.</p>
+<p><strong>palm</strong>: Except monkeys do things out in the open that
+I don’t go for.</p>
+<p><strong>palm</strong>: I was in this place once, this store, with
+snakes, monkeys, everything you could imagine. I walked in, I had to run
+out. It stunk! They didn’t even have an incense going…</p>
+<p><strong>palm</strong>: And you know, I read where they invented this
+car that runs on… that runs on… when you boil water…</p>
+<p><strong>terry</strong>: Steam.</p>
+<p><strong>palm</strong>: Right, steam. A car you could ride around in
+and not cause a stink. But do you know, they will not even let us have
+it. Can you believe it? Why?! Man! He likes to create a stink. I wrote
+them a note once, and told them to clean it… I mean, don’t you see that?
+It’s just filthy! I mean, I’ve seen filth you wouldn’t believe! Oofh,
+what a stink! I don’t even want to talk about it…</p>
+<p><strong>rayette</strong>: Are you depressed about your daddy,
+honey?</p>
+<p><strong>bobby</strong>: No.</p>
+<p><strong>rayette</strong>: I ’magine it’s me then, id’n it?</p>
+<p><strong>bobby</strong>: Is what you?</p>
+<p><strong>rayette</strong>: You’re depressed that I come along.</p>
+<p><strong>bobby</strong>: Who said I was depressed?</p>
+<p><strong>rayette</strong>: Well, is that a happy face I see?</p>
+<p><strong>rayette</strong>: ’Cause if it was me, I could just catch a
+Greyhound back.</p>
+<p><strong>bobby</strong>: Oh, you’re not going to kill yourself this
+time. I wish I’d known…</p>
+<p><strong>rayette</strong>: I don’t know if I’m gonna be able to sleep
+or not.</p>
+<p><strong>rayette</strong>: Hint, hint.</p>
+<p><strong>rayette</strong>: I guess I’ll just have to count the sheep.
+One-two-three-four…</p>
+<p><strong>rayette</strong>: Seven… eight… Look at this old cold
+shoulder, what am I gonna do with it?</p>
+<p><strong>bobby</strong>: If you just wouldn’t open your mouth,
+everything would be fine.</p>
+<p><strong>rayette</strong>: Tick a lock.</p>
+<p><strong>rayette</strong>: Why can’t I go out to your folks’ house?
+Give me one good reason.</p>
+<p><strong>bobby</strong>: I have to see how things are first. My
+father’s sick, you understand? They wouldn’t be prepared for me bringing
+anyone.</p>
+<p><strong>rayette</strong>: So how long am I supposed to sit an’
+twiddle my thumbs in this place?</p>
+<p><strong>bobby</strong>: If you can’t do what I ask, Ray, use that
+money to go back home, then.</p>
+<p><strong>rayette</strong>: Bobby, don’t talk like that…</p>
+<p><strong>rayette</strong>: It’ll be all right, I’ll get a hold a some
+magazines an’ things like that. An’ maybe find a beauty salon an’ get my
+hair fixed, okay?</p>
+<p><strong>bobby</strong>: Okay, Ray…</p>
+<p><strong>rayette</strong>: Or maybe sit out by the pool an’ get myself
+nice an’ tan for you. Would you like that?</p>
+<p><strong>bobby</strong>: Sure…</p>
+<p><strong>rayette</strong>: It brings out my eyes…</p>
+<p><strong>bobby</strong>: Bye, honey, I’ll call you in a couple of
+days.</p>
+<p><strong>rayette</strong>: Okay…</p>
+<p><strong>rayette</strong>: Bye, baby…</p>
+<p><strong>bobby</strong>: He doesn’t even know who the hell I am.</p>
+<p><strong>tita</strong>: Remember, Bobby, what mother used to say
+when…</p>
+<p><strong>catherine</strong>: How long have you been… Oh, excuse
+me…</p>
+<p><strong>tita</strong>: No, it’s all right, you go ahead…</p>
+<p><strong>catherine</strong>: I was just going to ask Robert how long
+he’s been away from here.</p>
+<p><strong>bobby</strong>: Four or five years.</p>
+<p><strong>carl</strong>: No, the last time was three years ago.</p>
+<p><strong>tita</strong>: Oh no, it’s been much more than that.</p>
+<p><strong>carl</strong>: Away from the piano, Tita, you have no sense
+of time at all.</p>
+<p><strong>tita</strong>: I don’t think that’s true.</p>
+<p><strong>carl</strong>: It is true.</p>
+<p><strong>tita</strong>: Besides being very rude.</p>
+<p><strong>catherine</strong>: What have you been doing since then?</p>
+<p><strong>bobby</strong>: What have I been doing? Different things,
+different jobs, here and there. Nothing that interesting.</p>
+<p><strong>catherine</strong>: And you no longer play at all?</p>
+<p><strong>carl</strong>: You know, just after I came back off tour with
+the Betenthaller Quartet, Dad, myself and Herbert had a summit
+conference about you…</p>
+<p><strong>tita</strong>: Oh, my, “a summit conference.” I wonder where
+I was, polishing silver behind the coal bin.</p>
+<p><strong>carl</strong>: I don’t know where you were, penis envy.</p>
+<p><strong>tita</strong>: I hope I didn’t hear that.</p>
+<p><strong>carl</strong>: At any rate, Dad wanted to hire a private
+detective to ferret you out, and I said, “What for?” Whatever the hell
+he’s doing, even if it’s a completely wasteful escapade, it’s entirely
+his business. Simple as that…</p>
+<p><strong>bobby</strong>: Well, I really appreciate it, Carl.</p>
+<p><strong>tita</strong>: I don’t think you should infer Daddy was wrong
+in front of him…</p>
+<p><strong>tita</strong>: Don’t force him like that, Spicer.</p>
+<p><strong>bobby</strong>: How long have you been staying here?</p>
+<p><strong>tita</strong>: A couple of months.</p>
+<p><strong>carl</strong>: Did you hear about my misfortune, Robert?</p>
+<p><strong>bobby</strong>: What?</p>
+<p><strong>carl</strong>: It’s still nearly impossible for me to turn my
+neck. If I wanted to turn toward Catherine, for instance, I’d first have
+to twist the whole base of my body around… … like this…</p>
+<p><strong>catherine</strong>: I wouldn’t mind doing a little work, if
+you’re finished, and not too tired…</p>
+<p><strong>carl</strong>: No, I’m finished… Satiety is my father and
+mother.</p>
+<p><strong>carl</strong>: She’s tremendously gifted, this girl.</p>
+<p><strong>bobby</strong>: Is she?</p>
+<p><strong>catherine</strong>: Excuse me, I don’t want to hear this…</p>
+<p><strong>carl</strong>: I hope you feel at home, Robert. I’m really
+glad you’re here.</p>
+<p><strong>bobby</strong>: Thanks, Carl…</p>
+<p><strong>tita</strong>: He has ways of communicating, Robert. I can
+tell when he’s expressing approval or disapproval, just from his
+eyes…</p>
+<p><strong>bobby</strong>: Uhm hmm. Some range.</p>
+<p><strong>tita</strong>: It’s not that bad.</p>
+<p><strong>bobby</strong>: Yes, it is. I can’t take seeing him, sitting
+there like a stone.</p>
+<p><strong>tita</strong>: A week or two isn’t going to ruin your life,
+for Godsakes.</p>
+<p><strong>tita</strong>: I mean, you think I’m that happy?</p>
+<p><strong>bobby</strong>: No, I don’t. You should’ve left a long time
+ago.</p>
+<p><strong>tita</strong>: We can’t all get up and leave, can we? I mean,
+there are certain needs you have to respond to…</p>
+<p><strong>tita</strong>: And anyway, I want you to stay, so I can spend
+some time with you, and ask you some questions…</p>
+<p><strong>bobby</strong>: What questions?</p>
+<p><strong>tita</strong>: Well, do you – I mean, have you enjoyed all
+these… strange things you’ve been doing?</p>
+<p><strong>bobby</strong>: Sometimes.</p>
+<p><strong>bobby</strong>: Why? Am I some kind of freak to you or
+something?</p>
+<p><strong>tita</strong>: No, no, I don’t think that, I’m just curious
+about it… Do you think I’m a freak?</p>
+<p><strong>bobby</strong>: Sort of.</p>
+<p><strong>tita</strong>: Oh no… Why? What is it? The way I look?</p>
+<p><strong>bobby</strong>: No, I don’t really think you’re a freak.</p>
+<p><strong>tita</strong>: I probably am, but I don’t care. I mean, I
+wasn’t that blessed to begin with, and when would I have had time to
+make any improvements…</p>
+<p><strong>bobby</strong>: What about Carl and Catherine? Is he just
+coaching her, or what?</p>
+<p><strong>tita</strong>: Constantly. Night and day. And unless I get up
+before the birds, I can’t get in any practice time for myself…</p>
+<p><strong>bobby</strong>: Uhm hmm.</p>
+<p><strong>tita</strong>: Actually, it’s very admirable, the way she
+works. She’ll probably be enormously successful, because she’s
+attractive as well, not that that’s so important in music, but…</p>
+<p><strong>bobby</strong>: You’re attractive, Tita. If you just did a
+little more with yourself…</p>
+<p><strong>tita</strong>: Like what?</p>
+<p><strong>bobby</strong>: Well, if you just maybe did something with
+your hair, or…</p>
+<p><strong>tita</strong>: Oh, let’s not talk about my hair, it does what
+it wants to, and anyway, who cares, I want to talk about you…</p>
+<p><strong>bobby</strong>: There’s nothing to say, Tita…</p>
+<p><strong>tita</strong>: Well, you’re not going to run out on me right
+away, are you?</p>
+<p><strong>bobby</strong>: I don’t know.</p>
+<p><strong>tita</strong>: Oh God, don’t sneak up on me like that!</p>
+<p><strong>bobby</strong>: Sorry.</p>
+<p><strong>catherine</strong>: Hello…</p>
+<p><strong>bobby</strong>: I guess you fell in the water.</p>
+<p><strong>catherine</strong>: Yes, intentionally.</p>
+<p><strong>bobby</strong>: That’s dangerous, you know.</p>
+<p><strong>catherine</strong>: Swimming?</p>
+<p><strong>bobby</strong>: Playing piano all day and then jumping into
+cold water. You could get a cramp.</p>
+<p><strong>catherine</strong>: I love to swim, and I don’t mind the cold
+at all. It’s invigorating.</p>
+<p><strong>bobby</strong>: Well, I wouldn’t want to get too invigorated
+myself.</p>
+<p><strong>catherine</strong>: Why?</p>
+<p><strong>bobby</strong>: What would I do with it? Run amok?</p>
+<p><strong>bobby</strong>: Besides piano and swimming, what else do you
+do?</p>
+<p><strong>catherine</strong>: Well, there’s fishing and boating.
+There’s concerts on the mainland and… but I feel silly telling you. This
+is really your home. You probably know better than I what there is to
+do.</p>
+<p><strong>bobby</strong>: Nothing.</p>
+<p><strong>catherine</strong>: Nothing? Then it must be very boring for
+you here.</p>
+<p><strong>bobby</strong>: That’s right. Have you anything to
+suggest?</p>
+<p><strong>catherine</strong>: I don’t know. Let me give it some
+thought.</p>
+<p><strong>bobby</strong>: What’re you doing right now…</p>
+<p><strong>catherine</strong>: Right now I’m going to run a hot tub and
+soak myself.</p>
+<p><strong>bobby</strong>: Then after that?</p>
+<p><strong>catherine</strong>: After that, I plan to read some music and
+rest for awhile.</p>
+<p><strong>bobby</strong>: Tomorrow, then.</p>
+<p><strong>catherine</strong>: Tomorrow’s a full practice day… But the
+day after is kind of open.</p>
+<p><strong>catherine</strong>: Carl has hydrotherapy on Tuesdays.</p>
+<p><strong>bobby</strong>: The day after tomorrow.</p>
+<p><strong>catherine</strong>: If you’re free.</p>
+<p><strong>bobby</strong>: Yeah, I’ll probably be free.</p>
+<p><strong>tita</strong>: Don’t laugh…</p>
+<p><strong>tita</strong>: What’s wrong, Carl, you hardly ate
+anything…</p>
+<p><strong>carl</strong>: I took some aspirin and it really upset my
+stomach.</p>
+<p><strong>catherine</strong>: One thing that’s hard to understand is
+how you could have this incredible background in music, and then just
+walk away from it, without a second thought…</p>
+<p><strong>bobby</strong>: I gave it a second thought.</p>
+<p><strong>tita</strong>: He looks tired to me, Spicer. I think you
+should put him to bed.</p>
+<p><strong>catherine</strong>: I mean, how could you not play anymore?
+That’s so strange to me…</p>
+<p><strong>bobby</strong>: I have played a few times. Here and there. As
+a matter of fact, I was once a rehearsal pianist for a Las Vegas musical
+revue.</p>
+<p><strong>catherine</strong>: You don’t call that music, though.</p>
+<p><strong>bobby</strong>: Of course I do. It’s music. You know…</p>
+<p><strong>carl</strong>: Robert, do you mind?</p>
+<p><strong>bobby</strong>: What?</p>
+<p><strong>carl</strong>: Nothing. Will you excuse us for a while?</p>
+<p><strong>catherine</strong>: We really don’t have to, Carl, if you’re
+not feeling good…</p>
+<p><strong>carl</strong>: Well, maybe if we put the Thermaphore on me
+for a while, first…</p>
+<p><strong>catherine</strong>: Oh, all right.</p>
+<p><strong>tita</strong>: Do you want some gingerbread?</p>
+<p><strong>bobby</strong>: What?</p>
+<p><strong>tita</strong>: With applesauce?</p>
+<p><strong>bobby</strong>: No, thanks…</p>
+<p><strong>bobby</strong>: Yeah, well fine, you know what I suggest,
+Ray… Because I don’t know how long. Things are not going that well
+here…</p>
+<p><strong>bobby</strong>: Yeah, well I’m not having any fun, either, so
+why don’t you… No, you can’t, it’s just not convenient, and I have to
+get off… Ray, I really have to go, I have to get off now… Another couple
+of days, maybe. I’ll call you and let you – All right, if you’re gone,
+you’re gone. Now I have to get off, okay? Bye, Ray…</p>
+<p><strong>carl</strong>: Only 10 minutes of playing and it’s already
+killing my neck…</p>
+<p><strong>bobby</strong>: You sure you should be playing, Carl?</p>
+<p><strong>carl</strong>: What do you mean? Aside from my neck, I’m in
+superb shape.</p>
+<p><strong>bobby</strong>: I don’t know, there’s something wrong with
+the way you move.</p>
+<p><strong>carl</strong>: I’m not aware of it. Like what?</p>
+<p><strong>bobby</strong>: Your serve. Two – Eighteen.</p>
+<p><strong>bobby</strong>: I’d hate to see you walk across a concert
+stage like that.</p>
+<p><strong>bobby</strong>: Two – Nineteen.</p>
+<p><strong>carl</strong>: I’ve walked across a stage a number of times,
+without exciting any particular response…</p>
+<p><strong>bobby</strong>: That’s what I mean…</p>
+<p><strong>carl</strong>: Any particular humor, I meant.</p>
+<p><strong>bobby</strong>: I think you should get someone to coach you
+how to walk. I think it’s a substantial problem.</p>
+<p><strong>carl</strong>: Dammit!</p>
+<p><strong>bobby</strong>: Look at that.</p>
+<p><strong>tita</strong>: Why are you being so mean?</p>
+<p><strong>bobby</strong>: I’m not. He does walk funny. Don’t you see
+that?</p>
+<p><strong>tita</strong>: I don’t think I’d notice. I’m so used to
+Carl.</p>
+<p><strong>bobby</strong>: Yeah, well, he’s…</p>
+<p><strong>tita</strong>: Bobby? Do you think Spicer is attractive?</p>
+<p><strong>bobby</strong>: I think he’s got a terrific personality.</p>
+<p><strong>tita</strong>: You know, he was formerly a sailor.</p>
+<p><strong>bobby</strong>: Look, can’t you see that, what I’m talking
+about?</p>
+<p><strong>tita</strong>: Sailors are sadistic, I feel.</p>
+<p><strong>carl</strong>: See? There’s nothing wrong with the way I
+walk. Now where are we?</p>
+<p><strong>bobby</strong>: At game, Carl.</p>
+<p><strong>bobby</strong>: That’s three games to none, Carl.</p>
+<p><strong>carl</strong>: All right, let’s have a rematch.</p>
+<p><strong>bobby</strong>: I thought you had to go to the mainland
+today. Aren’t you going to miss the ferry?</p>
+<p><strong>carl</strong>: Too bad. Just when I was hitting my
+stride.</p>
+<p><strong>carl</strong>: Say goodbye to Catherine for me, will you?</p>
+<p><strong>tita</strong>: Can I play now?</p>
+<p><strong>carl</strong>: Tell her I’ll be back sometime tomorrow!</p>
+<p><strong>bobby</strong>: Where is she, anyway?</p>
+<p><strong>tita</strong>: My turn.</p>
+<p><strong>bobby</strong>: Why don’t you and Spicer play?</p>
+<p><strong>catherine</strong>: That was beautiful, Robert. I’m
+surprised…</p>
+<p><strong>bobby</strong>: Thank you.</p>
+<p><strong>catherine</strong>: I was really very moved by the way
+you…</p>
+<p><strong>catherine</strong>: Is that funny?</p>
+<p><strong>bobby</strong>: It wasn’t supposed to be, it just struck me
+that way.</p>
+<p><strong>catherine</strong>: Why?</p>
+<p><strong>bobby</strong>: Nothing. It’s just that… I picked the easiest
+piece I could remember. I think I first played it when I was 8 years old
+and I played it better then.</p>
+<p><strong>catherine</strong>: It doesn’t matter. It was the feeling I
+was affected by.</p>
+<p><strong>bobby</strong>: I didn’t have any.</p>
+<p><strong>catherine</strong>: You had no inner feeling?</p>
+<p><strong>bobby</strong>: None.</p>
+<p><strong>catherine</strong>: Then I must have been supplying it.</p>
+<p><strong>bobby</strong>: Wait…</p>
+<p><strong>catherine</strong>: Well, at least you’re accomplished at
+something…</p>
+<p><strong>bobby</strong>: What?</p>
+<p><strong>catherine</strong>: At being a fake.</p>
+<p><strong>bobby</strong>: Catherine…</p>
+<p><strong>catherine</strong>: No, you’re very good at it. I’m really
+impressed.</p>
+<p><strong>bobby</strong>: Shit.</p>
+<p><strong>bobby</strong>: You think I’m a fake.</p>
+<p><strong>catherine</strong>: I think it’s what you think.</p>
+<p><strong>bobby</strong>: No, it isn’t what I think.</p>
+<p><strong>catherine</strong>: Look… You made a very calculated move,
+and then made me feel embarrassed for responding to you. That wasn’t
+necessary.</p>
+<p><strong>bobby</strong>: Yes, it was. You’ve made it clear that if I
+can cut a little piano, I might get a little response.</p>
+<p><strong>catherine</strong>: I don’t think that’s accurate…</p>
+<p><strong>bobby</strong>: Up to now, what I’ve been getting from you
+are meaningful looks over the dinner table and a lot of vague
+suggestions about the day after tomorrow…</p>
+<p><strong>catherine</strong>: I’m not conscious of having given you any
+meaningful looks. And as for the day after tomorrow, this is the day
+after tomorrow, and I am, unfortunately, seeing you… Now if you’ll
+excuse me, I’d like to take a bath.</p>
+<p><strong>bobby</strong>: It’s convenient to fake looking for something
+right now, isn’t it?</p>
+<p><strong>catherine</strong>: I’m not faking anything. I’m looking for
+some bath oil…</p>
+<p><strong>bobby</strong>: Some bath oil?</p>
+<p><strong>bobby</strong>: What about this one? Or this one? How about
+some jasmine? What about some musk?</p>
+<p><strong>cathfrine</strong>: What are you doing!</p>
+<p><strong>bobby</strong>: What are you doing, screwing around with this
+crap?!</p>
+<p><strong>catherine</strong>: I don’t find your language that
+charming.</p>
+<p><strong>bobby</strong>: It’s direct, anyway, which seems to be
+difficult for you.</p>
+<p><strong>catherine</strong>: I’d like you to leave now. Is that direct
+enough?</p>
+<p><strong>catherine</strong>: You’re not a serious person, by your own
+admission. And that may be interesting, but it doesn’t interest me…</p>
+<p><strong>bobby</strong>: Serious, that’s what’s important to you?</p>
+<p><strong>catherine</strong>: Yes, that’s what’s important to me…</p>
+<p><strong>bobby</strong>: Okay, let’s be serious…</p>
+<p><strong>catherine</strong>: No, don’t do that…</p>
+<p><strong>bobby</strong>: Shut up…</p>
+<p><strong>catherine</strong>: No inner feeling.</p>
+<p><strong>bobby</strong>: That’s right.</p>
+<p><strong>catherine</strong>: I don’t believe vou.</p>
+<p><strong>catherine</strong>: I married him when I was 17. He was a
+cellist, and I thought he was the most brilliant man I’d ever met… And
+I’m sure he was, because at that age, I hadn’t met that many… But he was
+insidious, you know. He had me convinced that I was a mediocrity,
+musically, as a woman, as an intellect. But in this completely
+imperceptible, pleasant way, so that you weren’t even sure he was doing
+it. Anyway, I just woke up one morning and I said, you know something
+Joseph, you’re full of beans, and I left him…</p>
+<p><strong>bobby</strong>: That’s what you said?</p>
+<p><strong>catherine</strong>: Something witty and devastating like
+that.</p>
+<p><strong>catherine</strong>: As a matter of fact, he’s the one who
+introduced me to Carl… How are you?</p>
+<p><strong>bobby</strong>: I’m fine.</p>
+<p><strong>catherine</strong>: Carl restored my confidence. He really
+did. He’s much more substantial than you give him credit for.</p>
+<p><strong>bobby</strong>: Is he?</p>
+<p><strong>catherine</strong>: Yes.</p>
+<p><strong>catherine</strong>: Do you think you could discreetly move
+across the hall now?</p>
+<p><strong>bobby</strong>: Yeah, I think I could.</p>
+<p><strong>catherine</strong>: Robert?</p>
+<p><strong>bobby</strong>: What?</p>
+<p><strong>catherine</strong>: I could spend some time with you tomorrow
+morning, before Carl comes back, I mean, if you’d like to.</p>
+<p><strong>bobby</strong>: Of course I’d like to.</p>
+<p><strong>rayette</strong>: You certainly do have a beautiful piece a
+real estate out here, Mr. Dupea.</p>
+<p><strong>rayette</strong>: Can he hear me?</p>
+<p><strong>tita</strong>: He’s not hard of hearing.</p>
+<p><strong>rayette</strong>: Well, that’s a blessing, at least.</p>
+<p><strong>rayette</strong>: This certainly is an improvement on the
+motel an’ the coffee shop. How could you have left such a beautiful
+place, Bobby?</p>
+<p><strong>bobby</strong>: I don’t know.</p>
+<p><strong>carl</strong>: You’ve been staying in a motel all this
+time?</p>
+<p><strong>rayette</strong>: For two whole weeks, an’ there wasn’t
+hardly nobody there to talk to but me. The manager of the place told me
+it was the off season, an’ it must a ben, because other’n me, there was
+just this 25-year-old kid, DeLyon, that didn’t appear to be all there,
+an’ this old married pair next to me that was always hollerin’ for
+quiet. Can you imagine? All you could a heard there was a pin, an’ them,
+hollerin’ away…</p>
+<p><strong>carl</strong>: I don’t understand why you had to stay in a
+motel. There’s more than enough room here.</p>
+<p><strong>rayette</strong>: Well, I was goin’ to, but Bobby said he
+hadda kind of feel things up here first, which I can understand, but
+then it went an’ took so long, I ran flat outa money… I didn’t have no
+number to call, you know. So I hadda clear outa there an’ come on up
+here, in the hopes that I wouldn’t be intrudin’ myself…</p>
+<p><strong>carl</strong>: Oh, no. You’re more than welcome.</p>
+<p><strong>rayette</strong>: Well, thank you, that’s a very nice thing
+for you to say.</p>
+<p><strong>carl</strong>: Not at all.</p>
+<p><strong>rayette</strong>: That certainly is a beautiful head a hair
+you have.</p>
+<p><strong>catherine</strong>: Thank you.</p>
+<p><strong>rayette</strong>: Is it natural?</p>
+<p><strong>bobby</strong>: Rayette.</p>
+<p><strong>rayette</strong>: What?</p>
+<p><strong>bobby</strong>: Just finish eating.</p>
+<p><strong>rayette</strong>: Oh, am I holdin’ up dessert?</p>
+<p><strong>carl</strong>: No, you’re not. Go ahead and take your
+time.</p>
+<p><strong>rayette</strong>: I do eat slow as a bird, whereas Bobby can
+put it away like a speed swing… Is there any ketchup around?</p>
+<p><strong>bobby</strong>: Oh, for chrissakes…</p>
+<p><strong>carl</strong>: Robert, let’s not be rude, okay?</p>
+<p><strong>rayette</strong>: It’s all right. He don’t mean anything by
+that.</p>
+<p><strong>bobby</strong>: I don’t, huh?</p>
+<p><strong>rayette</strong>: I guess Bobby’s just about the moodiest man
+I ever ben with…</p>
+<p><strong>bobby</strong>: Where are you going?</p>
+<p><strong>catherine</strong>: I’m going to pick up some friends of
+Carl’s. Are you all right?</p>
+<p><strong>bobby</strong>: I have to talk to you.</p>
+<p><strong>catherine</strong>: I’ll be back later…</p>
+<p><strong>bobby</strong>: No, I want to talk to you now. I have to
+explain something about…</p>
+<p><strong>catherine</strong>: No, you don’t have to, it isn’t
+necessary…</p>
+<p><strong>bobby</strong>: Yes, it is!</p>
+<p><strong>driver</strong>: Come on, get moving, dammit!!</p>
+<p><strong>bobby</strong>: Will you shut up for a minute!! Pull your car
+out of line.</p>
+<p><strong>catherine</strong>: No, I can’t…</p>
+<p><strong>bobby</strong>: Will you let me talk to you, please?</p>
+<p><strong>catherine</strong>: I can’t do that. I haven’t been being
+fair to Carl. I have to tell you that.</p>
+<p><strong>bobby</strong>: Oh. You have to tell me that.</p>
+<p><strong>catherine</strong>: What?! I can’t hear you!</p>
+<p><strong>catherine</strong>: I’m sorry everything’s been so confusing,
+but I have to go, Robert…</p>
+<p><strong>bobby</strong>: Catherine…</p>
+<p><strong>catherine</strong>: Please, I’ll see you later this
+evening.</p>
+<p><strong>samia</strong>: But the point is, man is born into the world
+with a pre-existent adversary, both real and imaginary, so you’d have to
+say that aggression was one of his primary, psychic inheritances,
+which…</p>
+<p><strong>fincher</strong>: If I may beg to differ…</p>
+<p><strong>samia</strong>: Beg all you like, John, but the fact remains
+that man takes enormous delight in aggressive acts, as well as the
+portrayal of aggressive acts, and to be triumphant over another no
+matter how, seems fundamental to his having a sense of well being, as
+well as…</p>
+<p><strong>fincher</strong>: No, I don’t quarrel with your inference,
+but you draw too long a bow in your conclusions, which seem
+unnecessarily harsh and…</p>
+<p><strong>samia</strong>: Well, I don’t make poetry. As an analyst,
+I…</p>
+<p><strong>rayette</strong>: Is there a TV in the house?</p>
+<p><strong>samia</strong>: John believes in the basic goodness of man,
+and that’s fine, but gaze into the pit like I have and that view seems a
+little soporific. And not unlike television, it hardly represents the
+real world…</p>
+<p><strong>rayette</strong>: There’s some good things on it, though.</p>
+<p><strong>samia</strong>: Pardon me?</p>
+<p><strong>rayette</strong>: The TV. There’s some good things on it,
+sometimes.</p>
+<p><strong>samia</strong>: I strongly doubt it, but I wasn’t really
+discussing media…</p>
+<p><strong>fincher</strong>: If you really hold such bleak views, how
+can you, in good conscience, carry on a practice?</p>
+<p><strong>samia</strong>: Oh, there’s always hope, I think, for a few
+individuals, if they’re courageous enough to shed their illusions and
+their…</p>
+<p><strong>catherine</strong>: And what about love?</p>
+<p><strong>samia</strong>: What about it? Wouldn’t you agree that a
+great deal of mischief has been done in the name of love?</p>
+<p><strong>catherine</strong>: No, I wouldn’t.</p>
+<p><strong>samia</strong>: Well, you’re a romantic, Catherine, as are
+most musicians, and what’s more, about to be married…</p>
+<p><strong>samia</strong>: … which should exclude you from any objective
+discussion. But keep in mind, even the arts aren’t free of aggressive
+content, nor the institution of marriage.</p>
+<p><strong>catherine</strong>: I think these cold, “objective”
+discussions are aggressive, Samia…</p>
+<p><strong>samia</strong>: But I’d like to say, so that I don’t dampen
+the spirit of your adventure…</p>
+<p><strong>catherine</strong>: You haven’t dampened my spirit, Samia…
+Excuse me.</p>
+<p><strong>samia</strong>: Well, I should hope not…</p>
+<p><strong>samia</strong>: Because obviously there are loftier classes
+of people that do establish a kind of relating, that’s relatively free
+of…</p>
+<p><strong>rayette</strong>: What kind of doggy is that?</p>
+<p><strong>carl</strong>: It’s a Borzoi.</p>
+<p><strong>rayette</strong>: Oh, uh huh. I had a little kittycat once,
+that Bobby give me…</p>
+<p><strong>rayette</strong>: Remember, Bobby?! The little pussycat you
+gave me?!</p>
+<p><strong>rayette</strong>: She had four little white paws, an’ oh, was
+I crazy over her. We hadda go an’ leave her one time at some friends,
+an’ she went out an’ got smashed flatter’n a tortilla right outside
+their mobile home.</p>
+<p><strong>samia</strong>: There. You see what I mean?</p>
+<p><strong>samia</strong>: The choice of words, “squashed flat,”
+juxtaposed against the image of a fluffy kitten…</p>
+<p><strong>rayette</strong>: Well, she was.</p>
+<p><strong>samia</strong>: Perhaps…</p>
+<p><strong>samia</strong>: But you see how close that is to what I’m
+trying to…</p>
+<p><strong>bobby</strong>: Don’t sit there pointing at her.</p>
+<p><strong>samia</strong>: I beg your pardon.</p>
+<p><strong>bobby</strong>: I said, don’t point at her like that! What
+gives you the right to sit there and tell anybody about class and who
+the hell’s got it, and what she typifies! You shouldn’t even be in the
+same room with her, you creep!</p>
+<p><strong>samia</strong>: Carl, this is really too much…</p>
+<p><strong>bobby</strong>: You’re totally full of shit!</p>
+<p><strong>carl</strong>: Robert, I think you better just…</p>
+<p><strong>bobby</strong>: You’re all full of shit!</p>
+<p><strong>rayette</strong>: Bobby…</p>
+<p><strong>bobby</strong>: I can’t talk to you right now, leave me
+alone…</p>
+<p><strong>bobby</strong>: Tita, what the hell are you doing?!</p>
+<p><strong>spicer</strong>: Hey, this is my room.</p>
+<p><strong>bobby</strong>: What’s going on here!?</p>
+<p><strong>tita</strong>: It’s none of your business!</p>
+<p><strong>bobby</strong>: Where’s Catherine?!</p>
+<p><strong>tita</strong>: I don’t know where she is!</p>
+<p><strong>spicer</strong>: Don’t you believe in knocking, pal?</p>
+<p><strong>bobby</strong>: I’m talking to you, Tita!</p>
+<p><strong>tita</strong>: Can’t I have anything to myself, dammit?!</p>
+<p><strong>spicer</strong>: Come on now, out!</p>
+<p><strong>bobby</strong>: Keep your fucking hands off my sister,
+nurse!</p>
+<p><strong>spicer</strong>: Did you hear me! Move out!!</p>
+<p><strong>tita</strong>: Stop it! Bobby, will just you stop! I mean
+it!</p>
+<p><strong>spicer</strong>: Hold it, just hold it!!</p>
+<p><strong>tita</strong>: Carl! Somebody get Carl!</p>
+<p><strong>spicer</strong>: Take it easy, dammit!</p>
+<p><strong>tita</strong>: Stop it! Right now! Just stop it!! Carl!!</p>
+<p><strong>spicer</strong>: Give up! Give up! Give up! Give up! Give up!
+Give up!</p>
+<p><strong>tita</strong>: Oh God, Bobby, look what you’ve done…</p>
+<p><strong>bobby</strong>: I just wanted to talk to you for a
+minute.</p>
+<p><strong>catherine</strong>: No. It’s useless, Robert. It wouldn’t
+work, not ever…</p>
+<p><strong>bobby</strong>: Just give me a chance, will you?</p>
+<p><strong>catherine</strong>: I’m trying to be delicate with you, but
+you’re not understanding me. It’s not just because of Carl, or my music,
+but because of you… I mean, what would it come to? If a person has no
+love for himself, no respect, no love for his work, his family, his
+friends, something… How can he ask for love in return? I mean, why
+should he ask for it?</p>
+<p><strong>bobby</strong>: And living out here, in this rest home
+asylum, that’s what you want?</p>
+<p><strong>catherine</strong>: Yes.</p>
+<p><strong>bobby</strong>: That’ll make you happy.</p>
+<p><strong>catherine</strong>: I hope it will, yes. I’m sorry.</p>
+<p><strong>bobby</strong>: Okay.</p>
+<p><strong>bobby</strong>: Are you cold?</p>
+<p><strong>bobby</strong>: I don’t know if you’d be particularly
+interested in hearing anything about me. My life, I mean… Most of it
+doesn’t add up to much… that I could relate as a way of life that you’d
+approve of…</p>
+<p><strong>bobby</strong>: I’d like to be able to tell you why, but I
+don’t really… I mean, I move around a lot because things tend to get bad
+when I stay. And I’m looking… for auspicious beginnings, I guess…</p>
+<p><strong>bobby</strong>: I’m trying to, you know, imagine your half of
+this conversation… My feeling is, that if you could talk, we probably
+wouldn’t be talking. That’s pretty much how it got to be before. I left…
+Are you all right?</p>
+<p><strong>bobby</strong>: I don’t know what to say…</p>
+<p><strong>bobby</strong>: Tita suggested that we try to… I don’t know.
+I think that she… seems to feel we’ve got… some understanding to reach…
+She totally denies the fact that we were never that comfortable with
+each other to begin with… The best I can do, is apologize.</p>
+<p><strong>bobby</strong>: We both know I was never really that good at
+it, anyway…</p>
+<p><strong>bobby</strong>: I’m sorry it didn’t work out.</p>
+<p><strong>tita</strong>: Bobby!</p>
+<p><strong>tita</strong>: You’re leaving?</p>
+<p><strong>bobby</strong>: Yeah. I said a week, and I’ve overstayed
+myself…</p>
+<p><strong>tita</strong>: You were going without saying goodbye?</p>
+<p><strong>bobby</strong>: I didn’t want to say goodbye to anyone.</p>
+<p><strong>tita</strong>: But what about me?</p>
+<p><strong>bobby</strong>: I’ll say goodbye to you, Tita.</p>
+<p><strong>tita</strong>: Just once in a while, call and tell me where
+you are, please…</p>
+<p><strong>rayette’s voice</strong>: Watch the birdie!</p>
+<p><strong>bobby</strong>: Bye, now.</p>
+<p><strong>tita</strong>: Bye, Robert.</p>
+<p><strong>bobby</strong>: Come on.</p>
+<p><strong>rayette</strong>: Wait a sec. I want Tita to take a picture
+of you an’ me in front of the place…</p>
+<p><strong>bobby</strong>: No, let’s go…</p>
+<p><strong>rayette</strong>: I never got the chance to thank you all for
+your hospitality. You tell Carl for me, if any of you folks wanta come
+on down to our place anytime, you’d be more’n welcome…</p>
+<p><strong>tita</strong>: Thank you, that’s very nice.</p>
+<p><strong>rayette</strong>: Bye bye, now.</p>
+<p><strong>rayette</strong>: “Your kiss is like a drink when I’m
+thirsty/An’ I’m thirsty for you with all my heart…”</p>
+<p><strong>rayette</strong>: “But don’t love me/Then act as though we’ve
+never kissed/Oh, don’t touch me…”</p>
+<p><strong>rayette</strong>: “Don’t touch me…”</p>
+<p><strong>rayette</strong>: “Don’t touch me…”</p>
+<p><strong>rayette</strong>: “Don’t touch me…”</p>
+<p><strong>rayette</strong>: “Oh, don’t touch…”</p>
+<p><strong>bobby</strong>: Cut it out!</p>
+<p><strong>rayette</strong>: Son of a bitch, Bobby! You quit pushin’ me
+away like that! I’ve had enough a that to last me a lifetime!</p>
+<p><strong>rayette</strong>: Whyn’t you just try an’ be good to me for a
+change!?</p>
+<p><strong>rayette</strong>: There id’n anyone gonna look after you an’
+love you better’n I do, you know that.</p>
+<p><strong>rayette</strong>: Baby? Did you hear me?</p>
+<p><strong>rayette</strong>: I’m gonna go in that cafe an’ get some
+coffee. You want anything?</p>
+<p><strong>bobby</strong>: No.</p>
+<p><strong>rayette</strong>: You got any change?</p>
+<p><strong>rayette</strong>: Don’t you just have 50 cents or
+somethin’?</p>
+<p><strong>rayette</strong>: Okay, be right back…</p>
+<p><strong>rayette</strong>: Sure you don’t want anything?</p>
+<p><strong>bobby</strong>: Fill it up.</p>
+<p><strong>bobby</strong>: Hey, wait a minute.</p>
+<p><strong>driver</strong>: Haven’t you got a jacket or anything with
+you?</p>
+<p><strong>bobby</strong>: No, I don’t, I uh… it got burned up.
+Everything in the car got the shit burned out of it. All I got left is
+what I have on…</p>
+<p><strong>driver</strong>: I’ve got an extra jacket behind the seat, if
+you want to put it on.</p>
+<p><strong>bobby</strong>: No, it’s okay.</p>
+<p><strong>driver</strong>: Suit yourself. But I’ll tell you, where
+we’re headed is gonna get colder’n hell.</p>
+<p><strong>bobby</strong>: It’s all right. I’m fine.</p>
+<p><strong>bobby</strong>: I’m all right.</p>
+<p><strong>bobby</strong>: I’m fine.</p>
+</body>
+</html>

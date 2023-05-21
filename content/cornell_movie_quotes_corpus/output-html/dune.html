@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>dune</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="dune">dune</h1>
+<p><strong>david lynch</strong>: December 9, 1983</p>
+<p><strong>reverend mother ramallo</strong>: We are the secret of the
+Universe.</p>
+<p><strong>response of twenty thousand voices</strong>: Bi-la kaifa.</p>
+<p><strong>reverend mother ramallo</strong>: We are the secret of the
+Universe. We know of spice…the spice called melange…the greatest
+treasure in the Universe. It exists on only one planet - ours Arrakis,
+Dune. We know of spice and the Bene Gesserit sisterhood’s selective
+breeding plan of ninety generations to produce the Kwisatz Haderach, the
+one the spice will awaken.</p>
+<p><strong>response of twenty thousand voices</strong>: Bi-la kaifa.</p>
+<p><strong>reverend mother ramallo</strong>: And now the prophecy…</p>
+<p><strong>reverend mother ramallo</strong>: He will come…the voice from
+the outer world, bringing the holy war, the Jihad, which will cleanse
+the Universe and bring us out of darkness. He will have been born of a
+Bene Gesserit mother.</p>
+<p><strong>irulan</strong>: Father.</p>
+<p><strong>emperor</strong>: Irulan.</p>
+<p><strong>emperor</strong>: A Third Stage Guild Navigator will be here
+within minutes!</p>
+<p><strong>reverend mother</strong>: We felt his presence.</p>
+<p><strong>emperor</strong>: I shall want telepathy during his visit and
+a report when we’re finished.</p>
+<p><strong>reverend mother</strong>: Their minds are so…. They move in
+strange directions….</p>
+<p><strong>emperor</strong>: Yes?</p>
+<p><strong>reverend mother</strong>: Forced spice evolution of humans
+changes many things…. I must sit close to him.</p>
+<p><strong>emperor</strong>: He will not permit anyone but me to see
+him. You must be outside this room…. Do what you can.</p>
+<p><strong>reverend mother</strong>: I am your Truthsayer, my lord… He
+is here, my lord.</p>
+<p><strong>tanked guildsmen #1</strong>: The Bene Gesserit witch must
+leave.</p>
+<p><strong>emperor</strong>: Leave us.</p>
+<p><strong>reverend mother</strong>: Yes, my Lord.</p>
+<p><strong>emperor</strong>: We are alone…</p>
+<p><strong>navigator</strong>: We have just folded space from Ix…</p>
+<p><strong>emperor</strong>: Yes?… How was your journey?</p>
+<p><strong>navigator</strong>: Many machines on Ix… new machines.</p>
+<p><strong>emperor</strong>: Oh yes?</p>
+<p><strong>navigator</strong>: Better than those on Richesse.. You are
+transparent… I see many things… I see plans within plans.</p>
+<p><strong>emperor</strong>: Is there a problem?… Usually there is a
+problem when one of you makes a visit.</p>
+<p><strong>navigator</strong>: The answer is within the problem…</p>
+<p><strong>navigator</strong>: I see two Great Houses – House Atreides,
+House Harkonnen – feuding… I see you behind it.</p>
+<p><strong>emperor</strong>: Yes.</p>
+<p><strong>navigator</strong>: You must share with us.</p>
+<p><strong>emperor</strong>: The Atreides house is building a secret
+army!… using a technique unknown to us… a technique involving sound. The
+Duke is becoming more popular in the Landsraad… he could threaten me…. I
+have ordered House Atreides to occupy Arrakis to mine the spice… thus
+replacing their enemies the Harkonnens…. House Atreides will not refuse
+because of the tremendous power they think they will gain. Then, at an
+appointed time Baron Harkonnen will return to Arrakis and launch a sneak
+attack on House Atreides… I have promised the Baron five legions of my
+Sardaukar terror troops.</p>
+<p><strong>navigator</strong>: So the Harkonnens will rid you of House
+Atreides…</p>
+<p><strong>emperor</strong>: Yes.</p>
+<p><strong>navigator</strong>: Reverend Mother… I will give you the
+Tleilaxu Path.</p>
+<p><strong>reverend mother</strong>: A chance for escape? But for
+whom?</p>
+<p><strong>emperor</strong>: Can you hear me?… If this visit has
+anything to do with spice…</p>
+<p><strong>navigator</strong>: LISTEN TO ME!! The spice must flow… the
+spice has given me accelerated evolution for four thousand years… it has
+enabled you to live two hundred years… the spice helps make the sapho
+juice, which gives the red-lipped mentats the ability to be living
+computers… the secret side of spice… the water of life.</p>
+<p><strong>reverend mother</strong>: He shouldn’t speak of this…</p>
+<p><strong>navigator</strong>: …gives the Bene Gesserit sisterhood the
+metaphysical ability to see beyond…to have superior powers… Our power to
+fold space is in the spice… Without us, your empire would be lost on
+isolated scattered planets… You would be lost.</p>
+<p><strong>emperor</strong>: I can assure you…</p>
+<p><strong>navigator</strong>: Do not interrupt!!! Do not speak lightly
+of the spice… ONE SMALL POINT…</p>
+<p><strong>reverend mother</strong>: Here it comes…</p>
+<p><strong>navigator</strong>: We ourselves… foresee a slight problem
+within House Atreides…. Paul…. Paul Atreides.</p>
+<p><strong>emperor</strong>: You mean, of course, Duke Leto Atreides…
+his father.</p>
+<p><strong>paul</strong>: Here we are now… nineteen light years
+beyond…</p>
+<p><strong>paul</strong>: … beyond Epsilon Alangue… is Arrakis.</p>
+<p><strong>paul</strong>: It does look dry….</p>
+<p><strong>filmbook</strong>: Each day the palms along the outer wall of
+the Palace at Arrakeen consume enough water to sustain the lives of one
+hundred men. The palms were placed by the Harkonnens to flaunt their
+water wealth in front of the city Fremen.</p>
+<p><strong>paul</strong>: Where are the Harkonnens from here?</p>
+<p><strong>paul</strong>: There!… Geidi Prime and the Baron Harkonnen…
+the enemy.</p>
+<p><strong>paul</strong>: I know, Thufir, I’m sitting with my back to
+the door.</p>
+<p><strong>paul</strong>: I heard you, Dr. Yueh and Gurney coming down
+the hall.</p>
+<p><strong>thufir</strong>: Those sounds could be imitated.</p>
+<p><strong>paul</strong>: I’d know the difference.</p>
+<p><strong>thufir</strong>: Yes. Perhaps he would at that.</p>
+<p><strong>paul</strong>: My father sent you to test me. Music then?</p>
+<p><strong>gurney</strong>: No music. I’m packing this for the crossing.
+Shield practice.</p>
+<p><strong>paul</strong>: Shield practice? Gurney… we had practice –
+this morning….. I’m not in the mood.</p>
+<p><strong>gurney</strong>: Not in the mood?! Mood’s a thing for cattle
+and love play… not fighting.</p>
+<p><strong>paul</strong>: I’m sorry Gurney.</p>
+<p><strong>gurney</strong>: Not sorry enough.</p>
+<p><strong>gurney</strong>: Guard yourself for true!</p>
+<p><strong>paul</strong>: What’s gotten into Gurney? He’s not
+faking.</p>
+<p><strong>paul</strong>: Is this what you seek?</p>
+<p><strong>gurney</strong>: Good… the slow blade penetrates the shield…
+but look down.</p>
+<p><strong>gurney</strong>: We’d have joined each other in death.
+However, you did seem to finally get the “mood”.</p>
+<p><strong>paul</strong>: Would you really have drawn my blood?</p>
+<p><strong>gurney</strong>: If you’d fought one whit below your
+abilities I’d have scratched you a good one.</p>
+<p><strong>paul</strong>: Things have been so serious here lately.</p>
+<p><strong>gurney</strong>: Yes. I sensed the play in you lad, but this
+can no longer be play. Tomorrow we leave for Arrakis! Arrakis is real.
+The Harkonnens are real.</p>
+<p><strong>paul</strong>: Dr. Yueh, do you have any information on the
+worms of Arrakis?</p>
+<p><strong>dr. yueh</strong>: I have obtained a filmbook on a small
+specimen… only 125 meters long.</p>
+<p><strong>paul</strong>: Only?!</p>
+<p><strong>dr. yueh</strong>: There are have been documented sightings
+of worms as large as 450 meters in the deep desert – far from where
+we’ll be in Arakeen…. The desert belt and the south polar regions are
+marked forbidden…. Why?</p>
+<p><strong>paul</strong>: The storms and the worms. Is it true, that the
+sand can blow at seven hundred kilometers per hour?</p>
+<p><strong>yueh</strong>: It can render flesh to dust in minutes. And
+these dry winds can generate tremendous static electricity in the
+atmosphere. Our body shields won’t have enough power to operate in the
+open air on Arrakis.</p>
+<p><strong>paul</strong>: Well, how do the Fremen survive there?</p>
+<p><strong>yueh</strong>: We don’t know much about the Fremen… They live
+in the deep desert… some of them in the cities and they have blue-
+within-blue eyes…</p>
+<p><strong>paul</strong>: The eyes – yes, yes… saturation of the blood
+by the spice – melange. Could the spice affect us in other ways?</p>
+<p><strong>thufir</strong>: Many dangers exist on Arrakis. For one, we
+know the Harkonnens would not have given up their CHOAM company contract
+so easily.</p>
+<p><strong>paul</strong>: The Harkonnens are our enemies, yes… but
+behind them, I suspect, is the Emperor.</p>
+<p><strong>thufir</strong>: You will make a formidable Duke!</p>
+<p><strong>thufir</strong>: Now remember… the first step in avoiding a
+trap is knowing of its existence.</p>
+<p><strong>paul</strong>: I know. But if it is a trap then why are we
+going?</p>
+<p><strong>thufir</strong>: We have our new army. Dr. Yueh, put the
+weirding module on him.</p>
+<p><strong>thufir</strong>: Clear and lock the room.</p>
+<p><strong>thufir</strong>: Activate a fighter.</p>
+<p><strong>gurney</strong>: Precise control….</p>
+<p><strong>paul</strong>: The bull that killed my grandfather… is this
+an evil omen?</p>
+<p><strong>paul</strong>: Duncan!</p>
+<p><strong>duncan</strong>: Paul. I was on my way to say goodbye to you.
+I have to go on ahead.</p>
+<p><strong>paul</strong>: Why? I wish you were coming with us.</p>
+<p><strong>duncan</strong>: It’s something for your father. He wants to
+talk to you. I’ll see you in Arrakis. May the hand of God be with
+you.</p>
+<p><strong>paul</strong>: May the hand of God be with us all,
+Duncan.</p>
+<p><strong>paul</strong>: Father.</p>
+<p><strong>duke leto</strong>: Thank you for joining me, Paul. It will
+be good to get to our new home and have all this upset behind us.</p>
+<p><strong>duke leto</strong>: My son. Thufir Hawat has served House
+Atreides three generations…. He swears you are the finest student he’s
+ever taught. Yueh, Gurney and Duncan say the same…. It makes me feel
+very proud…</p>
+<p><strong>paul</strong>: I want you to be proud of me.</p>
+<p><strong>duke leto</strong>: I’ll miss the sea… but a person needs new
+experiences… they jar something deep inside, allowing him to grow.
+Without change, something sleeps inside us… and seldom awakens… The
+sleeper must awaken.</p>
+<p><strong>paul</strong>: Arrakis… Dune… Desert Planet…Arrakis… Desert
+Planet… moving… moving.</p>
+<p><strong>paul</strong>: Arrakis… Dune… Desert Planet.</p>
+<p><strong>voice</strong>: The second moon, your moon…</p>
+<p><strong>beautiful girl</strong>: Tell me of your homeworld, Usul.</p>
+<p><strong>jessica</strong>: I know she has come to test him… no man has
+ever been tested with the box… only Bene Gesserit women. I may lose my
+son.</p>
+<p><strong>paul</strong>: Arrakis… Dune… Desert planet… moving…
+moving.</p>
+<p><strong>reverend mother</strong>: We’ll salvage what we can… but I
+can tell you.. dear God… for the father… nothing.</p>
+<p><strong>reverend mother</strong>: Did you really think that you could
+bear the Kwisatz Haderach?… How dare you!</p>
+<p><strong>reverend mother</strong>: My greatest student… and my
+greatest disappointment…. He’s awake!… He’s listening to us. Good… Ready
+yourself, young Paul Atreides… I want to see you in your mother’s
+chamber in one quarter of an hour.</p>
+<p><strong>jessica</strong>: Paul?… This is very important…</p>
+<p><strong>paul</strong>: Kwisatz Haderach?… For the father…
+nothing?</p>
+<p><strong>reverend mother</strong>: Jessica… You were told to bear only
+daughters to the Atreides… Jessica!</p>
+<p><strong>jessica</strong>: It meant so much to him…</p>
+<p><strong>reverend mother</strong>: You thought only of a Duke’s desire
+for a son?… Desires don’t figure in this! An Atreides daughter could
+have been wed to a Harkonnen heir and sealed the breach. We may lose
+both blood lines now.</p>
+<p><strong>jessica</strong>: I vowed never to regret my decision. I’ll
+pay for my own mistakes.</p>
+<p><strong>reverend mother</strong>: And your son will pay with you.</p>
+<p><strong>jessica</strong>: Paul, this is the Reverend Mother Gaius
+Helen Mohiam. She is going to… observe you… Please…</p>
+<p><strong>reverend mother</strong>: Jessica, you know it must be done.
+I enjoin you to stand guard at the door and practice the meditation of
+peace.</p>
+<p><strong>jessica</strong>: Your Reverence.</p>
+<p><strong>paul</strong>: What does she fear? What about my Father?</p>
+<p><strong>jessica</strong>: Paul… please, Paul… listen to the Reverend
+Mother and do what she tells you.</p>
+<p><strong>reverend mother</strong>: Now you come here.</p>
+<p><strong>paul</strong>: She’s using The Voice. No.</p>
+<p><strong>reverend mother</strong>: Some strength there. Surprising!
+Come here.</p>
+<p><strong>reverend mother</strong>: See this… Put your right hand in
+the box.</p>
+<p><strong>paul</strong>: What’s in the box?</p>
+<p><strong>reverend mother</strong>: Pain.</p>
+<p><strong>reverend mother</strong>: STOP! Put your hand in the box.</p>
+<p><strong>paul</strong>: The Voice again.</p>
+<p><strong>reverend mother</strong>: I hold at your neck the gom jabbar.
+Don’t pull away or you’ll feel that poison. A Duke’s son must know about
+many poisons – this one kills only animals.</p>
+<p><strong>paul</strong>: Are you suggesting a Duke’s son is an
+animal?</p>
+<p><strong>reverend mother</strong>: Let us say I suggest you may be
+human. Your awareness may be powerful enough to control your instincts.
+Your instincts will be to remove your hand from the box. If you do so
+you will die. You will feel an itching – there… see? Now the itching
+becomes burning… heat, upon heat, upon heat.</p>
+<p><strong>paul</strong>: It burns.</p>
+<p><strong>paul</strong>: I must not fear. Fear is the mind-killer. Fear
+is the little death that brings total obliteration. I will face my fear…
+I will permit it to pass over me and through me.</p>
+<p><strong>reverend mother</strong>: You feel the flesh crisping?</p>
+<p><strong>reverend mother</strong>: Flesh dropping off.</p>
+<p><strong>reverend mother</strong>: NO!! ENOUGH!! Kull wahad! No woman
+child ever withstood that much. I must have wanted you to fail. Take
+your hand out of the box and look at it, young human…. Do it!</p>
+<p><strong>reverend mother</strong>: Pain by nerve induction… A human
+can resist any pain. Our test is crisis and observation.</p>
+<p><strong>paul</strong>: I see the truth of it.</p>
+<p><strong>reverend mother</strong>: Could he be the one?… Maybe… but
+will he be ours to control? You know when people speak the truth?</p>
+<p><strong>paul</strong>: I know it.</p>
+<p><strong>reverend mother</strong>: Your mother wants you to tell me
+about your dreams. I only want to know one thing…. Do they come
+true?</p>
+<p><strong>paul</strong>: Not all of them… I know which ones will.</p>
+<p><strong>reverend mother</strong>: Perhaps you are the Kwisatz
+Haderach.</p>
+<p><strong>paul</strong>: What is it?</p>
+<p><strong>reverend mother</strong>: The person who can be many places
+at once… the one who bridges space and time…. He will look where we
+cannot.</p>
+<p><strong>paul</strong>: Where?</p>
+<p><strong>reverend mother</strong>: Do you know of the Water of Life?…
+the Truthsayer drug?</p>
+<p><strong>paul</strong>: I have heard of it.</p>
+<p><strong>reverend mother</strong>: It is very dangerous… very painful.
+The Bene Gesserit sisterhood drink it to see within…. There is a place
+terrifying to us… to women. It is said a man will come… the Kwisatz
+Haderach… he will go where we cannot… Many men have tried…</p>
+<p><strong>paul</strong>: Did they try and fail?</p>
+<p><strong>reverend mother</strong>: They tried and died…. Jessica!</p>
+<p><strong>reverend mother</strong>: I sense your teachings in him.
+Ignore the regular order of training. His safety requires The Voice.</p>
+<p><strong>paul</strong>: I’ve heard enough of my safety… What about my
+father?… I heard you talking. You speak as if he was dead. Well, he
+isn’t!</p>
+<p><strong>jessica</strong>: Paul!</p>
+<p><strong>paul</strong>: Well he isn’t… and he won’t die… Tell me he
+won’t die!</p>
+<p><strong>reverend mother</strong>: What can be done has been done.</p>
+<p><strong>paul</strong>: MOTHER! Tell me!</p>
+<p><strong>piter</strong>: It is by will alone I set my mind in motion.
+It is by the juice of Sapho that thoughts acquire speed - The lips
+acquire stains - The stains become a warning - It is by will alone I set
+my mind in motion.</p>
+<p><strong>piter</strong>: My Lord!</p>
+<p><strong>baron</strong>: Piter.</p>
+<p><strong>piter</strong>: The Atreides will be leaving Caladan soon,
+Baron, and I have here your answer from Duke Leto.</p>
+<p><strong>baron</strong>: What does Leto say, Piter?</p>
+<p><strong>piter</strong>: He wishes to inform you that Vendetta – as he
+puts it, using the ancient tongue, the art of Kanly – is still alive. He
+does not wish to meet or speak with you.</p>
+<p><strong>baron</strong>: I made my peace gesture… the forms of Kanly
+have been obeyed.</p>
+<p><strong>piter</strong>: As you instructed me, I have enlightened your
+nephews concerning my plan t…</p>
+<p><strong>baron</strong>: My plan!</p>
+<p><strong>piter</strong>: The plan to crush the Atreides. Feyd, Rabban…
+go quietly… no other great house of the Landsraad must ever know of the
+Emperor’s aid to the Baron. The entire Landsraad would turn against the
+Baron and the Emperor.</p>
+<p><strong>doctor</strong>: Put the pick in there Pete And turn it round
+real neat.</p>
+<p><strong>baron</strong>: You’re so beautiful my Baron Your skin, love
+to me Your diseases lovingly cared for For all eternity.</p>
+<p><strong>baron</strong>: I will have Arrakis back for myself… he who
+controls the Spice, controls the universe… and what Piter didn’t tell
+you is we have control of someone who is very close to Duke Leto. This
+person… this traitor… will be worth more to us than ten legions of
+Sardaukar.</p>
+<p><strong>feyd</strong>: Who is the traitor?</p>
+<p><strong>baron</strong>: I won’t tell you who the traitor is or when
+we’ll attack. However, the Duke will die before these eyes and he’ll
+know that it is I – Baron Vladimir Harkonnen – who encompasses his
+doom.</p>
+<p><strong>jessica</strong>: I must not fear. Fear is the mind- killer…
+the little death that brings total obliteration…</p>
+<p><strong>duke leto</strong>: Soon they’ll begin to fold space.</p>
+<p><strong>paul</strong>: Far off in the control rooms…. Travelling
+without moving.</p>
+<p><strong>atreides technician</strong>: Harkonnens.</p>
+<p><strong>thufir</strong>: Why isn’t the shield up yet?</p>
+<p><strong>atreides radio man</strong>: We found and removed another
+sabotage device. I think it will go up now.</p>
+<p><strong>thufir</strong>: We found these sabotage devices too
+easily…</p>
+<p><strong>dr. yueh</strong>: Listen here…. You can here the people of
+Arrakeen outside…. Can you here the cry “Soo Soo Sook” of the water
+sellers?</p>
+<p><strong>jessica</strong>: So many reminders of the scarcity of
+water.</p>
+<p><strong>dr. yueh</strong>: Have you noticed the line of palms along
+the wall… the Harkonnen put them in… to flaunt their water wealth in
+front of these people…. Each day those palms take enough water to
+sustain the life of one hundred men.</p>
+<p><strong>jessica</strong>: The way you say Harkonnen… I didn’t know
+you had so much reason to hate them.</p>
+<p><strong>dr. yueh</strong>: My wife… you didn’t know my wife…
+they…</p>
+<p><strong>jessica</strong>: Forgive me… … His wife was Bene Gesserit
+too… the signs are al over him…. They must have killed here.</p>
+<p><strong>dr. yueh</strong>: I’m sorry I’m unable to talk about it.</p>
+<p><strong>atreides woman #1</strong>: My lady… the local people… the
+maids and servants await your inspection. Hawat has cleared them.</p>
+<p><strong>dr. yueh</strong>: The Harkonnens may have tampered
+medically…. please wait.</p>
+<p><strong>jessica</strong>: He’s hiding something – holding something
+back. It’s not just his wife… He’s a good man though. He’s probably
+trying to save my feelings… I could use The Voice… make him tell me… It
+would only shame him. I must place more trust in my friends.</p>
+<p><strong>narrator</strong>: One carryall handles four spice mining
+teams; however, it will fly only two harvesters at a time. Today, we
+have nine hundred and thirty harvesters and nine hundred and eighty-one
+carryalls….</p>
+<p><strong>paul</strong>: Spice…</p>
+<p><strong>paul</strong>: Terrible purpose…. What is it?</p>
+<p><strong>shadout mapes</strong>: I am the Shadout Mapes… the
+housekeeper.</p>
+<p><strong>paul</strong>: A Fremen… Could she be the operator? No…</p>
+<p><strong>shadout mapes</strong>: I must cleanse the way between us….
+You saved my life… and we Fremen pay our debts. It’s known to us that
+you’ve a traitor in your midst. Who it is we cannot say but we’re
+certain of it.</p>
+<p><strong>paul</strong>: A traitor…</p>
+<p><strong>paul</strong>: There is a traitor among us.</p>
+<p><strong>thufir</strong>: Set up a sonar probe immediately!</p>
+<p><strong>duke leto</strong>: Thufir?… anything?… keep looking. …and a
+traitor… God help us.</p>
+<p><strong>thufir</strong>: Sector 6 - 80 – copy the sixth – the summit
+– the eight the quadrant over the ninth plus eighty – four circles –
+weave the eighty and call the fourth copy – enter nine – seven by seven
+a seven the seven call seven B seven – enter the circles call the sixth
+copy the sixth over the summit…. eight.</p>
+<p><strong>thufir</strong>: Eight…. Thufir Hawat… Mentat… Master of
+Assassins.</p>
+<p><strong>thufir</strong>: The Palace is now secure. The city of
+Arrakeen is under martial law… we have troops here headquartered
+underground on sub-floors six through ten. The rest of the troops are
+stationed in Arrakeen and we have some on the airfield. Our new army is
+still training, but everything is shielded…. With the shielding, we are
+impenetrable. Dr. Kynes is waiting, Sire, for your inspection of spice
+mining operations, but since the attempt of the young master, I am
+against your leaving the Palace.</p>
+<p><strong>duke leto</strong>: The attempt failed… Harkonnen captives
+have already been taken. We must crush the Harkonnen machine on
+Arrakis…. You all know what to do. …Gurney! We desperately need more
+spice miners… many are threatening to leave on the next shuttle. We need
+spice drivers, weather scanners, dune men … any with open sand
+experience. You must persuade them to enlist with us.</p>
+<p><strong>gurney</strong>: They shall come all for violence: their
+faces shall sup as the east wind. And they shall gather the captivity of
+the sand.</p>
+<p><strong>duke leto</strong>: Very moving, Gurney. On your way… and
+take care of Dr. Kynes until Paul and I arrive. We will not be prisoners
+here in this place.</p>
+<p><strong>gurney</strong>: Behold as a wild ass in the desert go I
+forth to my work.</p>
+<p><strong>jessica</strong>: I must speak with you Leto!</p>
+<p><strong>jessica</strong>: Yes?</p>
+<p><strong>shadout mapes</strong>: I am the Shadout Mapes, your
+housekeeper, Noble Born. What are your orders.</p>
+<p><strong>jessica</strong>: You may refer to me as “my lady.” I am not
+noble born. I’m the bound concubine of Duke Leto – mother of the heir
+designate…. “Shadout”… that’s an ancient word.</p>
+<p><strong>mapes</strong>: You know the ancient tongues?</p>
+<p><strong>jessica</strong>: I know the Bhotani Jib and Chakobsa, all
+the hunting languages.</p>
+<p><strong>mapes</strong>: As the legend says.</p>
+<p><strong>jessica</strong>: That’s it! The Missionaria Protectiva has
+been here planting protective legends against a day of Bene Gesserit
+need. And that day has come. I must play out this sham. I know the Dark
+things and the way of the Great Mother. Miseces prejin.</p>
+<p><strong>jessica</strong>: I know many things. I know you came
+prepared for violence with a weapon in your bodice.</p>
+<p><strong>mapes</strong>: My lady, I… the weapon was sent as a gift if
+you should prove to be the one.</p>
+<p><strong>jessica</strong>: And the means of my death should I prove
+otherwise. Now we will see which way the decision tips.</p>
+<p><strong>mapes</strong>: Do you know this my lady?</p>
+<p><strong>jessica</strong>: It could only be one thing…. It’s a
+crysknife.</p>
+<p><strong>mapes</strong>: Say it not lightly… Do you know its
+meaning?</p>
+<p><strong>jessica</strong>: Here is why this Fremen has taken service
+with me, to ask that one question. Delay is as dangerous as the wrong
+answer. Shadout is Chakobsa… knife, in Chakobsa is… maker of death. It’s
+a maker…</p>
+<p><strong>jessica</strong>: Maker?… Maker is the key word… the tooth of
+the worm? That was close… Did you think that I, knowing the mysteries of
+the Great Mother, would not know the maker?</p>
+<p><strong>mapes</strong>: My lady, when one has lived with prophecy for
+so long, the moment of revelation is a shock.</p>
+<p><strong>jessica</strong>: There’s more here… yes! Mapes, you’ve
+sheathed that blade unblooded.</p>
+<p><strong>mapes</strong>: Take the water of my life!</p>
+<p><strong>mapes</strong>: You are ours…. You are the one.</p>
+<p><strong>kynes</strong>: So, this is Leto the Just…</p>
+<p><strong>gurney</strong>: I hope I made myself clear. You may call him
+“The Duke,” “My lord,” or “Sire.” And there is a more ancient term you
+might keep in mind – “Noble Born.”</p>
+<p><strong>kynes</strong>: Play out your little comedy while you can
+off-worlders…</p>
+<p><strong>duke leto</strong>: So you are Dr. Kynes, the Imperial
+Ecologist?</p>
+<p><strong>kynes</strong>: I prefer the more ancient term,
+planetologist… Noble Born.</p>
+<p><strong>duke leto</strong>: This is my son, Paul.</p>
+<p><strong>paul</strong>: Are you a Fremen?</p>
+<p><strong>kynes</strong>: I am a servant of the His Majesty the
+Emperor. I have served His Majesty on Arrakis long enough for my eyes to
+change.</p>
+<p><strong>paul</strong>: He’s hiding something.</p>
+<p><strong>duke leto</strong>: I understand we have you to thank for
+these stillsuits, Doctor.</p>
+<p><strong>kynes</strong>: They are Fremen suits. I hope they fit well,
+my lord.</p>
+<p><strong>paul</strong>: “Your gift is a blessing of the river.”</p>
+<p><strong>kynes</strong>: The Mahdi will greet you with holy words and
+your gifts will be a blessing. Most of the desert natives here are a
+superstitious lot. They mean no harm. With your permission, I will check
+the security of your suits.</p>
+<p><strong>gurney</strong>: The Duke is to be addresses as…</p>
+<p><strong>kynes</strong>: Basically…</p>
+<p><strong>gurney</strong>: Sire!</p>
+<p><strong>duke leto</strong>: It’s all right Gurney.</p>
+<p><strong>gurney</strong>: Yes, Sire.</p>
+<p><strong>kynes</strong>: It’s a high-efficiency filter and heat
+exchange system. Perspiration passes through the first layer and is
+gathered in the second. The salt is separated. Breathing and walking
+provide the pumping action. The reclaimed water circulates to
+catchpockets from which you can drink through this tube at your neck.
+Urine and feces are processed in the thigh pads. Should you be in the
+open desert, remember to breathe in through your mouth, out through the
+nose tubes.</p>
+<p><strong>kynes</strong>: With a Fremen suit in good working order, one
+can sustain life for weeks, even in the deep desert.</p>
+<p><strong>duke leto</strong>: My thanks.</p>
+<p><strong>kynes</strong>: With your permission…</p>
+<p><strong>kynes</strong>: You’ve worn a stillsuit before?</p>
+<p><strong>paul</strong>: No.</p>
+<p><strong>kynes</strong>: Your suit is fitted desert fashion. Who told
+you how to do that?</p>
+<p><strong>paul</strong>: No one. It… seemed the proper way.</p>
+<p><strong>kynes</strong>: That it is. He shall know your ways as if
+born to them.</p>
+<p><strong>gurney</strong>: We’re wasting time, Sire.</p>
+<p><strong>jessica</strong>: I must speak with you Leto!</p>
+<p><strong>kynes</strong>: Southeast over the Shield Wall. That’s where
+I told your sandmaster to concentrate his harvesting.</p>
+<p><strong>paul</strong>: Will we see a worm?</p>
+<p><strong>kynes</strong>: Where there is spice and spice mining there
+are always worms.</p>
+<p><strong>paul</strong>: Always?</p>
+<p><strong>kynes</strong>: Always.</p>
+<p><strong>paul</strong>: Why do they come?</p>
+<p><strong>kynes</strong>: To protect their territory. Vibrations
+attract them.</p>
+<p><strong>paul</strong>: I’ve registered him now… a knife is a sheath
+on his left arm… He’s strong… a person born to command… He’s hiding many
+things. Is there a relationship between the worms and the spice?</p>
+<p><strong>gurney</strong>: The young master is a trained Mentat, an
+advanced student of Prana Bindu has studied under some of the finest
+teachers in the Universe.</p>
+<p><strong>kynes</strong>: As I said… they defend the spice sands. As to
+their relationship with the spice… who knows.</p>
+<p><strong>gurney</strong>: Dust cloud ahead, Sire.</p>
+<p><strong>kynes</strong>: That’s it… spice mining… no other cloud quite
+like it. See the spotters over it? They’re watching for wormsign… the
+telltale sand waves. Seismic probes on the surface, too Sire… worms can
+travel too deep for their waves to show… Looks like a good patch of
+spice.</p>
+<p><strong>duke leto</strong>: Wormsign? Is it wormsign?</p>
+<p><strong>kynes</strong>: Yes!… worm. Big one! You’ve got sharp eyes
+Sire…. May I?</p>
+<p><strong>kynes</strong>: Calling Harvester Pad Nine. Wormsign!</p>
+<p><strong>voice</strong>: Who calls Pad Nine?</p>
+<p><strong>gurney</strong>: Don’t mention the Duke… This is an uncoded
+channel.</p>
+<p><strong>kynes</strong>: Unlisted flight northeast of you… wormsign on
+intercept course… estimated contact fifteen minutes.</p>
+<p><strong>voice</strong>: Have sighting confirmed. Stand by for fix.
+Contact in sixteen minutes minus. Very precise estimate. Who is on that
+unlisted flight?</p>
+<p><strong>duke leto</strong>: What happens now?</p>
+<p><strong>kynes</strong>: The carryall will come and lift off the spice
+harvester. Try and get in close over the harvester… you’ll find this
+interesting Sire.</p>
+<p><strong>kynes</strong>: They’ll work until the very last minute.</p>
+<p><strong>voice</strong>: Spotter control… no sign of the carryall… it
+isn’t answering.</p>
+<p><strong>gurney</strong>: The worm is eight minutes away, Sire.</p>
+<p><strong>voice</strong>: Spotter control – give me a report by the
+numbers.</p>
+<p><strong>duke leto</strong>: Damn it… Harkonnens.</p>
+<p><strong>duke leto</strong>: We are coming down to take you off the
+harvester… All spotters are ordered to comply.</p>
+<p><strong>voice</strong>: Ordered by whom?</p>
+<p><strong>duke leto</strong>: Duke Leto Atreides….</p>
+<p><strong>voice</strong>: Yes… yes, Sire!</p>
+<p><strong>duke leto</strong>: How many men do you have?</p>
+<p><strong>voice</strong>: Full crew – twenty-six men – but Sire, we
+can’t leave this spice…</p>
+<p><strong>duke leto</strong>: Damn the spice! Get out of there.</p>
+<p><strong>duke leto</strong>: Two men in each of the spotters… You!…
+over here… run!!</p>
+<p><strong>kynes</strong>: I can’t see him yet but he’s very close…</p>
+<p><strong>duke leto</strong>: Damn sloppy – really damn sloppy.</p>
+<p><strong>gurney</strong>: Come on boys… come on. We’re going to be
+heavy, Sire.</p>
+<p><strong>kynes</strong>: Here he is… We’ve got to go.</p>
+<p><strong>paul</strong>: Spice!… pure un-refined spice!</p>
+<p><strong>kynes</strong>: Bless the Maker and his water… Bless the
+coming and going of him. May his passage cleanse the world.</p>
+<p><strong>duke leto</strong>: What’s that you’re saying?</p>
+<p><strong>kynes</strong>: Nothing.</p>
+<p><strong>spice miner #1</strong>: Liet!</p>
+<p><strong>spice miner #2</strong>: Shhhhh.</p>
+<p><strong>paul</strong>: Liet?</p>
+<p><strong>kynes</strong>: You are about to witness something few have
+seen – watch! Watch!</p>
+<p><strong>gurney</strong>: Gods, what a monster.</p>
+<p><strong>duke leto</strong>: Someone is going to pay for this… I
+promise.</p>
+<p><strong>kynes</strong>: This Duke is more concerned over his men than
+the spice! I must admit… against all better judgement… I like this
+Duke.</p>
+<p><strong>duke leto</strong>: Duncan! What have you discovered about
+the Fremen, Duncan – tell me. Why haven’t we heard from you?</p>
+<p><strong>duncan</strong>: My lord… I suspect so much. I think they are
+the allies we seek… they are strong and fierce… they do not give their
+loyalty easily or quickly…. As you know, the Imperium has never been
+able to take a census of the Fremen. Everyone thinks that there are but
+few – wandering here and there in the desert…. My lord, I suspect an
+incredible secret has been kept on this planet… that the Fremen exist in
+vast numbers… vast numbers… and it is they that control Arrakis.</p>
+<p><strong>duke leto’s voice</strong>: Guard. Open the door.</p>
+<p><strong>duke leto</strong>: Sleep well… my son.</p>
+<p><strong>paul</strong>: Father!… father… drugged…</p>
+<p><strong>duke leto</strong>: What happened? What? The shield!</p>
+<p><strong>duke leto</strong>: Yueh! He’s sabotaged the house
+generators, we’re wide open.</p>
+<p><strong>yueh</strong>: I’ve brought House Atreides down. I’ve
+destroyed the new army’s weirding modules.</p>
+<p><strong>duke leto</strong>: … Why?</p>
+<p><strong>yueh</strong>: I wish to kill a man… not you, my dear Duke,
+but the Baron…. You were dead already… but you will be close to the
+Baron before you die. You will be tied and drugged but you can still
+attack. When you see the Baron you will have a new poison tooth. He will
+want you close so he can gloat over you. One bite on this tooth and a
+strong exile…</p>
+<p><strong>duke leto</strong>: Refuse…</p>
+<p><strong>yueh</strong>: No! – You mustn’t… for in return I will save
+the lives of your Paul and Jessica.</p>
+<p><strong>yueh</strong>: For Paul…</p>
+<p><strong>yueh</strong>: When you see the Baron, remember the tooth!
+The tooth!</p>
+<p><strong>atreides guard #1</strong>: The shield is down! The shield is
+down!</p>
+<p><strong>atreides guard captain</strong>: Harkonnen… Get that shield
+up!</p>
+<p><strong>atreides guard</strong>: The shield! The shield!</p>
+<p><strong>troopers</strong>: Long live Duke Leto!</p>
+<p><strong>baron</strong>: The drug was timed. Dr. Yueh has been very
+valuable to us…. What a pity you must remain gagged. We can’t let
+ourselves be swayed by your witch’s Voice, now, can we?</p>
+<p><strong>jessica</strong>: Leto… where are you?</p>
+<p><strong>baron</strong>: Goodbye, Jessica and goodbye to your sweet
+son…. I want to spit once on your head… just some spittle on your face –
+what a luxury.</p>
+<p><strong>baron</strong>: We were ordered to kill them… so kill
+them.</p>
+<p><strong>nefud</strong>: What are your orders, Piter?</p>
+<p><strong>piter</strong>: Take them to the desert, as the traitor
+suggested and worms will destroy the evidence. Their bodies must never
+be found.</p>
+<p><strong>piter</strong>: spittle around on her face with his</p>
+<p><strong>duncan</strong>: They’re on this floor somewhere….</p>
+<p><strong>paul</strong>: Duncan!! Duncan!!</p>
+<p><strong>baron</strong>: You wish now to join your wife, is that it,
+traitor?</p>
+<p><strong>yueh</strong>: She lives?</p>
+<p><strong>baron</strong>: You wish to join her… join her, then.</p>
+<p><strong>baron</strong>: Take him away.</p>
+<p><strong>rabban</strong>: He was in the Palace with the Atreides… I
+also say he was a spy for the Emperor. Go now! Take him to his desert to
+die. Go!</p>
+<p><strong>jessica</strong>: Yueh’s sign. He’s left a satchell.</p>
+<p><strong>harkonnen guard #1</strong>: I’d like to have some fun before
+we kill her.</p>
+<p><strong>harkonnen guard #2</strong>: Of course… what did you
+think?</p>
+<p><strong>paul</strong>: Don’t touch my mother…</p>
+<p><strong>jessica</strong>: Oh great mother! He’s trying the voice. The
+Reverend Mother said it could save him.</p>
+<p><strong>harkonnen guard #1</strong>: Did you hear a noise from the
+little one?</p>
+<p><strong>harkonnen guard #2</strong>: I didn’t hear anything.</p>
+<p><strong>harkonnen guard #1</strong>: No?</p>
+<p><strong>harkonnen guard #2</strong>: No.</p>
+<p><strong>jessica</strong>: The calming exercise.</p>
+<p><strong>harkonnen guard #1</strong>: The little one!</p>
+<p><strong>paul</strong>: Remove her gag!</p>
+<p><strong>jessica</strong>: Excellent!</p>
+<p><strong>jessica</strong>: There’s no need to fight over me.</p>
+<p><strong>harkonnen guard #1</strong>: Now?</p>
+<p><strong>jessica</strong>: First cut my son’s bonds.</p>
+<p><strong>jessica</strong>: That’s it.</p>
+<p><strong>jessica</strong>: Oh, my God!</p>
+<p><strong>baron</strong>: Duke Leto Atreides. Someone’s torn the
+insignia off your uniform. Such carelessness.</p>
+<p><strong>piter</strong>: It was Feyd.</p>
+<p><strong>baron</strong>: It was Feyd? It was Feyd! Where is the ducal
+signet ring? I must have his ring.</p>
+<p><strong>piter</strong>: The ring?… he was brought to us as is, Baron.
+I…</p>
+<p><strong>baron</strong>: You killed the doctor too soon, you fool!</p>
+<p><strong>duke leto</strong>: Yueh… Yueh… dead… Paul and Jessica safe…
+the tooth!</p>
+<p><strong>piter</strong>: He’s coming round, my Lord.</p>
+<p><strong>duke leto</strong>: Wait… he must be near…</p>
+<p><strong>baron</strong>: Where is your ring?</p>
+<p><strong>baron</strong>: You do not answer!</p>
+<p><strong>duke leto</strong>: A… little… closer…. The… water… of my
+life… for Paul.</p>
+<p><strong>baron</strong>: He’s crying! He’s crying! He’s crying, Piter.
+What does he mean?</p>
+<p><strong>duke leto</strong>: Now!</p>
+<p><strong>jessica</strong>: Leto! Leto!</p>
+<p><strong>jessica</strong>: Leto! He’s dead! He’s dead…</p>
+<p><strong>paul</strong>: I know I have NO FEELINGS!! Why?</p>
+<p><strong>baron</strong>: I’m alive!!! I’m alive!!!</p>
+<p><strong>paul</strong>: I can’t maintain any altitude… we’ll never
+reach the safety of rock. Maybe that small rock.</p>
+<p><strong>jessica</strong>: Where are we do you think?</p>
+<p><strong>paul</strong>: The South Polar regions… the forbidden area.
+We must make it to that rock…</p>
+<p><strong>paul</strong>: Hurry!</p>
+<p><strong>jessica</strong>: Bring these satchels!</p>
+<p><strong>paul</strong>: Hurry – This crashing may bring a worm.</p>
+<p><strong>jessica</strong>: A million deaths are not enough for
+Yueh…</p>
+<p><strong>paul</strong>: Where are my feelings… I feel for no one…</p>
+<p><strong>paul</strong>: The second moon… from the dreams…</p>
+<p><strong>paul</strong>: House Atreides is ruined. This moon holds my
+past.</p>
+<p><strong>paul</strong>: This moon holds my future.</p>
+<p><strong>paul</strong>: I am only a seed…</p>
+<p><strong>duke leto</strong>: The seed must grow.</p>
+<p><strong>duke leto</strong>: The sleeper must awaken.</p>
+<p><strong>paul</strong>: Listen to me!… you wanted to know about my
+dreams… and I’ve just had a waking dream… do you know why?…</p>
+<p><strong>jessica</strong>: Calm yourself/</p>
+<p><strong>paul</strong>: The spice! It’s in everything here. The air,
+the soil, the food… It’s like the Truthsayer drug….. It’s a poison!!!!
+You knew the spice would change me. But thanks to your teachings it’s
+changed my consciousness. I can see it… I can see it.</p>
+<p><strong>jessica</strong>: Is he….?</p>
+<p><strong>paul</strong>: You carry my unborn sister in your womb!</p>
+<p><strong>jessica</strong>: He knows.</p>
+<p><strong>paul</strong>: You and your Bene Gesserit sisterhood… I’m not
+your Kwisatz Haderach… I’m something different, something unexpected!
+I’m a seed. I am so much more… You don’t begin to know me…</p>
+<p><strong>paul</strong>: Father… now I have become a killer and I will
+continue to kill until I have avenged your death. Father!</p>
+<p><strong>baron</strong>: Rabban!!… we’re knee deep in Atreides blood!
+We’ve gutted them. We’ve gutted them!</p>
+<p><strong>baron</strong>: Rabban, Rabban… I place you in charge of
+Arrakis. It’s yours to squeeze, as I promised. I want you to squeeze and
+squeeze and squeeze. Give me spice! Drive them into utter submission.
+You must not show the slightest pity or mercy… as only you can… Never
+stop! Go…. Show no mercy!</p>
+<p><strong>rabban</strong>: Yes, my lord Baron.</p>
+<p><strong>baron</strong>: And when we’ve crushed these people enough
+I’ll send in you Feyd… they’ll cheer you as a rescuer… lovely Feyd…
+really a lovely boy. Where’s my doctor?</p>
+<p><strong>paul</strong>: Yueh’s left the plans for the weirding
+modules.</p>
+<p><strong>paul</strong>: We have to get to that mountain of rock. We
+have entered the time when all will turn against us and seek our
+lives…</p>
+<p><strong>paul</strong>: It’s further than I thought… a worm is sure to
+come…. I’ll plant a thumper, that should divert it.</p>
+<p><strong>jessica</strong>: …the night is a tunnel… a hole into
+tomorrow… if we’re to have a tomorrow…</p>
+<p><strong>paul</strong>: Remember… walk without rhythm and we won’t
+attract a worm… it’ll go to the thumper.</p>
+<p><strong>jessica</strong>: I’m ready.</p>
+<p><strong>paul</strong>: Keep going…</p>
+<p><strong>paul</strong>: Faster!!</p>
+<p><strong>jessica</strong>: It’s deafening!</p>
+<p><strong>paul</strong>: Run!</p>
+<p><strong>jessica</strong>: I can’t… I can’t.</p>
+<p><strong>paul</strong>: Drum sand!</p>
+<p><strong>paul</strong>: Cinnamon… the spice! Do you smell it?</p>
+<p><strong>jessica</strong>: Yes…</p>
+<p><strong>paul</strong>: I know the secret. The worm is the spice… the
+spice is the worm.</p>
+<p><strong>jessica</strong>: Paul!</p>
+<p><strong>paul</strong>: A thumper.</p>
+<p><strong>jessica</strong>: What’s happened?… Why did it leave?</p>
+<p><strong>paul</strong>: Someone started another thumper…. We’re not
+alone.</p>
+<p><strong>jessica</strong>: Man-carved steps.</p>
+<p><strong>paul</strong>: Yes…</p>
+<p><strong>stilgar</strong>: Perhaps these are the ones Mapes told us
+of.</p>
+<p><strong>stilgar</strong>: Are you trained in the ways of the
+desert?</p>
+<p><strong>jessica</strong>: No, but many consider my training
+valuable.</p>
+<p><strong>stilgar</strong>: I will take the boy-man… he shall have
+sanctuary in my tribe…</p>
+<p><strong>stilgar</strong>: Stop! Get back!! She has the weirding way.
+Why didn’t you tell us! Great gods… if you can do this to the strongest
+of us you’re worth ten times your weight of water. As a leader of my
+people I give you my bond: teach us this weirding way and you both shall
+have sanctuary. Your water shall mingle with our water.</p>
+<p><strong>jessica</strong>: Then I will teach you our way of battle….
+you have the word bond of a Bene Gesserit.</p>
+<p><strong>a fremen</strong>: It is the legend.</p>
+<p><strong>chani</strong>: I am Chani, daughter of Liet…. I would not
+have permitted you to harm my tribe.</p>
+<p><strong>paul</strong>: From my dream… so beautiful. Liet…. is this
+Kynes’ daughter?</p>
+<p><strong>chani</strong>: Come with me. I’ll show you an easier way
+down.</p>
+<p><strong>stilgar</strong>: You have strength… real strength… You shall
+be known as Usul, which is the strength of the base of the pillar. This
+is your secret name in our troop. But you must choose the name of
+manhood which we will call you openly.</p>
+<p><strong>paul</strong>: What do you call the mouse shadow in the
+second moon?</p>
+<p><strong>stilgar</strong>: We call that one Muad’dib.</p>
+<p><strong>paul</strong>: Could I be known as Paul Muad’dib?</p>
+<p><strong>stilgar</strong>: You are Paul Muad’dib, and your mother
+shall be a Sayyadina among us…. We welcome you.</p>
+<p><strong>chani</strong>: Seitch Tabr.</p>
+<p><strong>chani</strong>: Tell me of your homeworld, Usul.</p>
+<p><strong>jessica</strong>: Moisture…</p>
+<p><strong>paul</strong>: Wind traps… huge ones.</p>
+<p><strong>paul</strong>: Water on Arrakis!!! I have seen this place in
+a dream. A treasure.</p>
+<p><strong>stilgar</strong>: Greater than treasure, Usul. We have
+thousands of such caches. Only a few of us know them all. When we have
+enough… we shall change the face of Arrakis. Listen!…</p>
+<p><strong>stilgar</strong>: The Rocks of Arrakis hold many secrets.</p>
+<p><strong>monk</strong>: We sense that you may be the “voice from the
+outer world”. Both moons told us of you. You must pass tests before we
+will know… you must conquer the beast of the desert, both his outer and
+his deadly inner powers. Speak to us… from the outer world.</p>
+<p><strong>paul</strong>: I am only a seed. I am Usul… Paul
+Muad’dib.</p>
+<p><strong>crowds</strong>: Muad’dib!</p>
+<p><strong>monk</strong>: The legend.</p>
+<p><strong>paul</strong>: No one ever dreamed there would be so many.
+Our shared enemy the Harkonnens, are once again in control of Arrakis.
+Stilgar, your leader, has asked me and my mother to crush the
+Harkonnens. We must do more than this. We must totally destroy all spice
+production on Arrakis. The Guild and the entire universe depends on
+spice.</p>
+<p><strong>paul</strong>: The weirding way has long been a Bene Gesserit
+secret. With my mother’s help, my father isolated an element of the
+weirding way and externalised it.</p>
+<p><strong>paul</strong>: Because of the Harkonnen treachery, my
+father’s armies were never able to fully develop this new form. This is
+what I will teach you. You will be the fiercest and most feared fighters
+in the Universe.</p>
+<p><strong>orato</strong>: Break!</p>
+<p><strong>paul</strong>: Move back!</p>
+<p><strong>paul</strong>: Chuksa!</p>
+<p><strong>100 fremen</strong>: Achiii!</p>
+<p><strong>paul</strong>: This is part of the weirding way that we will
+teach you. Some thoughts have a certain sound… that being the equivalent
+to a form. Through sound and motion you will be able to paralyze nerves,
+shatter bones, set fires, suffocate an enemy or burst his organs…. We
+will kill until no Harkonnen breathes Arrakeen air.</p>
+<p><strong>100 fremen</strong>: Muad’dib!</p>
+<p><strong>paul</strong>: To avenge my father, I will turn you into
+killing machines.</p>
+<p><strong>stilgar</strong>: Sayyadina. Our Reverend Mother tells me she
+is too old… She has been calling through space and time for you to come
+and let her rest. She asks that you pass within.</p>
+<p><strong>jessica</strong>: They want me to take the Water of Life… the
+Truthsayer drug… so dangerous, yet… we must move swiftly if we’re to
+secure our place among these Fremen. I will try to pass within.</p>
+<p><strong>stilgar</strong>: Death may be the result…. Are you sure?</p>
+<p><strong>jessica</strong>: I must do this for Paul, but what of my
+unborn child?</p>
+<p><strong>reverend mother ramallo</strong>: So you are the ones.</p>
+<p><strong>stilgar</strong>: Do you know the Water of Life?… Come…
+…Watch… the mystery of mysteries… the end and the beginning.</p>
+<p><strong>stilgar</strong>: The Water of Life.</p>
+<p><strong>paul</strong>: The most lethal poison in the Universe.</p>
+<p><strong>reverend mother</strong>: … Many men have tried.</p>
+<p><strong>paul</strong>: Did they try and fail?</p>
+<p><strong>reverend mother</strong>: They tried and died.</p>
+<p><strong>monk #1</strong>: One among us has consented to enter the
+rite. She will attempt to pass within that we not lose the strength of
+our Reverend Mother.</p>
+<p><strong>paul</strong>: What if she should fail?</p>
+<p><strong>monk #1</strong>: Drink!</p>
+<p><strong>jessica</strong>: The ultimate awareness spectrum narcotic. I
+must transform the poison configuration within my body… the blue must be
+made clean.</p>
+<p><strong>reverend mother ramallo</strong>: You should have told
+us.</p>
+<p><strong>reverend mother ramallo</strong>: Great Mother! This changes
+both! What have we done?</p>
+<p><strong>jessica</strong>: No! This is the place where we cannot look.
+The place only for the eyes of the Kwisatz Haderach.</p>
+<p><strong>jessica</strong>: What is this?… Is this what kills the men
+who enter here?</p>
+<p><strong>jessica</strong>: Now my daughter and I are both Reverend
+Mothers.</p>
+<p><strong>reverend mother ramallo</strong>: I’ve been a long time
+waiting for you. Here is my life.</p>
+<p><strong>monk</strong>: Change it that we may all drink of it.</p>
+<p><strong>monk</strong>: It is changed!</p>
+<p><strong>paul</strong>: She did it!</p>
+<p><strong>chani</strong>: Come with me.</p>
+<p><strong>paul</strong>: Chani…. I love you… I’ve always loved
+you….</p>
+<p><strong>baron</strong>: Feyd, even though he’s aging, Thufir is one
+of the finest Mentats in the Universe… and he’s mine, Feyd… all mine….
+Quiet now.</p>
+<p><strong>feyd</strong>: I will.</p>
+<p><strong>baron</strong>: Oh Thufir, I see they’ve installed your heart
+plug already…. Don’t be angry. Everyone gets one here. But this is not
+why we’re here. We’ve brought you a little cat, Thufir. You must care
+for it if you wish to live. A poison has been introduced into you,
+Thufir Hawat. By milking this smooth little cat body each day you
+receive your antidote… it must be done each day…. Also, you must do
+something for me if you wish to live. You know I lost Piter, my dear
+Mentat…</p>
+<p><strong>feyd</strong>: All I can see is an Atreides that I want to
+kill.</p>
+<p><strong>baron</strong>: Feyd, no, no! Thufir’s a Harkonnen now,
+aren’t you Thufir?</p>
+<p><strong>thufir</strong>: My dear Duke… how I have failed you.</p>
+<p><strong>harah</strong>: What will you call her?</p>
+<p><strong>jessica</strong>: Alia.</p>
+<p><strong>alia</strong>: Mother.</p>
+<p><strong>paul</strong>: Activate your weirding modules…</p>
+<p><strong>paul</strong>: Set the range for two meters.</p>
+<p><strong>paul</strong>: Korba… The arm…</p>
+<p><strong>korba</strong>: Chuuk-sa…</p>
+<p><strong>paul</strong>: Motion… Chuuk-sa…</p>
+<p><strong>korba</strong>: Chuuuk-sa…</p>
+<p><strong>paul</strong>: Stilgar…</p>
+<p><strong>a fremen</strong>: Muad’dib!…</p>
+<p><strong>paul</strong>: My own name is a killing word. Will it be a
+healing word as well?</p>
+<p><strong>stilgar</strong>: the shoulders of several large Fremen</p>
+<p><strong>paul</strong>: Now!</p>
+<p><strong>pail</strong>: They’re even better on the battlefield than in
+the training rooms!! Sound… as a weapon. If only you could see them,
+father.</p>
+<p><strong>paul</strong>: When the spice flow stops, the entire Universe
+will turn to Arrakis. The Baron and the Emperor himself will be forced
+to deal with us.</p>
+<p><strong>rabban</strong>: What happened? What happened to you? What is
+he saying?</p>
+<p><strong>wounded harkonnen</strong>: Muad’dib!… Muad’dib!… Muad’dib!…
+Muad’dib!</p>
+<p><strong>a harkonnen soldier</strong>: He’s been repeating that name
+ever since we found him.</p>
+<p><strong>rabban</strong>: Who is this Muad’dib?</p>
+<p><strong>stilgar</strong>: Usul… It is time you become a sandrider…
+and travel as a Fremen. Take the kiswa maker hook of our sietch and ride
+as a leader of men.</p>
+<p><strong>stilgar</strong>: Two thumpers are planted. The worm may not
+surface for the first - he will rise for the second. Remember, when the
+worm approaches, you must be utterly still… and close enough to plant
+the hook firmly under a ring segment…. The worm will turn to lift this
+exposed area as far from the abrasive sand as possible and it will take
+you with it – to the top. Do not get too close as he approaches… the
+sand will engulf you…. Wait till the head of the worm passes – then go…
+quickly.</p>
+<p><strong>stilgar &amp; fremen</strong>: Shai-Hulud… Shai-Hulud.</p>
+<p><strong>paul</strong>: Only the very strong ones travel this
+deep….</p>
+<p><strong>stilgar</strong>: Usul has called a big one. Again… it is the
+legend.</p>
+<p><strong>paul</strong>: A sandrider!…</p>
+<p><strong>paul</strong>: Long live the fighters!</p>
+<p><strong>voice</strong>: Seventeen Great Houses of the Lansraad have
+reported a significant delay in delivery of spice per CHOAM agreement.
+This constitutes a serious violation of CHOAM codes. Contact Baron
+Vladimir Harkonnen immediately.</p>
+<p><strong>rabban</strong>: Falsify the reports. We can’t hide it all,
+tell them we’ve lost only two hundred harvesters… and forty carryalls…
+and don’t let my uncle know about the destruction of the spice silos…. I
+will catch this Muad’dib and suck the blood from him!! SUCK THE BLOOD
+FROM HIM!!!</p>
+<p><strong>paul</strong>: We surprised a band of smugglers.</p>
+<p><strong>stilgar</strong>: Too bad… thought they were Harkonnen.</p>
+<p><strong>paul</strong>: Gurney!…</p>
+<p><strong>paul</strong>: You’ve no need of your weapons with me Gurney
+Halleck.</p>
+<p><strong>gurney</strong>: Paul!! Paul!!</p>
+<p><strong>paul</strong>: Don’t you trust your own eyes.</p>
+<p><strong>gurney</strong>: They said you were dead. They said…</p>
+<p><strong>gurney</strong>: You young pup! You young pup!</p>
+<p><strong>voice</strong>: Stand-by… warning… we have just received a
+coded threat from the Guild. Spice production is in serious jeopardy…
+Giedi Prime supplying false reports… Guild to visit Emperor in one
+standard day.</p>
+<p><strong>tanked guildsman #2</strong>: Emperor Shaddam IV… You have
+one last chance to take matters into your own hands and bring the
+situation under the control on Arrakis.</p>
+<p><strong>emperor</strong>: What do you mean one last…</p>
+<p><strong>tanked guildsman #2</strong>: Do not speak!… Listen!… You do
+not have more than this one chance…. I represent the entire Guild in
+this matter…. You have failed to kill the Atreides heir… Paul.</p>
+<p><strong>emperor</strong>: But he was said to…</p>
+<p><strong>tanked guildsmen #2</strong>: Noooooo… he is not dead. He is
+not eaten by worms as you have wanted to believe. He is not missing. He
+is in the deep desert with the Fremen. The Spice is in great danger. We
+are not asking… we are telling… remedy the situation or you will live
+out your life in a pain amplifier.</p>
+<p><strong>emperor</strong>: Who is this Paula Atreides to the Guild?
+And why?</p>
+<p><strong>harah</strong>: Your Reverence, I don’t wish to upset you,
+but the other women…</p>
+<p><strong>harah</strong>: …they don’t like Alia around. She frightens
+them. It is the strangeness of your daughter.</p>
+<p><strong>jessica</strong>: It’s the way she speaks of things…</p>
+<p><strong>jessica</strong>: …beyond her years and of things no child
+could know – things of the past.</p>
+<p><strong>jessica</strong>: A daughter who knew at birth everything I
+know…</p>
+<p><strong>harah</strong>: But Your Reverence, they won’t have her
+around them.</p>
+<p><strong>alia</strong>: Harah! Would they deny me the right to use
+this mind?…</p>
+<p><strong>alia</strong>: Would they deny me the right to use this
+voice?…</p>
+<p><strong>jessica</strong>: Alia!</p>
+<p><strong>emperor</strong>: I want fifty legions of Sardaukar on
+Arrakis at once.</p>
+<p><strong>sardaukar officer #1</strong>: Fifty legions?… That’s our
+entire reserves as well.</p>
+<p><strong>emperor</strong>: This is genocide… the deliberate and
+systematic destruction of all life on Arrakis.</p>
+<p><strong>chani</strong>: You were calling my name… it frightened
+me.</p>
+<p><strong>paul</strong>: Hurry! All I see is darkness.</p>
+<p><strong>chani</strong>: Paul… I will love you forever… in life or in
+death… let Shai-Hulud judge now. You are my life.</p>
+<p><strong>paul</strong>: Now… the test of the water of life… what is it
+that waits for me in this darkness?</p>
+<p><strong>alia</strong>: Mother - help me!</p>
+<p><strong>jessica</strong>: Alia! What is it?</p>
+<p><strong>alia</strong>: It’s Paul. He’s taken the Water of Life.</p>
+<p><strong>chani</strong>: Paul… Paul.</p>
+<p><strong>paul</strong>: Father!… Father! THE SLEEPER HAS</p>
+<p><strong>paul</strong>: Arrakis… Dune… Desert Planet.</p>
+<p><strong>paul</strong>: Your time has come. Father… our time has come.
+A storm is coming – our storm… and when it comes it will shake the
+Universe. Emperor… we come for you.</p>
+<p><strong>paul</strong>: Long live the fighters!</p>
+<p><strong>stilgar</strong>: Long live the fighters!</p>
+<p><strong>paul</strong>: Gurney, when the storm hits… set off the
+atomics. I want an opening through the entire Shield Wall. Stilgar? Do
+we have wormsign?</p>
+<p><strong>stilgar</strong>: Usul… We have wormsign, the likes of which
+even God has never seen.</p>
+<p><strong>emperor</strong>: Bring in that floating fat man… the
+Baron.</p>
+<p><strong>emperor</strong>: Why have you brought me here?</p>
+<p><strong>baron</strong>: Your Highness… There must be some mistake… I
+never requested your presence.</p>
+<p><strong>emperor</strong>: Ah? But your lack of action demanded it.
+Your dreadful mismanagement, your bad judgement in assigning to Rabban –
+– the governorship…. You forced me to come here and set things straight…
+personally.</p>
+<p><strong>a voice</strong>: Bring in the messenger.</p>
+<p><strong>alia</strong>: I am the messenger from Muad’dib. Poor
+Emperor, I’m afraid my brother won’t be very pleased with you.</p>
+<p><strong>emperor</strong>: Silence!… I do not court your brother’s
+pleasure.</p>
+<p><strong>reverend mother</strong>: Kill this child!! She’s an
+abomination!! Kill her. Get out of my mind!!!</p>
+<p><strong>alia</strong>: Not until you tell them both who I really
+am.</p>
+<p><strong>reverend mother</strong>: Sister of Paul Muad’dib.</p>
+<p><strong>emperor</strong>: Paul’s sister… Paul is Muad’dib?!</p>
+<p><strong>paul</strong>: Alia keeps pace with the storm.</p>
+<p><strong>paul</strong>: Gurney, now!</p>
+<p><strong>gurney</strong>: Atomics!</p>
+<p><strong>alia</strong>: My brother is coming… with many Fremen
+warriors.</p>
+<p><strong>sardaukar officer #2</strong>: The Shield Wall is gone.</p>
+<p><strong>emperor</strong>: Impossible!</p>
+<p><strong>alia</strong>: Not impossible. I told you… He is here
+now.</p>
+<p><strong>sardaukar officer #2</strong>: Majesty, into the ship!</p>
+<p><strong>emperor</strong>: Release the Sardaukar. Baron… give this
+little abomination to the storm.</p>
+<p><strong>baron</strong>: I have her, Majesty!</p>
+<p><strong>paul</strong>: Gurney… I see Thufir Hawat among the captives.
+Let him stand free.</p>
+<p><strong>gurney</strong>: My Lord?</p>
+<p><strong>paul</strong>: Let him stand free!</p>
+<p><strong>feyd</strong>: The antidote…</p>
+<p><strong>gurney</strong>: Thufir. Come.</p>
+<p><strong>paul</strong>: A knife…. In payment of the many years of
+service to my family, you may know ask of me anything you wish. Anything
+at all. Do you need my life, old friend?</p>
+<p><strong>paul</strong>: It is yours.</p>
+<p><strong>paul</strong>: I mean this, Thufir. If you are to strike, do
+it now.</p>
+<p><strong>thufir</strong>: Three… generations… of you…</p>
+<p><strong>paul</strong>: Carry this noble Atreides warrior away. Do him
+all honor.</p>
+<p><strong>paul</strong>: Emperor Shadam the IV… there are Guild
+Heighliners above us containing many Great Houses of the Lansraad…. SEND
+THEM</p>
+<p><strong>emperor</strong>: How dare you speak to me…</p>
+<p><strong>guildsman #2</strong>: Stop your speaking!!</p>
+<p><strong>paul</strong>: Good. You have some idea of what I would do
+but I will tell it to one who has never been seen… one who hides deep in
+the Heighliner control rooms. He will hear it first.</p>
+<p><strong>guildsmen #3</strong>: No!</p>
+<p><strong>paul</strong>: Where are you…. Let me see you or there will
+be no spice.</p>
+<p><strong>paul</strong>: You know what I’m about to say is true…. I
+have the power to destroy the spice forever.</p>
+<p><strong>paul</strong>: Don’t try your powers on me. Try looking into
+that place where you dare not look. You’ll find me there staring back at
+you!! You Bene Gesserit have waited ninety generations to produce the
+one person your schemes required. Here I stand. But… I will never be
+yours.</p>
+<p><strong>reverend mother</strong>: Stop him, Jessica!</p>
+<p><strong>jessica</strong>: Stop him yourself.</p>
+<p><strong>paul</strong>: You saw a part of what the race needs in the
+beginning. In time you perverted the truth. You sought to control human
+breeding and intermix a select few according to a selfish master plan.
+How little you understand.</p>
+<p><strong>reverend mother</strong>: You mustn’t speak of…</p>
+<p><strong>paul</strong>: I remember your gom jabbar, now you remember
+mine. I can kill with a word.</p>
+<p><strong>fedaykin #1</strong>: …and his word shall carry death eternal
+to those who stand against the righteous.</p>
+<p><strong>feyd</strong>: The righteous!</p>
+<p><strong>paul</strong>: There is a Harkonnen among you. Give the
+Harkonnen a blade and let him stand forth.</p>
+<p><strong>emperor</strong>: If Feyd wishes, he can meet you with my
+blade in his hand.</p>
+<p><strong>feyd</strong>: I wish it.</p>
+<p><strong>gurney</strong>: This is a Harkonnen animal. Let me, please,
+my Lord.</p>
+<p><strong>paul</strong>: The Emperor’s blade.</p>
+<p><strong>feyd</strong>: Why prolong the inevitable? I will kill you! I
+will kill him!</p>
+<p><strong>chani</strong>: Paul!</p>
+<p><strong>feyd</strong>: Who is the little one? A pet, perhaps? Will
+she deserve my special attentions?</p>
+<p><strong>feyd</strong>: You see… your death… my blade will finish
+you.</p>
+<p><strong>fedaykin #2</strong>: Usul no longer needs the weirding
+module.</p>
+<p><strong>paul</strong>: Now, I will tell you how it will be. Irulan
+shall be my wife, opening the way for an Atreides to take the
+throne.</p>
+<p><strong>emperor</strong>: I sit on the throne!!</p>
+<p><strong>paul</strong>: You will sit on a throne on Selusa Secundus,
+your prison planet. Either that or you will die.</p>
+<p><strong>paul</strong>: The Princess shall have no more of me than my
+name… no child of mine or touch the softness of glance… nor instant of
+desire…. This is my promise to you… …my love.</p>
+<p><strong>jessica</strong>: Think on it Chani… We who carry the name of
+concubine… history will call us wives.</p>
+<p><strong>paul</strong>: The Fremen have the word of Muad’dib. They
+will have their Holy War to cleanse the Universe… they will have
+Arrakis… Dune… their planet. There will be flowing water here open to
+the sky and rich green oases. For the spice there will always be some
+desert. There will be fierce winds and trials to toughen men. We Fremen
+have a saying… “God created Arrakis to train the faithful.” One cannot
+go against the word of God.</p>
+<p><strong>alia</strong>: And how can this be?</p>
+<p><strong>alia</strong>: For… he is the Kwisatz Haderach!</p>
+</body>
+</html>

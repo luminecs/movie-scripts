@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>taxi-driver</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="taxi-driver">taxi-driver</h1>
+<p><strong>personnel officer</strong>: No trouble with the Hack
+Bureau?</p>
+<p><strong>travis</strong>: No Sir.</p>
+<p><strong>personnel officer</strong>: Got your license?</p>
+<p><strong>travis</strong>: Yes.</p>
+<p><strong>personnel officer</strong>: So why do you want to be a taxi
+driver?</p>
+<p><strong>travis</strong>: I can’t sleep nights.</p>
+<p><strong>personnel officer</strong>: There’s porno theatres for
+that.</p>
+<p><strong>travis</strong>: I know. I tried that.</p>
+<p><strong>personnel officer</strong>: So whatja do now?</p>
+<p><strong>travis</strong>: I ride around nights mostly. Subways, buses.
+See things. Figur’d I might as well get paid for it.</p>
+<p><strong>personnel officer</strong>: We don’t need any misfits around
+here, son.</p>
+<p><strong>travis</strong>: You kiddin? Who else would hack through
+South Bronx or Harlem at night?</p>
+<p><strong>personnel officer</strong>: You want to work uptown
+nights?</p>
+<p><strong>travis</strong>: I’ll work anywhere, anytime. I know I can’t
+be choosy.</p>
+<p><strong>personnel officer</strong>: How’s your driving record?</p>
+<p><strong>travis</strong>: Clean. Real clean. As clean as my
+conscience.</p>
+<p><strong>personnel officer</strong>: Listen, son, you gonna get smart,
+you can leave right now.</p>
+<p><strong>travis</strong>: Sorry, sir. I didn’t mean that.</p>
+<p><strong>personnel officer</strong>: Physical? Criminal?</p>
+<p><strong>travis</strong>: Also clean.</p>
+<p><strong>personnel officer</strong>: Age?</p>
+<p><strong>personnel officer</strong>: Twenty-six.</p>
+<p><strong>personnel officer</strong>: Education?</p>
+<p><strong>travis</strong>: Some. Here and there.</p>
+<p><strong>personnel officer</strong>: Military record?</p>
+<p><strong>travis</strong>: Honorable discharge. May 1971.</p>
+<p><strong>personnel officer</strong>: You moonlightin?</p>
+<p><strong>travis</strong>: No, I want long shifts.</p>
+<p><strong>personnel officer</strong>: We hire a lot of moonlighters
+here.</p>
+<p><strong>travis</strong>: So I hear.</p>
+<p><strong>personnel officer</strong>: Hell, we ain’t that much fussy
+anyway. There’s always opening on one fleet or another. Fill out these
+forms and give them to the girl at the desk, and leave your phone
+number. You gotta phone?</p>
+<p><strong>travis</strong>: No.</p>
+<p><strong>personnel officer</strong>: Well then check back
+tomorrow.</p>
+<p><strong>travis</strong>: Yes, Sir.</p>
+<p><strong>travis</strong>: April 10, 1972. Thank God for the rain which
+has helped wash the garbage and trash off the sidewalks.</p>
+<p><strong>travis</strong>: I’m working a single now, which means
+stretch-shifts, six to six, sometimes six to eight in the a.m., six days
+a week.</p>
+<p><strong>travis</strong>: It’s a hustle, but it keeps me busy. I can
+take in three to three-fifty a week, more with skims.</p>
+<p><strong>man in business suit</strong>: Is Kennedy operating, cabbie?
+Is it grounded?</p>
+<p><strong>travis</strong>: Why should it be grounded?</p>
+<p><strong>man in business suit</strong>: Listen - I mean I just saw the
+needle of the Empire State Building. You can’t see it for the fog!</p>
+<p><strong>travis</strong>: Then it’s a good guess it’s grounded.</p>
+<p><strong>man in business suit</strong>: The Empire State in fog means
+something, don’t it? Do you know, or don’t you? What is your number,
+cabbie?</p>
+<p><strong>travis</strong>: Have you tried the telephone?</p>
+<p><strong>man in business suit</strong>: There isn’t time for that. In
+other words, you don’t know.</p>
+<p><strong>travis</strong>: No.</p>
+<p><strong>man in business suit</strong>: Well, you should know, damn
+it, or who else would know? Pull over right here. Why don’t you stick
+your goddamn head out of the goddamn window once in a while and find out
+about the goddamn fog!</p>
+<p><strong>man in business suit</strong>: Taxi! Taxi!</p>
+<p><strong>travis</strong>: I work the whole city, up, down, don’t make
+no difference to me - does to some.</p>
+<p><strong>streetside</strong>: TRAVIS’ P.O.V. Black PROSTITUTE wearing
+white vinyl boots, leopard-skin mini-skirt and blond wig hails taxi. On
+her arm hangs half-drunk seedy EXECUTIVE TYPE.</p>
+<p><strong>travis</strong>: Some won’t take spooks - Hell, don’t make no
+difference tom me.</p>
+<p><strong>john</strong>: Oh baby, baby.</p>
+<p><strong>prostitute</strong>: Come on.</p>
+<p><strong>travis</strong>: They’re all animals anyway. All the animals
+come out at night: Whores, skunk pussies, buggers, queens, fairies,
+dopers, junkies, sick, venal. Someday a real rain will come and wash all
+this scum off the streets.</p>
+<p><strong>travis</strong>: Each night when I return the cab to the
+garage I have to clean the come off the back seat. Some nights I clean
+off the blood.</p>
+<p><strong>slight timecut</strong>: TRAVIS books it at garage office.
+Old, rotting slabs of wood are screwed to a grey crumbling concrete
+wall. Each available space is covered with hand- lettered signs, time
+schedules, check-out sheets, memos. The signs read:</p>
+<p><strong>judson 2-3410</strong>: AND MUST FILE A REPORT Promptly</p>
+<p><strong>at 9 am the following morning at</strong>: 43 W. 61st.</p>
+<p><strong>1st cabbie</strong>: … hadda piss like a bull steer, so I
+pull over on 10th Ave, yank up the hood and do the engine job. There I
+am with my dong in my hand when a guy come up and asks if I need any
+help. Just checking the battery, I says, and, meanwhile…</p>
+<p>****: </p>
+<p><strong>2nd cabbie</strong>: If he thinks I’m going up into The
+Jungle this time of night, he can shove it.</p>
+<p><strong>3rd cabbie</strong>: Fuck that Violets First. Fucking saddle
+horse. No, no, the OTB. Fuck them. No, it was TKR. TCR and I’da made
+seven fucking grand. Fuck them too. Alright, what about the second
+race?</p>
+<p><strong>4th cabbie</strong>: Over at Love, this hooker took on the
+whole garage. Blew the whole fucking joint and they wouldn’t even let
+her use the drinking fountain.</p>
+<p><strong>concession girl</strong>: Kin I help ya?</p>
+<p><strong>travis</strong>: What is your name? My name is Travis.</p>
+<p><strong>concession girl</strong>: Awh, come off it, Pal.</p>
+<p><strong>travis</strong>: No, I’m serious, really…</p>
+<p><strong>concession girl</strong>: Ya want me to call da boss? Huh?
+That what you want?</p>
+<p><strong>concession girl</strong>: No, no, it’s alright. I’ll have a
+big Coca-Cola - without ice - and a large buttered popcorn, and… … some
+of them chocolate covered malted milk balls… and ju-jukes, a box. They
+last.</p>
+<p><strong>concession girl</strong>: We don’t have ju-jukes. We don’t
+have Coca-Cola. We only got Royal Crown Cola.</p>
+<p><strong>travis</strong>: That’s fine.</p>
+<p><strong>concession girl</strong>: That’s a dollar forty-seven.</p>
+<p><strong>male movie voice</strong>: Come here, bitch. I’m gonna split
+you in half.</p>
+<p><strong>travis</strong>: Twelve hours of work and I still cannot
+sleep. The days dwindle on forever and do not end.</p>
+<p><strong>betsy</strong>: Tom.</p>
+<p><strong>betsy</strong>: Tom, come here a moment. I think this canvas
+report is about ready to go out. Check it out with Andy, and if he okays
+if, have a copy made for the campaign headquarters in every county. And
+don’t forget to add the new photo releases.</p>
+<p><strong>tom</strong>: The senator’s white paper is almost ready,
+Bets. Should we wait for that?</p>
+<p><strong>betsy</strong>: Andy usually just sends those to the national
+media. The local press doesn’t know what to do with a position paper
+until UPI and AP tell them anyway.</p>
+<p><strong>tom</strong>: I think we should try to get maximum coverage
+for this new mandatory welfare program. Push the issues.</p>
+<p><strong>betsy</strong>: First push the man, then the issue. Senator
+Palantine is first of all a dynamic man, an intelligent, interesting,
+fascinating man.</p>
+<p><strong>tom</strong>: You forgot "sexy".</p>
+<p><strong>betsy</strong>: No, I didn’t forget "sexy".</p>
+<p><strong>tom</strong>: Just didn’t get around to it, huh?</p>
+<p><strong>betsy</strong>: Oh, Tom, please.</p>
+<p><strong>tom</strong>: Well, for Christsakes, you sound like you’re
+selling… I don’t know what… cars… not issues.</p>
+<p><strong>betsy</strong>: Have you ever wondered why CBS News has the
+highest ratings?</p>
+<p><strong>tom</strong>: More people watch it.</p>
+<p><strong>betsy</strong>: Alright, forget it if you’re not going to be
+serious,</p>
+<p><strong>tom</strong>: No, c’mon, I’m listening. I was just…</p>
+<p><strong>betsy</strong>: Just what?</p>
+<p><strong>tom</strong>: Kidding around… you know, fun.</p>
+<p><strong>betsy</strong>: Maybe if you’d try thinking once in a while,
+you’d get somewhere.</p>
+<p><strong>tom</strong>: With who?</p>
+<p><strong>betsy</strong>: Alright, now. You want to know why CBS has
+the highest ratings? You their news is any different from NBC, ABC? It’s
+all the same news. Same stories. Same order usually. What, you thought
+they had good news for people, right? You thought that’s why people
+watched CBS? I’ll tell you why people watch CBS. Cronkite. The man. You
+got it? Not the news, not the issues, the man. If Walter Cronkite told
+people to eat soap, they’d do it. We are selling cars, goddamn it.</p>
+<p><strong>tom</strong>: Well, if Cronkite’s so great, why don’t we run
+him instead?</p>
+<p><strong>betsy</strong>: That’s the last. The finish. Period. Some
+pople can learn. Some people can’t. And you wonder why we never get
+serious—-</p>
+<p><strong>tom</strong>: Sure we could run him. You realize he’s already
+of his block association.</p>
+<p><strong>betsy</strong>: Have you been noticing anything strange?</p>
+<p><strong>tom</strong>: No, why?</p>
+<p><strong>betsy</strong>: Why’s that taxi driver across the street been
+staring at us?</p>
+<p><strong>tom</strong>: What taxi driver?</p>
+<p><strong>betsy</strong>: That taxi driver. The one that’s been sitting
+here.</p>
+<p><strong>tom</strong>: How long has he been there?</p>
+<p><strong>betsy</strong>: I don’t know - but it feels like a long
+time.</p>
+<p><strong>tom</strong>: Well, I’ll go out and ask him.</p>
+<p><strong>travis</strong>: All my life needed was a sense of direction,
+a sense of someplace to go. I do not believe one should devote his life
+to morbid self- attention, but should become a person like other
+people.</p>
+<p><strong>travis</strong>: I first saw her at Palantine Campaign
+Headquarters at 58th and Broadway. She was wearing a yellow dress,
+answering the phone at her desk.</p>
+<p><strong>travis</strong>: She appeared like an angel out of this open
+sewer. Out of this filthy mass. She is alone: They cannot touch her.</p>
+<p><strong>wizard</strong>: First she did her make-up. You know, I hate
+it when they do that. I mean she does the whole works, the mascara, the
+eye-shadow, the lipstick, the rouge…</p>
+<p><strong>dough-boy</strong>: Not rouge. Blush-On, they call it.</p>
+<p><strong>wizard</strong>: The kind with a brush.</p>
+<p><strong>wizard</strong>: Travis.</p>
+<p><strong>travis</strong>: Hey Wizard.</p>
+<p><strong>dough-boy</strong>: Yeah, that’s Blush-On. My wife uses
+it,</p>
+<p><strong>wizard</strong>: Ask Travis. He’s the ladies man.</p>
+<p><strong>wizard</strong>: Well, whatever the fuck it is, she used it.
+And then the spray perfume. You know, the real sweat kind - and, on top
+of that, get this, right when we’re crossing the Tri- boro bridge - she
+changes her pantyhose!</p>
+<p><strong>dough-boy</strong>: No.</p>
+<p><strong>wizard</strong>: Yeah.</p>
+<p><strong>dough-boy</strong>: Could you see anything?</p>
+<p><strong>wizard</strong>: Well, she was trying to keep her skirt down,
+sort of, you know. But it was pretty obvious what she was doing. I mean,
+Christ, it was rush hour and the traffic’s practically standing
+still.</p>
+<p><strong>dough-boy</strong>: What did you do?</p>
+<p><strong>wizard</strong>: Threw on the emergency, jumped the seat and
+fucked her brains out - What do you think! What do I have to do? Draw
+you a picture?</p>
+<p><strong>dough-boy</strong>: Yeah.</p>
+<p><strong>wizard</strong>: What was I supposed to do? I was watching in
+the rear view. You know, just checkin’ traffic. So howsit?</p>
+<p><strong>travis</strong>: Some fleet driver for Bell just cut up. Just
+heard it on the radio.</p>
+<p><strong>dough-boy</strong>: Stick up?</p>
+<p><strong>wizard</strong>: Sure. What do you think? She wanted to get
+out of the cab. I said "Look, you’re in the middle of the fucking
+bridge…"</p>
+<p><strong>dough-boy</strong>: You said that?</p>
+<p><strong>wizard</strong>: Well, I said, "Lady, please, we’re on a
+bridge…"</p>
+<p><strong>dough-boy</strong>: And what happened?</p>
+<p><strong>wizard</strong>: She stayed in the cab, what’s she gonna do?
+but she stiffed me. A real skunk.</p>
+<p><strong>dough-boy</strong>: A real skunk.</p>
+<p><strong>wizard</strong>: Travis, you know Dough-Boy, Charlie</p>
+<p><strong>dough-boy</strong>: Yeah. We went to Harvard together.</p>
+<p><strong>wizard</strong>: We call him Dough-Boy cause he likes the
+dollars. He’ll chase a buck straight into Jersey.</p>
+<p><strong>dough-boy</strong>: Look who’s talking? Who else would stay
+up all night to catch the morning rush hour?</p>
+<p><strong>wizard</strong>: So howsit?</p>
+<p><strong>travis</strong>: Some fleet driver for Bell just got cut up.
+Just heard it on the radio.</p>
+<p><strong>dough-boy</strong>: Stick up?</p>
+<p><strong>travis</strong>: No, just some crazy fucker. Cut have his ear
+off.</p>
+<p><strong>dough-boy</strong>: Where.</p>
+<p><strong>travis</strong>: In the jungle. 122nd.</p>
+<p><strong>pov</strong>: THREE STREET PEOPLE sitting at a table. One
+GUY, stoned, stares straight ahead. A raggedly attractive GIRL rest her
+head on the shoulder of the other, a heavily bearded YOUNG MAN with a
+headband. They kiss and tease each other, momentarily lost in their
+separate world.</p>
+<p><strong>dough-boy</strong>: You run all over town, don’t you,
+Travis?</p>
+<p><strong>wizard</strong>: Fuckin’ Mau Mau land, that’s what it is.</p>
+<p><strong>travis</strong>: Huh?</p>
+<p><strong>dough-boy</strong>: I mean, you handle some pretty rough
+traffic, huh?</p>
+<p><strong>travis</strong>: I have.</p>
+<p><strong>dough-boy</strong>: You carry a piece? You need one?</p>
+<p><strong>travis</strong>: Nah. I suppose not.</p>
+<p><strong>dough-boy</strong>: Well, you ever need one, I know a feller
+that kin getcha a real nice deal. Lotsa shit around.</p>
+<p><strong>wizard</strong>: The cops and company raise hell they find
+out.</p>
+<p><strong>dough-boy</strong>: Truck drivers bring up Harlem Specials
+that blow up in your hand. But this guy don’t deal no shit. Just
+quality. If you ever need anything, I can put you in touch.</p>
+<p><strong>wizard</strong>: For a fee.</p>
+<p><strong>dough-boy</strong>: For a fee.</p>
+<p><strong>wizard</strong>: I never use mine. But it’s a good thing to
+have. Just as a threat.</p>
+<p><strong>dough-boy</strong>: well, if there’s this many hackies
+inside, there must be lots of hares outside. And I’m gonna hustle
+’em.</p>
+<p><strong>wizard</strong>: What ya gonna do with all that money,
+Dough-Boy?</p>
+<p><strong>dough-boy</strong>: Support my kids. Can you dig it? nice to
+meet ya, Travis. So long, Wizard. Say hello to Malcolm X for me.</p>
+<p><strong>betsy</strong>: Try holding the match like this.</p>
+<p><strong>tom</strong>: This is gotta be a game, right?</p>
+<p><strong>betsy</strong>: This I gotta see.</p>
+<p><strong>tom</strong>: Ouch!</p>
+<p><strong>betsy</strong>: Oh, are you all right?</p>
+<p><strong>tom</strong>: I’m great. Always set my fingers on fire. If
+you want to see another trick. I do this thing with my nose.</p>
+<p><strong>betsy</strong>: No. I just wanted to see if you could light
+it that way. The guy at the newsstand can.</p>
+<p><strong>tom</strong>: Ah, yes, the guy at the newsstand,
+Mr. Asbestos…</p>
+<p><strong>betsy</strong>: He happens to be missing fingers. I first
+noticed when -</p>
+<p><strong>tom</strong>: Is he Italian?</p>
+<p><strong>betsy</strong>: No, why?</p>
+<p><strong>tom</strong>: You sure he’s not Italian?</p>
+<p><strong>betsy</strong>: He’s Black, OK?</p>
+<p><strong>tom</strong>: Well, If he had been Italian, they could have
+been shot off. Sometimes the mob does that to teach guys a lesson, If
+they blow a job or something.</p>
+<p><strong>betsy</strong>: As I said, he isn’t Italian. Besides, I
+thought they just killed them.</p>
+<p><strong>tom</strong>: Don’t be naive. They can’t kill everybody. They
+have different punishments for different things. Like, if they kill a
+stool pidgeon, they leave a canary on the body. It’s symbolic.</p>
+<p><strong>betsy</strong>: Why don’t they leave a pidgeon instead of a
+canary?</p>
+<p><strong>tom</strong>: I don’t know. Maybe they don’t leave a canary.
+Don’t be technical. What I’m saying is if this newsstand guy’s Italian
+and his fingers are gone, maybe he’s a thief.</p>
+<p><strong>betsy</strong>: First, he’s not Italian. Second he’s not a
+thief. I noticed the fingers when he was getting my change - the right
+change. Two of his fingers are missing. Just stubs. Like they were blown
+away. I was putting my change in my purse when I saw him get out a
+cigarette. I couldn’t help watching. I was dying to see how he’d light
+it.</p>
+<p><strong>tom</strong>: With the other hand, right?</p>
+<p><strong>betsy</strong>: No, stupid. With the stubs. That’s the whole
+point.</p>
+<p><strong>tom</strong>: I know that guy. His hand looks like a paw. An
+old Black guy, the newsstand at -</p>
+<p><strong>betsy</strong>: No, this is young - well, I’m never sure how
+old Black people are - but, anyway, he isn’t old. That’s for sure.</p>
+<p><strong>tom</strong>: Show me how he did that again.</p>
+<p><strong>travis</strong>: I want to volunteer.</p>
+<p><strong>tom</strong>: If you’ll come this way.</p>
+<p><strong>travis</strong>: No. I want to volunteer to you.</p>
+<p><strong>tom</strong>: Bets.</p>
+<p><strong>betsy</strong>: And why is that?</p>
+<p><strong>travis</strong>: Because you are the most beautiful woman I
+have ever seen.</p>
+<p><strong>betsy</strong>: Is that so? But what do you think of Charles
+Palantine?</p>
+<p><strong>travis</strong>: Who mam?</p>
+<p><strong>betsy</strong>: Charles Palantine. The man you want to
+volunteer to help elect president.</p>
+<p><strong>travis</strong>: Oh, I think he’s a wonderful man. Make a
+great, great President.</p>
+<p><strong>betsy</strong>: You want to canvass?</p>
+<p><strong>travis</strong>: Yes, mam.</p>
+<p><strong>betsy</strong>: How do you feel about Senator Palantine’s
+stand on welfare?</p>
+<p><strong>travis</strong>: Welfare, mam? I think the Senator’s right.
+People should work for a living. I do. I like to work. Every day. Get
+those old coots off welfare and make ’em work for a change.</p>
+<p><strong>betsy</strong>: Well, that’s not exactly what the Senator has
+proposed. You might not want to canvass, but there is plenty more other
+work we need done: Office work, filing, poster hanging.</p>
+<p><strong>travis</strong>: I’m a good worker, Betsy mam, a real good
+worker.</p>
+<p><strong>betsy</strong>: if you talk to Tom, he’ll assign you to
+something.</p>
+<p><strong>travis</strong>: If you don’t mind, mam, I’d rather work for
+you.</p>
+<p><strong>betsy</strong>: Well, we’re all working tonight.</p>
+<p><strong>travis</strong>: Well, Betsy mam, I drive a taxi at
+night.</p>
+<p><strong>betsy</strong>: Well, then, what is it you exactly want to
+do?</p>
+<p><strong>travis</strong>: If you don’t mind, mam, I’d be mighty
+pleased if you’d go out and have some coffee and pie with me.</p>
+<p><strong>betsy</strong>: Why?</p>
+<p><strong>travis</strong>: Well, Betsy mam, I drive by this place here
+in my taxi many times a day. And I watch you sitting here at this big
+long desk with these telephones, and I say to myself, that’s a lonely
+girl. She needs a friend. And I’m gonna be her friend.</p>
+<p><strong>betsy</strong>: I don’t know…</p>
+<p><strong>travis</strong>: It’s just to the corner, mam. In broad
+daytime. Nothing can happen. I’ll be there to protect you.</p>
+<p><strong>betsy</strong>: All right. All right. I’m taking a break at
+four o’clock. If you’re here then we’ll go to the corner and have some
+coffee and pie.</p>
+<p><strong>travis</strong>: Oh, I appreciate that, Betsy mam. I’ll be
+here at four o’clock exactly. And… ah… Betsy…</p>
+<p><strong>betsy</strong>: Yes?</p>
+<p><strong>travis</strong>: My name is Travis.</p>
+<p><strong>betsy</strong>: Thank you, Travis.</p>
+<p><strong>betsy</strong>: I’m just going to find out what the cabbies
+are thinking.</p>
+<p><strong>travis</strong>: April 26, 1972. Four o’clock p.m. I took
+Betsy to the Mayfair Coffee Shop on Broadway…</p>
+<p><strong>travis</strong>: I had black coffee and apple pie with a
+slice of melted yellow cheese. I think that was a good selection. Betsy
+had coffee and a fruit salad dish. She could have had anything she
+wanted.</p>
+<p><strong>betsy</strong>: We’ve signed up 15.000 Palantine volunteers
+in New York so far. The organizational problems are becoming just
+staggering.</p>
+<p><strong>travis</strong>: I know what you mean. I’ve got the same
+problems. I just can’t get things organized. Little things, I mean. Like
+my room, my possessions. I should get one of those signs that says, "One
+of these days I’m Gonna Organezizied".</p>
+<p><strong>betsy</strong>: Travis, I never ever met anybody like you
+before.</p>
+<p><strong>travis</strong>: I can believe that.</p>
+<p><strong>betsy</strong>: Where do you live?</p>
+<p><strong>travis</strong>: Oh, uptown. You know. Some joint. It ain’t
+much.</p>
+<p><strong>betsy</strong>: So why did you decide to drive a taxi at
+night?</p>
+<p><strong>travis</strong>: I had a regular job for a while, days. You
+know, doin’ this, doin’ that. But I didn’t have anything to do at night.
+I got kinda lonely, you know, just wandering around. So I decided to
+works nights. It ain’t good to be alone, you know.</p>
+<p><strong>betsy</strong>: After this job, I’m looking forward to being
+alone for a while.</p>
+<p><strong>travis</strong>: Yeah, well… In a cab you get to meet people.
+You meet lotsa people. It’s good for you.</p>
+<p><strong>betsy</strong>: What kind of people?</p>
+<p><strong>travis</strong>: Just people people, you know. Just people.
+Had a dead man once.</p>
+<p><strong>betsy</strong>: Really?</p>
+<p><strong>travis</strong>: He’d been shot. I didn’t know that. He just
+crawled into the back seat, said "West 45th Street" and conked out.</p>
+<p><strong>betsy</strong>: What did you do?</p>
+<p><strong>travis</strong>: I shot the meter off, for one thing. I knew
+I wasn’t goimg to get paid. Then I dropped him off at the cop shop. They
+took him.</p>
+<p><strong>betsy</strong>: That’s really something.</p>
+<p><strong>travis</strong>: Oh, you see lots of freaky stuff in a cab.
+Especially when the moon’s out.</p>
+<p><strong>betsy</strong>: The moon?</p>
+<p><strong>travis</strong>: The full moon. One night I had three or four
+weirdoes in a row and I looked up and, sure enough, there it was - the
+full moon.</p>
+<p><strong>travis</strong>: Oh, yeah. People will do anything in front
+of a taxi driver. I mean anything. People too cheap to rent a hotel
+room, people scoring dope, people shooting up, people who want to
+embarrass you. It’s like you’re not even there, not even a person.
+Nobody knows you.</p>
+<p><strong>betsy</strong>: Com’on, Travis. It’s not that bad. I take
+lots of taxis.</p>
+<p><strong>travis</strong>: I know. I could have picked you up.</p>
+<p><strong>betsy</strong>: Huh?</p>
+<p><strong>travis</strong>: Late one night. About three. At the
+plaza.</p>
+<p><strong>betsy</strong>: Three in the morning? I don’t think so. I
+have to go to bed early. I work days. It must have been somebody
+else.</p>
+<p><strong>travis</strong>: No. It was you. You had some manila folders
+and a pink bag from Saks.</p>
+<p><strong>betsy</strong>: You’re right! Now I remember! It was after
+the Western regional planners were in town and the meeting went late.
+The next day I was completely bushed. It was unbelievable.</p>
+<p><strong>travis</strong>: If it wasn’t for a drunk I would have picked
+you up. He wanted to go to the DMZ.</p>
+<p><strong>betsy</strong>: The DMZ?</p>
+<p><strong>travis</strong>: South Bronx. The worst. I tried to ditch
+him, but he was already in the cab, so I had to take him. That’s the
+law. Otherwise I would have picked you up.</p>
+<p><strong>betsy</strong>: That would have been quite a coincidence.</p>
+<p><strong>travis</strong>: You’d be surprised how often you see the
+same people, get the same fare. People have patterns. They do more or
+less the same things every day. I can tell.</p>
+<p><strong>betsy</strong>: Well, I don’t go to the Plaza every
+night.</p>
+<p><strong>travis</strong>: I didn’t mean you. But just ordinary people.
+A guy I know - Dough-Boy - met his wife that way. They got to talking.
+She said she usually caught the bus so he started picking her up at the
+bus stop, taking her home with the flag up.</p>
+<p><strong>betsy</strong>: That’s very romantic. Some of your fares must
+be interesting. See any stars, politicians, deliver any babies yet?</p>
+<p><strong>travis</strong>: Well, no… not really… had some famous people
+in the cab. I got this guy who makes lasers. Not regular lasers, not the
+big kind. Little lasers, pocket sized, small enough to clip your belt
+like a transistor radio, like a gun, you know. Like a ray gun. Zap.</p>
+<p><strong>betsy</strong>: What hours do you work?</p>
+<p><strong>travis</strong>: I work a single, which means there’s no
+replacement - no second man on the cab. Six to six, sometimes eight.
+Seventy-two hours a week.</p>
+<p><strong>betsy</strong>: You mean you work seventy-two hours a
+week.</p>
+<p><strong>travis</strong>: Sometimes 76 or 80. Sometimes I squeeze a
+few more hours in the morning. Eighty miles a day, a hundred miles a
+night.</p>
+<p><strong>betsy</strong>: You must be rich.</p>
+<p><strong>travis</strong>: it keeps ya busy.</p>
+<p><strong>betsy</strong>: You know what you remind me of?</p>
+<p><strong>travis</strong>: What?</p>
+<p><strong>betsy</strong>: That song by Kris Kristofferson, where it’s
+said "Like a pusher, party truth, partly ficition, a walking
+contradiction".</p>
+<p><strong>travis</strong>: I’m no pusher, Betsy. Honest. I never have
+pushed.</p>
+<p><strong>travis</strong>: I didn’t mean that, Travis. Just the part
+about the contradiction.</p>
+<p><strong>travis</strong>: Oh. Who was that again?</p>
+<p><strong>betsy</strong>: The singer?</p>
+<p><strong>travis</strong>: Yeah. Yes. I don’t follow music too
+much.</p>
+<p><strong>betsy</strong>: Kris Kristofferson.</p>
+<p><strong>travis</strong>: You work at night, you get an instinct. You
+can smell them. The big tippers, the stiffs, the trouble makers. Quarter
+is good tip for Manhattan. Queens is better, Brooklyn is best. go for
+the guys with suitcases. The rich are the worst tippers, hooks are
+lousy. Spooks are okay, but they don’t live at Park Ave after all.</p>
+<p><strong>travis</strong>: I called Betsy again at her office, and she
+said maybe we could go to a movie together after she gets off work
+tomorrow. That’s my day off. At first she hesitated, but I called her
+again and she agreed. Betsy. Betsy what? I forgot to ask her last name
+again. Damn. I’ve got to remember stuff like that.</p>
+<p><strong>man’s voice</strong>: St. Regis Hotel.</p>
+<p><strong>tom</strong>: It’s 12:30 now. You’ll have fifteen minutes
+before the actual luncheon begins.</p>
+<p><strong>assistant</strong>: I don’t think we have to worry about
+anybody here committing themselves until things start coming in from
+California.</p>
+<p><strong>travis</strong>: Say, aren’t you Charles Palantine, the
+candidate?</p>
+<p><strong>palantine</strong>: Yes I am.</p>
+<p><strong>travis</strong>: Well, I’m one of your biggest supporters. I
+tell everybody that comes in this cab that they should vote for you.</p>
+<p><strong>palantine</strong>: Why, thank you Travis.</p>
+<p><strong>travis</strong>: I’m sure you’ll win, sir. Everybody I know
+is going to vote for you. I was going to put one of your stickers on my
+taxi but the company said it was against their policy.</p>
+<p><strong>palantine</strong>: I’ll tell you, Travis, I’ve learned more
+about this country sitting in taxi cabs than in the board room of
+General Motors.</p>
+<p><strong>tom</strong>: And in some other places too…</p>
+<p><strong>palantine</strong>: Travis, what single thing would you want
+the next President of this country to do most?</p>
+<p><strong>travis</strong>: I don’t know, sir. I don’t follow political
+issues much.</p>
+<p><strong>palantine</strong>: There must be something…</p>
+<p><strong>travis</strong>: Well, he should clean up this city here.
+It’s full of filth and scum. Scum and filth. It’s like an open sewer. I
+can hardly take it.</p>
+<p>****: </p>
+<p><strong>travis</strong>: Some days I go out and smell it then I get
+headaches that just stay and never go away. We need a President that
+would clean up this whole mess. Flush it out.</p>
+<p><strong>palantine</strong>: I know what you mean, Travis, and it’s
+not going to be easy. We’re going to have to make some radical
+changes.</p>
+<p><strong>travis</strong>: Damn straight.</p>
+<p><strong>palantine</strong>: Nice talking to you, Travis.</p>
+<p><strong>travis</strong>: Thank you, sir. You’re a good man, sir.</p>
+<p><strong>aides.</strong>: </p>
+<p><strong>betsy</strong>: You didn’t have to spend your money - ?</p>
+<p><strong>travis</strong>: He’ll, what else can I do with it all?</p>
+<p><strong>betsy</strong>: Travis, you haven’t even played the
+record?</p>
+<p><strong>travis</strong>: Yeah, well my stereo player is broke. But
+I’m sure the record is OK.</p>
+<p><strong>betsy</strong>: Your stereo broke? God, I could hardly stand
+that. I live on music.</p>
+<p><strong>travis</strong>: I don’t follow music much. I’d like to
+though. Honest.</p>
+<p><strong>betsy</strong>: So you haven’t heard this record yet?</p>
+<p><strong>travis</strong>: No. I thought maybe you could play it for me
+on your player.</p>
+<p><strong>betsy</strong>: What are you doing?</p>
+<p><strong>travis</strong>: I bought a couple of tickets.</p>
+<p><strong>betsy</strong>: But this is a porno movie.</p>
+<p><strong>travis</strong>: No, these are the kind that couples go to.
+They’re not like the other movies. All kinds of couples go. Honest. I’ve
+seen them.</p>
+<p><strong>travis</strong>: Damn.</p>
+<p><strong>betsy</strong>: What’s wrong?</p>
+<p><strong>travis</strong>: I forgot to get the Coca-Cola.</p>
+<p><strong>travis</strong>: Where are you going?</p>
+<p><strong>betsy</strong>: I’m leaving.</p>
+<p><strong>travis</strong>: What do you mean?</p>
+<p><strong>betsy</strong>: These are not the kind of movies I go to.</p>
+<p><strong>travis</strong>: Well, I don’t follow movies too much…</p>
+<p><strong>betsy</strong>: You mean these are the only kind of movies
+you go to?</p>
+<p><strong>travis</strong>: This is sort of high class…</p>
+<p><strong>betsy</strong>: I mean porno movies.</p>
+<p><strong>travis</strong>: Well… mostly…</p>
+<p><strong>betsy</strong>: My God!</p>
+<p><strong>travis</strong>: We can go to another movie if you like, I
+don’t care. I got money. There’s plenty…</p>
+<p><strong>betsy</strong>: If you just wanted to fuck, why didn’t you
+just come right out and say it?</p>
+<p><strong>travis</strong>: … there’s plenty of movies around here. I
+haven’t seen any of them, but I’m sure they’re good.</p>
+<p><strong>betsy</strong>: No, Travis. You’re a sweet guy and all that,
+but I think this is it. I’m going home.</p>
+<p><strong>travis</strong>: You mean you don’t want to go to a movie?
+There’s plenty of movies around here.</p>
+<p><strong>betsy</strong>: No, I don’t feel so good. We’re just two very
+different kinds of people, that’s all.</p>
+<p><strong>travis</strong>: Huh?</p>
+<p><strong>betsy</strong>: It’s very simple. You go your way, I’ll go
+mine. Thanks anyway, Travis.</p>
+<p><strong>travis</strong>: But… Betsy…</p>
+<p><strong>betsy</strong>: I’m getting a taxi.</p>
+<p><strong>travis</strong>: What about the record?</p>
+<p><strong>betsy</strong>: Keep it.</p>
+<p><strong>travis</strong>: Can I call you?</p>
+<p><strong>travis</strong>: Please, Betsy, I bought it for you.</p>
+<p><strong>betsy</strong>: All right, I’ll accept the record.</p>
+<p><strong>betsy</strong>: Taxi!</p>
+<p><strong>travis</strong>: But I got a taxi.</p>
+<p><strong>travis</strong>: May 8, 1972. My life has taken another turn
+again. The days move along with regularity…</p>
+<p><strong>later that day</strong>: TRAVIS has pulled his
+straight-backed chair around and is watching his small portable TV,
+which rests on the upright melon crate.</p>
+<p><strong>travis</strong>: … one day indistinguishable from the next, a
+long continuous chain, then suddenly - there is a change.</p>
+<p><strong>travis</strong>: I tried to call her several times.</p>
+<p><strong>travis</strong>: you feeling better? You said you didn’t feel
+so good…</p>
+<p><strong>travis</strong>: But after the first call, she would no
+longer come to the phone.</p>
+<p><strong>travis</strong>: I also sent flowers with no luck. I should
+not dwell on such things, but set them behind me. The smell of the
+flowers only made me sicker. The headaches got worse I think I’ve got
+stomach cancer. I should not complain so. "You’re only as healthy as you
+feel."</p>
+<p><strong>travis</strong>: I realize now how much she is like the
+others, so cold and distant. Many people are like that. They’re like a
+union.</p>
+<p><strong>c.u. travis</strong>: His face is expressionless. The MAN
+makes himself comfortable in the back seat.</p>
+<p><strong>professional passenger</strong>: Jackson Heights.</p>
+<p><strong>travis</strong>: I’m off duty.</p>
+<p><strong>professional passenger</strong>: You mean you don’t want to
+go out to Jackson Heights?</p>
+<p><strong>travis</strong>: No, I’m off duty.</p>
+<p><strong>professional passenger</strong>: Then how come your "Off
+Duty" light wasn’t on.</p>
+<p><strong>travis</strong>: It was on. it just takes a while to warm up.
+Like a TV.</p>
+<p><strong>young passenger</strong>: 471 Central Park West.</p>
+<p><strong>young passenger</strong>: Just pull over to the curb a
+moment.</p>
+<p><strong>young passenger</strong>: Yeah, that’s fine. Just sit
+here.</p>
+<p><strong>young passenger</strong>: Cabbie, ya see that light up there
+on the seventh floor, three windows from this side of the building?</p>
+<p><strong>travis</strong>: Yeah.</p>
+<p><strong>young passenger</strong>: Ya see that woman there?</p>
+<p><strong>travis</strong>: Yeah.</p>
+<p><strong>young passenger</strong>: That’s my wife. But it ain’t my
+apartment. A nigger lives there. She left me two weeks ago. It took me
+this long to find out where she went. I’m gonna kill her.</p>
+<p><strong>young passenger</strong>: What do you think of that,
+cabbie?</p>
+<p><strong>young passenger</strong>: Huh? What do you think of that,
+huh?</p>
+<p><strong>young passenger</strong>: I’m gonna kill her with a .44
+Magnum pistol.</p>
+<p><strong>young passenger</strong>: Did you ever see what a .44 can do
+to a woman’s face, cabbie? Did you ever see what it can do to a woman’s
+pussy, cabbie?</p>
+<p><strong>young passenger</strong>: I’m going to put it right up to
+her, cabbie. Right in her, cabbie. You must think I’m real sick, huh? A
+real pervert. Sitting here and talking about a woman’s pussy and a .44,
+huh?</p>
+<p><strong>dough-boy</strong>: Hey Travis. This here’s Easy Andy. He’s a
+travelling salesman.</p>
+<p><strong>andy</strong>: Hello Travis.</p>
+<p><strong>andy</strong>: This is fine, Dough-Boy Pay Dough-Boy
+here.</p>
+<p><strong>travis</strong>: 20 bucks?</p>
+<p><strong>dough-boy</strong>: Yeah. Hey thanks. That’s real nice,
+Travis.</p>
+<p><strong>andy</strong>: Dough-Boy probably told you I don’t carry any
+Saturday Night Specials or crap like that. It’s all out of State, clean,
+brand new, top-of- the-line stuff.</p>
+<p><strong>travis</strong>: You got a .44 Magnum?</p>
+<p><strong>andy</strong>: That’s an expensive gun.</p>
+<p><strong>travis</strong>: I got money.</p>
+<p><strong>andy</strong>: It’s a monster. Can stop a car – put a bullet
+right into the block. A premium high resale gun. $350 – that’s only a
+hundred over list.</p>
+<p><strong>andy</strong>: I could sell this gun in Harlem for $500 today
+- but I just deal high quality goods to high quality people. Now this
+may be a little big for practical use, in which case I’d recommend the
+.38 Smith and Wesson Special. Fine solid gun - nickel plated.
+Snub-nosed, otherwise the same as the service revolver. Now that’ll stop
+anything that moves and it’s handy, flexible.</p>
+<p>****: </p>
+<p><strong>andy</strong>: The Magnum, you know, that’s only if you want
+to splatter it against the wall. The movies have driven up the price of
+the Magnum anyway. Everybody wants them now. But the Wesson .38 - only
+$250 - and worth every dime of it. Throw in a holster for $10.</p>
+<p><strong>andy</strong>: Some of these guns are like toys, but a Smith
+and Wesson, man, you can hit somebody over the head with it and it will
+still come back dead on. Nothing beats quality. You interested in an
+automatic?</p>
+<p><strong>travis</strong>: I want a .32. Revolver. And a palm gun. That
+.22 there.</p>
+<p><strong>andy</strong>: That’s the Colt .25 - a fine little gun. Don’t
+do a lot of damage, but it’s as fast as the Devil. Handy little gun, you
+can carry it almost anywhere. I’ll throw it in for another $125.</p>
+<p><strong>travis</strong>: How much for everything.</p>
+<p><strong>andy</strong>: The .32’s $150 - and you’re really getting a
+good deal now - and all together it comes to, ah, seven eighty-five for
+four pieces and a holster. He’ll, I’ll give you the holster, we’ll make
+it seventy-five and you’ve got a deal - a good one.</p>
+<p><strong>travis</strong>: How much to get a permit to carry?</p>
+<p><strong>andy</strong>: Well, you’re talking big money now. I’d say at
+least five grand, maybe more, and it would take a while to check it out.
+The way things are going now $5.000 is probably low. You see, I try not
+to fool with the small-time crap. Too risky, too little bread. Say 6
+G’s, but if I get the permit it’ll be as solid as the Empire State
+Building.</p>
+<p><strong>travis</strong>: Nah, this’ll be fine.</p>
+<p><strong>andy</strong>: You can’t carry in a cab even with a permit -
+so why bother?</p>
+<p><strong>travis</strong>: Is there a firing range around?</p>
+<p><strong>andy</strong>: Sure, here, take this card, go to this place
+and give ’em the card. They’ll charge you, but there won’t be any
+hassle.</p>
+<p><strong>andy</strong>: You in Nam? Can’t help but notice your
+jacket?</p>
+<p><strong>travis</strong>: Huh?</p>
+<p><strong>andy</strong>: Vietnam? I saw it on your jacket. Where were
+you? Bet you got to handle a lot of weapons out there.</p>
+<p><strong>travis</strong>: Yeah. I was all around. One hospital, then
+the next.</p>
+<p><strong>andy</strong>: It’s he’ll out there all right. A real
+shit-eatin’ war. I’ll say this, though: It’s bringing a lot of fantastic
+guns. The market’s flooded. Colt automatics are all over.</p>
+<p><strong>travis</strong>: They’d never get me to go back. They’d have
+to shoot me first. You got anything to carry these in?</p>
+<p><strong>andy</strong>: Sure.</p>
+<p><strong>andy</strong>: You like ball games?</p>
+<p><strong>travis</strong>: Huh?</p>
+<p><strong>andy</strong>: I can get you front and center. What do you
+like? I can get you Mets, Knicks, Rangers? Hell, I can get you the
+Mayor’s box.</p>
+<p><strong>travis</strong>: Nah. I ain’t interested.</p>
+<p><strong>andy</strong>: Okay, okay.</p>
+<p><strong>andy</strong>: Wait a second, Travis. I’ll walk you out.</p>
+<p><strong>travis</strong>: May 29, 1972. I must get in shape. Too much
+sitting has ruined my body. Twenty-five push-ups each morning, one
+hundred sit-ups, one hundred knee-bends. I have quit smoking.</p>
+<p><strong>travis</strong>: Total organization is necessary. Every
+muscle must be tight.</p>
+<p><strong>travis</strong>: My body fights me always. It won’t work, it
+won’t sleep, it won’t shit, it won’t eat.</p>
+<p><strong>tv disc jockey</strong>: Freshingly, fantastic, freaked-out
+dance time. Can you dig it? Dig on it. You got it, flaunt it.</p>
+<p><strong>iris</strong>: Come on, mister, let’s get outta here –
+quick.</p>
+<p><strong>sport</strong>: Come on, baby, let’s go. This is all a real
+drag.</p>
+<p><strong>sport</strong>: Just forget all about this, cabbie. It’s
+nothing.</p>
+<p><strong>early morning, 6</strong>: 00 a.m. Quitting time – TRAVIS
+pulls into</p>
+<p><strong>female movie voice</strong>: Oh, come on, now, down, lick it,
+come on… Mmm, that’s good. Ahh, ahh, more …</p>
+<p><strong>travis</strong>: The idea had been growing in my brain …</p>
+<p><strong>travis</strong>: … for some time. True Force. All the king’s
+men cannot put it back together again.</p>
+<p><strong>p.o.v.</strong>: he scans the objects of his room through the
+scope of the .38.</p>
+<p><strong>travis</strong>: Listen you screwheads: Here is a man …</p>
+<p><strong>travis</strong>: … who wouldn’t take it any more, a man who
+stood up against the scum, the cunts, the dogs, the filth. Here is …</p>
+<p><strong>night</strong>: the taxis are roaming the slick streets.</p>
+<p><strong>travis</strong>: Hey ’Melio.</p>
+<p><strong>stick-up man</strong>: Come on, man. Quick, quick, quick.
+Hand over that bread.</p>
+<p><strong>travis</strong>: Hey dude!</p>
+<p><strong>’melio</strong>: Thanks, man. Figured I’d get him on the way
+out.</p>
+<p><strong>travis</strong>: You’re gonna have to cover me on this one,
+’Melio. I can’t stay for the cop show.</p>
+<p><strong>’melio</strong>: You can’t do that, Travis. You’re my
+witness.</p>
+<p><strong>travis</strong>: The hell I can’t. It’s no sweat for you.
+What is this for you, number five?</p>
+<p><strong>’melio</strong>: No, only four. Alright, Travis, I’ll do what
+I can.</p>
+<p><strong>travis</strong>: Thanks a lot.</p>
+<p><strong>direct cut to pornographic movie</strong>: this is the first
+time we have actually seen the porno movie itself. </p>
+<p><strong>television</strong>: The BOY is visiting the GIRL in her
+hospital room. Both look as if they’ve stepped out of the Blue Chip
+stamp catalogue.</p>
+<p><strong>soap opera boy</strong>: Is it that she just doesn’t – like
+me?</p>
+<p><strong>soap opera girl</strong>: Well, Jim, it’s just that – I don’t
+know how to say this – it’s that she thinks your parents aren’t… good
+enough, I guess.</p>
+<p><strong>travis</strong>: Damn, damn.</p>
+<p><strong>wizard</strong>: You know Eddie, he’s the new hippie kid in
+our group, long hair…</p>
+<p><strong>wizard</strong>: …he called up the Dispatcher last night.
+Charlie McCall, our dispatcher…</p>
+<p><strong>dough-boy</strong>: One-Ball McCall?</p>
+<p><strong>wizard</strong>: That’s the guy. Eddie calls him up and says,
+"Hey, what do you want me to do. I’m over here at Poly Prep. I got a
+girl in the back and she doesn’t have the fare. She wants me to come in
+back and collect. What should I do?</p>
+<p><strong>charlie t</strong>: This is on the two-way with about a
+hundred and fifty cars listenin in.</p>
+<p><strong>wizard</strong>: McCall says. "How much on the meter?" Eddie
+comes back and says "Two-fifty." McCall says, "Is she worth it".</p>
+<p><strong>dough-boy</strong>: Fuckin One-Ball.</p>
+<p><strong>wizard</strong>: And the kid says, "Yeah. She’s about 19,
+good-lookin." McCall says, "What can I tell you?"</p>
+<p><strong>fourth cabbie</strong>: She should have told him to get an OK
+from the front office.</p>
+<p><strong>wizard</strong>: McCall says, "Well, if you want some help
+I’ll see if I can send some units out."</p>
+<p><strong>charlie t</strong>: Yeah. About a hundred and fifty.</p>
+<p><strong>dough-boy</strong>: I hope he had a checker.</p>
+<p><strong>wizard</strong>: She was just a kid. Stoned, you know.</p>
+<p><strong>charlie t</strong>: Hiya Killer.</p>
+<p><strong>wizard</strong>: You’re getting a rep, Travis.</p>
+<p><strong>charlie t</strong>: Got the five you owe me, Killer?</p>
+<p><strong>wizard</strong>: What’s the action around?</p>
+<p><strong>travis</strong>: Slow.</p>
+<p><strong>charlie t</strong>: Shit yes. Night woulda been dead if I
+hadn’t grabbed an outatowner at Kennedy. Took him roun the horn and got
+a five dollar tip to boot.</p>
+<p><strong>wizard</strong>: One of these days we’re gonna turn you in,
+Charlie T. Fleecin the hicks like that.</p>
+<p><strong>dough-boy</strong>: Remember the time this cat picks up four
+dudes from the other side, Pakastanis I think they were, holds up their
+passports, to the toll booth collector on the bridge and charges em ten
+bucks each for ’crossing the border?</p>
+<p><strong>charlie t</strong>: Hell, I know’d you to do worse.</p>
+<p><strong>dough-boy</strong>: Least I’m no airport rat. I work the
+whole town.</p>
+<p><strong>charlie t</strong>: It’s a living.</p>
+<p><strong>wizard</strong>: Well, I’m shovin’ on.</p>
+<p><strong>travis</strong>: Hey Wiz, just a second. I wanna talk to
+you.</p>
+<p><strong>charlie t</strong>: See ya, Killer. Don’t forget your pea
+shooter.</p>
+<p><strong>travis</strong>: Hey Wiz.</p>
+<p><strong>travis</strong>: Wiz?</p>
+<p><strong>wizard</strong>: Yeah?</p>
+<p><strong>travis</strong>: Look, ah, we never talked much, you and
+me…</p>
+<p><strong>wizard</strong>: Yeah?</p>
+<p><strong>travis</strong>: I wanted to ask you something, on account
+you’ve been around so long.</p>
+<p><strong>wizard</strong>: Shoot. They don’t call me the Wizard for
+nothing.</p>
+<p><strong>travis</strong>: Well, I just, you know…</p>
+<p><strong>wizard</strong>: Things got ya down?</p>
+<p><strong>travis</strong>: Real down.</p>
+<p><strong>wizard</strong>: It happens.</p>
+<p><strong>travis</strong>: Sometimes it gets so I just don’t know what
+I’m gonna do. I get some real crazy ideas, you know? Just go out and do
+somethin.</p>
+<p><strong>wizard</strong>: The taxi life, you mean.</p>
+<p><strong>travis</strong>: Yeah.</p>
+<p><strong>wizard</strong>: I know.</p>
+<p><strong>travis</strong>: Like do anything, you know.</p>
+<p><strong>wizard</strong>: Travis, look, I dig it. Let me explain. You
+choose a certain way of life. You live it. It becomes what you are. I’ve
+been a hack 27 years, the last ten at night. Still don’t own my own cab.
+I guess that’s the way I want it. You see, that must be what I am.</p>
+<p><strong>wizard</strong>: Look, a person does a certain thing and
+that’s all there is to it. It becomes what he is. Why fight it? What do
+you know? How long you been a hack, a couple months? You’re like a peg
+and you get dropped into a slot and you got to squirm and wiggle around
+a while until you fit in.</p>
+<p><strong>travis</strong>: That’s just about the dumbest thing I ever
+heard, Wizard.</p>
+<p><strong>wizard</strong>: What do you expect, Bertrand Russell? I’ve
+been a cabbie all my life, what do I know? I don’t even know what you’re
+talking about.</p>
+<p><strong>travis</strong>: Neither do I, I guess.</p>
+<p><strong>wizard</strong>: You fit in. It’s lonely, it’s rough at
+first. But you fit in. You got no choice.</p>
+<p><strong>wizard</strong>: Yeah. Sorry, Wizard.</p>
+<p><strong>wizard</strong>: Don’t worry, Killer. You’ll be all right. I
+seen enough to know.</p>
+<p><strong>travis</strong>: Thanks.</p>
+<p><strong>tom</strong>: Betsy, come over here a moment.</p>
+<p><strong>betsy</strong>: What is it? I’m busy.</p>
+<p><strong>tom</strong>: Just follow me.</p>
+<p><strong>tom</strong>: Look there. No, over further - get your glasses
+- yes, over there. Isn’t that little guy the same guy that was bugging
+you around the office about a month ago?</p>
+<p><strong>betsy</strong>: No, I don’t think so. That’s someone
+else.</p>
+<p><strong>tom</strong>: Now look more closely. Look around the eyes and
+chin. See? See there?</p>
+<p><strong>travis</strong>: Are you a Secret Service Man?</p>
+<p><strong>secret service man</strong>: Why do you ask?</p>
+<p><strong>travis</strong>: I’ve seen a lot of suspicious- looking
+people around here today.</p>
+<p><strong>secret service man</strong>: Who?</p>
+<p><strong>travis</strong>: Oh, lots. I don’t know where they all are
+now. There used to be one standing over there.</p>
+<p><strong>travis</strong>: Is it hard to get to be a Secret Service
+Man?</p>
+<p><strong>secret service man</strong>: Why?</p>
+<p><strong>travis</strong>: I kinda thought I might make a good one. I’m
+very observant.</p>
+<p><strong>secret service man</strong>: Oh?</p>
+<p><strong>travis</strong>: I was in the Army too. And I’m good with
+crowds.</p>
+<p><strong>travis</strong>: he definitely ranks as a suspicious
+character. </p>
+<p><strong>secret service man</strong>: Is that so?</p>
+<p><strong>travis</strong>: What kind of guns do you guys use?
+.38’s?</p>
+<p><strong>secret service man</strong>: Look, um, if you give me your
+name and address, we’ll send you the information on how to apply.</p>
+<p><strong>travis</strong>: You would, huh?</p>
+<p><strong>secret service man</strong>: Sure.</p>
+<p><strong>travis</strong>: My name is Henry Krinkle – that’s with a
+"K." K-R-I-N-K-L-E. I live at 13 1/2 Hopper Avenue, Fair Lawn, New
+Jersey. Zip code 07410. Got that?</p>
+<p><strong>secret service man</strong>: Sure, Henry. I got it all. We’ll
+send you all the stuff all right.</p>
+<p><strong>travis</strong>: Great, hey. Thanks a lot.</p>
+<p><strong>travis</strong>: June 11. Eight rallies in six more days. The
+time is coming.</p>
+<p><strong>c.u. hippie hooker.</strong>: </p>
+<p><strong>hippie hooker</strong>: Hey cabbie! You comin’ or goin’?</p>
+<p><strong>palantine</strong>: The time has come to put an end to the
+things that divide us: racism, poverty, way – and to those persons who
+seek to divide us. Never have I seen such a group of high officials from
+the President to Senate leaders to Cabinet members…</p>
+<p><strong>cut to travis</strong>: no expression. PALANTINE’s words are
+barely distinguishable from a block away:</p>
+<p><strong>palantine</strong>: … pit black against white, young against
+old, sow anger, disunity and suspicion – and all in the name of the
+"good of the country." Well, their game is over. All their games are
+over. Now is the time to stand up against such foolishness, propaganda
+and demagoguery. Now is the time for one man to stand up and accept his
+neighbor, for one man to give in order that all might receive. Is unity
+and love of common good such a lost thing?</p>
+<p><strong>travis</strong>: Dear Father and Mother, June is the month, I
+remember, which brings not only your wedding anniversary, but also
+Father’s Day and Mother’s birthday. I’m sorry I can’t remember the exact
+dates, but I hope this card will take care of all of them. I’m sorry I
+again can not send you my address like I promised to last year, but the
+sensitive nature of my work for the Army demands utmost secrecy. I know
+you will understand. I am healthy and well and making lots of money. I
+have been going with a girl for several months and I know you would be
+proud if you could see her.</p>
+<p>****: </p>
+<p><strong>travis</strong>: Her name is Betsy, but I can tell you no
+more than that.</p>
+<p><strong>policeman</strong>: Hey, cabbie, you can’t park here.</p>
+<p><strong>travis</strong>: Sorry, officer.</p>
+<p><strong>policeman</strong>: You waiting for a fare?</p>
+<p><strong>travis</strong>: No, officer.</p>
+<p><strong>policeman</strong>: All right, move it.</p>
+<p><strong>travis</strong>: I hope this card finds you all well, as it
+does me. I hope no one has died. Don’t worry about me. One day there
+will be a knock on the door and it will be me.</p>
+<p><strong>happy anniversary</strong>: To a Couple</p>
+<p><strong>travis’ p.o.v.</strong>: some of the YOUNG STREET GIRLS are
+arrogant, almost aggressive, others are more insecure and
+inexperienced.</p>
+<p><strong>travis</strong>: Hello.</p>
+<p><strong>iris</strong>: You looking for some action?</p>
+<p><strong>travis</strong>: Well…I guess so.</p>
+<p><strong>iris</strong>: All right. You see that guy over there? His
+name is Sport. Go talk to him. I’ll wait here.</p>
+<p><strong>travis</strong>: You name Sport?</p>
+<p><strong>sport</strong>: Here, officer, take me in. I’m clean. I
+didn’t do it. Got a ticket once in Jersey. That’s all. Honest,
+officer.</p>
+<p><strong>travis</strong>: Your name Sport?</p>
+<p><strong>sport</strong>: Anything you say, officer.</p>
+<p><strong>travis</strong>: I’m no cop. I want some action.</p>
+<p><strong>sport</strong>: I saw. $20 fifteen minutes. $30 half
+hour.</p>
+<p><strong>travis</strong>: Shit.</p>
+<p><strong>sport</strong>: Take it or leave it.</p>
+<p><strong>sport</strong>: No, not me. There’ll be an elderly gent to
+take the bread.</p>
+<p><strong>sport</strong>: Catch you later, Copper.</p>
+<p><strong>travis</strong>: I’m no cop.</p>
+<p><strong>sport</strong>: Well, if you are, it’s entrapment
+already.</p>
+<p><strong>travis</strong>: I’m hip.</p>
+<p><strong>sport</strong>: Funny, you don’t look hip.</p>
+<p><strong>iris</strong>: This is my room.</p>
+<p><strong>old man</strong>: Hey cowboy!</p>
+<p><strong>old man</strong>: The rod. Gimme the rod, cowboy.</p>
+<p><strong>old man</strong>: This ain’t Dodge City, cowboy. You don’t
+need no piece. I’m keepin’ time.</p>
+<p><strong>travis</strong>: Why you hang around with them greasers?</p>
+<p><strong>iris</strong>: A girl needs protection.</p>
+<p><strong>travis</strong>: Yeah. From the likes of them.</p>
+<p><strong>iris</strong>: It’s your time mister. Fifteen minutes ain’t
+long. That cigarette burns out, your time is up.</p>
+<p><strong>travis</strong>: What’s your name?</p>
+<p><strong>iris</strong>: Easy.</p>
+<p><strong>travis</strong>: That ain’t much of a name.</p>
+<p><strong>iris</strong>: It’s easy to remember. Easy Lay.</p>
+<p><strong>travis</strong>: What’s your real name?</p>
+<p><strong>iris</strong>: I don’t like my real name.</p>
+<p><strong>travis</strong>: What’s your real name?</p>
+<p><strong>iris</strong>: Iris.</p>
+<p><strong>travis</strong>: That’s a nice name.</p>
+<p><strong>iris</strong>: That’s what you think.</p>
+<p><strong>travis</strong>: Don’t you remember me? Button your
+shirt.</p>
+<p><strong>iris</strong>: Why? Who are you?</p>
+<p><strong>travis</strong>: I drive a taxi. You tried to get away one
+night. Remember?</p>
+<p><strong>iris</strong>: No.</p>
+<p><strong>travis</strong>: You tried to run away in my taxi but your
+friend – Sport – wouldn’t let you.</p>
+<p><strong>iris</strong>: I don’t remember.</p>
+<p><strong>travis</strong>: It don’t matter. I’m gonna get you outta
+here.</p>
+<p><strong>iris</strong>: We better make it, or Sport’ll get mad. How do
+you want to make it?</p>
+<p><strong>travis</strong>: I don’t want to make it. I came here to get
+you out.</p>
+<p><strong>iris</strong>: You want to make it like this?</p>
+<p><strong>travis</strong>: Can’t you listen to me? Don’t you want to
+get out of here?</p>
+<p><strong>iris</strong>: Why should I want to get out of here? This is
+where I live.</p>
+<p><strong>travis</strong>: But you’re the one that wanted to get away.
+You’re the one that came into my cab.</p>
+<p><strong>iris</strong>: I musta been stoned.</p>
+<p><strong>travis</strong>: Do they drug you?</p>
+<p><strong>iris</strong>: Oh, come off it, man.</p>
+<p><strong>travis</strong>: Listen…</p>
+<p><strong>iris</strong>: Don’t you want to make it? Can’t you make
+it?</p>
+<p><strong>travis</strong>: I want to help you.</p>
+<p><strong>iris</strong>: You can’t make it, can you? I can help
+you.</p>
+<p><strong>travis</strong>: Fuck it! Fuck it! Fuck it! Fuck it! Fuck it!
+Fuck it! Fuck it!</p>
+<p><strong>iris</strong>: You can do it in my mouth.</p>
+<p><strong>travis</strong>: Don’t you understand anything?</p>
+<p><strong>iris</strong>: You don’t have to make it, mister.</p>
+<p><strong>travis</strong>: Do you understand why I came here?</p>
+<p><strong>iris</strong>: I think so. I tried to get into your cab one
+night, and now you want to come and take me away.</p>
+<p><strong>travis</strong>: Don’t you want to go?</p>
+<p><strong>iris</strong>: I can leave anytime I want.</p>
+<p><strong>travis</strong>: But that one night?</p>
+<p><strong>iris</strong>: I was stoned. That’s why they stopped me. When
+I’m not stoned, I got no place else to go. They just protect me from
+myself.</p>
+<p><strong>travis</strong>: Well, I tried.</p>
+<p><strong>iris</strong>: I understand, mister. It means something,
+really.</p>
+<p><strong>travis</strong>: Can I see you again?</p>
+<p><strong>iris</strong>: That’s not hard to do.</p>
+<p><strong>travis</strong>: No, I mean really. This is nothing for a
+person to do.</p>
+<p><strong>iris</strong>: Sure. All right. We’ll have breakfast. I get
+up about one o’clock. Tomorrow.</p>
+<p><strong>travis</strong>: Well tomorrow noon there’s a… I got a…</p>
+<p><strong>iris</strong>: Well, you want to or not?</p>
+<p><strong>travis</strong>: O.K. It’s a date. I’ll see you here,
+then.</p>
+<p><strong>tom</strong>: Oh, Iris?</p>
+<p><strong>iris</strong>: Yes?</p>
+<p><strong>tom</strong>: My name’s Travis.</p>
+<p><strong>iris</strong>: Thank you, Travis.</p>
+<p><strong>travis</strong>: So long, Iris. Sweet Iris.</p>
+<p><strong>old man</strong>: I think this is yours, cowboy.</p>
+<p><strong>travis</strong>: Here’s the twenty bucks, old man. You better
+damn well spend it right.</p>
+<p><strong>old man</strong>: Come back anytime you want, cowboy. But
+without the rod – please.</p>
+<p><strong>assistant</strong>: Well, at least it wasn’t chicken.</p>
+<p><strong>palantine</strong>: It wasn’t? I thought it was. It tasted
+like chicken.</p>
+<p><strong>tom</strong>: C’mon, Senator. That was a class dinner. The
+St. Regis is a class joint. That was veal.</p>
+<p><strong>palantine</strong>: Was it? It sure tasted like chicken to
+me. Lately, everything tastes like chicken to me.</p>
+<p><strong>assistant</strong>: Everything? Got to watch your gut.</p>
+<p><strong>palantine</strong>: What about it? I took 20 off before we
+started this thing.</p>
+<p><strong>assistant</strong>: And you’ve put ten of it back on.</p>
+<p><strong>palantine</strong>: Ten? I don’t think so. You really think
+so? Ten?</p>
+<p><strong>tom</strong>: Those TV cameras do. I caught the rally on CBS.
+You looked a little paunchy.</p>
+<p><strong>palantine</strong>: I don’t think I gained ten pounds.</p>
+<p><strong>palantine</strong>: Jesus Christ.</p>
+<p><strong>iris</strong>: … and after that Sport and I just started
+hanging out…</p>
+<p><strong>travis</strong>: Where is home?</p>
+<p><strong>iris</strong>: I got so many sunglasses. I couldn’t live
+without my shades, man. I must have twelve pair of shades.</p>
+<p><strong>travis</strong>: Where?</p>
+<p><strong>iris</strong>: Pittsburgh.</p>
+<p><strong>travis</strong>: I ain’t ever been there, but it don’t seem
+like such a bad place.</p>
+<p><strong>iris</strong>: Why do you want me to go back to my parents?
+They hate me. Why do you think I split? There ain’t nothin there.</p>
+<p><strong>travis</strong>: But you can’t live like this. It’s hell.
+Girls should live at home.</p>
+<p><strong>iris</strong>: Didn’t you ever hear of women’s lib?</p>
+<p><strong>travis</strong>: Young girls are supposed to dress up, go to
+school, play with boys, you know, that kinda stuff.</p>
+<p><strong>iris</strong>: God, you are square.</p>
+<p><strong>travis</strong>: At least I don’t walk the streets like a
+skunk pussy. I don’t screw and fuck with killers and junkies.</p>
+<p><strong>iris</strong>: Who’s a killer?</p>
+<p><strong>travis</strong>: That fella "Sport" looks like a killer to
+me.</p>
+<p><strong>iris</strong>: He never killed nobody. He’s a Libra.</p>
+<p><strong>travis</strong>: Huh?</p>
+<p><strong>iris</strong>: I’m a Libra too. That’s why we get along so
+well.</p>
+<p><strong>travis</strong>: He looks like a killer.</p>
+<p><strong>iris</strong>: I think Cancer’s make the best lovers. My
+whole family are air signs.</p>
+<p><strong>travis</strong>: He shoots dope too.</p>
+<p><strong>iris</strong>: What makes you so high and mighty? Did you
+ever look at your own eyeballs in a mirror. You don’t get eyes like that
+from…</p>
+<p><strong>travis</strong>: He’s worse than an animal. Jail’s too good
+for scum like that.</p>
+<p><strong>iris</strong>: Rock music died in 1970, that’s what I think.
+Before that it was fantastic. I can tell you that. Everybody was
+crashing, hanging out at the Fillmore. Me and my girlfriend Ann used to
+go up the fire escape, you know? It was unbelievable. Rock Stars
+everywhere. That Airplane–that’s my group, man. All Libras. But now
+everybody’s split or got sick or busted. I think I’ll move to one of
+those communes in Vermont, you know? That’s where all the smart ones
+went. I stayed here.</p>
+<p><strong>travis</strong>: I never been to a commune. I don’t know. I
+saw pictures in a magazine, and it didn’t look very clean to me.</p>
+<p><strong>iris</strong>: Why don’t you come to a commune with me?</p>
+<p><strong>travis</strong>: Me? I could never go to a place like
+that.</p>
+<p><strong>iris</strong>: Why not?</p>
+<p><strong>travis</strong>: I… I don’t get along with people like
+that.</p>
+<p><strong>iris</strong>: You a scorpion? That’s it. You’re a scorpion.
+I can tell.</p>
+<p><strong>travis</strong>: Besides, I’ve got to stay here.</p>
+<p><strong>iris</strong>: Why?</p>
+<p><strong>travis</strong>: I’ve got something important to do. I can’t
+leave.</p>
+<p><strong>iris</strong>: What’s so important?</p>
+<p><strong>travis</strong>: I can’t say – it’s top secret. I’m doing
+something for the Army. The cab thing is just part time.</p>
+<p><strong>iris</strong>: You a narc?</p>
+<p><strong>travis</strong>: Do I look like a narc?</p>
+<p><strong>iris</strong>: Yeah.</p>
+<p><strong>iris</strong>: God, I don’t know who’s weirder, you or
+me.</p>
+<p><strong>travis</strong>: What are you going to do about Sport and
+that old bastard?</p>
+<p><strong>iris</strong>: Just leave’em. There’s plenty of other
+girls.</p>
+<p><strong>travis</strong>: You just gonna leave ’em?</p>
+<p><strong>iris</strong>: What should I do? Call the cops?</p>
+<p><strong>travis</strong>: Cops don’t do nothin.</p>
+<p><strong>iris</strong>: Sport never treated me bad, honest. Never beat
+me up once.</p>
+<p><strong>travis</strong>: You can’t leave ’em to do the same to other
+girls. You should get rid of them.</p>
+<p><strong>iris</strong>: How?</p>
+<p><strong>travis</strong>: I don’t know. Just should, though. Somebody
+should kill ’em. Nobody’d miss ’em.</p>
+<p><strong>iris</strong>: God. I know where they should have a commune
+for you. They should have a commune for you at Bellevue.</p>
+<p><strong>travis</strong>: I’m sorry, Iris. I didn’t mean that.</p>
+<p><strong>iris</strong>: You’re not much with girls, are you?</p>
+<p><strong>travis</strong>: Well, Iris, I look at it this way. A lot of
+girls come into my cab, some of them very beautiful. And I figure all
+day long men have been after them: trying to touch them, talk to them,
+ask them out. And they hate it. So I figure the best I can do for them
+is not bother them at all. So I don’t say a thing. I pretend I’m not
+even there. I figure they’ll understand that and appreciate me for
+it.</p>
+<p><strong>iris</strong>: Do you really think I should go to the
+commune?</p>
+<p><strong>travis</strong>: I think you should go home, but otherwise I
+think you should go. It would be great for you. You have to get away
+from here. The city’s a sewer, you gotta get out of it.</p>
+<p><strong>iris</strong>: Sure you don’t want to come with me?</p>
+<p><strong>travis</strong>: I can’t. Otherwise, I would.</p>
+<p><strong>iris</strong>: I sure hate to go alone…</p>
+<p><strong>travis</strong>: I’ll give you the money to go. I don’t want
+you to take any from those guys.</p>
+<p><strong>iris</strong>: You don’t have to.</p>
+<p><strong>travis</strong>: I want to – what else can I do with my
+money? You may not see me again–for a while.</p>
+<p><strong>iris</strong>: What do you mean?</p>
+<p><strong>travis</strong>: My work may take me out of New York.</p>
+<p><strong>sport</strong>: What’s the matter, baby, don’t you feel
+right?</p>
+<p><strong>iris</strong>: It’s my stomach. I got the flu.</p>
+<p><strong>sport</strong>: Oh, baby, there ain’t no flu. You know that,
+baby.</p>
+<p><strong>iris</strong>: Honest, Sport.</p>
+<p><strong>sport</strong>: You’re just tired, baby. You just need your
+man. I am your man, you know. You are my woman. I wouldn’t be nothing
+without you.</p>
+<p><strong>sport</strong>: I know this may not mean anything to you,
+baby, but sometimes I get so emotional, sometimes I think, I wish every
+man could have what I have now, that every woman could be loved the way
+I love you. I go home and I think what it would be without you, and then
+I thank God for you. I think to myself, man, you are so lucky. You got a
+woman who loves you, who needs you, a woman who keeps you strong. It’s
+just you and me. I’m nothing without you. I can go like this for ever
+and ever. We can do it, baby. You and me. Just you and me.</p>
+<p><strong>travis</strong>: My whole life has pointed in one direction.
+I see that now. There never has been any choice for me.</p>
+<p><strong>travis</strong>: Loneliness has followed me all my life. The
+life of loneliness pursues me wherever I go: in bars, cars, coffee
+shops, theaters, stores, sidewalks. There is no escape. I am God’s
+lonely man.</p>
+<p><strong>matchcut to p.o.v.</strong>: another neighborhood, LATER IN
+THE NIGHT. Still in SLIGHTLY SLOW MOTION.</p>
+<p><strong>travis</strong>: I am not a fool. I will no longer fool
+myself. I will no longer let myself fall apart, become a joke and object
+of ridicule. I know there is no longer any hope. I cannot continue this
+hollow, empty fight. I must sleep. What hope is there for me?</p>
+<p><strong>c.u.</strong>: He lays a brief hand-written letter on the
+table. We read it.</p>
+<p><strong>timecut</strong>: A SHORT WHILE LATER. TRAVIS has cleaned up
+his apartment. Everything is neat and orderly.</p>
+<p><strong>slight timecut</strong>: PALANTINE is speaking on the
+platform.</p>
+<p><strong>palantine</strong>: … and with your help we will go on to
+victry at the polls Tuesday.</p>
+<p><strong>palantine</strong>: On to victory in Miami Beach next month
+and on to victory next November!</p>
+<p><strong>secret service man’s p.o.v.</strong>: TRAVIS, his face
+intense, pushes his way through the CROWD.</p>
+<p><strong>secret service man</strong>: Detain that man!</p>
+<p><strong>intercut</strong>: SPORT stands in his doorway on the LOWER
+EAST SIDE shot with LONG DISTANCE LENS. It is EARLY EVENING.</p>
+<p><strong>intercut</strong>: A pudgy middle-aged white PRIVATE COP
+walks up to SPORT. The two men laugh, slap each other on the back and
+exchange a soul shake. They discuss a little private business and the
+PRIVATE COP walks off in the direction of IRIS’ apartment.</p>
+<p><strong>intercut</strong>: PRIVATE COP walks down block.</p>
+<p><strong>intercut</strong>: PRIVATE COP turns up darkened stairway to
+IRIS’ apartment.</p>
+<p><strong>travis’ p.o.v.</strong>: PEDESTRIAN attempts to flag down
+TRAVIS’ taxi, but quickly steps back up on the curb when he sees TRAVIS
+has no intention of stopping for anything.</p>
+<p><strong>intercut</strong>: SPORT maintains his post in the dark
+doorway. He waves to a GIRL who passes, and she waves back.</p>
+<p><strong>travis</strong>: Hey, Sport. How are things?</p>
+<p><strong>sport</strong>: O.K., cowboy.</p>
+<p><strong>travis</strong>: How are things in the pimp business, hey
+Sport?</p>
+<p><strong>sport</strong>: What’s going on?</p>
+<p><strong>travis</strong>: I’m here to see Iris.</p>
+<p><strong>sport</strong>: Iris?</p>
+<p><strong>sport</strong>: Wha – ?</p>
+<p><strong>travis</strong>: Yeah, Iris. You know anybody by that
+name?</p>
+<p><strong>sport</strong>: No. Hillbilly, you’d better get your wise ass
+outa here and quick, or you’re gonna be in trouble.</p>
+<p><strong>travis</strong>: You carry a gun?</p>
+<p><strong>travis</strong>: Get it.</p>
+<p><strong>sport</strong>: Hey, mister, I don’t know what’s going on
+here. This don’t make any sense.</p>
+<p><strong>travis</strong>: Show it to me.</p>
+<p><strong>travis</strong>: Now suck on that.</p>
+<p><strong>old man</strong>: Don’t kill me! Don’t kill me!</p>
+<p><strong>iris</strong>: Don’t kill him, Travis! Don’t kill him!</p>
+<p><strong>travis</strong>: Pgghew! Pgghew!</p>
+<p><strong>visual</strong>: TRACK begins at table and works across the
+room to the mattress.</p>
+<p><strong>audio</strong>: THROUGHOUT THE TRACK, we hear the voice of a
+middle- aged uneducated man reading in voice over.</p>
+<p><strong>iris’ father</strong>: Dear Mr. Bickle,</p>
+<p><strong>wizard</strong>: A private-owner wanted to swap wheels. Now
+my tires were brand new. "Give me a couple days," I says.</p>
+<p><strong>charlie t</strong>: Howdy Wizard, Killer.</p>
+<p><strong>charlie t</strong>: Don’t mess with the Killer.</p>
+<p><strong>travis</strong>: Hey Charlie T.</p>
+<p><strong>wizard</strong>: Howsit, Charlie? Hey Travis, I think you
+gota fare.</p>
+<p><strong>travis</strong>: Shit.</p>
+<p><strong>charlie t</strong>: Take it slow, Killer.</p>
+<p><strong>female voice</strong>: 34 East 56th Street.</p>
+<p><strong>betsy</strong>: Hello, Travis.</p>
+<p><strong>travis</strong>: Hello, Betsy.</p>
+<p><strong>travis</strong>: I see where Palantine got the
+nomination.</p>
+<p><strong>betsy</strong>: Yes. It won’t be long now. Seventeen
+days.</p>
+<p><strong>travis</strong>: Well, I hope he wins.</p>
+<p><strong>betsy</strong>: How are you, Travis? I read about you in the
+papers.</p>
+<p><strong>travis</strong>: Oh, I got over that. It was nothing, really.
+The papers always blow these things up. A little stiffness. That’ll go
+away. I just sleep more, that’s all.</p>
+<p><strong>travis</strong>: Here we are.</p>
+<p><strong>travis</strong>: No, no, please. This fare’s on me.
+Please.</p>
+<p><strong>betsy</strong>: Thank you, Travis.</p>
+<p><strong>betsy</strong>: Travis?</p>
+<p><strong>travis</strong>: Yeah.</p>
+<p><strong>betsy</strong>: Maybe I’ll see you again sometime, huh?</p>
+<p><strong>travis</strong>: Sure.</p>
+</body>
+</html>

@@ -1,0 +1,2196 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>get-shorty</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="get-shorty">get-shorty</h1>
+<p><strong>man’s voice</strong>: Looks fuckin’ cold out there.</p>
+<p><strong>tommy</strong>: Guy on the radio said it’s gonna get down to
+thirty-four.</p>
+<p><strong>tommy</strong>: Thirty-four – that’s freezing, for Christ
+sake. Yo, Chili, you’re spacin’.</p>
+<p><strong>chili</strong>: They’re closing the Granview. You know,
+theater down on Biscayne?</p>
+<p><strong>tommy</strong>: Yeah, the guy owes Momo a few G’s.</p>
+<p><strong>chili</strong>: What I’m thinkin’ is maybe Momo could buy
+it.</p>
+<p><strong>chili</strong>: Momo could buy it, I could run it for him.
+Show some Cagney films.</p>
+<p><strong>tommy</strong>: What’s Momo gonna want with an old place,
+shows old movies people don’t care about no more. Outside of maybe
+turnin’ it into a porno house, I don’t think he’s gonna give much of a
+fuck. And you already got a job.</p>
+<p><strong>chili</strong>: Yeah.</p>
+<p><strong>mob guy</strong>: . . . so the guy says, I’m not the tailor,
+I’m the undertaker.</p>
+<p><strong>tommy</strong>: Ray. How you doing?</p>
+<p><strong>ray bones</strong>: Okay, Tommy. You?</p>
+<p><strong>tommy</strong>: Okay.</p>
+<p><strong>tommy</strong>: You believe this weather, Ray? Miami Beach,
+for Christ’s sake.</p>
+<p><strong>ray bones</strong>: Chili Palmer. Chilly outside. Chili
+inside. It’s a regular fuckin’ chili-fest. Hey, waiter – give Mr. Chili
+Pepper a big fuckin’ bowl of chili!</p>
+<p><strong>chili</strong>: Good to see you, Ray.</p>
+<p><strong>tommy</strong>: You done starin’ out the window, I’ll see you
+back at the office.</p>
+<p><strong>tommy</strong>: Jesus. It’s freezin’!</p>
+<p><strong>chili</strong>: Hey.</p>
+<p><strong>chili</strong>: What happened to my coat?</p>
+<p><strong>manager</strong>: It’s not one of these?</p>
+<p><strong>chili</strong>: You see a black leather jacket, fingertip
+length, like the one Pacino wore in Serpico? You don’t, you owe me three
+seventy-nine.</p>
+<p><strong>manager</strong>: Maybe you don’t see my sign?</p>
+<p><strong>chili</strong>: Look, I didn’t come down to sunny Florida to
+freeze my ass. You follow me? You get the coat back or you give me the
+three seventy-nine my ex-wife paid for it at Alexander’s.</p>
+<p><strong>manager</strong>: Explain to him how Mr. Barboni borrow the
+coat.</p>
+<p><strong>chili</strong>: Ray Bones took my coat? Just now?</p>
+<p><strong>waiter</strong>: He didn’t take it. He borrow it. See,
+someone took his coat, you know . . . . . . leave this old one. So
+Mr. Barboni, he put on this other coat that fit him pretty good.</p>
+<p><strong>chili</strong>: You mean my coat.</p>
+<p><strong>waiter</strong>: He was wearing it, you know, to go home. He
+wasn’t gonna keep it.</p>
+<p><strong>chili</strong>: My car keys were in that coat.</p>
+<p><strong>manager</strong>: We call you a taxi.</p>
+<p><strong>chili</strong>: Lemme get this straight. You aren’t
+responsible for any lost articles like an expensive coat of mine, but
+you’re gonna find Ray Bones’ coat or get him a new one? Is that what
+you’re telling me?</p>
+<p><strong>manager</strong>: Mr. Barboni a good customer. Works for
+Jimmy Capp.</p>
+<p><strong>chili</strong>: I know who he works for. Where’s your
+phone.</p>
+<p><strong>tommy</strong>: You sure it was Ray Bones took the coat?</p>
+<p><strong>chili</strong>: That’s what the guy said.</p>
+<p><strong>tommy</strong>: Tomorrow, I see on the TV weather, it’s gonna
+be nice and warm. You won’t need the coat.</p>
+<p><strong>chili</strong>: This is it.</p>
+<p><strong>tommy</strong>: Hey, Chili. Get your coat, but don’t piss the
+guy off, okay? It could get complicated and we’d have to call Momo to
+straighten it out. Then Momo gets pissed for wasting his time and we
+don’t need that.</p>
+<p><strong>chili</strong>: Don’t worry about it. I won’t say any more
+than I have to, if that.</p>
+<p><strong>ray bones</strong>: Jesus . . . Oh, God . . .</p>
+<p><strong>ray bones</strong>: Fuck, man . . .</p>
+<p><strong>ed</strong>: You been there, haven’t you?</p>
+<p><strong>fred o.s.</strong>: Paris? Yeah, I been there plenty times.
+It’s right offa Seventy-nine.</p>
+<p><strong>ed</strong>: Hell it is. It’s on Sixty-eight. Seventeen miles
+from Lexington.</p>
+<p><strong>fred o.s.</strong>: What’re you talking about, Paris,
+Kentucky, or Paris, Tennessee?</p>
+<p><strong>ray bones</strong>: Somebody call 9 fucking 111.</p>
+<p><strong>jimmy</strong>: Whatta you want me to do Ray? Go to war over
+a fuckin coat? You’re lucky the guy didn’t kill you. The coat was a
+Christmas present for Christ’s sake.</p>
+<p><strong>ray bones</strong>: You gotta do somethin’, Jimmy. This man’s
+got no respect for us.</p>
+<p><strong>jimmy</strong>: He’s got no respect for you, and I don’t
+gotta do shit. Chili Palmer don’t work for me, he works for Momo up in
+Brooklyn. So as long as Momo’s around, nothing happens to Chili Palmer.
+You understand?</p>
+<p><strong>voice</strong>: Momo. We’re here.</p>
+<p><strong>momo</strong>: You check this place out good? If I’m going up
+alone, I don’t want no surprises.</p>
+<p><strong>bodyguard</strong>: I checked it out, boss.</p>
+<p><strong>voice</strong>: Yeah?</p>
+<p><strong>momo</strong>: It’s Momo.</p>
+<p><strong>voice</strong>: Come in.</p>
+<p><strong>everyone</strong>: Surprise!</p>
+<p><strong>chili</strong>: So what’re you tellin’ me, you’re never gonna
+go to sleep again?</p>
+<p><strong>tommy</strong>: No, I said I’m never goin’ to bed. There’s a
+difference. See, the article says most people die in their beds. I
+figure long as I stay outta bed, I’m safe.</p>
+<p><strong>chili</strong>: That’s the dumbest thing I ever heard. Where
+do you sleep?</p>
+<p><strong>tommy</strong>: In an armchair. Or I go to a coffee shop,
+sleep there. Sit in a booth, pull my hat down.</p>
+<p><strong>tommy</strong>: How many people you hear ever die in a coffee
+shop?</p>
+<p><strong>ray bones</strong>: You cut straight hair in this place, or
+just fags?</p>
+<p><strong>chili</strong>: Hey, Bones, looks like you’re gonna have a
+nice scar up there. Maybe these guys can fit you with a rug, cover it up
+for ya.</p>
+<p><strong>ray bones</strong>: Why don’t you geezers take your game over
+to the park.</p>
+<p><strong>black guy</strong>: This man is the man, you understand what
+I’m saying? He’s Mr. Bones, you speak to him from now on.</p>
+<p><strong>chili</strong>: You can do better’n him.</p>
+<p><strong>black guy</strong>: Not these days. Not less you can talk
+Spanish.</p>
+<p><strong>ray bones</strong>: You got a miss. Leo Devoe. Guy’s six
+weeks over.</p>
+<p><strong>chili</strong>: He died.</p>
+<p><strong>ray bones</strong>: How’d you know he died, he tell you?</p>
+<p><strong>chili</strong>: Yeah, he told me.</p>
+<p><strong>ray bones</strong>: Personally?</p>
+<p><strong>chili</strong>: Yeah, Ray, he personally told me he got
+killed in that Get Away Airlines’ jet went down last month.</p>
+<p><strong>ray bones</strong>: What Get Away jet?</p>
+<p><strong>chili</strong>: It was in the Herald.</p>
+<p><strong>ray bones</strong>: Yeah, well, maybe the guy took out flight
+insurance. Check with the wife.</p>
+<p><strong>chili</strong>: Hey, it’s your book now. You want to check it
+out, go ahead. He’s got a dry cleaning business out on Federal
+Highway.</p>
+<p><strong>ray bones</strong>: Momo’s dead. Which means anything was his
+now belongs to Jimmy Capp, including you.</p>
+<p><strong>ray bones</strong>: Which also means when I speak, I’m
+speakin’ for Jimmy. So e.g. as of now, you start affording me the proper
+respect.</p>
+<p><strong>chili</strong>: ‘e.g.’ means ‘for example’, Ray. I think what
+you wanna say is ‘i.e.’</p>
+<p><strong>ray bones</strong>: Bullshit. E.g. is short for ‘ergo’.</p>
+<p><strong>chili</strong>: Ask your man here.</p>
+<p><strong>black guy</strong>: Best a my knowledge, e.g. means ‘for
+example.’</p>
+<p><strong>ray bones</strong>: E.g., i.e., fuck you. The point is, I say
+jump, you say okay. Okay?</p>
+<p><strong>tommy</strong>: Yeah, Ray. Okay.</p>
+<p><strong>ray bones</strong>: You owe me the dry cleaner’s fifteen
+grand plus the juice which is what another, uhh . . .</p>
+<p><strong>chili</strong>: Twenty seven hundred.</p>
+<p><strong>ray bones</strong>: Exactly. You either get it from the wife
+or out of your own pocket, I don’t give a fuck. You don’t ever hand me a
+book with a miss in it.</p>
+<p><strong>tommy</strong>: I told you not to –</p>
+<p><strong>chili</strong>: Don’t say a fuckin’ word.</p>
+<p><strong>fay</strong>: I hate the dry cleaning business. I hate being
+inside all day, around all those machines.</p>
+<p><strong>chili</strong>: Must be hot.</p>
+<p><strong>fay</strong>: You have no idea how hot it is.</p>
+<p><strong>chili</strong>: I was wondering, Fay, if Leo had any life
+insurance.</p>
+<p><strong>fay</strong>: I don’t know of any.</p>
+<p><strong>fay</strong>: I trust you, Chili. I think you’re a decent
+type of man, even if you are a crook.</p>
+<p><strong>chili</strong>: Thank you Fay.</p>
+<p><strong>fay</strong>: I wish he really was dead, the son of a
+bitch.</p>
+<p><strong>dick</strong>: That’s him all right.</p>
+<p><strong>dick</strong>: Called himself Larry DeMille. Hit on every
+showgirl in town. Would tell ‘em he was the ’Martinizing King of Miami’.
+What a moron.</p>
+<p><strong>dick</strong>: Anyway, you want this guy, he’s in L.A. We put
+him on a flight after he spanked one a my cocktail girls in the Keno
+room.</p>
+<p><strong>chili</strong>: Leo spanked a waitress?</p>
+<p><strong>dick</strong>: Apparently, way it went, he invited her to
+come to Santa Anita to play the ponies with him. She told him what to do
+with that and he gave her one on the tush. My guess, he’s by his
+lonesome at the track right now.</p>
+<p><strong>dick</strong>: Hey, Chil? Since you’re goin’ out to L.A.
+anyway.</p>
+<p><strong>chili</strong>: What’ve you got?</p>
+<p><strong>dick</strong>: Guy owes us a hundred and fifty grand, sixty
+days over; a movie producer.</p>
+<p><strong>chili</strong>: Movie producer? Yeah, why not.</p>
+<p><strong>chili</strong>: What is this?</p>
+<p><strong>attendant</strong>: An Oldsmobile Silhouette.</p>
+<p><strong>chili</strong>: I reserved a Cadillac.</p>
+<p><strong>attendant</strong>: Yeah, well, this one’s the Cadillac of
+minivans.</p>
+<p><strong>chili</strong>: You’re kidding me, right?</p>
+<p><strong>attendant</strong>: Hey, you want La Tierra Rent-A-Car just
+over there, but I think all they got are Rabbit convertibles.</p>
+<p><strong>woman’s voice</strong>: Harry?</p>
+<p><strong>karen</strong>: Harry.</p>
+<p><strong>karen</strong>: Harry, God damn it, somebody’s
+downstairs.</p>
+<p><strong>harry</strong>: What’s wrong?</p>
+<p><strong>karen</strong>: Be quiet and listen.</p>
+<p><strong>harry</strong>: I don’t hear anything.</p>
+<p><strong>karen</strong>: Shhh – there.</p>
+<p><strong>harry</strong>: Sounds like the television.</p>
+<p><strong>karen</strong>: When I came upstairs, you stayed to finish
+your drink. I told you to turn off the TV when you were through. Come to
+think of it, I also told you you could sleep in the maid’s room.</p>
+<p><strong>harry</strong>: Yeah, well I turned off the set. I used the
+remote control thing and laid it on the floor. You know what could’ve
+happened? The dog came in and stepped on it, turned the TV back on.</p>
+<p><strong>karen</strong>: I don’t have a dog.</p>
+<p><strong>harry</strong>: You don’t? What happened to Muff?</p>
+<p><strong>karen</strong>: Harry, are you going down, or you want me
+to?</p>
+<p><strong>harry</strong>: Anyone skim the pool? It needs it.</p>
+<p><strong>karen</strong>: Harry –</p>
+<p><strong>harry</strong>: I’m going.</p>
+<p><strong>harry</strong>: Jesus Christ!</p>
+<p><strong>chili</strong>: Harry Zimm, how you doing? I’m Chili
+Palmer.</p>
+<p><strong>harry</strong>: Jesus, if I have a heart attack, I hope you
+know what to do.</p>
+<p><strong>chili</strong>: Where you been, Harry?</p>
+<p><strong>harry</strong>: Have we met? I don’t recall.</p>
+<p><strong>chili</strong>: We just did. I told you my name’s Chili
+Palmer.</p>
+<p><strong>harry</strong>: You’re in pictures, right?</p>
+<p><strong>harry</strong>: Did you stop to think what if I had a heart
+attack?</p>
+<p><strong>chili</strong>: You look okay to me, Harry. Come over here
+and sit down. Tell me what you been up to.</p>
+<p><strong>chili</strong>: Harry, look at me.</p>
+<p><strong>harry</strong>: I’m looking at you.</p>
+<p><strong>chili</strong>: I want you to keep looking right here,
+okay?</p>
+<p><strong>harry</strong>: That’s what I’m doing.</p>
+<p><strong>chili</strong>: You know Dick Allen, Mesa’s Casino?</p>
+<p><strong>harry</strong>: Dick Allen’s a very dear friend of mine. How
+far you want to go with this?</p>
+<p><strong>chili</strong>: We’re there, Harry. You signed markers for a
+hundred and a half, you’re over sixty days past due and you haven’t told
+anybody what the problem is.</p>
+<p><strong>harry</strong>: Jesus Christ, what’re you, a collector for a
+fucking casino? You come in here, walk in the house in the middle of the
+fucking night? I thought you were an actor, auditioning, for Christ’s
+sake.</p>
+<p><strong>chili</strong>: Is that right? That’s interesting. You
+thought I was acting, huh?</p>
+<p><strong>harry</strong>: We’ll see about this . . .</p>
+<p><strong>harry</strong>: Operator, how do I get Las Vegas
+Information?</p>
+<p><strong>chili</strong>: Harry, lemme give you some advice.</p>
+<p><strong>chili</strong>: You don’t want to act like a hard-on, you’re
+standing there in your undies. You know what I’m saying? What you want
+to do is sit down and talk to me.</p>
+<p><strong>chili</strong>: A marker’s like a check, Harry.</p>
+<p><strong>harry</strong>: I know what a marker is.</p>
+<p><strong>chili</strong>: They don’t want to deposit yours and have it
+bounce. That annoys them. So your dear friend Dick Allen’s been calling,
+leaving messages on your machine, but you never get back to him. I
+happen to be in Vegas on another matter, and Dick asks me as a favor
+would I look you up. I follow you over here, see you in the window with
+this woman, looks a lot like that actress Karen Flores, was in
+Grotesque, except she’s not blond anymore . . .</p>
+<p><strong>chili</strong>: You’re not looking at me, Harry.</p>
+<p><strong>harry</strong>: Why do I have to keep looking at you?</p>
+<p><strong>chili</strong>: I want you to.</p>
+<p><strong>harry</strong>: You gonna get rough now, threaten me? I make
+good by tomorrow or get my legs broken?</p>
+<p><strong>chili</strong>: Come on, Harry – Mesas? The worst they might
+do is get a judgment against you, uttering a bad check. I can’t imagine
+you want that to happen, man in your position.</p>
+<p><strong>harry</strong>: Fuckin’ basketball game.</p>
+<p><strong>harry</strong>: Tell Dick Allen I’ll cover the markers in the
+next sixty days at the most. He doesn’t like it, that’s his problem. The
+prick.</p>
+<p><strong>harry</strong>: So, you want me to call you a cab?</p>
+<p><strong>chili</strong>: You make movies, huh?</p>
+<p><strong>harry</strong>: I produce feature motion pictures, no TV. You
+mentioned Grotesque, that happened to be Grotesque Part II that Karen
+Flores was in. She starred in all three of my Slime Creatures releases
+you might have seen.</p>
+<p><strong>chili</strong>: I think I got an idea for a movie.</p>
+<p><strong>chili</strong>: Yeah, Leo wore these little plaid hats –
+Miami, middle of the summer, this guy thinks no one’s gonna notice he’s
+balding, he wears a fuckin’ hat.</p>
+<p><strong>harry</strong>: Karen?</p>
+<p><strong>harry</strong>: Karen, say hello to Chili Palmer. Chili, this
+is Karen Flores.</p>
+<p><strong>chili</strong>: Karen, it’s a pleasure. How you doing?</p>
+<p><strong>karen</strong>: How did you get in the house?</p>
+<p><strong>harry</strong>: He’s telling me an idea for a movie. It’s not
+bad so far. Sit down, have a drink. Tell Karen, let’s see what she
+thinks.</p>
+<p><strong>karen</strong>: Maybe you didn’t hear me.</p>
+<p><strong>chili</strong>: The door from the patio, in back.</p>
+<p><strong>karen</strong>: You broke in?</p>
+<p><strong>chili</strong>: No, it was open. It wasn’t locked.</p>
+<p><strong>karen</strong>: What if it was?</p>
+<p><strong>harry</strong>: You want to hear this idea? It’s about a dry
+cleaner who scams an airline out of three hundred grand. Go on, tell
+her.</p>
+<p><strong>chili</strong>: You just did.</p>
+<p><strong>harry</strong>: I mean, the way you told it to me. Start at
+the beginning, we see how the story line develops.</p>
+<p><strong>chili</strong>: Well, basically, this guy owes a shylock
+fifteen thousand, plus he’s a few weeks behind on the vig, the interest
+you have to pay.</p>
+<p><strong>karen</strong>: I know what a vig is.</p>
+<p><strong>harry</strong>: It’s the kind of situation, you don’t pay,
+you get your legs broken.</p>
+<p><strong>chili</strong>: Or the guy thinks he could get ’em broken.
+You have to understand the loan shark’s in business the same as anybody
+else. He isn’t in it to hurt people. He’s in it to make money.</p>
+<p><strong>chili</strong>: But the dry cleaner, we’ll call him Leo, he’s
+scared, doesn’t know any better, so he takes off –</p>
+<p><strong>harry</strong>: That’s Miami. He’s going to Vegas. He’s got a
+few bucks and he’s thinking it’s his only chance.</p>
+<p><strong>chili</strong>: Leo gets on a plane, ready to go, but the
+plane sits there at the gate, doesn’t move.</p>
+<p><strong>chili</strong>: They annonnce over the PA there’s some kind
+of mechanical problem, they’ll be there maybe an hour, but keep your
+seats in case they get it fixed sooner.</p>
+<p><strong>chili</strong>: The guy’s nervous, in no shape to just sit
+there, sweat it out. So he gets off the plane . . .</p>
+<p><strong>chili</strong>: Goes in the cocktail lounge and starts
+throwing ’em down, one after the other.</p>
+<p><strong>chili</strong>: When the plane pulls away from the gate.</p>
+<p><strong>harry</strong>: Without him. The guy’s so out of it he
+doesn’t even know it’s gone.</p>
+<p><strong>chili</strong>: That’s right. As a matter of fact . . .</p>
+<p><strong>chili</strong>: He’s still in the lounge when a plane blows
+up on the runway . . .</p>
+<p><strong>chili</strong>: So when the guy finds out it was his flight,
+he can’t believe it. If he’d stayed on that plane, he’d be dead. Right
+then he knows his luck has changed. If everybody thinks he’s dead he
+won’t have to pay back the fifteen or what he owes on the vig, four and
+a half a week.</p>
+<p><strong>karen</strong>: The interest is four hundred and fifty
+dollars a week on fifteen thousand?</p>
+<p><strong>chili</strong>: That’s right. Three percent.</p>
+<p><strong>karen</strong>: But a week. That’s a hundred and fifty
+percent a year.</p>
+<p><strong>chili</strong>: A hundred and fifty-six. Some’ll charge you
+more’n that, go as high as six for five on a short-term loan. So three a
+week’s not too bad.</p>
+<p><strong>karen</strong>: A real bargain.</p>
+<p><strong>harry</strong>: Keep going.</p>
+<p><strong>chili</strong>: Well, since Leo’s name was on the passenger
+list . . .</p>
+<p><strong>chili</strong>: They bring his wife out to the airport where
+they’re going through personal effects, whatever wasn’t burned up. Leo’s
+bags were on the plane, so the wife tells ’em what to look for, things
+only she would know about.</p>
+<p><strong>chili</strong>: A couple days ago by, people from the
+airliner come to see his wife, tell her how sorry they are and all that
+their plane exploded and offer her a settlement, the amount based on
+what he would’ve earned operating the dry cleaner’s the rest of his
+life. Leo had some kind of trouble with his kidneys, so they were giving
+him about ten years.</p>
+<p><strong>karen</strong>: How much is the wife offered?</p>
+<p><strong>harry</strong>: Three hundred grand, and they take it, money
+in hand, babe. The guy has his wife cash the check and he takes off for
+Las Vegas with the dough. Gets there, he’s supposed to call her, tell
+her when to come out. But she never hears from him again.</p>
+<p><strong>chili</strong>: He comes to L.A. . . .</p>
+<p><strong>harry</strong>: It drives the guy nuts, he’s winning but
+can’t tell anybody who he is. You show in a back story his motivation,
+his desire to be famous, you know, pal around with celebrities, the
+headliners doing the big rooms. Now he’s got the dough to buy his way
+in, mix with celebs and he can’t resist . . .</p>
+<p><strong>harry</strong>: So he comes to L.A. . . .</p>
+<p><strong>chili</strong>: I don’t know about his wanting to meet
+celebrities, that’s something new. But, yeah, he comes to L.A. Then
+after that, I don’t know what happens.</p>
+<p><strong>harry</strong>: That’s it? That’s your movie?</p>
+<p><strong>chili</strong>: I said I had an idea, that’s all.</p>
+<p><strong>harry</strong>: That’s half a movie, with holes in it. Maybe
+forty minutes of screen time. You don’t even have a girl, a female lead,
+and on top of that, there’s no one to sympathize with, you don’t have a
+good guy.</p>
+<p><strong>chili</strong>: The shylock’s the good guy.</p>
+<p><strong>harry</strong>: The shylock? He’s barely mentioned. And it’s
+not believable the wife would get a settlement that fast.</p>
+<p><strong>karen</strong>: Harry doesn’t realize it’s a true story.</p>
+<p><strong>karen</strong>: That Miami flight that went down, it was on
+the news every day for about a week. Harry must’ve been busy.</p>
+<p><strong>harry</strong>: That’s where you got the idea?</p>
+<p><strong>chili</strong>: Part of it, yeah.</p>
+<p><strong>harry</strong>: Wait a minute, you’re not the guy, are you?
+The dry cleaner?</p>
+<p><strong>chili</strong>: You mean, Leo?</p>
+<p><strong>harry</strong>: You wouldn’t be talking to me if you
+were.</p>
+<p><strong>chili</strong>: I’m not the guy, Harry.</p>
+<p><strong>harry</strong>: But you work for the casino?</p>
+<p><strong>chili</strong>: I’m out here looking for Leo. I just looked
+you up as a favor to your dear friend, Dick Allen.</p>
+<p><strong>harry</strong>: So you don’t work for the casino?</p>
+<p><strong>karen</strong>: Harry, for God’s sake . . .</p>
+<p><strong>karen</strong>: He’s the shylock.</p>
+<p><strong>harry</strong>: Is that right, that’s what you do for a
+living?</p>
+<p><strong>chili</strong>: What I did till recently. After I get done
+here I’ll think about what I’m gonna do next.</p>
+<p><strong>karen</strong>: With your experience, you could always become
+an agent. Right, Harry?</p>
+<p><strong>harry</strong>: Yeah, that’s what we need. More agents.</p>
+<p><strong>karen</strong>: Well. I got an audition tomorrow.</p>
+<p><strong>harry</strong>: No problem. You go on off to bed.</p>
+<p><strong>karen</strong>: What I’m saying, Harry, is I want you and
+your new buddy to get out of my house.</p>
+<p><strong>harry</strong>: Oh, yeah, sure.</p>
+<p><strong>chili</strong>: Nice meeting you, Karen.</p>
+<p><strong>harry</strong>: I imagine in your line of work, there were
+times you had to get rough, you know, say one of your customers stopped
+paying.</p>
+<p><strong>chili</strong>: They always paid.</p>
+<p><strong>harry</strong>: You pack a gun?</p>
+<p><strong>chili</strong>: Not really.</p>
+<p><strong>harry</strong>: What does that mean?</p>
+<p><strong>chili</strong>: Maybe a few times I have.</p>
+<p><strong>harry</strong>: Ever shot anybody.</p>
+<p><strong>chili</strong>: Once.</p>
+<p><strong>harry</strong>: Really? You ever been arrested?</p>
+<p><strong>chili</strong>: I’ve been picked up a couple times. Loan
+sharking. Racketeering. But I was never convicted. I’m clean.</p>
+<p><strong>harry</strong>: Racketeering, that covers a lot of ground,
+doesn’t it?</p>
+<p><strong>chili</strong>: Why don’t you get to the point, Harry? You
+want me to do something for you.</p>
+<p><strong>ray bones</strong>: Hi, I’m Ray, a friend of Chili
+Palmer’s.</p>
+<p><strong>ray bones</strong>: Have your spoken to Mr. Palmer since your
+husband . . . you know, blew up?</p>
+<p><strong>fay</strong>: Maybe once or twice.</p>
+<p><strong>ray bones</strong>: What was it you talked about?</p>
+<p><strong>fay</strong>: Oh, nothing really? This and that.</p>
+<p><strong>ray bones</strong>: Fay . . . Fay.</p>
+<p><strong>ray bones</strong>: Fay, I want us to be friends. And friends
+don’t hit each other, ‘less they have to. So whatta you say we start all
+over and you tell me exactly what the fuck is goin’ on?</p>
+<p><strong>harry</strong>: These guys, my investors, they run a limo
+service, came to me originally, put money in a few of my pictures and
+did okay, they’re happy. So they come in on another deal – this was back
+a few months ago when I was planning what would be my next picture,
+about this band of killer circus freaks that travel around the country
+leaving bodies in their wake. The characters, there’s this
+seven-hundred-pound fat lady who has a way of seducing guys, gets them
+in her trailer –</p>
+<p><strong>chili</strong>: Harry, look at me.</p>
+<p><strong>chili</strong>: You’re trying to tell me how you fucked up
+without sounding stupid, and that’s hard to do. Let’s just get to where
+you’re at, okay? You blew the two hundred grand the limo guys gave you
+in Vegas on a basketball game and you haven’t told ’em about it. Why
+not?</p>
+<p><strong>harry</strong>: Because they’re not the type of guys would
+take it with any degree of understanding or restraint. The first thing
+they’d do is break my legs.</p>
+<p><strong>chili</strong>: You got that on the brain, Harry. If you’re
+so scared of ’em why’d you take their money to Vegas to begin with?</p>
+<p><strong>harry</strong>: Because I need half a million to buy a
+script.</p>
+<p><strong>chili</strong>: For a movie?</p>
+<p><strong>harry</strong>: A blockbuster. But quality. No mutants or
+maniacs. This one’s gonna be my Driving Miss Daisy.</p>
+<p><strong>chili</strong>: What’s it called?</p>
+<p><strong>harry</strong>: Mr. Lovejoy.</p>
+<p><strong>chili</strong>: Mr. Lovejoy? That’s the title?</p>
+<p><strong>harry</strong>: It’s not bad when you know what it’s
+about.</p>
+<p><strong>harry</strong>: Murray Saffrin, guy who wrote it, did all my
+Grotesque pictures, had it in a drawer for twenty years. He shows it to
+me one day, tells me he’s got a star interested, would I produce it.</p>
+<p><strong>chili</strong>: Who’s the star?</p>
+<p><strong>harry</strong>: Two time academy award nominee, Martin
+Weir.</p>
+<p><strong>chili</strong>: Martin Weir. He played the mob guy that
+turned snitch in The Cyclone.</p>
+<p><strong>harry</strong>: One of his best parts.</p>
+<p><strong>chili</strong>: No, his best part was the cripple gay guy
+that climbed Mt. Whitney.</p>
+<p><strong>harry</strong>: Ride the Clouds. Good picture.</p>
+<p><strong>chili</strong>: She looks familiar.</p>
+<p><strong>harry</strong>: She’s a rock star. Every day, same time, they
+come down here and have breakfast. He has the egg white omelette; she
+has the banana pancakes. He sits facing west so he can see his
+billboard. She faces east so she has an excuse to wear the shades.</p>
+<p><strong>harry</strong>: Anyway, Murray has this shrink, who also
+happens to be Martin’s personal trainer’s shrink. Murray gives the
+shrink the script and the shrink gives it to Martin’s trainer who reads
+it to Martin while they work out, and Martin flips. Loves it.</p>
+<p><strong>chili</strong>: So what’s the problem?</p>
+<p><strong>harry</strong>: The problem is Murray. He and a few other
+blocked screenwriters went river rafting down the Kern a few weeks ago.
+Murray never made it back.</p>
+<p><strong>chili</strong>: He drown?</p>
+<p><strong>harry</strong>: Heart attack. Apparently they brought a
+couple hookers along.</p>
+<p><strong>harry</strong>: Doris, Murray’s widow, finds out about this
+Martin Weir thing and says since Murray and I never had any written
+contract, she wants five hundred grand for the script.</p>
+<p><strong>chili</strong>: So you’re thinking what if I was to put you
+next to my dry cleaner. Ask him if he wants to invest his money in a
+movie.</p>
+<p><strong>harry</strong>: That, or I’m thinking what if some tragic
+accident were to befall the widow Saffrin –</p>
+<p><strong>chili</strong>: I’m not gonna pop her, Harry.</p>
+<p><strong>harry</strong>: Just a thought.</p>
+<p><strong>chili</strong>: But I could talk to the limo guys. Tell ’em
+to leave you alone for a while. Make the point in a way they’d
+understand it.</p>
+<p><strong>harry</strong>: You don’t even know these guys.</p>
+<p><strong>chili</strong>: Harry, I probably know ’em better than you
+do.</p>
+<p><strong>harry</strong>: What do you get out of this?</p>
+<p><strong>chili</strong>: Let’s see how we get along.</p>
+<p><strong>bo catlett</strong>: That’s us.</p>
+<p><strong>bo catlett</strong>: Don’t say nothing to me. Sit down and
+act like you’re waiting for somebody supposed to meet you.</p>
+<p><strong>latino man</strong>: The fock you taking about . . .</p>
+<p><strong>latino man</strong>: They nobody know me here, man. Give me
+the focking money.</p>
+<p><strong>bo catlett</strong>: Sit down. Now be looking. Man over to
+your right in the blue wool shirt hanging out . . . the other way,
+derecho . . .</p>
+<p><strong>bo catlett</strong>: That’s a federal officer, most likely
+DEA. He moves his leg look for the bulge. You savvy bulge? That’s his
+backup piece . . . Hey. Try it without looking right at him if you
+can.</p>
+<p><strong>bo catlett</strong>: What’s your name?</p>
+<p><strong>latino man</strong>: Yayo. Portillo.</p>
+<p><strong>bo catlett</strong>: Alright, Yayo, you know he’s there, now
+forget about him. Now I’m gonna get up. Soon as I’m gone, you sit down
+in this same seat I’m in. You feel something under your ass it’s the key
+to a locker where your half a million is. Along with some product we’re
+returning</p>
+<p><strong>yayo</strong>: You suppose to give me the focking money
+yourself.</p>
+<p><strong>bo catlett</strong>: Try to be cool Yahoo. I told you where
+it is. Do it how I told you and have a safe trip home. Or as you all
+say, vaya con Dios, motherfucker.</p>
+<p><strong>ronnie</strong>: Like fucking clockwork, eh Bear?</p>
+<p><strong>bear/big man</strong>: Don’t cuss in front of Farrah.</p>
+<p><strong>girl</strong>: Hi, Bo.</p>
+<p><strong>bo catlett</strong>: How you doing, sweetie?</p>
+<p><strong>girl</strong>: Here we go!</p>
+<p><strong>harry</strong>: I once asked this literary agent what type of
+writing brought the most money and the agent says, ‘Ransom notes.’</p>
+<p><strong>harry</strong>: Here it is . . . Mr. Lovejoy.</p>
+<p><strong>chili</strong>: Lovejoy sits behind the wheel, watching the
+bar across the street, getting his video camera ready for action . . .
+What’s he doing? Following a guy?</p>
+<p><strong>harry</strong>: Read it. It’s a grabber.</p>
+<p><strong>chili</strong>: Hey, Harry? I think your investors are
+here.</p>
+<p><strong>harry</strong>: Jesus . . .</p>
+<p><strong>chili</strong>: All right, Harry, make sure the limo guys sit
+here, not over on the sofa.</p>
+<p><strong>chili</strong>: No leave ’em up, we want the light in their
+eyes. I’ll be at the desk . . . but don’t introduce me, let it go, just
+start talking. You’re gonna be here, behind ’em when they sit down.</p>
+<p><strong>harry</strong>: They’ll be looking at you. They don’t know
+who you are.</p>
+<p><strong>chili</strong>: That’s right, they’re wondering, who’s this
+guy? You don’t tell ’em. Understand, Harry? Do not tell ’em who I
+am.</p>
+<p><strong>ronnie</strong>: In the year 2525 . . . if man is still alive
+. . .</p>
+<p><strong>harry</strong>: So what do I say to them?</p>
+<p><strong>chili</strong>: You don’t say any more’n you have to. You
+say, ‘Well, I’m glad you assholes stopped by, so I can set you
+straight.’</p>
+<p><strong>harry</strong>: You’re kidding, right?</p>
+<p><strong>ronnie</strong>: If woman can survive . . .</p>
+<p><strong>chili</strong>: You tell ’em the movie’s been postponed. Say,
+till next year, if you want. But don’t tell ’em why or what you’re
+doing. Understand, Harry? You don’t tell ’em anything about
+Mr. Lovejoy.</p>
+<p><strong>ronnie</strong>: They may find . . .</p>
+<p><strong>ronnie</strong>: Harry, what year is it, man? We enter a time
+warp? I feel like I’m back in Hollywood of yesteryear.</p>
+<p><strong>harry</strong>: Have a seat . . . right over here . . .</p>
+<p><strong>harry</strong>: This is my associate, Chili Palmer, who’ll be
+working with me.</p>
+<p><strong>harry</strong>: I want to make sure there’s no
+misunderstanding here. Despite rumors you might have heard, your
+investment in Freaks is as sound as the day you signed your
+participation agreement.</p>
+<p><strong>ronnie</strong>: I can hear you, but where the fuck are you,
+man?</p>
+<p><strong>bo catlett</strong>: What I been wondering is where’s he
+been.</p>
+<p><strong>ronnie</strong>: Yeah, where’ve you been? We haven’t heard
+from you lately.</p>
+<p><strong>harry</strong>: I’ve been off scouting locations.
+Interviewing actors in New York.</p>
+<p><strong>harry</strong>: The main thing I want to tell you, the start
+date for Freaks is being pushed back a little, a few months.</p>
+<p><strong>ronnie</strong>: A few months?</p>
+<p><strong>harry</strong>: Maybe longer. We need prep time.</p>
+<p><strong>ronnie</strong>: Hey, Harry? Bullshit. We have an agreement
+with you, man.</p>
+<p><strong>harry</strong>: We’re gonna make the picture. I’ve just got
+another project to do first, that’s all. One I promised this guy years
+ago.</p>
+<p><strong>ronnie</strong>: I want to see your books, Harry. Show me
+where it is, a two with five zeroes after it in black and white, man. I
+want to see your books and your bank statements.</p>
+<p><strong>chili</strong>: Hey, Ronnie? Look at me.</p>
+<p><strong>chili</strong>: You have a piece of a movie, that’s all. You
+don’t have a piece of Harry. He told you we’re doing another movie
+first. And that’s the way it’s gonna be.</p>
+<p><strong>ronnie</strong>: Excuse me. But who the fuck are you?</p>
+<p><strong>chili</strong>: I’m the one telling you how it is. That’s not
+too hard to figure out, is it?</p>
+<p><strong>ronnie</strong>: Cat?</p>
+<p><strong>bo catlett</strong>: What’s this movie you’re doing
+first?</p>
+<p><strong>chili</strong>: Harry, let me answer that.</p>
+<p><strong>chili</strong>: But first I want to know who I’m talking to.
+Am I talking to you, or am I talking to him?</p>
+<p><strong>bo catlett</strong>: You can talk to me.</p>
+<p><strong>chili</strong>: That’s what I thought. So let me put it this
+way</p>
+<p><strong>harry</strong>: This is the project, Mr. Lovejoy. I’m not
+trying to pull anything on you guys. This is it, right here.</p>
+<p><strong>ronnie</strong>: Mr. Loveboy? What is it, Harry, a porno
+flick?</p>
+<p><strong>harry</strong>: It’s nothing. It’s fluff. Nothing you’d be
+interested in.</p>
+<p><strong>bo catlett</strong>: Harry, you think we go to see your
+movies? I’ve seen better film on teeth. Makes no difference to me which
+one our money’s in. So how ’bout you take our twenty points out of
+Freaks and put ’em in this other one, Mr. Loverboy.</p>
+<p><strong>harry</strong>: I can’t do it.</p>
+<p><strong>bo catlett</strong>: You positive about that?</p>
+<p><strong>harry</strong>: It’s a different kind of deal.</p>
+<p><strong>bo catlett</strong>: Okay. Then be good enough to hand us our
+money back, or you think about us coming in on this new one.</p>
+<p><strong>ronnie</strong>: By Friday, man, or you’re fuckin’ dead as
+disco.</p>
+<p><strong>ronnie</strong>: You hear me?</p>
+<p><strong>bo catlett</strong>: Take your time, Harry. We’re not
+animals. Are we, Ronnie?</p>
+<p><strong>harry</strong>: What?</p>
+<p><strong>chili</strong>: I don’t know, maybe I wasn’t clear. But I
+thought . . . I told you to keep your mouth shut.</p>
+<p><strong>harry</strong>: I had to tell ’em something.</p>
+<p><strong>chili</strong>: Never say anything unless you have to.</p>
+<p><strong>chili</strong>: You tell me you want these guys off your
+back. Next thing I know, you’re saying yeah, maybe they can have a piece
+of Mr. Lovejoy. I couldn’t believe my fuckin’ ears.</p>
+<p><strong>harry</strong>: I said I’d think about it. What does that
+mean? In this town, nothing.</p>
+<p><strong>chili</strong>: That’s the difference between you and me,
+Harry. I say what I mean. I want something from someone, I ask ’em
+straight out. I want Martin Weir, I go get Martin Weir. I don’t fuck
+around with his trainer’s shrink.</p>
+<p><strong>harry</strong>: His shrink’s trainer.</p>
+<p><strong>chili</strong>: Take me back to my car.</p>
+<p><strong>tommy</strong>: Where you been? I been callin’ all over for
+you . . .</p>
+<p>****: Ray Bones is looking for you. He’s got some kinda bug up his
+ass, can’t sit still.</p>
+<p><strong>tommy</strong>: I hate to say I told you, but I did. I told
+you don’t start nothing with him that time.</p>
+<p><strong>chili</strong>: You said don’t say nothing and I didn’t.</p>
+<p><strong>tommy</strong>: No, you just broke his fuckin’ nose
+instead.</p>
+<p><strong>chili</strong>: You gonna start that again? You’re just like
+him, all you got room for in your brain is one fuckin’ thing.</p>
+<p><strong>tommy</strong>: All I know is he came by the barber shop, all
+fuckin’ undone, wanting to know where you were staying in Vegas. I told
+him I don’t know. I still don’t.</p>
+<p><strong>chili</strong>: How’d he know I was in Vegas? You tell
+him?</p>
+<p><strong>tommy</strong>: He already knew it.</p>
+<p><strong>chili</strong>: Yeah, well, I’m in L.A. now.</p>
+<p><strong>tommy</strong>: Whatta you doing out there?</p>
+<p><strong>chili</strong>: I’m going into the movie business.</p>
+<p><strong>tommy</strong>: What’re you talking about? You wanna be a
+movie star?</p>
+<p><strong>chili</strong>: I’m thinking about producing.</p>
+<p><strong>tommy</strong>: How you gonna do that? You don’t know shit
+about making movies.</p>
+<p><strong>chili</strong>: I don’t think the producer has to do much,
+outside of maybe knowing a writer.</p>
+<p><strong>tommy</strong>: Hey, Chil? I think you’re fulla shit.</p>
+<p><strong>chili</strong>: . . . call me soon as you know when Ray’s
+coming out.</p>
+<p><strong>chili</strong>: Hey . . . Karen. How ya’ doin’?</p>
+<p><strong>karen</strong>: What’re you doing here?</p>
+<p><strong>chili</strong>: I wanted to come by, apologize for coming
+into your house like I did last night.</p>
+<p><strong>karen</strong>: Lemme get this straight, you broke in again
+to apologize for breaking in before?</p>
+<p><strong>chili</strong>: No, no . . . you let the patio door open. You
+gotta stop doin’ that, all the nice things you got around here.</p>
+<p><strong>karen</strong>: Yeah, well make sure you lock it on the way
+out.</p>
+<p><strong>chili</strong>: Rough day on the set?</p>
+<p><strong>karen</strong>: I spent all day crawling out of a grave. The
+costumer kept bitching ’cause I was ripping my nylons –</p>
+<p><strong>chili</strong>: Ripped nylons work. Makes the shot more
+real.</p>
+<p><strong>karen</strong>: . . . That’s what we finally decided.</p>
+<p><strong>chili</strong>: Like in Bride of the Mutant, when you played
+the whole end with that torn top.</p>
+<p><strong>karen</strong>: You saw that one?</p>
+<p><strong>chili</strong>: Yeah. When you turn to the camera to tell the
+alien mother that her time on earth is finished . . . when you give us
+all that look, Joan Crawford wishes on her best day she had that much
+presence. Not even in Mildred Pierce – which by the way was a better
+book than a movie – did Crawford even touch the intensity you had in
+that look.</p>
+<p><strong>karen</strong>: Yeah . . . that was a good scene. I mean, for
+a horror movie.</p>
+<p><strong>chili</strong>: For any movie.</p>
+<p><strong>karen</strong>: I know I’m better than what I’ve been doing
+the last ten years, walking around in a tank top and fuck-me pumps,
+waiting till it’s time to scream.</p>
+<p><strong>chili</strong>: Man, can you scream.</p>
+<p><strong>karen</strong>: Yeah. It’s a real gift. I’m just saying it’d
+be nice, one time in my career to get the chance to say one great line.
+You know, like in that Bette Davis picture, Cabin in the . . .</p>
+<p><strong>chili</strong>: Cotton.</p>
+<p><strong>karen</strong>: Yeah, you know when Bette comes up to the guy
+on the porch, gives him a flirty look and says, ‘I’d kiss you, but . .
+.’</p>
+<p><strong>chili/karen</strong>: ‘I just washed my hair.’</p>
+<p><strong>karen</strong>: Yeah.</p>
+<p><strong>chili</strong>: That is a great line.</p>
+<p><strong>chili</strong>: How come you stopped making movies with
+Harry?</p>
+<p><strong>karen</strong>: I married Martin. That was a full-time
+job.</p>
+<p><strong>chili</strong>: You read Harry’s new one? He says it’s the
+best thing he’s ever read.</p>
+<p><strong>karen</strong>: He must mean after Slime Creature 3.</p>
+<p><strong>chili</strong>: That why Harry came over last night? See if
+you could help him get Martin in his movie?</p>
+<p><strong>karen</strong>: Harry’s dreaming of a forty-million-dollar
+production he’ll never get off the ground with a star he’ll never sign.
+With or without my help.</p>
+<p><strong>chili</strong>: Harry told me Martin loves it, he
+flipped.</p>
+<p><strong>karen</strong>: Yeah, well Martin is known for his flipping.
+He flips over a script, and when the time comes to make a deal, he flips
+out.</p>
+<p><strong>chili</strong>: Tell you what, I’ll stop by Harry’s office
+and pick up a copy for you.</p>
+<p><strong>karen</strong>: Don’t go out of your way.</p>
+<p><strong>chili</strong>: Well, I gotta have a talk with Leo, my
+runaway dry cleaner.</p>
+<p><strong>karen</strong>: Right. See how your story ends.</p>
+<p><strong>chili</strong>: Yeah. Right. Listen, Touch of Evil’s phying
+near my hotel. You wanna go check it out? Watch Charlton Heston play a
+Mexican?</p>
+<p><strong>chili</strong>: Maybe some other time.</p>
+<p><strong>chili</strong>: ‘He tried to make love to me and I shot him.’
+Another great Bette Davis line.</p>
+<p><strong>chili</strong>: See you around.</p>
+<p><strong>doorman</strong>: Evening, sir.</p>
+<p><strong>leo</strong>: And a good evening to you, too, sir.</p>
+<p><strong>chili o.s.</strong>: Look at me, Leo.</p>
+<p><strong>chili</strong>: I wouldn’t think you’re that dumb, leave over
+three hundred grand in the closet, underneath the extra blanket, but I
+guess you are.</p>
+<p><strong>leo</strong>: I didn’t know where else to keep it. Where
+would you?</p>
+<p><strong>chili</strong>: You’re here a while, what’s wrong with a
+bank?</p>
+<p><strong>leo</strong>: They report it to the IRS.</p>
+<p><strong>chili</strong>: You don’t open an account, Leo, you put it in
+a safe deposit box. Dip in whenever you want.</p>
+<p><strong>chili</strong>: You’ve been losing.</p>
+<p><strong>leo</strong>: I’m up twelve grand today.</p>
+<p><strong>chili</strong>: From when? You left Vegas with
+four-fifty?</p>
+<p><strong>leo</strong>: Who told you that?</p>
+<p><strong>chili</strong>: Now you’re down to three-ten in the case. You
+must’ve cooled off quite a bit since you got here.</p>
+<p><strong>leo</strong>: How’d you know I was here?</p>
+<p><strong>chili</strong>: Here’s another tip</p>
+<p><strong>leo</strong>: It was Fay, wasn’t it, told you about the
+money. She tell you my whole life history, for Christ’s sake?</p>
+<p><strong>chili</strong>: I wouldn’t let her if she tried. Why I’m
+here, Leo, basically, is to save your ass.</p>
+<p><strong>leo</strong>: How? By taking my money?</p>
+<p><strong>chili</strong>: You can keep what you won today. That’s
+yours.</p>
+<p><strong>leo</strong>: It’s all mine.</p>
+<p><strong>chili</strong>: Sit down, Leo.</p>
+<p><strong>chili</strong>: I don’t know how you got this far, you’re so
+fuckin’ dumb. But now you’re through. I’m gonna explain to you why and I
+hope you’re not too dumb to understand what I’m saying. Okay?</p>
+<p><strong>chili</strong>: Ray Bones is now the man you’re dealing with.
+Ray Bones finds out what you did, he’s gonna want everything you have.
+And when I say everything, I mean even that sporty little hat if he
+wants it. Then after he takes all you got, he’ll most likely hit you
+with some kind of heavy object if he doesn’t shoot you, just so you
+won’t tell on him.</p>
+<p><strong>chili</strong>: I won’t do that. Take your stuff or hurt you.
+You have three-ten in the case, right? I’m gonna take the three hundred
+you scammed off the airline, but the rest of it, the ten grand? I’m
+gonna borrow that and pay you back sometime.</p>
+<p><strong>leo</strong>: You take all my money, but you’re borrowing
+part of it?</p>
+<p><strong>chili</strong>: At eighteen percent, okay? And don’t ask me
+no more fuckin’ questions. I’m leaving.</p>
+<p><strong>leo</strong>: But you won’t know where I am. I don’t even
+know where I’ll be.</p>
+<p><strong>chili</strong>: I’ll find you, Leo . . .</p>
+<p><strong>chili</strong>: You leave a trail like a fuckin’
+caterpillar.</p>
+<p><strong>leo</strong>: Wait a minute. What’s this
+eighteen-percent-a-year shit? You want to borrow ten, the vig’s three
+bills a week. Fifteen for the vig plus the ten, that’s twenty-five big
+ones you go a whole year, buddy! You hear me?</p>
+<p><strong>harry</strong>: How’s anyone gonna see anything from way up
+there?</p>
+<p><strong>chili</strong>: Hey, Harry.</p>
+<p><strong>harry</strong>: Yeah, Chili. Hi. You’re fifty feet in the
+air!</p>
+<p><strong>director</strong>: Harry. I’m gonna boom down real fast, get
+a subjective p-o-v.</p>
+<p><strong>chili</strong>: Listen, I talked to Karen. She’s gonna think
+about helping you out.</p>
+<p><strong>harry</strong>: Yeah, but whose point of view?</p>
+<p><strong>director</strong>: Whatta you mean, whose point of view; The
+audience’s point of view.</p>
+<p><strong>harry</strong>: Get down here. I wanna talk to you. Come on .
+. . right now . . . She’s gonna talk to Martin?</p>
+<p><strong>chili</strong>: She’s thinking about it. I just need the key
+to your office. I just told her I’d pick up a script.</p>
+<p><strong>harry</strong>: It’s the red one. Take it off the ring.</p>
+<p><strong>voice</strong>: Your name Vicky Vespa?</p>
+<p><strong>chili</strong>: Excuse me?</p>
+<p><strong>actress</strong>: I asked you, is your name Vicky Vespa?</p>
+<p><strong>chili</strong>: No.</p>
+<p><strong>actress</strong>: Then get the fuck outta my chair.</p>
+<p><strong>harry</strong>: What’re you doing? I thought I told you to
+get down here?</p>
+<p><strong>harry</strong>: All these camera moves and weird angles and
+shit are gonna distance us from the emotion of the scene.</p>
+<p><strong>director</strong>: What ‘emotion?’ Girl just got stabbed in
+the ear with an ice pick.</p>
+<p><strong>harry</strong>: She’s scared! Fear is an emotion! Look, kid,
+if you remember anything from your time working with Harry Zimm, let it
+be the three key words to filmmaking.</p>
+<p><strong>director</strong>: Yeah? What three words, Harry?</p>
+<p><strong>harry</strong>: Pick ‘n’ Save.</p>
+<p><strong>director</strong>: Hm?</p>
+<p><strong>harry</strong>: You heard me, Pick ‘n’ Save.</p>
+<p><strong>harry</strong>: Now I’m gonna tell you a little story,
+happened to me years ago when I was so broke I had to go to the Pick ‘n’
+Save over on Vine to buy a lousy candybar for my dinner.</p>
+<p><strong>harry</strong>: I’m standing in line waiting to pay my two
+bits when I overhear this lady, call her Mildred, talking to the cashier
+about a movie.</p>
+<p><strong>harry</strong>: So Mildred says to the cashier, ‘I saw the
+new Streisand picture.’ ‘God, I just love it at the end when she brushed
+Robert Redford’s hair off his forehead the way she did when they were
+together, and the way they gave each other this look that said they
+still loved each other, but knew they couldn’t be together. That look
+was so . . . romantic.’</p>
+<p><strong>director</strong>: That’s great, Harry. So what’s the –</p>
+<p><strong>harry</strong>: What she did not say was, ‘I just loved the
+way the director moved the camera so much it made me fuckin’ seasick.’
+All she cared about was that look. All she remembered was that look. And
+why do we remember things in movies? Because we can see them.</p>
+<p><strong>harry</strong>: So . . . keep this fuckin’ camera down here
+on the ground and shoot this scene, so we can see what the fuck is goin’
+on, before I get someone over sixteen to fuckin’ shoot it for you!</p>
+<p><strong>chili</strong>: Here’s your keys, Harry.</p>
+<p><strong>harry</strong>: Get the fuck outta my chair.</p>
+<p><strong>bo catlett</strong>: This ain’t bad, you know it? This
+Mr. Lovejoy. Needs a better ending but yeah, I can see why Harry wants
+to do it.</p>
+<p><strong>bo catlett</strong>: You understand I knew Harry was lying,
+saying this wasn’t any good, but holding on to it, man, like you have to
+break his fingers to get it from him.</p>
+<p><strong>chili</strong>: That’s funny, I was just wondering what I was
+gonna break of yours to get it away from you.</p>
+<p><strong>bo catlett</strong>: I’m just explaining to you what I’m
+doing here. Case you think I come to rob the place, rip off any of this
+dusty old shit the man has.</p>
+<p><strong>chili</strong>: I’d never make you as a burglar, not in that
+outfit.</p>
+<p><strong>bo catlett</strong>: Harry called you his associate, but what
+does that mean? I never heard your name or read it in Variety or The
+Reporter or anyplace.</p>
+<p><strong>chili</strong>: It’s what he said, I’m his associate.</p>
+<p><strong>bo catlett</strong>: You must bring something heavy to the
+deal.</p>
+<p><strong>chili</strong>: That’s right, me.</p>
+<p><strong>bo catlett</strong>: Says here you’re getting Martin Weir for
+the part of Lovejoy.</p>
+<p><strong>chili</strong>: Yeah, we’re getting Martin.</p>
+<p><strong>bo catlett</strong>: No shit, come on. How you gonna do
+that?</p>
+<p><strong>chili</strong>: I put a gun right here . . . . . . and I tell
+him, ‘Sign the paper Marty or your fuckin’ dead.’ Like that.</p>
+<p><strong>bo catlett</strong>: I wonder, would that work? You know who
+I see for Al Roxy? Harvey Keitel. The man could do it in his sleep.</p>
+<p><strong>chili</strong>: Harvey Keitel. Yeah. Maybe. He was pretty
+good in the movie Fingers.</p>
+<p><strong>bo catlett</strong>: I missed that one. Or, hey, you know who
+else? Morgan Freeman. You know Morgan?</p>
+<p><strong>chili</strong>: Yeah, Morgan Freeman. But he’s a colored
+guy.</p>
+<p><strong>bo catlett</strong>: So what? Where’s it say in this script
+he’s white? Color is what the part needs, man, somebody to do it has
+some style. The way it is now, Ronnie could do it, play himself, some
+cracked out asshole. So whatta you think of the script?</p>
+<p><strong>chili</strong>: Title’s the first thing’s got to go. And the
+guy’s name. I mean, even this writer’s name, Murray Saffrin is better
+than Lovejoy.</p>
+<p><strong>bo catlett</strong>: I’m with you on that. And don’t you
+think it needs a good female part? Increase the romance angle.</p>
+<p><strong>chili</strong>: There’s Ilona.</p>
+<p><strong>bo catlett</strong>: What about her?</p>
+<p><strong>chili</strong>: Get something going there.</p>
+<p><strong>bo catlett</strong>: With Ilona? You know how old Ilona
+is?</p>
+<p><strong>chili</strong>: She’s . . . young.</p>
+<p><strong>bo catlett</strong>: Young? She’s fuckin’ nine-years-old,
+same age as Lovejoy’s kid. Bernie. One she calls Bernard. Have you read
+the script?</p>
+<p><strong>chili</strong>: Yeah, I read it. I was just thinking you
+could make her older. We might even be able to get Karen Flores.</p>
+<p><strong>bo catlett</strong>: Who?</p>
+<p><strong>chili</strong>: She’s been out of movies a few years, but
+she’s good. Real good.</p>
+<p><strong>bo catlett</strong>: You know what I’m thinkin’? You wanna
+make the girl older. I don’t like the ending. We could do that, you and
+me, sit down and write the script over where it needs it.</p>
+<p><strong>chili</strong>: You know how to write one of these?</p>
+<p><strong>bo catlett</strong>: There’s nothin’ to know. You have an
+idea, you write down what you wanna say. Then you get somebody to add in
+the commas and shit where they belong, if you aren’t positive yourself.
+Maybe fix up the spelling where you have some tricky words . . .
+although I’ve seen scripts where I know words weren’t spelled right and
+there was hardly any commas in it at all. So I don’t think it’s too
+important. Anyway, you come to the last page you write in ‘Fade out’ and
+that’s the end, you’re done.</p>
+<p><strong>chili</strong>: That’s all there is to it, huh?</p>
+<p><strong>bo catlett</strong>: That’s all.</p>
+<p><strong>chili</strong>: Then what do I need you for?</p>
+<p><strong>bo catlett</strong>: I really think I can be of service on
+this one.</p>
+<p><strong>chili</strong>: Yeah, well, we need a ride somewhere, we’ll
+let you know.</p>
+<p><strong>marlene dietrich</strong>: He was some kind of man.</p>
+<p><strong>marlene dietrich</strong>: What does it matter what you say
+about people?</p>
+<p><strong>mort mills</strong>: Good-bye, Tanya.</p>
+<p><strong>marlene dietrich</strong>: Adios.</p>
+<p><strong>chili</strong>: Wow, huh?</p>
+<p><strong>chili</strong>: You been here the whole time?</p>
+<p><strong>karen</strong>: I just caught the end.</p>
+<p><strong>chili</strong>: You know, Welles didn’t even wanna do that
+one. Some studio made him do it. He owed ’em one and all his own movies
+lost money. But, hey, sometimes that’s when you do your best work, you
+got a gun to your head . . .</p>
+<p><strong>chili</strong>: I got you a copy of the script.</p>
+<p><strong>karen</strong>: I already read it. Harry left a copy at the
+house.</p>
+<p><strong>chili</strong>: What do you think?</p>
+<p><strong>karen</strong>: I think it’s not horrible.</p>
+<p><strong>chili</strong>: I don’t like the title. Or the main guy’s
+name.</p>
+<p><strong>karen</strong>: Then you’ve read it?</p>
+<p><strong>chili</strong>: Not yet.</p>
+<p><strong>karen</strong>: You and Harry’ll make a great team. I’m gonna
+make a deal with him.</p>
+<p><strong>chili</strong>: There a part in it for you?</p>
+<p><strong>karen</strong>: I don’t want to act in it, I want to produce
+it with Harry. Especially if I help him get Martin.</p>
+<p><strong>chili</strong>: Sounds fair.</p>
+<p><strong>karen</strong>: What do you get out of it?</p>
+<p><strong>chili</strong>: That why you came over here, to ask me
+that?</p>
+<p><strong>karen</strong>: I want to know.</p>
+<p><strong>chili</strong>: Why does anyone want to be in movies?</p>
+<p><strong>karen</strong>: Yesterday, you were a loan shark.</p>
+<p><strong>chili</strong>: I was never much into it. All that bullshit
+having to do with respect. It’s bad enough having to treat those guys
+like they’re your heroes, having to smile when they make some stupid
+remark they think’s real funny.</p>
+<p><strong>karen</strong>: And you think the movie business is any
+different?</p>
+<p><strong>chili</strong>: Yeah well . . . I like movies. I figure if I
+help Harry make one, I’ll find out what you have to do outside of have
+an idea and raise the money. That doesn’t sound too hard. I was in the
+money business and I get ideas all the time.</p>
+<p><strong>karen</strong>: I’m talking to Martin tomorrow morning. I
+told Harry I’d meet you and him at Abiquiu afterward. This might work,
+you never know.</p>
+<p><strong>harry</strong>: Who is it?</p>
+<p><strong>woman’s voice</strong>: Me.</p>
+<p><strong>harry</strong>: Fuck.</p>
+<p><strong>woman’s voice</strong>: I heard that.</p>
+<p><strong>harry</strong>: Hello, Doris.</p>
+<p><strong>doris</strong>: Harry Zimm. You look like a wet kiss.</p>
+<p><strong>doris</strong>: Well, aren’t you gonna offer me whatever it
+is you taste like?</p>
+<p><strong>harry</strong>: Come on in.</p>
+<p><strong>doris</strong>: What a spectacular view.</p>
+<p><strong>harry</strong>: Yeah, lovely. Last night I watched two guys
+carjack a Camero down on the corner of Argyle there. What do you want,
+Doris?</p>
+<p><strong>doris</strong>: I miss Murray, Harry.</p>
+<p><strong>harry</strong>: Yeah, me too. He was a helluva good writer.
+And I would know. I discovered him. Made him what he was.</p>
+<p><strong>doris</strong>: What he was, was a hack, couldn’t get a job
+writing for anybody but you. I’m being honest. He was a lousy writer,
+but he was a good husband. I just didn’t know it until too late.</p>
+<p><strong>harry</strong>: Yeah, well, twenty-twenty hindsight and all
+that.</p>
+<p><strong>doris</strong>: I hate being alone. The house is so quiet. So
+lonely. It needs . . . A man’s touch.</p>
+<p><strong>harry</strong>: Nice garter.</p>
+<p><strong>harry</strong>: I’m not sure how I feel about this,
+Doris.</p>
+<p><strong>doris</strong>: You seem to feel fine about it.</p>
+<p><strong>harry</strong>: I mean morally. Murray was my friend.</p>
+<p><strong>doris</strong>: Murray’s dead.</p>
+<p><strong>harry</strong>: So this means you’ve reconsidered our deal on
+Mr. Lovejoy?</p>
+<p><strong>doris</strong>: No. But now that you mention it, I did talk
+to a handsome executive at Paramount the other day . . . who just
+happened to get his hands on the script.</p>
+<p><strong>harry</strong>: Yeah, what’d he have to say?</p>
+<p><strong>doris</strong>: He said if Martin’s interested, I could get a
+half a million for it easy. But don’t worry, Harry, I’m still giving you
+until Friday.</p>
+<p><strong>harry</strong>: How honorable of you.</p>
+<p><strong>doris</strong>: Harry. If you want me to go, just say the
+word.</p>
+<p><strong>harry</strong>: What the hell . . .</p>
+<p><strong>yayo</strong>: Listen to me, man, I don’t wan’ no focking
+key. I wan’ the money.</p>
+<p><strong>bo catlett</strong>: Hey, Yayo? You gonna smoke, get the hell
+off my seventy-bucks-a-yard carpet.</p>
+<p><strong>bo catlett</strong>: I told you where the money is. All you
+gotta do is go get it.</p>
+<p><strong>yayo</strong>: No. I’ll tell you something</p>
+<p><strong>bo catlett</strong>: That’s all you know, huh? Wait here a
+minute, Yayo, I be back directly.</p>
+<p><strong>yayo</strong>: The fock you doing with that?</p>
+<p><strong>bo catlett</strong>: I’m taking you out, Yahoo.</p>
+<p><strong>bo catlett</strong>: Dead focking center, man.</p>
+<p><strong>bo catlett</strong>: Shit, now someone’s gotta climb down
+there and get him.</p>
+<p><strong>bear</strong>: You didn’t have to shoot him, Bo. We coulda
+just beat him up some.</p>
+<p><strong>bo catlett</strong>: You see that? The way the man just went
+right over?</p>
+<p><strong>bo catlett</strong>: Maybe we can get Chili Palmer up here.
+You fix my railing to give way like they do in the movies. Then I invite
+the man out here, have a look at my view. Get him to lean over the
+railing, see all the naked people down there . . . a tragic accident,
+officer . . .</p>
+<p><strong>bear</strong>: Cat, that’s the lamest idea I’ve ever
+heard.</p>
+<p><strong>bo catlett</strong>: Yeah, well, I’m bored, Bear. I wanna
+make movies.</p>
+<p><strong>bo catlett</strong>: I mean, what’s the point of living in
+L.A. if you’re not in the movie business?</p>
+<p><strong>bo catlett</strong>: And I mean high up in it. That’s why
+Harry’s gonna make Mr. Lovejoy with me, not Chili Palmer.</p>
+<p><strong>bear</strong>: Mr. Lovejoy? That’s cute, Bo.</p>
+<p><strong>bo catlett</strong>: Doesn’t matter what it’s called, Harry’s
+got Martin Weir and it’s gonna be big.</p>
+<p><strong>bear</strong>: They all sound big at the talking stage.</p>
+<p><strong>chili</strong>: This thing’s actually accurate. I bought it
+for ten bucks from a kid in a lawn chair on Sunset . . .</p>
+<p><strong>karen</strong>: You were supposed to wait for me with Harry
+at the restaurant.</p>
+<p><strong>chili</strong>: See, here it is . . . Martin Weir’s house . .
+. right across the steet from George Hamilton.</p>
+<p><strong>voice</strong>: Chili, Jesus!</p>
+<p><strong>woman</strong>: It is you . . .</p>
+<p><strong>chili</strong>: Nicole?</p>
+<p><strong>woman</strong>: It’s Nicki now. I don’t believe this.</p>
+<p><strong>chili</strong>: Me neither. We know each other.</p>
+<p><strong>karen</strong>: Hello, Nicki.</p>
+<p><strong>nicki</strong>: Karen. Shit. I didn’t see you there. How are
+you?</p>
+<p><strong>nicki</strong>: Martin will be out in a minute. Chili was the
+only one at Momo’s didn’t hit on me.</p>
+<p><strong>karen</strong>: What a gentleman.</p>
+<p><strong>nicki</strong>: You like my hair? Black like this?</p>
+<p><strong>chili</strong>: It’s nice. Especially under your arms.</p>
+<p><strong>nicki</strong>: Martin won’t let me shave. I guess I fill
+some need. Brings him back to the sixties or something.</p>
+<p><strong>nicki</strong>: Speak of the devil . . .</p>
+<p><strong>martin</strong>: Karen. Wow. Look at you . . .</p>
+<p><strong>karen</strong>: Hello, Martin.</p>
+<p><strong>martin</strong>: Mmmmm. You smell terrific. She always
+smelled so good.</p>
+<p><strong>nicki</strong>: Neat. Martin, this is Chili Palmer.</p>
+<p><strong>martin</strong>: Chili is it?</p>
+<p><strong>chili</strong>: Yesh, a pleasure, Martin.</p>
+<p><strong>nicki</strong>: Chili’s a gangster. Ran a club I used to play
+at for another gangster back in Miami. How is Momo these days
+anyway?</p>
+<p><strong>chili</strong>: Dead.</p>
+<p><strong>nicki</strong>: Bummer. Well, I’ll let you all get to your
+movie talk. Chili, make sure you say good-bye before you leave.</p>
+<p><strong>martin</strong>: I’m sitting here, I’m looking at you and I’m
+having these flashes. You know, flashbacks, of memories. Of us.</p>
+<p><strong>karen</strong>: Really.</p>
+<p><strong>martin</strong>: Yeah and I’m wondering, how did it go wrong?
+How did it all . . . slip away?</p>
+<p><strong>karen</strong>: ‘It’ didn’t slip away, Martin, you did . . .
+when you went off to fuck Nicki in the middle of my birthday party.</p>
+<p><strong>martin</strong>: Yeah. That was a good party.</p>
+<p><strong>chili</strong>: You know, Marty, you were good in The
+Cyclone.</p>
+<p><strong>martin</strong>: Martin. It was a beautiful role. All I had
+to do was find the character’s center, the stem I’d used to wind him up
+and he’d play, man, he’d play.</p>
+<p><strong>chili</strong>: Well, you had it down cold. Watching you in
+the movie, if I didn’t know better I’d have to believe you were a made
+guy and not acting. Even the fink part. I never met a fink and I hope to
+God I never do, but how you did it must be the way finks act.</p>
+<p><strong>martin</strong>: A few weeks before shooting, I went back to
+Bensonhurst, just to listen to you guys. See, I’m Italian, but I grew up
+in Tarzana. So I wanted to pick up your rhythms of speech.</p>
+<p><strong>chili</strong>: We talk different?</p>
+<p><strong>martin</strong>: It’s more like your attitude. Your tone,
+your speech patterns demonstrate a certain confidence in yourselves, in
+your opinions, your indifference to conventional views.</p>
+<p><strong>chili</strong>: You mean like we don’t give a shit.</p>
+<p><strong>martin</strong>: Yeah. Kinda. Anyway, once I have the
+authentic sounds of speech, the rhythms, man, the patois, I can actually
+begin to think the way those guys do, get inside their heads.</p>
+<p><strong>chili</strong>: Okay, I’m one of those guys you mentioned.
+I’m actually one of ’em. What am I thinking?</p>
+<p><strong>martin</strong>: Don’t get me wrong, I’m not saying an actual
+metamorphosis takes place. That wouldn’t be acting.</p>
+<p><strong>chili</strong>: So you don’t know what I’m thinking.</p>
+<p><strong>martin</strong>: No, I don’t. Though I have to say I’m
+curious.</p>
+<p><strong>chili</strong>: So you want to know.</p>
+<p><strong>martin</strong>: If you’d like to tell me, yeah.</p>
+<p><strong>chili</strong>: I’m thinking of a movie.</p>
+<p><strong>martin</strong>: One of mine?</p>
+<p><strong>chili</strong>: One we’re producing.</p>
+<p><strong>martin</strong>: With what? Wiseguy money?</p>
+<p><strong>karen</strong>: Maybe this was a bad idea.</p>
+<p><strong>chili</strong>: Martin, I’m not connected to those people
+anymore. Not since I walked out of a loan-shark Operation in Miami.</p>
+<p><strong>martin</strong>: What happened? The pressure got to you?</p>
+<p><strong>chili</strong>: Pressure? I’m the one applied the
+pressure.</p>
+<p><strong>chili</strong>: You’re an actor, you like to pretend. Imagine
+you’re the shylock. A guy owes you fifteen grand and he skips, leaves
+town. What do you do?</p>
+<p><strong>karen</strong>: Oh, for Christ’s sake –</p>
+<p><strong>martin</strong>: I know. I’m doing Shylock instead of a
+shylock. Okay, what’s my motivation? The acquisition of money. To
+collect. Inflict pain if I have to.</p>
+<p><strong>martin</strong>: Guy owes me fifteen large and takes off, I
+go after him. The fuck you think I do?</p>
+<p><strong>chili</strong>: Martin, look at me.</p>
+<p><strong>martin</strong>: I’m looking at you.</p>
+<p><strong>chili</strong>: No, I want you to look at me the way I’m
+looking at you. Put it in your eyes, ‘You’re mine, asshole,’ without
+saying it.</p>
+<p><strong>martin</strong>: Like this?</p>
+<p><strong>chili</strong>: What you’re telling me, you’re tired? You
+wanna go to bed?</p>
+<p><strong>martin</strong>: Wait. How about this?</p>
+<p><strong>chili</strong>: Now you’re squinting like you need
+glasses.</p>
+<p><strong>chili</strong>: Look at me. I’m thinking, You’re mine. I
+fuckin’ own you. What I’m not doing is feeling anything about it one way
+or the other. You understand? You’re not a person to me, you’re a name
+in my collection book, a guy owes me money, that’s all.</p>
+<p><strong>martin</strong>: How about this?</p>
+<p><strong>chili</strong>: That’s not bad.</p>
+<p><strong>martin</strong>: That’s what I think of you, asshole.
+Nothing.</p>
+<p><strong>chili</strong>: I believe it.</p>
+<p><strong>martin</strong>: I turn it on when I confront the guy.</p>
+<p><strong>chili</strong>: Yeah, but you haven’t found him yet. The guy
+took off for Las Vegas.</p>
+<p><strong>martin</strong>: How do I know that?</p>
+<p><strong>chili</strong>: The guy’s wife tells you . . .</p>
+<p><strong>voice</strong>: Harry, how you doing?</p>
+<p><strong>harry</strong>: Bo. I’m great. Listen, I’m expecting some
+people –</p>
+<p><strong>bo catlett</strong>: You must be makin’ some big deals, doin’
+lunch in a place like this?</p>
+<p><strong>harry</strong>: I’m working on a few things.</p>
+<p><strong>bo catlett</strong>: Yeah, I hear you bagged Martin Weir for
+Mr. Lovejoy.</p>
+<p><strong>harry</strong>: Boy, this town. Word gets around, doesn’t
+it?</p>
+<p><strong>bo catlett</strong>: Chili Palmer told me.</p>
+<p><strong>bo catlett</strong>: Last night. When he called me over to
+your office to talk about it.</p>
+<p><strong>harry</strong>: Chili Palmer showed you my script?</p>
+<p><strong>bo catlett</strong>: Yeah, I was wondering why he should do
+that.</p>
+<p><strong>martin</strong>: The wife sues the airline. This is a gutsy
+babe.</p>
+<p><strong>chili</strong>: Good-looking, too. Like Karen.</p>
+<p><strong>martin</strong>: So when do I meet up with the husband and
+give him the look?</p>
+<p><strong>chili</strong>: It’s not that simple. You have to be careful.
+There’s another guy that comes along, a hard-on you owe some money to. A
+mob guy. Wants to take you out anyway, on account of a past
+situation.</p>
+<p><strong>martin</strong>: Okay. I’m listening.</p>
+<p><strong>chili</strong>: At that point, basically, that has to be
+it.</p>
+<p><strong>martin</strong>: You’re not going to tell me the rest?</p>
+<p><strong>karen</strong>: Well actually, Martin the movie we came to
+talk about is Mr. Lovejoy.</p>
+<p><strong>chili</strong>: Yeah. We understand you read the script and
+like it . . . a lot.</p>
+<p><strong>martin</strong>: Refresh my memory . . .</p>
+<p><strong>bo catlett</strong>: Listen, Harry, how would you like to get
+your hands on five hundred grand? You pay me back at your convenience,
+no interest.</p>
+<p><strong>harry</strong>: You serious?</p>
+<p><strong>bo catlett</strong>: All I want in return is to work on the
+movie with you. Fact I already got some ideas on how to fix it up.</p>
+<p><strong>bo catlett</strong>: How ’bout another one for Mr. Zimm. A
+double.</p>
+<p><strong>harry</strong>: You’re gonna just give me five hundred
+grand?</p>
+<p><strong>bo catlett</strong>: We’ll talk about that, Harry. But first
+I gotta know, how’d you hook up with Chili Palmer.</p>
+<p><strong>martin</strong>: Lemme talk to Buddy, set up a meeting.</p>
+<p><strong>chili</strong>: Buddy?</p>
+<p><strong>karen</strong>: Lufkin. His . . . agent.</p>
+<p><strong>martin</strong>: Yeah, Karen knows him.</p>
+<p><strong>karen</strong>: But you are interested?</p>
+<p><strong>martin</strong>: I’m intrigued, yeah. You know what might
+help you, take a look at the Cylone again, the way a visual fabric is
+maintained even while the metaphor plays on different levels. Hey – This
+your ride, Chili?</p>
+<p><strong>martin</strong>: Very nice . . .</p>
+<p><strong>chili</strong>: Yeah, I like it, I’m high up, I can see
+everything, you know? It’s the Cadillac of minivans.</p>
+<p><strong>martin</strong>: What’s that?</p>
+<p><strong>chili</strong>: Compass.</p>
+<p><strong>martin</strong>: Wow. Mind if I take it for a spin?</p>
+<p><strong>bo catlett</strong>: He was watching Letterman, huh? Sneaky,
+that Chili Palmer. So, he ever find this dry cleaner, the one with all
+that money on him?</p>
+<p><strong>harry</strong>: Leo, I don’t know.</p>
+<p><strong>bo catlett</strong>: I bet he did and he ain’t givin’ you a
+penny of it, help you out. Not the way I am.</p>
+<p><strong>harry</strong>: Assuming I go along with this, when can I
+have the five hundred?</p>
+<p><strong>bo catlett</strong>: Whenever you want it. The money’s in
+hundred dollar bills inside one of those jock bags, you know? In a
+locker at the airport, waiting to be picked up.</p>
+<p><strong>harry</strong>: The airport.</p>
+<p><strong>bo catlett</strong>: It was waiting out there on another
+deal, one that didn’t go through; one you don’t want to know about.</p>
+<p><strong>harry</strong>: I don’t know.</p>
+<p><strong>bo catlett</strong>: It’s not the kind of thing you do.</p>
+<p><strong>bo catlett</strong>: That’s why I was thinking you could send
+your boy Chili Palmer. He gets busted or hit on the head you aren’t out
+nothing.</p>
+<p><strong>bo catlett</strong>: That’s the magic number.</p>
+<p><strong>bear</strong>: Cat . . .</p>
+<p><strong>chili</strong>: Wait here.</p>
+<p><strong>bo catlett</strong>: I’d like you to meet my associate, the
+Bear. Movie stuntman and champion weightlifter, as you might’ve noticed.
+Picks up and throws out things I don’t want.</p>
+<p><strong>bear</strong>: We think you ought to turn around and go back
+to Miami.</p>
+<p><strong>chili</strong>: So you’re a stuntman. Are you any good?</p>
+<p><strong>chili</strong>: Not bad for a guy his size.</p>
+<p><strong>chili</strong>: I’ll make you a deal. If you can get out of
+here before I take my coat off, I won’t clean the floor with you, get
+your little costume all messed up.</p>
+<p><strong>bo catlett</strong>: You don’t know me. You only think you
+do.</p>
+<p><strong>chili</strong>: Rough business this movie business. I may
+have to go back to loan sharking for a rest.</p>
+<p><strong>karen</strong>: Harry, what’re you still doing with those
+guys?</p>
+<p><strong>harry</strong>: He happens to be loaning me five hundred
+grand, no strings, I write any kind of agreement I want.</p>
+<p><strong>chili</strong>: Is he giving you a check or cash?</p>
+<p><strong>harry</strong>: Cash. It happens to be waiting right at this
+moment in a locker at the airport.</p>
+<p><strong>karen</strong>: A locker at the airport? Jesus Christ, Harry.
+Tell me you’re not really that stupid.</p>
+<p><strong>chili</strong>: The guy’s setting you up. You pulled out of
+their Freaks deal so he’s paying you back.</p>
+<p><strong>harry</strong>: Oh, is that right? I’m being set up? Then how
+come Catlett said I should send you out to get it, since you haven’t
+done a fucking thing for me since you got into this . . . except showing
+Bo Catlett my script?</p>
+<p><strong>chili</strong>: Okay, Harry, I’m wrong. You’re not the one
+he’s setting up.</p>
+<p><strong>harry</strong>: I mean, at least Bo’s invested in three of my
+movies.</p>
+<p><strong>karen</strong>: Harry, we spoke with Martin.</p>
+<p><strong>harry</strong>: ‘We?’</p>
+<p><strong>karen</strong>: Chili and me.</p>
+<p><strong>harry</strong>: Really.</p>
+<p><strong>chili</strong>: Yeah, he wants us to talk to Buddy, set up a
+meeting.</p>
+<p><strong>harry</strong>: A meeting with who? You and Karen?</p>
+<p><strong>karen</strong>: Harry –</p>
+<p><strong>harry</strong>: Man’s in town two days, thinks he’s David O.
+fucking Selznick.</p>
+<p><strong>harry</strong>: So how ’bout it, Mr. Selznick, do I make my
+deal with Bo? Or you gonna finally help me out, have a word with your
+dry cleaner when you find him.</p>
+<p><strong>chili</strong>: I found him.</p>
+<p><strong>chili</strong>: Forget about Leo’s money, Harry.</p>
+<p><strong>harry</strong>: You have it?</p>
+<p><strong>chili</strong>: Harry, if I gave you Leo’s money you’d have
+Ray Bones all over your ass and then you’d be in a whole new kinda
+trouble.</p>
+<p><strong>harry</strong>: Who?</p>
+<p><strong>chili</strong>: Ray Barboni. Guy from Miami, owns Leo now
+that Momo died.</p>
+<p><strong>harry</strong>: Who the fuck is Momo? Jesus, these fucking
+names . . .</p>
+<p><strong>chili</strong>: Tell you what, Harry, tomorrow morning, when
+the airport’s crowded, I’ll go check it out. If I don’t see a problem,
+I’ll pick up the money . . .</p>
+<p><strong>karen</strong>: I wouldn’t get my hopes up, Harry.</p>
+<p><strong>harry</strong>: Maybe I oughta talk to this Ray Bones
+character myself. See if he wants to invest in my movie.</p>
+<p><strong>chili</strong>: Don’t waste your time, Harry. The guy’s not
+much of a movie fan. Now c’mon, gimme the key.</p>
+<p><strong>harry</strong>: Bones. B-O-N-E-S.</p>
+<p>****: I show a ‘Dem Bones Barbecue’ in Dade County, but that’s
+all.</p>
+<p><strong>harry</strong>: Oh. Wait a minute. That’s not his real name.
+It’s uh . . . uh . . . yeah – try Barboni. B-a-r-b-o-n-i.</p>
+<p><strong>bones</strong>: Fuck.</p>
+<p><strong>bones</strong>: Fuck fuck fuck fuck . . .</p>
+<p><strong>bones</strong>: What?</p>
+<p><strong>harry</strong>: Ray Barboni?</p>
+<p><strong>bones</strong>: Who is this?</p>
+<p><strong>harry</strong>: Are you the guy they called Ray Bones?</p>
+<p><strong>bones</strong>: Depends. Who’s this?</p>
+<p><strong>harry</strong>: Who is this? I’m the one telling you the way
+it is, okay, asshole? That’s who I am. Now you want your three hundred
+grand or don’t you?</p>
+<p><strong>bones</strong>: What three hundred grand?</p>
+<p><strong>harry</strong>: The three hundred grand a guy named Leo Devoe
+scammed off an airline. The three hundred grand Chili Palmer now has in
+his possession.</p>
+<p><strong>harry</strong>: Hello? You there?</p>
+<p><strong>bones</strong>: Yeah, I’m here. I just don’t like the
+anonymous crap. It means your either chickenshit or not for real.</p>
+<p><strong>harry</strong>: Yeah? Well, trust me. I’m very for real.</p>
+<p><strong>bones</strong>: Okay. So who are you?</p>
+<p><strong>harry</strong>: I work for Harry Zimm, alright?</p>
+<p><strong>bones</strong>: Who?</p>
+<p><strong>harry</strong>: Harry Zimm. The man happens to be a major
+Hollywood player.</p>
+<p><strong>bones</strong>: Never heard of him.</p>
+<p><strong>harry</strong>: Maybe that’s because you’ve never been out’ve
+fuckin’ Miami, dipshit. Maybe it’s time you got on a plane, flew out to
+L.A. and took a meeting with Mr. Zimm.</p>
+<p><strong>bones</strong>: So, what, this Zimm guy asking for some kinda
+finders fee, that what we’re talking about here?</p>
+<p><strong>harry</strong>: Hey, Zimm doesn’t ask for dick. Zimm tells
+you the way it is . . . or else.</p>
+<p><strong>bones</strong>: Or else what?</p>
+<p><strong>harry</strong>: Or else use your fucking imagination.</p>
+<p><strong>harry</strong>: Motherfucker.</p>
+<p><strong>chili</strong>: You want to make five bucks, take you two
+minutes?</p>
+<p><strong>chili</strong>: You go over to those lockers over there and
+put this in C-17.</p>
+<p><strong>chili</strong>: It’s a surprise for my wife. But you have to
+do it quick, okay? While she’s in the can.</p>
+<p><strong>kid</strong>: Yeah, okay.</p>
+<p><strong>chili</strong>: Thanks.</p>
+<p><strong>black guy/curtis</strong>: Excuse me, sir . . .</p>
+<p><strong>black guy/curtis</strong>: Curtis. Drug Enforcement. These
+are Agents Dunbar and Morgan, would you come with us, please?</p>
+<p><strong>chili</strong>: What’s wrong? What’s this about?</p>
+<p><strong>dunbar</strong>: Let’s follow him and behave ourselves. What
+do you say?</p>
+<p><strong>guy</strong>: Mr. Barbone? Welcome to L.A. I’m Bobby, your
+driver. You have a good flight?</p>
+<p><strong>ray bones</strong>: I hope you drive better than you fucking
+spell, jackoff. My name’s Barboni, not Bar-bone.</p>
+<p><strong>big guy</strong>: You want to go to the hotel first,
+Mr. Escobar?</p>
+<p><strong>mr. escobar</strong>: I want to get my focking money.</p>
+<p><strong>curtis</strong>: You live in Miami?</p>
+<p><strong>chili</strong>: That’s right.</p>
+<p><strong>curtis</strong>: What’re you doing in Los Angeles?</p>
+<p><strong>chili</strong>: I’m in the movie business.</p>
+<p><strong>curtis</strong>: You’re an investor, is that it?</p>
+<p><strong>chili</strong>: I’m a producer.</p>
+<p><strong>curtis</strong>: You have a card in here?</p>
+<p><strong>chili</strong>: Not yet. I just started.</p>
+<p><strong>chili</strong>: I’d appreciate your telling me what this is
+about.</p>
+<p><strong>morgan</strong>: I got a John Doe warrant here. I can
+strip-search you if I want.</p>
+<p><strong>curtis</strong>: Pat him down.</p>
+<p><strong>morgan</strong>: Why don’t I strip-search him.</p>
+<p><strong>curtis</strong>: Pat him down.</p>
+<p><strong>morgan</strong>: Spread your legs.</p>
+<p><strong>curtis</strong>: What’re you doing at the airport?</p>
+<p><strong>chili</strong>: I was supposed to meet my wife, but she
+wasn’t on the flight.</p>
+<p><strong>dunbar</strong>: Why, you live in Miami, was your wife coming
+from Newark?</p>
+<p><strong>chili</strong>: We had a fight and she left me, went back to
+Brooklyn. I asked her to come out here, you know, thinking with a change
+of scenery maybe we could get back together, and she said okay, but
+evidently she changed her mind.</p>
+<p><strong>curtis</strong>: Your wife a Lakers fan?</p>
+<p><strong>chili</strong>: I am. I’m a fan of everything that’s L.A. I
+love it out here.</p>
+<p><strong>curtis</strong>: You can go.</p>
+<p><strong>curtis</strong>: By the way, you recall the number of the
+locker you used?</p>
+<p><strong>chili</strong>: It was C . . . I don’t know, sixteen or
+seventeen, one of those. Why? You looking for anyway, a bomb or
+something?</p>
+<p><strong>curtis</strong>: Something shouldn’t be there.</p>
+<p><strong>chili</strong>: Why don’t you get the attendant to open all
+the lockers and take a look. Maybe you’ll find it.</p>
+<p><strong>curtis</strong>: That’s the idea. I’ll think about it.</p>
+<p><strong>chili</strong>: That’s what I’d do. Make sure I got the right
+guy next time.</p>
+<p><strong>curtis</strong>: Get him out’ve here.</p>
+<p><strong>bobby</strong>: You ever wanta go to the beach, here’s the
+freeway you take we’re coming to.</p>
+<p><strong>ray bones</strong>: I live in Miami and you want to show me a
+fuckin’ beach? The sun ever come out here, or you have this smog all the
+time?</p>
+<p><strong>bobby</strong>: They say the smog’s the reason we have such
+beautiful sunsets.</p>
+<p><strong>ray bones</strong>: That’s what they say, huh? What a buncha
+fuckin’ bullshit.</p>
+<p><strong>chili</strong>: I don’t know how I could’ve missed you with
+that shirt on. It’s the same as the other one you had only the hibiscus
+are a different color. Right?</p>
+<p><strong>bear</strong>: So you didn’t have the key with you.</p>
+<p><strong>chili</strong>: You think I’d be standing here? You set
+somebody up and you want it to work, it has to be a surprise. Can you
+remember that?</p>
+<p><strong>bear</strong>: You spotted them, huh?</p>
+<p><strong>chili</strong>: What, did you see it work in some movie you
+got beat up in?</p>
+<p><strong>bear</strong>: I have to ask you for that key.</p>
+<p><strong>chili</strong>: What, the setup didn’t work so you want the
+key back?</p>
+<p><strong>bear</strong>: Catlett says if you don’t open the locker the
+deal’s off.</p>
+<p><strong>chili</strong>: You serious? This is how you guys do
+business? I can’t believe you aren’t dead.</p>
+<p><strong>chili</strong>: Look, there’s no fuckin’ way I’m gonna give
+you the key, outside of you point a gun at my head. Then we might have
+something to talk about. Now step away from the car.</p>
+<p><strong>bear</strong>: I don’t need a gun. Where is it? If it isn’t
+on you, it’s around here someplace.</p>
+<p><strong>chili</strong>: Lie down on your back. Come on, if you want
+to breathe.</p>
+<p><strong>chili</strong>: Take deep breaths through your mouth and let
+it out slow . . . that’s it, like that.</p>
+<p><strong>chili</strong>: Hey, Bear, look at me.</p>
+<p><strong>chili</strong>: Tell your boss I don’t ever want to see him
+again. He made a deal with Harry and a deal’s a deal.</p>
+<p><strong>chili</strong>: What’re you hanging around with a guy like
+that for? You were in the movies, right? A stuntman? What’s he ever done
+he can talk about? You feel okay?</p>
+<p><strong>bear</strong>: Not too bad.</p>
+<p><strong>chili</strong>: How ’bout when you went down the stairs?</p>
+<p><strong>bear</strong>: I think I pulled my quadriceps.</p>
+<p><strong>chili</strong>: So . . . how many movies you been in?</p>
+<p><strong>bear</strong>: About sixty.</p>
+<p><strong>chili</strong>: No shit? What’re some of ’em?</p>
+<p><strong>voice</strong>: Harry Zimm?</p>
+<p><strong>harry</strong>: What – who is it . . . ?</p>
+<p><strong>ray bones</strong>: The dipshit who’s never been out’ve
+Miami.</p>
+<p><strong>harry</strong>: Mr. Barboni. Well. This is surprise . . .</p>
+<p><strong>harry</strong>: Please. Have a seat. Right here in this chair
+right here . . .</p>
+<p><strong>bones</strong>: They say the fuckin’ smog’s the reason you
+have such beautiful sunsets.</p>
+<p><strong>bo catlett</strong>: Whatta you mean, he faked them out?</p>
+<p><strong>bear</strong>: He knew it was a set up. He was ready for
+it.</p>
+<p><strong>bo catlett</strong>: So where’s the money?</p>
+<p><strong>bear</strong>: I guess still in the locker.</p>
+<p><strong>bo catlett</strong>: You guess? You mean you don’t know?</p>
+<p><strong>bear</strong>: I mean I don’t care.</p>
+<p><strong>bo catlett</strong>: Bear, I’m going to call you later.</p>
+<p><strong>bo catlett</strong>: Mr. Escobar. What a surprise. Welcome to
+L.A.</p>
+<p><strong>escobar</strong>: Where is my nephew?</p>
+<p><strong>bo catlett</strong>: Your who?</p>
+<p><strong>escobar</strong>: Yayo. Where is he?</p>
+<p><strong>escobar</strong>: He’s my sister’s kid. No papa. Not too
+bright. Personally, I think he’s a retard. I only gave him the job as a
+favor for my sister, you understand?</p>
+<p><strong>bo catlett</strong>: Sure. Family. I know how that goes.</p>
+<p><strong>escobar</strong>: He comes up here with our product. He
+suppose to come home with five hundred thousand dollars. He never shows
+up. Meanwhile, my sister’s going crazy calling me all the time worried
+about him. Me, I just wanna know what happened to my focking money.</p>
+<p><strong>bo catlett</strong>: Well, I don’t know. I gave the man his
+money, sent him on his way.</p>
+<p><strong>escobar</strong>: You gave him the money?</p>
+<p><strong>bo catlett</strong>: I gave him a key to a locker that had
+the money in it.</p>
+<p><strong>escobar</strong>: Now why would you do that? Put the money in
+a locker?</p>
+<p><strong>bo catlett</strong>: Because there were a zillion DEA guys
+hanging around the terminal.</p>
+<p><strong>escobar</strong>: A zillion, huh? That’s a lot.</p>
+<p><strong>bo catlett</strong>: Maybe your nephew panicked, took
+off.</p>
+<p><strong>escobar</strong>: Where’s your partner, the jumpy one? Why
+isn’t he here?</p>
+<p><strong>bo catlett</strong>: He’s around someplace.</p>
+<p><strong>escobar</strong>: I hear he’s around Palm Springs. Dealing
+our product. Product we sold to you for five hundred thousand dollars.
+Why do you keep talking to me bullshit? I think maybe I have Ramon and
+Ceasar staple your tongue to your chin. What do you think?</p>
+<p><strong>bo catlett</strong>: You know, you speak very good English,
+Mr. Escobar.</p>
+<p><strong>escobar</strong>: I went to UC San Diego. We’re gonna spend
+the weekend at the Universal Sheraton. We’re gonna take the tour. See
+the shark. Check out the Miami Vice Action Spectacular. After, we’ll
+come here, get our money.</p>
+<p><strong>escobar</strong>: Oh, yeah, and Yayo, too.</p>
+<p><strong>ronnie</strong>: His fucking nephew?</p>
+<p><strong>bo catlett</strong>: You get to town, you go straight to the
+bank, raid the limo account.</p>
+<p><strong>ronnie</strong>: I’m already in town, but it don’t matter. We
+got dick in the bank. We dumped it all in Harry’s movie.</p>
+<p><strong>bo catlett</strong>: What I’m sayin’ is the man wants his
+money and he wants it now.</p>
+<p><strong>harry</strong>: I’m talking about you, Ray Barboni, owning a
+piece of a major motion picture. How big a piece is up to you. What I’m
+saying, you could invest part of the three hundred Palmer owes you or
+you could invest all of it. It’s entirely up to you . . .</p>
+<p><strong>bones</strong>: Where’s Leo Devoe? Where’s Chili Palmer?
+Where’s my fuckin’ money?</p>
+<p><strong>harry</strong>: Ray. Look at me.</p>
+<p><strong>bones</strong>: What?</p>
+<p><strong>harry</strong>: Look at me, Ray.</p>
+<p><strong>bones</strong>: You say look at you?</p>
+<p><strong>harry</strong>: That’s correct. Look at me.</p>
+<p><strong>bones</strong>: I tell you what . . .</p>
+<p><strong>bones</strong>: Fuckin look at that, asshole . . .</p>
+<p><strong>bones</strong>: And have a peek at that . . .</p>
+<p><strong>bones</strong>: You know, Harry, this is the exact fucking
+thing I needed after the fucking plane flight. My ass fell asleep . . .
+. . . seven times. I need a little fucking . . . . . . exercise.</p>
+<p><strong>bones</strong>: You got a big problem, Harry.</p>
+<p><strong>bones</strong>: Hey, Harry . . . Harry. Don’t you pass out on
+me. Look up here . . .</p>
+<p><strong>bones</strong>: Where’s my money?</p>
+<p><strong>bones</strong>: Harry. I’m gonna ask you one more time, then
+I’m gonna shoot you, you don’t tell me what I wanna know . . .</p>
+<p><strong>bones</strong>: Where’s my money?</p>
+<p><strong>voice</strong>: Your money?</p>
+<p><strong>ronnie</strong>: Who the fuck are you?</p>
+<p><strong>bones</strong>: Ray Barboni. From Miami.</p>
+<p><strong>ronnie</strong>: What, like that’s supposed to mean something
+to me?</p>
+<p><strong>ronnie</strong>: The man you’re steppin’ on belongs to me and
+my partner.</p>
+<p><strong>bones</strong>: He owes me money.</p>
+<p><strong>ronnie</strong>: Get in line, bro.</p>
+<p><strong>bones</strong>: I don’t like waiting.</p>
+<p><strong>ronnie</strong>: Tough shit, bro. This ain’t Miami. You want
+something, talk to me.</p>
+<p><strong>bones</strong>: Hey, fuckball, I don’t need your permission.
+L.A.’s an open city.</p>
+<p><strong>ronnie</strong>: Yeah, well, I just closed it.</p>
+<p><strong>bones</strong>: You a quick draw . . . ‘bro?’ You better be,
+your piece stuck way down in your belt like that.</p>
+<p><strong>ronnie</strong>: Whatta you got there . . . some kinda pop
+nine, the fuckin’ Fiat of guns, always jammin’ at the wrong time.</p>
+<p><strong>bones</strong>: Don’t you puke on my shoes, Harry.</p>
+<p><strong>bones</strong>: Harry. I need you to do me a favor . . .</p>
+<p><strong>bones</strong>: I need you to take this gun and put a pill in
+the bro over there for me.</p>
+<p><strong>bones</strong>: I know what you’re thinking, ‘Why the fuck
+would I shoot him? He’s already dead.’</p>
+<p><strong>bones</strong>: But see, the cops got these tests, tell them
+whether or not a person fired a gun. And I was never here.</p>
+<p><strong>bones</strong>: You understand, Harry? I was never here. You
+say I was, and I’m gonna come back here throw you out that fuckin’
+window.</p>
+<p><strong>bones</strong>: C’mon, knock it off, Harry. We don’t have a
+lotta time here . . .</p>
+<p><strong>karen</strong>: Not a worry in the world.</p>
+<p><strong>chili</strong>: Your pool needs skimming.</p>
+<p><strong>karen</strong>: That was Martin. He wants to have lunch
+tomorrow. That is, if you can make it.</p>
+<p><strong>chili</strong>: Depends, who pays?</p>
+<p><strong>karen</strong>: Definitely not Martin. Movie stars never pick
+up the check. They have no idea what things cost. Most of them don’t
+know their zip code and a lot don’t even know their own phone
+number.</p>
+<p><strong>chili</strong>: How’d you meet Martin anyway?</p>
+<p><strong>karen</strong>: Not unlike the way Nicki met him. Except it
+was a wrap party. Why?</p>
+<p><strong>chili</strong>: I don’t know, I’m just havin’ some trouble
+seeing you two together.</p>
+<p><strong>karen</strong>: You don’t like Martin much, do you?</p>
+<p><strong>chili</strong>: Oh, I like him. I just think he’s . . .
+short. I mean, he’s a good actor and all, but I’m wondering what it was
+exactly you saw in Marty.</p>
+<p><strong>karen</strong>: For starters, Marty wasn’t Martin back
+then.</p>
+<p><strong>karen</strong>: So what about your story. You thought of a
+title yet?</p>
+<p><strong>chili</strong>: How ’bout Get Shorty? Except that isn’t a
+movie. That’s real life.</p>
+<p><strong>karen</strong>: How ’bout Chili’s Hollywood Adventure.</p>
+<p><strong>chili</strong>: That’s a different story. I’m still working
+on that one, you know, getting the visual fabric just right. Although
+I’ve added to it.</p>
+<p><strong>karen</strong>: Yeah?</p>
+<p><strong>chili</strong>: Yeah. There’s a girl in it now.</p>
+<p><strong>karen</strong>: Really.</p>
+<p><strong>karen</strong>: I think you could be an actor. I know you’re
+acting sometimes, but you don’t show it.</p>
+<p><strong>chili</strong>: You thought I was faking?</p>
+<p><strong>karen</strong>: No. I don’t mean that. I just meant in
+general.</p>
+<p><strong>chili</strong>: Oh.</p>
+<p><strong>chili</strong>: You don’t mean a movie star? More like a
+character actor?</p>
+<p><strong>karen</strong>: Whichever. Let’s talk about it tomorrow.</p>
+<p><strong>chili</strong>: I mean I could see myself in movies Robert De
+Niro had been in. Or I could maybe do an Al Pacino movie, play a
+hard-on. But I couldn’t see myself in ones, like say the one where the
+three guys get stuck with a baby. They don’t know how to take care of it
+and you see these big grown-up assholes acting cute –</p>
+<p><strong>karen</strong>: Hey, Chili? Look at me.</p>
+<p><strong>karen</strong>: I’m not in right now. Leave a message at the
+beep . . .</p>
+<p><strong>doris</strong>: Hi, Karen. It’s Doris. Listen, doll, you
+might wanna come by Cedars tonight and visit Harry. He’s in the
+emergency room . . .</p>
+<p><strong>doris</strong>: I stopped by his office to see if he wanted
+to take me to Le Dome for dinner when I saw Harry and this other man
+lying on the floor.</p>
+<p><strong>doris</strong>: Goodnight, Todd. Night, Louis.</p>
+<p><strong>karen</strong>: Harry . . . My God . . .</p>
+<p><strong>chili</strong>: What happened?</p>
+<p><strong>doris</strong>: He can’t talk. He’s full of Demerol.</p>
+<p><strong>chili</strong>: Who’d he shoot?</p>
+<p><strong>doris</strong>: According to Todd – Sergeant Randall – a man
+named Ronnie came by Harry’s office to collect on a debt. He got rough
+and Harry shot him.</p>
+<p><strong>chili</strong>: You shot one of the limo guys?</p>
+<p><strong>voice</strong>: Hello, hello . . .</p>
+<p><strong>resident</strong>: Okay . . . here we go. Looks like Mr. Zimm
+here’s got a broken jaw and some neck trauma to go with those fractured
+hands . . .</p>
+<p><strong>resident</strong>: Excuse me, folks . . .</p>
+<p><strong>karen</strong>: Hey, Harry, listen, Martin wanted to meet us
+tomorrow at the Ivy for lunch. I’d cancel, but Martin’s going to Cannes
+next week, so I think maybe Chili and I should still go.</p>
+<p><strong>resident</strong>: Okay, who wants to take a crack at wiring
+Mr. Zimm’s jaw?</p>
+<p><strong>bo catlett</strong>: Motherfucker . . .</p>
+<p><strong>bo catlett</strong>: Motherfucker . . .</p>
+<p><strong>bo catlett</strong>: Hey, Bear. I been calling you, man.
+Where you been?</p>
+<p><strong>farrah</strong>: Hi Bo.</p>
+<p><strong>bo catlett</strong>: Hey, Farrah. Hah you, little honey
+bunny. You wipe your feet, for you come in here? Keep Uncle Bo’s carpet
+nice and white.</p>
+<p><strong>bear</strong>: You see the paper?</p>
+<p><strong>bo catlett</strong>: I seen it, but I don’t believe it. Says
+Harry shot Ronnie five times. Four to the chest and one through his
+foot.</p>
+<p><strong>bear</strong>: His foot. Jeez, poor Ronnie . . .</p>
+<p><strong>bo catlett</strong>: Yeah, I’m really gonna miss him.</p>
+<p><strong>bo catlett</strong>: Listen, tonight, later on, I got one for
+you doesn’t involve any heavy work. I want you to go have a look around
+Chili Palmer’s hotel room.</p>
+<p><strong>bear</strong>: I can’t. I got to take Farrah to Satan’s place
+down in Costa Mesa.</p>
+<p><strong>bo catlett</strong>: Who?</p>
+<p><strong>bear</strong>: Her mother. Not that it matters because I
+don’t work for you no more. I quit. I just wanted to come by, tell you
+to your face so there’s no misunderstanding.</p>
+<p><strong>bo catlett</strong>: Whoa . . . This is the man used to jump
+offa high buildings?</p>
+<p><strong>bear</strong>: Into air bags. There’s no cushion under what
+you’re doing. I’m out of it, Cat. I’m done.</p>
+<p><strong>bo catlett</strong>: Bear. The Colombians are in L.A. Seems
+they all upset about their money. That ain’t enough, as a bonus, it
+turns out the yoyo was Escobar’s nephew.</p>
+<p><strong>bear</strong>: That’s your problem. You shouldn’t’ve smoked
+the guy.</p>
+<p><strong>bo catlett</strong>: Come here, honey bunny, come sit with
+your Uncle Bo. He hates being alone.</p>
+<p><strong>bo catlett</strong>: Fact, he hates it so much, if he takes a
+fall, he ain’t gonna fall by himself.</p>
+<p><strong>bo catlett</strong>: He’s gonna plea-deal his way out. Give
+up this ace stunt man now one of the West Coast dope kings, if they go
+easy on the Cat.</p>
+<p><strong>bear</strong>: Come here, Farrah . . .</p>
+<p><strong>bo catlett</strong>: I heard in the Federal joints they let
+you spend an extra five minutes at the glass with your Daddy on Father’s
+Day.</p>
+<p><strong>bear</strong>: Farrah. Come here.</p>
+<p><strong>bear</strong>: After this one, I’m out, Cat, you understand?
+This is the last time we talk to each other.</p>
+<p><strong>bo catlett</strong>: Remember Harry’s story about the dry
+cleaner Palmer was after? Guy who stole the three hundred grand from the
+airline?</p>
+<p><strong>bear</strong>: What about him?</p>
+<p><strong>bo catlett</strong>: I was thinking tonight you could go have
+a look around Palmer’s hotel room while I go check out Karen Flores’
+place. See if he hasn’t stashed it somewhere.</p>
+<p><strong>bear</strong>: And if we don’t happen to find it under
+Palmer’s mattress or inside Karen Flores’ undie drawer? What then?</p>
+<p><strong>bo catlett</strong>: Just do what I told you and meet me back
+here at midnight.</p>
+<p><strong>voice</strong>: Sunset Marquis.</p>
+<p><strong>chili</strong>: This is Mr. Palmer. I have any messages.</p>
+<p>****: A Tommy Carlo called. He said to tell you that a Mr. Barboni
+was on his way to Los Angeles and that you should . . . . . . get the
+fuck out of there.</p>
+<p><strong>chili</strong>: When was this?</p>
+<p><strong>operator</strong>: Two nights ago.</p>
+<p><strong>chili</strong>: Wow. Nice earrings.</p>
+<p><strong>chili</strong>: What kinda food they serve at this Ivy place
+anyway?</p>
+<p><strong>karen</strong>: Continental, but it doesn’t matter. Martin
+won’t order from the menu.</p>
+<p><strong>chili</strong>: Why not?</p>
+<p><strong>karen</strong>: Because a movie star can never order straight
+from the menu. They have to think of something they have to have that
+isn’t on the menu.</p>
+<p><strong>karen</strong>: Harry, what’re you doing? You’re supposed to
+be in the hospital.</p>
+<p><strong>chili</strong>: Yeah, Harry, you look like you belong in one
+of your horror movies.</p>
+<p><strong>harry</strong>: . . . my project . . .</p>
+<p><strong>maitre d’</strong>: Mr. Zimm. Nice to see you.</p>
+<p><strong>maitre d’</strong>: Right this way.</p>
+<p><strong>karen</strong>: You’re a celebrity, Harry. You shoulda shot
+someone a long time ago.</p>
+<p><strong>chili</strong>: Tell me, Harry, what’d you think of Ray Bones
+as a person?</p>
+<p><strong>chili</strong>: Only a guy like Bones would mess you up like
+this, break your hands for no reason. He shoot Ronnie, too?</p>
+<p><strong>chili</strong>: Thing I don’t get, Harry, is why’d you go and
+do a thing like talking to Ray Bones. You don’t need guys like him or Bo
+Catlett.</p>
+<p><strong>chili</strong>: I been here a while now and far as I can tell
+you’re the only person in town actually making a movie instead of just
+talking about it.</p>
+<p><strong>martin</strong>: Chill. Harry.</p>
+<p><strong>martin</strong>: Hi, sweetface. You look great. And mmmmm,
+you smell good, too.</p>
+<p><strong>karen</strong>: Thanks.</p>
+<p><strong>martin</strong>: Would you guys mind terribly not
+smoking?</p>
+<p><strong>martin</strong>: So. Harry. I hear you had quite an
+experience.</p>
+<p><strong>martin</strong>: Well, I’m glad you’re okay. And you know
+what else?</p>
+<p><strong>martin</strong>: I’m glad you rejected me ten years ago when
+I auditioned for Eddie Solomon, the pedophile clown in Birthday Boy. Had
+I gotten the part. I might’ve gotten typecast.</p>
+<p><strong>martin</strong>: You all ready to order? I kind’ve have
+another thing after this . . .</p>
+<p><strong>martin</strong>: You know, I feel like an omelette. You think
+I could have a cheese omelette with shallots, but with the shallots only
+slightly browned . . .</p>
+<p><strong>martin</strong>: I think the romance angle in your story is
+critically important, that isn’t simply a jump in the sack for either of
+them. These two become deeply in love.</p>
+<p><strong>harry</strong>: Which two?</p>
+<p><strong>martin</strong>: Once their lives are in danger and you have
+the mob guy coming after them, it not only heightens the tension, it
+adds a wistful element to their love.</p>
+<p><strong>harry</strong>: Mob guy?</p>
+<p><strong>martin</strong>: I have to consider, I mean, as the mob guy,
+this is another man’s wife I’m sleeping with.</p>
+<p><strong>karen</strong>: And after all, you have such morals.</p>
+<p><strong>harry</strong>: Mob guy?</p>
+<p><strong>martin</strong>: I have to run. But what I hope to see, they
+begin to have misgivings about wanting the money. It becomes their moral
+dilemma and they try to rationalize keeping it, but in the end they
+can’t. Can they?</p>
+<p><strong>harry</strong>: What money?</p>
+<p><strong>martin</strong>: The three hundred large. What other money is
+there? I should keep quiet, I know, till I’ve read the script, but I’ve
+got a feeling about this one. I’m that shylock.</p>
+<p><strong>harry</strong>: Shylock?</p>
+<p><strong>martin</strong>: Look at me, Harry.</p>
+<p><strong>martin</strong>: Whatta you think, Chill?</p>
+<p><strong>chili</strong>: That’s not bad. I think you got it down.</p>
+<p><strong>martin</strong>: Really, it scares me how well I know him. I
+could do this one tomorrow, no further preparation. Bye darlin’ . . .
+you really should think about acting again. I mean, maybe we could even
+do something together.</p>
+<p><strong>karen</strong>: I’ll give it some heavy thought.</p>
+<p><strong>karen</strong>: Chili. Wake up.</p>
+<p><strong>karen</strong>: Wake up. Someone’s downstairs.</p>
+<p><strong>karen</strong>: It’s Harry. Downstairs.</p>
+<p><strong>chili</strong>: You sure?</p>
+<p><strong>karen</strong>: He’s doing the same thing you did to him,
+playing Letterman on TV.</p>
+<p><strong>chili</strong>: It’s not Dave. It’s a movie.</p>
+<p><strong>karen</strong>: Are you going down?</p>
+<p><strong>chili</strong>: I don’t know.</p>
+<p><strong>karen</strong>: You’re as bad as Harry . . .</p>
+<p><strong>chili</strong>: I’ll go. I’ll go.</p>
+<p><strong>chili</strong>: Hey, Karen, you have a gun? Any kind would be
+fine.</p>
+<p><strong>chili</strong>: I think it’s Rio Bravo.</p>
+<p><strong>bo catlett</strong>: I need the money.</p>
+<p><strong>chili</strong>: What money?</p>
+<p><strong>bo catlett</strong>: The three hundred grand you got from a
+little dry cleaner named Leo.</p>
+<p><strong>chili</strong>: Lemme see if I got this right, you break into
+Karen Flores’ house, ask me for three hundred grand, doesn’t even belong
+to you?</p>
+<p><strong>bo catlett</strong>: Give it to me, I’ll be on my way.</p>
+<p><strong>chili</strong>: I can’t believe the way you guys do business
+out here. I can’t believe how fucked up your organization is.</p>
+<p><strong>bo catlett</strong>: Tell you what . . .</p>
+<p><strong>bo catlett</strong>: How ‘bout I give you to three, then I
+organize your fuckin’ brains all over the wall back there. One . . .</p>
+<p><strong>chili</strong>: What, you gonna shoot me now, Bo?</p>
+<p><strong>bo catlett</strong>: In just a second. Two . . .</p>
+<p><strong>chili</strong>: I don’t believe this.</p>
+<p><strong>bo catlett</strong>: Three.</p>
+<p><strong>chili</strong>: Karen? You okay?</p>
+<p><strong>bo catlett</strong>: She can’t talk right now.</p>
+<p><strong>bo catlett</strong>: That’s a nice scream, lady. You oughta
+be in movies.</p>
+<p><strong>chili</strong>: Alright, Bo. You can have the money . . . but
+it’s not here. I have to go get it.</p>
+<p><strong>bo catlett</strong>: Okay. Fine. The meantime, I’ll just hang
+on to her for safe keeping.</p>
+<p><strong>bo catlett</strong>: You know Laurel Canyon?</p>
+<p><strong>chili</strong>: I’ll find it.</p>
+<p><strong>bo catlett</strong>: I’m at 8150 Wonderland Avenue. It’s
+right off Laurel.</p>
+<p><strong>chili</strong>: Gimme an hour.</p>
+<p><strong>bo catlett</strong>: You get the money?</p>
+<p><strong>bear</strong>: No. What’s this?</p>
+<p><strong>bo catlett</strong>: Plan B. Here ya go, honey . . .</p>
+<p><strong>bo catlett</strong>: Make yourself comfortable.</p>
+<p><strong>bo catlett</strong>: We gonna make a little trade.</p>
+<p><strong>karen</strong>: For Christ sake . . .</p>
+<p><strong>bear</strong>: Trade for what?</p>
+<p><strong>bo catlett</strong>: The money. Fuck. I gotta think . . .</p>
+<p><strong>bear</strong>: Jesus, Bo, what’re you doing?</p>
+<p><strong>karen</strong>: He doesn’t know what the fuck he’s doing.</p>
+<p><strong>bo catlett</strong>: Shut up.</p>
+<p><strong>bear</strong>: So you kidnapped her?</p>
+<p><strong>karen</strong>: That’s a fucking federal offense,
+asshole!</p>
+<p><strong>bear/bo catlett</strong>: Shut up!</p>
+<p><strong>bear</strong>: You get life for kidnapping.</p>
+<p><strong>bo catlett</strong>: Calm down, Bear . . .</p>
+<p><strong>bear</strong>: Calm down? We’re going away for life and you
+tell me to calm down?</p>
+<p><strong>bear</strong>: Hell, why not just shoot her? Why not shoot
+everybody. Fuckin’ shoot me. Shoot the fuckin’ president?</p>
+<p><strong>bo catlett</strong>: Don’t fade on me now, Bear. Not unless
+you wanna hold Farrah on your lap in a room fulla felons.</p>
+<p><strong>chili</strong>: So this’s one of those houses you see way up
+hanging over the cliff.</p>
+<p><strong>chili</strong>: Where’s Karen?</p>
+<p><strong>bo catlett</strong>: In the can. That the money?</p>
+<p><strong>chili</strong>: Lemme see her.</p>
+<p><strong>chili</strong>: You okay?</p>
+<p><strong>karen</strong>: Guy’s got a fucking pink toilet, for Christ’s
+sake.</p>
+<p><strong>bo catlett</strong>: She’s great. Gimme the money.</p>
+<p><strong>chili</strong>: First you and me gotta get a couple things
+straight.</p>
+<p><strong>chili</strong>: I’ve been shot at before – once by accident,
+twice on purpose. I’m still here and I’m gonna be here as long as I
+want. That means you’re gonna have to be somewhere else, not anywhere
+near me or Harry or Karen.</p>
+<p><strong>chili</strong>: Here’s your money. Take it and leave the
+movie business to the rest of us, know what we’re doing. C’mon Karen . .
+.</p>
+<p><strong>bo catlett</strong>: You broke in my house and I have a
+witness to it.</p>
+<p><strong>chili</strong>: What?</p>
+<p><strong>bo catlett</strong>: Only this time, no John Wayne and Dean
+Martin shooting the bad guys in El Dorado.</p>
+<p><strong>chili</strong>: It was Rio Bravo. Robert Mitchum was the
+drunk in El Dorado, Dean Martin in Rio Bravo, practically the same part.
+John Wayne, he also did the same thing in both. He played John
+Wayne.</p>
+<p><strong>bo catlett</strong>: Man, I can’t wait for you to be
+dead.</p>
+<p><strong>chili</strong>: Bear, you’re not really gonna –</p>
+<p><strong>bear</strong>: That’s for the stairs.</p>
+<p><strong>bear</strong>: Ever fallen down stairs before? It really
+hurts . . .</p>
+<p><strong>karen</strong>: Hey –</p>
+<p><strong>bo catlett</strong>: You wanna go first, honey? That’s fine
+with me.</p>
+<p><strong>bo catlett</strong>: Get him off my carpet, you gonna make
+him bleed like that.</p>
+<p><strong>bo catlett</strong>: Like I say, ‘I warned him, officer, but
+he kept coming at me . . .’</p>
+<p><strong>bear</strong>: And that’s for the airport.</p>
+<p><strong>bo catlett</strong>: Hey, he should have a weapon, a knife or
+something.</p>
+<p><strong>bear</strong>: We’ll get it later.</p>
+<p><strong>bo catlett</strong>: Okay, Bear . . . that’s enongh.</p>
+<p><strong>bo catlett</strong>: Hey, Bear . . . enough!</p>
+<p><strong>bo catlett</strong>: You keep hittin’ him like that, he ain’t
+gonna look like he broke in anymore, he gonna look like someone beat him
+up and then shot him.</p>
+<p><strong>bear</strong>: You’re right.</p>
+<p><strong>bo catlett</strong>: Fuck . . .</p>
+<p><strong>chili</strong>: Hey –</p>
+<p><strong>karen</strong>: Chili!</p>
+<p><strong>bear</strong>: C’mon, man, gimme your hand . . . we gotta get
+outta here . . .</p>
+<p><strong>bear</strong>: Hey, Karen, don’t –</p>
+<p><strong>chili</strong>: Karen! What the fuck are you doing?!</p>
+<p><strong>karen</strong>: Oh, shit . . . I’m sorry . . . I thought that
+was . . . I’m so sorry . . .</p>
+<p><strong>chili</strong>: Jesus. How’d that happen?</p>
+<p><strong>bear</strong>: Beats the shit out of me.</p>
+<p><strong>karen</strong>: Were you scared up there?</p>
+<p><strong>chili</strong>: You bet.</p>
+<p><strong>karen</strong>: You don’t act like it?</p>
+<p><strong>chili</strong>: I was scared then, not now. How long you want
+me to be scared?</p>
+<p><strong>chili</strong>: I’ll be right back.</p>
+<p><strong>karen</strong>: Go get your stuff.</p>
+<p><strong>chili</strong>: You don’t need that. You want to sit down and
+talk, it’s fine with me. Get this straightened out.</p>
+<p><strong>chili</strong>: How’d you get in here?</p>
+<p><strong>bones</strong>: I told them I was you. I acted stupid and
+they believed me.</p>
+<p><strong>chili</strong>: So what brings you to L.A., Bones?</p>
+<p><strong>bones</strong>: Don’t insult me. Get up and turn around.</p>
+<p><strong>bones</strong>: You’re the dumbest fucking guy I ever met in
+my life. Let’s see what’s in your pockets.</p>
+<p><strong>bones</strong>: What you should’ve done was told me about Leo
+Devoe as soon as you found out.</p>
+<p><strong>chili</strong>: Why would I do that?</p>
+<p><strong>bones</strong>: ’Cause the guy’s a customer now, stupid. His
+ass belongs to me.</p>
+<p><strong>bones</strong>: What have we here?</p>
+<p><strong>chili</strong>: Give me my cigarettes. They’re in the inside
+pocket.</p>
+<p><strong>bones</strong>: Help yourself.</p>
+<p><strong>bones</strong>: C-one-eight.</p>
+<p><strong>bones</strong>: I wonder what this’s for, a locker? Yeah, but
+where is it?</p>
+<p><strong>chili</strong>: I checked the bag at the airport, when I
+came.</p>
+<p><strong>bones</strong>: Yeah? Which terminal?</p>
+<p><strong>chili</strong>: Sovereign.</p>
+<p><strong>bones</strong>: You found Leo, didn’t you? Took the poor
+asshole’s money and put it in a locker, ready to go. Why haven’t you
+left?</p>
+<p><strong>chili</strong>: I like it here.</p>
+<p><strong>bones</strong>: Look, there’s no reason you and I shouldn’t
+get along. Forget all the bullshit from before – I don’t even remember
+how it started. You took a swing at me over some fuckin’ thing, whatever
+it was – forget it. You owe me some money, right? Forget that too. But,
+you don’t say a fuckin’ word about this to anybody. It’s strictly
+between you and me, right?</p>
+<p><strong>chili</strong>: Whatever you want, Ray.</p>
+<p><strong>woman</strong>: Drug Enforcement Agency.</p>
+<p><strong>chili</strong>: I wanna speak to the agent in charge.</p>
+<p>****: What is this in regard to?</p>
+<p><strong>chili</strong>: A locker out at the airport, full of
+money.</p>
+<p>****: Who’s speaking please?</p>
+<p><strong>chili</strong>: I can’t tell you. It’s an anonymous call.</p>
+<p>****: Are you the same anonymous asshole called the other day?</p>
+<p><strong>chili</strong>: No, this is a different one. Have you looked
+in that locker, C-one-eight?</p>
+<p><strong>man</strong>: You’re helping us out. I’d like to know who
+this is.</p>
+<p><strong>chili</strong>: I bet you would. You want to chat or you want
+me to tell you who to look for? The guy’s on his way out there right
+now.</p>
+<p><strong>man</strong>: You know there’s a reward for information that
+leads to a conviction. That’s why I have to know who this is.</p>
+<p><strong>chili</strong>: I’ll get my reward in heaven. The guy you
+want has a bullet scar in his head and is wearing gray shoes. You can’t
+miss him.</p>
+<p><strong>karen</strong>: What took you so long?</p>
+<p><strong>chili</strong>: Couldn’t find my toothbrush.</p>
+<p><strong>voice</strong>: Look at me, Boots.</p>
+<p><strong>woman</strong>: Watch it, Steve!</p>
+<p><strong>martin</strong>: Dammit . . . not again . . .</p>
+<p><strong>director</strong>: Cut!</p>
+<p><strong>bear</strong>: Martin, maybe you should dive or roll out of
+the way or something . . .</p>
+<p><strong>harry</strong>: Alright, let’s wrap! We’ll pick it up
+tomorrow!</p>
+<p><strong>buddy</strong>: But Martin already told me he loves it.</p>
+<p><strong>chili</strong>: Look, I don’t know, Buddy, I don’t think
+Martin’s right for this new one.</p>
+<p><strong>buddy</strong>: Why the hell not?</p>
+<p><strong>chili</strong>: He’s too short.</p>
+</body>
+</html>

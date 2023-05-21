@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>juno</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="juno">juno</h1>
+<p><strong>juno</strong>: It started with a chair.</p>
+<p><strong>whispered voice</strong>: Do you know how long I’ve wanted
+this?</p>
+<p><strong>juno</strong>: Yeah.</p>
+<p><strong>whispered voice</strong>: Wizard.</p>
+<p><strong>juno</strong>: Quiet, Banana. Hey, shut your gob for a
+second, okay?</p>
+<p><strong>juno</strong>: This is the most magnificent discarded living
+room set I’ve ever seen.</p>
+<p><strong>rollo</strong>: Well, well. If it isn’t MacGuff the Crime
+Dog! Back for another test?</p>
+<p><strong>juno</strong>: I think the last one was defective. The plus
+sign looked more like a division sign.</p>
+<p><strong>juno</strong>: I remain unconvinced.</p>
+<p><strong>rollo</strong>: This is your third test today, Mama Bear.
+Your eggo is preggo, no doubt about it!</p>
+<p><strong>tough girl</strong>: Three times? Oh girl, you are way
+pregnant. It’s easy to tell. Is your nipples real brown?</p>
+<p><strong>tough girl</strong>: Balls!</p>
+<p><strong>rollo</strong>: Maybe you’re having twins. Maybe your little
+boyfriend’s got mutant sperms and he knocked you up twice!</p>
+<p><strong>juno</strong>: Silencio! I just drank my weight in Sunny D.
+and I have to go, pronto.</p>
+<p><strong>rollo</strong>: Well, you know where the lavatory is. You pay
+for that pee stick when you’re done! Don’t think it’s yours just because
+you’ve marked it with your urine!</p>
+<p><strong>juno</strong>: Jesus, I didn’t say it was.</p>
+<p><strong>rollo</strong>: Well, it’s not. You’re not a lion in a pride!
+These kids, acting like lions with their unplanned pregnancies and their
+Sunny Delights.</p>
+<p><strong>juno</strong>: Oh, and this too.</p>
+<p><strong>rollo</strong>: So what’s the prognosis, Fertile Myrtle?
+Minus or plus?</p>
+<p><strong>juno</strong>: I don’t know. It’s not… seasoned yet. Wait.
+Huh. Yeah, there’s that pink plus sign again. God, it’s unholy.</p>
+<p><strong>rollo</strong>: That ain’t no Etch-a-Sketch. This is one
+doodle that can’t be undid, homeskillet.</p>
+<p><strong>leah</strong>: Yo-yo-yiggity-yo.</p>
+<p><strong>juno</strong>: I am a suicide risk.</p>
+<p><strong>leah</strong>: Is this Juno?</p>
+<p><strong>juno</strong>: No it’s Morgan Freeman. Got any bones that
+need collecting?</p>
+<p><strong>leah</strong>: Only the one in my pants.</p>
+<p><strong>juno</strong>: Dude, I’m pregnant.</p>
+<p><strong>leah</strong>: Maybe it’s just a food baby. Did you have a
+big lunch?</p>
+<p><strong>juno</strong>: It’s not a food baby. I took three pregnancy
+tests today. I am definitely up the spout.</p>
+<p><strong>leah</strong>: How did you even generate enough pee for three
+pregnancy tests?</p>
+<p><strong>juno</strong>: I drank like ten tons of Sunny Delight.
+Anyway, yeah. I’m pregnant. And you’re shockingly cavalier.</p>
+<p><strong>leah</strong>: Is this for real? Like for real, for real?</p>
+<p><strong>juno</strong>: Unfortunately, yes.</p>
+<p><strong>leah</strong>: Oh my God! Oh shit! Phuket Thailand!</p>
+<p><strong>juno</strong>: That’s the kind of emotion I was looking for
+in the first take.</p>
+<p><strong>leah</strong>: Well, are you going to go to Havenbrooke or
+Women Now for the abortion? You need a note from your parents for
+Havenbrooke.</p>
+<p><strong>juno</strong>: I know. Women Now, I guess. The commercial
+says they help women now.</p>
+<p><strong>leah</strong>: Want me to call for you? I called for Becky
+last year.</p>
+<p><strong>juno</strong>: Eh, I’ll call them myself. But I do need your
+help with something very urgent.</p>
+<p><strong>leah</strong>: Heavy lifting can only help you at this
+point.</p>
+<p><strong>juno</strong>: That is sick, man.</p>
+<p><strong>leah</strong>: So, you were bored? Is that how this blessed
+miracle came to be?</p>
+<p><strong>juno</strong>: Nah, it was a premeditated act. The sex, I
+mean, not getting pregnant.</p>
+<p><strong>leah</strong>: When did you decide you were going to do
+Bleeker?</p>
+<p><strong>juno</strong>: Like, a year ago, in Spanish class.</p>
+<p><strong>leah</strong>: Aha! You love him.</p>
+<p><strong>juno</strong>: It’s extremely complicated, and I’d rather not
+talk about it in my fragile state.</p>
+<p><strong>leah</strong>: So, what was it like humping Bleeker’s bony
+bod?</p>
+<p><strong>juno</strong>: It was magnificent, man!</p>
+<p><strong>juno</strong>: Hey Bleek.</p>
+<p><strong>bleeker</strong>: Hey, cool tiger. Looks proud.</p>
+<p><strong>juno</strong>: Yeah, I swiped it from Ms. Rancick.</p>
+<p><strong>bleeker</strong>: Cool.</p>
+<p><strong>juno</strong>: Your shorts are looking especially gold
+today.</p>
+<p><strong>bleeker</strong>: My mom uses color-safe bleach.</p>
+<p><strong>juno</strong>: Go Carole. So, guess what?</p>
+<p><strong>bleeker</strong>: I don’t know…</p>
+<p><strong>juno</strong>: I’m pregnant.</p>
+<p><strong>bleeker</strong>: I guess so. What are you going to do?</p>
+<p><strong>juno</strong>: When I see them all running like that, with
+their things bouncing around in their shorts, I always picture them
+naked, even if I don’t want to. I have intrusive thoughts all the
+time.</p>
+<p><strong>bleeker</strong>: I’m supposed to be running.</p>
+<p><strong>juno</strong>: I know.</p>
+<p><strong>bleeker</strong>: So, what do you think we should do?</p>
+<p><strong>juno</strong>: I thought I might, you know, nip it in the bud
+before it gets worse. Because I heard in health class that pregnancy
+often results in an infant.</p>
+<p><strong>bleeker</strong>: Yeah, typically. That’s what happens when
+our moms and teachers get pregnant.</p>
+<p><strong>juno</strong>: So that’s cool with you, then?</p>
+<p><strong>bleeker</strong>: Yeah, wizard, I guess. I mean do what you
+think is right.</p>
+<p><strong>juno</strong>: I’m real sorry I had sex with you. I know it
+wasn’t your idea.</p>
+<p><strong>bleeker</strong>: Whose idea was it?</p>
+<p><strong>juno</strong>: I’ll see you at school, O.K.?</p>
+<p><strong>bleeker</strong>: Whose idea was it?</p>
+<p><strong>nerd</strong>: You did not! You don’t have the armor. That
+Orc Armor you bought from the wizard doesn’t have the power level to
+parry my hit!</p>
+<p><strong>steve rendazo</strong>: Hey, your book fell apart!</p>
+<p><strong>juno</strong>: Yeah.</p>
+<p><strong>steve rendazo</strong>: It must have looked at your face.</p>
+<p><strong>juno</strong>: The funny thing is that Steve Rendazo secretly
+wants me. Jocks like him always want freaky girls. Girls with
+horn-rimmed glasses and vegan footwear and Goth makeup. Girls who play
+the cello and wear Converse All-Stars and want to be children’s
+librarians when they grow up. Oh yeah, jocks eat that shit up.</p>
+<p><strong>juno</strong>: They just won’t admit it, because they’re
+supposed to be into perfect cheerleaders like Leah. Who, incidentally,
+is into teachers.</p>
+<p><strong>leah</strong>: Me too! I love Woody Allen!</p>
+<p><strong>mr. tinker</strong>: People! We’re doing our photomagnetism
+lab today, so find your partner and break out into fours.</p>
+<p><strong>juno</strong>: Well! Nothing like experimenting.</p>
+<p><strong>bleeker</strong>: I did the prep questions for this lab last
+night. You can copy my answers if you need to.</p>
+<p><strong>juno</strong>: Oh, I couldn’t copy your work.</p>
+<p><strong>bleeker</strong>: But you copy my work every week.</p>
+<p><strong>juno</strong>: Oh yeah. I’m kind of a deadbeat lab partner,
+huh?</p>
+<p><strong>bleeker</strong>: I don’t mind. You definitely bring
+something to the table.</p>
+<p><strong>juno</strong>: Charisma?</p>
+<p><strong>bleeker</strong>: Or something.</p>
+<p><strong>juno</strong>: So, who’s ready for some
+photomagnificence?</p>
+<p><strong>girl lab partner</strong>: I have a menstrual migraine, and I
+can’t look at bright lights today.</p>
+<p><strong>guy lab partner</strong>: Amanda, I told you to go to the
+infirmary and lie down. You never listen.</p>
+<p><strong>girl lab partner</strong>: No Josh, I don’t take orders. Not
+from you and not from any man.</p>
+<p><strong>guy lab partner</strong>: You know, you’ve been acting like
+this ever since I went up to see my brother at Mankato. I told you,
+nothing happened!</p>
+<p><strong>girl lab partner</strong>: Something happened. Because your
+eyes? Are very cold? They’re very cold, Josh. They’re cold, lying
+eyes.</p>
+<p><strong>guy lab partner</strong>: What? My eyes are not lying!</p>
+<p><strong>girl lab partner</strong>: Yes they are, Josh. Since Mankato,
+they have been lying eyes.</p>
+<p><strong>bleeker</strong>: Okay… I’m going to set up the apparatus.
+Juno, want to get a C clamp out of that drawer?</p>
+<p><strong>girl lab partner</strong>: I’m going to the infirmary.</p>
+<p><strong>guy lab partner</strong>: Good. Call me when you’re OFF the
+rag.</p>
+<p><strong>girl lab partner</strong>: Fine. Call me when you learn how
+to love just one person and not cheat at your brother’s college just
+because you had four Smirnoff Ices and a bottle of Snow Peak Peach
+flavored Boone’s!</p>
+<p><strong>guy lab partner</strong>: Good, I’ll be sure to do that,
+Amanda. I’ll make a note of it.</p>
+<p><strong>juno</strong>: Snow Peak Peach is the best flavor of Boone’s.
+Right, Bleek?</p>
+<p><strong>juno</strong>: “Para instruciones en Espanol, oprima numero
+dos.”</p>
+<p><strong>juno</strong>: Yes, hello, I need to procure a hasty
+abortion?… What was that? I’m sorry, I’m on my hamburger phone and it’s
+kind of awkward to talk on. It’s really more of a novelty than a
+functional appliance.</p>
+<p><strong>juno</strong>: Better? Okay, good. Yeah, as I said, I need an
+abortion, two… sixteen… Um, it was approximately two months and four
+days ago that I had the sex. That’s a guestimate. Okay, next Saturday?
+Great.</p>
+<p><strong>juno</strong>: I hate it when adults use the term “sexually
+active.”</p>
+<p><strong>juno</strong>: What does that even mean? Can I deactivate
+someday, or is this a permanent state of being? I guess Bleeker went
+live that night we did it. I guess he hadn’t done it before, and that’s
+why he got that look on his face.</p>
+<p><strong>mac</strong>: You should have seen this octopus furnace. I
+had to get out my Hazmat suit just to get up in there…</p>
+<p><strong>juno</strong>: My dad used to be in the Army, but now he’s
+just your average HVAC specialist. He and my mom got divorced when I was
+five. She lives on a Havasu reservation in Arizona…</p>
+<p><strong>juno</strong>: …with her new husband and three replacement
+kids. Oh, and she inexplicably mails me a cactus every Valentine’s
+Day.</p>
+<p><strong>juno</strong>: And I’m like, “Thanks a heap, Coyote Ugly.
+This cactus-gram stings even worse than your abandonment.”</p>
+<p><strong>juno</strong>: That’s my stepmom, Bren…</p>
+<p><strong>juno</strong>: She’s obsessed with dogs…</p>
+<p><strong>juno</strong>: …owns a nail salon called Bren’s Tens…</p>
+<p><strong>juno</strong>: …and she always smells like
+methylmethacrylate.</p>
+<p><strong>mac</strong>: So Juno, how did your maneuver go last
+night?</p>
+<p><strong>juno</strong>: Which maneuver, sir? The one in which I moved
+an entire living room set from one lawn to another, or the one in which
+I cleared a sixty-four ounce blue slushie in ten minutes?</p>
+<p><strong>bren</strong>: Juno? Did you happen to barf in my urn? Mac,
+you know that nice urn by the front door, the one I got up in
+Stillwater? I found some weird blue shit, I mean stuff, gunk, in there
+this morning.</p>
+<p><strong>juno</strong>: I would never barf in your urn, Brenda. Maybe
+L.B. did it.</p>
+<p><strong>mac</strong>: Liberty Bell, if I see one more Baco on that
+potato, I’m gonna kick your monkey ass.</p>
+<p><strong>lone protester</strong>: All babies want to get borned! All
+babies want to get borned!</p>
+<p><strong>juno</strong>: Uh, hi Su-Chin.</p>
+<p><strong>su-chin</strong>: Oh, hi Juno. How are you?</p>
+<p><strong>juno</strong>: Good. I’m good. Did you finish that paper for
+Worth’s class yet?</p>
+<p><strong>su-chin</strong>: No, not yet. I tried to work on it a little
+last night, but I’m having trouble concentrating.</p>
+<p><strong>juno</strong>: You should try Adderall.</p>
+<p><strong>su-chin</strong>: No thanks. I’m off pills.</p>
+<p><strong>juno</strong>: Wise move. I know this girl who had a huge
+crazy freakout because she took too many behavioral meds at once. She
+took off her clothes and jumped into the fountain at Ridgedale Mall and
+she was like, “Blaaaaah! I’m a kraken from the sea!”</p>
+<p><strong>su-chin</strong>: I heard that was you.</p>
+<p><strong>juno</strong>: Well, it was nice seeing you.</p>
+<p><strong>su-chin</strong>: Juno! Your baby probably has a beating
+heart, you know. It can feel pain. And it has fingernails.</p>
+<p><strong>juno</strong>: Really? Fingernails?</p>
+<p><strong>punk receptionist</strong>: Welcome to Women’s Choice, where
+women are trusted friends. Please put your hands where I can see them
+and surrender any bombs.</p>
+<p><strong>juno</strong>: Hi. I’m here for the big show?</p>
+<p><strong>punk receptionist</strong>: Your name, please?</p>
+<p><strong>juno</strong>: Juno MacGuff.</p>
+<p><strong>juno</strong>: She thinks I’m using a fake name. Like Gene
+Simmons or Mother Teresa.</p>
+<p><strong>punk receptionist</strong>: I need you to fill these out,
+both sides. And don’t skip the hairy details. We need to know about
+every score and every sore.</p>
+<p><strong>punk receptionist</strong>: Would you like some free condoms?
+They’re boysenberry.</p>
+<p><strong>juno</strong>: No thank you. I’m off sex.</p>
+<p><strong>punk receptionist</strong>: My partner uses these every time
+we have intercourse. They make his balls smell like pie.</p>
+<p><strong>juno</strong>: Congrats.</p>
+<p><strong>punk receptionist</strong>: Excuse me, Miss MacGoof?</p>
+<p><strong>leah</strong>: What are you doing here, dumbass? I thought I
+was supposed to pick you up at four.</p>
+<p><strong>juno</strong>: I couldn’t do it, Leah! It smelled like a
+dentist in there. They had these really horrible magazines, with, like,
+spritz cookie recipes and bad fiction and water stains, like someone
+read them in the tub. And the receptionist tried to give me these weird
+condoms that looked like grape suckers, and she told me about her
+boyfriend’s pie balls, and Su-Chin Kuah was there, and she told me the
+baby had fingernails. Fingernails!</p>
+<p><strong>leah</strong>: Oh, gruesome. I wonder if the baby’s claws
+could scratch your vag on the way out?</p>
+<p><strong>juno</strong>: I’m staying pregnant, Le.</p>
+<p><strong>leah</strong>: Keep your voice down dude, my mom’s around
+here somewhere. She doesn’t know we’re sexually active.</p>
+<p><strong>juno</strong>: What does that even mean? Anyway, I got to
+thinking on the way over. I was thinking maybe I could give the baby to
+somebody who actually likes that kind of thing. You know, like a woman
+with a bum ovary or something. Or some nice lesbos.</p>
+<p><strong>leah</strong>: But then you’ll get huge. Your chest is going
+to milktate. And you have to tell everyone you’re pregnant.</p>
+<p><strong>juno</strong>: I know. Maybe they’ll canonize me for being so
+selfless.</p>
+<p><strong>leah</strong>: Maybe they’ll totally shit and be super mad at
+you and not let you graduate or go to Cabo San Lucas for spring
+break.</p>
+<p><strong>juno</strong>: Bleeker and I were going to go to Gettysburg
+for spring break.</p>
+<p><strong>leah</strong>: Well, maybe you could look at one of those
+adoption ads. I see them all the time in the Penny Saver.</p>
+<p><strong>juno</strong>: There are ads? For parents?</p>
+<p><strong>leah</strong>: Oh yeah! “Desperately Seeking Spawn.” They’re
+right by the ads for like, iguanas and terriers and used fitness
+equipment. It’s totally legit.</p>
+<p><strong>juno</strong>: Come on, Leah. I can’t scope out wannabe
+parents in the Penny Saver! That’s tacky. That’s like buying clothes at
+the Pump n’ Munch.</p>
+<p><strong>juno</strong>: The Penny Saver sucks.</p>
+<p><strong>leah</strong>: Yeah, but it sucks for free.</p>
+<p><strong>leah</strong>: Look at this one “Wholesome, spiritually
+wealthy couple have found true love with each other.” “All that’s
+missing is your bastard.”</p>
+<p><strong>juno</strong>: There’s a guy in here who’s giving away a
+piano. Free for the hauling! We should put it in Bleeker’s yard.</p>
+<p><strong>leah</strong>: You’re not listening to me.</p>
+<p><strong>juno</strong>: No, I heard you. I just can’t give the baby to
+people who describe themselves as “wholesome.” I’m looking for something
+a little edgier.</p>
+<p><strong>leah</strong>: What did you have in mind, a family of
+disturbed loners who are into gunplay and incest?</p>
+<p><strong>juno</strong>: I was thinking a graphic designer,
+mid-thirties, and his cool Asian wife who dresses awesome and plays
+bass. But I’m trying to not be too particular.</p>
+<p><strong>leah</strong>: All right, how about this one? “Healthy,
+educated couple seeking infant to join our family of five. You will be
+compensated. Help us complete the circle of love.”</p>
+<p><strong>juno</strong>: Yeesh, they sound like a cult. Besides,
+they’re greedy bitches. They already have three kids!</p>
+<p><strong>leah</strong>: Hey, Juno. Juno! Look at this one.</p>
+<p><strong>juno</strong>: They were Mark and Vanessa Loring, and they
+were beautiful even in black and white.</p>
+<p><strong>juno</strong>: Hey Bleeker! Spank off to this with motion
+lotion. Just kidding Your best friend, Juno.</p>
+<p><strong>bleeker’s mom</strong>: Paul? Are you coming downstairs to
+eat?</p>
+<p><strong>bleeker</strong>: I don’t think so.</p>
+<p><strong>bleeker’s mom</strong>: You ran eight miles today, Puppy.</p>
+<p><strong>bleeker</strong>: I’m not hungry, oddly.</p>
+<p><strong>bleeker’s mom</strong>: But it’s breakfast for supper. Your
+favorite, Paulie. I made French toast and sausage. Patties, not linkies,
+just like you like it.</p>
+<p><strong>bleeker’s mom</strong>: Juno MacGuff called while you were
+out running. She wants to know if you’re coming to her little
+coffeehouse performance on Saturday.</p>
+<p><strong>bleeker</strong>: Thanks for the message.</p>
+<p><strong>bleeker’s mom</strong>: You know how I feel about her.</p>
+<p><strong>bleeker</strong>: You’ve mentioned it about fifty times.</p>
+<p><strong>bleeker’s mom</strong>: I just hope you don’t consider her a
+close friend.</p>
+<p><strong>juno</strong>: I have no idea how to spit this out.</p>
+<p><strong>bren</strong>: Hon, did you get expelled?</p>
+<p><strong>juno</strong>: No. The school would probably contact you in
+the event of my expulsion.</p>
+<p><strong>bren</strong>: Well, I was just asking. It seemed
+plausible.</p>
+<p><strong>mac</strong>: Do you need a large sum of money? Legal
+counsel?</p>
+<p><strong>juno</strong>: No, no, I’m definitely not asking for
+anything. Except maybe mercy. Like, it would be really great if nobody
+hit me.</p>
+<p><strong>mac</strong>: What have you done, Junebug? Did you hit
+someone with the Previa?</p>
+<p><strong>leah</strong>: Best to just tell them, man. Rip off the
+Band-Aid and let it bleed.</p>
+<p><strong>juno</strong>: I’m pregnant.</p>
+<p><strong>bren</strong>: Oh, God…</p>
+<p><strong>juno</strong>: But I’m going to give it up for adoption. I
+already found the perfect people.</p>
+<p><strong>juno</strong>: They say they’re going to pay my medical
+expenses and everything. I promise this will all be resolved in
+thirty-odd weeks, and we can pretend it never happened.</p>
+<p><strong>mac</strong>: You’re pregnant?</p>
+<p><strong>juno</strong>: I’m so sorry, you guys. If it’s any
+consolation, I have heartburn that’s like, radiating down to my kneecaps
+and I haven’t gone number two since Wednesday. Morning!</p>
+<p><strong>bren</strong>: I didn’t even know you were sexually
+active!</p>
+<p><strong>mac</strong>: Who is the kid?</p>
+<p><strong>juno</strong>: The baby? I don’t know anything about it yet.
+I only know it’s got fingernails, allegedly.</p>
+<p><strong>bren</strong>: Nails? Really?</p>
+<p><strong>mac</strong>: No, I mean the father! Who’s the father,
+Juno?</p>
+<p><strong>juno</strong>: Oh. It’s, well, it’s Paulie Bleeker.</p>
+<p><strong>juno</strong>: What?</p>
+<p><strong>mac</strong>: Paulie Bleeker? I didn’t know he had it in
+him!</p>
+<p><strong>bren</strong>: He just doesn’t look, well, virile.</p>
+<p><strong>leah</strong>: I know, right?</p>
+<p><strong>mac</strong>: Okay, this is no laughing matter.</p>
+<p><strong>juno</strong>: No, it’s not. Paulie is virile, by the way. He
+was very good in… chair.</p>
+<p><strong>mac</strong>: Did you say you were thinking about
+adoption?</p>
+<p><strong>juno</strong>: Yeah, well, there’s this couple who’ve been
+trying to have a baby for five years.</p>
+<p><strong>leah</strong>: We found them in the Penny Saver by the exotic
+birds section.</p>
+<p><strong>juno</strong>: But they have a real lawyer and everything.
+I’m going to meet with them next weekend.</p>
+<p><strong>bren</strong>: Junebug, that is a tough, tough thing to do.
+Probably tougher than you can understand right now.</p>
+<p><strong>juno</strong>: Well, I’m not ready to be a mom.</p>
+<p><strong>mac</strong>: Damn skippy, you’re not! You don’t even
+remember to give Liberty Bell her breathing meds.</p>
+<p><strong>juno</strong>: Once! And she didn’t die, if you recall!</p>
+<p><strong>bren</strong>: Honey, had you considered, you know, the
+alternative?</p>
+<p><strong>juno</strong>: No.</p>
+<p><strong>bren</strong>: Well, you’re a brave young lady. You’re made
+of stronger stuff than I thought. You’re a little Viking!</p>
+<p><strong>juno</strong>: Cool it.</p>
+<p><strong>bren</strong>: First things first, we have to get you
+healthy. You need prenatal vitamins. Incidentally, they’ll do incredible
+things for your nails, so that’s a plus. Oh, and we need to schedule a
+doctor’s appointment. Find out where you’re going to deliver.</p>
+<p><strong>juno</strong>: The term “deliver” is so weird. Can we not say
+“deliver”?</p>
+<p><strong>leah</strong>: How does “crap it out” sound?</p>
+<p><strong>mac</strong>: Juno, I want to come with you to meet these
+adoption people. You’re just a kid. I don’t want you to get ripped off
+by a couple of babystarved wingnuts.</p>
+<p><strong>juno</strong>: Sure, Dad.</p>
+<p><strong>mac</strong>: I thought you were the kind of girl who knew
+when to say when.</p>
+<p><strong>juno</strong>: I have no idea what kind of girl I am.</p>
+<p><strong>bren</strong>: Why don’t you girls go upstairs for a while? I
+think Mac’s gonna blow.</p>
+<p><strong>mac</strong>: Just tell it to me straight, Bren. Do you think
+this is my fault? Her mother’s fault?</p>
+<p><strong>bren</strong>: I think kids get bored and have intercourse.
+And I think Junebug was a dummy about it. But we have to move on from
+here and help her figure it out.</p>
+<p><strong>mac</strong>: I’m not ready to be a Pop-Pop.</p>
+<p><strong>bren</strong>: You’re not going to be a Pop-Pop. And Juno’s
+not going to be a ma. Somebody else is going to find a precious blessing
+from Jesus in this garbage dump of a situation. I friggin’ hope.</p>
+<p><strong>mac</strong>: Did you see it coming when she sat us down
+here?</p>
+<p><strong>bren</strong>: Oh God yeah. But I was hoping she was expelled
+or into hard drugs.</p>
+<p><strong>mac</strong>: That was my first instinct too. Or D.W.I.
+Anything but this. And I’m going to punch that Bleeker kid in the weiner
+the next time I see him.</p>
+<p><strong>bren</strong>: Oh Mac, no! He’s a sweet kid. You know it
+wasn’t his idea.</p>
+<p><strong>vanessa</strong>: Hi! I’m Vanessa. You must be Juno and
+Mr. MacGuff. I’m Vanessa.</p>
+<p><strong>juno</strong>: Vanessa, right?</p>
+<p><strong>mac</strong>: Hello. Thank you for having me and my
+irresponsible child over to your home.</p>
+<p><strong>vanessa</strong>: Oh no. Thank you. Come on in.</p>
+<p><strong>vanessa</strong>: Can I take your coats?</p>
+<p><strong>juno</strong>: Sure.</p>
+<p><strong>juno</strong>: Wicked pic in the Penny Saver, by the way.
+Super classy. Not like those other people with the fake woods in the
+background. Like I’m really going to fall for that, you know?</p>
+<p><strong>vanessa</strong>: You found us in the Penny Saver?</p>
+<p><strong>mark</strong>: Hi. I’m Mark Loring. I’m the husband.</p>
+<p><strong>mark</strong>: This is our attorney, Gerta Rauss.</p>
+<p><strong>juno</strong>: Geeeerta Rauuuss!</p>
+<p><strong>gerta</strong>: Nice to meet you.</p>
+<p><strong>mac</strong>: I’m Mac MacGuff, and this, of course, is my
+daughter Juno.</p>
+<p><strong>mark</strong>: Like the city in Alaska?</p>
+<p><strong>juno</strong>: No.</p>
+<p><strong>mark</strong>: Cool. Well, let’s sit down and get to know
+each other a bit.</p>
+<p><strong>vanessa</strong>: I’ll get drinks. What would everyone like?
+I’ve got Pellegrino, Vitamin Water…</p>
+<p><strong>juno</strong>: A Maker’s Mark, please. Up.</p>
+<p><strong>mac</strong>: She’s joking. Junebug has a wonderful sense of
+humor, which is just one of her many genetic gifts.</p>
+<p><strong>juno</strong>: I also have good teeth. No cavities. We
+finally got fluoridated water in Dancing Elk.</p>
+<p><strong>mac</strong>: We’re fine, thank you.</p>
+<p><strong>gerta</strong>: So, Juno. First off, how far along are
+you?</p>
+<p><strong>juno</strong>: I’m a junior.</p>
+<p><strong>gerta</strong>: No, I mean in your pregnancy.</p>
+<p><strong>juno</strong>: Oh. Uh, my stepmom took me to the doctor
+yesterday and they said I was twelve weeks.</p>
+<p><strong>vanessa</strong>: Oh, that’s marvelous. So you’re almost into
+your second trimester, then?</p>
+<p><strong>juno</strong>: Yeah, apparently. I’m having it on May 4.</p>
+<p><strong>vanessa</strong>: The tough part’s almost over for you. I
+mean, my girlfriends always tell me the first couple months are the
+hardest.</p>
+<p><strong>juno</strong>: Yeah, but I hardly noticed it. I’m more
+worried about the part where I have to start wearing jeans with an
+elastic panel in the front.</p>
+<p><strong>vanessa</strong>: I think pregnancy is beautiful.</p>
+<p><strong>juno</strong>: Well, you’re lucky it’s not you.</p>
+<p><strong>mark</strong>: So, let’s discuss how we’re gonna do this…
+thing.</p>
+<p><strong>juno</strong>: Well, I just have the baby and give it to you,
+right?</p>
+<p><strong>gerta</strong>: Mark and Vanessa are willing to negotiate an
+open adoption.</p>
+<p><strong>mac</strong>: Wait. What does that mean?</p>
+<p><strong>gerta</strong>: It means they’d send annual updates, photos,
+let Juno know how the baby is doing as he or she grows up. Of course,
+Juno’s legal rights would be terminated…</p>
+<p><strong>juno</strong>: Whoah. I don’t want to see pictures. I don’t
+need to be notified of anything. Can’t we just kick it old school? I
+could just put the baby in a basket and send it your way. You know, like
+Moses in the reeds.</p>
+<p><strong>mark</strong>: Technically, that would be kickin’ it Old
+Testament.</p>
+<p><strong>juno</strong>: Yeah. Yeah! The way people used to do it.
+Quick and dirty, like ripping off a Band-Aid.</p>
+<p><strong>gerta</strong>: Well, then we agree a traditional closed
+adoption would be best for all involved, then?</p>
+<p><strong>juno</strong>: Shit, yeah. Close it up.</p>
+<p><strong>mark</strong>: Obviously, we’ll compensate you for your
+medical expenses.</p>
+<p><strong>vanessa</strong>: Are you looking for any other
+compensation?</p>
+<p><strong>mac</strong>: Excuse me?</p>
+<p><strong>juno</strong>: Well, no… I’m not going to sell the baby. I
+just want it to grow up with people who are ready to love it and be
+parents. I’m in high school, dude. I’m ill-equipped.</p>
+<p><strong>vanessa</strong>: You’re doing an amazing and selfless thing
+for us.</p>
+<p><strong>mark</strong>: Vanessa has wanted a baby since we got
+married.</p>
+<p><strong>vanessa</strong>: I want to be a mommy so badly!</p>
+<p><strong>mac</strong>: You don’t say.</p>
+<p><strong>vanessa</strong>: Well, haven’t you ever felt like you were
+born to do something?</p>
+<p><strong>mac</strong>: Yes. Heating and air conditioning.</p>
+<p><strong>vanessa</strong>: Well, I was born to be a mother. Some of us
+are.</p>
+<p><strong>juno</strong>: Mark, are you looking forward to being a
+dad?</p>
+<p><strong>mark</strong>: Sure, why not? I mean, every guy wants to be a
+father. Coach soccer, help with science projects and… I don’t know.
+Fatherly stuff.</p>
+<p><strong>vanessa</strong>: Well, shall we start looking over the
+paperwork? Gerta has already drafted some preliminary documents.</p>
+<p><strong>juno</strong>: Can I use the facilities first? Being pregnant
+makes you pee like Seabiscuit.</p>
+<p><strong>vanessa</strong>: Sure. The powder room down here is being
+re-tiled, but you can use the master bath upstairs. Go up, then turn
+left and on your right…</p>
+<p><strong>juno</strong>: Room with a toilet, got it.</p>
+<p><strong>juno</strong>: Whoops! Yikes, I didn’t expect to see you up
+here.</p>
+<p><strong>mark</strong>: Sorry. I was just getting something.</p>
+<p><strong>juno</strong>: Did your wife send you up here to spy on
+me?</p>
+<p><strong>mark</strong>: What? No! Do we come off like paranoid yuppies
+or something?</p>
+<p><strong>juno</strong>: Well, you don’t just invite a random pregnant
+teenager into your house and leave her unsupervised. I could be a total
+klepto, for all you know.</p>
+<p><strong>mark</strong>: I don’t get a klepto vibe from you. Evil
+genius? Maybe. Arsonist? Wouldn’t rule it out.</p>
+<p><strong>juno</strong>: I did steal a squirt of perfume. What do you
+think? It’s Clinique Happy.</p>
+<p><strong>juno</strong>: Smell those sparkling topnotes!</p>
+<p><strong>mark</strong>: Am I supposed to feel happy now?</p>
+<p><strong>juno</strong>: You should be happy, Holmes. I’m giving you
+and Vanessa the gift of life. Sweet, screaming, pooping life! And you
+don’t even have to be there when the baby comes out of me all covered
+in…</p>
+<p><strong>mark</strong>: Viscera?</p>
+<p><strong>juno</strong>: Blood and guts.</p>
+<p><strong>mark</strong>: We’d better get back downstairs ASAP.</p>
+<p><strong>juno</strong>: Wait a minute. Is that a Les Paul?</p>
+<p><strong>mark</strong>: Oh. That’s, uh, my room. Vanessa lets me have
+a room for all my old stuff.</p>
+<p><strong>juno</strong>: Wow, you get a whole room in your own house?
+She’s got you on a long leash there, Mark.</p>
+<p><strong>mark</strong>: Shut up.</p>
+<p><strong>juno</strong>: It’s beautiful. I’ve always liked Gibson
+better than Fender.</p>
+<p><strong>mark</strong>: What do you play?</p>
+<p><strong>juno</strong>: I rock a Harmony.</p>
+<p><strong>mark</strong>: Oh.</p>
+<p><strong>juno</strong>: What? I’m a pawn shop rocker.</p>
+<p><strong>mark</strong>: Sorry. I swear I’m not a gear snob.</p>
+<p><strong>juno</strong>: What is that, Mahogany? What happens if you
+crack the neck?</p>
+<p><strong>mark</strong>: Tell me about it. I used to play in a really
+tight band back when I lived in Chicago, and one night we opened for the
+Melvins… do you know who the Melvins are?</p>
+<p><strong>juno</strong>: Yeah.</p>
+<p><strong>mark</strong>: Well, we were playing with them and I busted
+this guitar onstage. It cost me $800 and a dime bag just to have it
+fixed.</p>
+<p><strong>juno</strong>: When was this, like ’96?</p>
+<p><strong>mark</strong>: ’93. I’m telling you that was the best time
+for rock and roll.</p>
+<p><strong>juno</strong>: Nuh-uh, 1977! Punk Volume 1. You weren’t
+there, so you can’t understand the magic.</p>
+<p><strong>mark</strong>: You weren’t even alive!</p>
+<p><strong>mac</strong>: So. What’s that thing?</p>
+<p><strong>vanessa</strong>: A Pilates machine?</p>
+<p><strong>mac</strong>: What do you make with that?</p>
+<p><strong>vanessa</strong>: You don’t make anything. It’s for
+exercising.</p>
+<p><strong>mac</strong>: My wife just ordered one of those Tony Little
+Gazelles off the TV, you know, from the guy with the ponytail?</p>
+<p><strong>mac</strong>: That guy just doesn’t look right to me.</p>
+<p><strong>vanessa</strong>: Will you excuse me?</p>
+<p><strong>juno and mark</strong>: “Yeah, they really want you… they
+really want you… they really do.”</p>
+<p><strong>juno and mark</strong>: Yeah, they really want you… they
+really want you… and I do to.</p>
+<p><strong>i want to be the…</strong>: Oh, sorry honey…</p>
+<p><strong>vanessa</strong>: You guys are playing music?</p>
+<p><strong>mark</strong>: Juno just wanted a closer look at Kimber
+here.</p>
+<p><strong>juno</strong>: Your guitar is named Kimber?</p>
+<p><strong>mark</strong>: Yeah.</p>
+<p><strong>juno</strong>: That’s all right. My axe is named Roosevelt.
+After Franklin, not Ted. Franklin was the hot one with the polio.</p>
+<p><strong>vanessa</strong>: I think Gerta is waiting for us downstairs
+with some important stuff for us to go over.</p>
+<p><strong>vanessa</strong>: Didn’t mean to interrupt the jam
+sessions.</p>
+<p><strong>gerta</strong>: So, look those over and give me a call at my
+office if you have any questions.</p>
+<p><strong>vanessa</strong>: Juno, we’d really appreciate it if you
+could keep us updated on any doctor’s appointments, ultrasounds, other
+things of that nature.</p>
+<p><strong>juno</strong>: Oh. Sure. Of course you’d want to know how
+your kid is cooking.</p>
+<p><strong>vanessa</strong>: So, then, you really think you’re going to
+go ahead with this?</p>
+<p><strong>juno</strong>: Yeah. For sure. I like you guys.</p>
+<p><strong>vanessa</strong>: How sure? Percentage-wise, would you say
+you’re 80% sure, 90% sure?</p>
+<p><strong>juno</strong>: I’m going to say I’m 104% sure.</p>
+<p><strong>vanessa</strong>: Oh really?</p>
+<p><strong>juno</strong>: Look, if I could give it to you now, I would.
+But it probably looks like a Sea Monkey at this point, so I think we
+should leave it in there for a while until it gets cuter, you know?</p>
+<p><strong>mac</strong>: I think that’s a great idea.</p>
+<p><strong>mark</strong>: That’s great, right? Stellar news. Well, you
+guys drive safe, and we’ll hear from you soon, all right?</p>
+<p><strong>mac</strong>: All right, take care of yourselves.</p>
+<p><strong>gerta</strong>: All RIGHT!</p>
+<p><strong>vijay</strong>: Hey man.</p>
+<p><strong>bleeker</strong>: Oh, hey Vijay.</p>
+<p><strong>vijay</strong>: Did you hear Juno MacGuff is pregnant?</p>
+<p><strong>bleeker</strong>: Yup.</p>
+<p><strong>vijay</strong>: Just like our moms and teachers!</p>
+<p><strong>bleeker</strong>: Yup.</p>
+<p><strong>vijay</strong>: Did you hear it’s yours?</p>
+<p><strong>bleeker</strong>: Yup.</p>
+<p><strong>vijay</strong>: What a trip, man.</p>
+<p><strong>bleeker</strong>: I don’t really know anything about it.</p>
+<p><strong>vijay</strong>: You should grow a moustache. You’re a real
+man now.</p>
+<p><strong>bleeker</strong>: I can’t grow a moustache. It never comes in
+evenly.</p>
+<p><strong>vijay</strong>: Me neither. But I’m going to stop wearing
+underpants in order to raise my sperm count. See you.</p>
+<p><strong>bleeker</strong>: Hey Juno… A couple of us are going to the
+cineplex after school to donut that movie with the guy with eighteen
+kids.</p>
+<p><strong>juno</strong>: Sorry, Bleek… Going for my ultrasound. Gotta
+note and everything.</p>
+<p><strong>bleeker</strong>: Okay, cool.</p>
+<p><strong>juno</strong>: I’ll try to drop by later.</p>
+<p><strong>ultrasound tech</strong>: That’s the feet…</p>
+<p><strong>all three</strong>: Oooh…</p>
+<p><strong>ultrasound tech</strong>: And there’s a hand…</p>
+<p><strong>all three</strong>: Check that out… No way…</p>
+<p><strong>bren</strong>: Would you look at that?</p>
+<p><strong>leah</strong>: Check out Baby Big-Head. That kid is
+scary!</p>
+<p><strong>juno</strong>: Hey, I’m a sacred vessel. All you’ve got in
+your belly is Taco Bell!</p>
+<p><strong>leah</strong>: Touche.</p>
+<p><strong>juno</strong>: It is really weird looking. It’s like it’s not
+even real. I can’t believe there are saps who actually cry at these
+things.</p>
+<p><strong>bren</strong>: What? I’m not made of stone.</p>
+<p><strong>ultrasound tech</strong>: Well, there we have it. Would you
+like to know the sex?</p>
+<p><strong>leah</strong>: Aw, please Junebug?</p>
+<p><strong>juno</strong>: No way. No, I definitely don’t want to
+know.</p>
+<p><strong>ultrasound tech</strong>: Planning to be surprised when you
+deliver?</p>
+<p><strong>juno</strong>: I want Mark and Vanessa to be surprised, and
+if I know, I won’t be able to keep myself from telling them and ruining
+the whole thing.</p>
+<p><strong>ultrasound tech</strong>: Are Mark and Vanessa your friends
+at school?</p>
+<p><strong>juno</strong>: No, they’re the people who are adopting the
+baby.</p>
+<p><strong>ultrasound tech</strong>: Oh. Well, thank goodness for
+that.</p>
+<p><strong>bren</strong>: Wait, what’s that supposed to mean?</p>
+<p><strong>ultrasound tech</strong>: I just see a lot of teenage mothers
+come through here. It’s obviously a poisonous environment for a baby to
+be raised in.</p>
+<p><strong>juno</strong>: How do you know I’m so poisonous? Like, what
+if the adoptive parents turn out to be evil molesters?</p>
+<p><strong>leah</strong>: Or stage parents!</p>
+<p><strong>bren</strong>: They could be utterly negligent. Maybe they’ll
+do a far shittier job of raising a kid than my dumbass stepdaughter ever
+would. Have you considered that?</p>
+<p><strong>ultrasound tech</strong>: No… I guess not.</p>
+<p><strong>bren</strong>: What is your job title, exactly?</p>
+<p><strong>ultrasound tech</strong>: Excuse me?</p>
+<p><strong>bren</strong>: I said, what-is-your-job-title, Missy?</p>
+<p><strong>ultrasound tech</strong>: I’m an ultrasound technician,
+ma’am.</p>
+<p><strong>bren</strong>: Well I’m a nail technician, and I think we
+both ought to stick to what we know.</p>
+<p><strong>ultrasound tech</strong>: What are you talking about?</p>
+<p><strong>bren</strong>: You think you’re special because you get to
+play Picture Pages up there?</p>
+<p><strong>bren</strong>: My five year-old daughter could do that, and
+let me tell you, she is not the brightest bulb in the tanning bed. So
+why don’t you go back to night school in Manteno and learn a real
+trade!</p>
+<p><strong>juno</strong>: Bren, you’re a dick! I love it.</p>
+<p><strong>mark</strong>: Juno? Wow, I didn’t expect to see you
+here.</p>
+<p><strong>juno</strong>: I’ve got something really cool to show you
+guys. Is Vanessa here?</p>
+<p><strong>mark</strong>: No, she’s working late tonight. She’s trying
+to accrue some extra time off for when, you know…</p>
+<p><strong>juno</strong>: Right. I hear they can be kind of a
+time-suck.</p>
+<p><strong>mark</strong>: Come on in. You wanna Ginseng Cooler?</p>
+<p><strong>juno</strong>: Sure. What is it with you rich people and your
+herb-infused juices?</p>
+<p><strong>mark</strong>: I don’t know. Something to do with the
+four-packs… …They’re not bad.</p>
+<p><strong>juno</strong>: Why aren’t you at work?</p>
+<p><strong>mark</strong>: I mostly work from home. I’m a composer.</p>
+<p><strong>juno</strong>: No shit. Like Johannes Brahms?</p>
+<p><strong>mark</strong>: No, more commercial stuff.</p>
+<p><strong>juno</strong>: Like what?</p>
+<p><strong>mark</strong>: Commercials.</p>
+<p><strong>juno</strong>: Oh.</p>
+<p><strong>mark</strong>: Have you seen those ads for Titanium Power
+men’s deodorant?</p>
+<p><strong>juno</strong>: Titanium Power! Get more snatch by the
+batch!</p>
+<p><strong>mark</strong>: I wrote that.</p>
+<p><strong>juno</strong>: You’re kind of a sellout, aren’t you? What
+would the Melvins say?</p>
+<p><strong>mark</strong>: They’d say you came a long way out here not
+knowing if anyone would be home.</p>
+<p><strong>juno</strong>: Come on, you’re going to want to sit down for
+this.</p>
+<p><strong>juno</strong>: Park it, dude.</p>
+<p><strong>juno</strong>: Behold, good sir! The very first photo of your
+future child.</p>
+<p><strong>mark</strong>: You’re kidding!</p>
+<p><strong>juno</strong>: I think it kind of looks like my friend,
+Paulie.</p>
+<p><strong>mark</strong>: Oh, is he bald and amorphous?</p>
+<p><strong>juno</strong>: No, he’s the dad.</p>
+<p><strong>mark</strong>: Can you tell if it’s a boy or a girl?</p>
+<p><strong>juno</strong>: The doctor can tell, but I decided not to
+know. I want it to be a big surprise.</p>
+<p><strong>mark</strong>: Well, it can really only go two ways.</p>
+<p><strong>juno</strong>: That’s what you think. I drink tons of booze
+so you might get one of those scary neuter-babies that’s born without
+junk.</p>
+<p><strong>mark</strong>: Junk?</p>
+<p><strong>juno</strong>: You know… it’s parts…</p>
+<p><strong>mark</strong>: I know what junk is.</p>
+<p><strong>juno</strong>: Yeah?</p>
+<p><strong>mark</strong>: We definitely want it to have junk.</p>
+<p><strong>juno</strong>: Well don’t worry about it. My stepmom is
+forcing me to eat really healthy. She won’t even let me stand in front
+of the microwave or eat red M&amp;Ms. Hope you’re ready.</p>
+<p><strong>mark</strong>: Wait…do you hear that?</p>
+<p><strong>juno</strong>: What is it?</p>
+<p><strong>mark</strong>: It’s only my favorite song. It’s Sonic Youth
+doing “Superstar” by the Carpenters.</p>
+<p><strong>juno</strong>: I’ve heard the Carpenters before. Chick
+drummer and freaky dude. Not unlike the White Stripes.</p>
+<p><strong>mark</strong>: You haven’t heard the Carpenters like this.
+Listen.</p>
+<p><strong>mark</strong>: Don’t you remember you told me you loved me,
+baby…</p>
+<p><strong>juno</strong>: Hey, I like this.</p>
+<p><strong>mark</strong>: This album is all Carpenters covers by
+alt-rock bands. It’s called If I Were a Carpenter. It is God. I’ll rip a
+copy for you before you leave.</p>
+<p><strong>juno</strong>: You don’t have to do that.</p>
+<p><strong>mark</strong>: It’s the least I can do. What did you say your
+favorite band was?</p>
+<p><strong>juno</strong>: I didn’t. But it’s a three-way tie between the
+Stooges, Patti Smith and the Runaways.</p>
+<p><strong>mark</strong>: Yeah, I definitely need to make you some CDs.
+At least while my kid is hanging out in there.</p>
+<p><strong>juno</strong>: The Wizard of Gore?</p>
+<p><strong>mark</strong>: Oh yeah. It’s Herschel Gordon Lewis. He’s the
+ultimate master of horror.</p>
+<p><strong>juno</strong>: Please. Dario Argento is the ultimate master
+of horror.</p>
+<p><strong>mark</strong>: Argento’s good, but Lewis is completely
+demented. We’re talking buckets of goo. Red corn syrup everywhere. And
+fake brains up the yin-yang.</p>
+<p><strong>juno</strong>: Frankly, this looks kind of stupid.</p>
+<p><strong>juno</strong>: This is even better than Suspiria. You’ve got
+decent taste in slasher movies, Mark.</p>
+<p><strong>mark</strong>: Here’s to dovetailing interests.</p>
+<p><strong>juno</strong>: So, have you and Vanessa thought of a name for
+the baby yet?</p>
+<p><strong>mark</strong>: Well, sort of. Vanessa likes Madison for a
+girl.</p>
+<p><strong>juno</strong>: Madison? Isn’t that kind of… I don’t know,
+gay?</p>
+<p><strong>mark</strong>: God, pretentious much? I guess everyone should
+have a mysterious name like Juno, huh?</p>
+<p><strong>juno</strong>: My dad went through this phase where he was
+obsessed with Greek and Roman mythology. He named me after Zeus’s wife.
+I mean, Zeus had other lays, but I’m pretty sure Juno was his only wife.
+She was supposed to be really beautiful but really mean. Like Diana
+Ross.</p>
+<p><strong>mark</strong>: That suits you.</p>
+<p><strong>juno</strong>: Uh, thanks.</p>
+<p><strong>mark</strong>: You know, not many teenage girls in your
+situation would actually go through with this.</p>
+<p><strong>juno</strong>: I weighed my options. But after all this, I’m
+glad I didn’t, you know, get rid of it. I want to have it. For you
+guys.</p>
+<p><strong>mark</strong>: You’re something else.</p>
+<p><strong>mark</strong>: Vanessa. Shit, you better get out of here.</p>
+<p><strong>juno</strong>: Why? What the big deal?</p>
+<p><strong>mark</strong>: Nothing. She just hates when I sit around
+watching movies and ‘not contributing.’</p>
+<p><strong>juno</strong>: I’ll handle this. I’m really good at diffusing
+mom-type rage.</p>
+<p><strong>mark</strong>: Wait… aww, crap!</p>
+<p><strong>vanessa</strong>: Mark? Are you home? I want to show you some
+things I picked up.</p>
+<p><strong>juno</strong>: Hi Vanessa!</p>
+<p><strong>vanessa</strong>: Juno! God, you startled me. What are you
+doing here? What’s wrong?</p>
+<p><strong>juno</strong>: Nothing…</p>
+<p><strong>vanessa</strong>: Then what’s going on?</p>
+<p><strong>juno</strong>: I went to the doctor today.</p>
+<p><strong>vanessa</strong>: Is the baby okay?</p>
+<p><strong>juno</strong>: Sure. It’s the right size and everything. I
+even saw its phalanges today! Check this…</p>
+<p><strong>vanessa</strong>: What…</p>
+<p><strong>juno</strong>: This is the baby. Your baby.</p>
+<p><strong>vanessa</strong>: Oh my God…</p>
+<p><strong>juno</strong>: Doesn’t it look like it’s waving? It’s kind of
+like it’s saying “Hi, Vanessa. Will you be my mommy?”</p>
+<p><strong>vanessa</strong>: Yeah. Yeah, it kind of does.</p>
+<p><strong>mark</strong>: Juno was nice enough to bring this by for
+us.</p>
+<p><strong>juno</strong>: I came over as soon as I got that cold
+ultrasound goo off my pelvis. My stepmom verbally abused the ultrasound
+tech so we were escorted off the premises.</p>
+<p><strong>vanessa</strong>: Oh, that’s great!</p>
+<p><strong>juno</strong>: See? Nothing to worry about.</p>
+<p><strong>juno</strong>: Hey, what kind of swag did you score?</p>
+<p><strong>mark</strong>: Yeah. Mall madness, huh?</p>
+<p><strong>vanessa</strong>: Oh it’s just some stuff I picked up. For,
+you know, the baby. Babies need a lot of things. I want everything to be
+just right.</p>
+<p><strong>juno</strong>: I thought people got all that stuff at baby
+showers. When my stepmom had my sister I remember she got about a
+million presents. They were all lame though, so I wasn’t jealous.</p>
+<p><strong>mark</strong>: I doubt anyone’s throwing us a shower.</p>
+<p><strong>juno</strong>: Why?</p>
+<p><strong>vanessa</strong>: Um, I think people are kind of unsure about
+the situation because it’s not, you know, set in stone.</p>
+<p><strong>juno</strong>: What do you mean? You mean… Do you think I’m
+going to flake out on you?</p>
+<p><strong>vanessa</strong>: No, no, I don’t think that, Juno. It’s just
+that, we went through a situation before where it didn’t work out.</p>
+<p><strong>mark</strong>: Cold feet.</p>
+<p><strong>juno</strong>: You should have gone to China. I heard they
+give away babies like free iPods. They shoot ’em out of those T-shirt
+guns at sports events.</p>
+<p><strong>vanessa</strong>: Right. Well, Juno, your parents must be
+wondering where you are. You might want to head home.</p>
+<p><strong>juno</strong>: Naah. I’m already pregnant, so they figure
+nothing worse could happen to me. I gotta bounce anyway. It was nice
+seeing you guys again.</p>
+<p><strong>mark</strong>: Hey, don’t forget your bag.</p>
+<p><strong>bren</strong>: Where the hell have you been, Junebug?</p>
+<p><strong>juno</strong>: I drove to St. Cloud to show Mark and Vanessa
+the ultrasound. And I wound up staying for a couple of hours.</p>
+<p><strong>bren</strong>: A couple of hours? Why are you going up there
+in the first place?</p>
+<p><strong>juno</strong>: They said they wanted to know about this
+stuff. They said to keep them updated, so I did!</p>
+<p><strong>bren</strong>: You could have sent it to them. Why would you
+drive an hour out to East Jesus, Nowhere?</p>
+<p><strong>juno</strong>: I don’t know, I just did. And while we were
+waiting for Vanessa, Mark and I watched The Wizard of Gore and he burned
+me some CDs of weird music. He’s kind of cool.</p>
+<p><strong>bren</strong>: That was a mistake, Juno. Mark is a married
+stranger. You overstepped a boundary.</p>
+<p><strong>juno</strong>: Listen, Bren-duhhh, I think you’re the one
+overstepping boundaries. You’re acting like you’re the one who has to go
+through this and get huge and push a baby out of your vag for someone
+else. Besides, who cares if he’s married? I can have friends who are
+married.</p>
+<p><strong>bren</strong>: It doesn’t work that way, kiddo. You don’t
+know squat about the dynamics of marriage.</p>
+<p><strong>juno</strong>: You don’t know anything about me!</p>
+<p><strong>bren</strong>: I know enough.</p>
+<p><strong>juno</strong>: We don’t even have a dog!</p>
+<p><strong>bren</strong>: Yeah, because you’re allergic to their saliva.
+I’ve made a lot of sacrifices for you, Juno. And in a couple years
+you’re going to move out – and I’m getting Weimaraners.</p>
+<p><strong>juno</strong>: Wow, dream big!</p>
+<p><strong>bren</strong>: Oh, go fly a kite.</p>
+<p><strong>juno</strong>: Bleeker’s mom was possibly attractive once.
+But now she looks a hobbit. The fat one that was in The Goonies.</p>
+<p><strong>bleeker’s mom</strong>: Hi Juno. What can I do for you?</p>
+<p><strong>juno</strong>: I borrowed Paulie’s physics notes in school
+today. I’m pretty sure he needs them back, or his grade could plummet to
+an A minus.</p>
+<p><strong>bleeker’s mom</strong>: Fine. Come in.</p>
+<p><strong>juno</strong>: Hey, don’t concentrate so hard, man. I think I
+smell hair burning.</p>
+<p><strong>bleeker’s mom</strong>: Ten minutes.</p>
+<p><strong>bleeker</strong>: What’s up?</p>
+<p><strong>juno</strong>: I just wanted to come over. You know, say hi.
+I miss hanging out with you on school nights.</p>
+<p><strong>bleeker</strong>: I miss it too.</p>
+<p><strong>juno</strong>: Orange Tic-Tacs are Bleeker’s one and only
+vice. When we made out, the day I got pregnant, his mouth tasted really
+tangy and delicious.</p>
+<p><strong>bleeker</strong>: So, it looks like you’re getting
+pregnant-er these days.</p>
+<p><strong>juno</strong>: Yeah. Um, I hooked up a whole private adoption
+thing. These married people in Saint Cloud are going to be the
+parents.</p>
+<p><strong>bleeker</strong>: Really? What are they like?</p>
+<p><strong>juno</strong>: The guy is super cool! His name is Mark and
+he’s into old horror movies and he plays guitar. I actually hung out
+with him today.</p>
+<p><strong>bleeker</strong>: Is that normal?</p>
+<p><strong>juno</strong>: I asked my dad and Bren not to narc us out to
+your folks, so we should be safe.</p>
+<p><strong>bleeker</strong>: Oh. That’s a relief.</p>
+<p><strong>juno</strong>: I’m going to really start looking like a dork
+soon. Will you still think I’m cute if I’m huge?</p>
+<p><strong>bleeker</strong>: I always think you’re cute. I think you’re
+beautiful.</p>
+<p><strong>juno</strong>: Jesus, Bleek.</p>
+<p><strong>bleeker</strong>: Well, I do.</p>
+<p><strong>bleeker</strong>: Hey Junebug, when all this is over we
+should get the band back together again.</p>
+<p><strong>juno</strong>: Yeah. Sure. Once Tino gets a new drumhead we
+should be good to go.</p>
+<p><strong>bleeker</strong>: We could get back together too.</p>
+<p><strong>juno</strong>: Were we together?</p>
+<p><strong>bleeker</strong>: Well, we were once. You know, that
+time.</p>
+<p><strong>juno</strong>: What about Katrina De Voort? You could go out
+with Katrina De Voort.</p>
+<p><strong>bleeker</strong>: I don’t like Katrina.</p>
+<p><strong>juno</strong>: I totally heard you did.</p>
+<p><strong>bleeker</strong>: I don’t. Katrina smells like soup. Her
+whole house smells of soup.</p>
+<p><strong>vanessa</strong>: What do you think? Custard or
+Cheesecake?</p>
+<p><strong>mark</strong>: They’re yellow.</p>
+<p><strong>vanessa</strong>: Well, I wanted to pick something
+gender-neutral for now. Once we get the baby, God willing, we can create
+a more decisive palette.</p>
+<p><strong>mark</strong>: Why do people think yellow is gender- neutral?
+I don’t know one man with a yellow bedroom.</p>
+<p><strong>vanessa</strong>: I think I’m leaning toward Custard in this
+light. I don’t know. I should paint a small area…</p>
+<p><strong>mark</strong>: Or you could just wait a couple months. It’s
+not like the baby’s going to storm in here any second and demand
+dessert-colored walls.</p>
+<p><strong>vanessa</strong>: What to Expect says that readying the
+baby’s room is an important process for women. It’s called
+“nesting.”</p>
+<p><strong>mark</strong>: Nesting, huh? Are you planning to build the
+crib out of twigs and saliva?</p>
+<p><strong>vanessa</strong>: You should read the book. I even flagged
+the “daddy chapters” for you.</p>
+<p><strong>mark</strong>: I just think it’s too early to paint. That’s
+my opinion.</p>
+<p><strong>vanessa</strong>: And I disagree.</p>
+<p><strong>vanessa</strong>: That wall is going to need something. Maybe
+we could put our first family picture there.</p>
+<p><strong>mark</strong>: Hm.</p>
+<p><strong>vanessa</strong>: Can you see it?</p>
+<p><strong>leah</strong>: Yum. This pretzel tastes like a friggin’
+donut!</p>
+<p><strong>juno</strong>: Share the love, Tits!</p>
+<p><strong>juno</strong>: She’s assaulting me! She’s denying me
+fresh-baked goodness!</p>
+<p><strong>juno</strong>: Hly shht!</p>
+<p><strong>leah</strong>: What?</p>
+<p><strong>juno</strong>: That’s her. That’s Vanessa Loring.</p>
+<p><strong>leah</strong>: Of the Penny Saver Lorings?</p>
+<p><strong>leah</strong>: No way! She’s pretty.</p>
+<p><strong>juno</strong>: You sound shocked or something.</p>
+<p><strong>leah</strong>: I just thought she’d look really old in real
+life.</p>
+<p><strong>woman #1</strong>: And I was like, “No offense, sweetie, but
+nobody looks good in gauchos.”</p>
+<p><strong>woman #2</strong>: Especially not with her build.</p>
+<p><strong>juno</strong>: Wah-wah-waaah!</p>
+<p><strong>leah</strong>: She’s gonna steal that kid for her
+collection.</p>
+<p><strong>juno</strong>: Right, seriously.</p>
+<p><strong>leah</strong>: Bo-ring!</p>
+<p><strong>juno</strong>: I want a huge cookie. And like, a lamb kebob.
+Simultaneously.</p>
+<p><strong>leah</strong>: God, Spermy. Must you always feed?</p>
+<p><strong>vanessa</strong>: Juno?</p>
+<p><strong>juno</strong>: Well hi Vanessa! What brings you to the mall
+today?</p>
+<p><strong>vanessa</strong>: Just, you know, shopping with my
+girlfriends.</p>
+<p><strong>leah</strong>: You’re gay?</p>
+<p><strong>vanessa</strong>: No…</p>
+<p><strong>juno</strong>: Please excuse Leah. She’s mentally
+challenged.</p>
+<p><strong>vanessa</strong>: Oh, okay. So… how are you feeling?</p>
+<p><strong>juno</strong>: Happy? Oh, you mean like, physically. I’m
+good. Look, I have a snooze button now!</p>
+<p><strong>vanessa</strong>: That’s great.</p>
+<p><strong>juno</strong>: Dude, it’s moshing all over.</p>
+<p><strong>juno</strong>: It’s kicking.</p>
+<p><strong>vanessa</strong>: Um… Juno, can I – Can I touch it?</p>
+<p><strong>juno</strong>: Are you kidding? Everyone at school is always
+grabbing at my belly. I’m like a legend. They call me the Cautionary
+Whale.</p>
+<p><strong>vanessa</strong>: I can’t feel anything.</p>
+<p><strong>vanessa</strong>: It’s not moving for me.</p>
+<p><strong>juno</strong>: Oh, you should try talking to it. They can
+apparently hear speech in there, even though it sounds all ten thousands
+leagues under the sea.</p>
+<p><strong>vanessa</strong>: Hi. Hi, baby. It’s me. My name is Vanessa.
+I can’t wait to meet you.</p>
+<p><strong>vanessa</strong>: Can you hear me sweet angel?</p>
+<p><strong>vanessa</strong>: Oh my God – It moved! I felt it!</p>
+<p><strong>juno</strong>: Elbow.</p>
+<p><strong>vanessa</strong>: Wow! It’s magical.</p>
+<p><strong>mark</strong>: Hello?</p>
+<p><strong>juno</strong>: So, I’ve been spending a lot of time listening
+to that weird CD you made me.</p>
+<p><strong>mark</strong>: Oh really? What’s the verdict?</p>
+<p><strong>juno</strong>: I sort of like it. I mean, it’s cute.</p>
+<p><strong>mark</strong>: Cute?</p>
+<p><strong>juno</strong>: Well, when you’re used to the raw power of
+Iggy and the Stooges, everything else sounds kind of precious by
+comparison.</p>
+<p><strong>mark</strong>: I imagine you have a collection of punk
+chestnuts to prove your point.</p>
+<p><strong>juno</strong>: Consider it your musical education.</p>
+<p><strong>mark</strong>: I’m dying to see what you’ve got to teach
+me.</p>
+<p><strong>juno</strong>: Okay, stop surfing porn and get back to work.
+Just wanted to say hi.</p>
+<p><strong>mark</strong>: Go learn something.</p>
+<p><strong>leah</strong>: God, you’re getting huge. How many months has
+it been now?</p>
+<p><strong>juno</strong>: Almost eight. You wouldn’t believe how weird I
+look naked.</p>
+<p><strong>leah</strong>: I wish my funbags would get bigger.</p>
+<p><strong>juno</strong>: Trust me, you don’t. I actually have to wear a
+bra now. And I have to rub this nasty cocoa butter stuff all over myself
+or my skin could get stretched too far and explode.</p>
+<p><strong>leah</strong>: Hot!</p>
+<p><strong>juno</strong>: God, why is everyone always staring at me?</p>
+<p><strong>leah</strong>: Well, you are kind of… convex.</p>
+<p><strong>juno</strong>: Wow, someone’s been actually doing her
+geometry homework for once!</p>
+<p><strong>leah</strong>: I don’t have a choice. Keith’s been grading me
+really hard lately.</p>
+<p><strong>juno</strong>: Please do not refer to Mr. Conyers as “Keith,”
+okay? My barf reflex is already heightened these days.</p>
+<p><strong>leah</strong>: Keith’s hot.</p>
+<p><strong>juno</strong>: Eww, he’s all beardy!</p>
+<p><strong>leah</strong>: Did you hear Bleek is going to prom with
+Katrina De Voort?</p>
+<p><strong>juno</strong>: Katrina? Pfft, no way. He doesn’t like
+Katrina. It must be a pity date.</p>
+<p><strong>leah</strong>: He asked her. I heard they were going to
+Benihana, then the prom, then to Vijay’s parents’ cabin.</p>
+<p><strong>juno</strong>: Bleeker told me Katrina’s whole house reeks of
+soup!</p>
+<p><strong>leah</strong>: Oh, it totally does. I was there for her
+birthday about four years ago and it was like Lipton Landing. But you
+know, boys have endured worse things for nookie.</p>
+<p><strong>juno</strong>: There’s no way in hell they’re having sex or
+even holding hands.</p>
+<p><strong>leah</strong>: I wouldn’t be so sure about that. He did it
+with you. He’s a man now.</p>
+<p><strong>juno</strong>: Yeah, well, Bleek trusted me. We’re best
+friends.</p>
+<p><strong>leah</strong>: Are you jealous? I thought you said you didn’t
+care what he did.</p>
+<p><strong>juno</strong>: I’m not jealous, and I don’t care. I just know
+he doesn’t like Katrina and I don’t think he should toy with her
+emotions like that. She seems so nice and all.</p>
+<p><strong>leah</strong>: Okay Juno, I’m really convinced.</p>
+<p><strong>juno</strong>: Prom is for wenises, anyway. Once you’re old
+enough to go, it’s not cool anymore.</p>
+<p><strong>juno</strong>: Are you honestly and truly going to prom with
+Katrina De Voort?</p>
+<p><strong>bleeker</strong>: Um, hi?</p>
+<p><strong>juno</strong>: Leah just told me you were going with her.</p>
+<p><strong>bleeker</strong>: Yeah, I did ask her if she wanted to go. A
+bunch of us from the team are going to Benihana, then the prom, then
+Vijay’s parents’ cabin.</p>
+<p><strong>bleeker</strong>: We’re getting a stretch limo.</p>
+<p><strong>juno</strong>: Your mom must be really glad you’re not taking
+me.</p>
+<p><strong>bleeker</strong>: You’re mad. Why are you mad?</p>
+<p><strong>juno</strong>: I’m not mad. I’m in a fucking great mood.
+Despite the fact that I’m trapped in a fat suit I can’t take off,
+despite the fact that everyone is making fun of me behind my back,
+despite the fact that your little girlfriend gave me the stinkeye in art
+class yesterday…</p>
+<p><strong>bleeker</strong>: Katrina’s not my girlfriend! And I doubt
+she was actually giving you the stinkeye. She just looks like that all
+the time.</p>
+<p><strong>juno</strong>: Whatever. Have fun at the prom with Soupy
+Sales. I’m sure I can think of something way more cool to do that night.
+Like I could pumice my feet, or go to Bren’s dumb Unitarian church, or
+get hit by a ten-ton truck full of hot garbage juice. All those things
+would be exponentially cooler than going to the prom with you.</p>
+<p><strong>bleeker</strong>: You’re being really immature.</p>
+<p><strong>juno</strong>: What?</p>
+<p><strong>juno</strong>: That’s not how our thing works! I hurl the
+accusations and you talk me down, remember?</p>
+<p><strong>bleeker</strong>: Not this time. You don’t have any reason to
+be mad at me. You broke my heart. I should be royally ticked at you,
+man. I should be really cheesed off. I shouldn’t want to talk to you
+anymore.</p>
+<p><strong>juno</strong>: Why? Because I got bored and had sex with you
+one day, and then I didn’t, like, marry you?</p>
+<p><strong>bleeker</strong>: Like I’d marry you! You would be the
+meanest wife of all time. And anyway, I know you weren’t bored that day
+because there was a lot of stuff on TV. The Blair Witch Project was on
+Starz, and you were like, “Oh, I want to watch this, but we should make
+out instead. La la la.”</p>
+<p><strong>juno</strong>: Forget it, Bleek. Take Katrina the Douche
+Packer to the prom. I’m sure you guys will have a really bitchin’
+time!</p>
+<p><strong>bleeker</strong>: Yeah, well… I still have your
+underwear.</p>
+<p><strong>juno</strong>: I still have your virginity!</p>
+<p><strong>bleeker</strong>: Oh my God, SHUT UP!</p>
+<p><strong>juno</strong>: What? Are you ashamed that we did it?</p>
+<p><strong>bleeker</strong>: No…</p>
+<p><strong>juno</strong>: Well at least you don’t have to walk around
+with the evidence under your sweater. I’m a planet!</p>
+<p><strong>bleeker</strong>: Wait, let me take that.</p>
+<p><strong>juno</strong>: Huh?</p>
+<p><strong>bleeker</strong>: You shouldn’t be carrying that heavy bag.
+I’ll take it.</p>
+<p><strong>juno</strong>: Oh. It’s fine. What’s another ten pounds?</p>
+<p><strong>mark</strong>: Wow. That shirt is working hard.</p>
+<p><strong>juno</strong>: Is Vanessa here?</p>
+<p><strong>mark</strong>: Nope. We’re safe.</p>
+<p><strong>juno</strong>: Cool.</p>
+<p><strong>mark</strong>: Come on, I have something for you.</p>
+<p><strong>juno</strong>: Oh, Mark! Is this the baby’s room? It’s
+beautiful!</p>
+<p><strong>mark</strong>: Hilarious. No, I just keep all of my old
+comics down here, and I want to show you one of them.</p>
+<p><strong>juno</strong>: Oh God, you’re one of those guys…</p>
+<p><strong>mark</strong>: You’re gonna like this, I promise.</p>
+<p><strong>mark</strong>: Here it is.</p>
+<p><strong>juno</strong>: “Most Fruitful Yuki”? What is… Oh my god,
+she’s a pregnant superhero!</p>
+<p><strong>mark</strong>: Isn’t that great? I got it when I was in Japan
+with my band. She reminds me of you.</p>
+<p><strong>juno</strong>: Wow, I actually feel like less of a fat dork
+now.</p>
+<p><strong>mark</strong>: Most Fruitful Yuki is bad ass, man. You should
+be proud to be the same condition.</p>
+<p><strong>juno</strong>: Okay, how about some tunes?</p>
+<p><strong>juno</strong>: Now this first one is kinda slow. But it’s
+Mott the Hoople so it’s still totally rad and hardcore.</p>
+<p><strong>juno</strong>: What?</p>
+<p><strong>mark</strong>: I actually know this one.</p>
+<p><strong>juno</strong>: You do?</p>
+<p><strong>mark</strong>: Yeah, this song’s older than me, if you can
+believe that. I danced to it at my senior prom.</p>
+<p><strong>juno</strong>: That’s almost interesting, Mark. Who did you
+dance with?</p>
+<p><strong>mark</strong>: Her name was Cynthia Vogel and she was a good
+dance partner. Even let me put my hands on her butt.</p>
+<p><strong>juno</strong>: Oh man, I can just picture you slow dancing
+like a dork!</p>
+<p><strong>mark</strong>: No, I put my hands on your waist. Then you put
+your arms around my neck. That’s how we did it in ’88.</p>
+<p><strong>juno</strong>: Oh, okay. Like this.</p>
+<p><strong>mark</strong>: You’ve never been to a dance, have you?</p>
+<p><strong>juno</strong>: Only squares and nerds go to dances.</p>
+<p><strong>mark</strong>: What are you?</p>
+<p><strong>juno</strong>: I don’t know.</p>
+<p><strong>mark</strong>: I feel like there’s something between us.</p>
+<p><strong>mark</strong>: I’m leaving Vanessa.</p>
+<p><strong>juno</strong>: What?</p>
+<p><strong>mark</strong>: It’s just not working out, but I’m getting my
+own place in the city… and I’ve got it all planned out. It’s something
+I’ve wanted to do for a long time…</p>
+<p><strong>juno</strong>: No.</p>
+<p><strong>mark</strong>: No?</p>
+<p><strong>juno</strong>: No. No, you definitely cannot do that, Mark.
+That’s a big, fat sack of no!</p>
+<p><strong>mark</strong>: What’s the matter?</p>
+<p><strong>juno</strong>: This isn’t what we agreed on. You guys have to
+take care of… this! You are the chosen custodians of the big-ass
+bump!</p>
+<p><strong>mark</strong>: But I thought you’d be cool if…</p>
+<p><strong>juno</strong>: I want you guys to adopt the Buglet. I wanted
+everything to be perfect. Not shitty and broken like everyone else’s
+family. Listen, once I have the baby, Vanessa is going to finally be
+happy, and everything will be all right. Believe me on this one!</p>
+<p><strong>mark</strong>: A baby is not going to fix everything.
+Besides, I don’t know if I’m ready to be a father.</p>
+<p><strong>juno</strong>: But you’re old!</p>
+<p><strong>mark</strong>: I… How do you think of me, Juno? Why are you
+here?</p>
+<p><strong>juno</strong>: I don’t know. I just liked being your friend.
+I sort of liked becoming furniture in your weird life.</p>
+<p><strong>mark</strong>: This… …this is what my life has become. Stuff
+in boxes. Stuff underground. Is that so appealing to you?</p>
+<p><strong>juno</strong>: Yeah, I guess… Is this my fault? Is Vanessa
+mad at you because of me?</p>
+<p><strong>mark</strong>: That’s not the point. We’re just not in love
+anymore.</p>
+<p><strong>juno</strong>: Yeah, but didn’t you love Vanessa when you
+married her? If you love someone once, you can love them again, I know
+it. My friend Leah has gone out with the same guy, like, four times.
+You’re just not trying.</p>
+<p><strong>mark</strong>: I’m such an idiot. I can’t believe what an
+idiot I am.</p>
+<p><strong>juno</strong>: Please don’t get a divorce! God, Mark, just do
+me a solid and stay with your wife.</p>
+<p><strong>mark</strong>: God, you’re so young.</p>
+<p><strong>juno</strong>: Not really. I’m sixteen. I’m old enough to
+tell when people are acting like total a-holes!</p>
+<p><strong>juno</strong>: Oh and by the way, I bought another Sonic
+Youth album and it’s the worst thing I’ve ever heard! It’s just noise,
+man!</p>
+<p><strong>vanessa</strong>: Juno? What’s going on?</p>
+<p><strong>juno</strong>: Nothing.</p>
+<p><strong>vanessa</strong>: Mark? Why is Juno crying?</p>
+<p><strong>juno</strong>: I’m not crying. I’m allergic to fine home
+furnishings. See you later.</p>
+<p><strong>vanessa</strong>: Hold on.</p>
+<p><strong>vanessa</strong>: Juno, what’s the matter?</p>
+<p><strong>mark</strong>: She’s hormonal. Right, June? It’s just part of
+the whole process.</p>
+<p><strong>vanessa</strong>: What did you do?</p>
+<p><strong>mark</strong>: I didn’t do anything… I just… I’ve just been
+thinking.</p>
+<p><strong>vanessa</strong>: What?</p>
+<p><strong>mark</strong>: Just thinking if this is really the right
+thing for us.</p>
+<p><strong>vanessa</strong>: What are you referring to?</p>
+<p><strong>mark</strong>: I’ve been just wondering if we’re, you know,
+ready.</p>
+<p><strong>vanessa</strong>: Of course we’re ready. We’ve taken all the
+classes. The nursery. The books –</p>
+<p><strong>mark</strong>: I know we’re prepared. I just don’t know if…
+I’m ready.</p>
+<p><strong>vanessa</strong>: Juno, don’t worry about this. He just has
+cold feet. That’s how boys are. The books all say the same thing. A
+woman becomes a mother when she gets pregnant. A man becomes a father
+when he sees his baby. He’s going to get there. He’ll get there.</p>
+<p><strong>vanessa</strong>: Why don’t we let Juno go home and we can
+discuss this later on, okay?</p>
+<p><strong>mark</strong>: It all just happened so fast. We put that ad
+in the paper. I thought it would take months if, you know, ever and then
+– boom – Two weeks later, she’s in our living room.</p>
+<p><strong>vanessa</strong>: She answered our prayers.</p>
+<p><strong>mark</strong>: Ever since, it’s just been like a ticking
+clock.</p>
+<p><strong>vanessa</strong>: What are you saying?</p>
+<p><strong>mark</strong>: It just feels a little like bad timing.</p>
+<p><strong>vanessa</strong>: What would be a good time for you?</p>
+<p><strong>mark</strong>: I don’t know. There’s just things I still want
+to do.</p>
+<p><strong>vanessa</strong>: Like what? Be a rock star?</p>
+<p><strong>mark</strong>: Don’t mock me.</p>
+<p><strong>vanessa</strong>: You’re trying to do something that’s never
+going to happen. And you know what? Your shirt is stupid. Grow up. If I
+have to wait for you to become Kurt Cobain, I’m never going to be a
+mother.</p>
+<p><strong>mark</strong>: I never said I’d be a great father.</p>
+<p><strong>mark</strong>: I called Gerta Rauss. She says she can
+represent both of us. They call it “collaborative divorce.” It’s
+apparently all the rage right now. And it’s easy because we don’t have
+children.</p>
+<p><strong>vanessa</strong>: No, it’s fine. Thanks for making the call,
+I guess.</p>
+<p><strong>vanessa</strong>: We’re actually, finally doing this?</p>
+<p><strong>mark</strong>: Looks like it, yeah.</p>
+<p><strong>vanessa</strong>: Have you found a place to stay?</p>
+<p><strong>mark</strong>: Yeah, downtown.</p>
+<p><strong>vanessa</strong>: A hotel?</p>
+<p><strong>mark</strong>: It’s a loft.</p>
+<p><strong>vanessa</strong>: Aren’t you the cool guy?</p>
+<p><strong>vanessa</strong>: I wanted a baby so bad. So bad.</p>
+<p><strong>mark</strong>: I know you did.</p>
+<p><strong>mark</strong>: It looks like a bill from Jiffy-Lube.</p>
+<p><strong>vanessa</strong>: It’s for me.</p>
+<p><strong>juno</strong>: I never realize how much I like being home
+unless I’ve been somewhere really different for a while.</p>
+<p><strong>juno</strong>: Hi Dad.</p>
+<p><strong>mac</strong>: Hey, big puffy version of Junebug. Where have
+you been?</p>
+<p><strong>juno</strong>: Dealing with stuff way beyond my maturity
+level. Where is everyone?</p>
+<p><strong>mac</strong>: Bren took Liberty Bell to her tot ice skating
+class.</p>
+<p><strong>juno</strong>: Tot ice skating? Tots can’t ice skate. Liberty
+Bell’s still getting the hang of stairs.</p>
+<p><strong>mac</strong>: No, but you know Bren. She dreams big.</p>
+<p><strong>juno</strong>: Yeah, she does.</p>
+<p><strong>mac</strong>: You look a little morose, honey. What’s eating
+you?</p>
+<p><strong>juno</strong>: I’m losing my faith in humanity.</p>
+<p><strong>mac</strong>: Think you can narrow it down for me.</p>
+<p><strong>juno</strong>: I guess I wonder sometimes if people ever stay
+together for good.</p>
+<p><strong>mac</strong>: You mean like couples?</p>
+<p><strong>juno</strong>: Yeah, like people in love.</p>
+<p><strong>mac</strong>: Are you having boy trouble? I gotta be honest;
+I don’t much approve of you dating in your condition, ’cause… well,
+that’s kind of messed up.</p>
+<p><strong>juno</strong>: Dad, no!</p>
+<p><strong>mac</strong>: Well, it’s kind of skanky. Isn’t that what you
+girls call it? Skanky? Skeevy?</p>
+<p><strong>juno</strong>: Please stop now.</p>
+<p><strong>mac</strong>: Tore up from the floor up?</p>
+<p><strong>juno</strong>: Dad, it’s not about that. I just need to know
+that it’s possible for two people to stay happy together forever. Or at
+least for a few years.</p>
+<p><strong>mac</strong>: It’s not easy, that’s for sure. Now, I may not
+have the best track record in the world, but I have been with your
+stepmother for ten years now, and I’m proud to say that we’re very
+happy.</p>
+<p><strong>mac</strong>: In my opinion, the best thing you can do is to
+find a person who loves you for exactly what you are. Good mood, bad
+mood, ugly, pretty, handsome, what have you, the right person will still
+think that the sun shines out your ass. That’s the kind of person that’s
+worth sticking with.</p>
+<p><strong>juno</strong>: I sort of already have.</p>
+<p><strong>mac</strong>: Well, of course. Your old D-A-D! You know I’ll
+always be there to love and support you, no matter what kind of pickle
+you’re in.</p>
+<p><strong>mac</strong>: Obviously.</p>
+<p><strong>juno</strong>: I need to go out somewhere for just a little
+while. I don’t have any homework, and I swear I’ll be back by ten.</p>
+<p><strong>mac</strong>: You were talking about me, right?</p>
+<p><strong>bleeker</strong>: Did you put like a hundred things of Tic
+Tacs in my mailbox?</p>
+<p><strong>juno</strong>: Yeah. That was me.</p>
+<p><strong>bleeker</strong>: Why?</p>
+<p><strong>juno</strong>: Because they’re your fave. And you can never
+have too much of your favorite one-calorie breath mint.</p>
+<p><strong>bleeker</strong>: Well… thanks. I think I’m pretty much set
+until college on the Tic Tac front.</p>
+<p><strong>juno</strong>: You know, I’ve been thinking. I’m really sorry
+I was such a huge bitch to you. You didn’t deserve that. You never
+deserve any of the poo I unload on you.</p>
+<p><strong>bleeker</strong>: You know it’s okay.</p>
+<p><strong>juno</strong>: Also, I think I’m in love with you.</p>
+<p><strong>bleeker</strong>: What, you mean as friends?</p>
+<p><strong>juno</strong>: No, for real. I think you are the coolest
+person I’ve ever met. And you don’t even have to try.</p>
+<p><strong>bleeker</strong>: I try really hard, actually…</p>
+<p><strong>juno</strong>: No, you’re naturally smart. You always think
+of the funniest things to do. Remember when you passed me that postcard
+during Spanish class, and it was addressed like, “Junebug MacGuff, Row
+4, Third Seat From the Blackboard”? And it said, “I’m having fun in
+Barcelona – wish you were here”? That was hilarious.</p>
+<p><strong>bleeker</strong>: I was just bored. I only think school is
+awesome like, 80% of the time.</p>
+<p><strong>juno</strong>: Plus, you’re the only person who doesn’t stare
+at my stomach all the fucking time. You actually look at my face. And
+every time I look at you, the baby starts kicking me super hard.</p>
+<p><strong>bleeker</strong>: It does?</p>
+<p><strong>bleeker</strong>: Wizard!</p>
+<p><strong>juno</strong>: I think it’s because my heart starts pounding
+when I see you.</p>
+<p><strong>bleeker</strong>: Mine too.</p>
+<p><strong>juno</strong>: Basically, I’m completely smitten with you,
+and I don’t care if I’m making an ass out of myself right now, because
+you’ve seen me make an ass out of myself a million times, and you still
+want to be my friend.</p>
+<p><strong>bleeker</strong>: Well, yeah. You’re the best friend I’ve
+ever had, even when you’re being kind of evil.</p>
+<p><strong>juno</strong>: That’s all I need from you. That’s more than I
+could ever ask for. You’re just golden, dude.</p>
+<p><strong>bleeker</strong>: Can we make out now?</p>
+<p><strong>juno</strong>: Okay.</p>
+<p><strong>leah</strong>: You know, you can go into early labor sucking
+face like that!</p>
+<p><strong>juno</strong>: Dad!</p>
+<p><strong>mac</strong>: What?!</p>
+<p><strong>juno</strong>: Either I just pissed my pants or…</p>
+<p><strong>mac</strong>: Or…</p>
+<p><strong>juno</strong>: Thundercats are go!</p>
+<p><strong>juno</strong>: Ow, ow, fuckity-ow. Bren, when do I get that
+Spinal Tap thing?</p>
+<p><strong>bren</strong>: It’s called a spinal block, and you can’t have
+it yet, honey. The doctor said you’re not dilated enough.</p>
+<p><strong>juno</strong>: You mean I have to wait for it to get even
+worse? Why can’t they just give it to me now?</p>
+<p><strong>bren</strong>: Well, honey, doctors are sadists who like to
+play God and watch lesser people scream.</p>
+<p><strong>bren</strong>: Shit. Hey, can we give my kid the damn spinal
+tap already?</p>
+<p><strong>juno</strong>: It really didn’t hurt that bad having him.</p>
+<p><strong>juno</strong>: The best part was when I peed on Leah during
+labor.</p>
+<p><strong>juno</strong>: And then, out of nowhere, there it was…</p>
+<p><strong>juno</strong>: There he was.</p>
+<p><strong>juno</strong>: I decided to not call Bleeker to tell him that
+I was having the baby. He had a big meet against Manteno and I didn’t
+want him to get all worried about me and choke.</p>
+<p><strong>vijay</strong>: His legs are as swift as his seed.</p>
+<p><strong>mrs. bleeker</strong>: What did you say?</p>
+<p><strong>announcer</strong>: P. Bleeker has just broken a district
+record in the 400.</p>
+<p><strong>juno</strong>: But he figured it out anyway.</p>
+<p><strong>nurse</strong>: Would you like to meet your son?</p>
+<p><strong>vanessa</strong>: I have a son?</p>
+<p><strong>nurse</strong>: You are the adoptive mother?</p>
+<p><strong>vanessa</strong>: I have a son.</p>
+<p><strong>nurse</strong>: Healthy kid, too. Didn’t waste any time
+getting out.</p>
+<p><strong>vanessa</strong>: How do I look?</p>
+<p><strong>bren</strong>: Like a mom. Scared shitless.</p>
+<p><strong>mac</strong>: Someday, you’ll be back here, honey. On your
+terms.</p>
+<p><strong>juno</strong>: Bleeker decided he didn’t want to see the
+baby. Neither did I, really. He didn’t feel like ours.</p>
+<p><strong>juno</strong>: I think he was always hers.</p>
+<p><strong>juno</strong>: It ended with a chair.</p>
+<p><strong>juno</strong>: As boyfriends go, Paulie Bleeker is totally
+boss. He is the cheese to my macaroni. I know people are supposed to
+fall in love before they reproduce, but normalcy’s not really our
+style.</p>
+<p><strong>juno</strong>: Ready?</p>
+<p><strong>bleeker</strong>: You’re a part time lover and a fulltime
+friend. The monkey on your back is the latest trend. I don’t see what
+anyone can see, in anyone else but you.</p>
+<p><strong>juno</strong>: Here is the church and here is the steeple. We
+sure are cute for two ugly people. I don’t see what anyone can see, in
+anyone else but you.</p>
+<p><strong>bleeker</strong>: We both have shiny happy fits of rage. You
+want more fans, I want more stage. I don’t see what anyone can see, in
+anyone else but you.</p>
+<p><strong>juno</strong>: You are always trying to keep it real. I’m in
+love with how you feel. I don’t see what anyone can see, in anyone else
+but you.</p>
+<p><strong>bleeker</strong>: I kiss you on the brain in the shadow of a
+train. I kiss you all starryeyed, my body’s swinging from side to side.
+I don’t see what anyone can see, in anyone else but you.</p>
+<p><strong>juno</strong>: The pebbles forgive me, the trees forgive me.
+So why can’t you forgive me? I don’t see what anyone can see, in anyone
+else but you.</p>
+<p><strong>juno and bleeker together</strong>: Du du du du du du dudu.
+Du du du du du du dudu. I don’t see what anyone can see, in anyone else
+but you.</p>
+</body>
+</html>

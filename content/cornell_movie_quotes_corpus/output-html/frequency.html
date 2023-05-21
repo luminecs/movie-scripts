@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>frequency</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="frequency">frequency</h1>
+<p><strong>butch’s voice</strong>: …oil all over the street. Cracked
+water and gas mains. Four companies coming in…</p>
+<p><strong>frank</strong>: Oh, man. Hope it ain’t like this in Baltimore
+tomorrow.</p>
+<p><strong>gibson</strong>: Baltimore?</p>
+<p><strong>frank</strong>: The game, Graham. The Series?</p>
+<p><strong>gibson</strong>: Oh, yeah. Damn. My watch is busted.</p>
+<p><strong>frank</strong>: Hey, Rookie. Be cool. Just stay with me. This
+is what we do.</p>
+<p><strong>gibson</strong>: I seem nervous, huh?</p>
+<p><strong>frank</strong>: It’s 5:30, Gib.</p>
+<p><strong>butch’s voice</strong>: …two Con Ed men trapped in an
+underground electrical conductor vault.</p>
+<p><strong>butch</strong>: A fun one.</p>
+<p><strong>frank</strong>: Yep.</p>
+<p><strong>commander</strong>: We got high voltage cables ripped loose
+in the underground. They hit water, that fault’s gonna arc.</p>
+<p><strong>frank</strong>: Why haven’t they killed the juice?</p>
+<p><strong>supervisor</strong>: Switches are shorted out.</p>
+<p><strong>frank</strong>: You’re shitting me!</p>
+<p><strong>supervisor</strong>: Wish I was. Oldest part of the system
+down there. We’re on it, but it’s gonna take awhile.</p>
+<p><strong>frank</strong>: We gotta go underground. Get those guys out,
+now.</p>
+<p><strong>supervisor</strong>: We tried. Bulkhead door’s rusted shut.
+Won’t budge.</p>
+<p><strong>commander</strong>: The block is being evacuated. I don’t
+want anybody… including our boys…within fifty yards of that tanker…it’s
+a fucking bomb.</p>
+<p><strong>frank</strong>: This is the Fire Department. Frank Sullivan.
+You guys okay?</p>
+<p><strong>con ed worker #1’s voice</strong>: Please man, you gotta get
+us out of here…</p>
+<p><strong>frank</strong>: That’s exactly what we’re gonna do.</p>
+<p><strong>frank</strong>: How do we get to the vault door?</p>
+<p><strong>supervisor</strong>: There’s a manhole at Canal and
+Bowery.</p>
+<p><strong>butch’s voice</strong>: Forget it, Frank. No way you reach
+those men in time.</p>
+<p><strong>frank</strong>: I can do it, Butch. Me and my ‘tank man’
+here.</p>
+<p><strong>commander o’connell</strong>: Start spraying down the street.
+Let me know when we are fully evacuated.</p>
+<p><strong>butch</strong>: Frank, you hear me? Frank?</p>
+<p><strong>frank</strong>: Yeah, Butch?</p>
+<p><strong>butch</strong>: The gas level is getting serious. The
+underground’s combustible - it could flashover. I want you to abort!
+Now! Get the hell out of there!</p>
+<p><strong>gibson</strong>: Frank. We gotta go back. Frank…</p>
+<p><strong>frank</strong>: Stay with me, Gib. We’re gonna do this.</p>
+<p><strong>gibson</strong>: I should’a been a fucking mailman.</p>
+<p><strong>butch</strong>: Frank, where are you?</p>
+<p><strong>frank</strong>: We’re in, Butch.</p>
+<p><strong>frank</strong>: Time to go home, fellas.</p>
+<p><strong>con ed worker #1</strong>: Careful. If the hot end of those
+cables hits you, it’ll conduct to the water and we’re all fired.</p>
+<p><strong>frank</strong>: Go, Gibby! Everybody move it.</p>
+<p><strong>frank</strong>: Haul ass, that claw ain’t gonna hold for
+long… Take cover – she’s gonna flash!</p>
+<p><strong>frank</strong>: You did good, Gib. Real good.</p>
+<p><strong>frank</strong>: Elvis has left the building.</p>
+<p><strong>julia</strong>: …show me ’round the smokey mountains way down
+south…</p>
+<p><strong>frank</strong>: Hey, bud.</p>
+<p><strong>julia</strong>: Hey, bud.</p>
+<p><strong>frank</strong>: Looks like two weeks worth of allowance,
+Chief.</p>
+<p><strong>johnny</strong>: I know. Sorry, Dad.</p>
+<p><strong>frank</strong>: Glad to hear that.</p>
+<p><strong>frank</strong>: How about a little of the King?</p>
+<p><strong>julia</strong>: Well, why not a little of the King?</p>
+<p><strong>julia</strong>: Damn.</p>
+<p><strong>frank</strong>: You alright?</p>
+<p><strong>julia</strong>: I think I ruined the sauce…again.</p>
+<p><strong>frank</strong>: What’s the matter, Jules? Trouble workin’ an
+eight hour shift, watching the kid and whipping up a little
+bolognese?</p>
+<p><strong>julia</strong>: You didn’t marry Donna Reed.</p>
+<p><strong>frank</strong>: I’d go with you and Chinese take-out over her
+any time.</p>
+<p><strong>frank</strong>: Caught in a trap, I can’t walk out, because I
+love you too much b-b-baby.</p>
+<p><strong>julia</strong>: How was your tour?</p>
+<p><strong>frank</strong>: The usual.</p>
+<p><strong>julia</strong>: Butch called.</p>
+<p><strong>frank</strong>: Did he?</p>
+<p><strong>julia</strong>: He did.</p>
+<p><strong>frank</strong>: It was under control, Bud. Butchy’s just
+getting tight in his old age.</p>
+<p><strong>julia</strong>: Nothing wrong with old age, Frank…long as you
+get there.</p>
+<p><strong>close on</strong>: BICYCLE TRAINING WHEELS lying on the
+sidewalk.</p>
+<p><strong>frank</strong>: Okay, start pedaling.</p>
+<p><strong>johnny</strong>: Daddy put the wheels back on. I’m gonna
+fall.</p>
+<p><strong>frank</strong>: Don’t think about falling, just keep
+pedaling.</p>
+<p><strong>johnny</strong>: Daddy, I’m scared.</p>
+<p><strong>frank</strong>: C’mon, Chief, show some guts.</p>
+<p><strong>frank</strong>: I’m gonna let go!</p>
+<p><strong>frank</strong>: Don’t quit on me now, Chief.</p>
+<p><strong>julia</strong>: Don’t be so tough on him Frank, he’s six
+years old. He just needs to know you’re right there behind him.</p>
+<p><strong>johnny’s pov</strong>: Frank standing in the yard, wishing on
+a star.</p>
+<p><strong>john</strong>: So, that’s it, Sam? You’re just walking
+out?</p>
+<p><strong>samantha</strong>: I’ve been walking out for the last six
+months. You didn’t notice…or care.</p>
+<p><strong>john</strong>: Fine, go ahead and save the whole world, Sam.
+You don’t gotta worry about me.</p>
+<p><strong>samantha</strong>: Damn you. I tried. But you wouldn’t help
+me.</p>
+<p><strong>john</strong>: You’re right. We should’ve quit a long time
+ago.</p>
+<p><strong>john</strong>: It’s not your fault. It’s mine. I can’t
+change. Wish I could, Sam. But I can’t.</p>
+<p><strong>samantha</strong>: That’s not true and you know it.</p>
+<p><strong>samantha</strong>: Goodbye, Chief.</p>
+<p><strong>john</strong>: What? It don’t matter, Lady. Why?… Cause I
+don’t got no friends or family.</p>
+<p><strong>audio flashback</strong>: a VOICE rises up out of the
+darkness. The voice of memory…</p>
+<p><strong>announcer</strong>: Batting next. Johnny Sullivan.</p>
+<p><strong>crack</strong>: sound of the bat solidly connecting with the
+ball.</p>
+<p><strong>announcer</strong>: Sullivan’s safe at first. Batting for
+Johnny’s father is…Coach Newman.</p>
+<p><strong>gordy jr.</strong>: Hi, Uncle John.</p>
+<p><strong>john</strong>: I’m not your uncle, kid. Gordo, what are you
+doing here?</p>
+<p><strong>gordo</strong>: Sully! Is that you?</p>
+<p><strong>gordo</strong>: Hey, Sull. My cable’s out again.</p>
+<p><strong>john</strong>: What the hell is that smell?</p>
+<p><strong>gordo</strong>: Can you believe Ellen still won’t let me cook
+in the house? I melt one lousy frying pan, y’know?</p>
+<p><strong>gordy jr.</strong>: John, guess what? Dad’s taking me
+fishing. Wanna come?</p>
+<p><strong>john</strong>: Wish I could, Gordy. But you bring me back a
+big one.</p>
+<p><strong>gordo</strong>: Hey, OK if Gordy uses your old gear?</p>
+<p><strong>john</strong>: I think it’s somewhere in the closet… if you
+can find it.</p>
+<p><strong>gordo</strong>: So Yahoo went up another two points. Man, did
+we miss the boat on that one.</p>
+<p><strong>john</strong>: Coulda, woulda, shoulda, pal.</p>
+<p><strong>gordo</strong>: Sam called Ellen.</p>
+<p><strong>gordo</strong>: Why don’t you come with us? Three days of
+fresh air and barbecue would do you some good, man.</p>
+<p><strong>gordy jr.</strong>: Dad, John, c’mere…</p>
+<p><strong>gordo</strong>: Hey, Gordy, what ’ya doing?</p>
+<p><strong>gordy jr.</strong>: Dad, check it out. Fire Department! Can I
+open it up?</p>
+<p><strong>gordy jr.</strong>: Wow.</p>
+<p><strong>gordo</strong>: Hey! Gimmie that!</p>
+<p><strong>gordy jr.</strong>: What’s this, Dad?</p>
+<p><strong>gordo</strong>: John, that’s your Dad’s old ham radio.
+Remember? Remember how we used to beg him to let us talk on that
+thing?</p>
+<p><strong>john/gordo</strong>: This is not a toy.</p>
+<p><strong>gordy jr.</strong>: Can we try it Dad, can we try it?</p>
+<p><strong>john</strong>: What the hell.</p>
+<p><strong>gordy jr.</strong>: So this was what people used before the
+Net, huh?</p>
+<p><strong>gordo</strong>: Man, do I feel old.</p>
+<p><strong>john</strong>: It’s junk, kid. Nobody uses those things
+anymore.</p>
+<p><strong>ellen</strong>: Gordo, do you know what time it is? Hi,
+John.</p>
+<p><strong>john</strong>: Ellen.</p>
+<p><strong>ellen</strong>: C’mon Gordy, let’s go.</p>
+<p><strong>gordy jr.</strong>: Oh, mom…</p>
+<p><strong>ellen</strong>: You all right, John?</p>
+<p><strong>john</strong>: Oh, yeah.</p>
+<p><strong>tv</strong>: LARRY KING is interviewing STEPHEN HAWKING.</p>
+<p><strong>julia</strong>: Hi, this is Julia. Please leave a message
+after the tone.</p>
+<p><strong>john</strong>: Hey, Ma, it’s me. Checking in. Probably at
+work. Anyways, I’ll see you tomorrow night. Love you.</p>
+<p><strong>larry king</strong>: Is this anomaly connected to the space
+storm and the NASA satellite that disappeared in 1969?</p>
+<p><strong>hawking</strong>: We don’t know. But given the similarities
+of their location and appearance, this is a question that merits further
+investigation.</p>
+<p><strong>note</strong>: Larry King’s show plays for the duration of
+this scene.</p>
+<p><strong>frank</strong>: CQ 15, here is WB2YXB, by for call.</p>
+<p><strong>frank</strong>: CQ 15, come in 15.</p>
+<p><strong>john</strong>: Uh, hello?</p>
+<p><strong>frank</strong>: WB2YKXB, who’ve I got?</p>
+<p><strong>john</strong>: Name’s John.</p>
+<p><strong>frank</strong>: Are you licensed to broadcast, buddy?</p>
+<p><strong>john</strong>: Look, I don’t really remember how this thing
+works.</p>
+<p><strong>frank</strong>: Listen, you can’t broadcast without a
+license. Unless this is an emergency, you gotta get off the band.</p>
+<p><strong>john</strong>: Pal, my whole life’s an emergency.</p>
+<p><strong>frank</strong>: Where are you transmitting from?</p>
+<p><strong>john</strong>: Queens, New York.</p>
+<p><strong>frank</strong>: Whatta ya know. Bayside, born and raised.</p>
+<p><strong>john</strong>: I thought these things were for talkin’ around
+the world.</p>
+<p><strong>frank</strong>: 15-band closes down at night. During the day
+you can chew the band with China if you want.</p>
+<p><strong>john</strong>: I can’t believe people are still using these
+things.</p>
+<p><strong>frank</strong>: Can you hold on a second?</p>
+<p><strong>frank</strong>: Sorry ’bout that. So Queens, you psyched for
+the Series?</p>
+<p><strong>john</strong>: I don’t really follow baseball anymore.</p>
+<p><strong>frank</strong>: What?</p>
+<p><strong>john</strong>: I got fed up with all the bullshit.</p>
+<p><strong>frank</strong>: Fed up? Lemme tell you something, in a 1000
+years, when school kids study America, they’re gonna learn about three
+things: the Constitution, Rock ‘n’ Roll, and Baseball.</p>
+<p><strong>frank</strong>: How can you live in Queens and not love the
+Amazin’s?</p>
+<p><strong>john</strong>: If you’re talking The Amazin’ Mets, well,
+that’s different. You know people talk about Seaver, but I’ll love Ron
+Swoboda til the day I die.</p>
+<p><strong>frank</strong>: I’m right with you, man. He’s got the heart
+of a lion. Hey, how ’bout the first game of the Series?</p>
+<p><strong>john</strong>: Yeah. It was all over after Buford nailed
+Seaver’s first pitch outta the park.</p>
+<p><strong>frank</strong>: No way, brother. Ain’t gonna happen.</p>
+<p><strong>john</strong>: Who the hell was that?</p>
+<p><strong>another finger pressing down on the red squawk bar…
+frank</strong>: SULLIVAN. Seated at the polished wooden desk.</p>
+<p><strong>frank</strong>: Hello, Queens. You there?</p>
+<p><strong>julia</strong>: Frankie, Johnny wants to say goodnight.</p>
+<p><strong>frank</strong>: Sure.</p>
+<p><strong>frank</strong>: Take me out to the ballgame, take me out with
+the crowd. Buy me some peanuts and cracker jack…</p>
+<p><strong>john</strong>: …I don’t care if I never get back.</p>
+<p><strong>satch</strong>: Lucky throw, fire boy.</p>
+<p><strong>frank</strong>: Luck, my ass.</p>
+<p><strong>frank</strong>: See that, kid. Practice. Practice.</p>
+<p><strong>satch</strong>: Don’t choke on your pride, Sull. You ain’t
+ever gonna catch another one like that.</p>
+<p><strong>john</strong>: She made up her mind. Nothin’ I do is gonna
+change it.</p>
+<p><strong>satch</strong>: Nothing you’re willing to do.</p>
+<p><strong>john</strong>: What’s the story?</p>
+<p><strong>uniform</strong>: Survey crew found a body. Actually a
+skeleton. Over here.</p>
+<p><strong>satch</strong>: Be real careful when pulling it out. And get
+the dirt around it.</p>
+<p><strong>john</strong>: I think I’ll visit the neighbor.</p>
+<p><strong>john</strong>: Thanks.</p>
+<p><strong>mr. shepard</strong>: Used to get breakfast there all the
+time back from the boat. Them Greeks were good people. Once that
+McDonalds opened up on Dyckman, they lost all their business.</p>
+<p><strong>john</strong>: Your son on the job?</p>
+<p><strong>mr. shepard</strong>: Was. Carl died in the line of duty.
+October ’69.</p>
+<p><strong>john</strong>: I’m sorry.</p>
+<p><strong>mr. shepard</strong>: My boy lived and bled blue.</p>
+<p><strong>julia</strong>: I thought it’d be nicer to eat here.</p>
+<p><strong>john</strong>: Sounds good.</p>
+<p><strong>julia</strong>: I’m sorry Sam couldn’t make it.</p>
+<p><strong>john</strong>: Yeah, those grad school applications are
+driving her crazy.</p>
+<p><strong>julia</strong>: I’m sure everything’ll work out. She really
+loves you…</p>
+<p><strong>john</strong>: So how are things at the hospital?</p>
+<p><strong>julia</strong>: Fine. You know Dr. Schwartz retired last
+month?</p>
+<p><strong>john</strong>: No kidd’n, he musta been pushing 90!</p>
+<p><strong>julia</strong>: Close.</p>
+<p><strong>john</strong>: So how’d you like LION KING?</p>
+<p><strong>julia</strong>: Oh, I loved it. I wish you’d gone.</p>
+<p><strong>john</strong>: I know. I’m sorry. Work.</p>
+<p><strong>julia</strong>: You work too hard, John.</p>
+<p><strong>john</strong>: Look who’s talking.</p>
+<p><strong>julia</strong>: 29-years tomorrow.</p>
+<p><strong>john</strong>: I wish I could remember him better. Truth is,
+most of the stuff I know is from the stories you used to tell. But
+they’re not mine. They’re not my memories. They’re yours.</p>
+<p><strong>julia</strong>: You would have liked him, John. And he would
+have liked you.</p>
+<p><strong>frank</strong>: …WB2YXB calling unidentified station, Queens.
+CQ 15.</p>
+<p><strong>john</strong>: Hello?</p>
+<p><strong>frank</strong>: I been Q-ing you all night. How the hell did
+you do it?</p>
+<p><strong>john</strong>: Huh?</p>
+<p><strong>frank</strong>: The World Series. You called Buford’s
+homer.</p>
+<p><strong>john</strong>: Wasn’t too tough, buddy. Game happened almost
+thirty years ago.</p>
+<p><strong>frank</strong>: What are you talking about? I’m talking about
+this afternoon.</p>
+<p><strong>john</strong>: This afternoon?</p>
+<p><strong>johnny</strong>: Daddy, come up and sing the baseball.</p>
+<p><strong>frank</strong>: I’ll be up soon, Little Chief.</p>
+<p><strong>frank</strong>: Sorry ’bout that.</p>
+<p><strong>john</strong>: What’d you just say?</p>
+<p><strong>frank</strong>: Oh, that was my kid.</p>
+<p><strong>john</strong>: You call your son Little Chief?</p>
+<p><strong>frank</strong>: Uh huh…</p>
+<p><strong>john</strong>: What’d you say your name was?</p>
+<p><strong>frank</strong>: Frank…Frank Sullivan.</p>
+<p><strong>john</strong>: Is this some kind of joke? Gordo is that you?
+Are you fucking with me?</p>
+<p><strong>frank</strong>: Look pal, I’m just askin’ how you…</p>
+<p><strong>john</strong>: You’re telling me your name is Frank Sullivan,
+you live in Queens and you just saw the first game of the ’69
+Series…live?</p>
+<p><strong>frank</strong>: Right…and I’m asking how you called the
+game.</p>
+<p><strong>john</strong>: Gordo, if this is you, so help me…</p>
+<p><strong>frank</strong>: What the hell does Gordy have to do with
+it?</p>
+<p><strong>john</strong>: What’d you say your station…uh, your call
+letters were?</p>
+<p><strong>john</strong>: Now you listen to me. My name is John Francis
+Sullivan, I live at 1060 41st, where I’ve lived my whole life. And I saw
+the first game of the ’69 Series at my Uncle Butch’s house with my
+father…</p>
+<p><strong>frank</strong>: What?</p>
+<p><strong>john</strong>: 29-years ago.</p>
+<p><strong>frank</strong>: 29 years…?</p>
+<p><strong>john</strong>: My dad’s name was Frank Patrick Sullivan, he
+was a fire fighter and a die-hard Mets fan. And every night when I went
+to bed he sang to me… Take me out to the ball game, take me out with the
+crowd…</p>
+<p><strong>frank</strong>: What the hell…</p>
+<p><strong>john</strong>: I’m dreaming this. Shit, this is a dream.</p>
+<p><strong>frank</strong>: I’m not dreaming.</p>
+<p><strong>john</strong>: So you’re Frank Sullivan, huh? It’s 1969 and
+you’re sitting at your desk in the study, just chewin’ the rag?</p>
+<p><strong>frank</strong>: Christ!</p>
+<p><strong>john</strong>: What’s going on?</p>
+<p><strong>frank</strong>: Nothing…I just spilled something.</p>
+<p><strong>john</strong>: Oh my god.</p>
+<p><strong>frank</strong>: What?</p>
+<p><strong>john</strong>: You just burned the desk.</p>
+<p><strong>frank</strong>: What’s happening?</p>
+<p><strong>john</strong>: You burnt the desk…I can see it.</p>
+<p><strong>frank</strong>: That’s impossible.</p>
+<p><strong>john</strong>: What if it’s not…</p>
+<p><strong>john</strong>: Dad…?</p>
+<p><strong>frank</strong>: Johnny…?</p>
+<p><strong>frank</strong>: How could this be happening?</p>
+<p><strong>john</strong>: I don’t know.</p>
+<p><strong>frank</strong>: We gotta be bouncing off the mother sun spot
+of all time.</p>
+<p><strong>john</strong>: Sun spot?</p>
+<p><strong>frank</strong>: Yeah, that’s how Hams work.</p>
+<p><strong>john</strong>: Wait a sec…there was something on the news.
+Something about this space anomaly. I think they said it was connected
+to some storm in ’69.</p>
+<p><strong>frank</strong>: You sound…ground up…?</p>
+<p><strong>john</strong>: I’m thirty-five years old.</p>
+<p><strong>frank</strong>: Thirty-five? That would make it…</p>
+<p><strong>john</strong>: 1998.</p>
+<p><strong>frank</strong>: 1998…? This is wrong. Who are you? Why are
+you doing this?</p>
+<p><strong>john</strong>: I’m not doing anything. Look, I don’t know
+what’s going on. But I swear on my life, I”m here at your old desk, on
+your Ham, in our house, right now…in 1998.</p>
+<p><strong>frank</strong>: It’s really you, isn’t it?</p>
+<p><strong>john</strong>: Yeah…I think so.</p>
+<p><strong>frank</strong>: Thirty-five? Jesus, you’re almost as old as I
+am… What’s your life like? You married? Got kids?</p>
+<p><strong>john</strong>: No, not yet.</p>
+<p><strong>frank</strong>: Too busy playin’ ball, huh?</p>
+<p><strong>john</strong>: Nah, I gave it up.</p>
+<p><strong>frank</strong>: You happy?</p>
+<p><strong>frank</strong>: You’re still my Little Chief, right?</p>
+<p><strong>john</strong>: I’m trying to be, Dad. I’m tyrin’. It’s good
+to hear your voice. I missed you…so much.</p>
+<p><strong>john</strong>: What’s that?</p>
+<p><strong>frank</strong>: I think I’m losing you.</p>
+<p><strong>john</strong>: No wait, don’t go!</p>
+<p><strong>frank</strong>: It’s okay. I’m still here, Chief.</p>
+<p><strong>john</strong>: But you’re not…you’re not still here.</p>
+<p><strong>frank</strong>: What are you talking about?</p>
+<p><strong>john</strong>: I lost you.</p>
+<p><strong>frank</strong>: What?</p>
+<p><strong>john</strong>: I never knew you, Dad.</p>
+<p><strong>frank</strong>: Why?</p>
+<p><strong>john</strong>: Fire.</p>
+<p><strong>frank</strong>: On the job?</p>
+<p><strong>john</strong>: It was an abandoned warehouse - hit by
+lightening. Butch told Ma it was just one wrong turn. Said it wasn’t
+your fault. You went with the training, with your instincts. If you’d
+just gone left instead of right, you would’ve made it.</p>
+<p><strong>frank</strong>: That can’t be…that’s not gonna happen.</p>
+<p><strong>john</strong>: It did, Pop. It did.</p>
+<p><strong>frank</strong>: When?</p>
+<p><strong>john</strong>: October 12, 1969.</p>
+<p><strong>frank</strong>: But that’s tomorrow.</p>
+<p><strong>john</strong>: Tomorrow. Jesus…it hasn’t happened. It doesn’t
+have to happen.</p>
+<p><strong>john</strong>: Don’t go. Don’t go in that warehouse…</p>
+<p><strong>frank</strong>: I don’t understand.</p>
+<p><strong>gordo</strong>: Sull! What the hell!</p>
+<p><strong>john</strong>: I talked to him Gordo. I talked to my Dad.</p>
+<p><strong>gordo</strong>: C’mon, man. Get inside. I’ll come over. We’ll
+play some Nintendo.</p>
+<p><strong>john</strong>: No. I gotta tell him the address, so he
+doesn’t go in.</p>
+<p><strong>gordo</strong>: Go in where?</p>
+<p><strong>john</strong>: The warehouse. Buxton seeds. It’s
+tomorrow.</p>
+<p><strong>gordo</strong>: I know pal. I remember. Twenty-nine years
+tomorrow.</p>
+<p><strong>gibson</strong>: Oh, man. Robinson is gonna nail it and we’re
+gonna be dead.</p>
+<p><strong>butch</strong>: Let’s move it, gentlemen…three alarm. Lit up
+abandoned warehouse. West 49th.</p>
+<p><strong>gibson</strong>: Sully, you cool?</p>
+<p><strong>gibson</strong>: Frank. Hey, man. You alright?</p>
+<p><strong>frank</strong>: I’m alright, Gibby.</p>
+<p><strong>gordo</strong>: How you feeling?</p>
+<p><strong>john</strong>: Better.</p>
+<p><strong>satch</strong>: You get your roof fixed?</p>
+<p><strong>gordo</strong>: Can you believe it, Yahoo goes up another
+point today…</p>
+<p><strong>gibson</strong>: Bastard’s moving fast.</p>
+<p><strong>butch</strong>: Thank God it’s abandoned. Surround and
+drown…nobody goes in.</p>
+<p><strong>frank</strong>: Hear that?</p>
+<p><strong>butch</strong>: What?</p>
+<p><strong>girl</strong>: Help! Help! Oh, god. Help. She’s up there.
+She’s trapped! Please!</p>
+<p><strong>frank</strong>: Hey, hey. It’s gonna be okay. We’re gonna
+help. Okay? Okay.</p>
+<p><strong>frank</strong>: Now tell me, who’s up there?</p>
+<p><strong>girl</strong>: My girlfriend, Molly.</p>
+<p><strong>frank</strong>: Where?</p>
+<p><strong>girl</strong>: In a room…an office…or something. We live
+there. Top floor. Something fell on her. I couldn’t help her. Please,
+you gotta…gotta…</p>
+<p><strong>gordo</strong>: You realize that if you’d bought a thousand
+dollars worth of Yahoo in ’96, it’d be worth fifty-grand today?</p>
+<p><strong>satch</strong>: You doin’ okay, John?</p>
+<p><strong>john</strong>: Tough day, you know.</p>
+<p><strong>gordo &amp; satch</strong>: To your dad.</p>
+<p><strong>john</strong>: To my dad.</p>
+<p><strong>frank</strong>: It looks open on the other side.</p>
+<p><strong>gibson</strong>: Don’t know what’s behind it.</p>
+<p><strong>frank</strong>: One way to find out.</p>
+<p><strong>frank</strong>: Get out…while you still can…</p>
+<p><strong>frank</strong>: …it’s not your time.</p>
+<p><strong>gibson</strong>: Gotta be another way up, Frank.</p>
+<p><strong>frank</strong>: Then fuckin’ find it. I’m going for the
+girl.</p>
+<p><strong>butch</strong>: Billy, you better get up top.</p>
+<p><strong>roof man</strong>: This is Billy, Frank. I’m on my way. South
+side.</p>
+<p><strong>frank</strong>: Glad to hear it. See you on top.</p>
+<p><strong>frank</strong>: I’ve found the girl.</p>
+<p><strong>frank</strong>: It’s real hot in here, Billy. I’m coming out
+quick.</p>
+<p><strong>roof man</strong>: I’m jammed up here, Frank!</p>
+<p><strong>frank</strong>: Oh mother…</p>
+<p><strong>butch</strong>: What the fuck, GINO! Tell me!</p>
+<p><strong>ladder operator/gino</strong>: Gear box cracked, Butch. We’re
+fucked.</p>
+<p><strong>butch</strong>: Frank! Frank!</p>
+<p><strong>frank</strong>: I know, Butch. I know.</p>
+<p><strong>john</strong>: …one wrong turn… If you’d just gone left.</p>
+<p><strong>gordo</strong>: …principal calls us in ’cause Gordy hacked
+into the school system - sent out a little X-rated e-mail. Scary, huh?
+Eight-years old.</p>
+<p><strong>satch</strong>: Just keep him away from girls.</p>
+<p><strong>satch</strong>: Just keep him away from girls.</p>
+<p><strong>gibson</strong>: You okay, man?</p>
+<p><strong>frank</strong>: Elvis has left the building.</p>
+<p><strong>frank</strong>: Little Chief.</p>
+<p><strong>gordo</strong>: John. John, you all right?</p>
+<p><strong>john</strong>: Longbranch…?</p>
+<p><strong>gordo</strong>: What?</p>
+<p><strong>satch</strong>: You’re not looking too good.</p>
+<p><strong>john</strong>: Whoa, I just…I just…</p>
+<p><strong>gordo</strong>: What is it?</p>
+<p><strong>john</strong>: My father didn’t die in a fire?</p>
+<p><strong>gordo</strong>: Huh?</p>
+<p><strong>john</strong>: My father didn’t die in a fire?</p>
+<p><strong>gordo</strong>: Fire? What are you talking about? He had
+cancer, John.</p>
+<p><strong>john</strong>: Cancer. It was the cigarettes. Right? The
+cigarettes?</p>
+<p><strong>gordo</strong>: Yeah, lung cancer. Ten years ago.</p>
+<p><strong>satch</strong>: Maybe you outta lay off a little…</p>
+<p><strong>john</strong>: Gordo, I wasn’t dreaming. I talked to him, it
+was real.</p>
+<p><strong>gordo</strong>: Huh?</p>
+<p><strong>john</strong>: The Ham radio. That’s how come he didn’t die
+in the fire.</p>
+<p><strong>frank</strong>: Johnny? Johnny? You there? C’mon, Chief,
+answer me…</p>
+<p><strong>frank</strong>: Chief? Chief, are you there?</p>
+<p><strong>johnny</strong>: I’m right here, Daddy.</p>
+<p><strong>frank</strong>: It’s okay, Chief. C’mere.</p>
+<p><strong>frank</strong>: Okay, partner, whatta you say we tame this
+bronco.</p>
+<p><strong>johnny</strong>: I’m scared.</p>
+<p><strong>frank</strong>: Don’t be scared. This time I’m right behind
+you if you fall.</p>
+<p><strong>johnny</strong>: Daddy, Daddy, I can’t.</p>
+<p><strong>frank</strong>: No, but we can. We can do it together. Spirit
+and guts, Chief.</p>
+<p><strong>frank</strong>: Take your time. I’m not gonna let go ’til you
+say okay.</p>
+<p><strong>frank</strong>: You ready?</p>
+<p><strong>johnny</strong>: Wait…</p>
+<p><strong>frank</strong>: I’m right here behind you…</p>
+<p><strong>johnny</strong>: Okay!</p>
+<p><strong>frank</strong>: Yes! That’s it! You got it, you got it! Way
+to go, Chief!</p>
+<p><strong>johnny</strong>: I’m doing it! I’m doing it!</p>
+<p><strong>frank</strong>: Atta boy.</p>
+<p><strong>john</strong>: Oh my God…</p>
+<p><strong>frank</strong>: …can you hear me?</p>
+<p><strong>john</strong>: Dad…?</p>
+<p><strong>frank</strong>: Chief?! Is that you?</p>
+<p><strong>john</strong>: Yeah, it’s me.</p>
+<p><strong>frank</strong>: You’re the voice of an angel, Johnny. If you
+hadn’t told me, no way I would’a ever made it.</p>
+<p><strong>john</strong>: Dad, you there? You okay?</p>
+<p><strong>frank</strong>: Yeah. I’m okay. What about you? I want to
+know. About you. And your mom.</p>
+<p><strong>john</strong>: We’re doing all right, Dad. We’re doing
+good.</p>
+<p><strong>frank</strong>: Tell me.</p>
+<p><strong>john</strong>: It’s hard to explain. Something happened
+today. It was like a dream. And when I woke up I had all these new
+memories. Good times. Times we never had before.</p>
+<p><strong>frank</strong>: I’m glad.</p>
+<p><strong>john</strong>: Dad, I gotta tell you this…cause you should
+know. Cause I still remember.</p>
+<p><strong>frank</strong>: What, Johnny? What is it?</p>
+<p><strong>john</strong>: What it was like when you died in the
+fire…</p>
+<p><strong>frank</strong>: I didn’t think…</p>
+<p><strong>john</strong>: Well, you think about it. And you remember,
+cause I don’t wanna lose you again. I don’t ever want Mom…</p>
+<p><strong>frank</strong>: You won’t. I swear to God you won’t. I love
+you, son.</p>
+<p><strong>julia’s voice</strong>: Hi, this is Julia. Please leave a
+message after the tone.</p>
+<p><strong>john</strong>: Ma, it’s me. Call me. We gotta talk.</p>
+<p><strong>julia</strong>: Frank…what’s wrong?</p>
+<p><strong>frank</strong>: Nothing. I just wanted to see you.</p>
+<p><strong>julia</strong>: Frankie, what is it?</p>
+<p><strong>frank</strong>: I’m here. Bruised but not broken.</p>
+<p><strong>julia</strong>: Where’s Johnny?</p>
+<p><strong>frank</strong>: I tucked him in at Gordo’s.</p>
+<p><strong>julia</strong>: You give him his drops?</p>
+<p><strong>frank</strong>: One in each ear. What would you do without
+me?</p>
+<p><strong>julia</strong>: Probably marry some rich doctor and never
+have to work…</p>
+<p><strong>julia</strong>: Excuse me doctor, is that Benazepril?</p>
+<p><strong>intern</strong>: Yes.</p>
+<p><strong>julia</strong>: I gave this patient 50 mills of Benedryal on
+admittance. Mix them and he’s dead.</p>
+<p><strong>intern</strong>: Why wasn’t I made aware?</p>
+<p><strong>julia</strong>: It’s in his chart.</p>
+<p><strong>frank</strong>: I love you, Bud.</p>
+<p><strong>julia</strong>: I love you more.</p>
+<p><strong>cashier</strong>: Noah’s Deli. Can you hold?</p>
+<p><strong>cashier</strong>: Noah’s Deli.</p>
+<p><strong>jamaican woman</strong>: Can I help you?</p>
+<p><strong>john</strong>: I’m looking for Julia Sullivan.</p>
+<p><strong>jamaican woman</strong>: I think you have the wrong
+apartment.</p>
+<p><strong>john</strong>: But this is her place. 910 Riverside.
+Apartment 3C.</p>
+<p><strong>jamaican woman</strong>: I’m sorry, but no one by that name
+lives here.</p>
+<p><strong>john</strong>: What?</p>
+<p><strong>satch</strong>: Another rough night, huh? That it?</p>
+<p><strong>john</strong>: Yeah. That’s it.</p>
+<p><strong>satch</strong>: Do not disrespect me. Disrespect yourself all
+you want. But not me. Or anybody else around here. You got that?</p>
+<p><strong>satch</strong>: This is getting real old, John. And I’m tired
+up to here with it…</p>
+<p><strong>john</strong>: I’m sorry. I just…you know…I…</p>
+<p><strong>satch</strong>: And I’m tired of the I’m sorrys. I don’t need
+’em. What I need is a partner I can count on. I care about you. Not
+cause of me and your old man. Not cause of your mom. But because of
+you.</p>
+<p><strong>satch</strong>: We got the preliminary forensics on that
+skeleton. Your gonna want to look at it.</p>
+<p><strong>satch</strong>: Bad memories… You imagine the odds…us diggin’
+up a Nightingale Murder?</p>
+<p><strong>satch</strong>: She makes ten.</p>
+<p><strong>john</strong>: Ten? No. I remember this case. Three. He
+killed three women.</p>
+<p><strong>satch</strong>: What’re you talking’? You know better than
+anybody, John. You’ve read this file a thousand times.</p>
+<p><strong>john</strong>: No.</p>
+<p><strong>frank &amp; johnny</strong>: Buy me some peanuts and cracker
+jack…I don’t care if I never get back…</p>
+<p><strong>julia</strong>: Boy is he excited about the game
+tomorrow.</p>
+<p><strong>frank</strong>: He ain’t the only one.</p>
+<p><strong>julia</strong>: I’m off.</p>
+<p><strong>frank</strong>: Wish you weren’t.</p>
+<p><strong>julia</strong>: Do you know how much I love you?</p>
+<p><strong>frank</strong>: Yeah, actually I do.</p>
+<p><strong>samantha</strong>: John, are you all right?</p>
+<p><strong>john</strong>: What are you doing here?</p>
+<p><strong>samantha</strong>: Ellen said you were working. I just wanted
+to pick up the rest…</p>
+<p><strong>john</strong>: Dad, you there? Can you here me? Dad? I need
+you to be there.</p>
+<p><strong>frank</strong>: Right here, Chief. Sorry I lost you last
+night. Damn thing keeps cutting out.</p>
+<p><strong>john</strong>: Dad…Dad… There’s… I need to…</p>
+<p><strong>frank</strong>: Are you alright”?</p>
+<p><strong>john</strong>: Something happened, something…</p>
+<p><strong>frank</strong>: What? Johnny, what’s wrong?</p>
+<p><strong>john</strong>: It’s Mom.</p>
+<p><strong>frank</strong>: What? What is it?</p>
+<p><strong>john</strong>: She’s not here.</p>
+<p><strong>frank</strong>: Whatta you mean she’s not here?</p>
+<p><strong>john</strong>: She…she died. It’s like it just happened.</p>
+<p><strong>frank</strong>: She just died, your mother just died?</p>
+<p><strong>john</strong>: No Dad, it happened a long time ago, a long
+time ago for me.</p>
+<p><strong>frank</strong>: When?</p>
+<p><strong>john</strong>: October 22, 1969.</p>
+<p><strong>frank</strong>: Jesus Christ…that’s…ten days from now.
+How?</p>
+<p><strong>frank</strong>: Johnny, I gotta know.</p>
+<p><strong>john</strong>: She was murdered.</p>
+<p><strong>frank</strong>: Murdered? Why?</p>
+<p><strong>john</strong>: There was this case. A serial. He murdered
+three women, all nurses, between ’68 and ’69. The papers called them the
+Nightingale Murders. They never caught him. But the killings just
+stopped.</p>
+<p><strong>frank</strong>: What kinda twisted animal.</p>
+<p><strong>john</strong>: Dad, we did something. Something to make it
+worse.</p>
+<p><strong>frank</strong>: Whatta you mean…</p>
+<p><strong>john</strong>: He didn’t just kill three women anymore. He
+killed ten.</p>
+<p><strong>frank</strong>: What are you talking about?</p>
+<p><strong>john</strong>: Something we did changed the case…changed
+history. Mom wasn’t dead. But then after you didn’t die in the fire
+something must have happened. And this guy, this Nightingale guy, he
+kept on killing…it was like a spree…seven more women.</p>
+<p><strong>frank</strong>: I gotta take her away, John. I’m gonna take
+your mother away. He can’t hurt her if I take her away.</p>
+<p><strong>john</strong>: I don’t know… What about the other women?</p>
+<p><strong>frank</strong>: I’ll warn them.</p>
+<p><strong>john</strong>: That’ll never work. They’ll just think you’re
+crazy.</p>
+<p><strong>frank</strong>: What can we do? You don’t even know who this
+guy is.</p>
+<p><strong>john</strong>: No. Nobody got… Wait a minute. I might not
+know who he is, but I know where he’s gonna be. I got the case file. We
+know what he’s gonna do before he does it.</p>
+<p><strong>frank</strong>: So what should I do? Call the police? You
+think they’ll believe me?</p>
+<p><strong>john</strong>: They will if they catch him in the act. You
+can make that happen, Dad. You can tail the victim and call it in at
+just the right moment.</p>
+<p><strong>frank</strong>: I don’t know, John. I’m a fire fighter. This
+is…this is different.</p>
+<p><strong>john</strong>: I do know. I’m a cop. This is what I do.</p>
+<p><strong>john</strong>: You ever talk to a victim’s family? The one’s
+left behind? They don’t act like what you’d think. There’s panic and
+fear. But mostly, it’s like there’s this logic problem. And if they
+could only solve it, everything would be okay. But if you look real
+close - look at their eyes - you can see it. Just a glimmer. But
+somewhere they know. They know their world is never gonna be the
+same.</p>
+<p><strong>frank</strong>: What if the radio stops working? Christ, what
+if I can’t reach you again?</p>
+<p><strong>john</strong>: Then you get Mom the hell out. But Dad, those
+other women weren’t supposed to die. We don’t try to stop this guy,
+we’re gonna live with that for the rest of our lives.</p>
+<p><strong>frank</strong>: What do I gotta do?</p>
+<p><strong>john</strong>: The next victim was Karen Reynolds…It happens
+tomorrow. Case file says she left St. Vincents at six. Show’d up at
+Cozy’s Bar around six thirty. She walked outta that bar around
+seven-thirty. They found her dead in an empty lot behind the place at
+eight o’clock.</p>
+<p><strong>frank</strong>: Why not just get the cops to watch the
+bar?</p>
+<p><strong>john</strong>: They’ll question her. Whatever they tell her
+could change what happens. No, I want you to follow her. See if
+anybody’s watching her, hittin’ on her. I’m betting somebody’s gonna
+walk outta that bar with her. When they do, you call the cops.</p>
+<p><strong>frank</strong>: What do I tell them?</p>
+<p><strong>john</strong>: Tell ’em there’s a homicide in progress… cause
+by the time they show up there will be.</p>
+<p><strong>woman’s voice</strong>: Hey, Chuck.</p>
+<p><strong>bartender</strong>: Hey, Karen.</p>
+<p><strong>young detective</strong>: Is that really how you got the Son
+of Sam? Parking tickets?</p>
+<p><strong>satch</strong>: Any word on our bones?</p>
+<p><strong>young detective</strong>: But how’d you think of it?</p>
+<p><strong>satch</strong>: You’re pulling over with a .44 bulldog tucked
+in your pants getting ready to blow somebody’s brains out…I figure the
+last thing you’re thinking about is alternate side of the street
+parking.</p>
+<p><strong>john</strong>: That’s what we need here, Satch. A lucky
+break.</p>
+<p><strong>satch</strong>: That wasn’t luck, Johnny boy. That was smarts
+and ten plus on the job.</p>
+<p><strong>bartender</strong>: From the girls, pal. All of ’em.</p>
+<p><strong>frank</strong>: I was, uh, I’m not really…</p>
+<p><strong>young woman #1</strong>: Fireman, huh?</p>
+<p><strong>frank</strong>: A married fireman.</p>
+<p><strong>young woman #3</strong>: Oh, what the hell. Have a seat.
+What’s your name, fireman?</p>
+<p><strong>frank</strong>: Frank.</p>
+<p><strong>karen</strong>: Do I know you?</p>
+<p><strong>frank</strong>: I don’t think so.</p>
+<p><strong>karen</strong>: From the Korean market up the street. Mr. Lee
+make you pay for those veggies.</p>
+<p><strong>young woman #1</strong>: You following her, Frank? You’re not
+some kind of stalker or something?</p>
+<p><strong>frank</strong>: I follow fires, nothing else.</p>
+<p><strong>john</strong>: Sullivan. You’re kiddin’…</p>
+<p><strong>john</strong>: Mario, you are the best…right, right, right.
+Spell it out for me.</p>
+<p><strong>frank</strong>: Yeah, it was a close call, but…</p>
+<p><strong>karen</strong>: Close! The news said it was a miracle you
+guys got out alive!</p>
+<p><strong>frank</strong>: Close is just close if you’re still alive to
+talk about it, y’know/</p>
+<p><strong>john</strong>: Our lucky break. Mario ID’d the dental. Mary
+Finelli…reported missing April 16, 1968.</p>
+<p><strong>satch</strong>: April 16…? That means she was the first.</p>
+<p><strong>john</strong>: Which means he probably knew her.</p>
+<p><strong>satch</strong>: This case just got hot. We pull on this
+string…</p>
+<p><strong>john</strong>: Dad…</p>
+<p><strong>julia</strong>: I think I’m gonna head up, take a shower. You
+wanna tuck the monster in and join me?</p>
+<p><strong>julia</strong>: What’s the matter?</p>
+<p><strong>frank</strong>: There’s something I gotta take care of.
+Something I need to tell you about.</p>
+<p><strong>julia</strong>: Okay…</p>
+<p><strong>frank</strong>: I’ve been talking to this…guy…this cop…on the
+HAM…and, uh, he…</p>
+<p><strong>julia</strong>: Honey, what is it? Just tell me.</p>
+<p><strong>frank</strong>: I’ve been talking to Johnny…on the radio.</p>
+<p><strong>julia</strong>: I know. He loves that thing.</p>
+<p><strong>frank</strong>: No. Not our Johnny. I mean, it’s Johnny…but
+not now…in the future.</p>
+<p><strong>julia</strong>: Sounds like fun.</p>
+<p><strong>julia</strong>: I’ll be upstairs…if you want to play.</p>
+<p><strong>frank</strong>: I’m serious.</p>
+<p><strong>julia</strong>: So am I.</p>
+<p><strong>john’s voice</strong>: Karen Reynolds is alive and well. We
+did it, Dad.</p>
+<p><strong>frank</strong>: I’ll be damned.</p>
+<p><strong>john</strong>: Did you see him? Do you know who he is?</p>
+<p><strong>frank</strong>: No. I just kept talking to her. There was a
+lot of guys in that bar - could’a been any of ’em.</p>
+<p><strong>john</strong>: It’s okay. This is working. This is gonna
+work.</p>
+<p><strong>frank</strong>: Whatta we do now?</p>
+<p><strong>john</strong>: Sissy Clark, 190 Riverside Dr., apartment 3C.
+Tomorrow. She’s a nursing student. Paying her way as a cocktail waitress
+at the Peppermint Lounge, on west 63rd. Left work at two A M…killed in
+her apartment, between two thirty and five.</p>
+<p><strong>frank</strong>: Got it.</p>
+<p><strong>john</strong>: Dad, I think I may be able to get you enough
+information to make sure the DA can nail this bastard.</p>
+<p><strong>frank</strong>: How?</p>
+<p><strong>john</strong>: Coupla days ago they dug up a body in
+Washington Heights - Mary Finelli. Girl disappeared in ’68. Turns out
+she was his first kill. Which means he probably knew her. Most serials
+know their first victim. I’m gonna do some checking - see if I can put
+any of this together…</p>
+<p><strong>frank</strong>: All right, I’m with you. I just hope we know
+what the hell we’re doing.</p>
+<p><strong>frank</strong>: Tell me something good, Chief. Tell me about
+the future.</p>
+<p><strong>john</strong>: Well they found out cigarettes give you lung
+cancer.</p>
+<p><strong>frank</strong>: What else, John. It must be different, huh?
+Are people living on the moon?</p>
+<p><strong>john</strong>: Didn’t happen, we got enough problems down
+here.</p>
+<p><strong>frank</strong>: What are we like in…1998?</p>
+<p><strong>john</strong>: We’re okay…we’re good, Dad.</p>
+<p><strong>frank</strong>: Hey, what about the Amazin’s? They pull it
+off?</p>
+<p><strong>john</strong>: You really wanna know?</p>
+<p><strong>frank</strong>: Yeah, you betcha.</p>
+<p><strong>john</strong>: Well, game five was the big one. It turned in
+the bottom of the 6th. We were down 3-0. Cleon Jones gets hit on the
+foot - left a scuff mark on the ball. Clendenon comes up. The count goes
+to 2 2. High fastball. He nailed it. Weis slammed a solo shot in the 7th
+to tie. Jones and Swoboda scored in the 8th. We won, Pop.</p>
+<p><strong>frank</strong>: Wow.</p>
+<p><strong>frank</strong>: Hang on a sec, John.</p>
+<p><strong>john</strong>: You there?</p>
+<p><strong>frank</strong>: Jules, I want you to say hello to somebody…
+I’m on with John - that guy I told you about.</p>
+<p><strong>julia</strong>: The future guy?</p>
+<p><strong>frank</strong>: Yeah, but, no kidding around, he’s a good
+guy, a real good guy…</p>
+<p><strong>frank</strong>: John, say hello to my wife…Julia.</p>
+<p><strong>john</strong>: H-hi.</p>
+<p><strong>julia</strong>: Hey, future boy. Frank tells me you’re a
+cop?</p>
+<p><strong>john</strong>: Yeah, that’s right.</p>
+<p><strong>julia</strong>: My six year-old here keeps telling me he
+wants to be a policeman. Right after he retires from the majors. We just
+gave him a badge and a whistle for his birthday.</p>
+<p><strong>john</strong>: Yeah…I remember. I used to play cops and
+robbers but y– …my mom wouldn’t let me have a toy gun.</p>
+<p><strong>julia</strong>: You’re mom sounds like she’s got some
+smarts.</p>
+<p><strong>john</strong>: She’s pretty special.</p>
+<p><strong>julia</strong>: Are you a good cop, John?</p>
+<p><strong>john</strong>: I try to be.</p>
+<p><strong>julia</strong>: Then I’ll bet she’s real proud of you,
+huh?</p>
+<p><strong>john</strong>: Yeah. I just wish I’d told her how proud I was
+of her.</p>
+<p><strong>julia</strong>: I’m sorry. I didn’t realize… But she knew,
+John. A mother knows what’s in her son’s heart.</p>
+<p><strong>julia</strong>: I better go. It’s been good talking with
+you.</p>
+<p><strong>gordo</strong>: I wanna talk on the radio.</p>
+<p><strong>gordo</strong>: This is the Space Cowboy. I’m an
+intergalactic traveler from the Federation planet earth.</p>
+<p><strong>john</strong>: Gordo?</p>
+<p><strong>gordo</strong>: How’d you know my name, mister?</p>
+<p><strong>john</strong>: Hey, Gordo. My name is Santa Clause. And I’m
+gonna give you the biggest Christmas present you ever had.</p>
+<p><strong>gordo</strong>: I better give you my address then.</p>
+<p><strong>john</strong>: Oh don’t worry kid, I know where you live. Now
+I want you to go upstairs and write this down, buy Yahoo. You got that
+Space Cowboy. Y-a-h-o-o. It’s a magic word and I never want you to
+forget it.</p>
+<p><strong>gordo</strong>: You got a deal, mister. I mean Santa.</p>
+<p><strong>frank</strong>: John, you still there?</p>
+<p><strong>john</strong>: I’m right here, Dad.</p>
+<p><strong>frank</strong>: You all right?</p>
+<p><strong>john</strong>: Yeah, I think so…</p>
+<p><strong>frank</strong>: Don’t worry, Chief. I’m not gonna let
+anything happen to her…no matter what.</p>
+<p><strong>john’s voice</strong>: Can I keep these for a little
+while?</p>
+<p><strong>finelli</strong>: Detectives’ been through that stuff already
+back then.</p>
+<p><strong>finelli</strong>: You’ll bring them back soon?</p>
+<p><strong>john</strong>: Promise.</p>
+<p><strong>john</strong>: Do you know this?</p>
+<p><strong>finelli</strong>: Mary volunteered over at St. Vincents’
+after school. She loved it…was going to become a doctor.</p>
+<p><strong>finelli</strong>: Her room…I just couldn’t…it should only be
+her room…you know?</p>
+<p><strong>finelli</strong>: I’m happy you found her, Detective. It
+makes it easier…now, to know for sure. You know?</p>
+<p><strong>john</strong>: Okay, lemme walk you through it.</p>
+<p><strong>satch</strong>: Mind if I shake it off first…so’s I can
+concentrate better.</p>
+<p><strong>john</strong>: Three guys show up in both the yearbook and
+diary.</p>
+<p><strong>john</strong>: The third one is Daryl Adams.</p>
+<p><strong>john</strong>: I ran him through BCI…got a hit. Busted for
+sexual assault: March 22, 1970. Eight days after the last Nightingale
+murder.</p>
+<p><strong>satch</strong>: So you figure the murders stop ’cause he’s
+off the street. Then by the time he gets paroled, he’s smartened up
+enough to control himself?</p>
+<p><strong>john</strong>: Not the first time that’s been true. I’m
+telling you, I got a feeling about this guy. This is the guy, Satch.</p>
+<p><strong>satch</strong>: Uh, huh.</p>
+<p><strong>john</strong>: What?</p>
+<p><strong>satch</strong>: I’m just trying to figure what interests me
+more: the possibility that Daryl is the guy, or you making him
+absolutely the guy.</p>
+<p><strong>daryl</strong>: That was over thirty years ago. I paid for
+that and then some.</p>
+<p><strong>john</strong>: You go to Xavier High School, Daryl?</p>
+<p><strong>daryl</strong>: Yeah.</p>
+<p><strong>john</strong>: You remember Mary Finelli?</p>
+<p><strong>daryl</strong>: What are you saying?</p>
+<p><strong>john</strong>: You know what I’m saying.</p>
+<p><strong>daryl</strong>: No, I don’t.</p>
+<p><strong>john</strong>: Well, I think you do.</p>
+<p><strong>sissy</strong>: Give me a couple Bloodys, Gus, and a Dewars
+on the rocks.</p>
+<p><strong>sissy</strong>: How ya doin’ there?</p>
+<p><strong>frank</strong>: Just fine. You?</p>
+<p><strong>sissy</strong>: Right now, just fine. Ask me later,
+fireman.</p>
+<p><strong>john</strong>: Sexual assault, Daryl. Five years. But you got
+lucky, right? You got away with something else. Something you figured
+nobody knows about.</p>
+<p><strong>daryl</strong>: What I know is what I told you.</p>
+<p><strong>john</strong>: Let me tell you what I know, Daryl. You went
+to Saint Xavier with Mary. You lived five blocks from her. You liked
+her. But she ain’t interested. That must’ve hurt, huh?</p>
+<p><strong>daryl</strong>: So what?</p>
+<p><strong>john</strong>: So, what’d you do about it, Daryl?</p>
+<p><strong>daryl</strong>: Nothing.</p>
+<p><strong>bartender</strong>: You spare a smoke?</p>
+<p><strong>frank</strong>: I’m trying to quite. Turns out those
+things’ll kill you.</p>
+<p><strong>daryl</strong>: Oh, my God! What is that?! Why you showing me
+this shit!? JESUS! JESUS! Get those away from me!</p>
+<p><strong>john</strong>: Nicky Moore. Patty Ryan. Mary Finelli. These
+names mean anything to you, asshole? Julia Sullivan! She mean anything?
+She means something to me!</p>
+<p><strong>woman</strong>: You fight fires, honey?</p>
+<p><strong>frank</strong>: Yep. That’s what I do.</p>
+<p><strong>woman</strong>: I bet you do.</p>
+<p><strong>bartender</strong>: Last call.</p>
+<p><strong>satch</strong>: I gotta take a leak. You need to use the
+head? You can, y’know. If you want to.</p>
+<p><strong>sissy</strong>: See you, Fireman. Don’t talk so much next
+time.</p>
+<p><strong>john</strong>: You know, Daryl, sometimes, despite all the
+training we cops go through. Despite all that we are taught about right
+and wrong. Despite all that we would like to honor in ourselves, we can
+come to a place where we don’t give a fuck. Know what I mean?</p>
+<p><strong>john</strong>: You are going to tell me what I need to know,
+Daryl.</p>
+<p><strong>satch</strong>: John.</p>
+<p><strong>satch</strong>: Got a minute?</p>
+<p><strong>john</strong>: Yeah. Sure.</p>
+<p><strong>satch</strong>: He ain’t our guy, John.</p>
+<p><strong>john</strong>: Just cause he didn’t want to look at the
+photos doesn’t mean he isn’t the doer. Not everyone fits the
+profile.</p>
+<p><strong>satch</strong>: If he was gonna give something up he would’a
+done it already.</p>
+<p><strong>killer</strong>: You following me?</p>
+<p><strong>killer</strong>: I asked you a question, asshole.</p>
+<p><strong>frank</strong>: Mary Finelli…</p>
+<p><strong>killer</strong>: Who the fuck are you?</p>
+<p><strong>stoned man #1</strong>: Whoa, dude. Is he okay?</p>
+<p><strong>killer</strong>: Yeah. He just needs a little time kissing
+the porcelain.</p>
+<p><strong>frank</strong>: OPEN UP, OPEN THE DOOR…ah…ummm…THIS</p>
+<p><strong>frank</strong>: It’s okay, Ma’am. I’m the police.</p>
+<p><strong>frank</strong>: He killed her John. He killed her and I
+didn’t do a thing to stop it.</p>
+<p><strong>john</strong>: It’s not your fault, Dad.</p>
+<p><strong>frank</strong>: Yes it is…we did this. We changed everything.
+I’ve been having bad dreams, Johnny. Dreams where I die…in the fire. I
+was supposed to die in that warehouse.</p>
+<p><strong>john</strong>: No.</p>
+<p><strong>frank</strong>: This is wrong…it’s like we cheated…</p>
+<p><strong>john</strong>: I know… But Dad, you can’t go back. You didn’t
+die in that fire. And no matter what you do, nothing is gonna change
+that. So all we can do is deal with this…and try to make it right.</p>
+<p><strong>frank</strong>: I don’t think I can. I’m not a cop. I can’t.
+I can’t stop this guy.</p>
+<p><strong>john</strong>: But we can, we can do it together. Spirit and
+guts, remember?</p>
+<p><strong>frank</strong>: Johnny, I know, but…</p>
+<p><strong>john</strong>: I need you to believe in me. To believe that
+we can do this.</p>
+<p><strong>frank</strong>: John, he’s got my driver’s license.</p>
+<p><strong>john</strong>: What?</p>
+<p><strong>frank</strong>: He took my driver’s license, John, he knows
+where we live.</p>
+<p><strong>john</strong>: He took your wallet?</p>
+<p><strong>frank</strong>: No, he tossed the wallet, but he kept the
+license.</p>
+<p><strong>john</strong>: He touched your wallet! Where’s your
+wallet?</p>
+<p><strong>frank</strong>: In my pocket.</p>
+<p><strong>john</strong>: We got him! Dad you got him!</p>
+<p><strong>frank</strong>: What?</p>
+<p><strong>john</strong>: His prints. You’ve got his prints. I’ll run
+them through criminal index. You gotta get me that wallet.</p>
+<p><strong>frank</strong>: How the hell am I gonna do that?</p>
+<p><strong>john</strong>: Listen to me, very carefully, take your wallet
+out, just touch it on the corners.</p>
+<p><strong>frank</strong>: What…</p>
+<p><strong>john</strong>: Please, Dad, just do it.</p>
+<p><strong>frank</strong>: Okay, okay…</p>
+<p><strong>frank</strong>: I got it.</p>
+<p><strong>john</strong>: Right, now I need you to tape it up on the
+outside, where he touched it, so the prints keep.</p>
+<p><strong>frank</strong>: Huh?</p>
+<p><strong>julia</strong>: Then you gotta hide it somewhere. Somewhere
+where nobody’s gonna find it…for 29 years! Put it under the loose
+floorboard by the window!</p>
+<p><strong>frank</strong>: I gotcha, I gotcha Chief!</p>
+<p><strong>john</strong>: It’s gonna work, Dad. We’re gonna stop
+him.</p>
+<p><strong>frank</strong>: Hang on.</p>
+<p><strong>frank</strong>: Okay.</p>
+<p><strong>john</strong>: We’re in business. Just sit tight…and don’t
+worry.</p>
+<p><strong>john</strong>: What the hell?</p>
+<p><strong>john</strong>: The old neighbor’s son…the cop. But he’s
+dead.</p>
+<p><strong>hector</strong>: What are you talkin’ about? I know this
+prick. He worked outta Brooklyn North.</p>
+<p><strong>john</strong>: He never died…</p>
+<p><strong>john</strong>: Just came by to wrap up over there. Thought
+I’d say “hello.”</p>
+<p><strong>shepard</strong>: Glad you did. Come on in. Buy you a cup of
+coffee?</p>
+<p><strong>john</strong>: Wife around?</p>
+<p><strong>shepard</strong>: No. No. Well, sort of. In my heart. Been
+dead 29 years.</p>
+<p><strong>john</strong>: Oh. Sorry. How so?</p>
+<p><strong>mr. shepard</strong>: Well, she, Eve was murdered, Detective.
+An ugly one to tell you the truth.</p>
+<p><strong>mr. shepard</strong>: The mother of a cop, and they never
+found the bastard who did it.</p>
+<p><strong>john</strong>: Happens that way sometimes. Son still on the
+job?</p>
+<p><strong>mr. shepard</strong>: Nah. Doin’ P.I. work now. Got caught up
+in them Knapp Hearings. Set up by some dirty cops who needed a fall guy.
+Hurt him bad. Would’ve broken his mother’s heart.</p>
+<p><strong>john</strong>: You used to be on the job?</p>
+<p><strong>shepard</strong>: Yeah, long time ago. I know you?</p>
+<p><strong>john</strong>: I look familiar?</p>
+<p><strong>shepard</strong>: No. What house you work?</p>
+<p><strong>john</strong>: The 2-3. Homicide.</p>
+<p><strong>shepard</strong>: A hot shot, huh?</p>
+<p><strong>john</strong>: Nah, just working the job.</p>
+<p><strong>shepard</strong>: I hear that.</p>
+<p><strong>john</strong>: As a matter of fact, I caught a case that goes
+back to your day…one of the Nightingale murders.</p>
+<p><strong>shepard</strong>: No kiddin’?</p>
+<p><strong>john</strong>: No. Missing teenager. Disappeared thirty years
+ago. Found her bones last week. Buried behind some old diner, up by
+Dyckman street. Mary Finelli.</p>
+<p><strong>shepard</strong>: Huh.</p>
+<p><strong>john</strong>: Talk about dumb luck. Odds of anybody finding
+that girl, thirty years later. And then the chances of hitting a
+dental…forget about it. Bets part is she’s the first victim. She knew
+the doer. I’m betting those bones are gonna do a lot of talking.</p>
+<p><strong>john</strong>: The past is a funny thing. We’ve all got
+skeletons in the closet. You just never know when they’re gonna pop up
+and bite you in the ass, Carl.</p>
+<p><strong>shepard</strong>: Who are you?</p>
+<p><strong>john</strong>: I’m the train wreck you didn’t see coming. And
+I’m gonna steal your life away. You went down 30 years ago. You just
+don’t know it yet.</p>
+<p><strong>frank</strong>: You’re telling me this maniac is a cop? What
+the hell am I supposed to do with that one?</p>
+<p><strong>john</strong>: Call the FBI. Use a pay phone. Don’t give ’em
+your name, Dad. Just tell ’em that it was Shepard who killed Finelli and
+Clark and the others. That he’s the Nightingale.</p>
+<p><strong>john</strong>: Tell them where Finelli’s body is buried.
+They’ll be able to connect him to her. Same high school. Same class. I’m
+betting they search his place they find some souvenirs.</p>
+<p><strong>frank</strong>: Okay, I’m on it. Hey.</p>
+<p><strong>satch</strong>: Hello, Frank.</p>
+<p><strong>frank</strong>: What are you doing here, Satch? You off
+today?</p>
+<p><strong>john</strong>: Dad, you there?</p>
+<p><strong>satch</strong>: Frank, we need to talk…</p>
+<p><strong>frank</strong>: John, hold on a second. I’m in the middle of
+something important here. You mind if…</p>
+<p><strong>frank</strong>: Satch, you gotta just give me…Satch is here
+John. You hear me? Satch is here.</p>
+<p><strong>satch</strong>: I’m sorry, Frank, but you need to come
+outside.</p>
+<p><strong>john</strong>: Dad, what the hell is going on?</p>
+<p><strong>frank</strong>: Just a minute, John…okay? Don’t go away.</p>
+<p><strong>frank</strong>: What is going on here, Satch? What are those
+guys doing out there?</p>
+<p><strong>satch</strong>: I think you know, Frank.</p>
+<p><strong>frank</strong>: No, I don’t.</p>
+<p><strong>satch</strong>: Let’s go outside and talk. We need to do
+that.</p>
+<p><strong>frank</strong>: About what?</p>
+<p><strong>satch</strong>: Let’s go. Do us both a favor.</p>
+<p><strong>frank</strong>: Okay. It’s okay, Bud. I’ll be right back.
+Stay there, John.</p>
+<p><strong>satch</strong>: Where were you last night, Frank?</p>
+<p><strong>frank</strong>: What do you mean?</p>
+<p><strong>satch</strong>: Do you know where I found this?</p>
+<p><strong>satch</strong>: 415 Greenwich St. #302. Under the body of a
+murdered woman.</p>
+<p><strong>frank</strong>: No. This isn’t what you think.</p>
+<p><strong>satch</strong>: I wanna be wrong here. But we need to go to
+the precinct and talk about it.</p>
+<p><strong>frank</strong>: Okay, okay. I need to go say something to
+Julia and finish up with the guy on the radio.</p>
+<p><strong>satch</strong>: You can talk to Julia. Forget the radio.</p>
+<p><strong>frank</strong>: Trust me, Bud. Do that for me.</p>
+<p><strong>frank</strong>: John, you there?</p>
+<p><strong>john</strong>: Yeah, Dad. What the hell is going on?</p>
+<p><strong>frank</strong>: Satch is busting me for Sissy Clark’s murder.
+John…</p>
+<p><strong>satch</strong>: Frank.</p>
+<p><strong>frank</strong>: …you gotta help me, Chief.</p>
+<p><strong>satch</strong>: That’s not the deal, Frank. Don’t do this to
+your family.</p>
+<p><strong>john</strong>: Dad! Dad! What’s going on? Satch?!</p>
+<p><strong>frank</strong>: Carl Shepard. Detective out of the 15th
+precinct.</p>
+<p><strong>frank</strong>: I swear, Satch.</p>
+<p><strong>satch</strong>: Uh, huh… Uh, huh. And you got this from the
+guy you were talking to on the radio when I came in?</p>
+<p><strong>frank</strong>: As nuts as that sounds, yes.</p>
+<p><strong>satch</strong>: Uh, huh.</p>
+<p><strong>frank</strong>: Satch, would you listen to me here. Just you
+and me. Can I talk to you here, alone?</p>
+<p><strong>satch</strong>: Give me a little time with this guy.</p>
+<p><strong>satch</strong>: Frank, this is not the time to be worried
+about covering up if you had a thing with this girl.</p>
+<p><strong>frank</strong>: He’s not gonna stop, Satch. He’s gonna keep
+on…</p>
+<p><strong>satch</strong>: Are you listening to me? You’re in a world of
+shit. An eye witness has you outside the dead girl’s apartment. We got
+your prints all over the place. Plus the fucking driver’s license,
+Frank. You gotta give me something here. Something I can believe.</p>
+<p><strong>frank</strong>: What if I could prove it to you, Satch?</p>
+<p><strong>satch</strong>: How’s that?</p>
+<p><strong>frank</strong>: What if I told you that in the bottom of the
+6th we’re gonna be down 3-0. And Cleon Jones is gonna get hit in the
+foot. It’s gonna leave a scuff mark on the ball.</p>
+<p><strong>satch</strong>: Frank, please…</p>
+<p><strong>frank</strong>: The next batter, Clendenon, hits one outta
+the park.</p>
+<p><strong>satch</strong>: Frank, this is insane…</p>
+<p><strong>frank</strong>: In the bottom of the 7th, Weis is gonna hit a
+solo home run. Jones and Swoboda are gonna score in the 8th. The Mets
+are gonna win 5-3. Go watch the game, Satch.</p>
+<p><strong>satch</strong>: Go watch the game? Go watch the fucking game?
+Frank, they’re gonna make you for Sissy Clark’s murderer. It matches the
+Nightingale’s profile. You understand what that means?</p>
+<p><strong>phil</strong>: His wife is here. She wants to talk to
+you.</p>
+<p><strong>satch</strong>: Whatta you want me to tell her?</p>
+<p><strong>frank</strong>: She’s in harm’s way. He’s gonna be coming for
+her.</p>
+<p><strong>frank</strong>: Promise me, as a friend. October 22, don’t
+let her out of your sight.</p>
+<p><strong>satch</strong>: Let’s walk, get a cup of coffee.</p>
+<p><strong>shepard</strong>: You got a collar in here for the
+Nightingale murders?</p>
+<p><strong>desk sgt.</strong>: Yeah.</p>
+<p><strong>shepard</strong>: I’m working with one of the victims outta
+Brooklyn North. You mind I take a shot at him?</p>
+<p><strong>desk sgt.</strong>: That’s Deleon and Hayes’ collar.</p>
+<p><strong>shepard</strong>: They around?</p>
+<p><strong>desk sgt.</strong>: Just missed Deleon. Hayes is up in the
+squad.</p>
+<p><strong>shepard</strong>: Where’s the collar, in the cells?</p>
+<p><strong>desk sgt.</strong>: No, I think he’s up in interrogation.</p>
+<p><strong>shepard</strong>: I’ll go find Hayes.</p>
+<p><strong>shepard</strong>: On your feet.</p>
+<p><strong>shepard</strong>: Now turn around, face the wall.</p>
+<p><strong>shepard</strong>: How did you know?</p>
+<p><strong>frank</strong>: You twisted animal…</p>
+<p><strong>shepard</strong>: Evidence says you’re the animal. That’s why
+you hung yourself.</p>
+<p><strong>frank</strong>: You try putting that thing around my neck and
+I’ll rip your throat out. You want me dead, use the gun.</p>
+<p><strong>shepard</strong>: Let me draw you a picture. You live at 1060
+41st Ave. You have a wife who works at New York Hospital. And a six-year
+old at P.S. 130.</p>
+<p><strong>phil</strong>: What the hell is going on here?</p>
+<p><strong>frank</strong>: You got to help me. He’s trying to kill
+me.</p>
+<p><strong>shepard</strong>: Mind if we take it outside?</p>
+<p><strong>shepard</strong>: I’ll be right back.</p>
+<p><strong>shepard</strong>: …didn’t mean t step on your toes. They sent
+me up from downstairs, I thought you’d be in there with him.</p>
+<p><strong>phil</strong>: What are you looking at him for?</p>
+<p><strong>phil</strong>: Yeah, half the uniforms are either at the game
+or on the street. It’s gonna be a riot if they pull it off.</p>
+<p><strong>shepard</strong>: What’s the score?</p>
+<p><strong>tv announcer</strong>: Cleon Jones thinks he’s hit. I think
+the ball hit him in the foot…</p>
+<p><strong>tv announcer</strong>: Hadges is coming outta the dug out.
+He’s calling for the ball. Can we get a shot of the ball?</p>
+<p><strong>satch</strong>: Can you excuse me for a second?</p>
+<p><strong>electrical cord’s exposed wire around the fuse
+cylinder.</strong>: After re-tightening the fuse, and careful not to
+touch the other end of the cord, he jumps off the chair.</p>
+<p><strong>tv announcer</strong>: There’s a scuff mark on the ball! The
+umpire has reversed his decision. He’s sending Jones to first base!</p>
+<p><strong>shepard</strong>: You mind I go back at teh fire boy for a
+while? I won’t lay a hand on him, just want to see what he’s got?</p>
+<p><strong>phil</strong>: Go ahead, knock yourself out.</p>
+<p><strong>julia</strong>: What’s going on, Satch?</p>
+<p><strong>satch</strong>: I don’t know.</p>
+<p><strong>satch</strong>: He was right! Everything he said. He was
+telling the truth.</p>
+<p><strong>julia</strong>: Then you believe him?</p>
+<p><strong>satch</strong>: Yeah I do. You bet your life I do.</p>
+<p><strong>satch</strong>: I’m on my way…</p>
+<p><strong>satch</strong>: Wait here, I’ll send a uniform.</p>
+<p><strong>frank</strong>: Elvis has left the building.</p>
+<p><strong>shepard</strong>: Hell-</p>
+<p><strong>john</strong>: You have the right to remain silent. If you
+give up that right…</p>
+<p><strong>shepard</strong>: Who the fuck is this?</p>
+<p><strong>john</strong>: Anything you say can and will be used against
+you in a court of law.</p>
+<p><strong>shepard</strong>: Sullivan?</p>
+<p><strong>john</strong>: You have the right to speak to an att –</p>
+<p><strong>shepard</strong>: Fuck you, asshole.</p>
+<p><strong>john</strong>: It’s a small world, Carl. And I’m gonna find
+you. Real soon.</p>
+<p><strong>desk sgt.</strong>: 17th Precinct.</p>
+<p><strong>frank</strong>: Detective Deleon.</p>
+<p><strong>desk sgt.</strong>: Hold on.</p>
+<p><strong>satch</strong>: Deleon.</p>
+<p><strong>frank</strong>: Satch, you gotta listen to me…</p>
+<p><strong>satch</strong>: Frank. We know. We know it’s Shepard.</p>
+<p><strong>frank</strong>: No kidding. I’m on the corner of 65th and
+CPW. Come get me.</p>
+<p><strong>julia</strong>: Hello?</p>
+<p><strong>satch</strong>: You missed a hell of a game, Frank.</p>
+<p><strong>frank</strong>: Next time lets put some money on it.</p>
+<p><strong>satch</strong>: Get him home safe.</p>
+<p><strong>frank</strong>: Hey, bud.</p>
+<p><strong>julia</strong>: Frank…</p>
+<p><strong>frank</strong>: John, John? You there? Johnny?</p>
+<p><strong>john</strong>: I’m here, Dad. I’m here.</p>
+<p><strong>frank</strong>: We did it, John. We stopped him.</p>
+<p><strong>john</strong>: Wait. Something’s wrong. I don’t…</p>
+<p><strong>frank</strong>: What’s wrong?</p>
+<p><strong>john</strong>: I don’t remember. Why don’t I remember?</p>
+<p><strong>john</strong>: Dad? Dad? What’s…</p>
+<p><strong>shepard</strong>: My turn to steal your life.</p>
+<p><strong>shepard</strong>: You’re a clever fuck, fireboy.</p>
+<p><strong>shepard</strong>: Time to meet the family.</p>
+<p><strong>frank</strong>: This is between you and me.</p>
+<p><strong>shepard</strong>: Not any more.</p>
+<p><strong>julia</strong>: Hey, Bud. Want to join me?</p>
+<p><strong>shepard</strong>: Sure do.</p>
+<p><strong>shepard</strong>: Nice.</p>
+<p><strong>frank</strong>: Get your fucking hands off my wife.</p>
+<p><strong>shepard</strong>: Don’t. Don’t do it, Frank. You’re not a
+killer.</p>
+<p><strong>shepard</strong>: You were the kid. I remember now.</p>
+<p><strong>shepard</strong>: But this time, no Daddy.</p>
+<p><strong>b-o-o-o-m</strong>: SHOTGUN BLAST: Buckshot ripping into
+Shepard. Impact lifting him off his feet. He lands dead on the
+floor.</p>
+<p><strong>frank</strong>: I’m still here, Chief.</p>
+<p><strong>gibson</strong>: Take it easy on him son, he’s older than
+Moses.</p>
+<p><strong>frank</strong>: Bring me home, son! Bring me home!</p>
+<p><strong>john</strong>: Hey there, Chief.</p>
+<p><strong>frank jr.</strong>: Elvis has left the building…</p>
+</body>
+</html>

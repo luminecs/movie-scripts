@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>the-visitor</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="the-visitor">the-visitor</h1>
+<p><strong>woman</strong>: Mr. Vale?</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>woman</strong>: Hello. I’m Barbra Watson. Nice to meet
+you.</p>
+<p><strong>walter</strong>: Yes. Come in.</p>
+<p><strong>barbara</strong>: Thank you.</p>
+<p><strong>walter</strong>: Can I take your coat?</p>
+<p><strong>barbara</strong>: No, thank you.</p>
+<p><strong>walter</strong>: OK. Would you like anything to drink?</p>
+<p><strong>barbara</strong>: No. Shall we get started?</p>
+<p><strong>barbara</strong>: Let’s try it again.</p>
+<p><strong>walter</strong>: The same thing?</p>
+<p><strong>barbara</strong>: Yes. Remember, fingers curved. Like a
+tunnel.</p>
+<p><strong>barbara</strong>: Don’t flatten.</p>
+<p><strong>barbara</strong>: Make room for the train.</p>
+<p><strong>walter</strong>: What?</p>
+<p><strong>barbara</strong>: I said “make room for the train.” It’s
+something that I tell my kids. If you curve your fingers like this… Then
+the train can pass through the tunnel.</p>
+<p><strong>walter</strong>: Here.</p>
+<p><strong>barbara</strong>: Thank you. Next Tuesday at the same
+time?</p>
+<p><strong>walter</strong>: No. I don’t think I’m going to continue with
+our lessons.</p>
+<p><strong>barbara</strong>: Oh, no. Are you giving up?</p>
+<p><strong>walter</strong>: No.</p>
+<p><strong>barbara</strong>: Oh. OK. Goodbye.</p>
+<p><strong>walter</strong>: Goodbye.</p>
+<p><strong>barbara</strong>: Mr. Vale? If I may ask, how many teachers
+have you had before me?</p>
+<p><strong>walter</strong>: Four.</p>
+<p><strong>barbara</strong>: Well, for what it’s worth, it’s difficult
+to learn an instrument at your age. Especially if you don’t possess a
+natural gift for it. I’m not saying this to be mean. But if you do
+decide to give up then I would really like to buy your piano. It’s a
+beautiful instrument.</p>
+<p><strong>barbara</strong>: Goodbye.</p>
+<p><strong>walter</strong>: East Asia’s experience is really the
+exception to the rule, because the conditions there that made trade
+liberalization for the Middle East successful weren’t present in the
+developing countries in sub- Saharan Africa, and in Central and South
+America.</p>
+<p><strong>walter</strong>: Come in.</p>
+<p><strong>student</strong>: Hi.</p>
+<p><strong>student</strong>: Sorry it’s late.</p>
+<p><strong>walter</strong>: Why is it late?</p>
+<p><strong>student</strong>: I had some personal things to deal
+with.</p>
+<p><strong>walter</strong>: I’m sorry. I can’t accept it now.</p>
+<p><strong>student</strong>: But…</p>
+<p><strong>walter</strong>: I’m sorry.</p>
+<p><strong>student</strong>: You know you still haven’t given us a
+syllabus.</p>
+<p><strong>walter</strong>: I know.</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>charles</strong>: Hello Walter.</p>
+<p><strong>walter</strong>: Charles.</p>
+<p><strong>charles</strong>: I’m sorry to interrupt.</p>
+<p><strong>walter</strong>: That’s OK.</p>
+<p><strong>charles</strong>: Walter, Shelley can’t make it down to the
+NYU conference to present your paper. I’m going to need you to cover for
+her.</p>
+<p><strong>walter</strong>: Why can’t she go?</p>
+<p><strong>charles</strong>: She’s been put on bed rest until she has
+the baby.</p>
+<p><strong>walter</strong>: When?</p>
+<p><strong>charles</strong>: Next week. We’ll cover your class and make
+the arrangements.</p>
+<p><strong>walter</strong>: I wish I could, but now is not a very good
+time, Charles.</p>
+<p><strong>charles</strong>: I understand but you co-authored the paper
+and the Dean wants it presented. He wants to keep Shelley on track for
+tenure.</p>
+<p><strong>walter</strong>: I just don’t think I can with the start of
+classes and my book.</p>
+<p><strong>charles</strong>: You’re only teaching one class, Walter.</p>
+<p><strong>walter</strong>: So I can stay focused on my writing. I’d
+really rather not go right now.</p>
+<p><strong>charles</strong>: I’m sorry but there really isn’t another
+option at this point.</p>
+<p><strong>walter</strong>: Charles, the truth is this is really
+Shelley’s paper. I just agreed to co-author it because she asked me to.
+I’m not really prepared to present it.</p>
+<p><strong>charles</strong>: That may be the case but you are the
+co-author and she can’t go. Look Walter, you can take it up with the
+Dean if you want, but, as your friend, I wouldn’t advise it. Not with
+that argument.</p>
+<p><strong>charles</strong>: Good bye.</p>
+<p><strong>karen</strong>: Here you go, cutey.</p>
+<p><strong>walter</strong>: Thanks.</p>
+<p><strong>karen</strong>: So I thought you forgot about me. Where’ve
+you been hiding?</p>
+<p><strong>walter</strong>: Just busy with work.</p>
+<p><strong>karen</strong>: Well you’re never gonna make it on the wall
+with that excuse. I’m glad your back. Give a holler if you need
+anything. I’m just gabbing with one of my girlfriends.</p>
+<p><strong>karen</strong>: When are you going?</p>
+<p><strong>walter</strong>: Today after class.</p>
+<p><strong>karen</strong>: Sounds like fun. I’m gonna go have a
+cigarette. You want some coffee?</p>
+<p><strong>walter</strong>: Yeah. Thanks.</p>
+<p><strong>walter</strong>: Hello?</p>
+<p><strong>walter</strong>: Hello?</p>
+<p><strong>young black woman</strong>: Stay away from me!</p>
+<p><strong>walter</strong>: It’s OK. I’m not going…</p>
+<p><strong>african woman</strong>: Leave me alone! My boyfriend is
+coming home!</p>
+<p><strong>walter</strong>: I’m not going to hurt you.</p>
+<p><strong>african woman</strong>: Who are you? What are you doing in
+here!?</p>
+<p><strong>walter</strong>: This is my apartment.</p>
+<p><strong>african woman</strong>: What do you mean? This apartment does
+not belong to you. How did you get in?</p>
+<p><strong>walter</strong>: My name is Walter Vale. I have keys. It’s
+my…</p>
+<p><strong>man’s voice</strong>: What the fuck?!</p>
+<p><strong>young middle eastern man</strong>: Who are you?! Zainab?!</p>
+<p><strong>zainab</strong>: I’m in here! He is crazy!</p>
+<p><strong>walter</strong>: Stop it! I am not…</p>
+<p><strong>young middle eastern man</strong>: Shut up!</p>
+<p><strong>zainab</strong>: Tarek. What is happening?</p>
+<p><strong>tarek</strong>: Are you OK?</p>
+<p><strong>zainab</strong>: I’m fine.</p>
+<p><strong>tarek</strong>: Who is this?</p>
+<p><strong>zainab</strong>: I have no idea! I was in the bath and he was
+just standing there.</p>
+<p><strong>tarek</strong>: Did you touch her?! Did you touch her?!</p>
+<p><strong>walter</strong>: No! No!</p>
+<p><strong>zainab</strong>: He didn’t touch me! But how did he get in?
+He said he has keys.</p>
+<p><strong>tarek</strong>: Do you have keys?</p>
+<p><strong>walter</strong>: Yes! Yes! I have keys. It’s my
+apartment.</p>
+<p><strong>zainab</strong>: What does he mean it’s his apartment?</p>
+<p><strong>tarek</strong>: I don’t know! Show me your keys!</p>
+<p><strong>walter</strong>: This is my apartment. I’ve owned it for
+twenty-five years.</p>
+<p><strong>tarek</strong>: So why haven’t you been here!?</p>
+<p><strong>walter</strong>: I live in Connecticut. I haven’t used it in
+a long time.</p>
+<p><strong>tarek</strong>: Are you friends with Ivan?</p>
+<p><strong>walter</strong>: Ivan? Who is Ivan?</p>
+<p><strong>zainab</strong>: I knew this would happen! He probably called
+the police.</p>
+<p><strong>tarek</strong>: Did you call the police?</p>
+<p><strong>walter</strong>: No.</p>
+<p><strong>tarek</strong>: You didn’t call the police?</p>
+<p><strong>walter</strong>: No.</p>
+<p><strong>tarek</strong>: And you don’t know Ivan?</p>
+<p><strong>walter</strong>: I don’t know Ivan. Who is he?</p>
+<p><strong>tarek</strong>: He rented us this place. He said it belonged
+to his friend who was out of town.</p>
+<p><strong>walter</strong>: I don’t know who he is but this is my
+apartment. I assure you.</p>
+<p><strong>tarek</strong>: Shit!</p>
+<p><strong>zainab</strong>: I told you not to trust anyone. You never
+saw a contract.</p>
+<p><strong>tarek</strong>: Enough! OK. Look. We don’t want any trouble.
+We will get out of your apartment. This is all a mistake. I’m sorry.</p>
+<p><strong>tarek</strong>: We will leave, OK?</p>
+<p><strong>walter</strong>: Yes. OK.</p>
+<p><strong>zainab</strong>: Where are we going to go?</p>
+<p><strong>tarek</strong>: I don’t know but we have to go.</p>
+<p><strong>zainab</strong>: I know we have to go. I am not stupid!</p>
+<p><strong>tarek</strong>: Are you OK?</p>
+<p><strong>walter</strong>: Yes. I’m just going to sit down.</p>
+<p><strong>tarek</strong>: Of course. Please.</p>
+<p><strong>tarek</strong>: I’m sorry if I hurt you. Are you sure that
+you’re OK?</p>
+<p><strong>walter</strong>: Yeah. I’m OK.</p>
+<p><strong>tarek</strong>: OK. Well, we’ll pack up and get out.</p>
+<p><strong>tarek</strong>: I know I’m in trouble when she starts
+speaking Wolof.</p>
+<p><strong>walter</strong>: How long have you lived here?</p>
+<p><strong>tarek</strong>: Two months. We will pay you if you want.</p>
+<p><strong>tarek</strong>: Is that everything?</p>
+<p><strong>zainab</strong>: I think so. Do you want to check!?</p>
+<p><strong>tarek</strong>: Here is the coffee you wanted.</p>
+<p><strong>tarek</strong>: OK. So we’ll go. I am sorry again. Thank you
+for your understanding. Good bye.</p>
+<p><strong>walter</strong>: Good bye.</p>
+<p><strong>tarek</strong>: Look I know. Come on man, it’ll just be for a
+night or two until we figure something out. OK.</p>
+<p><strong>zainab</strong>: Tarek?</p>
+<p><strong>tarek</strong>: Can you check and call me back? OK.
+Thanks.</p>
+<p><strong>zainab</strong>: Tarek?</p>
+<p><strong>tarek</strong>: What!?</p>
+<p><strong>walter</strong>: You left this at the apartment.</p>
+<p><strong>tarek</strong>: Thanks.</p>
+<p><strong>walter</strong>: Do you know where you’re going to stay
+tonight?</p>
+<p><strong>tarek</strong>: Yeah.</p>
+<p><strong>tarek</strong>: You like classical music, huh?</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>tarek</strong>: Me too. Do you play piano?</p>
+<p><strong>walter</strong>: No. Do you?</p>
+<p><strong>tarek</strong>: Me? No. I play the djembe. Well, thanks again
+for letting us stay. You saved me a lot of trouble.</p>
+<p><strong>tarek</strong>: See you in the morning.</p>
+<p><strong>walter</strong>: OK. Good night.</p>
+<p><strong>zainab</strong>: Stop it, Tarek. He’ll hear us.</p>
+<p><strong>tarek</strong>: Trust me. He’s asleep.</p>
+<p><strong>zainab</strong>: You don’t know that.</p>
+<p><strong>tarek</strong>: So let him hear. The guy probably needs some
+excitement.</p>
+<p><strong>zainab</strong>: I think he’s probably had enough for one
+night.</p>
+<p><strong>zainab</strong>: Tarek. No!</p>
+<p><strong>zainab</strong>: What are we going to do, Tarek?</p>
+<p><strong>tarek</strong>: I don’t know. We’ll figure it out tomorrow.
+Who knows? Maybe he’ll let us stay. He’s not really using the place.</p>
+<p><strong>zainab</strong>: I don’t want to be his roommate!</p>
+<p><strong>tarek</strong>: OK. OK. So we’ll figure it out in the
+morning. I promise, habibti.</p>
+<p><strong>tarek</strong>: Do you still love me?</p>
+<p><strong>zainab</strong>: No.</p>
+<p><strong>tarek</strong>: Really?</p>
+<p><strong>zainab</strong>: No. I don’t love you.</p>
+<p><strong>tarek</strong>: Not even a little?</p>
+<p><strong>zainab</strong>: No.</p>
+<p><strong>tarek</strong>: So what is this?</p>
+<p><strong>zainab</strong>: It’s your punishment.</p>
+<p><strong>tarek</strong>: But what about our roommate?</p>
+<p><strong>zainab</strong>: Shhh.</p>
+<p><strong>walter</strong>: Good morning.</p>
+<p><strong>zainab</strong>: Morning.</p>
+<p><strong>walter</strong>: I made some coffee.</p>
+<p><strong>zainab</strong>: Thank you.</p>
+<p><strong>walter</strong>: Have a good day.</p>
+<p><strong>zainab</strong>: Goodbye.</p>
+<p><strong>speaker</strong>: That will be on the last day of conference.
+I hope you can all attend. And now I’d like to welcome my distinguished
+colleague and the winner of John Bates Clark Award, Stephen
+Kriegman.</p>
+<p><strong>stephen kriegman</strong>: Thank you, Shiva. Good morning.
+It’s a pleasure to be here.</p>
+<p><strong>colleague #1</strong>: And so I just stood up and walked
+out!</p>
+<p><strong>stephen kriegman</strong>: Jamie!</p>
+<p><strong>jamie</strong>: Stephen, how are you?</p>
+<p><strong>middle-aged man</strong>: Excuse me.</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>middle-aged man</strong>: Are you Mr. Vale?</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>middle-aged man</strong>: I thought so. How are you? It’s me,
+Jacob Konigsberg. Do you remember me?</p>
+<p><strong>jacob</strong>: I used to live here with my mother. Your wife
+used to give me piano lessons.</p>
+<p><strong>walter</strong>: Oh. Right.</p>
+<p><strong>jacob</strong>: It has been a long time. I thought that maybe
+you sold the place. Oh. This is Sprinkles. Say “hi”, Sprinkles. Is your
+wife here with you?</p>
+<p><strong>walter</strong>: No. She passed away.</p>
+<p><strong>jacob</strong>: What?! No! I had no idea. I’m so sorry. She
+was such a nice lady. And I just loved listening to her play.</p>
+<p><strong>walter</strong>: How’s your mother?</p>
+<p><strong>jacob</strong>: She moved to Florida. Now I live here. It’s
+nice. There are a lot of new faces. I hardly know anyone anymore. But I
+have Sprinkles so…</p>
+<p><strong>walter</strong>: Nice to see you, Jacob.</p>
+<p><strong>jacob</strong>: You too, Mr. Vale. Goodbye. Welcome back.</p>
+<p><strong>walter</strong>: It is important to distinguish between both
+our current political assessment and our…It is important to distinguish
+between our current political assessment…</p>
+<p><strong>german economist</strong>: However, we do find that financial
+globalization can be beneficial under the right circumstances.
+Empirically, good institutions and quality of governance are crucial in
+helping developing countries derive the benefits of globalization.</p>
+<p><strong>male voice</strong>: We should have them come play
+inside.</p>
+<p><strong>colleague #1</strong>: Coming in?</p>
+<p><strong>walter</strong>: Yes. In a minute. I have to make a call.</p>
+<p><strong>colleague #1</strong>: See you inside.</p>
+<p><strong>tarek</strong>: Hey Walter. Welcome home.</p>
+<p><strong>walter</strong>: Hi.</p>
+<p><strong>tarek</strong>: You’re home early.</p>
+<p><strong>walter</strong>: It was a half day.</p>
+<p><strong>tarek</strong>: How was the conference?</p>
+<p><strong>walter</strong>: Fine.</p>
+<p><strong>tarek</strong>: Sorry about the pants. I’ve been playing like
+this since I was a kid.</p>
+<p><strong>tarek</strong>: Hey. I think I might have a lead on a place
+in Brooklyn.</p>
+<p><strong>walter</strong>: That’s good. You can keep practicing if you
+like.</p>
+<p><strong>tarek</strong>: Really? It won’t bother you?</p>
+<p><strong>walter</strong>: No. It’s fine.</p>
+<p><strong>tarek</strong>: Great. Thanks. I’ll keep my pants on.</p>
+<p><strong>tarek</strong>: Hey, Zainab’s going to make dinner if you
+want to eat with us later.</p>
+<p><strong>walter</strong>: OK. Thank you.</p>
+<p><strong>tarek</strong>: I’m sorry. That was my mother. If I don’t
+call her every day she thinks something happened to me.</p>
+<p><strong>tarek</strong>: Yeah. I’ll have a bit. Thanks.</p>
+<p><strong>walter</strong>: Are you sure that you wouldn’t like
+some?</p>
+<p><strong>zainab</strong>: I don’t drink.</p>
+<p><strong>tarek</strong>: She is a good Muslim. I’m a bad one.</p>
+<p><strong>zainab</strong>: Are you finished?</p>
+<p><strong>walter</strong>: Yes. Thank you. Here, let me…</p>
+<p><strong>zainab</strong>: It’s the least I can do.</p>
+<p><strong>walter</strong>: Well, thank you for the dinner. It was very
+good.</p>
+<p><strong>zainab</strong>: You’re welcome.</p>
+<p><strong>tarek</strong>: So what’s the conference about?</p>
+<p><strong>walter</strong>: Economic Growth in Developing Nations.</p>
+<p><strong>tarek</strong>: That’s us. Syria. Senegal.</p>
+<p><strong>tarek</strong>: So have you written some books?</p>
+<p><strong>walter</strong>: Three. I’m working on my fourth.</p>
+<p><strong>tarek</strong>: Four books?! Great. My father was a writer. A
+journalist.</p>
+<p><strong>walter</strong>: Is he still writing?</p>
+<p><strong>tarek</strong>: No. He died. Before we left Syria.</p>
+<p><strong>walter</strong>: I’m sorry.</p>
+<p><strong>tarek</strong>: So am I.</p>
+<p><strong>zainab</strong>: Tarek. It’s eight-thirty.</p>
+<p><strong>tarek</strong>: Oh. We have to go. I have a gig tonight.</p>
+<p><strong>tarek</strong>: Walter, you can come if you want.</p>
+<p><strong>walter</strong>: I have to get some work done but thank
+you.</p>
+<p><strong>tarek</strong>: OK. Well maybe another time</p>
+<p><strong>tarek</strong>: Bye.</p>
+<p><strong>zainab</strong>: Why did you invite him?</p>
+<p><strong>tarek</strong>: We’re staying in his apartment. What could I
+do?</p>
+<p><strong>zainab</strong>: Well I would have been the one stuck sitting
+with him while you played your drum.</p>
+<p><strong>tarek</strong>: You know you are very sexy when you’re mad at
+me.</p>
+<p><strong>walter</strong>: Hello.</p>
+<p><strong>walter</strong>: If you don’t mind, I think I will come.</p>
+<p><strong>tarek</strong>: Cool.</p>
+<p><strong>walter</strong>: He’s very good.</p>
+<p><strong>zainab</strong>: Yes.</p>
+<p><strong>walter</strong>: The whole band is very good.</p>
+<p><strong>zainab</strong>: Yes.</p>
+<p><strong>tarek</strong>: Sorry guys. Let’s go.</p>
+<p><strong>walter</strong>: Tarek?</p>
+<p><strong>walter</strong>: Tarek?</p>
+<p><strong>walter</strong>: Oh. Hi.</p>
+<p><strong>tarek</strong>: It sounded good Walter.</p>
+<p><strong>walter</strong>: Yeah. Well. I was just…I’m sorry if I…</p>
+<p><strong>tarek</strong>: Don’t be sorry. That’s what it’s there
+for.</p>
+<p><strong>tarek</strong>: I was lying on my bed listening to my music
+and then I was like “what’s the crazy rhythm I’m hearing?”.</p>
+<p><strong>tarek</strong>: Sit. Come on. I’ll show you.</p>
+<p><strong>tarek</strong>: Just put your feet flat on the ground.</p>
+<p><strong>tarek</strong>: Now take the drum between your legs. Like
+this.</p>
+<p><strong>tarek</strong>: Now you want to lift the inside edge off the
+ground with your ankles. Like this.</p>
+<p><strong>tarek</strong>: Great. Feel OK?</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>tarek</strong>: OK. Now Walter, I know you’re a very smart
+man but with the drum you have to remember not to think. Thinking just
+screws it up. OK?</p>
+<p><strong>tarek</strong>: Now just give it a couple of bangs.</p>
+<p><strong>tarek</strong>: Not so hard. You’re not angry at it.</p>
+<p><strong>walter</strong>: Oh. Right. Sorry.</p>
+<p><strong>tarek</strong>: Better. Did you think?</p>
+<p><strong>walter</strong>: No.</p>
+<p><strong>tarek</strong>: Good. Now one more thing, Walter. You listen
+to classical music so you think in fours. One. Two. Three. Four. Da. Da.
+Da. Da. This is an African drum. So we are gonna play in three’s. Tat.
+Tat. Tat. You have to forget your classical. Leave it behind. Tat. Tat.
+Tat. One. Two. Three. Come on. Follow me.</p>
+<p><strong>tarek</strong>: Good. Good ear. Now keep going.</p>
+<p><strong>tarek</strong>: Don’t worry. Start again.</p>
+<p><strong>tarek</strong>: Yeah! There it is. OK. Good. Now keep it
+going and I will do this.</p>
+<p><strong>tarek</strong>: Yeah. That’s it. Keep it going.</p>
+<p><strong>walter</strong>: Hello.</p>
+<p><strong>zainab</strong>: Hello. Where is Tarek?</p>
+<p><strong>walter</strong>: He went out. To look at another
+apartment.</p>
+<p><strong>zainab</strong>: Are you OK?</p>
+<p><strong>walter</strong>: Yeah. Tarek is teaching me the drum. I’m
+practicing. Don’t worry, I’ll keep my pants on.</p>
+<p><strong>zainab</strong>: What?</p>
+<p><strong>walter</strong>: Nothing. I was just…nothing.</p>
+<p><strong>tarek</strong>: Hey Walter, what time are you done
+tomorrow?</p>
+<p><strong>walter</strong>: I have to present a paper at eleven. I
+should be done by twelve- thirty.</p>
+<p><strong>tarek</strong>: Cool.</p>
+<p><strong>darren</strong>: Hey man, could we get another order of this?
+I love this food.</p>
+<p><strong>tarek</strong>: That’s good. Because the Chinese are taking
+over the world.</p>
+<p><strong>darren</strong>: That’s not gonna happen.</p>
+<p><strong>tarek</strong>: It’s already happening. One day our kids will
+be going to China for jobs. Ask Walter.</p>
+<p><strong>darren</strong>: You think that’s true?</p>
+<p><strong>walter</strong>: Well…if China continues to threaten the wage
+earners in the first-world economies by keeping wages down, then it’s
+really just a matter of time. What they buy they inflate. What they sell
+they deflate. But then you have to ask the question `who’s paying the
+cost?’. And the answer is the Chinese people.</p>
+<p><strong>tarek</strong>: You see?</p>
+<p><strong>tarek</strong>: Hey, Walter!</p>
+<p><strong>tarek</strong>: How did the presentation go?</p>
+<p><strong>walter</strong>: Fine. Thanks.</p>
+<p><strong>tarek</strong>: Cool. Guess what? I found an apartment in
+Brooklyn. We can move in on Monday.</p>
+<p><strong>walter</strong>: That’s good.</p>
+<p><strong>tarek</strong>: Yeah. It’s small but it’s a nice building. I
+just hope Zainab likes it.</p>
+<p><strong>walter</strong>: I think she will as long as no else lives
+there.</p>
+<p><strong>tarek</strong>: I think you’re right. Come on, let’s go. You
+should take off the name tag.</p>
+<p><strong>walter</strong>: Oh. Yeah. Thanks.</p>
+<p><strong>walter</strong>: Are you hungry?</p>
+<p><strong>tarek</strong>: Yeah. I’m starving. Do you like shwarmas?</p>
+<p><strong>walter</strong>: Uh…yeah. I like sharmas.</p>
+<p><strong>tarek</strong>: Shwarmas.</p>
+<p><strong>walter</strong>: Yeah.</p>
+<p><strong>tarek</strong>: Here. This is for you. For letting us
+stay.</p>
+<p><strong>walter</strong>: Thank you.</p>
+<p><strong>tarek</strong>: It’s Fela Kuti. You know him?</p>
+<p><strong>walter</strong>: No.</p>
+<p><strong>tarek</strong>: You don’t know Fela? Oh, man! Walter, you are
+in for a treat. He started the whole Afro-Beat movement. And his drummer
+Tony Allen was just scary, man. You want to play drums, you have to
+listen to this.</p>
+<p><strong>walter</strong>: OK. I will.</p>
+<p><strong>omar</strong>: Hey Tarek. How’s it going?</p>
+<p><strong>tarek</strong>: Good, Omar. How are you?</p>
+<p><strong>omar</strong>: Not bad. It’s fall in New York, you know?
+How’s the band?</p>
+<p><strong>tarek</strong>: Good. Playing a lot. New girlfriend?</p>
+<p><strong>omar</strong>: New friend.</p>
+<p><strong>tarek</strong>: You have a lot friends</p>
+<p><strong>omar</strong>: I’m a very nice guy. Au revoir.</p>
+<p><strong>tarek</strong>: Au revoir.</p>
+<p><strong>tarek</strong>: The Lebanese. Bunch of playboys. You
+ready?</p>
+<p><strong>walter</strong>: Yeah.</p>
+<p><strong>zainab</strong>: Yes. I made it.</p>
+<p><strong>upper east side woman</strong>: How much?</p>
+<p><strong>zainab</strong>: Thirty-five dollars.</p>
+<p><strong>upper east side woman</strong>: Will you take thirty?</p>
+<p><strong>zainab</strong>: No. thiry-five.</p>
+<p><strong>upper east side woman</strong>: OK. I know my daughter will
+think it’s “cool”. Here.</p>
+<p><strong>upper east side woman</strong>: Where are you from?</p>
+<p><strong>zainab</strong>: Senegal.</p>
+<p><strong>upper east side woman</strong>: Oh. I was in Cape Town two
+winters ago. It was just beautiful.</p>
+<p><strong>zainab</strong>: Thank you very much.</p>
+<p><strong>upper east side woman</strong>: Thank you.</p>
+<p><strong>zev</strong>: How far is Senegal from Cape Town?</p>
+<p><strong>zainab</strong>: Far.</p>
+<p><strong>zev</strong>: I told a guy I was from Israel yesterday and he
+asked if I had ever visited the Holy Land.</p>
+<p><strong>zev</strong>: Hey, look who it is. What’s up Tarek?</p>
+<p><strong>tarek</strong>: Zev! How are you?</p>
+<p><strong>zev</strong>: Good man.</p>
+<p><strong>tarek</strong>: Hey honey.</p>
+<p><strong>zainab</strong>: Hello. Hi, Walter.</p>
+<p><strong>walter</strong>: Hi.</p>
+<p><strong>tarek</strong>: How’s business?</p>
+<p><strong>zev</strong>: Ahh. You know.</p>
+<p><strong>tarek</strong>: Her stuff is great, right? She made me
+this?</p>
+<p><strong>tarek</strong>: You should make one for Walter.</p>
+<p><strong>tarek</strong>: So Walter and I are going up to the park to
+play for a little bit. OK?</p>
+<p><strong>zainab</strong>: Tarek, I told you we have to pick up my new
+table today. He said he would only hold it for today.</p>
+<p><strong>tarek</strong>: I know. I know. No problem.</p>
+<p><strong>zainab</strong>: Tarek. You always say “no problem” and then
+you are late or you forget.</p>
+<p><strong>tarek</strong>: I know. I will not be long. We’ll go up and
+play and then we’ll come back to help you. I promise, habibti.</p>
+<p><strong>zainab</strong>: Yes. It’s always “habibti” when you want
+your way. It closes at five p.m. Not Arab time, Tarek.</p>
+<p><strong>tarek</strong>: No. Not Arab time. Real time, habibti.</p>
+<p><strong>zainab</strong>: Don’t “habibti” me.</p>
+<p><strong>walter</strong>: What does habibti mean?</p>
+<p><strong>tarek</strong>: Habibti? It means “beloved one”.</p>
+<p><strong>walter</strong>: Does she know that?</p>
+<p><strong>tarek</strong>: He’s been playing here for a long time.</p>
+<p><strong>walter</strong>: Is he good?</p>
+<p><strong>tarek</strong>: I have no idea but it’s cool. I always wanted
+to play down here. It’s supposed to be good money.</p>
+<p><strong>walter</strong>: So why haven’t you?</p>
+<p><strong>tarek</strong>: Maybe some day we can do it together. Split
+the profits.</p>
+<p><strong>tarek</strong>: What do you think?</p>
+<p><strong>walter</strong>: I think I’ll just watch.</p>
+<p><strong>tarek</strong>: Come on, Walter.</p>
+<p><strong>tarek</strong>: It’s easy. You just wait until you feel it.
+Let’s go.</p>
+<p><strong>tarek</strong>: Shit, we have to get home. Zainab is gonna
+kill me. I’m on Arab time again.</p>
+<p><strong>walter</strong>: What is Arab time?</p>
+<p><strong>tarek</strong>: It means I’m late by an hour. All Arabs are
+late by an hour. It’s genetic. We can’t help it.</p>
+<p><strong>tarek</strong>: That’s our train!</p>
+<p><strong>tarek</strong>: I got your drum. My card is empty. Can you
+swipe me?</p>
+<p><strong>tarek</strong>: Hey. You paid for the drum and not me. Here
+take this.</p>
+<p><strong>tarek</strong>: I think we missed it. Zainab is not going to
+be happy if…</p>
+<p><strong>man</strong>: Excuse me, sir. Could you please step over
+here.</p>
+<p><strong>tarek</strong>: What are you doing?</p>
+<p><strong>man</strong>: NYPD. Could you please step over here?</p>
+<p><strong>cop #2</strong>: Just step over here, pal.</p>
+<p><strong>tarek</strong>: Please, what do you want…</p>
+<p><strong>cop #1</strong>: You jumped the turnstile.</p>
+<p><strong>tarek</strong>: I did not jump it! I paid. I paid! It just
+didn’t work.</p>
+<p><strong>walter</strong>: Sir, I did pay his fare.</p>
+<p><strong>cop #2</strong>: Could you step back please?</p>
+<p><strong>walter</strong>: But I paid this man’s…</p>
+<p><strong>cop #2</strong>: Sir, stand over there.</p>
+<p><strong>cop #1</strong>: Can I see some ID.</p>
+<p><strong>cop #1</strong>: You got anything else, Tarek.</p>
+<p><strong>tarek</strong>: No.</p>
+<p><strong>cop #1</strong>: Where are you from?</p>
+<p><strong>tarek</strong>: Syria. Why?</p>
+<p><strong>tarek</strong>: Why? I’m sorry. What did I do?</p>
+<p><strong>walter</strong>: I don’t think that’s necessary.</p>
+<p><strong>cop #2</strong>: Well we do. You can come down to the station
+and make a statement.</p>
+<p><strong>walter</strong>: But he didn’t mean…</p>
+<p><strong>cop #2</strong>: Sir, that’s all I’m saying. Now step back or
+we are gonna take you in too.</p>
+<p><strong>walter</strong>: Where are you taking him?</p>
+<p><strong>cop #2</strong>: Ninth Precinct.</p>
+<p><strong>tarek</strong>: Walter take the drum. Tell Zainab what
+happened but don’t let her come for me. I will call you.</p>
+<p><strong>tarek</strong>: Don’t let her come! I will call her!</p>
+<p><strong>zainab</strong>: Where is Tarek?</p>
+<p><strong>walter</strong>: He was arrested.</p>
+<p><strong>zainab</strong>: What?!</p>
+<p><strong>walter</strong>: Yes. In the subway.</p>
+<p><strong>zainab</strong>: Arrested?!</p>
+<p><strong>walter</strong>: Yes. It was just a misunderstanding. They
+said he would be released later tonight.</p>
+<p><strong>zainab</strong>: How could this happen? He knows better! He
+would not do anything wrong.</p>
+<p><strong>walter</strong>: He didn’t. I’m sure we it will be</p>
+<p><strong>zainab</strong>: No. It won’t be OK.</p>
+<p><strong>walter</strong>: Yes it will. I went down to the precinct and
+made a statement.</p>
+<p><strong>zainab</strong>: That doesn’t matter! He is illegal! As am I!
+We are not citizens. Do you know what that means? Do you?! Of course you
+don’t. How could you?</p>
+<p><strong>walter</strong>: Yes. His name is Tarek Khalil. Khalil. K. H.
+A. L. I. L. That’s right. Yes. I came down and made a statement. They
+said he would be released. That was six hours ago. Well when should we
+know? Tomorrow? Why? But he…OK. OK. Thank you.</p>
+<p><strong>zainab</strong>: Well?</p>
+<p><strong>walter</strong>: They’ve moved him.</p>
+<p><strong>zainab</strong>: To where?</p>
+<p><strong>walter</strong>: To a detention center in Queens. He was
+turned over to immigration. They said we can see him during visiting
+hours tomorrow night from five to ten.</p>
+<p><strong>zainab</strong>: I can’t visit him or I will end up in that
+place too.</p>
+<p><strong>zainab</strong>: Yes. We are going tomorrow. The appointment
+is at eleven. I don’t know, he found him. What? No. I don’t want to. I
+just don’t, Tarek. Yes. I’ve already called him. I know. I know. I just
+want you to be here with me, Tarek.</p>
+<p><strong>mr. shah</strong>: Zainab, you’re also undocumented,
+right?</p>
+<p><strong>zainab</strong>: Yes.</p>
+<p><strong>mr. shah</strong>: You know you can’t visit Tarek at the
+detention center, right?</p>
+<p><strong>zainab</strong>: Yes. I know.</p>
+<p><strong>mr. shah</strong>: How long have you known Tarek?</p>
+<p><strong>zainab</strong>: Almost a year.</p>
+<p><strong>mr. shah</strong>: Mr. Vale?</p>
+<p><strong>walter</strong>: A week.</p>
+<p><strong>mr. shah</strong>: A week?</p>
+<p><strong>mr. shah</strong>: Does Tarek have any family living
+here?</p>
+<p><strong>zainab</strong>: His mother lives in Michigan.</p>
+<p><strong>mr. shah</strong>: She’s also undocumented, correct?</p>
+<p><strong>mr. shah</strong>: It’s OK. This is all confidential.</p>
+<p><strong>zainab</strong>: Yes, she is.</p>
+<p><strong>mr. shah</strong>: Does she know that Tarek is in
+custody?</p>
+<p><strong>zainab</strong>: No. Tarek told me not to tell her. He
+doesn’t want to worry her.</p>
+<p><strong>mr. shah</strong>: Has he ever been convicted of a crime?</p>
+<p><strong>zainab</strong>: No. He has had no trouble. He is a good
+person.</p>
+<p><strong>mr. shah</strong>: Do you know if they ever applied for
+asylum?</p>
+<p><strong>zainab</strong>: Yes. When he first arrived from Syria. But
+he didn’t get it.</p>
+<p><strong>mr. shah</strong>: When was that?</p>
+<p><strong>zainab</strong>: Seven years ago.</p>
+<p><strong>mr. shah</strong>: And did they appeal it?</p>
+<p><strong>zainab</strong>: I don’t know.</p>
+<p><strong>walter</strong>: Why wouldn’t they appeal it?</p>
+<p><strong>mr. shah</strong>: Fear of being deported. It used to be that
+when your asylum case was denied, they let you go until your appeal. A
+lot of people didn’t bother with it. Getting denied once was enough to
+spook them.</p>
+<p><strong>walter</strong>: So what happens if that’s the case?</p>
+<p><strong>mr. shah</strong>: Then there may be a final order of
+deportation on him which means he won’t even go before a judge this
+time. He’ll just be deported.</p>
+<p><strong>zainab</strong>: They had to leave Syria! They had no
+choice!</p>
+<p><strong>mr. shah</strong>: Look, one step at a time. Let me talk to
+him then we’ll have a better idea of his status and what our options
+are.</p>
+<p><strong>walter</strong>: Is there anything I can do?</p>
+<p><strong>mr. shah</strong>: Visit him.</p>
+<p><strong>guard</strong>: That detainee has been moved.</p>
+<p><strong>slavic man</strong>: To where?</p>
+<p><strong>guard</strong>: I don’t know.</p>
+<p><strong>slavic man</strong>: He was here yesterday.</p>
+<p><strong>guard</strong>: But now he’s not. That’s all I know. You can
+call ICE. The number is on the wall. Next. Sir, step aside please.</p>
+<p><strong>walter</strong>: Hi. I’m here to see Tarek Khalil.</p>
+<p><strong>guard</strong>: You been here before?</p>
+<p><strong>walter</strong>: No.</p>
+<p><strong>guard</strong>: Can I see your license please?</p>
+<p><strong>tarek</strong>: Walter. Thank you for coming.</p>
+<p><strong>walter</strong>: Of course.</p>
+<p><strong>tarek</strong>: How is Zainab?</p>
+<p><strong>walter</strong>: She’s upset. I have a letter from her.</p>
+<p><strong>tarek</strong>: You can’t give it to me. It has to be sent to
+me by mail. But you can put it up to the glass.</p>
+<p><strong>tarek</strong>: Go ahead. Open it and place it up to the
+glass so I can read it. It’s OK. It’s allowed.</p>
+<p><strong>tarek</strong>: Thank you, Walter.</p>
+<p><strong>walter</strong>: How are they treating you?</p>
+<p><strong>tarek</strong>: OK. The place is very depressing. There is no
+privacy. The lights are always on.</p>
+<p><strong>walter</strong>: Do you need anything?</p>
+<p><strong>tarek</strong>: No. I just want to get out of here.</p>
+<p><strong>walter</strong>: Zainab and I met with a lawyer today.</p>
+<p><strong>tarek</strong>: Yes. What did he say?</p>
+<p><strong>walter</strong>: He is going to stop by to see you
+tomorrow.</p>
+<p><strong>walter</strong>: Tarek, Zainab said you were denied
+asylum.</p>
+<p><strong>tarek</strong>: You mean when we came here? Yeah.</p>
+<p><strong>walter</strong>: Did you go to your deportation hearing?</p>
+<p><strong>tarek</strong>: Yeah.</p>
+<p><strong>walter</strong>: You did?</p>
+<p><strong>tarek</strong>: Yeah. We did everything they told us to.</p>
+<p><strong>tarek</strong>: Hey, could you tell Darren? I didn’t call
+him.</p>
+<p><strong>tarek</strong>: I have to go. They have to do a bed count.
+Usually, I can visit for one hour. Can you come tomorrow?</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>tarek</strong>: Good. And tell Zainab I will call her as soon
+as I can.</p>
+<p><strong>tarek</strong>: Goodbye, my friend.</p>
+<p><strong>walter</strong>: Goodbye.</p>
+<p><strong>zainab</strong>: Did you ask him if he went to his
+hearing?</p>
+<p><strong>walter</strong>: Yes. He said that he did.</p>
+<p><strong>zainab</strong>: Walter, I’m going to leave now. I have a
+cousin in the Bronx. I will stay with him for now.</p>
+<p><strong>walter</strong>: You don’t have to leave. You can stay
+here.</p>
+<p><strong>zainab</strong>: I think it’s best if I leave. When Tarek
+calls me then I will tell him. You know how to reach me if you need to.
+Is it OK if I leave Tarek’s things here for now? My cousin’s place is
+not very big.</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>walter</strong>: But I thought you said you went to the
+hearing.</p>
+<p><strong>tarek</strong>: We did. I remember it.</p>
+<p><strong>walter</strong>: So why is there a final order on you? Did he
+say?</p>
+<p><strong>tarek</strong>: No. He didn’t know yet. He just said that
+unless he can find a way to reopen the case quickly they’re going to
+deport me.</p>
+<p><strong>walter</strong>: Maybe you should call your mother. She might
+have…</p>
+<p><strong>tarek</strong>: No. I don’t want her to worry. I can handle
+this.</p>
+<p><strong>walter</strong>: Did he say anything else?</p>
+<p><strong>tarek</strong>: Yeah. Three years ago I was working for some
+guy who said he was going to sponsor me for my green card but then he
+turned out to be jerk. But the lawyer said that might allow us to reopen
+the case. I don’t even understand it.</p>
+<p><strong>tarek</strong>: Walter, there are guys who have been in here
+for years! I can’t do that Walter. I’ll go crazy.</p>
+<p><strong>walter</strong>: He’s trying to deal with the case as quickly
+as possible.</p>
+<p><strong>walter</strong>: Tarek. I have to go back to Connecticut.
+I’ll be reachable by phone if you need me for anything.</p>
+<p><strong>tarek</strong>: OK. Just please…don’t forget about me in
+here.</p>
+<p><strong>walter</strong>: I won’t.</p>
+<p><strong>tarek</strong>: Are you still practicing?</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>tarek</strong>: You should go back to the drum circle.</p>
+<p><strong>walter</strong>: No.</p>
+<p><strong>tarek</strong>: OK. But listen to that Fela CD. That will
+help you, I promise.</p>
+<p><strong>walter</strong>: I will.</p>
+<p><strong>tarek</strong>: So show me what you’ve been working on.</p>
+<p><strong>walter</strong>: What?</p>
+<p><strong>tarek</strong>: Show me. On that. Come on. I need some music,
+man.</p>
+<p><strong>walter</strong>: Now?</p>
+<p><strong>tarek</strong>: Don’t worry. They can’t arrest you. At least
+not yet.</p>
+<p><strong>tarek</strong>: Ah. There it is. Good. Good. You are getting
+better.</p>
+<p><strong>walter</strong>: Hello.</p>
+<p><strong>arab woman</strong>: I’m sorry. I must have the wrong
+apartment.</p>
+<p><strong>walter</strong>: Can I help you?</p>
+<p><strong>arab woman</strong>: I’m looking for my son.</p>
+<p><strong>walter</strong>: Are you Tarek’s mother?</p>
+<p><strong>arab woman</strong>: Yes.</p>
+<p><strong>walter</strong>: Oh. This is Tarek’s apartment. I…share the
+apartment with him.</p>
+<p><strong>arab woman</strong>: He did not mention that he lived with
+someone.</p>
+<p><strong>walter</strong>: I’m not here very often. I live in
+Connecticut.</p>
+<p><strong>arab woman</strong>: Is Tarek here?</p>
+<p><strong>walter</strong>: No. He’s…uh…he’s not here. But please come
+in.</p>
+<p><strong>walter</strong>: Please.</p>
+<p><strong>arab woman</strong>: Thank you.</p>
+<p><strong>walter</strong>: I’m Walter. Walter Vale.</p>
+<p><strong>arab woman</strong>: I’m Mouna Khalil. I’m sorry to show up
+unannounced but my son calls me everyday. He has not called me now for
+five days. I have tried his cell phone but he does not answer.</p>
+<p><strong>walter</strong>: Would you like to sit down?</p>
+<p><strong>mouna</strong>: Thank you.</p>
+<p><strong>walter</strong>: Would you like something to drink? Coffee or
+water?</p>
+<p><strong>mouna</strong>: No. Is my son alright, Mr. Vale?</p>
+<p><strong>walter</strong>: Tarek was arrested. He’s being held in a
+detention center in Queens. They are trying to deport him.</p>
+<p><strong>mouna</strong>: Where is Queens?</p>
+<p><strong>walter</strong>: It’s not far from here. Twenty minutes.</p>
+<p><strong>mouna</strong>: You have been there?</p>
+<p><strong>walter</strong>: Yes. I saw him yesterday. He’s OK.</p>
+<p><strong>mouna</strong>: How did this happen?</p>
+<p><strong>walter</strong>: He was stopped in the subway station. He
+didn’t do anything wrong.</p>
+<p><strong>mouna</strong>: I would like to go there. To Queens.</p>
+<p><strong>walter</strong>: OK. But Mrs. Khalil. The lawyer mentioned
+that…I don’t think that you can…</p>
+<p><strong>mouna</strong>: I know I can’t visit Tarek, Mr. Vale. I just
+want to see where they are holding him.</p>
+<p><strong>walter</strong>: OK. I can take you if you’d like.</p>
+<p><strong>mouna</strong>: Thank you.</p>
+<p><strong>walter</strong>: Let me get my coat.</p>
+<p><strong>walter</strong>: Have you been to New York before,
+Mrs. Khalil?</p>
+<p><strong>mouna</strong>: No. Tarek wanted to come to New York to play
+music. I did not want him to go but…do you have children, Mr. Vale?</p>
+<p><strong>walter</strong>: I have a son. He lives in London.</p>
+<p><strong>mouna</strong>: And your wife?</p>
+<p><strong>walter</strong>: My wife passed away.</p>
+<p><strong>mouna</strong>: I’m sorry.</p>
+<p><strong>walter</strong>: That’s it.</p>
+<p><strong>mouna</strong>: This is where the prison is?</p>
+<p><strong>walter</strong>: Yes. That’s it.</p>
+<p><strong>mouna</strong>: It does not look like a prison.</p>
+<p><strong>walter</strong>: I think that’s the point.</p>
+<p><strong>mouna</strong>: How many people are in there?</p>
+<p><strong>walter</strong>: Tarek said about three hundred.</p>
+<p><strong>walter</strong>: There is a coffee shop on that corner. It’s
+not very nice but…</p>
+<p><strong>mouna</strong>: I’ll wait there. Here.</p>
+<p><strong>mouna</strong>: Thank you.</p>
+<p><strong>tarek</strong>: Walter, I thought you were leaving.</p>
+<p><strong>walter</strong>: I was. Tarek, your mother is here.</p>
+<p><strong>tarek</strong>: What? My mother?! Where?</p>
+<p><strong>walter</strong>: She is waiting outside.</p>
+<p><strong>tarek</strong>: When did she arrive?</p>
+<p><strong>walter</strong>: Today.</p>
+<p><strong>tarek</strong>: Oh man. Why did she come? She can do nothing
+for me.</p>
+<p><strong>walter</strong>: She said she hadn’t heard from you.</p>
+<p><strong>tarek</strong>: Walter. Listen to me. She can not stay here.
+She doesn’t know anyone in New York. I’m sorry but you must get her to
+go back to Michigan.</p>
+<p><strong>walter</strong>: OK. OK. Here. I have a letter from her.</p>
+<p><strong>waiter</strong>: Do you need anything else?</p>
+<p><strong>mouna</strong>: No.</p>
+<p><strong>waiter</strong>: Where are you from?</p>
+<p><strong>mouna</strong>: I am Palestinian from Damascus.</p>
+<p><strong>waiter</strong>: Ah. I knew it. I am from Egypt. Alexandria.
+I’m Nasim. Why are you here?</p>
+<p><strong>mouna</strong>: I am visiting my son.</p>
+<p><strong>nasim</strong>: He is in detention.</p>
+<p><strong>mouna</strong>: Yes.</p>
+<p><strong>nasim</strong>: It’s a bad place. I’m lucky. I have a green
+card.</p>
+<p><strong>nasim</strong>: They’re the ones taking care of your son.
+They come here everyday. They don’t tip.</p>
+<p><strong>nasim</strong>: Don’t worry. They can’t understand us.</p>
+<p><strong>nasim</strong>: Hello, sir.</p>
+<p><strong>mouna</strong>: How is he?</p>
+<p><strong>walter</strong>: He’s good but he’s concerned about you being
+here.</p>
+<p><strong>mouna</strong>: I will not leave.</p>
+<p><strong>walter</strong>: Mrs. Khalil, I’m not sure that your being in
+New York will do any good. We have a very good lawyer working on Tarek’s
+case…</p>
+<p><strong>mouna</strong>: Mr. Vale, I cannot go back to Michigan
+knowing that my son is in that building. Even if I can’t see him, I will
+stay.</p>
+<p><strong>mouna</strong>: Shall we go?</p>
+<p><strong>nasim</strong>: The tea is on me.</p>
+<p><strong>mouna</strong>: Thank you.</p>
+<p><strong>nasim</strong>: Is that your lawyer? Or your husband?</p>
+<p><strong>mouna</strong>: Goodbye.</p>
+<p><strong>nasim</strong>: See you next time.</p>
+<p><strong>jacob</strong>: Oh. Hello, Mr. Vale.</p>
+<p><strong>walter</strong>: Hello, Jacob.</p>
+<p><strong>jacob</strong>: Oh, hello again. Did you find your son?</p>
+<p><strong>mouna</strong>: Yes. Thank you.</p>
+<p><strong>jacob</strong>: I let her in earlier. I’m Jacob, by the way.
+I live on the third floor. And this is Sprinkles.</p>
+<p><strong>mouna</strong>: Nice to meet you, Jacob. I’m Mouna.</p>
+<p><strong>jacob</strong>: So you two know each other?</p>
+<p><strong>mouna</strong>: Yes. Mr. Vale knows my son.</p>
+<p><strong>jacob</strong>: Oh. Who is that?</p>
+<p><strong>mouna</strong>: Tarek.</p>
+<p><strong>jacob</strong>: Oh. Tarek. He is very nice. And so is his
+girlfriend. They are both so polite.</p>
+<p><strong>mouna</strong>: Thank you.</p>
+<p><strong>jacob</strong>: My mother and I are planning a trip to go to
+Israel next summer. She’s always wanted to go.</p>
+<p><strong>mouna</strong>: I hope you enjoy it. Now if you’ll excuse
+me.</p>
+<p><strong>jacob</strong>: Oh sure. We need to go on our walk and do our
+business. Very nice to meet you, Mouna.</p>
+<p><strong>mouna</strong>: You too, Jacob.</p>
+<p><strong>jacob</strong>: Goodbye, Mr. Vale.</p>
+<p><strong>walter</strong>: Goodbye.</p>
+<p><strong>mouna</strong>: Thank you, Mr. Vale.</p>
+<p><strong>walter</strong>: Where are you going?</p>
+<p><strong>mouna</strong>: I will find a hotel.</p>
+<p><strong>walter</strong>: You can stay here. You can use Tarek’s
+room.</p>
+<p><strong>mouna</strong>: Thank you for your offer but I cannot accept
+this. I don’t want to impose on you.</p>
+<p><strong>walter</strong>: You’re not imposing. Please. I would like
+you to stay.</p>
+<p><strong>mouna</strong>: Again, thank you. But I will manage.
+Goodbye.</p>
+<p><strong>mouna</strong>: Goodbye.</p>
+<p><strong>walter</strong>: Mrs. Khalil?</p>
+<p><strong>walter</strong>: Please. I was with Tarek when he was
+arrested. He was in the subway in the first place because of me. Please.
+Stay. Even if it’s just for the night.</p>
+<p><strong>walter</strong>: The bathroom is just across the hall.</p>
+<p><strong>mouna</strong>: Thank you, Mr. Vale.</p>
+<p><strong>walter</strong>: You can call me Walter.</p>
+<p><strong>mouna</strong>: And I am Mouna.</p>
+<p><strong>walter</strong>: Do you need anything else?</p>
+<p><strong>mouna</strong>: No. Thank you. Good night.</p>
+<p><strong>walter</strong>: Good night.</p>
+<p><strong>mouna</strong>: Good morning.</p>
+<p><strong>walter</strong>: Good morning.</p>
+<p><strong>mouna</strong>: Tarek said hello.</p>
+<p><strong>walter</strong>: How is he?</p>
+<p><strong>mouna</strong>: I can’t really tell. He wants me to leave.
+But I am not leaving.</p>
+<p><strong>walter</strong>: Well, you can stay here as long as you need
+to.</p>
+<p><strong>mouna</strong>: Thank you. That is very generous of you.</p>
+<p><strong>walter</strong>: Thank you for the newspaper.</p>
+<p><strong>mouna</strong>: Walter? Did Tarek and his girlfriend, Zainab,
+live here together?</p>
+<p><strong>walter</strong>: Uhm…Yes. They did.</p>
+<p><strong>mouna</strong>: And where is she now?</p>
+<p><strong>walter</strong>: She’s staying with her cousin in the
+Bronx.</p>
+<p><strong>mouna</strong>: I would like to meet her.</p>
+<p><strong>walter</strong>: We can go by her stall.</p>
+<p><strong>mouna</strong>: Her what?</p>
+<p><strong>walter</strong>: Her stall. She sells jewelry in a stall.</p>
+<p><strong>mouna</strong>: Oh. OK.</p>
+<p><strong>mouna</strong>: Do you spend a lot of time in the city?</p>
+<p><strong>walter</strong>: No. Not really. I just came down to present
+a paper at a conference.</p>
+<p><strong>mouna</strong>: You wrote it?</p>
+<p><strong>walter</strong>: Yes. Well I coauthored it.</p>
+<p><strong>mouna</strong>: Congratulations.</p>
+<p><strong>mr. shah</strong>: And what happened after the hearing?</p>
+<p><strong>mouna</strong>: We appealed. It took two years.</p>
+<p><strong>mr. shah</strong>: And your appeal was denied?</p>
+<p><strong>mouna</strong>: Yes.</p>
+<p><strong>mr. shah</strong>: Then they should have sent you a
+bag-and-baggage letter which basically tells you where to show up and be
+deported.</p>
+<p><strong>mr. shah</strong>: But you didn’t receive it?</p>
+<p><strong>mouna</strong>: No.</p>
+<p><strong>mr. shah</strong>: You sure?</p>
+<p><strong>mouna</strong>: Yes. I would remember this.</p>
+<p><strong>mr. shah</strong>: Did you move?</p>
+<p><strong>mouna</strong>: Yes. Eventually we had to. But we had our
+mail advanced.</p>
+<p><strong>mr. shah</strong>: Well, it wouldn’t be the first time that
+happened. And pre 9/11 it wasn’t much of a priority tracking people
+down.</p>
+<p><strong>walter</strong>: So if they didn’t get the letter then does
+this help us?</p>
+<p><strong>mr. shah</strong>: It keeps our chances alive. If they got it
+and just ignored it then we couldn’t push to reopen the case.</p>
+<p><strong>mouna</strong>: So you can help him?</p>
+<p><strong>mr. shah</strong>: It’s still a long shot. Like I said, the
+Government’s approach has changed radically.</p>
+<p><strong>mr. shah</strong>: It’s very black and white now. Either you
+belong or you don’t. Which means a lot of people who have been living
+here for years are suddenly being swept up and thrown into detention.
+Tarek’s lucky. Most of them don’t even have lawyers.</p>
+<p><strong>mouna</strong>: Lucky?</p>
+<p><strong>mr. shah</strong>: Relatively speaking. We just have to move
+quickly to get an emergency stay from the board of immigration. Then,
+we’ll stick with the motion to reopen pending his green card
+application.</p>
+<p><strong>mouna</strong>: Can you explain what that means?</p>
+<p><strong>mr. shah</strong>: Actually, I don’t have the time right now.
+I have to be in court very shortly</p>
+<p><strong>mouna</strong>: How long will he be in detention?</p>
+<p><strong>mr. shah</strong>: I can’t predict that. I’m sorry but I am
+gonna have to wrap this up.</p>
+<p><strong>mouna</strong>: Do you have children, Mr. Shah?</p>
+<p><strong>mr. shah</strong>: Yeah. Two kids. And for what it’s worth my
+uncle was deported after raising a family here for twenty- three years.
+If I can get Tarek out, I will.</p>
+<p><strong>mouna</strong>: Thank you. Where are you from?</p>
+<p><strong>mr. shah</strong>: Queens.</p>
+<p><strong>mouna</strong>: Which one is she?</p>
+<p><strong>walter</strong>: There. In the middle.</p>
+<p><strong>mouna</strong>: The black woman? That is Zainab?</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>mouna</strong>: She is very black.</p>
+<p><strong>zainab</strong>: Walter?</p>
+<p><strong>walter</strong>: Hi Zainab. This is Mouna Khalil. Tarek’s
+mother.</p>
+<p><strong>zainab</strong>: Oh.</p>
+<p><strong>mouna</strong>: Hello, Zainab.</p>
+<p><strong>zainab</strong>: It is a pleasure to meet you,
+Mrs. Khalil.</p>
+<p><strong>mouna</strong>: Please. Call me Mouna.</p>
+<p><strong>zainab</strong>: OK. I’m sorry. I did not know you were
+coming.</p>
+<p><strong>mouna</strong>: Neither did I.</p>
+<p><strong>mouna</strong>: Your jewelry is very beautiful.</p>
+<p><strong>zainab</strong>: Thank you.</p>
+<p><strong>mouna</strong>: Do you have time for coffee or a walk?</p>
+<p><strong>zainab</strong>: Yes. I would like that. But I have to watch
+my table.</p>
+<p><strong>zainab</strong>: I’m living with my cousin. He has two kids.
+And his mother. I mean his wife…I’m sorry, I am very nervous.</p>
+<p><strong>mouna</strong>: Why?</p>
+<p><strong>zainab</strong>: I don’t know. Have you spoken with
+Tarek?</p>
+<p><strong>mouna</strong>: Yes. He called me this morning. He is doing
+all right.</p>
+<p><strong>zainab</strong>: I wish that I could see him. Just for a
+minute.</p>
+<p><strong>mouna</strong>: Me too. How long have you been here?</p>
+<p><strong>zainab</strong>: Two years. I was in detention when I first
+arrived. Three months. It was horrible. I would probably still be there
+but they closed the facility for poor conditions. They released some of
+the women on parole because we were…low risk. I met Tarek one year
+later. I am sorry for what happened with Tarek. I hope you do not blame
+me.</p>
+<p><strong>mouna</strong>: Blame you? No. I do not blame you.</p>
+<p><strong>zainab</strong>: Tarek was doing nothing wrong. I miss him so
+much. I don’t know what I am going to do without him.</p>
+<p><strong>mouna</strong>: He said the same thing about you.</p>
+<p><strong>zainab</strong>: He did?</p>
+<p><strong>mouna</strong>: Yes.</p>
+<p><strong>mouna</strong>: Zainab, I would like you to do something for
+me.</p>
+<p><strong>zainab</strong>: What?</p>
+<p><strong>mouna</strong>: I would like you to show me something that
+you and Tarek liked to do. Some place that you like to go.</p>
+<p><strong>zainab</strong>: Like what?</p>
+<p><strong>mouna</strong>: Anything. Whatever you want.</p>
+<p><strong>zainab</strong>: OK. But maybe we should get Walter
+first.</p>
+<p><strong>mouna</strong>: So what is in Staten Island?</p>
+<p><strong>zainab</strong>: I don’t know. We never got off. We just
+would go to the other side and then come back.</p>
+<p><strong>walter</strong>: Why?</p>
+<p><strong>zainab</strong>: It’s free. And it felt like we were going
+somewhere.</p>
+<p><strong>zainab</strong>: That is where the towers were. I never saw
+them but Tarek did.</p>
+<p><strong>zainab</strong>: And over there is the Statue. And behind
+that is Ellis Island.</p>
+<p><strong>zainab</strong>: Sometimes Tarek would point at the statue
+and jump up and down like we were arriving to New York for the first
+time. It was very funny.</p>
+<p><strong>mouna</strong>: Can you go up in the Statue?</p>
+<p><strong>walter</strong>: Yes. I think so.</p>
+<p><strong>mouna</strong>: You haven’t been?</p>
+<p><strong>walter</strong>: No.</p>
+<p><strong>mouna</strong>: Oh.</p>
+<p><strong>walter</strong>: Excuse me. Hello? Oh. Hi Charles.</p>
+<p><strong>walter</strong>: What’s that? Yes. I’m still in New York
+actually. I stayed down here to do some research. What’s that? Oh. I’m
+on a boat. Yes, a boat.</p>
+<p><strong>walter</strong>: Listen Charles, I’ll explain when I see you
+but I have to go right now. I’ll call you back. Goodbye.</p>
+<p><strong>tarek</strong>: You went on the ferry?</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>tarek</strong>: My mother too?</p>
+<p><strong>walter</strong>: Yes. She liked it.</p>
+<p><strong>tarek</strong>: Did Zainab tell you how we used pretend we
+arriving in New York for the first time?</p>
+<p><strong>walter</strong>: Yeah. She told us.</p>
+<p><strong>tarek</strong>: You know they don’t even let us outside here.
+They just cut a hole in the roof in one place.</p>
+<p><strong>walter</strong>: Really?</p>
+<p><strong>tarek</strong>: Yeah. It’s crazy stuff.</p>
+<p><strong>tarek</strong>: And they seemed to get along? Zainab and my
+mother?</p>
+<p><strong>walter</strong>: Yes. I think your mother likes her very
+much.</p>
+<p><strong>tarek</strong>: My mother’s not going home, is she?</p>
+<p><strong>walter</strong>: I don’t think so.</p>
+<p><strong>tarek</strong>: I know she’s thinking about my father. He
+spent seven years in jail in Syria for something he wrote in the
+newspaper. By the time they released him he was very sick. He died two
+months later. That’s when we came here.</p>
+<p><strong>walter</strong>: I’m sorry.</p>
+<p><strong>tarek</strong>: She thinks the same thing is gonna happen to
+me.</p>
+<p><strong>tarek</strong>: You know I have never seen them together.
+Zainab and my mother.</p>
+<p><strong>walter</strong>: Are you hungry, Mouna? We can stop for
+dinner.</p>
+<p><strong>mouna</strong>: I would prefer to cook if you don’t mind?</p>
+<p><strong>mouna</strong>: Should we stop at a market?</p>
+<p><strong>walter</strong>: Yeah. That’s probably a good idea.</p>
+<p><strong>walter</strong>: Would you like a glass of wine?</p>
+<p><strong>mouna</strong>: No thank you.</p>
+<p><strong>walter</strong>: Mouna? I need to go back to Connecticut
+tomorrow. For work. I told Tarek.</p>
+<p><strong>mouna</strong>: How long will you be gone?</p>
+<p><strong>walter</strong>: I don’t know yet. I’ll try to make it back
+to visit Tarek as soon as I can.</p>
+<p><strong>mouna</strong>: You don’t have keep visiting him, Walter. I’m
+sure you are busy.</p>
+<p><strong>walter</strong>: I’ll see what I can do.</p>
+<p><strong>mouna</strong>: OK. Dinner will be ready soon.</p>
+<p><strong>mouna</strong>: Do you go to Broadway, Walter?</p>
+<p><strong>walter</strong>: Broadway? Uhm. No. I haven’t been in a long
+time.</p>
+<p><strong>mouna</strong>: Tarek sent me the CD for “Phantom of the
+Opera” for my birthday. The music is lovely. Have you seen it?</p>
+<p><strong>walter</strong>: No. I haven’t.</p>
+<p><strong>mouna</strong>: I haven’t either but I think I know every
+word.</p>
+<p><strong>walter</strong>: Tarek is teaching me the drum.</p>
+<p><strong>mouna</strong>: Really? How is it going?</p>
+<p><strong>walter</strong>: Well, I sound a lot better when he’s playing
+with me.</p>
+<p><strong>mouna</strong>: How is your teaching going, Walter?</p>
+<p><strong>walter</strong>: My teaching?</p>
+<p><strong>mouna</strong>: Yes.</p>
+<p><strong>walter</strong>: Well…I have a lighter schedule so I can work
+on my book.</p>
+<p><strong>mouna</strong>: Your book? What is it about?</p>
+<p><strong>walter</strong>: Well, it covers quite a bit, so it’s hard to
+explain.</p>
+<p><strong>mouna</strong>: Are you almost finished?</p>
+<p><strong>walter</strong>: I’m close.</p>
+<p><strong>mouna</strong>: You don’t like to talk about your work?</p>
+<p><strong>walter</strong>: No. It’s just a bit complicated.</p>
+<p><strong>mouna</strong>: Why is that?</p>
+<p><strong>walter</strong>: It just is. It’s just not a process that’s
+easy to talk about with someone who’s not a writer.</p>
+<p><strong>mouna</strong>: I didn’t mean to pry.</p>
+<p><strong>walter</strong>: I shouldn’t have spoken to you like
+that.</p>
+<p><strong>mouna</strong>: It’s OK.</p>
+<p><strong>walter</strong>: Thank you. You have my number if you need
+anything.</p>
+<p><strong>mouna</strong>: I’ll be fine. Thank you. Have a safe
+trip.</p>
+<p><strong>walter</strong>: Well good bye.</p>
+<p><strong>mouna</strong>: Goodbye.</p>
+<p><strong>walter</strong>: Good afternoon.</p>
+<p><strong>mouna</strong>: Walter.</p>
+<p><strong>mouna</strong>: I did not expect you so soon. I was just
+cleaning a bit. I hope you don’t mind.</p>
+<p><strong>walter</strong>: No. Thank you.</p>
+<p><strong>mouna</strong>: I like this CD very much. The music is
+lovely.</p>
+<p><strong>mouna</strong>: Is it your wife?</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>mouna</strong>: She was beautiful.</p>
+<p><strong>walter</strong>: Thank you.</p>
+<p><strong>mouna</strong>: These are different glasses?</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>mouna</strong>: Are they new?</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>mouna</strong>: They’re nice.</p>
+<p><strong>walter</strong>: Thank you.</p>
+<p><strong>mouna</strong>: I was going to make some lunch. Are you
+hungry?</p>
+<p><strong>walter</strong>: Yes. Thank you.</p>
+<p><strong>walter</strong>: Mouna?</p>
+<p><strong>mouna</strong>: Yes.</p>
+<p><strong>walter</strong>: I was wondering if…Thursday night … Do you
+have plans?</p>
+<p><strong>mouna</strong>: No, Walter, I have no plans.</p>
+<p><strong>walter</strong>: Well, I thought that…we might do
+something.</p>
+<p><strong>tarek</strong>: They keep moving people.</p>
+<p><strong>walter</strong>: To where?</p>
+<p><strong>tarek</strong>: I don’t know. I think to other detention
+centers. Two Moroccan guys were just moved. They had no idea. Suddenly
+they were just gone.</p>
+<p><strong>walter</strong>: Has anyone said anything to you?</p>
+<p><strong>tarek</strong>: No one in here knows anything. I’m not a
+criminal. I have committed no crime. What do they think? I’m a
+terrorist? There are no terrorists in here. The terrorists have money.
+They have support. This is not fair!</p>
+<p><strong>walter</strong>: I know.</p>
+<p><strong>tarek</strong>: How do you know?! You’re out there!</p>
+<p><strong>walter</strong>: I’m sorry.</p>
+<p><strong>tarek</strong>: It’s just… I’m starting to wonder if I’m ever
+going to get out of here. I sit in here at night and I keep thinking
+about Zainab.</p>
+<p><strong>tarek</strong>: I just want to play my music and live my
+life. What’s so wrong about that?</p>
+<p><strong>walter</strong>: OK. OK. Please do. Thank you. Bye.</p>
+<p><strong>mouna</strong>: What did he say?</p>
+<p><strong>walter</strong>: He would make some calls but they can move
+him to another facility at their discretion.</p>
+<p><strong>zainab</strong>: What facility? Where?</p>
+<p><strong>walter</strong>: He said it could be anywhere. Upstate.
+Pennsylvania. There is even one in Louisiana.</p>
+<p><strong>zainab</strong>: Louisiana? Where they had the floods?</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>mouna</strong>: That’s so far.</p>
+<p><strong>walter</strong>: Yeah.</p>
+<p><strong>mouna</strong>: Did the lawyer say anything else?</p>
+<p><strong>walter</strong>: No. No he didn’t know anything else.</p>
+<p><strong>mouna</strong>: No one seems to know anything. It feels like
+Syria.</p>
+<p><strong>mouna</strong>: Sorry to keep you waiting.</p>
+<p><strong>walter</strong>: That’s alright. How is he?</p>
+<p><strong>mouna</strong>: He says hello. He wants to make sure that you
+are practicing your drum.</p>
+<p><strong>walter</strong>: I am. You look very nice.</p>
+<p><strong>mouna</strong>: You too. Should we go?</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>mouna</strong>: This city is just so huge! It never ends.</p>
+<p><strong>walter</strong>: Ready?</p>
+<p><strong>mouna</strong>: For what?</p>
+<p><strong>mouna</strong>: Really? The Phantom? Are we seeing it?</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>mouna</strong>: Now?</p>
+<p><strong>walter</strong>: Yes. Is that OK?</p>
+<p><strong>mouna</strong>: That’s wonderful. Thank you. I am so
+excited.</p>
+<p><strong>mouna</strong>: I have to say that show was really kind of
+scary.</p>
+<p><strong>walter</strong>: Yeah. It was kind of scary.</p>
+<p><strong>waiter</strong>: Are you finished?</p>
+<p><strong>mouna</strong>: Yes.</p>
+<p><strong>waiter</strong>: How is everything?</p>
+<p><strong>mouna</strong>: Very good. But I think I would like a glass
+of wine.</p>
+<p><strong>walter</strong>: I’m sorry. I didn’t even think to ask.</p>
+<p><strong>mouna</strong>: It’s OK. It’s not every night that you see
+The Phantom. I’ll have a cabernet.</p>
+<p><strong>walter</strong>: Two please.</p>
+<p><strong>waiter</strong>: Certainly.</p>
+<p><strong>walter</strong>: I haven’t been to theatre in a long
+time.</p>
+<p><strong>mouna</strong>: Me neither. There is a place in Syria called
+Maaloula. It is a huge outdoor theater. It’s beautiful. We used to take
+Tarek there to see concerts.</p>
+<p><strong>walter</strong>: Cheers.</p>
+<p><strong>mouna</strong>: Cheers.</p>
+<p><strong>walter</strong>: Mouna, I’ve taken a leave of absence for the
+rest of the semester.</p>
+<p><strong>mouna</strong>: Really? Why?</p>
+<p><strong>walter</strong>: I just thought I might spend some more time
+in New York.</p>
+<p><strong>mouna</strong>: Walter, you do not have to do this for
+Tarek.</p>
+<p><strong>walter</strong>: I want to.</p>
+<p><strong>mouna</strong>: But you have to be in Connecticut. You have
+your teaching. And your book.</p>
+<p><strong>walter</strong>: It’s fine really.</p>
+<p><strong>mouna</strong>: This is not your problem, Walter. It’s OK
+that you are busy.</p>
+<p><strong>walter</strong>: I’m not busy. Not at all. Mouna, the truth
+is I haven’t been doing any work for a long time.</p>
+<p><strong>mouna</strong>: You just presented your paper at the
+conference.</p>
+<p><strong>walter</strong>: I didn’t even write it. I just read it. I’ve
+been teaching the same course for twenty years. It doesn’t mean anything
+to me. None of it does. I pretend. I pretend that I’m busy. That I’m
+writing. Working. But I’m not doing anything.</p>
+<p><strong>walter</strong>: I’m sorry.</p>
+<p><strong>mouna</strong>: Don’t be. I appreciate you telling me
+this.</p>
+<p><strong>mouna</strong>: Walter, what would you do if you didn’t
+teach?</p>
+<p><strong>walter</strong>: I don’t know.</p>
+<p><strong>mouna</strong>: I think that is exciting. Not to know.</p>
+<p><strong>walter</strong>: Mouna, what do you do?</p>
+<p><strong>mouna</strong>: Do you mean for work?</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>mouna</strong>: I work in a car dealership. I take care of
+the accounting.</p>
+<p><strong>walter</strong>: Really?</p>
+<p><strong>mouna</strong>: Yes. It’s very exciting.</p>
+<p><strong>mouna</strong>: What time is it?</p>
+<p><strong>walter.</strong>: Twelve thirty.</p>
+<p><strong>mouna</strong>: No?! Is it?</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>mouna</strong>: My God. Twelve-thirty! I have not been up
+this late in a long time.</p>
+<p><strong>walter</strong>: I think that happens a lot in New York.</p>
+<p><strong>mouna</strong>: Thank you, Walter. That was a very nice
+evening. It’s the most fun I’ve had in a long time.</p>
+<p><strong>walter</strong>: I told Tarek I was going to take you. He was
+very happy about it.</p>
+<p><strong>mouna</strong>: Good night, Walter.</p>
+<p><strong>walter</strong>: Good night.</p>
+<p><strong>walter</strong>: Damn it!</p>
+<p><strong>walter</strong>: There’s a message from Tarek. Something’s
+wrong.</p>
+<p><strong>mouna</strong>: What did he say?</p>
+<p><strong>walter</strong>: Just that they were moving him. He didn’t
+know what it meant.</p>
+<p><strong>walter</strong>: Well when do you expect him back? Can you
+have him call me the minute he is? It’s an emergency. Thank you. He’s
+still in court. Can you hurry please?</p>
+<p><strong>mouna</strong>: I hate this feeling.</p>
+<p><strong>walter</strong>: Hello. I’m here for bed 38. Tarek
+Khalil.</p>
+<p><strong>male guard</strong>: He is no longer with us.</p>
+<p><strong>walter</strong>: What does that mean?</p>
+<p><strong>male guard</strong>: I’m not sure.</p>
+<p><strong>walter</strong>: You’re not sure? Was he moved to another
+facility? Another state? What?</p>
+<p><strong>male guard</strong>: I don’t know. I just know that this
+detainee is no longer in the facility.</p>
+<p><strong>walter</strong>: Well can you ask someone who does know?!</p>
+<p><strong>male guard</strong>: Hold on.</p>
+<p><strong>male guard</strong>: Sir?</p>
+<p><strong>walter</strong>: Yes. Did you find him?</p>
+<p><strong>guard</strong>: He’s been removed.</p>
+<p><strong>walter</strong>: Removed? To where?</p>
+<p><strong>guard</strong>: Deported.</p>
+<p><strong>walter</strong>: What? When?</p>
+<p><strong>guard</strong>: He was deported this morning.</p>
+<p><strong>walter</strong>: He…how can that be? Is there any way to
+contact him?</p>
+<p><strong>guard</strong>: I don’t know. I don’t think so.</p>
+<p><strong>walter</strong>: You don’t think so? What kind of answer is
+that?!</p>
+<p><strong>guard</strong>: I’m sorry, sir. That’s all the information
+that I have. Now please step away from the window. You can call the ICE
+if you have any further questions. The number is on the wall.</p>
+<p><strong>guard</strong>: Sir. Please step away from my window.</p>
+<p><strong>guard</strong>: Sir. For the last time, step away from my
+window.</p>
+<p><strong>walter</strong>: You can’t just take people away like that!
+Do you hear me?! He was a good man. A good person! He had a life here!
+You can’t just take away whoever you want!</p>
+<p><strong>walter</strong>: It’s not fair! We are not just helpless
+children! Do you hear me?!</p>
+<p><strong>mouna</strong>: Walter.</p>
+<p><strong>mouna</strong>: Walter. Let’s go. There is nothing we can do.
+Let’s go.</p>
+<p><strong>mouna</strong>: Come on, Walter.</p>
+<p><strong>mouna</strong>: He did nothing wrong.</p>
+<p><strong>mouna</strong>: Walter, I need to go back to Syria. I should
+to be there for Tarek.</p>
+<p><strong>walter</strong>: When are you going to leave?</p>
+<p><strong>mouna</strong>: Tomorrow. I already bought a ticket. It’s
+best for me to be there as soon as possible.</p>
+<p><strong>walter</strong>: You won’t be able to come back here.</p>
+<p><strong>mouna</strong>: I know.</p>
+<p><strong>walter</strong>: Mouna. I’m sorry.</p>
+<p><strong>mouna</strong>: Good night, Walter.</p>
+<p><strong>walter</strong>: Yes.</p>
+<p><strong>mouna</strong>: It’s my fault. What happened to Tarek. I did
+receive the letter telling us to leave. I threw it away. I never told
+him.</p>
+<p><strong>mouna</strong>: We were here for three years by the time the
+letter arrived. I had found a job. Tarek was in school. Everyone told me
+not to worry. That the government did not care. And it appeared to be
+true. And then, after time, you forget. You think that you really
+belong.</p>
+<p><strong>walter</strong>: It’s not your fault.</p>
+<p><strong>walter</strong>: It’s not your fault.</p>
+<p><strong>mouna</strong>: Have you visited your son in London?</p>
+<p><strong>walter</strong>: No. Not yet.</p>
+<p><strong>mouna</strong>: You should visit him.</p>
+<p><strong>mouna</strong>: Here.</p>
+<p><strong>mouna</strong>: Zainab and I picked it out especially for
+you.</p>
+<p><strong>walter</strong>: Thank you. It’s very nice.</p>
+<p><strong>mouna</strong>: Let me see.</p>
+<p><strong>walter</strong>: I like it.</p>
+<p><strong>mouna</strong>: So do I. You look cool.</p>
+<p><strong>walter</strong>: Cool?</p>
+<p><strong>mouna</strong>: Yes. You are very cool, Walter.</p>
+<p><strong>mouna</strong>: I should go.</p>
+<p><strong>mouna</strong>: Thank you, Walter. For everything.</p>
+<p><strong>walter</strong>: I don’t want you to go.</p>
+<p><strong>mouna</strong>: I don’t want to go, habibi.</p>
+<p><strong>cut to black</strong>: Black Card: “Give me your tired, your
+poor, your huddled masses yearning to breathe free, the wretched refuse
+of your teeming shore. Send these, the homeless, tempest-tost to me, I
+lift my lamp beside the golden door!”</p>
+</body>
+</html>

@@ -1,0 +1,1977 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>the-birds</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="the-birds">the-birds</h1>
+<p><strong>melanie</strong>: Hello, Mrs. MacGruder, have you ever seen
+so many gulls?</p>
+<p><strong>mrs. macgruder</strong>: Hello, Miss Daniels.</p>
+<p><strong>melanie</strong>: What do you suppose it is?</p>
+<p><strong>mrs. macgruder</strong>: There must be a storm at sea. That
+can drive them inland, you know.</p>
+<p><strong>mrs. macgruder</strong>: I was hoping you’d be a little late,
+Miss Daniels. You see, he hasn’t arrived yet.</p>
+<p><strong>melanie</strong>: You said three o’clock.</p>
+<p><strong>mrs. macgruder</strong>: I know. Oh, I know. I’ve been
+calling all morning. Oh, you have no idea. Miss Daniels, they’re so
+difficult to get, really they are. We get them from India, you know,
+when they’re just little chicks, and then we have to…</p>
+<p><strong>melanie</strong>: Well, this one won’t be a chick, will
+he?</p>
+<p><strong>mrs. macgruder</strong>: Certainly not. Oh, no. Certainly
+not. This will be a full grown myna bird. Full grown.</p>
+<p><strong>melanie</strong>: And he’ll talk?</p>
+<p><strong>mrs. macgruder</strong>: Well, yes, he’ll talk. Well, no, no.
+You’ll have to teach him to talk.</p>
+<p><strong>melanie</strong>: Yes.</p>
+<p><strong>mrs. macgruder</strong>: Yes. Oh my, I suppose I should call
+them again. They said three o’clock. Maybe it’s the traffic. I’ll call.
+Would you mind waiting?</p>
+<p><strong>melanie</strong>: I think maybe you’d better deliver him. Let
+me give you my address.</p>
+<p><strong>mrs. macgruder</strong>: Oh. Oh, well, all right.</p>
+<p><strong>mrs. macgruder</strong>: I’m sure they’re on the way, though.
+Could I just call?</p>
+<p><strong>melanie</strong>: Well, all right, but…</p>
+<p><strong>mrs. macgruder</strong>: Hello, this is Betty MacGruder at
+Davidson’s. It’s past three, you know. Well, how long do you think…? All
+right, would you check it please? Yes, I’ll wait.</p>
+<p><strong>mitch</strong>: I wonder if you could help me.</p>
+<p><strong>melanie</strong>: What?</p>
+<p><strong>mitch</strong>: with a touch of I said I wonder if you could
+help me.</p>
+<p><strong>melanie</strong>: Yes, what was it you were looking for,
+sir?</p>
+<p><strong>mitch</strong>: Lovebirds.</p>
+<p><strong>melanie</strong>: Lovebirds, sir?</p>
+<p><strong>mitch</strong>: Yes. I understand there are different
+varieties, it that true?</p>
+<p><strong>melanie</strong>: Well… yes, sir, there are.</p>
+<p><strong>mitch</strong>: These are for my sister… her birthday you
+see. As she’ll be eleven and… well, frankly, I wouldn’t want a pair of
+birds that were too demonstrative.</p>
+<p><strong>melanie</strong>: I understand completely, sir.</p>
+<p><strong>mitch</strong>: As the same time, I wouldn’t want birds that
+were aloof, either.</p>
+<p><strong>melanie</strong>: No, of course not.</p>
+<p><strong>mitch</strong>: Do you have a pair that are just
+friendly?</p>
+<p><strong>melanie</strong>: I think so, sir. Now then, let me see.</p>
+<p><strong>mitch</strong>: Aren’t these lovebirds?</p>
+<p><strong>melanie</strong>: No, sir, those are… redbirds.</p>
+<p><strong>mitch</strong>: The sign says strawberry finches.</p>
+<p><strong>melanie</strong>: Yes, we call them that too. Ahhh, here we
+are, Lovebirds…</p>
+<p><strong>mitch</strong>: Those are canaries, Miss. Doesn’t this make
+you feel awful?</p>
+<p><strong>melanie</strong>: Doesn’t what make me…?</p>
+<p><strong>mitch</strong>: All these innocent little creatures caged up
+like this?</p>
+<p><strong>melanie</strong>: Well, we can’t just let them fly around the
+shop, you know.</p>
+<p><strong>mitch</strong>: I suppose not. Is there an ornithological
+reason for keeping them in separate cages?</p>
+<p><strong>melanie</strong>: Oh, certainly. It’s to protect the
+species.</p>
+<p><strong>mitch</strong>: I imagine that’s very important. Especially
+during the moulting season.</p>
+<p><strong>melanie</strong>: Yes, that’s a particularly dangerous
+time.</p>
+<p><strong>mitch</strong>: Are they moulting now?</p>
+<p><strong>melanie</strong>: Some of them are.</p>
+<p><strong>mitch</strong>: How can you tell?</p>
+<p><strong>melanie</strong>: Well… they get a sort of hangdog
+expression.</p>
+<p><strong>mitch</strong>: Yes, I see. About those lovebirds, Miss…</p>
+<p><strong>melanie</strong>: Are you sure you wouldn’t like to see a
+canary instead? We have some very nice canaries this week.</p>
+<p><strong>mitch</strong>: All right. She smiles back.</p>
+<p><strong>mitch</strong>: All right, may I see one, please?</p>
+<p><strong>melanie</strong>: Here, birdie. Here, birdie, birdie.</p>
+<p><strong>melanie</strong>: Oh! Ohhhhh!</p>
+<p><strong>mrs. macgruder</strong>: What is it? Oh! Oh my, one of the
+birds is loose!</p>
+<p><strong>mitch</strong>: Shhh! Shhhh!</p>
+<p><strong>melanie</strong>: There we are!</p>
+<p><strong>mrs. macgruder</strong>: Oh, good! Oh, wonderful.</p>
+<p><strong>mitch</strong>: Back into your gilded cage, Melanie
+Daniels.</p>
+<p><strong>melanie</strong>: What did you say?</p>
+<p><strong>mitch</strong>: I was merely drawing a parallel, Miss
+Daniels.</p>
+<p><strong>melanie</strong>: But how… how do you know my name?</p>
+<p><strong>mitch</strong>: A little birdie told me. Good day, Miss
+Daniels. Madam.</p>
+<p><strong>melanie</strong>: Hey, wait a minute!</p>
+<p><strong>melanie</strong>: I don’t know you.</p>
+<p><strong>mitch</strong>: Ahhh, but I know you.</p>
+<p><strong>melanie</strong>: How?</p>
+<p><strong>mitch</strong>: We met in court.</p>
+<p><strong>melanie</strong>: We never met in court or anyplace else.</p>
+<p><strong>mitch</strong>: That’s true. I’ll rephrase it. I saw you in
+court.</p>
+<p><strong>melanie</strong>: When?</p>
+<p><strong>mitch</strong>: Do you remember one of your practical jokes
+that resulted in the smashing of a plate glass window?</p>
+<p><strong>melanie</strong>: I didn’t break that window!</p>
+<p><strong>mitch</strong>: No, but your little prank did. The judge
+should have put you behind bars!</p>
+<p><strong>melanie</strong>: What are you? A policeman?</p>
+<p><strong>mitch</strong>: I simply believe in the law, Miss Daniels,
+and I’m not too keen on practical jokers.</p>
+<p><strong>melanie</strong>: What do you call your lovebird story if not
+a practical…</p>
+<p><strong>mitch</strong>: Ahhh, but I really do want those birds.</p>
+<p><strong>melanie</strong>: You knew I didn’t work here. You
+deliberately…</p>
+<p><strong>mitch</strong>: Right. I recognized you when I came in. I
+thought you might like to know what it felt like to be on the other end
+of a gag. What do you think of that, Miss Daniels?</p>
+<p><strong>melanie</strong>: I think you’re a louse.</p>
+<p><strong>mitch</strong>: I am. Good day. Madam.</p>
+<p><strong>melanie</strong>: And I’m glad you didn’t get your
+lovebirds!</p>
+<p><strong>mitch</strong>: I’ll find something else. See you in court
+some day.</p>
+<p><strong>melanie</strong>: That… that… who was that?</p>
+<p><strong>mrs. macgruder</strong>: I have no idea.</p>
+<p><strong>melanie</strong>: Have you got a pencil?</p>
+<p><strong>mrs. macgruder</strong>: What? Oh, yes, certainly.</p>
+<p><strong>mrs. macgruder</strong>: They said the myna bird would be
+here later this afternoon. If you’d care to come back…</p>
+<p><strong>melanie</strong>: No, you’d better send him. May I use your
+phone?</p>
+<p><strong>mrs. macgruder</strong>: Yes, certainly.</p>
+<p><strong>melanie</strong>: Do you have any lovebirds?</p>
+<p><strong>mrs. macgruder</strong>: No, not in the shop. But I can order
+them for you.</p>
+<p><strong>melanie</strong>: How soon?</p>
+<p><strong>mrs. macgruder</strong>: Well… well, how soon would you want
+them?</p>
+<p><strong>melanie</strong>: Immediately. Is this the Daily News?
+Melanie Daniels. Would you get me the city desk, please?</p>
+<p><strong>mrs. macgruder</strong>: I might be able to have them by
+tomorrow morning. Would that be all right?</p>
+<p><strong>melanie</strong>: That would be just fine. Hello, Charlie,
+this is Melanie. I want you to do a favor for me. No, this is a small
+one. Pressure you? Why, Charlie darling, would I try to pressure you?
+Will you call the Department of Motor Vehicles for me and find out who
+owns this license plate? DKQ dash one seven six. Yes, a California
+plate. No, I’ll stop up there in a little while. Is daddy in his office?
+Oh. No, no, I don’t want to break in on a meeting. Just tell him I’ll
+see him later. Thank you, Charlie.</p>
+<p><strong>melanie</strong>: Now. What time tomorrow morning?</p>
+<p><strong>man’s voice</strong>: Miss…? She stops, distressed.</p>
+<p><strong>man</strong>: Is that for Mitch Brenner?</p>
+<p><strong>melanie</strong>: Yes.</p>
+<p><strong>man</strong>: He’s not home.</p>
+<p><strong>melanie</strong>: That’s all right.</p>
+<p><strong>man</strong>: He won’t be back until Monday. I mean, if those
+birds are for him….</p>
+<p><strong>melanie</strong>: Monday?</p>
+<p><strong>man</strong>: Yes. I don’t think you should leave them in the
+hall, do you?</p>
+<p><strong>melanie</strong>: Well, I…</p>
+<p><strong>melanie</strong>: Well, where did he go?</p>
+<p><strong>man</strong>: Bodega Bay. He goes up there every weekend.</p>
+<p><strong>melanie</strong>: Bodega Bay? Where’s that?</p>
+<p><strong>man</strong>: Up on the coast. About sixty miles north of
+here.</p>
+<p><strong>melanie</strong>: Sixty… Oh.</p>
+<p><strong>man</strong>: About an hour and a half on the freeway. Or two
+if you take the coast highway.</p>
+<p><strong>melanie</strong>: Oh.</p>
+<p><strong>man</strong>: I’d hold the birds for him, but I’m going away
+myself. Someone’s got to feed them, I suppose.</p>
+<p><strong>melanie</strong>: Yes. Yes, someone’s got to feed them.</p>
+<p><strong>man</strong>: I’m awfully sorry.</p>
+<p><strong>melanie</strong>: Oh, shut up!</p>
+<p><strong>melanie</strong>: Good morning.</p>
+<p><strong>clerk</strong>: Morning.</p>
+<p><strong>melanie</strong>: I wonder if you could help me.</p>
+<p><strong>clerk</strong>: Try my best.</p>
+<p><strong>melanie</strong>: I’m looking for a man named Mitchell
+Brenner.</p>
+<p><strong>clerk</strong>: Yep.</p>
+<p><strong>melanie</strong>: Do you know him?</p>
+<p><strong>clerk</strong>: Yep.</p>
+<p><strong>melanie</strong>: Where does he live?</p>
+<p><strong>clerk</strong>: Right here. Bodega Bay.</p>
+<p><strong>melanie</strong>: Yes, but where?</p>
+<p><strong>clerk</strong>: Right across the bay there.</p>
+<p><strong>melanie</strong>: Where?</p>
+<p><strong>clerk</strong>: See where I’m pointing?</p>
+<p><strong>melanie</strong>: Yes?</p>
+<p><strong>clerk</strong>: See them two big trees across there?</p>
+<p><strong>melanie</strong>: Yes?</p>
+<p><strong>clerk</strong>: And the white house?</p>
+<p><strong>melanie</strong>: That’s where the Brenners live.</p>
+<p><strong>melanie</strong>: The Brenners? Mr. and Mrs. Brenner?</p>
+<p><strong>clerk</strong>: Nope, just Lydia and the two kids.</p>
+<p><strong>melanie</strong>: The two kids?</p>
+<p><strong>clerk</strong>: Yep. Mitch and the little girl.</p>
+<p><strong>melanie</strong>: I see. How do I get down there?</p>
+<p><strong>clerk</strong>: Follow the road straight through town ’til it
+curves off on the left. That’ll take you right around the bay to their
+front door.</p>
+<p><strong>melanie</strong>: The front door. Isn’t there a back road I
+can take?</p>
+<p><strong>clerk</strong>: Nope. That’s the road. Straight through town,
+stay on your left, right around the bay to the front door.</p>
+<p><strong>melanie</strong>: You see, I wanted to surprise them.</p>
+<p><strong>clerk</strong>: Mmmm.</p>
+<p><strong>melanie</strong>: I didn’t want to come right down the road,
+where they could see me.</p>
+<p><strong>clerk</strong>: Mmmm.</p>
+<p><strong>melanie</strong>: It’s a surprise, you see.</p>
+<p><strong>clerk</strong>: Mmmmmm. ’Course, you could get yourself a
+boat, cut right across the bay with it. The Brenners got a little dock
+there you could tie up at. If that’s what you wanted to do.</p>
+<p><strong>melanie</strong>: Where would I get a boat?</p>
+<p><strong>clerk</strong>: Down at the dock by the Tides Restaurant.
+Ever handled an outboard boat?</p>
+<p><strong>melanie</strong>: Of course.</p>
+<p><strong>clerk</strong>: D’you want me to order one for you?</p>
+<p><strong>melanie</strong>: Thank you.</p>
+<p><strong>clerk</strong>: What name?</p>
+<p><strong>melanie</strong>: Daniels.</p>
+<p><strong>clerk</strong>: Okay.</p>
+<p><strong>melanie</strong>: I wonder if you could tell me…</p>
+<p><strong>clerk</strong>: Yep?</p>
+<p><strong>melanie</strong>: The little girl’s name.</p>
+<p><strong>clerk</strong>: The little Brenner girl?</p>
+<p><strong>melanie</strong>: Yes.</p>
+<p><strong>clerk</strong>: Alice, I think. Harry, what’s the little
+Brenner girl’s name?</p>
+<p><strong>harry’s voice</strong>: What?</p>
+<p><strong>clerk</strong>: The little Brenner girl.</p>
+<p><strong>harry’s voice</strong>: Lois!</p>
+<p><strong>clerk</strong>: It’s Alice, ain’t it?</p>
+<p><strong>harry’s voice</strong>: No, it’s Lois!</p>
+<p><strong>clerk</strong>: It’s Alice.</p>
+<p><strong>melanie</strong>: Are you sure?</p>
+<p><strong>clerk</strong>: Well, I ain’t positive, if that’s what you
+mean.</p>
+<p><strong>melanie</strong>: I need her exact name, you see.</p>
+<p><strong>clerk</strong>: That case, I tell you what you do. You go
+straight through town ’til you see a little hotel on your left there.
+Not the motel, that’s the other end of town. This is the hotel. Now you
+take a right turn there, you got that?</p>
+<p><strong>melanie</strong>: Yes?</p>
+<p><strong>clerk</strong>: Near the top of the hill, you’ll see the
+school and right behind it, the church. You head for the school. Now
+just past the school, you’ll see a little house with a red mail box.
+That’s where Annie Hayworth lives, she’s the school teacher. You ask her
+about the little Brenner girl.</p>
+<p><strong>melanie</strong>: Thank you.</p>
+<p><strong>clerk</strong>: Yep. Could save yourself a lot of trouble.
+Her name’s Alice for sure.</p>
+<p><strong>melanie</strong>: Can I have the boat in about twenty
+minutes?</p>
+<p><strong>melanie</strong>: How much for the phone calls?</p>
+<p><strong>clerk</strong>: It’s nothing.</p>
+<p><strong>annie’s voice</strong>: Yes? Who is it?</p>
+<p><strong>melanie</strong>: Me!</p>
+<p><strong>annie’s voice</strong>: Who’s me?</p>
+<p><strong>melanie</strong>: Miss Hayworth?</p>
+<p><strong>annie</strong>: Yes?</p>
+<p><strong>melanie</strong>: I’m Melanie Daniels. I’m sorry to bother
+you, but…</p>
+<p><strong>annie</strong>: Yes?</p>
+<p><strong>melanie</strong>: The man at the post office sent me. He said
+you’d know the name of the little Brenner girl.</p>
+<p><strong>annie</strong>: Cathy?</p>
+<p><strong>melanie</strong>: The one who lives in the white house across
+the bay?</p>
+<p><strong>annie</strong>: That’s the one. Cathy Brenner.</p>
+<p><strong>melanie</strong>: They seemed sure it was either Alice or
+Lois.</p>
+<p><strong>annie</strong>: Which is why the mail in this town never gets
+delivered to the right place. of cigarettes, offers Did you want to see
+Cathy about something?</p>
+<p><strong>melanie</strong>: Well… not exactly.</p>
+<p><strong>annie</strong>: Are you a friend of Mitch’s?</p>
+<p><strong>melanie</strong>: No, not really.</p>
+<p><strong>annie</strong>: I’ve been wanting a cigarette for the past
+twenty minutes, but I couldn’t convince myself to stop. This ‘tilling of
+the soil’ can get a little compulsive, you know.</p>
+<p><strong>melanie</strong>: It’s a lovely garden.</p>
+<p><strong>annie</strong>: Thank you. It gives me something to do with
+my spare time. There’s a lot of spare time in Bodega Bay. Did you plan
+on staying long?</p>
+<p><strong>melanie</strong>: No. Just a few hours.</p>
+<p><strong>annie</strong>: You’re leaving after you see Cathy?</p>
+<p><strong>melanie</strong>: Well… something like that. I’m sorry. I
+don’t mean to sound so mysterious.</p>
+<p><strong>annie</strong>: Actually, it’s none of my business.</p>
+<p><strong>annie</strong>: I’d better get on my way. Thank you very
+much.</p>
+<p><strong>annie</strong>: Not at all.</p>
+<p><strong>annie</strong>: Did you drive up from San Francisco?</p>
+<p><strong>melanie</strong>: Yes.</p>
+<p><strong>annie</strong>: It’s a nice drive. Is that where you met
+Mitch?</p>
+<p><strong>melanie</strong>: Yes.</p>
+<p><strong>annie</strong>: I guess that’s where everyone meets him.</p>
+<p><strong>melanie</strong>: Now you sound a bit mysterious, Miss
+Hayworth.</p>
+<p><strong>annie</strong>: Do I? No, I’m an open book, I’m afraid. Or
+maybe a closed one. Pretty. What are they?</p>
+<p><strong>melanie</strong>: Lovebirds.</p>
+<p><strong>annie</strong>: Mmm. Well, good luck, Miss Daniels.</p>
+<p><strong>melanie</strong>: Thank you.</p>
+<p><strong>mitch</strong>: That was the damndest thing I ever saw.</p>
+<p><strong>melanie</strong>: What made it…</p>
+<p><strong>mitch</strong>: It deliberately came down at you – you’re
+bleeding…</p>
+<p><strong>mitch</strong>: Come on, let’s take care of that.</p>
+<p><strong>fisherman</strong>: What happened, Mitch?</p>
+<p><strong>mitch</strong>: A gull hit her.</p>
+<p><strong>fisherman</strong>: A what?</p>
+<p><strong>mitch</strong>: Come on, we’d better go up to the
+restaurant.</p>
+<p><strong>mitch</strong>: Deke, have you got a first aid kit back
+there?</p>
+<p><strong>deke</strong>: What happened?</p>
+<p><strong>mitch</strong>: Young woman cut herself.</p>
+<p><strong>deke</strong>: Shall I call the doctor?</p>
+<p><strong>mitch</strong>: I don’t think it’s that serious. You want to
+sit up here?</p>
+<p><strong>deke</strong>: You cut yourself outside, Miss?</p>
+<p><strong>mitch</strong>: Stop worrying, Deke. She was in a boat.</p>
+<p><strong>deke</strong>: I had a man trip and fall in the parking lot
+once, sued me before I could bat an eyelash.</p>
+<p><strong>mitch</strong>: I don’t think Miss Daniels is going to sue
+anybody.</p>
+<p><strong>deke</strong>: Well, you’re the lawyer.</p>
+<p><strong>melanie</strong>: What’s that?</p>
+<p><strong>mitch</strong>: Just some peroxide. I want to clean out the
+cut.</p>
+<p><strong>melanie</strong>: So you’re a lawyer.</p>
+<p><strong>mitch</strong>: That’s right. What are you doing in Bodega
+Bay?</p>
+<p><strong>melanie</strong>: Do you practice here?</p>
+<p><strong>mitch</strong>: No, San Francisco. What are you…?</p>
+<p><strong>melanie</strong>: What kind of law?</p>
+<p><strong>mitch</strong>: Criminal.</p>
+<p><strong>melanie</strong>: Is that why you’d like to see everyone
+behind bars?</p>
+<p><strong>mitch</strong>: Not everyone, Miss Daniels.</p>
+<p><strong>melanie</strong>: Only violators and practical jokers.</p>
+<p><strong>melanie</strong>: That’s right.</p>
+<p><strong>melanie</strong>: Ouch!</p>
+<p><strong>mitch</strong>: I’m sorry. What are you doing up here?</p>
+<p><strong>melanie</strong>: Didn’t you see the lovebirds?</p>
+<p><strong>mitch</strong>: You came all the way up here to bring me
+those birds?</p>
+<p><strong>melanie</strong>: To bring your sister those birds. You said
+it was her birthday. Besides, I was coming up anyway.</p>
+<p><strong>mitch</strong>: What for?</p>
+<p><strong>melanie</strong>: To see a friend of mine. Will you please be
+careful?</p>
+<p><strong>mitch</strong>: I’m sorry. Who’s your friend?</p>
+<p><strong>melanie</strong>: Why…</p>
+<p><strong>mitch</strong>: Yes?</p>
+<p><strong>melanie</strong>: Annie. Annie Hayworth.</p>
+<p><strong>mitch</strong>: Well, well, small world. Annie Hayworth.</p>
+<p><strong>melanie</strong>: Yes.</p>
+<p><strong>mitch</strong>: How do you know Annie?</p>
+<p><strong>melanie</strong>: We… we went to school together.
+College.</p>
+<p><strong>mitch</strong>: Did you! Imagine that! How long will you be
+staying?</p>
+<p><strong>melanie</strong>: Just a few… just a day or two… the
+weekend.</p>
+<p><strong>mitch</strong>: I think we’ll have to shave the hair. Deke,
+have you got a razor?</p>
+<p><strong>melanie</strong>: Oh, no you don’t!</p>
+<p><strong>mitch</strong>: It’s still bleeding a little. Here, let me
+put this on.</p>
+<p><strong>mitch</strong>: Bend your head down. This little Band-Aid
+won’t show.</p>
+<p><strong>mitch</strong>: So you came up to see Annie, huh?</p>
+<p><strong>melanie</strong>: Yes.</p>
+<p><strong>mitch</strong>: I don’t believe you. I think you came up to
+see me.</p>
+<p><strong>melanie</strong>: Why would I want to see you, of all
+people?</p>
+<p><strong>mitch</strong>: I don’t know. But it seems to me you must
+have gone to a lot of trouble to find out who I was, and where I lived
+and…</p>
+<p><strong>melanie</strong>: It was no trouble at all. I simply called
+my father’s paper. Besides, I was coming up here anyway, I already told
+you…</p>
+<p><strong>mitch</strong>: You like me, huh?</p>
+<p><strong>melanie</strong>: I loathe you. You have no manners. And
+you’re arrogant and conceited and… I wrote you a letter about it, in
+fact, but I tore it up.</p>
+<p><strong>mitch</strong>: What did it say?</p>
+<p><strong>melanie</strong>: None of your business. Am I still
+bleeding?</p>
+<p><strong>mitch</strong>: Can’t see a thing.</p>
+<p><strong>melanie</strong>: I can’t say I like your seagulls much,
+either. I come all the way up here to…</p>
+<p><strong>mitch</strong>: But you were coming up anyway, remember?</p>
+<p><strong>melanie</strong>: I was! And all I get for my pains is a… a…
+a hole in the head!</p>
+<p><strong>mitch</strong>: Right next to the one you already had.</p>
+<p><strong>melanie</strong>: Look, Mr. Brenner…</p>
+<p><strong>lydia</strong>: Mitch?</p>
+<p><strong>lydia</strong>: I thought I saw your car. What are you doing
+in town?</p>
+<p><strong>mitch</strong>: I had to acknowledge a delivery. Mother, I’d
+like you to meet…</p>
+<p><strong>lydia</strong>: A what?</p>
+<p><strong>mitch</strong>: Melanie Daniels. Melanie, my mother.</p>
+<p><strong>lydia</strong>: How do you do, Miss Daniels? Acknowledge a
+what?</p>
+<p><strong>mitch</strong>: A delivery, Mother. Miss Daniels brought some
+birds from San Francisco.</p>
+<p><strong>lydia</strong>: Oh. I see.</p>
+<p><strong>mitch</strong>: For Cathy. For her birthday. By the way,
+where is she?</p>
+<p><strong>lydia</strong>: Across at Brinkmeyer’s.</p>
+<p><strong>mitch</strong>: Miss Daniels is staying for the weekend. In
+fact, I’ve already invited her to dinner tonight.</p>
+<p><strong>mitch</strong>: After all, you did go to the trouble of
+bringing up those birds.</p>
+<p><strong>melanie</strong>: I’m sorry. I couldn’t possibly…</p>
+<p><strong>lydia</strong>: You did say birds?</p>
+<p><strong>mitch</strong>: Yes, lovebirds. We couldn’t let you…</p>
+<p><strong>lydia</strong>: Lovebirds, I see.</p>
+<p><strong>mitch</strong>: …get away without thanking you in some small
+way. After all, you haven’t even met Cathy and you are staying for the
+weekend…</p>
+<p><strong>melanie</strong>: Yes, but…</p>
+<p><strong>mitch</strong>: You are, aren’t you?</p>
+<p><strong>melanie</strong>: Certainly, but…</p>
+<p><strong>mitch</strong>: Then it’s settled. What time is dinner,
+Mother?</p>
+<p><strong>lydia</strong>: Seven o’clock, same as usual.</p>
+<p><strong>mitch</strong>: I’ll pick you up, Miss Daniels. Where are you
+staying?</p>
+<p><strong>melanie</strong>: With… with Annie, of course.</p>
+<p><strong>mitch</strong>: Of course, how stupid of me. A quarter to
+seven, will that be all right?</p>
+<p><strong>melanie</strong>: Annie… Annie may have made other plans.
+I’ll have to see. Besides, I can find my own way.</p>
+<p><strong>mitch</strong>: You’re sure now? You won’t hire a boat or
+anything?</p>
+<p><strong>melanie</strong>: I’m sure.</p>
+<p><strong>mitch</strong>: Seven o’clock then.</p>
+<p><strong>melanie</strong>: Maybe.</p>
+<p><strong>mitch</strong>: We’ll be waiting. How’s your head now?</p>
+<p><strong>melanie</strong>: It’s nothing, Mrs. Brenner. A gull hit me,
+that’s all.</p>
+<p><strong>annie</strong>: Oh, hi! Did you find her all right?</p>
+<p><strong>melanie</strong>: Yes, I did.</p>
+<p><strong>melanie</strong>: I was wondering…</p>
+<p><strong>annie</strong>: Yes?</p>
+<p><strong>melanie</strong>: That sign. Do you think I could have the
+room for a single night?</p>
+<p><strong>annie</strong>: Well, I’d really hope to rent it for…</p>
+<p><strong>melanie</strong>: I would appreciate it. I’ve tried
+everywhere in town, and they’re all full.</p>
+<p><strong>annie</strong>: Sure. You can have it. Where’s your bag? In
+the car?</p>
+<p><strong>annie</strong>: It’s utilitarian, I’ll say that for it.</p>
+<p><strong>melanie</strong>: I just picked up some things for the night
+at the general store. You see, I hadn’t planned on spending much time
+here.</p>
+<p><strong>annie</strong>: Yes, I know. Did something unexpected crop
+up?</p>
+<p><strong>melanie</strong>: Yes. May I use your phone? I’d like to call
+home.</p>
+<p><strong>annie</strong>: Why don’t you come in then? I was just about
+to mix a martini.</p>
+<p><strong>annie</strong>: Don’t they ever stop migrating?</p>
+<p><strong>melanie</strong>: Hi!</p>
+<p><strong>cathy</strong>: Hi!</p>
+<p><strong>cathy</strong>: Miss Daniels?</p>
+<p><strong>melanie</strong>: Yes?</p>
+<p><strong>cathy</strong>: They’re beautiful! They’re just what I
+wanted! Is there a man and a woman? I can’t tell which is which.</p>
+<p><strong>melanie</strong>: Well, I suppose…</p>
+<p><strong>mitch</strong>: Hi. Annie had no plans, huh? I’m glad you
+came. Are you hungry?</p>
+<p><strong>melanie</strong>: Famished.</p>
+<p><strong>mitch</strong>: Dinner’s just about ready. We were out back
+looking at the chickens. Something seems to be wrong with them.</p>
+<p><strong>lydia</strong>: There’s nothing wrong with those chickens,
+Mitch. I’m going to call Fred Brinkmeyer right now.</p>
+<p><strong>mitch</strong>: I don’t know what good that’ll do. Chickens
+won’t eat.</p>
+<p><strong>lydia</strong>: He sold the feed to me, didn’t he?</p>
+<p><strong>mitch</strong>: Caviat emptor, Mother. Let the buyer
+beware.</p>
+<p><strong>lydia</strong>: Whose side are you on?</p>
+<p><strong>mitch</strong>: I’m simply quoting the law.</p>
+<p><strong>lydia</strong>: Never mind the law. Cathy, you can start
+serving the soup.</p>
+<p><strong>lydia</strong>: This won’t take a minute, Miss Dan… Hello,
+Fred? This is Lydia Brenner. I didn’t interrupt your dinner, did</p>
+<p><strong>i?</strong>: Fred, that feed you sold me is no good. The
+chicken feed. The three bags I brought.</p>
+<p><strong>lydia</strong>: Well, it’s just no good. The chickens won’t
+eat it. They’re always hungry, Fred. I opened one of the sacks when I
+got home, and I poured it out for them, and they wouldn’t touch it. Now
+you know chickens as well as I do, and when they won’t eat, there’s just
+something wrong with what they’re being fed, that’s all. No, they’re not
+fussy chickens. Who? What’s he got to do with it? Fred, I don’t care how
+much feed you sold him. My chickens… He did? Dan Fawcett? This
+afternoon? Well, that only proves what I’m saying. The feed you sold us
+is… Oh. Oh, I see. Uh-huh. Uh-huh. Uh- huh. Maybe I ought to go over to
+see him. You don’t think there’s something going around, do you? No,
+never. No, Fred, they don’t seem sick at all. They just won’t eat. Mmmm.
+Mmmmm. Well, I’ll try to get over to Dan’s farm. Maybe he’ll… mmmmm…
+mmmmm… all right, Fred, thanks.</p>
+<p><strong>lydia</strong>: He got a call from Dan Fawcett a little while
+ago. His chickens won’t eat, either.</p>
+<p><strong>cathy</strong>: It’s what you said, Mom. Mr. Brinkmeyer’s
+feed is no good.</p>
+<p><strong>lydia</strong>: No, Cathy. He sold Mr. Fawcett a different
+brand. You don’t think they’re getting sick, do you, Mitch?</p>
+<p><strong>cathy</strong>: I still don’t understand how you knew I
+wanted lovebirds.</p>
+<p><strong>melanie</strong>: Your brother told me.</p>
+<p><strong>lydia</strong>: Then you knew Mitch in San Francisco, is that
+right?</p>
+<p><strong>melanie</strong>: No, not exactly.</p>
+<p><strong>cathy</strong>: Mitch knows lots of people in San Francisco.
+Of course, they’re mostly hoods.</p>
+<p><strong>lydia</strong>: Cathy!</p>
+<p><strong>cathy</strong>: Well, Mom, he’s the first to admit it. He
+spends half his day in the detention cells at the Hall of Justice.</p>
+<p><strong>lydia</strong>: In a democracy, Cathy, everyone is entitled
+to a fair trial. Your brother’s practice…</p>
+<p><strong>cathy</strong>: Mom, please, I know all the democracy jazz.
+They’re still hoods. He’s got a client now who shot his wife in the head
+six times. Six times, can you imagine it? I mean, even twice would be
+overdoing it, don’t you think?</p>
+<p><strong>melanie</strong>: Why did he shoot her?</p>
+<p><strong>mitch</strong>: He was watching a ball game on
+television.</p>
+<p><strong>melanie</strong>: What?</p>
+<p><strong>mitch</strong>: His wife changed the channel.</p>
+<p><strong>cathy</strong>: Is smoking fun?</p>
+<p><strong>melanie</strong>: Oh, I suppose so.</p>
+<p><strong>cathy</strong>: Could I have a puff?</p>
+<p><strong>melanie</strong>: I don’t think your mother would like
+that.</p>
+<p><strong>cathy</strong>: Just a little one.</p>
+<p><strong>cathy</strong>: Why, it’s just like air, isn’t it? When I
+grow up, I’m gonna smoke like a chimney! I’ll be eleven tomorrow, you
+know.</p>
+<p><strong>melanie</strong>: I know.</p>
+<p><strong>cathy</strong>: Are you coming to my party?</p>
+<p><strong>melanie</strong>: I don’t think so. I have to get back to San
+Francisco.</p>
+<p><strong>cathy</strong>: Don’t you like us?</p>
+<p><strong>melanie</strong>: Darling, of course I do!</p>
+<p><strong>cathy</strong>: Don’t you like Bodega Bay?</p>
+<p><strong>melanie</strong>: I don’t know yet.</p>
+<p><strong>cathy</strong>: Mitch likes it very much. He comes up every
+weekend, you know, even though he has his own apartment in the city. He
+says San Francisco is just an ant hill at the foot of a bridge.</p>
+<p><strong>melanie</strong>: I guess it does get a little hectic at
+times.</p>
+<p><strong>cathy</strong>: If you do decide to come, don’t say I told
+you about it. It’s supposed to be a surprise party.</p>
+<p><strong>cathy</strong>: You see, they’ve got this whole complicated
+thing figured out where I’m going over to Michele’s for the afternoon,
+and Michele’s mother is going to say she has a headache and would I mind
+very much if she took me home. Then, when we get back here, all of the
+kids’ll jump out! Won’t you come? Won’t you please come?</p>
+<p><strong>melanie</strong>: I don’t think so, Cathy.</p>
+<p><strong>lydia</strong>: She’s a charming girl, isn’t she, Mitch?</p>
+<p><strong>mitch</strong>: Yes, very.</p>
+<p><strong>lydia</strong>: And certainly pretty.</p>
+<p><strong>mitch</strong>: Yes.</p>
+<p><strong>lydia</strong>: How long have you known her?</p>
+<p><strong>mitch</strong>: I told you. We met yesterday.</p>
+<p><strong>lydia</strong>: In a bird shop.</p>
+<p><strong>mitch</strong>: Yes.</p>
+<p><strong>lydia</strong>: She was selling birds.</p>
+<p><strong>mitch</strong>: No. I only led her into believing I believed
+she was… Mother, it’s really very complicated.</p>
+<p><strong>lydia</strong>: But she did buy the lovebirds and then
+brought them all the way…</p>
+<p><strong>mitch</strong>: Mother, where did you go to law school?</p>
+<p><strong>lydia</strong>: Forgive me. I suppose I’m just naturally
+curious about a girl like that. She’s very rich, isn’t she?</p>
+<p><strong>mitch</strong>: I suppose so. Her father owns a big newspaper
+in San Francisco.</p>
+<p><strong>lydia</strong>: You’d think he could manage to keep her name
+out of print. She’s always mentioned in the columns, Mitch.</p>
+<p><strong>mitch</strong>: I know, Mother.</p>
+<p><strong>lydia</strong>: She is the one who jumped into that fountain
+in Rome last summer, isn’t she?</p>
+<p><strong>mitch</strong>: Yes, Mother.</p>
+<p><strong>lydia</strong>: Perhaps I’m old-fashioned. I know it was
+supposed to be very warm there, Mitch, but… well… actually… well, the
+newspaper said she was naked.</p>
+<p><strong>mitch</strong>: I know, Mother.</p>
+<p><strong>lydia</strong>: It’s none of my business, of course, but when
+you bring a girl like that to…</p>
+<p><strong>mitch</strong>: Mother?</p>
+<p><strong>lydia</strong>: Yes?</p>
+<p><strong>mitch</strong>: I think I can handle Melanie Daniels by
+myself.</p>
+<p><strong>lydia</strong>: Well… So long as you know what you want,
+Mitch.</p>
+<p><strong>mitch</strong>: I know exactly what I want, Mother.</p>
+<p><strong>mitch</strong>: You’ll be able to find your way back, won’t
+you?</p>
+<p><strong>melanie</strong>: Oh, yes.</p>
+<p><strong>melanie</strong>: Will I be seeing you again?</p>
+<p><strong>melanie</strong>: San Francisco’s a long way from here.</p>
+<p><strong>mitch</strong>: I’m in San Francisco five days a week. With a
+lot of time on my hands. I’d like to see you. Maybe we could go swimming
+or something. Mother tells me you like to swim.</p>
+<p><strong>melanie</strong>: How does Mother know what I like to do?</p>
+<p><strong>mitch</strong>: I guess she and I read the same gossip
+columns.</p>
+<p><strong>melanie</strong>: Oh. That. Rome.</p>
+<p><strong>mitch</strong>: Mmmm. I like to swim. We might get along
+very…</p>
+<p><strong>melanie</strong>: In case you’re interested, I was pushed
+into that fountain.</p>
+<p><strong>melanie</strong>: Without any clothes on?</p>
+<p><strong>melanie</strong>: With all my clothes on! The newspaper that
+ran the story happens to be a rival of my father’s paper. Anything they
+said…</p>
+<p><strong>mitch</strong>: You were just a poor, innocent victim of
+circumstance, huh?</p>
+<p><strong>melanie</strong>: I’m neither poor nor innocent, but the
+truth of that particular…</p>
+<p><strong>mitch</strong>: The truth is you were running around with a
+pretty wild crowd…</p>
+<p><strong>melanie</strong>: Yes, but…</p>
+<p><strong>mitch</strong>: …who didn’t much care for propriety or
+convention or…</p>
+<p><strong>melanie</strong>: Yes.</p>
+<p><strong>mitch</strong>: …the opinions of others, and you went right
+along with them, isn’t that the truth?</p>
+<p><strong>melanie</strong>: Yes, that’s the truth. But I was pushed
+into that fountain, and that’s the truth, too.</p>
+<p><strong>mitch</strong>: Sure. Do you really know Annie Hayworth?</p>
+<p><strong>melanie</strong>: No. At least, I didn’t until I came up
+here.</p>
+<p><strong>mitch</strong>: So you didn’t go to school together.</p>
+<p><strong>melanie</strong>: No.</p>
+<p><strong>mitch</strong>: And you didn’t come up here to see her.</p>
+<p><strong>melanie</strong>: No.</p>
+<p><strong>mitch</strong>: You were lying.</p>
+<p><strong>melanie</strong>: Yes, I was lying.</p>
+<p><strong>mitch</strong>: Did you really write a letter to me? Or was
+that a lie, too?</p>
+<p><strong>melanie</strong>: I wrote the letter.</p>
+<p><strong>mitch</strong>: What did it say?</p>
+<p><strong>melanie</strong>: It said, “Dear Mr. Brenner, I think you
+need those lovebirds, after all. They may help your personality.” That’s
+what it said.</p>
+<p><strong>mitch</strong>: But you tore it up.</p>
+<p><strong>melanie</strong>: Yes.</p>
+<p><strong>mitch</strong>: Why?</p>
+<p><strong>melanie</strong>: Because it seemed stupid and foolish.</p>
+<p><strong>mitch</strong>: Like jumping into a fountain in Rome!</p>
+<p><strong>melanie</strong>: I told you what happened in Rome!</p>
+<p><strong>mitch</strong>: Do you expect me to believe…?</p>
+<p><strong>melanie</strong>: I don’t give a damn what you believe!</p>
+<p><strong>mitch</strong>: I’d still like to see you.</p>
+<p><strong>melanie</strong>: Why?</p>
+<p><strong>mitch</strong>: I think it could be fun.</p>
+<p><strong>melanie</strong>: That might have been good enough in Rome
+last summer. But it’s not good enough now.</p>
+<p><strong>mitch</strong>: It is for me.</p>
+<p><strong>melanie</strong>: But not for me.</p>
+<p><strong>mitch</strong>: What do you want ?</p>
+<p><strong>melanie</strong>: I thought you knew! I want to go through
+life laughing and beautiful and jumping into fountains naked! Good
+night!</p>
+<p><strong>annie</strong>: Miss Daniels? Is that you?</p>
+<p><strong>melanie</strong>: Yes.</p>
+<p><strong>annie</strong>: Hi. Is something wrong? Is that cut beginning
+to bother you?</p>
+<p><strong>melanie</strong>: No, it’s not the cut that’s bothering
+me.</p>
+<p><strong>annie</strong>: Would you like some brandy?</p>
+<p><strong>melanie</strong>: If you have some, I’d…</p>
+<p><strong>annie</strong>: I’ll get it, sit down, Miss Daniels. Do you
+want a sweater or something? A quilt?</p>
+<p><strong>melanie</strong>: No, thank you. Won’t you call me
+Melanie?</p>
+<p><strong>annie</strong>: All right.</p>
+<p><strong>melanie</strong>: Thank you.</p>
+<p><strong>annie</strong>: It gets a little chilly here at night
+sometimes. Especially if you’re over near the bay.</p>
+<p><strong>annie</strong>: Well, how’d your evening go?</p>
+<p><strong>annie</strong>: Did you meet Lydia?</p>
+<p><strong>annie</strong>: Or would you rather I changed the
+subject?</p>
+<p><strong>melanie</strong>: I think so.</p>
+<p><strong>annie</strong>: How do you like our little hamlet?</p>
+<p><strong>melanie</strong>: I despise it.</p>
+<p><strong>annie</strong>: Well, I don’t suppose it offers much to the
+casual visitor. Unless you’re thrilled by a collection of shacks on a
+hillside. It takes a while to get used to.</p>
+<p><strong>melanie</strong>: Where are you from originally, Annie?</p>
+<p><strong>annie</strong>: San Francisco.</p>
+<p><strong>melanie</strong>: How’d you happen to come here?</p>
+<p><strong>annie</strong>: Oh, someone invited me up for the weekend a
+long time ago.</p>
+<p><strong>annie</strong>: Look, I see no reason for being coy about
+this. It was Mitch Brenner.</p>
+<p><strong>annie</strong>: I guess you knew that, anyway.</p>
+<p><strong>melanie</strong>: I suspected as much.</p>
+<p><strong>annie</strong>: You needn’t worry. It’s over and done with. A
+long time ago.</p>
+<p><strong>melanie</strong>: Annie – there’s nothing between Mitch and
+me.</p>
+<p><strong>annie</strong>: Isn’t there? Maybe there isn’t. Maybe there’s
+never anything between Mitch and any girl.</p>
+<p><strong>melanie</strong>: What do you mean?</p>
+<p><strong>annie</strong>: I think I’ll have some of that, too. I was
+seeing quite a lot of him in San Francisco, you know. And then, one
+weekend, he asked me up to meet Lydia.</p>
+<p><strong>melanie</strong>: When was this?</p>
+<p><strong>annie</strong>: Four years ago. Of course, that was shortly
+after his father died. Things may be different now.</p>
+<p><strong>melanie</strong>: Different?</p>
+<p><strong>annie</strong>: With Lydia. Did she seem a trifle
+distant?</p>
+<p><strong>melanie</strong>: A trifle.</p>
+<p><strong>annie</strong>: Then maybe it isn’t different at all. You
+know, her attitude nearly drove me crazy. I simply couldn’t understand
+it.</p>
+<p><strong>annie</strong>: When I got back to San Francisco I spent days
+trying to figure out just what I’d done to displease her.</p>
+<p><strong>melanie</strong>: And what had you done?</p>
+<p><strong>annie</strong>: Nothing! I simply existed. So what was the
+answer? A jealous woman, right? A clinging possessive mother. Wrong.
+With all due respect to Oedipus, I don’t think that was the case at
+all.</p>
+<p><strong>melanie</strong>: Then what was it?</p>
+<p><strong>annie</strong>: Lydia liked me, you see. That was the strange
+part of it. In fact, now that I’m no longer a threat, we’re very good
+friends.</p>
+<p><strong>melanie</strong>: Then why did she object to you?</p>
+<p><strong>annie</strong>: Because she was afraid.</p>
+<p><strong>melanie</strong>: Afraid you’d take Mitch?</p>
+<p><strong>annie</strong>: Afraid I’d give Mitch.</p>
+<p><strong>melanie</strong>: I don’t understand.</p>
+<p><strong>annie</strong>: Afraid of any woman who’d give Mitch the only
+thing Lydia can give him – love.</p>
+<p><strong>melanie</strong>: Annie, that adds up to a jealous,
+possessive woman.</p>
+<p><strong>annie</strong>: No, I don’t think so. She’s not afraid of
+losing her son, you see. She’s only afraid of being abandoned.</p>
+<p><strong>melanie</strong>: Someone ought to tell her she’d be gaining
+a daughter.</p>
+<p><strong>annie</strong>: She already has a daughter.</p>
+<p><strong>melanie</strong>: What about Mitch? Didn’t he have anything
+to say about this?</p>
+<p><strong>annie</strong>: I can understand his position. He went
+through a lot with Lydia after his father died. He didn’t want to risk
+going through it all over again.</p>
+<p><strong>melanie</strong>: I see.</p>
+<p><strong>annie</strong>: So it ended. Not immediately, of course. I
+went back to San Francisco, and I still saw Mitch every now and then…
+but we both knew it was finished.</p>
+<p><strong>melanie</strong>: Then what are you doing here in Bodega
+Bay?</p>
+<p><strong>annie</strong>: You get straight to the point, don’t you?</p>
+<p><strong>melanie</strong>: I’m sorry. Forgive me.</p>
+<p><strong>annie</strong>: No, that’s all right, I don’t mind. I came up
+here for two reasons. To begin with, I was bored with my job in San
+Francisco. I was teaching at a private school there… well, you know, you
+probably went to one yourself.</p>
+<p><strong>melanie</strong>: I did.</p>
+<p><strong>annie</strong>: Then you know. Little girls in brown beanies.
+Deadly. Here I have a life. I’ll go into that classroom on Monday
+morning, and I’ll look out at twenty- five upturned little faces, and
+each of them will be saying, ‘Yes, please give me what you have.’ And
+I’ll give them what I have. I haven’t got very much, but I’ll give them
+every ounce of it. To me, that’s very important. It makes me want to
+stay alive for a long long time. That’s the first reason.</p>
+<p><strong>melanie</strong>: And the second?</p>
+<p><strong>annie</strong>: I wanted to be near Mitch. It was over, and I
+knew it, but I wanted to be near him, anyway. You see, I still like him
+a hell of a lot. That’s rare, I think. I don’t want to lose his
+friendship… ever.</p>
+<p><strong>annie</strong>: Hello? Oh, hello. No, no, I wasn’t asleep.
+What is it? Yes, just a little while ago. Sure, hold on. It’s Mitch. For
+you.</p>
+<p><strong>annie</strong>: He’s waiting.</p>
+<p><strong>melanie</strong>: Hello? Yes, this is Melanie. Fine, thank
+you. No, no trouble at all. I simply followed the road. It’s a very
+bright night. What? Oh. Well, there’s no need to apologize. I can
+understand… Well… That’s very kind of you. No, I’m not angry. I
+couldn’t. I’m afraid I have to get back to San Francisco. No, I wouldn’t
+want to disappoint Cathy, but… I see. I see. Well, if you really… All
+right. Yes, I’ll be there. Good night, Mitch.</p>
+<p><strong>melanie</strong>: He wants me to go to Cathy’s party tomorrow
+afternoon. I said I would.</p>
+<p><strong>annie</strong>: I’ll be going, too, to help out. It should be
+fun, Melanie.</p>
+<p><strong>melanie</strong>: It seems so pointless. I think I’ll go to
+sleep. This has been a busy day. My luggage.</p>
+<p><strong>annie</strong>: Pretty. Did you get that at Brinkmeyer’s?</p>
+<p><strong>melanie</strong>: Do you think I should go?</p>
+<p><strong>annie</strong>: That’s up to you.</p>
+<p><strong>melanie</strong>: It’s really up to Lydia, isn’t it?</p>
+<p><strong>annie</strong>: Never mind Lydia. Do you want to go?</p>
+<p><strong>melanie</strong>: Yes.</p>
+<p><strong>annie</strong>: Then go.</p>
+<p><strong>melanie</strong>: Thank you, Annie.</p>
+<p><strong>annie</strong>: Who can that be at this hour? Who is it? Is
+someone there?</p>
+<p><strong>annie</strong>: Is anyone there?</p>
+<p><strong>melanie</strong>: Look.</p>
+<p><strong>annie</strong>: Ohhh. Oh, the poor thing. He probably lost
+his way in the dark.</p>
+<p><strong>melanie</strong>: But… it isn’t dark, Annie. There’s a full
+moon.</p>
+<p><strong>melanie</strong>: I really shouldn’t have any more. I’m a
+little tipsy already.</p>
+<p><strong>mitch</strong>: I’m trying to get you to stay for dinner.
+We’re going to have a lot of roast left over.</p>
+<p><strong>melanie</strong>: I couldn’t possibly. I have to get
+back.</p>
+<p><strong>mitch</strong>: Cheers.</p>
+<p><strong>melanie</strong>: Cheers.</p>
+<p><strong>melanie</strong>: What’s in this? Nitro-glycerin?</p>
+<p><strong>mitch</strong>: Why do you have to rush off? What’s so
+important in San Francisco?</p>
+<p><strong>melanie</strong>: Well… I have to get to work tomorrow
+morning, for one thing.</p>
+<p><strong>mitch</strong>: You have a job?</p>
+<p><strong>melanie</strong>: I have several jobs.</p>
+<p><strong>mitch</strong>: What do you do?</p>
+<p><strong>melanie</strong>: I do different things on different
+days.</p>
+<p><strong>mitch</strong>: Like what?</p>
+<p><strong>melanie</strong>: On Mondays and Wednesdays, I work for the
+Travelers’ Aid. At the airport.</p>
+<p><strong>mitch</strong>: Helping travelers.</p>
+<p><strong>melanie</strong>: Yes.</p>
+<p><strong>melanie</strong>: And on Tuesdays, I take a course in General
+Semantics at Berkeley. That’s not a job, of course. I just take it
+because…</p>
+<p><strong>mitch</strong>: What about Thursdays and Fridays?</p>
+<p><strong>melanie</strong>: On Thursdays I have my meeting and lunch.
+I’m chairman of a group that’s sending a little Korean boy through
+school. We plan how to raise funds and… things like that.</p>
+<p><strong>mitch</strong>: And Fridays? What do you do then?</p>
+<p><strong>melanie</strong>: Nothing. I go to bird shops on Fridays.</p>
+<p><strong>mitch</strong>: I’m glad you do.</p>
+<p><strong>melanie</strong>: Do you know what I was doing in that
+shop?</p>
+<p><strong>mitch</strong>: What?</p>
+<p><strong>melanie</strong>: I have an aunt, you see. Aunt Tessa. She’s
+seventy years old, and veddy prim and strait-laced. She’s coming back
+from Europe at the end of the month, and I’m going to give her a myna
+bird that’ll talk to her.</p>
+<p><strong>mitch</strong>: What’ll it say?</p>
+<p><strong>melanie</strong>: You’ll think me very bold, sir.</p>
+<p><strong>mitch</strong>: No, tell me.</p>
+<p><strong>melanie</strong>: That’s silly, isn’t it? Teaching a bird to
+shock my aunt. That’s just silly and childish. Maybe I ought to go join
+the other children.</p>
+<p><strong>annie</strong>: All right then, here we go. Once! Twice!
+Three! Go get ’em, Cathy!</p>
+<p><strong>little boy</strong>: Look! Look!</p>
+<p><strong>cathy</strong>: No touching allowed!</p>
+<p><strong>mitch</strong>: Are you all right?</p>
+<p><strong>melanie</strong>: Yes.</p>
+<p><strong>annie</strong>: That’s the darnest thing thing I’ve ever seen
+in my life.</p>
+<p><strong>lydia</strong>: Are they gone?</p>
+<p><strong>mitch</strong>: They’re gone, Mother.</p>
+<p><strong>lydia</strong>: Well… well, is everyone all right?</p>
+<p><strong>mitch</strong>: I think he got a little scratch, Mother.</p>
+<p><strong>girl #3</strong>: Did you see them? They were hawks!</p>
+<p><strong>girl #4</strong>: They were bigger than hawks!</p>
+<p><strong>annie</strong>: Children, they were only seagulls.</p>
+<p><strong>cathy</strong>: They must have been after the food,
+Mother.</p>
+<p><strong>mitch</strong>: They didn’t touch anything.</p>
+<p><strong>annie</strong>: Well, they’re gone now, so… so let’s… Who was
+‘it?’ You were ‘it,’ weren’t you, Cathy?</p>
+<p><strong>girl #2</strong>: Can I be ‘it,’ Miss Hayworth?</p>
+<p><strong>mitch</strong>: You look a little shaken.</p>
+<p><strong>melanie</strong>: I… I am. Mitch, is… Mitch, this isn’t
+usual, is it? The gull yesterday when I was in the boat, and the one
+last night at Annie’s, and now…</p>
+<p><strong>mitch</strong>: Last night? What do you mean?</p>
+<p><strong>melanie</strong>: A gull smashed into Annie’s front door.
+Mitch… what’s happening?</p>
+<p><strong>mitch</strong>: I don’t know, Melanie. Look, do you have to
+go back to Annie’s?</p>
+<p><strong>melanie</strong>: No, I have my things in the car.</p>
+<p><strong>mitch</strong>: Then stay and have something to eat before
+you start back. I’d feel a lot better.</p>
+<p><strong>mitch</strong>: Do you want some mustard with this?</p>
+<p><strong>melanie</strong>: No, thank you.</p>
+<p><strong>cathy</strong>: Why didn’t Annie stay for dinner?</p>
+<p><strong>mitch</strong>: She said something about having to get home
+to take a call from her mother back East.</p>
+<p><strong>cathy</strong>: Oh. Where d’you want the coffee?</p>
+<p><strong>mitch</strong>: Take it into the living room, would you,
+hon?</p>
+<p><strong>cathy</strong>: What’s the matter with them?</p>
+<p><strong>lydia</strong>: What’s the matter with all the birds?</p>
+<p><strong>lydia</strong>: Hurry up with the rest, Mitch. I’m sure Miss
+Daniels wants to get on her way.</p>
+<p><strong>cathy</strong>: I think you ought to stay the night,
+Melanie.</p>
+<p><strong>cathy</strong>: We’ve got an extra room upstairs and
+everything.</p>
+<p><strong>mitch</strong>: That road can be a bad one at night, Melanie.
+cup, hands it to</p>
+<p><strong>melanie</strong>: If I go across to Santa Rosa I’ll come onto
+the freeway much earlier.</p>
+<p><strong>lydia</strong>: Yeah, and the freeway’s well-lighted, isn’t
+it, Mitch?</p>
+<p><strong>mitch</strong>: Yeah, but she’ll be hitting all that traffic
+going back to San Francisco.</p>
+<p><strong>cathy</strong>: Did you put the cover on that cage, Mom?</p>
+<p><strong>lydia</strong>: Yes, I did.</p>
+<p><strong>cathy</strong>: Just listen to them!</p>
+<p><strong>mitch</strong>: Some cream?</p>
+<p><strong>melanie</strong>: I’ll get it.</p>
+<p><strong>melanie</strong>: Mitch…</p>
+<p><strong>melanie</strong>: Mitch!</p>
+<p><strong>mitch</strong>: Get outside! Run!</p>
+<p><strong>mitch</strong>: Mother!</p>
+<p><strong>mitch</strong>: Cathy, get some matches!</p>
+<p><strong>melanie</strong>: Mitch! The curtains!</p>
+<p><strong>cathy</strong>: It’s working! The fire’s working!</p>
+<p><strong>malone</strong>: That’s a chimney swift, all right.</p>
+<p><strong>mitch</strong>: We know what it is, Al.</p>
+<p><strong>malone</strong>: Well, these birds live in chimneys, you
+know.</p>
+<p><strong>mitch</strong>: Not by the thousands.</p>
+<p><strong>malone</strong>: No, I gotta admit this is peculiar. Did you
+have a light burning or something.</p>
+<p><strong>mitch</strong>: Yes, but the curtains were drawn.</p>
+<p><strong>malone</strong>: ’Cause sometimes birds are attracted by
+light, you know. Sure is a peculiar thing.</p>
+<p><strong>mitch</strong>: What are we going to do about it, Al?</p>
+<p><strong>malone</strong>: I don’t think I get you, Mitch. Do about
+what?</p>
+<p><strong>mitch</strong>: Well… Well… these birds attacked us.</p>
+<p><strong>malone</strong>: What’s more likely, they got in the room and
+was just panicked, that’s all.</p>
+<p><strong>mitch</strong>: All right, I’ll grant you a bird’ll panic in
+an enclosed room. But, they didn’t just get in. They came in! Right down
+that chimney.</p>
+<p><strong>malone</strong>: My wife found a bird in the back seat of her
+car once.</p>
+<p><strong>malone</strong>: Didn’t know how he got in there. Had a
+broken leg, turned out. Just fluttering all around there.</p>
+<p><strong>mitch</strong>: These birds were…</p>
+<p><strong>malone</strong>: What I’m trying to say, Mitch, is these
+things happen sometimes, you know? Ain’t much we can do about it.</p>
+<p><strong>lydia</strong>: Tell him about the party.</p>
+<p><strong>mitch</strong>: That’s right. We had a party here this
+afternoon for Cathy. Her birthday.</p>
+<p><strong>malone</strong>: Oh, yeah, yeah. How old is she now?</p>
+<p><strong>mitch</strong>: Eleven. In the middle of the party, some
+gulls came down at the children. And Miss Daniels was attacked by a gull
+just yesterday after…</p>
+<p><strong>malone</strong>: Yeah. Were the kids bothering them or
+something? ’Cause sometimes they’ll do that, you know. If you make any
+kind of disturbance near them, they’ll just come after you. I seen that
+plenty of times myself.</p>
+<p><strong>lydia</strong>: The children were playing a game, Al. Those
+gulls attacked without…</p>
+<p><strong>malone</strong>: Now, Lydia, ‘attack’ is a pretty strong
+word, don’t you think? I mean, birds just don’t go around attacking
+people without no reason, you know what I mean? The kids just probably
+scared them, that’s all.</p>
+<p><strong>lydia</strong>: These birds attacked!</p>
+<p><strong>malone</strong>: Well, what would you like me to do, Lydia?
+Put out a pick up and hold on any suspicious birds in the area? Now,
+that’d be pretty silly, wouldn’t it?</p>
+<p><strong>mitch</strong>: Does this room look silly?</p>
+<p><strong>malone</strong>: No, you got quite a mess here, I’ll admit
+that. Maybe you oughta put some screening on top of your chimney Seems a
+little pointless, though. Freak accident like this wouldn’t happen again
+in a million years. You want some help cleaning up?</p>
+<p><strong>mitch</strong>: I can handle it myself.</p>
+<p><strong>melanie</strong>: I’ll take Cathy up to bed.</p>
+<p><strong>mitch</strong>: Are you staying?</p>
+<p><strong>melanie</strong>: I think I should, don’t you?</p>
+<p><strong>melanie</strong>: I’ll get my things from the car. Do you
+want to walk with me, Cathy?</p>
+<p><strong>malone</strong>: Well, if there’s anything else I can do,
+Mitch…</p>
+<p><strong>mitch</strong>: Thanks, Al. We’ll be all right.</p>
+<p><strong>malone</strong>: Goodnight, Lydia.</p>
+<p><strong>malone</strong>: Sure is peculiar, I got to say that for
+it.</p>
+<p><strong>lydia’s voice</strong>: Mitch! Mitch! Mitch, I’m going to
+drop Cathy off now.</p>
+<p><strong>mitch’s voice</strong>: Okay.</p>
+<p><strong>lydia’s voice</strong>: I’ll probably drive over to the
+Fawcett farm. Do you need anything in town?</p>
+<p><strong>mitch’s voice</strong>: No.</p>
+<p><strong>melanie</strong>: Mitch?</p>
+<p><strong>melanie</strong>: Mitch?</p>
+<p><strong>melanie</strong>: Chee-chee-chee-chee-chee.</p>
+<p><strong>mitch</strong>: I wanted to change my shirt.</p>
+<p><strong>mitch</strong>: It smelled of the fire.</p>
+<p><strong>melanie</strong>: It’s hard to believe anything at all
+happened yesterday, isn’t it? It’s so beautiful and still now. I think
+I’ve got it all figured out, by the way.</p>
+<p><strong>mitch</strong>: Really? Tell me about it.</p>
+<p><strong>melanie</strong>: It’s an uprising.</p>
+<p><strong>mitch</strong>: Of birds?</p>
+<p><strong>melanie</strong>: Certainly, of birds.</p>
+<p><strong>melanie</strong>: It all started several months ago with a
+peasant sparrow up in the hills, a malcontent. He went around telling
+all the other sparrows that human beings weren’t fit to rule this
+planet, preaching wherever anyone would listen…</p>
+<p><strong>mitch</strong>: Growing a beard…</p>
+<p><strong>melanie</strong>: Yes, of course, he had to have a beard!
+‘Birds of the world, unite!’ he kept saying, over and over…</p>
+<p><strong>mitch</strong>: So they united.</p>
+<p><strong>melanie</strong>: Not at first. Oh yes, a few sparrows out
+for kicks…</p>
+<p><strong>mitch</strong>: Well, they’ll go along with anything.</p>
+<p><strong>melanie</strong>: Sure. But eventually, even the more
+serious-minded birds began to listen. “Why should humans rule?” they
+asked themselves.</p>
+<p><strong>mitch</strong>: Hear!</p>
+<p><strong>melanie</strong>: Why should we submit ourselves to their
+domination?</p>
+<p><strong>mitch</strong>: Hear, hear!</p>
+<p><strong>melanie</strong>: And all the while, that sparrow was getting
+in his little messages. Birds of the world, unite!</p>
+<p><strong>mitch</strong>: Take wing!</p>
+<p><strong>melanie</strong>: You have nothing to lose but your
+feathers.</p>
+<p><strong>mitch</strong>: What it was, probably…</p>
+<p><strong>melanie</strong>: Mmm?</p>
+<p><strong>mitch</strong>: They’re probably hungry, that’s all. This was
+a bad summer. They eat berries and… and nuts, you know, and the hills
+are all burned out, so they’re probably searching for food wherever they
+can get it.</p>
+<p><strong>melanie</strong>: With my little sparrow leading team.</p>
+<p><strong>mitch</strong>: It’s so damn quiet out there.</p>
+<p><strong>melanie</strong>: It was like that yesterday.</p>
+<p><strong>mitch</strong>: What do you mean?</p>
+<p><strong>melanie</strong>: After the gulls attacked.</p>
+<p><strong>mitch</strong>: I hadn’t thought of that. And then the swifts
+came.</p>
+<p><strong>melanie</strong>: It makes you feel as if they’re… they’re
+waiting or… resting… or….</p>
+<p><strong>mitch</strong>: No, they’re having a meeting, Melanie. Your
+sparrow is standing on a soap box and…</p>
+<p><strong>mitch</strong>: …waving his little wings…</p>
+<p><strong>melanie</strong>: They were angry, Mitch. They came out of
+the chimney in fury. I had the feeling they wanted each and every one of
+us dead.</p>
+<p><strong>mitch</strong>: Melanie, Melanie…</p>
+<p><strong>melanie</strong>: I’m frightened, Mitch.</p>
+<p><strong>mitch</strong>: No, no…</p>
+<p><strong>melanie</strong>: I’m frightened and confused and I… I think
+I want to go back to San Francisco where there are buildings and… and
+concrete and…</p>
+<p><strong>mitch</strong>: Melanie…</p>
+<p><strong>melanie</strong>: …everything I know.</p>
+<p><strong>melanie</strong>: Oh damn it, why did you have to walk into
+that shop?</p>
+<p><strong>lydia</strong>: Dan?</p>
+<p><strong>lydia</strong>: Dan?</p>
+<p><strong>lydia</strong>: Hi, there!</p>
+<p><strong>lydia</strong>: Is Mr. Fawcett home?</p>
+<p><strong>farmhand</strong>: I think so, ma’m. His missus is in Santa
+Cruz, but he ought to be here.</p>
+<p><strong>lydia</strong>: Have you seen him this morning?</p>
+<p><strong>lydia</strong>: Thank you!</p>
+<p><strong>lydia</strong>: Here, chick, chick, chick, chick. Here,
+chick, chick, chick, chick.</p>
+<p><strong>lydia</strong>: Dan?</p>
+<p><strong>lydia</strong>: Dan? Are you home?</p>
+<p><strong>lydia</strong>: Dan?</p>
+<p><strong>lydia</strong>: Dan?</p>
+<p><strong>lydia</strong>: Dan? Are you in there?</p>
+<p><strong>mitch</strong>: What is it?</p>
+<p><strong>mitch</strong>: That was Al on the phone. He wants me to meet
+him out at the Fawcett place. Says some detectives from Santa Rosa’ll be
+there in a little while. Will you be all right here?</p>
+<p><strong>melanie</strong>: Yes. I was just taking her in some tea.</p>
+<p><strong>melanie</strong>: Be careful. Please.</p>
+<p><strong>lydia</strong>: Mitch?</p>
+<p><strong>melanie</strong>: No, it’s me, Mrs. Brenner. I thought you
+might like some tea.</p>
+<p><strong>lydia</strong>: Oh, thank you.</p>
+<p><strong>lydia</strong>: Where’s Mitch?</p>
+<p><strong>melanie</strong>: Al Malone wanted him out at the Fawcett
+farm.</p>
+<p><strong>lydia</strong>: Why? Didn’t Al believe my story?</p>
+<p><strong>melanie</strong>: He was calling from the farm,
+Mrs. Brenner.</p>
+<p><strong>lydia</strong>: Then he saw.</p>
+<p><strong>melanie</strong>: He must have. He sent for the Santa Rosa
+police.</p>
+<p><strong>lydia</strong>: What good will they do?</p>
+<p><strong>lydia</strong>: Do you think Cathy’s all right?</p>
+<p><strong>melanie</strong>: What?</p>
+<p><strong>lydia</strong>: Cathy. At the school.</p>
+<p><strong>melanie</strong>: Yes, I’m sure she’s fine.</p>
+<p><strong>lydia</strong>: Do I sound foolish to you?</p>
+<p><strong>melanie</strong>: No.</p>
+<p><strong>lydia</strong>: I keep seeing Dan Fawcett’s face. They have
+such big windows at the school. All the windows were broken. In Dan’s
+bedroom. All the windows.</p>
+<p><strong>melanie</strong>: Try not to think of that, Mrs. Brenner.</p>
+<p><strong>lydia</strong>: I wish I were a stronger person. There is a
+long awkward silence. She sips at her tea reflectively.</p>
+<p><strong>lydia</strong>: I lost my husband four years ago, you know.
+It’s odd how you depend on someone for strength, and then suddenly all
+the strength is gone, and you’re alone. I’d love to relax some time. I’d
+love to be able to sleep. Do you think Cathy’s all right?</p>
+<p><strong>melanie</strong>: Annie’s there. She’ll be all right.</p>
+<p><strong>lydia</strong>: I’m not this way, you know. Not usually. I
+don’t fuss and fret over my children. When Frank died… You see, he knew
+the children, he really knew them. He had the knack of being able to
+enter into their world, of becoming a part of them. That’s a rare
+talent.</p>
+<p><strong>melanie</strong>: Yes.</p>
+<p><strong>lydia</strong>: I wish I could be that way.</p>
+<p><strong>lydia</strong>: I miss him. You know, sometimes I wake up in
+the morning, and I think ‘I have to make Frank’s breakfast,’ and I… I
+get up and there’s a… a very good reason for getting out of bed until…
+until, of course, I remember. I miss talking to him. Cathy’s a child,
+you know, and Mitch… …Mitch has his own life. I’m glad he stayed here
+today. I feel safer with him here.</p>
+<p><strong>melanie</strong>: Would you like to rest now,
+Mrs. Brenner.</p>
+<p><strong>lydia</strong>: No. No… don’t go yet. I feel as if I… I don’t
+understand you. And I want so much to understand.</p>
+<p><strong>melanie</strong>: Why, Mrs. Brenner?</p>
+<p><strong>lydia</strong>: Because my son is… My son seems to be fond of
+you. And I… I’m not quite sure how I feel about it. I really don’t know
+if I… like you or not.</p>
+<p><strong>melanie</strong>: Is that so important, Mrs. Brenner? You
+liking me?</p>
+<p><strong>lydia</strong>: Yes, I think so. My son is important to me. I
+want to like any girl he chooses.</p>
+<p><strong>melanie</strong>: And if you don’t?</p>
+<p><strong>lydia</strong>: Then I don’t suppose it’ll matter much to
+anyone but me.</p>
+<p><strong>melanie</strong>: I think it might also matter to Mitch.</p>
+<p><strong>lydia</strong>: Mitch has always done exactly what he wanted
+to do. I’m not complaining. That’s the mark of a man. But… You see, I… I
+wouldn’t want to be… be left alone. I don’t think I could bear being
+left alone. I… forgive me. This business with the birds has me upset. I…
+I don’t know what I’d do if Mitch weren’t here.</p>
+<p><strong>melanie</strong>: Why don’t you try to sleep now,
+Mrs. Brenner.</p>
+<p><strong>lydia</strong>: I wish I were stronger. Do you think she’s
+all right? Do you think she’s safe at the school?</p>
+<p><strong>melanie</strong>: Would you like me to go for her?</p>
+<p><strong>lydia</strong>: I couldn’t ask you to.</p>
+<p><strong>melanie</strong>: I don’t mind, really.</p>
+<p><strong>lydia</strong>: Would you? I’d feel so much better.</p>
+<p><strong>melanie</strong>: I’ll just clear up here, and then
+dress.</p>
+<p><strong>lydia</strong>: Melanie?</p>
+<p><strong>lydia</strong>: Thank you for the tea.</p>
+<p><strong>children</strong>: I married my wife in the month of June.
+Ristle-tee, rostle-tee, mo, mo mo!</p>
+<p><strong>children</strong>: I carried her off in a silver spoon.
+Ristle-tee, rostle-tee, hey bombosity, knickety-knackety,
+retro-retroquo- quality, willoby-wallaby, quo-mo, mo, mo! Uality,
+willoby-wallaby, quo-mo, mo, mo!</p>
+<p><strong>children</strong>: She combed her hair but once a year.
+Ristle-tee, rostle-tee, Mo, mo, mo! With every rake, she shed a tear.
+Ristle-tee, rostle-tee, hey bombosity, knickety-knackety,
+retro-quo-quality, willoby-wallaby, Mo, mo, mo!</p>
+<p><strong>children</strong>: She swept the floor but once a year.
+Ristle-tee, rostle-tee, mo, mo, mo! She swore her broom was much too
+dear. Ristle-tee, rostle-tee, hey bombosity, knickety-knackety, retro-
+quo-quality, willoby-wallaby, mo, mo, mo!</p>
+<p><strong>children</strong>: She churned the butter in Dad’s old boot.
+Ristle-tee, rostle-tee, mo, mo, mo! And for a dasher she used her foot.
+Ristle-tee, rostle-tee, hey bombosity, knickety-knackety,
+retro-quo-quality, willoby-wallaby, mo, mo, mo!</p>
+<p><strong>children</strong>: The butter came out a grizzle-y- ygrey.
+Ristle-tee, rostle-tee, grey. Mo, mo, mo! The cheese took legs and ran
+away! Ristle-tee, rostle- tee, hey bombosity, knickety-knackety,
+retro-quo-quality, willoby-wallaby, mo, mo, mo!</p>
+<p><strong>children</strong>: I brought my wife a horse one day.
+Ristle-tee, rostle-tee, mo, mo, mo! She let the critter get away.
+Ristle- tee, rostle-tee, hey bombosity, knickety-knackety,
+retro-quo-quality, willoby-wallaby, mo, mo, mo!</p>
+<p><strong>children</strong>: I asked my wife to wash the floor.
+Ristle-tee, rostle-tee, mo, mo, mo! She gave me my hat and showed me the
+door! Ristle-tee, rostle-tee, hey bombosity, knickety-knackety,
+Retro-quo-quality, Willoby-wallaby, mmmmmmmo, mmmmmmmoo, Mo!</p>
+<p><strong>annie</strong>: All right, children. Now please put your
+books in your desks, and bring the songsheets to the front of the room.
+No one’s going out to play until I have all the songsheets.</p>
+<p><strong>annie</strong>: We’re not going outside until we quiet down.
+Ralph? Did you hear me?</p>
+<p><strong>annie</strong>: All right now.</p>
+<p><strong>annie</strong>: wh…?</p>
+<p><strong>melanie</strong>: Outside.</p>
+<p><strong>melanie</strong>: We’ve got to get the children out of here.
+These big windows… there’s no way to board them up.</p>
+<p><strong>annie</strong>: Quiet down, children! Quiet down!</p>
+<p><strong>annie</strong>: Miss Daniels wants to see how we conduct
+ourselves during a fire drill. I’d like you to…</p>
+<p><strong>children</strong>: A fire drill? This is our play period,
+Miss Hayworth! Gee whiz! Etc.</p>
+<p><strong>annie</strong>: I’d like you to show her how quiet and
+obedient you can be.</p>
+<p><strong>annie</strong>: We’re going to go out of the school now.
+Those of you who live nearby can go directly home. I want the rest of
+you to go down the hill, all the way to the hotel. Do you
+understand?</p>
+<p><strong>children</strong>: All the way down the hill? Gee, Miss
+Hayworth, we never… Home? Why do we…?</p>
+<p><strong>annie</strong>: I want you to go as quietly as you can, not a
+sound, until I tell you to run. And then I want you to run as fast as
+you can. Does everyone understand? All right. John, would you lead the
+class, please?</p>
+<p><strong>melanie</strong>: Hurry!</p>
+<p><strong>melanie</strong>: Daddy, there were hundreds of them. No, I’m
+not hysterical, I’m trying to tell you this as calmly as I know how. All
+right, Daddy. Yes Daddy. Just now. Not… fifteen minutes ago.</p>
+<p><strong>melanie</strong>: At the school. No, I don’t. Just a minute.
+What’s the name of the school?</p>
+<p><strong>deke</strong>: Just the Bodega Bay School. Help you,
+Mrs. Bundy?</p>
+<p><strong>mrs. bundy</strong>: I need some change, Mr. Carter.</p>
+<p><strong>melanie</strong>: The Bodega Bay School. Could you turn that
+down, please?</p>
+<p><strong>melanie</strong>: I don’t know how many children. Thirty or
+forty. Yes.</p>
+<p><strong>melanie</strong>: No, the birds didn’t attack until the
+children were outside the school. Crows, I think. I don’t know, Daddy.
+Is there a difference between crows and blackbirds?</p>
+<p><strong>mrs. bundy</strong>: There is very definitely a difference,
+Miss.</p>
+<p><strong>melanie</strong>: They’re different, Daddy. Thank you. I
+think these were crows. Yes, hundreds of them. Yes, they attacked the
+children, attacked them. Daddy, a little girl was sent to the hospital
+in Santa Rosa. Well, all right, but you act as if I’m… all right, all
+right. No, I can’t come home now. I just can’t, Daddy. How is it there?
+I mean… are there birds? In the sky? But no trouble. Well, I hope… I
+don’t know when. I simply can’t leave now. Tell Mother not to worry. All
+right, Daddy, good-by.</p>
+<p><strong>mrs. bundy</strong>: They’re both perching birds, of course,
+but of quite different species. The crow is brachyrhynchos. The
+blackbird is cyanocephalus.</p>
+<p><strong>melanie</strong>: Thank you. Do you know Dan Fawcett’s
+number?</p>
+<p><strong>deke</strong>: In the book right here, Miss.</p>
+<p><strong>deke</strong>: I don’t see what difference it makes,
+Mrs. Bundy, crows or blackbirds. If they attacked the school, that’s
+pretty serious.</p>
+<p><strong>mrs. bundy</strong>: I hardly think either species would have
+the intelligence to launch a massed attack. Their brain pans aren’t
+large enough for such…</p>
+<p><strong>melanie</strong>: I just came from the school, madam. I don’t
+know about their brain pans but…</p>
+<p><strong>mrs. bundy</strong>: Birds are not aggressive creatures,
+Miss. They bring beauty to the world. It is mankind, rather, who…</p>
+<p><strong>helen</strong>: Three Southern fried chicken, Sam. Baked
+potato on all of them.</p>
+<p><strong>melanie</strong>: Hello, may I speak to Mitch Brenner,
+please? Yes, I’ll wait.</p>
+<p><strong>mrs. bundy</strong>: …insist on making it difficult for life
+to survive on this planet. If it weren’t for birds…</p>
+<p><strong>deke</strong>: Mrs. Bundy, you don’t seem to understand. This
+young lady says there was an attack on the school.</p>
+<p><strong>mrs. bundy</strong>: Impossible.</p>
+<p><strong>melanie</strong>: Mitch? I’m glad I caught you. Something
+terrible has happened.</p>
+<p><strong>drunk</strong>: It’s the end of the world!</p>
+<p><strong>helen</strong>: What’s this about the school?</p>
+<p><strong>deke</strong>: Bunch of crows attacked the school, Helen.</p>
+<p><strong>drunk</strong>: It’s the end of the world. “Thus saith the
+Lord God to the mountains, and to the hills, to the rivers and to the
+valleys; Behold, I, even I, will bring a sword upon you, and I will
+destroy your high places.</p>
+<p><strong>helen</strong>: The Lord’s not destroying anything,
+Jason.</p>
+<p><strong>drunk</strong>: “In all your dwelling places, the cities
+shall be laid waste, and the high places shall be laid waste!” Ezekiel,
+Chapter six.</p>
+<p><strong>helen</strong>: “Woe unto them that rise up early in the
+morning that they may follow strong drink.”</p>
+<p><strong>drunk</strong>: Isaiah, Chapter 5. It’s the end of the
+world.</p>
+<p><strong>melanie</strong>: Yes, all right, I’ll wait for you.
+Good-by.</p>
+<p><strong>mrs. bundy</strong>: I hardly think a few birds are going to
+bring about the end of the world.</p>
+<p><strong>melanie</strong>: These weren’t a few birds.</p>
+<p><strong>deke</strong>: I didn’t even know there were many crows in
+Bodega Bay this time of year.</p>
+<p><strong>mrs. bundy</strong>: The crow is a permanent resident
+throughout its range. In fact, during our Christmas Count, we
+recorded…</p>
+<p><strong>sholes</strong>: How many gulls did you count,
+Mrs. Bundy?</p>
+<p><strong>mrs. bundy</strong>: Which gulls, Mr. Sholes? There are
+several varieties.</p>
+<p><strong>sholes</strong>: The ones that’ve been raising the devil with
+my fishing boats.</p>
+<p><strong>mrs. bundy</strong>: Probably herring gulls. They arrive in
+November, you know, and don’t migrate North again until March or…</p>
+<p><strong>melanie</strong>: Have you had trouble with gulls?</p>
+<p><strong>sholes</strong>: One of my boats did last week.</p>
+<p><strong>deke</strong>: This young lady got hit by a gull only
+Saturday.</p>
+<p><strong>sam’s voice</strong>: Pick up the chicken.</p>
+<p><strong>helen</strong>: Now it’s gulls. A minute ago, it was crows.
+Deke, I’m still waiting for those Bloody Marys!</p>
+<p><strong>deke</strong>: Coming right up!</p>
+<p><strong>woman</strong>: Could you ask them to lower their voices,
+please? They’re frightening the children.</p>
+<p><strong>little girl</strong>: Timmy has a canary.</p>
+<p><strong>helen</strong>: That’s nice. Are you Timmy?</p>
+<p><strong>little boy</strong>: My cousin is Timmy.</p>
+<p><strong>sam’s voice</strong>: A whole flock of gulls nearby capsized
+one of my boats. Practically tore of the skipper’s arm.</p>
+<p><strong>helen</strong>: You’re scaring the kids. Keep it low.</p>
+<p><strong>deke</strong>: You’re scaring me, too. Are you trying to say
+all these… That sounds impossible, Sebastian.</p>
+<p><strong>sholes</strong>: I’m only telling you what happened to my
+boat.</p>
+<p><strong>mrs. bundy</strong>: The gulls were after your fish,
+Mr. Sholes. Really, let’s be logical about this.</p>
+<p><strong>melanie</strong>: What were the crows after at the
+school?</p>
+<p><strong>mrs. bundy</strong>: What do you think they were after,
+Miss…?</p>
+<p><strong>melanie</strong>: Daniels. I think they were after the
+children.</p>
+<p><strong>mrs. bundy</strong>: For what purpose?</p>
+<p><strong>melanie</strong>: To… To kill them.</p>
+<p><strong>mrs. bundy</strong>: Why?</p>
+<p><strong>melanie</strong>: I don’t know why.</p>
+<p><strong>mrs. bundy</strong>: I thought not. Birds have been on this
+planet since archaeopteryx, Miss Daniels; a hundred and twenty million
+years ago!</p>
+<p><strong>mrs. bundy</strong>: Doesn’t it seem odd that they’d wait all
+that time to start a… a war against humanity?</p>
+<p><strong>melanie</strong>: No one called it a war!</p>
+<p><strong>salesman</strong>: Scotch, light on the water.</p>
+<p><strong>mrs. bundy</strong>: You and Mr. Sholes seem to be implying
+as much.</p>
+<p><strong>helen</strong>: Are you finished here, Sebastian?</p>
+<p><strong>sholes</strong>: Let me have some apple pie, Helen. Who said
+anything about war? All I said was that some gulls…</p>
+<p><strong>helen</strong>: One apple pie! You want more coffee?</p>
+<p><strong>sholes</strong>: No. …came down on one of my boats. They
+could have been after the fish, just as you said.</p>
+<p><strong>salesman</strong>: Your captain should have shot at them.</p>
+<p><strong>sholes</strong>: What?</p>
+<p><strong>salesman</strong>: Gulls are scavengers, anyway. Most birds
+are. If you ask me, we should wipe them all out. World would be better
+off without them.</p>
+<p><strong>mrs. bundy</strong>: Birds?</p>
+<p><strong>salesman</strong>: Yeah, birds. All they do is make a mess of
+everything. Who needs them?</p>
+<p><strong>mrs. bundy</strong>: We need them.</p>
+<p><strong>salesman</strong>: Not if they’re starting a war.</p>
+<p><strong>mrs. bundy</strong>: They are incapable of organized
+warfare!</p>
+<p><strong>melanie</strong>: Have you ever seen a jay protecting a
+nest?</p>
+<p><strong>mrs. bundy</strong>: I have seen jays doing everything it is
+conceivable for jays to do. Ornithology happens to be my avocation, Miss
+Daniels. You’re talking about preservation of the species, a hen
+protecting her young. There’s a vast difference between…</p>
+<p><strong>melanie</strong>: Maybe they’re all protecting the species.
+Maybe they’re tired of being shot at and roasted in ovens and…</p>
+<p><strong>mrs. bundy</strong>: Are you discussing gamebirds now? All
+birds are not gamebirds, you know.</p>
+<p><strong>melanie</strong>: I don’t know anything about birds except
+that they’re attacking this town.</p>
+<p><strong>salesman</strong>: Then fight back. Get yourselves guns and
+wipe them off the face of the earth.</p>
+<p><strong>mrs. bundy</strong>: That would hardly be possible.</p>
+<p><strong>deke</strong>: Why not, Mrs. Bundy?</p>
+<p><strong>mrs. bundy</strong>: Because there are 8,650 species of birds
+in the world today, Mr. Carter. It’s estimated that five billion, seven
+hundred and fifty million birds live in the United States alone. The
+five continents of the world…</p>
+<p><strong>salesman</strong>: Kill them all. Get rid of them. Messy
+animals.</p>
+<p><strong>mrs. bundy</strong>: …probably contain more than a hundred
+billion birds!</p>
+<p><strong>drunk</strong>: It’s the end of the world!</p>
+<p><strong>deke</strong>: Well, we seem to have more than our share of
+them right now, Mrs. Bundy. Maybe this young lady’s right. Maybe they’ve
+all gone crazy.</p>
+<p><strong>helen</strong>: Here’s your pie, Sebastian. You want it at
+the table?</p>
+<p><strong>sholes</strong>: No. Here’s fine.</p>
+<p><strong>helen</strong>: Where are the Bloody Marys, Deke?</p>
+<p><strong>deke</strong>: Coming.</p>
+<p><strong>helen</strong>: Are we running a business here – or a bird
+sanctuary?</p>
+<p><strong>sholes</strong>: Actually, those gulls must have been after
+the fish.</p>
+<p><strong>mrs. bundy</strong>: Of course.</p>
+<p><strong>sholes</strong>: Makes a lot more sense than… well, an
+attack.</p>
+<p><strong>mrs. bundy</strong>: Of course it does. If we believe that
+birds are attacking, why… why next we’ll believe that grasshoppers and
+cockroaches are capable of…</p>
+<p><strong>drunk</strong>: Cockroaches! Urghh!</p>
+<p><strong>woman</strong>: Hurry, children. Finish your lunch.</p>
+<p><strong>boy</strong>: Are the birds gonna eat us, Mommy?</p>
+<p><strong>sholes</strong>: Maybe we’re all getting a little carried
+away by this. Admittedly, a few birds acted strangely. That’s no reason
+to believe…</p>
+<p><strong>melanie</strong>: This isn’t a few birds! I keep telling you
+that! These are gulls and swifts and crows and…</p>
+<p><strong>mrs. bundy</strong>: And what? Vultures? Hawks? Eagles?</p>
+<p><strong>melanie</strong>: Maybe! Is it impossible?</p>
+<p><strong>mrs. bundy</strong>: Yes. I have never known birds of
+different species to flock together. The very concept is unimaginable.
+Why if that happened, we wouldn’t have a chance. How could we possible
+hope to fight them?</p>
+<p><strong>sholes</strong>: We couldn’t. You’re right, Mrs. Bundy.</p>
+<p><strong>woman</strong>: Excuse me, may I have a check, please?</p>
+<p><strong>helen</strong>: Is everything all right, ma’am?</p>
+<p><strong>woman</strong>: Yes, I… I’m anxious to get on the road.</p>
+<p><strong>sam</strong>: What’s the matter? Something wrong out
+here?</p>
+<p><strong>deke</strong>: Nothing’s wrong.</p>
+<p><strong>sam</strong>: All this shouting.</p>
+<p><strong>mrs. bundy</strong>: We’re fighting a war, Sam.</p>
+<p><strong>sam</strong>: A war? Against who? Did the Russians…?</p>
+<p><strong>sholes</strong>: Against birds.</p>
+<p><strong>woman</strong>: I’m glad you all think this is so amusing.
+You’ve frightened my children half out of their wits.</p>
+<p><strong>boy</strong>: I’m not scared, Mommy.</p>
+<p><strong>woman</strong>: Keep quiet. If that young lady saw an attack
+on the school, why won’t you believe her?</p>
+<p><strong>sam</strong>: What attack? Who attacked the school?</p>
+<p><strong>woman</strong>: Birds did. Crows! And you’re all sitting
+around here debating! What do you want them to do next? Crash through
+that window?</p>
+<p><strong>little girl</strong>: Mommy!</p>
+<p><strong>woman</strong>: Quiet! Why don’t you all get home? Lock your
+doors and windows! Put on your coats, children! What’s the fastest road
+to San Francisco?</p>
+<p><strong>deke</strong>: The freeway, ma’am.</p>
+<p><strong>woman</strong>: Where do I get it?</p>
+<p><strong>salesman</strong>: I’m going out that way, lady. You can
+follow me.</p>
+<p><strong>woman</strong>: Then let’s go. Now!</p>
+<p><strong>salesman</strong>: I haven’t finished my drink.</p>
+<p><strong>woman</strong>: shouting at her Put on your coats! Do you
+want to get trapped here?</p>
+<p><strong>boy</strong>: I can’t find my scarf.</p>
+<p><strong>woman</strong>: Look in your sleeve!</p>
+<p><strong>mitch</strong>: Melanie?</p>
+<p><strong>mitch</strong>: I got here as fast as I could. Where’s
+Cathy?</p>
+<p><strong>melanie</strong>: At Annie’s house. She’s all right.</p>
+<p><strong>sam</strong>: Al, why aren’t you over there where the attack
+was?</p>
+<p><strong>malone</strong>: Because I just got back from Dan Fawcett’s
+place, that’s why.</p>
+<p><strong>mitch</strong>: He was killed last night. By birds.</p>
+<p><strong>malone</strong>: Now hold it, Mitch. You don’t know that for
+a fact.</p>
+<p><strong>mrs. bundy</strong>: What are the facts, Mr. Malone?</p>
+<p><strong>malone</strong>: Santa Rosa police think it was a felony
+murder. They think a burglar broke in and killed him.</p>
+<p><strong>woman</strong>: Were the Santa Rosa police at your school
+today? Are you coming?</p>
+<p><strong>salesman</strong>: Take it easy, lady. There isn’t a bird
+anywhere in sight.</p>
+<p><strong>drunk</strong>: “Look at the birds of the air: they do not
+sow or read, yet your heavenly father feeds them.”</p>
+<p><strong>woman</strong>: I’ll never feed another bird as long as I
+live!</p>
+<p><strong>salesman</strong>: Something like this happened in Santa Cruz
+last year. The town was covered with seagulls.</p>
+<p><strong>woman</strong>: Can’t you please finish your drink?</p>
+<p><strong>mrs. bundy</strong>: That’s right, sir, I recall it. A large
+flock of seagulls got lost in a fog and headed in for the town, where
+all the lights were.</p>
+<p><strong>salesman</strong>: They made some mess, too, smashing into
+houses and everything. They always make a mess. We’re better off without
+them.</p>
+<p><strong>mrs. bundy</strong>: The point is that no one seemed to get
+upset about it. They were gone the next morning, just as if nothing at
+all had happened. Poor things.</p>
+<p><strong>woman</strong>: I’m leaving! Are you coming?</p>
+<p><strong>salesman</strong>: All right, all right! Hope you figure this
+out, folks.</p>
+<p><strong>drunk</strong>: It’s the end of the world.</p>
+<p><strong>sholes</strong>: Well, I’d better get back to the cannery.
+What do I owe you, Deke?</p>
+<p><strong>deke</strong>: Let’s see. Scallops and coffee…</p>
+<p><strong>mitch</strong>: Hold it just a minute, Sebastian.</p>
+<p><strong>mitch</strong>: Sebastian, I’m not an alarmist.</p>
+<p><strong>sholes</strong>: No one ever said you were, Mitch.</p>
+<p><strong>mitch</strong>: I think we’re in trouble. I don’t know how or
+why this started, but I know it’s here and I know we’d be crazy to
+ignore it.</p>
+<p><strong>mrs. bundy</strong>: Ignore what? The bird war?</p>
+<p><strong>mitch</strong>: Yes, the bird war, the bird attack, the bird
+plague, you can call it what you want to, they’re out there massing
+someplace and they’ll be back, you can count on that!</p>
+<p><strong>mrs. bundy</strong>: Ridiculous!</p>
+<p><strong>mitch</strong>: Mrs. Bundy, why don’t you go home and polish
+your binoculars?</p>
+<p><strong>sam</strong>: Go on, Mitch.</p>
+<p><strong>mitch</strong>: If we don’t do something now, if we don’t get
+Bodega Bay on the move…</p>
+<p><strong>sholes</strong>: Look, Mitch, even if this is true, even if
+all the birds…</p>
+<p><strong>mitch</strong>: Do you believe it’s true, Sebastian?</p>
+<p><strong>sholes</strong>: No. I don’t, Mitch. Because I can’t see any
+reason for it.</p>
+<p><strong>mitch</strong>: It’s happening. Isn’t that a good enough
+reason?</p>
+<p><strong>sholes</strong>: I like Bodega Bay as well as any man. If I
+thought…</p>
+<p><strong>mitch</strong>: Then help me, Sebastian. You’re an important
+man in this town. If you’ll help, the rest will.</p>
+<p><strong>sholes</strong>: Help how? What do you want to do?</p>
+<p><strong>mitch</strong>: I’m not sure, but…</p>
+<p><strong>sholes</strong>: If you don’t even know what you want to
+do…</p>
+<p><strong>melanie</strong>: Listen to him, please.</p>
+<p><strong>sam</strong>: You listen to him, Sebastian!</p>
+<p><strong>mitch</strong>: I only know we’ve got to drive them away from
+town – before they drive us away.</p>
+<p><strong>sholes</strong>: How?</p>
+<p><strong>mitch</strong>: Mrs. Bundy, you said something about Santa
+Cruz. About seagulls getting lost in the fog, and heading in for the
+lights.</p>
+<p><strong>deke</strong>: We don’t have any fog this time of year,
+Mitch.</p>
+<p><strong>mitch</strong>: We’ll make our own fog.</p>
+<p><strong>sholes</strong>: How do you plan to do that?</p>
+<p><strong>mitch</strong>: With smoke.</p>
+<p><strong>malone</strong>: There’s an ordinance against burning
+anything in this town, unless it’s…</p>
+<p><strong>mitch</strong>: We’ll use smoke pots. Like the Army uses.</p>
+<p><strong>deke</strong>: What good’ll that do? Smoke’s as bad as
+birds.</p>
+<p><strong>mrs. bundy</strong>: Birds are not bad!</p>
+<p><strong>sholes</strong>: How can we go on living here if we blanket
+the town with smoke?</p>
+<p><strong>mitch</strong>: Can we go on living here otherwise?</p>
+<p><strong>sam</strong>: It’s worth a try, Sebastian.</p>
+<p><strong>melanie</strong>: Look!</p>
+<p><strong>deke</strong>: Gulls!</p>
+<p><strong>mitch</strong>: They’re back!</p>
+<p><strong>sholes</strong>: They’re only the usual… What are you…</p>
+<p><strong>mitch</strong>: Stay back in here.</p>
+<p><strong>melanie</strong>: Mitch…! Mitch!</p>
+<p><strong>woman</strong>: Why are they doing it?! Why are they doing
+it…?!</p>
+<p><strong>mrs. bundy</strong>: weak explanation of why the birds could
+have gone berserk like this. This information should be obtained from
+Dr.</p>
+<p><strong>mitch</strong>: I think they’re going.</p>
+<p><strong>mitch</strong>: I think it’s safe to get out now.</p>
+<p><strong>melanie</strong>: Don’t let’s take any chances.</p>
+<p><strong>mitch</strong>: We’ve got to get Cathy.</p>
+<p><strong>melanie’s voice</strong>: Look… the crows again.</p>
+<p><strong>melanie</strong>: Careful, Mitch. The crows may be back in
+the play yard.</p>
+<p><strong>melanie</strong>: Mitch! Don’t!</p>
+<p><strong>melanie</strong>: Please! Get Cathy! Let’s get out of
+here!</p>
+<p><strong>melanie</strong>: Mitch, you can’t leave her out there.</p>
+<p><strong>melanie</strong>: You drive, Mitch.</p>
+<p><strong>melanie</strong>: I don’t think they’re coming.</p>
+<p><strong>cathy</strong>: On our way back from taking Michele home… we…
+we heard the explosion and went outside to… see what… what it was. All
+at once the… the birds were everywhere. All at once. She… she pushed me
+inside and… they covered her. Annie. She pushed me inside.</p>
+<p><strong>melanie</strong>: The town looks clear.</p>
+<p><strong>mitch</strong>: The bay doesn’t.</p>
+<p><strong>melanie</strong>: How long have they been gathering
+there?</p>
+<p><strong>mitch</strong>: The past fifteen minutes. It seems to be a
+pattern, doesn’t it? They strike and disappear, and then they start
+massing again.</p>
+<p><strong>melanie</strong>: I keep thinking of Annie.</p>
+<p><strong>mitch</strong>: It… it doesn’t look very different, does it?
+A little smoke over the town, but otherwise…</p>
+<p><strong>melanie</strong>: Even the birds sitting out there. It does
+look very much the same, Mitch. This could be last week.</p>
+<p><strong>mitch</strong>: It may not be last week again for a long long
+time.</p>
+<p><strong>melanie</strong>: Look. They’re still coming.</p>
+<p><strong>mitch</strong>: Do you want to try your father again? head.
+Puzzled, Mitch</p>
+<p><strong>melanie</strong>: I tried a little while ago. The phone’s
+dead.</p>
+<p><strong>mitch</strong>: Have we still got power?</p>
+<p><strong>melanie</strong>: Yes. I’m tired, Mitch. I’m so very very
+tired.</p>
+<p><strong>lydia</strong>: Mitch! I’m getting something on the
+radio!</p>
+<p><strong>lydia</strong>: I can’t get any of the local stations. I
+think this is San Francisco.</p>
+<p><strong>announcer</strong>: …would include formulation of a central
+financing committee to handle credit and to allocate responsibility for
+the various facets of the project. A vote on the motion is expected
+early tomorrow morning.</p>
+<p><strong>announcer</strong>: Continuing with the local news, police
+are still investigating the series of valuable jade burglaries in the
+Chinatown area. The round-up of known criminals has not as yet produced
+a suspect, but Commissioner Nelson said today he was certain the
+burglaries were quote linked and the work of the team of professionals
+unquote. In Bodega Bay early this morning, a large flock of crows
+attacked a group of children who were leaving the school during a fire
+drill. One little girl was seriously injured and taken to the hospital
+in Santa Rosa, but the majority of children reached safety in the town.
+On the national scene today, the opening of the new session of Congress
+was marked by a State of the Union address that…</p>
+<p><strong>mitch</strong>: Is that all?</p>
+<p><strong>announcer</strong>: …drew a standing ovation for the
+President. The Chief Executive, in discussing our relation to Europe and
+the rest of the world community said: “These various elements of our
+foreign policy lead as I have said to a single goal –</p>
+<p><strong>mitch</strong>: We’re going to need more wood for the fire.
+We can’t let it go out.</p>
+<p><strong>announcer</strong>: The goal of a peaceful world of free and
+independent states. This is our guide for the present and our vision for
+the future – a free community of nations, independent but
+interdependent, uniting north and south, east and west, in one great
+family of man, outgrowing and transcending the hates and fears that rend
+our age. We will not reach that goal today or tomorrow. We may not reach
+it in our lifetime. But the quest is the great adventure of our century.
+We sometimes chafe at the burdens of our obligations, the complexity of
+our decisions, the agony of our choices, but there is no comfort or
+security for us in evasion, no solution in abdication, no relief in
+irresponsibility. In assuming the tasks of the Presidency, I said that
+few generations, in all history, had been granted the role of being the
+great defender of freedom in its hour of maximum danger. This is our
+good fortune, and I welcome it now as I did when I first took office.
+For it is the fate of this generation – Of you in the Congress and of me
+as President – to live with a struggle we did not start, in a world we
+did - not make. But the pressures of life are not always distributed by
+choice. And while no nation has ever faced such a challenge, no nation
+has ever been ready to seize the burden and the glory of…</p>
+<p><strong>lydia</strong>: Did you you get the windows in the attic,
+Mitch?</p>
+<p><strong>mitch</strong>: I got them all, Mother.</p>
+<p><strong>lydia</strong>: When do you think they’ll come?</p>
+<p><strong>mitch</strong>: I don’t know.</p>
+<p><strong>lydia</strong>: If there are… larger birds, Mitch… they’ll
+get into the house.</p>
+<p><strong>mitch</strong>: That’s a chance we have to take.</p>
+<p><strong>lydia</strong>: Maybe we ought to leave.</p>
+<p><strong>mitch</strong>: Not now. Not while they’re massing out
+there.</p>
+<p><strong>lydia</strong>: When?</p>
+<p><strong>mitch</strong>: I don’t know when. We’ll see what…</p>
+<p><strong>lydia</strong>: Where will we go?</p>
+<p><strong>mitch</strong>: I don’t know yet. I think we’ll be safe here.
+Let’s bring that wood in.</p>
+<p><strong>lydia</strong>: What happens when we run out of wood?</p>
+<p><strong>mitch</strong>: I don’t know. We’ll break up the furni…</p>
+<p><strong>lydia</strong>: You don’t know, you don’t know! When will you
+know? When we’re all dead? Like Annie?</p>
+<p><strong>cathy</strong>: Mother!</p>
+<p><strong>lydia</strong>: If your father were here…</p>
+<p><strong>mitch</strong>: Mother! I’m trying my best! I’m… trying…
+my…</p>
+<p><strong>lydia</strong>: I’m sorry, Mitch.</p>
+<p><strong>mitch</strong>: Let’s get the wood. Why don’t you make us all
+some coffee, Mother?</p>
+<p><strong>melanie</strong>: Where are they heading?</p>
+<p><strong>mitch</strong>: Inland.</p>
+<p><strong>melanie</strong>: Santa Rosa?</p>
+<p><strong>mitch</strong>: Maybe.</p>
+<p><strong>mitch</strong>: Come on. Let’s get this wood in.</p>
+<p><strong>melanie</strong>: That’s the last of it.</p>
+<p><strong>lydia</strong>: Did you close the door?</p>
+<p><strong>melanie</strong>: And locked it.</p>
+<p><strong>cathy</strong>: Mitch, can I bring the lovebirds in here?</p>
+<p><strong>lydia</strong>: No!</p>
+<p><strong>cathy</strong>: Mom, they’re in a cage!</p>
+<p><strong>lydia</strong>: They’re birds!</p>
+<p><strong>mitch</strong>: Let them stay in the other room.</p>
+<p><strong>cathy</strong>: Mitch? Why are they doing this? The
+birds.</p>
+<p><strong>mitch</strong>: I don’t know, honey.</p>
+<p><strong>cathy</strong>: Why are they trying to kill people?</p>
+<p><strong>mitch</strong>: I wish I could say. But if I could answer
+that, I could also tell you why people are trying to kill people.</p>
+<p><strong>lydia</strong>: Mitch…</p>
+<p><strong>mitch</strong>: Shhh. Shhh.</p>
+<p><strong>cathy</strong>: I’m… I’m sick, Melanie. I want.. I want to
+throw…</p>
+<p><strong>melanie</strong>: I’ll go with you.</p>
+<p><strong>melanie</strong>: When will they stop?</p>
+<p><strong>mitch</strong>: I thought they’d have stopped by now.</p>
+<p><strong>melanie</strong>: What time is it?</p>
+<p><strong>mitch</strong>: Almost two a.m.</p>
+<p><strong>melanie</strong>: You must be exhausted.</p>
+<p><strong>mitch</strong>: How about you?</p>
+<p><strong>mitch</strong>: I wonder if Cathy fed them.</p>
+<p><strong>mitch</strong>: You should have left when you wanted to.</p>
+<p><strong>mitch</strong>: You’d have been safe in San Francisco.</p>
+<p><strong>melanie</strong>: I don’t want to be safe. I want to be with
+you.</p>
+<p><strong>mitch</strong>: The power.</p>
+<p><strong>melanie</strong>: Mitch…</p>
+<p><strong>mitch</strong>: Wait here. Don’t move.</p>
+<p><strong>mitch</strong>: We’d better light some of those lamps.</p>
+<p><strong>melanie</strong>: No… wait. Hold me.</p>
+<p><strong>mitch</strong>: I think they’re easing off.</p>
+<p><strong>melanie</strong>: Mitch?</p>
+<p><strong>melanie</strong>: Mitch?</p>
+<p><strong>mitch</strong>: Melanie!</p>
+<p><strong>mitch</strong>: Melanie, open the door!</p>
+<p><strong>lydia</strong>: Mitch, get her out of there!</p>
+<p><strong>mitch</strong>: Melanie!</p>
+<p><strong>mitch</strong>: Mother, get a rope!</p>
+<p><strong>lydia</strong>: Oh, my God, look at her!</p>
+<p><strong>mitch</strong>: Get a rope!</p>
+<p><strong>mitch</strong>: Mother! Hurry!</p>
+<p><strong>mitch</strong>: Cathy! Get a blanket and some bandages!</p>
+<p><strong>cathy</strong>: stars, on the verge Is she all right?</p>
+<p><strong>melanie</strong>: I’m… I’m….</p>
+<p><strong>mitch</strong>: Just lie there and keep still.</p>
+<p><strong>lydia</strong>: Let me do that, Mitch.</p>
+<p><strong>mitch</strong>: I can handle it.</p>
+<p><strong>lydia</strong>: I know you can. But I’d like to.</p>
+<p><strong>melanie</strong>: Please don’t mess me up with bandages,
+Mrs. Brenner.</p>
+<p><strong>lydia</strong>: Shhhh. Shhhh.</p>
+<p><strong>melanie</strong>: Please.</p>
+<p><strong>lydia</strong>: I’m not very good at this, Mitch.</p>
+<p><strong>mitch</strong>: You’re doing fine.</p>
+<p><strong>lydia</strong>: I mean. I want to…</p>
+<p><strong>cathy</strong>: Listen!</p>
+<p><strong>lydia</strong>: They’re gone. God have mercy, they’re
+gone.</p>
+<p><strong>mitch</strong>: They’re gone. The same pattern.</p>
+<p><strong>lydia</strong>: But they’ll be back.</p>
+<p><strong>mitch</strong>: We won’t be here.</p>
+<p><strong>lydia</strong>: Where can we go, Mitch? There’s no place to
+go.</p>
+<p><strong>mitch</strong>: I want to try for San Francisco. There are
+buildings there. Steel and concrete!</p>
+<p><strong>lydia</strong>: We’d never make it. They’re probably all over
+the road.</p>
+<p><strong>mitch</strong>: We have to try it. We can’t stay here.
+Melanie needs help. Mother, the house won’t take another attack.</p>
+<p><strong>lydia</strong>: If… If… when we get to San Francisco… If
+they’re already there?</p>
+<p><strong>mitch</strong>: They won’t be.</p>
+<p><strong>lydia</strong>: If they are?</p>
+<p><strong>mitch</strong>: We’ll worry about that when we get there.</p>
+<p><strong>lydia</strong>: I’m frightened, terribly frightened. I… I
+don’t know what’s out there, Mitch.</p>
+<p><strong>mitch</strong>: What do we have to know, Mother? We’re all
+together, we all love each other, we all need each other. What else is
+there? Mother, I want us to stay alive!</p>
+<p><strong>lydia</strong>: I started to say… inside…</p>
+<p><strong>mitch</strong>: You don’t have to.</p>
+<p><strong>mitch</strong>: I think we’d better get started.</p>
+<p><strong>cathy</strong>: May I take them, Mitch?</p>
+<p><strong>cathy</strong>: They haven’t harmed anyone.</p>
+<p><strong>lydia</strong>: Take them.</p>
+<p><strong>mitch</strong>: We’ll put them in the trunk, Cathy.</p>
+<p><strong>mitch</strong>: Be careful with that door.</p>
+<p><strong>melanie</strong>: Mitch, if they hear the car starting… if
+they see movement…</p>
+<p><strong>mitch</strong>: We’ll take it slow until we get to the main
+road. Are you ready?</p>
+<p><strong>mitch</strong>: All right. Here we go.</p>
+<p><strong>mitch</strong>: Shhh. Shhhh.</p>
+<p><strong>cathy</strong>: Mitch, let’s turn back.</p>
+<p><strong>mitch</strong>: Shhh. Shhhhh.</p>
+<p><strong>lydia</strong>: Mitch!</p>
+<p><strong>melanie</strong>: Can we turn back?</p>
+<p><strong>mitch</strong>: I… I don’t think so. If we get through town,
+I think we’ll be all right.</p>
+<p><strong>melanie</strong>: Then go ahead, Mitch.</p>
+<p><strong>mitch</strong>: Here we go.</p>
+<p><strong>melanie</strong>: Mitch!</p>
+<p><strong>lydia</strong>: Dear God… dear God… please, please, what have
+we done? Please. the roof and the Can’t they leave us alone?</p>
+<p><strong>lydia</strong>: We’re losing them.</p>
+<p><strong>cathy</strong>: Mitch? Do… do you think they’ll be all right?
+In the trunk? Can they breath?</p>
+<p><strong>mitch</strong>: I think they’ll be all right, honey.</p>
+<p><strong>mitch</strong>: It looks… it looks clear up ahead.</p>
+</body>
+</html>

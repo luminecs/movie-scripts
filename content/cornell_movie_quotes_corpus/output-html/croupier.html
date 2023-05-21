@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>croupier</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="croupier">croupier</h1>
+<p><strong>jack’s voice</strong>: Now he had become the still centre of
+that spinning wheel of misfortune.</p>
+<p><strong>jack’s voice</strong>: The world turned round him… leaving
+him miraculously untouched The little white ball circles the spinning
+wheel.</p>
+<p><strong>jack’s voice</strong>: The croupier had reached his goal. He
+no longer heard the sound of the ball.</p>
+<p><strong>jack’s voice</strong>: To begin with he was Jack Manfred…</p>
+<p><strong>giles</strong>: Take a pew, Jack. You look well. What’s it
+been, two years since we broke bread?</p>
+<p><strong>jack</strong>: Three years, two months. March ’93.</p>
+<p><strong>giles</strong>: What a memory you’ve got. Maths always was
+your strong suit. What happened to the moaning Lisa?</p>
+<p><strong>jack</strong>: She went back to South Africa.</p>
+<p><strong>giles</strong>: Did she? You were pretty thick at one
+time.</p>
+<p><strong>jack</strong>: We all played the field.</p>
+<p><strong>giles</strong>: Hi-ya… I’ll call you back. Now then…</p>
+<p><strong>jack</strong>: I want a job, Giles.</p>
+<p><strong>giles</strong>: All right. As what?</p>
+<p><strong>jack</strong>: I was thinking perhaps I could be a reader.
+You employ readers, don’t you?</p>
+<p><strong>giles</strong>: We do. For unsolicited manuscripts. We pay
+twenty pounds a manuscript. You might get two, maybe three in a week.
+Can you live on sixty pounds?</p>
+<p><strong>giles</strong>: Sorry. This is a no-smoking office, Jack.
+You’ve written a book, haven’t you? I didn’t read it myself, but –</p>
+<p><strong>giles</strong>: Give me ten minutes, Fiona.</p>
+<p><strong>giles</strong>: Fiona used to read for me.</p>
+<p><strong>giles</strong>: Let me tell you about our operation. We like
+personality authors. People the public recognises. Celebrity’s what
+sells books. We can always find someone to do the writing. First, we
+need the face. Then the concept. Right now I’m looking for a soccer
+novel. Something where a tycoon buys a lousy team and takes it to the
+top. Seven figure transfer fees. Corruption all down the line. Violence
+on and off the pitch. Steroids. Got any concepts? It could be a thug
+story. I tell you what. Why don’t you think about it. A couple of pages.
+The pitch. Steroids. Got any concepts? It could be a thug story. I tell
+you what. Why don’t you think about it. A couple of pages. With plenty
+of sex, of course.</p>
+<p><strong>jack</strong>: Interesting, Giles. I will think about it.</p>
+<p><strong>giles</strong>: Let me give you three words of advice, Jack.
+Don’t give up. Stick with it. Who persists wins. That’s my motto. Write,
+write, write.</p>
+<p><strong>jack’s voice</strong>: Jack had three words for, Giles. Go
+fuck yourself.</p>
+<p><strong>man’s voice</strong>: Jacko, if you’re there, pick up. I want
+to talk to you. It’s important.</p>
+<p><strong>jack</strong>: Dad, I’m here.</p>
+<p><strong>jack sr.</strong>: How’s it going?</p>
+<p><strong>jack</strong>: Great.</p>
+<p><strong>jack sr.</strong>: Found a job?</p>
+<p><strong>jack</strong>: No.</p>
+<p><strong>jack sr.</strong>: Well I’ve got something for you. In
+London, I mean. I’ve been chatting to some friends. Do you know the
+Golden Lion casino? It’s in Bayswater, I believe… They’re looking for a
+dealer, a croupier.</p>
+<p><strong>jack</strong>: That’s not what I want to do, dad.</p>
+<p><strong>jack sr.</strong>: Don’t be stubborn. The pay won’t be grand,
+but it’s regular. That’s what you need, isn’t it? I know you don’t like
+taking my advice…</p>
+<p><strong>jack</strong>: It’s not that.</p>
+<p><strong>jack sr.</strong>: I’ve set this up for you. Call the Golden
+Lion and ask for Mr Reynolds, he’s the Manager. I don’t know him
+personally, but I’ve spoken to his boss. Don’t say no, Jacko. Give
+yourself a break.</p>
+<p><strong>jack</strong>: All right, I’ll think about it.</p>
+<p><strong>jack sr.</strong>: Just do it. You’ve got the knack, you’ve
+got the personality, you got that from me.</p>
+<p><strong>jack sr.</strong>: You understand the punters. Think about
+it, you can write during the day and sleep knowing the bills are
+paid.</p>
+<p><strong>jack sr.</strong>: For Christ’s sake, Jacko, don’t look a
+gift horse in the mouth. Have you written that name down? Reynolds, at
+the Golden Lion.</p>
+<p><strong>jack</strong>: All right, dad. Yes, I’ll call him.</p>
+<p><strong>jack</strong>: So how are you doing, dad?</p>
+<p><strong>jack sr.</strong>: Great. I’ve just started a new company.
+Solid financing. It’s good. I love you Jacko, you know that</p>
+<p><strong>jack</strong>: Yes, I know that.</p>
+<p><strong>jack sr.</strong>: Don’t let yourself down.</p>
+<p><strong>jack</strong>: I won’t. Goodbye, dad.</p>
+<p><strong>jack sr.</strong>: Sorry to keep you. What’ll you have?</p>
+<p><strong>jack’s voice</strong>: Jack knew something was wrong. He’d
+forgotten Giles’ advice. Giles said three words.</p>
+<p><strong>jack’s voice</strong>: JACK’S VOICE No. Jack knew it still
+wasn’t quite right…</p>
+<p><strong>drunk’s voice</strong>: I want to fuck the whole world
+over.</p>
+<p><strong>jack’s voice</strong>: Welcome back Jack… to the house of
+addiction.</p>
+<p><strong>reynolds</strong>: David Reynolds, I’m the Manager here. Sit
+down, John.</p>
+<p><strong>jack</strong>: Jack.</p>
+<p><strong>reynolds</strong>: You’ve been recommended by the management
+here. They know your father. He has a bit of a reputation, hasn’t
+he?</p>
+<p><strong>jack</strong>: Has he?</p>
+<p><strong>reynolds</strong>: In any case, I understand you’ve had some
+previous experience… in South Africa. You’ll find the rules a little
+different here. Before we start, you haven’t got a police record, have
+you?</p>
+<p><strong>jack</strong>: No.</p>
+<p><strong>reynolds</strong>: Where did you go to school?</p>
+<p><strong>jack</strong>: I was at Beadles.</p>
+<p><strong>reynolds</strong>: I don’t think I know that one. Private, I
+suppose.</p>
+<p><strong>reynolds</strong>: There are three types of casino in the
+U.K. High volume. Small faction. And MOTR. That’s middle of the road.
+Us.</p>
+<p><strong>jack</strong>: Do you have a Salon Prive?</p>
+<p><strong>reynolds</strong>: We tried. But there wasn’t enough
+business. The punters like company.</p>
+<p><strong>reynolds</strong>: Let’s see you handle the chips.</p>
+<p><strong>jack</strong>: I have to assume the serial numbers on the
+bowl and cylinder correspond.</p>
+<p><strong>reynolds</strong>: We check every four days.</p>
+<p><strong>jack</strong>: Why four? And not three or five?</p>
+<p><strong>reynolds</strong>: It’s the procedure here. Now sort the
+chips.</p>
+<p><strong>jack</strong>: Stacks of 20. Rows of 5.</p>
+<p><strong>reynolds</strong>: Any exceptions?</p>
+<p><strong>jack</strong>: 25 pounds or 25 pence in fours.</p>
+<p><strong>reynolds</strong>: Give me 365.</p>
+<p><strong>reynolds</strong>: Very good. Now take these colours…</p>
+<p><strong>reynolds</strong>: I want 780, but I want 500 in
+denominations of 25.</p>
+<p><strong>reynolds</strong>: Very good.</p>
+<p><strong>jack</strong>: You use two alternating, don’t you?</p>
+<p><strong>reynolds</strong>: We do.</p>
+<p><strong>jack</strong>: Where’s the magnet?</p>
+<p><strong>reynolds</strong>: They’ve been tested.</p>
+<p><strong>jack</strong>: No more bets.</p>
+<p><strong>reynolds</strong>: Could you stop that for a minute?</p>
+<p><strong>jack</strong>: I’m sorry, sir, I’ve called no more bets.</p>
+<p><strong>jack</strong>: 23 Red. Odd.</p>
+<p><strong>reynolds</strong>: Haven’t you forgotten something?</p>
+<p><strong>jack</strong>: I don’t think so.</p>
+<p><strong>reynolds</strong>: Wipe your hands.</p>
+<p><strong>reynolds</strong>: Not with your own cloth. Besides, your
+pockets will be stitched.</p>
+<p><strong>jack</strong>: What happens if I want to sneeze?</p>
+<p><strong>reynolds</strong>: You won’t. Not without permission.</p>
+<p><strong>reynolds</strong>: Fine. Now let’s move on.</p>
+<p><strong>reynolds</strong>: How many aces are left?</p>
+<p><strong>jack</strong>: Five.</p>
+<p><strong>reynolds</strong>: I make it six.</p>
+<p><strong>jack</strong>: Five.</p>
+<p><strong>reynolds</strong>: What makes you so sure?</p>
+<p><strong>jack</strong>: It’s a rule. Always stand by your first count.
+The odds are you’re right.</p>
+<p><strong>reynolds</strong>: Good call.</p>
+<p><strong>jack</strong>: You want me to check?</p>
+<p><strong>reynolds</strong>: I said good call.</p>
+<p><strong>jack’s voice</strong>: It had taken him 45 minutes, but Jack
+now had Mr Reynolds’s number. The man couldn’t count.</p>
+<p><strong>reynolds</strong>: Let me just run through a few things. As a
+dealer you never gamble, not anywhere. We’ll need your picture.</p>
+<p><strong>jack</strong>: What for?</p>
+<p><strong>reynolds</strong>: For the database. It can be accessed by
+every casino in the country. We have the same system for punters.</p>
+<p><strong>jack</strong>: I don’t gamble.</p>
+<p><strong>reynolds</strong>: Ever?</p>
+<p><strong>jack</strong>: I don’t gamble, Mr Reynolds.</p>
+<p><strong>reynolds</strong>: Next point. Friendships between croupiers
+inside or outside the casino are discouraged. Relationships with females
+working here are expressly forbidden.</p>
+<p><strong>jack</strong>: We had the same rule at Sun City, but it was
+impossible to check.</p>
+<p><strong>reynolds</strong>: This isn’t South Africa. We’d know,
+because someone would report it. Believe me, someone always does.</p>
+<p><strong>jack</strong>: Does know? Or does report? What would happen
+if I knew something like that and didn’t report it?</p>
+<p><strong>reynolds</strong>: We’d know. There are no secrets in this
+casino. You’d be punished.</p>
+<p><strong>jack</strong>: How?</p>
+<p><strong>reynolds</strong>: First offence: verbal warning. Second
+offence: written warning. That one’s filed and sometimes copied to the
+Gaming Board. My discretion. Third offence: you’re sacked on the spot.
+You’d never work in a casino in this country again. There’s another
+rule: you’re forbidden to talk to or recognise a punter outside the
+casino. If you see someone who’s gambled here, even if it’s just
+casually on the street, you must ignore him. Or her. You’re not married,
+are you?</p>
+<p><strong>reynolds</strong>: Girlfriend?</p>
+<p><strong>jack</strong>: Yes.</p>
+<p><strong>reynolds</strong>: She’s not in the gaming business is
+she?</p>
+<p><strong>jack</strong>: No.</p>
+<p><strong>reynolds</strong>: This is our Crow’s Nest. I’m showing it to
+you now, but you’ll never see it again.</p>
+<p><strong>jack</strong>: Very impressive.</p>
+<p><strong>reynolds</strong>: We have tapes in here that go back six
+months. Let me show you something.</p>
+<p><strong>reynolds</strong>: See that? That was six weeks ago. The
+dealer missed it. The guy up here missed it, but I watch these tapes
+after hours. Nothing gets by me. Now the lady’s in jail. It’s easier to
+take ten million pounds from a bank than take one penny from this
+casino.</p>
+<p><strong>reynolds</strong>: You can start Monday week.</p>
+<p><strong>jack</strong>: Fine.</p>
+<p><strong>reynolds</strong>: That hair will have to go.</p>
+<p><strong>jack</strong>: Fine.</p>
+<p><strong>reynolds</strong>: Are you planning to make a career in
+casino work?</p>
+<p><strong>jack’s voice</strong>: And end up like you?</p>
+<p><strong>jack</strong>: I just want the job.</p>
+<p><strong>reynolds</strong>: Jack, you’re not the usual type we get
+here.</p>
+<p><strong>jack’s voice</strong>: Mr Reynolds was right. It was true.
+Jack was up above the world. An artist, living in the clouds. Looking
+down.</p>
+<p><strong>reynolds</strong>: Excuse me…</p>
+<p><strong>reynolds</strong>: I can’t talk about this now… no, I’m with
+somebody. They can wait! I’ll be home at the usual time… all right, I’ll
+call you back in an hour… Don’t ever get married, Jack. Casino work
+doesn’t mix with house and garden. Any questions?</p>
+<p><strong>jack</strong>: Yes. What’s the salary?</p>
+<p><strong>jack’s voice</strong>: The casino paid its staff monthly in
+arrears. He would have to wait six weeks for his first cheque. He needed
+money now.</p>
+<p><strong>dealer</strong>: What kind of deal you looking to?</p>
+<p><strong>jack</strong>: What’s the Blue Book price?</p>
+<p><strong>dealer</strong>: That’s not relevant. An old car like this,
+it depends on the condition.</p>
+<p><strong>jack’s voice</strong>: The car was a gift from Jack’s father.
+That’s to say, Jack Senior had given it to him before the bailiffs
+arrived.</p>
+<p><strong>dealer</strong>: This ain’t exactly what you’d call mint.</p>
+<p><strong>jack</strong>: How about fifteen hundred?</p>
+<p><strong>dealer</strong>: How about five hundred.</p>
+<p><strong>jack</strong>: What?!</p>
+<p><strong>dealer</strong>: How about we split the diff…
+Seven-fifty.</p>
+<p><strong>jack</strong>: Is that your idea of arithmetic?</p>
+<p><strong>dealer</strong>: I’m not a mathematician. I’m in
+business.</p>
+<p><strong>jack</strong>: Eight-fifty.</p>
+<p><strong>dealer</strong>: Seven-fifty.</p>
+<p><strong>jack’s voice</strong>: He suddenly wanted to be rid of it.
+‘Hang on tightly, let go lightly’. It was a saying Jack remembered.</p>
+<p><strong>jack’s voice</strong>: Jack imagined people reading his book.
+One day he would enter their heads, play with their imaginations, test
+their feelings…</p>
+<p><strong>jack’s voice</strong>: He would tell them you have to make a
+choice in life. Be a gambler or a croupier. And then live with your
+decision come what may.</p>
+<p><strong>jack’s voice</strong>: Marion saw life differently. She was a
+romantic. And thought he was too.</p>
+<p><strong>marion</strong>: I couldn’t resist them.</p>
+<p><strong>jack</strong>: You mean I won’t resist them.</p>
+<p><strong>marion</strong>: No, no. I’m not ready for you. There’s some
+vodka in the freezer.</p>
+<p><strong>jack</strong>: You want me drunk?</p>
+<p><strong>marion</strong>: I won’t be that long.</p>
+<p><strong>jack</strong>: You really are a beautiful woman.</p>
+<p><strong>marion</strong>: It’s not just inner beauty, is it?</p>
+<p><strong>jack</strong>: Turn around.</p>
+<p><strong>jack</strong>: You’re all I desire.</p>
+<p><strong>marion</strong>: Where did you get it?</p>
+<p><strong>jack</strong>: I. sold the car.</p>
+<p><strong>marion</strong>: You shouldn’t have done that. I know what it
+meant to you.</p>
+<p><strong>jack</strong>: I owe you for the rent. It’s only a car. I can
+get another.</p>
+<p><strong>marion</strong>: Take it back. Till you sell your book.</p>
+<p><strong>jack</strong>: Come on, Marion. Let’s face the truth.
+Nobody’s going to publish it.</p>
+<p><strong>marion</strong>: Of course they will. You just have to be
+patient. I’m betting on you.</p>
+<p><strong>jack</strong>: I’m not much of a bet.</p>
+<p><strong>marion</strong>: You are to me.</p>
+<p><strong>marion</strong>: Come into my world.</p>
+<p><strong>marion</strong>: You’re my prisoner.</p>
+<p><strong>jack</strong>: I’ve got something to tell you.</p>
+<p><strong>marion</strong>: I want to hear it.</p>
+<p><strong>jack</strong>: I’ve got a job.</p>
+<p><strong>marion</strong>: What job?</p>
+<p><strong>jack</strong>: In a casino. As a croupier. A dealer.</p>
+<p><strong>marion</strong>: How did you land that?</p>
+<p><strong>jack</strong>: It came my way. 450 a week.</p>
+<p><strong>marion</strong>: 450? What did you do, just walked in and
+said I want to be a croupier? Don’t you need training?</p>
+<p><strong>jack</strong>: I had training. In the Republic.</p>
+<p><strong>marion</strong>: You were a croupier there? You never told me
+that. I thought you just knew some gamblers.</p>
+<p><strong>jack</strong>: I start Monday week.</p>
+<p><strong>marion</strong>: 450 a week. I’ve never earned that in my
+life. You’re an enigma, you are. A fucking enigma.</p>
+<p><strong>jack’s voice</strong>: Not an enigma, just a
+contradiction.</p>
+<p><strong>marion</strong>: You sold the car. You got a job. What’s the
+third thing? Tell me.</p>
+<p><strong>jack</strong>: There’s no third thing. Don’t be
+superstitious.</p>
+<p><strong>marion</strong>: I love you Jack, you know that.</p>
+<p><strong>jack’s voice</strong>: And he half-loved Marion. And she knew
+that too.</p>
+<p><strong>jack</strong>: Are you trying to read my palm?</p>
+<p><strong>marion</strong>: You’ve got such beautiful hands.</p>
+<p><strong>jack’s voice</strong>: The hands of a conjuror, a woman had
+told him once. Or a card sharp.</p>
+<p><strong>manicurist</strong>: What line of work are you in?</p>
+<p><strong>jack</strong>: I’m an undertaker.</p>
+<p><strong>manicurist</strong>: Really?</p>
+<p><strong>barber</strong>: Do you work round here?</p>
+<p><strong>jack</strong>: My office is in Shanghai.</p>
+<p><strong>barber</strong>: What do you do?</p>
+<p><strong>jack</strong>: I’m an arms dealer.</p>
+<p><strong>bella</strong>: I’m Bella.</p>
+<p><strong>jack</strong>: Jack Manfred.</p>
+<p><strong>bella</strong>: Hi, Jack. Welcome to the cesspit.</p>
+<p><strong>jack</strong>: Is it that bad?</p>
+<p><strong>bella</strong>: How do I look?</p>
+<p><strong>jack’s voice</strong>: Like trouble, Bella. You look
+fine.</p>
+<p><strong>bella</strong>: The punters love it. Tits in uniform.</p>
+<p><strong>jack’s voice</strong>: The usual bunch. They didn’t know
+Jack, but he knew them.</p>
+<p><strong>jack</strong>: Good evening, ladies and gentlemen.</p>
+<p><strong>indian</strong>: Where’s the other fellow? Where’s Geoff?</p>
+<p><strong>jack</strong>: He doesn’t work here any more.</p>
+<p><strong>indian</strong>: Well, let’s hope you know your job.</p>
+<p><strong>woman</strong>: Tens, please.</p>
+<p><strong>woman 2</strong>: Perhaps this man will bring us luck.</p>
+<p><strong>woman</strong>: What’s that aftershave you’re wearing?</p>
+<p><strong>jack’s voice</strong>: Never converse with the punters. It
+slows things down. Speed is volume, and volume is profit for the casino.
+Aim at twenty spins an hour.</p>
+<p><strong>jack</strong>: Last bets, please.</p>
+<p><strong>man</strong>: You’re new here. You’ll get used to Madame
+Claude. She comes in once or twice a week and does that.</p>
+<p><strong>jack’s voice</strong>: He knew the scam. Come in with five
+grand cash. No questions asked. Launder it by getting a casino cheque
+when you cash in. Jack wondered why Mr Reynolds permitted it? After all
+there’s was no profit in it for the casino. Or was there?</p>
+<p><strong>jack</strong>: Thank you very much, ladies and gentlemen. I’m
+going to hand you over now to my colleague. Goodnight.</p>
+<p><strong>matt</strong>: Good evening, ladies and gentlemen.</p>
+<p><strong>reynolds</strong>: Good work, Jack. You handled yourself
+well.</p>
+<p><strong>jack’s voice</strong>: Suddenly a delayed wave of elation
+came over him.</p>
+<p><strong>reynolds</strong>: Why don’t you take a break, Jack.</p>
+<p><strong>jack</strong>: All right, Mr Reynolds.</p>
+<p><strong>bella</strong>: Good evening, Mr Tchai.</p>
+<p><strong>mr tchai</strong>: Good evening.</p>
+<p><strong>reynolds</strong>: Enjoy yourself, Mr Tchai.</p>
+<p><strong>waitress</strong>: Your usual, sir?</p>
+<p><strong>waitress</strong>: Thank you, sir. Enjoy your game.</p>
+<p><strong>jack’s voice</strong>: �50 for a diet Coke. Waitresses were
+the true winners in the casino. They were the only members of staff
+allowed to accept tips. On a good night they could get between �200 and
+�300.</p>
+<p><strong>reynolds</strong>: Mr Tchai always likes to play at that
+table, and only with Bella.</p>
+<p><strong>jack</strong>: Does he win?</p>
+<p><strong>reynolds</strong>: He’s a good customer.</p>
+<p><strong>jack’s voice</strong>: A good customer is a consistent loser.
+Was that what Mr Reynolds meant?</p>
+<p><strong>matt</strong>: Where do you live, Jack?</p>
+<p><strong>jack</strong>: Over the river.</p>
+<p><strong>matt</strong>: Have you got transport?</p>
+<p><strong>matt</strong>: I’m going over the river. I’ll give you a lift
+if you like.</p>
+<p><strong>jack</strong>: Thanks.</p>
+<p><strong>matt</strong>: So how do you feel, your first night? I’ll bet
+you’re on a high.</p>
+<p><strong>jack</strong>: Nice car.</p>
+<p><strong>matt</strong>: She’s my baby.</p>
+<p><strong>jack</strong>: How long have you worked at the casino?</p>
+<p><strong>matt</strong>: Coming up to two years now. But I was away for
+six months.</p>
+<p><strong>jack</strong>: You’ve done pretty well.</p>
+<p><strong>matt</strong>: Not bad. I have other interests, of
+course.</p>
+<p><strong>matt</strong>: I’m off to a little watering hole. Why don’t
+you join me? Relax.</p>
+<p><strong>jack</strong>: No thanks, Matt. I need my eight hours.</p>
+<p><strong>matt</strong>: I’ll lay you five to one you won’t sleep. In
+this job you have to unwind. Otherwise it’ll kill you. I mean that.</p>
+<p><strong>jack</strong>: Some other time.</p>
+<p><strong>marion</strong>: What’s the time?</p>
+<p><strong>jack</strong>: I don’t know.</p>
+<p><strong>marion</strong>: How did it go?</p>
+<p><strong>jack</strong>: Fine.</p>
+<p><strong>marion</strong>: You’re shaking. What is it?</p>
+<p><strong>jack</strong>: Tension. It’ll go.</p>
+<p><strong>marion</strong>: Poor baby. This’ll relax you.</p>
+<p><strong>marion</strong>: I loved it blond.</p>
+<p><strong>jack</strong>: It’s only hair. I haven’t changed.</p>
+<p><strong>marion</strong>: When you get home, I’m asleep. When I leave
+home, you’re asleep.</p>
+<p><strong>jack</strong>: I’ll see you in my dreams.</p>
+<p><strong>jani</strong>: In 20s, please…</p>
+<p><strong>jack</strong>: Place your bets.</p>
+<p><strong>jani</strong>: 5…8…11.</p>
+<p><strong>jack’s voice</strong>: Jack could see this woman was an
+experienced gambler. Professionals always place their bets through the
+croupier. That way there are no comebacks.</p>
+<p><strong>jack</strong>: I’m sorry, sir, that’s a late bet.</p>
+<p><strong>man</strong>: What are you talking about? It’s 11, I’ve won.
+With this lady.</p>
+<p><strong>jack</strong>: You’ve won with the two chips you placed
+earlier, but the third chip was a late bet.</p>
+<p><strong>man</strong>: I put them on together.</p>
+<p><strong>jack</strong>: I’m afraid that’s not so, sir.</p>
+<p><strong>man</strong>: Now look here, you…</p>
+<p><strong>reynolds</strong>: Is there a problem, sir?</p>
+<p><strong>man</strong>: Yes. This croupier is accusing me of
+cheating.</p>
+<p><strong>jack</strong>: It was a late bet. This gentleman has been
+following the lady’s numbers and…</p>
+<p><strong>man</strong>: Do you think I cheated?</p>
+<p><strong>jani</strong>: In my opinion… it was a late bet.</p>
+<p><strong>reynolds</strong>: I think we should talk about this, sir.
+Away from the table.</p>
+<p><strong>man</strong>: No. I won. I want to be paid.</p>
+<p><strong>reynolds</strong>: Pay the gentleman. In full.</p>
+<p><strong>jack</strong>: I’m sorry, madam, we don’t accept gratuities
+in the UK. It’s different in South Africa.</p>
+<p><strong>jani</strong>: You know where I’m from?</p>
+<p><strong>jack</strong>: I’ve lived there.</p>
+<p><strong>jani</strong>: Well, thank you anyway.</p>
+<p><strong>jack’s voice</strong>: Bright woman, he thought. She knew the
+rule of gold. Quit when you’re ahead.</p>
+<p><strong>jack</strong>: Place your bets.</p>
+<p><strong>jack</strong>: Look Matt, there’s something I have to say to
+you. I saw you cheating.</p>
+<p><strong>matt</strong>: What the fuck are you talking about?</p>
+<p><strong>jack</strong>: That Greek guy who won at the end. You paid
+him out in 25s not 20s.</p>
+<p><strong>matt</strong>: I don’t cheat, Jack. You’ve got it wrong.</p>
+<p><strong>jack</strong>: I’m not going to report it.</p>
+<p><strong>matt</strong>: What are you, a cop?</p>
+<p><strong>jack</strong>: If I see you do it again, I’ll report it.</p>
+<p><strong>matt</strong>: I don’t get you. Even if it was true, which it
+isn’t, what the fuck difference would it make to you?</p>
+<p><strong>jack</strong>: Because if a supervisor knew I’d seen you and
+I hadn’t reported it, I’d lose my job as well. And I can’t afford
+that.</p>
+<p><strong>matt</strong>: So it’s Mr Clean. Wise up, Jack, this whole
+business is bent. The casino is nothing but legal theft. And that’s OK.
+It’s the system. Half the punters who come in are using stolen money,
+drug money, they haven’t earned it. We earn our money. I’m on your side,
+Jack. I don’t need an enemy.</p>
+<p><strong>jack</strong>: You’re talking about complicity.</p>
+<p><strong>matt</strong>: I don’t know what that means. I’m talking
+about not rocking the boat.</p>
+<p><strong>matt</strong>: OK, now let’s unwind.</p>
+<p><strong>jack’s voice</strong>: Matt was an escape artist. Like Jack’s
+father.</p>
+<p><strong>matt</strong>: Hey, Andros!</p>
+<p><strong>matt</strong>: This is Jack.</p>
+<p><strong>jack</strong>: Who are these guys?</p>
+<p><strong>matt</strong>: Mostly people in the casino business. A few
+drug dealers.</p>
+<p><strong>jack</strong>: And the girls?</p>
+<p><strong>matt</strong>: Just girls. What are you drinking?</p>
+<p><strong>jack</strong>: Vodka. Straight. On the rocks.</p>
+<p><strong>matt</strong>: Good call. Help yourself.</p>
+<p><strong>jack</strong>: Does Bella come here?</p>
+<p><strong>matt</strong>: That bitch? No.</p>
+<p><strong>matt</strong>: Hey Jack, join us.</p>
+<p><strong>jack</strong>: No thanks.</p>
+<p><strong>matt</strong>: Don’t worry, I won’t report you!</p>
+<p><strong>jack</strong>: I don’t gamble.</p>
+<p><strong>girl</strong>: You don’t gamble, but do you smoke?</p>
+<p><strong>jack</strong>: Sometimes.</p>
+<p><strong>girl</strong>: How about now?</p>
+<p><strong>jack’s voice</strong>: Marion. I’m on my way…</p>
+<p><strong>jack</strong>: I’m off. I need to sleep.</p>
+<p><strong>matt</strong>: Loosen up, Jack. If you don’t, this job’ll get
+to you. The pressure’s too much, believe me, it’ll break you.</p>
+<p><strong>jack</strong>: “The world breaks everyone, and afterwards
+many are strong in the broken places.” Ernest Hemingway.</p>
+<p><strong>matt</strong>: Wasn’t he the one who shot himself?</p>
+<p><strong>marion</strong>: Where’ve you been? I’ve got to give evidence
+in court at nine.</p>
+<p><strong>jack</strong>: Don’t play the cop with me, Marion.</p>
+<p><strong>marion</strong>: Take that back! Fucking take that back. I’m
+not a cop any more.</p>
+<p><strong>jack</strong>: I take it back. You’re not a cop any more.
+You’re a store detective.</p>
+<p><strong>marion</strong>: Are you drunk?</p>
+<p><strong>jack</strong>: Probably.</p>
+<p><strong>marion</strong>: This fucking job’s getting to you. You
+haven’t written a fucking word since you started.</p>
+<p><strong>jack</strong>: Do you have to swear all the time?</p>
+<p><strong>marion</strong>: Well, that’s my poor upbringing. I didn’t go
+to no private school. I haven’t got no class. I want to live with a
+writer. Not a fucking croupier. I don’t even know what the word means.
+Croupier.</p>
+<p><strong>jack</strong>: Marion, stop this.</p>
+<p><strong>marion</strong>: What do I mean to you? I want to know. Tell
+me.</p>
+<p><strong>jack</strong>: You’re my conscience.</p>
+<p><strong>marion</strong>: Haven’t you got a conscience of your
+own?</p>
+<p><strong>marion</strong>: What are you doing here? You know the
+rules.</p>
+<p><strong>jack</strong>: What about a drink on the way home?</p>
+<p><strong>marion</strong>: I don’t finish till eight. Make it nine and
+you’re on.</p>
+<p><strong>jack</strong>: I’m on at nine.</p>
+<p><strong>marion</strong>: Well, that’s our life now, isn’t it?</p>
+<p><strong>jani</strong>: Thinking of going back?</p>
+<p><strong>jack</strong>: Oh hello.</p>
+<p><strong>jani</strong>: You know what? I’d like to buy you a
+drink.</p>
+<p><strong>jack</strong>: It’s against the rules. Dealers are forbidden
+to talk to punters.</p>
+<p><strong>jani</strong>: That’s stupid. What are the odds of you being
+seen with me?</p>
+<p><strong>jack</strong>: Impossible to calculate.</p>
+<p><strong>jack’s voice</strong>: Jack knew that, in reality, all odds
+are calculable.</p>
+<p><strong>jani</strong>: To coincidence.</p>
+<p><strong>jack</strong>: There’s a casino in this hotel.</p>
+<p><strong>jani</strong>: I’m not much of a gambler really. I just like
+this bar.</p>
+<p><strong>jack</strong>: So why did you come to my casino?</p>
+<p><strong>jani</strong>: I was at a loose end. A friend of a friend
+gave me a courtesy membership.</p>
+<p><strong>jack</strong>: First visit to London?</p>
+<p><strong>jani</strong>: No, no. I come every couple of years. I always
+think I’m going to stay. I’m from Cape Town originally</p>
+<p><strong>jack</strong>: I was born in the Transkei, on the Wild
+Coast.</p>
+<p><strong>jani</strong>: Near the casino.</p>
+<p><strong>jack</strong>: In the casino.</p>
+<p><strong>jani</strong>: Now there’s a coincidence. My father used to
+gamble there.</p>
+<p><strong>jack</strong>: Your father?</p>
+<p><strong>jani</strong>: I loved the atmosphere. But it destroyed my
+poor mother.</p>
+<p><strong>jack</strong>: The debts.</p>
+<p><strong>jani</strong>: And the lies. Gamblers are born liars.</p>
+<p><strong>jack</strong>: And superstitious too. It’s like
+witchcraft.</p>
+<p><strong>jani</strong>: That’s Africa. There’s an African in all of
+us, isn’t there?</p>
+<p><strong>jack</strong>: We all came from Africa, supposedly.</p>
+<p><strong>jani</strong>: Do you believe in astrology?</p>
+<p><strong>jack</strong>: Absolutely not. But then, I’m a Gemini and
+Geminis don’t believe in astrology.</p>
+<p><strong>jani</strong>: You know, you don’t strike me as a typical
+croupier.</p>
+<p><strong>jani</strong>: I’m not married. I wear it to keep the flies
+off. I must go. Let me pay for this.</p>
+<p><strong>jack</strong>: Absolutely not.</p>
+<p><strong>jani</strong>: Toss you for it.</p>
+<p><strong>jack</strong>: I don’t gamble.</p>
+<p><strong>jani</strong>: I know this is verboten, but if you feel like
+a chat or maybe dinner, give me a call.</p>
+<p><strong>jani</strong>: I’ll understand if you don’t. But I hope you
+do.</p>
+<p><strong>jack’s voice</strong>: He didn’t know why, but he’d started
+to dress for the casino at home…</p>
+<p><strong>jack’s voice</strong>: … like a musician in his tuxedo, going
+to the concert hall on public transport…</p>
+<p><strong>woman</strong>: Animal!</p>
+<p><strong>jack</strong>: Would you mind being more careful, sir.</p>
+<p><strong>man</strong>: I’ve got ’flu.</p>
+<p><strong>woman</strong>: Then go back home. To the zoo!</p>
+<p><strong>jack</strong>: This gentleman accidentally coughed onto these
+chips. I don’t think it would be hygienic to stack them…</p>
+<p><strong>supervisor</strong>: Agnes. These chips have to be counted
+and put into the steamer.</p>
+<p><strong>agnes</strong>: Yuck.</p>
+<p><strong>matt</strong>: I can’t give you a lift back tonight.</p>
+<p><strong>jack</strong>: Don’t worry.</p>
+<p><strong>bella</strong>: Jack. Do you need a ride?</p>
+<p><strong>jack</strong>: No. Thanks.</p>
+<p><strong>bella</strong>: My car’s in the garage.</p>
+<p><strong>jack</strong>: Maybe another time.</p>
+<p><strong>bella</strong>: I’ll take you up on that.</p>
+<p><strong>jack</strong>: Goodnight.</p>
+<p><strong>man</strong>: You don’t recognise me? You had me barred. You
+fucking little worm.</p>
+<p><strong>jack</strong>: Wait a minute. You got yourself barred.</p>
+<p><strong>man</strong>: It was you, you shit.</p>
+<p><strong>jack</strong>: Now I’m going to kill you.</p>
+<p><strong>bella</strong>: Jack!</p>
+<p><strong>bella</strong>: Jack. Leave him! Come on!</p>
+<p><strong>bella</strong>: Let’s go. We don’t want the cops here.</p>
+<p><strong>jack</strong>: He won’t cheat again.</p>
+<p><strong>bella</strong>: You’re shaking.</p>
+<p><strong>jack</strong>: It’s the tension.</p>
+<p><strong>bella</strong>: Excuse the mess.</p>
+<p><strong>bella</strong>: Careful.</p>
+<p><strong>bella</strong>: Don’t tear anything.</p>
+<p><strong>bella</strong>: It’s funny, isn’t it? If that guy hadn’t come
+up to you, you wouldn’t be here now.</p>
+<p><strong>jack</strong>: I hate cheats.</p>
+<p><strong>bella</strong>: All men are cheats.</p>
+<p><strong>bella</strong>: I spent two years on the game. I don’t mind
+telling you that.</p>
+<p><strong>bella</strong>: But don’t worry, I’m clean as a whistle. I
+only did S &amp; M. No blow jobs. No screwing.</p>
+<p><strong>jack</strong>: Why did you quit?</p>
+<p><strong>bella</strong>: I got scared.</p>
+<p><strong>jack</strong>: I can imagine.</p>
+<p><strong>bella</strong>: Can you? I’m happy being a dealer. At least
+the punters keep their hands to themselves.</p>
+<p><strong>jack</strong>: You called the casino a cesspit.</p>
+<p><strong>bella</strong>: Well it is. But I know where I am.</p>
+<p><strong>bella</strong>: I’ve been watching you work. You’re the best
+in the place. But you know that.</p>
+<p><strong>jack</strong>: I despise the job.</p>
+<p><strong>bella</strong>: Ah, we all say that. But if we hate it, why
+do we do it?</p>
+<p><strong>jack’s voice</strong>: Jack wanted to say we do it for the
+money. But that wasn’t really true.</p>
+<p><strong>bella</strong>: What do you really want to do?</p>
+<p><strong>jack</strong>: The Indian rope-trick.</p>
+<p><strong>bella</strong>: Look, now I’m pumping you. I’m sorry. It’s
+none of my business. It’s just that you’re not like the others.</p>
+<p><strong>jack</strong>: Not like Matt, you mean.</p>
+<p><strong>bella</strong>: Now he’s a real shit. Don’t get friendly with
+him. I’m sure he’s got his hand in the till. You know what he said to me
+once? “I want to fuck the whole world over. That’s my mission.” The
+shit!</p>
+<p><strong>jack</strong>: Ouch.</p>
+<p><strong>bella</strong>: Sorry.</p>
+<p><strong>jack’s voice</strong>: Jack could hear Matt saying it…</p>
+<p><strong>jack’s voice</strong>: “I want to fuck the whole world over.
+It’s my mission.”</p>
+<p><strong>jack’s voice</strong>: At last he had found what he’d been
+looking for. A clear and simple theme. And a hero to act it out. Little
+Matt… …Chapter One.</p>
+<p><strong>matt</strong>: I look like shit.</p>
+<p><strong>jack</strong>: Rough day?</p>
+<p><strong>matt</strong>: Rough life, Jack.</p>
+<p><strong>pat</strong>: Hi. I’m Pat.</p>
+<p><strong>jack</strong>: What happened to Bella?</p>
+<p><strong>matt</strong>: I’ll tell you later.</p>
+<p><strong>mr tchai</strong>: What happened to Bella?</p>
+<p><strong>jack</strong>: She was re-assigned.</p>
+<p><strong>jack</strong>: Good evening.</p>
+<p><strong>jack’s voice</strong>: Jack knew this was no coincidence. Why
+had she come?</p>
+<p><strong>jani</strong>: One thousand even. In fifties.</p>
+<p><strong>jack’s voice</strong>: He wondered if she believed he would
+bring her luck…</p>
+<p><strong>jani</strong>: In fifties.</p>
+<p><strong>jack’s voice</strong>: Or did she think he would help her
+win?</p>
+<p><strong>jack’s voice</strong>: He knew how to fix it for her. His
+father had taught him the trick. Switch the sequence. Bust the bank. The
+casino wouldn’t spot it. But Jack was wary of the punters…</p>
+<p><strong>jack’s voice</strong>: He could see Mr Tchai was counting. He
+couldn’t risk it.</p>
+<p><strong>jack’s voice</strong>: He noticed she wasn’t wearing her
+ring. Why not? Odds on she’d sold it.</p>
+<p><strong>jani</strong>: Good night. Thank you.</p>
+<p><strong>jack</strong>: Good night.</p>
+<p><strong>jack’s voice</strong>: Thank you, she said. For what, Jack
+thought. Jani de Villiers knew the odds.</p>
+<p><strong>mr tchai</strong>: Pretty woman.</p>
+<p><strong>jack</strong>: Hello…</p>
+<p><strong>jack sr</strong>: How’s it going, Jacko?</p>
+<p><strong>jack</strong>: Fine. I took the job.</p>
+<p><strong>jacksr</strong>: Good for you. I was wondering what
+happened.</p>
+<p><strong>jack</strong>: I tried to call you, dad, but they said your
+line was disconnected.</p>
+<p><strong>jack sr</strong>: Ah yes, I moved house. Needed a bigger
+place. How’s that book of yours coming along?</p>
+<p><strong>jack</strong>: I’m getting there.</p>
+<p><strong>jack sr</strong>: It’s good to have the job to fall back on,
+isn’t it? There goes my other phone.</p>
+<p><strong>jack</strong>: Goodbye dad.</p>
+<p><strong>marion</strong>: I don’t like it.</p>
+<p><strong>jack</strong>: Why not?</p>
+<p><strong>marion</strong>: I don’t like it at all. You had a wonderful
+character before, the Gambler. He was so romantic.</p>
+<p><strong>jack</strong>: He was a loser. This guy’s a croupier. He
+can’t lose. People have shat on him all his life. Now he’s in control.
+He’s a winner.</p>
+<p><strong>marion</strong>: Is that your idea of a winner? He doesn’t
+give a shit about anyone. He uses people and –</p>
+<p><strong>jack</strong>: – It’s because of the sex, isn’t it? You don’t
+like the sex in it.</p>
+<p><strong>marion</strong>: I don’t give a fuck about the sex. Most
+men’ll fuck a lamppost. He’s just a miserable zombie. Is that the way
+you feel now? Is that what’s happened to you?</p>
+<p><strong>jack</strong>: Marion. It’s a book.</p>
+<p><strong>marion</strong>: Oh really. Then why is he called Jake. Why
+don’t you come clean and call him Jack. There’s no hope in it.</p>
+<p><strong>jack</strong>: It’s the truth.</p>
+<p><strong>marion</strong>: Without hope there’s no point to
+anything.</p>
+<p><strong>jack</strong>: Now wait a minute. What’s so hopeful about
+your job? Spending the day catching poor people stealing. You said
+yourself the organised gangs get away with it. At least in the casino
+everybody gets caught. Rich or poor, the odds are the same. It’s all
+relative.</p>
+<p><strong>marion</strong>: Crap. It’s not relative. It’s unfair. Like
+your casino. It’s designed unfair. And your croupier’s a little shit
+because he goes along with it.</p>
+<p><strong>jack</strong>: You’re just like all those other dummies out
+there. Fourteen and a half million to one! Is that your idea of
+hope?</p>
+<p><strong>marion</strong>: The door, Jack.</p>
+<p><strong>jack</strong>: Leave it.</p>
+<p><strong>marion</strong>: No. Answer it!</p>
+<p><strong>bella</strong>: You fucking little shit! You shopped me.</p>
+<p><strong>jack</strong>: What are you talking about?</p>
+<p><strong>bella</strong>: Reynolds got a doctor in. They forced me to
+take a dope test. It was positive. As you knew.</p>
+<p><strong>jack</strong>: I don’t know anything about it.</p>
+<p><strong>bella</strong>: Your boyfriend fucked me, smoked my dope,
+then shopped me. What do you think of that? I can’t get a job now. You
+bastard. You’re no different from Matt. A pair of vicious little shits,
+that’s what you are.</p>
+<p><strong>jack</strong>: Look Bella, I don’t know anything about this.
+You should talk to Matt.</p>
+<p><strong>bella</strong>: You’re all scumbags.</p>
+<p><strong>marion</strong>: I agree.</p>
+<p><strong>jack</strong>: Bella!</p>
+<p><strong>marion</strong>: Go on. Go after her!</p>
+<p><strong>jack’s voice</strong>: Jack had no idea where Marion was
+staying, or with whom. He realised he knew little about her life. But
+then, he had never asked about it.</p>
+<p><strong>jack’s voice</strong>: For the first time in a long while
+Jack thought about his mother. She’d left when she couldn’t take it any
+more. His father had said ‘Don’t worry, Jacko, she’ll come back.’ She
+didn’t.</p>
+<p><strong>jack’s voice</strong>: But Marion wasn’t his mother…</p>
+<p><strong>jack</strong>: He’s paying out in stacks of 25.</p>
+<p><strong>reynolds</strong>: I can see.</p>
+<p><strong>reynolds</strong>: Little shit.</p>
+<p><strong>jack’s voice</strong>: Chapter Three. His existence was
+forming an interesting pattern of betrayals. Sometimes he was unsure
+whether he was the betrayer or the betrayed.</p>
+<p><strong>reynolds</strong>: Thanks for the information.</p>
+<p><strong>jack</strong>: A pleasure. Pity about Bella.</p>
+<p><strong>reynolds</strong>: She was a real asset. But what could I
+do?</p>
+<p><strong>reynolds</strong>: Sorry. No smoking in the Nest, Jack.</p>
+<p><strong>giles</strong>: Jack!</p>
+<p><strong>giles</strong>: I thought it was you. It’s the hair!</p>
+<p><strong>jack</strong>: I’m working on that soccer story.</p>
+<p><strong>giles</strong>: Right. Look, I must get back to Habib.</p>
+<p><strong>jack</strong>: Habib?</p>
+<p><strong>giles</strong>: My author. He’s a Terrorist. He’s written a
+kill-and-tell book. Take care.</p>
+<p><strong>giles</strong>: Jack, look, next weekend I’m having a house
+party. Here… It’s near Oxford. Why don’t you come? It’ll just be social.
+No business. Bring a friend. I’ve plenty of room.</p>
+<p><strong>jack</strong>: I’ll try and make it.</p>
+<p><strong>giles</strong>: Looking forward!</p>
+<p><strong>jack’s voice</strong>: Books piled like chips. Stack ’em
+high. Sell ’em fast. Make a killing. You think you’re a gambler, Giles,
+but you’re not. You’re a dealer.</p>
+<p><strong>jack’s voice</strong>: Chapter Four…</p>
+<p><strong>jack</strong>: I don’t know how you can drive at night with
+those glasses.</p>
+<p><strong>jack</strong>: How did you hurt your hand?</p>
+<p><strong>jani</strong>: Just an accident. Nothing.</p>
+<p><strong>jack</strong>: Turn left ahead.</p>
+<p><strong>jack</strong>: Jani, there’s something I want to say. Before
+we get there. I don’t know what the sleeping arrangements are. Giles
+probably expects us to share a room.</p>
+<p><strong>jani</strong>: That’s fine.</p>
+<p><strong>jani</strong>: There’s no point pretending it was an
+accident. I had a fight with someone, that’s all.</p>
+<p><strong>giles</strong>: She’s a dab hand With a racquet, your
+friend.</p>
+<p><strong>jack</strong>: South African women are very sporty.</p>
+<p><strong>giles</strong>: I can see. How did she get that shiner?</p>
+<p><strong>jack</strong>: I found her in bed with someone.</p>
+<p><strong>giles</strong>: Who was he?</p>
+<p><strong>jack</strong>: She.</p>
+<p><strong>giees</strong>: I say. You’re a dark horse, Jack.</p>
+<p><strong>gordon</strong>: You don’t play tennis?</p>
+<p><strong>jack</strong>: I don’t play anything.</p>
+<p><strong>gordon</strong>: How boring for you.</p>
+<p><strong>fiona</strong>: Where’s our drinks?</p>
+<p><strong>chloe</strong>: They’re so bloody selfish.</p>
+<p><strong>jani</strong>: I’m so glad you brought me.</p>
+<p><strong>jack’s voice</strong>: Jack wouldn’t have come without
+her.</p>
+<p><strong>jack</strong>: I don’t gamble.</p>
+<p><strong>giles</strong>: Don’t be a spoilsport. It’s only a few
+quid.</p>
+<p><strong>jack</strong>: It’s nothing to do with money. I don’t
+gamble.</p>
+<p><strong>jani</strong>: He doesn’t gamble.</p>
+<p><strong>jack</strong>: I’ll watch.</p>
+<p><strong>gordon</strong>: Jack likes to watch. Does he like to
+watch?</p>
+<p><strong>jani</strong>: One more remark like that and I’ll break your
+balls.</p>
+<p><strong>giles</strong>: I’ll bet she could, too.</p>
+<p><strong>jack</strong>: I’ll deal, but I won’t play.</p>
+<p><strong>gordon</strong>: You sure you know how?</p>
+<p><strong>fiona</strong>: Do that again.</p>
+<p><strong>chloe</strong>: That’s sexy.</p>
+<p><strong>fiona</strong>: Don’t they look pretty.</p>
+<p><strong>giles</strong>: There’s nothing pretty about this hand.</p>
+<p><strong>chloe</strong>: You’re not supposed to talk, Giles.</p>
+<p><strong>fiona</strong>: He’s probably lying. He does that.</p>
+<p><strong>jack</strong>: Last hand.</p>
+<p><strong>giles</strong>: Hey. I’ve got an idea. Why don’t we…</p>
+<p><strong>fiona</strong>: No! No stripping.</p>
+<p><strong>chloe</strong>: Right. We’re not having that again!
+Although…</p>
+<p><strong>gordon</strong>: I’ll stick to bluffing. That’s what I’m best
+at.</p>
+<p><strong>gordon</strong>: I’ll stick.</p>
+<p><strong>fiona</strong>: Two cards.</p>
+<p><strong>giles</strong>: One card.</p>
+<p><strong>chloe</strong>: Oh I don’t know…Er…two cards.</p>
+<p><strong>jani</strong>: Three cards.</p>
+<p><strong>fiona</strong>: That’s it. I haven’t got any more cash.</p>
+<p><strong>gordon</strong>: Beat that.</p>
+<p><strong>chloe</strong>: Ha. Ha. Ha.</p>
+<p><strong>gordon</strong>: Shit.</p>
+<p><strong>fiona</strong>: Not so fast, darling.</p>
+<p><strong>gordon</strong>: Hang on, chaps. That’s impossible!</p>
+<p><strong>giles</strong>: How’s about that for impossible.</p>
+<p><strong>gordon</strong>: What’s going on?</p>
+<p><strong>chloe</strong>: Wow. What are the odds for this
+happening?</p>
+<p><strong>fiona</strong>: Thousands to one.</p>
+<p><strong>jack</strong>: 42,300,000 to 1.</p>
+<p><strong>jani</strong>: Approximately.</p>
+<p><strong>gordon</strong>: I could’ve won if I’d been able to
+bluff.</p>
+<p><strong>giles</strong>: I get it.</p>
+<p><strong>jack</strong>: Get what? Are you accusing me of cheating?</p>
+<p><strong>giles</strong>: Good God, no. But with skill like that, what
+do you want a job for? You don’t need to work.</p>
+<p><strong>jack’s voice</strong>: Here was an interesting question. Was
+writing work… or play?</p>
+<p><strong>jani</strong>: What happened?</p>
+<p><strong>jack</strong>: Remember the guy who cheated at the table?</p>
+<p><strong>jani</strong>: You don’t like cheats, do you.</p>
+<p><strong>jani</strong>: Which side do you like?</p>
+<p><strong>jack</strong>: You choose.</p>
+<p><strong>jani</strong>: That trick tonight, I don’t think I’ve ever
+seen that before.</p>
+<p><strong>jack</strong>: It can only work with amateurs, A pro would
+have spotted it.</p>
+<p><strong>jani</strong>: I didn’t.</p>
+<p><strong>jack</strong>: Then you’re not a pro.</p>
+<p><strong>jani</strong>: Goodnight.</p>
+<p><strong>jani’s voice</strong>: Jack…? I need your help…</p>
+<p><strong>jani</strong>: I’m in trouble.</p>
+<p><strong>jack</strong>: What kind of trouble?</p>
+<p><strong>jani</strong>: I owe a lot of money.</p>
+<p><strong>jack</strong>: Was that why you did the two grand? I couldn’t
+help you.</p>
+<p><strong>jani</strong>: I know that. But you can now.</p>
+<p><strong>jack</strong>: I don’t have any money. switches on the light.
+JANI is looking distressed.</p>
+<p><strong>jani</strong>: Some people I know, they’re planning to rob
+The Golden Lion.</p>
+<p><strong>jack</strong>: You don’t mean that.</p>
+<p><strong>jani</strong>: They mean it.</p>
+<p><strong>jack</strong>: Who’s they?</p>
+<p><strong>jani</strong>: My creditors. One night, around three in the
+morning, they’ll come into the casino -</p>
+<p><strong>jack</strong>: Forget it, Jani. It’ll never work.</p>
+<p><strong>jani</strong>: The point is, they want a man inside.</p>
+<p><strong>jack</strong>: And I thought you were a bright woman.</p>
+<p><strong>jani</strong>: Just listen. You don’t have to do anything
+criminal.</p>
+<p><strong>jack</strong>: Robbery’s not criminal?</p>
+<p><strong>jani</strong>: You don’t have to be criminal. A man will come
+up to your table and deliberately cheat. You’ll see him, stop him, and
+the guy will make a big scene. There’ll be chaos. And that’s when it’ll
+happen.</p>
+<p><strong>jack</strong>: You’re serious.</p>
+<p><strong>jani</strong>: You won’t be committing a crime. The man will
+cheat, you’ll just be doing your job, that’s all.</p>
+<p><strong>jack</strong>: And I thought you were only after my body.</p>
+<p><strong>jani</strong>: I’ve come to know you. You’re honest. I trust
+you.</p>
+<p><strong>jack</strong>: What’ll you do when it all goes wrong?</p>
+<p><strong>jani</strong>: It won’t.</p>
+<p><strong>jack</strong>: But if it does.</p>
+<p><strong>jani</strong>: You keep the ten thousand pounds.</p>
+<p><strong>jack</strong>: What ten thousand pounds?</p>
+<p><strong>jani</strong>: These people will pay you ten thousand before
+and ten thousand after. They want someone they can be sure of, an honest
+dealer. That’s the point. Not all dealers are honest. Mr Reynolds will
+never suspect you.</p>
+<p><strong>jack</strong>: Reynolds? You’ve done your research.</p>
+<p><strong>jani</strong>: I didn’t know what else to do. You’re my last
+chance.</p>
+<p><strong>jani</strong>: Next time it’ll be my neck.</p>
+<p><strong>jack</strong>: What about my neck?</p>
+<p><strong>jani</strong>: I want to go back to Cape Town, I want to
+start again, clean.</p>
+<p><strong>jack</strong>: I can’t do it, Jani.</p>
+<p><strong>jani</strong>: I’m asking you, as a…friend. You’d be saving
+the life of a friend.</p>
+<p><strong>jack’s voice</strong>: Jack wondered why he was even
+considering it. Ten grand. In cash. That was why. But Jack didn’t need
+the money. His father would have taken it, like a shot. But his father
+was a gambler.</p>
+<p><strong>jack’s voice</strong>: He was always broke. Jake suddenly
+realised… it was Jake who was considering it.</p>
+<p><strong>jani</strong>: I want you to forget what I said.</p>
+<p><strong>jack</strong>: Wait a minute…</p>
+<p><strong>jani</strong>: No, forget it. The bet’s off.</p>
+<p><strong>jack</strong>: What about your father? Can he help?</p>
+<p><strong>jack</strong>: Why don’t you just go back to South
+Africa?</p>
+<p><strong>jack</strong>: How much do you owe?</p>
+<p><strong>jani</strong>: Let it go.</p>
+<p><strong>jack</strong>: Did they tell you to sleep with me?</p>
+<p><strong>jani</strong>: I told you, all bets are off.</p>
+<p><strong>jani</strong>: I’m sorry.</p>
+<p><strong>jack</strong>: What for?</p>
+<p><strong>jani</strong>: I have to take the car.</p>
+<p><strong>jack’s voice</strong>: Hang on tightly… let go lightly.</p>
+<p><strong>giles</strong>: Good night?</p>
+<p><strong>jack</strong>: Not particularly.</p>
+<p><strong>giles</strong>: And your lady?</p>
+<p><strong>jack</strong>: She had to leave early. She asked me to thank
+you.</p>
+<p><strong>giles</strong>: A bit unexpected, wasn’t it?</p>
+<p><strong>jack</strong>: Not entirely.</p>
+<p><strong>giles</strong>: How’s that football story corning along?</p>
+<p><strong>jack</strong>: You said it was going to be social, Giles. No
+business.</p>
+<p><strong>jack’s voice</strong>: He was overcome with a sense of
+urgency. He had to get it down… Chapter Five.</p>
+<p><strong>close-up</strong>: The charm is a book, no title
+engraved.</p>
+<p><strong>jack</strong>: It’s beautiful. Thank you.</p>
+<p><strong>marion</strong>: I hope it brings you luck.</p>
+<p><strong>jack</strong>: It will.</p>
+<p><strong>jack</strong>: That girl, she works at the casino –</p>
+<p><strong>marion</strong>: – I don’t care about her. Of course, I was
+angry. But not with you. The book is yours not mine. I was wrong, what I
+said about it. I hurt you, didn’t I?</p>
+<p><strong>jack</strong>: You’re entitled to your opinion.</p>
+<p><strong>marion</strong>: It’s none of my business what you write. And
+your job, that’s none of my business either. I love you. And I’ve done
+everything wrong.</p>
+<p><strong>jack</strong>: I’ll leave the casino soon. I promise.</p>
+<p><strong>marion</strong>: You will?</p>
+<p><strong>jack</strong>: Within a month. Believe me, I’m going to
+quit!</p>
+<p><strong>marion</strong>: Then you can dye your hair blond again.</p>
+<p><strong>jack</strong>: What?</p>
+<p><strong>marion</strong>: You were talking in your sleep.</p>
+<p><strong>jack</strong>: Not talking. Writing.</p>
+<p><strong>jani’s voice</strong>: I need to see you. I’ve moved. I have
+a new number. It’s 468-3275. Please call me.</p>
+<p><strong>jack</strong>: I want to speak to Jani de Villiers… Jani…
+it’s Jack… I’ll come over now…</p>
+<p><strong>jack’s voice</strong>: Chapter Seven… Jack had decided to see
+her. The challenge was essential.</p>
+<p><strong>jani</strong>: Come in.</p>
+<p><strong>jani</strong>: It’s not the Ritz this time.</p>
+<p><strong>jani</strong>: Is it yes?</p>
+<p><strong>jack</strong>: Yes.</p>
+<p><strong>jani</strong>: Thank you.</p>
+<p><strong>jack</strong>: It doesn’t seem fair. You’re offering me ten
+grand in cash but you can’t afford a decent place.</p>
+<p><strong>jani</strong>: Well, life’s not fair. We know that.</p>
+<p><strong>jack</strong>: It’s all relative. I need the money too.</p>
+<p><strong>jani</strong>: Do you?</p>
+<p><strong>jack</strong>: Yes.</p>
+<p><strong>jani</strong>: The date’s not set yet. I’ll call you. One
+last thing: the man you’re going to catch cheating, he may get violent.
+But you know how to deal with cheats.</p>
+<p><strong>jack</strong>: That bruise has cleared up nicely.</p>
+<p><strong>jani</strong>: Bruise? Oh, yes. It’s better.</p>
+<p><strong>jack</strong>: I’ve still got mine.</p>
+<p><strong>jack</strong>: And your hand too.</p>
+<p><strong>jani</strong>: I took the bandage off yesterday.</p>
+<p><strong>jani</strong>: Would you like a drink?</p>
+<p><strong>jack</strong>: No thank you.</p>
+<p><strong>jack</strong>: I don’t think we should meet again.</p>
+<p><strong>jani</strong>: It’s a shame there aren’t more men in the
+world like you.</p>
+<p><strong>jack’s voice</strong>: There was a part of Jani he really
+liked.</p>
+<p><strong>jack’s voice</strong>: Question: Was he gambling, taking
+Jani’s money? Answer: No. Because he wasn’t betting with his own money.
+He was being paid in advance for a service…</p>
+<p><strong>jack’s voice</strong>: In reality there were two clear
+elements of risk in this exchange. One: the possibility the cash was
+counterfeit. Two: the possibility Jani or her creditors would want the
+money back if the plan failed.</p>
+<p><strong>jack’s voice</strong>: To begin with he put the odds at 2
+against. 7 for. He checked a random selection of bills at a bank. They
+were all good.</p>
+<p><strong>jack’s voice</strong>: So now his odds were decidedly better.
+He put them at 8 to 1. The fact that the notes were good gave him one
+less negative. 2 minus 1. At the same time mathematically he had one
+more positive. 7 plus 1.</p>
+<p><strong>woman</strong>: Bring me some luck.</p>
+<p><strong>jack</strong>: No more bets.</p>
+<p><strong>jack’s voice</strong>: Next stage. He had to be secure at 8
+to 1 against having to give the money back, so he wouldn’t spend it. If
+after one month no one had approached him, he calculated the odds of
+keeping it at 20 to 1. After three months he figured 100 to 1 no one
+would turn up.</p>
+<p><strong>young man</strong>: How about a drink to celebrate?</p>
+<p><strong>man</strong>: Cash me in.</p>
+<p><strong>jack’s voice</strong>: Jake’s experiment with the man would
+prove the point.</p>
+<p><strong>jack’s voice</strong>: People don’t change.</p>
+<p><strong>jack’s voice</strong>: He watched their faces as they lost
+hour after hour, night after night, relentlessly.</p>
+<p><strong>jack’s voice</strong>: He questioned the conventional wisdom
+that gamblers are self- destructive…</p>
+<p><strong>jack’s voice</strong>: He had come to believe that in
+reality, they want to destroy everyone else - their families and loved
+ones, everyone. Fuck over the whole world…</p>
+<p><strong>jack’s voice</strong>: Without emotion he watched them go.
+Jake stayed.</p>
+<p><strong>jani’s voice</strong>: It’s set. The day after tomorrow. The
+twenty-fourth. Good luck.</p>
+<p><strong>marion</strong>: Aren’t you ever tempted to gamble?</p>
+<p><strong>jack</strong>: Never. Why do you ask?</p>
+<p><strong>marion</strong>: I can just imagine, being around so much
+money all the time…</p>
+<p><strong>jack</strong>: Gambling’s not about money.</p>
+<p><strong>marion</strong>: Really?</p>
+<p><strong>jack</strong>: Gambling’s about not facing reality. Ignoring
+the odds.</p>
+<p><strong>marion</strong>: I must be a fool. I never think about the
+odds.</p>
+<p><strong>jack’s voice</strong>: Chapter Twelve…</p>
+<p><strong>suit</strong>: Fifties. Ten of them.</p>
+<p><strong>jack</strong>: What colour chips?</p>
+<p><strong>suit</strong>: Whatever.</p>
+<p><strong>jack</strong>: Sir, I can’t accept that bet.</p>
+<p><strong>suit</strong>: Are you calling me a cheat?</p>
+<p><strong>punter</strong>: You are a cheat. I saw you.</p>
+<p><strong>suit</strong>: I’m talking to you.</p>
+<p><strong>reynolds</strong>: Ladies and gentlemen, please be calm.
+There’s no cause for alarm. Enjoy yourselves. It’s Christmas.</p>
+<p><strong>nurse</strong>: There you go.</p>
+<p><strong>jack</strong>: How did you know I was here?</p>
+<p><strong>marion</strong>: I thought you wouldn’t want to spend
+Christmas Day alone in here.</p>
+<p><strong>jack</strong>: Did you go to the casino?</p>
+<p><strong>marion</strong>: Happy Christmas.</p>
+<p><strong>marion</strong>: Now…noodles or rice?</p>
+<p><strong>marion</strong>: I don’t want a criminal for a boyfriend.</p>
+<p><strong>jack</strong>: There was a message, wasn’t there?</p>
+<p><strong>marion</strong>: It’s probably easier for you to eat the
+rice.</p>
+<p><strong>jack</strong>: Marion! What did you tell the police?</p>
+<p><strong>marion</strong>: Nothing about you.</p>
+<p><strong>jack</strong>: Then what?</p>
+<p><strong>marion</strong>: Give up being a croupier, Jack. Or I’ll shop
+you. All you have to do is keep your word. It’s that simple.</p>
+<p><strong>marion</strong>: Here…use a spoon.</p>
+<p><strong>jack</strong>: Leave me alone, Marion.</p>
+<p><strong>marion</strong>: You’re already alone.</p>
+<p><strong>jack’s voice</strong>: He had always been alone. He had
+always believed it would make the decisions easier.</p>
+<p><strong>jack</strong>: All right. I don’t want to lose you. I’ll
+quit. I swear to you.</p>
+<p><strong>marion</strong>: Why did you take the money?</p>
+<p><strong>jack</strong>: I hate public transport.</p>
+<p><strong>marion</strong>: What?</p>
+<p><strong>jack</strong>: I want to buy a car.</p>
+<p><strong>marion</strong>: How can anyone be that naive?</p>
+<p><strong>reynolds</strong>: How do you feel, Jack?</p>
+<p><strong>jack</strong>: Bruised.</p>
+<p><strong>reynolds</strong>: Take your time. Two weeks. Three if you
+need it. We’ll pay you sick leave. I don’t want to lose you. You’re a
+good man. Here…</p>
+<p><strong>jack</strong>: What’s this?</p>
+<p><strong>reynolds</strong>: Happy New Year. Have a drink on the
+company. You’ve earned it.</p>
+<p><strong>jack’s voice</strong>: Chapter Thirteen…</p>
+<p><strong>jack’s voice</strong>: It’s all numbers, the croupier
+thought. A spin of the wheel. A turn of a card. The time of your life.
+The date of your birth. The year of your death. In the Book of Numbers
+the Lord said: ‘thou shalt count thy steps’.</p>
+<p><strong>jack’s voice</strong>: Jack thought, this is it. The famous
+two in the morning knock at the door. It wad pay-back time.</p>
+<p><strong>jack’s voice</strong>: But he wasn’t afraid. He hadn’t spent
+one penny of the ten grand. He’d covered himself. He knew the odds.</p>
+<p><strong>policeman</strong>: Mr Manfred?</p>
+<p><strong>jack</strong>: Yes…</p>
+<p><strong>jack’s voice</strong>: What were the odds of being killed by
+a car… on New Year’s Eve?</p>
+<p><strong>man’s voice</strong>: She was on her way home… to you.</p>
+<p><strong>jack</strong>: No. She wasn’t.</p>
+<p><strong>jack’s voice</strong>: Marion had been visiting his
+mother…no, no, not his mother - her mother.</p>
+<p><strong>jack</strong>: She was visiting her mother. Her mother. Who
+are you?</p>
+<p><strong>ross</strong>: Detective Inspector Ross.</p>
+<p><strong>jack</strong>: Who…</p>
+<p><strong>ross</strong>: Ross.</p>
+<p><strong>jack</strong>: Who did it? Tell me!</p>
+<p><strong>ross</strong>: We think it’s a hit-and-run. A drunk driver,
+probably, But there is a possibility of a revenge killing.</p>
+<p><strong>jack’s voice</strong>: Revenge? For what? Whose revenge?</p>
+<p><strong>ross</strong>: As you know, she was a WPC with the Met. up
+until two years ago.</p>
+<p><strong>ross</strong>: She called me last week. She’d got wind of a
+planned robbery at your casino.</p>
+<p><strong>jack’s voice</strong>: What had that got to do with her
+death?</p>
+<p><strong>ross</strong>: You didn’t recognise the man who attacked you,
+did you?</p>
+<p><strong>jack</strong>: Of course I recognised him!</p>
+<p><strong>ross</strong>: You did?</p>
+<p><strong>jack</strong>: I know a cheat when I see one. The man was a
+cheat.</p>
+<p><strong>jack</strong>: Do you gamble?</p>
+<p><strong>ross</strong>: If anything occurs to you, call me.</p>
+<p><strong>ross</strong>: I was in love with her, you know.</p>
+<p><strong>jack’s voice</strong>: ‘The world breaks everyone, and
+afterward many are strong at the broken places. But those that will not
+break, it kills. It kills the very good and the very gentle and the very
+brave impartially. If you are none of these, you can be sure it will
+kill you too but there will be no special hurry’.</p>
+<p><strong>matt</strong>: Jacko! How’re you doing? I heard about the
+raid. Pity they didn’t pull it off. I wish I’d been there.</p>
+<p><strong>jack</strong>: But you were there Matt.</p>
+<p><strong>matt</strong>: What? You know what happened to me, don’t you?
+That bitch Bella shopped me. I’d like to beat the shit out of her.</p>
+<p><strong>jack</strong>: I’d like to buy you a drink.</p>
+<p><strong>matt</strong>: Cheers. Happy New Year. I really like you,
+Jacko, you’re so fucking straight. Hey, you haven’t changed your
+clothes!</p>
+<p><strong>jack’s voice</strong>: The music stopped, Jack was drunk…
+hallucinating. He was back, as a child, in the Wild Coast Casino.</p>
+<p><strong>lucy</strong>: You’ve been avoiding me.</p>
+<p><strong>jack</strong>: Have I?</p>
+<p><strong>lucy</strong>: I’m Lucy.</p>
+<p><strong>jack</strong>: And what do you do, Lucy?</p>
+<p><strong>lucy</strong>: I’m a witch. A white witch. Why don’t we move
+on?</p>
+<p><strong>jack</strong>: Are you going to put a spell on me?</p>
+<p><strong>lucy</strong>: I might.</p>
+<p><strong>jack</strong>: Nice car. How much did you pay for it?</p>
+<p><strong>lucy</strong>: Too much. Eighteen hundred.</p>
+<p><strong>lucy</strong>: Where to?</p>
+<p><strong>jack</strong>: Turn left at the lights.</p>
+<p><strong>lucy</strong>: Hey! I saw her!</p>
+<p><strong>lucy</strong>: You don’t trust women drivers, do you?</p>
+<p><strong>jack’s voice</strong>: Jack didn’t trust anyone. Except
+himself.</p>
+<p><strong>jack’s voice</strong>: It was finally finished. He thought of
+sending it to Giles. But that wouldn’t be right. He would select a
+publisher at random, like a number.</p>
+<p><strong>close up</strong>: The dedication: ‘To Marion’.</p>
+<p><strong>punter</strong>: You’re wasting yourself. With your luck you
+ought to come over to our side.</p>
+<p><strong>scams, the sleaze…a tale of triumphant disgust…of</strong>:
+EXHILARATING CONTEMPT…” The display is just one book: ‘I, CROUPIER’.
+Number 1 Bestseller.</p>
+<p><strong>jack’s voice</strong>: Even his publisher had no idea who the
+author was. He had done the deal through a lawyer. It gave him a good
+feeling, no one knowing…</p>
+<p><strong>jack’s voice</strong>: …It never occurred to anyone at the
+Casino that the Golden Lion had been his model. Why should it? Weren’t
+all casinos the same….</p>
+<p><strong>jack’s voice</strong>: …It gave him an exquisite pleasure,
+being an underground man. With all his money, he hadn’t even bought a
+car. Jack knew the truth about himself, he was a one- book writer. A one
+time winner who had quit while he was ahead…</p>
+<p><strong>jack’s voice</strong>: He changed nothing in the flat, bought
+nothing, spent nothing. The only thing he did was to remove the bars
+outside the window…</p>
+<p><strong>jack</strong>: Hello…</p>
+<p><strong>jani</strong>: Jack! It’s Jani.</p>
+<p><strong>jack</strong>: Jani! Where are you?</p>
+<p><strong>jani</strong>: Sun City. I’ve been meaning to call you for
+months.</p>
+<p><strong>jack</strong>: How are you?</p>
+<p><strong>jani</strong>: Great. I’m getting married. At least, I think
+I am.</p>
+<p><strong>jack</strong>: Did you solve your problems?</p>
+<p><strong>jani</strong>: Yes. I’m all over that now. Jack, hold on a
+minute. There’s someone here who wants to talk to you…</p>
+<p><strong>jack sr’s voice</strong>: Jacko - how’re you doing?</p>
+<p><strong>jack</strong>: Dad!</p>
+<p><strong>jack sr</strong>: I never thanked you properly for your help.
+Jani told me you behaved like a perfect gentleman throughout. I knew you
+would. I know my son.</p>
+<p><strong>jack sr’s voice</strong>: The woman thinks I’m going to marry
+her. But you know me. It’s a shame things didn’t work out. But we saw
+you all right. You didn’t gamble the ten grand, did you?</p>
+<p><strong>jack</strong>: As a matter of fact I did. But I won.</p>
+<p><strong>jack sr’s voice</strong>: That’s my boy. How’s that novel of
+yours coming along?</p>
+<p><strong>jack’s voice</strong>: So that was it. The final card.
+Blackjack. His father, eight thousand miles and twenty seven years away,
+was still dealing to his son Jack from the bottom of the deck…</p>
+<p><strong>close-up</strong>: A copy of the book: ‘I CROUPIER’.</p>
+<p><strong>jack’s voice</strong>: …But Jake the croupier had a sense of
+humour.</p>
+<p><strong>jack</strong>: To you. To both of you.</p>
+<p><strong>bella</strong>: What are you laughing at? Who was that on the
+phone?</p>
+<p><strong>jack</strong>: A couple I know are getting married.</p>
+<p><strong>bella</strong>: Fools.</p>
+<p><strong>jack’s voice</strong>: Now he had reached the point where he
+no longer heard the sound of the ball…</p>
+<p><strong>jack’s voice</strong>: …the spin of the wheel had brought him
+home to the place where he was born.</p>
+<p><strong>jack’s voice</strong>: The croupier’s mission was
+accomplished.</p>
+<p><strong>jack’s voice</strong>: At last he was Master of the Game. He
+had aquired the power… to make you lose.</p>
+</body>
+</html>

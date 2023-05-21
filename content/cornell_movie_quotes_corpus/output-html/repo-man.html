@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>repo-man</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="repo-man">repo-man</h1>
+<p><strong>j. frank parnell</strong>: Forty-niner and his daughter
+Clementine. Oh my darlin, oh my darlin…</p>
+<p><strong>j. frank parnell</strong>: Clementine Clemen-</p>
+<p><strong>county sheriff</strong>: Let me see your drivers license.</p>
+<p><strong>radio</strong>: Post ten-eighteen. Post ten-eighteen.</p>
+<p><strong>county sheriff</strong>: From out of town, hmm? What’s you
+got in the trunk?</p>
+<p><strong>j. frank parnell</strong>: oah…you don’t want to look in
+there.</p>
+<p><strong>county sheriff</strong>: Give me the keys.</p>
+<p><strong>j. frank parnell</strong>: Oh my darlin Clementine, you are
+lost now gone forever, dreadful sorry Clementine.</p>
+<p><strong>kevin</strong>: Do Do Do De Do De Do De Do De Do Feeling Do
+De Da Do De Do De Do Feeling seven-up. I’m feeling seven-up. Feeling
+seven up. I’m feeling seven up. It’s a crisp refreshing feeling crystal
+clear and light. America’s drinking seven-up and it sure feels right.
+Feeling lucky seven.</p>
+<p><strong>otto</strong>: Kevin stop singing man.</p>
+<p><strong>kevin</strong>: Feeling seven eleven.</p>
+<p><strong>kevin</strong>: Hum. I wasn’t singing guy.</p>
+<p><strong>otto</strong>: I’m standing right next to you and you’re
+fucking singing. Cut it out.</p>
+<p><strong>kevin</strong>: Jeeze. Why so tense guy?</p>
+<p><strong>mr. humphries</strong>: Otto?</p>
+<p><strong>kevin</strong>: Mister Humphries!</p>
+<p><strong>mr. humphries</strong>: You were late again this morning. Now
+normally I’d let it go but it’s been brought to my attention that you’re
+not paying attention to the way you space the cans. Many young men of
+your age in these uncertain times-</p>
+<p><strong>mr. humphries</strong>: Otto! Are you paying attention to
+me?</p>
+<p><strong>louie</strong>: Hey! He’s talking to you!</p>
+<p><strong>kevin</strong>: You gotta love getting fired from your job in
+a big way, Otto.</p>
+<p><strong>mr. humphries</strong>: What are you laughing at? Louie,
+throw him out too.</p>
+<p><strong>louie</strong>: Come on you worm. Get out of here.</p>
+<p><strong>otto</strong>: How you doing dude? When did you get out of
+the slammer man?</p>
+<p><strong>debbi</strong>: What’s the difference? ]</p>
+<p><strong>otto</strong>: Huh?</p>
+<p><strong>otto</strong>: okay</p>
+<p><strong>debbi</strong>: Otto. Otto.</p>
+<p><strong>otto</strong>: What?</p>
+<p><strong>debbi</strong>: Get me another beer.</p>
+<p><strong>kevin</strong>: Ow. Cool. Ow. Dammit. I’m supposed to be the
+host here.</p>
+<p><strong>kevin</strong>: Ow!</p>
+<p><strong>otto</strong>: Debbi honey. I got you a beer.</p>
+<p><strong>[otto</strong>: Shit.</p>
+<p><strong>debbi</strong>: Just ignore him Duke he’s nothing but a big
+baby.</p>
+<p><strong>duke</strong>: Turn the fucking light out.]</p>
+<p><strong>kevin</strong>: What are you doing? Nobody supposed to be up
+here. This is my parent’s room.</p>
+<p><strong>otto</strong>: Don’t want to talk about anything else. We
+don’t want to know. We’re just dedicated…to our favorite shows. Saturday
+night live, Monday night football, Dallas, Jeffersons, Gilligan’s
+island, Flintstones. ]</p>
+<p><strong>bud</strong>: Hey kid! Hey! Hey kid! Hey! Hey! Are you hard
+of hearing?</p>
+<p><strong>otto</strong>: What do you want?</p>
+<p><strong>bud</strong>: You want to make ten bucks?</p>
+<p><strong>otto</strong>: Fuck you, queer.</p>
+<p><strong>bud</strong>: Now waita minute wait a minute kid you got the
+wrong idea. Look my old lady is real sick and I got to get her to the
+hospital, okay?</p>
+<p><strong>otto</strong>: So what? Take her there.</p>
+<p><strong>bud</strong>: I can’t. I can’t leave her car in this bad
+area. Look I need some helpful soul to drive it for me, okay? She’s
+pregnant. She’s with twins. She could drop at any time. All right?</p>
+<p><strong>otto</strong>: Well, uh, how much are you going to give
+me?</p>
+<p><strong>bud</strong>: Fifteen bucks.</p>
+<p><strong>otto</strong>: No. Won’t do it for less than twenty.</p>
+<p><strong>bud</strong>: Twenty-five. Follow me in my old lady’s car.
+It�s right here. okay?</p>
+<p><strong>otto</strong>: All right… Where’s, uh, where’s your old lady
+at?</p>
+<p><strong>bud</strong>: Never mind about that. Right now we need to get
+both of my cars out of this bad area, allright? Come on.</p>
+<p><strong>from the apartment</strong>: Papa! aqui. un gringo</p>
+<p><strong>bud</strong>: Let’s go.</p>
+<p><strong>marlene</strong>: Helping hand acceptance corporation,
+Marlene speaking.</p>
+<p><strong>repo victim</strong>: You know damn straight what I’m talking
+about. It’s sitting right out side. It took me two weeks to get this
+money up so I can come and get it.</p>
+<p><strong>marlene</strong>: I don’t think so sir you’ll have to call
+back. I’ll call you back O.K.?</p>
+<p><strong>oly</strong>: That ain’t your car.</p>
+<p><strong>repo victim’s girl</strong>: Hey don’t let him lie to you
+like that. Unh?</p>
+<p><strong>marlene</strong>: Thanks Bud.</p>
+<p><strong>repo victim</strong>: Are you going to give me my car or do I
+got to go to your house and shove your dog’s head down the toilet.</p>
+<p><strong>marlene</strong>: Helping hand acceptance corporation Marlene
+speaking.</p>
+<p><strong>plettschner</strong>: Take it easy sonny boy.</p>
+<p><strong>repo victim’s girl</strong>: Shut up rent-a-cop.</p>
+<p><strong>oly</strong>: Best goddamn car on the lot.</p>
+<p><strong>repo victim</strong>: You damn right it is.</p>
+<p><strong>marlene</strong>: Will you, Will you hold please?</p>
+<p><strong>marlene</strong>: Helping hand acceptance corporation Marlene
+speaking.</p>
+<p><strong>repo victim</strong>: Say moma what’s happening? You want to
+take a lift?</p>
+<p><strong>marlene</strong>: No thank you. L.A.P.D. I wanted to report a
+repo in Boro heights area.</p>
+<p><strong>repo victim’s girl</strong>: Let’s go.</p>
+<p><strong>plettschner</strong>: A Cadillac. Is he a pimp?</p>
+<p><strong>bud</strong>: Shut up Plettschner.</p>
+<p><strong>marlene</strong>: Bud what street was that car on?</p>
+<p><strong>bud</strong>: Honey I don’t know, some alley uh. Hey kid!</p>
+<p><strong>otto</strong>: What?</p>
+<p><strong>bud</strong>: Hey what street was the Cutlass on?</p>
+<p><strong>otto</strong>: I don’t know. What happened to your old
+lady?</p>
+<p><strong>marlene</strong>: They don’t know I’ll call you back.</p>
+<p><strong>marlene</strong>: Helping hand acceptance corporation Marlene
+speaking.</p>
+<p><strong>bud</strong>: My old lady? Oh shit ! I forgot all about her.
+Well she’ll take the bus. She’s a rock.</p>
+<p><strong>marlene</strong>: What kind of car? What kind of car?</p>
+<p><strong>bud</strong>: Hey come on in. Marlene! Marlene!</p>
+<p><strong>marlene</strong>: Can you hold?</p>
+<p><strong>oly</strong>: Got a name kid?</p>
+<p><strong>otto</strong>: Yeah! It’s Otto.</p>
+<p><strong>oly</strong>: Otto! Otto parts? HAHAHA</p>
+<p><strong>marlene</strong>: You got a drivers license honey?</p>
+<p><strong>oly on the phone</strong>: Oh Yeah! Fuckin-a we ripped your
+car. Asshole !</p>
+<p><strong>marlene</strong>: Let me see it.</p>
+<p><strong>oly on the phone</strong>: You want to know who told us where
+it was? Your goddamn brother.</p>
+<p><strong>marlene</strong>: Are you really twenty-one?</p>
+<p><strong>otto</strong>: That’s what it says doesn’t it.</p>
+<p><strong>oly</strong>: Hey you want some help with that beer kid?</p>
+<p><strong>otto</strong>: You’re all repo men.</p>
+<p><strong>oly</strong>: What if we are?</p>
+<p><strong>bud</strong>: You know kid, uhh, usually when someone pulls
+shit like that my first reaction is uhh I want to punch his fucking
+lights out.</p>
+<p><strong>bud</strong>: But you know something?</p>
+<p><strong>bud and oly</strong>: You’re all right!</p>
+<p><strong>bud</strong>: Right Lite?</p>
+<p><strong>lite</strong>: Got any messages for me baby?</p>
+<p><strong>marlene</strong>: Yeah. Here you go.</p>
+<p><strong>oly</strong>: Cracks me up.</p>
+<p><strong>lite</strong>: Somebody pissed on the floor again?</p>
+<p><strong>oly</strong>: Maybe he’s looking for a job? Huh budsky?</p>
+<p><strong>bud</strong>: Could be? What do you say kid were always on
+the look out for a few good men.</p>
+<p><strong>otto</strong>: Screw that! Ain’t going to be no repo man. No
+way!</p>
+<p><strong>miller</strong>: You find one in every car. You’ll see.</p>
+<p><strong>radio</strong>: Come in Officer Labeef do you read me?</p>
+<p><strong>radio</strong>: Chuck will you stop fooling around?</p>
+<p><strong>sheriff</strong>: I’ve never seen the like of that.</p>
+<p><strong>radio</strong>: I have the stats on that car Officer
+Labeef.</p>
+<p><strong>radio</strong>: Ten-forty Baker</p>
+<p><strong>sheriff</strong>: What could have done that to him? Gasoline?
+Napalm?</p>
+<p><strong>agent rogersz</strong>: It happens sometimes. People just
+explode. Natural causes.</p>
+<p><strong>sheriff</strong>: What?</p>
+<p><strong>agent rogersz</strong>: Suspect presence on west coast
+confirmed. Do not notify police.</p>
+<p><strong>otto</strong>: Night watchman in Pomona.</p>
+<p><strong>kevin</strong>: Yep.</p>
+<p><strong>otto</strong>: Asbestos worker. City of industry.</p>
+<p><strong>kevin</strong>: Yep Yep!</p>
+<p><strong>otto</strong>: French fry maker Agoura. Ha Ha that’s
+absurd.</p>
+<p><strong>kevin</strong>: Yeah? Well you think it’s funny huh? There’s
+fucking room to move as a fry cook, man. You know I could be manager in
+two years? King! God!</p>
+<p><strong>otto</strong>: You know Kevin, I had this wild fucking dream
+the other night.</p>
+<p><strong>kevin</strong>: I bet.</p>
+<p><strong>otto</strong>: It was with you and me and we were working in
+this sleazy shithole motel down in Miami, Florida. And we were bellhops
+and we were sixty-five years old. It was so real it was really real,
+realistic.</p>
+<p><strong>kevin</strong>: And then what, you woke up in a puddle ?</p>
+<p><strong>otto</strong>: Fuck you!</p>
+<p><strong>kevin</strong>: Fucking jerk.</p>
+<p><strong>kevin</strong>: Where you going asshole ?</p>
+<p><strong>otto</strong>: Away from you.</p>
+<p><strong>note</strong>: Edge City, also the name of the film’s
+production company, is a recurring theme in Tom Wolfe’s “Electric
+Kool-Ade Acid Test”.</p>
+<p><strong>otto</strong>: Mother, father. Got anything to eat?</p>
+<p><strong>reverend larry</strong>: Occasionally we get a letter from a
+viewer that says now the only reason Reverend Larry comes on your
+television set is because he wants your money. And do you know what?
+They’re right! I do want your money. Because god wants your money. So I
+want you to go out and mortgage that home and sell that car and send me
+your money. You don’t need that car.</p>
+<p><strong>otto mom</strong>: Put it on a plate son you’ll enjoy it
+more.</p>
+<p><strong>otto</strong>: I couldn’t enjoy it any more mom MMM MMM MMM
+This is swell.</p>
+<p><strong>otto</strong>: Dad? Hey Dad?</p>
+<p><strong>otto dad</strong>: What is it son?</p>
+<p><strong>otto</strong>: Do you remember that you once told me along
+time ago. Well not too long ago but ummm. That you told me that you’d
+give me a thousand dollars to go to Europe if I finish school. Well you
+know something? You were right. About finishing school that’s ah that’s
+what I’d like to do. But umm I want to know if I could have the money
+first. Like now.</p>
+<p><strong>otto dad</strong>: I don’t have it anymore.</p>
+<p><strong>otto</strong>: What?]</p>
+<p><strong>otto mom</strong>: You father gave all our extra money to the
+Reverend’s telethon, Otto.</p>
+<p><strong>otto</strong>: Well what about me?</p>
+<p><strong>otto dad</strong>: You’re on the honor roll of the chariots
+of fire. Same as us, Otto. It was a gift. From all of us jointly.</p>
+<p><strong>otto mom</strong>: We’re sending bibles to El Salvador.</p>
+<p><strong>otto</strong>: So how much do I get paid, twenty-five buck a
+car.</p>
+<p><strong>bud</strong>: Paid? You don’t get paid. Are you kidding, you
+work on commission, that’s better than getting paid.</p>
+<p><strong>bud</strong>: Most cars you rip are worth two or three
+hundred dollars. Fifty thousand dollar Porsche might make ya five
+grand.</p>
+<p><strong>bud</strong>: It helps if you dress like a detective, too.
+Detectives dress kind of square. People think this guy is a cop. They’re
+going to think you’re packing something. They don’t fuck with you so
+much.</p>
+<p><strong>otto</strong>: Are you?</p>
+<p><strong>bud</strong>: Am I what?</p>
+<p><strong>otto</strong>: Packin’ something.</p>
+<p><strong>bud</strong>: Ha. Only an asshole gets killed for a car. Guys
+who make it are the guys who get into their cars at anytime. Get in at
+three A.M. get up at four. That’s why there ain’t a repo man I know that
+don’t take speed.</p>
+<p><strong>otto</strong>: Speed huh?</p>
+<p><strong>bud</strong>: I’ll call you back! Flippin general
+telephone.</p>
+<p><strong>bud</strong>: C’mon.</p>
+<p>**[bud snorting a line**: Jesus Christ.]</p>
+<p><strong>bud</strong>: Never broke into a car. Never hot-wired a car.
+Kid. I never broke into a trunk. I shall not cause harm to any vehicle
+nor the personal contents thereof. Nor through inaction let that vehicle
+or the personal contents thereof come to harm. That’s what I call the
+repo code kid. Don’t forget it etch it in your brain. Not many people
+got a code to live by anymore.</p>
+<p><strong>bud</strong>: Hey! Hey look at that. Look at those assholes
+over there.</p>
+<p><strong>bud</strong>: Ordinary people I hate ’em.</p>
+<p><strong>otto</strong>: Me too.</p>
+<p><strong>bud</strong>: What do you know? See an ordinary person spend
+his life avoiding tense situations. Repoman spends his life getting into
+tense situations. ! Lets go get a drink.</p>
+<p><strong>bud</strong>: Tense situations kid. Get into five or six of
+them a day and it don’t mean shit anymore. I mean I seen men stabbed and
+it didn’t mean shit . I’ve seen guns. Guns too they don’t mean shit but
+that’s when you got to watch your self. Here I’ll handle it pal. Uh
+settle down.</p>
+<p><strong>bud</strong>: Have a nice day. Or night. Night, day, it
+doesn’t mean shit .</p>
+<p><strong>duke</strong>: Wasn’t that Otto?</p>
+<p><strong>debbi</strong>: Otto who?</p>
+<p><strong>duke</strong>: You gotta watch yourself. Have a nice day . .
+. night.</p>
+<p><strong>bud</strong>: This is what I call phase 2 ace. If the dealer
+don’t have the keys, you call the truck. And it is a heartbreak to be
+sitting waiting for the truck and the giblet comes out and drives it
+away. Once you’ve got this baby on the hooks, she’s all ours.</p>
+<p><strong>pakman</strong>: Oh no you don’t. I’m nipping this in the bud
+right now. You are not going to take this car. I know my rights. There
+is absolutely no way you’re going to take it.</p>
+<p><strong>bud</strong>: Uh, are you miss Luann Pakman?</p>
+<p><strong>pakman</strong>: Obviously not. I’m Arthur Pakman. Luann is
+my daughter. Now you’re going to have to take this matter up with
+her.</p>
+<p><strong>bud</strong>: Well don’t think I haven’t tried, sir, but she
+hasn’t had the decency to call us in months. I mean, I’ve skipped trace
+this car all over town.</p>
+<p><strong>pakman</strong>: Well, uh, Luann is sick. Now the damn car
+isn’t working anyway, and I know, I know that’s why she hasn’t paid
+you.</p>
+<p><strong>bud</strong>: Well, she could have called us? Look, all
+you’ve go to do is call my branch manager, I will abide with whatever he
+says.</p>
+<p><strong>pakman reading card</strong>: I. G. Farben. . . What do you
+take me for, a moron? If I go in there, you’re going to take this car
+away.</p>
+<p><strong>bud</strong>: What, and lose my job? The law requires that I
+stay right here until you call my branch manager.</p>
+<p><strong>pakman</strong>: That’s the law?</p>
+<p><strong>bud</strong>: That’s the law.</p>
+<p><strong>pakman</strong>: I’ll be right back.</p>
+<p><strong>bud</strong>: There’s going to be some bad shit coming down
+one of these days kid.</p>
+<p><strong>otto</strong>: Oh yeah? Where you going to be? On the
+moon?</p>
+<p><strong>bud</strong>: Ung Uh, I’m going to be right here heading
+north at a hundred and ten per.</p>
+<p><strong>otto</strong>: In this junker?</p>
+<p><strong>otto</strong>: Cool car.</p>
+<p><strong>bud</strong>: Uh Oh! The Rodriguez brothers.</p>
+<p><strong>otto</strong>: Motherfucker just flipped you off.</p>
+<p><strong>bud</strong>: Roll the window down.] Roll the window
+down.</p>
+<p><strong>lagarto</strong>: A donde vas, pendejo?</p>
+<p><strong>bud</strong>: A chingas tu esposa!</p>
+<p><strong>a brother</strong>: Hey Bud, hey Bud, who’s your new
+girlfriend?</p>
+<p><strong>otto</strong>: Watch it mother fucker.</p>
+<p><strong>lagarto</strong>: Hey fuck you pussy punk.</p>
+<p>**[otto**: Holy shit.]</p>
+<p><strong>napoleon</strong>: Want me to take them?</p>
+<p><strong>otto</strong>: Wo! Hey!</p>
+<p><strong>bud</strong>: God damn dipshit Rodriguez gypsy dildo punks.
+I’ll get your ass!</p>
+<p><strong>otto</strong>: HAHAHA WOW! That was intense.</p>
+<p><strong>bud</strong>: Repo man’s always intense. Come on let’s go get
+a drink.</p>
+<p><strong>otto</strong>: Gee bud. You never told me it was going to be
+like this man. Cops and robbers. Hahahahah. Real live car chases.
+Hahahahah.</p>
+<p><strong>archie</strong>: Shit ! Debbi!</p>
+<p><strong>duke</strong>: If you say our names we’ll have to kill all
+these people Archie.</p>
+<p><strong>archie</strong>: They all ran away.</p>
+<p><strong>debbi</strong>: Come on you douche bags.</p>
+<p><strong>bud</strong>: Awful quiet in here. It’s too quiet.</p>
+<p><strong>otto</strong>: So who are these Rodriguez boys.</p>
+<p><strong>bud</strong>: Rodriguez brothers. Lagarto and Napoleon. Two
+notorious delinquents currently responsible for at least thirty vehicles
+in the field.</p>
+<p><strong>otto</strong>: Scumbags</p>
+<p><strong>lite</strong>: They ain’t scumbags. They car thieves just
+like use.</p>
+<p><strong>lite</strong>: There’s Miss Magruder. You want to go for
+it?</p>
+<p><strong>otto</strong>: Good gag, you pull this one a lot?</p>
+<p><strong>lite</strong>: Only on the women. It never fails.</p>
+<p><strong>otto</strong>: Excuse me? Miss Magruder? I have something
+here for you.</p>
+<p><strong>ms. magruder</strong>: Uhm how utterly charming.</p>
+<p><strong>otto</strong>: Ow! Ow! Ow! Motherfucker! Ow! Ow! Ow! Christ!
+I’m blind man. Lite? Lite, where are you man?</p>
+<p><strong>bud</strong>: Ruthside Peason brokerage consultant. Fucking
+millionaire six payments behind. I’ve never understood it.</p>
+<p><strong>otto</strong>: What’s that?</p>
+<p><strong>bud</strong>: The fucking millionaires. They never pay their
+bills. See you at the yard.</p>
+<p><strong>otto</strong>: Let me get this one.</p>
+<p><strong>bud</strong>: No. I’ll handle this one. Mister Peason is
+carrying a permit for a pistol.</p>
+<p><strong>bud</strong>: Hey! Hey! Hey! Give me that.</p>
+<p><strong>otto</strong>: Don’t underestimate me ace.</p>
+<p><strong>ruthside peason</strong>: And also, naturally, I’d like them
+to be right next to each other. In addition I’d like them to be as close
+to the window as possible so I can sit in my car and watch my things. So
+all you have to do is take your clothes out of here like this and put
+them into a machine over there like that.</p>
+<p><strong>ruthside peason</strong>: Oh my god ! Oh! Oh my god !
+Stop!</p>
+<p><strong>otto</strong>: Hey! Hey! You want a ride? Hey babe need a
+ride?</p>
+<p><strong>old lady</strong>: Pick it up! Look at you. You pick it up.
+You know yourself you were wrong.</p>
+<p><strong>otto</strong>: Well what were they doing out in the middle of
+the street?</p>
+<p><strong>old lady</strong>: They weren’t in the middle of the street.
+That not the middle of the street that’s the corner.</p>
+<p><strong>old lady</strong>: Go on you pick it up.</p>
+<p><strong>otto</strong>: What?</p>
+<p><strong>old lady</strong>: You pick it up.</p>
+<p><strong>otto</strong>: Haha, no way. You still want a ride or
+what?</p>
+<p><strong>old lady</strong>: No I don’t.</p>
+<p><strong>otto</strong>: My name is Otto.</p>
+<p><strong>leila</strong>: Leila. Is this your car?</p>
+<p><strong>otto</strong>: Yeah it’s one of them.</p>
+<p><strong>leila</strong>: Heh, one of them? You think you’re pretty
+slick don’t ya? I bet you’re a used car salesman.</p>
+<p><strong>otto</strong>: I am not.</p>
+<p><strong>leila</strong>: You dress like one.</p>
+<p><strong>otto</strong>: I’m a repo man.</p>
+<p><strong>leila</strong>: What’s that?</p>
+<p><strong>otto</strong>: It�s a repossesser. I take back cars from
+dildos who don’t pay their bills. Cool huh?</p>
+<p><strong>leila</strong>: No.</p>
+<p><strong>otto</strong>: What are you doing?</p>
+<p><strong>leila</strong>: Those men in the car next to us don’t look at
+them. Don’t look at them! If they see me they’ll kill me.</p>
+<p><strong>otto</strong>: Really why?</p>
+<p><strong>otto</strong>: Ow! What the hell are you doing?</p>
+<p><strong>otto</strong>: What’s going on?</p>
+<p><strong>leila</strong>: Take a look at this.</p>
+<p><strong>otto</strong>: What’s this? It looks like sausage.</p>
+<p><strong>leila</strong>: It isn’t sausage Otto. That’s a picture of
+four dead aliens.</p>
+<p><strong>leila</strong>: Laugh away fuckface that picture is going to
+be on the cover of ever major newspaper in two days time.</p>
+<p><strong>otto</strong>: How do you know that?</p>
+<p><strong>leila</strong>: Part of a secret network. A scientist who is
+also in our secret sect smuggled the corpses off of this air force base.
+Now he’s got them in the truck of his car. It’s a Chevy Malibu. We’ve
+got to find him.</p>
+<p><strong>otto</strong>: What are you going to do with them, put them
+on Johnny Carson?</p>
+<p><strong>leila</strong>: Yes! We’re going to have a press conference
+and tell the world.</p>
+<p><strong>radio</strong>: Ehw. What’s that? I don’t know dear. But it
+is alive. It seems friendly though. Aw look it’s curled up. How cute oh
+no. Maybe we can take it home it doesn’t seem to have any. Oh yes let’s.
+But no! No matter how appealing do not let strange creature in you
+house. We all know strange creatures are on the increase. Many of them
+do seem furry and adorable, but beware we don’t know from whence they
+came. Be safe. Be safe. Report strange incidences today.</p>
+<p><strong>otto</strong>: United fruitcake outlet.</p>
+<p><strong>leila</strong>: My door doesn’t open.</p>
+<p><strong>leila</strong>: Thanks for the ride.</p>
+<p><strong>otto</strong>: Sure Ummm I don’t know. what do you think? Ah
+want to go out with me again sometime?</p>
+<p><strong>leila</strong>: I don’t know. I’m going to be kind of busy
+with work, the Malibu and everything.</p>
+<p><strong>otto</strong>: Hey great. Terrific. Here’s your shit .</p>
+<p><strong>leila</strong>: What’s your problem? I mean girls might like
+you if you lightened up a little bit.</p>
+<p><strong>otto</strong>: Fuck . Girls pay to go out with me. All
+right?</p>
+<p><strong>leila</strong>: You wanna get back in the car?</p>
+<p><strong>otto</strong>: What, here?</p>
+<p><strong>leila</strong>: Yeah.</p>
+<p><strong>oly</strong>: Twenty thousand dollars for a Chevy Malibu?</p>
+<p><strong>oly</strong>: Who’s double X finance?</p>
+<p><strong>marlene</strong>: Store front operation, but the money is in
+escrow.</p>
+<p><strong>marlene</strong>: Want me to notify the boys?</p>
+<p><strong>oly</strong>: Uh, naw. They’re always bitching about their
+case load. I think I’ll go out for a while.</p>
+<p><strong>marlene</strong>: Why? We out of beer?</p>
+<p><strong>oly</strong>: Somebody has to work around here. Keep making
+me money kid.</p>
+<p><strong>otto</strong>: Fuck you.</p>
+<p><strong>lite</strong>: Man we’ve been looking for this little red
+devil for a long time. Just act natural. Nobody knows if it�s your car
+or somebody elses car.</p>
+<p><strong>lite</strong>: Now you work with that. You give it a try. All
+right?</p>
+<p><strong>lite</strong>: Let me give you a hand we don�t have a whole
+year to find it boy.</p>
+<p><strong>otto</strong>: Got it.</p>
+<p><strong>lite</strong>: Lets get out of here. Put your seat belt
+on.</p>
+<p><strong>lite</strong>: Put your seat belt on boy! I don’t ride with
+anybody unless they wear their seatbelt. It’s one of my rules.</p>
+<p><strong>lite</strong>: Put that damn gun down boy. It ain’t no
+toy.</p>
+<p><strong>lite</strong>: I walk into someone’s place of work. They shit
+scared. They know I’m not a cop. They think I’ve come to kill ’em and I
+would. I’d kill anybody who crosses me. You know what I mean?</p>
+<p><strong>lite</strong>: Do you like music?</p>
+<p><strong>otto</strong>: Sure.</p>
+<p><strong>lite</strong>: In that case you’re going love this.</p>
+<p><strong>lite</strong>: I was into these dudes before anybody. Partied
+with them all the time. Asked me to be their manager. I called bullshit
+on that. Managing a pop group hey that ain’t no job for no man.</p>
+<p><strong>lite</strong>: You read that book I gave you?</p>
+<p><strong>otto</strong>: What book?</p>
+<p><strong>lite</strong>: Dioretix. Science of matter over mind.</p>
+<p><strong>otto</strong>: Unh uhg</p>
+<p><strong>lite</strong>: You’d better read it and quick. That book will
+change your life. Found it in a Maseratti in Beverly hills.</p>
+<p><strong>miller</strong>: A lot of people don’t realize what’s really
+going on. They view life as a bunch of unconnected incidences and
+things. They don’t realize that there’s this like lattice of coincidence
+that lays on top of everything. I’ll Give you an example, show you what
+I mean. Suppose you thinking about a plate of shrimp. Suddenly somebody
+will say like plate or shrimp or plate of shrimp out of the blue no
+explanation. No point in looking for one either. It’s all part of a
+cosmic unconsciousness.</p>
+<p><strong>otto</strong>: You eat a lot of acid Miller, back in the
+hippie days?</p>
+<p><strong>miller</strong>: I’ll give you another instance. You know the
+way everybody’s into weirdness right now. Books in all the supermarkets
+about Bermuda triangles, UFO’s, how the Mayans invented television. That
+kind of thing.</p>
+<p><strong>otto</strong>: I don’t read them books.</p>
+<p><strong>miller</strong>: Well the way I see it it’s exactly the same.
+There ain’t no difference between a flying saucer and a time machine.
+People get so hung up on specifics. They miss out on seeing the whole
+thing. Take South America for example. In South America thousands of
+people go missing every year. Nobody knows where they go. They just like
+disappear. But if you think about it for a minute, you realize
+something. There had to be a time when there was no people. Right?</p>
+<p><strong>otto</strong>: Yeah. I guess.</p>
+<p><strong>miller</strong>: Well where did all these people come from?
+hmmm? I’ll tell you where. The future. Where did all these people
+disappear to? hmmm?</p>
+<p><strong>otto</strong>: The past?</p>
+<p><strong>miller</strong>: That’s right and how did they get there?</p>
+<p><strong>otto</strong>: How the fuck do I know?</p>
+<p><strong>miller</strong>: Flying saucers. Which are really? Yeah you
+got it. Time machines. I think a lot about this kind of stuff. I do my
+best thinking on the bus. That how come I don’t drive, see?</p>
+<p><strong>otto</strong>: You don’t even know how to drive.</p>
+<p><strong>miller</strong>: I don’t want to know how. I don’t want to
+learn. See? The more you drive, the less intelligent you are.</p>
+<p><strong>bud</strong>: You know I think I saw one of those things
+once. One of those UFOs. I mean it was really it was kind of kind of
+scary. I saw all these colored lights and, uh, sounds. I mean sounds and
+lights like I never heard before. I mean it was really weird.</p>
+<p><strong>otto</strong>: Bud.</p>
+<p><strong>bud</strong>: Yeah?</p>
+<p><strong>otto</strong>: Do you think all repo men follow the code?</p>
+<p><strong>bud</strong>: Of course. Well I mean you see a lot of fucked
+up cars come in but…99 time out of 100 it was the customer who fucked
+them up. Assholes .</p>
+<p><strong>bud</strong>: I’m offering a thousands dollars for his
+Falcon. You know what that is Napoleon? It’s a bribe.</p>
+<p><strong>napoleon</strong>: Who the hell is this? Napoleon? Who the
+fuck are you calling?</p>
+<p><strong>bud</strong>: It’s a grand if you show me where his car is
+Napoleon.</p>
+<p>**[napoleon**: Ahh. Go fuck yourself asshole.]</p>
+<p><strong>bud</strong>: Hello? Prick .</p>
+<p><strong>napoleon</strong>: Sixty-four Chevy Malibu. Twenty grand.</p>
+<p><strong>bud</strong>: Waiting!</p>
+<p><strong>napoleon</strong>: We could buy ten of them for that,
+Marlene.</p>
+<p><strong>marlene</strong>: Think you can find it now?</p>
+<p><strong>bud in the street</strong>: I’m not going anywhere.</p>
+<p><strong>napoleon</strong>: Now how come this junk is worth so much?
+What’s in it? Drugs?</p>
+<p><strong>bud in the street</strong>: Got all night amigo!</p>
+<p><strong>lagarto</strong>: Los Hermanos Rodriguez don’t approve of
+drugs.</p>
+<p><strong>marlene</strong>: Neither do I, but it’s my birthday.</p>
+<p><strong>bud in the street</strong>: I’m going to get your .</p>
+<p>**[marlene**: That motherfucker’s still down there.]</p>
+<p><strong>bud</strong>: Don’t care how long it takes, dildos . Repo
+man’s got all night every night.</p>
+<p><strong>bud</strong>: twenty thousand dollars.</p>
+<p><strong>otto</strong>: Hey Leila! All right, um, this is Otto. The
+guy who gave you a ride and stuff. I heard something about that car.</p>
+<p><strong>leila</strong>: Otto. Otto stop. You said you had something
+to tell me.</p>
+<p><strong>leila</strong>: Otto? Otto!</p>
+<p><strong>otto</strong>: Huh?</p>
+<p><strong>leila</strong>: What did you want to tell me?</p>
+<p><strong>otto</strong>: Oh! Take off your clothes.</p>
+<p><strong>leila</strong>: I’m at work, Otto!</p>
+<p><strong>otto</strong>: Oh yeah? Me too.</p>
+<p><strong>leila</strong>: Your work is different than mine.</p>
+<p><strong>otto</strong>: Says who?</p>
+<p><strong>leila</strong>: What are you doing.? Don’t do that.</p>
+<p><strong>[otto</strong>: Well the least you could do is give me a blow
+job.</p>
+<p><strong>otto</strong>: Heh, I guess that means no.]</p>
+<p><strong>deadra</strong>: Leila? We have a cell meeting in two minutes
+time.</p>
+<p><strong>leila</strong>: Thanks Deadra. I’ll be right there.</p>
+<p><strong>bud</strong>: See that motherfucker only thinks I don’t know
+what’s going on, Lite. As soon as I find that Chevy I’m going indy. I’m
+going to buy myself a tow truck, a couple of pitbulls, and run a yard.
+Sit around and watch everybody else do the work for a while .</p>
+<p><strong>lite</strong>: No way you can do that on twenty grand
+man.</p>
+<p><strong>bud</strong>: The hell I can as long as you have good credit
+and my credit is spotless.</p>
+<p><strong>lite</strong>: If I find the Malibu, you won’t see me for
+dust, I’m going to move to Mendecino County, raise me a bumper crop of
+tomato plants.</p>
+<p><strong>bud</strong>: Credit is a sacred trust. It’s what our free
+society is founded on. You think they give a damn about their bills in
+Russia? I said do you think they give a damn about their bills in
+Russia?</p>
+<p><strong>otto</strong>: They don’t pay bills in Russia. It’s all
+free.</p>
+<p><strong>bud</strong>: All free? Free my ass, what are you a fucking
+commie? Huh?</p>
+<p><strong>otto</strong>: No I ain’t no commie.</p>
+<p><strong>bud</strong>: Well you’d better not be I don’t want any
+commies in my car. No Christians either.</p>
+<p><strong>kevin</strong>: I’ll deal with you later. I’ve got a customer
+to attend to. You too.</p>
+<p><strong>kevin</strong>: Hi! I’m Kevin. Vacuum sir?</p>
+<p><strong>kevin</strong>: Need a vacuum sir?</p>
+<p><strong>j. frank parnell</strong>: Have you any machines?</p>
+<p><strong>kevin</strong>: You don’t want to eat from a machine. Look,
+there’s a nice Del Taco across the street. They’ve got enchurritos and
+everything.</p>
+<p><strong>j. frank parnell</strong>: But I do want to eat from a
+machine. Vended food contains all the necessary nutrients for survival.
+Taste damn good too, by golly. And plus, on any given evening, the
+machine that last night gave you cheetos might dispense instead…
+Doritos. Yohos. Oreos. Tosquitos . Or Lorna Doones.</p>
+<p><strong>kevin</strong>: Lorna Doones? I love Lorna Doones.</p>
+<p><strong>kevin</strong>: Oh hey! You want me to check the trunk? Scuze
+me.</p>
+<p><strong>kevin</strong>: Hi! I’m Kevin!</p>
+<p><strong>napoleon</strong>: Hey buddy! How you doing? Huh? Hey don’t
+you remember me? I was here yesterday. Heh. Listen I think I left a book
+of matches over in your office over there. You want to go and check for
+me huh?</p>
+<p><strong>kevin</strong>: Sure thing.</p>
+<p><strong>napoleon</strong>: Hey thanks a lot buddy.</p>
+<p><strong>kevin</strong>: Any thing for you babes.</p>
+<p><strong>napoleon</strong>: All right, you’re beautiful. I love
+you.</p>
+<p><strong>kevin</strong>: I’ll be right back.</p>
+<p><strong>kevin</strong>: What??</p>
+<p><strong>otto</strong>: It’s really very simple Mrs. Parks. You don’t
+want me to take your car and I don’t want to take your car. Now I said
+to the boss I said ah Look! I do not want to repossess this lady�s
+car.</p>
+<p><strong>mrs. parks</strong>: Well I’ve been in the hospital you
+see.</p>
+<p><strong>otto</strong>: Yeah, Yes I understand. My job is really on
+the line over this one. I could lose it right away.</p>
+<p><strong>mrs. parks</strong>: I’ll see if I can borrow some money from
+somewhere.</p>
+<p><strong>otto</strong>: That’s terrific. Really terrific.</p>
+<p><strong>mrs. parks</strong>: Oh how was the rehearsal son?</p>
+<p><strong>mrs. parks’ son</strong>: It was O.K. Who’s this?</p>
+<p><strong>mrs. parks</strong>: Oh this is Mr. Otto. He’s from the
+finance company. He’s been telling me that he isn’t going to take the
+car this time, even though he could.</p>
+<p><strong>otto</strong>: Well, uh, gotta get going here.</p>
+<p><strong>mrs. parks</strong>: Did you like the tea?</p>
+<p><strong>otto</strong>: The tea?</p>
+<p><strong>mrs. parks</strong>: Uh huh?</p>
+<p><strong>otto</strong>: Yeah, it was terrific.</p>
+<p><strong>otto</strong>: Thank you</p>
+<p><strong>mrs. parks</strong>: You’re welcome.</p>
+<p><strong>otto</strong>: Uh excuse me.</p>
+<p><strong>mrs. parks</strong>: I gave you the money last week to pay it
+and you didn’t do it. What did you do with it? I’m so tired of giving
+you money and you squandering it. I know what you done you all went out
+dancing some where. That’s what you did. Next time I give you some money
+I want you to put it in the car ya hear. You’re working. How come you
+didn’t do it huh? I don’t know what’s happened to you.</p>
+<p><strong>otto</strong>: Hey it’s cool. It’s cool. I like music too
+man, hey</p>
+<p><strong>plettschner</strong>: Some people aren’t cut out to be repo
+men. Why don’t you smarten up kid?</p>
+<p><strong>otto</strong>: Fuck you Plettschner! OWW! OWW!</p>
+<p><strong>plettschner</strong>: Don’t you say fuck you to me. Don’t you
+know who I am?</p>
+<p><strong>otto</strong>: Yeah you’re Plettschner.</p>
+<p><strong>plettschner</strong>: You’re fucking right I’m Plettschner.
+Otto Plettschner. Three times decorated in two world wars. I was killing
+people while you were still swimming around in your father’s balls . You
+little scum bag! I worked five years in a slaughter house and ten years
+as a prison guard in Attica.</p>
+<p><strong>otto</strong>: So what?</p>
+<p><strong>plettschner</strong>: So what? So never say fuck you to me.
+Because you haven’t earn the rights yet.</p>
+<p><strong>lite</strong>: Hey kid I need a contract driver.</p>
+<p><strong>plettschner</strong>: See what I mean punk?</p>
+<p><strong>otto</strong>: Fuck you!</p>
+<p><strong>plettschner</strong>: Fuck you! You little scumbag.</p>
+<p><strong>lite</strong>: Shut up, Phlettschner.</p>
+<p><strong>plettschner</strong>: Don’t you ever tell me to shut up.</p>
+<p><strong>napoleon</strong>: Shit ! ! It’s too hot in here man. What
+the hell’s going on? So fucking hot I think that shit in the trunk is
+going to melt. I think we better take a look, all right?</p>
+<p><strong>lagarto</strong>: Go get us two sodas.</p>
+<p><strong>napoleon</strong>: All right, as soon as I check the
+trunk.</p>
+<p><strong>lagarto</strong>: We’re just the mules, comprende? …</p>
+<p><strong>marlene</strong>: Helping hand.</p>
+<p><strong>lagarto</strong>: Marlene! We’ve found the car.</p>
+<p><strong>duke</strong>: Come on you guys!</p>
+<p><strong>duke</strong>: Get the lead out.</p>
+<p><strong>debbi</strong>: Stop pushing Duke.</p>
+<p><strong>[archie</strong>: My medication. Aw man!</p>
+<p><strong>duke</strong>: Aw be cool dude we got more.</p>
+<p><strong>archie</strong>: Come on. Come on. da-dee-dee-dee-dah-dah
+dee-dee…</p>
+<p><strong>lagarto</strong>: Yeah well that’s not the only thing
+Marlene. This car is hot.</p>
+<p><strong>marlene</strong>: What do you mean? Stolen?</p>
+<p><strong>lagarto</strong>: No. No I mean it’s hot really hot.</p>
+<p><strong>marlene</strong>: Hot?</p>
+<p><strong>lagarto</strong>: Yeah, we’re sweating like pigs man.</p>
+<p><strong>marlene</strong>: I got the papers. Where is the car
+from?</p>
+<p><strong>lagarto</strong>: It’s from someplace. Ah Roswell, New
+Mexico</p>
+<p><strong>lite</strong>: Me fight in a war man? Fuck no way! Nobody’s
+got to do that shit. Not in this country. A new I.D. don’t cost no more
+than a pink slip. You know what I mean?</p>
+<p><strong>lite</strong>: Something wrong?</p>
+<p><strong>otto</strong>: You know Marlene? Man she’s pretty hot.</p>
+<p><strong>lite</strong>: Otto my man. I jumped on that action from day
+one. I found out where she was coming from.</p>
+<p><strong>otto</strong>: See ya back at the yard.</p>
+<p><strong>lite</strong>: Have fun.</p>
+<p><strong>otto</strong>: Oh shit . Holy shit . Lite! . Lite! Lite!
+Lite! Lite! Open the door. There’s a maniac in there. What are you
+doing? Open the door man! What are you doing? What are you doing? Open
+the door. Lite!</p>
+<p><strong>lite</strong>: You’re still on the job white boy. Get in the
+car.</p>
+<p><strong>otto</strong>: Open the door man, open the door. Open the
+door Lite.</p>
+<p><strong>lite</strong>: Get in the car.</p>
+<p><strong>otto</strong>: Jesus Christ.</p>
+<p><strong>otto</strong>: You’re crazy Lite. I mean you can’t just shoot
+into peoples houses. I mean maybe you shot the guy.</p>
+<p><strong>lite</strong>: So what if I did?</p>
+<p><strong>otto</strong>: Well I don’t know I mean that’s pretty
+severe.</p>
+<p><strong>otto</strong>: Jesus Christ.</p>
+<p><strong>lite</strong>: Hey! Blanks get the job done too.</p>
+<p><strong>otto</strong>: You repo men, you guys are all out to fuckin
+lunch. Let’s get out of here.</p>
+<p><strong>leila</strong>: Hello. Is it you? This is Leila. Are you
+using a scrambler?</p>
+<p><strong>j. frank parnell</strong>: I can’t hear you. I’m using the
+scrambler.</p>
+<p><strong>leila</strong>: Look out!</p>
+<p><strong>j. frank parnell</strong>: What?</p>
+<p><strong>agent</strong>: Happy face! You want a ride?</p>
+<p><strong>leila</strong>: What do you want from me?</p>
+<p><strong>agent</strong>: We ask the questions.</p>
+<p><strong>leila</strong>: You’re not going to torture me are you?</p>
+<p><strong>leila</strong>: Torture you? What for?</p>
+<p><strong>leila</strong>: To find out what I know. I’d torture someone
+in a second if it was up to me.</p>
+<p><strong>agent</strong>: Huh? Why are you looking for the Malibu?</p>
+<p><strong>leila</strong>: Because of the trunk. The aliens inside.</p>
+<p><strong>agent</strong>: Illegal aliens?</p>
+<p><strong>leila</strong>: No, Silly, Extraterrestrials.</p>
+<p><strong>agent</strong>: Ahhh, heh. Did you ever think about joining
+the CIA?</p>
+<p><strong>leila</strong>: Um. I going to have to ask my boyfriend.</p>
+<p><strong>agent</strong>: Boyfriend??</p>
+<p><strong>subject</strong>: Otto Maddox</p>
+<p><strong>gender</strong>: male</p>
+<p><strong>race</strong>: Caucasian</p>
+<p><strong>age</strong>: 21</p>
+<p><strong>correction</strong>: 18</p>
+<p><strong>everybody</strong>: Jingle bells. Jingle bells. Jingle all
+the way. Oh what fun</p>
+<p><strong>otto</strong>: What’s going on?</p>
+<p><strong>marlene</strong>: Oh. The usual.</p>
+<p><strong>plettschner</strong>: Marlene! How you doing baby?</p>
+<p><strong>oly</strong>: Jesus who done that to yeah son?</p>
+<p><strong>otto</strong>: Who done what?</p>
+<p><strong>plettschner</strong>: Who done what he says. You want to talk
+about guts. What did you do to your face kid?</p>
+<p><strong>otto</strong>: Oh some dude it doesn’t matter.</p>
+<p><strong>lite</strong>: Oh yes it does.</p>
+<p><strong>marlene</strong>: Why don’t you do something Plettschner?
+Aren’t you a cop or something?</p>
+<p><strong>plettschner</strong>: Hey Marlene. I’m on my coffee
+break.</p>
+<p><strong>bud</strong>: Repo man don’t go running to the man Marlene. A
+repo man goes at it alone.</p>
+<p><strong>lite</strong>: Yes sirree bob.</p>
+<p><strong>marlene</strong>: Just like John Wayne.</p>
+<p><strong>oly</strong>: Damn right just like John Wayne what’s wrong
+about that?</p>
+<p><strong>plettschner</strong>: Greatest American that ever lived.</p>
+<p><strong>miller</strong>: John Wayne was a fag .</p>
+<p><strong>bud</strong>: What did you say man?</p>
+<p><strong>plettschner</strong>: Whaa?</p>
+<p><strong>oly</strong>: What?</p>
+<p>**[miller**: John Wayne was a fag.]</p>
+<p><strong>everyone</strong>: The hell he was.</p>
+<p><strong>miller</strong>: He was too you boys. I installed two way
+mirrors in his pad in Brentwood. And he’d come to the door in a
+dress.</p>
+<p><strong>plettschner</strong>: Ah, you’re fucking nuts.</p>
+<p><strong>oly</strong>: That doesn’t mean he was a homo , Miller. Lotta
+straight guys like to watch their buddies fuck . I know I do.</p>
+<p><strong>bud</strong>: They do?</p>
+<p><strong>plettschner</strong>: Yeah.</p>
+<p><strong>oly</strong>: Don’t you?</p>
+<p><strong>plettschner</strong>: Damn straight I do.</p>
+<p><strong>lite</strong>: Fuck John Wayne man. Tell us his name you
+little pussy .</p>
+<p><strong>otto</strong>: Kiss off you asshole .</p>
+<p><strong>otto</strong>: Ow you bastards !</p>
+<p><strong>bud</strong>: Hey take it easy. Take it easy. The guys head
+is hurt.</p>
+<p><strong>oly</strong>: This is too personal sonny. The thing is a repo
+man got beat up in the line of duty. Now it doesn’t matter that that man
+was you. What really matters is that the guy that did it has got to pay
+the price. Now stop being selfish and tell us his name.</p>
+<p><strong>lite</strong>: Come on.</p>
+<p><strong>otto</strong>: Ahh Oww You bastard .</p>
+<p><strong>otto</strong>: All right! All right! All right! All right!
+O.K. his name was…</p>
+<p><strong>oly</strong>: Mr. Humphries?</p>
+<p><strong>mr. humphries</strong>: Yes? Yes I’m Mr. Humphries. What do
+you want? Ungghhh…</p>
+<p><strong>t.v.</strong>: The president admitted that U.S. war planes
+have napalmed refugees camps in Southern Mexico. He explained that these
+camps were in fact guerrilla bases. In strife torn Guatemala shots were
+fires at the U.S. embassy and government troops retaliated killing
+50…</p>
+<p><strong>marlene</strong>: Helping hand acceptance corporation.
+Marlene speaking.</p>
+<p><strong>leila</strong>: Hello, is Otto there?</p>
+<p><strong>marlene</strong>: It’s for you. A girl.</p>
+<p><strong>otto</strong>: Yeah.</p>
+<p><strong>leila</strong>: Hi Otto? It’s Leila.</p>
+<p><strong>otto</strong>: Leila who?</p>
+<p><strong>otto</strong>: I can’t believe I used to like these guys.</p>
+<p><strong>agent rogersz</strong>: Listen to me! For the sake of this
+and future generations you must tell us everything you know.</p>
+<p><strong>otto</strong>: Yeah. Sure. I need another drink.</p>
+<p><strong>leila</strong>: Otto, these aliens aren’t on ice or anything.
+They could be starting to decay. We’ve got to find them before they turn
+into mush.</p>
+<p><strong>duke</strong>: Well! Well! Well! If it ain’t the repo
+man.</p>
+<p><strong>archie</strong>: You look like shit you wankers .</p>
+<p><strong>otto</strong>: Duke. Debbi. Archie. I’d like you to meet
+Leila and her weird friend.</p>
+<p><strong>duke</strong>: How you doing, asshole ?</p>
+<p><strong>archie</strong>: How come you don’t hang out with your
+friends no more?</p>
+<p><strong>[otto</strong>: What friends?</p>
+<p><strong>duke</strong>: Want some toot dude?</p>
+<p><strong>duke</strong>: I really love ya man. You’re my best friend.
+Because you always fucking came to see me while I was in Juvie.</p>
+<p><strong>otto</strong>: I’m busy man. I told ya I was working.</p>
+<p><strong>debbi</strong>: Look a metal hand.</p>
+<p><strong>archie</strong>: Cool!</p>
+<p><strong>debbi</strong>: Can we feel it?</p>
+<p><strong>archie</strong>: Oh Chante.]</p>
+<p><strong>duke</strong>: Fuck this let’s go do some crimes.</p>
+<p>**[archie**: Adios butthole.]</p>
+<p><strong>leila</strong>: Charming friends you got there Otto.</p>
+<p><strong>otto</strong>: Thanks, I made’um myself.</p>
+<p><strong>debbi</strong>: Hey what you doing with our car?</p>
+<p><strong>j. frank parnell</strong>: Your car?</p>
+<p><strong>archie</strong>: Yeah!</p>
+<p><strong>j. frank parnell</strong>: Are you sure? This looks like my
+car. Are there pecan pies in the back seat?</p>
+<p><strong>archie</strong>: Not any more. We ate ’em.</p>
+<p><strong>duke</strong>: Shut up Archie.</p>
+<p><strong>archie</strong>: You shut up.</p>
+<p><strong>duke</strong>: You’re still here?</p>
+<p><strong>j. frank parnell</strong>: My car looks just like this. But
+this is yours, your car?</p>
+<p><strong>archie</strong>: Yeah four eyes.</p>
+<p><strong>j. frank parnell</strong>: Of course…what’s in the trunk?</p>
+<p><strong>duke</strong>: What do you mean?</p>
+<p><strong>j. frank parnell</strong>: You don’t even know what’s in your
+own trunk.</p>
+<p><strong>debbi</strong>: Kill him Duke!</p>
+<p><strong>j. frank parnell</strong>: You know what? I think you’re
+afraid to find out.</p>
+<p><strong>debbi</strong>: Kill him.</p>
+<p><strong>archie</strong>: Come on Duke you putty butt, kill him.</p>
+<p><strong>duke</strong>: I aint afraid of nothing see.</p>
+<p><strong>j. frank parnell</strong>: It’s all right I don’t blame you
+for being afraid.</p>
+<p><strong>duke</strong>: I said I ain’t afraid of nothing. I kill
+people like you.</p>
+<p><strong>j. frank parnell</strong>: Oh well. I guess you’re right.
+It’s better not to look.</p>
+<p><strong>j. frank parnell</strong>: Beautiful evening. You can almost
+see the stars.</p>
+<p><strong>archie</strong>: Oh shut up. Duh. He’s going to open it.
+HAHAHA</p>
+<p><strong>duke</strong>: Ah.</p>
+<p><strong>archie</strong>: Come on Duke.</p>
+<p><strong>duke</strong>: This thing is hot.</p>
+<p><strong>archie</strong>: AWWW, heh heh heh</p>
+<p><strong>debbie</strong>: Well we don’t have all night.</p>
+<p><strong>debbi</strong>: Close it Duke! No! No!</p>
+<p><strong>archie</strong>: Aw. Dukie Wookie hurt his wittle hand.</p>
+<p><strong>duke</strong>: Fuck you Archie! Just for that your not in the
+gang any more.</p>
+<p><strong>archie</strong>: I’m taking over now.</p>
+<p><strong>debbi</strong>: Oh leave it off.</p>
+<p><strong>archie</strong>: King Archie the invincible.</p>
+<p><strong>debbie</strong>: Shut up Archie.</p>
+<p><strong>archie</strong>: Hey Debbi! Watch this.</p>
+<p><strong>j. frank parnell</strong>: Oh dear, what a shame.</p>
+<p><strong>debbie</strong>: Come on duke let’s go do those crimes.</p>
+<p><strong>duke</strong>: Yeah. Yeah. Let’s go get Sushi and, and not
+pay.</p>
+<p><strong>napoleon</strong>: Hey! Yo! Hey buddy!</p>
+<p><strong>napoleon</strong>: Special deputies pull over. Special
+deputies pull over. Hey!</p>
+<p><strong>[oly</strong>: So the department says the ice broke and he
+fell in.</p>
+<p><strong>bud</strong>: Look at these people man there’s one person in
+each car. City wants up to car pool but nobody gives a shit.</p>
+<p><strong>miller</strong>: People car pool, we’d be out of work.</p>
+<p><strong>lite</strong>: AWW bullshit!</p>
+<p><strong>oly</strong>: How come that pig’s got a wooden leg? Well said
+the farmer said about three months ago I was out there walking the
+pig.</p>
+<p><strong>miller</strong>: Look at that car.]</p>
+<p><strong>lite</strong>: Hey Budsky. There’s your Girlfriend.</p>
+<p><strong>bud</strong>: Aww! Those Rodriguez brothers Humm? O.K., boys,
+we’ve got the whole team here tonight lets settle these motherfucker’s
+hash for good.</p>
+<p><strong>lite</strong>: Let’s do it.</p>
+<p><strong>[napoleon</strong>: Yo! Pull over.</p>
+<p><strong>lagarto</strong>: Meda Bud. Shit!]</p>
+<p><strong>napoleon</strong>: Don’t lose him man.</p>
+<p><strong>plettschner</strong>: Hey! Hey! Take it easy. Stop this car.
+Hey come on. Come on.</p>
+<p><strong>napoleon</strong>: Come on! Come on! What are you going to do
+with that bat? What? Huh? What?</p>
+<p><strong>lagarto</strong>: Hey! Hey! Hey!</p>
+<p><strong>lagarto</strong>: You bad bud. This is going to cost you
+plenty.</p>
+<p><strong>bud</strong>: What do you mean its going to cost me
+plenty?</p>
+<p><strong>lagarto</strong>: How’s your neck Napoleon?</p>
+<p><strong>napoleon</strong>: Oh my neck? Yeah! Oh! my neck is killing
+me man. I think I got whiplash.</p>
+<p><strong>lagarto</strong>: Aside from whiplash, this isn’t a repo
+car.</p>
+<p>**[bud**: Bullshit! I got the fucking papers on it.]</p>
+<p><strong>lagarto</strong>: We paid it off. You see, uh this is our
+favorite car.</p>
+<p><strong>napoleon</strong>: Yeah that’s right. You got insurance ?</p>
+<p><strong>bud</strong>: Come on . Whose side are you on ? Let me go
+.</p>
+<p><strong>bud</strong>: This is bullshit Oly.</p>
+<p><strong>oly</strong>: Yeah Yeah that’s what I said when the marshal
+woke me up at 4 o’clock this morning . Unfortunately it isn’t bullshit ,
+it’s a summons.</p>
+<p><strong>bud</strong>: You should have refused to accept it.</p>
+<p><strong>oly</strong>: Have you read it? The goddamn Rodriguez
+brothers are suing us for malicious damage, medical expenses and
+harassment for a car they fucking own.</p>
+<p><strong>bud</strong>: The Rodriguez brothers. But. Ha! You believe
+the fucking Rodriguez brothers? They’re a couple of scumbags Oly. You
+know that?</p>
+<p><strong>oly</strong>: I know that bud. But we’ve got to sit down and
+get our stories straight.</p>
+<p><strong>bud</strong>: Bullshit you’re taking their word against
+mine.</p>
+<p><strong>oly</strong>: I was there remember? Why don’t you go home?
+Take the rest of the week off.</p>
+<p><strong>bud</strong>: Take the rest of the? I can’t take the rest of
+the…OW yeah! I Un Huh I get it. Take the flippin rest of the week off
+budsky. So you can get the flippin twenty thousand dollars for the
+Malibu.</p>
+<p><strong>oly</strong>: Make it a fucking month.</p>
+<p><strong>bud</strong>: Yeah? Well fuck you.</p>
+<p><strong>oly</strong>: On second though Budsky. Don’t bother coming
+back at all.</p>
+<p><strong>bud</strong>: Great! I’ll come back and pick up my stuff
+later when the fucking place don’t stink so bad.</p>
+<p><strong>plettschner</strong>: Ha! Ha! Ha!</p>
+<p><strong>oly</strong>: Shut up!</p>
+<p><strong>bud</strong>: . Makes you wonder how much they owe. Most of
+them are on the run. Don’t even use their fucking social security
+numbers. If there was just some way to find out how much the
+motherfuckers owe and making them pay.</p>
+<p><strong>otto</strong>: Jesus Christ bud. They’re winos, they don’t
+have any money. You think they’d be bums if they did?</p>
+<p><strong>bud</strong>: You want out? Do ya?</p>
+<p><strong>otto</strong>: No!</p>
+<p><strong>bud</strong>: What’s a matter with you? Don’t you like your
+job anymore? Not too happy in your job? I mean I feel like were not
+communicating any more. When we first started out I though I could teach
+you something share something with you for Christ’s sake. Answer me!</p>
+<p><strong>agent</strong>: I’m picking up the dead. I’m putting my hands
+around this dead body. I’m, I’m carrying his limp torso to the truck.
+And he feels like like he has only been dead a little while but…</p>
+<p><strong>j. frank parnell</strong>: J. Frank Parnell.</p>
+<p><strong>otto</strong>: ott, ott…</p>
+<p><strong>j. frank parnell</strong>: What line of work you in?</p>
+<p><strong>otto</strong>: re, re, re..</p>
+<p><strong>j. frank parnell</strong>: Rock’n’roller, eh!? I used to be a
+musician myself, college days. Of course it was folk songs and protest
+songs back then. We shall overcome, we shall overcome…</p>
+<p><strong>j. frank parnell</strong>: Did you ever feel as if your mind
+had started to erode?</p>
+<p><strong>otto</strong>: No.</p>
+<p><strong>j. frank parnell</strong>: Ever been to Utah?</p>
+<p><strong>otto</strong>: Nuh-uh</p>
+<p><strong>j. frank parnell</strong>: I go to Utah every year. Friend of
+mine, was a designer of the MX missile race track basing mode. A hundred
+thousand miles of railroad track on a big loop through Utah, Arizona,
+and Nevada. Bombs were going to hide in locomotive sheds. That way the
+red team would never know exactly where they were. I still go out to
+Utah, just to think about the way things might have been.</p>
+<p><strong>otto</strong>: Sir. I represent the Helping Hand Acceptance
+Corporation.</p>
+<p><strong>j. frank parnell</strong>: Radiation, yes indeed! You hear
+the most outrageous lies about it. Half-baked goggle-boxed do-gooders
+telling everybody it�s bad for you. Pernicious nonsense! Everybody could
+stand a hundred chest X-rays a year. They ought to have ’em too. When
+they canceled the project it almost did me in. One day my mind was
+literally a-burst. The next day nothing. Swept away… But I showed them.
+I had a lobotomy in the end.</p>
+<p><strong>otto</strong>: Lobotomy? Isn’t that for loonies?</p>
+<p><strong>j. frank parnell</strong>: Not at all. A friend of mine had
+one. Designer of the neutron bomb. Ever hear of the neutron bomb?
+Destroys people. Leaves buildings standing. It fits in a suit case. It’s
+so small no one knows it’s there until blammo. Eyes melt skin explodes
+everybody dead. It’s so immoral working on the thing can drive you mad.
+That’s what happened to this friend of mine. So he had a lobotomy. Now
+he’s well again.</p>
+<p><strong>otto</strong>: What kind of car does your… does your friend
+drive?</p>
+<p><strong>j. frank parnell</strong>: Chevy Malibu.</p>
+<p><strong>otto</strong>: And you do the same type of work?</p>
+<p><strong>j. frank parnell</strong>: Didn’t I tell you? I can’t tell
+you what I do. I’m classified.</p>
+<p><strong>otto</strong>: This is really a nice old car. Why don’t you
+let me drive?</p>
+<p><strong>j. frank parnell</strong>: What do you mean?</p>
+<p><strong>otto</strong>: Well I don’t know. I mean…uh! Don’t you feel
+funny.?</p>
+<p><strong>j. frank parnell</strong>: Why should I feel funny? The two
+hemispheres are fundamentally at odds. Hemisphere, Hemisphere. You know
+it’s strange. I do feel funny…</p>
+<p><strong>oly</strong>: By the way kid, sign this.</p>
+<p><strong>otto</strong>: What is this?</p>
+<p><strong>oly</strong>: Equity turnover. Standard practice. Protects
+you in case we get sued. . . Don’t read the damn thing, kid, just sign
+it.</p>
+<p><strong>repo wife 1</strong>: Here’s the young new-waver we’ve all
+heard so much about.</p>
+<p><strong>repo wife 2</strong>: My old man had a mohawk on him when I
+met him. He was in the service then.</p>
+<p><strong>oly</strong>: He signed it over to me. But he didn�t
+realize-</p>
+<p><strong>repo wife 2</strong>: My old man was such a monster. I used
+to have to tell him no.</p>
+<p><strong>repo wife 1</strong>: My old man was exactly the same way
+until we got married.</p>
+<p><strong>lite</strong>: Hey Oly. You’re wife’s hanging all over
+Otto.</p>
+<p><strong>oly</strong>: Yeah. Like flies on shit .</p>
+<p><strong>otto</strong>: Um. Have you see uh bud anywhere?</p>
+<p><strong>repo wife 1</strong>: Who?</p>
+<p><strong>tv</strong>: …another wonderful Christian opportunity. The
+Reverend Larry…</p>
+<p><strong>bud</strong>: Hey there hero. Get the money yet?</p>
+<p><strong>otto</strong>: Not yet. Oly’s going to get it for me though.
+I just signed the papers.</p>
+<p><strong>bud</strong>: Whu, what do you mean, what papers?</p>
+<p><strong>otto</strong>: Beats me, just some, uh, contract or
+something.</p>
+<p><strong>bud</strong>: Didn’t you read it?</p>
+<p><strong>otto</strong>: Well, no, just, uh, standard practice, uh,
+contract…</p>
+<p><strong>bud</strong>: Melonfarmer Oly! …oooh, shoot.</p>
+<p><strong>otto</strong>: What, is that not a happening deal?</p>
+<p><strong>bud</strong>: Hey ace. Wait up.</p>
+<p><strong>otto</strong>: So you want to talk about it?</p>
+<p><strong>bud</strong>: Talk about what kid?</p>
+<p><strong>otto</strong>: Why you’re so damn mad at me?</p>
+<p><strong>bud</strong>: I’m not mad at you. damn. I’m not. I’m not mad
+at you.</p>
+<p><strong>otto</strong>: All right O.K.</p>
+<p><strong>[duke</strong>: Debbie?</p>
+<p><strong>debbie</strong>: What?</p>
+<p><strong>duke</strong>: I’ve been thinking. Now that we’ve got some
+money and Archie’s gone, don’t you think it’s time we we settle down?
+Get a little house. I want you to have my baby.</p>
+<p><strong>debbie</strong>: Why?</p>
+<p><strong>duke</strong>: Well I don’t know. Every body does it. And it
+just seems like the thing to do and…</p>
+<p><strong>debbi</strong>: Asshole.]</p>
+<p><strong>duke</strong>: Let’s go do the job.</p>
+<p><strong>otto</strong>: Duke! Debbie! What what are you guys doing
+here?</p>
+<p><strong>duke</strong>: What’s it look like ace?</p>
+<p><strong>debbie</strong>: Up against the wall.</p>
+<p><strong>duke</strong>: I’m going to kill him. I’m going to kill him.
+I’m going to kill everybody. ha-ha-ha</p>
+<p><strong>louie</strong>: Drop it motherfucker .</p>
+<p><strong>bud</strong>: Oww shit .</p>
+<p><strong>otto</strong>: Debbie Ah. Ah Do You, uh, do you think it’s
+too late uh for us to get romantically involved?</p>
+<p><strong>debbie</strong>: I think a little.</p>
+<p><strong>otto</strong>: Wait! Wait! Stick with me. I’ll make you a
+repo wife.</p>
+<p><strong>debbi</strong>: Bollocks. Here.</p>
+<p><strong>duke</strong>: Otto?</p>
+<p><strong>otto</strong>: Yeah I’m here man.</p>
+<p><strong>duke</strong>: The lights are growing dim. I know a life of
+crime led me to this sorry fate. And yet I I blame society. Society made
+me what I am.</p>
+<p><strong>otto</strong>: That’s bullshit . You’re a white suburban
+punk, just like me.</p>
+<p><strong>duke</strong>: But it still hurts.</p>
+<p><strong>otto</strong>: You’re going to be all right man</p>
+<p><strong>otto</strong>: Maybe not.</p>
+<p><strong>agent</strong>: Yep he’s dead all right.</p>
+<p><strong>agent</strong>: No doubt about it.</p>
+<p><strong>agent</strong>: He’s a goner.</p>
+<p><strong>agent</strong>: Man.</p>
+<p><strong>agent rogersz</strong>: Don’t touch the body, don’t touch the
+body.</p>
+<p><strong>agent</strong>: Sorry.</p>
+<p><strong>agent</strong>: Telephone call for you agent.</p>
+<p><strong>agent rogersz</strong>: Don’t bother me now.</p>
+<p><strong>agent</strong>: But Agent Rogersz, it’s the Gipper.</p>
+<p><strong>agent</strong>: Look.</p>
+<p><strong>agent</strong>: Booth’s setting him on fire</p>
+<p><strong>reverend larry on tv</strong>: …fail to register for
+patriotic chores. So, please call this toll free number. Praise the
+lord. There is no redemption for the unredeemed, no escape for the fair
+weather patriots. No salvation from the boiling blistering fires of
+eternal damnation. Now these are the end times. Because in these days
+there shall be hell in time. Man shall be lovers of their own self
+rather than lovers of God.</p>
+<p><strong>otto’s dad</strong>: Haven’t seen you in a while, Son.</p>
+<p><strong>tv</strong>: No escape…</p>
+<p><strong>otto’s mom</strong>: Some men were just here looking for you,
+Otto.</p>
+<p><strong>tv</strong>: No salvation from the blistering files of
+eternal damnation. For in these days there shall be hell in time, there
+shall be war and more war, and earthquakes in diverse places…</p>
+<p><strong>otto</strong>: What kind of men?</p>
+<p><strong>otto’s mom</strong>: Very nice young men. They wore
+sunglasses.</p>
+<p><strong>otto</strong>: Well, what did you tell them? Did you tell
+them I was sick?</p>
+<p><strong>otto’s dad</strong>: We told them the truth, son. Gave them
+your address at work.</p>
+<p><strong>tv</strong>: Money shall run out and the people will line up
+at the banks and there won’t be anything . . . these prophecies are in
+your bible. The same one that you have in your home. Now I want you to
+get up off of your sofa and put that beer down and go wherever it is in
+your house pick up that book and turn with me…</p>
+<p><strong>agent</strong>: Where’s the car baby? That Chevy Malibu baby.
+Where’s the car?</p>
+<p><strong>plettschner</strong>: Otto!</p>
+<p><strong>otto</strong>: Jeeze.</p>
+<p><strong>plettschner</strong>: You got to stay out of this.</p>
+<p><strong>otto</strong>: Why?</p>
+<p><strong>plettschner</strong>: It’s none of your business. You want to
+be a hero? Or would you rather be a chicken man?</p>
+<p><strong>otto</strong>: What?</p>
+<p><strong>plettschner</strong>: A chicken man. Did you ever see a
+farmer’s wife? Huh?</p>
+<p><strong>otto</strong>: Let go of me!</p>
+<p>**[plettschner**: It’s peaceful man.]</p>
+<p><strong>agent 1</strong>: The Malibu.</p>
+<p><strong>agent 2</strong>: Yeah?</p>
+<p><strong>marlene</strong>: Let’s go</p>
+<p><strong>otto</strong>: No way Marlene.</p>
+<p><strong>otto</strong>: My car’s gone and we’re going to get to the
+bottom of this.</p>
+<p><strong>marlene</strong>: Like hell we are.</p>
+<p><strong>agent 2</strong>: Not in my face.</p>
+<p><strong>plettschner</strong>: Hold it Marlene. Freeze!</p>
+<p><strong>agent 2</strong>: My Face!</p>
+<p><strong>marlene</strong>: Over my dead body.</p>
+<p><strong>plettschner</strong>: That’s how it’s going to have to
+be.</p>
+<p><strong>marlene</strong>: Come and get me. Come on.</p>
+<p><strong>plettschner</strong>: I’ve been wanting to do that one for a
+long time honey.</p>
+<p><strong>marlene</strong>: Come on. Come on. Come on if you think your
+man enough.</p>
+<p><strong>otto</strong>: Hey Fletch. Coffee break.</p>
+<p><strong>agent rogersz</strong>: Good evening Otto. This is agent
+Rogersz. I’m going to ask you a few questions. And since time is short
+and you may lie, I’m going to have to torture you. But I want you to
+know it isn’t personal.</p>
+<p><strong>otto</strong>: Look Ah this isn’t really necessary. I’ll tell
+you anything you want to know.</p>
+<p><strong>agent rogersz</strong>: Good! Where is the Malibu?</p>
+<p><strong>otto</strong>: I don’t know. Somebody ripped it from the
+yard.</p>
+<p><strong>leila</strong>: I don’t think he knows.</p>
+<p><strong>agent rogersz</strong>: Increase the voltage.</p>
+<p><strong>leila</strong>: But what if he’s innocent?</p>
+<p><strong>agent rogersz</strong>: No one is innocent. Proceed.</p>
+<p><strong>agent rogersz</strong>: Ah yes! Look at them. High heels,
+hair nets, those ridiculous trench coats. They’re pathetic.</p>
+<p><strong>agent 1</strong>: But agent Rogersz, they’re getting
+away.</p>
+<p><strong>agent rogersz</strong>: That’s all part of the plan.</p>
+<p><strong>marlene</strong>: Otto, Otto pull your self together.</p>
+<p><strong>otto</strong>: Marlene? What’s going on?</p>
+<p><strong>marlene</strong>: We’re going to the hospital.</p>
+<p><strong>old lady</strong>: Hey, I know you. You’re the one that run
+into my trash.</p>
+<p><strong>otto</strong>: Shh!</p>
+<p><strong>old lady</strong>: Shhh to you too.</p>
+<p><strong>lagarto</strong>: Out of order. Take the stairs.</p>
+<p><strong>note</strong>: Dr. Benway and Mr. Lee are both characters
+from “The Naked Lunch”</p>
+<p><strong>kevin</strong>: Otto?</p>
+<p><strong>nurse 1</strong>: Let me see that. All wrong do it over.</p>
+<p><strong>old lady</strong>: They’re going through it all the and they
+won’t pick it up.</p>
+<p><strong>nurse 2</strong>: Oh well isn’t that a shame.</p>
+<p><strong>old lady</strong>: Oh tell you it comes to something when
+they expect you to pick it up.</p>
+<p><strong>otto</strong>: How are you doing man?</p>
+<p><strong>marlene</strong>: Ask him about the Malibu.</p>
+<p><strong>otto</strong>: Look about the other night. I’m sorry I split.
+I know I should have stayed with you but ah it’s like when I was a kid
+you know I I had this set of big wheels you know.</p>
+<p><strong>marlene</strong>: Otto!</p>
+<p><strong>bud</strong>: Shit .</p>
+<p><strong>reverend larry</strong>: Praise the lord.</p>
+<p><strong>napoleon</strong>: Go. Go. Go.</p>
+<p><strong>napoleon</strong>: Come on. Let’s go.</p>
+<p><strong>otto</strong>: Dude slow down.</p>
+<p><strong>napoleon</strong>: All right don’t shoot come on all right
+all right</p>
+<p><strong>agents</strong>: Chicken shits . braak-braak-braak</p>
+<p><strong>agent rogersz</strong>: Where’s the Malibu?</p>
+<p><strong>otto</strong>: Don’t even ask because I don’t know. I mean I
+don’t have it Marlene doesn’t have it you and your crazy friends don’t
+have it. So that only leaves…</p>
+<p><strong>agent</strong>: Where is he.</p>
+<p><strong>agent</strong>: Where the fuck is he.</p>
+<p><strong>napoleon</strong>: Later!</p>
+<p><strong>marlene</strong>: Bye, Bye.</p>
+<p><strong>voice from the radio</strong>: Here’s another weird one.
+Reports are coming in about apparent hail of ice cubes south of
+downtown. Scientist are at a loss to explain the freak showers of tiny
+cubes of ice.</p>
+<p><strong>otto</strong>: That’s some weird fucking shit Eh Bud? What’s
+going on man?</p>
+<p><strong>bud</strong>: Shit ! Eleven years of repoing cars and what
+have I got? Shit !</p>
+</body>
+</html>

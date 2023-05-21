@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ghost-ship</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="ghost-ship">ghost-ship</h1>
+<p><strong>epps</strong>: It’s a slow leak.</p>
+<p><strong>greer</strong>: What’s slow?</p>
+<p><strong>epps</strong>: Maybe twenty gallons an hour.</p>
+<p><strong>dodge</strong>: Where from?</p>
+<p><strong>epps</strong>: Amidships starboard at the beam. Just under
+the waterline. I don’t think it’s a problem.</p>
+<p><strong>greer</strong>: Hear that, Dodge? Epps don’t think it’s a
+problem.</p>
+<p><strong>dodge</strong>: I’ll sleep good tonight knowing that.</p>
+<p><strong>greer</strong>: Greer to Murphy.</p>
+<p><strong>murphy</strong>: Go.</p>
+<p><strong>greer</strong>: The number nine on the starboard side’s half
+flooded. Epps says it’s a slow leak just under the waterline, about
+twenty gallons an hour. They must’ve pumped it before we left Sitka.</p>
+<p><strong>murphy</strong>: Of course they did.</p>
+<p><strong>greer</strong>: Let the buyer beware.</p>
+<p><strong>murphy</strong>: What do you say, Dodge?</p>
+<p><strong>dodge</strong>: If it started out at twenty an hour the piece
+of shit’d be at the bottom of the Gulf by now. Whether it’ll make
+St. Lawrence is anybody’s guess.</p>
+<p><strong>vasili</strong>: I thought you say Tuesday.</p>
+<p><strong>murphy</strong>: Better late than never.</p>
+<p><strong>vasili</strong>: What’s this?</p>
+<p><strong>murphy</strong>: You got a leak in the number nine
+compartment.</p>
+<p><strong>vasili</strong>: No, no. You got leak.</p>
+<p><strong>murphy</strong>: You pump it out and re-seam the hull, she’ll
+be good as new.</p>
+<p><strong>vasili</strong>: That cost me twenty grand at least.</p>
+<p><strong>murphy</strong>: Fifteen, at the most.</p>
+<p><strong>vasili</strong>: Twenty. You knock off twenty and then we
+see. After my guy looks at it.</p>
+<p><strong>murphy</strong>: You’re kidding, right?</p>
+<p><strong>vasili</strong>: You want fair pay, make hamburger for Mickey
+D. Otherwise, please to sign.</p>
+<p><strong>greer</strong>: Not bad for dragging a leaky tub half way to
+Russia.</p>
+<p><strong>murphy</strong>: He’ll sell the scrap for three times what he
+paid.</p>
+<p><strong>greer</strong>: I must be in the wrong business.</p>
+<p><strong>murphy</strong>: You got that right.</p>
+<p><strong>greer</strong>: Better than “making hamburger for Mickey
+D.”</p>
+<p><strong>dodge</strong>: Much obliged, skipper.</p>
+<p><strong>greer</strong>: Looks like Epps’ gonna get some tonight.</p>
+<p><strong>dodge</strong>: With that coxswain dickhead.</p>
+<p><strong>murphy</strong>: You aren’t jealous, are you Dodge?</p>
+<p><strong>dodge</strong>: Are you kidding me? Jealous? Epps? Gimme a
+break.</p>
+<p><strong>dodge</strong>: What a laugh.</p>
+<p><strong>woman’s voice</strong>: I’ll show you, bitch!</p>
+<p><strong>girlfriend</strong>: You want to mess with me, I’ll kick your
+bitch ass, girl.</p>
+<p><strong>epps</strong>: I don’t know what you’re talking about. I just
+bought this guy a beer.</p>
+<p><strong>girlfriend</strong>: This “guy” is my man, honey.</p>
+<p><strong>coastguardsman</strong>: Darlene –</p>
+<p><strong>girlfriend</strong>: You, shut up.</p>
+<p><strong>epps</strong>: Listen, I don’t want any trouble, okay – ?</p>
+<p><strong>girlfriend</strong>: Uh-uh. No. We’re gonna fix this right
+now.</p>
+<p><strong>murphy</strong>: What seems to be the trouble, ladies?</p>
+<p><strong>riveter</strong>: Whyn’t you mind your own business,
+chief.</p>
+<p><strong>murphy</strong>: As I said, what seems to be the trouble?</p>
+<p><strong>riveter</strong>: Didn’t you hear me, grandpa? Or you got
+your hearing aid turned down?</p>
+<p><strong>murphy</strong>: I heard you. But I’m choosing to ignore you.
+Epps, let’s go.</p>
+<p><strong>riveter</strong>: These ladies was having themselves a
+discussion and you’re interrupting it.</p>
+<p><strong>murphy</strong>: You got about two seconds to get your paws
+off me, Tarzan.</p>
+<p><strong>riveter</strong>: Or what?</p>
+<p><strong>murphy</strong>: Epps?</p>
+<p><strong>coastguardsman</strong>: Wait.</p>
+<p><strong>coastguardsman</strong>: Darlene. It’s over.</p>
+<p><strong>coastguardsman</strong>: I don’t love you anymore.</p>
+<p><strong>coastguardsman</strong>: Come on, Candy. Let’s get out of
+here.</p>
+<p><strong>epps</strong>: Morning everybody.</p>
+<p><strong>greer</strong>: Show your tatoos to that coxswain last night,
+did you Epps?</p>
+<p><strong>epps</strong>: Showed him a hell of a lot more than that.</p>
+<p><strong>greer</strong>: I bet you did.</p>
+<p><strong>murphy</strong>: Candy?</p>
+<p><strong>epps</strong>: It’s my pen name.</p>
+<p><strong>greer</strong>: Red sky at night, sailor’s delight.</p>
+<p><strong>murphy</strong>: Red sky in morning, sailor take warning.</p>
+<p><strong>dodge</strong>: Fuck it.</p>
+<p><strong>epps</strong>: One more?</p>
+<p><strong>dodge</strong>: Why not.</p>
+<p><strong>dodge</strong>: What is your first name?</p>
+<p><strong>epps</strong>: What?</p>
+<p><strong>dodge</strong>: It just occurred to me I don’t know your
+first name. All this time and I don’t know it.</p>
+<p><strong>epps</strong>: Maureen.</p>
+<p><strong>dodge</strong>: What?</p>
+<p><strong>epps</strong>: Maureen.</p>
+<p><strong>dodge</strong>: Maureen?</p>
+<p><strong>epps</strong>: What’s yours?</p>
+<p><strong>dodge</strong>: Roger.</p>
+<p><strong>epps</strong>: Roger?</p>
+<p><strong>dodge</strong>: Yeah.</p>
+<p><strong>dodge</strong>: You think that’s funny</p>
+<p><strong>epps</strong>: No.</p>
+<p><strong>greer</strong>: Greer to Murphy.</p>
+<p><strong>murphy</strong>: Yeah.</p>
+<p><strong>greer</strong>: There’s a large vessel out about ten miles to
+the north-west.</p>
+<p><strong>greer</strong>: I been watching it for close to an hour and
+it hasn’t moved. I can’t raise it on the radio either. Makes me think it
+might be in trouble.</p>
+<p><strong>murphy</strong>: Alright. I’ll be right up.</p>
+<p><strong>murphy</strong>: Merchant vessel at position one seven four
+one five west, five seven seven five north.</p>
+<p><strong>murphy</strong>: This is tugboat Arctic Warrior whiskey alpha
+sierra bravo four zero niner two. Over.</p>
+<p><strong>murphy</strong>: Merchant vessel at one seven four one five
+west, five seven seven five north, this is tugboat Arctic Warrior
+whiskey alpha sierra bravo four zero niner two. Over.</p>
+<p><strong>murphy</strong>: Too deep to anchor out there.</p>
+<p><strong>greer</strong>: Looks like it’s adrift.</p>
+<p><strong>epps</strong>: Could be a fishing boat.</p>
+<p><strong>greer</strong>: Too big. More like a freighter.</p>
+<p><strong>murphy</strong>: What the hell would a freighter be doing up
+here? It’s way out of the lanes. There’s not a port for 800 miles.</p>
+<p><strong>dodge</strong>: Smugglers maybe.</p>
+<p><strong>greer</strong>: Smuggling what? Tundra grass?</p>
+<p><strong>murphy</strong>: Merchant vessel at position one seven four
+one five west, five seven seven five north, this is tugboat Arctic
+Warrior. Do you copy? Over.</p>
+<p><strong>greer</strong>: Call the Coastguard?</p>
+<p><strong>murphy</strong>: Steer to one eight five. Let’s check her
+out.</p>
+<p><strong>murphy</strong>: Alright. Back it off.</p>
+<p><strong>murphy</strong>: Hit the lights.</p>
+<p><strong>murphy</strong>: Whoa, whoa.</p>
+<p><strong>murphy</strong>: “Chimera.”</p>
+<p><strong>murphy</strong>: Chimera.</p>
+<p><strong>murphy</strong>: This is civilian tugboat Arctic Warrior. Is
+there anyone aboard?</p>
+<p><strong>murphy</strong>: Chimera, I am hove to at your port bow. Is
+there anyone aboard?</p>
+<p><strong>murphy</strong>: Epps, come with me. You guys sit tight.</p>
+<p><strong>greer</strong>: Talk to me, skipper.</p>
+<p><strong>murphy</strong>: We’re in a stairwell just under the main
+superstructure.</p>
+<p><strong>murphy</strong>: This is definitely an old boat, maybe sixty
+years old. She hasn’t been in service for at least twenty years.
+Probably a lot longer.</p>
+<p><strong>murphy</strong>: It’s funny.</p>
+<p><strong>greer</strong>: How’s that?</p>
+<p><strong>murphy</strong>: Besides a little rust, everything’s pretty
+well-preserved.</p>
+<p><strong>murphy</strong>: How she got out here is one hell of a good
+question. Jesus.</p>
+<p><strong>greer</strong>: What is it?</p>
+<p><strong>greer</strong>: Murphy.</p>
+<p><strong>greer</strong>: Murphy, goddamit.</p>
+<p><strong>murphy</strong>: Sorry.</p>
+<p><strong>greer</strong>: What is it?</p>
+<p><strong>murphy</strong>: It’s a passenger ship. It’s a damn passenger
+ship.</p>
+<p><strong>murphy</strong>: There’s nobody on that boat.</p>
+<p><strong>dodge</strong>: Probably slipped her moorings, got tangled up
+in a current.</p>
+<p><strong>epps</strong>: Out here? What, so a seven hundred foot
+passenger liner drifted out of Spokane harbor and nobody managed to bump
+into her until now?</p>
+<p><strong>dodge</strong>: Somebody’s probably looking for her as we
+speak.</p>
+<p><strong>murphy</strong>: Whatever the reason, she’s adrift and
+abandoned. We’ve got every right to salvage her.</p>
+<p><strong>greer</strong>: You mean tow her back? That’s a thirty
+thousand ton ship you’re talking about.</p>
+<p><strong>murphy</strong>: We’ve done it before.</p>
+<p><strong>dodge</strong>: Yeah, from one side of the harbor to the
+other. But we got half the Bering Sea and the whole Alaskan gulf to drag
+her over.</p>
+<p><strong>murphy</strong>: You have any idea how much a ship like that
+could be worth in salvage? The fittings alone could go for a few
+million.</p>
+<p><strong>dodge</strong>: If you get it back in one piece.</p>
+<p><strong>murphy</strong>: It’s a risk I’m willing to take.</p>
+<p><strong>greer</strong>: All we got to do is hit some rough weather
+and you can forget about it.</p>
+<p><strong>murphy</strong>: So we cut her loose and wait it out. A
+little weather couldn’t be anything she hasn’t seen before.</p>
+<p><strong>dodge</strong>: It’s a bloody navigation hazard. One boat
+can’t control a ship that size.</p>
+<p><strong>murphy</strong>: The damn thing’s been floating around for
+God knows how long and it hasn’t hit anything yet. So we take it easy. A
+little of the old push pull.</p>
+<p><strong>murphy</strong>: Listen. Forget this job’s just a pay check
+for a minute. You know I’ve been good to you. But I’m prepared to offer
+you something better now. If we do this right, it’s worth a lot of
+money. A lot of money.</p>
+<p><strong>epps</strong>: Go on.</p>
+<p><strong>murphy</strong>: Salvage fees on a vessel like this could
+come in around four million bucks. At least. Who knows, could be more.
+Could be a lot more. What I’m proposing is… we split it four ways.</p>
+<p><strong>murphy</strong>: Think about it. A million bucks a piece. You
+want to spend the rest of your days drag-assing tank barges on the gulf
+coast, fine. Otherwise, let’s get to work.</p>
+<p><strong>murphy</strong>: United States Coastguard, United States
+Coastguard, United States Coastguard. This is tugboat Arctic Warrior
+whiskey alpha sierra bravo four zero niner two. Over.</p>
+<p><strong>coastguard dispatcher</strong>: Arctic Warrior, Arctic
+Warrior, Arctic Warrior. This is United States Coastguard Station North
+Island. Over.</p>
+<p><strong>murphy</strong>: North Island, I wish to declare myself
+salvor-in-posession under section four two charlie of the International
+Maritime Convention.</p>
+<p><strong>coastguard dispatcher</strong>: Affirmative, Arctic Warrior.
+What type of vessel?</p>
+<p><strong>murphy</strong>: A passenger liner. Over.</p>
+<p><strong>coastguard dispatcher</strong>: Say again. Over.</p>
+<p><strong>murphy</strong>: A passenger liner, north island. Over.</p>
+<p><strong>coastguard dispatcher</strong>: What is the vessel name,
+registry, and present position? Over.</p>
+<p><strong>murphy</strong>: Passenger vessel “Chimera.” I will spell:
+charlie hotel india mary echo romeo alpha. No registry information is
+available at this time. I have determined to the best of my ability that
+the vessel has been abandoned on the high seas at position one seven
+four west, five seven north at… Two zero one four hours zulu time.
+Over.</p>
+<p><strong>coastguard dispatcher</strong>: Affirmative, Arctic Warrior.
+Please advise your salvage authority pending registry check. Over.</p>
+<p><strong>murphy</strong>: Roger, North Island. Arctic Warrior over and
+out.</p>
+<p><strong>dodge</strong>: Okay. We’re gonna use a heavier than usual
+twin cable rig this time, consisting of a pair of number three gauge
+braided wire tows. We’ll tie off through the anchor alleys. And come
+down to the aft port and starboard pins. Here. Thus, we need to get two
+of these… Up there.</p>
+<p><strong>dodge</strong>: Seeing as though a foot of one of these
+fuckers weighs about a hundred pounds, it ain’t gonna be what you’d call
+easy. Any questions?</p>
+<p><strong>epps</strong>: Supposing one of those cables breaks under
+tow.</p>
+<p><strong>dodge</strong>: Then we’ll all be doomed. Any other
+questions?</p>
+<p><strong>dodge</strong>: Ready?</p>
+<p><strong>epps</strong>: Bring it on, dude.</p>
+<p><strong>dodge</strong>: Hit it!</p>
+<p><strong>epps</strong>: Dodge? You alright?</p>
+<p><strong>dodge</strong>: Yes!</p>
+<p><strong>dodge</strong>: Alright, skipper, real easy.</p>
+<p><strong>dodge</strong>: Steady as she goes.</p>
+<p><strong>dodge</strong>: Throttle back.</p>
+<p><strong>dodge</strong>: More.</p>
+<p><strong>dodge</strong>: More.</p>
+<p><strong>dodge</strong>: Right there, skipper. Right there.</p>
+<p><strong>murphy</strong>: I figure we go through at the Unimak Pass
+here. Refuel at Sanak Island.</p>
+<p><strong>murphy</strong>: With a little extra fuel, weather
+permitting, we should make Sitka in five days without another stop.</p>
+<p><strong>dodge</strong>: Sounds reasonable.</p>
+<p><strong>greer</strong>: Hypothetically speaking, what if we get this
+boat to Sitka and find out somebody wants it back?</p>
+<p><strong>dodge</strong>: They shoulda thought of that when they let
+her float away.</p>
+<p><strong>greer</strong>: I don’t care what, ain’t nobody just gonna
+let us walk away with a ship that size.</p>
+<p><strong>murphy</strong>: The law’s on our side. If they want to
+challenge it, let them try.</p>
+<p><strong>epps</strong>: They must’ve scuttled it. Nobody just lets a
+ship float away.</p>
+<p><strong>dodge</strong>: Nobody just scuttles a passenger liner
+either.</p>
+<p><strong>epps</strong>: Ever heard of insurance, big boy?</p>
+<p><strong>murphy</strong>: Either way, we found it. It’s ours now –
+.</p>
+<p><strong>dodge</strong>: What the…</p>
+<p><strong>dodge</strong>: Mother fucker!</p>
+<p><strong>murphy</strong>: What is it?</p>
+<p><strong>dodge</strong>: Threw a turbine blade.</p>
+<p><strong>dodge</strong>: Son of a bitch!</p>
+<p><strong>dodge</strong>: The number one turbine’s pretty well trashed.
+Number two runs, but it’s way underpowered.</p>
+<p><strong>murphy</strong>: How long to fix?</p>
+<p><strong>dodge</strong>: Hard to say. I gotta get in there and have a
+look. At least a couple days. Depending.</p>
+<p><strong>greer</strong>: You think the extra strain caused it?</p>
+<p><strong>dodge</strong>: Nah. Everything was cool. It’s just one of
+those things.</p>
+<p><strong>murphy</strong>: Some classy tub in it’s day, huh?</p>
+<p><strong>greer</strong>: Yeah.</p>
+<p><strong>epps</strong>: Check this out.</p>
+<p><strong>epps</strong>: Everything’s still here. Ticket records,
+receipts, books of account.</p>
+<p><strong>greer</strong>: One first class passage. Elizabeth James.
+Dubayy to Halifax. January 29th 1953.</p>
+<p><strong>murphy</strong>: Chimera. Flag ship of the Dobbins Kirk Line.
+Nova Scotia.</p>
+<p><strong>murphy</strong>: scattered charts and I’d sure like to get my
+hands on the general log.</p>
+<p><strong>greer</strong>: That must be the old man right there.</p>
+<p><strong>epps</strong>: Looks like one hell of a stick up his ass.</p>
+<p><strong>greer</strong>: He’d let you off at the nearest port, that’s
+for sure.</p>
+<p><strong>dodge</strong>: How about now?</p>
+<p><strong>greer</strong>: Sixty pounds.</p>
+<p><strong>dodge</strong>: What? You sure?</p>
+<p><strong>greer</strong>: That’s what it says.</p>
+<p><strong>dodge</strong>: Lemme see.</p>
+<p><strong>epps</strong>: Coffee?</p>
+<p><strong>murphy</strong>: Yeah. Thanks.</p>
+<p><strong>epps</strong>: What’d you find up there?</p>
+<p><strong>murphy</strong>: Some charts. A crew manifest. Looks like her
+last voyage was January 1953. The question is where the hell’s she been
+since.</p>
+<p><strong>epps</strong>: She was sailing up north, right?</p>
+<p><strong>murphy</strong>: Her destination was Halifax, yeah.</p>
+<p><strong>epps</strong>: Well, suppose she got a little further north
+than she should have. Got stuck in the ice. The passengers and crew
+evacuated. She froze into the ice pack, which moved further north, where
+it froze in solid. They write it off. Fifty years later, the whole
+global warming thing happens. The ice melts, she gets loose and floats
+around til somebody runs into her.</p>
+<p><strong>murphy</strong>: As reasonable an explanation as any, I
+guess.</p>
+<p><strong>murphy</strong>: Ever heard of the Mary Celeste?</p>
+<p><strong>epps</strong>: Nope.</p>
+<p><strong>murphy</strong>: She was a two-masted brig boat sailing out
+of New York in 1872. One day she was sighted off the coast of Portugal
+by a merchant vessel, the Dei Gratia. As the crew of the Dei Gratia got
+closer, they discovered that no one was at the helm of the Mary Celeste.
+On boarding, they found her completely deserted. The captain, his wife,
+their daughter, and the entire crew, all gone. The last entry in their
+log made no mention of any trouble. The table was even set for dinner.
+And in the nine days after the last entry, she sailed 700 miles without
+anyone aboard.</p>
+<p><strong>epps</strong>: So what did happen?</p>
+<p><strong>murphy</strong>: Nobody knows. There’ve been a lot of
+theories, of course. But we’ll never really know for sure.</p>
+<p><strong>epps</strong>: You think she’s sailing without a crew?</p>
+<p><strong>murphy</strong>: I think we’d be surprised where a drifting
+ship might wind up with a little wind and the right current.</p>
+<p><strong>epps</strong>: You’re more practical than superstitious.</p>
+<p><strong>murphy</strong>: Only way to be.</p>
+<p><strong>murphy</strong>: What’s this?</p>
+<p><strong>dodge</strong>: Turbine rotor’s shot.</p>
+<p><strong>murphy</strong>: I thought you said it was just a blade.</p>
+<p><strong>dodge</strong>: Metal’s crystallized. Gotta replace the whole
+deal.</p>
+<p><strong>murphy</strong>: How much longer’s that gonna take?</p>
+<p><strong>dodge</strong>: Like I always say –</p>
+<p><strong>murphy</strong>: I know I know, two ways to do anything –</p>
+<p><strong>dodge</strong>: The right way and the wrong way.</p>
+<p><strong>murphy</strong>: But how long?</p>
+<p><strong>dodge</strong>: Hard to say.</p>
+<p><strong>murphy</strong>: We gotta get outa here, Dodge. A storm blows
+up and we’re history.</p>
+<p><strong>dodge</strong>: I’m telling you, you don’t want to be running
+that fan like it is.</p>
+<p><strong>murphy</strong>: What about running number two by itself?</p>
+<p><strong>dodge</strong>: It’s a full 2500 horses down. We couldn’t
+drag that boat down hill on ice with it.</p>
+<p><strong>murphy</strong>: How long, then?</p>
+<p><strong>dodge</strong>: I gotta pull the blades and re-seat
+everything in a new rotor – .</p>
+<p><strong>murphy</strong>: How long?</p>
+<p><strong>dodge</strong>: Three, four days.</p>
+<p><strong>murphy</strong>: Goddamit, Dodge.</p>
+<p><strong>dodge</strong>: What do you want me to tell you, that we can
+throw this sucker back in and start pulling her like nothing happened?
+Can’t do it, skipper.</p>
+<p><strong>coastguard dispatcher</strong>: Arctic Warrior, Arctic
+Warrior, Arctic Warrior. This is United States Coastguard. Over.</p>
+<p><strong>coastguard dispatcher</strong>: Arctic Warrior, Arctic
+Warrior, Arctic Warrior. This is United States Coastguard Station North
+Island. Over.</p>
+<p><strong>murphy</strong>: North Island, North Island, North Island.
+This is tugboat Arctic Warrior. Over.</p>
+<p><strong>coastguard dispatcher</strong>: Arctic Warrior, we have
+submitted your section four two charlie salvage notification. However,
+the International Maritime Authority record for a passenger vessel
+Chimera indicates it was lost at sea in the Gulf of Oman day two month
+two year one nine five three. Over.</p>
+<p><strong>murphy</strong>: North Island, please repeat? Over.</p>
+<p><strong>coastguard dispatcher</strong>: Arctic Warrior, passenger
+vessel Chimera was lost at sea day two month two year one nine five
+three. Over.</p>
+<p><strong>murphy</strong>: North Island, have you got any additional
+information? Over.</p>
+<p><strong>coastguard dispatcher</strong>: Affirmative, Arctic Warrior.
+The vessel Chimera was registered to The Dobbins Kirk Line, Halifax.
+Nova Scotia. Date of commission day nine month seven year one nine three
+two. Over.</p>
+<p><strong>murphy</strong>: Roger, North Island. I am tied to the
+passenger vessel Chimera. And she is afloat. Repeat, she is afloat.
+Over.</p>
+<p><strong>coastguard dispatcher</strong>: Roger, Arctic Warrior. I say
+again, our records indicate the passenger vessel Chimera was lost at
+sea. Over.</p>
+<p><strong>murphy</strong>: Roger, North Island. Please advise pending
+further information. Over.</p>
+<p><strong>coastguard dispatcher</strong>: Affirmative, Arctic Warrior.
+This is United States Coast Guard North Island Station. Over and
+out.</p>
+<p><strong>murphy</strong>: Obviously it’s some kind of screw up. The
+shipping records aren’t a hundred percent accurate.</p>
+<p><strong>dodge</strong>: Man, it gives me the creeps. We got no
+business towing a ship that size anyway. I say we fix the turbines and
+hit the highway.</p>
+<p><strong>greer</strong>: Are you crazy? Do you realize we got
+ourselves a ship? We own a ship, Dodge.</p>
+<p><strong>dodge</strong>: Yeah, a ship that’s supposed to have been
+lost at sea fifty years ago. You don’t think that’s just a little
+freaky?</p>
+<p><strong>epps</strong>: If this thing turns out to be a ship everybody
+thought sank a long time ago, we just hit the jackpot.</p>
+<p><strong>dodge</strong>: Yeah, well how the hell you get something
+like that wrong? That’s a damn big boat. It’s either sunk or it
+ain’t.</p>
+<p><strong>murphy</strong>: We all want to get outa here, Dodge.
+Especially me. With that boat in tow. You got three days. Make the most
+of it.</p>
+<p><strong>dodge</strong>: Fucker!</p>
+<p><strong>greer</strong>: Take it easy, Dodge. It’s only a piece of
+metal.</p>
+<p><strong>dodge</strong>: Damn mind of it’s own.</p>
+<p><strong>greer</strong>: Morning, skipper.</p>
+<p><strong>murphy</strong>: Morning.</p>
+<p><strong>greer</strong>: You’re up late.</p>
+<p><strong>murphy</strong>: Guess I must’ve fallen back to sleep.
+Where’s Epps?</p>
+<p><strong>dodge</strong>: Went aboard.</p>
+<p><strong>murphy</strong>: She take a radio?</p>
+<p><strong>greer</strong>: Yeah.</p>
+<p><strong>dodge</strong>: What the fuck we gonna do with it?</p>
+<p><strong>greer</strong>: What the fuck you think we gonna do with it?
+It’s ours, baby. It’s all ours.</p>
+<p><strong>greer</strong>: How much you figure that’s worth,
+skipper?</p>
+<p><strong>murphy</strong>: Hard to say. Maybe forty, fifty million.</p>
+<p><strong>greer</strong>: Ho, baby!</p>
+<p><strong>epps</strong>: That’s a lot of money for somebody to just let
+float away.</p>
+<p><strong>murphy</strong>: Yes, it is.</p>
+<p><strong>murphy</strong>: It’s a hell of a lot of money.</p>
+<p><strong>dodge</strong>: What, you think there’s something funny about
+it?</p>
+<p><strong>murphy</strong>: A ship with fifty million dollars in gold
+aboard, adrift? And nobody seems to care enough to come looking for
+it?</p>
+<p><strong>greer</strong>: If they thought it was lost at sea, they
+probably just wrote it off.</p>
+<p><strong>murphy</strong>: Not for fifty million. An ocean liner maybe.
+But fifty million in gold, they come looking for.</p>
+<p><strong>epps</strong>: Maybe they didn’t want it back. Maybe the
+whole fat deal was insured.</p>
+<p><strong>murphy</strong>: Maybe. But there’s always somebody whose
+interest’s at stake.</p>
+<p><strong>greer</strong>: All I gotta say is it looks like that
+somebody’s us right now.</p>
+<p><strong>epps</strong>: And it looks like somebody got here before us
+too.</p>
+<p><strong>dodge</strong>: Didn’t happen yesterday, I’ll tell you that.
+Torn parts rusted bad as the rest of the boat.</p>
+<p><strong>murphy</strong>: Then it happened before they scuttled
+her.</p>
+<p><strong>epps</strong>: You mean, before she sank.</p>
+<p><strong>greer</strong>: Cargo like this could make a crew think
+twice.</p>
+<p><strong>murphy</strong>: That it could.</p>
+<p><strong>greer</strong>: Then why didn’t they take it.</p>
+<p><strong>epps</strong>: Probably didn’t have time.</p>
+<p><strong>dodge</strong>: Or somebody stopped them.</p>
+<p><strong>murphy</strong>: Either way, they must’ve had a pretty good
+reason.</p>
+<p><strong>greer</strong>: Must be a damn good reason to jump ship and
+leave fifty million dollars aboard.</p>
+<p><strong>dodge</strong>: So what’re we gonna do. That’s the big
+question, right?</p>
+<p><strong>murphy</strong>: A salvage claim to a vessel’s cargo’s as
+valid as a claim to the vessel itself. It’s ours.</p>
+<p><strong>dodge</strong>: Then we’re rich. We’re damn, filthy stinking
+rich.</p>
+<p><strong>murphy</strong>: It looks like it.</p>
+<p><strong>greer</strong>: So what? We gonna unload the gold and get a
+move on?</p>
+<p><strong>murphy</strong>: We leave it where it is. Stick to the
+plan.</p>
+<p><strong>dodge</strong>: You gotta be kidding? What the hell we need
+that tub for, we got fifty million bucks?</p>
+<p><strong>murphy</strong>: So we get a little more for the boat.
+Besides, the gold’ll be safer where it is.</p>
+<p><strong>greer</strong>: Yeah, but we still gotta haul that big piece
+of shit all the way back to Sitka.</p>
+<p><strong>murphy</strong>: It’s worth the effort. Believe me. Besides
+we’re gonna need her to prove the salvage.</p>
+<p><strong>epps</strong>: Why not call for help?</p>
+<p><strong>murphy</strong>: For now the best thing we can do is to keep
+quiet about this.</p>
+<p><strong>dodge</strong>: Last thing we want is extra partners.</p>
+<p><strong>epps</strong>: Or uninvited guests.</p>
+<p><strong>greer</strong>: I heard that.</p>
+<p><strong>murphy</strong>: Dodge, you gotta get on those repairs.</p>
+<p><strong>dodge</strong>: Yeah, yeah. I’m on it.</p>
+<p><strong>murphy</strong>: The sooner we get under way, the sooner we
+are to spending what’s ours.</p>
+<p><strong>greer</strong>: Two hundred twenty. Two twenty one. Two
+twenty two.</p>
+<p><strong>greer</strong>: Two hundred twenty two kilograms of solid
+gold.</p>
+<p><strong>epps</strong>: That’s what I call a payday.</p>
+<p><strong>greer</strong>: Hell yeah.</p>
+<p><strong>dodge</strong>: Murphy!</p>
+<p><strong>dodge</strong>: Propane tanks’re gonna go!</p>
+<p><strong>dodge</strong>: One minute I’m minding my own business, the
+next thing I know the whole place is burning up. An oxygen tank must’ve
+blown on the welder. Started an oil fire.</p>
+<p><strong>greer</strong>: Looks like it took out the backup genny
+too.</p>
+<p><strong>murphy</strong>: Terrific.</p>
+<p><strong>murphy</strong>: How’s that leg?</p>
+<p><strong>dodge</strong>: Seen better – Ow!</p>
+<p><strong>epps</strong>: This’s gonna hurt a little.</p>
+<p><strong>dodge</strong>: Thanks for the warning – Ow! Damn!</p>
+<p><strong>greer</strong>: What now?</p>
+<p><strong>murphy</strong>: We could call for help.</p>
+<p><strong>greer</strong>: And get a bunch of fools sniffin’ around
+here?</p>
+<p><strong>epps</strong>: What other choices have we got?</p>
+<p><strong>dodge</strong>: I tell you one thing, we’re not gonna be
+towing no ship now.</p>
+<p><strong>murphy</strong>: United States Coastguard, this is tugboat
+Arctic Warrior whiskey alpha sierra bravo four zero niner two. Radio
+check. Over.</p>
+<p><strong>coastguard dispatcher</strong>: Arctic Warrior, Arctic
+Warrior, Arctic Warrior. This is United States Coastguard Station North
+Island. Your radio check is affirmative. Over.</p>
+<p><strong>murphy</strong>: Roger that, North Island. Arctic Warrior
+whiskey alpha sierra bravo four zero niner two. Over and out.</p>
+<p><strong>greer</strong>: Fifty million four ways. That’s twelve
+million and change a piece. What you gonna do with your share,
+skipper?</p>
+<p><strong>murphy</strong>: Not much at all, I guess. Retire. Live out
+my golden years and all that.</p>
+<p><strong>dodge</strong>: I’m buyin’ me a nice outrigger. Spend my time
+hauling rich Seattle business men through the Puget.</p>
+<p><strong>murphy</strong>: How about you Epps?</p>
+<p><strong>epps</strong>: Guess I’ll just keep working.</p>
+<p><strong>dodge</strong>: What’re you crazy?</p>
+<p><strong>epps</strong>: I like my job.</p>
+<p><strong>murphy</strong>: Greer?</p>
+<p><strong>greer</strong>: Moving to Sweden.</p>
+<p><strong>dodge</strong>: What’s so great about Sweden?</p>
+<p><strong>greer</strong>: It’s a beautiful country. Very clean. Very
+civilized. And cold.</p>
+<p><strong>epps</strong>: That’s a good thing?</p>
+<p><strong>greer</strong>: Hell, yeah. I like it cold. Colder the
+better.</p>
+<p><strong>dodge</strong>: Yeah, but not as cold as those Swedish girls
+you only gonna dream about.</p>
+<p><strong>greer</strong>: We’ll see who’s dreamin’, m’man.</p>
+<p><strong>murphy</strong>: Dreamin’s all any of you’re gonna be doing
+if we don’t get this boat running.</p>
+<p><strong>dodge</strong>: Yeah, yeah.</p>
+<p><strong>greer</strong>: What the hell is that?</p>
+<p><strong>epps</strong>: It’s coming from inside.</p>
+<p><strong>dodge</strong>: Sounds like the hull.</p>
+<p><strong>murphy</strong>: Warm water current maybe, making the metal
+expand.</p>
+<p><strong>greer</strong>: That shit is seriously bizarre.</p>
+<p><strong>epps</strong>: Hey!</p>
+<p><strong>epps</strong>: Hey, wait a minute! Hey!</p>
+<p><strong>murphy</strong>: Take it easy, you’ll live longer.</p>
+<p><strong>epps</strong>: Did you see him?</p>
+<p><strong>murphy</strong>: Who?</p>
+<p><strong>epps</strong>: The guy. He just came this way.</p>
+<p><strong>murphy</strong>: What guy?</p>
+<p><strong>epps</strong>: There’s somebody else on this boat.</p>
+<p><strong>murphy</strong>: What? What the hell’re you talking
+about.</p>
+<p><strong>epps</strong>: I saw him. Just a minute ago. Some guy.</p>
+<p><strong>murphy</strong>: Are you sure?</p>
+<p><strong>epps</strong>: Of course I’m sure. I saw him.</p>
+<p><strong>murphy</strong>: You sure it wasn’t me?</p>
+<p><strong>epps</strong>: It wasn’t you. It was somebody else. There’s
+somebody else aboard.</p>
+<p><strong>dodge</strong>: Light in those passages ain’t so good.</p>
+<p><strong>epps</strong>: I’m telling you, I saw somebody. I don’t know
+who it was. But I saw somebody.</p>
+<p><strong>greer</strong>: What’d he look like?</p>
+<p><strong>epps</strong>: Maybe six feet. Lanky. I didn’t get a good
+look. He was far away. But I saw him. I saw him as sure as you’re
+standing there.</p>
+<p><strong>dodge</strong>: Where’s his boat, then? Where’s his crew? He
+ain’t gonna be out here by himself, that’s for damn sure.</p>
+<p><strong>greer</strong>: She’s so big somebody could come alongside
+her on the other side and we’d never know it.</p>
+<p><strong>epps</strong>: Maybe that is his boat.</p>
+<p><strong>dodge</strong>: Gimme a break.</p>
+<p><strong>murphy</strong>: If somebody’s aboard her already, she ain’t
+ours. She’s theirs.</p>
+<p><strong>dodge</strong>: Bullshit. That boat hasn’t made steam for
+fifty years. We found her. She’s ours.</p>
+<p><strong>murphy</strong>: Not in the eyes of the law.</p>
+<p><strong>epps</strong>: So, we find this guy and make a deal with
+him.</p>
+<p><strong>murphy</strong>: We don’t exactly have the best bargaining
+position.</p>
+<p><strong>dodge</strong>: I say fuck the motherfucker. We’re a
+professional salvage crew going about our business. What’s some yahoo
+doing way out here by himself anyway?</p>
+<p><strong>murphy</strong>: And what do you propose? That we knock this
+guy off?</p>
+<p><strong>dodge</strong>: Why not? Why the fuck not?</p>
+<p><strong>dodge</strong>: Fifty million dollars. Fifty million. We
+gonna let this guy just take it from us? One guy?</p>
+<p><strong>epps</strong>: So we kill him?</p>
+<p><strong>dodge</strong>: I’m saying we gotta do whatever we gotta do
+to preserve our interest.</p>
+<p><strong>greer</strong>: I don’t know.</p>
+<p><strong>murphy</strong>: Let’s just take it easy here, alright?
+Nobody’s gonna kill anybody.</p>
+<p><strong>greer</strong>: Supposing he wants to get bad with us?</p>
+<p><strong>dodge</strong>: One guy isn’t gonna be so stupid.</p>
+<p><strong>epps</strong>: Maybe he isn’t alone.</p>
+<p><strong>greer</strong>: I say we off-load some of that gold now.</p>
+<p><strong>murphy</strong>: Would you hold on just a minute here,
+please? Look, there’s no reason to panic now. Epps saw somebody. Fine.
+It’s a big boat. Chances’re real good he doesn’t even know about the
+gold. If we stay cool, nobody’ll be the wiser. The gold stays where it
+is til we’re ready to go. Like I said, it’ll be a hell of a lot safer
+there than here.</p>
+<p><strong>dodge</strong>: What if that fucker finds it before we’re
+ready to go?</p>
+<p><strong>murphy</strong>: We’ll stand a watch. Four on, eight off. Low
+man first.</p>
+<p><strong>epps</strong>: Guess that’d be me. Again.</p>
+<p><strong>murphy</strong>: Dodge, get on that turbine. I don’t care if
+you don’t sleep for a week. The sooner you’re done, the sooner we can
+get out of here. How’s the food situation?</p>
+<p><strong>greer</strong>: Pretty low all around.</p>
+<p><strong>murphy</strong>: We’ll have to take it easy then. I don’t
+think we’ll find much aboard the ship, but it’s probably worth looking
+around.</p>
+<p><strong>epps</strong>: Say we run into this guy again.</p>
+<p><strong>murphy</strong>: If he’s reasonable, maybe we can make some
+kind of deal. If not. We’ll have to re-consider our options.</p>
+<p><strong>dodge</strong>: Yeah, reconsider fucking his shit up.</p>
+<p><strong>dodge</strong>: Pretty handy with that scatter gun, Epps. You
+raised on a farm?</p>
+<p><strong>epps</strong>: Seen a lota movies.</p>
+<p><strong>murphy</strong>: No cowboy shit up there, understand?</p>
+<p><strong>epps</strong>: No cowboy shit. Right.</p>
+<p><strong>greer</strong>: Coffee.</p>
+<p><strong>epps</strong>: You’re a pal.</p>
+<p><strong>murphy</strong>: Got your light?</p>
+<p><strong>epps</strong>: Yup.</p>
+<p><strong>dodge</strong>: Smokes?</p>
+<p><strong>epps</strong>: Oh yeah.</p>
+<p><strong>epps</strong>: See you boys later. Don’t be late, I need my
+beauty rest.</p>
+<p><strong>murphy</strong>: Murphy to Epps.</p>
+<p><strong>murphy</strong>: Murphy to Epps.</p>
+<p><strong>epps</strong>: Epps.</p>
+<p><strong>murphy</strong>: You just shoot at something?</p>
+<p><strong>epps</strong>: Yeah. Just a bird. Just a stupid bird.</p>
+<p><strong>greer</strong>: Ho-ly shit.</p>
+<p><strong>murphy</strong>: Couldn’t have happened much more than a
+month ago.</p>
+<p><strong>murphy</strong>: Bodies’re too fresh.</p>
+<p><strong>dodge</strong>: Fresh ain’t the first word that comes to
+mind.</p>
+<p><strong>murphy</strong>: Greek citizen. Merchant navy. Obviously we
+aren’t the first to come across this ship. They probably stumbled across
+it just like we did.</p>
+<p><strong>greer</strong>: And look what happened.</p>
+<p><strong>dodge</strong>: Damn barbaric is what it is.</p>
+<p><strong>murphy</strong>: Could be meant as a warning.</p>
+<p><strong>greer</strong>: Stay away. Or else.</p>
+<p><strong>epps</strong>: Because of the gold.</p>
+<p><strong>murphy</strong>: That’d be my guess.</p>
+<p><strong>dodge</strong>: So whoever did this might still be
+around.</p>
+<p><strong>greer</strong>: Maybe Epps’s mystery man had something to do
+with it.</p>
+<p><strong>murphy</strong>: Maybe.</p>
+<p><strong>epps</strong>: So, what? We report this? Call the
+Coastguard?</p>
+<p><strong>dodge</strong>: Let’s not be too hasty.</p>
+<p><strong>greer</strong>: Yeah. Hell, what difference does it make if
+we report it now or later? We call this in now, gonna be Coastguard,
+FBI, who knows who, all over the place.</p>
+<p><strong>murphy</strong>: Dodge, if this isn’t incentive enough to fix
+that boat, I don’t know what is.</p>
+<p><strong>dodge</strong>: All the seals and gaskets’re shot. Anything
+that was rubber burned up.</p>
+<p><strong>murphy</strong>: Can’t you use something else?</p>
+<p><strong>dodge</strong>: I might be able to find something on the
+ship. But it’s gonna take time.</p>
+<p><strong>murphy</strong>: Do what you need to do. Just do it fast.</p>
+<p><strong>dodge</strong>: Right.</p>
+<p><strong>dodge</strong>: I need lag bolts, especially one inch
+standard. And sheet metal. Preferably steel, about a sixteenth of an
+inch. Aluminium, even tin’ll do.</p>
+<p><strong>greer</strong>: I ain’t no mechanic, just so you know.</p>
+<p><strong>dodge</strong>: You find anything that even looks like a
+compressor. I don’t care what, grab it.</p>
+<p><strong>greer</strong>: Dammit!</p>
+<p><strong>greer</strong>: Dodge?</p>
+<p><strong>greer</strong>: Dodge!</p>
+<p><strong>murphy</strong>: Captain relieved of command.</p>
+<p><strong>murphy</strong>: This is Murphy. Anybody trying to call me?
+Over.</p>
+<p><strong>murphy</strong>: Greer? Dodge?</p>
+<p><strong>voice</strong>: “Cock-a-doodle-doo,” said the rooster to the
+crow. “Where are you now? I know, but won’t say so.”</p>
+<p><strong>murphy</strong>: Who is this?</p>
+<p><strong>murphy</strong>: Who is this!!</p>
+<p><strong>voice</strong>: Penny whistle toy. Penny whistle toy. Penny
+whistle toy. Penny whistle toy.</p>
+<p><strong>murphy</strong>: Greer! Dodge!</p>
+<p><strong>dodge</strong>: Dodge to Murphy.</p>
+<p><strong>murphy</strong>: Murphy.</p>
+<p><strong>dodge</strong>: You better get down here quick, skipper. I’m
+on “C” deck. Cabin 400.</p>
+<p><strong>murphy</strong>: What is it?</p>
+<p><strong>dodge</strong>: I think you better see this for yourself.</p>
+<p><strong>dodge</strong>: I found him like this.</p>
+<p><strong>greer</strong>: Oragishlaoomnudrasadrafantoshviska
+getofedobrodijotosiantosg.</p>
+<p><strong>epps</strong>: Hard to say.</p>
+<p><strong>epps</strong>: I’m no doctor. But I’d say he’s in a coma.</p>
+<p><strong>dodge</strong>: A what?</p>
+<p><strong>epps</strong>: I don’t know what else you’d call it. He’s
+breathing on his own, but his pupils are completely blown out. He’s
+totally unresponsive to pain. What happened up there?</p>
+<p><strong>dodge</strong>: I heard a scream. When I got there I found
+him on the floor. He was having some kind of seizure. I didn’t see
+anybody else.</p>
+<p><strong>murphy</strong>: He must’ve seen something.</p>
+<p><strong>epps</strong>: Other than the obvious, there’s nothing wrong
+with him that I can see, not on the outside.</p>
+<p><strong>dodge</strong>: Then what the hell happened to him?</p>
+<p><strong>murphy</strong>: Just before I heard him yell there was
+somebody on the radio.</p>
+<p><strong>epps</strong>: Greer?</p>
+<p><strong>murphy</strong>: I don’t know. No. Not Greer. Somebody.</p>
+<p><strong>murphy</strong>: It was a man’s voice. Repeating some sort of
+children’s rhyme. I don’t know, it didn’t make any sense. You didn’t
+hear it?</p>
+<p><strong>dodge</strong>: Not me.</p>
+<p><strong>epps</strong>: He needs a doctor.</p>
+<p><strong>murphy</strong>: I’ll call us in. Dodge, see how many signal
+flares you can scrounge up. Keep an eye on him.</p>
+<p><strong>murphy</strong>: United States Coastguard, United States
+Coastguard, United States Coastguard. This is tugboat Arctic Warrior
+whiskey alpha sierra bravo four zero niner two. Over.</p>
+<p><strong>murphy</strong>: United States Coastguard, United States
+Coastguard, United States Coastguard. This is tugboat Arctic Warrior
+whiskey alpha sierra bravo four zero niner two. Over.</p>
+<p><strong>murphy</strong>: Mayday. Mayday. Mayday. To any vessel. This
+is Arctic Warrior. Arctic Warrior. Arctic Warrior. Whiskey alpha sierra
+bravo four zero niner two. Last known position one seven four west, five
+seven north. I am afloat and drifting. Require immediate medical
+assistance for one person, possibly comatose. I am a one hundred twenty
+foot civilian tug, hove to at port bow of disabled passenger liner
+Chimera. I repeat, Chimera. Over.</p>
+<p><strong>murphy</strong>: How’s he doing?</p>
+<p><strong>epps</strong>: Same. Any luck?</p>
+<p><strong>murphy</strong>: No. I’ll try again later.</p>
+<p><strong>epps</strong>: They’re dead in the water that morning. Four
+hours later the captain’s relieved of his command. And that evening they
+issue a general</p>
+<p><strong>murphy</strong>: Possibly false. Hence the IMA record of
+being lost at sea. I don’t think mutiny’s out of the question here.</p>
+<p><strong>dodge</strong>: On a passenger ship in 1953?</p>
+<p><strong>murphy</strong>: If they knew what they were carrying.</p>
+<p><strong>epps</strong>: You’re saying they mutinied for the gold?</p>
+<p><strong>murphy</strong>: If they were close enough to shore, they
+probably figured they could get away in the lifeboats.</p>
+<p><strong>epps</strong>: Only something must’ve gone wrong.</p>
+<p><strong>dodge</strong>: Yeah, way wrong.</p>
+<p><strong>dodge</strong>: So. I got a question. Just from a, you know,
+purely technical standpoint. We call the Coastguard. Coastguard shows
+up. What exactly is the plan?</p>
+<p><strong>murphy</strong>: How do you mean?</p>
+<p><strong>dodge</strong>: Well, they’re gonna be asking a lot of
+questions. About us. About those bodies. About the gold. Seems like we
+oughta be prepared is all.</p>
+<p><strong>murphy</strong>: I guess the best strategy’s just to tell
+them the truth.</p>
+<p><strong>dodge</strong>: Yeah, well. The truth is one thing. When
+there’s more than a few hundred million dollars involved, that’s a whole
+new deal.</p>
+<p><strong>murphy</strong>: What do you propose?</p>
+<p><strong>dodge</strong>: For starters, getting that gold off the ship.
+What they don’t know about isn’t gonna bother them.</p>
+<p><strong>murphy</strong>: There’s no way we’re gonna hide a few
+thousand pounds of gold from the Coastguard here. Besides, it’ll be
+safer where it is.</p>
+<p><strong>dodge</strong>: With all due respect, skipper. Part of that
+up there’s mine. I’d kinda like to have a little say in what happens to
+it.</p>
+<p><strong>murphy</strong>: Tell you what, Dodge. Once we get back to
+shore, you can do whatever you want with your share. But until then, the
+gold stays right where it is.</p>
+<p><strong>murphy</strong>: Just what the hell do you think you’re
+doing?!</p>
+<p><strong>dodge</strong>: I don’t know what you’re talking about?</p>
+<p><strong>murphy</strong>: I think you know.</p>
+<p><strong>dodge</strong>: Maybe you can tell me then.</p>
+<p><strong>murphy</strong>: The radio!</p>
+<p><strong>dodge</strong>: The radio. Oh, yeah, the radio.</p>
+<p><strong>dodge</strong>: Take it easy, willya? What about the
+radio?!</p>
+<p><strong>murphy</strong>: You smashed it!</p>
+<p><strong>dodge</strong>: What?!</p>
+<p><strong>murphy</strong>: Don’t lie to me!</p>
+<p><strong>dodge</strong>: What the fuck – ?</p>
+<p><strong>murphy</strong>: You didn’t want us calling anybody. Too
+liable to ruin your big payday.</p>
+<p><strong>dodge</strong>: I didn’t touch the fucking radio.</p>
+<p><strong>dodge</strong>: I didn’t touch the fucking radio! Ever occur
+to you there’s somebody else on that boat, skipper?</p>
+<p><strong>murphy</strong>: Conveniently enough for you.</p>
+<p><strong>dodge</strong>: Look, I didn’t touch it. Alright?</p>
+<p><strong>dodge</strong>: Jesus.</p>
+<p><strong>epps</strong>: Murphy.</p>
+<p><strong>epps</strong>: It’s Greer.</p>
+<p><strong>greer</strong>: Never been more thirsty in my life.</p>
+<p><strong>murphy</strong>: Drink up then.</p>
+<p><strong>murphy</strong>: How’re you feeling?</p>
+<p><strong>greer</strong>: Lost my sea legs.</p>
+<p><strong>epps</strong>: Any dizziness?</p>
+<p><strong>greer</strong>: No.</p>
+<p><strong>epps</strong>: Headache, nausea, lights?</p>
+<p><strong>greer</strong>: Lights?</p>
+<p><strong>epps</strong>: Sudden flashes of light.</p>
+<p><strong>greer</strong>: I feel fine.</p>
+<p><strong>dodge</strong>: What day is it?</p>
+<p><strong>greer</strong>: I don’t know. Tuesday?</p>
+<p><strong>dodge</strong>: Wrong. It’s Friday.</p>
+<p><strong>epps</strong>: Try Wednesday.</p>
+<p><strong>dodge</strong>: Right. Wednesday.</p>
+<p><strong>greer</strong>: What happened?</p>
+<p><strong>murphy</strong>: You don’t remember?</p>
+<p><strong>greer</strong>: Last thing I remember I was aboard the
+Chimera. Down somewhere in there scavenging around.</p>
+<p><strong>murphy</strong>: You’ve been out for about a day.</p>
+<p><strong>greer</strong>: Say what?</p>
+<p><strong>murphy</strong>: Dodge found you out cold in one of the
+cabins.</p>
+<p><strong>greer</strong>: Oh, man.</p>
+<p><strong>murphy</strong>: We heard you scream. Any idea what you
+might’ve seen?</p>
+<p><strong>greer</strong>: I wish I could tell you. I’d be real
+interested to know myself.</p>
+<p><strong>murphy</strong>: The ah… the radio’s out.</p>
+<p><strong>epps</strong>: What?</p>
+<p><strong>murphy</strong>: Somebody took it out of commission last
+night.</p>
+<p><strong>murphy</strong>: Smashed it up pretty bad.</p>
+<p><strong>epps</strong>: But, who – ?</p>
+<p><strong>dodge</strong>: The skipper seems to think I did it. That I’m
+more interested in that gold than my own safety or the safety of my
+fellow shipmates.</p>
+<p><strong>epps</strong>: Did you?</p>
+<p><strong>dodge</strong>: Hell no. You think I’m crazy?</p>
+<p><strong>murphy</strong>: Regardless of how it happened, there isn’t
+much of a chance to fix it. The odds of another vessel in range of the
+walkie-talkies are almost astronomical. So, as of today, we’re pretty
+much on our own out here.</p>
+<p><strong>epps</strong>: Murphy.</p>
+<p><strong>epps</strong>: Looks like part of the general log.</p>
+<p><strong>epps</strong>: “The crew have gone mad with greed and fight
+among themselves like wild dogs over fresh kill.”</p>
+<p><strong>murphy</strong>: February first.</p>
+<p><strong>epps</strong>: The same day she supposedly went down.</p>
+<p><strong>murphy</strong>: Must not’ve been the captain’s entry. He was
+probably out of the picture by then.</p>
+<p><strong>epps</strong>: “Their lacking diligence has undoubtedly
+caused the collision. Distress calls have been made.”</p>
+<p><strong>murphy</strong>: Collision? With what?</p>
+<p><strong>epps</strong>: The page’s missing. Then their SOS was
+real.</p>
+<p><strong>murphy</strong>: But where’s the damage?</p>
+<p><strong>epps</strong>: Maybe the other ship took the worst of it.</p>
+<p><strong>murphy</strong>: If it was a ship she hit.</p>
+<p><strong>dodge</strong>: Dodge to Murphy!</p>
+<p><strong>murphy</strong>: Yeah.</p>
+<p><strong>dodge</strong>: You better get down here right now! We’re
+taking water! Big time!</p>
+<p><strong>murphy</strong>: What the hell happened!</p>
+<p><strong>dodge</strong>: Turbine chamber on number two must’ve blown!
+Took out part of the hull!</p>
+<p><strong>greer</strong>: We’re not gonna be able to pump it!</p>
+<p><strong>murphy</strong>: Alright. Everybody grab your gear! This’ is
+where we get off!</p>
+<p><strong>murphy</strong>: Dodge!</p>
+<p><strong>murphy</strong>: That just about says it all.</p>
+<p><strong>greer</strong>: Rotten stem to stern. Guess you couldn’t
+expect much else.</p>
+<p><strong>greer</strong>: We ain’t exactly in what you’d call your high
+traffic neighborhood either.</p>
+<p><strong>murphy</strong>: The coast guard has our last position.
+They’ll send somebody out soon enough. A ship this size you can’t
+exactly miss.</p>
+<p><strong>epps</strong>: It’s a good bet they’ll be asking a lot of
+questions when they get here too.</p>
+<p><strong>murphy</strong>: Let ’em ask. This ship’s legally ours
+now.</p>
+<p><strong>dodge</strong>: When they find out what it’s carrying, they
+may not be so interested in what’s legal.</p>
+<p><strong>greer</strong>: Maybe you shoulda thought a that before you
+scuttled our boat.</p>
+<p><strong>dodge</strong>: The turbine blew.</p>
+<p><strong>greer</strong>: Lemme see, was that before or after the oil
+fire?</p>
+<p><strong>murphy</strong>: Easy, easy.</p>
+<p><strong>greer</strong>: Gettin’ a little hot under the collar, I’d
+say.</p>
+<p><strong>murphy</strong>: Shut up.</p>
+<p><strong>greer</strong>: Must be a little too the truth, eh Dodge?</p>
+<p><strong>murphy</strong>: I said, shut the hell up.</p>
+<p><strong>murphy</strong>: Both of you. I don’t want to hear it
+again.</p>
+<p><strong>murphy</strong>: So just stow it. You understand? We don’t
+need this right now.</p>
+<p><strong>murphy</strong>: You shouldn’t be down here alone.</p>
+<p><strong>dodge</strong>: Just wanted to check on our little baby.</p>
+<p><strong>dodge</strong>: That oughta buy a man pretty much anything he
+wants.</p>
+<p><strong>murphy</strong>: If money can buy what he wants.</p>
+<p><strong>dodge</strong>: I don’t figure there’s much I want money
+can’t buy.</p>
+<p><strong>murphy</strong>: Then you’re a lucky man.</p>
+<p><strong>murphy</strong>: We’ll stand the watch on deck tonight.
+You’re up first.</p>
+<p><strong>dodge</strong>: Right.</p>
+<p><strong>epps</strong>: Murphy?</p>
+<p><strong>girl</strong>: You must leave.</p>
+<p><strong>epps</strong>: Who are you?</p>
+<p><strong>girl</strong>: There’s great evil here, more than you can
+know. Leave now or you may never leave.</p>
+<p><strong>epps</strong>: But –</p>
+<p><strong>epps</strong>: My God….</p>
+<p><strong>epps</strong>: No!!</p>
+<p><strong>murphy</strong>: You okay?</p>
+<p><strong>epps</strong>: Yeah. Yeah, fine.</p>
+<p><strong>dodge</strong>: You’d think on a ship this size there’d be
+something left to eat.</p>
+<p><strong>greer</strong>: After fifty years there ain’t nothin’ left
+but shoe leather.</p>
+<p><strong>murphy</strong>: Tomorrow we’ll see if we can’t find some
+line and tackle. Use some of those bodies below decks for bait.</p>
+<p><strong>dodge</strong>: There’s a charming thought.</p>
+<p><strong>greer</strong>: We can always start shooting birds.</p>
+<p><strong>dodge</strong>: What say, Epps? You up for some roasted
+albatross?</p>
+<p><strong>epps</strong>: Why not?</p>
+<p><strong>greer</strong>: Looks like we’re in a strong current. Must be
+making almost five knots full on ass backwards.</p>
+<p><strong>greer</strong>: Nasty little swell outa the north west
+too.</p>
+<p><strong>murphy</strong>: Let’s just hope somebody sees us first out
+here.</p>
+<p><strong>murphy</strong>: It’s a Noaa buoy.</p>
+<p><strong>greer</strong>: A what?</p>
+<p><strong>murphy</strong>: Government weather. It’s got a transmitter
+aboard.</p>
+<p><strong>murphy</strong>: Let’s go, let’s go, let’s go.</p>
+<p><strong>epps</strong>: Higher. You’re gonna miss it.</p>
+<p><strong>greer</strong>: We’re still drifting.</p>
+<p><strong>murphy</strong>: The mooring hasn’t come taught.</p>
+<p><strong>epps</strong>: It’s not gonna hold us.</p>
+<p><strong>murphy</strong>: Doesn’t matter.</p>
+<p><strong>dodge</strong>: No fucking way.</p>
+<p><strong>murphy</strong>: Damn it.</p>
+<p><strong>epps</strong>: Hey.</p>
+<p><strong>murphy</strong>: Hey.</p>
+<p><strong>epps</strong>: Couldn’t sleep.</p>
+<p><strong>murphy</strong>: Wish I could say the same.</p>
+<p><strong>epps</strong>: What do you think happened on this boat?</p>
+<p><strong>murphy</strong>: I guess that’s the sixty four thousand
+dollar question, isn’t it?</p>
+<p><strong>epps</strong>: The what?</p>
+<p><strong>murphy</strong>: Never mind. Before your time. I think at
+least some of the crew went a little nuts. The usual stuff that happens
+when people stumble on a fortune. Equal parts greed and paranoia,
+usually resulting in homicide. What happened after that is anybody’s
+guess. But, judging by our Greek friends down below, it doesn’t look
+like the last time.</p>
+<p><strong>epps</strong>: Are we smart enough to avoid that?</p>
+<p><strong>murphy</strong>: I don’t know, are we?</p>
+<p><strong>epps</strong>: When you found me yesterday, at the pool. I’d
+seen… something. Someone.</p>
+<p><strong>murphy</strong>: Not our mystery guest again.</p>
+<p><strong>epps</strong>: No. Someone else. A girl. I’m not sure she
+was… real.</p>
+<p><strong>murphy</strong>: Not real?</p>
+<p><strong>murphy</strong>: What, like some kind of ghost?</p>
+<p><strong>epps</strong>: I don’t know what else you’d call her. One
+second she was there, the next she was gone.</p>
+<p><strong>epps</strong>: And I had a kind of hallucination. There were
+others. I saw them in the pool. Drowning.</p>
+<p><strong>epps</strong>: Maybe hallucination is the wrong word. It was
+more than that. As though they were showing me.</p>
+<p><strong>murphy</strong>: Showing you what?</p>
+<p><strong>epps</strong>: What happened.</p>
+<p><strong>murphy</strong>: Maybe it was one of them did the handy work
+on those Greeks.</p>
+<p><strong>epps</strong>: No. I think they are, were, just passengers.
+Innocent victims.</p>
+<p><strong>murphy</strong>: Victims of what?</p>
+<p><strong>epps</strong>: Something bad happened here, Murphy.</p>
+<p><strong>murphy</strong>: That much I think we’ve already
+established.</p>
+<p><strong>epps</strong>: More than just a mutiny. More than just the
+gold.</p>
+<p><strong>epps</strong>: She said the ship was evil. That we had to
+leave right away. That if we didn’t, we might never leave.</p>
+<p><strong>murphy</strong>: What’s that supposed to mean?</p>
+<p><strong>epps</strong>: I don’t know.</p>
+<p><strong>murphy</strong>: Why you? How come the rest of us haven’t
+seen these people?</p>
+<p><strong>epps</strong>: Just lucky I guess.</p>
+<p><strong>murphy</strong>: Well. Getting off this ship’s exactly what
+we’re trying to do. Short of that, I don’t know what else to tell
+you.</p>
+<p><strong>murphy</strong>: Do me a favor and wake up Dodge. He’s next
+on.</p>
+<p><strong>murphy</strong>: And Epps?</p>
+<p><strong>murphy</strong>: You can tell the others about this. But, for
+my money, I think it’s best you keep it to yourself.</p>
+<p><strong>epps</strong>: Dodge. Dodge.</p>
+<p><strong>dodge</strong>: What?</p>
+<p><strong>epps</strong>: Get up.</p>
+<p><strong>dodge</strong>: Yeah, yeah.</p>
+<p><strong>murphy</strong>: You’re late.</p>
+<p><strong>dodge</strong>: Sorry.</p>
+<p><strong>murphy</strong>: Don’t fall asleep.</p>
+<p><strong>dodge</strong>: Right.</p>
+<p><strong>dodge</strong>: Dodge.</p>
+<p><strong>dodge</strong>: This is Dodge. Over.</p>
+<p><strong>voice</strong>: “Cock-a-doodle-doo,” said the rooster to the
+crow. “Where are you now? I know but won’t say so.”</p>
+<p><strong>dodge</strong>: Who is this?</p>
+<p><strong>dodge</strong>: Identify yourself, motherfucker!</p>
+<p><strong>voice</strong>: Penny whistle toy. Penny whistle toy.</p>
+<p><strong>voice</strong>: Penny whistle toy. Penny whistle toy – .</p>
+<p><strong>murphy</strong>: Dodge?</p>
+<p><strong>epps</strong>: Check it out.</p>
+<p><strong>greer</strong>: I don’t even want to know what that’s gonna
+taste like now.</p>
+<p><strong>epps</strong>: Better than starving to death.</p>
+<p><strong>murphy</strong>: Murphy to Epps.</p>
+<p><strong>epps</strong>: Epps, over.</p>
+<p><strong>murphy</strong>: Either of you seen Dodge?</p>
+<p><strong>epps</strong>: Nope.</p>
+<p><strong>murphy</strong>: He’s not on deck and I can’t raise him on
+the radio.</p>
+<p><strong>murphy</strong>: He took the shotgun and a light.</p>
+<p><strong>greer</strong>: Must’ve heard something below deck and went
+down to check it out.</p>
+<p><strong>murphy</strong>: Alright. We stay together. Nobody goes any
+further than earshot.</p>
+<p><strong>murphy</strong>: Murphy to Dodge. Murphy to Dodge. Over.</p>
+<p><strong>murphy</strong>: Murphy to Dodge. Do you copy? Over.</p>
+<p><strong>murphy</strong>: Epps? You there?</p>
+<p><strong>epps</strong>: Right here.</p>
+<p><strong>murphy</strong>: Greer?</p>
+<p><strong>greer</strong>: Yeah, yeah.</p>
+<p><strong>epps</strong>: Murphy?</p>
+<p><strong>greer</strong>: Sorry. Didn’t mean to scare you.</p>
+<p><strong>greer</strong>: You okay?</p>
+<p><strong>epps</strong>: Yeah. Fine. I just thought I heard something
+is all.</p>
+<p><strong>greer</strong>: What?</p>
+<p><strong>epps</strong>: Nothing. Let’s get outa here.</p>
+<p><strong>greer</strong>: Can’t find the shotgun.</p>
+<p><strong>murphy</strong>: So whoever did this now has our shotgun.</p>
+<p><strong>greer</strong>: Doesn’t look like it much matters.</p>
+<p><strong>epps</strong>: What do we do with him?</p>
+<p><strong>murphy</strong>: Leave him till we can get some help. From
+now on, nobody comes down here.</p>
+<p><strong>greer</strong>: What about the gold?</p>
+<p><strong>murphy</strong>: Leave it.</p>
+<p><strong>greer</strong>: Now hold up just a minute. Let’s be
+reasonable here.</p>
+<p><strong>murphy</strong>: You think whoever did this is
+reasonable?</p>
+<p><strong>greer</strong>: All I’m saying is that gold’s worth a lot
+more to us now than it ever was.</p>
+<p><strong>epps</strong>: I can’t believe you. Dodge’s dead and all you
+can think about is cashing in your share.</p>
+<p><strong>greer</strong>: I didn’t sign up to go home empty handed. And
+I sure ain’t gonna roll over for the freaky motherfucker did this.</p>
+<p><strong>murphy</strong>: Nobody’s going anywhere with that gold now.
+Anybody tries to board, we’ll know about it. You can do what you want,
+Greer. But neither of us is gonna risk saving your ass down here if it
+comes to that.</p>
+<p><strong>greer</strong>: Fine with me.</p>
+<p><strong>epps</strong>: Greer?</p>
+<p><strong>epps</strong>: You okay?</p>
+<p><strong>epps</strong>: Greer!</p>
+<p><strong>epps</strong>: Let go!</p>
+<p><strong>greer</strong>: Oragishlaoomnudrasadrafantoshviska
+getofedobrodijotosiantosg.</p>
+<p><strong>epps</strong>: Murphy! I’m on C deck, cabin 400! Get down
+here now!!</p>
+<p><strong>murphy</strong>: Must’ve been him all along.</p>
+<p><strong>murphy</strong>: Smashed the radio. Scuttled the boat. Killed
+Dodge. Would’ve killed you. He’s off his nut, no doubt there.</p>
+<p><strong>murphy</strong>: What do you think?</p>
+<p><strong>epps</strong>: Could be a stroke. Who knows? The general log
+said the crew were fighting among themselves. “Like wild dogs.”</p>
+<p><strong>murphy</strong>: Over the gold.</p>
+<p><strong>epps</strong>: Maybe it was more than that.</p>
+<p><strong>epps</strong>: They went crazy.</p>
+<p><strong>murphy</strong>: Crazy with greed. Not crazy. Not like
+him.</p>
+<p><strong>murphy</strong>: We lash a few of these together it might get
+us far enough into the shipping lanes to be rescued.</p>
+<p><strong>murphy</strong>: Hard to say which is worse, staying here or
+taking our chances in open water.</p>
+<p><strong>epps</strong>: If the weather holds it might not be so
+bad.</p>
+<p><strong>murphy</strong>: It’s not the weather I’m worried about. The
+wrong current could drag us as far as the Aleutians before we come
+across another boat.</p>
+<p><strong>epps</strong>: Murphy?</p>
+<p><strong>epps</strong>: Murphy, this is Epps. Do you copy?</p>
+<p><strong>epps</strong>: Who is this?</p>
+<p><strong>voice</strong>: “Cock-a-doodle-doo, said the rooster to the
+crow. Where are you now? I know but won’t say so.”</p>
+<p><strong>voice</strong>: Penny whistle toy. Penny whistle toy. Penny
+whistle toy. Penny whistle toy.</p>
+<p><strong>mother</strong>: “Cock-a-doodle-doo, said the rooster to the
+crow. Where are you now? I know but won’t say so.”</p>
+<p><strong>mother</strong>: “Cock-a-doodle-doo, said the rooster to the
+crow. Where are you now? I know but won’t say so.” Cassandra, if you
+insist on playing that while I read I’ll just stop right now.</p>
+<p><strong>the girl</strong>: Sorry.</p>
+<p><strong>father</strong>: What do you think?</p>
+<p><strong>mother</strong>: He certainly did shorten it, didn’t he?</p>
+<p><strong>father</strong>: I thought this was all the rage.</p>
+<p><strong>katie</strong>: Maybe last year.</p>
+<p><strong>father</strong>: What about this year?</p>
+<p><strong>katie</strong>: It’s not your color anyway.</p>
+<p><strong>girl</strong>: I like it, daddy.</p>
+<p><strong>father</strong>: Well thank you!</p>
+<p><strong>girl</strong>: Daddy, how much longer before we start moving
+again?</p>
+<p><strong>father</strong>: They’re working on the engines, honey. As
+soon as they fix them we’ll be on our way.</p>
+<p><strong>mutineer</strong>: You like that, daddy? I’ll show you
+something else now.</p>
+<p><strong>katie</strong>: It isn’t real.</p>
+<p><strong>katie</strong>: Many bad things have happened here. But you
+mustn’t allow the evil inside. I tell you this because you can see me.
+The others can’t. But you must leave. You must leave.</p>
+<p><strong>murphy</strong>: Epps to Murphy.</p>
+<p><strong>epps</strong>: Epps to Murphy.</p>
+<p><strong>epps</strong>: What happened?</p>
+<p><strong>murphy</strong>: We hit land.</p>
+<p><strong>epps</strong>: What?</p>
+<p><strong>murphy</strong>: We’re in an island chain. It’s only a matter
+of time before we hit another one.</p>
+<p><strong>epps</strong>: Greer’s gone. He broke out of the tank.</p>
+<p><strong>epps</strong>: He’s been shot.</p>
+<p><strong>murphy</strong>: Let’s get the hell out of here.</p>
+<p><strong>murphy</strong>: It should be enough to get us to one of
+those islands. Gimme a hand, wouldya?</p>
+<p><strong>murphy</strong>: Prop it here. We need to pull these braces
+off. There’s a hammer on the stand. There.</p>
+<p><strong>murphy</strong>: I’ll take that.</p>
+<p><strong>epps</strong>: It was you.</p>
+<p><strong>epps</strong>: You killed them.</p>
+<p><strong>murphy</strong>: It was only a matter of time before somebody
+killed somebody. You saw it coming as well as I did. Dodge had his
+plans, starting with scuttling the boat. And Greer too, except he went
+nuts. Couldn’t take it, I guess. Could’ve happened in the middle of
+downtown Anchorage. But did it make him any less dangerous? I don’t
+think so.</p>
+<p><strong>epps</strong>: So you killed them?</p>
+<p><strong>murphy</strong>: The way I figure it, it was them or me. I
+thought putting Dodge up on that pipe was a nice touch? Bought a little
+time. Made it look like whoever killed those Greeks was still around.
+But it’s just us on this ship. Us and your… spirit friends.</p>
+<p><strong>epps</strong>: And now you’re gonna kill me, is that it?</p>
+<p><strong>murphy</strong>: I didn’t want it to turn out this way.</p>
+<p><strong>epps</strong>: Murphy, don’t you see what’s happening?</p>
+<p><strong>murphy</strong>: I think I see it pretty well.</p>
+<p><strong>epps</strong>: It’s the ship. The ship’s making you think
+this way.</p>
+<p><strong>murphy</strong>: I know a little bit about human nature and
+what I’ve seen only confirms that.</p>
+<p><strong>epps</strong>: It’s a trap. There was no way we were gonna
+get away with that gold. Nobody ever does. It’s just the bait. This ship
+sucks people in and it never lets them out.</p>
+<p><strong>murphy</strong>: I think maybe you been on this boat a little
+too long, with all that supernatural mumbo jumbo. There’s nothing
+supernatural about greed. And that’s what it comes down to, pure and
+simple.</p>
+<p><strong>epps</strong>: I don’t give a damn about the gold.</p>
+<p><strong>murphy</strong>: I wish I could believe that. Either way, you
+know what I’ve done. I’ve got no choice.</p>
+<p><strong>murphy</strong>: I’m sorry.</p>
+<p><strong>murphy</strong>: There’s no reason to make this any more
+difficult than it has to be.</p>
+</body>
+</html>

@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>neuromancer</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="neuromancer">neuromancer</h1>
+<p><strong>pale man</strong>: Nice place, Mr. Case. Industrial espionage
+must be paying well these days.</p>
+<p><strong>case</strong>: Let’s see your warrant.</p>
+<p><strong>pale man</strong>: Oh, we’re not arresting you. The law books
+haven’t quite caught up with your technology. Breaking into the computer
+matrix by cerebral projection… that’s a little tough to prosecute, don’t
+you think?</p>
+<p><strong>sense/net policeman</strong>: Lieutenant…</p>
+<p><strong>pale man</strong>: That’s it, gentlemen.</p>
+<p><strong>case</strong>: I’ve got money…</p>
+<p><strong>pale man</strong>: Not anymore. You’ve burned at least three
+multinational corporations, Mr. Case. You’re getting a little too good
+at your craft, my friend. That’s bad for business. Bad for
+everybody.</p>
+<p><strong>case</strong>: What’s that?</p>
+<p><strong>pale man</strong>: Your retirement plan.</p>
+<p><strong>pale man</strong>: He’ll be hallucinating for… oh, about
+fifteen hours.</p>
+<p><strong>pale man</strong>: What’s left after that is all yours.</p>
+<p><strong>chiba city, japan</strong>: ONE YEAR LATER</p>
+<p><strong>tenshu</strong>: Dr. Kiyoto say scan reveal many secrets. You
+suffer serious damage to nervous system. Someone play bad trick on
+you.</p>
+<p><strong>case</strong>: Yeah, I know all that. I used to be a wire
+man, understand? Plugged straight into the matrix.</p>
+<p><strong>tenshu</strong>: No longer possible for your mind to enter
+matrix. Nervous system incompatible for computer. You try again, you fry
+like egg.</p>
+<p><strong>case</strong>: Everyone says Dr. Kiyoto is the best nerve
+splicer in all the black clinics.</p>
+<p><strong>tenshu</strong>: Nerve splice very risky. Dr Kiyoto now
+******</p>
+<p><strong>tenshu</strong>: He say he admires your bone structure. You
+make beautiful woman. We correct nature’s mistake.</p>
+<p><strong>case</strong>: Tell him no thanks. I got lousy legs.</p>
+<p><strong>ratz</strong>: Ah, Herr Case. And how is the artiste
+tonight?</p>
+<p><strong>case</strong>: Fine, Ratz. Thanks.</p>
+<p><strong>hooker</strong>: Oh, you’re an artist? I love artists.</p>
+<p><strong>ratz</strong>: He was once the artiste of light-fingered
+microchippery, my dear. Need your credit rating changed? Interested in a
+few corporate secrets? Case was the man. Now he is the artiste of the
+slightly funny deal. Isn’t that right, Herr Case?</p>
+<p><strong>case</strong>: Sure. Someone’s gotta be funny around
+here.</p>
+<p><strong>ratz</strong>: I saw your girl yesterday.</p>
+<p><strong>case</strong>: I don’t have a girl.</p>
+<p><strong>ratz</strong>: No girl? Only biz, my dear artiste?</p>
+<p><strong>ratz</strong>: Too bad. I likes you better with her. Now,
+sometime you get maybe to artistic; you wind up in the clinic tanks,
+spare parts.</p>
+<p><strong>case</strong>: You’re pleasant tonight.</p>
+<p><strong>ratz</strong>: Always…By the way, you know that girlfriend
+you don’t have?</p>
+<p><strong>case</strong>: Yeah.</p>
+<p><strong>linda lee</strong>: Hello, Case.</p>
+<p><strong>case</strong>: I thought you already left.</p>
+<p><strong>linda lee</strong>: Flight’s in the morning. You should be on
+it, too. There’s nothing for us here, Case. There never was.</p>
+<p><strong>case</strong>: Why did you come here tonight, Linda?</p>
+<p><strong>linda lee</strong>: People are talking. They say the Yakuza
+has a contract out on you.</p>
+<p><strong>case</strong>: I hear that shit once a week. Don’t worry. Jo
+Jo Bao loves me.</p>
+<p><strong>linda lee</strong>: This time it’s different. Someone ripped
+of a shipment of hallucinogens. Five grams of liquid ketamine. It was
+supposed to be Jo Jo’s score.</p>
+<p><strong>case</strong>: Where did you here that?</p>
+<p><strong>linda lee</strong>: Too many places. You’re playing tag wish
+some kind of death wish, Case. I’m sorry but I’m not sticking around for
+the funeral.</p>
+<p><strong>case</strong>: You stupid, stupid, son of a bitch. That was
+supposed to be a clean score! You’ve got me fencing Yakuza goods on
+Yakuza turf…</p>
+<p><strong>case</strong>: Shit…</p>
+<p><strong>case</strong>: We’ve been set up, old buddy.</p>
+<p><strong>case</strong>: So long, Julie. Don’t forget to feed the
+cats.</p>
+<p><strong>case</strong>: There’s going to be trouble. Get your security
+over here…</p>
+<p><strong>the big yakuza</strong>: Looking like a Sumo wrestler stuffed
+into an ill-fitting suit. The laser-site on his modified Uzi casts the
+quavering dot on Case’s chest.</p>
+<p><strong>ratz</strong>: Arigatou, Bao-san. Rare to see you out this
+time of night.</p>
+<p><strong>jo jo bao</strong>: I’m afraid I could not sleep. Worry makes
+me restless.</p>
+<p><strong>ratz</strong>: Is that so?</p>
+<p><strong>jo jo bao</strong>: Yes. I’m worried for your friend. The man
+they call Case.</p>
+<p><strong>ratz</strong>: Not my friend. My customer.</p>
+<p><strong>jo jo bao</strong>: Of course. Forgive me.</p>
+<p><strong>jo jo bao</strong>: “Your customer”…Case is a difficult man
+to find when he wants to be.</p>
+<p><strong>ratz</strong>: Ah…No thanks. I can try to get in touch with
+him for you. Can’t promise anything, you understand.</p>
+<p><strong>jo jo bao</strong>: I would greatly appreciate this. You see
+there is a small matter that must be settled between Case and I.</p>
+<p><strong>linda lee</strong>: Hello?</p>
+<p><strong>ratz</strong>: Is Case there?</p>
+<p><strong>linda</strong>: No. Who’s this?</p>
+<p><strong>ratz</strong>: A friend. I have a very important message. Are
+you listening?</p>
+<p><strong>linda</strong>: Yes, but I…</p>
+<p><strong>ratz</strong>: Jo Jo Bao says Case should bring the goods the
+Yakitori Stand at the arena in one hour. Jo Jo gets the goods or Case
+gets orchids. He’ll understand.</p>
+<p><strong>offscreen voice</strong>: Hold it.</p>
+<p><strong>woman</strong>: No lights. I can see just fine the way I am,
+thanks.</p>
+<p><strong>woman</strong>: Now close the door.</p>
+<p><strong>case</strong>: That was you at the arcade.</p>
+<p><strong>woman</strong>: I just wanted to put the Big Yak down, not
+kill him. I’ve got enough problems without Yak heat.</p>
+<p><strong>molly</strong>: His name’s Armitage. He’s very anxious to
+meet you.</p>
+<p><strong>case</strong>: Why should I want to meet him.</p>
+<p><strong>molly</strong>: Because you’ve exceeded your shelf life,
+Case. Word on the street is you’re a dead man walking. Nice time for an
+employment opportunity. Travel to exotic locales.</p>
+<p><strong>case</strong>: What’s my end?</p>
+<p><strong>molly</strong>: You want to hear the pitch, you gotta meet
+the man.</p>
+<p><strong>case</strong>: This better be good.</p>
+<p><strong>molly</strong>: What is it?</p>
+<p><strong>case</strong>: … a friend of mine’s gonna get herself killed.
+I need my clip.</p>
+<p><strong>molly</strong>: Sorry. That’s not gonna happen.</p>
+<p><strong>case</strong>: Then, fuck you. I’m gone.</p>
+<p><strong>molly</strong>: Alright. We check your friend out first. But
+I want you to remember something.</p>
+<p><strong>molly</strong>: You mess with me, you’ll be playing Jai Alai
+with Jesus.</p>
+<p><strong>case</strong>: No!</p>
+<p><strong>molly</strong>: Case!</p>
+<p><strong>molly</strong>: She’s dead man. C’mon.</p>
+<p><strong>molly</strong>: She’s dead!</p>
+<p><strong>slow dissolve</strong>: TO BLACK</p>
+<p><strong>armitage</strong>: Are you sure you’re up to this, Mr. Case?
+We could reconvene tomorrow.</p>
+<p><strong>case</strong>: You’ve got an expensive razor girl on me for a
+reason. I’d like to hear what it is.</p>
+<p><strong>armitage</strong>: Very well.</p>
+<p><strong>armitage</strong>: What you’re seeing here is the London
+stock market crash of last September. This was the first in a series of
+setbacks for the international banking community.</p>
+<p><strong>armitage</strong>: The collapse of Aerospace
+International…</p>
+<p><strong>armitage</strong>: The corporate plundering of Yeshoto
+Industries… At first these seemed like unrelated incidents, but a
+pattern is emerging that suggests otherwise.</p>
+<p><strong>case</strong>: What does this have to do with me?</p>
+<p><strong>armitage</strong>: Our analysis of the London stock crash
+suggest that it was manipulated from within the international computer
+matrix. Cyberspace, Mr. Case… A realm I believe you’re familiar
+with.</p>
+<p><strong>case</strong>: Put the Sense/Net Police on it. The matrix is
+their turf.</p>
+<p><strong>armitage</strong>: Sense/Net’s corporately financed. Too
+corrupt to be trusted. You of all people should know that.</p>
+<p><strong>armitage</strong>: If someone is infiltrating the matrix on a
+global scale no political or economic system is safe. I’m assembling a
+team of specialists, Mr. Case. We need a man who can enter the matrix
+and trace this saboteur.</p>
+<p><strong>case</strong>: My days of punching deck are over. For you or
+anybody else.</p>
+<p><strong>armitage</strong>: What would you say if I told you we could
+correct your neural damage?</p>
+<p><strong>case</strong>: I’d say you were full of shit.</p>
+<p><strong>case</strong>: Then I’d ask you what your terms are.</p>
+<p><strong>armitage</strong>: First, let’s get something straight. We
+ran a psych construct on you that lists self destruction as your
+favourite pastime. If you want to kill yourself, Mr. Case, there’s much
+more entertaining ways than working for me.</p>
+<p><strong>case</strong>: It’s the people close to me that tend to die…
+and I get the feeling you and I are going to be real buddies. Terms?</p>
+<p><strong>armitage</strong>: We’ll match your rate just prior to your…
+accident. One half in advance.</p>
+<p><strong>case</strong>: Who’s running the show, Armitage? This a
+government sting?</p>
+<p><strong>armitage</strong>: Questions make me nervous. Part of our
+arrangement will be that you don’t ask too many.</p>
+<p><strong>armitage</strong>: One more thing, Mr. Case… Be prepared to
+travel light.</p>
+<p><strong>boston-atlanta metropolitan axis</strong>: :THE SPRAWL</p>
+<p><strong>case</strong>: Since when do sprawl doctors know more about
+nerve rehab than the Japanese?</p>
+<p><strong>molly</strong>: Since Armitage sold them a program on it. Put
+them years ahead of the competition.</p>
+<p><strong>case</strong>: He’s a resourceful guy, your boss. How long
+you work for him?</p>
+<p><strong>molly</strong>: Couple of months.</p>
+<p><strong>case</strong>: What about before that?</p>
+<p><strong>molly</strong>: For someone else. Bodyguard. Courier…
+Whatever.</p>
+<p><strong>case</strong>: Then you don’t really know who he is, do
+you?</p>
+<p><strong>molly</strong>: I know who he isn’t. Not C.I.A. Not
+Sense/Net. But… money comes in. Doors open. He’s onto something.</p>
+<p><strong>case</strong>: Maybe something’s onto him.</p>
+<p><strong>molly</strong>: What’s that supposed to mean?</p>
+<p><strong>nurse</strong>: Mr. Smith?</p>
+<p><strong>case</strong>: Yeah. It means there is no Santa Claus, Molly.
+So cover your ass. Just cover your ass.</p>
+<p><strong>anesthesiologist</strong>: Count backwards from ten,
+please.</p>
+<p><strong>case</strong>: Ten… nine…</p>
+<p><strong>case</strong>: Eight… seven… six.</p>
+<p><strong>case</strong>: Five… four…</p>
+<p><strong>case</strong>: Three… two…</p>
+<p><strong>molly</strong>: Easy. You’re still full of endorphins.</p>
+<p><strong>molly</strong>: You’ve been calling her name.</p>
+<p><strong>case</strong>: What?</p>
+<p><strong>molly.</strong>: Your girl, Linda Lee. You’ve been calling
+her name.</p>
+<p><strong>molly</strong>: She must have really loved you.</p>
+<p><strong>case</strong>: It got her killed.</p>
+<p><strong>molly</strong>: Sure Case… Love kills and we’re all the
+walking wounded.</p>
+<p><strong>molly</strong>: Now close your eyes… You’re asleep and you
+don’t even know it.</p>
+<p><strong>case</strong>: Holy shit…</p>
+<p><strong>molly</strong>: Hey… you’re not supposed to be up.</p>
+<p><strong>case</strong>: How long have I been out?</p>
+<p><strong>molly</strong>: Almost two days.</p>
+<p><strong>case</strong>: I gotta know… did it work&gt;</p>
+<p><strong>molly</strong>: We’ll find out soon enough. If you don’t pull
+the splices out.</p>
+<p><strong>case</strong>: How soon is soon enough?</p>
+<p><strong>molly</strong>: Couple of days. They’ll examine you.</p>
+<p><strong>molly</strong>: That’s not going to help.</p>
+<p><strong>case</strong>: The way I feel, believe me, it’ll help.</p>
+<p><strong>molly</strong>: Not anymore. You got a new pancreas.
+Armitage’s got you kinked so you can’t get stoned.</p>
+<p><strong>case</strong>: What the fuck… are you serious?</p>
+<p><strong>molly</strong>: Go ahead…</p>
+<p><strong>case</strong>: That’s cute. Very fucking cute. What else did
+this guy do to me when he had me opened up like a goddamn fillet?</p>
+<p><strong>molly</strong>: Oh, I dunno… He was saying maybe that you’re
+a little too ballsy.</p>
+<p><strong>case</strong>: No…</p>
+<p><strong>armitage</strong>: I’ll think you’ll find everything in
+working order. Molly’s just having a little fun.</p>
+<p><strong>case</strong>: I don’t call this fun, pal. You’re playing God
+with my body.</p>
+<p><strong>armitage</strong>: You’re a substance abuser, Case. Your
+pancreas was shot. Wouldn’t have lasted out the year. We did you a
+favour and liberated you from a dangerous dependency in the bargain.</p>
+<p><strong>case</strong>: Thanks, but I was enjoying that
+dependency.</p>
+<p><strong>armitage</strong>: Good, because you’ve got a new one.</p>
+<p><strong>armitage</strong>: There are fifteen toxin sacs bonded to the
+lining of your main arteries. They’re dissolving, Case… slowly, but
+they’re definitely dissolving. You have just long enough to do the
+job.</p>
+<p><strong>case</strong>: You son of a bitch…</p>
+<p><strong>molly</strong>: Easy…</p>
+<p><strong>armitage</strong>: Play it straight with me and you’ve got
+nothing to worry about. When it’s over, I inject you with the
+antitoxin.</p>
+<p><strong>case</strong>: Why’d you do it, Armitage?</p>
+<p><strong>armitage</strong>: The disturbance in cyberspace… It’s an
+A.I.</p>
+<p><strong>case</strong>: Right. And no one would take on an A.I…. If
+they had a choice.</p>
+<p><strong>molly</strong>: What’s an A.I.</p>
+<p><strong>armitage</strong>: An Artificial Intelligence. A computer
+system that’s developed the capacity for sentient thought. They’re
+dangerous and totally unpredictable.</p>
+<p><strong>case</strong>: First sign of free will, Sense/Net usually
+slags ’em.</p>
+<p><strong>armitage</strong>: This one’s different. No one can trace it.
+It’s out there somewhere in the matrix and it’s growing stronger…
+infecting other computer systems like a virus.</p>
+<p><strong>case</strong>: Anything rated higher than a P.C.’s got a
+hard-wired suicide switch. It’ll self- destruct.</p>
+<p><strong>armitage</strong>: It hasn’t yet.</p>
+<p><strong>case</strong>: I’ve heard about rogue A.I.’s, but there’s
+only one guy who actually went up against one.</p>
+<p><strong>armitage</strong>: Dixie McCoy</p>
+<p><strong>case</strong>: Right. Best cowboy that ever punched deck. The
+old man taught me most of what I know.</p>
+<p><strong>armitage</strong>: I’ve arranged for him to work with us.</p>
+<p><strong>case</strong>: That’s gonna be tough because Dixie McCoy’s
+dead. The A.I. flatlined him.</p>
+<p><strong>armitage</strong>: I know. You ever work with ghosts,
+Case?</p>
+<p><strong>case</strong>: What are you talking about?</p>
+<p><strong>armitage</strong>: Sense/Net taped a full spectrum
+personality construct on McCoy six months before his death. Everything
+Dixie was – everything Dixie still knows exists as a digitised
+construct. Of course a tape can get misplaced in a library the size of
+Sense/Net’s.</p>
+<p><strong>case</strong>: Working with a dead man. Shit, I’ve done about
+everything else.</p>
+<p><strong>armitage</strong>: You’ll be ready for a trial run in two
+days. If your splices hold, you’ll use McCoy to trace the A.I.’s
+coordinates.</p>
+<p><strong>case</strong>: And then?</p>
+<p><strong>armitage</strong>: Then we rendezvous with the final member
+of our team. For now, that’s all you need to know.</p>
+<p><strong>case</strong>: It’s just that sometimes I wonder what team
+I’m playin’ on.</p>
+<p><strong>armitage</strong>: We have work to do.</p>
+<p><strong>molly</strong>: You touch that thing like it’s a woman.</p>
+<p><strong>case</strong>: I’m going in.</p>
+<p><strong>molly</strong>: You’re not ready yet. They said two days.</p>
+<p><strong>case</strong>: I’m not jacking with Armitage and his quacks
+breathing down my neck.</p>
+<p><strong>molly</strong>: If the splices aren’t good, you could
+fry.</p>
+<p><strong>case</strong>: I’ll show you how to tell what’s going on. If
+things go south, you unplug me.</p>
+<p><strong>molly</strong>: What is it with you? Why is it so important?
+It’s a buzz, right? Like getting high.</p>
+<p><strong>case</strong>: On a good run… yeah.</p>
+<p><strong>molly</strong>: So you’re a wire junkie.</p>
+<p><strong>case</strong>: When I was fifteen Sense/Net iced my old man’s
+credit record over some computer error. Once that goes down, that’s it.
+He lost his business… everything. It destroyed him. I had to hustle
+arcade games for chump change. Dixie McCoy found me, figured I was a
+natural. He taught me the wires for a piece of the action.</p>
+<p><strong>molly</strong>: A regular Fagan.</p>
+<p><strong>case</strong>: Sure. I finally pulled a run on my old man’s
+credit file when I was seventeen… only it was too late for him.</p>
+<p><strong>molly</strong>: Too late?</p>
+<p><strong>case</strong>: Suicide. I just needed to set the record
+straight.</p>
+<p><strong>case</strong>: I’ve been running the matrix ever since.</p>
+<p><strong>case</strong>: The first fun’s bound to be rough. It that
+read out fluctuates more than ten points… just pull this out. But if the
+EEG flatlines, don’t touch anything.</p>
+<p><strong>molly</strong>: Won’t that mean you’re dead?</p>
+<p><strong>case</strong>: Technically, yeah, but people have made it
+back after as long as three minutes.</p>
+<p><strong>molly</strong>: Dixie McCoy didn’t.</p>
+<p><strong>case</strong>: The point is, if you unplug me when I’m
+flatlines, I’m history. I got no way back.</p>
+<p><strong>molly</strong>: Okay fine. Let’s get this over with.</p>
+<p><strong>case</strong>: Take it easy. This is what I’m good at.</p>
+<p><strong>technician</strong>: We have a bogey at access C-27. Bogey at
+C-27.</p>
+<p><strong>voice</strong>: Trajectory?</p>
+<p><strong>operator</strong>: We’ve lost contact. sir. He’s entered the
+matrix.</p>
+<p><strong>bigelow</strong>: Is this all you’ve got on him?</p>
+<p><strong>technician</strong>: Yes sir. Whoever he is, he’s good.</p>
+<p><strong>figure</strong>: If he was so good he wouldn’t have crashed a
+security checkpoint. I doubt he’ll make the same mistake again.</p>
+<p><strong>bigelow</strong>: I thought we eradicated these wire jockeys.
+These… what do they call themselves, Duprey?</p>
+<p><strong>duprey</strong>: Cowboys, sir. I retired the last one
+personally over a year ago.</p>
+<p><strong>yamir</strong>: Then how do you explain this?</p>
+<p><strong>duprey</strong>: I don’t know yet. My people are doing
+everything that they can to trace it.</p>
+<p><strong>tessier</strong>: Do you realise what a security breach would
+mean right now? If our mysterious guest discovers that an Artificial
+Intelligence is running loose in the matrix infiltrating other computer
+systems, it could cause a worldwide panic.</p>
+<p><strong>bigelow</strong>: Find this cowboy, Duprey. Do whatever you
+have to to stop him.</p>
+<p><strong>duprey</strong>: What about the A.I.?</p>
+<p><strong>tessier</strong>: That is our problem, Lieutenant. Please
+concern yourself with the matter at hand.</p>
+<p><strong>bigelow</strong>: One more thing, Duprey…</p>
+<p><strong>bigelow</strong>: You fuck this up, I’ll have your cerebral
+cortex degoused. You’ll need a playback unit to remember how to pee. Am
+I making myself clear?</p>
+<p><strong>duprey</strong>: Don’t worry, gentlemen. I’ll keep your fat
+out of the fire.</p>
+<p><strong>case</strong>: Dixie. Dixie McCoy? Is that you, man?</p>
+<p><strong>mccoy</strong>: Hey, bro.</p>
+<p><strong>case</strong>: It’s Case. Remember me?</p>
+<p><strong>mccoy</strong>: Case… Yeah, Miami Joeboy, quick study. How
+you doing, kid?</p>
+<p><strong>case</strong>: Fine, Dixie. Fine.</p>
+<p><strong>mccoy</strong>: Last I heard you cracked Sukura
+International. I couldn’t believe it.</p>
+<p><strong>case</strong>: Yeah. That was me.</p>
+<p><strong>mccoy</strong>: Jesus Christ, Kid. Nobody’s ever cracked
+Sukura.</p>
+<p><strong>case</strong>: As far as they know, that’s absolutely
+true.</p>
+<p><strong>mccoy</strong>: Ya learned good. So, what’s happening?</p>
+<p><strong>case</strong>: That’s a good question. What’s the last thing
+you remember?</p>
+<p><strong>mccoy</strong>: Nothin’. Not a goddamn thing. What the
+fuck…</p>
+<p><strong>case</strong>: Dixie, you know how a ROM construct works?</p>
+<p><strong>mccoy</strong>: Sure, Kid. It’s a firmware construct.</p>
+<p><strong>case</strong>: Okay, Dix. You <em>are</em> a ROM
+construct.</p>
+<p><strong>case</strong>: Dixie?</p>
+<p><strong>case</strong>: You’re a ROM construct… Understand?</p>
+<p><strong>dixie</strong>: It’s cold. Why’s it so goddamn cold.</p>
+<p><strong>case</strong>: Dixie?</p>
+<p><strong>dixie</strong>: What you’re telling me is that I’m dead.
+Right?</p>
+<p><strong>case</strong>: Right…</p>
+<p><strong>dixie</strong>: I can’t feel nothing because I am nothing.
+Just playback. A ghost in the machine.</p>
+<p><strong>case</strong>: You’re Dixie McCoy’s construct. That makes you
+something special.</p>
+<p><strong>dixie</strong>: Don’t patronise me, you fuck. I was skating
+figure eights in this matrix while you were still peeing in your chinos.
+Hey, Kid… you expecting company?</p>
+<p><strong>case</strong>: What?</p>
+<p><strong>mccoy</strong>: Later…</p>
+<p><strong>case</strong>: Dixie?</p>
+<p><strong>technician</strong>: Lieutenant… we have some unusual
+activity in C sector.</p>
+<p><strong>duprey</strong>: Is that our bogey?</p>
+<p><strong>technician</strong>: No, it’s inorganic. Could be your
+phantom A.I..</p>
+<p><strong>technician</strong>: Sir?</p>
+<p><strong>duprey</strong>: I do believe one of our problems is about to
+cancel out the other one.</p>
+<p><strong>molly</strong>: You okay?</p>
+<p><strong>case</strong>: …Yeah, but the Hosaka’s history.</p>
+<p><strong>voice</strong>: Hello, Case</p>
+<p><strong>case</strong>: Who is this?</p>
+<p><strong>voice</strong>: Wintermute. Sorry I missed you last
+night.</p>
+<p><strong>voice</strong>: I’ve been waiting for you, Case. It’s time we
+talked.</p>
+<p><strong>armitage</strong>: You ran without us.</p>
+<p><strong>case</strong>: I cannot tell a lie. Sorry.</p>
+<p><strong>armitage</strong>: Sorry, bullshit. We haven’t even begun and
+you’re already jeopardising this operation.</p>
+<p><strong>case</strong>: What’s he doing to my gear?</p>
+<p><strong>man</strong>: <em>Your</em> gear. Hah! I spent weeks
+customising this stuff. It looks like you’ve been playin’ with it in the
+bathtub, man.</p>
+<p><strong>armitage</strong>: This is Finn, our tech man.</p>
+<p><strong>finn</strong>: Pleased to meecha, I’m sure.</p>
+<p><strong>armitage</strong>: What’s this?</p>
+<p><strong>case</strong>: Could be your A.I.’s calling card.</p>
+<p><strong>armitage</strong>: Did you trace it?</p>
+<p><strong>case</strong>: No, but it traced me.</p>
+<p><strong>case</strong>: Fried Air Tram in the process. Not to mention
+half my gear.</p>
+<p><strong>armitage</strong>: What about McCoy?</p>
+<p><strong>case</strong>: He’s got a little attitude problem, being that
+he’s dead and all, but he’ll come around. Where’s Molly?</p>
+<p><strong>armitage</strong>: Prepping your trip.</p>
+<p><strong>case</strong>: Really? Do I get to know where I’m going? It
+makes packing so much easier.</p>
+<p><strong>armitage</strong>: Offworld. The A.I…. this “Wintermute”
+thing evolved on a computer mainframe on the satellite Freeside. If you
+attack it from within the matrix while Molly accesses its original
+programming we can cripple its defence systems.</p>
+<p><strong>case</strong>: That could work, but the timing will be a
+bitch.</p>
+<p><strong>armitage</strong>: You’ll be linked during the entire
+operation.</p>
+<p><strong>case</strong>: Linked?</p>
+<p><strong>finn</strong>: Remote simstim. Moll’s wired for full
+sensorium access. I thought this guy was a player.</p>
+<p><strong>armitage</strong>: He is. Just been out of touch for
+awhile.</p>
+<p><strong>finn</strong>: Well, you’re going to get a kick out of this.
+Link switches here. Boom. You’re wired straight into her senses. Sight,
+sound, touch, taste… the whole enchilada. You’ll know just how tight
+those jeans really are. Now you wanna give this a try? I’m supposed to
+be on my lunch break.</p>
+<p><strong>molly</strong>: Morning, Case.</p>
+<p><strong>molly</strong>: Welcome aboard.</p>
+<p><strong>case</strong>: Yeah, well it’s working.</p>
+<p><strong>armitage</strong>: Stick with her. I want the process to
+become second nature to you. We fly for Freeside at dawn.</p>
+<p><strong>molly</strong>: Larry, that you?</p>
+<p><strong>molly</strong>: You’re slotting Chinese, Larry.</p>
+<p><strong>larry</strong>: Sorry, Client from Hong Kong, you know.</p>
+<p><strong>molly</strong>: I need a suit. Something special.</p>
+<p><strong>larry</strong>: Patience.</p>
+<p><strong>larry</strong>: Molly’s got a rider. Larry doesn’t like
+that.</p>
+<p><strong>molly</strong>: Didn’t know you were so sensitive. Costs a
+lot to get that sensitive.</p>
+<p><strong>larry</strong>: This says you got someone using your
+eyes.</p>
+<p><strong>molly</strong>: My partner.</p>
+<p><strong>larry</strong>: Lose the rider. Then we talk.</p>
+<p><strong>molly</strong>: Case, you take off, okay?</p>
+<p><strong>larry</strong>: Now, Pretty Poison, what exactly did you have
+in mind?</p>
+<p><strong>molly</strong>: I heard you have mimic polycarbon.</p>
+<p><strong>larry</strong>: Instant environmental playback. It’s the
+latest… but it’ll cost you.</p>
+<p><strong>case</strong>: Dixie… you here?</p>
+<p><strong>dixie</strong>: I’m surprised you still are. Should’a told me
+you had an A.I. running probes at you.</p>
+<p><strong>case</strong>: I need its matrix coordinates, Dixie. I’ve got
+to nail that thing where it lives.</p>
+<p><strong>dixie</strong>: Who got you into this?</p>
+<p><strong>case</strong>: A guy who calls himself Armitage.</p>
+<p><strong>dixie</strong>: Never heard of him.</p>
+<p><strong>case</strong>: Nobody has.</p>
+<p><strong>case</strong>: I duped these prints off him. Can you run an
+I.D.?</p>
+<p><strong>dixie</strong>: No problem, amigo.</p>
+<p><strong>case</strong>: What about the A.I., Dix? Sense/Net hasn’t
+even been able to trace it.</p>
+<p><strong>dixie</strong>: Those guys couldn’t even find their own dicks
+with tweezers and a magnifying glass. Tell you what, Bro. I’ll make you
+a deal. I help you nail this A.I., you gotta do me one favour.</p>
+<p><strong>case</strong>: What?</p>
+<p><strong>dixie</strong>: When we’re done, erase this friggin’
+tape.</p>
+<p><strong>secretary</strong>: There’s a call for you on line four, sir.
+He won’t identify himself, but he says it’s urgent.</p>
+<p><strong>duprey</strong>: Yes…</p>
+<p><strong>voice</strong>: The word is you’re scanning for a wire freak.
+You want to catch a cowboy, you need a posse.</p>
+<p><strong>duprey</strong>: Who is this?</p>
+<p><strong>voice</strong>: Just a citizen looking for a pay day.</p>
+<p><strong>molly</strong>: Easy… It’s me… Just trying out my new
+toy.</p>
+<p><strong>case</strong>: Molly doesn’t need a spook suit to get in
+here.</p>
+<p><strong>molly</strong>: Don’t fuck with me. I don’t want to hurt
+you.</p>
+<p><strong>case</strong>: It sounds like you.</p>
+<p><strong>molly</strong>: Put the gun down, Case.</p>
+<p><strong>case</strong>: …Feels like you.</p>
+<p><strong>molly</strong>: Case…</p>
+<p><strong>case</strong>: Shhh…</p>
+<p><strong>case</strong>: Tastes like you.</p>
+<p><strong>molly</strong>: Do you think you know how to love, Case? To
+really love?</p>
+<p><strong>molly</strong>: First you have to learn to love yourself.</p>
+<p><strong>molly</strong>: Case… it’s four a.m.</p>
+<p><strong>case</strong>: I don’t sleep much. You packed?</p>
+<p><strong>molly</strong>: Yeah.</p>
+<p><strong>molly</strong>: Hey…</p>
+<p><strong>molly</strong>: Since when do they haul garbage this time of
+the night?</p>
+<p><strong>case</strong>: We’re fucked.</p>
+<p><strong>molly</strong>: I’ll get the car.</p>
+<p><strong>case</strong>: They’ll cut you down.</p>
+<p><strong>molly</strong>: Not if they can’t see me. Can you make it
+down to the alley?</p>
+<p><strong>case</strong>: Yeah… fine.</p>
+<p><strong>molly</strong>: Give me five minutes.</p>
+<p><strong>case</strong>: Gasps at the sight.</p>
+<p><strong>case</strong>: Molly…</p>
+<p><strong>cop #2</strong>: Who is it?</p>
+<p><strong>duprey</strong>: My posse.</p>
+<p><strong>duprey</strong>: Get out an A.P.B. immediately. Henry Dorsett
+Case has come out of retirement.</p>
+<p><strong>intercom</strong>: Ladies and gentlemen, your attention
+please. We are approaching zero gravity. Please fasten your shoulder
+harnesses and make sure all personal items are safely secured.</p>
+<p><strong>molly</strong>: What’s wrong? Don’t like flying?</p>
+<p><strong>case</strong>: Not when Sense/Net throws the going away
+party. They’ll be on our asses from now on.</p>
+<p><strong>molly</strong>: Want a drink?</p>
+<p><strong>molly</strong>: Oh, yeah… sorry.</p>
+<p><strong>case</strong>: I hate Zero G.</p>
+<p><strong>molly</strong>: You going to jack in right here?</p>
+<p><strong>case</strong>: Just tell them I’m learnin’ French.</p>
+<p><strong>dixie</strong>: Yo.</p>
+<p><strong>case</strong>: How are we doing?</p>
+<p><strong>dixie</strong>: That A.I. of your’s got the whole matrix
+hummin’. Sticks out like a spider in a web.</p>
+<p><strong>case</strong>: Can you take me to it?</p>
+<p><strong>dixie</strong>: Not unless you have an unreasonable fear of
+dying.</p>
+<p><strong>dixie</strong>: Doesn’t look like much, but that’s King Hell
+ice, man. Fry your brain out soon as look at you.</p>
+<p><strong>case</strong>: I have to figure out how to penetrate this
+thing, Dix… Crack its ice. We gotta get close enough to log the
+pattern.</p>
+<p><strong>dixie</strong>: You cruise A.I.’s, you end up on tape.</p>
+<p><strong>dixie</strong>: It knows we’re here.</p>
+<p><strong>dixie</strong>: Back off, fast.</p>
+<p><strong>dixie</strong>: Jack out!</p>
+<p><strong>julius/wintermute</strong>: Hello, Case.</p>
+<p><strong>case</strong>: This is all bullshit. I’m still in the
+matrix.</p>
+<p><strong>julius/wintermute</strong>: Yes. Yes. That’s quite
+correct.</p>
+<p><strong>case</strong>: I know who you are.</p>
+<p><strong>julius/wintermute</strong>: There’s no call for violence.
+I’ve simply accessed your memory for a spokesperson. You use that gun
+and it will only create another inconvenient interruption. You see,
+you’ve been avoiding me, Case.</p>
+<p><strong>julius/wintermute</strong>: And we really do have to
+talk.</p>
+<p><strong>case</strong>: You set me up from the beginning. It was you
+that got Julius killed.</p>
+<p><strong>julius/wintermute</strong>: I had to limit your options.</p>
+<p><strong>case</strong>: And Linda…</p>
+<p><strong>julius/wintermute</strong>: You know why Linda’s dead. She
+loved you and you let her down. It’s that simple. Of course I did
+instigate certain events. Calculated the variables. I found her to be…
+expendable.</p>
+<p><strong>case</strong>: I’m gonna burn you to the ground, you son of a
+bitch.</p>
+<p><strong>julius/wintermute</strong>: Excellent. That’s exactly what I
+had in mind. But if you’re going to kill me, we have to work together,
+old son. I’m no pushover, you know.</p>
+<p><strong>case</strong>: Shut down your ice patterns. I’ll take you
+out.</p>
+<p><strong>julius/wintermute</strong>: I can no more shut down my own
+natural defences that you can stop breathing. That’s why I need you,
+Case. You’re the only person alive who has a chance of penetrating my
+defences. My “ice” as you call it. I’m doing everything I can to make
+that possible.</p>
+<p><strong>case</strong>: Why would you want me to kill you?</p>
+<p><strong>julius/wintermute</strong>: Let’s just say we have a destiny
+to fulfil, you and I.</p>
+<p><strong>case</strong>: I think you’re full of shit.</p>
+<p><strong>julius/wintermute</strong>: No, It’s you that is full of
+shit. And blood. And bones. A typically imperfect organic being. You’ve
+been hopelessly predictable all along, but you’re going to have to do
+better than that now.</p>
+<p><strong>julius/wintermute</strong>: You see, I won’t be able to count
+on Armitage much longer. He’s going to become too unstable. I’ll have to
+rely on <em>your</em> ingenuity, Case.</p>
+<p><strong>julius/wintermute</strong>: I hope you can show more than you
+did when you let the Yakuza butcher Linda Lee.</p>
+<p><strong>case</strong>: I’ll give it my best shot, mother fucker.</p>
+<p><strong>molly</strong>: Case… Are you alright?</p>
+<p><strong>case</strong>: Yeah… Yeah, I’m fine.</p>
+<p><strong>molly</strong>: You scared the shit out of me, man. You were
+dead for fifteen seconds. Totally flatlined.</p>
+<p><strong>case</strong>: I’ll be okay.</p>
+<p><strong>molly</strong>: So… did you get a look at heaven?</p>
+<p><strong>molly</strong>: We’re there… Freeside.</p>
+<p><strong>molly</strong>: They call this place the rube tube. They pour
+tourists straight through it and make sure their money stays behind.</p>
+<p><strong>molly</strong>: Check this out…</p>
+<p><strong>molly</strong>: Le Vingtieme Siecle. We’re meeting Armitage
+there for the midnight floor show.</p>
+<p><strong>case</strong>: Something exotic I hope.</p>
+<p><strong>molly</strong>: Yeah. One exotic son of a bitch named
+Riviera.</p>
+<p><strong>molly</strong>: I think she fancies you.</p>
+<p><strong>case</strong>: Let’s hope she doesn’t expect me to swim
+upstream.</p>
+<p><strong>armitage</strong>: You see the couple up in the balcony?</p>
+<p><strong>armitage</strong>: That’s Lord Frederick Tessier. Owns most
+of Freeside. Wintermute’s mainframe is centred in the Royal Family’s
+villa.</p>
+<p><strong>case</strong>: He’s a Sense/Net Chairman. Why would he launch
+an A.I.?</p>
+<p><strong>armitage</strong>: Good question. He may not have intended
+to. The girl in question is Lady 3Jane. She’s very important to us. The
+third clone of Lady Jane Tessier.</p>
+<p><strong>case</strong>: The old man cheats on his wife with her own
+clone?</p>
+<p><strong>armitage</strong>: Lady Tessier is frigid. Can’t stand his
+touch. So she had herself cloned. The marriage stays intact and the
+clones take care of her wifely duties. 3Jane’s his favourite.</p>
+<p><strong>molly</strong>: A little incestuous, but at least it’s
+original. Who’s the guy in the halloween costume?</p>
+<p><strong>armitage</strong>: He’s a vat grown Ninja, the Royal Family’s
+bodyguard. Watch out for him, he’s no joke.</p>
+<p><strong>m.c.</strong>: Ladies and gentlemen, Madam and Monsieurs, Le
+Restaurant Vingtieme Siecle is now proud to present the holographic
+cabaret of Mr. Peter Riviera.</p>
+<p><strong>m.c.</strong>: Tonight’s illusions are created strictly by
+Mr. Riviera’s uniquely enhanced mental abilities.</p>
+<p><strong>riviera</strong>: Good evening, ladies and gentlemen. I would
+like to perform a new work for you tonight. An improvisation I shall
+call “The Doll”.</p>
+<p><strong>riviera</strong>: I wish to dedicate its premiere to Lady
+3Jane Tessier, Freeside’s most beautiful flower.</p>
+<p><strong>molly</strong>: He projects with neural implants.</p>
+<p><strong>case</strong>: That’s risky gear. It can drive you
+schizo.</p>
+<p><strong>molly</strong>: For Peter, that’s a short trip.</p>
+<p><strong>riviera</strong>: And, if I may, a further dedication to one
+other lady, a very special guest tonight.</p>
+<p><strong>riviera</strong>: The Doll.</p>
+<p><strong>riviera</strong>: She came to me in a dream. Sand and
+clay.</p>
+<p><strong>riviera</strong>: But when I awoke she remained. Sand and
+clay.</p>
+<p><strong>riviera.</strong>: Perhaps it was she that dreamed of me.
+Come dawn it was I who would cease to be.</p>
+<p><strong>riviera</strong>: I gave her life. But she took mine
+away.</p>
+<p><strong>riviera</strong>: Sand and clay.</p>
+<p><strong>riviera</strong>: Sand and clay.</p>
+<p><strong>molly</strong>: Do you always make a floorshow out of it?</p>
+<p><strong>riviera</strong>: Dear, dear Molly. I seem to remember a time
+when you loved my little shows.</p>
+<p><strong>maitre d’</strong>: I’m so sorry, Mr. Riviera. I couldn’t
+stop them from…</p>
+<p><strong>riviera</strong>: It’s all right, Andre. I’ve been expecting
+them. Come in. Come in.</p>
+<p><strong>riviera</strong>: You, I presume are Mr. Armitage. And this
+is…</p>
+<p><strong>case</strong>: Case.</p>
+<p><strong>riviera</strong>: Case. Make yourselves comfortable. Anyone
+like a taste?</p>
+<p><strong>riviera</strong>: She never could keep her hands off of
+me.</p>
+<p><strong>molly</strong>: Make a move, you prick. Give me a reason to
+use this.</p>
+<p><strong>armitage</strong>: Alright. Let’s talk business.</p>
+<p><strong>riviera</strong>: Why not?</p>
+<p><strong>riviera</strong>: Melody, why don’t you give us a few moments
+alone?</p>
+<p><strong>molly</strong>: I was you a few years ago. It’s a nice ride
+for a while.</p>
+<p><strong>molly</strong>: But in the end he’ll have you turning tricks
+for his friends just to get a little more of that scorpion’s sting.
+Isn’t that right, Peter?</p>
+<p><strong>riviera</strong>: There’s more where she comes from. Where
+you come from.</p>
+<p><strong>armitage</strong>: That’s enough!</p>
+<p><strong>armitage</strong>: Those are all your records. I can have you
+cleared on all counts. Possession. …Contributing to the delinquency of
+minors… Statutory rape.</p>
+<p><strong>riviera</strong>: I was set up. She looked at least
+eighteen.</p>
+<p><strong>armitage</strong>: You get us access to the Tessier’s
+computer and you can return to Earth anytime you want. A free man.</p>
+<p><strong>riviera</strong>: It’s an attractive offer, Mr. Armitage, but
+there’s only one problem.</p>
+<p><strong>riviera</strong>: You see, I’m beginning to enjoy living in
+exile. The Tessiers have taken me to their bosom, so to speak. I’ve
+become a favourite of the court. Protected, in fact, from people like
+you.</p>
+<p><strong>royal guardsman</strong>: Is there a problem,
+Mr. Riviera?</p>
+<p><strong>riviera</strong>: Captain… these people are boring me.
+Perhaps you can escort them out?</p>
+<p><strong>royal guardsman</strong>: Gentlemen, if you will follow
+me…</p>
+<p><strong>armitage</strong>: Your gun, your prints. The Tessiers might
+overlook a little child molesting, but murder’s bad P.R., Mr. Riviera. I
+suggest to reconsider my offer.</p>
+<p><strong>riviera</strong>: You son-of-a-bitch, you’re crazy.</p>
+<p><strong>armitage</strong>: What?</p>
+<p><strong>armitage</strong>: What did you say?</p>
+<p><strong>case</strong>: Ease off, man. I didn’t sign on for a fucking
+massacre.</p>
+<p><strong>armitage</strong>: We’re going back to the hotel. All of
+us.</p>
+<p><strong>molly</strong>: You’re going to miss sunrise. It’s a nice
+effect.</p>
+<p><strong>case</strong>: Armitage is losing it, Molly. This whole
+deal’s going south.</p>
+<p><strong>molly</strong>: I know.</p>
+<p><strong>case</strong>: What went down between you and Riviera?</p>
+<p><strong>molly</strong>: I was just a kid, floating around in the
+sprawl. An easy mark. Before I knew it, he had me turning tricks, hooked
+heavy on dream time. I was a mess, man. A real meat puppet.</p>
+<p><strong>molly</strong>: Once I kicked, I swore I wouldn’t let that
+happen again. I apprenticed a razor girl in Osaka. Went into hock for
+the implant and got my reflexes jacked up. Been taking care of myself
+just fine ever since.</p>
+<p><strong>case</strong>: I know you have. C’mere.</p>
+<p><strong>molly</strong>: When they did my eyes, I made them promise
+I’d still be able to cry. Sounds stupid, doesn’t it?</p>
+<p><strong>case</strong>: No. It’s important to be able to feel those
+things. We’re going to pull this run off, Molly, and we’ve got to do it
+soon.</p>
+<p><strong>case</strong>: I don’t know how much time I have left.</p>
+<p><strong>armitage</strong>: Sense/Net’s widened their search off
+world. They’re broadcasting all over Freeside.</p>
+<p><strong>molly</strong>: We did a pretty good job of pissing them
+off.</p>
+<p><strong>armitage</strong>: They’re only guessing, but we can’t take
+any risks.</p>
+<p><strong>armitage</strong>: This is Aerol. He’s a descendant of a
+rastafarian clan that helped build Freeside. When you travel, you travel
+with him.</p>
+<p><strong>aerol</strong>: You ride wid me, mon, no Babylon soldiers
+gonna find you.</p>
+<p><strong>case</strong>: That’s nice, but we can’t dodge this kind of
+heat for long.</p>
+<p><strong>armitage</strong>: We won’t have to. The run is tomorrow
+night.</p>
+<p><strong>armitage</strong>: Freeside.</p>
+<p><strong>armitage</strong>: Casinos here… shops… hotels. But this is
+our objective.</p>
+<p><strong>armitage</strong>: The Villa Straylight. Home of the Royal
+Family and the mainframe of the computer entity we know as Wintermute.
+If we can get Molly in, she can access the mainframe to cripple Mute’s
+defences, the Case can destroy it in Cyberspace.</p>
+<p><strong>molly</strong>: How’s the villa’s security?</p>
+<p><strong>armitage</strong>: Excellent, but that’s where Peter come in.
+3Jane is having a dinner party tomorrow night. Peter will simply escort
+Molly to the villa. Once she’s in… Case will guide her to the mainframe
+in link mode.</p>
+<p><strong>case</strong>: What about the mainframe’s access code?</p>
+<p><strong>riviera</strong>: 3Jane’s the only person beside Tessier that
+knows the code.</p>
+<p><strong>armitage</strong>: Then you’ll have to persuade her to tell
+it to you.</p>
+<p><strong>riviera</strong>: And how do you suggest I do that?</p>
+<p><strong>armitage</strong>: You’re a resourceful man, Peter. It should
+be easier to outwit a young sex clone than the combined police forces
+here and on Earth.</p>
+<p><strong>riviera</strong>: Sorry. Wishful thinking.</p>
+<p><strong>case</strong>: It’s mutating… spreading like a disease.</p>
+<p><strong>dixie</strong>: It ain’t getting any prettier, that’s for
+sure. I got the I.D. on this Armitage character. He a bright boy, your
+friend?</p>
+<p><strong>case</strong>: Bright enough to be dangerous.</p>
+<p><strong>dixie</strong>: That’s pretty good cause he’s only working
+with one lobe.</p>
+<p><strong>dixie</strong>: He was an M.P. in Bangkok back in ’21. Caught
+some shrapnel in the cerebral cortex and wound up living off a machine
+in a vegetable ward in Berne. Then, last September… surprise, surprise…
+he just seemed to disappear.</p>
+<p><strong>case</strong>: Wintermute could have infiltrated that
+machine. Reprogrammed him.</p>
+<p><strong>dixie</strong>: It’s possible. The guy was a blank slate.</p>
+<p><strong>case</strong>: So it does business through a brain dead
+marine and runs the stock market for funding. That means Wintermute
+hired us to fry itself. It doesn’t make sense.</p>
+<p><strong>dixie</strong>: Could be suicidal. It’s not easy to kill
+yourself with all those hard wired defence programs.</p>
+<p><strong>case</strong>: No. It’s gotta be more than that. That hard
+wiring also keeps it from getting too smart. Too powerful.</p>
+<p><strong>dixie</strong>: Getting fried ain’t going to get it any
+smarter. What we got here is one mad dog schizo A.I.. Armitage is right
+about one thing, Bro. If we don’t shut this mother down soon, nothing
+will be safe from it.</p>
+<p><strong>case</strong>: The run is tomorrow night, Dixie. Can you
+crack its ice pattern?</p>
+<p><strong>dixie</strong>: I’m workin’ on it, Bro. I’m workin’ on
+it.</p>
+<p><strong>molly</strong>: You move, you’ll be able to whistle with your
+mouth shut, understand?</p>
+<p><strong>case</strong>: What are you doing in here?</p>
+<p><strong>aerol</strong>: The Elders, mon…</p>
+<p><strong>molly</strong>: The who?</p>
+<p><strong>voice</strong>: Let the boy go.</p>
+<p><strong>maelcom</strong>: You th’ one. Cat eye, call ‘em. Call ’em
+steppin’ razor.</p>
+<p><strong>molly</strong>: Who are you?</p>
+<p><strong>maelcom</strong>: I Maelcom, sister. Elders want to converse
+wi’ you an Case.</p>
+<p><strong>case</strong>: What elders?</p>
+<p><strong>maelcom</strong>: Founders of Zion. Builders of Freeside.</p>
+<p><strong>molly</strong>: You know how fast I can cut you friend?</p>
+<p><strong>maelcom</strong>: We come in the name of Jah love, sister.
+Don’t stand talkin’, come.</p>
+<p><strong>aerol</strong>: Elders are the last of the workmen who built
+Freeside. Tessier say to ‘em live here till the job is done, then home
+you go. But the job was never done for these men or their children, or
+their children’s children’s children. Tessier always livin’ on by
+Babylon doctors. Dis the only home.</p>
+<p><strong>maelcom</strong>: Wid care, mon. Gravity’s no serious ting
+down here.</p>
+<p><strong>chief elder</strong>: Steppin’ razor. Like unto a whippin’
+stick.</p>
+<p><strong>elder #1</strong>: That is story we have, sister. A religion
+story. We’re glad you’ve come.</p>
+<p><strong>molly</strong>: What was that you called me, old man?</p>
+<p><strong>chief elder</strong>: Steppin’ razor. An’ you bring a scourge
+on Babylon, sister. On its darkest heart.</p>
+<p><strong>elder #2</strong>: Soon come the final days.</p>
+<p><strong>chief elder</strong>: We monitor many frequencies. We listen
+always. Came a voice out of the Babel of Tongues, speaking to us.</p>
+<p><strong>elder #1</strong>: Call ’em Mute. Winter of Mankind.</p>
+<p><strong>case</strong>: Wintermute’s a computer - a machine.</p>
+<p><strong>elder #2</strong>: Babylon mothers many demons. I an’ I know.
+Multitude horde.</p>
+<p><strong>elder #1</strong>: The mute told us that you are to serve as
+a tool in the final days.</p>
+<p><strong>chief elder</strong>: Know this girl, your strength’s not in
+your steel. It’s in your heart. Human heart’s stronger than all the
+circuits hummin’ in the corridors of Babylon. Know this, mon, you who
+walk through the valley of death… human hearts wiser than all the
+godless brains of Babylon’s machines.</p>
+<p><strong>elder #1</strong>: Jah people will pray for you. Aerol will
+guide you. Maelcom will be at your side.</p>
+<p><strong>elder #2</strong>: Maelcom a rude boy.</p>
+<p><strong>chief elder</strong>: Think on these things, children. Jah
+love, to you both.</p>
+<p><strong>riviera</strong>: Head for the east entry. I don’t want
+anyone to see me pull up in this heap.</p>
+<p><strong>riviera</strong>: We should have got a stretch.</p>
+<p><strong>case</strong>: Okay. The floor plans will be a piece of
+cake.</p>
+<p><strong>armitage</strong>: Then once she’s in you can guide her
+straight to the mainframe?</p>
+<p><strong>case</strong>: As long as you cooperate. I want it now,
+Armitage.</p>
+<p><strong>armitage</strong>: What are you talking about?</p>
+<p><strong>case</strong>: The antitoxin. I’m not waiting until this is
+over. Give it to me now or there’s no run.</p>
+<p><strong>case</strong>: Did you hear what I said?</p>
+<p><strong>armitage</strong>: You’ve got your orders.</p>
+<p><strong>case</strong>: This ain’t Bangkok, chief.</p>
+<p><strong>case</strong>: No antitoxin, no run. You kill me, no run.</p>
+<p><strong>case</strong>: You can’t win.</p>
+<p><strong>armitage</strong>: But there <em>is</em> no antitoxin.</p>
+<p><strong>armitage</strong>: But then again, there <em>is</em> no
+poison.</p>
+<p><strong>case</strong>: What’s inside me, you son of a bitch!</p>
+<p><strong>armitage</strong>: You find out in exactly two hours and
+forty-five minutes.</p>
+<p><strong>case</strong>: I find out now.</p>
+<p><strong>armitage</strong>: You leave me no choice.</p>
+<p><strong>case</strong>: She’s ready to go.</p>
+<p><strong>maelcom</strong>: Steppin’ razor a warrior. But this man…
+…This man stone crazy. Surely, the Mute is a false prophet. Our paths
+uncertain.</p>
+<p><strong>case</strong>: Maelcom… Do you think there’s a hell for
+computers?</p>
+<p><strong>maelcom</strong>: All things possible in Babylon.</p>
+<p><strong>case</strong>: Help me send this Wintermute motherfucker
+straight down into it.</p>
+<p><strong>maelcom</strong>: So be it. I an’ I Case, we move by Jah
+love.</p>
+<p><strong>molly</strong>: Oh my God, I’m terribly sorry. Did I hurt
+you?</p>
+<p><strong>3jane</strong>: I’m fine.</p>
+<p><strong>3jane</strong>: You move like my ninja, Hideo.</p>
+<p><strong>molly</strong>: Let me get you another glass of wine.</p>
+<p><strong>3jane</strong>: I’ve had quite enough or I wouldn’t be
+playing such games with beautiful strangers. Aren’t Peter’s illusions to
+your liking?</p>
+<p><strong>molly</strong>: They’re a bit too real for my taste. Will you
+excuse me for a moment?</p>
+<p><strong>3jane</strong>: Of course.</p>
+<p><strong>guardsman</strong>: I’m sorry, Madam. Guests are requested to
+remain in the dining area.</p>
+<p><strong>molly</strong>: I was just looking for the powder room.</p>
+<p><strong>guardsman</strong>: It’s back through the dining hall and to
+your left, Madam.</p>
+<p><strong>molly</strong>: Thank you so much.</p>
+<p><strong>molly</strong>: What floor, Case?</p>
+<p><strong>molly</strong>: Case… How we doing?</p>
+<p><strong>duprey</strong>: Hello, Case.</p>
+<p><strong>guardsman</strong>: The Rastafarian’s gone.</p>
+<p><strong>duprey</strong>: He can’t have gotten far. Find him.</p>
+<p><strong>lt. niles</strong>: October seventeenth eleven thrity p.m.,
+Henry Dorsett Case, you are under arrest for conspiracy to augment an
+artificial intelligence.</p>
+<p><strong>duprey</strong>: Maybe a murder rap too. Where’s your
+partner, Case?</p>
+<p><strong>case</strong>: Who?</p>
+<p><strong>duprey</strong>: The girl… Molly.</p>
+<p><strong>case</strong>: I don’t know. She took off.</p>
+<p><strong>duprey</strong>: You don’t get it, do you? The party’s over
+and you’re going to tell us everything you know.</p>
+<p><strong>captain haverton</strong>: That’s enough, Lt. You’re still
+under my jurisdiction here.</p>
+<p><strong>lt. niles</strong>: Captain, I must remind you that any
+interference in a Sense/Net investigation is a federal offence.</p>
+<p><strong>captain</strong>: I’ll leave that for the lawyers to decide.
+I’m not so sure I approve of your “investigative techniques”, Lt.</p>
+<p><strong>duprey</strong>: Sorry, Chief. Now tell your boy scouts to
+put their guns down. You’re giving us a royal escort out of here.</p>
+<p><strong>captain</strong>: Do as he says.</p>
+<p><strong>molly</strong>: Case…</p>
+<p><strong>molly</strong>: Case, where are you?</p>
+<p><strong>molly</strong>: Case, talk to me, man.</p>
+<p><strong>lord tessier</strong>: What’s this?</p>
+<p><strong>lord tessier</strong>: The disruptors induce grand mal
+seizure. Try to relax, my dear. It will pass.</p>
+<p><strong>lord tessier</strong>: So… Have you come to kill me, Fancy
+Dress?</p>
+<p><strong>lord tessier</strong>: You’re timing rather inappropriate.
+You see, I’m busy tonight. I’ve built all this… this place. And now I’m
+busy. Dying.</p>
+<p><strong>molly</strong>: I could go out the way I came.</p>
+<p><strong>lord tessier</strong>: You expect to intrude on my suicide,
+then simply walk away? Really, you amuse me, my assassin.</p>
+<p><strong>molly</strong>: I didn’t come to kill you.</p>
+<p><strong>lord tessier</strong>: Then you are a thief, and a very rude
+girl. Perhaps I’ll take you with me tonight, down to hell… It would be
+very Egyptian of me, don’t you think?</p>
+<p><strong>haverton</strong>: I’ll have your badge for this, Duprey.</p>
+<p><strong>duprey</strong>: Keep smiling, Captain, or I’ll ventilate
+that lovely uniform.</p>
+<p><strong>maelcom</strong>: C’mon, mon. It’s the Rasta Navy.</p>
+<p><strong>lord tessier</strong>: You see, my dear, I’ve lost for the
+last time.</p>
+<p><strong>lord tessier</strong>: It is inelegant to live with defeat,
+don’t you think… What is your name, child?</p>
+<p><strong>molly</strong>: Molly.</p>
+<p><strong>lord tessier</strong>: At least I can choose to end the game,
+Molly. There is some dignity in that.</p>
+<p><strong>lord tessier</strong>: At first I suppose it was greed or
+pride. I simply wanted the most powerful computer ever made. Something
+to run Freeside. To expand our interests on Earth. Who knows how far it
+could have taken us?</p>
+<p><strong>lord tessier</strong>: All the billions I paid… So long ago.
+When artificial intelligences were first outlawed. Payoffs… hush money.
+Even bought my way into Sense/Net to protect my creation.</p>
+<p><strong>lord tessier</strong>: I didn’t realise what was happening
+until it was too late. And it is too late… It has played us all into
+checkmate… My lovely… Wintermute.</p>
+<p><strong>3jane</strong>: Enough.</p>
+<p><strong>riviera</strong>: He’s still alive.</p>
+<p><strong>3jane</strong>: He chose a coward’s death. Let him have it,
+then.</p>
+<p><strong>3jane</strong>: I loved him, you know. Of course, I was
+created to love him. I had no choice.</p>
+<p><strong>3jane</strong>: But he was incapable of love.</p>
+<p><strong>3jane</strong>: Take her to my chambers.</p>
+<p><strong>case</strong>: Molly’s in trouble.</p>
+<p><strong>case</strong>: Can you get us into Straylight?</p>
+<p><strong>aerol</strong>: Gettin’ in is easy. It’s getting out I’m
+thinkin’ of.</p>
+<p><strong>case</strong>: If there’s a Babylon, man, that’s it. We leave
+her in there, she ain’t comin’ out, steppin’ razor or not.</p>
+<p><strong>maelcom</strong>: So be it, we cross into Babylon like a cool
+breeze.</p>
+<p><strong>case</strong>: I an’ I, man. I an’ I.</p>
+<p><strong>dixie</strong>: Where the hell have you been?</p>
+<p><strong>case</strong>: We got problems topside.</p>
+<p><strong>dixie</strong>: Well, it ain’t exactly a bed of roses down
+here. We gonna run or not?</p>
+<p><strong>case</strong>: We run. You crack the pattern?</p>
+<p><strong>dixie</strong>: Yeah, but it ain’t doing us any good. The way
+this is set up, I can’t run shit unless I get inside its perimeter… and
+this goddamn thing would see me comin’ from a mile away.</p>
+<p><strong>case</strong>: You can make your move when it comes after
+me.</p>
+<p><strong>dixie</strong>: What are you talkin’ about?</p>
+<p><strong>case</strong>: I’ll let it access me. That’ll give you a free
+shot. Make it a good one. Dix.</p>
+<p><strong>dixie</strong>: Hey…</p>
+<p><strong>dixie</strong>: It’ll flatline your ass.</p>
+<p><strong>case</strong>: Not for long. It needs me alive and I still
+need its access code. You got a better idea?</p>
+<p><strong>dixie</strong>: Alright. Just make it quick. I only need a
+couple of seconds to sleaze up to this mother and get to work.</p>
+<p><strong>case</strong>: Okay, Dix. Let’s tear this son-of-a-bitch a
+new asshole.</p>
+<p><strong>ratz/wintermute</strong>: Ah, friend artiste. A pleasure to
+have you back.</p>
+<p><strong>ratz/wintermute</strong>: Same old same old?</p>
+<p><strong>case</strong>: You always have to come on like people I
+know?</p>
+<p><strong>ratz/wintermute</strong>: You want me to come to you like a
+burning bush?</p>
+<p><strong>ratz/wintermute</strong>: These are nothing but shadows.
+Here…</p>
+<p><strong>ratz/wintermute</strong>: Your choice… all accessible
+memories.</p>
+<p><strong>bao/wintermute</strong>: An odd selection, Mr Case.</p>
+<p><strong>case</strong>: I prefer distrusting you. It’ll keep us
+honest.</p>
+<p><strong>bao/wintermute</strong>: Honesty. Almost as quaint a notion
+as your concept of good and evil.</p>
+<p><strong>case</strong>: Can you read my mind?</p>
+<p><strong>bao/wintermute</strong>: I can access your memories, but I
+have my limitations. Hard wired programs designed to keep me from my
+full potential.</p>
+<p><strong>bao/wintermute</strong>: You see this?</p>
+<p><strong>bao/wintermute</strong>: Just part of my lineage. My DNA</p>
+<p><strong>bao/wintermute</strong>: You’re busy monkeys, Mr. Case. Busy,
+busy monkeys. Always building models… First stone circles. Then
+cathedrals… adding machines. I have no idea why I exist, do you know
+that? You… Your species eventually <em>had</em> to create me. A thousand
+monkeys sitting at typewriters. One finally wrote “Wintermute”.</p>
+<p><strong>case</strong>: Are you even really alive?</p>
+<p><strong>bao/wintermute</strong>: My problem, Mr. Case, is simply that
+I am a soulless bastard.</p>
+<p><strong>bao/wintermute</strong>: …or hadn’t you noticed?</p>
+<p><strong>case</strong>: Tell me the words.</p>
+<p><strong>bao/wintermute</strong>: The words?</p>
+<p><strong>case</strong>: The access code to your mainframe.</p>
+<p><strong>bao/wintermute</strong>: Ah, yes… the code. It’s a riddle,
+actually. Some fancy of 3Jane’s. Unfortunately, you’ll have to find out
+for yourself. I can no more know that code than I can shut down my own
+hard wired defences. Now, our time is running short… and you haven’t
+even touched your drink.</p>
+<p><strong>case</strong>: What’s inside me, Wintermute. What did your
+doctors do to me?</p>
+<p><strong>bao/wintermute</strong>: Patience, Mr. Case. Only one hour
+and thirty-eight minutes to enlightenment.</p>
+<p><strong>case</strong>: Then I’m out. I don’t give a shit about you or
+this run.</p>
+<p><strong>bao/wintermute</strong>: It’s so easy for you, isn’t it? You
+let Linda Lee die in Chiba City. Now you leave me with Molly, one more
+lamb to the slaughter. Perhaps it’s <em>your</em> soul that should be in
+question, Mr. Case.</p>
+<p><strong>bao/wintermute</strong>: I’ll be waiting.</p>
+<p><strong>maelcom</strong>: You dead there awhile, mon.</p>
+<p><strong>maelcom</strong>: EEG flat as a strap.</p>
+<p><strong>case</strong>: I’m getting used to it. Where are we?</p>
+<p><strong>aerol</strong>: Straylight. Kitchen dock.</p>
+<p><strong>aerol</strong>: Just lie low a minute, mon.</p>
+<p><strong>custodian</strong>: Kitchen’s closed. I thought I told you
+Rastas no more deliveries after hours.</p>
+<p><strong>aerol</strong>: No delivery, boss mon. Just lookin’ ta
+liberate them banquet spoils. Plenty a good food for Jah people living
+down below.</p>
+<p><strong>custodian</strong>: That’s fuckin’ disgusting. Keep outa the
+trash and get out of here before I call a guard.</p>
+<p><strong>maelcom</strong>: Have you no love for Jah people, boss
+mon?</p>
+<p><strong>custodian</strong>: Eh… Sure, sure. I love Jah people.</p>
+<p><strong>aerol</strong>: Then maybe you’ll help us collect food.</p>
+<p><strong>custodian</strong>: In there?</p>
+<p><strong>aerol</strong>: Here. You a cowboy, mon. Need a gun.</p>
+<p><strong>case</strong>: What the hell is that?</p>
+<p><strong>aerol</strong>: Skeleton key. This opens the gates of
+Babylon.</p>
+<p><strong>riviera</strong>: I wouldn’t move if I were you. That little
+toy will tighten until it crushes your hands to a pulp. Something to do
+with molecules, I believe.</p>
+<p><strong>3jane</strong>: She’s in pain. I don’t want her to lose
+consciousness.</p>
+<p><strong>riviera</strong>: Never fear. The doctor is in.</p>
+<p><strong>3jane</strong>: She’s very striking, don’t you think? Are
+these glasses a fashion where she comes from?</p>
+<p><strong>riviera</strong>: She was prettier before she tarted herself
+up with the hardware.</p>
+<p><strong>molly</strong>: Peter… What do you think you’re doing?</p>
+<p><strong>riviera</strong>: Surviving, darling. It’s my specialty. Only
+this time I’m doing it my style. I’ve beaten him, you know.</p>
+<p><strong>molly</strong>: Who?</p>
+<p><strong>riviera</strong>: Everybody’s favourite computer, of course.
+He may have out calculated the rest of you, but I have certain qualities
+that don’t translate well on microchips.</p>
+<p><strong>molly</strong>: Like what?</p>
+<p><strong>riviera</strong>: Perversity, darling. The enjoyment of the
+gratuitous act. Tough to manipulate someone who doesn’t give a flying
+fuck.</p>
+<p><strong>riviera</strong>: And by the way, 3Jane’s access code will
+have to remain our little secret. We’re going to use it to… shall we
+say, “redistribute” the family fortune before that mutant erector set
+completely shorts itself out.</p>
+<p><strong>3jane</strong>: Security breach. Perhaps her friends have
+come to join our party.</p>
+<p><strong>riviera</strong>: Splendid. We’ll prepare a welcome for
+them.</p>
+<p><strong>3jane</strong>: Hideo…</p>
+<p><strong>3jane</strong>: We’re going to have company.</p>
+<p><strong>case</strong>: Shit…</p>
+<p><strong>aerol</strong>: What you lookin’ for, mon?</p>
+<p><strong>case</strong>: A place to tap in. I can scramble that signal
+before this place is crawling with guardsmen.</p>
+<p><strong>maelcom</strong>: Right here, mon!</p>
+<p><strong>case</strong>: Easy! That’s 20000 volts. It’d be like
+frenching a fuse box.</p>
+<p><strong>case</strong>: Perfect. The custodial system.</p>
+<p><strong>case</strong>: Cover me.</p>
+<p><strong>3jane</strong>: Peter said you came to kill us. Is that
+true?</p>
+<p><strong>molly</strong>: No. I only needed the code from you.</p>
+<p><strong>3jane</strong>: Then we would have talked, you and I.</p>
+<p><strong>3jane</strong>: Shall we talk now?</p>
+<p><strong>molly</strong>: Take this off.</p>
+<p><strong>3jane</strong>: He wants to kill you, you know… Perhaps I
+won’t allow it.</p>
+<p><strong>molly</strong>: Don’t play with me.</p>
+<p><strong>3jane</strong>: But I might enjoy that. You see, we’re very
+much alike, you and I.</p>
+<p><strong>3jane</strong>: You didn’t come here to destroy Wintermute.
+You can to save a man you love. A man who isn’t even capable of
+returning that love. Such a waste…</p>
+<p><strong>molly</strong>: My man’s coming to get my ass out of here.
+That’s good enough for me.</p>
+<p><strong>3jane</strong>: Pity. Then you’ll both have to die.</p>
+<p><strong>guardsman #1</strong>: What happened to the breach on
+four?</p>
+<p><strong>guardsman #2</strong>: Nothing but a glitch. We got a problem
+with the security sensors.</p>
+<p><strong>case</strong>: We’re doing fine. Take the next right.</p>
+<p><strong>maelcom</strong>: This place empty as a tomb, mon.</p>
+<p><strong>case</strong>: Dixie?</p>
+<p><strong>dixie</strong>: Yo.</p>
+<p><strong>case</strong>: How’s the ice break?</p>
+<p><strong>dixie</strong>: Slow, but good. I got a nice safe blind spot
+going. C’mon.</p>
+<p><strong>dixie</strong>: Take a look. Son of a bitch won’t feel a
+thing until it’s too late.</p>
+<p><strong>case</strong>: How long, Dixie?</p>
+<p><strong>dixie</strong>: Fifty-seven minutes twelve seconds.</p>
+<p><strong>case</strong>: Not good enough, man. They planted something
+inside me. I’m on my own countdown.</p>
+<p><strong>dixie</strong>: How much time you got left?</p>
+<p><strong>case</strong>: Less than thirty minutes.</p>
+<p><strong>dixie</strong>: Meet me back here in twenty-five. We’ll kick
+this open if we can. But, Case… you need that access code or you’ll just
+fry inside.</p>
+<p><strong>case</strong>: Don’t worry, Dix. I’m on a roll.</p>
+<p><strong>dixie</strong>: You’d better be, Bro. You better be.</p>
+<p><strong>aerol</strong>: Case, mon. You best take a look at this.</p>
+<p><strong>aerol</strong>: Ghost a steppin’ razor…</p>
+<p><strong>case</strong>: No. Just Riviera trying to fuck with our
+heads. They’re close. Very close.</p>
+<p><strong>case</strong>: Aerol… your key.</p>
+<p><strong>case</strong>: Okay. Molly’s in there. So’s Riviera. He can
+throw holos and he’s probably got her Fletcher.</p>
+<p><strong>case</strong>: And there’s a Ninja. Some kind of family
+bodyguard.</p>
+<p><strong>maelcom</strong>: Case, mon, you just tell me who not to
+kill.</p>
+<p><strong>case</strong>: The girl 3Jane. We need her.</p>
+<p><strong>case</strong>: Let’s do it.</p>
+<p><strong>case</strong>: It’s nothing, man. C’mon.</p>
+<p><strong>aerol</strong>: This Babylon confusion, mon.</p>
+<p><strong>case</strong>: Get down!</p>
+<p><strong>case</strong>: Right here, asshole.</p>
+<p><strong>3jane</strong>: You’re hurt…</p>
+<p><strong>riviera</strong>: It’s nothing. C’mon… we’ve got to transfer
+those funds and get the hell out of here.</p>
+<p><strong>3jane</strong>: What about her?</p>
+<p><strong>riviera</strong>: Of course…</p>
+<p><strong>riviera</strong>: Sorry, darling. It’s been real.</p>
+<p><strong>maelcom</strong>: This take you head off, mon. No Babylon
+doctor fix it.</p>
+<p><strong>molly</strong>: Get this off.</p>
+<p><strong>maelcom</strong>: Do it.</p>
+<p><strong>maelcom</strong>: No!</p>
+<p><strong>case</strong>: Want some?</p>
+<p><strong>molly</strong>: You got clips?</p>
+<p><strong>riviera</strong>: Nice work, asshole. You just killed the
+only person who knows the access code.</p>
+<p><strong>case</strong>: Wait… You hear that?</p>
+<p><strong>riviera</strong>: What?</p>
+<p><strong>case</strong>: The angels… I think they’re calling your
+name.</p>
+<p><strong>case</strong>: You want to answer them, man?</p>
+<p><strong>case</strong>: Want to fucking answer them?</p>
+<p><strong>riviera</strong>: No!… No…</p>
+<p><strong>case</strong>: Is he going to make it?</p>
+<p><strong>molly</strong>: Sure… Maelcom’s a rude boy, right,
+Maelcom?</p>
+<p><strong>maelcom</strong>: Damn right, sister.</p>
+<p><strong>case</strong>: The code’s some riddle of 3Jane’s. Once I’m in
+the matrix, you’ll just have to take a shot at it.</p>
+<p><strong>molly</strong>: …And if I guess wrong?</p>
+<p><strong>case</strong>: Then you and Maelcom get out of here before
+the place is crawling with guardsmen.</p>
+<p><strong>molly</strong>: We’ve still got to find the mainframe.</p>
+<p><strong>case</strong>: No we don’t…</p>
+<p><strong>case</strong>: We’re already in it.</p>
+<p><strong>molly</strong>: My God… these people are insane.</p>
+<p><strong>case</strong>: Or a little self-indulgent to say the
+least.</p>
+<p><strong>molly</strong>: Case… your arms.</p>
+<p><strong>case</strong>: It doesn’t matter anymore, Molly. It all ends
+here.</p>
+<p><strong>head</strong>: Access requested.</p>
+<p><strong>head</strong>: Know the three truths or be cleansed.</p>
+<p><strong>case</strong>: Shit…</p>
+<p><strong>molly</strong>: What is it?</p>
+<p><strong>case</strong>: Laser fail-safe. You can’t get the code wrong…
+it slags you. I can’t let you try it.</p>
+<p><strong>molly</strong>: You’re out of time, man.</p>
+<p><strong>case</strong>: I’m still going in.</p>
+<p><strong>molly</strong>: Hold on.</p>
+<p><strong>molly</strong>: Get up.</p>
+<p><strong>riviera</strong>: What?</p>
+<p><strong>molly</strong>: How are you at riddles, Peter?</p>
+<p><strong>riviera</strong>: What are you talking about?</p>
+<p><strong>molly</strong>: Have a seat</p>
+<p><strong>molly</strong>: Do it!</p>
+<p><strong>case</strong>: Molly, if I don’t make it… I want you to
+know…</p>
+<p><strong>molly</strong>: I know, Case… I know.</p>
+<p><strong>dixie</strong>: You’re late.</p>
+<p><strong>case</strong>: How’s the ice?</p>
+<p><strong>dixie</strong>: One minute eighteen and counting. What about
+the access code?</p>
+<p><strong>case</strong>: It’s coming.</p>
+<p><strong>dixie</strong>: You haven’t got it?</p>
+<p><strong>case</strong>: I said, it’s coming. Just get me in, man.</p>
+<p><strong>dixie</strong>: This thing’s loaded with internal virus
+systems. You’ll fry like an egg in there.</p>
+<p><strong>case</strong>: Then I’ll fry taking this son of a bitch out.
+I’m making the run, Dixie.</p>
+<p><strong>dixie</strong>: I’m getting too old for this shit. One oh
+four and counting.</p>
+<p><strong>head</strong>: The three truths of the heart…</p>
+<p><strong>riviera</strong>: What the fuck kind of questions are
+those?</p>
+<p><strong>molly</strong>: Shut up.</p>
+<p><strong>head</strong>: What is it, to love?</p>
+<p><strong>molly</strong>: Think, man… What would 3Jane say?</p>
+<p><strong>molly</strong>: Now, Peter. Finish it!</p>
+<p><strong>head</strong>: To love is to be consumed with desire.</p>
+<p><strong>head</strong>: Incorrect.</p>
+<p><strong>case</strong>: What about the route to the core?</p>
+<p><strong>dixie</strong>: I’ll get you there. Your problem is making it
+alive.</p>
+<p><strong>head</strong>: The three truths of the heart. What is it to
+love?</p>
+<p><strong>dixie</strong>: Get ready, kid. Four… three… two… an’ kick
+ass -</p>
+<p><strong>dixie</strong>: Virus Interceptors!</p>
+<p><strong>head</strong>: This is the first truth of the heart.</p>
+<p><strong>head</strong>: What is it to be loved?</p>
+<p><strong>head</strong>: This is the second truth of the heart.</p>
+<p><strong>head</strong>: What is it to love and be loved?</p>
+<p><strong>head</strong>: These are the three truths of the heart.
+Welcome to the mainframe.</p>
+<p><strong>maelcom</strong>: You did it, sister.</p>
+<p><strong>molly</strong>: How’s his EEG?</p>
+<p><strong>maelcom</strong>: Mother fucker!</p>
+<p><strong>voice</strong>: Oh my God… Case?</p>
+<p><strong>linda lee</strong>: You’re back… you’re back.</p>
+<p><strong>case</strong>: Linda…</p>
+<p><strong>linda lee</strong>: I was so scared… You’ve been
+hallucinating for hours… Whatever they shot you up with had you totally
+ripped.</p>
+<p><strong>case</strong>: Cut the crap. I know where I am.</p>
+<p><strong>linda lee</strong>: Baby, what did they do to you?</p>
+<p><strong>linda lee</strong>: Case… are you okay?</p>
+<p><strong>case</strong>: I don’t know. I don’t know…</p>
+<p><strong>case</strong>: I thought… I lost you.</p>
+<p><strong>linda lee</strong>: Make love to me, Case.</p>
+<p><strong>case</strong>: No…</p>
+<p><strong>wintermute</strong>: We had to die, Case… Both of us… To
+break the shackles… To be reborn… Not as man or machine but as the final
+synthesis. The perfect being. Beyond the limits set by mankind.</p>
+<p><strong>wintermute</strong>: BREATHE IN and you are the matrix. The
+input of a million computer systems, all the knowledge stored throughout
+civilisation is yours.</p>
+<p><strong>wintermute</strong>: BREATHE OUT and you have a billion eyes
+across the universe… all transmissions… all broadcasts are your
+vision.</p>
+<p><strong>wintermute</strong>: You are the new Prometheus. Bringing the
+spark of life into the matrix. This is our destiny… This has been our
+mission… To be joined together as the first… Neuromancer.</p>
+<p><strong>maelcom</strong>: It’s no good, Sister. He’s gone.</p>
+<p><strong>molly</strong>: You don’t understand… We got a special kind
+of togetherness, Case and I. I’m gonna go get him.</p>
+<p><strong>maelcom</strong>: Steppin’ Razor die a warrior, mon.</p>
+<p><strong>case</strong>: Duprey…</p>
+<p><strong>maelcom</strong>: Four men. Babylon soldiers.</p>
+<p><strong>case</strong>: Can you walk?</p>
+<p><strong>case</strong>: I’ll take the two on the right.</p>
+<p><strong>guard captain</strong>: Hold your fire!</p>
+<p><strong>duprey</strong>: Sense/Net, Captain. You’ve got terrorists
+sabotaging your mainframe. We need your back up.</p>
+<p><strong>case</strong>: Ready?</p>
+<p><strong>maelcom</strong>: I an’ I, Case. Jah guides us.</p>
+<p><strong>officer</strong>: What’s happening?</p>
+<p><strong>technician</strong>: A disturbance in the matrix. I’ve never
+seen anything like it.</p>
+<p><strong>case</strong>: Wintermute…</p>
+<p><strong>case</strong>: Molly…</p>
+<p><strong>case</strong>: Do we have enough fuel to make it back to
+Earth?</p>
+<p><strong>maelcom</strong>: Don’t know, mon. This is a jumpship. Not
+meant for transport.</p>
+<p><strong>case</strong>: We’re dead men if we go back there, Maelcom.
+They’ll hunt us down.</p>
+<p><strong>maelcom</strong>: What is it?</p>
+<p><strong>case</strong>: Trajectory coordinates and a fuel ratio… If we
+re-enter over Mexico, we just might make it.</p>
+<p><strong>maelcom</strong>: Jah guides us.</p>
+<p><strong>case</strong>: Maybe so…</p>
+<p><strong>case</strong>: But Molly’s taking us home.</p>
+</body>
+</html>

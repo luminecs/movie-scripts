@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>into-the-wild</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="into-the-wild">into-the-wild</h1>
+<p><strong>super:</strong>: Tuesday, April 28th 1992</p>
+<p><strong>wide-shot</strong>: A vast, snow-blanketed wilderness that
+sits beneath the icy summits of the highest mountain range in North
+America. This is BIG Alaska.</p>
+<p><strong>driver</strong>: Hey!</p>
+<p><strong>driver</strong>: Come here.</p>
+<p><strong>cut in to</strong>: TIGHT SHOT over the back-packed shoulder
+onto the DRIVER.</p>
+<p><strong>driver</strong>: You left your watch, your comb, your
+change…</p>
+<p><strong>backpack</strong>: Keep it.</p>
+<p><strong>driver</strong>: I don’t want your money. And I already have
+a watch.</p>
+<p><strong>backpack</strong>: If you don’t take it, I’m gonna throw it
+away. I don’t want to know what time it is, what day it is, or where I
+am.</p>
+<p><strong>backpack</strong>: I don’t want to see anybody. None of that
+matters.</p>
+<p><strong>driver</strong>: Take em.</p>
+<p><strong>driver</strong>: If you make it out alive, give me a call,
+and I’ll tell you how to get the boots back to me.</p>
+<p><strong>backpack</strong>: Hey, do me a favor, will ya? Take a
+picture of me.</p>
+<p><strong>cu</strong>: driver</p>
+<p><strong>driver</strong>: You gonna be alright?</p>
+<p><strong>backpack</strong>: I’ll be better than that.</p>
+<p><strong>super:</strong>: May 1990</p>
+<p><strong>intercut</strong>: CHRIS MCCANDLESS. We don’t see his face,
+just feet pounding the pavement at an increasing pace.</p>
+<p><strong>intercut</strong>: Chris, on his run, sweatshirt hood over
+head. Amongst assembled crowd and family we find: THE</p>
+<p><strong>mccandless’</strong>: BILLIE, mid to late forties with dark
+striking eyes; WALT, a taciturn man, early fifties; and CARINE,
+eighteen, pretty with her mother’s eyes and waist length brown hair, a
+gold crucifix dangles from her neck. They look around, looking for
+Chris, he’s nowhere in sight.</p>
+<p><strong>intercut</strong>: Chris, in a shower He TURNS INTO CAMERA,
+the water streaming down his face.</p>
+<p><strong>slo-mo</strong>: A ballet of graduation caps float upward
+into a frame of blue sky. We HEAR Chris’ voice OVER this image as we
+intermittently cut away from the caps against the sky to focus on his
+parents.</p>
+<p>****: floating caps in FOREGROUND, Walt and Billie An outer glee in
+sharp contrast to voice over:</p>
+<p><strong>chris</strong>: I see them standing at the formal gates of
+their colleges, I see my father strolling out under the ochre sandstone
+arch, the red tiles glinting like bent plates of blood behind his head,
+I see my mother with a few light books at her hip standing at the pillar
+made of tiny bricks with the wrought-iron gate still open behind her,
+its sword-tips black in the May air, they are about to graduate, they
+are about to get married, they are kids, they are dumb, all they know is
+they are innocent, they would never hurt anybody. I want to go up to
+them and say Stop, don’t do it–she’s the wrong woman, he’s the wrong
+man, you are going to do things you cannot imagine you would ever do,
+you are going to do bad things to children, you are going to suffer in
+ways you never heard of, you are going to want to die. I want to go up
+to them there in the late May sunlight and say it, her hungry pretty
+blank face turning to me,</p>
+<p><strong>chris</strong>: her pitiful beautiful untouched body, his
+arrogant handsome blind face turning to me, his pitiful beautiful
+untouched body, but I don’t do it. I want to live. I take them up like
+the male and female paper dolls and bang them together at the hips like
+chips of flint as if to strike sparks from them, I say…</p>
+<p><strong>billie</strong>: Here they are.</p>
+<p><strong>chris</strong>: I say…Do what you are going to do, and I will
+tell about it.</p>
+<p><strong>carine</strong>: Who wrote that?</p>
+<p><strong>chris</strong>: Well, it could’ve been either one of us,
+couldn’t it?</p>
+<p><strong>chris</strong>: There’s a lot of great poems in there.</p>
+<p><strong>carine</strong>: Thanks, big brother.</p>
+<p><strong>billie</strong>: You scared the daylights out of me, jumping
+on to that stage, oh my god.</p>
+<p><strong>walt</strong>: Congratulations, son.</p>
+<p><strong>chris</strong>: I’m starving.</p>
+<p><strong>chris</strong>: My grades are gonna be good enough, I think,
+to get into Harvard Law.</p>
+<p><strong>walt</strong>: That’s a big deal. What do you have left in
+your college fund?</p>
+<p><strong>chris</strong>: It’s an inheritance, dad. I’ve only been
+spending it as a college fund…Exactly twenty-four thousand five hundred
+dollars and sixty-eight cents.</p>
+<p><strong>billie</strong>: That’s very specific.</p>
+<p><strong>chris</strong>: I had to go to the bank this morning.</p>
+<p><strong>walt</strong>: Well, we’ll certainly contribute the balance
+for Harvard.</p>
+<p><strong>chris</strong>: Yeah. I’ve got to figure out what I’m going
+to do. I got a lot of things to pack and organize here first.</p>
+<p><strong>billie</strong>: I’m so glad you’re getting out of that place
+you’re living. It was so much nicer when you lived on campus.</p>
+<p><strong>walt</strong>: You’ll come to Annandale before you disappear
+on us, won’t you?</p>
+<p><strong>chris</strong>: Sure, I will.</p>
+<p><strong>billie</strong>: You promise?</p>
+<p><strong>chris</strong>: Mom.</p>
+<p><strong>billie</strong>: Well, your father and I want to make a
+present to you.</p>
+<p><strong>walt</strong>: We want to get you out of that junker.</p>
+<p><strong>chris</strong>: What’s a junker?</p>
+<p><strong>chris</strong>: The Datsun?</p>
+<p><strong>walt</strong>: Yes. We want to get you a new car.</p>
+<p><strong>chris</strong>: A new car? Why the hell would I want a new
+car? The Datsun runs great.</p>
+<p><strong>chris</strong>: Do you think I want some fancy boat? Or are
+you worried about what the neighbors might think?</p>
+<p><strong>billie</strong>: We weren’t going to get you a Cadillac,
+Chris. Just a nice new car that’s safe to drive. You don’t know when
+that thing’s just going to suddenly blow up.</p>
+<p><strong>chris</strong>: Blow up? Blow up?! Are you guys crazy? It’s a
+great car. I don’t need a new car. I don’t want a new car. I don’t want
+anything. Thing, thing, thing.</p>
+<p><strong>chris</strong>: But, thanks anyway.</p>
+<p><strong>walt</strong>: Everything’s gotta be difficult.</p>
+<p><strong>chris</strong>: I said thank you. I just don’t want
+anything.</p>
+<p><strong>carine</strong>: I wouldn’t say no to a new car.</p>
+<p><strong>chris</strong>: Ivana Trump McCandless.</p>
+<p><strong>carine</strong>: Shut up, Chris. Seriously, I’ll pay you
+back.</p>
+<p><strong>montage</strong>: We travel with Chris and his Datsun through
+the towns and open highways, landscapes and landmarks, days and nights,
+that lead to the Mojave desert in the West.</p>
+<p><strong>pov</strong>: As far as the eye can see in the desert
+moonlight, water has taken over the desert with a flash flood.</p>
+<p><strong>wide-shot</strong>: We see the abandoned Datsun nearly a mile
+behind Chris as he walks toward us wearing his backpack. He comes very
+close to camera and as we PAN him 180, we see as much wilderness before
+us as we did behind.</p>
+<p>****: Chris walks into the distance.</p>
+<p><strong>chris</strong>: This is Emory University freshman Chris
+McCandless reporting from the vault at Thompson Hall.</p>
+<p><strong>chris</strong>: We have just dynamited the hatchway and are
+the first human beings to step foot into this vault in over a hundred
+years. Somewhere in here lies the secret of the great beast within us
+all. A beast built on lies, corruption, and greed.</p>
+<p><strong>chris</strong>: And there it is! The legendary beast
+Mocra.</p>
+<p><strong>chris</strong>: We’ve got to get out of here quick and re-
+secure the hatch while we make a plan of how to kill the beast.</p>
+<p><strong>clumsy video time cut</strong>: Chris nailing the last nail
+in the hatchway from below. He climbs down the steps where he exchanges
+his hammer for his microphone from an off- camera source.</p>
+<p><strong>chris</strong>: Well, it looks like we’ve succeeded -</p>
+<p><strong>chris</strong>: - at least for the moment, in sealing the
+beast back into the vault. Your humble reporter, Chris McCandless will
+now struggle with the journalistic question of ethics: Will he retain
+his reporter’s objectiveness or save the future of human truth by
+slaying this awful beast?</p>
+<p><strong>chris</strong>: Once again, your humble reporter Chris
+McCandless.</p>
+<p><strong>os student</strong>: What is this? Filmmaking 101?</p>
+<p><strong>os student #2</strong>: Point the camera at me. I’m a
+star.</p>
+<p><strong>chris</strong>: Pay no attention to the voices behind the
+curtain.</p>
+<p><strong>chris</strong>: Ted! We’ve got a monster in the vault. It
+represents all the corruption, the deceit, and greed within us all. I
+must slay it.</p>
+<p><strong>ted turner/student</strong>: McCandless, how many times have
+I had to tell you? I’ve had to tell you that you are a journalist and
+you can’t get personally involved in your cases…or your stories.</p>
+<p><strong>chris</strong>: Ted! I know how to kill it. And I’m the only
+one who knows. You can’t keep sending me on stories and expecting me to
+do nothing! I look like some kind of an idiot.</p>
+<p><strong>ted turner/student</strong>: Do you know who you’re talking
+to? I’m Ted Turner.</p>
+<p><strong>panicked student</strong>: McCandless! You’ve got to hurry!
+The monster is scratching at the hatchway. He’ll be out in no time.</p>
+<p><strong>ted turner/student</strong>: It’ll mean your job, Chris
+McCandless.</p>
+<p><strong>chris</strong>: That’s it, Ted. Fire me if you want but this
+beast must be slayed.</p>
+<p><strong>chris</strong>: This is the only thing that can kill the
+monster. It’s gonna be risky but without great risk, there is no
+freedom. So we will now hear from the famous singer - Chris
+McCandless.</p>
+<p><strong>carine</strong>: When we were little, Chris was very to
+himself. He wasn’t anti-social, he always had friends, and everybody
+liked him - but he could go off and entertain himself for hours, he
+didn’t seem to need toys or friends. He could be alone without being
+lonely. The secrets our parents kept, though unknown to Chris and I, led
+to bouts of rage and even violence between them that we had been forced
+to witness since we were very young. It seemed like they never fought
+without us. I remember the first family meeting to let Chris and me in
+on their plans for getting a divorce. They wanted us to choose which of
+them we’d live with. I cried my eyes out. But the divorce never
+happened, though the threats and meetings never stopped. It wasn’t long
+before Chris and I shut off – we would tell mom and dad to go ahead and
+get the divorce. Chris and I just wanted to get away from their fights
+and mom kept promising to get out and take us with her as soon as their
+company made enough money. Dad had been the young genius NASA enlisted
+to do designs for the American satellite radar systems that would be our
+answer to the Russian Sputnik. And mom and he later started up a
+consulting firm combining her get-up- and-go resourcefulness with his
+wealth of knowledge. By the time the company actually made its first
+million, the careerism and money seemed to erase her memory of the
+promise she’d made us.</p>
+<p><strong>carine</strong>: I think this is when Chris began to see
+“careers” as a diseased invention of the twentieth century and to resent
+money and the useless priority people made of it in their lives. He’d
+begun planning to “slay the beast”…to make himself free.</p>
+<p><strong>chris</strong>: I need a name.</p>
+<p><strong>carine</strong>: Toward the end of June, Chris had mailed our
+parents his final grade report.</p>
+<p><strong>carine</strong>: Almost all A’s. “A” in Apartheid in South
+African Society and History of Anthropological Thought; A- in
+Contemporary African Politics and the Food Crisis in Africa; and on it
+went. Clever boy, my brother.</p>
+<p><strong>carine</strong>: But by the end of July we hadn’t heard
+anything from him and my parents were getting very worried.</p>
+<p><strong>carine</strong>: Chris had never had a phone, so they decided
+to drive down to Atlanta and surprise him.</p>
+<p><strong>carine</strong>: When they arrived at the apartment, there
+was a “For Rent” sign in his window, and the manager told my parents
+that Chris had moved out at the end of June.</p>
+<p><strong>carine</strong>: When they got home, I had to hand them all
+the letters they had sent Chris that summer which had been returned in a
+bundle.</p>
+<p><strong>carine</strong>: Chris had instructed the post office to hold
+them until August 1st so that mom and dad wouldn’t know that anything
+was up. Some part of me understood what he had done. That he had spent
+the previous four years fulfilling an absurd and onerous duty in
+graduating from college.</p>
+<p><strong>carine</strong>: And now, at last he was unincumbered.
+Emancipated from the stifling world of parents and peers. Abstraction,
+security, and material excess. Those things that cut Chris off from the
+raw truth of his existence. I only hoped he was safe…and I missed
+him.</p>
+<p><strong>tracking shot</strong>: CLOSE ON Chris, surrounded by a
+summit grove embraced in its nature.</p>
+<p><strong>angle</strong>: A DEER drinking from a creek, pops its head
+up between trees and scrub, watching the alien human pass.</p>
+<p><strong>angle</strong>: Chris - In his eyes we see the landscape
+inject itself.</p>
+<p><strong>sequence</strong>: Chris makes camp beside a stream pulling a
+sack of rice from his backpack and cooking it.</p>
+<p><strong>chris</strong>: Sign, sign. Everywhere a sign. Fuckin’ up the
+scenery, breakin’ my mind.</p>
+<p><strong>chris</strong>: Do this. Don’t do that. Can’t you read the
+sign?</p>
+<p><strong>forest ranger</strong>: U.S. Forestry. Could you step out of
+the tent please?</p>
+<p><strong>chris</strong>: Sorry. I thought you were a bear.</p>
+<p><strong>forest ranger</strong>: I don’t blame you. You’re less than a
+hundred yards from the nearest den. That’s why I came over here to talk
+to you. Do you have some identification?</p>
+<p><strong>chris</strong>: No. I’m sorry. My name’s Alex. I’ve been
+travelling a lot and I got robbed and my identification was taken.</p>
+<p><strong>forest ranger</strong>: You mind if I take a look in your
+tent?</p>
+<p><strong>chris</strong>: Go ahead.</p>
+<p><strong>forest ranger</strong>: You’re not the character who knocked
+down our sign, are ya?</p>
+<p><strong>chris</strong>: No.</p>
+<p><strong>forest ranger</strong>: Because there was a sign indicating
+that camping was allowed by permit only.</p>
+<p><strong>chris</strong>: Well, I don’t have a permit.</p>
+<p><strong>forest ranger</strong>: No, I’m sure you don’t. Listen, it
+looks like you’ve got your food secured pretty good, so I’m not gonna
+make you move on tonight. But, these bears out here are nursing young
+and you know how that goes. Next time, stop at the Rangers station and
+get yourself a permit.</p>
+<p><strong>chris</strong>: Alright. I appreciate it. I’m gonna be headed
+towards the coast tomorrow.</p>
+<p><strong>forest ranger</strong>: Be careful.</p>
+<p><strong>chris</strong>: conversation among</p>
+<p><strong>driver</strong>: This is where I turn off.</p>
+<p><strong>chris</strong>: Alright man. Thanks a lot.</p>
+<p><strong>reverse</strong>: Chris, moving to the mysterious object. As
+he lifts it, we see that it is a goofy looking straw hat. He dusts it
+off, and snugs it onto his head, when a police car comes into frame and
+stops beside Chris.</p>
+<p><strong>policeman</strong>: How’re you doin’ this evening?</p>
+<p><strong>chris</strong>: I’m alright. What’s the matter?</p>
+<p><strong>policeman</strong>: You wanna put your backpack down on the
+hood of my car.</p>
+<p><strong>chris</strong>: Why?</p>
+<p><strong>policeman</strong>: Because I asked you to, sir.</p>
+<p><strong>chris</strong>: But I haven’t done anything wrong. These are
+my personal items.</p>
+<p><strong>policeman</strong>: Do you know that it’s unlawful to
+hitchhike on this stretch of highway.</p>
+<p><strong>chris</strong>: You’re kidding.</p>
+<p><strong>policeman</strong>: Do you see a safe area for a vehicle to
+stop? We got a tree-lined highway without a substantial shoulder here.
+And we’ve had a lot of accidents on this road from people stopping in
+the traffic lane for hitchhikers.</p>
+<p><strong>chris</strong>: Alright, but…I mean, you stopped your car.
+You’re in the traffic lane. And you can see, there’s hardly any cars out
+here. Plus, it’s a straight road; you can see for a long ways.</p>
+<p><strong>chris</strong>: There’s really been accidents along here?</p>
+<p><strong>policeman</strong>: May I see some identification?</p>
+<p><strong>chris</strong>: I don’t have any.</p>
+<p><strong>policeman</strong>: You don’t have any identification?</p>
+<p><strong>policeman</strong>: Well, I’m gonna site you for unlawful
+hitchhiking. You don’t have to appear. You can send a check directly to
+the Humboldt County Clerks Office for restitution. If you don’t pay it
+within 30 days, you’re subject to fine and warrant. I’m gonna trust that
+you’re gonna give me accurate information. What’s your name?</p>
+<p><strong>chris</strong>: McCandless. Christopher Johnson
+McCandless.</p>
+<p><strong>carine</strong>: If Chris were trying to disappear, it would
+have been a pretty uncharacteristic lapse for him to give the police his
+real place of residence. Though my parents had already contacted the
+Annandale police with their initial concerns, this ticket arriving from
+California made them frantic.</p>
+<p><strong>carine</strong>: My father called one of his old government
+friends who put him in touch with a private investigator, someone who’d
+done work with the DIA and the CIA. Using the Willow Creek ticket as a
+starting point, the investigator began chasing down leads. Most of them
+led far afield – to Europe and South Africa. Ultimately turning up
+nothing. What my dad couldn’t believe was that he’d given up his car. He
+seemed to love that Datsun so much. It sounded just like Chris to me,
+though. He was very much of the school that you should own nothing
+except what you could carry on your back at a dead run.</p>
+<p><strong>jan</strong>: Hi. We just barely saw you there, under that
+crazy hat of yours. We couldn’t back up - the van’s reverse is
+broken.</p>
+<p><strong>chris</strong>: Oh. That’s okay. Thanks for stopping.</p>
+<p><strong>jan</strong>: This door’s a little tricky, I’ll get it.</p>
+<p><strong>jan</strong>: Hop in, that’s Rainey.</p>
+<p><strong>rainey</strong>: Hey, I’m Rainey.</p>
+<p><strong>jan</strong>: And I’m Jan.</p>
+<p><strong>chris</strong>: Hey, Rainey. Hi Jan. I’m Alex.</p>
+<p><strong>rainey</strong>: Alex of the hat.</p>
+<p><strong>chris</strong>: Yeah.</p>
+<p><strong>rainey</strong>: Were you out there a long time hitching?</p>
+<p><strong>chris</strong>: Couple of days. But sometimes I forget to put
+my thumb out.</p>
+<p><strong>jan</strong>: Probably, the rest of the time, that hat scares
+`em away.</p>
+<p><strong>jan</strong>: When’s the last time you ate something?</p>
+<p><strong>chris</strong>: See that? I’ve got this book and it shows you
+all the plants and berries that are edible. You can find things wherever
+you go.</p>
+<p><strong>rainey</strong>: We were just in town getting some beads and
+stuff. Jan does handicrafts, so we’re usually going from one swap meet
+to another. She’s so good at what she does, we sold everything. So, we
+set up camp at Orick Beach. You’re welcome to camp there with us.</p>
+<p><strong>jan</strong>: And eat there with us.</p>
+<p><strong>chris</strong>: So, I just left the car. It was a great car
+too. I’d driven it cross country the first time when I got out of high
+school. I had some really great adventures with it. That thing would
+just go and go. I mean, it was an `82 but if I’d kept it, it would’ve
+lasted me forever.</p>
+<p><strong>rainey</strong>: So, you’re a leather now.</p>
+<p><strong>chris</strong>: I’m a leather?</p>
+<p><strong>chris</strong>: What’s a leather?</p>
+<p><strong>jan</strong>: You’re a leather tramp. That’s what they call
+the ones that hoof it on foot. So, we’re technically rubber tramps.</p>
+<p><strong>rainey</strong>: As we have a vee-hi-cle.</p>
+<p><strong>jan</strong>: Alex could have a vehicle. If he didn’t burn
+his money. Why would you want to do that?</p>
+<p><strong>chris</strong>: I don’t need money. It makes people
+cautious.</p>
+<p><strong>jan</strong>: Well, you have to be a little cautious Alex.
+That book of yours is all well and fine but you can’t depend entirely on
+leaves and berries.</p>
+<p><strong>chris</strong>: I don’t know if you’d want to depend on much
+more than that.</p>
+<p><strong>jan</strong>: Where’s your mom and dad?</p>
+<p><strong>chris</strong>: Makin’ their money somewhere.</p>
+<p><strong>jan</strong>: Come on Chris. You look like a loved kid. Be
+fair.</p>
+<p><strong>chris</strong>: Fair?</p>
+<p><strong>jan</strong>: You know what I mean.</p>
+<p><strong>chris</strong>: I’ll paraphrase Thoreau – “Rather than love,
+than money, than fairness, give me truth.”</p>
+<p><strong>rainey</strong>: You look like shit. There’s the truth.</p>
+<p><strong>angle</strong>: Chris’ dog-ears his book and puts out the
+lantern.</p>
+<p><strong>angle</strong>: Rainey at the water’s edge. Chris appears
+beside him.</p>
+<p><strong>rainey</strong>: Geez. If I struck a match to you, I’d have
+warmth and dinner at the same time.</p>
+<p><strong>chris</strong>: Where’s Jan going?</p>
+<p><strong>rainey</strong>: Well, my friend, all is not well on the
+hippie front.</p>
+<p><strong>rainey</strong>: You’re an industrious little fucker, aren’t
+ya… Yeah, it’s funny how things happen at particular times. I’ve loved
+that woman for a lot of years. But you know, she’s got a…story. We’ve
+been going through this thing real quietly cause, well…So, after running
+into you last night, this thing we were going through quietly, she
+started talking about. You know what I mean?</p>
+<p><strong>chris</strong>: I think so.</p>
+<p><strong>rainey</strong>: You think what?</p>
+<p><strong>chris</strong>: I think she’s probably quietly disconnecting.
+It doesn’t feel right to her to be close to you if there’s a hole of
+some kind somewhere else.</p>
+<p><strong>rainey</strong>: That’s a helluva insight. Jesus!… You’re not
+Jesus, are you? You gonna walk on that water and get her back for
+me?</p>
+<p><strong>chris</strong>: Actually, I’m a little afraid of water.</p>
+<p><strong>chris</strong>: It’s true. But it’s something I’ve got to get
+over sometime.</p>
+<p><strong>chris</strong>: So, I’ll swim in it if you’ll carry the
+firewood back to the campsite.</p>
+<p><strong>rainey</strong>: I’ll carry. Shit-yes I’ll carry.</p>
+<p><strong>angle</strong>: Rainey. A warmth comes over him, watching his
+old lady having some fun. He grabs two armfuls of wood and heads to the
+campsite.</p>
+<p><strong>angle</strong>: Chris and Jan swimming in the chilly water,
+having a ball.</p>
+<p><strong>rainey</strong>: I thought you guys might need a little
+heat.</p>
+<p><strong>jan</strong>: That’s not hot enough. Put your arms around
+me.</p>
+<p><strong>chris</strong>: I’m going to go down the beach a ways and
+read a little bit. I’ll bring the rest of that wood back before
+nightfall.</p>
+<p><strong>rainey</strong>: Alright. We might take a run into town to
+grab some food for tonight.</p>
+<p><strong>chris</strong>: Sounds good.</p>
+<p><strong>jan</strong>: You know what Alex ought to do, Rainey? He
+ought to come out to the Slabs this winter.</p>
+<p><strong>rainey</strong>: Oh yeah.</p>
+<p><strong>rainey</strong>: You’d like that if you’re still on the road.
+Lot of fellow travelers.</p>
+<p><strong>chris</strong>: What is that? The Slabs?</p>
+<p><strong>rainey</strong>: It’s down in Niland, California. You know
+where the Salton Sea is?</p>
+<p><strong>chris</strong>: Near San Diego, yeah?</p>
+<p><strong>rainey</strong>: Well about 200 miles Northeast of there, but
+yeah. Niland’s off the east shore of Salton. Wild place. The navy
+bulldozed and abandoned a base there. All that’s left is a grid of
+concrete foundations. They’re scattered over about a square mile or
+so.</p>
+<p><strong>jan</strong>: When the weather turns cold across the rest of
+the country, people show up there by the thousands: snow birds…</p>
+<p><strong>rainey</strong>: Drifters…</p>
+<p><strong>jan</strong>: Sundry vagabonds…</p>
+<p><strong>rainey / jan</strong>: Like ourselves.</p>
+<p><strong>jan</strong>: Livin’ on the cheap under the sun.</p>
+<p><strong>chris</strong>: You sell your handcrafts there?</p>
+<p><strong>jan</strong>: Oh yeah. And a lot of second-hand goods.
+There’s a swap meet. The people are cool. There’s even some kids running
+around sometimes. Most everyone there, if they’re not avoiding the cold,
+are at least dodging the IRS.</p>
+<p><strong>rainey</strong>: Or the FBI. CIA! DDT!!!</p>
+<p><strong>jan</strong>: It’s good. You should check it out. If you
+come, I’ll make a proper hat for you. Well, Alex. I’m gonna clean up and
+the old man and I are gonna get some rest. Looks like you got yourself a
+good bag there.</p>
+<p><strong>chris</strong>: Yeah…my mother made it from a kit.</p>
+<p><strong>chris</strong>: I’m gonna sleep out here by the fire. I want
+to read a little bit.</p>
+<p><strong>jan</strong>: You’re wonderful. Don’t make me worry about
+you.</p>
+<p><strong>cu</strong>: Jan - We see her sadness. Rainey appears at her
+shoulder. He understands what is inside his woman.</p>
+<p><strong>jan</strong>: He reminded me…</p>
+<p><strong>rainey</strong>: I know.</p>
+<p><strong>foreground</strong>: Seagulls GLIDE THROUGH FRAME.</p>
+<p><strong>music over</strong>: Joe Henry’s King’s Highway</p>
+<p><strong>carine</strong>: In early September, mom and dad got a call
+from the Annandale police notifying them that Chris’ abandoned car had
+been identified by the Arizona Highway Patrol after a group of rare
+flower hunters stumbled upon it in the desert. There were no signs that
+Chris had intended to return to it. But there wasn’t any evidence of
+struggle. The police said they thought Chris had chosen to leave it
+behind and not that it had been taken from him. Nonetheless, the initial
+comfort that gave mom and dad, quickly turned to their realization that
+Chris was actually trying not to be found.</p>
+<p><strong>carine</strong>: The year Chris graduated high school he
+bought the Datsun, used. He wanted to drive it cross-country and visit
+our old neighborhood in California. The day before he left was my dad’s
+birthday. Chris made a speech…</p>
+<p><strong>chris</strong>: Dad, you and I have had our differences over
+the years…but on your birthday I want to tell you how grateful I am for
+all the things you’ve given me. And that you did it starting from
+nothing to working your way through college and busting your ass to
+support us kids. So, in return, I’ve been busting my ass a bit…at
+Domino’s Pizza -</p>
+<p><strong>chris</strong>: and I’ve gotten you this token, this damned
+expensive token, as a token of that appreciation.</p>
+<p><strong>walt</strong>: Would you look at that.</p>
+<p><strong>carine</strong>: Jesus, you must’ve had a lot to drink.</p>
+<p><strong>chris</strong>: Too much and not enough. I used to believe
+all that stuff. That whole story. I thought maybe if I said it again,
+I’d believe it. But I don’t.</p>
+<p><strong>present</strong>: Walt expressionless, walking into
+camera.</p>
+<p><strong>carine</strong>: The day after the party, Chris left on his
+trip and ended up staying away most of the summer. It was nearly three
+months before he walked back into our house in Annandale. He had a
+scruffy beard, his hair was long and tangled, and he was rail thin. As
+soon as I heard he was home, I ran into his room to talk to him. In
+California, he’d looked up some old family friends who still lived
+there. He’d found out that long after he had been born, our dad had
+continued a relationship with his first wife Marcia in secret.</p>
+<p><strong>carine</strong>: And that one lie had led to another. That
+two years after Chris was born, dad had had another son with Marcia.
+Worse yet was that it was Marcia to whom he was still legally married at
+the time. And it was Chris and I who were the bastard children.</p>
+<p><strong>carine</strong>: Dad’s arrogance made him conveniently
+oblivious to the pain he caused. And mom, in the shame and embarrassment
+of a young mistress, became his accomplice.</p>
+<p><strong>carine</strong>: She and my dad had decided to bend the truth
+about this other child saying that dad wasn’t the father and they
+maintained that their fraudulent marriage was real.</p>
+<p><strong>carine</strong>: Chris was quiet when he told me this. He
+said it made his “entire childhood seem like a fiction”; that “the truth
+had been dying everyday.” If something bothered Chris, he’d usually keep
+it to himself. And he made me promise to do the same.</p>
+<p><strong>carine</strong>: He never did tell mom and dad that he knew.
+But Chris measured himself and those around him by an impossibly
+rigorous moral code. He loathed what he considered mom and dad’s
+hypocrisy and resented what they considered guidance. Chris submitted to
+dad’s authority through college but I knew he raged inwardly the whole
+time. It was inevitable that Chris would rebel. And when he did, he did
+it with characteristic immoderation.</p>
+<p><strong>carine</strong>: My father is a brilliant man. But he had
+made some terrible mistakes. And to some extent, it seemed Chris was
+making him pay an awful price.</p>
+<p><strong>wayne</strong>: moving forward with the truck, his knees
+rattling up</p>
+<p><strong>chris</strong>: Hi Wayne. Alex McCandless.</p>
+<p><strong>wayne</strong>: Seems like every time I come on this road,
+there’s somebody hitching out here who looks as skinny and unfed as
+you.</p>
+<p><strong>wayne</strong>: Look, I gotta stop in Ethridge to drop
+something off</p>
+<p><strong>wayne</strong>: How `bout you and I grab something to eat
+down there?</p>
+<p><strong>chris</strong>: Oh, I wouldn’t want to burden you.</p>
+<p><strong>wayne</strong>: How long has it been since you’ve had
+anything to eat?</p>
+<p><strong>chris</strong>: Couple of days. I kinda ran out of money.</p>
+<p><strong>wayne</strong>: Well, there’s no choice about it. I’m gonna
+get you some dinner.</p>
+<p><strong>56 ext. sunburst - night 56</strong>: Wayne’s truck cuts
+through a track in a wheat field moving toward a compound of three
+trailers, one a double- wide, the other two on wheels, smaller. Beside
+them, a Wyeth-esque farmhouse. He eases the engine and comes to a stop
+in front of the double-wide.</p>
+<p><strong>wayne</strong>: So where is it you’re headed?</p>
+<p><strong>chris</strong>: I was thinking about doubling back through
+the Canadian side of Glacier Park.</p>
+<p><strong>wayne</strong>: Yeah, I used to have a girlfriend who’d go
+there, camp on the Black Feet Res. She was into all that American Indian
+stuff.</p>
+<p><strong>wayne</strong>: I can bring you to the border at Sweet Grass
+once you’ve had some food.</p>
+<p><strong>chris</strong>: Well, that’d be great. What do you do out
+here?</p>
+<p><strong>wayne</strong>: Well, I do a lot of things. Computer
+programming. Video game repair. I’m a licensed pilot, own a grain
+elevator in Carthage and another one a few miles out of town. But in the
+summertime I run a combine crew, follow the harvest from Texas way the
+hell north to the Canadian border. We just got done cutting barley for
+Coors and Anheuser Busch. But then I got this little black box deal on
+the side</p>
+<p><strong>chris</strong>: You mean those free satellite TV deals?</p>
+<p><strong>wayne</strong>: You said it, not me.</p>
+<p><strong>ooooooh.</strong>: Chris doesn’t respond, digs into the food.
+Points to the unconscious tribe splayed out. SIX GERMANIC-LOOKING</p>
+<p><strong>chris</strong>: Who are these guys?</p>
+<p><strong>wayne</strong>: Those are my Hudderites. Agriculture’s a
+pretty transient business. These guys come off the Hudderite colony
+looking for work. I always got work for people. Then that guy -</p>
+<p><strong>wayne</strong>: That’s Kevin. He’s with me most of the time.
+He’s not a Hudderite. He’s from Madison.</p>
+<p><strong>chris</strong>: Madison. Okay.</p>
+<p><strong>wayne</strong>: Listen, you don’t want to go out there on the
+road tonight. Why don’t you just roll your sleeping bag out and play
+like a Hudderite until morning.</p>
+<p><strong>chris</strong>: Thanks Wayne. I will.</p>
+<p><strong>wayne</strong>: Get a good sleep. See you in the morning.</p>
+<p><strong>wayne</strong>: Okay. Now take hold of the joystick, get the
+feel of header, idle it down with the toggle switch…</p>
+<p><strong>wide shot</strong>: Chris and Wayne sit atop a combine. In
+the background we see Wayne’s trailer and two other combines piloted by
+Wayne’s crew members on the ocean of ripe blond grain.</p>
+<p><strong>wayne</strong>: That’s it. That’s it. Now take it on out and
+make yourself some money.</p>
+<p><strong>61 int. double-wide, sunburst - night 61</strong>: Six men
+including Wayne and Chris, two among them - Hudderites, crowd in to the
+small dinner area of the trailer. Talking politics and bullshit, and
+eating a welcome meal.</p>
+<p><strong>wayne</strong>: I’m gonna break out some whiskey. Alex, you
+want anything other than that beer?</p>
+<p><strong>chris</strong>: I’d take a White Russian if you’ve got
+it.</p>
+<p><strong>man #1</strong>: What are you Alex, a Commie?</p>
+<p><strong>chris</strong>: No, I just like White Russians.</p>
+<p><strong>wayne</strong>: I haven’t got anything like that here. But I
+tell ya what. And I know I speak for everybody. You wanna come work with
+us in Carthage, we’ll hook you up on the grain elevator and get you a
+White Russian down at the Cabaret.</p>
+<p><strong>chris</strong>: Really?</p>
+<p><strong>wayne</strong>: Dawn tomorrow, engines roaring. “Pot o Gold.
+Oh that pot o gold.”</p>
+<p><strong>all</strong>: “Pot o Gold. Gotta get that pot o gold!”</p>
+<p><strong>chris</strong>: To Carthage.</p>
+<p><strong>wayne and his men</strong>: To Carthage.</p>
+<p><strong>wayne</strong>: Okay Kevin, get all the machines back to the
+elevator. I’m gonna show Chris to his room.</p>
+<p><strong>kevin</strong>: I’ve got dibs on that shower, that shower’s
+all me.</p>
+<p><strong>wayne</strong>: First come, first serve buddy.</p>
+<p><strong>67 int. westerberg’s carthage home - same 67</strong>: Chris
+follows Wayne up the narrow stairwell.</p>
+<p><strong>wayne</strong>: Come on up in here. This’ll be your room for
+as long as you hang about.</p>
+<p><strong>wayne</strong>: Shower’s down the hall. If you hurry you can
+beat the rest of the boys to it. But you do want to grab a shower cause
+we’re all heading over to the Cabaret in exactly thirty-six minutes. So,
+get your dancing shoes on. There’s foo-foo in the medicine cabinet. I
+think it’s Brut. Then you want to put your charm in overdrive cause we
+like to PAH-TAY!</p>
+<p><strong>man #1</strong>: I got first!</p>
+<p><strong>man #2</strong>: You had first last night!</p>
+<p><strong>man #1</strong>: Well, if you wanna wash my back, cowboy…</p>
+<p><strong>man #2</strong>: You go ahead, fairy. Just don’t use all the
+soap.</p>
+<p><strong>angle</strong>: Chris. He gets a kick out of these guys. He
+closes the door.</p>
+<p><strong>wayne</strong>: Alex, this is Gail . This is the one to go to
+for that White Russian you’ve been wanting. Of course the quid pro quo
+can be hazardous.</p>
+<p><strong>gail</strong>: Shut up, Wayne. You want a White Russian,
+sweetie?</p>
+<p><strong>chris</strong>: Yes please, ma’am.</p>
+<p><strong>wayne</strong>: Yes please, ma’am?</p>
+<p><strong>wayne</strong>: Ain’t he great?</p>
+<p><strong>gail</strong>: Don’t pay any attention to him.</p>
+<p><strong>wayne</strong>: Anything to do with hunting, preserving the
+meat, smoking it or whatever, you talk to Kevin over there. That’s your
+man.</p>
+<p><strong>angle</strong>: KEVIN. He looks every bit the Grizzly Adams
+part.</p>
+<p><strong>wayne</strong>: Outdoors-man. What’s the interest in all
+that?</p>
+<p><strong>chris</strong>: I’m thinking about going to Alaska.</p>
+<p><strong>wayne</strong>: Alaska, Alaska? Or city Alaska? The city
+Alaska does have markets.</p>
+<p><strong>chris</strong>: No, Alaska, Alaska. I want to be all the way
+out there. On my own. No map. No watch. No axe. Just out there. Big
+mountains, rivers, sky. Game. Just be out there in it. In the wild.</p>
+<p><strong>wayne</strong>: In the wild.</p>
+<p><strong>chris</strong>: Yeah. Maybe write a book about my travels.
+About getting out of this sick society.</p>
+<p><strong>wayne</strong>: Society, right.</p>
+<p><strong>chris</strong>: Because you know what I don’t understand? I
+don’t understand why, why people are so bad to each other, so often. It
+just doesn’t make any sense to me. Judgement. Control. All that.</p>
+<p><strong>wayne</strong>: Who “people” we talking about?</p>
+<p><strong>chris</strong>: You know, parents and hypocrites. Politicians
+and pricks.</p>
+<p><strong>wayne</strong>: This is a mistake. It’s a mistake to get too
+deep into that kind of stuff. Alex, you’re a helluva young guy, but I
+promise you this: You’re a young guy. Blood and fire! You’re juggling
+blood and fire!</p>
+<p><strong>gail</strong>: Who are you to be giving advice to
+anybody?</p>
+<p><strong>wayne</strong>: Blood and fire…What? Mr. Happy. That’s who I
+am. Gimme a kiss.</p>
+<p><strong>wayne</strong>: Come on, give Mr. Happy a kiss!</p>
+<p><strong>chris</strong>: Now, that’s who could be President!</p>
+<p><strong>wayne</strong>: Workin’ time!</p>
+<p><strong>wayne</strong>: So, what do you think about all this?</p>
+<p><strong>chris</strong>: I like all this.</p>
+<p><strong>angles</strong>: Tires kicking up dust on dirt roads, through
+town, and into the field behind the grain elevator. Back to the work,
+back to the tires. Back to the work, back to these several cars hauling
+ass through the field. Back to Wayne, up high in the grain elevator
+-</p>
+<p><strong>wayne</strong>: I gotta take a piss.</p>
+<p><strong>man #1</strong>: I warned him about those little black
+boxes.</p>
+<p><strong>wayne</strong>: You wanna get that zipper for me? Sorry boys.
+Gonna have to shut down for a while. Alex! You come back and work for me
+anytime. Gail’s got all your checks, guys. I shouldn’t be away too
+long.</p>
+<p><strong>gail</strong>: Where are you gonna go?</p>
+<p><strong>chris</strong>: I’ve been thinking a lot about Alaska.</p>
+<p><strong>gail</strong>: Alaska? What kind of nut-nut are you? Alex,
+it’s October for Christ’s sake. You go to Alaska, you go in the Spring.
+This time of year you wanna head south. Personally, I like Las Vegas.
+One-armed bandit. That’s what I like.</p>
+<p><strong>chris</strong>: Yeah, maybe I ought to put off going to
+Alaska, at least so I can get settled up there in decent weather.</p>
+<p><strong>gail</strong>: South. You want to go south. You want me to
+take you out to the highway?</p>
+<p><strong>chris</strong>: Little lady, I walked in, I can walk out.</p>
+<p><strong>gail</strong>: You take care of yourself now, Alex. You got a
+whole family here depending on it.</p>
+<p><strong>chris</strong>: I will. Thanks Gail . And tell Wayne, I’ll
+drop him a line.</p>
+<p><strong>series of angles</strong>: MUSIC OVER: Traveling shots.</p>
+<p><strong>series of angles</strong>: Chris walking south through the
+desert following the river bank. He covers twelve miles before he
+arrives in an Arizona town, a dusty weigh-in station.</p>
+<p><strong>green suit</strong>: Can I help you?</p>
+<p><strong>chris</strong>: Yeah. If I wanted to paddle down the river,
+where’s the best place to launch out of?</p>
+<p><strong>green suit</strong>: “To launch out of?” What’s your
+experience level?</p>
+<p><strong>chris</strong>: Not much.</p>
+<p><strong>green suit</strong>: Any? Do you have a permit?</p>
+<p><strong>chris</strong>: A permit for what?</p>
+<p><strong>green suit</strong>: You can’t paddle down the river without
+a permit. If you like, you can apply for one here, get yourself some
+experience, and I’ll put you on the wait-list.</p>
+<p><strong>chris</strong>: Wait-list? To paddle down a river?</p>
+<p><strong>green suit</strong>: That’s right.</p>
+<p><strong>chris</strong>: Well, how long do you have to wait?</p>
+<p><strong>green suit</strong>: I’ve got an opening May 2003.</p>
+<p><strong>chris</strong>: Twelve years?</p>
+<p><strong>green suit</strong>: Well, you could always join a commercial
+raft trip and go with a licensed guide. They usually have a few last
+minute cancellations. I think it’s about two- thousand dollars.</p>
+<p><strong>chris</strong>: Thanks for your help.</p>
+<p><strong>chris</strong>: I’m Superman. SuperTramp.</p>
+<p><strong>low angle</strong>: It is a narrow gorge of solid rock,
+looking up from hundreds of feet below the canyon crest.</p>
+<p><strong>mads</strong>: Hello!</p>
+<p><strong>chris</strong>: Hello.</p>
+<p><strong>mads</strong>: You can join us!</p>
+<p><strong>mads</strong>: We have hotdogs!</p>
+<p><strong>mads</strong>: I am Mads.</p>
+<p><strong>chris</strong>: Hi. Alex.</p>
+<p><strong>sonja</strong>: I am Sonja.</p>
+<p><strong>sonja</strong>: Hello Alex.</p>
+<p><strong>mads</strong>: We are from Copenhagen. And you are from the
+rapids.</p>
+<p><strong>chris</strong>: I am.</p>
+<p><strong>sonja</strong>: My Got!</p>
+<p><strong>mads</strong>: Crazy man. You’re a crazy man! Sonja, he is a
+crazy man. I’ll make you a hotdog.</p>
+<p><strong>mads</strong>: Just one minute. One minute…</p>
+<p><strong>mads</strong>: I love this. Don’t you love this? This is
+nature. We see it in the American movies. How come you’re crazy?</p>
+<p><strong>chris</strong>: Well…</p>
+<p><strong>mads</strong>: Because that’s crazy! You come down the
+rapids. What do you want on your hotdog? Mustard and relish?</p>
+<p><strong>chris</strong>: You have ketchup?</p>
+<p><strong>mads</strong>: No, I have mustard and relish.</p>
+<p><strong>chris</strong>: Mustard and relish it is then.</p>
+<p><strong>mads</strong>: Sonja, you want a hotdog?</p>
+<p><strong>sonja</strong>: Of course I want a hotdog. Why are you
+stupid?</p>
+<p><strong>mads</strong>: She asked me why I’m stupid. And I say,
+well…like I ask you why you’re crazy and you say “well.” Where are you
+going?</p>
+<p><strong>chris</strong>: I haven’t decided.</p>
+<p><strong>mads</strong>: We like it here very much. We went to Los
+Angeles. And then, we went to Las Vegas.</p>
+<p><strong>sonja</strong>: Las Vegas is very nice. The universe is very
+good.</p>
+<p><strong>mads</strong>: And then, we come here. Maybe you go to
+Mexico.</p>
+<p><strong>mads</strong>: You can take kayak around Lake Mead and then
+take the river down to Mexico.</p>
+<p><strong>chris</strong>: How far are we from Lake Mead?</p>
+<p><strong>mads</strong>: Sonja, how far is Hoover Dam?</p>
+<p><strong>sonja</strong>: Maybe three hundred thirty kilometers…like
+two hundred miles.</p>
+<p><strong>chris</strong>: Man, I wonder if I could go all the way down
+into the Gulf of California.</p>
+<p><strong>mads</strong>: I go with you. We leave Sonja here. You and me
+in kayak - we go to Mexico.</p>
+<p><strong>sonja</strong>: You’re embarrassing. Idiot.</p>
+<p><strong>mads</strong>: I like the meeting you.</p>
+<p><strong>chris</strong>: Thank you. I’m very happy to meet both of you
+too.</p>
+<p><strong>chris</strong>: Well, guys I really appreciate the
+hospitality but I wanna make camp down- river a ways so I better take
+off before dark.</p>
+<p><strong>mads</strong>: He went thattaway! The crazy man - he went
+thattaway!</p>
+<p><strong>sonja</strong>: Just like in the movies.</p>
+<p><strong>carine</strong>: It would be Christmas in a couple of months.
+And the last news we’d had was about his car being found. I woke up a
+couple of days ago, and for the first time, I was surprised to realize
+that it wasn’t only my parents who hadn’t heard from Chris. I wondered
+why he hadn’t tried to call in case I might answer. He could’ve hung up
+if it wasn’t me.</p>
+<p><strong>carine</strong>: But why he didn’t send a letter, maybe
+through a friend. I got mad. But I told myself it was good. It made me
+remember that there was something more than rebellion, more than anger
+that was driving him. Chris had always been driven, had always been an
+adventurer. When he was four years old…</p>
+<p><strong>carine</strong>: …he once wandered six blocks away from home
+at three o’clock in the morning.</p>
+<p><strong>carine</strong>: He was found in a neighbor’s kitchen, up on
+a chair, digging into their candy drawer.</p>
+<p><strong>carine</strong>: Whatever drawer he was opening now must have
+something sweet in it.</p>
+<p><strong>angle</strong>: Chris: The herd moves in an S-pattern. Chris
+runs beside them and in our LONG LENS PERSPECTIVE, he seems to be among
+them.</p>
+<p><strong>94 ext. yuma post office - day 94</strong>: CONTINUE letter
+OVER:</p>
+<p><strong>pov</strong>: Morelos Dam at the Mexican border.</p>
+<p><strong>immigration officer</strong>: Why’d you go to Mexico?</p>
+<p><strong>chris</strong>: I thought I’d run the whole river into the
+Sea of Cortez. The stupid dams dried it up.</p>
+<p><strong>immigration officer</strong>: How long were you on your own
+down there?</p>
+<p><strong>chris</strong>: 36 days.</p>
+<p><strong>immigration officer</strong>: How’d you know?</p>
+<p><strong>chris</strong>: Fingers and toes.</p>
+<p><strong>chris</strong>: After the river dried up, I ported the kayak
+and got a lift to Golfo.</p>
+<p><strong>foreground and background</strong>: Chris, paddling his kayak
+toward us, seemingly in the sand dunes. As we BOOM UP SLIGHTLY, we see
+that there is a bend in the water’s edge and that he is in fact,
+paddling in the crystalline blue of the Gulf.</p>
+<p><strong>chris</strong>: I paddled south about 20 miles.</p>
+<p><strong>under-water shot</strong>: We are directly UNDER the passing
+kayak as it slices the water’s surface above us. We BACKFLIP the CAMERA
+as it passes.</p>
+<p><strong>chris</strong>: That’s when I saw the cave and everything
+went upside down.</p>
+<p><strong>chris</strong>: A sandstorm hit and I was pretty much stuck.
+My kayak blew away, so I left it and walked up the beach, hitched back
+north, and here I am.</p>
+<p><strong>immigration officer</strong>: 36 days, wow. I guess they’re
+gonna have to watch that spillway a little better.</p>
+<p><strong>chris</strong>: What they ought to do is open up the dams and
+let the rivers flow.</p>
+<p><strong>immigration officer</strong>: I can’t disagree with you on
+that. Okay, Alexander SuperTramp. I think we’re gonna let you out of
+here shortly but you’ve got two working weeks to get an ID card in the
+United States. You can’t be crossing these borders without
+identification, are we understood?</p>
+<p><strong>chris</strong>: Yes, sir. I’ve eaten enough sand to send me
+back to the city anyway.</p>
+<p><strong>chris</strong>: One…Two…Three -</p>
+<p><strong>angle</strong>: Dangling feet and razor sharp wheels.</p>
+<p><strong>angle</strong>: Chris. He puts everything into pulling
+himself up, growling the strength into his muscles finally…</p>
+<p><strong>chris</strong>: As Alexander Supertramp returns to
+civilization…a hobo. I’m a for real hobo.</p>
+<p><strong>119 ext. train yard, los angeles - day 119</strong>: Chris’
+train pulls into the yard. Bulls and loaders greet the train. Chris
+jumps off and breaks for the fence unseen.</p>
+<p><strong>chris</strong>: Can you tell me how to get an ID card?</p>
+<p><strong>social worker</strong>: Did you lose your identification
+sir?</p>
+<p><strong>chris</strong>: Yeah.</p>
+<p><strong>social worker</strong>: No birth certificate? Nothing?</p>
+<p><strong>social worker</strong>: Ouch. Alright. Well you’re gonna have
+to work that out with the DMV. You can catch them in the morning.</p>
+<p><strong>social worker</strong>: The closest one is Montebello and we
+can help you with a bus voucher.</p>
+<p><strong>social worker</strong>: So, just come to this desk when you
+need the voucher.</p>
+<p><strong>chris</strong>: And, if I want to apply for a job somewhere,
+can you help me with that?</p>
+<p><strong>social worker</strong>: If you know how to cook, we might
+have a space for you in our mobile kitchen. But I’ll have to talk to my
+supervisor about it in the morning.</p>
+<p><strong>chris</strong>: Alright then. Thank you. Oh, one last thing.
+Do you have a bed for me?</p>
+<p><strong>social worker</strong>: Sure. Just fill this in and I’ll get
+you all set up.</p>
+<p><strong>cu</strong>: The lock, as Chris closes and secures his
+locker.</p>
+<p><strong>new angle</strong>: Chris walking down Broadway. This is
+clearly just blocks away from where we last saw him, yet the atmosphere
+is as if of a different world. One of those downtown LA hip yuppie
+blocks. He comes upon a bar. Through the window Chris sees young men and
+women roughly his own age - working people, suits, gold-chainers.
+Metallica blares on the sound system.</p>
+<p><strong>social worker</strong>: You leaving us so soon? I know them
+DMV lines are long…</p>
+<p><strong>129 ext. midnight mission, los angeles - night 129</strong>:
+accelerated speed while Chris moves nearly in slo-</p>
+<p><strong>bull #2</strong>: Lay down on your stomach, spread eagle!</p>
+<p><strong>bull #2</strong>: Let me see your face.</p>
+<p><strong>bull #2</strong>: I never, ever, ever forget a face. If I see
+yours again, I won’t arrest you. I’ll kill you. This is the god-damned
+railroad. And we will do whatever we have to, to keep you freeloaders
+from violating our liability.</p>
+<p><strong>bull #2</strong>: If one of you people gets hurt on our
+train, we are liable. Do you understand that?</p>
+<p><strong>chris</strong>: I’m sorry, sir.</p>
+<p><strong>bull #2</strong>: You have I.D.?</p>
+<p><strong>chris</strong>: No, sir.</p>
+<p><strong>bull #2</strong>: Of course you don’t.</p>
+<p><strong>bull #2</strong>: Last time, my friend.</p>
+<p><strong>chris</strong>: Thanks very much.</p>
+<p><strong>billie</strong>: I’m not talking about this anymore!</p>
+<p><strong>walt</strong>: Don’t walk away from me WOMAN!</p>
+<p><strong>billie</strong>: Fuck you! I hate you!</p>
+<p><strong>walt</strong>: I’ll just cancel Christmas then!</p>
+<p><strong>billie</strong>: Who do you think you are? God?</p>
+<p><strong>walt</strong>: Yes. I’m God!</p>
+<p><strong>walt</strong>: Where do you kids think you’re going?</p>
+<p><strong>billie</strong>: as a demand for their</p>
+<p><strong>chris</strong>: I’ll cancel Christmas!</p>
+<p><strong>carine</strong>: Who do you think you are? God?</p>
+<p><strong>chris</strong>: Yes. I’m God.</p>
+<p><strong>carine</strong>: In the nine months since Chris’
+disappearance, my parents went through enormous changes. Guilt was
+giving way to pain. And pain seemed to bring them closer. My father had
+humbled dramatically. And what had always been a sort of curt arrogance,
+the kind of man who actually thought he could cancel Christmas, had
+given way to the vulnerability of a father’s heart. Even their faces had
+changed. It made me sad that I couldn’t share with Chris the new
+closeness I felt toward our parents.</p>
+<p><strong>carine</strong>: I close my eyes at night sometimes and
+imagine where Chris might be.</p>
+<p><strong>carine</strong>: Was there beauty around him? Was he hurt?
+Was he alone?</p>
+<p><strong>carine</strong>: Was he having the great adventure that he
+wanted?</p>
+<p><strong>carine</strong>: Could he feel the changes here at home? By
+some kind of supernatural osmosis? Chris once wrote to me from college
+saying he wanted to talk to me about all the problems he had with mom
+and dad.</p>
+<p><strong>carine</strong>: He said I was the only person in the world
+who could’ve possibly understood what he had to say.</p>
+<p><strong>high angle cu</strong>: We see Chris walking the streets of
+Seattle. As we WIDEN OUT, he becomes a dot in the Seattle landscape.</p>
+<p><strong>carine</strong>: In those silent moments, with my eyes closed
+trying to picture where Chris might be at that very moment, probably
+climbing some scary mountain, I want to reach into that picture and
+bring him back to see what mom and dad, what our family might
+become.</p>
+<p><strong>long lens</strong>: Chris disappears over the rise into the
+Seattle marketplace overlooking Puget Sound</p>
+<p><strong>carine</strong>: But instead when I open my eyes, what I see
+is my mother, sitting at the dining room table, sifting through photo
+albums and pictures of Chris. It’s all she can do to examine the
+snapshots. And, though she breaks down from time to time, she studies
+them with a sort of hungry intensity - like looking at food you can’t
+eat, or into a window at a family around a table that you were once a
+part of and can be no more.</p>
+<p><strong>carine</strong>: She convinces herself it’s Chris; that it’s
+her son, whenever she passes a stray. And I fear for the mother in
+her…</p>
+<p><strong>carine</strong>: Instincts that seem to sense the threat of a
+loss so huge and irreparable that the mind balks at taking its measure -
+I begin to wonder if I do understand what Chris is saying any longer.
+But I catch myself in doubt and remember that these are not the parents
+he grew up with. That in the forced reflection that comes with loss,
+indeed everything Chris is saying, has to be said. And I trust for him
+that everything he is doing has to be done. This is our life.</p>
+<p><strong>trucker</strong>: I don’t know where to drop you. Bullhead’s
+kinda haphazard - there’s no “center.” You sure you don’t want to be in
+Laughlin? It’s casinos versus chiropractors.</p>
+<p><strong>chris</strong>: Yeah, no. This is good. Right here.</p>
+<p><strong>trucker</strong>: Alright then. Chiropractors it is.</p>
+<p><strong>lori</strong>: Chris, you gotta go faster. We’ve got a line
+out the door.</p>
+<p><strong>chris</strong>: Okay.</p>
+<p><strong>lori</strong>: Chris, I don’t mean to be on you about
+everything. You’re doing a great job.</p>
+<p><strong>lori</strong>: I want to keep you on. And we all want to help
+you get to Alaska, but you’ve got to start wearing socks.</p>
+<p><strong>chris</strong>: Right, right. I forgot.</p>
+<p><strong>lori</strong>: And please. Hurry. We’re ten deep.</p>
+<p><strong>chris</strong>: Okay.</p>
+<p><strong>chris</strong>: How much do I have in the account now?</p>
+<p><strong>teller</strong>: It looks like…let me see. Including this
+latest deposit…One thousand, two hundred and fifty two dollars
+and…twenty-two cents.</p>
+<p><strong>chris</strong>: What’s the interest on twenty-two cents?</p>
+<p><strong>chris</strong>: Lori, I’m punching out.</p>
+<p><strong>lori</strong>: Okay. Just put it in the drop.</p>
+<p><strong>chris</strong>: No, I mean I’m punching out for good.</p>
+<p><strong>lori</strong>: We’ve made our quota, have we?</p>
+<p><strong>chris</strong>: Yeah. Also, I’ve got to do some things before
+I head north.</p>
+<p><strong>lori</strong>: Alright Chris. Well, we’ve enjoyed knowing
+you. I won’t be able to get that last check to you right away
+though.</p>
+<p><strong>chris</strong>: That’s okay. I’ll let you know where to send
+it.</p>
+<p><strong>lori</strong>: Alright then Chris. Bye-bye now.</p>
+<p><strong>chris</strong>: Bye-bye.</p>
+<p><strong>continue music over:</strong>: Chris gets a clean shave and a
+whore’s bath.</p>
+<p><strong>cu</strong>: Chris</p>
+<p><strong>jan</strong>: Sunni! Come here boy.</p>
+<p><strong>chris</strong>: Surprise!</p>
+<p><strong>jan</strong>: Alex!</p>
+<p><strong>angle</strong>: Rainey hearing his name, jumps up from his
+stool to join them.</p>
+<p><strong>jan</strong>: You have to tell us everything.</p>
+<p><strong>jan</strong>: I think you’ve made yourself a friend.</p>
+<p><strong>chris</strong>: She’s only a teenager.</p>
+<p><strong>jan</strong>: Good luck.</p>
+<p><strong>rainey</strong>: How long can you stay with us?</p>
+<p><strong>chris</strong>: Well, I’m waiting on a check from my last job
+to come into Salton City the day after Christmas. I’ve got to start
+thinking about getting ready for Alaska. When the sun gets a little
+lower tonight, I’m going to start a calisthenics routine. I think after
+the check comes in, I’ll try to find some mountains I can climb everyday
+till spring comes. I gotta see how far the money’s gonna go.</p>
+<p><strong>chris</strong>: I’m going to have to pick up a lot of
+supplies before spring. So, I might take another job or I might be
+okay.</p>
+<p><strong>rainey</strong>: Well, you know, we’ll give you a little
+something for every day you work the booth.</p>
+<p><strong>chris</strong>: I’m not taking any money from you, Rainey.
+It’s been a real great twist meeting you two. You look like you’re doing
+good.</p>
+<p><strong>rainey</strong>: We are, and you were a big part of that,
+coming along when you did. Yep, things are good. Man, I used to think
+Tantric sex was just a bunch of reading. Speaking of which, don’t you
+think you ought to introduce yourself to Joni Mitchell over there?</p>
+<p><strong>tracy</strong>: Hi.</p>
+<p><strong>chris</strong>: Hi.</p>
+<p><strong>tracy</strong>: You selling books?</p>
+<p><strong>chris</strong>: I am. We are.</p>
+<p><strong>tracy</strong>: I read a lot.</p>
+<p><strong>chris</strong>: Do you?</p>
+<p><strong>tracy</strong>: Yeah.</p>
+<p><strong>chris</strong>: That’s good. I heard you play your song last
+night.</p>
+<p><strong>tracy</strong>: I’m terrible.</p>
+<p><strong>chris</strong>: You are not terrible.</p>
+<p><strong>tracy</strong>: I’m not?</p>
+<p><strong>chris</strong>: No. You sing sweet.</p>
+<p><strong>tracy</strong>: Thank you. I was going to go watch the kids
+play in the mud. Do you want to go?</p>
+<p><strong>rainey</strong>: Go on. I’ll watch the store.</p>
+<p><strong>chris</strong>: I’m sorry. This is Rainey. And I’m Chris.</p>
+<p><strong>rainey</strong>: Hi. Rainey. And this is Alex.</p>
+<p><strong>tracy</strong>: I’m Tracy.</p>
+<p><strong>long lens</strong>: We watch Chris and Tracy sit pit-side
+with a foreground of frolicking naked children splashing about in the
+mud. We don’t hear their conversation. We just watch its gentleness.</p>
+<p><strong>jan</strong>: I wasn’t much older than Tracy when I got
+pregnant. And I thought my husband and I were going to invent peace on
+earth and stay together forever. But it didn’t work out that way. He
+left. History. Now ancient history. And that was the end of that. So, I
+raised Reno by myself - that’s my son. Then I met Rainey. And that was
+really good for a while. But Reno was already a teenager and was
+becoming a man in his own way. And then, I don’t know. He kinda followed
+in his father’s footsteps - out the door and gone. And I really don’t
+know where he is. I haven’t heard from him in two years.</p>
+<p><strong>chris</strong>: I hope I get to meet him sometime.</p>
+<p><strong>jan</strong>: Do your folks know where you are?</p>
+<p><strong>tracy</strong>: Soup’s on. Oh, I’m sorry. Are you guys
+getting heavy?</p>
+<p><strong>jan</strong>: No, sweetheart. Just hungry. You’ve been doing
+a fantastic job over there. Shall we eat?</p>
+<p><strong>chris</strong>: Yeah.</p>
+<p><strong>rainey</strong>: I really ought to get myself doing that.</p>
+<p><strong>chris</strong>: You should Rainey. Makes that Tantric stuff
+go even better.</p>
+<p><strong>rainey</strong>: How the hell would you know? That poor girl
+over there is about ready to vault onto a fence post. And here you are,
+the monk of Jack LaLane.</p>
+<p><strong>rainey</strong>: I guess Jan filled you in. About Reno and
+everything. Children can be harsh judges when it comes to their parents.
+They don’t grant clemency easily. I think Reno tended to see things in
+black and white. I just hope he lives long enough to forgive her.</p>
+<p><strong>rainey</strong>: But painful as it is, you turned a light on
+in her and I’m grateful.</p>
+<p><strong>chris</strong>: Me too.</p>
+<p><strong>rainey</strong>: For what?</p>
+<p><strong>rainey</strong>: Do your folks know where you are?</p>
+<p><strong>chris</strong>: No.</p>
+<p><strong>rainey</strong>: Don’t you think they ought to?</p>
+<p><strong>chris</strong>: They should. But I can’t. Not yet, anyway. I
+got a sister though, Carine. She’s the most beautiful girl in the world.
+But, it’s all got to stay behind me until I get where I’m going.</p>
+<p><strong>rainey</strong>: Alaska?</p>
+<p><strong>chris</strong>: Yeah, Rainey. Alaska.</p>
+<p><strong>chris</strong>: Hello? Merry Christmas?</p>
+<p><strong>tracy</strong>: Come in here.</p>
+<p><strong>tracy</strong>: Guess what.</p>
+<p><strong>chris</strong>: What?</p>
+<p><strong>tracy</strong>: My parents went into town.</p>
+<p><strong>chris</strong>: No!</p>
+<p><strong>tracy</strong>: Yes, they did. They went to call my grandma
+for Christmas.</p>
+<p><strong>chris</strong>: No, I mean, no, we can’t do that.</p>
+<p><strong>tracy</strong>: Why not?</p>
+<p><strong>chris</strong>: How old are you?</p>
+<p><strong>tracy</strong>: Eighteen.</p>
+<p><strong>tracy</strong>: Seventeen.</p>
+<p><strong>chris</strong>: What year were you born?</p>
+<p><strong>chris</strong>: You want to do something together?</p>
+<p><strong>chris</strong>: You can always get in touch with me by
+sending mail here. I don’t know when I’ll get it, but I’ll get it.</p>
+<p><strong>tracy</strong>: Okay.</p>
+<p><strong>chris</strong>: You’re pretty magic.</p>
+<p><strong>tracy</strong>: I am?</p>
+<p><strong>rainey</strong>: You take care of yourself, kiddo.</p>
+<p><strong>chris</strong>: You too, Rainey. Thanks for everything.</p>
+<p><strong>chris</strong>: New Year’s resolution?</p>
+<p><strong>jan</strong>: Just get your pack out of the back and get out
+of here. I can’t take a hug.</p>
+<p><strong>telephoto lens</strong>: A long two-laned road before us
+rises and falls in a series of saddles and peaks. The narrow shoulders
+are densely wooded. SLOWLY APPEARING over the near most peak, a TEAM OF
+EIGHT SHIRTLESS HIGH SCHOOL RUNNERS. Leading the group - 17 YEAR-OLD
+CHRISTOPHER MCCANDLESS. Lean, softly handsome, and graceful.</p>
+<p><strong>carine</strong>: In high school, Chris became captain of the
+cross-country track team. They called themselves the Road Warriors.</p>
+<p><strong>reverse angle</strong>: The group of young runners, led by
+Chris suddenly veer off the paved road into the adjoining woods.</p>
+<p><strong>series of angles</strong>: The runners, led by Chris, pace
+unchartered trails, grassy hillsides, and shallow streams.</p>
+<p><strong>carine</strong>: He’d take them on what he loved to refer to
+as “epic” runs. The whole point was to run until they were completely
+lost and so exhausted that they were on the verge of puking. Then they’d
+slow down a little, somehow he’d find their bearings, and lead them home
+again at full speed. This was my brothers idea of fun.</p>
+<p><strong>carine</strong>: A year and a half into Chris’ disappearance,
+each day that goes by now feels like two. Dad calls it “suspended
+animation.” I kept telling myself that he had to get lost to prove his
+independence to himself. But this was no day run for the Road Warriors
+and after so much time, I could no longer keep out the haunting
+thoughts.</p>
+<p><strong>carine</strong>: In many ways, my life and even my parents
+had begun to move in new directions. I’d fallen in love. And mom and dad
+had even ventured out on a brief vacation. But, when a search of tax
+records uncovered Chris’ contribution to OXFAM, the weight of his
+disappearance just seemed to lie down on us full length.</p>
+<p><strong>wide shot</strong>: We see the Oh My God Hot Springs.
+Steaming pools lined with rocks and shaded by palm trees. A small group
+of campers and Charlie Manson wannabes in</p>
+<p><strong>slo mo</strong>: We are looking down a radically steep rock
+face. A shirtless Chris is in training running towards us under the hot
+desert sun.</p>
+<p><strong>chris</strong>: Hey boy. You are a handsome fellow. Beautiful
+dog.</p>
+<p><strong>the girl</strong>: Thank you.</p>
+<p><strong>chris</strong>: Go on, boy. Go on.</p>
+<p><strong>ron</strong>: Where’s your camp?</p>
+<p><strong>chris</strong>: Out past Oh-My-God Hot Springs.</p>
+<p><strong>ron</strong>: I’ve lived in and around here six years now and
+I’ve never heard of any place that goes by that name.</p>
+<p><strong>ron</strong>: Show me how to get there.</p>
+<p><strong>ron</strong>: Ron Franz.</p>
+<p><strong>chris</strong>: Alex.</p>
+<p><strong>ron</strong>: Alex. Where are you from Alex?</p>
+<p><strong>chris</strong>: West Virginia.</p>
+<p><strong>ron</strong>: Okay, Alex from West Virginia. I like a fellow
+who doesn’t raise the pitch of his voice when he talks to animals…shows
+he doesn’t condescend.</p>
+<p><strong>chris</strong>: You go left here.</p>
+<p><strong>ron</strong>: You live here?</p>
+<p><strong>chris</strong>: No, we keep going. I’m further up. Another
+half-mile or so, out on the Bajada.</p>
+<p><strong>185 ext. chris’ camp beside the stone wall - same
+185</strong>: Ron and Chris drive up in the truck. Ron shuts off the
+ignition and gets out of the truck to stretch his legs. Chris follows,
+puts his full water jug under the tarp at his campsite, hooking it onto
+a branch. He throws his shoulder bag with the rice in it into his
+backpack.</p>
+<p><strong>ron</strong>: Well, this is somethin’ out here. Don’t you
+worry about those dope smokers and nudists down below there?</p>
+<p><strong>chris</strong>: No, they keep to themselves pretty much and
+so do I.</p>
+<p><strong>ron</strong>: Hmmm. You strike me as a bright young man. Am I
+wrong about that?</p>
+<p><strong>chris</strong>: I think I got my head on my shoulders pretty
+good.</p>
+<p><strong>ron</strong>: That’s what I mean. How long have you been out
+here?</p>
+<p><strong>chris</strong>: Couple of weeks.</p>
+<p><strong>ron</strong>: And before that?</p>
+<p><strong>chris</strong>: A lot of places. I’ve been moving around.</p>
+<p><strong>ron</strong>: How old are you?</p>
+<p><strong>chris</strong>: Twenty-three.</p>
+<p><strong>ron</strong>: Twenty-three years old! Son, don’t you think
+you should be getting an education? And a job? And making something of
+this life?</p>
+<p><strong>chris</strong>: Look Mr. Franz. I think careers are a
+twentieth century invention and I don’t want one. You don’t need to
+worry about me. I have a college education. I’m not destitute. I’m
+living like this by choice.</p>
+<p><strong>ron</strong>: In the dirt?</p>
+<p><strong>chris</strong>: Yeah, in the dirt.</p>
+<p><strong>ron</strong>: I just don’t know. Where’s your family?</p>
+<p><strong>chris</strong>: Don’t have one anymore.</p>
+<p><strong>ron</strong>: That’s a shame.</p>
+<p><strong>chris</strong>: Hey, Mr. Franz. I want to show you
+something.</p>
+<p><strong>angle</strong>: The two men nearly half way to the summit.
+It’s getting steeper and higher. Ron stops.</p>
+<p><strong>ron</strong>: This is getting a little steep. And a little
+high for me kid.</p>
+<p><strong>chris</strong>: Alright. But look out there. Even from half
+way out, it’s quite a sight isn’t it?</p>
+<p><strong>chris</strong>: From the top you can see all the way to the
+Salton Sea too.</p>
+<p><strong>ron</strong>: You can see the Salton Sea from up there?</p>
+<p><strong>chris</strong>: Yes, sir.</p>
+<p><strong>ron</strong>: My goodness.</p>
+<p><strong>chris</strong>: You don’t want to go up?</p>
+<p><strong>ron</strong>: Nope. I don’t do these kind of things.</p>
+<p><strong>ron</strong>: How about you and me take a drive? About fifty
+miles or so up highway, I know a place that’s got a view, great food,
+and requires no climbing. How’s that sound?</p>
+<p><strong>chris</strong>: Yeah, sure. It’ll take me a couple of minutes
+to clean up.</p>
+<p><strong>ron</strong>: Fair enough.</p>
+<p><strong>vertical pov</strong>: We are thousands of feet in the air
+over the rigid rocky canyon as we ascend toward San Jacinto summit. It’s
+high. Scary HIGH.</p>
+<p><strong>music over</strong>: As Chris and Ron ride the tram to the
+peak, we watch Chris watching Ron, his kind, moist old eyes, slowly
+blinking at the wonder of the nature around him. Other passengers on the
+tram seem nervous, but Ron is meditative, almost hypnotized.</p>
+<p><strong>190 int. elevation restaurant - twilight90</strong>: 1</p>
+<p><strong>chris</strong>: How old are you, Mr. Franz?</p>
+<p><strong>ron</strong>: Seventy-nine years old.</p>
+<p><strong>chris</strong>: Seventy-nine…see, all due respect, but the
+real difference between people is the quality of their soul and not on
+how long they’ve trudged around like a dip-shit.</p>
+<p><strong>chris</strong>: But it’s true.</p>
+<p><strong>ron</strong>: It is. No question about that.</p>
+<p><strong>chris</strong>: The government’s the same as my parents. They
+don’t respect anybody. Regulation. Regulation. Regulation. WE can’t do
+this. But THEY can do that. I mean, the hypocrisy of the whole…culture.
+Makes me crazy. My father was having children with two women at the same
+time, and then has the gall to think that he can be of some guidance to
+me? Make judgments on me? My mother, of course, goes along with all of
+it. Keeps the secret, which of course, makes my whole life a fiction.
+Everything I thought was, wasn’t. They’re such fools! Fucking
+idiots!</p>
+<p><strong>ron</strong>: Alex, please don’t lump me in amongst your
+judges. And your tyrants. But I’d prefer to not hear that kind of
+language.</p>
+<p><strong>chris</strong>: Sorry. I don’t usually use that kind of
+language either. I just get so angry thinking about it.</p>
+<p><strong>ron</strong>: You got a lot of passion, young man.</p>
+<p><strong>chris</strong>: Awww, that was a great time Mr. Franz. Thank
+you.</p>
+<p><strong>ron</strong>: Look here. If Charles Manson and his buddies
+don’t kill me on my way out of here, I’d like to cook you up a home
+cooked meal tomorrow night. If I come out here about, say, four o’clock
+tomorrow, how would that be?</p>
+<p><strong>chris</strong>: That would be swell.</p>
+<p><strong>ron</strong>: Good, good. I’m no gourmet but I know where the
+spices are. Good night, kid.</p>
+<p><strong>chris</strong>: Good night Mr. Franz.</p>
+<p><strong>high angle</strong>: Chris, looking at his own reflection in
+the water below Ron’s dock. In the reflection, we see his hands full of
+dirty laundry.</p>
+<p><strong>195 int. kitchen, ron’s house - same 195</strong>: Ron broils
+a couple of steaks. Chris enters and moves past Ron carrying his laundry
+into another room.</p>
+<p><strong>ron</strong>: Did you find everything you need?</p>
+<p><strong>chris</strong>: Yeah. I hope I don’t wreck your machine.
+There’s a lot of grime in that stuff.</p>
+<p><strong>ron</strong>: Well, that’s what it’s for. How do these steaks
+look?</p>
+<p><strong>chris</strong>: Great.</p>
+<p><strong>ron</strong>: Well, sit down.</p>
+<p><strong>ron</strong>: What do you drink?</p>
+<p><strong>chris</strong>: You got a White Russian?</p>
+<p><strong>ron</strong>: Nope.</p>
+<p><strong>chris</strong>: Beer?</p>
+<p><strong>ron</strong>: Nope. Don’t have any alcohol. I had to quit all
+that. How about a guava juice?</p>
+<p><strong>chris</strong>: I’ll take a guava juice, that sounds
+good.</p>
+<p><strong>ron</strong>: Yeah, I had a little spell with the bottle, you
+could say.</p>
+<p><strong>ron/chris</strong>: Cheers.</p>
+<p><strong>ron</strong>: I spent most of my life in the army. On New
+Year’s Eve 1957, I was stationed over in Okinawa. My wife and son were
+here in the States, just driving down the road when a fellow who’d had
+too much to drink plowed right into them. Killed them both. Anyway, you
+might think that the last thing in the world I’d do, is go to the
+whiskey, but at the time, it felt like the only thing I could do. And I
+did it hard. But pretty soon, I figured I wasn’t doing my wife and son
+any good, mourning them with a bottle. So, I pulled myself together and
+quit drinking, cold turkey. And then…</p>
+<p><strong>ron</strong>: You see all these kids over here?</p>
+<p><strong>chris</strong>: Yeah, I was gonna ask you.</p>
+<p><strong>ron</strong>: Yeah, that’s… Fuki, Kenjiro, Yoshiko, Keiko,
+Masaro, Junichi, Kimpei, Nayoko…</p>
+<p><strong>ron</strong>: And this is Akira. Just finished medical
+school.</p>
+<p><strong>ron</strong>: Yeah, I unofficially adopted all of them. It
+did my heart some good but I guess really it was just writing a few
+letters and sending some money. Anyway, it was important to me. I get a
+letter from each of them from time to time. You know. So, since all
+that, this is pretty much me.</p>
+<p><strong>chris</strong>: Do you ever travel, Mr. Franz?</p>
+<p><strong>ron</strong>: No. I can’t seem to get too far from my
+leather. I’ll show you after you finish eating. I do a lot of leather
+engraving. I got a little workshop in the garage. Between that and my
+pension, I do pretty well. But every time I think I might take a trip
+somewhere, I get too far behind on orders and such to consider it.</p>
+<p><strong>chris</strong>: Well, I’m finished eating. I’d love to see
+your workshop.</p>
+<p><strong>ron</strong>: Would ya?</p>
+<p><strong>ron</strong>: Alright then.</p>
+<p><strong>ron</strong>: How about some fishing?</p>
+<p><strong>ron</strong>: That thing’s twice as salty as the ocean. Did
+you know that?</p>
+<p><strong>chris</strong>: Anything alive in it?</p>
+<p><strong>ron</strong>: What’s the N stand for?</p>
+<p><strong>chris</strong>: …North.</p>
+<p><strong>ron</strong>: Alaska?</p>
+<p><strong>ron</strong>: Son, what the hell you running from?</p>
+<p><strong>chris</strong>: I could ask you the same question. Except I
+already know the answer.</p>
+<p><strong>ron</strong>: You do, do you?</p>
+<p><strong>chris</strong>: I do, Mr. Franz. You’ve got to get back out
+in the world. Get out of that lonely house of yours, that little
+workshop, and go live on the road.</p>
+<p><strong>chris</strong>: Really. You’re going to live a long time,
+Ron. You should make a radical change in your lifestyle. The core of
+man’s spirit comes with new experiences. And there you are, stubborn old
+man, sitting on your butt.</p>
+<p><strong>ron</strong>: Sittin’ on my butt, huh?</p>
+<p><strong>ron</strong>: I’ll show you sittin’ on my butt.</p>
+<p><strong>ron</strong>: “Stubborn old man.”</p>
+<p><strong>chris</strong>: Come on, old man! Come on!</p>
+<p><strong>ron</strong>: Ya little pinhead.</p>
+<p><strong>ron</strong>: Ya little pinhead.</p>
+<p><strong>chris</strong>: You alright?</p>
+<p><strong>ron</strong>: I’m going to miss you when you go.</p>
+<p><strong>chris</strong>: I’ll miss you too, Ron. But you’re wrong if
+you think the joy of life comes principally from human relationships.
+God’s placed it all around us. It’s in everything. In anything we can
+experience. People just have to change the way they think about those
+things. You ought to put a little camper on the back of your pick-up and
+go take a look at some of the great work god’s done out here in the
+American west.</p>
+<p><strong>ron</strong>: Alex…You’re probably right. And I’m going to
+take stock of that.</p>
+<p><strong>ron</strong>: No, I am.</p>
+<p><strong>ron</strong>: I am.</p>
+<p><strong>ron</strong>: But I’ll tell you something. The bits and
+pieces I’ve put together, you know, what you’ve told me about your
+family. Your mother and dad. And I know you got your problems with the
+church too, but there’s some kind of bigger thing that we can all
+appreciate. And it sounds like you don’t mind calling it God. But when
+you forgive, you love. And when you love…God’s light shines on you.</p>
+<p><strong>chris</strong>: Holy Shit!</p>
+<p><strong>ron</strong>: I told you about that language.</p>
+<p><strong>extreme wide shot from below</strong>: The two men on the
+summit with the echoing of laughter and Ron’s screams -</p>
+<p><strong>ron</strong>: I told you so! I told you so!</p>
+<p><strong>chris</strong>: What are you doing up? It’s three-thirty in
+the morning.</p>
+<p><strong>ron</strong>: Heard you get up off the couch half an hour
+ago, and had a funny feeling you might not be here for our
+breakfast.</p>
+<p><strong>ron</strong>: I’m going to drive you a hundred miles to
+somewhere where you can pick up a train, a plane, or hitch a ride
+without getting stuck on this desert. I’d take you all the way to Alaska
+if I didn’t have to get to an eight o’clock mass.</p>
+<p><strong>chris</strong>: Ron, you don’t have to do that.</p>
+<p><strong>ron</strong>: I want to do it. Get you started on this thing
+of yours.</p>
+<p><strong>chris</strong>: On my Great -</p>
+<p><strong>ron</strong>: I know. On your “Great Alaskan Adventure.”</p>
+<p><strong>ron</strong>: There’s a machete, an arctic parka, collapsible
+fishing pole, and a few odds and ends I threw in there for you.</p>
+<p><strong>chris</strong>: Ron…</p>
+<p><strong>ron</strong>: Oh, just take it.</p>
+<p><strong>ron</strong>: I’ll wait for you in the truck.</p>
+<p><strong>ron</strong>: Well my friend.</p>
+<p><strong>chris</strong>: Yep.</p>
+<p><strong>ron</strong>: I had an idea. You know my mother was an only
+child. So was my father. And I was their only child. Now, with my own
+boy gone, I’m the end of the line. When I’m gone, my family will be
+finished. What do you say, you let me adopt you. I could be, say, your
+grandfather.</p>
+<p><strong>chris</strong>: How about we talk about this when I get back
+from Alaska, Ron. Would that be alright?</p>
+<p><strong>chris</strong>: Alright, Ron. We’ll talk about it then.</p>
+<p><strong>ron</strong>: Yep. We can do that, yep.</p>
+<p><strong>chris</strong>: Thanks, Ron.</p>
+<p><strong>7. series of traveling shots</strong>: Radium Junction, Lake
+Louise to Prince George and Dawson STATIC NATURE SHOTS: HELICOPTER
+SHOTS</p>
+<p><strong>carine</strong>: About a month short of the second
+anniversary of Chris’ disappearance, I had gotten engaged to my
+boyfriend Jerry Ray and was moving in with him…</p>
+<p><strong>carine</strong>: …when I stumbled upon the book Chris had
+given me on his graduation day. For some reason, it was the last line of
+the poem he read that really stuck out.</p>
+<p><strong>chris</strong>: …and I will tell about it.</p>
+<p><strong>carine</strong>: I asked Chris who had written the poem.</p>
+<p><strong>carine</strong>: Who wrote that?</p>
+<p><strong>chris</strong>: Well, it could’ve been either one of us.
+Couldn’t it?</p>
+<p><strong>carine</strong>: What would he tell about now? What did his
+voice sound like now?</p>
+<p><strong>carine</strong>: I realized that the words to my thoughts
+were of less and less meaning. Chris was writing his story and it had to
+be Chris who would tell it.</p>
+<p><strong>chris</strong>: Mom, help me.</p>
+<p><strong>walt</strong>: What is it?</p>
+<p><strong>billie</strong>: I wasn’t dreaming! I didn’t imagine it! I
+heard his voice, Walt. I heard Chris.</p>
+<p><strong>214 fairbanks alaska, series of static images: 214</strong>:
+Berms of cleared snow line the streets</p>
+<p><strong>music over</strong>: Of religious scope. Perhaps choral.</p>
+<p><strong>helicopter shot</strong>: We travel a long ways across snowy
+peaks and valleys passing between two escarpments of outer range
+bordering bottomlands five miles wide until we barely see a tiny form
+within it trudging through the snow. We overfly it.</p>
+<p><strong>reverse angle</strong>: Chris moving toward the opposite tree
+line, he turns back to the gentle river behind. Chris’ POV scanning the
+terrain.</p>
+<p><strong>crane shot</strong>: We PULL UP from Chris to high above the
+clearing.</p>
+<p><strong>angle</strong>: Chris: He continues to write as he SPEAKS the
+words aloud:</p>
+<p><strong>chris</strong>: …the road. Escaped from Atlanta. Thou shalt
+not return `cause the “west is the best.” And now after two rambling
+years, comes the final and greatest adventure.</p>
+<p><strong>chris</strong>: The climactic battle to kill the false being
+within and victoriously conclude the spiritual revolution.</p>
+<p><strong>chris</strong>: Ten days and nights of freight trains and
+hitchhiking, bringing him to the great white north.</p>
+<p><strong>chris</strong>: No longer to be poisoned by civilization, he
+flees, and walks alone upon the land to become lost in the wild.</p>
+<p><strong>cu</strong>: Chris’ hand, he writes and circles the
+number:</p>
+<p><strong>angle</strong>: Chris, rifle in hand.</p>
+<p><strong>chris</strong>: Shit!</p>
+<p><strong>increasingly thin and pale</strong>: hunting, sleeping,
+cooking, rice dwindling, line-ups of scrawny shot birds. He adds holes
+to his belt leather to accommodate his shrinking waistline.</p>
+<p><strong>pov</strong>: the sun, circling high in the heavens. Snowmelt
+dripping quickly across the windowpane.</p>
+<p><strong>intercut</strong>: SERIES OF ANGLES throughout which Chris
+remains thin but his pallor improves:</p>
+<p><strong>angle</strong>: CU - He’s beaming with satisfaction.</p>
+<p><strong>239 int. bus - later 239</strong>: The diary/log: DAY 31 -
+CLIMBED MOUNTAIN</p>
+<p><strong>angle</strong>: Chris, reading with great interest. His POV:
+The page: what Chris reads: And then, on top of all that, you for a
+mate, and children, perhaps - what more can the heart of a man
+desire?</p>
+<p><strong>angle</strong>: Chris: He looks up from his book. A gentle
+breeze tickles morning flowers. The sunlight dances in a coppice of
+aspen and leaves of trees above. The sound of buzzing flies mutes. He is
+taking one last look at his paradise.</p>
+<p><strong>extreme cu</strong>: Beaded and shimmering from the past
+night’s rain, a bright red berry moves in the breeze like a tiny
+vibrating bell. RACK FOCUS to Chris’ eyes spying it. He plucks it from
+its stem.</p>
+<p><strong>angle</strong>: The book</p>
+<p><strong>chris</strong>: Here she stopped and, closing her eyes, took
+a deep breath of the flower-scented air of the broad expanse around her.
+It was dearer to her than her kin, better than a lover, wiser than a
+book.</p>
+<p><strong>angle</strong>: Chris pulls more berries from the bag and
+chews on them as he reads.</p>
+<p><strong>angle</strong>: The book</p>
+<p>****: For a moment, she re-discovered the purpose of her life. She
+was here in earth to grasp the meaning of its wild enchantment and call
+each thing by its right name.</p>
+<p><strong>angle</strong>: Chris</p>
+<p><strong>chris</strong>: By its right name. By its right name.</p>
+<p><strong>chris</strong>: Beautiful blueberries - Vaccinium uliginosum.
+Eskimo potato - Hedysarum alpinum…etc.</p>
+<p><strong>angle</strong>: The diary/log: EXTREMELY WEAK. FAULT OF
+POTATO</p>
+<p><strong>wide angle tableau</strong>: Chris standing at the river’s
+edge catching his breath framed against the background of the 3000 foot
+butte that he’d so recently climbed with ease.</p>
+<p><strong>angle</strong>: The bear, just as passive towards Chris, as
+though he didn’t represent enough of anything to eat.</p>
+<p><strong>chris</strong>: Set small signal fire today - watched it die
+tonight.</p>
+<p><strong>267 int. bus - day 267</strong>: The diary/log: DAY 100 -
+MADE IT. BUT IN WEAKEST</p>
+<p><strong>angle</strong>: The page: what he reads:</p>
+<p><strong>chris</strong>: And that an unshared happiness is not
+happiness…</p>
+<p><strong>chris</strong>: Call everything by its right name.</p>
+<p><strong>chris</strong>: What if you saw me running into your
+arms…</p>
+<p><strong>chris</strong>: Would you see then…</p>
+<p><strong>chris</strong>: …what I see now?</p>
+</body>
+</html>

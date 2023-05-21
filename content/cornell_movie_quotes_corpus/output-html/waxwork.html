@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>waxwork</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="waxwork">waxwork</h1>
+<p><strong>marks mother</strong>: Darling? I hear you were having drinks
+with the butler the other night. Now you know that sort of thing leads
+to anarchy.</p>
+<p><strong>mark</strong>: Mom.</p>
+<p><strong>marks mother</strong>: One has to keep the distance between
+<code>them' and</code>us’</p>
+<p><strong>mark</strong>: They’re all human beings</p>
+<p><strong>marks mother</strong>: Servants. Oh isn’t it terrible
+darling, two more people have disappeared</p>
+<p><strong>mark</strong>: Oh really? We’re they
+<code>us'es' or</code>them’s’?</p>
+<p><strong>marks mother</strong>: Don’t be facetious darling. Now drink
+your milk, you’re late for college</p>
+<p><strong>mark</strong>: Mom, when are you going to let me have some
+coffee in the morning?</p>
+<p><strong>marks mother</strong>: When - you’re a big boy. I mean you
+know it’s bad for you</p>
+<p><strong>mark</strong>: But mom, I NEED THE CAFFINE - BADLY</p>
+<p><strong>marks mother</strong>: I’ll think about it. Now run along
+darling.</p>
+<p><strong>jenkins</strong>: Your books Master Loftmore</p>
+<p><strong>mark</strong>: Thank you Jenkins</p>
+<p><strong>jenkins</strong>: And your coff - excuse me, caffeine sir</p>
+<p><strong>mark</strong>: Thank you</p>
+<p><strong>jenkins</strong>: And uh, your nicotine sir</p>
+<p><strong>mark</strong>: Thank you</p>
+<p><strong>jenkins</strong>: Allow me sir</p>
+<p><strong>jenkins</strong>: Will you be wanting your wheels today
+sir?</p>
+<p><strong>mark</strong>: Uh, not today Jenkins, I need the fresh
+air</p>
+<p><strong>jenkins</strong>: Have a nice day sir</p>
+<p><strong>sarah</strong>: I saw the greatest movie with mark last
+night</p>
+<p><strong>china</strong>: With Mark?</p>
+<p><strong>sarah</strong>: He still likes you</p>
+<p><strong>china</strong>: Oh I don’t give a shit the guy’s a slob. He
+doesn’t even know how to spell `lady’ let alone treat me like one. You
+know the last time we went out he actually made me pay for a drink?</p>
+<p><strong>sarah</strong>: He did?</p>
+<p><strong>china</strong>: Yes, I’m sure. What I need is an older man,
+something with class, a little style. Someone who knows how to treat a
+lady.</p>
+<p><strong>sarah</strong>: Businessman?</p>
+<p><strong>china</strong>: Businessman!</p>
+<p><strong>sarah</strong>: Doctor? Lawyer? CHINA Lawyer, Doctor, I don’t
+care.</p>
+<p><strong>sarah</strong>: Yeah, yeah, OK</p>
+<p><strong>china</strong>: Yeah</p>
+<p><strong>sarah</strong>: So why are you dating Jonathan?</p>
+<p><strong>sarah</strong>: But?</p>
+<p><strong>china</strong>: But he still has something Mark hasn’t.</p>
+<p><strong>sarah</strong>: What’s that?</p>
+<p><strong>china</strong>: A body. I mean we’re talking major body</p>
+<p><strong>sarah</strong>: Strange, I’ve never seen that before</p>
+<p><strong>mr lincoln</strong>: I’m sorry ladies, did I startle you?</p>
+<p><strong>china</strong>: Heart attack maybe, startle no.</p>
+<p><strong>mr lincoln</strong>: I see you’re interested in my waxworks,
+yes?</p>
+<p><strong>sarah</strong>: Well.</p>
+<p><strong>mr lincoln</strong>: Really? Why?</p>
+<p><strong>china</strong>: Yeah. Nice meeting you mister.</p>
+<p><strong>mr lincoln</strong>: Mister?</p>
+<p><strong>sarah</strong>: Come on China</p>
+<p><strong>mr lincoln</strong>: I’m having a private showing tonight. At
+midnight.</p>
+<p><strong>china</strong>: Hmmm. Good time. After dinner but before
+breakfast.</p>
+<p><strong>china</strong>: Oh. you’re expecting a crowd</p>
+<p><strong>mr lincoln</strong>: Like I said, no more than six</p>
+<p><strong>mr lincoln</strong>: See you at midnight then</p>
+<p><strong>china</strong>: Oooooh Scaaaarrrrryyy</p>
+<p><strong>girl</strong>: Morning Mark!</p>
+<p><strong>mark</strong>: Hey, how you doing? I’m late.</p>
+<p><strong>lecturer</strong>: Good afternoon Herr Loftmore</p>
+<p><strong>mark</strong>: Good morning - Sir</p>
+<p><strong>tony</strong>: OH! Gotta hurt!</p>
+<p><strong>lecturer</strong>: And Mr. Loftmore, I nearly forgot. I also
+want a 40-page essay on the trouble with DICTATORS!</p>
+<p><strong>mark</strong>: I can’t believe she went out with that monster
+last night</p>
+<p><strong>tony</strong>: Forget her Mark, she’s a bitch</p>
+<p><strong>sarah</strong>: Hey, China’s a friend of mine</p>
+<p><strong>mark</strong>: Look at that. If he got on top of you, you’d
+have a better chance with a steamroller.</p>
+<p><strong>sarah</strong>: Stop saying things so loud!</p>
+<p><strong>tony</strong>: Oh! The virgin has spoken! SARAH Stop it!</p>
+<p><strong>china</strong>: Well that’s for me to know - but I did enjoy
+rubbing oil all over that big.</p>
+<p><strong>mark</strong>: Just give it a break China ok? CHINA Jeez.
+Can’t even take a joke</p>
+<p><strong>tony</strong>: Save it for the powder room babe, this man is
+in pain</p>
+<p><strong>sarah</strong>: You guys are being real assholes</p>
+<p><strong>mark</strong>: Thank you Sarah</p>
+<p><strong>jonathan</strong>: Hey babe, are we going to catch a flick
+tonight, get a little of that back row boogie?</p>
+<p><strong>china</strong>: Oh I don’t know handsome, I’m a little
+tired</p>
+<p><strong>jonathan</strong>: Yeah, me too after last night. Hey Mark,
+want to go play catch? Or are you incapable of doing that as well?</p>
+<p><strong>tony</strong>: Don’t do it superman, you only got one life
+man.</p>
+<p><strong>james</strong>: Hey Mark, I see you’ve made a new friend. I
+hope he’ll fit through the front door.</p>
+<p><strong>gemma</strong>: What’s happening tonight guys?</p>
+<p><strong>china</strong>: Well, Sarah and I were invited to a late
+night waxwork show by the handsomest gentleman</p>
+<p><strong>gemma</strong>: No kidding?</p>
+<p><strong>james</strong>: Ah, waxworks are out of date; this is the
+video age.</p>
+<p><strong>china</strong>: Well, Sarah and I are going, how about you
+Tone?</p>
+<p><strong>tony</strong>: You bet. We all can’t be such modern
+people</p>
+<p><strong>sarah</strong>: Come on Mark MARK Ah hell, why not. I’ll get
+the maid to write the essays</p>
+<p><strong>tony</strong>: YES!</p>
+<p><strong>mark</strong>: Anybody want another drink?</p>
+<p><strong>china</strong>: It’s eleven forty-five let’s go</p>
+<p><strong>tony</strong>: What’s the rush babe, got a date with Jonathan
+after the show?</p>
+<p><strong>china</strong>: Can’t a girl get laid around here without
+being burned at the stake?</p>
+<p><strong>tony</strong>: Oh ho! That’s. SARAH, JAMES, TONY, GEMMA
+…gotta hurt!</p>
+<p><strong>mark</strong>: We need to talk. CHINA Yeah about what?</p>
+<p><strong>mark</strong>: About what? About us.</p>
+<p><strong>china</strong>: Us is over. You had your chance you blew
+it.</p>
+<p><strong>mark</strong>: Right. CHINA I need a taking care of, not
+<code>hey how bout a pizza after class babe'.  I'm looking  for something just a little more in a man.  A little</code>je
+nes se qua’.</p>
+<p><strong>mark</strong>: A little what? CHINA See. You don’t even speak
+French.</p>
+<p><strong>mark</strong>: I’m sorry I’m not that good at languages
+ok?</p>
+<p><strong>china</strong>: Yeah well why should I suffer for that?</p>
+<p><strong>mark</strong>: Suffer? We’re living in America.</p>
+<p><strong>james</strong>: Nice place for a waxwork.</p>
+<p><strong>china</strong>: Yea, that’s what we said.</p>
+<p><strong>sarah</strong>: Looks a little spooky boys, you think we
+should do this?</p>
+<p><strong>tony</strong>: Never fear, Tony is here. Ladies first.</p>
+<p><strong>china</strong>: Well what a gentleman. I think I’ll play
+feminist tonight.</p>
+<p><strong>china</strong>: Well if you’re in such a rush darling, why
+don’t you lead the way?</p>
+<p><strong>mark</strong>: Ok toots, I will.</p>
+<p><strong>mark</strong>: Guys, if I’m going to play the hero at least
+give me a little room.</p>
+<p><strong>tony</strong>: Safety in numbers man.</p>
+<p><strong>mark</strong>: Right.</p>
+<p><strong>tony</strong>: So we’re fickle.</p>
+<p><strong>gemma</strong>: James, I want to go home. JAMES What?! It was
+your idea to come in the first place.</p>
+<p><strong>gemma</strong>: Yeah but this is not my idea of fun.</p>
+<p><strong>tony</strong>: Come on Gems, let’s just take a look.</p>
+<p><strong>gemma</strong>: No. It just doesn’t feel right guys.</p>
+<p><strong>mark</strong>: Anyone else not coming?</p>
+<p><strong>tony</strong>: Right behind you.</p>
+<p><strong>tony</strong>: Oh shit. It’s the old door opening by itself
+scene.</p>
+<p><strong>junior</strong>: Velcome to ve Vaxverk.</p>
+<p><strong>mark</strong>: Uh, wrong picture Tony.</p>
+<p><strong>junior</strong>: Ve vere expecting more. The main door
+closes.</p>
+<p><strong>junior</strong>: Please sit down.</p>
+<p><strong>junior</strong>: Make yourselves, comfortable.</p>
+<p><strong>junior</strong>: A drink for anyvon?</p>
+<p><strong>junior</strong>: You supposed to vait until I ring ve bell!
+Get out! Get out!</p>
+<p><strong>tony</strong>: Big party.</p>
+<p><strong>china</strong>: Hey, it’s a private show, what do you
+want?</p>
+<p><strong>mark</strong>: If those guys are waxworks, they have
+definitely improved them since I was a kid.</p>
+<p><strong>tony</strong>: This time I really don’t see anyone man.</p>
+<p><strong>mark</strong>: Must be what we came for. The four stand
+slowly and enter through the doors, which close behind them. They begin
+walking around the WAXWORKS, which appear gruesome. The first they spy
+is of a high school student with a letter jacket on the verge of being
+hacked with an axe by and angry woodsman. They give each other looks of
+disgust and continue on. The next is of a Frankenstein-esque creature
+carrying a woman in its arms. The four are now roaming around the
+WAXWORKS individually, with TONY encountering what appears to be a
+tribal INDIAN pointing a knife towards a victim. MARK walks past a
+circus cart with some sort of werebeast inside, and then continues on to
+a staircase exhibit with a dead woman at the base of it. On the
+staircase is a zombie-fied creature. We see CHINA walking on the other
+side of a bandage wrapped man pumping gasoline into a woman’s mouth.
+Finally, we see TONY walking up to a cottage room display.</p>
+<p><strong>tony</strong>: This. is killer.</p>
+<p><strong>tony</strong>: They won’t mind if I go in for my lighter.</p>
+<p><strong>tony</strong>: Well I uh, hope you guys can hear me cause
+this is a hell of an illusion. I mean, I can smell the pine trees.</p>
+<p><strong>tony</strong>: Ok - and uhhhh.. we got house.. and we got
+house. I guess we’ll go to the house. Alright.</p>
+<p><strong>tony</strong>: Hypnotists, make this guy a little more
+friendly ok</p>
+<p><strong>tony</strong>: It’s so cold in here! Why don’t I just mosey
+on out, get some wood - we’ll talk.</p>
+<p><strong>tony</strong>: Guess he didn’t want to talk.</p>
+<p><strong>tony</strong>: Ahhhhhh SHIT!</p>
+<p><strong>tony</strong>: Hey boys, this isn’t fun anymore! Get me the
+hell out of here!</p>
+<p><strong>hunter</strong>: Damnit! We’re too late! Give me the silver
+bullets!</p>
+<p><strong>tony</strong>: Oh! Oh this has gotta hurt!</p>
+<p><strong>hunter</strong>: God forgive me.</p>
+<p><strong>china</strong>: Well what are you supposed to be doing
+hansom?</p>
+<p><strong>china</strong>: Let’s just take a little look.</p>
+<p><strong>dracula</strong>: Come to me.</p>
+<p><strong>dracula</strong>: You’ve met my son, Stephan.</p>
+<p><strong>dracula</strong>: Please, be seated.</p>
+<p><strong>dracula</strong>: Raw meat. You do like raw meat? Please, if
+not we can have some soup.</p>
+<p><strong>china</strong>: No, that’s fine. I haven’t had steak tartar
+in a long time.</p>
+<p><strong>dracula</strong>: Steak tartar? Oh yes, steak tartar.</p>
+<p><strong>china</strong>: No that’s ok. If you recommend it I’ll try
+it.</p>
+<p><strong>dracula</strong>: It’s a little salty; but that’s all part of
+its charm.</p>
+<p><strong>dracula</strong>: I must bid you goodnight. Ludwig will show
+you to your room.</p>
+<p><strong>china</strong>: Wow. What an intense dream.</p>
+<p><strong>china</strong>: Great dress.</p>
+<p><strong>china</strong>: Doesn’t a gentleman knock?</p>
+<p><strong>stephan</strong>: Bitch!</p>
+<p><strong>china</strong>: Charles?</p>
+<p><strong>charles</strong>: Yes. Charles, you’re fianc�e.</p>
+<p><strong>charles</strong>: Oh dear darling.</p>
+<p><strong>charles</strong>: YES! I wish it were so! AHHHHHHH!!! GET IT
+OFF!</p>
+<p><strong>charles</strong>: No! It’s too late for that!</p>
+<p><strong>china</strong>: Vampires are fiction!</p>
+<p><strong>stephan</strong>: So my pretty, you came down for a little
+midnight snack?</p>
+<p><strong>charles</strong>: Don’t look in his eyes!</p>
+<p><strong>stephan</strong>: I too feel peckish. First, the h’our
+dourve</p>
+<p><strong>stephan</strong>: Now - the entr�e.</p>
+<p><strong>china</strong>: No! Don’t! No!</p>
+<p><strong>charles</strong>: Touch his head! Touch his head!</p>
+<p><strong>charles</strong>: BREAK IT!</p>
+<p><strong>dracula</strong>: Going somewhere my beauty?</p>
+<p><strong>mark</strong>: China, Sarah, where are you guys?</p>
+<p><strong>mark</strong>: Haven’t we been doing our homework.</p>
+<p><strong>sarah</strong>: I’ve always wondered why someone would
+believe in something like that.</p>
+<p><strong>mark</strong>: Ok? MARK walks away leaving SARAH alone with
+the exhibit. The barrier in front of the exhibit drops and SARAH slowly
+begins walking towards it.</p>
+<p><strong>mark</strong>: Where the hell are they?</p>
+<p><strong>sarah</strong>: Somewhere around?</p>
+<p><strong>sarah</strong>: Getting scared? Don’t worry, they’ve probably
+just gone home.</p>
+<p><strong>mark</strong>: What? Tony and China, together?</p>
+<p><strong>sarah</strong>: Wooo. Jealously rearing its ugly head.</p>
+<p><strong>mark</strong>: I’m not kidding. I want to get out of here -
+now, ok.</p>
+<p><strong>junior</strong>: I hope you enjoyed your visit.</p>
+<p><strong>mark</strong>: Uh yes, thank you. It was quite enjoyable.</p>
+<p><strong>junior</strong>: Two of your friends left earlier MARK Uh
+huh.</p>
+<p><strong>junior</strong>: They seemed, closing by much</p>
+<p><strong>mark</strong>: Tony and China?</p>
+<p><strong>junior</strong>: Vell. Goodnight.</p>
+<p><strong>sarah</strong>: Then why do you still like her?</p>
+<p><strong>mark</strong>: Like her? I don’t know if I ever liked her.
+It’s just you want what you can’t get.</p>
+<p><strong>sarah</strong>: I know what you mean.</p>
+<p><strong>mrs webster</strong>: Hello?</p>
+<p><strong>jonathan</strong>: Hello, Mrs. Webster. Is China there?</p>
+<p><strong>mrs webster</strong>: No Jonathan.</p>
+<p><strong>jonathan</strong>: No?</p>
+<p><strong>mrs webster</strong>: She went to a waxwork party</p>
+<p><strong>jonathan</strong>: A party at a waxwork huh?</p>
+<p><strong>mrs webster</strong>: Can I give her a message?</p>
+<p><strong>jonathan</strong>: You don’t happen to have the address do
+ya?</p>
+<p><strong>jonathan</strong>: Guys this is Jonathan. Where are ya?</p>
+<p><strong>jonathan</strong>: Aww shit. They’re gone.</p>
+<p><strong>mr lincoln</strong>: Isn’t the figure wonderful? As worn by
+the Phantom.</p>
+<p><strong>jonathan</strong>: In the movie `Curse of the Opera’!</p>
+<p><strong>mr lincoln</strong>: They’ve made a movie about the Phantom
+of the Opera?</p>
+<p><strong>jonathan</strong>: Several MR LINCOLN Would you like a closer
+look?</p>
+<p><strong>jonathan</strong>: Really?</p>
+<p><strong>mr lincoln</strong>: Step in please.</p>
+<p><strong>mr lincoln</strong>: They’ll make a movie about anything now
+a days.</p>
+<p><strong>sarah</strong>: I would invite you in but it’s late</p>
+<p><strong>mark</strong>: That’s ok.</p>
+<p><strong>sarah</strong>: No Mark. MARK Why not?</p>
+<p><strong>sarah</strong>: I don’t know. I really like you and I think
+you’re very attractive.</p>
+<p><strong>mark</strong>: Come on.</p>
+<p><strong>sarah</strong>: No I’m serious. It’s. it’s just I don’t know
+I. I’m looking for something else.</p>
+<p><strong>mark</strong>: Hey. It’s ok. It’s alright. Now go get some
+sleep.</p>
+<p><strong>mark</strong>: Come on scram, get out of here.</p>
+<p><strong>sarah</strong>: Thank you.</p>
+<p><strong>maid</strong>: Loco!</p>
+<p><strong>maid</strong>: Quien es?</p>
+<p><strong>mark</strong>: Are you finished?</p>
+<p><strong>maid</strong>: Yes. But you know my English. It’s not so
+good.</p>
+<p><strong>mark</strong>: No no, that’s ok. Great, footnotes and
+everything. You are an angel.</p>
+<p><strong>gemma</strong>: Mark, maybe she had another party to go
+to.</p>
+<p><strong>james</strong>: More like a motel to go to, you know
+China.</p>
+<p><strong>mark</strong>: No, no James, it’s not like that. Tony and
+China, they’re just friends.</p>
+<p><strong>sarah</strong>: That’s not what you said last night.</p>
+<p><strong>mark</strong>: Ok, so maybe I was a little over
+emotional.</p>
+<p><strong>sarah</strong>: A little?</p>
+<p><strong>james</strong>: I still vote for the motel.</p>
+<p><strong>mark</strong>: No.</p>
+<p><strong>mark</strong>: And now, another two INSPECTOR ROBERTS And
+you’re telling me that they’ve been kidnapped. And boiled in wax?</p>
+<p><strong>mark</strong>: All I know is that there is something going on
+in that Waxworks.</p>
+<p><strong>inspector roberts</strong>: Now come on kid. You can give me
+a better story than that.</p>
+<p><strong>mark</strong>: I told you everything that I know yes!</p>
+<p><strong>inspector roberts</strong>: Good.</p>
+<p><strong>inspector roberts</strong>: Weird and tiny huh?</p>
+<p><strong>mr lincoln</strong>: Hi</p>
+<p><strong>mr lincoln</strong>: Yes of course. Why?</p>
+<p><strong>inspector roberts</strong>: Mmm-huh.</p>
+<p><strong>mark</strong>: You going to swallow that shit?</p>
+<p><strong>mark</strong>: What? Oh come on I don’t believe this.</p>
+<p><strong>mr lincoln</strong>: Of course you can feel free to wander
+around if you wish.</p>
+<p><strong>inspector roberts</strong>: It would be a pleasure</p>
+<p><strong>inspector roberts</strong>: You - stay here. MARK I want to
+show you a waxwork that. INSPECTOR ROBERTS SIT!</p>
+<p><strong>mr lincoln</strong>: Yes, it’s always been one of my
+favorites too.</p>
+<p><strong>inspector roberts</strong>: Hmm.</p>
+<p><strong>mr lincoln</strong>: Would you like a closer look?</p>
+<p><strong>inspector roberts</strong>: It’s all rather morbid though
+isn’t it?</p>
+<p><strong>inspector roberts</strong>: Yes, I guess you’re right</p>
+<p><strong>mr lincoln</strong>: Are you sure you wouldn’t like a closer
+look?</p>
+<p><strong>inspector roberts</strong>: No. Really, I must be going.</p>
+<p><strong>mark</strong>: You’re going to fall for that?</p>
+<p><strong>inspector roberts</strong>: What else do you want me to do?
+This isn’t Russia you know.</p>
+<p><strong>mark</strong>: That’s it.</p>
+<p><strong>lecturer</strong>: Never. Never underestimate the political
+significance of Mein Kampf as literature.</p>
+<p><strong>mark</strong>: Sorry I’m late sir. I’m so sick I’m… I don’t
+know what’s wrong with me</p>
+<p><strong>mark</strong>: Come on!</p>
+<p><strong>sarah</strong>: You aren’t sick! We’ve got to get back. What
+are you doing!</p>
+<p><strong>mark</strong>: Listen Sarah, I think I know what’s going on
+ok. I went to the waxwork today.I met this man.</p>
+<p><strong>sarah</strong>: Oh that explains everything.</p>
+<p><strong>mark</strong>: You don’t understand. I recognized his face
+now come on.</p>
+<p><strong>sarah</strong>: Big deal!</p>
+<p><strong>inspector roberts</strong>: First I want to see if I’m
+imagining things.</p>
+<p><strong>plain clothes cop</strong>: Feeling all right?</p>
+<p><strong>inspector roberts</strong>: I’ll letcha know.</p>
+<p><strong>inspector roberts</strong>: Shit.</p>
+<p><strong>mark</strong>: If my mother caught me up here she’d kill
+me.</p>
+<p><strong>sarah</strong>: Who’s is all this?</p>
+<p><strong>mark</strong>: Sarah? Come over here</p>
+<p><strong>sarah</strong>: Well?</p>
+<p><strong>mark</strong>: Well. .this, is Mr. Lincoln. And that’s the
+man I saw at the waxwork.</p>
+<p><strong>mark</strong>: I don’t know. But I know where we can find
+out.</p>
+<p><strong>professor</strong>: Come on Nigel, just don’t stand there,
+give me a hand.</p>
+<p><strong>professor</strong>: Come on Nigel.</p>
+<p><strong>girl</strong>: Help the Professor darling.</p>
+<p><strong>professor</strong>: It’s a curse.</p>
+<p><strong>professor</strong>: Good heavens. It’s the mummy.</p>
+<p><strong>inspector roberts</strong>: Shit! Let’s get the hell out of
+here!</p>
+<p><strong>girl</strong>: Ahhhhhh!!! Jesus!</p>
+<p><strong>inspector roberts</strong>: The door! What’s at the
+door?!</p>
+<p><strong>inspector roberts</strong>: There’s a lever around here
+someplace!</p>
+<p><strong>girl</strong>: Oh my goodness.</p>
+<p><strong>professor</strong>: Yes… my bag. on the other side of the
+tomb.</p>
+<p><strong>sir wilfred</strong>: Hello Mark! Sit down here fellow sit
+down! I am.</p>
+<p><strong>mark</strong>: Sir Wilfred, this is Sarah Brighton. This is
+Sir Wilfred.</p>
+<p><strong>sir wilfred</strong>: Hi there Sarah</p>
+<p><strong>sarah</strong>: Hello</p>
+<p><strong>mark</strong>: No thank you sir we’re fine.</p>
+<p><strong>sir wilfred</strong>: So Mark, what’s so urgent?</p>
+<p><strong>mark</strong>: Well, it’s a long story.SIR WILFRED Oh good
+share. I love them</p>
+<p><strong>mark</strong>: I think Sarah should start.</p>
+<p><strong>sarah</strong>: Well, it all started when a friend and I</p>
+<p><strong>mark</strong>: China</p>
+<p><strong>mark</strong>: Well?</p>
+<p><strong>sir wilfred</strong>: Well divide 18 into three</p>
+<p><strong>mark</strong>: Six six and six</p>
+<p><strong>mark</strong>: Who is this Mr. Lincoln?</p>
+<p><strong>sir wilfred</strong>: If you sold your soul to the devil,
+you’d never age either</p>
+<p><strong>mark</strong>: Sell my soul?</p>
+<p><strong>sir wilfred</strong>: Any student of Black Magic can do it.
+.most of these books will tell you how! SARAH So what happens when
+you’ve sold out?</p>
+<p><strong>sir wilfred</strong>: You get yourself a regular job, as
+Satan’s disciple.</p>
+<p><strong>mark</strong>: Doing what? SIR WILFRED Tipping the scales.
+Ruining that delicate balance between good and evil. I think that our
+Mr. Lincoln has found a very effective way of doing it. There’s a voodoo
+belief that by making a wax effigy of an evil being, containing a
+belonging of his he possessed in earthly form, and feeding him the soul
+of a believing victim, you can bring him back to life!</p>
+<p><strong>mark</strong>: Can this be stopped?</p>
+<p><strong>sir wilfred</strong>: Maybe before the event, never
+after.</p>
+<p><strong>sarah</strong>: What can we do?</p>
+<p><strong>mark</strong>: But.. SIR WILFRED You must go now!</p>
+<p><strong>mark</strong>: Come on Sarah</p>
+<p><strong>mark</strong>: Thank you Sir Wilfred</p>
+<p><strong>sir wilfred</strong>: Good luck</p>
+<p><strong>sir wilfred</strong>: Tell the others our Mr. Lincoln has
+been found. It has begun.</p>
+<p><strong>sarah</strong>: Why can’t we just burn it down from the
+outside?</p>
+<p><strong>mark</strong>: Let’s find our way around back.</p>
+<p><strong>mark</strong>: Be careful. I can’t see a damn thing.</p>
+<p><strong>mark</strong>: Don’t worry, it’s only wax. There’s a light
+switch.</p>
+<p><strong>mark</strong>: Sar.</p>
+<p><strong>mark</strong>: Sarah, come on!</p>
+<p><strong>mark</strong>: Sarah?</p>
+<p><strong>junior</strong>: Bravo!</p>
+<p><strong>prince</strong>: To a divine lunch Marquis</p>
+<p><strong>marquis de sade</strong>: How would you like to ride this
+little philly, until she drops?</p>
+<p><strong>prince</strong>: Well of course. MARQUIS DE SADE Please, have
+a seat.</p>
+<p><strong>mark</strong>: Shit I hope I’m right.</p>
+<p><strong>junior</strong>: Grab him!</p>
+<p><strong>prince</strong>: Then why you stop Marquis? Beat her
+more.</p>
+<p><strong>marquis de sade</strong>: As your highness wishes.</p>
+<p><strong>marquis de sade</strong>: Now, my pretty rose; you die.</p>
+<p><strong>sarah</strong>: I don’t want to leave. Don’t let him take
+me.</p>
+<p><strong>mark</strong>: Sarah listen to me.</p>
+<p><strong>sarah</strong>: Go away.</p>
+<p><strong>marquis de sade</strong>: Your friend, has quite an
+imagination</p>
+<p><strong>mark</strong>: See. Exactly.</p>
+<p><strong>marquis</strong>: Don’t look so smug boy. We shall be meeting
+again.</p>
+<p><strong>mark</strong>: See. Now are you ready? Are you ready?</p>
+<p><strong>mark</strong>: Well it looks like your little plan
+failed.</p>
+<p><strong>james</strong>: Women.</p>
+<p><strong>junior</strong>: He was late!</p>
+<p><strong>mr lincoln</strong>: Shut up and watch.</p>
+<p><strong>mr lincoln</strong>: It’s done.</p>
+<p><strong>mr lincoln</strong>: Live my children. Live.</p>
+<p><strong>mr lincoln</strong>: Run. Run. There’s nowhere to run.</p>
+<p><strong>mark</strong>: Wilfred?</p>
+<p><strong>jenkins</strong>: We’re all here, and ready sir!</p>
+<p><strong>mark</strong>: Jenkins!</p>
+<p><strong>jenkins</strong>: Good evening sir.</p>
+<p><strong>sir wilfred</strong>: Very good. These belonged to your
+grandfather Use them wisely. Lets make sure that these wiseasses are
+toast before we burn them! HOOOOOOOOOO!!!!</p>
+<p><strong>slayer #1</strong>: Help me! Help me! Get him! Get him!</p>
+<p><strong>sarah</strong>: James its me, Sarah, James its me! Sorry.</p>
+<p><strong>china</strong>: Oh Mark. It’s ok. It’s ok.</p>
+<p><strong>mark</strong>: China. What happened? CHINA Shhh. It’s ok. I
+missed you so much.</p>
+<p><strong>jonathan</strong>: Kiss me Sarah</p>
+<p><strong>mark</strong>: Watch out Jenkins! Behind you!</p>
+<p><strong>mark</strong>: Jenkins. Can I get you some help?</p>
+<p><strong>jenkins</strong>: Too late for that sir. Give my love to the
+misses. Get those bastards!</p>
+<p><strong>slayer #2</strong>: I’m gunna carve you</p>
+<p><strong>slayer #3</strong>: Wait he’s changing!</p>
+<p><strong>slayer #4</strong>: Make my day.</p>
+<p><strong>sarah</strong>: You, you little bastard.</p>
+<p><strong>junior</strong>: Mmmp!</p>
+<p><strong>plant</strong>: Feed me!</p>
+<p><strong>sir wilfred</strong>: Tally-ho!</p>
+<p><strong>marquis</strong>: Damn!</p>
+<p><strong>marquis de sade</strong>: Now we shall see, who is the real
+man.</p>
+<p><strong>marquis de sade</strong>: School time’s over. Now you
+die.</p>
+<p><strong>mark</strong>: One last thing before you kill us Lincoln.</p>
+<p><strong>mr lincoln</strong>: You know my name.</p>
+<p><strong>mark</strong>: I should. You murdered my grandfather.</p>
+<p><strong>mr lincoln</strong>: Somebody has to. See you in hell.</p>
+<p><strong>mr lincoln</strong>: Would you like a closer look?</p>
+<p><strong>sir wilfred</strong>: Don’t worry about me young people, save
+yourselves!</p>
+<p><strong>inspector roberts</strong>: Help!</p>
+</body>
+</html>

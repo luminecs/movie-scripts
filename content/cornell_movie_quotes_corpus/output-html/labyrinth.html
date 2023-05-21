@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>labyrinth</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="labyrinth">labyrinth</h1>
+<p><strong>girl</strong>: Is it you?</p>
+<p><strong>girl</strong>: Your Highness!</p>
+<p><strong>girl</strong>: Do not be swayed by my pleasure at the sight
+of you, my lord. For though my father, the Duke, has promised you my
+hand, I cannot consent to be yours until the evil that stalks our land
+from highest hill to deepest dale is …</p>
+<p><strong>girl</strong>: … from highest hill to deepest dale …
+Damn!</p>
+<p><strong>sarah</strong>: Get off me, you monster!!</p>
+<p><strong>sarah</strong>: If you value your mangy life, Merlin, you’ll
+hand it over.</p>
+<p><strong>sarah</strong>: Oh no, Merlin! We’re really late! Why does
+everything have to happen to me!!!?</p>
+<p><strong>sarah</strong>: It’s all your fault, you miserable mutt!!</p>
+<p><strong>mother</strong>: <em>Sarah</em>, where have you been?!!!</p>
+<p><strong>mother</strong>: You were supposed to be home an hour ago to
+baby-sit for Freddie! Don’t we at least deserve an explanation?</p>
+<p><strong>sarah</strong>: As Meander’s Queen, I’ve been … meandering.
+Dither me not about explanations.</p>
+<p><strong>father</strong>: What’s that all about?</p>
+<p><strong>mother</strong>: It’s a part in a play, but that’s no reason
+to…</p>
+<p><strong>sarah</strong>: Chasten not your Queen, <em>Peasant</em>!</p>
+<p><strong>father</strong>: <em>Sarah</em>, that’s no way to talk to
+your mother!</p>
+<p><strong>stepmother</strong>: <em>Sarah</em>, when I tell you to be
+home at five, I expect you to be home at five.</p>
+<p><strong>sarah</strong>: Yes, Madame!</p>
+<p><strong>stepmother</strong>: And don’t “Yes Madame” me!</p>
+<p><strong>father</strong>: Is she all right?</p>
+<p><strong>stepmother</strong>: Oh! I give up!</p>
+<p><strong>father</strong>: We’ll see you later, baby. And remember
+…</p>
+<p><strong>sarah &amp; father</strong>: Don’t open the door to
+strangers.</p>
+<p><strong>sarah</strong>: And don’t call me baby! Precious little
+Freddie might be coming down with a cold …</p>
+<p><strong>sarah</strong>: Do not be swayed by my pleasure at the sight
+of you, my Lord …</p>
+<p><strong>sarah</strong>: Where’s Lancelot?</p>
+<p><strong>sarah</strong>: Where’s my bear?!!</p>
+<p><strong>sarah</strong>: Nobody listens to a thing I say.</p>
+<p><strong>sarah</strong>: How many times have I told them to stay out
+of my room …</p>
+<p><strong>sarah</strong>: And you, you can just give me back my
+bear!</p>
+<p><strong>sarah</strong>: You’re the only one who understands me,
+Merlin.</p>
+<p><strong>sarah</strong>: Do not be swayed by my pleasure at the sight
+of you, my lord …</p>
+<p><strong>sarah</strong>: Go to sleep, Freddie!</p>
+<p><strong>sarah</strong>: Why does everything have to happen to me?</p>
+<p><strong>sarah</strong>: I don’t need this.</p>
+<p><strong>sarah</strong>: There, isn’t that nice …</p>
+<p><strong>sarah</strong>: Want your nice toy?</p>
+<p><strong>sarah</strong>: You know, Freddie, I heard that the only
+thing to do with a baby who won’t stop crying is to get some goblins to
+come over and teach him a lesson …</p>
+<p><strong>sarah</strong>: How would you like that, kid? A nasty evil
+goblin …</p>
+<p><strong>sarah</strong>: Oh, you like that, do you?</p>
+<p><strong>sarah</strong>: Ah, c’mon, Freddie. It was just a song.</p>
+<p><strong>man</strong>: Excuse me, is this the home of Sarah Williams …
+Sarah Williams, the actress?</p>
+<p><strong>sarah</strong>: That’s me.</p>
+<p><strong>man</strong>: Allow me to introduce myself … I’m Robin
+Zaker.</p>
+<p><strong>sarah</strong>: You wrote the play!</p>
+<p><strong>sarah</strong>: Just a second.</p>
+<p><strong>zakar</strong>: It is an honour, Miss Williams. I understand
+you make a delightful Queen Meander.</p>
+<p><strong>sarah</strong>: Well, we’ve just started rehearsal, but how
+did you know?</p>
+<p><strong>zakar</strong>: I was passing through this part of the
+country and heard that it was going to be done here. This is the first
+amateur production of the play, which of course is delightful for
+me.</p>
+<p><strong>sarah</strong>: You know we were supposed to open tonight,
+but we got delayed. The firemen had to use the hall.</p>
+<p><strong>zakar</strong>: Yes, I know, that’s why I wanted to stop by
+to see you.</p>
+<p><strong>sarah</strong>: That’s my brother …</p>
+<p><strong>sarah</strong>: I’ll be right back!</p>
+<p><strong>sarah</strong>: Oh, Freddie …</p>
+<p><strong>zakar</strong>: Perhaps I can soothe him …</p>
+<p><strong>sarah</strong>: You shouldn’t be up here!</p>
+<p><strong>sarah</strong>: Maybe you’d better leave …</p>
+<p><strong>sarah</strong>: … I, uh, don’t think I care to talk to you
+about the play.</p>
+<p><strong>zakar</strong>: Neither do I.</p>
+<p><strong>sarah</strong>: What!</p>
+<p><strong>zakar</strong>: I’m more concerned about the baby, of
+course.</p>
+<p><strong>sarah</strong>: Freddie’s just fine.</p>
+<p><strong>zakar</strong>: There, isn’t that better?</p>
+<p><strong>zakar</strong>: I’m not just a playwright, as you can see …
+bring him in here and I’ll do some other tricks for him …</p>
+<p><strong>sarah</strong>: No! You’ve got to …</p>
+<p><strong>zakar</strong>: Now watch this, Freddie …</p>
+<p><strong>zakar</strong>: So you’re going to be like that, are you,
+Freddie? Well, you know what that means?</p>
+<p><strong>zakar</strong>: It’s time to call the goblins!</p>
+<p><strong>sarah</strong>: What?!!</p>
+<p><strong>zakar</strong>: Yes. That’s what we do with bad babies … we
+send for the goblins!!</p>
+<p><strong>zakar</strong>: You like goblins, don’t’cha, Freddie? but I
+bet your sister doesn’t …</p>
+<p><strong>sarah</strong>: Where is it?!!!</p>
+<p><strong>zakar</strong>: It’s in there.</p>
+<p><strong>sarah</strong>: Impossible!</p>
+<p><strong>zakar</strong>: See for yourself.</p>
+<p><strong>sarah</strong>: How did you do that?!!</p>
+<p><strong>zakar</strong>: Magic.</p>
+<p><strong>sarah</strong>: Oh sure …</p>
+<p><strong>sarah</strong>: Where’s Freddie?!!</p>
+<p><strong>sarah</strong>: Freddie?</p>
+<p><strong>sarah</strong>: Where is he?!!</p>
+<p><strong>sarah</strong>: Who are you?!!!</p>
+<p><strong>zakar</strong>: I’ve been known by many names … but the one I
+prefer is <em>Jareth, King of the Goblins</em>!!!</p>
+<p><strong>sarah</strong>: I don’t believe this!</p>
+<p><strong>hoggle</strong>: An’ how’s me pride an’ joy!</p>
+<p><strong>hoggle</strong>: What is this? Look what you done! You
+murderer!</p>
+<p><strong>sarah</strong>: What are you saying, you horrible little
+man?!</p>
+<p><strong>hoggle</strong>: I ain’t horrible, I’m <em>Hoggle</em>. And
+just look! You’ve destroyed me prize blossoms!</p>
+<p><strong>hoggle</strong>: I’ll get ya for it, you big oaf!</p>
+<p><strong>sarah</strong>: Oh no you don’t! If anyone’s getting anything
+around here, it’s me … now where’ my brother?!!</p>
+<p><strong>hoggle</strong>: I ain’t sayin’ nothin’ ’til ye let me
+go!</p>
+<p><strong>sarah</strong>: I’m sorry. But this just hasn’t been my
+day.</p>
+<p><strong>hoggle</strong>: Ye ain’t the only one.</p>
+<p><strong>sarah</strong>: And I don’t understand any of this!</p>
+<p><strong>hoggle</strong>: Now where have I heard that before.</p>
+<p><strong>sarah</strong>: What do you mean?</p>
+<p><strong>hoggle</strong>: I mean, everyone who comes here thinkin’
+they can make it through the labyrinth says sumthin’ like … I don’t
+understand this, whatever am I doing here, how will I ever get home
+…</p>
+<p><strong>sarah</strong>: What makes you think I’m here to get through
+a labyrinth?</p>
+<p><strong>hoggle</strong>: Can’t think of any reason why you’d be
+standin’ here in front o’ this gate if you weren’t.</p>
+<p><strong>sarah</strong>: Oh, no! Not more goblins!</p>
+<p><strong>hoggle</strong>: That’s Jareth’s goblin army, and that other
+poor fool musta been caught meanderin’ where he had no business.</p>
+<p><strong>sarah</strong>: What will they do to him?</p>
+<p><strong>hoggle</strong>: I don’t like to think about things like
+that.</p>
+<p><strong>sarah</strong>: I wonder if things can get any worse?</p>
+<p><strong>hoggle</strong>: He’s taken sumthin’ o’ yours, ain’t he?</p>
+<p><strong>hoggle</strong>: Jareth, our high an’ mighty king …</p>
+<p><strong>hoggle</strong>: Bet he’s gone and taken sumthin’ you
+love.</p>
+<p><strong>hoggle</strong>: Baby snatchin’! That’s low.</p>
+<p><strong>sarah</strong>: So I’ve just got to do something!</p>
+<p><strong>hoggle</strong>: Like what?</p>
+<p><strong>sarah</strong>: Get Freddie back, of course!</p>
+<p><strong>hoggle</strong>: Then ya’d have ta make it through the
+labyrinth, ’cause Jareth’s castle is at its very center.</p>
+<p><strong>sarah</strong>: Is it difficult?</p>
+<p><strong>hoggle</strong>: Is me prize shrub crushed into oblivion?</p>
+<p><strong>sarah</strong>: Look, I’m sorry about your bush! But it’s not
+like I asked to have some weirdo come and take my baby brother and then
+drop me out of the sky!</p>
+<p><strong>hoggle</strong>: Well, I didn’t ask for some overgrown flower
+fairy to drop on me prized possession, neither!</p>
+<p><strong>sarah</strong>: Oh, this is ridiculous!</p>
+<p><strong>hoggle</strong>: That ain’t the only way in, ya know!</p>
+<p><strong>sarah</strong>: It’s not?!</p>
+<p><strong>hoggle</strong>: Course it ain’t. There’s many a route in …
+just only one way out.</p>
+<p><strong>sarah</strong>: Well show me one! I’ve got to find my
+brother!</p>
+<p><strong>hoggle</strong>: Information like that has a price …</p>
+<p><strong>sarah</strong>: I could give you this …</p>
+<p><strong>hoggle</strong>: I had sumthin’ o’ this caliber in mind …</p>
+<p><strong>sarah</strong>: No. My mother gave me that.</p>
+<p><strong>hoggle</strong>: She could give ya another …</p>
+<p><strong>sarah</strong>: No, she couldn’t. She lives real far away
+…</p>
+<p><strong>sarah</strong>: This is all you get.</p>
+<p><strong>hoggle</strong>: Bah! It’s paste!</p>
+<p><strong>sarah</strong>: No it’s not, it’s plastic.</p>
+<p><strong>sarah</strong>: What a beautiful little thing …</p>
+<p><strong>hoggle</strong>: Let me at it!</p>
+<p><strong>sarah</strong>: You murderer! How can you kill such beautiful
+creatures?!!</p>
+<p><strong>sarah</strong>: It bit me!</p>
+<p><strong>hoggle</strong>: Of course it bit ya! There’s nuthin’ more
+vicious than a flower fairy. Any fool knows that!</p>
+<p><strong>hoggle</strong>: I got a feelin’ I’m gonna regret this. Come
+with me an’ I’ll show ya a way in.</p>
+<p><strong>hoggle</strong>: This’ll take ya into the maze, that’s the
+first part of the labyrinth …</p>
+<p><strong>sarah</strong>: The first part! What comes after that?</p>
+<p><strong>hoggle</strong>: Then there’s the Garden Maze, then the
+Forbidden Forest …</p>
+<p><strong>sarah</strong>: That sounds inviting …</p>
+<p><strong>sarah</strong>: Wait! Wait! I can’t hear you …</p>
+<p><strong>hoggle</strong>: … then comes the castle …</p>
+<p><strong>hoggle</strong>: … that’s surely where Jareth’s keepin’ the
+babe …</p>
+<p><strong>hoggle</strong>: Ya don’t seem ta be able ta do nuthin’
+without my help, do ya?</p>
+<p><strong>sarah</strong>: Oh, I think I can handle it. In fact, this
+place doesn’t seem so bad at all.</p>
+<p><strong>face</strong>: Go back! Go back before it’s too late!</p>
+<p><strong>face 2</strong>: Turn back while you still can!!</p>
+<p><strong>sarah</strong>: Hoggle!</p>
+<p><strong>sarah</strong>: Oh, I’m so glad you’re still here! They were
+horrible …</p>
+<p><strong>hoggle</strong>: You don’t mean the False Alarms, do ya?</p>
+<p><strong>hoggle</strong>: If ya gonna let a little thing like them
+scare ya, Missy, ya haven’t a hope o’ makin’ it to the castle.</p>
+<p><strong>sarah</strong>: False Alarms?</p>
+<p><strong>face 1</strong>: This is the path of no return!</p>
+<p><strong>face 2</strong>: Beware! Beware!</p>
+<p><strong>hoggle</strong>: Just ignore ’em.</p>
+<p><strong>sarah</strong>: Are you sure?</p>
+<p><strong>face 3</strong>: Abandon all hope …</p>
+<p><strong>hoggle</strong>: Oh, shut up, will ya?</p>
+<p><strong>face 3</strong>: But I was just getting to the best part!</p>
+<p><strong>hoggle</strong>: All right. But don’t expect us to pay any
+attention.</p>
+<p><strong>face 3</strong>: Come back any time … I mean, you’re doomed,
+doomed!</p>
+<p><strong>hoggle</strong>: Ya see, things aren’t always what they
+appear to be around here, Missy …</p>
+<p><strong>hoggle</strong>: I admire yer determination, but it takes
+more’n that to beat Jareth.</p>
+<p><strong>sarah</strong>: Well, maybe I’m beginning to get the hang of
+this labyrinth business.</p>
+<p><strong>sarah</strong>: See, now I’ll know which way we came in case
+I get lost.</p>
+<p><strong>sarah</strong>: Look, Hoggle! I’ve got to find Freddie and I
+don’t need you to discourage me!</p>
+<p><strong>hoggle</strong>: And I don’t need to be wastin’ me time goin’
+around in circles with you!</p>
+<p><strong>sarah</strong>: That’s fine with me! I know you’re only after
+my ring, anyway!</p>
+<p><strong>brickkeeper</strong>: Some people got no respect for
+property!</p>
+<p><strong>sarah</strong>: But …</p>
+<p><strong>sarah</strong>: … but you were just behind me! I’m sure of
+it!</p>
+<p><strong>sarah</strong>: My mark! It was right here!</p>
+<p><strong>hoggle</strong>: I told ya, Missy. Things aren’t what they
+appear to be around here …</p>
+<p><strong>jareth</strong>: Except when they are.</p>
+<p><strong>jareth</strong>: We meet again … Sarah.</p>
+<p><strong>sarah</strong>: Where’s Freddie?!! What have you done with
+him!?</p>
+<p><strong>jareth</strong>: Nothing … yet.</p>
+<p><strong>jareth</strong>: And what have we here … Hoghead, isn’t
+it?</p>
+<p><strong>hoggle</strong>: Me name’s Hoggle.</p>
+<p><strong>jareth</strong>: Ah, yes. Now I remember. You’re the greedy
+little coward who lives outside the gate. Shouldn’t you be back there
+minding your own business … Hedgehog?</p>
+<p><strong>sarah</strong>: Why, why don’t you pick on someone your own
+size?</p>
+<p><strong>jareth</strong>: Whom did you have in mind?</p>
+<p><strong>sarah</strong>: I don’t have time for any games. I want
+Freddie, and I want him now!</p>
+<p><strong>jareth</strong>: Ah, Freddie. An adorable little imp. I’m
+really growing rather fond of him.</p>
+<p><strong>sarah</strong>: Where is he?!!</p>
+<p><strong>jareth</strong>: He’s in my castle, and seems to be enjoying
+himself immensely.</p>
+<p><strong>jareth</strong>: In fact, he likes being with goblins so
+much, I’m considering turning him into one.</p>
+<p><strong>sarah</strong>: You can’t do that!</p>
+<p><strong>sarah</strong>: Can he?</p>
+<p><strong>jareth</strong>: But let’s make it interesting. I won’t do it
+for … thirteen hours. If you make it to the castle before then you might
+be able to save him. If not, well, I think little Freddie will mike an
+adorable goblin prince, don’t you?</p>
+<p><strong>worm</strong>: Well, good riddance to bad rubbish!</p>
+<p><strong>worm</strong>: That’s what the missus always says, she does.
+Why the last time she found that one around here she sent him
+packing.</p>
+<p><strong>sarah</strong>: Jareth?!</p>
+<p><strong>worm</strong>: She don’t take to his kind of nonsense, that’s
+for sure. Now, how about a nice cup of tea? The missus has a kettle
+on.</p>
+<p><strong>sarah</strong>: Do you think Jareth will give Freddie back if
+I make it on time?</p>
+<p><strong>hoggle</strong>: It’s hard to say, Missy. But if I were you,
+I’d worry ’bout first things first.</p>
+<p><strong>sarah</strong>: What do you mean?</p>
+<p><strong>hoggle</strong>: I means ya got ta find the castle before ya
+can go savin’ the babe and I mean ta see that ya do!</p>
+<p><strong>sarah</strong>: Oh, Hoggle! Thank you, thank you so much!</p>
+<p><strong>hoggle</strong>: Seems to me I could be gettin’ that ring
+from ya after all if I plays me cards right.</p>
+<p><strong>sarah</strong>: I know you don’t mean that. You’re helping me
+because you’re really nice.</p>
+<p><strong>hoggle</strong>: I ain’t nice! I just likes the way ya stood
+up ta him is all. Too bad more’ve us haven’t had the guts to do the
+same.</p>
+<p><strong>worm</strong>: How about a biscuit? The missus just took a
+fresh batch out of the oven.</p>
+<p><strong>sarah</strong>: Thanks, but we really don’t have any time.
+We’ve got to get to the castle.</p>
+<p><strong>hoggle</strong>: Ya wouldn’t happen to know a shortcut, would
+ya?</p>
+<p><strong>worm</strong>: Well, you might try taking that first
+left.</p>
+<p><strong>sarah</strong>: But there isn’t any left turn.</p>
+<p><strong>worm</strong>: See, there’s a left turn right there, where
+that Wise One just came in.</p>
+<p><strong>sarah</strong>: A Wise One! Maybe he knows the best way to
+the castle!</p>
+<p><strong>hoggle</strong>: I wouldn’t bet on it.</p>
+<p><strong>sarah</strong>: Excuse me, Sir. Could you tell us the best
+way to get to the castle?</p>
+<p><strong>wise one</strong>: The best way to the castle, hmmm. I’m glad
+you asked that question.</p>
+<p><strong>hat</strong>: Now you’ve done it, gone and asked him a
+question. We’ll be here all day!</p>
+<p><strong>wise one</strong>: A castle, or fortress, or as it is
+sometimes known, a stronghold or citadel – or, that which has a turret
+and barbican, but usually not a portcullis …</p>
+<p><strong>hat</strong>: What did I tell you? There’s no stopping him
+now.</p>
+<p><strong>wise one</strong>: … often there is a rampart or bulwark, and
+then a parapet – perchance an actual vallum or counterscarp …</p>
+<p><strong>hat</strong>: Shut up down there!</p>
+<p><strong>wise one</strong>: … and for entrenchment; a moat, drawbridge
+and sally-port …</p>
+<p><strong>sarah</strong>: This was not one of my better ideas.</p>
+<p><strong>hat</strong>: Well, I told you that, didn’t I? But nobody
+ever listens to me!</p>
+<p><strong>hat</strong>: Enough! Nobody cares!!</p>
+<p><strong>wise one</strong>: Did one of you say something?</p>
+<p><strong>sarah</strong>: Oh, no. We never talk to strangers.</p>
+<p><strong>wise one</strong>: That’s very wise. An idea worth
+savoring.</p>
+<p><strong>hoggle</strong>: Yeah, but keep it under your hat!</p>
+<p><strong>hat</strong>: Ve-ry funny!</p>
+<p><strong>wise one</strong>: The stranger, hmm. I’m glad you brought
+that up. The stranger; one not indigenous, also known as the alien, or
+one from beyond the sea …</p>
+<p><strong>sarah</strong>: How did he do that?!!</p>
+<p><strong>hoggle</strong>: And how can we make sure he doesn’t come
+back?</p>
+<p><strong>worm</strong>: Just go over to that bit of wall there and
+walk right through it. The important thing is to forget what you think
+you know. It doesn’t apply around here.</p>
+<p><strong>sarah</strong>: Thank you! And tell the missus we’re sorry we
+missed her biscuits!</p>
+<p><strong>sarah</strong>: Come on, Hoggle. Let’s go!</p>
+<p><strong>female goblin</strong>: Remember! It’s bow and scrape … bow
+and scrape …</p>
+<p><strong>jareth</strong>: Well, what is it?</p>
+<p><strong>stupid goblin</strong>: … bow ’n scrape … bow ’n scrape …</p>
+<p><strong>jareth</strong>: I said, what is it?!!!</p>
+<p><strong>stupid goblin</strong>: Th … the girl and Hoggle, sire. Th …
+they’re halfway th …. through th … the maze.</p>
+<p><strong>jareth</strong>: I think it’s time they had some company.</p>
+<p><strong>armed goblin</strong>: Yes, Sir!</p>
+<p><strong>jareth</strong>: You’ll make a much better goblin than that,
+won’t you, Freddie!</p>
+<p><strong>sarah</strong>: Are you sure Jareth can turn Freddie into a
+goblin? I mean, that’s really weird …</p>
+<p><strong>sarah</strong>: What is it?</p>
+<p><strong>sarah</strong>: Come on!</p>
+<p><strong>goblin 1</strong>: I can kill better than you can.</p>
+<p><strong>goblin 2</strong>: But I’m better at maiming. Everybody says
+so.</p>
+<p><strong>sarah</strong>: Do you think they’re gone?</p>
+<p><strong>hoggle</strong>: Sure they are. Goblins ain’t known fer their
+intelligence, ya know. They has as much trouble findin’ their way
+through the maze as you do.</p>
+<p><strong>sarah</strong>: I’m not sure, but I think you just called me
+stupid …</p>
+<p><strong>sarah</strong>: That’ll be a nice change.</p>
+<p><strong>hoggle</strong>: This place is the end o’ the maze! That
+means we’re near the entrance ta the second ring o’ the labyrinth.</p>
+<p><strong>sarah</strong>: The second ring? What’s that?</p>
+<p><strong>hoggle</strong>: Don’t know, I ain’t never made it this far
+before.</p>
+<p><strong>hoggle</strong>: Now don’t go gettin’ all girly on me, Missy,
+now that we’s finally safe …</p>
+<p><strong>sarah</strong>: So you think we’re safe, do you?</p>
+<p><strong>sarah</strong>: Then tell me what you think of that.</p>
+<p><strong>sarah</strong>: Come on!</p>
+<p><strong>sarah</strong>: Hoggle, hurry!</p>
+<p><strong>sarah</strong>: None of the keys work!</p>
+<p><strong>hoggle</strong>: Why don’t you just try it?</p>
+<p><strong>sarah</strong>: It’s open! Hog …</p>
+<p><strong>sarah</strong>: Only 9 hours left!</p>
+<p><strong>sarah</strong>: Hoggle!</p>
+<p><strong>hoggle</strong>: Missy! Over here! This is the way to the
+castle!</p>
+<p><strong>sarah</strong>: What happened to you? I was afraid I’d never
+see you again!</p>
+<p><strong>hoggle</strong>: Ya know that trick with the wall? Damn, if
+it don’t work with the floor, as well!</p>
+<p><strong>sarah</strong>: An hour’s gone by and I don’t think we’re
+more than four feet from where we started.</p>
+<p><strong>hoggle</strong>: That’s ‘cause ya won’t do what I tells ya.
+It’s clear as day we should be goin’ this way …</p>
+<p><strong>sarah</strong>: Got any more suggestions?</p>
+<p><strong>sarah</strong>: It sounds like it came from over there!</p>
+<p><strong>hoggle</strong>: Then let’s go this way.</p>
+<p><strong>sarah</strong>: Hoggle! It sounds like someone’s being
+hurt!</p>
+<p><strong>hoggle</strong>: Exactly why we should be headin’ in the
+othermost direction!</p>
+<p><strong>sarah</strong>: The poor thing!</p>
+<p><strong>blinded goblin</strong>: Hey! Who turned out the lights?</p>
+<p><strong>sarah</strong>: Get out here, you coward!</p>
+<p><strong>ludo</strong>: Ludo … hurt.</p>
+<p><strong>sarah</strong>: Is that your name? Ludo?</p>
+<p><strong>ludo</strong>: Goblins … mean to Ludo.</p>
+<p><strong>sarah</strong>: Oh, I know! They were terribly mean to you.
+But it’s all right now.</p>
+<p><strong>ludo</strong>: Friend!</p>
+<p><strong>sarah</strong>: That’s right, Ludo! I’m your friend. I’m
+Sarah.</p>
+<p><strong>ludo</strong>: Sarah … friend!</p>
+<p><strong>hoggle</strong>: I think I’m about ta be sick.</p>
+<p><strong>hoggle</strong>: I hope yer not thinkin’ o’ lettin’ the beast
+traipse along, Missy. He’ll just slow us up.</p>
+<p><strong>sarah</strong>: Are you kidding?! He’ll be a great help! The
+goblins are scared of him because he’s so fierce …</p>
+<p><strong>hoggle</strong>: I just thinks we was doin’ fine on our
+own.</p>
+<p><strong>sarah</strong>: And we can do even better with Ludo. You want
+to help me save my baby brother, don’t you, Ludo?</p>
+<p><strong>ludo</strong>: Save … baby. Good!</p>
+<p><strong>hoggle</strong>: This is it, the entrance ta the Forbidden
+Forest. All we gotta do is pick a door …</p>
+<p><strong>sarah</strong>: What difference does it make? Let’s just
+go!</p>
+<p><strong>ludo</strong>: One door … good. One door … bad.</p>
+<p><strong>hoggle</strong>: Well, that’s great news. Don’t suppose ya
+know which is which?</p>
+<p><strong>ludo</strong>: One door … good. One door …</p>
+<p><strong>hoggle</strong>: All right, ya walkin’ mountain! Ya made ya
+point.</p>
+<p><strong>knocker 1</strong>: Are you addressing me?</p>
+<p><strong>sarah</strong>: You can talk!</p>
+<p><strong>knocker 1</strong>: What? What? You’ll have to speak up!!</p>
+<p><strong>knocker 2</strong>: mmffn … grnth … sminvl …</p>
+<p><strong>sarah</strong>: You too!</p>
+<p><strong>knocker 2</strong>: … gmft … bmble …</p>
+<p><strong>hoggle</strong>: If yer so smart why not show us another way
+inta the forest?</p>
+<p><strong>ludo</strong>: Ludo … not … know.</p>
+<p><strong>hoggle</strong>: That figures, don’t it? Why the Missy wants
+an overgrown hill o’ hair fer a friend is beyond me.</p>
+<p><strong>sarah</strong>: I love it! Talking doors!! Are you the right
+door to the forest?</p>
+<p><strong>knocker 1</strong>: It doesn’t do to ask me. For some reason
+I can’t hear a thing.</p>
+<p><strong>knocker 1</strong>: No use asking him, either. All he does is
+mumble.</p>
+<p><strong>knocker 2</strong>: thgt … vrnf … lcl …</p>
+<p><strong>sarah</strong>: I get it! You can’t talk with that ring in
+your mouth!</p>
+<p><strong>sarah</strong>: Now, tell me which one of you is the right
+door to the forest.</p>
+<p><strong>knocker 2</strong>: Oh, I am. No question about it.</p>
+<p><strong>sarah</strong>: Great! How do we get you to open up?</p>
+<p><strong>knocker 2</strong>: One merely has to knock.</p>
+<p><strong>sarah</strong>: Of course, why didn’t I think of that.</p>
+<p><strong>knocker 2</strong>: Oh no you don’t, young lady! I’ve had
+just about enough of that awful thing, thank you very much!</p>
+<p><strong>sarah</strong>: But how are we supposed to get through this
+door if you won’t let me knock on it?</p>
+<p><strong>knocker 2</strong>: Well, I really couldn’t say now, could
+I?</p>
+<p><strong>knocker 1</strong>: Oh do speak up, both of you? I can’t hear
+a thing!</p>
+<p><strong>ludo</strong>: Ludo … Stay!</p>
+<p><strong>hoggle</strong>: Yer quite the speechifier, ain’t ya?</p>
+<p><strong>sarah</strong>: Are you sure there isn’t anything I can do to
+change your mind?</p>
+<p><strong>knocker 2</strong>: Absolutely not! My lips are sealed!</p>
+<p><strong>sarah</strong>: That’s what I thought!</p>
+<p><strong>sarah</strong>: Let’s go!</p>
+<p><strong>hoggle</strong>: Now you’ve done it!</p>
+<p><strong>hoggle</strong>: Missy! Missy, wait!</p>
+<p><strong>hoggle</strong>: I’m coming …</p>
+<p><strong>ludo</strong>: Sarah … gone. Hoggle … gone.</p>
+<p><strong>ludo</strong>: Wait!</p>
+<p><strong>hat</strong>: This ought to be a good one!</p>
+<p><strong>ludo</strong>: Ludo … need … door!</p>
+<p><strong>wise one</strong>: You have need of a door, do you? Ah, yes.
+A very useful thing, the door; also known as a portal or threshold – and
+that which gives access, a gate or gangway …</p>
+<p><strong>wise one</strong>: … also an entrance or entry, often
+accompanied by a propylaeum …</p>
+<p><strong>wise one</strong>: … not to be confused with a window, or
+fenestration …</p>
+<p><strong>sarah</strong>: Hoggle, Ludo … where are you?</p>
+<p><strong>sarah</strong>: Oh, Freddie! Well, you guys are going to have
+to catch up with me ’cause I can’t wait.</p>
+<p><strong>hoggle</strong>: Somebody help me! I can’t swim!</p>
+<p><strong>sarah</strong>: Why does everything have to happen to me?</p>
+<p><strong>wild thing 1</strong>: We’re Wild Things, baby! Wild!</p>
+<p><strong>wild thing 2</strong>: Wild and free!</p>
+<p><strong>wild thing 3</strong>: Get down!</p>
+<p><strong>wild thing 1</strong>: You call that wild! I’ll show you
+wild!</p>
+<p><strong>wild thing 2</strong>: Cut me some slack and move on
+back!</p>
+<p><strong>wild thing 2</strong>: Snake eyes!</p>
+<p><strong>wild thing 3</strong>: That’s it, baby, get wild and free!
+But you’ll never be as wild as me!</p>
+<p><strong>wild thing 1</strong>: I wouldn’t call that really
+<em>wild</em>, would you?</p>
+<p><strong>sarah</strong>: Well, it’s … uh … sort of …</p>
+<p><strong>wild thing 1</strong>: I’d call <em>this</em> wild …</p>
+<p><strong>wild thing 2</strong>: That was <em>wild</em>, baby. Now how
+‘bout gettin’ wild with me?</p>
+<p><strong>sarah</strong>: I think I’ll sit this one out …</p>
+<p><strong>wild thing 1</strong>: Not with us you don’t …</p>
+<p><strong>wild thing 2</strong>: ’Cause we’re <em>wild</em>!</p>
+<p><strong>sarah</strong>: Enough! I’ve got to find the castle!</p>
+<p><strong>wild thing 2</strong>: Well, why didn’t you say so, baby!</p>
+<p><strong>wild thing 3</strong>: That’s a <em>wild</em> idea!</p>
+<p><strong>wild thing 1</strong>: They got some wild goings on at the
+castle, baby!</p>
+<p><strong>jareth</strong>: Well, what have we here … if it isn’t little
+<em>Piggle</em>!</p>
+<p><strong>jareth</strong>: Did the girl decide she doesn’t need you,
+now that she has that beast?</p>
+<p><strong>jareth</strong>: Don’t you know she could never care for a
+repulsive thing like you!</p>
+<p><strong>hoggle</strong>: She does care! Me ’n Sarah is friends!</p>
+<p><strong>jareth</strong>: Only until something better comes along …
+and I’ve definitely got something better in mind!</p>
+<p><strong>hoggle</strong>: Don’t you hurt her!</p>
+<p><strong>jareth</strong>: What I do to her is my business … and it is
+<em>inevitable</em>.</p>
+<p><strong>jareth</strong>: You can be with me or against me.</p>
+<p><strong>jareth</strong>: I doubt if she can make it to the castle in
+time …</p>
+<p><strong>jareth</strong>: But just in case, I want you to deliver her
+to me.</p>
+<p><strong>hoggle</strong>: Never! I’d rather die!</p>
+<p><strong>jareth</strong>: Then so you shall.</p>
+<p><strong>hoggle</strong>: Wait!</p>
+<p><strong>hoggle</strong>: I gotta know what … what you’ll do to
+her!</p>
+<p><strong>jareth</strong>: I will do what ever amuses me …</p>
+<p><strong>jareth</strong>: All <em>you</em> have to do is give her
+this.</p>
+<p><strong>jareth</strong>: You’ve made a very wise decision.</p>
+<p><strong>hoggle</strong>: I didn’t decide nuthin’!</p>
+<p><strong>sarah</strong>: Are you sure this is the way to the
+castle?</p>
+<p><strong>wild thing 1</strong>: Oh, did you say “the castle”?</p>
+<p><strong>wild thing 2</strong>: I thought she said hassle!</p>
+<p><strong>wild thing 3</strong>: I thought she said rassle!</p>
+<p><strong>wild thing 1</strong>: Rassle! That’s a <em>wild</em>
+idea!</p>
+<p><strong>sarah</strong>: OK, guys, fun’s over.</p>
+<p><strong>wild thing 2</strong>: Over! It’s just begun!</p>
+<p><strong>wild things 1, 2 &amp; 3</strong>: Now this is
+<em>really</em> wild!</p>
+<p><strong>wise one</strong>: … very often preceded by a porch, or
+portico, also verandah, and followed by a vestibule, otherwise known as
+an antechamber or foyer …</p>
+<p><strong>hat</strong>: Why me?!!</p>
+<p><strong>sarah</strong>: Ludo!</p>
+<p><strong>ludo</strong>: Sarah … not … want … castle?</p>
+<p><strong>sarah</strong>: Are you kidding?!! Get me out of here!!!</p>
+<p><strong>wild thing 3</strong>: Hey, big fella! That’s a little
+<em>too</em> wild …</p>
+<p><strong>sarah</strong>: Oh, Ludo! I’m so glad you’re here!</p>
+<p><strong>sarah</strong>: Where’s Hoggle?</p>
+<p><strong>ludo</strong>: Hoggle … in … bad … door.</p>
+<p><strong>sarah</strong>: We’ve got to find him! Do you think we
+can?</p>
+<p><strong>ludo</strong>: Ludo … knows … doors …</p>
+<p><strong>ludo</strong>: also … portal … or entrance …</p>
+<p><strong>ludo</strong>: Hoggle … all … wet.</p>
+<p><strong>hoggle</strong>: Ain’t that the clever observation, ya feeble
+excuse fer a thinkin’ creature!</p>
+<p><strong>sarah</strong>: Be nice, Hoggle. Or we won’t get you out.</p>
+<p><strong>hoggle</strong>: Missy!</p>
+<p><strong>sarah</strong>: It doesn’t look too strong but we don’t have
+much choice …</p>
+<p><strong>voice</strong>: Halt! Halt or be slain forthwith!</p>
+<p><strong>hoggle</strong>: Out of our way, ya wretched little rodent
+…</p>
+<p><strong>didymus</strong>: You, sir, shall be the first to feel the
+point of my sword!</p>
+<p><strong>sarah</strong>: Please, we really have to cross this bridge.
+It’s a matter of life and death!</p>
+<p><strong>didymus</strong>: Under any other circumstances I would
+hasten to oblige you, fair damsel, for your mission sounds a worthy
+one.</p>
+<p><strong>sarah</strong>: Oh, it is!</p>
+<p><strong>didymus</strong>: But I am sworn. Without my permission, none
+may pass.</p>
+<p><strong>didymus</strong>: You dishonor me, varlets! En garde!</p>
+<p><strong>didymus</strong>: Rapscallions! Duel … or <em>die</em>!</p>
+<p><strong>hoggle</strong>: What <em>is</em> this weasel babblin’
+about?</p>
+<p><strong>didymus</strong>: It is you I want, rogue of rogues. You who
+dealt me the gravest affront!</p>
+<p><strong>didymus</strong>: I no longer wish to slay you, for you are a
+truly noble knight.</p>
+<p><strong>didymus</strong>: Destroy me if you will.</p>
+<p><strong>didymus</strong>: Never have I met my match in battle, yet
+you, noble knight, have fought me to a standstill.</p>
+<p><strong>didymus</strong>: Let us be brothers henceforth, and fight
+for the right as one!</p>
+<p><strong>ludo</strong>: Ludo … get … brother!</p>
+<p><strong>sarah</strong>: Well, now that that’s settled let’s get
+going.</p>
+<p><strong>didymus</strong>: You forget my sacred vow, my lady. I cannot
+let you pass.</p>
+<p><strong>sarah</strong>: But you said Ludo was your brother! How can
+you refuse him?!!</p>
+<p><strong>didymus</strong>: I have taken an oath. I must defend it to
+the death.</p>
+<p><strong>hoggle</strong>: Some brother he turned out ta be!</p>
+<p><strong>ludo</strong>: Brother … good!</p>
+<p><strong>hoggle</strong>: Well, if he’s so good, why won’t he let us
+get on with our business?</p>
+<p><strong>sarah</strong>: OK, let’s handle this thing logically. What
+exactly have you sworn?</p>
+<p><strong>didymus</strong>: I have sworn with my life-blood, no one
+shall pass this way without my permission.</p>
+<p><strong>sarah</strong>: Then may we … <em>have your
+permission</em>?</p>
+<p><strong>didymus</strong>: Yes.</p>
+<p><strong>sarah</strong>: Thank you.</p>
+<p><strong>sarah</strong>: Oh no!</p>
+<p><strong>hoggle</strong>: Now see what ya done, ya mush-brained
+mammoth!</p>
+<p><strong>didymus</strong>: I, Sir Didymus, take responsibility for the
+actions of my brother, my lady. Lash out at me if you must.</p>
+<p><strong>sarah</strong>: I’m not mad at Ludo, Sir Didymus. I’m just
+upset because time is running out and I have to rescue my baby
+brother.</p>
+<p><strong>didymus</strong>: You mean to rescue <em>a child</em>?!!</p>
+<p><strong>sarah</strong>: The goblin king took him, and I’ve only got
+…</p>
+<p><strong>sarah</strong>: … five hours to get him back.</p>
+<p><strong>didymus</strong>: Is this your quest, too, my brother?</p>
+<p><strong>ludo</strong>: Save … baby.</p>
+<p><strong>didymus</strong>: Then I shall join you, lady. I am at your
+service, upon my sword.</p>
+<p><strong>sarah</strong>: I happily accept your fealty, Sir
+Didymus.</p>
+<p><strong>hoggle</strong>: This is all well an’ good, Missy. But we
+still got one little problem.</p>
+<p><strong>ludo</strong>: Ludo … friends.</p>
+<p><strong>hoggle</strong>: Yes, yes. We’re friends. Very nice. What’s
+that got ta do with us gettin’ over there without a bridge?</p>
+<p><strong>ludo</strong>: Rocks … friends.</p>
+<p><strong>hoggle</strong>: We’re wastin’ our time, Missy. Let’s you an’
+me go find another …</p>
+<p><strong>ludo</strong>: Rocks … friends!</p>
+<p><strong>sarah</strong>: It’s …</p>
+<p><strong>didymus</strong>: Ambrosius! My noble steed.</p>
+<p><strong>didymus</strong>: What will you do after we save the child,
+my lady?</p>
+<p><strong>sarah</strong>: Take him home, of course! That is, if I can
+figure out how.</p>
+<p><strong>didymus</strong>: What is your kingdom like? Do you have many
+knights to defend your honor?</p>
+<p><strong>sarah</strong>: Not even one.</p>
+<p><strong>didymus</strong>: It cannot be! What bitter place is this
+that does such dishonor to my lady?</p>
+<p><strong>sarah</strong>: It’s a place where … where nobody really sees
+me.</p>
+<p><strong>ludo</strong>: Ludo … see … Sarah!</p>
+<p><strong>sarah</strong>: I know you do, Ludo. And thanks to you, Sir
+Didymus, I finally have a knight.</p>
+<p><strong>sarah</strong>: Don’t you feel like resting?</p>
+<p><strong>hoggle</strong>: I ain’t tired.</p>
+<p><strong>sarah</strong>: Me neither. What I am is hungry.</p>
+<p><strong>sarah</strong>: They’re both wonderful, aren’t they?</p>
+<p><strong>hoggle</strong>: They’re alright.</p>
+<p><strong>sarah</strong>: They’re more than that! They’re loyal and
+strong … and with their help I’m going to beat Jareth!</p>
+<p><strong>sarah</strong>: And yours, too, of course.</p>
+<p><strong>hoggle</strong>: I ain’t no fighter …</p>
+<p><strong>hoggle</strong>: Missy … if you’re hungry …</p>
+<p><strong>sarah</strong>: Oh, great!</p>
+<p><strong>sarah</strong>: Even the stars are dancing!</p>
+<p><strong>jareth</strong>: Little goblin-to-be, I have something to
+amuse you.</p>
+<p><strong>jareth</strong>: Soon, little one. Very, very soon …</p>
+<p><strong>hoggle</strong>: Damn you, Jareth! And damn me too!</p>
+<p><strong>jareth</strong>: You look like a queen.</p>
+<p><strong>sarah</strong>: I … I feel like … I … don’t know what I feel
+…</p>
+<p><strong>sarah</strong>: Are we … are we in a bubble?</p>
+<p><strong>jareth</strong>: Yes, we are. A dream bubble … where your
+dreams can come true.</p>
+<p><strong>junk woman</strong>: ’Ere it is, Dearie. All the fings you
+want, all the fings you need.</p>
+<p><strong>sarah</strong>: What a dream!</p>
+<p><strong>sarah</strong>: Yep, you’ve got quite an imagination, kid,
+Just what a great actress needs.</p>
+<p><strong>sarah</strong>: How about a midnight snack, Sir Lance …</p>
+<p><strong>sarah’s pov - the market/junkyard teeming with
+activity.</strong>: The JUNK WOMAN peers in.</p>
+<p><strong>junk woman</strong>: ‘Aven’t you got everythin’ you need,
+Dearie?</p>
+<p><strong>sarah</strong>: It <em>is</em> just a dream!</p>
+<p><strong>junk woman</strong>: Best to stay in there, where it’s safe,
+Dearie. Don’t know what might ’appen to you out ’ere.</p>
+<p><strong>old sarah</strong>: Best to stay in here where it’s safe.
+Don’t know what might happen to you out there.</p>
+<p><strong>sarah</strong>: Help! Somebody help me!</p>
+<p><strong>hoggle</strong>: Another!</p>
+<p><strong>didymus</strong>: Did you see a noble maiden pass this
+way?</p>
+<p><strong>junk woman</strong>: A noble maiden, eh? What would she be
+doin’ in a place like this?</p>
+<p><strong>didymus</strong>: She’s on a rescue mission …</p>
+<p><strong>junk woman</strong>: A rescue mission, ha! You’re in the
+wrong place, for sure! The only fings we cares about rescuin’ around
+’ere is our worldly goods!</p>
+<p><strong>sarah</strong>: Didymus, in here! Help me!</p>
+<p><strong>junk woman</strong>: Don’t worry, Dearie. I sent ’im
+away!</p>
+<p><strong>junk woman</strong>: Knew you wouldn’t want to be leavin’
+your nice fings for no rescue mission.</p>
+<p><strong>sarah</strong>: Oh my god! Freddie!</p>
+<p><strong>junk woman</strong>: Freddie? Is that one of them dolls over
+there … or that nice teddy?</p>
+<p><strong>sarah</strong>: No! He’s my brother! And I’ve got to save
+him!</p>
+<p><strong>junk woman</strong>: No you don’t, Dearie. You can stay right
+’ere with all your pretty fings …</p>
+<p><strong>sarah</strong>: I know I can. But I don’t want to!</p>
+<p><strong>sarah</strong>: Now get out of my way!</p>
+<p><strong>junk woman</strong>: Wait, Dearie! Look at this!</p>
+<p><strong>jareth</strong>: Damn.</p>
+<p><strong>didymus</strong>: My lady!</p>
+<p><strong>ludo</strong>: Sarah … safe!</p>
+<p><strong>didymus</strong>: Is Hoggle not with you?</p>
+<p><strong>sarah</strong>: Hoggle made his choice, he’s … not part of
+the mission anymore.</p>
+<p><strong>ludo</strong>: Hoggle … good!</p>
+<p><strong>sarah</strong>: Maybe. But there’s no time to discuss it.
+We’ve got a baby to rescue, remember!</p>
+<p><strong>didymus</strong>: Methinks they are expecting us, my
+lady.</p>
+<p><strong>bartender</strong>: Another?</p>
+<p><strong>bartender</strong>: Plastic!</p>
+<p><strong>hat</strong>: Drinkin’ to forget, eh, buddy?</p>
+<p><strong>wise one</strong>: To forget, ah yes. To suffer a mental
+lapse, to obliterate from one’s consciousness, to suffer amnesia, a
+blank or fugue, to drink the waters of Lethe …</p>
+<p><strong>wise one</strong>: The waters of forgetfulness. They remove
+from our minds what is too painful to remember …</p>
+<p><strong>wise one</strong>: … but with the memory goes our wisdom, or
+knowledge, that which brings us understanding, also enlightenment …</p>
+<p><strong>hat</strong>: You can cool it down there … he’s gone …</p>
+<p><strong>wise one</strong>: … a grasp of things, a depth or profundity
+of thought …</p>
+<p><strong>hat</strong>: Another one over here … and make it a double
+…</p>
+<p><strong>sarah</strong>: We’re going to make it!</p>
+<p><strong>didymus</strong>: I am less than sure …</p>
+<p><strong>sarah</strong>: I think we lost them.</p>
+<p><strong>didymus</strong>: What do you see, my brother?</p>
+<p><strong>ludo</strong>: Ludo … see … trouble!</p>
+<p><strong>sarah</strong>: Call the rocks, Ludo! Call the rocks!</p>
+<p><strong>hoggle</strong>: ” … it’s so cold in the night with no gold
+to keep me warm … ”</p>
+<p><strong>guard</strong>: Who goes there?</p>
+<p><strong>guard 2</strong>: Don’t worry about him. He’s on Jareth’s
+payroll now.</p>
+<p><strong>hoggle</strong>: Thash right. Jareth owes me sumthin’ … an’
+I’m here ta collect …</p>
+<p><strong>ludo</strong>: Nice … thing …</p>
+<p><strong>didymus</strong>: I fear that this means trouble.</p>
+<p><strong>sarah</strong>: Run for it!</p>
+<p><strong>sarah</strong>: Only a half hour left! We’ve got to find
+Freddie!</p>
+<p><strong>sarah</strong>: Hoggle!</p>
+<p><strong>sarah</strong>: That’s the only way he could have gone!</p>
+<p><strong>sarah</strong>: No. I have to face him alone!</p>
+<p><strong>didymus</strong>: But, my lady …</p>
+<p><strong>hoggle</strong>: I don’t expect ya to fergive me, Missy, but
+…</p>
+<p><strong>sarah</strong>: Forgive you for what? Saving our lives?</p>
+<p><strong>hoggle</strong>: But, I betrayed ya, I gave ya that damned
+peach …</p>
+<p><strong>sarah</strong>: Ssh! You did the only thing you could do
+…</p>
+<p><strong>sarah</strong>: … and I see you lost all your treasures in
+the process.</p>
+<p><strong>hoggle</strong>: I don’t care if I never sees another
+treasure again!</p>
+<p><strong>hoggle</strong>: And Jareth said ya could never love me.</p>
+<p><strong>sarah</strong>: Jareth doesn’t know everything.</p>
+<p><strong>sarah</strong>: Take care of him, Didymus.</p>
+<p><strong>didymus</strong>: I’ll guard the valiant Hoggle with my
+life!</p>
+<p><strong>ludo</strong>: Ludo … too!</p>
+<p><strong>sarah</strong>: No maiden could have wished for nobler
+knights.</p>
+<p><strong>jareth</strong>: I’ve been expecting you.</p>
+<p><strong>sarah</strong>: Where’s Freddie?!!!</p>
+<p><strong>jareth</strong>: He’s right there.</p>
+<p><strong>sarah</strong>: Like the man said, “nothing is what it
+appears to be!”</p>
+<p><strong>jareth</strong>: There’s still time.</p>
+<p><strong>jareth</strong>: Besides, I’m no longer interested in having
+a little goblin prince. I’ve decided I’d much rather have a queen.</p>
+<p><strong>jareth</strong>: You’ve come a long way, little girl.</p>
+<p><strong>sarah</strong>: I certainly have.</p>
+<p><strong>jareth</strong>: Yes, I can see it in your eyes. No one else
+has ever made it this far in the labyrinth, no one else has ever been
+worthy …</p>
+<p><strong>sarah</strong>: What’s your offer.</p>
+<p><strong>jareth</strong>: Why, everything … you’ll rule by my
+side.</p>
+<p><strong>sarah</strong>: Everything? The chance to spend my life
+surrounded by repulsive goblins … the chance to torment innocent
+creatures …</p>
+<p><strong>sarah</strong>: Anything else?</p>
+<p><strong>sarah</strong>: And what if I’m not interested?</p>
+<p><strong>jareth</strong>: Impossible. I know you, I know what you want
+…</p>
+<p><strong>sarah</strong>: Well, I’ve got news for you, Jareth.</p>
+<p><strong>sarah</strong>: I don’t want <em>you</em>!</p>
+<p><strong>sarah</strong>: How could you do this to an innocent
+baby?!!</p>
+<p><strong>jareth</strong>: You hit me!</p>
+<p><strong>sarah</strong>: And I’d like to do more … you, you … !</p>
+<p><strong>sarah</strong>: I wouldn’t want you if you were the last …
+<em>goblin</em> on earth!</p>
+<p><strong>jareth</strong>: Don’t say that!</p>
+<p><strong>jareth</strong>: Look at me! How could you do this to me!</p>
+<p><strong>jareth</strong>: Nobody ever cares about what I want!</p>
+<p><strong>sarah</strong>: OK, Freddie. Time to go bye-bye!</p>
+<p><strong>sarah</strong>: Freddie!</p>
+<p><strong>sarah</strong>: Here. It’s yours.</p>
+</body>
+</html>

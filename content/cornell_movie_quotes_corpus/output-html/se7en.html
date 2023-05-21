@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>se7en</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="se7en">se7en</h1>
+<p><strong>man’s voice</strong>: Is something wrong?</p>
+<p><strong>man</strong>: Is something the matter?</p>
+<p><strong>somerset</strong>: No… no. There’s nothing wrong.</p>
+<p><strong>man</strong>: Not that it’s any of my business… but, are you
+figuring on moving out here eventually?</p>
+<p><strong>somerset</strong>: Soon.</p>
+<p><strong>man</strong>: I just never seen a man mortgaging an empty
+house before.</p>
+<p><strong>somerset</strong>: Everything here still seems… seems so
+strange to me. All this.</p>
+<p><strong>man</strong>: I don’t know. I’d say this place is about as
+normal as places get.</p>
+<p><strong>somerset</strong>: That is exactly what I mean. Strange.</p>
+<p><strong>mills</strong>: Is that your car, man?</p>
+<p><strong>first thug</strong>: What the fuck do you care?</p>
+<p><strong>mills</strong>: Does that car belong to you?</p>
+<p><strong>first thug</strong>: Yeah, it’s my car, alright? Fuck
+off.</p>
+<p><strong>mills</strong>: You’re telling me that’s your car?</p>
+<p><strong>second thug</strong>: Well, for some strange reason, I don’t
+believe you.</p>
+<p><strong>first thug</strong>: You can fucking suck my…</p>
+<p><strong>taylor</strong>: Neighbors heard them screaming at each
+other. It was nothing new or unusual. But, then they heard the gun go
+off. Boom, boom… both barrels.</p>
+<p><strong>somerset</strong>: Did his wife confess? Did she actually
+speak the words?</p>
+<p><strong>taylor</strong>: When the patrolman got here she was trying
+to put his head back together. She was crying too hard to say anything.
+Crime of passion.</p>
+<p><strong>somerset</strong>: Yes. Look at all the passion splattered up
+on the wall here.</p>
+<p><strong>taylor</strong>: This is a done deal. All but the
+paperwork.</p>
+<p><strong>somerset</strong>: Did their son see it happen?</p>
+<p><strong>taylor</strong>: What kind of question is that? Huh? He’s
+dead. His wife killed him. There it is. That’s all. Anything else has
+nothing to do with nothing.</p>
+<p><strong>taylor</strong>: You and your fucking questions, Somerset.
+I’m glad I’m getting rid of you today. You know that, you fuck?</p>
+<p><strong>mills</strong>: Uh… Lieutenant Somerset?</p>
+<p><strong>mills</strong>: I’m David Mills… your new partner.</p>
+<p><strong>mills</strong>: I’m a little thrown. I just finished
+orientation at central, and they dumped me off down here.</p>
+<p><strong>somerset</strong>: I heard you brought in two small-timers
+last night.</p>
+<p><strong>mills</strong>: Yeah. Two real idiots.</p>
+<p><strong>somerset</strong>: Since we are just starting out, I thought
+we could go to a bar. Sit and talk for awhile. That way we can…</p>
+<p><strong>mills</strong>: Excuse me, but I’d rather start sniffing for
+a case, if it’s all the same to you. Seeing how we only have a week for
+this whole transition thing. I want to get into the shit a.s.a.p., know
+what I mean?</p>
+<p><strong>somerset</strong>: I meant to ask you something… when we
+spoke on the phone. I can’t help wondering… Why are you here?</p>
+<p><strong>mills</strong>: I… I don’t follow.</p>
+<p><strong>somerset</strong>: All this effort you’ve gone through, to be
+transferred from Philadelphia to here. It’s the first question that pops
+into my head.</p>
+<p><strong>mills</strong>: I’m here for the same reasons as you, I
+guess. Or… at least the same reasons you used to have for being here…
+…before you decided to give up.</p>
+<p><strong>somerset</strong>: You think you know me? You just met me two
+minutes ago.</p>
+<p><strong>mills</strong>: Maybe I don’t understand the question.</p>
+<p><strong>somerset</strong>: It’s very simple. You’ve come from the
+“City of Brotherly Love” to the “City of Brotherly Hate,” detective.
+I’ve never seen it done that way.</p>
+<p><strong>mills</strong>: I don’t know. Maybe I thought I could do more
+good here than there. You know, it’d be great by me if we didn’t start
+right out kicking each other in the balls. But, you’re calling the
+shots, lieutenant, so however you want it to go.</p>
+<p><strong>somerset</strong>: Let me tell you how I want this to go. I
+want you to look, and I want you to listen.</p>
+<p><strong>mills</strong>: I wasn’t standing around Philly guarding the
+fucking Liberty Bell.</p>
+<p><strong>somerset</strong>: But, you’ve never worked homicide in this
+city.</p>
+<p><strong>mills</strong>: I realize that.</p>
+<p><strong>somerset</strong>: Well, please do me the favor of
+remembering it.</p>
+<p><strong>somerset</strong>: At what time did you confirm the
+death?</p>
+<p><strong>davis</strong>: Like I said, we didn’t touch anything, but we
+were on scene at like o-five- hundred, so he’s had his face in a plate
+of spaghetti for about half an hour.</p>
+<p><strong>mills</strong>: Wait, wait, wait. You didn’t check him? You
+didn’t check vital signs?</p>
+<p><strong>davis</strong>: Believe me, he’s gone. Unless he’s breathing
+spaghetti sauce now.</p>
+<p><strong>mills</strong>: No. The point is, when you’re first man in,
+you check vital signs.</p>
+<p><strong>davis</strong>: This guy’s sitting in a pile of his own shit
+and piss. If he ain’t dead he would have stood up by now.</p>
+<p><strong>mills</strong>: Listen, Godzilla…</p>
+<p><strong>somerset</strong>: Thank you, Officer Davis. We’ll see you
+again after we’ve had a look.</p>
+<p><strong>davis</strong>: Yes, sir.</p>
+<p><strong>somerset</strong>: I wonder what exactly was the point of the
+conversation you were about to get into?</p>
+<p><strong>mills</strong>: And, I wonder how many times Officer Davis
+there has found a supposedly dead man who didn’t really die until Davis
+was back in the patrol car calling the morgue and eating a powdered
+donut.</p>
+<p><strong>somerset</strong>: Drop it. We have more important concerns
+just now, don’t we?</p>
+<p><strong>mills</strong>: Fine… for now.</p>
+<p><strong>photographer</strong>: Bon appetit.</p>
+<p><strong>mills</strong>: I guess that makes it homicide.</p>
+<p><strong>mills</strong>: Still, he could have tied himself in. To make
+it look like murder.</p>
+<p><strong>mills</strong>: I don’t see any blood or bruises yet. No
+wounds. You see anything?</p>
+<p><strong>somerset</strong>: Not yet.</p>
+<p><strong>mills</strong>: I saw a guy once… committed suicide, but he
+wanted to make sure his family could collect insurance money, right?</p>
+<p><strong>mills</strong>: So, this guy took this big knife… and he held
+it behind him, put the tip of it in his back, and he ran backwards into
+the wall. Cause, he thought it was going to look like someone stabbed
+him in the back.</p>
+<p><strong>mills</strong>: Except, he poked a big fucking hole in the
+dry wall when he did it.</p>
+<p><strong>somerset</strong>: If you could… spare me the anecdotes for
+now. Leave the refrigerator open for the light.</p>
+<p><strong>mills</strong>: Oh, forgive me. I thought we had this
+male-bonding thing going. My mistake.</p>
+<p><strong>somerset</strong>: What do you smell? Other than him, and all
+the food.</p>
+<p><strong>mills</strong>: I don’t know… there’s something.</p>
+<p><strong>somerset</strong>: A bucket.</p>
+<p><strong>mills</strong>: It’s vomit.</p>
+<p><strong>mills</strong>: It’s a bucket of vomit.</p>
+<p><strong>somerset</strong>: Is there any blood in it?</p>
+<p><strong>mills</strong>: Can’t tell by looking.</p>
+<p><strong>o’neill</strong>: Mood lighting. Very sixties.</p>
+<p><strong>mills</strong>: You think he was poisoned?</p>
+<p><strong>mills</strong>: And, those rats there somehow ate the poison
+off the floor?</p>
+<p><strong>somerset</strong>: Guessing this early is useless.</p>
+<p><strong>o’neill</strong>: You girls have got the forensics guys out
+there chompin’ at the bit. Don’t know if we’ll all fit in here
+though.</p>
+<p><strong>mills</strong>: There’s room. Light’s the problem.</p>
+<p><strong>somerset</strong>: Well, three is certainly a crowd in here.
+And, with four, someone’s bound to be stepping on evidence. Detective
+Mills, go help the officers question the neighbors.</p>
+<p><strong>mills</strong>: Thanks, but no thanks. I’ll stay on this.</p>
+<p><strong>somerset</strong>: Send one forensic in on your way out.</p>
+<p><strong>o’neill</strong>: He is dead.</p>
+<p><strong>somerset</strong>: Pizza and paperwork, Detective Mills.</p>
+<p><strong>mills</strong>: We need to chat.</p>
+<p><strong>somerset</strong>: No.</p>
+<p><strong>mills</strong>: You just hold them up. I do all the work.</p>
+<p><strong>mills</strong>: You’ve seen my files… seen the things I’ve
+done?</p>
+<p><strong>somerset</strong>: Yes. Impressive work.</p>
+<p><strong>mills</strong>: So, what’s your problem? I’ve done my time on
+door-to-doors, and walking a beat.</p>
+<p><strong>somerset</strong>: I know it. That doesn’t mean…</p>
+<p><strong>mills</strong>: I did all that shit a long time ago.</p>
+<p><strong>somerset</strong>: I made a decision, because I have to worry
+about the integrity of the scene.</p>
+<p><strong>mills</strong>: That’s bullshit.</p>
+<p><strong>somerset</strong>: When I’m on scene, I’m not going to worry
+whether you think you’re getting enough time on the playing field. I’m
+there to do the work.</p>
+<p><strong>mills</strong>: The badge in my pocket says “detective,” just
+like yours. I’ve been Homicide for four and a half years.</p>
+<p><strong>somerset</strong>: You’ve worked Homicide for four years, or
+for five years… Don’t count the half-years, unless you want to sound
+like a rookie.</p>
+<p><strong>mills</strong>: Oops. My hand slipped.</p>
+<p><strong>mills</strong>: You fucked me over today, and you know it.
+You know it.</p>
+<p><strong>mills</strong>: Just don’t jerk me off. That’s all I ask.
+It’s not much. Don’t jerk me off. Please, do me the favor of remembering
+that.</p>
+<p><strong>woman’s voice</strong>: I’m sorry, Mrs. Mills. We don’t have
+anything right now.</p>
+<p><strong>woman</strong>: We’ll try to give you a call if we need
+substitutes next month.</p>
+<p><strong>tracy</strong>: Thank you.</p>
+<p><strong>mills</strong>: It was okay. I mean… it was certainly better
+than yesterday. I think Somerset and I came to a small
+understanding…</p>
+<p><strong>mills</strong>: …about this big.</p>
+<p><strong>tracy</strong>: He sounds interesting.</p>
+<p><strong>mills</strong>: He is that, if nothing else.</p>
+<p><strong>mills</strong>: We started a big homicide case today. I’ll
+spare you the grisly details.</p>
+<p><strong>strange man</strong>: Name that tune? Anybody name that tune?
+Name that tune…</p>
+<p><strong>tracy</strong>: It’s… it’s like they emptied all the insane
+asylums into the streets.</p>
+<p><strong>tracy</strong>: That’s what it’s like. Like they just gave
+up, and let everyone out.</p>
+<p><strong>tracy</strong>: There are a lot of frightening people in this
+city.</p>
+<p><strong>mills</strong>: There are a lot of frightening people in the
+world.</p>
+<p><strong>strange man</strong>: Name that tune? Anybody name that
+tune?</p>
+<p><strong>tracy</strong>: It seems worse than Philadelphia, because
+everything is pushed right up against you. In your face.</p>
+<p><strong>mills</strong>: Listen, honey. I don’t want to fight tonight.
+Okay? Can we just go one night without fighting about something?</p>
+<p><strong>tracy</strong>: I’m not trying to start a fight. How am I
+trying to start a fight?</p>
+<p><strong>mills</strong>: We’re here now. Okay. Are we supposed to pack
+it all in and go back? How are we going to do that?</p>
+<p><strong>tracy</strong>: Do I have to act like I love this place? Is
+that what a “good wife” would do?</p>
+<p><strong>mills</strong>: There’s a lot of pressure on me… I…</p>
+<p><strong>tracy</strong>: And, there’s a lot of pressure on me. I’m
+here with you.</p>
+<p><strong>mills</strong>: I know. I know…</p>
+<p><strong>tracy</strong>: I’m not going to close my eyes and block
+everything out, David. I’m not going to act like you delivered us to
+some sort of paradise. I can’t…</p>
+<p><strong>mills</strong>: Fuck you. Fuck you, you son of a bitch! I’m
+walking here.</p>
+<p><strong>mills</strong>: I’m sorry… I couldn’t pass it up. I never had
+a chance to actually do that. But, we can start the argument right back
+up where we left off, right?</p>
+<p><strong>mills</strong>: What?</p>
+<p><strong>strange man</strong>: That was the theme from tv’s Mod Squad.
+I’m surprised nobody got that one.</p>
+<p><strong>old man</strong>: Excuse me. Excuse me!</p>
+<p><strong>tracy</strong>: Goodnight.</p>
+<p><strong>mills</strong>: Goodnight.</p>
+<p><strong>santiago</strong>: If you take a look here, buddies… I can
+tell you, it was not a poison. If you can see… I have emptied all of
+everything out of the stomach. But, look at it, now that I took away the
+liver.</p>
+<p><strong>santiago</strong>: I move the lungs over. First, see how big
+this fat son-of-a-bitch stomach is. Now… here is the strange thing, on
+the stomach. Stretches. And, here is it distended. Look at the size of
+that, because of the foods.</p>
+<p><strong>mills</strong>: I can see what you’re pointing at…</p>
+<p><strong>santiago</strong>: On the stomach. The lines of
+distention.</p>
+<p><strong>somerset</strong>: Doctor, are you saying this man… ate till
+he burst?</p>
+<p><strong>santiago</strong>: Yes, well, he didn’t actually burst. He
+was bleeding, inside of himself. And, there’s a hemotoma on the outside…
+on the belly.</p>
+<p><strong>mills</strong>: He died by eating?</p>
+<p><strong>santiago</strong>: Someone punched him, or kicked him.</p>
+<p><strong>santiago</strong>: Oh, and there is this here… something else
+you have to look at and see.</p>
+<p><strong>santiago</strong>: Most of his stomach contents are in the
+lab now… but, this. I found these in the fat man’s stomach.</p>
+<p><strong>mills</strong>: Plastic?</p>
+<p><strong>santiago</strong>: Why these were in a fat man’s stomach, I
+don’t know.</p>
+<p><strong>somerset</strong>: Those bruises on the back of the victim’s
+head were caused by the muzzle of a gun.</p>
+<p><strong>mills</strong>: So, the killer had him at gunpoint, and gave
+him a choice: eat, or get your head blown off.</p>
+<p><strong>somerset</strong>: He was force-fed… till his body started
+rejecting the food. He literally couldn’t eat another bite.</p>
+<p><strong>mills</strong>: So, the killer held a bucket under him.</p>
+<p><strong>somerset</strong>: His throat was swollen from the effort. He
+was bleeding internally. He must have blacked out… and, if you’re the
+killer, you’re not going to want to wait around for him to die.</p>
+<p><strong>mills</strong>: You kick him, pop him like a fucking balloon.
+Somerset, look here.</p>
+<p><strong>somerset</strong>: Same color and texture.</p>
+<p><strong>mills</strong>: If this is what that is… it doesn’t make
+sense. It doesn’t figure.</p>
+<p><strong>somerset</strong>: Always look for one thing to focus on.
+There’s always one singular thing, and it might be as small as a speck
+of dust, but find it and focus… till it’s an exhausted possibility.</p>
+<p><strong>mills</strong>: How are pieces of the floor going to get in
+the guy’s stomach?</p>
+<p><strong>somerset</strong>: Exactly. Why would so many pieces be
+inside his stomach unless they were placed there intentionally?</p>
+<p><strong>mills</strong>: “Dear Detectives. Long is the way, and hard,
+that out of hell leads up to the light.” This is not good.</p>
+<p><strong>somerset</strong>: Milton.</p>
+<p><strong>mills</strong>: What?</p>
+<p><strong>somerset</strong>: It’s a quote from a book. Milton’s
+Paradise Lost.</p>
+<p><strong>detective</strong>: I said to myself, I’m not going to screw
+around with this. Nope. Fuck that. It’s still pretty fresh meat. I
+called the medical examiner… he’s coming. When I got to it, I knew. As
+soon as I laid eyes on it, I knew…</p>
+<p><strong>detective</strong>: …this is your guy who did this.</p>
+<p><strong>mills</strong>: A pound of flesh.</p>
+<p><strong>somerset</strong>: “One pound of flesh, no more no less. No
+cartilage, no bone, but only flesh. This task done, and he would go
+free.”</p>
+<p><strong>somerset</strong>: This victim, Mr. Gold, was tied down nude,
+holding a carving knife. And he was given a long time… to decide. Where
+to make the first cut? There’s a gun to your head… but, what part or
+parts of your body are expendable?</p>
+<p><strong>somerset</strong>: Mr. Gold tried for the whole pound at
+once, his love handle. But, he went into shock. Bled to death.</p>
+<p><strong>captain</strong>: What is the point, Somerset?</p>
+<p><strong>somerset</strong>: Look at both killings together. This
+murderer is an artist.</p>
+<p><strong>captain</strong>: An artist?</p>
+<p><strong>somerset</strong>: He uses colors and symbols. He positions
+the bodies after death, so he’s working with composition. It’s been
+premeditated so meticulously… and this is just the beginning.</p>
+<p><strong>captain</strong>: Wrong. For all we know, we might never hear
+from him again, and I don’t want that kind of talk floating around.</p>
+<p><strong>somerset</strong>: The rats and the pennies. The circle and
+the triangle on the wall. There’s something about them… these murders
+mean something.</p>
+<p><strong>captain</strong>: So? What?</p>
+<p><strong>captain</strong>: You with him, or you just here to
+watch?</p>
+<p><strong>mills</strong>: This is his stuff, captain. I’ve been out in
+the cold most of the day.</p>
+<p><strong>captain</strong>: Always working overtime up in that big
+brain of yours, huh? Always cooking.</p>
+<p><strong>somerset</strong>: I need you to know… I want us reassigned.
+We’re declining this case.</p>
+<p><strong>mills</strong>: What?!</p>
+<p><strong>captain</strong>: What the hell are you talking about?</p>
+<p><strong>somerset</strong>: This cannot be my last duty here. It’s
+going to go on and on.</p>
+<p><strong>captain</strong>: You’ve left unfinished business before.</p>
+<p><strong>somerset</strong>: Everything else was taken as close to a
+conclusion as humanly possible.</p>
+<p><strong>mills</strong>: Can I just say something?</p>
+<p><strong>somerset</strong>: Also… I don’t think this should be Mills’
+first case.</p>
+<p><strong>mills</strong>: This is not my first case, fuckhead!</p>
+<p><strong>captain</strong>: I don’t have anyone else to give this to,
+Somerset. And nobody’s going to swap with you.</p>
+<p><strong>mills</strong>: Give it to me, then. There’s nothing that
+says I have to fly with him.</p>
+<p><strong>mills</strong>: If Somerset wants out, fuck him.</p>
+<p><strong>somerset</strong>: It would be too much for him, too
+soon.</p>
+<p><strong>mills</strong>: Could we talk about this in private?</p>
+<p><strong>captain</strong>: That’s not necessary. You’re in.</p>
+<p><strong>mills</strong>: Thank you, sir.</p>
+<p><strong>captain</strong>: Start picking up the pieces. I’ll shuffle
+some paper and try to get you a new partner.</p>
+<p><strong>captain</strong>: You win, Somerset. You’re out.</p>
+<p><strong>workman</strong>: Sorry.</p>
+<p><strong>captain</strong>: What are you going to do with yourself out
+there, Somerset?</p>
+<p><strong>somerset</strong>: I’ll get a job. Maybe on a farm. I’ll fix
+up my house.</p>
+<p><strong>captain</strong>: Can’t you feel it yet? Can’t you feel that
+feeling… that you won’t be special anymore?</p>
+<p><strong>somerset</strong>: I don’t know what you mean.</p>
+<p><strong>captain</strong>: You know.</p>
+<p><strong>somerset</strong>: Did you read in the paper today, about the
+man who took his dog for a walk? And how he was mugged? And, his wallet
+was taken, and his watch. Then, while he was still lying unconscious,
+his attacker stabbed him with a knife in both eyes. It happened last
+night. Not far from here.</p>
+<p><strong>captain</strong>: I heard.</p>
+<p><strong>somerset</strong>: I have no understanding of this place.</p>
+<p><strong>captain</strong>: It’s always been like this.</p>
+<p><strong>somerset</strong>: Yes. You’re absolutely right.</p>
+<p><strong>captain</strong>: You were made for this work, Somerset. I
+can’t believe you’re going to trade it all in for a tool belt and a
+fishing rod. But, I guess I’m wrong.</p>
+<p><strong>somerset</strong>: Put a little elbow grease into it!</p>
+<p><strong>mills</strong>: He must have left us another puzzle to solve…
+somewhere.</p>
+<p><strong>chris</strong>: We’ll keep looking, but we’re running out of
+possibilities.</p>
+<p><strong>mills</strong>: Christ…</p>
+<p><strong>vagrant</strong>: Spare me a cigarette, money-grip? Spare me
+a cigarette?</p>
+<p><strong>somerset</strong>: Sorry. Last one.</p>
+<p><strong>man’s voice</strong>: I have voiced the same concerns to our
+law enforcement officials, and they assure me he is of the highest
+caliber.</p>
+<p><strong>a reporter</strong>: As District Attorney, don’t you feel
+some responsibility? Detective David Mills lacks the experience…</p>
+<p><strong>talbot</strong>: I’ve always said… I’ve always said, don’t
+send a boy to do a man’s job.</p>
+<p><strong>talbot</strong>: But, David Mills has a sterling record with
+the Philadelphia force. I stand behind him one hundred percent.</p>
+<p><strong>mills</strong>: You tell ’em boss. Detective David Mills is a
+wonderful human being…</p>
+<p><strong>talbot</strong>: However… however… let me say this…</p>
+<p><strong>talbot</strong>: If Detective Mills, at any point in this
+investigation… if he is not pulling his weight, I will be the first in
+line to pull his plug.</p>
+<p><strong>william</strong>: I always figured that’s the only reason you
+and I used to be friends. Because I was a friend of hers.</p>
+<p><strong>william</strong>: Speaking of which…</p>
+<p><strong>william</strong>: I painted that about five years ago. I
+always told myself I’d give it to you next time I saw you.</p>
+<p><strong>william</strong>: Things are different these days, pal. You
+wouldn’t believe it…</p>
+<p><strong>william</strong>: People buy my paintings now… they drive
+down in their BMWs and Rolls Royces. It’s the new money generation. I
+guess they think they’re touching the avant-garde…</p>
+<p><strong>william</strong>: There’s another thousand dollar William
+McCracken expression of anarchy.</p>
+<p><strong>william</strong>: Make that two thousand.</p>
+<p><strong>somerset</strong>: How is she? Have you seen her
+recently?</p>
+<p><strong>william</strong>: Huh… oh. No. She moved out of the city.
+Last winter. She married some businessman, or something like that.</p>
+<p><strong>somerset</strong>: Good for her. I’m leaving soon myself. I’m
+finally getting out.</p>
+<p><strong>william</strong>: Yeah? What happened to the idealistic
+super-cop I used to know?</p>
+<p><strong>somerset</strong>: He became a realist.</p>
+<p><strong>william</strong>: Oh… sorry.</p>
+<p><strong>somerset</strong>: Not that I don’t appreciate your recent
+artistic endeavors… but, what happened to the painter I used to
+know?</p>
+<p><strong>william</strong>: I can’t remember.</p>
+<p><strong>william</strong>: Man… can I buy these from you?</p>
+<p><strong>somerset</strong>: They’re not for sale.</p>
+<p><strong>somerset</strong>: What is it? What’s the murderer trying to
+say?</p>
+<p><strong>somerset</strong>: What picture is he painting?</p>
+<p><strong>william</strong>: Wait a minute…</p>
+<p><strong>william</strong>: I… I’ve seen things like that…</p>
+<p><strong>somerset</strong>: Where?</p>
+<p><strong>william</strong>: It’s church stuff. Christianity.</p>
+<p><strong>william</strong>: When it first started… Christian artwork
+was all from Bible stories. It was like… nobody had any imagination. It
+was all… standardized.</p>
+<p><strong>william</strong>: But, later, everyone started painting to
+tell their own stories… to teach lessons. Guys like Bosch, Bregel the
+elder… Van Eycks.</p>
+<p><strong>somerset</strong>: The seven deadly sins.</p>
+<p><strong>william</strong>: That’s what these murders remind me of.
+Paintings like these. Gluttony… greed…</p>
+<p><strong>somerset</strong>: Envy, wrath, pride, lust and sloth. Seven
+deadly sins.</p>
+<p><strong>william</strong>: Amen, brother.</p>
+<p><strong>william</strong>: I can find more examples. There’s lots of
+paintings like those… painted over hundreds of years. And you’re right…
+that murderer is an artist.</p>
+<p><strong>somerset</strong>: And, it’s two down… five to go.</p>
+<p><strong>preacher</strong>: …are you, Sir? Is Jesus Christ your Lord
+and Master? Do you believe in Him?</p>
+<p><strong>preacher</strong>: Don’t ignore me. Listen to what I have to
+say. Christ can be your savior!</p>
+<p><strong>john</strong>: Leave me alone.</p>
+<p><strong>preacher</strong>: Think about God, sir. I can help you let
+Him into your life.</p>
+<p><strong>barker</strong>: Interesting isn’t it, friend? You like that,
+you like girls, then come on in.</p>
+<p><strong>barker</strong>: You’ll see a lot more inside. You’ll see a
+lot more than that.</p>
+<p><strong>tracy</strong>: Can I help you?</p>
+<p><strong>somerset</strong>: Uh… I was looking for Mills. David, I
+mean.</p>
+<p><strong>tracy</strong>: He’s not here right now.</p>
+<p><strong>somerset</strong>: Mrs. Mills, my name is Somerset. If I
+could leave these books for him.</p>
+<p><strong>tracy</strong>: Please, come in.</p>
+<p><strong>tracy</strong>: David went for a walk. To clear his head. Oh,
+you can put those here.</p>
+<p><strong>somerset</strong>: Thank you.</p>
+<p><strong>somerset</strong>: Could you tell him… tell him this is his
+reading assignment. It’s urgent. I’ve marked the most important
+pages.</p>
+<p><strong>tracy</strong>: Would you like some coffee, or a drink. David
+should be back any minute.</p>
+<p><strong>somerset</strong>: I do have to get going.</p>
+<p><strong>tracy</strong>: At least I got to meet you. David has told me
+a lot about you.</p>
+<p><strong>somerset</strong>: Really? Good things, I hope.</p>
+<p><strong>tracy</strong>: Oh, yes. He said you were very smart.</p>
+<p><strong>somerset</strong>: Really?</p>
+<p><strong>tracy</strong>: I think he’s a bit intimidated by you.</p>
+<p><strong>somerset</strong>: I’m going to leave him a list of
+specifics. It all relates to the case he’s on.</p>
+<p><strong>tracy</strong>: You two aren’t working together anymore.
+Isn’t that so?</p>
+<p><strong>somerset</strong>: To be perfectly honest, Mrs. Mills…</p>
+<p><strong>tracy</strong>: Tracy.</p>
+<p><strong>somerset</strong>: Tracy. David and I weren’t exactly what
+you could call fast friends.</p>
+<p><strong>tracy</strong>: That’s too bad.</p>
+<p><strong>somerset</strong>: I doubt your husband shares that
+opinion.</p>
+<p><strong>tracy</strong>: You know, Somerset, David is very…
+determined. I’m sure you’ve seen, it’s not likely he’ll ever be compared
+to Gandhi.</p>
+<p><strong>somerset</strong>: He’s a good cop. He just…</p>
+<p><strong>tracy</strong>: He sees policework as a crusade. That’s what
+he wants it to be, and, that might sound naive, but he’s made a
+conscious choice to be naive. Believe me, his heart’s in the right
+place.</p>
+<p><strong>somerset</strong>: I hear you and he were high school
+sweethearts.</p>
+<p><strong>tracy</strong>: Yeah. Pretty hokey, huh? But, what girl
+wouldn’t want the captain of the football team as their lifelong
+mate?</p>
+<p><strong>somerset</strong>: It’s rare these days… that kind of
+commitment.</p>
+<p><strong>tracy</strong>: I guess so.</p>
+<p><strong>somerset</strong>: Well… this will only take a minute.</p>
+<p><strong>tracy</strong>: Take your time.</p>
+<p><strong>tracy</strong>: What is this?</p>
+<p><strong>somerset</strong>: My future.</p>
+<p><strong>tracy</strong>: You have a strange way about you, Somerset… I
+mean in a good way… unusual.</p>
+<p><strong>tracy</strong>: I apologize. I’ll get out of your hair.</p>
+<p><strong>tracy</strong>: It’s just… it’s nice to hear a man who talks
+like that. If David saw that paper, he’d say you’re acting like a
+homosexual. That’s how he is.</p>
+<p><strong>somerset</strong>: Well! I guess I won’t be showing this to
+him then.</p>
+<p><strong>tracy</strong>: I suppose not.</p>
+<p><strong>| the earthly paradise |</strong>: |——————————————————– / | |
+/  | | VII The Lustful /____| | / | | VI The Gluttonous /_______|</p>
+<p><strong>| 7 terraces of / |</strong>: | V The Avaricious / | | and
+Prodigal /__________|</p>
+<p><strong>| purgation / |</strong>: | / | | / | | IV The Slothful
+/______________| | / | | / | | / | | III The Wrathful
+/__________________| | / | | II The Envious /____________________| | / |
+| I The Proud /______________________| | / | | / |</p>
+<p><strong>| / the island |</strong>: | / |</p>
+<p><strong>| / of purgatory |</strong>: | / |
+|_______________________________/_____________________________|</p>
+<p><strong>mills</strong>: Fucking Dante. Goddamn, poetry writing freak,
+mother-fuck…</p>
+<p><strong>mills</strong>: Good work, Officer. Good work.</p>
+<p><strong>mills</strong>: Thank God.</p>
+<p><strong>somerset</strong>: How’s it coming?</p>
+<p><strong>mills</strong>: Great.</p>
+<p><strong>somerset</strong>: It’s your name on the door.</p>
+<p><strong>mills</strong>: Detective Mills here. Honey, I asked you not
+to call unless… What… why? Okay… okay. Hold on.</p>
+<p><strong>mills</strong>: It’s my wife.</p>
+<p><strong>somerset</strong>: Hello? Yes, well… I appreciate the
+thought, but… I… Well, I guess I’d be delighted to. Thank you…
+goodbye.</p>
+<p><strong>mills</strong>: Well?</p>
+<p><strong>somerset</strong>: I’m invited to have a late supper with you
+and your wife. And I accept.</p>
+<p><strong>mills</strong>: How’s that?</p>
+<p><strong>somerset</strong>: Tonight.</p>
+<p><strong>tracy</strong>: Why aren’t you married, Somerset?</p>
+<p><strong>mills</strong>: Tracy. What the hell?</p>
+<p><strong>somerset</strong>: I was close. It just didn’t happen.</p>
+<p><strong>tracy</strong>: It surprises me you’re not married. It really
+does.</p>
+<p><strong>somerset</strong>: Any person who spends a significant amount
+of time with me finds me… disagreeable. Just ask your husband.</p>
+<p><strong>mills</strong>: No argument.</p>
+<p><strong>tracy</strong>: How long have you lived here?</p>
+<p><strong>somerset</strong>: Too long. Much too long. What do you think
+of our fair city?</p>
+<p><strong>tracy</strong>: You take the bad with the good, I suppose.
+It’s… it’s…</p>
+<p><strong>mills</strong>: It takes time to settle in.</p>
+<p><strong>somerset</strong>: You’ll get used to it pretty quickly.
+There are things in any big city that stand out at first. But…</p>
+<p><strong>tracy</strong>: Subway train. It’s right below us/</p>
+<p><strong>tracy</strong>: It’ll go away in a minute.</p>
+<p><strong>mills</strong>: This real estate guy… a real scum, brought us
+to see this place a few times. And, it was nice enough, and the price
+was right. I was thinking it was nothing, but I started to notice, he
+kept hurrying us along. I mean what could it be? Why would he only show
+it like five minutes at a time, before he’d hustle us out the door?</p>
+<p><strong>tracy</strong>: We found out the first night.</p>
+<p><strong>somerset</strong>: I’m sorry… it’s a nice apartment.</p>
+<p><strong>mills</strong>: Oh, fuck.</p>
+<p><strong>somerset</strong>: All television does is teach children that
+it’s really cool to be stupid and eat candy bars all day.</p>
+<p><strong>tracy</strong>: I don’t think I’ve ever met anyone who didn’t
+have a television.</p>
+<p><strong>mills</strong>: That’s weird. It’s un-American.</p>
+<p><strong>mills</strong>: What about sports?</p>
+<p><strong>somerset</strong>: What about them?</p>
+<p><strong>mills</strong>: You go to movies at least.</p>
+<p><strong>somerset</strong>: I read. Remember reading? What’s the last
+book you read, Mills?</p>
+<p><strong>mills</strong>: T.V. Guide.</p>
+<p><strong>mills</strong>: Excuse me. I just have to say, I can’t
+respect any man who’s never seen Green Acres.</p>
+<p><strong>mills</strong>: You’ve never seen The Odd Couple? The
+Flintstones?</p>
+<p><strong>somerset</strong>: I vaguely recall Wilma, and someone named…
+Dino.</p>
+<p><strong>mills</strong>: We think he acted like he was delivering a
+package. The doorman at Mr. Gold’s building says he doesn’t even look at
+anyone who goes in anymore.</p>
+<p><strong>somerset</strong>: No connection between the two victims?</p>
+<p><strong>somerset</strong>: No witnesses of any kind?</p>
+<p><strong>mills</strong>: None. Which I can’t understand. It’s like
+this guy’s invisible.</p>
+<p><strong>somerset</strong>: In this city, minding your own business is
+a perfected science.</p>
+<p><strong>somerset</strong>: At the precinct, Sunday nights, they offer
+a public crime prevention course. And, the very first thing they teach
+is that you should never scream “help” if you’re in trouble. Scream
+“fire.” Because people don’t want to get caught up in anything. But, a
+fire… that’s entertainment. They come running.</p>
+<p><strong>somerset</strong>: “The Sun in Splendor with the Eye.” It
+refers to God the father, and to Saint Thomas Aquinas.</p>
+<p><strong>mills</strong>: Which saint is he?</p>
+<p><strong>somerset</strong>: Aquinas wrote a summary of theology, Summa
+Theologica. And he wrote about the seven deadly sins.</p>
+<p><strong>somerset</strong>: Now, what else have you got?</p>
+<p><strong>mills</strong>: Look, I appreciate being able to talk this
+out, but… it’s my case.</p>
+<p><strong>somerset</strong>: So… satisfying my curiosity. I’m still
+leaving town on Sunday.</p>
+<p><strong>mills</strong>: The eyes were circled. With Mr. Gold’s
+blood.</p>
+<p><strong>somerset</strong>: This is his wife?</p>
+<p><strong>mills</strong>: She was away on business. She got back the
+day he was killed. If this means she saw anything, I don’t know what.
+We’ve questioned her about ten times.</p>
+<p><strong>somerset</strong>: And, if it’s a threat?</p>
+<p><strong>mills</strong>: We put her in a safe house.</p>
+<p><strong>somerset</strong>: This is the one thing.</p>
+<p><strong>mills</strong>: I know.</p>
+<p><strong>somerset</strong>: It’s like he’s preaching. The sins were
+used in medieval sermons. There were seven cardinal virtues, and then
+seven deadly sins, as a learning tool. The sins distract man from true
+worship. True faith.</p>
+<p><strong>mills</strong>: Like in these paintings, and in Dante’s
+Purgatory, right? But, in Purgatory, Dante and his buddy climb that big
+mountain…</p>
+<p><strong>somerset</strong>: Seven Terraces of Purgation.</p>
+<p><strong>mills</strong>: Anyway… pride comes first, not gluttony. And
+in all the paintings, the sins are in a different order. I can’t find a
+pattern.</p>
+<p><strong>somerset</strong>: Because there’s creativity in the mix.
+Consider these books as the murderer’s inspiration. Or aspiration.</p>
+<p><strong>somerset</strong>: He sees himself contributing to the body
+of Christian work.</p>
+<p><strong>mills</strong>: He’s punishing these people.</p>
+<p><strong>somerset</strong>: For all of us to see and learn from. These
+murders are like forced attrition.</p>
+<p><strong>mills</strong>: What? Forced what?</p>
+<p><strong>somerset</strong>: Attrition. When you regret your sins, but
+not because you love God.</p>
+<p><strong>mills</strong>: Because someone’s holding a gun on you.</p>
+<p><strong>somerset</strong>: When Mr. Gold’s wife found the body, about
+how long was she in the apartment?</p>
+<p><strong>mills</strong>: She didn’t find it. The door to the apartment
+was open and a neighbor…</p>
+<p><strong>somerset</strong>: I thought you said she found the body.
+When she got back from a business trip.</p>
+<p><strong>mills</strong>: No. She got back after you and I had already
+been there.</p>
+<p><strong>mills</strong>: What?</p>
+<p><strong>somerset</strong>: Maybe she is supposed to see something…
+she just hasn’t had a chance to see it yet.</p>
+<p><strong>mills</strong>: Please, look for anything strange or out of
+place. Anything at all.</p>
+<p><strong>mrs gold</strong>: I… I don’t understand. Why now?</p>
+<p><strong>mills</strong>: I need your help if we’re going to get the
+guy who killed your husband. If there’s anything in these pictures…</p>
+<p><strong>mrs gold</strong>: I don’t see anything.</p>
+<p><strong>mills</strong>: Are you absolutely sure?</p>
+<p><strong>mrs gold</strong>: I can’t do this now… please.</p>
+<p><strong>somerset</strong>: He sees himself contributing to the body
+of Christian work.</p>
+<p><strong>mills</strong>: He’s punishing these people.</p>
+<p><strong>somerset</strong>: For all of us to see and learn from. These
+murders are like forced attrition.</p>
+<p><strong>mills</strong>: What? Forced what?</p>
+<p><strong>somerset</strong>: Attrition. When you regret your sins, but
+not because you love God.</p>
+<p><strong>mills</strong>: Because someone’s holding a gun on you.</p>
+<p><strong>somerset</strong>: When Mr. Gold’s wife found the body, about
+how long was she in the apartment?</p>
+<p><strong>mills</strong>: She didn’t find it. The door to the apartment
+was open and a neighbor…</p>
+<p><strong>somerset</strong>: I thought you said she found the body.
+When she got back from a business trip.</p>
+<p><strong>mills</strong>: No. She got back after you and I had already
+been there.</p>
+<p><strong>mills</strong>: What?</p>
+<p><strong>somerset</strong>: Maybe she is supposed to see something…
+she just hasn’t had a chance to see it yet.</p>
+<p><strong>mills</strong>: Please, look for anything strange or out of
+place. Anything at all.</p>
+<p><strong>mrs gold</strong>: I… I don’t understand. Why now?</p>
+<p><strong>mills</strong>: I need your help if we’re going to get the
+guy who killed your husband. If there’s anything in these pictures…</p>
+<p><strong>mrs gold</strong>: I don’t see anything.</p>
+<p><strong>mills</strong>: Are you absolutely sure?</p>
+<p><strong>mrs gold</strong>: I can’t do this now… please.</p>
+<p><strong>mills</strong>: We have to show her those. There might be
+something she’s missing.</p>
+<p><strong>somerset</strong>: Have her look one last time.</p>
+<p><strong>mrs gold</strong>: Wait. Here… here’s something…</p>
+<p><strong>mills</strong>: What is it?</p>
+<p><strong>mrs gold</strong>: This painting… in the living room…</p>
+<p><strong>mills</strong>: What?</p>
+<p><strong>mrs gold</strong>: Why is it hanging upside-down?</p>
+<p><strong>mills</strong>: Nothing.</p>
+<p><strong>somerset</strong>: This has got to be it.</p>
+<p><strong>somerset</strong>: It has to be. He changed the wire to
+rehang it.</p>
+<p><strong>mills</strong>: It’s nothing.</p>
+<p><strong>mills</strong>: Give it up. The killer didn’t paint the
+fucking thing.</p>
+<p><strong>mills</strong>: He fucked us.</p>
+<p><strong>mills</strong>: Son of a bitch!</p>
+<p><strong>mills</strong>: What?</p>
+<p><strong>somerset</strong>: Bear with me.</p>
+<p><strong>mills</strong>: Oh, yeah, sure. You got to be kidding.</p>
+<p><strong>somerset</strong>: Shut up and wait!</p>
+<p><strong>somerset</strong>: Call the print lab. Now.</p>
+<p><strong>forensic</strong>: Oh, boy…</p>
+<p><strong>mills</strong>: Talk to me.</p>
+<p><strong>mills</strong>: Listen, honestly… have you ever seen anything
+like this? Been involved in anything remotely like this?</p>
+<p><strong>somerset</strong>: No. I have not.</p>
+<p><strong>forensic</strong>: Well, I can tell you this, detectives…</p>
+<p><strong>forensic</strong>: …just by studying the underloop… these are
+not the victim’s prints.</p>
+<p><strong>somerset</strong>: It doesn’t work for me. I can’t believe he
+wants us to help him stop.</p>
+<p><strong>mills</strong>: Who the hell knows? There’s plenty of
+schizoids out there doing dirty deeds they don’t want to do. With tiny
+voices whispering nasty things in their ears.</p>
+<p><strong>technician</strong>: I’ve seen this baby take three days to
+finish a cycle, so you guys can go cross your fingers somewhere
+else.</p>
+<p><strong>somerset</strong>: You really meant what you said to
+Mrs. Gold. You really believe we’ll get him, don’t you?</p>
+<p><strong>mills</strong>: And you don’t?</p>
+<p><strong>somerset</strong>: I wish I still thought like you. I’m so
+far gone from that.</p>
+<p><strong>mills</strong>: So, tell me what you think we’re doing.</p>
+<p><strong>somerset</strong>: All we do is pick up the pieces. We take
+all the evidence… all the pictures, statements. Write everything down
+and note what time things happened. We take it all, make a nice, neat
+pile and file it away. Just in case it’s ever needed in a courtroom.</p>
+<p><strong>mills</strong>: You’re unbelievable. In my entire life,
+you’re the oldest man I’ve ever met.</p>
+<p><strong>somerset</strong>: I’ve seen even the most promising clues
+lead to dead ends. Hundreds of times.</p>
+<p><strong>mills</strong>: I’ve seen the same. I’m not the country
+hick-boy you seem to think I am.</p>
+<p><strong>somerset</strong>: In this city, if all the skeletons came
+out of all the closets… if every un- revenged corpse were to suddenly
+rise and walk again, there would be no more room for the living.</p>
+<p><strong>mills</strong>: Don’t try to tell me you didn’t get that rush
+tonight… that adrenalin. Like we were getting somewhere. And, don’t try
+to tell me it was because you thought we found something that would play
+well in a courtroom.</p>
+<p><strong>captain</strong>: Wake up, Glimmer Twins. We have a
+winner.</p>
+<p><strong>captain</strong>: His street name is Zero, as some of you
+know. His prints were found at the scene by Detectives Mills and
+Somerset.</p>
+<p><strong>captain</strong>: Now, Zero has a long, long history of
+mental illness. Serious illness. He was all over your television sets
+two years ago after he raped and killed a seventy-three year old woman.
+He got off, as the saying goes, on a technicality. So we watched him on
+the streets, and he went out of circulation about a year ago.</p>
+<p><strong>female cop</strong>: If he disappeared, what do you want from
+us?</p>
+<p><strong>captain</strong>: His last place of residence is still in his
+name. A search warrant is being pushed through the court as we
+speak.</p>
+<p><strong>california</strong>: So, have the housing cops walk up and
+ring the doorbell. Problem solved.</p>
+<p><strong>captain</strong>: Listen, California. When you go in, if Zero
+isn’t home, some of his buddies might be house-sitting. And besides
+using, Zero deals, so, you will be very uninvited guests.</p>
+<p><strong>somerset</strong>: Does not seem like our killer, does
+it?</p>
+<p><strong>mills</strong>: You tell me. I’m new in town.</p>
+<p><strong>somerset</strong>: Zero does possess the requisite degree of
+insanity… but, he doesn’t have the desire somehow. Our killer seems to
+have more purpose. More purpose than Zero could ever conceive of.</p>
+<p><strong>mills</strong>: We’ll tag along.</p>
+<p><strong>somerset</strong>: Why would we?</p>
+<p><strong>mills</strong>: Satisfy our curiosity?</p>
+<p><strong>mills</strong>: You ever take one?</p>
+<p><strong>somerset</strong>: No. Never in twenty-four years. I took my
+gun out only five times with the actual intention of using it. I never
+fired it. Not once.</p>
+<p><strong>mills</strong>: I pulled it once, fired it once. I never took
+a bullet.</p>
+<p><strong>somerset</strong>: And?</p>
+<p><strong>mills</strong>: It was my first one of these. We were a
+secondary unit, in vice. I was pretty shaky going in. When we busted the
+door, looking for a junkie, the fucking guy opened fire. One cop was hit
+in the arm. He went flying… like in slow motion. I remember riding in
+the ambulance. His arm was like… a piece of meat. I thought, it’s just
+his arm. But, he bled to death right there anyway.</p>
+<p><strong>somerset</strong>: How did the fire-fight end?</p>
+<p><strong>mills</strong>: Well, I was doing really good in Philly up
+till then. Lots of simple busts. I’ve always had this weird luck… but,
+this was wild. I got that fuck with one shot… right between the eyes.
+And the next week, the mayor’s pinning a medal on me. Picture in the
+paper, the whole nine yards.</p>
+<p><strong>somerset</strong>: How was it?</p>
+<p><strong>mills</strong>: I expected it to be bad, because I heard
+about other guys. You know… I took a human life. But, I slept like a
+baby that night.</p>
+<p><strong>somerset</strong>: I think Hemingway wrote somewhere… I can’t
+remember where, but he wrote that, in order to live in a city, you have
+to have the ability to kill. I think he meant you truly must be able to
+do it, not just faking it, to survive.</p>
+<p><strong>mills</strong>: Sounds like he knew what he was talking
+about.</p>
+<p><strong>california</strong>: This is it. Give it up.</p>
+<p><strong>california</strong>: Police!! Open the door!</p>
+<p><strong>california</strong>: Good morning, Sweetheart!</p>
+<p><strong>mills</strong>: Get up now, motherfucker! Now!</p>
+<p><strong>mills</strong>: I said get up, Sleepyhead!</p>
+<p><strong>california</strong>: Oh, fuck me!</p>
+<p><strong>mills</strong>: Holy shit.</p>
+<p><strong>somerset</strong>: Sloth… it’s sloth.</p>
+<p><strong>black cop</strong>: What the hell… those are dead worms.</p>
+<p><strong>california</strong>: Check this out, dick.</p>
+<p><strong>mills</strong>: It’s him. It’s Zero.</p>
+<p><strong>somerset</strong>: Someone call an ambulance.</p>
+<p><strong>california</strong>: Someone call a hearse, more like.</p>
+<p><strong>blond cop</strong>: What the fuck is going on?</p>
+<p><strong>mills</strong>: Hey, California. Get your people out.</p>
+<p><strong>california</strong>: You heard him. Hit the hall, and don’t
+touch anything.</p>
+<p><strong>california</strong>: It looks like he’s some kind of friggin’
+wax sculpture.</p>
+<p><strong>mills</strong>: Somerset, you… you better look here.</p>
+<p><strong>mills</strong>: All pictures of Zero tied to the bed. The
+last one’s dated three days ago.</p>
+<p><strong>somerset</strong>: The first photo… it’s dated one year ago.
+Almost to the day.</p>
+<p><strong>california</strong>: Mo-ther…</p>
+<p><strong>mills</strong>: What’s this?</p>
+<p><strong>california</strong>: You got what you deserved, Zero.</p>
+<p><strong>mills</strong>: A urine sample… hair sample… fingernail
+clippings. He’s laughing at us.</p>
+<p><strong>california</strong>: He’s alive!</p>
+<p><strong>california</strong>: He’s still alive!</p>
+<p><strong>somerset</strong>: The way this has gone, I didn’t think it
+was possible, but we may have underestimated this guy. The type of
+intestinal fortitude it must take… to keep a man bound for a full year.
+To sever his hand and use it to plant fingerprints.</p>
+<p><strong>mills</strong>: I want him bad. I don’t just want to catch
+him anymore. I want to hurt him.</p>
+<p><strong>somerset</strong>: Listen… we have to divorce ourselves from
+our emotions here. We have to keep focusing on the small details.</p>
+<p><strong>mills</strong>: I don’t know about you, Somerset, but I feed
+off my emotions.</p>
+<p><strong>somerset</strong>: He’ll string us along all the way if we’re
+not careful.</p>
+<p><strong>somerset</strong>: Are you listening to me?!</p>
+<p><strong>mills</strong>: I hear you.</p>
+<p><strong>john</strong>: Say cheese.</p>
+<p><strong>mills</strong>: What the fuck are you doing?</p>
+<p><strong>john</strong>: I have a right, Officer. I…</p>
+<p><strong>mills</strong>: That doesn’t mean anything. This is a closed
+crime scene now!</p>
+<p><strong>john</strong>: You can’t do this! You can’t…</p>
+<p><strong>mills</strong>: Get the fuck out of here!</p>
+<p><strong>john</strong>: The public has a right to know!</p>
+<p><strong>mills</strong>: How do those cockroaches get here so
+quick?</p>
+<p><strong>somerset</strong>: They pay cops for the inside scoop, and
+they pay well. You can hate them, but you better give them something, or
+they’ll make it all up.</p>
+<p><strong>mills</strong>: I’m sorry… I just…</p>
+<p><strong>somerset</strong>: Oh, it’s alright. It’s always impressive
+to see a man feeding off his emotions.</p>
+<p><strong>beardsley</strong>: A year of immobility seems about right,
+judging by the deterioration of the muscles and spinal cord. Blood tests
+show a whole smorgasbord of drugs in his system. Heroin… crack… even an
+antibiotic which was administered to keep the bed sores from
+infecting.</p>
+<p><strong>mills</strong>: He hasn’t said anything, or tried to express
+himself in any way?</p>
+<p><strong>beardsley</strong>: Even if his brain were not mush, which it
+is… he chewed his own tongue off a long time ago.</p>
+<p><strong>mills</strong>: There’s no way he’ll survive?</p>
+<p><strong>beardsley</strong>: Detective, he’d die right now of shock if
+you were to shine a flashlight in his eyes.</p>
+<p><strong>bleeker</strong>: Put them away. I wish you hadn’t brought
+them into the church.</p>
+<p><strong>somerset</strong>: I needed for you to see them.</p>
+<p><strong>bleeker</strong>: There were five principal phases in the
+development of early Christian art. From Hellenistic through the
+Renaissance… each period was affected by the decrees of religious
+leaders.</p>
+<p><strong>somerset</strong>: If this killer belongs to a certain branch
+of the church… if he collects religious art from a certain period, I
+want to know. I have to narrow it down.</p>
+<p><strong>bleeker</strong>: The influences on these… things he’s done,
+couldn’t have come before the Gothic period. What’s in those pictures is
+presented far too asymmetrically.</p>
+<p><strong>bleeker</strong>: The colors will tell the tale.</p>
+<p><strong>bleeker</strong>: Each sin had a symbolic color. But the
+specific color designations changed throughout the ages.</p>
+<p><strong>bleeker</strong>: This is an example. Gluttony is the sin,
+and the color is orange. This particular manuscript is preserved from
+the 18th century.</p>
+<p><strong>somerset</strong>: In the murders, gluttony is green. Greed
+is yellow. Sloth is indigo.</p>
+<p><strong>bleeker</strong>: So, if this murderer is as precise as you
+say, then you need to find out at what period in history was gluttony
+green… and so on.</p>
+<p><strong>somerset</strong>: Where do I look? If the colors changed so
+often?</p>
+<p><strong>bleeker</strong>: There is one man… Father Stone. I haven’t
+heard from him for quite some time. This was his passion. He spent his
+life studying the sins… and preaching against them.</p>
+<p><strong>officer</strong>: Zero’s landlord said an envelope of cash
+was in the office mailbox each month. He says, quote, “I never heard a
+single complaint from this guy and nobody ever complained about him.
+He’s the best tenant I ever had.”</p>
+<p><strong>mills</strong>: There’s a landlord’s dream tenant. A
+paralyzed man with no tongue.</p>
+<p><strong>officer</strong>: Who pays his rent on time.</p>
+<p><strong>mills</strong>: Bring me everything as soon as it’s
+transcribed.</p>
+<p><strong>mills</strong>: Milton.</p>
+<p><strong>bleeker</strong>: Father Stone had a church and congregation
+of his own. But, he… there were some problems. The church is deserted
+now.</p>
+<p><strong>somerset</strong>: Problems?</p>
+<p><strong>somerset</strong>: Father?</p>
+<p><strong>bleeker</strong>: There was a small orphanage attached to the
+church, overseen by Father Stone. This was almost thirty years ago. He
+was an excellent priest, devoted in every way. Many in his parish
+demanded his return.</p>
+<p><strong>somerset</strong>: Tell me what happened.</p>
+<p><strong>bleeker</strong>: Allegations were made… Stone was accused of
+abusing the children in his care. But, those charges were never
+substantiated.</p>
+<p><strong>somerset</strong>: What abuse?</p>
+<p><strong>bleeker</strong>: It was claimed… that the children were
+beaten. And, punished severely.</p>
+<p><strong>somerset</strong>: Father Stone. I’m a policeman. I’d like to
+ask you a few questions, if it’s alright?</p>
+<p><strong>somerset</strong>: I want to ask you about the seven deadly
+sins.</p>
+<p><strong>stone</strong>: The sins.</p>
+<p><strong>somerset</strong>: Yes, father.</p>
+<p><strong>stone</strong>: Are you one of mine?</p>
+<p><strong>somerset</strong>: I don’t…</p>
+<p><strong>stone</strong>: Are you saved? Do you have God?</p>
+<p><strong>somerset</strong>: I… I need to ask about the sins. Do you
+understand what I’m saying?</p>
+<p><strong>stone</strong>: Are you a sinner?</p>
+<p><strong>stone</strong>: There are sinners here. Even here. And, pain
+waits for them. Hell is hungry for them.</p>
+<p><strong>stone</strong>: They don’t realize… they don’t know. Fuck
+them all!</p>
+<p><strong>nun</strong>: They shouldn’t have let you disturb him. This
+shouldn’t have been allowed.</p>
+<p><strong>stone</strong>: Where are the children? Where are the
+children?!</p>
+<p><strong>bleeker</strong>: What are you looking for?</p>
+<p><strong>somerset</strong>: I’m just looking.</p>
+<p><strong>bleeker</strong>: Saint Jerome Emiliani. The patron saint of
+orphans.</p>
+<p><strong>somerset</strong>: Is this still the Lord’s house?</p>
+<p><strong>bleeker</strong>: Of course it is.</p>
+<p><strong>somerset</strong>: And, even if Father Stone was guilty of
+everything… if he was hurting children here? It’s still the Lord’s
+house?</p>
+<p><strong>bleeker</strong>: You have no faith, Somerset? Have you given
+up on the church entirely?</p>
+<p><strong>somerset</strong>: No. That’s not what I’ve given up on.</p>
+<p><strong>mills</strong>: Our guy’s a bookworm, right? And, I know it’s
+a long shot, but you have to give a picture id and current phone bill to
+get a library card. Hey…</p>
+<p><strong>mills</strong>: I made two separate lists of books. One
+relating to the sins… Dante’s Purgatory, Canterbury Tales… The
+Dictionary of Catholicism… all the religious stuff. The second list was
+books about torture methods, mass murderers… sadomasochism. Whatever our
+killer might study to do the things he’s done. Whatever his other
+interests are.</p>
+<p><strong>somerset</strong>: So, what is this?</p>
+<p><strong>mills</strong>: Alright. Everything at the library goes into
+a computer. So, you can get in the system and cross-reference…</p>
+<p><strong>mills</strong>: Let’s say you take, Dante’s Purgatory, call
+number eight-five-one-D, and… The Biography of the Marquis de Sade,
+ninety-two S-A-D-E. Put those books in the system, and the computer can
+give you the name of anyone who’s ever taken out both those books. And,
+it doesn’t just give you their name and address, it gives you a complete
+history of their library reading habits.</p>
+<p><strong>mills</strong>: If somebody’s out there reading Paradise Lost
+and studying The Life and Times of Charlie Manson, I want to talk to
+them.</p>
+<p><strong>somerset</strong>: Dario! Come here.</p>
+<p><strong>somerset</strong>: According to the Father, this orphanage
+wasn’t around for more than five or six years in the late fifties. So, I
+want someone to go to the Department of Child Welfare or City Hall and
+dig up all the records on this place. Understand?</p>
+<p><strong>dario</strong>: I got it.</p>
+<p><strong>somerset</strong>: Get a list of every child who attended
+this orphanage before it shut down. Get it on my desk within the
+hour.</p>
+<p><strong>somerset</strong>: You thought of this all by yourself? This
+was your brainstorm?</p>
+<p><strong>mills</strong>: Yeah. Is that so hard for you to believe?</p>
+<p><strong>somerset</strong>: It’s a pleasant surprise.</p>
+<p><strong>mills</strong>: I’m not as stupid as I look.</p>
+<p><strong>somerset</strong>: I guess not.</p>
+<p><strong>mills</strong>: Ramirez. Manuel Ramirez.</p>
+<p><strong>somerset</strong>: No… I don’t see any Ramirez.</p>
+<p><strong>mills</strong>: Elinski. Dennis Elinski.</p>
+<p><strong>somerset</strong>: No.</p>
+<p><strong>mills</strong>: Atwater? Paul Atwater.</p>
+<p><strong>somerset</strong>: No.</p>
+<p><strong>mills</strong>: Okay, here we go. Listen to the books this
+guy’s been taking out… Basic Homicide Investigation. Forensic
+Toxicology… The Encyclopedia of Modern Serial Killers… Of Human
+Bondage.</p>
+<p><strong>somerset</strong>: That’s not what you think it is.</p>
+<p><strong>mills</strong>: Holy shit. Somerset… The Writings of Saint
+Thomas Aquinas.</p>
+<p><strong>mills</strong>: Aquinas. Right?</p>
+<p><strong>somerset</strong>: That’s right. Let me have it.</p>
+<p><strong>mills</strong>: Fuck… he used a false name.</p>
+<p><strong>somerset</strong>: How do you know?</p>
+<p><strong>mills</strong>: His library card lists him as Jonathan Doe.
+John Doe.</p>
+<p><strong>mills</strong>: What?</p>
+<p><strong>somerset</strong>: Christ… it’s like a sick joke.</p>
+<p><strong>mills</strong>: What are you talking about?</p>
+<p><strong>somerset</strong>: There is one boy here. He was abandoned…
+no one knew who his parents were, so he was named at the orphanage… John
+Doe. It’s his legal name.</p>
+<p><strong>mills</strong>: It’s impossible odds that this is him.</p>
+<p><strong>somerset</strong>: We’re focusing.</p>
+<p><strong>mills</strong>: I know, I know. On one little thing. I’m not
+complaining. I’ll follow anything we get and I’ll take it any way we can
+get it.</p>
+<p><strong>somerset</strong>: We’ll look at him. Ask a few questions.
+Try to get a feeling whether we should keep tabs on him.</p>
+<p><strong>mills</strong>: I’ll do the talking, right? Let me practice
+here… um, excuse me Mr. Doe, but, are you by any chance a serial killer?
+Oh… oh, you are? Well, come with us then, if you don’t mind.</p>
+<p><strong>mills</strong>: Somerset!</p>
+<p><strong>mills</strong>: It’s him! Jesus Christ, we can get this
+fucker!</p>
+<p><strong>mills</strong>: Are you alright? Are you okay?</p>
+<p><strong>somerset</strong>: Yeah. I think so.</p>
+<p><strong>one forensic</strong>: I hear he’s running around with an uzi
+in one hand and a book of poetry in the other.</p>
+<p><strong>cop</strong>: A real, modern-day renaissance man, huh?</p>
+<p><strong>mills</strong>: Give us first crack at it.</p>
+<p><strong>somerset</strong>: Jesus Christ.</p>
+<p><strong>mills</strong>: Somerset!</p>
+<p><strong>mills</strong>: Somerset, we had him. Goddamn it.</p>
+<p><strong>mills</strong>: The pass is a fake… we had him.</p>
+<p><strong>mills</strong>: We were that close to him.</p>
+<p><strong>somerset</strong>: I know.</p>
+<p><strong>sketch artist</strong>: This is the guy?</p>
+<p><strong>mills</strong>: Make sure it gets around.</p>
+<p><strong>sketch artist</strong>: You got it. Tomorrow morning, this
+city’s good citizens will be on the lookout for Elmer Fudd.</p>
+<p><strong>sarah</strong>: We can’t find anything to hang onto. No
+pay-stubs, no appointment books or calendars. Not even a book of phone
+numbers. And, you’re not going to believe this…</p>
+<p><strong>mills</strong>: Keep looking.</p>
+<p><strong>sara</strong>: It’s just… we haven’t found any fingerprints
+yet. Not one.</p>
+<p><strong>mills</strong>: You know, you’re right. I don’t believe it.
+Keep looking.</p>
+<p><strong>somerset</strong>: We need to put more men on this.</p>
+<p><strong>mills</strong>: I’m working on it, alright. What have we
+got.</p>
+<p><strong>somerset</strong>: We’ve got about five thousand notebooks in
+this room. And, as near as I can tell, each notebook contains two
+hundred and fifty pages.</p>
+<p><strong>mills</strong>: Then, he must write about the murders.</p>
+<p><strong>somerset</strong>: “What sick, silly puppets we are, and what
+a gross stage we dance on. What fun we have, dancing around, not a care
+in the world. Not knowing that we are nothing. We are not what God
+intended.” “On the subway today, a man came up to start a conversation.
+He was making small talk, this lonely man, talking about the weather and
+other things. I tried to be accommodating, but my head began to hurt
+from his banality. I almost didn’t notice it had happened, but I threw
+up all over him. And I couldn’t stop myself from laughing.” No dates
+indicated. They’re placed on the shelves in no discernible order. He
+describes a scab on his arm for five pages, then writes about
+existential philosophy on the next.</p>
+<p><strong>somerset</strong>: It’s just his mind poured out on
+paper.</p>
+<p><strong>mills</strong>: You were right. He is preaching.</p>
+<p><strong>mills</strong>: Hello… hello?</p>
+<p><strong>john doe</strong>: I admire you, David. Imagine my surprise
+on finding you at my doorstep. I admire you more and more every day.</p>
+<p><strong>mills</strong>: Okay, John. Let’s…</p>
+<p><strong>john doe</strong>: No, no, no! You listen and don’t talk. I
+suppose you found the painting and the photos. This is just as well. Now
+we all know we’ve all seen each other. I mean what I say. I do admire
+you.</p>
+<p><strong>john doe</strong>: Oh, there is one other thing. Fourteen
+hundred thirty. West Eighty-sixth street. Apartment six-o-four.</p>
+<p><strong>mills</strong>: Pride. Just like in the painting.</p>
+<p><strong>somerset</strong>: You can see what he did.</p>
+<p><strong>mills</strong>: Cut her up… dressed the wounds. He put the
+noose around her neck and stood her on the chair.</p>
+<p><strong>somerset</strong>: She had the telephone.</p>
+<p><strong>mills</strong>: Call for help, and you’ll live. But, you’ll
+be mutilated.</p>
+<p><strong>somerset</strong>: Or, kick out the chair, and spare yourself
+a lifetime of hideousness.</p>
+<p><strong>o’neill</strong>: He cut off her nose to spite her face. And
+he did it very recently.</p>
+<p><strong>captain</strong>: Alright, boys, you’re running on empty. Go
+home. Just make sure you sleep with the phone between your knees.</p>
+<p><strong>somerset</strong>: Tracy?</p>
+<p><strong>tracy</strong>: Somerset. How are you?</p>
+<p><strong>somerset</strong>: I’m alright. I’m glad to see you found
+this place. I almost should have expected to run into you here, knowing
+that you teach English.</p>
+<p><strong>tracy</strong>: It’s so huge. It’s amazing.</p>
+<p><strong>somerset</strong>: This is why I moved into this
+neighborhood.</p>
+<p><strong>tracy</strong>: Don’t you love the smell of all the old
+books. It smells like… like… I guess just old books, but, I love it.</p>
+<p><strong>tracy</strong>: Forgive me. No matter how often I see guns, I
+can’t get used to them.</p>
+<p><strong>somerset</strong>: Same here.</p>
+<p><strong>tracy</strong>: If David’s going to be back home soon, I
+should get back.</p>
+<p><strong>tracy</strong>: I hope you’ll come to dinner another night.
+Before you leave.</p>
+<p><strong>somerset</strong>: You can stay and browse a little longer,
+can’t you? I mean…</p>
+<p><strong>somerset</strong>: I… I hardly know anyone I can talk about
+books with anymore. I’d appreciate the company.</p>
+<p><strong>somerset</strong>: The irony is, that after a day of the type
+of work he did, he’d come home and read me these morbid crime stories.
+Le Fanu’s Green Tea. Murders in the Rue Morgue.</p>
+<p><strong>somerset</strong>: My mother would give him hell… because I
+was young, and he was keeping me up till all hours, giving me
+nightmares.</p>
+<p><strong>tracy</strong>: Sounds like a father who wanted his son to
+follow in his footsteps.</p>
+<p><strong>somerset</strong>: One birthday, he gave me a hardcover book
+called The Century of the Detective, by Jurgen Thorwald. It traced the
+history of detection as a science and it sealed my fate. Because it was
+real, and that a drop of blood or a piece of hair could solve a crime…
+was incredible to me.</p>
+<p><strong>clerk</strong>: We’re closing up, Somerset.</p>
+<p><strong>somerset</strong>: Okay, thanks.</p>
+<p><strong>tracy</strong>: David’s going to wonder where I am.</p>
+<p><strong>somerset</strong>: I’ll give you a ride.</p>
+<p><strong>tracy</strong>: No. Please, don’t bother.</p>
+<p><strong>somerset</strong>: I have to insist. If your husband found
+out I let you ride the subway at this hour he’d tear my head off.</p>
+<p><strong>somerset</strong>: I mean, literally.</p>
+<p><strong>tracy</strong>: You’ve lived here for so long, Somerset. You
+know this city. I…</p>
+<p><strong>somerset</strong>: It’s a hard place, Tracy.</p>
+<p><strong>tracy</strong>: When David and I lived in Philadelphia, we
+could afford to live on the outskirts. But now… I hate it here. I feel
+scared, and I feel sick and… I hate it.</p>
+<p><strong>somerset</strong>: You have to put blinders on sometimes.
+Most times. But, keep in mind, Tracy, like tonight, there are small
+pockets of sanity. Some bars and bookstores. Museums. Several last
+vestiges of civilization.</p>
+<p><strong>tracy</strong>: I’ve visited so many of the schools, looking
+for work, you know. And, the conditions are… horrible. I can’t believe
+how bad it is. Children shouldn’t have to grow up here.</p>
+<p><strong>somerset</strong>: You can always look into the private
+schools. You’ll find something.</p>
+<p><strong>somerset</strong>: You’re too hard on yourself, Tracy.</p>
+<p><strong>somerset</strong>: It’s okay to hate this city. It’s natural.
+But, there is a bright side in all this. There is. You want to hear
+it?</p>
+<p><strong>tracy</strong>: Oh, God, yes. Please.</p>
+<p><strong>somerset</strong>: I can’t think of another place that needs
+education more than this city. And you’re a teacher. You can make a
+difference in a few people’s lives. It’s a very good thing.</p>
+<p><strong>tracy</strong>: Goodnight, Somerset.</p>
+<p><strong>somerset</strong>: Goodnight.</p>
+<p><strong>somerset</strong>: I’m sorry, Tracy. I’m sorry.</p>
+<p><strong>tracy</strong>: I… I better go.</p>
+<p><strong>mills</strong>: It won’t be for long, honey. I swear. This is
+just till this is over.</p>
+<p><strong>tracy</strong>: I know.</p>
+<p><strong>mills</strong>: I’m sorry.</p>
+<p><strong>tracy</strong>: I know. It can’t be helped.</p>
+<p><strong>mills</strong>: There’s two people in that painting. So,
+maybe he’s planning to kill two people this time. Maybe.</p>
+<p><strong>mills</strong>: What’s wrong this morning?</p>
+<p><strong>somerset</strong>: Nothing. Sorry.</p>
+<p><strong>mills</strong>: Lust is next. Lust is sex.</p>
+<p><strong>somerset</strong>: Apples on the floor. Original sin.</p>
+<p><strong>mills</strong>: Adam and Eve.</p>
+<p><strong>mills</strong>: Sex, sex, sex. Fucking sex.</p>
+<p><strong>somerset</strong>: Lust is everywhere. That’s the hard part.
+I think lust is the most prevalent sin, even more than greed.</p>
+<p><strong>mills</strong>: Lust is red.</p>
+<p><strong>somerset</strong>: Bright red.</p>
+<p><strong>mills</strong>: Blood red.</p>
+<p><strong>somerset</strong>: Red sky at night, sailor’s delight.</p>
+<p><strong>mills</strong>: Red blooded. Red head. Dead.</p>
+<p><strong>somerset</strong>: Red light district.</p>
+<p><strong>mills</strong>: That would make sense.</p>
+<p><strong>somerset</strong>: It would be fitting.</p>
+<p><strong>mills</strong>: You’re damn right it would.</p>
+<p><strong>wild bill</strong>: Yeah, he was here. This morning.</p>
+<p><strong>mills</strong>: It was definitely him? You’re positive?</p>
+<p><strong>wild bill</strong>: Yeah. John Doe. Easy name to
+remember.</p>
+<p><strong>somerset</strong>: What was this job you did for him?</p>
+<p><strong>wild bill</strong>: I got a picture of it. That’s what he
+came for this morning. I figured he must be one of those art guys… like
+those guys who piss in a cup and drink it on stage. Performance art.</p>
+<p><strong>mills</strong>: Oh, fuck…</p>
+<p><strong>wild bill</strong>: I think I undercharged him. I was up all
+night working to finish it.</p>
+<p><strong>somerset</strong>: You built this for him? You built
+this?</p>
+<p><strong>wild bill</strong>: I’ve built weirder shit than that.</p>
+<p><strong>policeman</strong>: Somerset… we have a situation.</p>
+<p><strong>wild bill</strong>: Hey, my picture!</p>
+<p><strong>wild bill</strong>: Fucking pigs.</p>
+<p><strong>fat man</strong>: Just wait!</p>
+<p><strong>cop</strong>: Get out of the fucking booth!</p>
+<p><strong>fat man</strong>: Just wait! I’ll come out, just wait!</p>
+<p><strong>cop</strong>: I don’t want to go in there again.</p>
+<p><strong>crazed man</strong>: He… he… he made me do it!</p>
+<p><strong>second attendant</strong>: I have to look at you. I have to
+look at you.</p>
+<p><strong>first attendant</strong>: You’re not going to want to see
+this more than once.</p>
+<p><strong>crazed man</strong>: He had a gun! He… he made me do it!</p>
+<p><strong>crazed man</strong>: He made me do it!</p>
+<p><strong>crazed man</strong>: And… and… and he said… he asked if I was
+married. And, I could see he had a gun in his hand.</p>
+<p><strong>somerset</strong>: Where was the girl?</p>
+<p><strong>crazed man</strong>: What? What?</p>
+<p><strong>somerset</strong>: Where was the prostitute?</p>
+<p><strong>crazed man</strong>: She was… she was on the bed. She was
+just sitting on the bed.</p>
+<p><strong>somerset</strong>: Who tied her down? You or him?</p>
+<p><strong>crazed man</strong>: He had a gun. He had a gun, and he made
+it happen. He made me do it! He made me put it on… that thing. Oh, God…
+he made me wear it. He had the gun in my mouth.</p>
+<p><strong>crazed man</strong>: The gun was in my throat.</p>
+<p><strong>somerset</strong>: There’s not going to be a happy ending.
+It’s not possible.</p>
+<p><strong>mills</strong>: If we get him, I’ll be happy enough.</p>
+<p><strong>somerset</strong>: No. Face it now. Stop thinking it’s good
+guys against the bad guys in this city.</p>
+<p><strong>mills</strong>: How can you say that? Especially after
+today?</p>
+<p><strong>somerset</strong>: You tell me… when you walk into an
+apartment, and a man has beaten his wife to death, or, a wife murdered
+her husband in cold blood… and you have to wash the blood off their
+children. You put the killer in jail. Who won?</p>
+<p><strong>mills</strong>: If I thought like you, I’d have slit my
+wrists a long time ago.</p>
+<p><strong>somerset</strong>: Where’s the victory?</p>
+<p><strong>mills</strong>: You do your job. Follow the law and do the
+best you can. It’s all there.</p>
+<p><strong>somerset</strong>: If we caught John Doe tomorrow, and it
+turned out he was the devil… if it turned out he was literally Satan,
+then, that might live up to our expectations. No human being could do
+these horrible things, right?! But, this is not the devil. It’s only a
+man.</p>
+<p><strong>mills</strong>: Why don’t you shut the fuck up for a while?!
+Huh? You make these speeches… like you know everything there is to
+know.</p>
+<p><strong>mills</strong>: You think you’re preparing me for the hard
+times ahead? You think you’re toughening me up? Well, you’re not! You’re
+quitting, fine… but I’m staying to fight.</p>
+<p><strong>somerset</strong>: Who are you fighting for? People don’t
+want a champion. They just want to keep playing the lottery and eating
+hamburgers.</p>
+<p><strong>mills</strong>: What the fuck is wrong with you, huh? What
+burnt you out?</p>
+<p><strong>somerset</strong>: There’s no one thing, if that’s what you
+mean. I just… I can’t live anymore where stupidity is embraced and
+nurtured as if it were a virtue.</p>
+<p><strong>mills</strong>: You’re so much better than everyone, right?
+No one’s worthy of you.</p>
+<p><strong>somerset</strong>: Wrong! I sympathize completely. Because if
+you can’t win… then, if you don’t ignore everything and everyone around
+you, you go insane. It’s easier to smoke crack, and not worry that your
+wife and kids are starving to death. And, it’s so much easier to bear a
+child till that child finally shuts up, because it takes so much work to
+love. And, if you bothered to think about the abuse, and the damage,
+you’d be sad.</p>
+<p><strong>mills</strong>: You’re talking about people who are mentally
+ill. You’re…</p>
+<p><strong>somerset</strong>: No, I am not! I’m talking about common,
+everyday life here. Where Ignorance isn’t bliss, it’s a matter of
+survival.</p>
+<p><strong>mills</strong>: Listen to yourself. You say, “the problem
+with people is they don’t care, so I don’t care about people.” But, if
+you’re not part of the solution…</p>
+<p><strong>somerset</strong>: People who are in arguments over their
+heads always use meaningless slogans. But, life doesn’t conform to
+analogies.</p>
+<p><strong>mills</strong>: You’re already here, and you’ve been here a
+long time. So, there’s a part of you that knows, even if everything you
+say is true, none of it matters.</p>
+<p><strong>somerset</strong>: That part of me is dead.</p>
+<p><strong>mills</strong>: Fuck you. You want me to agree with you.
+“Yeah, you’re right, Somerset, this place is fucked. Let’s go live in a
+fucking log cabin!” Well, I don’t agree with you. You’re quitting, and
+it makes me sick. Cause, you’re the best I’ve ever seen.</p>
+<p><strong>mills</strong>: Thanks for the beer.</p>
+<p><strong>tracy</strong>: David?</p>
+<p><strong>mills</strong>: I love you.</p>
+<p><strong>tracy</strong>: David?</p>
+<p><strong>mills</strong>: I love you.</p>
+<p><strong>somerset</strong>: Hello.</p>
+<p><strong>tracy</strong>: Hello, Somerset. It’s Tracy.</p>
+<p><strong>somerset</strong>: Is everything alright?</p>
+<p><strong>tracy</strong>: Yes. Everything’s fine. Could… could you meet
+me somewhere. To talk.</p>
+<p><strong>somerset</strong>: I don’t think that’s a good idea.</p>
+<p><strong>tracy</strong>: I need to talk to someone, Somerset. You’re
+the only friend I have here. I don’t know anyone else.</p>
+<p><strong>somerset</strong>: David doesn’t know about this? You haven’t
+told him?</p>
+<p><strong>somerset</strong>: I have to tell you, Tracy, I’m not the one
+to talk to about this.</p>
+<p><strong>tracy</strong>: I just can’t think straight. I don’t know why
+I called you, except I can’t stand to hold it as a secret anymore. I had
+to get it out… and I can’t tell David yet. Not yet.</p>
+<p><strong>somerset</strong>: I… I had a relationship once, very much
+like a marriage. And, there was a baby. A long time ago. Things were
+good. And I got up one morning, and I went on a case… a murder, like any
+other. Except it was my first since hearing about the baby. And, I felt
+this fear and anxiety coming over me. I looked around and I thought, how
+can I raise a child here? So, that night, I told her I didn’t want us to
+have children, And, over the next few weeks… I convinced her…</p>
+<p><strong>somerset</strong>: I mean, I wore her down… slowly.</p>
+<p><strong>tracy</strong>: I want to have children. But…</p>
+<p><strong>somerset</strong>: I can tell you, I know… I’m positive I
+made the right decision. I’m positive it was the right thing to do. But,
+there’s never a day that goes by that I don’t wish I had decided
+differently.</p>
+<p><strong>somerset</strong>: If you… if you decide not to have the
+baby… if that’s what you decide, then never tell Mills you were
+pregnant. I mean that. Never tell. Your marriage would just wither, and
+die altogether.</p>
+<p><strong>somerset</strong>: But, if you decide to have the baby, then,
+at that very instant, when you’re absolutely sure… tell him. Tell him
+that exact second. And, spoil that kid every chance you get.</p>
+<p><strong>tracy</strong>: Somerset…</p>
+<p><strong>somerset</strong>: That’s all the wisdom I can share with
+you, Tracy. I barely know you.</p>
+<p><strong>tracy</strong>: Will I see you again, before you leave?</p>
+<p><strong>somerset</strong>: Probably not. But, it’s probably better
+that way.</p>
+<p><strong>somerset</strong>: I’ve decided… I want to stay on, till this
+is over. Till either it’s done, or we can see it will never end.</p>
+<p><strong>mills</strong>: Oh, you want to stay now?</p>
+<p><strong>somerset</strong>: One of two things is going to happen.
+We’re either going to get John Doe… or, he will finish his series of
+seven, and he’ll never be found.</p>
+<p><strong>mills</strong>: You think if you stay you’re doing me some
+big favor?</p>
+<p><strong>somerset</strong>: I’m requesting you keep me on as your
+partner a few more days. You’d be doing me the favor.</p>
+<p><strong>mills</strong>: You knew I’d say yes.</p>
+<p><strong>somerset</strong>: No. I wasn’t sure at all.</p>
+<p><strong>somerset</strong>: As soon as this is over, I’ll be gone.</p>
+<p><strong>mills</strong>: What a great big surprise that is.</p>
+<p><strong>mills</strong>: Mills and Somerset are on the premises.</p>
+<p><strong>sergeant</strong>: Wonder-fucking-ful.</p>
+<p><strong>uniformed cop</strong>: It’s him!</p>
+<p><strong>mills</strong>: Get down on the floor.</p>
+<p><strong>somerset</strong>: Be careful!</p>
+<p><strong>another cop</strong>: You heard him! Get on the floor!</p>
+<p><strong>one cop</strong>: Spread your legs and get your hands out in
+front of you.</p>
+<p><strong>mills</strong>: Get down! Face down!</p>
+<p><strong>mills</strong>: Don’t move. Don’t move a fucking inch.</p>
+<p><strong>somerset</strong>: I don’t believe it.</p>
+<p><strong>john doe</strong>: Hello, Lieutenant Somerset.</p>
+<p><strong>cop</strong>: What the hell is this?</p>
+<p><strong>john doe</strong>: I want to speak with my lawyer.</p>
+<p><strong>captain</strong>: He cuts off the skin of his fingertips.
+That’s why we can’t find a single usable print in his apartment. For a
+long time, he’s been cutting before the papillary lines can grow
+back.</p>
+<p><strong>mills</strong>: What about the trace on his bank account? The
+guns?</p>
+<p><strong>captain</strong>: The orphanage is all we have. His bank
+account is only five years old and it started as cash. There’s no credit
+history, no employment history. We even tried to trace his furniture.
+All we know for sure is he’s wealthy, well educated and totally insane.
+We may never know how he got that way.</p>
+<p><strong>somerset</strong>: Because he is John Doe, by choice.</p>
+<p><strong>mills</strong>: When do we get to question him?</p>
+<p><strong>captain</strong>: You don’t. This goes to court now.</p>
+<p><strong>mills</strong>: This doesn’t make sense, captain. He wouldn’t
+just turn himself in!</p>
+<p><strong>captain</strong>: Well, there he sits. It’s not supposed to
+make sense.</p>
+<p><strong>mills</strong>: He’s not finished!</p>
+<p><strong>captain</strong>: You’re wound way too tight on this,
+Mills.</p>
+<p><strong>mills</strong>: Somerset… help me out here.</p>
+<p><strong>captain</strong>: It’s over.</p>
+<p><strong>mills</strong>: Damn it, Somerset. You know Johnny’s fucking
+with us. He’s pissing in our faces again!</p>
+<p><strong>somerset</strong>: Slow up. You and I are, probably for the
+first time ever, in total agreement. He wouldn’t just stop.</p>
+<p><strong>mills</strong>: Well… what the fuck, man?</p>
+<p><strong>somerset</strong>: John Doe’s only two murders away from
+finishing his masterpiece, right? But, can you even conceive of what
+might happen next? I mean, can you tell me how he’s going to go about
+it?</p>
+<p><strong>mills</strong>: No.</p>
+<p><strong>somerset</strong>: I can tell you this; I recognize his
+lawyer. His name is Mark Swarr. He’s the one who kept Zero out of
+prison. We’ll wait for John Doe’s plea.</p>
+<p><strong>swarr</strong>: My client says there are two more bodies… two
+more dead, hidden away. He will take Detective Mills to these bodies,
+but only Detective Mills. Only at six o’clock, today.</p>
+<p><strong>talbot</strong>: Oh, Christ.</p>
+<p><strong>mills</strong>: Why me?</p>
+<p><strong>swarr</strong>: He says he admires you.</p>
+<p><strong>somerset</strong>: This is all part of his game plan.</p>
+<p><strong>swarr</strong>: Mr. Doe claims that if the detective does not
+accept this offer, the bodies will never be found.</p>
+<p><strong>captain</strong>: Frankly, counselor, I’m inclined to let
+them rot.</p>
+<p><strong>mills</strong>: You like what you do for a living?</p>
+<p><strong>captain</strong>: Back off, Mills.</p>
+<p><strong>swarr</strong>: I’m required by law to serve my clients to
+the best of my ability, and to serve their interests.</p>
+<p><strong>talbot</strong>: We don’t make deals like this.</p>
+<p><strong>captain</strong>: We’re going to have to pass.</p>
+<p><strong>swarr</strong>: My client… he also wishes that I inform you,
+if you do not accept, he will plead insanity, across the board.</p>
+<p><strong>talbot</strong>: Let him try. I’d like to see him try!</p>
+<p><strong>swarr</strong>: Come now, Martin. Even he knows, with the
+nature of these crimes, I could get him off with such a plea.</p>
+<p><strong>talbot</strong>: I’m not letting this conviction slide. I can
+tell you that, right here and right now!</p>
+<p><strong>swarr</strong>: He says, if you accept, under his specific
+conditions, he will sign a full confession and plead guilty… right here,
+and right now.</p>
+<p><strong>mills</strong>: I’ll do it.</p>
+<p><strong>somerset</strong>: Hold on… just a minute.</p>
+<p><strong>somerset</strong>: If he were to plead insanity… this
+conversation is admissible. The fact that he’s blackmailing us with his
+plea…</p>
+<p><strong>swarr</strong>: And, my client reminds you, two more people
+are dead. The press would have a field day if they found out the police
+didn’t seem too concerned about finding them… giving them proper
+burial.</p>
+<p><strong>mills</strong>: I’ll do it. I want to finish it.</p>
+<p><strong>somerset</strong>: Well… let’s get the fucking lawyer out of
+the room, and we can talk about how this whole thing’s going to go
+down.</p>
+<p><strong>somerset</strong>: If John Doe’s head splits open, and a
+U.F.O. flies out, I want you to have expected it.</p>
+<p><strong>mills</strong>: I will.</p>
+<p><strong>somerset</strong>: No emotion. Stay as cold as ice.</p>
+<p><strong>mills</strong>: I will.</p>
+<p><strong>mills</strong>: Listen, Somerset… we’ve been through a lot
+together. And, I uh…</p>
+<p><strong>somerset</strong>: What is it?</p>
+<p><strong>mills</strong>: I would like to make sweet love to you.</p>
+<p><strong>somerset</strong>: Please…</p>
+<p><strong>mills</strong>: Give me a kiss on the lips.</p>
+<p><strong>somerset</strong>: Give me a break.</p>
+<p><strong>somerset</strong>: Ready?</p>
+<p><strong>mills</strong>: Extremely.</p>
+<p><strong>california</strong>: Is this wind going to hurt us?</p>
+<p><strong>pilot</strong>: Just makes the ride a little more fun.</p>
+<p><strong>mills</strong>: What’s your story, Johnny? Who are you,
+really?</p>
+<p><strong>john doe</strong>: It doesn’t matter who I am. Who I am means
+absolutely nothing.</p>
+<p><strong>mills</strong>: What’s your deal? You seem pretty fucking
+nervous.</p>
+<p><strong>john doe</strong>: I want this to go well. It’s very
+important to me, obviously.</p>
+<p><strong>mills</strong>: You want this to go well? What is this?</p>
+<p><strong>john doe</strong>: Turn right on this street. Stay in the
+left lane.</p>
+<p><strong>somerset</strong>: I’m here.</p>
+<p><strong>california</strong>: Downtown and moving west. Looks like
+you’re going to be crossing water.</p>
+<p><strong>somerset</strong>: If we’re on the bridge, you keep your
+distance. You hear me?</p>
+<p><strong>somerset</strong>: Cross the river before us if
+necessary.</p>
+<p><strong>california</strong>: You got it.</p>
+<p><strong>mills</strong>: For us to go pick up two more dead bodies,
+and have that be the end of it… just seems too boring for you.</p>
+<p><strong>mills</strong>: Wouldn’t be sensational enough.</p>
+<p><strong>john doe</strong>: Wanting people to pay attention, you can’t
+just tap them on the shoulder.</p>
+<p><strong>john doe</strong>: Sometimes you have to hit them in the head
+with a sledgehammer… and then you get their strict attention.</p>
+<p><strong>mills</strong>: What are you looking at, Johnny?</p>
+<p><strong>john doe</strong>: Looking back… at the city proper…</p>
+<p><strong>john doe</strong>: And yet, no pillar of salt. Lost on you,
+isn’t it? You’ve never read the Bible, have you, David?</p>
+<p><strong>mills</strong>: I remember a lot of people reading it at me
+when I was a kid. I preferred the classic comic version myself.</p>
+<p><strong>mills</strong>: I used to have “Godspell” on an eight- track
+tape. Does that count?</p>
+<p><strong>john doe</strong>: You make me sick.</p>
+<p><strong>mills</strong>: Sit back, freak.</p>
+<p><strong>john doe</strong>: Ignorant heathen.</p>
+<p><strong>mills</strong>: Right, right. I forgot. You think these
+murders were for God. Right? I’m asking you seriously. You really think
+what you did was God’s good work?</p>
+<p><strong>john doe</strong>: The Lord works in mysterious ways.</p>
+<p><strong>california</strong>: Fuck, man… there’s about a thousand
+places to be ambushed out here.</p>
+<p><strong>california</strong>: I don’t see anything… not yet.</p>
+<p><strong>somerset</strong>: A quick sweep is all we get. Clear out
+now. You’re right in front of us.</p>
+<p><strong>mills</strong>: Jesus Christ, Superstar… who in the world do
+you think you are? Jesus Christ, Superstar…</p>
+<p><strong>john doe</strong>: We can walk from here.</p>
+<p><strong>somerset</strong>: You stay out of this unless I call you in,
+California. Understand?</p>
+<p><strong>california</strong>: You’re in charge.</p>
+<p><strong>mills</strong>: Alright, Somerset. Going for a stroll.</p>
+<p><strong>mills</strong>: Lean on your side. Hands behind your head and
+lock your fingers together.</p>
+<p><strong>mills</strong>: Where are we going?</p>
+<p><strong>mills</strong>: Lead the way.</p>
+<p><strong>john doe</strong>: It’s right this way.</p>
+<p><strong>mills</strong>: So far, so good.</p>
+<p><strong>john doe</strong>: In here.</p>
+<p><strong>mills</strong>: You go first.</p>
+<p><strong>mills</strong>: Tell me where we’re going.</p>
+<p><strong>mills</strong>: Slow down, Johnny. Stop right there. I said
+stop!</p>
+<p><strong>mills</strong>: I’ll blow your head off right now!</p>
+<p><strong>mills</strong>: What…</p>
+<p><strong>mills</strong>: No!</p>
+<p><strong>mills</strong>: Motherfucker! No!</p>
+<p><strong>mills</strong>: He’s gone, Somerset! He’s in the water!</p>
+<p><strong>mills</strong>: I’m going in!</p>
+<p><strong>mills</strong>: I have to go in after him!</p>
+<p><strong>california</strong>: Somerset, what’s going on down
+there?!</p>
+<p><strong>mills</strong>: Come on, Johnny! I’m right here!</p>
+<p><strong>somerset</strong>: Mills!</p>
+<p><strong>california</strong>: God damn it! Let’s do something!</p>
+<p><strong>pilot</strong>: Somerset said wait!</p>
+<p><strong>california</strong>: Fuck that! Let’s go!</p>
+<p><strong>pilot</strong>: Where?</p>
+<p><strong>california</strong>: I don’t know! Just go!</p>
+<p><strong>mills</strong>: Come on! Let’s do it! You and me!</p>
+<p><strong>mills</strong>: I’m not going to let you win this!</p>
+<p><strong>somerset</strong>: Christ.</p>
+<p><strong>somerset</strong>: Mills! Pull out!</p>
+<p><strong>somerset</strong>: Pull out now!</p>
+<p><strong>john doe</strong>: Hello, Somerset.</p>
+<p><strong>somerset</strong>: Where’s David?</p>
+<p><strong>john doe</strong>: He’s here. With me.</p>
+<p><strong>somerset</strong>: Tell me what you want.</p>
+<p><strong>john doe</strong>: What do I want? The same you… I want an
+ending. Stay where you are. Put your gun on the floor and slide it all
+the way down here.</p>
+<p><strong>somerset</strong>: I want to see him. Show me Mills.</p>
+<p><strong>john doe</strong>: You’re an intelligent man, Somerset. You
+understand what you’re a part of, don’t you? When this is finished, it
+will seem surreal, but it will be a whole, crystalline reality. And, no
+one will be able to deny it, no matter how hard they try.</p>
+<p><strong>somerset</strong>: You’re a murderer. That’s all. The only
+way you’ve distinguished yourself is by your particular brutality.</p>
+<p><strong>john doe</strong>: You know that’s not true. You know.</p>
+<p><strong>somerset</strong>: You’re killing innocent people, and I
+should admire you? You’re doing it because it gives you pleasure. That’s
+the only purpose… your sick pleasure.</p>
+<p><strong>john doe</strong>: Stay where you are!</p>
+<p><strong>john doe</strong>: I won’t deny my personal desires. I
+won’t.</p>
+<p><strong>john doe</strong>: But, I don’t mourn the victims in this any
+more than I mourn the thousands who died in Sodom and Gomorrah.</p>
+<p><strong>somerset</strong>: All you’ve done is cause more misery and
+pain! You’ve given people all the more reason to believe there is no
+God!</p>
+<p><strong>john doe</strong>: Stop!</p>
+<p><strong>mills</strong>: Somerset?</p>
+<p><strong>somerset</strong>: Do you really think I’m just going to let
+this happen?! You think I’m going to let him die?</p>
+<p><strong>john doe</strong>: Yes.</p>
+<p><strong>mills</strong>: Motherfucker!</p>
+<p><strong>john doe</strong>: How can you speak of God, Somerset? When
+was the last time you spoke His name?</p>
+<p><strong>john doe</strong>: When did you last speak His name? Was it
+in prayer? Or, did you say the Lord’s name after you stubbed your big
+toe? Or, did you use His name to curse another man?</p>
+<p><strong>mills</strong>: I’m going to kill you, Johnny. I’m going to
+see you dead.</p>
+<p><strong>john doe</strong>: The irony, David, is that you policemen
+and I want the same things. But, you are so short sighted. In this city,
+where you can see a deadly sin on every street corner… and in every
+home, we want repentance.</p>
+<p><strong>john doe</strong>: We want good over evil. We want values
+instilled in the children. We want a world where a man or woman can lead
+a decent life. Wisdom, understanding, counsel, fortitude, knowledge,
+piety, and fear of the Lord. Such simple concepts. Why are they
+non-existent?</p>
+<p><strong>somerset</strong>: Let him go, God damn you.</p>
+<p><strong>john doe</strong>: There were two men once, who had wonderful
+gardens. Two gardens of flowers that went on as far as the eye could
+see. Beautiful gardens… the fragrance was inspiration in itself.</p>
+<p><strong>john doe</strong>: But, both gardens were beset by problems.
+Weeds started to take root, and there were infestations of insects and
+diseases. The gardens started to turn putrid. And, one man fought to
+save his garden, because he could never forget how it once was. Everyday
+he cut the weeds, and killed the insects. Fought the diseases.</p>
+<p><strong>john doe</strong>: That man never had a beautiful garden
+again.</p>
+<p><strong>mills</strong>: Fuck you!</p>
+<p><strong>john doe</strong>: The other man plowed his garden under. He
+plowed it under the soil. He started over.</p>
+<p><strong>john doe</strong>: Stay there, Somerset. Or, I’ll kill him
+right now.</p>
+<p><strong>somerset</strong>: Alright… you don’t have to do this, John.
+You’ve already made your point.</p>
+<p><strong>john doe</strong>: Do you think I chose this? Can you even
+begin to understand how painful my existence has been? It’s like… like
+having every sense heightened beyond comprehension.</p>
+<p><strong>john doe</strong>: So that the stench of the street coats
+your throat like bile. So, sugar is so sweet it… it makes your bones
+ache to the marrow.</p>
+<p><strong>somerset</strong>: You’re insane. That’s why.</p>
+<p><strong>john doe</strong>: No! You’re wrong!</p>
+<p><strong>john doe</strong>: I was chosen. And I’ve wished a thousand
+times I could have been a normal man. Like David Mills, a common man…
+with a common life. But, wishing that is my sin. I can’t have it and I
+shouldn’t.</p>
+<p><strong>somerset</strong>: Don’t do this!</p>
+<p><strong>john doe</strong>: I meant what I said. I admire David Mills.
+I envy David Mills. Envy is my sin.</p>
+<p><strong>somerset</strong>: No!</p>
+<p><strong>somerset</strong>: David, get out!</p>
+<p><strong>somerset</strong>: No!</p>
+<p><strong>somerset</strong>: David… David? Please…</p>
+<p><strong>somerset</strong>: You.</p>
+<p><strong>captain</strong>: I don’t know if I should do this. We found
+the motel room Doe must have been staying in after you found his
+apartment.</p>
+<p><strong>captain</strong>: Anyway… we found this in his
+belongings.</p>
+<p><strong>somerset</strong>: I wish I could say something… Something
+to… I don’t know…</p>
+<p><strong>tracy</strong>: I’ll be okay.</p>
+<p><strong>somerset</strong>: We’ll keep in touch. I’ll come visit.</p>
+<p><strong>tracy</strong>: I’ll write to you when we get there.</p>
+<p><strong>somerset</strong>: Take care of yourself. Take care of the
+baby.</p>
+<p><strong>mover</strong>: That’s all, Mrs. Mills. We got
+everything.</p>
+<p><strong>somerset</strong>: Goodbye, Tracy.</p>
+<p><strong>tracy</strong>: Goodbye, Somerset.</p>
+<p><strong>somerset</strong>: Oh… man…</p>
+</body>
+</html>

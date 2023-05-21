@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>serial-mom</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="serial-mom">serial-mom</h1>
+<p><strong>mom</strong>: Who wants fruit salad?</p>
+<p><strong>misty</strong>: I do, please.</p>
+<p><strong>mom</strong>: That’s not gum in your mouth, is it?</p>
+<p><strong>misty</strong>: It’s sugarless.</p>
+<p><strong>mom</strong>: You know how I hate gum, Misty. All that
+chomping and cheesing…</p>
+<p><strong>misty</strong>: Sorry, Mom. Thanks. Hey, Chip, think I could
+get 50c for Vanilla Ice.</p>
+<p><strong>chip</strong>: I wouldn’t give ya a nickle.</p>
+<p><strong>misty</strong>: Carl can’t believe how much I make at swap
+meets.</p>
+<p><strong>mom</strong>: And who may I ask is Carl?</p>
+<p><strong>misty</strong>: Just a boy. He’s picking me up this
+morning.</p>
+<p><strong>chip</strong>: Here we go again.</p>
+<p><strong>misty</strong>: He’s really cute!</p>
+<p><strong>mom</strong>: birds nibbling seed from the bird-feeder in
+kitchen</p>
+<p><strong>chip</strong>: She sure can pick ’em!</p>
+<p><strong>misty</strong>: He goes to college with me!</p>
+<p><strong>dad</strong>: Leave her alone, Chip. I think it’s great she
+has a new beau, Beverly.</p>
+<p><strong>mom</strong>: Cereal anybody?</p>
+<p><strong>dad</strong>: Just a little, please. Bad for the teeth.</p>
+<p><strong>chip</strong>: Always the dentist.</p>
+<p><strong>mom</strong>: Chip, honey?</p>
+<p><strong>chip</strong>: Thanks, Mom.</p>
+<p><strong>dad</strong>: Look at this! “Hillside Strangler gets his
+college degree in prison!”</p>
+<p><strong>mom</strong>: That’s nice.</p>
+<p><strong>dad</strong>: Nice?! He should have been executed!</p>
+<p><strong>misty</strong>: He killed people, Mom.</p>
+<p><strong>mom</strong>: We all have bad nights.</p>
+<p><strong>chip</strong>: You’d probably date him! He’s cu-uuute! Hey,
+Dad, did you ever see “Henry, Portrait of a Serial Killer?”</p>
+<p><strong>dad</strong>: I certainly did not.</p>
+<p><strong>misty</strong>: You’ve been working in that video shop too
+long.</p>
+<p><strong>dad</strong>: And all that gore better hadn’t be interfering
+with your schoolwork.</p>
+<p><strong>chip</strong>: I do great in school, Dad.</p>
+<p><strong>dad</strong>: Well, your mother’s going to PTA today. We’ll
+see what your teacher has to say.</p>
+<p><strong>chip</strong>: the buzzing of the fly builds in Aw, Mom! I
+hate Mr. Stubbins!</p>
+<p><strong>mom</strong>: Don’t say the word “hate”, honey. “Hate” is a
+very serious word!</p>
+<p><strong>mom</strong>: There. All better. Anybody for scrambled
+eggs?</p>
+<p><strong>dad</strong>: Who on earth…?</p>
+<p><strong>det. moore</strong>: Mrs. Sutphin?</p>
+<p><strong>mom</strong>: Yes?</p>
+<p><strong>det. moore</strong>: I’m Detective Moore and this is
+Detective Bradford.</p>
+<p><strong>dad</strong>: I’m Dr. Eugene Sutphin. What’s the trouble,
+officer?</p>
+<p><strong>chip</strong>: Is there a killer loose?</p>
+<p><strong>det. moore</strong>: No son, nothing that exciting.</p>
+<p><strong>mom</strong>: This is my son, Chip…and my daughter,
+Misty.</p>
+<p><strong>misty</strong>: Hi!</p>
+<p><strong>chip</strong>: Jeeezzz!</p>
+<p><strong>mom</strong>: Det. Bradford, I’m sorry but we don’t allow gum
+chewing in this house.</p>
+<p><strong>det. bradford</strong>: Sorry, ma’am. We’re investigating
+obscene phone calls and mail threats to a certain Mrs. Dottie
+Hinkle.</p>
+<p><strong>mom</strong>: I know Dottie!</p>
+<p><strong>dad</strong>: She lives right down the street.</p>
+<p><strong>det. bradford</strong>: Could you take a look at this…</p>
+<p><strong>det. moore</strong>: …And tell us of anybody who might be
+responsible?</p>
+<p><strong>det. bradford</strong>: I should warn you…this note contains
+LANGUAGE.</p>
+<p><strong>mom</strong>: Oh God, really! This is the limit!</p>
+<p><strong>chip</strong>: Let me see!</p>
+<p><strong>dad</strong>: Sorry, son. This is a matter for adults.</p>
+<p><strong>mom</strong>: Officers, I’ve never said the P-word out loud,
+much less written it down!</p>
+<p><strong>dad</strong>: No woman would!</p>
+<p><strong>mom</strong>: Look officers! Life doesn’t have to be ugly.
+See the little birdie? Listen to his call. Peter Pan! Peter Pan! Peter
+Pan!</p>
+<p><strong>bird</strong>: Peter Pan! Peter Pan! Peter Pan!</p>
+<p><strong>mom</strong>: Chip, your ride is here.</p>
+<p><strong>dad</strong>: Hey, I’m late for work. Bye, honey.</p>
+<p><strong>det. moore</strong>: Thanks for your time, everybody.</p>
+<p><strong>misty</strong>: Bye, Detective Moore.</p>
+<p><strong>birdie</strong>: Hi, Mr. and Mrs. Sutphin.</p>
+<p><strong>dad</strong>: That’s Birdie. She’s a horror nut just like my
+son.</p>
+<p><strong>mom</strong>: Good morning, Birdie. This is Detectives Moore
+and Bradford.</p>
+<p><strong>birdie</strong>: I didn’t do it! I swear! Don’t lock me up!
+I’ll take a lie detector! Hi ya, boys!</p>
+<p><strong>mom</strong>: Good morning Scotty!</p>
+<p><strong>birdie</strong>: Hey Misty, look what I got! A Pee Wee Herman
+Doll. Can you sell it for me at the flea market?</p>
+<p><strong>misty</strong>: Wow! Still in the box! I sure can! Oh God,
+here comes Carl!</p>
+<p><strong>carl</strong>: You must be Mrs. Sutphin. I’m Carl
+Padgett.</p>
+<p><strong>mom</strong>: Misty’s date…</p>
+<p><strong>carl</strong>: More of a friend really…</p>
+<p><strong>misty</strong>: See what Birdie gave me to sell at the flea
+market?</p>
+<p><strong>carl</strong>: That guy’s a weirdo.</p>
+<p><strong>mom</strong>: calling out to COPS as they</p>
+<p><strong>det. bradford</strong>: Christ, that one was Beaver Cleaver’s
+mother. Peter Pan! Peter Pan! Peter Pan!</p>
+<p><strong>det. moore</strong>: Oh, leave her alone. Mrs. Sutphin’s
+about as normal and nice a lady we’re ever going to find.</p>
+<p><strong>dottie</strong>: Hello.</p>
+<p><strong>mom</strong>: Is this the Cocksucker residence?</p>
+<p><strong>dottie</strong>: Goddamn you! STOP CALLING HERE!</p>
+<p><strong>mom</strong>: Isn’t this 4215 Pussy Way?</p>
+<p><strong>dottie</strong>: You bitch!</p>
+<p><strong>mom</strong>: Let me check the zip - 212 Fuck you?</p>
+<p><strong>dottie</strong>: The police are tracing your call right this
+minute.</p>
+<p><strong>mom</strong>: Well, Dottie, how come they’re not here then,
+Fuck-Face?</p>
+<p><strong>mrs. ackerman</strong>: Beverly? Beverly darling? You home? I
+know you are…</p>
+<p><strong>mom</strong>: I beg your pardon?</p>
+<p><strong>dottie</strong>: Who is this?</p>
+<p><strong>mom</strong>: Mrs. Wilson from the telephone company. I
+understand you’re having problems with obscene calls.</p>
+<p><strong>dottie</strong>: Yes, I am…I’m sorry Mrs. Wilson.. It’s
+driving me crazy…I’ve changed my number twice already… Please help
+me!</p>
+<p><strong>mom</strong>: What exactly does this sick individual say to
+you?</p>
+<p><strong>dottie</strong>: I can’t say it out loud. don’t use bad
+language.</p>
+<p><strong>mom</strong>: I know it’s hard but we need the exact
+words.</p>
+<p><strong>dottie</strong>: Alright, I’ll try… “Cocksucker”. That’s what
+she calls me.</p>
+<p><strong>mom</strong>: Listen to your dirty mouth, you fucking
+whore!</p>
+<p><strong>mrs. ackerman</strong>: Beverly, are you alright?</p>
+<p><strong>mom</strong>: Rosemary, honey. Good morning. I’m fine. Thanks
+for remembering.</p>
+<p><strong>mrs. ackerman</strong>: It’s the least I could do. I heard
+shouting.</p>
+<p><strong>mom</strong>: Just the damn cable TV company. You know how
+they are. Did you hear about Dottie Hinkle?</p>
+<p><strong>mrs. ackerman</strong>: Yes, I did. It’s terrifying! The
+police were at my house this morning.</p>
+<p><strong>mom</strong>: Who on earth would want to harrass poor Dottie
+Hinkle?</p>
+<p><strong>mrs. taplotter</strong>: But, Mr. Stubbins, my son studies
+every night! He’s trying as hard as he can…</p>
+<p><strong>mr. stubbins</strong>: Some teenagers just aren’t college
+material, Mrs, Taplotter. It’s nothing to cry over. Now, there are other
+parents waiting. …thank you for taking the time to come to PTA.</p>
+<p><strong>mrs. sterner</strong>: Hi, Beverly.</p>
+<p><strong>mom</strong>: Hi, Betty. Oh, I love your outfit.</p>
+<p><strong>mrs. sterner</strong>: Thanks. It’s a Liz Claiborne.</p>
+<p><strong>mr. sterner</strong>: Mrs. Sutphin, where’s that husband of
+yours? Feeling “down in the mouth”?! Hohohohohoho!</p>
+<p><strong>mom</strong>: You’re soooo funny, Ralph…</p>
+<p><strong>mr. stuebins</strong>: Mrs…Sutphin?</p>
+<p><strong>mom</strong>: Right here!</p>
+<p><strong>mr. stubbins</strong>: Mrs. Sutphin, I’m Paul Stubbins,
+Chip’s math teacher.</p>
+<p><strong>mom</strong>: Nice to meet you, Mr. Stubbins. A little
+something I baked.</p>
+<p><strong>mr. stubbins</strong>: Oooohh! A fruit cake. Thank you,
+Mrs. Sutphin. Have a seat.</p>
+<p><strong>mom</strong>: Bon Appetit!</p>
+<p><strong>mr. stubbins</strong>: Chip is off to a fine start this year.
+Focused…conscientious… participates actively in classroom
+discussion.</p>
+<p><strong>mom</strong>: He’s a good boy.</p>
+<p><strong>mr. stubbins</strong>: There is one big problem though.</p>
+<p><strong>mom</strong>: What is it, Mr. Stubbins?</p>
+<p><strong>mr. stubbins</strong>: His unhealthy obsession with sick
+horror films.</p>
+<p><strong>mom</strong>: He is assistant manager of a video shop…</p>
+<p><strong>mr. stubbins</strong>: That’s no excuse for a morbid
+imagination. I caught him drawing this in class last week. Is there a
+problem at home?</p>
+<p><strong>mom</strong>: Certainly not!</p>
+<p><strong>mr. stubbins</strong>: Divorce? An alcoholic relative? Tell
+me, did Chip torture animals when he was young?</p>
+<p><strong>mom</strong>: No, he did not! We are a loving supportive
+family, Mr. Stubbins.</p>
+<p><strong>mr. stubbins</strong>: Well, you’re doing something wrong,
+Mrs. Sutphin. I’d recommend therapy for your son. Thank you for taking
+the time to come to PTA.</p>
+<p><strong>birdie</strong>: It’s a sheep’s tongue!</p>
+<p><strong>scotty</strong>: Man, I just ate. Turn it off.</p>
+<p><strong>chip</strong>: Rewind it! Let’s see it again!</p>
+<p><strong>scotty</strong>: No! That shit is sickening! Put on
+pussy!</p>
+<p><strong>birdie</strong>: Look, Dick-Head!</p>
+<p><strong>chip</strong>: The “Citizen Kane” of gore movies.</p>
+<p><strong>mom</strong>: I don’t know what it is about today, but I FEEL
+GREAT!</p>
+<p><strong>scotty</strong>: Excuse me, Mrs. Sutphin.</p>
+<p><strong>chip</strong>: Hi, Mom.</p>
+<p><strong>birdie</strong>: Hi, Mrs. Sutphin.</p>
+<p><strong>mom</strong>: You kids. Now Birdie, I want you to have a
+cookie and then run along home.</p>
+<p><strong>chip</strong>: But Mom, the video’s not over.</p>
+<p><strong>mom</strong>: No “but mom” for you, young man. Mr. Stubbins
+seems to think these silly movies are interfering with your studies.</p>
+<p><strong>birdie</strong>: Oh, boy!</p>
+<p><strong>chip</strong>: Mom, Mr. Stubbins is a nimrod!</p>
+<p><strong>scotty</strong>: Man, that one made me puke!</p>
+<p><strong>mom</strong>: camp magazine and handing it</p>
+<p><strong>scotty</strong>: Are we leaving?</p>
+<p><strong>mom</strong>: Yes you are.</p>
+<p><strong>birdie</strong>: Bye, Mrs, Sutphin.</p>
+<p><strong>chip</strong>: Bye, bird-brain, See ya, Scotty.</p>
+<p><strong>mom</strong>: Bye, Birdie. Chip, honey…I know it’s hard being
+a teenager but I understand.. I’m your mother and I love you.</p>
+<p><strong>chip</strong>: Oh Mom…</p>
+<p><strong>mom</strong>: Can we watch that scene again? You know, where
+he rips out her heart?</p>
+<p><strong>mom</strong>: Ladies and gentlemen, the perfect meatloaf!</p>
+<p><strong>chip</strong>: Looks good, Mom!</p>
+<p><strong>dad</strong>: Nothing like a home cooked meal, honey.</p>
+<p><strong>mom</strong>: Misty, I made your favorite sesame
+broccoli…</p>
+<p><strong>misty</strong>: Yummy. Carl says if I lose ten pounds, he’ll
+take me to the University of Maryland Fall Mixer.</p>
+<p><strong>mom</strong>: Misty, if you want to lose weight go ahead, but
+do it for yourself, not for some boy you barely know.</p>
+<p><strong>chip</strong>: Carl’s a jerk!</p>
+<p><strong>dad</strong>: He certainly drives like a jerk.</p>
+<p><strong>misty</strong>: Carl makes me happy and that threatens this
+family, doesn’t it?</p>
+<p><strong>dad</strong>: Doesn’t threaten me, honey. I’m happy.</p>
+<p><strong>mom</strong>: I’m happy too and we want you to be happy.</p>
+<p><strong>chip</strong>: I’m so happy I could shit.</p>
+<p><strong>mom</strong>: CHIP! You know how much I hate the brown
+word!</p>
+<p><strong>mrs. ackerman</strong>: Beverly! Beverly!</p>
+<p><strong>mom</strong>: That’s Rosemary. Something’s wrong!</p>
+<p><strong>mrs. ackerman</strong>: Turn on the news! A teacher at your
+school has been murdered!</p>
+<p><strong>misty</strong>: Murdered?</p>
+<p><strong>chip</strong>: Who?</p>
+<p><strong>mrs. ackerman</strong>: A Mr. Stubber…or Stubbins.</p>
+<p><strong>chip</strong>: MR. STUBBINS? That’s my math teacher!</p>
+<p><strong>dad</strong>: What channel?</p>
+<p><strong>mrs. ackerman</strong>: It’s on all of them!</p>
+<p><strong>chip</strong>: Hello.</p>
+<p><strong>birdie</strong>: Did you hear?</p>
+<p><strong>chip</strong>: What happened?</p>
+<p><strong>birdie</strong>: This is so cool! It’s just like a horror
+movie.</p>
+<p><strong>chip</strong>: It’s on! I’ll call you back!</p>
+<p><strong>announcer</strong>: ..Police claim the driver of the hit and
+run vehicle ran down the teacher in cold blood and then backed up over
+his body to finish off the job. Mr. Paul Stubbins was thirty-eight years
+old…</p>
+<p><strong>dad</strong>: Whoever did it should get the death
+penalty!</p>
+<p><strong>announcer</strong>: …So far only one eyewitness has
+surfaced.</p>
+<p><strong>luann</strong>: It was a blue car…I know that much!</p>
+<p><strong>chip</strong>: That’s Lu-Ann Hodges!</p>
+<p><strong>misty</strong>: She’s a pothead!</p>
+<p><strong>luann</strong>: …A blue station wagon…</p>
+<p><strong>mrs. ackerman</strong>: That’s like your car, Beverly,</p>
+<p><strong>mom</strong>: I’m not that bad a driver. Look at her hair!
+Turn it off, honey.</p>
+<p><strong>chip</strong>: I can’t believe Mr. Stubbins is dead.</p>
+<p><strong>misty</strong>: You said you hated him.</p>
+<p><strong>chip</strong>: Well…he was an asshole… but he didn’t deserve
+to die!</p>
+<p><strong>dad</strong>: I can’t stop thinking about that poor teacher.
+Goodnight, honey. Don’t read late, we’ve got a big day with the birds
+tomorrow.</p>
+<p><strong>mom</strong>: I’ve identified every little birdie we’re going
+to watch tomorrow on the Eastern Shore.</p>
+<p><strong>dad</strong>: Goodnight, honey.</p>
+<p><strong>mom</strong>: Don’t I get a kiss?</p>
+<p><strong>dad</strong>: I just thought with all the sadness…you
+wouldn’t want…</p>
+<p><strong>mom</strong>: We have to concentrate on life, Eugene.</p>
+<p><strong>dad</strong>: It’s fine with me, Beverly. You want to, honey?
+You think the kids are asleep?</p>
+<p><strong>mom</strong>: We can be real quiet…</p>
+<p><strong>dad</strong>: I love that you’re my wife.</p>
+<p><strong>mom</strong>: You’re not bad yourself, coo-coo bird…</p>
+<p><strong>dad</strong>: You bring me such peace…</p>
+<p><strong>mom</strong>: Oohhhh, Eugene!</p>
+<p><strong>dad</strong>: Shhhh..</p>
+<p><strong>mom</strong>: Oooohhhh.</p>
+<p><strong>dad</strong>: Don’t wake the kids…</p>
+<p><strong>mom</strong>: Ooohhhh!</p>
+<p><strong>mom</strong>: Oooohhh! Yeah! Yeah!</p>
+<p><strong>dad</strong>: You’re hot tonight, honey… but be quiet! Shhhh!
+The kids!</p>
+<p><strong>mom</strong>: Yeah! Oohhhh! Get it!</p>
+<p><strong>dad</strong>: Ooh, honey, I’m ready! Now! Now!</p>
+<p><strong>mom</strong>: Oohhhhh! Yeah! Yeah!</p>
+<p><strong>mom</strong>: There’s Dede! He’s my favorite chickadee! He’s
+here every morning for breakfast.</p>
+<p><strong>dad</strong>: Well, honey, chickadees breed in Alaska, you
+know. No wonder Dede’s hungry. It’s a long trip all the way to
+Baltimore.</p>
+<p><strong>dad</strong>: Hello…</p>
+<p><strong>mr. sterner</strong>: Eugene, it’s Ralph Sterner. Got a
+dental emergency here! I mean this goddamn tooth is killing me!</p>
+<p><strong>dad</strong>: Well, Mr. Sterner, if you call my office, I’m
+sure we can see you Monday.</p>
+<p><strong>mrs. sterner</strong>: Eugene, this is Betty Sterner, He’ll
+die by Monday! The roots are infected! He might have a heart attack!</p>
+<p><strong>dad</strong>: All right, Mrs. Sterner… Nine o’clock.</p>
+<p><strong>dad</strong>: I’m sorry, honey. But the birds will still be
+there next week.</p>
+<p><strong>mom</strong>: It’s Ok, Eugene. I understand.. I’ll go fix
+breakfast.</p>
+<p><strong>chip</strong>: God, Mom! What’s the matter?</p>
+<p><strong>mom</strong>: Time to get up, that’s all. You’ll be late for
+work.</p>
+<p><strong>chip</strong>: You scared me.</p>
+<p><strong>mom</strong>: Honey, what’s the matter?</p>
+<p><strong>misty</strong>: I’m stoodup! I’ll kill that bastard!</p>
+<p><strong>mom</strong>: Don’t say words unless you mean them,
+Misty.</p>
+<p><strong>misty</strong>: It’s him!</p>
+<p><strong>mom</strong>: No, honey, it’s the police. Hello,
+officers.</p>
+<p><strong>det. bradford</strong>: Good morning, Mrs. Sutphin.</p>
+<p><strong>misty</strong>: Hi, Detective Moore.</p>
+<p><strong>det. moore</strong>: Morning, Misty. Mrs. Sutphin, I presume
+you heard of the death of Mr. Stubbins.</p>
+<p><strong>mom</strong>: A fine man. A good teacher…</p>
+<p><strong>det. bradford</strong>: Contrusions…fractures… rupture of
+numerous vital organs…</p>
+<p><strong>mom</strong>: What a mess.</p>
+<p><strong>mom</strong>: No, honey, it’s just Scotty. Scotty, who
+doesn’t wear his seatbelts!</p>
+<p><strong>dad</strong>: Good morning, Detectives.</p>
+<p><strong>birdie</strong>: Nightmare on Calverton Court!</p>
+<p><strong>scotty</strong>: The Maryland Teacher Massacre!</p>
+<p><strong>det. moore</strong>: That’s not funny, son.</p>
+<p><strong>det. bradford</strong>: Did you drive your car to the PTA
+meeting yesterday, Mrs. Sutphin?</p>
+<p><strong>mom</strong>: Yes, I did.</p>
+<p><strong>dad</strong>: Detectives, what is this about?</p>
+<p><strong>det. moore</strong>: I know this sounds weird, Mr. Sutphin,
+but the Department of Motor Vehicle’s computer shows only one blue
+station wagon registered to a parent of any of Mr. Stubbins’ pupils.</p>
+<p><strong>dad</strong>: Surely you don’t think Beverly was
+involved!</p>
+<p><strong>scotty</strong>: SHE DID IT! Aimed the car right at
+Mr. Stubbins and mowed him down!</p>
+<p><strong>mom</strong>: SCOTTY before patiently</p>
+<p><strong>misty</strong>: I got somebody you could run over,
+Mother!</p>
+<p><strong>dad</strong>: Misty, that’s a terrible thing to say!
+Detectives, it’s time for you to leave. My wife knows nothing about this
+terrible …accident.</p>
+<p><strong>mom</strong>: Murder, honey.</p>
+<p><strong>scotty</strong>: magazine with Ivana Trump</p>
+<p><strong>det. moore</strong>: Let’s see that, young man.</p>
+<p><strong>misty</strong>: Nice buns!</p>
+<p><strong>det. bradford</strong>: “P” as in…</p>
+<p><strong>mom</strong>: …People who don’t mind their own business.</p>
+<p><strong>mom</strong>: It’s Mrs. Ackerman’s magazine, honey. Look at
+the subscription label if you don’t believe me. I recycle my
+magazines.</p>
+<p><strong>mom</strong>: in place as soulfully</p>
+<p><strong>mom</strong>: Don’t forget me, boys! All rinsed and ready to
+recycle!</p>
+<p><strong>gus</strong>: Morning, Mrs. Sutphin.</p>
+<p><strong>mom</strong>: Morning, Gus. Hello, Sloppy. Here you go. You
+work hard for the environment. A little drink never hurt anybody.</p>
+<p><strong>sloppy</strong>: Thanks, ma’am. Damn! Good stuff. Do you
+believe that goddamn litterbugger?</p>
+<p><strong>mom</strong>: I’ve told her! It takes ninety to one hundred
+years for a tin can to decompose but she still won’t recycle.</p>
+<p><strong>gus</strong>: Cost taxpayers millions of dollars last year
+but she don’t care about the national budget!</p>
+<p><strong>mom</strong>: I HATE Mrs. Ackerman.</p>
+<p><strong>gus</strong>: I hate her too.</p>
+<p><strong>i hate her guts!</strong>: Somebody ought to kill her!</p>
+<p><strong>gus</strong>: Yeah, hack her up and recycle her!</p>
+<p><strong>mom</strong>: For the sake of this planet,</p>
+<p><strong>joan</strong>: …But your boyfriend was convicted of killing
+twelve people</p>
+<p><strong>hag</strong>: I don’t judge him.</p>
+<p><strong>joan</strong>: How can you love a mass-murderer?</p>
+<p><strong>hag</strong>: Easy! He’s handsome. He’s famous. AND WE GET
+CONJUGAL</p>
+<p><strong>joan</strong>: SERIAL HAGS! Woman Who Love Men Who Mutilate!
+We’ll be right back after this!</p>
+<p><strong>dottie</strong>: Turn it off.</p>
+<p><strong>mrs. ackerman</strong>: Violence is everywhere these days</p>
+<p><strong>mrs. ackerman</strong>: Oh, it’s just Beverly.</p>
+<p><strong>dottie</strong>: She scared me.</p>
+<p><strong>mrs. ackerman</strong>: Come in, Beverly. Have some
+coffee</p>
+<p><strong>mom</strong>: Just a half-a-cup. Hello, Dottie. I’m so sorry
+to hear of your troubles…</p>
+<p><strong>dottie</strong>: It’s not fair!!</p>
+<p><strong>mom</strong>: Are those pussy-willows?</p>
+<p><strong>mrs. ackerman</strong>: Dried ones. Aren’t they pretty?</p>
+<p><strong>dottie</strong>: What did you just say?</p>
+<p><strong>mom</strong>: PUSSY-willows, Dottie!</p>
+<p><strong>mom</strong>: Dottie! Watch what you’re doing!</p>
+<p><strong>dottie</strong>: I didn’t do it!</p>
+<p><strong>rosemary</strong>: My Franklin Mint Faberge Egg!</p>
+<p><strong>mom</strong>: Dottie didn’t mean to be a clumsy ox. She’s
+sorry, Aren’t you, Dottie?</p>
+<p><strong>dottie</strong>: Rosemary, I didn’t break your egg - she
+did!</p>
+<p><strong>mrs. ackerman</strong>: You could at least apologize, Dottie.
+I collect Franklin Mint!</p>
+<p><strong>mom</strong>: And we’re going right to the flea market to get
+another one! Misty tells me there’s a whole booth of Franklin Mint
+stuff. Dottie, you lock up. I’ll take care of poor Rosemary!</p>
+<p>****: But…but…she…Rosemary, I heard her voice! It’s her, I tell you,
+IT’S HER!</p>
+<p><strong>dad</strong>: Mr. Sterner, you’ve lost a tiny filling. I have
+to drill deeply enough to remove all the decay.</p>
+<p><strong>mr. sterner</strong>: Alright…go ahead…but be careful, it
+really hurts!</p>
+<p><strong>mr. sterner</strong>: OWWWWW’! Goddamn you! You’re hurting me
+on purpose!</p>
+<p><strong>mrs. sterner</strong>: Are you ok, Ralph?</p>
+<p><strong>dad</strong>: Mrs. Sterner, please stay in the waiting
+room!</p>
+<p><strong>mr. sterner</strong>: Help me, Betty! He’s worse than the
+dentist in “The Marathon Man”!</p>
+<p><strong>receptionist</strong>: Sorry to interrupt, Dr. Sutphin, but
+there’s two police detectives here to see you…</p>
+<p><strong>dad</strong>: What is it, officers? My patient is
+waiting.</p>
+<p><strong>det. moore</strong>: Dr. Sutphing is your wife a big
+reader?</p>
+<p><strong>dad</strong>: Bird books mostly…</p>
+<p><strong>det. bradford</strong>: Like these we found in her garbage?
+“Urge To Kill”. “Mass Murder in Houston”?</p>
+<p><strong>dad</strong>: I’m sure those are my son, Chip’s books.</p>
+<p><strong>det. moore</strong>: No, they’re your wife’s. We checked, She
+bought them down at “The Browse and Learn Bookshop” along with a few
+other titles…</p>
+<p><strong>det. bradford</strong>: “Helter Skelter”, “Hunting Humans”,
+Master Card reference number 7876. Dated June 5th.</p>
+<p><strong>det. bradford</strong>: Dr. Sutphin, is you wife mental?</p>
+<p><strong>mom</strong>: Damn these yellow-jackets! I hate ’em!</p>
+<p><strong>misty</strong>: Always something isn’t it? Can I help
+you?</p>
+<p><strong>customer</strong>: Just looking.</p>
+<p><strong>misty</strong>: Thanks for not buying anything!</p>
+<p><strong>mom</strong>: Misty, lighten up. It’s not the customer’s
+fault Carl stood you up!</p>
+<p><strong>mrs. ackerman</strong>: Young man, this Faberge Egg is
+chipped.</p>
+<p><strong>vendor</strong>: Yes, ma’am, it is.</p>
+<p><strong>mrs. ackerman</strong>: I’ll give you fifty cents.</p>
+<p><strong>vendor</strong>: That’s a Franklin Mint piece. Eight
+dollars.</p>
+<p><strong>mrs. ackerman</strong>: Eight dollars?! Franklin Mint or not,
+it’s damaged goods!</p>
+<p><strong>mrs. ackerman</strong>: I’ll take this instead.</p>
+<p><strong>vendor</strong>: Nice one, huh? Winter’s coming. Three
+dollars?…I guess that’s what I marked it…</p>
+<p><strong>mom</strong>: purchase, but still watching Did you find your
+Franklin Mint egg, Rosemary darling?</p>
+<p><strong>mrs. ackerman</strong>: I saw one, but it was ridiculously
+overpriced!</p>
+<p><strong>mom</strong>: You want me to keep that under the table for
+you?</p>
+<p><strong>mrs. ackerman</strong>: If you wouldn’t mind… It was on
+sale.</p>
+<p><strong>sexpot date</strong>: Honey, pleeease? For my little
+knick-knack shelf?</p>
+<p><strong>carl</strong>: Wrap it up for the little lady.</p>
+<p><strong>boy</strong>: I can’t believe it! Fuckin’ Don Knotts!</p>
+<p><strong>girl</strong>: It’s beyond ugly!</p>
+<p><strong>misty</strong>: There you go…</p>
+<p><strong>mom</strong>: Misty, honey, look! I made a killing!</p>
+<p><strong>mrs. ackerman</strong>: I went back to get my Faberge Egg and
+some idiot bought it!</p>
+<p><strong>mom</strong>: back under table,</p>
+<p><strong>misty</strong>: ambulance enter flea market as customers
+start running</p>
+<p><strong>mrs. ackerman</strong>: of gore stuck to bottom</p>
+<p><strong>mom</strong>: Ewwww! Thank you, Rosemary.</p>
+<p><strong>pervert</strong>: There was a lady in the men’s room! I
+swear! A pretty little lady in the stall right next to me!</p>
+<p><strong>mom</strong>: That’s one-hundred fifty-eight dollars.</p>
+<p><strong>dealer</strong>: Will you take a New York check?</p>
+<p><strong>mom</strong>: Certainly.</p>
+<p><strong>misty</strong>: Mother! It’s Carl! He’s dead!</p>
+<p><strong>mom</strong>: 0h, that’s horrible, honey. I sold the Pee-Wee
+Herman doll!!</p>
+<p><strong>misty</strong>: Mother! Did you hear me?! Someone murdered
+Carl in the mensroom! I saw his dead body!</p>
+<p><strong>mom</strong>: You got your wish.</p>
+<p><strong>misty</strong>: But… I didn’t wish…I didn’t want him
+DEAD!</p>
+<p><strong>news announcer</strong>: …Updating the top story of the hour,
+the young man brutally murdered a short time ago in the mens room of the
+Edmonson Flea Market has been identified as 22 year old Carl Padgett of
+Towson…</p>
+<p><strong>misty</strong>: Chip! Our mother is Charles Manson!</p>
+<p><strong>misty</strong>: I’m not kidding. Carl stood me up this
+morning and then he was murdered at the flea market….</p>
+<p><strong>misty</strong>: Yes murdered! You said you hated your teacher
+yesterday and he was murdered too. I don’t know…maybe Mom’s nuts!</p>
+<p><strong>chip</strong>: It’s a cool idea, Misty! Let’s make a gore
+movie about Mom! Better yet, a TV series!</p>
+<p><strong>birdie</strong>: Can I borrow your mother? My aunt is coming
+over to dinner tonight and she’s always on my nerves.</p>
+<p><strong>kid</strong>: My step-father is an asshole! She could kill
+him!</p>
+<p><strong>chip</strong>: How about Mrs. Ackerman? We both hate her!
+Should she be the next victim?</p>
+<p><strong>misty</strong>: No! Stop it! It’s not funny. Mom might do it!
+Someone else might die.</p>
+<p><strong>scotty</strong>: I believe you, Misty. Your mother could kill
+- I’ve seen that look in her eyes! Is there a reward or anything?</p>
+<p><strong>mom</strong>: Dinner’s served!</p>
+<p><strong>dad</strong>: Let’s say grace and pray that we have the
+strength to understand the terrible tragedies of the last few days.</p>
+<p><strong>mom</strong>: Amen to that. It’s been a crazy day, hasn’t
+it?!</p>
+<p><strong>mrs. ackerman</strong>: …Dottie Hinkle was right - IT IS
+BEVERLY SUTPHIN! I tell you I saw blood right on the bottom of her
+shoes! Not exactly blood - it was GORE! Hanging right there like a runny
+nose!!</p>
+<p><strong>dottie</strong>: Nice as pie she was to me and then I hear
+her say it!</p>
+<p><strong>det. bradford</strong>: Say what, ma’am?</p>
+<p><strong>dottie</strong>: “Are those…” I can’t say the word out
+loud.</p>
+<p><strong>det. bradford</strong>: Could you tell a policewoman the
+exact words she used?</p>
+<p><strong>dottie</strong>: Maybe…</p>
+<p><strong>policewoman</strong>: It’s ok…nobody’s gonna hurt you. Come
+on, let it out…</p>
+<p><strong>dottie</strong>: “PUSSY” she says to me!</p>
+<p><strong>chip</strong>: You know Mom, Scotty thinks you’re the
+killer!</p>
+<p><strong>mom</strong>: Does he? For a boy who doesn’t wear seat belts,
+Scotty’s awfully nosy. Excuse me a second.</p>
+<p><strong>misty</strong>: She’s gone!</p>
+<p><strong>misty</strong>: She’s gonna kill Scotty!</p>
+<p><strong>misty</strong>: I DO! Mom’s gone crazy!</p>
+<p><strong>dad</strong>: Your mother may have some problems, that’s all,
+Chip. C’mon! Hurry!</p>
+<p><strong>mom</strong>: “…Ain’t no time to grieve And it’s Daybreak!!!
+Let it shine, shine, shine, All around the world!!”</p>
+<p><strong>dottie</strong>: You rotten mother-fucker! You lousy
+cock-sucker!</p>
+<p><strong>misty</strong>: Turn right on Timonioum Road. Hurry, Dad!</p>
+<p><strong>chip</strong>: If Mom’s a psycho, Scotty will still be ok,
+won’t he?</p>
+<p><strong>dad</strong>: We hope so, son. And no matter what your mother
+is, we’ll love her anyway.</p>
+<p><strong>det. moore</strong>: Suspect’s family is headed east on
+Calverton….</p>
+<p><strong>det. bradford.</strong>: Suspect’s family is entering house.
+Send backup to 2l14 Sycamore Street. I’ve got a feeling old Mom’s
+inside. I’m goin’ in!</p>
+<p><strong>mrs. sterner</strong>: What was that?</p>
+<p><strong>mr. sterner</strong>: I didn’t hear anything. Got any
+dessert?</p>
+<p><strong>mrs. sterner</strong>: Dr. Sutphin said no sweets for
+you.</p>
+<p><strong>mr. sterner</strong>: What’s he know?</p>
+<p><strong>mrs. sterner</strong>: How to send a bill!!</p>
+<p><strong>mrs. sterner</strong>: Ralph, “Wheel of Fortune”’s on!!</p>
+<p><strong>mrs. sterner</strong>: Ralph, you’re missing it!</p>
+<p><strong>mr. sterner</strong>: What is it, Betty?</p>
+<p><strong>mrs. sterner</strong>: We have mice! I mean it, Ralph! I saw
+one!</p>
+<p><strong>mom</strong>: Always brush after every meal!</p>
+<p><strong>mr. sterner</strong>: Betty?</p>
+<p><strong>mr. sterner</strong>: Betty? Betty, answer me!</p>
+<p><strong>mom</strong>: You’ll pay for that, Ralph Sterner!!</p>
+<p><strong>mr. sterner</strong>: Help! POLICE!!</p>
+<p><strong>dad</strong>: Home Sweet Home! Everything’s fine, kids!</p>
+<p><strong>misty</strong>: I can’t believe I thought my own mother was a
+murderess!</p>
+<p><strong>chip</strong>: I’m disappointed she isn’t! For a while there,
+it was like being in a movie!</p>
+<p><strong>mom</strong>: Anybody for dessert? M-m-m-m-m,
+strawberries!</p>
+<p><strong>det. bradford</strong>: …Sutphin family proceeding west on
+Seminary Avenue. Beverly ain’t goin’ nowhere this time.</p>
+<p><strong>misty</strong>: Dad, I thought it was ok. Make them go away.
+This is embarrassing.</p>
+<p><strong>dad</strong>: Just ignore the police. It’s all a terrible
+mistake.</p>
+<p><strong>chip</strong>: Think we’ll get on “A</p>
+<p><strong>det. moore</strong>: She’s headed for church.</p>
+<p><strong>det. bradford</strong>: I say we nail her!</p>
+<p><strong>dispatcher</strong>: Negative. D.A. says no bust until lab
+report is back matching suspect’s fingerprints on true-crime book with
+those on scissors and fire poker.</p>
+<p><strong>det. bradford</strong>: She may be Beaver Cleaver’s
+mother…but Jim Jones and the entire People’s Temple just fucked her!</p>
+<p><strong>announcer</strong>: …the senseless killing last night of
+Towson couple, Ralph and Betty Sterner, brings to a total of four
+murders police feel may have been committed by Baltimore’s first serial
+killer…</p>
+<p><strong>dad</strong>: Beverly! Not the Sterners!</p>
+<p><strong>mom</strong>: It’s a shame. But they should brush their
+teeth, honey.</p>
+<p><strong>announcer</strong>: This just came in. Police Lieutenant
+Ronald Habbler has publicly named a suspect in the serial killer case
+and it’s a shocker! She, that’s right, she has been identified as
+Beverly R. Sutphin of 2815 Calverton Court…</p>
+<p><strong>misty</strong>: Oh God! Now I’ll never get a boyfriend!</p>
+<p><strong>dad</strong>: Beverly, I’ve been reading all about it…is it
+menopause?</p>
+<p><strong>mom</strong>: Oh, honey!</p>
+<p><strong>chip</strong>: Tell me the truth, Mom! It’s ok with me,
+really! Are you a serial killer?</p>
+<p><strong>mom</strong>: Chip, the only cereal I know about is Rice
+Krispies.</p>
+<p><strong>dad</strong>: Don’t worry, Beverly. We’re going to get you
+good psychiatric help.</p>
+<p><strong>reporter</strong>: So, Mrs. Sutphin! Tell me! Are you “Serial
+Mom”?</p>
+<p><strong>mom</strong>: Who?</p>
+<p><strong>dad</strong>: No comment!</p>
+<p><strong>chip</strong>: “Serial Mom”?</p>
+<p><strong>father stone</strong>: Blessed be God, Father, Son and Holy
+Spirit…</p>
+<p><strong>all</strong>: And blessed be His kingdom, now and forever.
+Amen…</p>
+<p><strong>captain johnson</strong>: This is Captain Johnson from
+Homicide. Lab reports confirm Sutphin latent print of index finger on
+true-crime book matches those latent prints lifted from murder weapons.
+Bingo, boys! Bust the bitch!</p>
+<p><strong>father stone</strong>: …Jesus said nothing to condemn capital
+punishment as he hung on the cross, did He?!</p>
+<p><strong>father stone</strong>: …If ever there was a time to go on
+record against the death penalty, WASN’T IT THAT NIGHT?!…</p>
+<p><strong>father stone</strong>: CAPITAL PUNISHMENT is already the LAW
+in the State of Maryland!…</p>
+<p><strong>father stone</strong>: Now, let us pray and humbly confess
+our sins unto Almighty God.</p>
+<p><strong>congregation</strong>: …Most merciful God, we confess that we
+have sinned against thee…</p>
+<p><strong>birdie &amp; parents</strong>: …and by what we have left
+undone…</p>
+<p><strong>dad</strong>: …we are truly sorry and we humbly repent…</p>
+<p><strong>mom</strong>: …so that we may delight in thy will…</p>
+<p><strong>mom</strong>: …And walk in the ways to the glory… …of Thy
+name…</p>
+<p><strong>all</strong>: Amen!</p>
+<p><strong>chip</strong>: We’ll show ’em, Mom, We’ll go on “60
+Minutes”!</p>
+<p><strong>birdie</strong>: Alright You’re bigger than Jason or Freddie
+now! Only you’re a real person!</p>
+<p><strong>mom</strong>: Do you think I’ll need a lawyer?</p>
+<p><strong>chip</strong>: You need an AGENT!</p>
+<p><strong>dad</strong>: NO COMMENT! PLEASE! My wife is missing! I’m
+worried sick about her!</p>
+<p><strong>reporter</strong>: Hey, Misty! Just a few more shots, Ok? I’m
+Hank Hawkins from the Baltimore Sun.</p>
+<p><strong>misty</strong>: Hi, Hank.</p>
+<p><strong>dad</strong>: passenger door</p>
+<p><strong>chip</strong>: In here, Mom…</p>
+<p><strong>mom</strong>: But, Chip…</p>
+<p><strong>chip</strong>: Get in, Mom! I have to open.</p>
+<p><strong>mom</strong>: This is so silly.</p>
+<p><strong>birdie</strong>: Good morning, Mrs. Jenson.</p>
+<p><strong>mrs. jenson</strong>: where “Leatherface” chases a girl to
+house where he “chainsaws” his way through door as the victim
+screams</p>
+<p><strong>chip</strong>: Sorry, ma’am.</p>
+<p><strong>mrs. jenson</strong>: Do you have the musical, “Annie”?</p>
+<p><strong>chip</strong>: Sure do. Did you bring back “Ghost Dad”?</p>
+<p><strong>mrs. jenson</strong>: There you go. I love Bill Cosby
+pictures.</p>
+<p><strong>chip</strong>: Mrs. Jensen, I’ve told you. You have to rewind
+the tapes before returning them!</p>
+<p><strong>mrs. jenson</strong>: Why?</p>
+<p><strong>chip</strong>: Because it’s the rules!</p>
+<p><strong>mrs. jenson</strong>: I don’t feel like rewinding it!</p>
+<p><strong>chip</strong>: You see the sign! It’s a dollar fine for not
+rewinding and this time I’m gonna charge you! $2.99 plus one dollar is
+$3.99!</p>
+<p><strong>mrs. jenson</strong>: Keep the change, you son of a
+psycho!</p>
+<p><strong>birdie</strong>: What a bitch!</p>
+<p><strong>chip</strong>: It’s the influence of all those family films.
+Right, Mom? Hey, Mom??…</p>
+<p><strong>birdie</strong>: Mrs. Sutphin?</p>
+<p><strong>chip</strong>: Mother?</p>
+<p><strong>birdie</strong>: 0h, shit!</p>
+<p><strong>chip</strong>: You don’t think….</p>
+<p><strong>birdie</strong>: She wouldn’t…</p>
+<p><strong>chip</strong>: What’s Mrs. Jenson’s address?</p>
+<p><strong>birdie</strong>: …Jenner…Jenson, Emy Lou Jenson. 3511 Clark
+Avenue!</p>
+<p><strong>chip</strong>: That’s right up the street! Come on! Just in
+case!</p>
+<p><strong>mrs. jenson</strong>: What is it, Sylvester, a bird? Shhhh.
+Mommy’s watching “Annie”.</p>
+<p><strong>mrs. jenson</strong>: Quiet, Sylvester. Nobody’s there.
+Shhh…Lick Mommy’s feet. Come on! Get ’em all wet! “The sun comes out
+Tomorrow…”</p>
+<p><strong>chip</strong>: Come on!</p>
+<p><strong>mrs. jenson</strong>: “The sun comes out Tomorrow And you’ve
+got to Hang on to Tomorrow Come what may…”</p>
+<p><strong>mrs. jenson</strong>: “Tomorrow! Tomorrow! I love you
+Tomorrow You’re only a day away!”</p>
+<p><strong>mrs. jenson</strong>: “Tomorrow! Tomorrow! Tomorrow! I love
+you…”</p>
+<p><strong>mrs. jenson</strong>: “….Tomorrow! You’re only a day…</p>
+<p><strong>mom</strong>: “Tomorrow!..Tomorrow!..Tomorrow! I love
+you…</p>
+<p><strong>birdie</strong>: I saw blood! And it’s brown! Not red like in
+horror movies, but brown!!</p>
+<p><strong>chip</strong>: Is MOM…in there?</p>
+<p><strong>birdie</strong>: No! It wasn’t like gore movies at all!</p>
+<p><strong>birdie</strong>: Oh God, I think I’m going to be sick…</p>
+<p><strong>burglar a</strong>: What the fuck is that?</p>
+<p><strong>burglar b</strong>: Betty Crocker gone psycho!</p>
+<p><strong>mom</strong>: Give me your fucking van before I kill you!</p>
+<p><strong>burglar a</strong>: Yes, ma’am. It’s all yours.</p>
+<p><strong>burglar b</strong>: Drive carefully! White people sure are
+something!</p>
+<p><strong>scotty</strong>: Dear God…I promise I’ll never watch a sex
+film again… I promise, I promise….</p>
+<p><strong>scotty</strong>: Oh shit!</p>
+<p><strong>dad</strong>: Hold on, kids!</p>
+<p><strong>cop</strong>: All units! SERIAL MOM headed south on York
+Road. Proceed with caution!</p>
+<p><strong>scotty</strong>: Can I give it to you inside?</p>
+<p><strong>doorman</strong>: Hey, buddy. NOBODY gets inside without
+I.D.</p>
+<p><strong>doorman</strong>: Birthdate?</p>
+<p><strong>scotty</strong>: Uh…December 14th, 1975. Please!</p>
+<p><strong>doorhan</strong>: Ok, go ahead,</p>
+<p><strong>mom</strong>: Hi! I know your mom…</p>
+<p><strong>kid a</strong>: It’s her!</p>
+<p><strong>kid b</strong>: Who?</p>
+<p><strong>mom</strong>: Excuse me. Age before beauty…</p>
+<p><strong>kid c</strong>: The murder lady! The one on TV!</p>
+<p><strong>kid b</strong>: Cool! Is she in a band?</p>
+<p><strong>mom</strong>: Sorry…the police are after me…</p>
+<p><strong>doorman</strong>: Hey, you’re Serial Mom!</p>
+<p><strong>mom</strong>: I guess I am.</p>
+<p><strong>doorman</strong>: Come on in lady. Quick! Here, take this. A
+backstage VIP pass. Welcome to Hammerjacks, “Serial Mom”!</p>
+<p><strong>mom</strong>: Thank you so much, you kind, kind creature.</p>
+<p><strong>mom</strong>: Excuse me…coming through… Bill Flowers! You’re
+underage!</p>
+<p><strong>bill</strong>: Don’t kill me, Serial Mom!</p>
+<p><strong>mom</strong>: Just say NO! And COMB YOUR HAIR, young
+lady!</p>
+<p><strong>girl</strong>: Wow! It’s her!</p>
+<p><strong>mom</strong>: Buckle up, Scotty!</p>
+<p><strong>press a</strong>: Mr. Sutphin! How does your wife feel?</p>
+<p><strong>dad</strong>: Beverly is devastated by the charges against
+her.</p>
+<p><strong>court tv</strong>: …And you, ma’am, how long have you been
+waiting to get in?</p>
+<p><strong>lady a</strong>: Since 5:00am. But it’s gonna be worth it! I
+know she’s guilty!</p>
+<p><strong>husband a</strong>: We’ve been to famous trials all over the
+country!</p>
+<p><strong>wife a</strong>: ..Manson.. .Watergate… Didn’t I see you at
+Hinkley?</p>
+<p><strong>lady a</strong>: I was there! My husband thought I was crazy
+but…</p>
+<p><strong>look! here they come!!</strong>: That awful family!</p>
+<p><strong>mom</strong>: Hi, honey!</p>
+<p><strong>mom</strong>: Kids, did you do your homework?</p>
+<p><strong>judge</strong>: Quiet in the courtroom! Court is now in
+session!</p>
+<p><strong>mom</strong>: Hello, jury people. My name’s Beverly Sutphin.
+I like your jacket!</p>
+<p><strong>judge</strong>: Mrs. Sutphin, I SAID QUIET! You are accused
+of mass murder! This is a court of law, not a coffee klatch!
+Mr. Nazlerod, your opening statement.</p>
+<p><strong>mr. nazlerod</strong>: Thank you, your honor. Ladies and
+Gentlemen of the Jury, my name is Timothy Nazlerod… …and I hope we can
+be friends! …I warn you, this is not a pretty case…Beverly Sutphin is a
+woman evil to the core… …a rotten apple, if you will… …who beyond a
+reasonable doubt killed five innocent people!!</p>
+<p><strong>chip</strong>: Well…they sort of deserved it…</p>
+<p><strong>dad</strong>: Shhhhh!</p>
+<p><strong>mr. nazlerod</strong>: …Beverly Sutphin is not a woman!…</p>
+<p><strong>herbie hebden</strong>: …Ladies and Gentlemen, I’m Herbie
+Hebden and you and I have a tough job ahead of us…</p>
+<p><strong>herbie hebden</strong>: …I have known the Sutphin family for
+sixteen years…</p>
+<p><strong>herbie hebden</strong>: …Dad, Eugene, is my dentist…</p>
+<p><strong>herbie hebden</strong>: …Chip and Misty played with my own
+children…</p>
+<p><strong>herbie hebden</strong>: …but I’ve found out I don’t know
+Beverly Sutphin at all!</p>
+<p><strong>herbie hebden</strong>: …No one really knows Beverly
+Sutphin…</p>
+<p><strong>herbie hebden</strong>: …You see… …Beverly Sutphin is
+INSANE!!</p>
+<p><strong>herbie hebden</strong>: Yes, she committed these terrible
+crimes… …but that doesn’t make her a bad person.</p>
+<p><strong>mom</strong>: Your honor, I have a motion. I would like to
+fire my attorney, and defend myself!</p>
+<p><strong>herbie hebden</strong>: Beverly Sutphin is not guilty, by
+reason of INSANITY!</p>
+<p><strong>mom</strong>: Oh shut up, Herbie! I have the right to defend
+myself, your honor. I’ve read the lawbooks! “Ware vs. State, 1964”, and
+“Schutte vs. State, 1962”.</p>
+<p><strong>judge</strong>: Mrs. Sutphin, a defendant who has herself for
+a lawyer has a fool for a client… Approach the bench!</p>
+<p><strong>judge</strong>: Mrs. Sutphin, I have no legal choice but to
+allow you to take over as your own attorney.</p>
+<p><strong>herbie hebden</strong>: You’ll get my bill, I mean it! A big
+one!</p>
+<p><strong>judge</strong>: How do you plead?</p>
+<p><strong>mom</strong>: NOT GUILTY, your honor!</p>
+<p><strong>mr. nazlerod</strong>: I call to the stand, Dottie
+Hinkle!</p>
+<p><strong>mr. nazlerod</strong>: Mrs. Hinkle, did you ever receive
+obscene telephone calls?</p>
+<p><strong>dottie</strong>: I certainly did.</p>
+<p><strong>mr. nazlerod</strong>: Did you recognize the voice of the
+caller?</p>
+<p><strong>dottie</strong>: Not at first, but then I heard the same
+inflection in a voice at a social gathering and I put two and two
+together.</p>
+<p><strong>mr. nazlerod</strong>: Who’s voice was it, Dottie?</p>
+<p><strong>dottie</strong>: It was her! Beverly Sutphin! Sittin’ right
+there! I’m lucky I’m not DEAD!!</p>
+<p><strong>mom</strong>: Mrs. Hinkle…do you drink?</p>
+<p><strong>dottie</strong>: No, I don’t.</p>
+<p><strong>mom</strong>: So you weren’t drunk when you received those
+alleged obscene phonecalls?</p>
+<p><strong>dottie</strong>: I certainly was not!</p>
+<p><strong>mom</strong>: You mean to tell me the day I came over to
+Mrs. Ackerman’s…the day you claim you recognized my voice…you weren’t
+drinking?</p>
+<p><strong>dottie</strong>: One beer with lunch is hardly
+“drinking”.</p>
+<p><strong>mom</strong>: So you do drink?</p>
+<p><strong>dottie</strong>: Socially…I’ll have a beer.</p>
+<p><strong>mom</strong>: So you admit you just lied?</p>
+<p><strong>mr. nazlerod</strong>: Objection! Argumentative!</p>
+<p><strong>judge</strong>: Sustained. Watch your mouth, Mrs. Hinkle.</p>
+<p><strong>dottie</strong>: Did you see her?! She just said “Fuck you”
+to me!</p>
+<p><strong>mom</strong>: Let the record show I’m just standing here.</p>
+<p><strong>judge</strong>: I’m warning you, Mrs. Hinkle. One more
+obscenity and I’ll charge you with contempt of court.</p>
+<p><strong>mom</strong>: Mrs. Hinkle, are you insane?</p>
+<p><strong>judge</strong>: Mrs. Hinkle, I find you guilty of contempt of
+court and sentence you to a thousand dollar fine and five days in jail!
+Lock ’er up!</p>
+<p><strong>chip</strong>: …Well, you tell “Geraldo” to go to hell! I
+don’t care what Jeffrey MacDonald’s people got - he’s old news! We fly
+first class or we don’t do the show!</p>
+<p><strong>young man</strong>: Are you Chip Sutphin?</p>
+<p><strong>chip</strong>: Hold on… Yeah I am, but you’ll have to speak
+to my agent…</p>
+<p><strong>young man</strong>: Your mom killed my brother!</p>
+<p><strong>chip</strong>: That’s cool…hey look, you’re Carl’s brother,
+right?</p>
+<p><strong>young man</strong>: That’s right.</p>
+<p><strong>chip</strong>: I’m sorry he’s dead, but… have you signed off
+yet?</p>
+<p><strong>young man</strong>: You mean for TV or print?</p>
+<p><strong>chip</strong>: TV, man! Farrah Fawcett’s interested in
+playing my mother!</p>
+<p><strong>young man</strong>: Farrah Fawcett?! Who’s gonna play my
+brother? Is Jason Priestly available?</p>
+<p><strong>mr. nazlerod</strong>: Miss Hodges, could you describe the
+car…the one you saw run over Mr. Stubbins in cold blood?</p>
+<p><strong>lu-ann</strong>: I seen that movie!…On cable!</p>
+<p><strong>mr. nazlerod</strong>: PLEASE, Miss Hodges!</p>
+<p><strong>lu-ann</strong>: ’Scuse me… …Well, like I told you, it was
+blue. The car, not the driver… Just blue…you know…like blue!</p>
+<p><strong>misty</strong>: Get your “Serial Mom” T-shirts while they
+last! $19.95 plus tax! Master Card or Visa!</p>
+<p><strong>lady d</strong>: I’ll take two. I wish they’d had something
+like this at the Kennedy kid trial!…</p>
+<p><strong>misty</strong>: Thanks, ma’am. Signature here and home
+phone.</p>
+<p><strong>mr. nazlerod</strong>: …And these books… …these disgusting
+books that so lovingly describe the sadistic acts of serial
+killers…Where did you find these books?</p>
+<p><strong>det. bradford</strong>: In Beverly Sutphin’s trash can.</p>
+<p><strong>mr. nazlerod</strong>: You may cross-examine,
+Mrs. Sutphin.</p>
+<p><strong>mom</strong>: Thank you. Detective Bradford, if I was to look
+through your trash can, what reading material would I find?</p>
+<p><strong>mr. nazlerod</strong>: Objection! Immaterial!</p>
+<p><strong>judge</strong>: You may answer.</p>
+<p><strong>det. bradford</strong>: ..”Time”…“Newsweek”. My wife gets
+“Ladies Home Journal”…</p>
+<p><strong>mom</strong>: Well, this magazine was found in your trash
+just last night… …It’s called “Chicks with Dicks”.</p>
+<p><strong>mom</strong>: Don’t judge people by what they read,
+Detective. Your witness, Mr. Nazierod.</p>
+<p><strong>det bradford</strong>: I’m a married man!!</p>
+<p><strong>det. bradford</strong>: I hope you get the gas chamber!</p>
+<p><strong>judge</strong>: The jury is instructed to ignore the outburst
+of the witness.</p>
+<p><strong>mr. nazlerod</strong>: I call to the stand Rosemary
+Ackerman!</p>
+<p><strong>mr. nazlerod</strong>: …and did you ever see the fire poker
+again after you left it with Mrs. Sutphin?</p>
+<p><strong>mrs. ackerman</strong>: Yes! Thirty minutes later it was
+covered with blood and gore and Carl Padgett was dead!</p>
+<p><strong>mr. nazlerod</strong>: No further questions.</p>
+<p><strong>mom</strong>: Mrs. Ackerman, when you left me at the
+flea-market, where did you go?</p>
+<p><strong>mrs. ackerman</strong>: …Browsing.</p>
+<p><strong>mom</strong>: Did Carl Padgett buy something you wanted?</p>
+<p><strong>mrs. ackerman</strong>: I didn’t want that Faberge egg - it
+was chipped!</p>
+<p><strong>mom</strong>: Carl Padgett died for the Franklin Mint, didn’t
+he?!</p>
+<p><strong>mrs. ackerman</strong>: NO! I could never hurt anyone!</p>
+<p><strong>mom</strong>: That was your People magazine with the letters
+cut out, wasn’t it?</p>
+<p><strong>mrs. ackerman</strong>: Yes, but I lent it…</p>
+<p><strong>mom</strong>: And those were your scissors found sticking out
+of Mrs. Sterner’s stomach, weren’t they?</p>
+<p><strong>mrs. ackerman</strong>: Yes…but…I didn’t…</p>
+<p><strong>mom</strong>: Mrs. Ackerman, do you recycle?</p>
+<p><strong>mrs. ackerman</strong>: silence in court as everyone</p>
+<p><strong>housewife a</strong>: Could you sign it: “To a future Serial
+Mom”?</p>
+<p><strong>reporter</strong>: Sure. You think she did it?</p>
+<p><strong>housewife b</strong>: I have reasonable doubt.</p>
+<p><strong>housewife c</strong>: I feel like killing a couple of people
+myself!</p>
+<p><strong>mr. nazlerod</strong>: Detective Moore, did you then proceed
+to the stage area inside “Hammerjacks”?</p>
+<p><strong>det. moore</strong>: Yes, I did. Scotty Barnhiil was on fire
+and he fell to his knees in flames.</p>
+<p><strong>mr. nazlerod</strong>: Would this be what you saw?</p>
+<p><strong>det. moore</strong>: Yes, sir. A real barbecue.</p>
+<p><strong>mr. nazlerod</strong>: Your honor! May the photo be entered
+in as evidence and passed to the jury?</p>
+<p><strong>judge</strong>: Huh?…oh yeah…YES.</p>
+<p><strong>det. moore</strong>: Jeeeeze! It really is Farrah
+Fawcett!</p>
+<p><strong>judge</strong>: I loved you in “The Burning Bed”!</p>
+<p><strong>mr. nazlerod</strong>: No further questions! I call to the
+stand, Marvin Pickles.</p>
+<p><strong>marvin</strong>: Be right out.</p>
+<p><strong>cop</strong>: The Judge is waiting for you!</p>
+<p><strong>mr. nazlerod</strong>: State your name, please.</p>
+<p><strong>marvin</strong>: Marvin A. Pickles.</p>
+<p><strong>mr. nazlerod</strong>: Were you in the men’s room at the
+Edmonson Drive In Flea Market on Saturday, September 19th?</p>
+<p><strong>marvin</strong>: Yes, I was.</p>
+<p><strong>mr. nazlerod</strong>: Did you see anybody in the booth next
+to you?</p>
+<p><strong>marvin</strong>: I…um… uh…</p>
+<p><strong>mr. nazlerod</strong>: Mr. Pickle! Did you see anybody in the
+booth next to you?</p>
+<p><strong>marvin</strong>: I…1’m not sure… …I…oohhh…Excuse me…</p>
+<p><strong>mr. nazlerod</strong>: What do you mean, you’re not
+sure?!</p>
+<p><strong>marvin</strong>: There was nobody next to me:</p>
+<p><strong>mr. nazlerod</strong>: Mr. Pickles, you testified before the
+Grand Jury that you looked down and “saw a pair of lady’s shoes” in the
+stall next to you.</p>
+<p><strong>marvin</strong>: Ohhhh! I just said what you told me to!</p>
+<p><strong>marvzn</strong>: Ooohhhhhh! I made it all up! I never saw
+Beverly Sutphin in my life!</p>
+<p><strong>mr. nazlerod</strong>: You’ll pay for this, Marvin A.
+Pickles! I’m turning your file over to the vice-squad!! The prosecution
+rests, your honor.</p>
+<p><strong>mom</strong>: The prosecution has proven nothing, your honor.
+The defense also rests!</p>
+<p><strong>farrah fawcett</strong>: …I feel that Beverly Sutphin is an
+innocent woman, wrongly accused. A normal housewife trapped in a
+nightmare of circumstantial evidence…</p>
+<p><strong>mr. nazlerod</strong>: …That’s her! Henrietta Lee Lucas! Joan
+Wayne Gacy! A new face in the deck of serial killer trading cards… Find
+her guilty of all five counts of first degree murder…!</p>
+<p><strong>farrah fawcett</strong>: …I only hope that I can portray
+“Serial Mom”’s life on the TV screen with the proper dignity that this
+feminist heroine deserves.</p>
+<p><strong>mom</strong>: Look at me! I’m a normal person just like you
+are!</p>
+<p><strong>mom</strong>: …But I’ve been framed by the police…</p>
+<p><strong>mom</strong>: …and perjured against by the very people I
+thought were my friends…</p>
+<p><strong>mom</strong>: …All I ask is that you have the courage to find
+me innocent of these terribly untrue charges…</p>
+<p><strong>farrah fawcett</strong>: …All I ask is that you find me
+innocent of these terribly untrue charges…</p>
+<p><strong>judge</strong>: Ladies and Gentlemen of the Jury, have you
+reached a verdict?</p>
+<p><strong>foreman</strong>: Yes we have, your honor…</p>
+<p><strong>foreman</strong>: …We find the defendant not guilty of all
+charges.</p>
+<p><strong>mom</strong>: I’m coming home!!</p>
+<p><strong>judge</strong>: Court adjourned!</p>
+<p><strong>dad</strong>: …What should I do?</p>
+<p><strong>chip</strong>: Bring her home…I guess.</p>
+<p><strong>birdie</strong>: No more violence…No more violence…</p>
+<p><strong>reporter boyfriend</strong>: Think she’ll like me?</p>
+<p><strong>misty</strong>: Just be nice to her. And try …just try not to
+get on her nerves.</p>
+<p><strong>mom</strong>: flowers, signing autographs,</p>
+<p><strong>juror #8</strong>: We did it! We set her free! I knew she was
+innocent right from the beginning!…</p>
+<p><strong>mom</strong>: You can’t wear white shoes after Labor Day!</p>
+<p><strong>juror #8</strong>: No…please…that’s not true anymore.</p>
+<p><strong>mom</strong>: Oh yes it is! Didn’t your mother ever tell
+you?!</p>
+<p><strong>mom</strong>: Well, now you know!</p>
+<p><strong>juror #8</strong>: But…fashion has changed…</p>
+<p><strong>mom</strong>: No it hasn’t!</p>
+<p><strong>dad</strong>: Beverly? Beverly?</p>
+<p><strong>mom</strong>: Right here, honey.</p>
+<p><strong>press</strong>: Mrs. Sutphin, can we get a shot with you and
+Farrah Fawcett?</p>
+<p><strong>mom</strong>: Certainly.</p>
+<p><strong>farrah</strong>: Hello, Beverly. I’m Farrah Fawcett You stand
+here… Ok, boys, a medium two shot…</p>
+<p><strong>mom</strong>: …but please…if I could just…</p>
+<p><strong>farrah</strong>: Stay there, Beverly. Smile, Serial Mom!</p>
+<p><strong>mom</strong>: scariest, most threatening</p>
+</body>
+</html>

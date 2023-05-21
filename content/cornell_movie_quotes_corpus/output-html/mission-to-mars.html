@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mission-to-mars</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="mission-to-mars">mission-to-mars</h1>
+<p><strong>phil</strong>: T minus ten, nine, eight, start ignition
+sequence, five, four, three, two, one, ignition… Liftoff!</p>
+<p><strong>children</strong>: My turn! My turn! No, I was next! No, me!
+Uncle Phil, Uncle Phil, can I do one? I want to do one!</p>
+<p><strong>phil</strong>: Guys, guys, please! This is risky stuff here.
+And I’m a highly trained professional.</p>
+<p><strong>phil</strong>: Okay, okay! Uncle Phil will launch another
+booster…</p>
+<p><strong>phil</strong>: …just as soon as he completes his fuel
+intake.</p>
+<p><strong>willis</strong>: It’ll take us six months just to get to
+Mars. Another year on the surface, then six months back. That’s two
+years…</p>
+<p><strong>willis</strong>: I guess what I’m trying to say is, since
+this is my last night on Earth, it’s gonna be a very precious memory to
+me. Y’know?</p>
+<p><strong>pretty girl</strong>: Nice try, Nick.</p>
+<p><strong>kirov</strong>: Hey, Woody, our Mars One crew won’t be
+heading back to Earth till ten days after you guys land at our base camp
+with Mars Two. That’s a pretty good long rendezvous.</p>
+<p><strong>woody</strong>: What are you suggesting, Sergei?</p>
+<p><strong>kirov</strong>: Maybe you should bring a baseball bat. Yes?
+American baseball? Our two crews could have ourselves a little Solar
+System Series.</p>
+<p><strong>woody</strong>: Please. Half you guys are foreigners. We’d
+crush you.</p>
+<p><strong>kirov</strong>: No, no, we have equal crews. Three men, one
+woman. Same handicap.</p>
+<p><strong>woody</strong>: Easy now, you’re talking about my wife. And
+Terri just happens to be one helluva shortstop.</p>
+<p><strong>terri</strong>: Fast pitch, no steals, batter calls his own
+strikes. Thousand bucks make it interesting?</p>
+<p><strong>cote</strong>: Eh bien. Winner take all.</p>
+<p><strong>terri</strong>: Good. Bring some balls.</p>
+<p><strong>woody</strong>: You wanna know the sad part? Technically I
+outrank her. But if we want any peace at all on Mars Two, I’m gonna be
+saying a lot of “Yes, dears.”</p>
+<p><strong>1st wife</strong>: …just not sure how I feel about NASA
+allowing couples to go on this type of mission together.</p>
+<p><strong>1st wife</strong>: Nothing personal, Terri. It’s just that,
+well, it’s kind of a funny feeling for those of us staying behind.</p>
+<p><strong>terri</strong>: All the research shows that marriage will
+provide stability on these long duration trips.</p>
+<p><strong>2nd wife</strong>: Then they haven’t studied some of the
+couples I’ve known.</p>
+<p><strong>3rd wife</strong>: Anybody seen Jim McConnell?</p>
+<p><strong>4th wife</strong>: I don’t think he’s coming.</p>
+<p><strong>1st wife</strong>: God, that poor man. How’s he doing?</p>
+<p><strong>2nd wife</strong>: Totally losing it, from what I hear. Can’t
+sleep, can’t eat. Visits her grave almost every day. They say he could
+lose mission status.</p>
+<p><strong>3rd wife</strong>: Oh, that’s so sad. That is just so tragic.
+You go to a routine physical one day, and wham.</p>
+<p><strong>4th wife</strong>: After all those years of training, too. It
+was their whole dream.</p>
+<p><strong>1st wife</strong>: Must be a pretty funny feeling for Luke
+Graham. Y’know? Now he’s gonna be in the history books. First man on
+Mars…</p>
+<p><strong>debra</strong>: He’s not coming, Luke.</p>
+<p><strong>luke</strong>: Jim deserves this, too. All his friends are
+here. And it’s my last night.</p>
+<p><strong>debra</strong>: Your last night with us, too.</p>
+<p><strong>luke</strong>: I love you, Deb.</p>
+<p><strong>debra</strong>: I love you too, baby. But maybe you should
+spend some time with Bobby.</p>
+<p><strong>luke</strong>: Yeah. I will. Where is he?</p>
+<p><strong>debra</strong>: Up in his fort.</p>
+<p><strong>willis</strong>: Deep space is so lonesome. So cold. But I
+guess I’ll have my memories to keep me warm…</p>
+<p><strong>bobby</strong>: Who’s gonna read to me now, at bedtime?</p>
+<p><strong>luke</strong>: Mommy will.</p>
+<p><strong>bobby</strong>: I like when you do it. Now we’re never gonna
+finish our book.</p>
+<p><strong>luke</strong>: Well, I’ll tell you what. I’ve been thinking
+about that. And what I thought was – how ’bout if I bring along my own
+copy? Then every night, wherever I am, I’ll read a little bit more of
+it. And I’ll know that you and Mommy, wherever you are, you’re reading
+it too. That way, it’ll feel like we’re still reading it together.
+’Cause I don’t know about you, but I’m pretty anxious to find out how
+’ol Ben Gunn got marooned on that island. What d’you say?</p>
+<p><strong>luke</strong>: Good deal. Can I have a hug?</p>
+<p><strong>debra</strong>: We were afraid you wouldn’t come.</p>
+<p><strong>mcconnell</strong>: I caught a whiff of your barbecue. After
+that I was helpless.</p>
+<p><strong>debra</strong>: All the way out in Galveston?</p>
+<p><strong>mcconnell</strong>: Something like that. It’s his night, Deb.
+I didn’t want to spoil it.</p>
+<p><strong>debra</strong>: Spoil it? He’s been going crazy looking for
+you.</p>
+<p><strong>luke</strong>: C’mon. A whole lot of folks here are gonna be
+mighty glad to see you.</p>
+<p><strong>woody</strong>: I wish we were all going. Together.</p>
+<p><strong>luke</strong>: Then you’ve got a short memory. Think back to
+how we were by the second week of lunar training.</p>
+<p><strong>woody</strong>: Oh, you’re not gonna bring that up again
+–</p>
+<p><strong>luke</strong>: I’m trying to remember, let’s see, which one
+of us scored the lowest ranking up there?</p>
+<p><strong>woody</strong>: You just can’t let that go –</p>
+<p><strong>luke</strong>: Oh, man, three commanders, on the same ship?
+If they sent us off to Mars together, there wouldn’t be enough fuel to
+lift all those egos.</p>
+<p><strong>woody</strong>: Bullshit, we would’ve made a great crew.</p>
+<p><strong>mcconnell</strong>: That was never gonna happen. I was always
+teamed with Maggie, and we were mostly chalkboard jockies. You know?
+Systems. Payloads…</p>
+<p><strong>luke</strong>: Listen to him. Mr. Cover-of-Time Magazine!</p>
+<p><strong>woody</strong>: Yeah, who landed the crippled Block II
+Shuttle?</p>
+<p><strong>luke</strong>: Yeah, and who scored highest on the lunar
+rankings?</p>
+<p><strong>woody</strong>: Let it go, Luke.</p>
+<p><strong>mcconnell</strong>: Sure, I made a little noise. But putting
+the first footprints on Mars? Nah. That’s for guys who… …wrote their
+Ph.D. thesis on how to colonize the place. And guys who… …read too much
+science fiction as a kid and still wear little Flash Gordon rocketships
+around their necks.</p>
+<p><strong>woody</strong>: You read the same damn science fiction books
+that I did! You’re just not man enough to wear jewelry!</p>
+<p><strong>woody</strong>: You want Flash. You know you want him. Well
+you’ll have to come through me!</p>
+<p><strong>mcconnell</strong>: God, she would’ve loved to see you two
+clowns. Just one more time.</p>
+<p><strong>luke</strong>: Hey, Woodrow, isn’t it about time you donated
+this thing to a museum?</p>
+<p><strong>woody</strong>: Internal combustion, boys. Accept no
+substitutes.</p>
+<p><strong>woody</strong>: Jim, if there’s ever… if there’s anything
+Terri and I can do –</p>
+<p><strong>mcconnell</strong>: I’m okay. Really. Thanks.</p>
+<p><strong>woody</strong>: See you when I get to Mars, Luke. Don’t solve
+all the mysteries of the universe, okay? Leave a little something for
+the next guys.</p>
+<p><strong>luke</strong>: I’ll see what I can do. Just make sure you
+bring some fresh beer.</p>
+<p><strong>woody</strong>: You got it.</p>
+<p><strong>luke</strong>: Should’ve been your mission, Jim. Yours and
+Maggie’s.</p>
+<p><strong>luke</strong>: None of us ever wanted Mars the way you two
+did. Not even Woody. Twelve years of hoping for this assignment,
+training for it –</p>
+<p><strong>mcconnell</strong>: That’s all over now.</p>
+<p><strong>luke</strong>: If Maggie hadn’t gotten sick – if you hadn’t
+pulled yourself out of the rotation to take care of her –</p>
+<p><strong>luke</strong>: No, I’m gonna say this. I have to say it… I
+wanted Mars One. Hell, I battled you for it every step of the way. Never
+wanted to beat anybody so bad in my life. But not like this… Jim, I’d
+give this all up in a second, if it would bring Maggie back to us.</p>
+<p><strong>mcconnell</strong>: I know that, Luke. You don’t have to say
+it… Mars is yours now. Go get it.</p>
+<p><strong>luke</strong>: Take care of yourself.</p>
+<p><strong>mcconnell</strong>: Yeah. You too.</p>
+<p><strong>cote</strong>: Luke, you read me?</p>
+<p><strong>luke</strong>: Yeah, Renee.</p>
+<p><strong>cote</strong>: Luke, I just got ARES-8 on line and… Well, we
+think you’re gonna wanna see this for yourself.</p>
+<p><strong>luke</strong>: Copy that.</p>
+<p><strong>luke</strong>: What the hell is that?</p>
+<p><strong>cote</strong>: No idea, boss.</p>
+<p><strong>luke</strong>: Where is it?</p>
+<p><strong>willis</strong>: You don’t wanna know.</p>
+<p><strong>luke</strong>: C’mon, what’s so funny? Gimme the
+coordinates.</p>
+<p><strong>cote</strong>: Latitude 41 degrees north, longitude 9 degrees
+west.</p>
+<p><strong>luke</strong>: The Plains of Cydonia. So? Oh no. You’re not
+telling me –</p>
+<p><strong>cote</strong>: Oui. Exactement! It’s Kirov’s fault, he picked
+today’s sector.</p>
+<p><strong>kirov</strong>: Hey, c’mon! We’ve got a scientific duty to
+check that thing out.</p>
+<p><strong>luke</strong>: Great. That’s great. The first anomaly we hit,
+and it’s gotta be in the one place guaranteed to make NASA look
+ridiculous… You know how many books have been written about that damned
+mountain?</p>
+<p><strong>cote</strong>: The Egyptians put it there.</p>
+<p><strong>kirov</strong>: No, the Amazons.</p>
+<p><strong>willis</strong>: No, it was little green men!</p>
+<p><strong>luke</strong>: And all because a couple of lousy impact
+craters happen to look like eye sockets. If this gets out, we’ll have
+every UFO kook on Earth spouting off on the six o’clock news… C’mon,
+people, gimme a read here. Is that a cinder cone?</p>
+<p><strong>kirov</strong>: Nah, too smooth. Too angular. Volcanic
+upwelling?</p>
+<p><strong>cote</strong>: No fissures. No caldera.</p>
+<p><strong>luke</strong>: It’s an upwelling, for sure. But maybe not
+volcanic…</p>
+<p><strong>luke</strong>: Look at the color. And see how shiny it is? I
+could swear that’s ice…</p>
+<p><strong>cote</strong>: This far south?</p>
+<p><strong>willis</strong>: Impossible. You can’t have ice at this
+latitude. Not unless…</p>
+<p><strong>willis</strong>: Oh my God.</p>
+<p><strong>luke</strong>: How far away is it?</p>
+<p><strong>kirov</strong>: Sixteen kilometers northeast. Take us twenty
+minutes to get there.</p>
+<p><strong>luke</strong>: Let’s send a packet to Micker. Then we’ll go
+check it out.</p>
+<p><strong>luke</strong>: This is a truly anomalous formation. Looks
+like nothing we’ve seen so far. The structure appears to be crystalline,
+at least from the angle displayed by ARES-8 …</p>
+<p><strong>luke</strong>: We’re all trying not to go too nuts up here,
+but – we think there’s a good chance this could be an extrusion from
+some subsurface, geothermal column of water. And if we’re right…</p>
+<p><strong>luke</strong>: …then we’ve found the key to permanent human
+colonization.</p>
+<p><strong>mcconnell</strong>: Tell geology and hydrology we need to
+scramble on this. Full-court press.</p>
+<p><strong>luke</strong>: Anyway, we’are going out to take a closer look
+at it, try to get an idea of its composition. By the time you receive
+this, we should be just about on-site.</p>
+<p><strong>kirov</strong>: Jesus Christ…</p>
+<p><strong>luke</strong>: Anyone else hear that?</p>
+<p><strong>cote</strong>: Yeah. What is it?</p>
+<p><strong>willis</strong>: Sounds like our antenna’s out of phase.</p>
+<p><strong>luke</strong>: Can you fix it?</p>
+<p><strong>willis</strong>: Hey, skip, I can fix anything.</p>
+<p><strong>luke</strong>: Big talker. Renee, Sergei, let’s break out the
+radar, see what this thing’s made of.</p>
+<p><strong>beck</strong>: …and this is the Mars Mission Control Room,
+nicknamed “Micker.” I understand a comm packet is incoming from Mars One
+Base Camp, so you may find this interesting.</p>
+<p><strong>ambassador</strong>: That man over there. He’s in charge?</p>
+<p><strong>beck</strong>: No, actually, that’s Jim McConnell, the
+CAPCOM. Our voice link to the astronauts? Jim’s been with the manned
+Mars program since its inception. One of our real pioneers.</p>
+<p><strong>ambassador</strong>: Will he be going to Mars, too?</p>
+<p><strong>beck</strong>: Ah, no. This is as close as he gets.</p>
+<p><strong>luke</strong>: …anyway, that’s about it. We’ll send another
+packet when we get back.</p>
+<p><strong>luke</strong>: Oh, right. One more thing. Today is a very
+special day for a good friend of ours, and I know he’s there right
+now.</p>
+<p><strong>luke</strong>: Now, he hates it when any fuss is made, so I
+won’t mention his name…</p>
+<p><strong>luke</strong>: …because the last thing in the world I’d ever
+want to do is embarrass someone like Jim McConnell.</p>
+<p><strong>luke</strong>: C’mon, you Micker weasels, sing!</p>
+<p><strong>luke</strong>: Hey, Ray! Take a look at him! Is he all red
+with one of those fake “I’m- a-good-sport” grins?</p>
+<p><strong>luke</strong>: And hey, you guys, check out Ray! Does he have
+on one of his “This- wasn’t-in-my-mission-plan” faces?</p>
+<p><strong>luke</strong>: Nothing you can do about it, Ray! We’re a
+hundred million miles away!</p>
+<p><strong>luke</strong>: Happy Birthday, Jimbo! Make a wish!</p>
+<p><strong>luke</strong>: Catch you again soon. Take care, buddy. End of
+transmission.</p>
+<p><strong>luke</strong>: Well? What’s under there?</p>
+<p><strong>cote</strong>: Je ne sais pas. I… I think there’s something
+wrong with the equipment.</p>
+<p><strong>luke</strong>: What?</p>
+<p><strong>cote</strong>: I mean, it can’t be right. It says… it says
+there’s metal under there.</p>
+<p><strong>cote</strong>: There’s ten, twelve meters of rubble and sand,
+and then… solid metal.</p>
+<p><strong>luke</strong>: That doesn’t make any sense. You’re reading a
+vein of ore.</p>
+<p><strong>cote</strong>: No. It’s under the whole mountain.</p>
+<p><strong>luke</strong>: Nick, could the problem with the antenna be
+interfering?</p>
+<p><strong>willis</strong>: Could be.</p>
+<p><strong>luke</strong>: Try it closer and up the power. I’ll watch the
+screen.</p>
+<p><strong>mcconnell</strong>: Ah, we’re all pretty stoked about that
+formation you spotted, Mars One. The folks in the geology and hydrology
+back rooms are going over your images and comparing them to every
+photomap they’ve got.</p>
+<p><strong>luke</strong>: Nick, how we coming on that antenna?</p>
+<p><strong>willis</strong>: Goin’ as fast as I can, boss.</p>
+<p><strong>kirov</strong>: Hey, Nick. Come show me how stupid I am. I
+can’t get this to work.</p>
+<p><strong>mcconnell</strong>: Medical wants me to remind you that
+you’re three days late on your blood tests. I know they’re a bore, but
+you’ve got to get them done, or else… or else I don’t know what. Just do
+them, okay?</p>
+<p><strong>kirov</strong>: All set here, chief.</p>
+<p><strong>luke</strong>: Okay. Crank up the juice and let’s see what’s
+in this sucker.</p>
+<p><strong>mcconnell</strong>: I think that’s about it for business. But
+on a personal note, be advised that, ah, none of you can sing worth a
+damn.</p>
+<p><strong>luke</strong>: Why did that stop?</p>
+<p><strong>mcconnell</strong>: Honestly, Luke, if you guys don’t have
+anything better to do with your time, I can make some suggestions to
+mission medical. There are worse things than blood tests.</p>
+<p><strong>mcconnell</strong>: Oh, and I talked to Debra. She and Bobby
+are doing fine. Said to tell you, they’re, ah, they’re on their “third
+time through the book, page – – page 125.” They send their love and say
+take care of yourself. Same from us here, buddy. Till next time, then.
+End of transmission.</p>
+<p><strong>woody</strong>: “Problem: Hatch door malfunction, backup
+power fail, manual override fail. Solution: Replace circuit breaker
+907B.”</p>
+<p><strong>woody</strong>: Okay… Piece of cake.</p>
+<p><strong>woody</strong>: God, who dreams up these nightmares?</p>
+<p><strong>terri</strong>: Don’t try to change the subject.</p>
+<p><strong>woody</strong>: I’m not! We’re talking about your sister’s
+wedding, right?</p>
+<p><strong>terri</strong>: Very funny. We’re talking about dancing
+lessons. Before my sister’s wedding.</p>
+<p><strong>woody</strong>: Honey, do you mind? I’ve got a catastrophic
+power failure here.</p>
+<p><strong>terri</strong>: Woody, we’re a married couple. Would it kill
+you to invite me out on the floor once in awhile?</p>
+<p><strong>woody</strong>: I danced with you at our wedding.</p>
+<p><strong>terri</strong>: I’m not talking about shuffling your feet
+around while you grab my butt. I mean real dancing. Cha-cha, rhumba,
+jitterbug –</p>
+<p><strong>woody</strong>: Face it, honey, some couples dance, some go
+to Mars. That’s life.</p>
+<p><strong>terri</strong>: I’m serious. We’ve got two more months in
+this training rotation, but just as soon as we get home, we’re starting
+lessons. If we never dance, people will think there’s something
+wrong.</p>
+<p><strong>woody</strong>: If they see me dance, they’ll know there’s
+something wrong.</p>
+<p><strong>terri</strong>: You are such a lug.</p>
+<p><strong>phil’s voice</strong>: Cockpit, this is Control.</p>
+<p><strong>terri</strong>: Control, this is Cockpit.</p>
+<p><strong>phil’s voice</strong>: Uh, Terri, they want us all back in
+the Station. Report to Micker.</p>
+<p><strong>terri</strong>: Who says report to Micker?</p>
+<p><strong>phil’s voice</strong>: The little men who live in my
+head.</p>
+<p><strong>woody</strong>: Phil, c’mon! We just started this drill.</p>
+<p><strong>phil</strong>: Woody, it was Ray Beck. He told me to round up
+the team. Now.</p>
+<p><strong>beck</strong>: Then, at 1417, the X-band continuous data
+stream from Mars went silent. All data – med, environmental, everything
+– suddenly stopped. While we were trying to figure out what the hell
+went wrong, we got a signal from the folks at the Large Array at
+Soccoro.</p>
+<p><strong>mcconnell</strong>: At the same moment we lost the data
+stream, they picked up an intense burst of energy from Mars.</p>
+<p><strong>woody</strong>: What do you mean, “intense”?</p>
+<p><strong>mcconnell</strong>: Catastrophic.</p>
+<p><strong>terri</strong>: What about the crew?</p>
+<p><strong>beck</strong>: The level of energy in the pulse… didn’t seem
+survivable.</p>
+<p><strong>woody</strong>: What about the REMO? It went into Mars orbit
+last week. Maybe that could give us some clue.</p>
+<p><strong>mcconnell</strong>: Good thinking, Woody. That’s just what we
+tried next.</p>
+<p><strong>mcconnell</strong>: The Resupply Module checked out fine. No
+instrument failures, no change in status. Orbit holding steady. But
+there was something else. The REMO’S computer contained an uplink
+message – a very faint, highly distorted transmission from Mars One Base
+Camp.</p>
+<p><strong>terri</strong>: Someone’s alive.</p>
+<p><strong>mcconnell</strong>: Yes.</p>
+<p><strong>phil</strong>: How?</p>
+<p><strong>beck</strong>: The message is almost indecipherable. Two
+teams are still working on it. You better see for yourselves.</p>
+<p><strong>technician</strong>: Still concentrating on the audio. We
+managed to bring out a couple more words, but we’ve got a long way to
+go.</p>
+<p><strong>woody</strong>: Show us whatever you’ve got.</p>
+<p><strong>luke</strong>: …make this quick… may be only ch– …to the
+site, when we… hit us just as we… –thers are all dead…</p>
+<p><strong>luke</strong>: …low sound that we couldn’t understand. Then
+all of a sudden there was this terrib… …–stems are holding up for now,
+but I don’t know how long I can…</p>
+<p><strong>technician</strong>: That’s it.</p>
+<p><strong>terri</strong>: What did Luke mean by a “low sound?”</p>
+<p><strong>beck</strong>: If this was a earthquake, as we’re now
+assuming, there’s usually an auditory component.</p>
+<p><strong>woody</strong>: But that energy pulse they picked up in New
+Mexico…</p>
+<p><strong>phil</strong>: Electromagnetic emission. Not uncommon with
+large-scale geophysical phenomena.</p>
+<p><strong>woody</strong>: Causing this kind of damage? I don’t buy it.
+We’re missing something here.</p>
+<p><strong>terri</strong>: Luke must be in pretty bad shape if he hasn’t
+blasted out of there in the Earth Return Vehicle. That thing’s designed
+so even one crew member could fly it back to Earth.</p>
+<p><strong>mcconnell</strong>: Even if Luke was in great shape, he
+couldn’t get home. That energy pulse would’ve fried the ERV’S
+computers.</p>
+<p><strong>woody</strong>: Other than the computers, how do we think the
+ERV fared?</p>
+<p><strong>beck</strong>: Well, so far our modelling says it should be
+in pretty good shape.</p>
+<p><strong>woody</strong>: Which means it’s gonna be up to us to get new
+motherboards, drives, and software to Mars. As fast as we can.</p>
+<p><strong>beck</strong>: Whoa, slow down. It’s gonna take us weeks just
+to analyze this data.</p>
+<p><strong>mcconnell</strong>: Right, but meanwhile, we’ve gotta be
+working up a mission plan.</p>
+<p><strong>woody</strong>: Luke needs us now.</p>
+<p><strong>beck</strong>: Luke may already be dead. And even if he’s
+not, it’s doubtful he’s going to be able to transmit again. So we
+wouldn’t know whether it’s safe to land until you were almost there.</p>
+<p><strong>phil</strong>: What about SIMA?</p>
+<p><strong>phil</strong>: The Saturn Imaging Probe. It’s going to
+slingshot around Mars on its way through the solar system. It could be
+retasked to take pictures, read radiation levels at Mars One Base
+Camp.</p>
+<p><strong>woody</strong>: Good idea Phil. If SIMA tells us Luke hasn’t
+survived and it’s not safe to land, we swing around Mars and come right
+back home.</p>
+<p><strong>mcconnell</strong>: Yes. We can design the mission to have a
+free return capability. It’s a long trip, but if you don’t land it’s the
+best option.</p>
+<p><strong>beck</strong>: We’re getting ahead of ourselves. You’re
+forgetting the bigger problem. The orbits are all wrong. Our first
+decent launch window is almost eight months from now.</p>
+<p><strong>mcconnell</strong>: But we can go earlier and get there
+faster if we reconfigure the payload for extra fuel. We’ve modelled
+that, Ray. I’ve modelled it.</p>
+<p><strong>beck</strong>: On paper, yeah. But those stresses have never
+been tested in space.</p>
+<p><strong>mcconnell</strong>: The ship can take it.</p>
+<p><strong>beck</strong>: I wasn’t thinking of just the ship.</p>
+<p><strong>mcconnell</strong>: I know the protocols for a Mars Recovery
+Mission better than anybody, because I helped design them. And I’m
+saying these guys can do it.</p>
+<p><strong>woody</strong>: He’s right, Ray. We’ve got a real shot.</p>
+<p><strong>beck</strong>: Give me an updated mission plan by 0800
+tomorrow. Then I’ll put it in the works.</p>
+<p><strong>mcconnell</strong>: You’ll have it by 0600.</p>
+<p><strong>mcconnell</strong>: Let’s get to work.</p>
+<p><strong>woody</strong>: Chief, could I have a word?</p>
+<p><strong>woody</strong>: I’ve no longer got the right crew.</p>
+<p><strong>beck</strong>: What do you mean? Bjornstrom can be up here on
+the next shuttle.</p>
+<p><strong>woody</strong>: Bjornstrom is a geologist. He’s good, but not
+for this. My people just lost eight months of training. This is a
+different mission, with a different objective.</p>
+<p><strong>beck</strong>: I haven’t been given authorization for a
+mission yet.</p>
+<p><strong>woody</strong>: But when you are, it ought to be given the
+best chance for success. I want McConnell to fly right seat.</p>
+<p><strong>beck</strong>: He’s no longer on mission status.</p>
+<p><strong>woody</strong>: Yeah. Because you washed him out.</p>
+<p><strong>beck</strong>: He washed himself out. He only had to pass a
+few more psych evaluations, but he refused to take them.</p>
+<p><strong>woody</strong>: Ray, he’s the best pilot I ever saw, and
+you’ve got him benched at a desk.</p>
+<p><strong>beck</strong>: Everybody has to pass the psych prelims. No
+exceptions. Jim knew that.</p>
+<p><strong>woody</strong>: Maggie was his wife. He didn’t want to lie on
+a couch and share her with strangers.</p>
+<p><strong>beck</strong>: That was his call. But I had to make one too.
+It was tough as hell, but I’d do it again.</p>
+<p><strong>woody</strong>: His wife wasted away in front of his eyes.
+What was he supposed to do? Suck it up? Get with the program? What was
+his crime? That he was upset? That he cried…?</p>
+<p><strong>beck</strong>: I couldn’t trust him!</p>
+<p><strong>beck</strong>: Not in a crisis… I’m sorry Woody, but Jim lost
+his edge. Are you gonna stand there and tell me Jim McConnell is the
+same man he was two years ago? You want me to bet four more lives on
+that?</p>
+<p><strong>woody</strong>: When Maggie died, yeah, it knocked the shit
+out of him. It knocked the hell out of all of us. But you know and I
+know that he’s still the best we’ve got. He and Maggie wrote the book on
+Mars. He’s got more hours in the sims than the rest of us put together.
+Ray, we can do this. Give me McConnell as co-pilot, and we will bring
+Luke home. And that’s a promise.</p>
+<p><strong>mcconnell</strong>: What’s that?</p>
+<p><strong>phil</strong>: That… is the exact chemical composition of my
+ideal woman.</p>
+<p><strong>mcconnell</strong>: Used to be.</p>
+<p><strong>phil</strong>: Hey!</p>
+<p><strong>mcconnell</strong>: Now what is it?</p>
+<p><strong>phil</strong>: A frog.</p>
+<p><strong>terri</strong>: I guess now we have our answer to the effects
+of long-term interplanetary travel on the human mind. The answer is
+Phil.</p>
+<p><strong>mcconnell</strong>: I’m gonna get an update on SIMA. It
+should be just about close enough to start capturing some surface
+images.</p>
+<p><strong>mcconnell</strong>: Hey, Skip.</p>
+<p><strong>woody</strong>: Take a look.</p>
+<p><strong>woody</strong>: What do you make of that?</p>
+<p><strong>mcconnell</strong>: Dust storm. Southern hemisphere, coming
+from the east… Big fella, too.</p>
+<p><strong>woody</strong>: Headed for Chryse Planitia.</p>
+<p><strong>mcconnell</strong>: Yup. Could get a little hairy just about
+landing time…</p>
+<p><strong>woody</strong>: We’ll have to be ready to move fast. Maybe
+even advance our ETA. Those things can cover the whole planet, and last
+up to a year.</p>
+<p><strong>mcconnell</strong>: When does SIMA do her fly-by?</p>
+<p><strong>woody</strong>: Tomorrow morning, about 0600. That’s when we
+find out whether we came all this way for nothing.</p>
+<p><strong>mcconnell</strong>: My money’s on Luke.</p>
+<p><strong>phil</strong>: What brought this on?</p>
+<p><strong>woody</strong>: Zero-G. My last chance to be graceful. Once
+we’re in Mars gravity, it’s back to shuffling my feet and grabbing her
+butt.</p>
+<p><strong>terri</strong>: I’ll take what I can get.</p>
+<p><strong>computer</strong>: Attention. Incoming packet.</p>
+<p><strong>mcconnell</strong>: It’s SIMA.</p>
+<p><strong>woody</strong>: Looks deserted.</p>
+<p><strong>phil</strong>: It’s still standing, though. So is the ERV.
+And look, there’s the greenhouse.</p>
+<p><strong>mcconnell</strong>: We know Luke survived for at least a few
+hours. Question is, are there any signs of recent activity?</p>
+<p><strong>phil</strong>: There.</p>
+<p><strong>phil</strong>: What the hell are those?</p>
+<p><strong>mcconnell</strong>: Graves.</p>
+<p><strong>phil</strong>: Hold on. There’s only three. That means –</p>
+<p><strong>terri</strong>: Phil –</p>
+<p><strong>phil</strong>: It means Luke must still be –</p>
+<p><strong>terri</strong>: No. It just means there was nobody left to
+bury him.</p>
+<p><strong>woody</strong>: Check the radiation levels.</p>
+<p><strong>phil</strong>: Normal.</p>
+<p><strong>woody</strong>: Go to the disaster site.</p>
+<p><strong>mcconnell</strong>: What’s wrong?</p>
+<p><strong>phil</strong>: I don’t know. Magnetic interference?</p>
+<p><strong>woody</strong>: Go to infrared.</p>
+<p><strong>phil</strong>: Must be a problem with SIMA. I don’t see how
+an earthquake, six months ago, could give us this kind of
+distortion.</p>
+<p><strong>mcconnell</strong>: That was no quake.</p>
+<p><strong>woody</strong>: Then what the hell was it?</p>
+<p><strong>beck</strong>: We’re going to continue analyzing this data
+and try to determine what the problem is with those images. Frankly,
+we’re just as stumped as you guys, but we’ll keep on it. We agree that
+the evidence of the graves is inconclusive and that a ground search is
+advisable. Be aware there are little sand storms kicking up near Mars
+One Base, but the big one you spotted is turning south. It shouldn’t be
+a factor.</p>
+<p><strong>beck</strong>: We’re all pretty excited here and we’re sure
+you must be feeling the same. Enjoy your meal and get a good night’s
+sleep. We anticipate that tomorrow morning you will be Go for Mars
+Orbital Insertion.</p>
+<p><strong>beck</strong>: God bless you and goodnight. End of
+transmission.</p>
+<p><strong>terri</strong>: What if you opened up your meal packs and
+found that, instead of putting in everything but red ones, they’d made a
+mistake and put in only red ones?</p>
+<p><strong>phil</strong>: Hey, that’s a funny notion. And what if in
+your meal packs, instead of brown rice, there were spring-loaded spikes
+that shot into your eyes?</p>
+<p><strong>terri</strong>: How did you ever pass the psych
+evaluation?</p>
+<p><strong>phil</strong>: When you’re schizophrenic, they take the
+higher score.</p>
+<p><strong>luke</strong>: Jim’s first ship was seriously
+underpowered…</p>
+<p><strong>woody</strong>: Maggie was always starstruck…</p>
+<p><strong>maggie</strong>: I’ll get you guys for this.</p>
+<p><strong>luke</strong>: When they met at the Air Force Academy, it was
+“love at first flight.”</p>
+<p><strong>woody</strong>: After that, NASA training was tough. All Jim
+could think about was exploring a heavenly body. More ribald LAUGHTER,
+as</p>
+<p><strong>luke</strong>: But Maggie, as you can see, kept him on a
+short leash. Until…</p>
+<p><strong>woody</strong>: Mission accomplished!</p>
+<p><strong>luke</strong>: Today we celebrate a new chapter in their
+story. And guys, it’s a pretty historic one.</p>
+<p><strong>woody</strong>: Let’s hear it for the newly-announced Captain
+and Co-Captain of Mars One. To Jim and Maggie!</p>
+<p><strong>luke</strong>: When you guys land, it’ll prove once and for
+all there’s no intelligent life on Mars.</p>
+<p><strong>maggie</strong>: Hey, c’mon, what if I’m right?</p>
+<p><strong>assorted voices</strong>: Oh no, here we go! Don’t get her
+started! Somebody put on some music!</p>
+<p><strong>maggie</strong>: It’s our sister planet!</p>
+<p><strong>phil</strong>: Oh brother!</p>
+<p><strong>terri</strong>: Maggie, why does this have to be about us?
+Mars is a great opportunity for pure science.</p>
+<p><strong>maggie</strong>: We’ll do the science. And we’ll do it very
+well. That’s what we’ve trained for. But what if there’s more…? In all
+our myths, in every human culture, Mars has always held a special
+attraction. What if that means something? Only we don’t understand it
+yet…</p>
+<p><strong>maggie</strong>: The universe is not chaos. It’s connection.
+Life reaches out for life…</p>
+<p><strong>maggie</strong>: This is what we were born for, isn’t it? To
+stand on a new world, and look beyond it to the next one. It’s who we
+are.</p>
+<p><strong>woody</strong>: You okay?</p>
+<p><strong>mcconnell</strong>: Yeah. I’m good to go.</p>
+<p><strong>mcconnell</strong>: After all these years… Can you believe
+it? Tomorrow we’ll be standing on Mars.</p>
+<p><strong>woody</strong>: You know what? She may have been right.</p>
+<p><strong>woody</strong>: If that wasn’t a quake down there, then
+something else caused it. Or planned it… You’re thinking the same
+thing.</p>
+<p><strong>mcconnell</strong>: It’s never been out of my mind.</p>
+<p><strong>woody</strong>: Jesus. You realize what this means?</p>
+<p><strong>mcconnell</strong>: She knew, Woody. She was the only one of
+us that ever thought there might be something down there.</p>
+<p><strong>woody</strong>: Yeah, and we’re not leaving until we find
+out… Deal?</p>
+<p><strong>woody</strong>: Maggie was the best of us.</p>
+<p><strong>mcconnell</strong>: Range 6783 and closing. 35 minutes till
+Mars Orbital Capture.</p>
+<p><strong>woody</strong>: Okay, people let’s look sharp. If we
+overshoot, there’s no coming back.</p>
+<p><strong>phil</strong>: Yeah, and drifting through eternity will ruin
+your whole day.</p>
+<p><strong>terri</strong>: Delta V systems initialized.</p>
+<p><strong>woody</strong>: Charge primary APU.</p>
+<p><strong>terri</strong>: Engaged. Charged.</p>
+<p><strong>woody</strong>: Select HPU fuel cells for run.</p>
+<p><strong>terri</strong>: Engaged.</p>
+<p><strong>mcconnell</strong>: Tie main bus to systems.</p>
+<p><strong>phil</strong>: Power ready.</p>
+<p><strong>mcconnell</strong>: Select H2/O2 HPU and fuel cells for
+open.</p>
+<p><strong>phil</strong>: H2/O2 control valves open.</p>
+<p><strong>woody</strong>: Charge flow.</p>
+<p><strong>terri</strong>: Charged and on-line</p>
+<p><strong>woody</strong>: Reset PW.</p>
+<p><strong>terri</strong>: Set</p>
+<p><strong>mcconnell</strong>: Transfer protocol data from EVA
+station.</p>
+<p><strong>phil</strong>: Transferred. Awaiting track confirmation.</p>
+<p><strong>phil</strong>: Uhhh!</p>
+<p><strong>terri</strong>: What in God’s –</p>
+<p><strong>woody</strong>: Micrometeoroids</p>
+<p><strong>mcconnell</strong>: Breach hits in the hull!</p>
+<p><strong>phil</strong>: Outgassing! Losing pressure!</p>
+<p><strong>terri</strong>: Woody, seal the breech!</p>
+<p><strong>woody</strong>: Kill those alarms!</p>
+<p><strong>mcconnell</strong>: Still outgassing in the lower Hab! There
+must be another hole down there, even bigger.</p>
+<p><strong>phil</strong>: Losing pressure fast! We’re gonna
+decompress!</p>
+<p><strong>woody</strong>: Computer, how long until zero atmosphere?</p>
+<p><strong>computer</strong>: Four minutes, nine seconds.</p>
+<p><strong>phil</strong>: If we get below 20% atmosphere, the power will
+shut down!</p>
+<p><strong>terri</strong>: Are you sure?</p>
+<p><strong>phil</strong>: Positive! A vacuum inside the ship would cause
+a total electrical failure. The nav computers will fry!</p>
+<p><strong>mcconnell</strong>: We’ll lose all control. We won’t be able
+to fire the engines to capture Mars orbit.</p>
+<p><strong>phil</strong>: It’s already starting. The primary L- 1 hub
+has been smashed. The systems are crashing.</p>
+<p><strong>woody</strong>: Everybody switch to suit oxygen. We beat this
+in the simulator, we can do it here. Jim, you’ve got the ship. I’m going
+EVA.</p>
+<p><strong>woody</strong>: C’mon, people, let’s go! Let’s work the
+problem!</p>
+<p><strong>phil</strong>: Jesus, it’s still bleeding.</p>
+<p><strong>terri</strong>: Keep the pressure on!</p>
+<p><strong>computer</strong>: Eighty percent atmosphere…</p>
+<p><strong>terri</strong>: Jim, you’ve gotta get your spare helmet from
+storage.</p>
+<p><strong>mcconnell</strong>: No time. Phil, can you keep the nav
+computers on-line?</p>
+<p><strong>phil</strong>: I can’t get this damn machine to re-
+initialize! And the automated systems just went down. We can’t shut down
+the hab rotation from here.</p>
+<p><strong>mcconnell</strong>: I’ll do it from below.</p>
+<p><strong>terri</strong>: We’re losing pressure. You could
+embolize.</p>
+<p><strong>computer</strong>: Seventy percent atmosphere…</p>
+<p><strong>phil</strong>: Jim, I’ve got an idea. If you guys can save
+enough atmosphere, I’ll disconnect the power in the main computer bay,
+then jump start the systems. I’ll do a hard boot.</p>
+<p><strong>mcconnell</strong>: Has that ever been tested?</p>
+<p><strong>phil</strong>: Are you kidding? These machines are much too
+valuable.</p>
+<p><strong>mcconnell</strong>: Do it.</p>
+<p><strong>woody</strong>: Jim, how we doin’ on the AG?</p>
+<p><strong>mcconnell</strong>: Just one goddamn second. Come on,
+c’mon…</p>
+<p><strong>computer</strong>: Voice print identification.</p>
+<p><strong>mcconnell</strong>: McConnell!</p>
+<p><strong>computer</strong>: Accepted. Shutting down artificial
+gravitational rotation.</p>
+<p><strong>mcconnell</strong>: Hang on!</p>
+<p><strong>computer</strong>: Sixty per cent atmosphere…</p>
+<p><strong>woody</strong>: Get some light on the hole so I can locate
+it.</p>
+<p><strong>mcconnell</strong>: I’ve got a better idea. Stay there!</p>
+<p><strong>woody</strong>: I’m topside, Jim, do you know which
+sector?</p>
+<p><strong>mcconnell</strong>: I’m workin’ on it!</p>
+<p><strong>woody</strong>: Jesus, uh, OK, this is gonna be like
+searching for a needle in a haystack.</p>
+<p><strong>mcconnell</strong>: Shake out the liquid.</p>
+<p><strong>terri</strong>: Jim, I don’t –</p>
+<p><strong>mcconnell</strong>: Shake it out near the hull!</p>
+<p><strong>woody</strong>: C’mon, c’mon, where are you…?</p>
+<p><strong>computer</strong>: Fifty per cent atmosphere…</p>
+<p><strong>mcconnell</strong>: Woody, the breech is in sector four!
+Sector four, copy that?</p>
+<p><strong>woody</strong>: Copy, I’ heading there now.</p>
+<p><strong>woody</strong>: Sonofabitch. You never did that in the
+simulator.</p>
+<p><strong>phil</strong>: Where are you, you little bastard, where are
+you…?</p>
+<p><strong>computer</strong>: Forty percent atmosphere…</p>
+<p><strong>woody</strong>: Whoa.</p>
+<p><strong>phil</strong>: Gotcha!</p>
+<p><strong>computer</strong>: Thirty percent atmosphere…</p>
+<p><strong>computer</strong>: Twenty percent atmosphere…</p>
+<p><strong>phil</strong>: OK… OK now…</p>
+<p><strong>phil</strong>: Come on. Come on…!</p>
+<p><strong>computer</strong>: Twenty percent atmosphere…</p>
+<p><strong>computer</strong>: Pressure stabilizing… Atmosphere level
+increasing.</p>
+<p><strong>phil</strong>: Yes! Awriiiight! Had it all the way. Yes!</p>
+<p><strong>phil</strong>: Shit!</p>
+<p><strong>phil</strong>: Get back in here, guys!</p>
+<p><strong>woody</strong>: Jim, there’s a lot of scarring… I’d better
+check for other punctures while I’m out here.</p>
+<p><strong>mcconnell</strong>: Negative, negative. Woody, get back
+inside. We’ve gotta start the checklist for orbital insertion.</p>
+<p><strong>woody</strong>: Copy, I’m heading there now.</p>
+<p><strong>woody</strong>: Hey, Beautiful…</p>
+<p><strong>woody</strong>: Know what? You’ve got enough left.</p>
+<p><strong>terri</strong>: Piece of cake?</p>
+<p><strong>woody</strong>: Well. Easier than the cha-cha.</p>
+<p><strong>phil</strong>: I don’t know what you’re getting so cocky
+about. We scored better times in the sim at least twice.</p>
+<p><strong>mcconnell</strong>: How’s his hand?</p>
+<p><strong>terri</strong>: Seems OK. Couple of the tendons are going to
+be a little tight for awhile. Try to close your fingers, Phil, nice and
+slowly.</p>
+<p><strong>phil</strong>: Well, at least I’ll still be able to
+drive.</p>
+<p><strong>woody</strong>: OK, we’re ready to light this candle. Go/No
+Go for braking burn and MOI. Engines?</p>
+<p><strong>mcconnell</strong>: Go.</p>
+<p><strong>woody</strong>: Systems.</p>
+<p><strong>terri</strong>: Go.</p>
+<p><strong>woody</strong>: Nav.</p>
+<p><strong>phil</strong>: Go.</p>
+<p><strong>woody</strong>: We are Go for the burn. I’m fueling the
+engines.</p>
+<p><strong>phil</strong>: Optimum angle of entry minus seven degrees.
+Six… Five…</p>
+<p><strong>phil</strong>: Four… Three…</p>
+<p><strong>woody</strong>: Jim?</p>
+<p><strong>mcconnell</strong>: Let’s go to Mars.</p>
+<p><strong>woody</strong>: What the –</p>
+<p><strong>mcconnell</strong>: Shut down engines!</p>
+<p><strong>woody</strong>: Engines negative! No response! I’ve got no
+attitude control!</p>
+<p><strong>mcconnell</strong>: Manual separation! Blow the bolts!</p>
+<p><strong>woody</strong>: Negative! The CM doesn’t have enough thrust
+to correct this rotation!</p>
+<p><strong>phil</strong>: We’re too steep! Falling into the
+atmosphere…!</p>
+<p><strong>phil</strong>: Christ, at this angle we’ll burn up!</p>
+<p><strong>woody</strong>: How much time’ve we got?</p>
+<p><strong>phil</strong>: I don’t know! Three minutes? I don’t know!</p>
+<p><strong>mcconnell</strong>: Where’s the REMO?</p>
+<p><strong>phil</strong>: The Resupply Module? Why? That’s not –</p>
+<p><strong>mcconnell</strong>: Where is it?!</p>
+<p><strong>phil</strong>: Uh, it’s close…</p>
+<p><strong>mcconnell</strong>: Damn it, how close?!</p>
+<p><strong>phil</strong>: I-I don’t know. It’ll take time…</p>
+<p><strong>mcconnell</strong>: We don’t have time! Figure it out!
+Now!</p>
+<p><strong>woody</strong>: Jim, we’re dead stick, there’s no way to
+maneuver this ship into a link-up!</p>
+<p><strong>mcconnell</strong>: Not the ship. Just us. We have to go</p>
+<p><strong>phil</strong>: You want us to transfer in suits?</p>
+<p><strong>terri</strong>: Jesus, Jim – if we don’t make it – if we miss
+the REMO…</p>
+<p><strong>mcconnell</strong>: There’s no other choice! Phil, how
+close?!</p>
+<p><strong>phil</strong>: One kilometer, that’s the best I can do!</p>
+<p><strong>woody</strong>: Prepare to abandon ship.</p>
+<p><strong>woody</strong>: On my mark, seven percent left thruster.
+Three, two, one, fire.</p>
+<p><strong>woody</strong>: Okay. Let’s go.</p>
+<p><strong>terri</strong>: What’re you looking for?</p>
+<p><strong>phil</strong>: Earth.</p>
+<p><strong>terri</strong>: Hey. When we get back? We really will have to
+try this in the sim.</p>
+<p><strong>mcconnell</strong>: How we doin’ on fuel, Woody?</p>
+<p><strong>woody</strong>: I’m at fifty percent. But I don’t see the
+REMO.</p>
+<p><strong>terri</strong>: There she is!</p>
+<p><strong>woody</strong>: Jesus. She’s not where I thought she’d
+be.</p>
+<p><strong>phil</strong>: We’re going to miss her.</p>
+<p><strong>mcconnell</strong>: What do you think?</p>
+<p><strong>woody</strong>: We can’t catch it. Not like this.</p>
+<p><strong>mcconnell</strong>: Use the tether.</p>
+<p><strong>mcconnell</strong>: We’ll only have one, maybe two shots
+before she’s out of reach.</p>
+<p><strong>woody</strong>: It’ll be better if I leave you the gun while
+I run out to the REMO. I’ve got enough fuel left for that.</p>
+<p><strong>mcconnell</strong>: You’ll be going too fast.</p>
+<p><strong>woody</strong>: I’ll aim to overshoot, then brake like hell;
+arc it in.</p>
+<p><strong>woody</strong>: Seeya in a few.</p>
+<p><strong>woody</strong>: Okay. I’m on path to overshoot. I’m gonna
+take the edge off.</p>
+<p><strong>woody</strong>: I’m out. Coming in hot. Still long.
+Abandoning the unit. I’ll brake with suit jets.</p>
+<p><strong>terri</strong>: Oh Jesus. Jesus…</p>
+<p><strong>woody</strong>: Suit jets gone. But I’m gonna make
+contact…</p>
+<p><strong>mcconnell</strong>: At what velocity?</p>
+<p><strong>woody</strong>: Impact’s gonna be a little rough.</p>
+<p><strong>mcconnell</strong>: At what velocity?</p>
+<p><strong>woody</strong>: Thirty-two.</p>
+<p><strong>mcconnell</strong>: I’m gonna use the gun to slow you.</p>
+<p><strong>woody</strong>: No! You slow me and I’ll fall short.</p>
+<p><strong>mcconnell</strong>: It’s too fast, Woody.</p>
+<p><strong>woody</strong>: No choice. I’ll be okay. Here we go…</p>
+<p><strong>terri</strong>: Woody!!</p>
+<p><strong>mcconnell</strong>: Woody, what’s your status?</p>
+<p><strong>woody</strong>: Uh, well, no suit jets and I’m still carrying
+a good deal of velocity.</p>
+<p><strong>mcconnell</strong>: As soon as we get hooked up, I’ll come
+get you.</p>
+<p><strong>woody</strong>: Uh, I’d have to say negative on that,
+Jim.</p>
+<p><strong>mcconnell</strong>: Negative on the transmission?</p>
+<p><strong>woody</strong>: No, I heard you. Negative on the maneuver. I
+am not retrievable.</p>
+<p><strong>terri</strong>: Woody, that’s not possible. You’re not going
+that fast.</p>
+<p><strong>woody</strong>: It comes down to the amount of fuel, honey.
+The suit jets were designed for attitude control, not travel. Retrieval
+just won’t work.</p>
+<p><strong>phil</strong>: It has to work!</p>
+<p><strong>woody</strong>: Hey, believe me, I don’t like it any more
+than you do.</p>
+<p><strong>terri</strong>: Woody –</p>
+<p><strong>woody</strong>: Run the numbers, Jim.</p>
+<p><strong>mcconnell</strong>: I am.</p>
+<p><strong>mcconnell</strong>: Woody, you hang tight. We’ll get into the
+REMO, fire her up, drop her into a lower orbit and come scoop you
+up.</p>
+<p><strong>woody</strong>: Sounds good, Jim.</p>
+<p><strong>terri</strong>: It’s gonna take half an hour to get the REMO
+reoriented! Woody’ll be… He’ll be in the atmosphere by then!</p>
+<p><strong>mcconnell</strong>: Then we’ll have to get her moving
+faster.</p>
+<p><strong>terri</strong>: We don’t have time!</p>
+<p><strong>woody</strong>: You listen to Jim, honey. It’s a good
+plan.</p>
+<p><strong>terri</strong>: No! We are going to –</p>
+<p><strong>phil</strong>: Oh Jesus, look! The ship!</p>
+<p><strong>mcconnell</strong>: Look out!</p>
+<p><strong>mcconnell</strong>: Brakes!</p>
+<p><strong>mcconnell</strong>: Okay, let’s get inside! Phil, start
+dumping the cargo, or there won’t be room for us.</p>
+<p><strong>phil</strong>: But we need those supplies for –</p>
+<p><strong>mcconnell</strong>: Dump the cargo. Hang on, Woody!</p>
+<p><strong>woody</strong>: Will do, Jim.</p>
+<p><strong>woody</strong>: Hey, Beautiful…</p>
+<p><strong>mcconnell</strong>: Terri, no!</p>
+<p><strong>mcconnell</strong>: Goddammit, Terri, it won’t work!</p>
+<p><strong>woody</strong>: Terri, what are you doing?</p>
+<p><strong>terri</strong>: I’ll tell you what I’m not doing, Woody. I’m
+not going to watch you die.</p>
+<p><strong>woody</strong>: Terri –</p>
+<p><strong>terri</strong>: You’d do the same for me.</p>
+<p><strong>mcconnell</strong>: Get inside. Dump the cargo, then start
+the systems. Now.</p>
+<p><strong>woody</strong>: No. I wouldn’t come for you. Not if it just
+wasn’t possible.</p>
+<p><strong>terri</strong>: I can do it!</p>
+<p><strong>woody</strong>: No, Terri, you can’t! You don’t have enough
+fuel to get me, stop us both, and get us back. Hell, you come any
+farther and you won’t have enough to get back yourself.</p>
+<p><strong>woody</strong>: Listen to me, goddammit! You have to stop!
+You have to stop now!</p>
+<p><strong>mcconnell</strong>: He’s right, Terri… It’s no use.</p>
+<p><strong>woody</strong>: Okay, honey…? You gotta go back now.</p>
+<p><strong>terri</strong>: The hell I do.</p>
+<p><strong>woody</strong>: What are you doing?</p>
+<p><strong>terri</strong>: I’m gonna jet a little closer and try
+again.</p>
+<p><strong>woody</strong>: Terri, you spend any fuel getting closer, you
+won’t get back, and if anyone tries to get you, they’ll die too.</p>
+<p><strong>woody</strong>: Honey, please go back. Go back and help
+everyone get down to the surface.</p>
+<p><strong>terri</strong>: I am not losing you.</p>
+<p><strong>woody</strong>: I can’t let you do it. I can’t. I’m
+sorry.</p>
+<p><strong>terri</strong>: Woody…?</p>
+<p><strong>woody</strong>: I love you, Terri. God how I love you.</p>
+<p><strong>terri</strong>: Woody, nooooooo…!!!</p>
+<p><strong>terri</strong>: Woody, oh Woody, please God, no!</p>
+<p><strong>mcconnell</strong>: Come back, Terri.</p>
+<p><strong>mcconnell</strong>: He’s gone.</p>
+<p><strong>mcconnell</strong>: Please, Terri… We need you.</p>
+<p><strong>new capcom</strong>: Okay, they’re Go for the burn and MOI.
+Should be initiating the burn just about… now.</p>
+<p><strong>mcconnell</strong>: Phil? Hey, Phil…?</p>
+<p><strong>mcconnell</strong>: We’re going in blind. We’ll deploy the
+chutes by laptop. I need to get on the data bus, put in a software
+patch, and try to soften this tin can’s landing. I could use your help
+with the patch.</p>
+<p><strong>mcconnell</strong>: That’s great. Good job. Hey, Terri, I was
+wondering. Think maybe we could rig some kind of seatbelts out of those
+cargo straps?</p>
+<p><strong>new capcom</strong>: Ray…? We’ve got some new data, just
+coming in.</p>
+<p><strong>new capcom</strong>: We just – it doesn’t make any sense.
+We’re not sure how to read this.</p>
+<p><strong>beck</strong>: Data?</p>
+<p><strong>new capcom</strong>: Yes sir. Telemetry reports the REMO has
+left its orbit and reached the Martian surface.</p>
+<p><strong>beck</strong>: Crashed?</p>
+<p><strong>new capcom</strong>: No sir. Under power.</p>
+<p><strong>beck</strong>: When?</p>
+<p><strong>new capcom</strong>: Sixty-three minutes after Mars Recovery
+went off-line. Sir, the graph reads like a controlled descent. But that
+doesn’t make any –</p>
+<p><strong>beck</strong>: They used the REMO as a lander.</p>
+<p><strong>beck</strong>: It’s McConnell, it’s got to be! Nobody else
+could have pulled this off. Son of a bitch! They’re alive.</p>
+<p><strong>mcconnell</strong>: Better?</p>
+<p><strong>phil</strong>: Damn right.</p>
+<p><strong>mcconnell</strong>: Terri, let’s see if that oxygen still is
+operational. Phil, you better check out the ERV. I’ll take the Hab. If
+you find Luke’s –</p>
+<p><strong>mcconnell</strong>: Just keep in touch.</p>
+<p><strong>mcconnell</strong>: I’m at the main airlock door.</p>
+<p><strong>mcconnell</strong>: Entering Hab.</p>
+<p><strong>phil</strong>: I’ve got ERV access. I’m going in. Terri, you
+okay?</p>
+<p><strong>terri</strong>: Yeah. This is gonna take awhile to get back
+to 100% capacity.</p>
+<p><strong>phil</strong>: ERV appears structurally intact. Computers are
+fried, just as we thought.</p>
+<p><strong>terri</strong>: Copy that. I’ve got busted filters here,
+clogged intakes. Helluva cleanup job, but so far no major damage.</p>
+<p><strong>mcconnell</strong>: I’m in the greenhouse. You better… you
+better come see this for yourselves.</p>
+<p><strong>phil</strong>: What is it?</p>
+<p><strong>terri</strong>: Jim…?</p>
+<p><strong>mcconnell</strong>: Luke, it’s me! Jim McConnell!</p>
+<p><strong>luke</strong>: You’re not here!</p>
+<p><strong>mcconnell</strong>: Luke, it’s Jim!</p>
+<p><strong>luke</strong>: No, no, you’re not… you can’t be here.</p>
+<p><strong>mcconnell</strong>: Your wife is Debra! Your son is Bobby!
+You were reading Treasure Island with him…!</p>
+<p><strong>mcconnell</strong>: Don’t hurt him!</p>
+<p><strong>luke</strong>: Phil… Terri…</p>
+<p><strong>luke</strong>: Jim… I don’t understand. You’re not supposed
+to be here… Why are you here? Where’s Woody?</p>
+<p><strong>mcconnell</strong>: He didn’t make it Luke.</p>
+<p><strong>luke</strong>: Oh no.</p>
+<p><strong>mcconnell</strong>: Luke, what happened here?</p>
+<p><strong>luke</strong>: We fired the radar. It came. They all
+died.</p>
+<p><strong>mcconnell</strong>: What came?</p>
+<p><strong>luke</strong>: They all died, but I was spared. Why? Had to
+be for a reason. Then, all of a sudden, I knew why I was spared.</p>
+<p><strong>luke</strong>: So somebody would be left to figure out the
+secret.</p>
+<p><strong>mcconnell</strong>: Luke, we still don’t understand.</p>
+<p><strong>luke</strong>: Come. Comecomecome.</p>
+<p><strong>phil</strong>: Is it just me? Or is he about two mealpacks
+short of a picnic?</p>
+<p><strong>terri</strong>: Long term exposure to low gravity can have an
+adverse impact on the brain. He could be suffering from a form of
+asphyxia.</p>
+<p><strong>mcconnell</strong>: Or maybe his whole crew died and he’s
+been marooned alone on Mars. Let’s give him time to adjust.</p>
+<p><strong>phil</strong>: Greatgreatgreat.</p>
+<p><strong>luke</strong>: So… let me be sure I understand this. Your
+ship blew up, with all its supplies. Then you emptied the cargo out of
+the REMO, and it was totalled on landing. You’ve got no food, no water,
+no spare oxygen, nothing but what I see here…?</p>
+<p><strong>luke</strong>: What kinda rescue mission is this?</p>
+<p><strong>mcconnell</strong>: That kind.</p>
+<p><strong>phil</strong>: Check it out. New nav boards for the ERV. I
+got four round-trip tickets, baby, right in here.</p>
+<p><strong>luke</strong>: Four.</p>
+<p><strong>luke</strong>: Terri… I’m so sorry. He was a good man.</p>
+<p><strong>terri</strong>: Thanks, Luke.</p>
+<p><strong>luke</strong>: When there’s time, we’ll talk.</p>
+<p><strong>luke</strong>: This way.</p>
+<p><strong>luke</strong>: …When I came to and dug myself out of the
+sand, my faceplate was cracked. Leaking badly. I barely made it back to
+Base. It was weeks before I could work up the nerve to go back out there
+and look for their…</p>
+<p><strong>luke</strong>: Renee was the only one I could find. But it
+didn’t seem right, somehow, to dig just one grave.</p>
+<p><strong>mcconnell</strong>: Has it been blowing like this for a
+while? We saw a big storm from space. But Micker said it was turning
+south.</p>
+<p><strong>luke</strong>: If it holds course.</p>
+<p><strong>mcconnell</strong>: This – whatever it was – this force. You
+say it came directly out of the top of the mountain?</p>
+<p><strong>luke</strong>: You don’t believe me. That’s okay. But I’m not
+crazy, Jim.</p>
+<p><strong>mcconnell</strong>: What did you mean by its “secret?” What
+secret?</p>
+<p><strong>luke</strong>: You better see for yourselves.</p>
+<p><strong>luke</strong>: See, where they made their mistake was, they
+must’ve planned for it to be visible from Earth…</p>
+<p><strong>mcconnell</strong>: Who’s “they”?</p>
+<p><strong>luke</strong>: Don’t you understand? Hundreds of millions of
+years have gone by. You’ve got erosion, sand storms, lava flows, meteor
+impacts – hell, in that much time, the whole surface would’ve changed.
+So no wonder we never saw it before. Well, I mean, we saw it, but not
+like they meant us too. Too much dirt on it.</p>
+<p><strong>terri</strong>: Saw what?</p>
+<p><strong>luke</strong>: This.</p>
+<p><strong>phil</strong>: Jesus…</p>
+<p><strong>terri</strong>: What is that…?</p>
+<p><strong>luke</strong>: I don’t know. But whatever it is, somebody
+built it. And not us.</p>
+<p><strong>mcconnell</strong>: What about the sound? That signal you
+heard before the explosion?</p>
+<p><strong>luke</strong>: Good, Jim, good. That’s the key.</p>
+<p><strong>luke</strong>: Hear the pauses? That’s what made me realize
+it’s a pattern – a repeating pattern.</p>
+<p><strong>mcconnell</strong>: Mathematical?</p>
+<p><strong>luke</strong>: That’s what I thought. There are distinct
+blocks in the pattern, and within each block the tones come in groups of
+three. Threethreethree. For months I struggled to analyze it, trying
+different constructs… Then I thought about dimensions.</p>
+<p><strong>mcconnell</strong>: X-Y-Z coordinates…</p>
+<p><strong>luke</strong>: Right! Three groups equals three dimensions…
+So I tried assigning different graphic values to each block, group and
+tone. And finally I got… this.</p>
+<p><strong>phil</strong>: My God… Is that what I think it is?</p>
+<p><strong>terri</strong>: DNA… that’s a model of DNA!</p>
+<p><strong>luke</strong>: You see it, too. Thank God. I was afraid I was
+just suffering from a form of asphyxia.</p>
+<p><strong>phil</strong>: So, okay, so – somebody left this thing here,
+somebody – other than human. But what the hell is it?</p>
+<p><strong>luke</strong>: My guess is, it’s a signature. A self-portrait
+of whatever species created the Face.</p>
+<p><strong>mcconnell</strong>: But that DNA looks human.</p>
+<p><strong>terri</strong>: No way. It’s missing the last pair of
+chromosomes. See?</p>
+<p><strong>mcconnell</strong>: Yeah, but it’s close. Damn close.</p>
+<p><strong>terri</strong>: The difference between a man and an ape is
+less than three percent of genetic material. But that three percent
+gives you Mozart. Einstein.</p>
+<p><strong>phil</strong>: Or Jack the Ripper.</p>
+<p><strong>mcconnell</strong>: It’s been a long day. Let’s get a couple
+hours sleep, then tackle this thing when we’re fresher. Phil, your first
+priority will be to get the motherboards over to the ERV. Concentrate on
+getting communications up first. Soon as we’ve got the juice, we’ll send
+a packet to Micker, tell them Luke’s OK, and that… everything else
+that’s happened. The rest of us will take an inventory of supplies, see
+where we stand. Okay?</p>
+<p><strong>terri</strong>: C’mon. There’s a pair of scissors in my
+medkit.</p>
+<p><strong>mcconnell</strong>: How do you feel?</p>
+<p><strong>luke</strong>: Like I just got back my other three
+percent.</p>
+<p><strong>terri</strong>: The backup generator is salvageable, and two
+of the solar panels. I’m pretty sure I can get the oxygen still back
+into production, too. So we’re not in such bad shape, considering.</p>
+<p><strong>luke</strong>: Good work, Terri.</p>
+<p><strong>mcconnell</strong>: Look at that. Phil’s idea of absolute
+essentials.</p>
+<p><strong>mcconnell</strong>: It’s not a signature.</p>
+<p><strong>luke</strong>: What?</p>
+<p><strong>mcconnell</strong>: That noise from the Face… It’s not a
+signature. It’s a test.</p>
+<p><strong>mcconnell</strong>: It’s asking us for the right answer. It
+wants us to put in the missing pair of chromosomes.</p>
+<p><strong>luke</strong>: But why?</p>
+<p><strong>mcconnell</strong>: To prove that we’re human.</p>
+<p><strong>luke</strong>: We fired radar into that thing. Concentrated
+sound waves…</p>
+<p><strong>mcconnell</strong>: Which it interpreted as a wrong answer…
+Yes! It’s like a, a security alarm. When it gets an incorrect response,
+it defends itself.</p>
+<p><strong>phil</strong>: So what happens when it gets the right
+answer?</p>
+<p><strong>mcconnell</strong>: I don’t know. But we’ve got to find out.
+Can you work this the other way? Figure out which tones would be
+equivalent to the missing chromosomes? Then dub them into your recording
+of the signal?</p>
+<p><strong>luke</strong>: I think so, yes.</p>
+<p><strong>mcconnell</strong>: What about the radar gun? Will it accept
+that input? Can we transmit a completed signal back to the Face?</p>
+<p><strong>phil</strong>: Whoa, whoa, hold on, Jim. What if you’re
+wrong? Whoever goes out there… I mean, what if you’re wrong? Three
+people have already died over that thing.</p>
+<p><strong>terri</strong>: Four.</p>
+<p><strong>mcconnell</strong>: Terri, if we leave here without getting
+some answers, they all died in vain.</p>
+<p><strong>terri</strong>: We just don’t know enough about that – that
+thing out there to take any more chances.</p>
+<p><strong>mcconnell</strong>: What are we here for, if not to take
+chances…?</p>
+<p><strong>mcconnell</strong>: This means we’re not alone. It means
+we’re on the brink of the greatest discovery in mankind’s history. But
+we’ve still got to prove it. Who knows when someone else will get back
+here? Or if they ever will? You know what Congress is like. They’ll say
+it’s too dangerous, too much loss of life, let’s go back to unmanned
+flights. We could be the last explorers to come here for decades. We’re
+it, guys. We’re it.</p>
+<p><strong>luke</strong>: We don’t have to go out there. There’s a
+better way.</p>
+<p><strong>luke</strong>: Checking video feed…</p>
+<p><strong>luke</strong>: There!</p>
+<p><strong>mcconnell</strong>: How close do we need to get?</p>
+<p><strong>luke</strong>: I’m not sure. Maybe we better stop by that
+boulder.</p>
+<p><strong>phil</strong>: Oh my God…</p>
+<p><strong>luke</strong>: It worked… It worked!</p>
+<p><strong>mcconnell</strong>: Check for radiation.</p>
+<p><strong>luke</strong>: Normal. Seismic… normal. Anemometer steady. No
+sign of the vortex.</p>
+<p><strong>phil</strong>: I don’t know what we did, but guys – does that
+look to you like a hostile gesture?</p>
+<p><strong>terri</strong>: No. More like an invitation.</p>
+<p><strong>luke</strong>: Or another test…</p>
+<p><strong>mcconnell</strong>: Luke, the four-man rover. Does it still
+work?</p>
+<p><strong>mcconnell</strong>: How long before it hits?</p>
+<p><strong>luke</strong>: An hour? Maybe less.</p>
+<p><strong>mcconnell</strong>: How bad?</p>
+<p><strong>luke</strong>: A storm like that? It could go planetary. And
+last a year.</p>
+<p><strong>luke</strong>: It’ll sock us in, Jim. We won’t be able to
+take off. If that happens, with what few supplies we’ve got left…? We’ll
+starve to death.</p>
+<p><strong>mcconnell</strong>: Phil, how much longer to prep the</p>
+<p><strong>phil</strong>: Maybe forty-five minutes. It’ll be tight, but
+we can make it.</p>
+<p><strong>mcconnell</strong>: Then there’s still time for us to get out
+there and back.</p>
+<p><strong>mcconnell</strong>: Stay here. Continue the repair. If
+something goes wrong, you get out of here before that storm hits.</p>
+<p><strong>phil</strong>: Go back… alone?</p>
+<p><strong>mcconnell</strong>: If we’re not back in forty-five minutes,
+I want you to prep and launch. That’s 1950 hours.</p>
+<p><strong>phil</strong>: Jim –</p>
+<p><strong>mcconnell</strong>: It’s not a suggestion, it’s an order. You
+understand?</p>
+<p><strong>phil</strong>: I understand. But –</p>
+<p><strong>mcconnell</strong>: You understand what?</p>
+<p><strong>phil</strong>: If you’re not back by 1950, I prep and
+launch.</p>
+<p><strong>mcconnell</strong>: Let’s go.</p>
+<p><strong>mcconnell</strong>: Phil, do you read me?</p>
+<p><strong>phil</strong>: Yeah, Jim. Your signal’s breaking up a little
+in the storm, but I read you.</p>
+<p><strong>mcconnell</strong>: We’re at the Face. We’re gonna need a few
+minutes here. Same deadline, launch at 1950. With or without us. Do you
+copy?</p>
+<p><strong>phil</strong>: Copy that.</p>
+<p><strong>terri</strong>: Jim, are you sure you want to do this?</p>
+<p><strong>mcconnell</strong>: I’m not sure of anything anymore. But I
+didn’t come a hundred million miles just to turn back in the last ten
+feet.</p>
+<p><strong>mcconnell</strong>: Surface seems firm and level.</p>
+<p><strong>luke</strong>: Roger that. Texture is smooth.</p>
+<p><strong>terri</strong>: I’ve got good footing and no obstructions.
+Let’s check our –</p>
+<p><strong>terri</strong>: It’s solid again! We’re trapped.</p>
+<p><strong>mcconnell</strong>: Don’t move! Keep this orientation.</p>
+<p><strong>mcconnell</strong>: Phil? Phil, can you still hear me?</p>
+<p><strong>phil</strong>: Computers are online! Ready to load software.
+But guys – we’re losing visibility here.</p>
+<p><strong>phil</strong>: Guys…? Jim? Luke? Terri? Is anyone there…?</p>
+<p><strong>phil</strong>: Don’t leave me.</p>
+<p><strong>terri</strong>: Jim, what’re you doing? You’ll
+depressurize!</p>
+<p><strong>mcconnell</strong>: I don’t think so.</p>
+<p><strong>luke</strong>: Jim, seal it!</p>
+<p><strong>mcconnell</strong>: No. That was air going into my suit, not
+out. Look at your own suits – they’re not rigid anymore. We’ve got
+pressure in here.</p>
+<p><strong>terri</strong>: Above Mars atmospheric? That’s
+impossible.</p>
+<p><strong>mcconnell</strong>: We’re millions of miles from Earth and
+we’re inside a gigantic white face. What’s impossible?</p>
+<p><strong>terri</strong>: There’s six psi in here… Nitrogen and
+oxygen.</p>
+<p><strong>luke</strong>: Otherwise known as air?</p>
+<p><strong>terri</strong>: Hey, there may be some lethal trace gasses I
+haven’t picked up yet, or… or… oh, the hell with it.</p>
+<p><strong>mcconnell</strong>: Is that what I think it is?</p>
+<p><strong>luke</strong>: Yeah. It’s Mars.</p>
+<p><strong>terri</strong>: Oh my God.</p>
+<p><strong>terri</strong>: Earth, when it was still Pangaea. Before the
+continents separated.</p>
+<p><strong>mcconnell</strong>: They’re us. We’re them…</p>
+<p><strong>luke</strong>: We’re Martians…?</p>
+<p><strong>mcconnell</strong>: That’s what she means.</p>
+<p><strong>terri</strong>: Oh my God. The Cambrian explosion.</p>
+<p><strong>terri</strong>: Almost six hundred million years ago, there
+was a sudden expansion of life on Earth. The first multi-celled plants
+and animals appeared. No one has ever understood why…</p>
+<p><strong>luke</strong>: They seeded Earth.</p>
+<p><strong>phil</strong>: …in, please. Can you… me?</p>
+<p><strong>terri</strong>: Phil, we’re here! We read you.</p>
+<p><strong>phil</strong>: Thank God! Listen, this storm is really – –
+few more minutes, I can’t – You’ve gotta get back to the ship!</p>
+<p><strong>terri</strong>: Phil? Phil…?</p>
+<p><strong>mcconnell</strong>: We are in a ship. This is a ship. And the
+countdown has already started.</p>
+<p><strong>luke</strong>: He’s right.</p>
+<p><strong>terri</strong>: Then let’s get the hell out of here!</p>
+<p><strong>luke</strong>: Jim…</p>
+<p><strong>luke</strong>: Jim, we gotta go.</p>
+<p><strong>mcconnell</strong>: I’m not coming with you.</p>
+<p><strong>terri</strong>: What?</p>
+<p><strong>terri</strong>: What are you talking about? We’ve got to get
+home.</p>
+<p><strong>mcconnell</strong>: That’s where I’m going. Don’t you see?
+That’s what all this is for. You were right Terri. This is an
+invitation. To follow them. To follow them home.</p>
+<p><strong>mcconnell</strong>: I have to go. This is the mission now. To
+find out who we are. Isn’t that why we came here? Like Maggie said, “To
+stand on a new world and look beyond it to the next one.”</p>
+<p><strong>mcconnell</strong>: You know, when you think about it – I
+wasn’t even supposed to be here – all the accidents, everything that got
+us to this point, it’s just… it’s just… I just know it’s right.</p>
+<p><strong>mcconnell</strong>: I’m okay. I know what I’m doing. But
+you’re running out of time. You’ve gotta get back to the ERV and get off
+this planet. Now please go.</p>
+<p><strong>luke</strong>: I once felt like I was taking your turn. But
+now I think maybe you’re taking mine. Guess I’m a little jealous.</p>
+<p><strong>luke</strong>: Thanks for saving my life.</p>
+<p><strong>mcconnell</strong>: My pleasure.</p>
+<p><strong>terri</strong>: I wish Woody were here to see this. He
+would’ve wanted to go too, Jim.</p>
+<p><strong>mcconnell</strong>: He’s here, Terri. We wouldn’t have made
+it without him.</p>
+<p><strong>terri</strong>: Take care, Jim.</p>
+<p><strong>luke</strong>: Hey, Jim…?</p>
+<p><strong>mcconnell</strong>: Yeah?</p>
+<p><strong>luke</strong>: Have a great ride.</p>
+<p><strong>mcconnell</strong>: Always do.</p>
+<p><strong>luke</strong>: Phil? Phil, do you read? He’s not reading.</p>
+<p><strong>terri</strong>: I can barely read you. Let’s get the hell out
+of here!</p>
+<p><strong>phil</strong>: Is anyone there? Can anyone read me?</p>
+<p><strong>terri</strong>: I’ve lost the Base Camp beacon!</p>
+<p><strong>terri</strong>: No good! We’re driving blind.</p>
+<p><strong>luke</strong>: I’ll try to keep on a straight line! It’s our
+only chance.</p>
+<p><strong>terri</strong>: Don’t worry! I’ve worked with Phil for four
+years! I know Jim gave him a direct order, but he won’t leave without
+us.</p>
+<p><strong>phil</strong>: This is ERV, do you read? ERV to Rover, do you
+read…?</p>
+<p><strong>phil</strong>: This is ERV, do you read?</p>
+<p><strong>luke</strong>: Save the fuel, Phil. We’re coming in.</p>
+<p><strong>phil</strong>: Uh, Phil’s not here right now. He left for
+Earth five minutes ago. Please leave your message at the beep.</p>
+<p><strong>phil</strong>: Where’s Jim?</p>
+<p><strong>terri</strong>: He got another ride.</p>
+<p><strong>luke</strong>: Tell you on the way. Let’s go!</p>
+<p><strong>terri</strong>: Dear God. Look at that.</p>
+<p><strong>phil</strong>: Is that him?</p>
+<p><strong>luke</strong>: Godspeed Jim McConnell.</p>
+</body>
+</html>

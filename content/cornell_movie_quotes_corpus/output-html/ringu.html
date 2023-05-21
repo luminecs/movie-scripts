@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ringu</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="ringu">ringu</h1>
+<p><strong>masami</strong>: They say that some elementary school kid
+spent the night with his parents at a bed and breakfast in Izu. The kid
+wanted to go out and play with everybody, right, but he didn�t want to
+miss the program he always used to watch back in Tokyo, so he records it
+on the VCR in their room. But of course the stations in Izu are
+different from the ones in Tokyo. In Izu, it was just an empty channel,
+so he should�ve recorded nothing but static. But when the kid gets back
+to his house and watches the tape, all of a sudden this woman comes on
+the screen and says–</p>
+<p><strong>masami</strong>: What is it, Tomoko?</p>
+<p><strong>tomoko</strong>: Who did you hear that story from?</p>
+<p><strong>masami</strong>: Who? It�s just a rumor. Everybody knows
+it.</p>
+<p><strong>tomoko</strong>: Youko told you?</p>
+<p><strong>masami</strong>: No, it wasn�t Youko…</p>
+<p><strong>masami</strong>: What�s up with you?</p>
+<p><strong>tomoko</strong>: The other day, I… I watched this strange
+video.</p>
+<p><strong>masami</strong>: Where?</p>
+<p><strong>tomoko</strong>: With Youko and them.</p>
+<p><strong>masami</strong>: So that�s what I�ve been hearing about you
+doing some double-date/ sleepover thing! So, you and that guy Iwata,
+huh?</p>
+<p><strong>tomoko</strong>: No, it�s not like that. Nothing
+happened!</p>
+<p><strong>tomoko</strong>: Iwata… he found this weird video. Everyone
+was like, �What�s that?� so he put it on and we all watched it.</p>
+<p><strong>masami</strong>: And? What kind of video was it?</p>
+<p><strong>tomoko</strong>: Just… weird, I can�t really explain it.
+Anyway, right after we finished watching it, the phone rang. Whoever it
+was didn�t say anything, but still…</p>
+<p><strong>masami</strong>: Jesus.</p>
+<p><strong>tomoko</strong>: It’s cuz, you know, we’d all heard the</p>
+<p><strong>masami</strong>: Waaait a minute. Are you faking me out?</p>
+<p><strong>tomoko</strong>: Busted, huh?</p>
+<p><strong>masami</strong>: Oh, my… I can�t believe you!</p>
+<p><strong>tomoko</strong>: Gotcha!</p>
+<p><strong>masami</strong>: But hang on… you really stayed the night
+with Youko and Iwata, right?</p>
+<p><strong>masami</strong>: So, how far did you and he get?</p>
+<p><strong>tomoko</strong>: Oh… I can�t remember.</p>
+<p><strong>masami</strong>: You can�t remember, huh?</p>
+<p><strong>masami</strong>: Man, you had me freaked me out.</p>
+<p><strong>masami</strong>: Was it true?</p>
+<p><strong>tomoko</strong>: Masami!</p>
+<p><strong>tomoko</strong>: Masami!</p>
+<p><strong>masami</strong>: I�ll put her on.</p>
+<p><strong>tomoko</strong>: Yes?</p>
+<p><strong>tomoko</strong>: Oh, man!</p>
+<p><strong>tomoko</strong>: Yeah, I�ve got a friend over now. Yeah.
+Yeah, OK. Bye.</p>
+<p><strong>tomoko</strong>: The game�s gone into overtime, so they�re
+gonna be a little late.</p>
+<p><strong>tomoko</strong>: Jeeezus, my parents…</p>
+<p><strong>masami</strong>: Oh man, I�m tellin� everybody about this
+tomorrow!</p>
+<p><strong>masami</strong>: I�m gonna use your bathroom. Don�t go
+anywhere.</p>
+<p><strong>asakawa</strong>: There seems to be a popular rumor going
+around about a �cursed� videotape.</p>
+<p><strong>young girl</strong>: Uh-huh.</p>
+<p><strong>asakawa</strong>: Have you heard what kind of video it might
+be?</p>
+<p><strong>young girl</strong>: Uh-huh.</p>
+<p><strong>komiya</strong>: Uh, don�t look right at the camera,</p>
+<p><strong>young girl</strong>: Sorry.</p>
+<p><strong>asakawa</strong>: Let�s do it again.</p>
+<p><strong>asakawa</strong>: Have you heard what kind of video it might
+be?</p>
+<p><strong>young girl</strong>: What I heard was, all of a sudden this
+scaaarry lady comes on the screen and says, �In one week, you will
+die.�</p>
+<p><strong>girl #2</strong>: I heard that if you�re watching TV late at
+night it�ll come on, and then your phone�ll ring.</p>
+<p><strong>asakawa</strong>: Watching TV late at night… do you know what
+station?</p>
+<p><strong>girl #2</strong>: Mmmm… I heard some local station, around
+Izu.</p>
+<p><strong>asakawa</strong>: Izu?</p>
+<p><strong>girl #2</strong>: Mmm-hmm.</p>
+<p><strong>asakawa</strong>: And, do you know if anyone�s really died
+from watching it?</p>
+<p><strong>young girl</strong>: Well, no one that we know, right?</p>
+<p><strong>asakawa</strong>: What is it?</p>
+<p><strong>girl #3</strong>: I heard this from a friend of mine in high
+school. She said that there was this one girl who watched the video, and
+then died a week later. She was out on a drive with her boyfriend.</p>
+<p><strong>asakawa</strong>: They were in a wreck?</p>
+<p><strong>girl #3</strong>: No, their car was parked, but they were
+both dead inside. Her boyfriend died because he�d watched the video,
+too. That�s what my friend said.</p>
+<p><strong>asakawa</strong>: Do you know the name of the high school
+this girl went to?</p>
+<p><strong>girl #3</strong>: No… I heard this from my friend, and it
+didn�t happen at her school. She heard it from a friend at a different
+school, she said.</p>
+<p><strong>komiya</strong>: Mrs. Asakawa?</p>
+<p><strong>asakawa</strong>: Hm?</p>
+<p><strong>komiya</strong>: Here you are.</p>
+<p><strong>asakawa</strong>: Thanks.</p>
+<p><strong>komiya</strong>: This same kind of thing happened about ten
+years ago too, didn�t it? Some popular young singer committed suicide,
+and then suddenly there was all this talk about her ghost showing up on
+some music show.</p>
+<p><strong>asakawa</strong>: But I wonder what this rumor�s all about.
+Everyone you ask always mentions �Izu.�</p>
+<p><strong>komiya</strong>: Maybe that�s where it all started. Hey,
+where was that Kuchi-sake Onna story from again?</p>
+<p><strong>asakawa</strong>: Gifu, but there was some big accident out
+there, and that ended up being what started the rumor.</p>
+<p><strong>komiya</strong>: A big accident?</p>
+<p><strong>asakawa</strong>: Mmm-hmm. Something terrible like that is
+going to stay in people�s minds. Sometimes the story of what happened
+gets twisted around, and ends up coming back as a rumor like this one.
+That�s what they say, at least.</p>
+<p><strong>komiya</strong>: D�you think something like that happened out
+at Izu?</p>
+<p><strong>asakawa</strong>: Maybe. Well, anyway, I�m off. See you
+tomorrow.</p>
+<p><strong>komiya</strong>: See you.</p>
+<p><strong>guy in suit</strong>: OK, Okazaki, I�m counting on you.</p>
+<p><strong>okazaki</strong>: Yessir.</p>
+<p><strong>okazaki</strong>: Miss Asakawa? I thought you were going home
+early today.</p>
+<p><strong>asakawa</strong>: Okazaki, can I ask you a favor?</p>
+<p><strong>okazaki</strong>: Sure.</p>
+<p><strong>asakawa</strong>: Could you check out this article for me?
+Get me some more info.?</p>
+<p><strong>okazaki</strong>: I guess…</p>
+<p><strong>asakawa</strong>: Good. Call me as soon as you know more,
+OK?</p>
+<p><strong>okazaki</strong>: Ma�am.</p>
+<p><strong>asakawa</strong>: Yoichi!</p>
+<p><strong>asakawa</strong>: Sorry I�m late. Oh, you�ve already
+changed.</p>
+<p><strong>yoichi</strong>: Yup.</p>
+<p><strong>asakawa</strong>: Aargh, we�ve gotta hurry!</p>
+<p><strong>asakawa</strong>: Did grandpa call?</p>
+<p><strong>yoichi</strong>: Nope.</p>
+<p><strong>yoichi</strong>: Why did Tomo-chan die?</p>
+<p><strong>asakawa</strong>: Well… it looks like she was really, really
+sick.</p>
+<p><strong>asakawa</strong>: Will you do me up?</p>
+<p><strong>yoichi</strong>: You can die even if you�re young?</p>
+<p><strong>asakawa</strong>: If it�s something serious… well, yes.</p>
+<p><strong>asakawa</strong>: As hard as it is for us, what your auntie
+and uncle are going through right now is even harder, so let�s not talk
+about this over there, OK?</p>
+<p><strong>asakawa</strong>: You and her used to play a lot together,
+didn�t you?</p>
+<p><strong>asakawa</strong>: Dad.</p>
+<p><strong>kouichi</strong>: Ah!</p>
+<p><strong>asakawa</strong>: How is sis holding up?</p>
+<p><strong>kouichi</strong>: She�s resting inside right now. She�s
+shaken up pretty badly, you know. It�s best she just take things easy
+for a while.</p>
+<p><strong>asakawa</strong>: I�ll go check on auntie and them, then.</p>
+<p><strong>kouichi</strong>: OK. Ah, Yoichi. Why don�t you sit here for
+a little while?</p>
+<p><strong>aunt</strong>: Have you heard anything more about Tomo-chan�s
+death?</p>
+<p><strong>asakawa</strong>: No, I…</p>
+<p><strong>aunt</strong>: But the police have already finished their
+autopsy!</p>
+<p><strong>asakawa</strong>: Well, they said there was no sign of foul
+play.</p>
+<p><strong>aunt</strong>: That was no normal death. They haven�t once
+opened the casket to let us see the body. Don�t you think that�s
+strange?</p>
+<p><strong>asakwawa</strong>: Yoichi?</p>
+<p><strong>asakawa</strong>: What are you doing up here? You shouldn�t
+just walk into other people�s rooms.</p>
+<p><strong>asakawa</strong>: You go on downstairs, OK?</p>
+<p><strong>asakawa</strong>: You go on ahead.</p>
+<p><strong>asakawa</strong>: Hello?</p>
+<p><strong>okazaki</strong>: Uh… this is Okazaki. I�ve got some more
+info on that article for you. The girl was a student of the uh, Seikei
+School for Women in Yokahama City.</p>
+<p><strong>asakawa</strong>: Thanks.</p>
+<p><strong>asakawa</strong>: Excuse me. This is, um, kind of a strange
+question, but by any chance were you friends of that young girl that
+died in the car as well?</p>
+<p><strong>asakawa</strong>: Please. If you know anything…</p>
+<p><strong>girl right</strong>: They all died the same day. Youko.
+Tomoko. Even Iwata, he was in a motorcycle accident.</p>
+<p><strong>girl left</strong>: Because they watched the video.</p>
+<p><strong>asakawa</strong>: Video?</p>
+<p><strong>girl left</strong>: That�s what Youko said. They all watched
+some weird video, and after that their phone rang.</p>
+<p><strong>asakawa</strong>: Tomoko-chan watched it, too? Where?</p>
+<p><strong>girl left</strong>: She just said they all stayed
+somewhere.</p>
+<p><strong>girl right</strong>: There was a girl with Tomoko when she
+died. She�s had to be hospitalized for shock.</p>
+<p><strong>girl middle</strong>: They say she won�t go anywhere near a
+television.</p>
+<p><strong>yoshino</strong>: The bodies of those found were Tsuji Youko,
+age 17, a student of the Seikei School for Women, and Nomi Takehiko, age
+19, preparatory school student. Both their doors were securely
+locked.</p>
+<p><strong>yoshino</strong>: This is the first time I�ve -ever- seen
+something like this.</p>
+<p><strong>asakawa</strong>: Cause of death?</p>
+<p><strong>yoshino</strong>: Couldn�t say, aside from sudden heart
+failure.</p>
+<p><strong>asakawa</strong>: Drugs?</p>
+<p><strong>yoshino</strong>: The autopsy came up negative.</p>
+<p><strong>yoshino</strong>: These two, about to go at it, suddenly up
+and die for no apparent reason.</p>
+<p><strong>ryomi</strong>: They tell me that Yoichi came to the funeral,
+too.</p>
+<p><strong>asakawa</strong>: Mmm-hmm.</p>
+<p><strong>ryomi</strong>: They used to play a lot together, didn�t
+they? Upstairs.</p>
+<p><strong>asakawa</strong>: Yeah…</p>
+<p><strong>ryomi</strong>: This… this is where Tomoko died.</p>
+<p><strong>ryomi</strong>: Tomoko!</p>
+<p><strong>asakawa</strong>: Izu…</p>
+<p><strong>asakawa</strong>: Look, I�m probably going to be late coming
+home tonight, so just stick your dinner in the microwave when you�re
+ready to eat, OK?</p>
+<p><strong>yoichi</strong>: �K… Mom?</p>
+<p><strong>asakawa</strong>: Hmm?</p>
+<p><strong>yoichi</strong>: Tomo-chan watched some cursed video!</p>
+<p><strong>asakawa</strong>: What did you say? You are not to speak of
+this at school, do you hear me?</p>
+<p><strong>yoichi</strong>: I won�t. I�m going to school now.</p>
+<p><strong>asakawa</strong>: There�s no way…</p>
+<p><strong>asakawa</strong>: “My dad is fat. My mom is fat. That�s why
+I�m fat, too.”</p>
+<p><strong>clerk</strong>: Room for one?</p>
+<p><strong>asakawa</strong>: Um, actually I�m here on business.</p>
+<p><strong>asakawa</strong>: They would have stayed here on August 29th,
+all four of them. If there�s any information you might have…</p>
+<p><strong>clerk</strong>: Uh, hang on just a minute.</p>
+<p><strong>clerk</strong>: August 29th…</p>
+<p><strong>asakawa</strong>: That…</p>
+<p><strong>clerk</strong>: Hmm?</p>
+<p><strong>asakawa</strong>: That! What tape is that?</p>
+<p><strong>clerk</strong>: This? Hmm…</p>
+<p><strong>clerk</strong>: Maybe one of the guests left it behind�</p>
+<p><strong>note</strong>: This next scene is entirely visual. If you are
+reading this translation before watching the movie, do yourself a favor;
+STOP reading this now and watch the scene for itself. Afterwards, you
+can come back here to check the meaning of the Japanese characters
+displayed.</p>
+<p><strong>asakawa</strong>: One week�</p>
+<p><strong>ryuji</strong>: Yoichi�s in elementary school already, is
+he?</p>
+<p><strong>asakawa</strong>: His first year. What about you, Ryuji? How
+have you been recently?</p>
+<p><strong>ryuji</strong>: Same as always.</p>
+<p><strong>asakawa</strong>: And money is…?</p>
+<p><strong>ryuji</strong>: I�m teaching at university.</p>
+<p><strong>ryuji</strong>: Anyway. You said that the phone rang?</p>
+<p><strong>asakawa</strong>: That�s right.</p>
+<p><strong>ryuji</strong>: So if I watch it too, that phone over
+there–</p>
+<p><strong>asakawa</strong>: Ryuji, four people have already died. On
+the same day!</p>
+<p><strong>ryuji</strong>: Well, why don�t you try calling an
+exorcist?</p>
+<p><strong>asakawa</strong>: Take my picture.</p>
+<p><strong>ryuji</strong>: Turn this way.</p>
+<p><strong>asakawa</strong>: Hurry up and take it.</p>
+<p><strong>ryuji</strong>: It�s over.</p>
+<p><strong>ryuji</strong>: Well, it looks like your phone�s not
+ringing.</p>
+<p><strong>ryuji</strong>: Make me a copy of this, will you? I�d like to
+do a little research of my own. There�s no reason to write us off as
+dead just yet.</p>
+<p><strong>asakawa</strong>: There�s the guest list from the cottage to
+look into… and the possibility of someone hacking into the local
+station�s broadcast signals.</p>
+<p><strong>okazaki</strong>: Here�s that guest list you wanted.</p>
+<p><strong>asakawa</strong>: Oh, thanks.</p>
+<p><strong>okazaki</strong>: What are you gonna do with this?</p>
+<p><strong>asakawa</strong>: Uh… sorry, I�m working on something
+personal.</p>
+<p><strong>ryuji</strong>: So, it was you. You did it.</p>
+<p><strong>ryuji</strong>: Hey.</p>
+<p><strong>asakawa</strong>: What happened to you?</p>
+<p><strong>ryuji</strong>: Nothing.</p>
+<p><strong>ryuji</strong>: So, what�d you come up with?</p>
+<p><strong>asakawa</strong>: I don�t think any of the guests on the list
+brought the tape with them. I couldn�t confirm it face-to-face of
+course, but even over the phone I got the feeling they were all being
+upfront with me.</p>
+<p><strong>ryuji</strong>: How about the other angle? Pirate signals
+or…</p>
+<p><strong>asakawa</strong>: There�re no traces of any illegal
+television signals being broadcast around Izu.</p>
+<p><strong>asakawa</strong>: Here�s that copy of the videotape you
+wanted.</p>
+<p><strong>ryuji</strong>: Asakawa.</p>
+<p><strong>ryuji</strong>: Have you ever seen this woman?</p>
+<p><strong>asakawa</strong>: No…</p>
+<p><strong>asakawa</strong>: There�s something strange about this
+shot.</p>
+<p><strong>asakawa</strong>: From this angle, the mirror should be
+reflecting whoever�s filming.</p>
+<p><strong>ryuji</strong>: So, what does that mean?</p>
+<p><strong>asakawa</strong>: Well, if the person who made this is a pro,
+there�d be a way around that, I guess, but still…</p>
+<p><strong>ryuji</strong>: Volcanic eruption… Eruption where?</p>
+<p><strong>asakawa</strong>: This is gonna be impossible to figure out
+on just a regular TV screen, don�t you think?</p>
+<p><strong>ryuji</strong>: Come on in.</p>
+<p><strong>ryuji</strong>: Asakawa, meet my student, Takano Mai.</p>
+<p><strong>mai</strong>: Nice to meet you. I�m Takano.</p>
+<p><strong>asakawa</strong>: Asakawa.</p>
+<p><strong>mai</strong>: Sensei, the people from the publishing company
+called about the deadline on your thesis again.</p>
+<p><strong>ryuji</strong>: What�re they talkin� to you about it for?</p>
+<p><strong>mai</strong>: Because they can never get a hold of you.</p>
+<p><strong>ryuji</strong>: Ask them to wait another week.</p>
+<p><strong>mai</strong>: Sensei, ask them yourself, please.</p>
+<p><strong>ryuji</strong>: This is impossible.</p>
+<p><strong>ryuji</strong>: Sada…</p>
+<p><strong>ryuji</strong>: Is Yoichi gonna be all right?</p>
+<p><strong>asakawa</strong>: He�s used to it…</p>
+<p><strong>ryuji</strong>: Whoever made this had to have left some kind
+of clue behind. They�re probably waiting for us to find it.</p>
+<p><strong>ryuji</strong>: Wait a minute.</p>
+<p><strong>tape</strong>: Shoooomonnn bakkkkkarrri toou… boooouuuukonn
+ga kuuru zouuu…</p>
+<p><strong>ryuji</strong>: Shoumon bakkari, boukon ga kuru zo. Did you
+hear that, too?</p>
+<p><strong>asakawa</strong>: What does that mean?</p>
+<p><strong>ryuji</strong>: I�m gonna check it out.</p>
+<p><strong>asakawa</strong>: Hello?</p>
+<p><strong>ryuji</strong>: I�ve got it. It�s a dialect, just like I
+thought. SHOUMON means �playing in the water� and BOUKON means
+�monster.�</p>
+<p><strong>asakawa</strong>: But, dialect from where?</p>
+<p><strong>ryuji</strong>: Oshima. And the site of our �eruption� is Mt.
+Mihara.</p>
+<p><strong>asakawa</strong>: Yoichi? I�m gonna be a little late tonight,
+honey.</p>
+<p><strong>asakawa</strong>: You can do it yourself, right? OK. Sorry.
+Bye.</p>
+<p><strong>asakawa</strong>: I�ve got it! This old article…</p>
+<p><strong>asakawa</strong>: What are you doing?</p>
+<p><strong>ryuji</strong>: Has your newspaper got someone out there at
+Oshima?</p>
+<p><strong>asakawa</strong>: I think so. There should be a correspondent
+out there.</p>
+<p><strong>ryuji</strong>: I need you to find out, and let me know how
+to get hold of him. Tonight.</p>
+<p><strong>asakawa</strong>: What do you think you�re–?</p>
+<p><strong>ryuji</strong>: You�ve only got four days left, Asakawa! Your
+newspaper contact and I can handle this from here on out. You just stay
+with Yoichi.</p>
+<p><strong>yoichi</strong>: Grandpa!</p>
+<p><strong>kouichi</strong>: Whoa, there! So, you made it, huh?</p>
+<p><strong>asakawa</strong>: Yoichi says he�s looking forward to doing
+some fishing with you.</p>
+<p><strong>kouichi</strong>: Is that so?</p>
+<p><strong>yoichi</strong>: C�mon grandpa, let�s go!</p>
+<p><strong>kouichi</strong>: OK, OK. We�ll get our things together and
+then we can go.</p>
+<p><strong>kouichi</strong>: There he is! C�mon, there he is, don�t let
+him go!</p>
+<p><strong>kouichi</strong>: Oh, oh! Ah… guess he got away, huh?</p>
+<p><strong>yoichi</strong>: That was your fault, grandpa.</p>
+<p><strong>kouichi</strong>: Well, whaddya say we try again?</p>
+<p><strong>kouichi</strong>: We�ll get �im this time.</p>
+<p><strong>yoichi</strong>: How was work, mommy?</p>
+<p><strong>asakawa</strong>: Hello?</p>
+<p><strong>ryuji</strong>: Yeah. Your Oshima contact came through. It
+looks like the woman who predicted the Mihara eruption is the same woman
+from the video.</p>
+<p><strong>ryuji</strong>: Her name is Yamamura Shizuko. She committed
+suicide forty years ago by throwing herself into Mt. Mihara.</p>
+<p><strong>asakawa</strong>: Have you got anything else?</p>
+<p><strong>ryuji</strong>: I�m gonna have to check it for myself. I�ll
+be leaving for Oshima tomorrow morning.</p>
+<p><strong>asakawa</strong>: Oshima? I�ve only got three days left!</p>
+<p><strong>ryuji</strong>: I know. And I�ve got four.</p>
+<p><strong>ryuji</strong>: I�ll be in touch.</p>
+<p><strong>kouji</strong>: What�s happened?</p>
+<p><strong>asakawa</strong>: Nothing. I just had some things left over
+from work.</p>
+<p><strong>tomoko</strong>: Auntie?</p>
+<p><strong>asakawa</strong>: Yoichi?</p>
+<p><strong>asakawa</strong>: Yoichi! You brought this with you, didn�t
+you? Why?!?</p>
+<p><strong>yoichi</strong>: Tomo-chan…</p>
+<p><strong>yoichi</strong>: Tomo-chan told me to watch it.</p>
+<p><strong>ryuji</strong>: I should�ve been more careful. When I was at
+your place that day, I could feel something there. I thought it was just
+because of the video…</p>
+<p><strong>asakawa</strong>: You mean that Tomoko�</p>
+<p><strong>ryuji</strong>: That�s not Tomoko. Not anymore.</p>
+<p><strong>asakawa</strong>: Yoichi… he can see them too, can�t he?</p>
+<p><strong>asakawa</strong>: It�s all my fault. First Tomoko died, then
+those three others. It should have stopped there, but it didn�t. Because
+of me.</p>
+<p><strong>ryuji</strong>: I wonder…</p>
+<p><strong>asakawa</strong>: How did the rumors about the video even
+start in the first place?</p>
+<p><strong>ryuji</strong>: This kind of thing… it doesn�t start by one
+person telling a story. It�s more like everyone�s fear just takes on a
+life of its own.</p>
+<p><strong>asakawa</strong>: Fear…</p>
+<p><strong>ryuji</strong>: Or maybe it�s not fear at all. Maybe it�s
+what we were secretly hoping for all along.</p>
+<p><strong>asakawa</strong>: Mr. Hayatsu?</p>
+<p><strong>hayatsu</strong>: Aah, welcome! You must be tired after your
+long trip. Please, this way.</p>
+<p><strong>hayatsu</strong>: Back in the old days, the Yamamuras used to
+head fishing boats out in Sashikiji, though they don�t much anymore. You
+know, one of Shizuko�s cousins is still alive. He�s just an old man now.
+His son and his daughter-in-law run an old-fashioned inn. I went ahead
+and booked reservations for y�all, hope that�s alright…</p>
+<p><strong>asakawa</strong>: Why did Yamamura Shizuko commit
+suicide?</p>
+<p><strong>ryuji</strong>: She was taking a real beating in the press,
+being called a fraud and all sorts of names. After a while she just lost
+it.</p>
+<p><strong>ryuji</strong>: Shizuko was getting a lot of attention around
+the island after predicting the eruption of Mt. Mihara. Seems that for
+some time she�d had a rather unique ability: precognition. It was around
+then that she attracted the attention of a certain scholar whom you may
+have heard of; Ikuma Heihachiro.</p>
+<p><strong>asakawa</strong>: He was driven out of the university, wasn�t
+he?</p>
+<p><strong>ryuji</strong>: This Professor Ikuma convinces Shizuko to go
+to Tokyo with him, where he uses her in a series of demonstrations meant
+to prove the existence of ESP. At first she�s the darling of the press,
+but the next thing you know they�re knocking her down, calling her a
+fraud. Hmph. Forty years later, the media still hasn�t changed that
+much.</p>
+<p><strong>asakawa</strong>: I�ve heard this story. But… I�m sure I
+remember hearing that somebody died at one of those demonstrations.</p>
+<p><strong>ryuji</strong>: After getting kicked out of university, Ikuma
+just vanished, and no one�s been able to get hold of him since. He�s
+probably not even alive anymore.</p>
+<p><strong>asakawa</strong>: But, why even try looking for him?</p>
+<p><strong>ryuji</strong>: Because he�s supposed to have had a child
+with Shizuko. A daughter.</p>
+<p><strong>hayatsu</strong>: Hello?</p>
+<p><strong>kazue</strong>: Thank you.</p>
+<p><strong>hayatsu</strong>: Well, I�ll be off then.</p>
+<p><strong>kazue</strong>: Please.</p>
+<p><strong>kazue</strong>: And for your rooms, how shall we…?</p>
+<p><strong>ryuji</strong>: Separate, please.</p>
+<p><strong>kazue</strong>: �Sir.</p>
+<p><strong>kazue</strong>: This way.</p>
+<p><strong>kazue</strong>: Sir!</p>
+<p><strong>kazue</strong>: Please, this way.</p>
+<p><strong>asakawa</strong>: Please! If you could just answer a few
+questions, about Shizuko…</p>
+<p><strong>yamamura</strong>: I got nuthin� to say.</p>
+<p><strong>asakawa</strong>: It�s about Shizuko�s daughter.</p>
+<p><strong>asakawa</strong>: She did have a daughter, didn�t she?</p>
+<p><strong>yamamura</strong>: You�re wasting your time.</p>
+<p><strong>ryuji</strong>: Aren�t you gonna eat?</p>
+<p><strong>asakawa</strong>: Umm…</p>
+<p><strong>ryuji</strong>: Hm?</p>
+<p><strong>asakawa</strong>: You�ll stay with me won�t you? When it�s
+time for me to die.</p>
+<p><strong>ryuji</strong>: Oh, stop it.</p>
+<p><strong>asakawa</strong>: You�ll stay, won�t you? If you stayed,
+maybe you�d learn something that could help Yoichi–</p>
+<p><strong>ryuji</strong>: I said stop it! Have you forgotten There was
+a girl with Tomoko when she died? That girl�s now in a mental
+institution. Who knows what could happen.</p>
+<p><strong>asakawa</strong>: But you could stay with me, Ryuji. You�d be
+OK.</p>
+<p><strong>ryuji</strong>: Why, because I�m already not right in the
+head?</p>
+<p><strong>ryuji</strong>: If that�s the case, why not just let things
+run its course, get rid of father -and- son? Yoichi was a mistake,
+anyway.</p>
+<p><strong>asakawa</strong>: Stop it!</p>
+<p><strong>ryuji</strong>: We still have two days left…</p>
+<p><strong>kazue</strong>: Excuse me?</p>
+<p><strong>ryuji</strong>: Come in.</p>
+<p><strong>kazue</strong>: It�s about Miss Shizuko.</p>
+<p><strong>kazue</strong>: This is all that there is…</p>
+<p><strong>ryuji</strong>: Is this Professor Ikuma?</p>
+<p><strong>kazue</strong>: …yes. This picture is from before I�d entered
+the household.</p>
+<p><strong>voice</strong>: Shoumon bakkari… boukon ga kuru zo…</p>
+<p><strong>yamamura</strong>: Y�all�d do best to be off soon. Sea�s
+probably gonna be rough tonight.</p>
+<p><strong>ryuji</strong>: What kind of a child was Shizuko?</p>
+<p><strong>yamamura</strong>: Shizuko was… different. She�d come out
+here by herself ever�day an� just stare out at the ocean. The fishermen
+all took a dislikin� to her. Ocean�s an unlucky place for us, y�see:
+every year it swallows up more of our own. You keep starin� out at
+somethin� ike that…</p>
+<p><strong>ryuji</strong>: Shoumon bakkari shite�ru to, boukon ga</p>
+<p><strong>ryuji</strong>: Shizuko could see �inside� people, couldn�t
+she? Down to the places they�d most like to keep hidden. It must have
+been difficult for her…</p>
+<p><strong>yamamura</strong>: Please leave! Now!</p>
+<p><strong>ryuji</strong>: I�ve got a little of that ability myself. It
+was you who spread the word about Shizuko, wasn�t it? And you who first
+contacted Professor Ikuma?</p>
+<p><strong>yamamura</strong>: What�re you–?</p>
+<p><strong>ryuji</strong>: You thought you�d be able to make some money
+off her. You even got some, from one of the newspapers.</p>
+<p><strong>yamamura</strong>: Leave me the hell alone!</p>
+<p><strong>ryuji</strong>: Tell us about Shizuko�s daughter. Who was
+she?</p>
+<p><strong>yamamura</strong>: I don�t know!</p>
+<p><strong>ryuji</strong>: She was there, with Shizuko. She had to
+be.</p>
+<p><strong>ryuji</strong>: You were there!</p>
+<p><strong>ryuji</strong>: You stood there and watched the
+demonstration.</p>
+<p><strong>judge</strong>: Match.</p>
+<p><strong>judge</strong>: Match.</p>
+<p><strong>reporter</strong>: Faker! This is nothing but trickery, and
+the lowest form of trickery at that.</p>
+<p><strong>reporter</strong>: What are you trying to pull, woman?</p>
+<p><strong>reporter #2</strong>: That�s right! Professor Ikuma, you�re
+being fooled!</p>
+<p><strong>reporter #3</strong>: What�s happened?</p>
+<p><strong>reporter #4</strong>: He�s dead!</p>
+<p><strong>reporter #5</strong>: Witch!</p>
+<p><strong>shizuko</strong>: Sadako? Was it you?</p>
+<p><strong>ryuji</strong>: Sadako?!</p>
+<p><strong>ryuji</strong>: Sadako killed him? She can kill just with a
+thought?</p>
+<p><strong>yamamura</strong>: She�s… a devil spawn.</p>
+<p><strong>asakawa</strong>: That�s right. After Yamamura Shizuko
+committed suicide, Professor Ikuma took the daughter and ran. No, no one
+knows where they went. That�s why I need -you- to find out where they
+are. Even if the professor�s dead, Sadako should still be in her
+forties. I�ll explain it all later, but right now just hurry!</p>
+<p><strong>ryuji</strong>: Sadako�s probably already dead. She could
+kill people with just a thought, remember? Her mother wasn�t even close
+to that.</p>
+<p><strong>asakawa</strong>: Well, what about that video? If Sadako�s
+dead then who made it?</p>
+<p><strong>ryuji</strong>: Nobody made it. It wasn�t made at all. That
+video… is the pure, physical manifestation of Sadako�s hatred.</p>
+<p><strong>ryuji</strong>: We�ve been cursed.</p>
+<p><strong>hayatsu</strong>: It�s no good. With the typhoon coming in,
+all ships are temporarily staying docked.</p>
+<p><strong>ryuji</strong>: What about the fishing boats? Tell their
+captains I�ll pay.</p>
+<p><strong>hayatsu</strong>: Fishing boats? Sir, without knowing whether
+this typhoon is going to hit us or not, I think it�d be better to wait
+and see how things turn–</p>
+<p><strong>ryuji</strong>: Fine! I�ll try searching myself!</p>
+<p><strong>hayatsu</strong>: Mr. Takayama!? Mr. Takayama…</p>
+<p><strong>asakawa</strong>: Hello?</p>
+<p><strong>okazaki</strong>: Mrs. Asakawa? I�m sorry. I tried, but I
+couldn�t come up with any leads at all.</p>
+<p><strong>okazaki</strong>: Hello?</p>
+<p><strong>asakawa</strong>: Thank you…</p>
+<p><strong>asakawa</strong>: Yoichi…</p>
+<p><strong>asakawa</strong>: Izu…</p>
+<p><strong>asakawa</strong>: Ryuji!</p>
+<p><strong>asakawa</strong>: Ryuji! The phone in my apartment never
+rang! It only ever rang at the rental cottage! Professor Ikuma
+must�ve…</p>
+<p><strong>ryuji</strong>: And we�ve got no way of going back.</p>
+<p><strong>hayatsu</strong>: It�s too dangerous! The thought of anybody
+going out in this weather…</p>
+<p><strong>yamamura</strong>: I�ll take you out.</p>
+<p><strong>yamamura</strong>: Sadako is callin� y�all, reckon. Mayhap to
+drag you down under the water.</p>
+<p><strong>ryuji</strong>: Please. Take us out.</p>
+<p><strong>asakawa</strong>: It�s funny. I�m not afraid at all.</p>
+<p><strong>ryuji</strong>: Sadako probably died back out there at Izu,
+before the rental cottages were ever built.</p>
+<p><strong>asakawa</strong>: So, Sadako was Professor Ikuma�s
+daughter?</p>
+<p><strong>ryuji</strong>: Ikuma smuggled her out in secret. His
+relationship with Shizuko was already a scandal, and one of the reasons
+he got drummed out of the university… We�ve gotta find Sadako�s
+body.</p>
+<p><strong>asakawa</strong>: Is that going to break the curse? Will
+Yoichi be all right?</p>
+<p><strong>ryuji</strong>: It�s all we�ve got left to try.</p>
+<p><strong>asakawa</strong>: Just one more day…</p>
+<p><strong>ryuji</strong>: We made it. Maybe Sadako doesn�t have it out
+for us after all.</p>
+<p><strong>yamamura</strong>: Shizuko… she used to -speak- to the ocean,
+just ramble away. One time I hid, listenin� to one of her
+conversations.</p>
+<p><strong>yoichi</strong>: Hello?</p>
+<p><strong>asakawa</strong>: Yoichi? It�s mommy. I just called to say
+I�ll be coming home tomorrow.</p>
+<p><strong>yoichi</strong>: I�m tired of it here, mom! I wanna go back
+to school.</p>
+<p><strong>asakawa</strong>: Yoichi, it�s rude to your grandpa to talk
+like that.</p>
+<p><strong>yoichi</strong>: He�s laughing. You wanna talk to him?</p>
+<p><strong>asakawa</strong>: No, that�s…</p>
+<p><strong>asakawa</strong>: I�m sorry, Yoichi. I�ll… I�ll see you
+tomorrow.</p>
+<p><strong>yoichi</strong>: What�s wrong?</p>
+<p><strong>asakawa</strong>: Mommy�s got something she has to do. Say
+hello to grandpa for me, OK?</p>
+<p><strong>ryuji</strong>: What time was it when you first watched the
+video?</p>
+<p><strong>asakawa</strong>: Seven or eight minutes past seven. PM. No
+more than ten minutes past.</p>
+<p><strong>ryuji</strong>: If the rumors are true, that time is gonna be
+our deadline.</p>
+<p><strong>ryuji</strong>: -Here-.</p>
+<p><strong>ryuji</strong>: I knew it! The well.</p>
+<p><strong>asakawa</strong>: The well…</p>
+<p><strong>asakawa</strong>: Her own father!</p>
+<p><strong>ryuji</strong>: It was Ikuma who put this lid on. And
+Sadako�s still inside.</p>
+<p><strong>ryuji</strong>: I�ll go.</p>
+<p><strong>ryuji</strong>: Sadako was alive! She�d tried to climb her
+way out.</p>
+<p><strong>ryuji</strong>: Lower the buckets!</p>
+<p><strong>ryuji</strong>: Take it up!</p>
+<p><strong>ryuji</strong>: Take it up!</p>
+<p><strong>asakawa</strong>: It�s already six!</p>
+<p><strong>ryuji</strong>: I know! Hurry up and TAKE IT UP!!</p>
+<p><strong>ryuji</strong>: Take it up!</p>
+<p><strong>ryuji</strong>: Asakawa!</p>
+<p><strong>ryuji</strong>: What the hell are you doing? Trying to get me
+killed?</p>
+<p><strong>ryuji</strong>: Hey!</p>
+<p><strong>ryuji</strong>: Asakawa!</p>
+<p><strong>ryuji</strong>: We�ll change. You�re in no condition to keep
+this up.</p>
+<p><strong>asakawa:</strong>: No!</p>
+<p><strong>ryuji</strong>: Who do you expect to pull up these buckets,
+then?</p>
+<p><strong>asakawa</strong>: But, we don�t even know if it�s doing any
+good…</p>
+<p><strong>ryuji</strong>: And what about Yoichi, huh? Is his mother not
+coming to pick him up after all?</p>
+<p><strong>ryuji</strong>: Don�t look down!</p>
+<p><strong>asakawa</strong>: Where are you? Please, come out.</p>
+<p><strong>asakawa</strong>: Please. Where are you?</p>
+<p><strong>asakawa</strong>: It�s you…</p>
+<p><strong>ryuji</strong>: Hey! Asakawa! It�s already 10 minutes past
+seven! We did it!</p>
+<p><strong>asakawa</strong>: Why would Ikuma have killed her? His own
+daughter…</p>
+<p><strong>ryuji</strong>: Maybe she wasn�t his daughter at all.</p>
+<p><strong>asakawa</strong>: What?</p>
+<p><strong>ryuji</strong>: Maybe her father… wasn�t even human.</p>
+<p><strong>ryuji</strong>: It�s gone…</p>
+<p><strong>ryuji</strong>: Enough, already. It�s over. C�mon. I�ll take
+you home.</p>
+<p><strong>ryuji</strong>: Get some rest.</p>
+<p><strong>asakawa</strong>: …thank you.</p>
+<p><strong>ryuji</strong>: That girl…</p>
+<p><strong>note</strong>: This next scene is entirely visual. If you are
+reading this translation before watching the movie, do yourself a favor;
+STOP reading this now and watch the scene for itself.</p>
+<p><strong>ryuji</strong>: Why?!</p>
+<p><strong>ryuji</strong>: That�s it! Asakawa…</p>
+<p><strong>ryuji</strong>: Aaargh!</p>
+<p><strong>guard</strong>: Are you a resident here, ma�am?</p>
+<p><strong>asakawa</strong>: I�m Takayama Ryuji�s wife!</p>
+<p><strong>guard</strong>: I�m sorry ma�am, but they�ve already taken
+the body away.</p>
+<p><strong>asakawa</strong>: What happened?</p>
+<p><strong>mai</strong>: When I got here he was just lying there…</p>
+<p><strong>asakawa</strong>: Did he say anything to you? About a
+videotape?</p>
+<p><strong>mai</strong>: His face…</p>
+<p><strong>asakawa</strong>: Ryuji… why? Does this mean that Yoichi will
+die, too? Is the curse not broken yet?</p>
+<p><strong>asakawa</strong>: I was the only one to break Sadako�s curse.
+Ryuji… why…? Something I did that you didn�t… Something I did that you
+didn�t…</p>
+<p><strong>asakawa</strong>: Ryuji?!</p>
+<p><strong>asakawa</strong>: Something I did that you didn�t…</p>
+<p><strong>asakawa</strong>: What broke the curse was that I copied the
+tape and showed it to someone else!</p>
+<p><strong>asakawa</strong>: Dad? It�s me. I�m on my way over. Look,
+dad, I�ve got something to ask.</p>
+<p><strong>girl a</strong>: They say there�s a way you can stay alive
+after you watch the video. You�ve gotta make a copy of it, and show it
+to somebody else inside a week.</p>
+<p><strong>girl b</strong>: But what about the person you show it
+to?</p>
+<p><strong>girl a</strong>: Well, then they make a copy and show it to
+somebody else. Again, inside a week.</p>
+<p><strong>girl c</strong>: Then there�s no end to it.</p>
+<p><strong>girl a</strong>: That�s just it. There -is- no end. But if it
+meant not dying… you�d do it, wouldn�t you?</p>
+</body>
+</html>

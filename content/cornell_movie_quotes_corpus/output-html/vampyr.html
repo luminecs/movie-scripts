@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>vampyr</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="vampyr">vampyr</h1>
+<p><strong>nikolas</strong>: Hello, you there!</p>
+<p><strong>child’s voice</strong>: Who’s there?</p>
+<p><strong>girl</strong>: I’ll come down and open the door.</p>
+<p><strong>girl</strong>: Good night, sir!</p>
+<p><strong>nikolas</strong>: Good night!</p>
+<p><strong>woman’s voice</strong>: Oh, why did he have to die - why
+should I have to lose him … why, why?</p>
+<p><strong>man’s voice</strong>: Don’t cry!</p>
+<p><strong>woman’s voice</strong>: My little boy, my little boy!</p>
+<p><strong>woman’s voice</strong>: Oh God, oh God!</p>
+<p><strong>man</strong>: Are you asleep?</p>
+<p><strong>man</strong>: Wake up!</p>
+<p><strong>nikolas</strong>: Who are you!</p>
+<p><strong>man</strong>: Sh!</p>
+<p><strong>man</strong>: She mustn’t die … do you hear? … She’s dying,
+she’s dying!</p>
+<p><strong>blind woman</strong>: Who’s there?</p>
+<p><strong>nikolas</strong>: Is there anybody here?</p>
+<p><strong>nikolas</strong>: Good evening!</p>
+<p><strong>nikolas</strong>: I…</p>
+<p><strong>marc</strong>: Sh!!!</p>
+<p><strong>marc</strong>: Did you hear?</p>
+<p><strong>nikolas</strong>: Yes, the child …</p>
+<p><strong>marc</strong>: The child!</p>
+<p><strong>nikolas</strong>: Yes.</p>
+<p><strong>marc</strong>: There’s no child here.</p>
+<p><strong>nikolas</strong>: But … the dogs…</p>
+<p><strong>marc</strong>: There’s no child here, and no dogs either.</p>
+<p><strong>nikolas</strong>: No?</p>
+<p><strong>marc</strong>: No! Good night!</p>
+<p><strong>the interior of the castle</strong>: Bernard enters a room
+arranged as a sick-room. A woman is lying there in bed; it is his
+daughter, whose name is L�one. A nurse is looking after her. L�one is a
+woman of twenty-six. She is very pale, as if suffering from anemia.
+Bernard goes up to the bed. The nurse stands beside him and says:</p>
+<p><strong>nurse</strong>: The wounds are nearly healed!</p>
+<p><strong>l�one</strong>: The blood! … The blood! …</p>
+<p><strong>bernard</strong>: You mustn’t lie down and go to sleep until
+the doctor has been here!</p>
+<p><strong>the castle</strong>: L�one’s sick-room. The nurse puts a
+chair by the bed.</p>
+<p><strong>the park of the castle</strong>: Nikolas jumps up on the wall
+ringing the castle. When he appears on the wall, his body forms a
+ghostly silhouette against the night sky .</p>
+<p><strong>the courtyard</strong>: The three shadows emerge from the
+shadow of the trees, steal across the moonlit courtyard and disappear
+into the deep shadows of the castle.</p>
+<p><strong>the castle</strong>: Bernard in the corridor, outside the
+door of his room. He still has the lamp in his hand. He goes into his
+room.</p>
+<p><strong>the courtyard</strong>: Enter Nikolas . He finds himself
+under the room that Bernard has just entered. Through the lighted window
+he sees Bernard putting down his lamp and recognizes him as the man who
+visited him in his dreams. At the same moment he sees the three shadows
+going diagonally across the ceiling of the room; at that moment Bernard
+leaves the window and goes across to a bookshelf. Nikolas rushes to the
+main door of the castle. He rings vigorously at the door. The bell gives
+a feeble ring. The echo dies away, and everything is quiet again.
+Nikolas rings again. Now he hears behind the door an old person’s
+shuffling steps. He tugs at the door and shouts:</p>
+<p><strong>nikolas</strong>: Open up … open up quickly … hurry!</p>
+<p><strong>a voice</strong>: Who is it?</p>
+<p><strong>nikolas</strong>: For God’s sake … hurry .. . they’re killing
+him!</p>
+<p><strong>the staircase landing outside l�one’s room</strong>: The
+nurse opens the door in terror. Her facial contortions show that the
+invalid has heard nothing, but that on the other hand she dare not leave
+her either.</p>
+<p><strong>the drawing-room</strong>: This adjoins Bernard’s room. The
+manservant and Nikolas try to open the door into Bernard’s room, but the
+body of the dying man is lying just behind the door, preventing them
+from opening it more than a few inches. The dying man’s screams fill
+them with horror.</p>
+<p><strong>manservant</strong>: The other door!</p>
+<p><strong>bernard</strong>: Water!</p>
+<p><strong>gis�le</strong>: Wasn’t it her?</p>
+<p><strong>nurse</strong>: No, it’s down there.</p>
+<p><strong>bernard’s room</strong>: Enter Gis�le. She stops dead by the
+door, paralyzed by the sight of her father lying on the point of death.
+She looks at the chamber-maid and the old housekeeper, who are clinging
+to each other, while the tears run down their cheeks. Beside herself,
+and with eyes dilated with terror, she goes to her father and kneels by
+his side. He understands that she is there. His face lights up for a
+moment, after which he closes his eyes again for a while, as if trying
+to draw breath for the few words he wants to say; but he has not
+sufficient strength left. He uses his last ounce of strength to draw a
+ring from his finger. He hands the ring to Gis�le, who recognizes it. It
+is a signet ring, the signet of which is formed like a tiny gold cross.
+She holds it in the hollow of her hand, while her eyes fill with tears.
+The dying man catches Gis�le’s eye and, as it were, guides it over to
+Nikolas as if to say: ‘This man will protect you.’ His gaze becomes
+vacant, without consciousness, fixed and glassy. His breathing comes in
+jerks. Nikolas tries to moisten his lips but the liquid runs down his
+chin and thence onto his breast. His teeth are firmly clenched, and the
+corners of his mouth are sagging. The brief death-struggle has begun.
+While we see the little group by the door, which has been joined by the
+old coachman, we hear the dying man’s death-rattle. Tears run down the
+coachman’s furrowed cheeks.</p>
+<p><strong>on the landing</strong>: The nurse is still standing there.
+The death-rattle reaches her ears. She goes into L�one’s room and shuts
+the door behind her.</p>
+<p><strong>bernard’s room</strong>: Here the silence of death prevails.
+The group by the door follows with bated breath the last spasms of the
+death-struggle. Now the murdered lord of the castle is drawing his last
+gasp. The old housekeeper goes up to Gis�le, who is no longer weeping
+but merely stares uncomprehendingly at her father’s lifeless body. The
+old housekeeper calls to her gently. Gis�le looks at her in
+surprise.</p>
+<p><strong>gis�le</strong>: Is he dead?</p>
+<p><strong>the courtyard</strong>: The coachman crosses the courtyard,
+opens the door of the carriage entrance, and draws out a hunting
+carriage. He pulls it slowly and carefully, as if wanting to muffle the
+sound.</p>
+<p><strong>the drawing-room</strong>: The old housekeeper has gone on
+ahead in order to light a lamp. Nikolas gets Gis�le to sit down. Her
+gaze is vacant, and the only sound that comes from her is a suppressed
+sobbing.</p>
+<p><strong>housekeeper</strong>: Couldn’t you stay here … until …</p>
+<p><strong>the courtyard</strong>: The coachman leads a horse from the
+stable.</p>
+<p><strong>the drawing-room</strong>: Nikolas stops in front of Gis�le’s
+chair and looks compassionately at her. She is sitting as motionless as
+a stone. Only her lips are trembling, as if she is praying quietly.
+Suddenly she senses his presence. She looks up at him imploringly and
+says in a voice choked with tears:</p>
+<p><strong>gis�le</strong>: It’s so dark here!</p>
+<p><strong>the courtyard</strong>: The coachman is hitching the
+horses.</p>
+<p><strong>the drawing-room</strong>: Nikolas lights another lamp, and
+as he puts out the match he looks at Gis�le. She is sitting with her
+hands in her lap, rocking her head backwards and forwards. Her eyes are
+glazed. She is doing all she can to prevent herself from breaking down
+completely, but when the first tears trickle down her cheeks she breaks
+into sobs. She lifts her clenched hands to her eyes and weeps. Nikolas
+goes over to her. He knows that he can do absolutely nothing, however
+much he wants to quench her sorrow. He bends over her, as if wanting to
+speak the words of consolation that she needs, but before he can say
+anything she bursts out:</p>
+<p><strong>gis�le</strong>: How can anyone endure to live here?</p>
+<p><strong>the courtyard</strong>: The coachman is putting on his cloak;
+he sits up and drives the carriage out.</p>
+<p><strong>the drawing-room</strong>: Gis�le jumps up at the sound of
+the carriage. In her anxious and overwrought condition she endows every
+sound with meaning. She goes to the window, looks out and asks:</p>
+<p><strong>gis�le</strong>: Where is he going?</p>
+<p><strong>nikolas</strong>: To fetch the police!</p>
+<p><strong>l�one’s room</strong>: L�one is lying in bed. The nurse is
+sitting in the room with her sewing things. Suddenly she raises her
+eyes. A number of little furrows have appeared on L�one’s forehead. Her
+breathing becomes irregular and labored. Her face is twisted, as if she
+is tormented by fear and uncertainty. She opens her eyes, and her gaze
+is fixed and distant, as if held by someone a long way away. She looks
+like a medium under hypnosis. She is visibly no longer master of her own
+will, or she is under the influence of a power stronger than her own. In
+spite of her weakened condition she raises herself on her elbow and
+shouts very loudly:</p>
+<p><strong>l�one</strong>: Yes … yes!</p>
+<p><strong>l�one</strong>: Yes … I’m coming!</p>
+<p><strong>nurse</strong>: You’re dreaming … you’re dreaming!</p>
+<p><strong>nurse</strong>: What were you dreaming about?</p>
+<p><strong>l�one</strong>: A voice …</p>
+<p><strong>nurse</strong>: That spoke to you?</p>
+<p><strong>l�one</strong>: That called … commanded …</p>
+<p><strong>nurse</strong>: What did it say?</p>
+<p><strong>the drawing-room</strong>: Gis�le at the window with her
+forehead pressed against the cold pane. Nikolas is sitting reading the
+book.</p>
+<p><strong>gis�le</strong>: L�one …</p>
+<p><strong>gis�le</strong>: Look! … Look! … There, in the park!</p>
+<p><strong>nikolas</strong>: Take the lantern!</p>
+<p><strong>the park</strong>: By the time they are out there, L�one is
+nowhere to be seen. They begin a thorough search of the park, which
+looks ghostly with its moonlit sandstone statues. Some of the tree
+trunks are painted white. They look like skeletons, swaying backwards
+and forwards. Spiders’ webs shine like silver. From time to time a bird
+flies off in alarm. We begin by following the manservant, as he makes
+his way through bushes and undergrowth with the lantern held high over
+his head like a luminous hour-glass. With his free hand he holds his
+jacket tightly round his neck. In the distance we hear Gis�le shouting
+anxiously:</p>
+<p><strong>gis�le</strong>: L�one! … L�one!</p>
+<p><strong>gis�le</strong>: L�one! L�one!</p>
+<p><strong>gis�le</strong>: But it’s me … Gis�le!</p>
+<p><strong>nikolas</strong>: Don’t wake her!</p>
+<p><strong>gis�le</strong>: Look … blood! …</p>
+<p><strong>l�one’s room</strong>: The manservant has laid L�one on the
+bed and now goes out. The nurse settles L�one and discovers the wound in
+her throat; she takes a wad of cotton-wool, moistens it with a
+disinfectant rinse from a bottle, and dabs the liquid on the wound.
+L�one shudders convulsively, puts her hand on the wound and groans. The
+nurse goes out.</p>
+<p><strong>gis�le</strong>: L�one! … L�one …</p>
+<p><strong>gis�le</strong>: Why are you crying?</p>
+<p><strong>l�one</strong>: I wish I was dead!</p>
+<p><strong>gis�le</strong>: No, no … L�one!</p>
+<p><strong>l�one</strong>: Yes, yes, yes … I am lost … I am sinking
+deeper and deeper into the darkness … I am afraid … I am afraid! …</p>
+<p><strong>l�one</strong>: Where is … ?</p>
+<p><strong>nurse</strong>: Your father?</p>
+<p><strong>l�one</strong>: Yes!</p>
+<p><strong>nurse</strong>: The master … is asleep!</p>
+<p><strong>the drawing-room</strong>: Nikolas is there with the old
+housekeeper, who with old-world courtesy brings him a cup of strong
+coffee. Just as she is handing Nikolas the cup, Gis�le comes in. With a
+distracted expression she shuts the door mechanically and goes and sits
+down. The old housekeeper puts the other cup down beside Gis�le, who is
+completely absorbed by her recent strange experience. The other two look
+at her enquiringly.</p>
+<p><strong>gis�le</strong>: I think L�one is dying!</p>
+<p><strong>gis�le</strong>: Didn’t you hear something?</p>
+<p><strong>nikolas</strong>: You’re tired!</p>
+<p><strong>gis�le</strong>: Oh, the silence!</p>
+<p><strong>gis�le</strong>: Thank you!</p>
+<p><strong>gis�le</strong>: I’ll try to get a little sleep!</p>
+<p><strong>gis�le</strong>: You’re not leaving us, I hope?</p>
+<p><strong>gis�le</strong>: Play something more!</p>
+<p><strong>manservant</strong>: The police are here.</p>
+<p><strong>the courtyard</strong>: The two men emerge from the house and
+stand at the head of the steps. The carriage drives up the last few
+yards. The horse walks as if sunk in its own thoughts; then it stops
+abruptly. Joseph takes the lantern, which has been left on the steps,
+and slowly approaches the carriage. After a few paces he stops. Now he
+can see the whole carriage clearly and the coachman is alone.</p>
+<p><strong>manservant</strong>: Are you alone?</p>
+<p><strong>manservant</strong>: Are you alone?</p>
+<p><strong>the drawing-room</strong>: Enter Nikolas. He shuts the door
+very quietly behind him as if afraid that by making the slightest noise
+he will bring about still worse misfortunes. He tiptoes to the piano and
+extinguishes the two lights on it. As he is doing this, he cocks an ear
+to listen for Gis�le’s breathing; then he resumes his reading of the
+diary, a page of which is shown. As he reads we hear in the distance the
+sound of horses’ hooves on the paving stones … also the sound of the
+carriage being put away. Then silence reigns again around the old house.
+Nikolas listens out into the silence. Is he awake, or are all these
+fearful happenings merely a long, horrible nightmare? The heart of the
+old clock is still beating. After a moment a deep sigh is heard from a
+corner of the room. Nikolas looks in that direction. A cello is standing
+there. One of the strings has slipped, and as he looks at it another
+string breaks. Then silence again wraps its mantle round the room.</p>
+<p><strong>doctor</strong>: How is she?</p>
+<p><strong>doctor</strong>: Was she alone, then?</p>
+<p><strong>manservant</strong>: Yes, just for a moment.</p>
+<p><strong>nikolas</strong>: Good evening!</p>
+<p><strong>doctor [marc]</strong>: Good evening!</p>
+<p><strong>doctor</strong>: Let’s go try … it’s high time …</p>
+<p><strong>the sick-room</strong>: The doctor hurries in and goes
+straight to the bed. The nurse’s face takes on an expression of fear.
+She is giving the patient camphor. L�one is paler than before. Her
+features are hard and sharp, her lips blue. It is painful to see her and
+hear her breathing. Beside herself, the nurse turns to the doctor and
+says:</p>
+<p><strong>nurse</strong>: It’s going very badly!</p>
+<p><strong>doctor</strong>: Her pulse?</p>
+<p><strong>nurse</strong>: Very weak!</p>
+<p><strong>nurse</strong>: Is she dying?</p>
+<p><strong>doctor</strong>: Yes.</p>
+<p><strong>doctor</strong>: Perhaps we could save her …</p>
+<p><strong>doctor</strong>: Will you give her blood?</p>
+<p><strong>doctor</strong>: Immediately … this very moment!</p>
+<p><strong>the drawing-room</strong>: Joseph goes to the door of the
+room where Gis�le is. His face shows surprise when he discovers Gis�le
+on the sofa; she is sitting motionless, with her legs drawn up under her
+and her head leaning back against the wall, staring fixedly at him with
+wide-open, startled eyes. As if talking to herself, she says:</p>
+<p><strong>gis�le</strong>: Why does the doctor always come at
+night?</p>
+<p><strong>the sick-room</strong>: By the time we return there, all the
+preparations for the blood transfusion are completed.</p>
+<p><strong>the drawing-room</strong>: Joseph returns from the room where
+Gis�le is. He has evidently succeeded in calming her. He goes and sits
+in the chair where Nikolas sat. He rests his head in his hand. He sees
+the open diary and begins reading it.</p>
+<p><strong>the sick-room</strong>: The blood transfusion is now in
+progress. The only words are curt orders like: ‘Now! - Quickly! - That’s
+enough! - Give it to me! - Sit still!’ etc.</p>
+<p><strong>the drawing-room</strong>: Joseph is reading the diary, which
+arouses his interest more and more. It is as if he finds a connection
+between what he reads and the fearful events that have taken place
+around him. An extract from the diary is shown.</p>
+<p><strong>the sick-room</strong>: The blood transfusion continues. Marc
+has positioned himself outside the circle of light from the lamp, so
+that he can see Nikolas in bright light, while he himself sits in the
+dark. Nikolas watches L�one’s face anxiously and closely during her
+struggle with death. Life slowly seems to return to her, and her
+breathing becomes more peaceful. She opens her eyes and looks at the
+people round her, but she is much too enfeebled to speak, and closes her
+eyes again. Marc keeps a close watch on Nikolas, who grows paler and
+paler. His eyes swivel slowly from Nikolas to the patient and back to
+Nikolas again.</p>
+<p><strong>the drawing-room</strong>: Another fragment of the diary is
+shown .</p>
+<p><strong>the sick-room</strong>: The blood transfusion is completed.
+While Marc himself is looking after the patient, the nurse leads Nikolas
+into an adjoining room, where she makes him sit down and prepares his
+bandage. The doctor stands bending over L�one.</p>
+<p><strong>doctor</strong>: Is he in a bad way?</p>
+<p><strong>nurse</strong>: Yes, rather.</p>
+<p><strong>doctor</strong>: Give him a tablet!</p>
+<p><strong>doctor</strong>: You can lie down now and sleep. I’ll keep
+watch!</p>
+<p><strong>doctor</strong>: Did you hear what I said?</p>
+<p><strong>nikolas</strong>: Doctor, doctor!</p>
+<p><strong>doctor</strong>: What is it?</p>
+<p><strong>nikolas</strong>: The wound is bleeding!</p>
+<p><strong>doctor</strong>: Go to sleep!</p>
+<p><strong>doctor</strong>: You are suffering … you are tired … come
+with me … we shall become one … bodies, souls, blood … there is only one
+way of escaping from your suffering and finding peace … follow me … you
+will not be freed until you have taken your own life … come … I am
+waiting for you …</p>
+<p><strong>nikolas</strong>: Doctor!</p>
+<p><strong>doctor</strong>: What is it now?</p>
+<p><strong>nikolas</strong>: I’m losing my blood!</p>
+<p><strong>doctor</strong>: You’re losing your blood?</p>
+<p><strong>nikolas</strong>: Yes!</p>
+<p><strong>doctor</strong>: Nonsense! … It’s here! … Your blood …</p>
+<p><strong>the drawing-room</strong>: Here the old manservant is
+sitting, completely absorbed in the diary. Suddenly he raises his head,
+as if he has heard a sound. He starts to his feet, with an overwhelming
+sense of dread and foreboding. He is filled with a presentiment of some
+horror or other. He goes to the window and sees on the paving stones the
+shadow of a window on the first floor. There is a light behind the
+window and the light is moving. He goes cautiously into the hall. When
+he has climbed a few steps of the staircase he can see Marc in the
+window. In his hand he is holding a lamp which he moves backwards and
+forwards several times. The manservant stands there motionless and with
+bated breath …</p>
+<p><strong>manservant</strong>: Stay here!</p>
+<p><strong>l�one’s room</strong>: The nurse stands leaning over L�one.
+It is evident that the patient’s strength is ebbing away. The nurse and
+the manservant are aware that everything will soon be over. L�one
+realizes it herself. She moans, sobs and wails. The nurse consoles her
+as best she can. As for the manservant, he appears to be maturing in his
+mind some great project or other. L�one, who has great difficulty in
+getting the words out, says:</p>
+<p><strong>l�one</strong>: I am damned … oh God, oh my God!</p>
+<p><strong>manservant</strong>: She must not die now … you must keep her
+alive until morning comes …</p>
+<p><strong>manservant</strong>: God help me!</p>
+<p><strong>the wood</strong>: Nikolas is running in the direction of the
+factory.</p>
+<p><strong>the castle</strong>: The manservant comes pushing a
+wheelbarrow and stops in front of a tool-shed, from which by the light
+of a lantern he takes a pick-axe and a shovel; he puts these in the
+wheelbarrow. He is just about to go when he realizes that he has
+forgotten something. He goes back into the shed and takes a long crowbar
+and a wooden mallet. These objects likewise he puts in the wheelbarrow,
+fastens the lantern on the handle of the wheelbarrow, and sets off.</p>
+<p><strong>a field</strong>: Nikolas enters at a run and suddenly falls
+headlong.</p>
+<p><strong>outside the churchyard</strong>: The manservant pushes his
+wheelbarrow along the wall. He makes for the churchyard gate.</p>
+<p><strong>a field</strong>: Nikolas is lying on the spot where he fell.
+Suddenly his body divides in two. One part remains lying unconscious,
+while the other gets up with evident difficulty. He slowly comes to and
+looks round in amazement. Not far off he notices an object on the
+ground. It is Gis�le’s ring - the ring with the cross which her father
+gave her. He picks it up and examines it carefully, as if Gis�le has
+sent him a message by means of the ring; he looks round in the hope of
+finding a clue which direction to go in order to find her again. Then he
+discovers some footsteps in the sandy earth, looking as if they have
+just been made before his very eyes by a pair of invisible feet -
+Gis�le’s feet. He gets up and follows these footsteps. They lead him
+to</p>
+<p><strong>the blind woman’s house</strong>: He goes in at the door,
+which opens easily, and finds himself in a dark yard at the back of the
+house. He gropes his way forward in the shadow of the house, until he
+finds a door without a handle. He opens this in turn. He now finds
+himself in the old laundry room, which he recognizes from his previous
+visit. From here he knows the way into the house and goes straight to
+the door at the other end of the laundry room. He enters the empty room
+adjoining it. Here everything is as he last saw it. His own footsteps
+are clearly visible in the dust on the floor; nobody has been here. He
+listens. Not a sound in the house. He looks for the door into the room
+where the coffin stood before. It is locked. So something has happened
+since his last visit. He tries hard to open the door, but in vain.</p>
+<p><strong>[nikolas’ new pov - from inside the coffin]</strong>: The lid
+of the coffin has a square pane of glass just over the dead man’s
+face.</p>
+<p><strong>the field</strong>: Nikolas is lying on the ground, as when
+we last saw him. He begins to return to consciousness. The dream he has
+just had enters his semi- consciousness. He opens his eyes a fraction,
+as if drowned in sleep, and sees the procession from his dream - at
+first making straight for him, but presently turning away. He turns to
+watch it, and discovers that he is lying on the ground outside the
+churchyard. The funeral procession is making for the churchyard.</p>
+<p><strong>the entrance to the churchyard</strong>: and looks in. There
+he sees the old manservant, who is pushing away a large flat stone from
+over a grave. The coffin in the grave is revealed. It is an old, rotten
+coffin. The manservant now throws away his shovel, and uses his pick-axe
+to try and get the lid off. Nikolas has caught up with him. The two men
+exchange meaningful nods. Then Nikolas jumps down in the grave to help
+the manservant.</p>
+<p><strong>l�one’s room</strong>: The dying L�one wakes up with a start.
+Her great eyes stare up at the ceiling, and her face expresses
+unspeakable and speechless astonishment. The nurse bends over her and
+asks:</p>
+<p><strong>nurse</strong>: What is it you can see?</p>
+<p><strong>l�one</strong>: Now death is coming for me … I shall not
+suffer any more!</p>
+<p><strong>the churchyard</strong>: Nikolas and the manservant have
+succeeded in getting the lid off the coffin. They look with horror at
+the sight that meets their eyes. In the coffin is lying the old blind
+woman. Her face is completely untouched, as if she is still alive. She
+is preternaturally pale and sallow. Neither her breathing nor her
+heartbeat can be heard. Nikolas looks at her by the light of the
+lantern.</p>
+<p><strong>l�one’s room</strong>: L�one looks like somebody waiting and
+listening. The nurse again bends over her and asks:</p>
+<p><strong>nurse</strong>: What do you hear?</p>
+<p><strong>l�one</strong>: My father … is calling for me! …</p>
+<p><strong>the churchyard</strong>: The manservant gives the crowbar to
+Nikolas and himself takes the mallet. Nikolas lifts the crowbar and
+directs the point at the blind woman’s heart. He raises and lowers the
+crowbar several times in order to take careful aim. Then he lifts it
+and, turning his face away, plunges it with all his strength into her
+heart. Nikolas signals to the manservant, who comes up and hammers the
+crowbar further and further in with the mallet. They both look very
+serious. Blow after blow echoes around. As soon as the crowbar is
+hammered home the two men break off from their work and take a step
+back. They stare down at the grave in consternation. The blind woman’s
+body has disappeared, and in the place where she lay there is now only a
+bare white skeleton.</p>
+<p><strong>l�one’s room</strong>: L�one as before. The tension and
+suffering seem to have gone from her face. Staring straight ahead, she
+whispers as if in a trance:</p>
+<p><strong>l�one</strong>: Now I feel strong … my soul is free!</p>
+<p><strong>the churchyard</strong>: The gravestone is being pushed back
+into place. In this shot we see only the coffin, the gravestone and the
+manservant’s hands at work.</p>
+<p><strong>the blind woman’s house</strong>: There is a fire in the
+grate. Marc is lighting another cigar. The man with the wooden leg
+brings him a cup of coffee. Marc brushes some ash from his trousers and
+takes a gulp of coffee. Suddenly he raises his head and looks towards
+the window. The man with the wooden leg observes his movements and goes
+up to him. They both look at the window, where a face now comes into
+view. It is Bernard, the man who was murdered at the castle earlier in
+the night under such mysterious circumstances. The face moves and looks
+in anxiously, while Bernard’s hands protect his eyes against the
+moonlight. The two men in the room are seized with terror. Marc bends
+forward, and hastily puts out the light, at the same time signaling to
+the man with the wooden leg to put out the fire in the grate. The latter
+pours water over the fire, which gives out a hissing cloud of steam.</p>
+<p><strong>marc</strong>: Go and see the door is properly shut!</p>
+<p><strong>marc</strong>: Oh! Oh! Oh!</p>
+<p><strong>the churchyard</strong>: The manservant has tidied up the
+grave and is now putting back the tombstone, on which can be read the
+following curious inscription: Here lies Marguerite Chopin, born 4
+February 1809, died 13 June 1867. Then a catalogue of her virtues.</p>
+<p><strong>the blind woman’s house</strong>: We see Nikolas’s hand
+inserting the key in the door guarding Gis�le. He finds it behind the
+piece of furniture where it is hidden, and inserts it in the lock. The
+shot is taken in such a way that the spectator is uncertain whether the
+hand is real or not.</p>
+<p><strong>rolling countryside</strong>: Marc is running at full speed
+like a man pursued. He keeps turning round, as if expecting to see his
+pursuer at every moment.</p>
+<p><strong>the blind woman’s house</strong>: Gis�le is lying on her bed,
+leaning against the wall, with her legs drawn up under her. Her hands
+are tied behind her back. Nikolas’s hands appear on the screen
+attempting to loosen her bonds. When the knot refuses to yield, he uses
+his teeth. Both the hands and Nikolas’s profile are taken as in the
+previous shot, i.e., in such a way that the spectator is uncertain
+whether they are real or not.</p>
+<p><strong>rolling countryside</strong>: Marc is running away like a man
+who has lost his reason. Where he is running there is no road or
+path.</p>
+<p><strong>l�one’s room</strong>: L�one is at the point of death. She is
+quite calm. An angelic beauty suffuses her face. She smiles. Then she
+slowly closes her eyes. She gives a deep sigh, like a child just before
+it falls asleep. She has expired. A hand lays a little gold crucifix on
+her closed lips.</p>
+<p><strong>[rolling countryside]</strong>: Marc has run right across the
+fields, still pursued by his invisible pursuer. Suddenly he is enveloped
+in mist. It is like steam rising from the earth. The mist gives
+everything a ghostly appearance. Marc is seized with terror. He does not
+know where he is. He can neither see nor hear. He is so confused and
+agitated that he does not know which way to take. He runs first in one
+direction, then in another, tries to retrace his steps, but is unable to
+see them because of the mist. He runs in a more and more random manner.
+He stops for a moment. Then he sees, a short distance away, a light,
+which seems to come from a lantern, and the faint outlines of a gray
+shadow, which might be the shadow of a man. He calls, but instead of
+answering the shadow merely moves away from him. He runs in pursuit of
+it; but in spite of all his exertions the distance between them remains
+the same. Speechless with terror, he pursues his frenzied course with
+his hands spread out in front of him, as if trying to scatter the
+mist.</p>
+<p><strong>the river</strong>: Cross-cutting with the scenes described
+above recording Marc’s death are scenes showing Nikolas and Gis�le on
+their way down to the river. When they reach the bank, they find it
+veiled in a white mist so thick as almost to blot out the opposite bank.
+A boat is lying right at their feet. They jump down in it, and Nikolas
+seizes the oars and starts rowing. When he has taken a few pulls out
+into the river, the mist grows thicker; but he continues to row. Now
+they cannot even see the bank they have just left. Gis�le stares
+anxiously around, and Nikolas rests on the oars to get his bearings. But
+they see that they are completely enveloped in mist. They are somewhat
+uneasy and confused. Nikolas puts his hands up to his mouth as a
+megaphone and calls:</p>
+<p><strong>nikolas</strong>: Hullo!</p>
+<p><strong>nikolas and gis�le</strong>: Hullo!</p>
+<p><strong>the voice</strong>: Hullo!</p>
+<p><strong>nikolas</strong>: We’re completely lost!</p>
+<p><strong>nikolas</strong>: Where are we?</p>
+<p><strong>the voice</strong>: This way!</p>
+<p><strong>nikolas</strong>: Thank you.</p>
+<p><strong>gis�le</strong>: Do you think it’s that way?</p>
+<p><strong>nikolas</strong>: Hullo!</p>
+<p><strong>the voice</strong>: Hullo!</p>
+<p><strong>the voice</strong>: … This way!</p>
+<p><strong>gis�le</strong>: Where are you?</p>
+<p><strong>the voice</strong>: Wait … we … will … light … a … fire!</p>
+<p><strong>nikolas</strong>: Good!</p>
+<p><strong>nikolas</strong>: Hullo!</p>
+<p><strong>ferryman</strong>: Can you see there?</p>
+<p><strong>gis�le</strong>: What did you say?</p>
+<p><strong>ferryman</strong>: Can you see the fire?</p>
+<p><strong>gis�le</strong>: No!</p>
+<p><strong>ferryman</strong>: Sing, children!</p>
+</body>
+</html>

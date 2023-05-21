@@ -1,0 +1,2482 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ninotchka</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="ninotchka">ninotchka</h1>
+<p><strong>manager</strong>: Is there anything I can do for you,
+monsieur?</p>
+<p><strong>buljanoff</strong>: No, no.</p>
+<p><strong>manager</strong>: Yes, monsieur?</p>
+<p><strong>iranoff</strong>: Just looking around.</p>
+<p><strong>kopalski</strong>: Comrades, why should we lie to each other?
+It’s wonderful.</p>
+<p><strong>iranoff</strong>: Let’s be honest. Have we anything like it
+in Russia?</p>
+<p><strong>all three</strong>: No, no, no.</p>
+<p><strong>iranoff</strong>: Can you imagine what the beds would be in a
+hotel like that?</p>
+<p><strong>kopalski</strong>: They tell me when you ring once the valet
+comes in; when you ring twice you get the waiter; and do you know what
+happens when you ring three times? A maid comes in – a French maid.</p>
+<p><strong>iranoff</strong>: Comrades, if we ring nine times… let’s go
+in.</p>
+<p><strong>buljanoff</strong>: Just a minute – just a minute – I have
+nothing against the idea but I still say let’s go back to the Hotel
+Terminus. Moscow made our reservations there, we are on an official
+mission, and we have no right to change the orders of our superior.</p>
+<p><strong>iranoff</strong>: Where is your courage, Comrade
+Buljanoff?</p>
+<p><strong>kopalski</strong>: Are you the Buljanoff who fought on the
+barricades? And now you are afraid to take a room with a bath?</p>
+<p><strong>buljanoff</strong>: I don’t want to go to Siberia.</p>
+<p><strong>iranoff</strong>: I don’t want to go to the Hotel
+Terminus.</p>
+<p><strong>kopalski</strong>: If Lenin were alive he would say,
+“Buljanoff, Comrade, for once in your life you’re in Paris. Don’t be a
+fool. Go in there and ring three times.”</p>
+<p><strong>iranoff</strong>: He wouldn’t say that. What he would say is
+“Buljanoff, you can’t afford to live in a cheap hotel. Doesn’t the
+prestige of the Bolsheviks mean anything to you? Do you want to live in
+a hotel where you press for the hot water and cold water comes and when
+you press for the cold water nothing comes out at all? Phooey,
+Buljanoff!”</p>
+<p><strong>buljanoff</strong>: I still say our place is with the common
+people, but who am I to contradict Lenin? Let’s go in.</p>
+<p><strong>kopalski</strong>: Are you the manager?</p>
+<p><strong>manager</strong>: Yes.</p>
+<p><strong>kopalski</strong>: Pardon me for introducing Comrade Iranoff,
+member of the Russian Board of Trade.</p>
+<p><strong>manager</strong>: Monsieur.</p>
+<p><strong>iranoff</strong>: This is Comrade Kopalski.</p>
+<p><strong>manager</strong>: Monsieur.</p>
+<p><strong>buljanoff</strong>: I am Comrade Buljanoff.</p>
+<p><strong>manager</strong>: Monsieur.</p>
+<p><strong>buljanoff</strong>: May I ask how much your rooms are?</p>
+<p><strong>manager</strong>: Well, gentlemen, I’m afraid our rates are
+rather high.</p>
+<p><strong>buljanoff</strong>: Why should you be afraid?</p>
+<p><strong>manager</strong>: I might be able to accommodate you. Is
+there some more luggage?</p>
+<p><strong>iranoff</strong>: Oh, yes, but have you a safe here big
+enough to hold this?</p>
+<p><strong>manager</strong>: I’m afraid we have no boxes of that size in
+our vault, but there is one suite with a private safe…</p>
+<p><strong>iranoff</strong>: That’s even better.</p>
+<p><strong>manager</strong>: But, gentlemen, I am afraid…</p>
+<p><strong>buljanoff</strong>: He’s always afraid.</p>
+<p><strong>manager</strong>: I just wanted to explain. The apartment may
+suit your convenience but I doubt that it will fit your convictions.
+It’s the Royal Suite.</p>
+<p><strong>buljanoff</strong>: Royal Suite! Just a minute.</p>
+<p><strong>buljanoff</strong>: Now Comrades, I warn you… if it gets out
+in Moscow that we stay in the Royal Suite we will get into terrible
+trouble.</p>
+<p><strong>iranoff</strong>: We’ll just say we had to take it on account
+of the safe. That’s a perfect excuse. There was no other safe big
+enough.</p>
+<p><strong>buljanoff and iranoff</strong>: That’s right. Good, very
+good.</p>
+<p><strong>buljanoff</strong>: Of course, we could take out the pieces
+and distribute them in three or four boxes in the vault and take a small
+room. That’s an idea, isn’t it?</p>
+<p><strong>iranoff</strong>: Yes, it’s an idea, but who says we have to
+have an idea?</p>
+<p><strong>both</strong>: That’s right… that’s right.</p>
+<p><strong>buljanoff</strong>: Give us the Royal Suite.</p>
+<p><strong>kopalski’s voice</strong>: Will you connect me with Mercier…
+yes, the jeweler…</p>
+<p><strong>kopalski</strong>: I want to speak with Monsieur Mercier
+personally… Hello, Monsieur Mercier? This is Kopalski of the Russian
+Board of Trade. We arrived this morning… Thank you.</p>
+<p><strong>kopalski’s voice</strong>: Yes, everything is here. The
+necklace too. All fourteen pieces… What? No, Monsieur Mercier, the court
+jewels of the Duchess Swana consisted of fourteen pieces. Why don’t you
+check on that? Naturally, we have all the necessary credentials.</p>
+<p><strong>rakonin</strong>: Eight Rue de Chalon.</p>
+<p><strong>maid</strong>: Good morning, Count.</p>
+<p><strong>leon</strong>: Good morning.</p>
+<p><strong>maid</strong>: Her Highness is still dressing.</p>
+<p><strong>leon</strong>: That’s all right.</p>
+<p><strong>swana</strong>: Hello, Leon!</p>
+<p><strong>leon</strong>: Good morning, Swana.</p>
+<p><strong>swana</strong>: It’s really a wretched morning… wretched. I
+can’t get myself right. I wanted to look mellow and I look brittle. My
+face doesn’t compose well… all highlights… how can I dim myself down,
+Leon? Suggest something. I am so bored with this face. I wish I had
+someone else’s face. Whose face would you have if you had your choice?
+Oh, well, I guess one gets the face one deserves.</p>
+<p><strong>leon</strong>: Your conversation has one marvelous advantage,
+Swana. However many questions you ask you never expect an answer.</p>
+<p><strong>swana</strong>: Don’t you find that restful?… Why didn’t you
+come last night?</p>
+<p><strong>leon</strong>: Darling, I was busy looking out for your
+interests.</p>
+<p><strong>swana</strong>: Did you win?</p>
+<p><strong>leon</strong>: We can forget horse racing, roulette, the
+stock market… our worries are over! You remember that platinum watch
+with the diamond numbers? You will be in a position to give it to
+me.</p>
+<p><strong>swana</strong>: Oh, Leon, you are so good to me.</p>
+<p><strong>leon</strong>: We can be rich if you say the word. I had
+dinner with the Guizots last night.</p>
+<p><strong>swana</strong>: Those newspaper people?</p>
+<p><strong>leon</strong>: You’d be surprised how many nice people dine
+with the Guizots.</p>
+<p><strong>swana</strong>: What a gruesome proof of the power of the
+press!</p>
+<p><strong>leon</strong>: Now listen, Swana… I sold Monsieur Guizot the
+idea of publishing your memoirs in the Gazette Parisienne. “The Life and
+Loves of the Grand Duchess Swana of Russia”!</p>
+<p><strong>swana</strong>: Oh, Leon!</p>
+<p><strong>leon</strong>: Sweetheart, we won’t have to bother about our
+future if you are willing to raffle off your past!</p>
+<p><strong>swana</strong>: Was it for this that I refused to endorse
+Dr. Bertrand’s Mouthwash? I could have made a little fortune by saying
+that the Vincent Vacuum Cleaner was the only vacuum cleaner ever used by
+the Romanoffs… and now you want them to smear my life’s secrets over the
+front page of a tabloid?</p>
+<p><strong>leon</strong>: I understand how you feel, but there is a
+limit to everything, particularly pride and dignity. They are willing to
+pay any price! They have a circulation of two million!</p>
+<p><strong>swana</strong>: Imagine two million clerks and shop girls
+peeking into my life for a sou! Think of my lovely life being wrapped
+around cheese and blood sausages! I can see a big grease spot in the
+midst of my most intimate moments!</p>
+<p><strong>leon</strong>: Well, I am the last person to persuade you,
+but don’t do it blindly… if this is your decision, you must be prepared
+to face the consequences… I will have to go to work.</p>
+<p><strong>swana</strong>: My little Volga boatman! Stop threatening! I
+don’t deserve this. Are you my little Volga boatman?</p>
+<p><strong>leon</strong>: Now, Swana…</p>
+<p><strong>swana</strong>: First tell me, are you my little Volga
+boatman?</p>
+<p><strong>leon</strong>: Yes, I’m your little Volga boatman.</p>
+<p><strong>swana</strong>: Well… two million readers… I know exactly
+what they want. Chapter One: “A Childhood behind Golden Bars. Lovely
+Little Princess Plays with Rasputin’s Beard.”</p>
+<p><strong>leon</strong>: I’ve got one chapter Guizot thinks is
+terrific. “Caviar and Blood.” Swana escapes over the ice!</p>
+<p><strong>swana</strong>: A couple of bloodhounds and we have Uncle
+Tom’s Cabin.</p>
+<p><strong>leon</strong>: Darling, this would be wonderful! Just once…
+weren’t you attacked by a Bolshevik?</p>
+<p><strong>swana</strong>: Was I? No… not by a Bolshevik!</p>
+<p><strong>leon</strong>: Too bad! Brings our price down ten thousand
+francs!</p>
+<p><strong>swana</strong>: Come in.</p>
+<p><strong>maid</strong>: Count Rakonin asks the privilege of a few
+words, Your Highness.</p>
+<p><strong>leon</strong>: Count Rakonin?</p>
+<p><strong>swana</strong>: He’s a waiter at the Clarence, poor devil.
+You know him.</p>
+<p><strong>leon</strong>: Oh, yes.</p>
+<p><strong>swana</strong>: Tell him I won’t be able to see him for a
+half an hour.</p>
+<p><strong>maid</strong>: The Count says if it could be as soon as
+possible. It is luncheon time and he is just between courses.</p>
+<p><strong>rakonin</strong>: Your Highness.</p>
+<p><strong>swana</strong>: How do you do, my friend.</p>
+<p><strong>rakonin</strong>: Your Highness, forgive this intrusion,
+but…</p>
+<p><strong>swana</strong>: What is it, Rakonin? Did you lose your
+job?</p>
+<p><strong>rakonin</strong>: No, madame, something of the utmost
+importance… it concerns your jewels.</p>
+<p><strong>swana</strong>: My jewels?!</p>
+<p><strong>rakonin</strong>: I remember one birthday of His Majesty, our
+beloved Czar… I had the honor of being on guard at the summer palace… I
+still see you bending before His Majesty… You wore your diadem and a
+necklace… your face seemed to be lighted by the jewels.</p>
+<p><strong>swana</strong>: Why do you bring this up after so many
+years?</p>
+<p><strong>rakonin</strong>: They are here!… Your jewels!… Here in
+Paris!</p>
+<p><strong>swana</strong>: Alexis! Do you know what you are saying?</p>
+<p><strong>rakonin</strong>: This morning three Soviet agents arrived. I
+overheard a telephone conversation with Mercier, the jeweler. Your
+Highness, they are going to sell them!</p>
+<p><strong>leon</strong>: Did I hear something about jewels?</p>
+<p><strong>swana</strong>: Rakonin, bless him, has given me the most
+amazing news!</p>
+<p><strong>swana</strong>: Balzac 2769… My lawyer…</p>
+<p><strong>rakonin</strong>: I am sorry… I have to leave.</p>
+<p><strong>swana</strong>: Thank you so much, my friend. I will get in
+touch with you.</p>
+<p><strong>swana</strong>: This is the Duchess Swana… I want to speak to
+Monsieur Cornillon… it’s very important… please get him right away…
+Hello, Monsieur Cornillon? The most incredible thing has happened! My
+jewels are here in Paris! Three Bolshevik swine are trying to sell them!
+Yes… yes… we must act immediately!… Call the police… Have them
+arrested!… Well, then, get an injunction!… But do something, Monsieur
+Cornillon! …But they are my jewels! There must be some way of getting
+them back!</p>
+<p><strong>leon</strong>: What does he say?</p>
+<p><strong>swana</strong>: Shhh! …But how can there be a question?… Are
+you my lawyer or theirs?… All right, I’ll let you know!</p>
+<p><strong>leon</strong>: What did he say?</p>
+<p><strong>swana</strong>: It looks pretty hopeless… there may be a
+chance… that’s all… The French Government has recognized Soviet Russia
+and he doubts that they will risk a war for my poor sake. He might be
+able to make up some kind of a case but it would cost money, money,
+money!… That’s all they are interested in – those lawyers!</p>
+<p><strong>leon</strong>: Darling, calm down. Why do you need a lawyer?
+Haven’t you your little Volga boatman?</p>
+<p><strong>mercier</strong>: Very good… superb… excellent… it would be
+foolish to belittle the quality of the merchandise but your terms are
+impossible. My counteroffer is the absolute maximum.</p>
+<p><strong>kopalski</strong>: But, Monsieur Mercier…</p>
+<p><strong>mercier</strong>: Gentlemen, I’ll let you in on a little
+secret… we are only undertaking this deal for the prestige involved,
+and, quite frankly, we are expecting to take a loss.</p>
+<p><strong>iranoff</strong>: Capitalistic methods…</p>
+<p><strong>buljanoff</strong>: They accumulate millions by taking loss
+after loss.</p>
+<p><strong>buljanoff</strong>: Hello… this is Buljanoff, Iranoff, and
+Kopalski… Who?… Count d’Algout?… No, no… it must be a mistake… we can’t
+be disturbed.</p>
+<p><strong>mercier</strong>: I assure you no one else could meet the
+figure named by my syndicate… at least under the present economic
+conditions.</p>
+<p><strong>kopalski</strong>: We can wait.</p>
+<p><strong>iranoff</strong>: Do we give the impression of people who are
+pressed for money?</p>
+<p><strong>mercier</strong>: Yes. Gentlemen… let’s put our cards face
+down. Right now there is a Russian commission in New York trying to sell
+fifteen Rembrandts. There is another in London mortgaging the oil fields
+in Baku. You need money and you need it quickly. I think my offer is
+fair and does not even take advantage of your situation.</p>
+<p><strong>kopalski</strong>: Just a minute.</p>
+<p><strong>iranoff</strong>: He’s cutting our throat…</p>
+<p><strong>buljanoff</strong>: But what can we do?… We have to
+accept.</p>
+<p><strong>kopalski</strong>: Comrades! Comrades! Don’t let’s give in so
+quickly. After all we have to uphold the prestige of Russia.</p>
+<p><strong>buljanoff</strong>: All right, let’s uphold it for another
+ten minutes.</p>
+<p><strong>iranoff</strong>: We don’t want to be disturbed.</p>
+<p><strong>leon</strong>: My name is Count d’Algout. I telephoned.</p>
+<p><strong>iranoff</strong>: If you want to see us you must come
+later.</p>
+<p><strong>leon</strong>: I just want a word with Monsieur Mercier.</p>
+<p><strong>iranoff</strong>: But you can’t…</p>
+<p><strong>leon</strong>: Monsieur Mercier. May I introduce myself? I am
+Count Leon d’Algout. I think I had the pleasure of meeting you in your
+beautiful shop. I was admiring a platinum watch with diamond
+numbers.</p>
+<p><strong>mercier</strong>: Oh, yes, yes…</p>
+<p><strong>leon</strong>: Glorious, aren’t they?</p>
+<p><strong>kopalski</strong>: Now, monsieur, you have no right…</p>
+<p><strong>leon</strong>: Just a moment. I hope you haven’t closed this
+deal, Monsieur Mercier. It might bring you into serious
+difficulties.</p>
+<p><strong>all three russians</strong>: Who are you? What do you want?
+What is this?</p>
+<p><strong>leon</strong>: These jewels are the property of the Duchess
+Swana of Russia, and were seized illegally by the Soviet Government. I
+am acting for Her Highness, the Duchess. Here is my power of
+attorney.</p>
+<p><strong>iranoff</strong>: You know, Monsieur Mercier, this is all
+non-sense.</p>
+<p><strong>kopalski</strong>: These may have been the jewels of the
+Duchess Swana, but, like all private property, they were confiscated by
+the State.</p>
+<p><strong>leon</strong>: We’ll leave the problem of their ownership to
+the French courts. Meanwhile I have filed a petition for an injunction
+to prohibit you from either selling or removing the jewels. Here is a
+copy.</p>
+<p><strong>leon</strong>: I thought it my duty to warn you. I would hate
+to see you get in any trouble, monsieur.</p>
+<p><strong>mercier</strong>: Thank you. Gentlemen, this introduces a new
+element into our negotiations. Until this claim is completely
+settled…</p>
+<p><strong>kopalski</strong>: We can call our ambassador.</p>
+<p><strong>iranoff</strong>: I give you my word! They were confiscated
+legally!</p>
+<p><strong>mercier</strong>: Please try to understand my position. I am
+not with-drawing. My offer stands and as soon as you produce a clear
+title, approved by the French courts, the deal is settled. Until then,
+good day.</p>
+<p><strong>leon</strong>: I hope you will forgive me, Monsieur
+Mercier.</p>
+<p><strong>mercier</strong>: On the contrary. I consider myself very
+lucky. Good day.</p>
+<p><strong>leon</strong>: Good day, monsieur.</p>
+<p><strong>leon</strong>: Well, gentlemen… how about a little lunch?</p>
+<p><strong>iranoff</strong>: Get out of here!</p>
+<p><strong>leon</strong>: Don’t look so gloomy, gentlemen. All is not
+lost. You may have a chance.</p>
+<p><strong>kopalski</strong>: We may have a chance.</p>
+<p><strong>leon</strong>: Yes… a very slim one. I want to be fair. I
+don’t deny that you might make out some kind of a case.</p>
+<p><strong>kopalski</strong>: We haven’t anything to discuss with you.
+We’ll talk to a lawyer!</p>
+<p><strong>leon</strong>: All right – go ahead… you talk to the lawyer
+and I’ll talk to the judge!</p>
+<p><strong>iranoff</strong>: That won’t help you! You can’t intimidate
+us!</p>
+<p><strong>kopalski</strong>: Soviet Russia will put all its might
+behind this case.</p>
+<p><strong>buljanoff</strong>: You think because you represent the
+former Duchess…</p>
+<p><strong>leon</strong>: The Duchess…</p>
+<p><strong>buljanoff</strong>: The former Duchess!</p>
+<p><strong>leon</strong>: In any case, gentlemen, a charming, beautiful,
+exquisite woman. I warn you, if this case comes to trial it will be
+before a French court, and when the Duchess takes the stand…</p>
+<p><strong>iranoff</strong>: All right, go ahead, get her on the witness
+stand! What can she say?</p>
+<p><strong>leon</strong>: But how will she look? The fashions this
+spring are very becoming to her. Gentlemen, the judge will be French,
+the jury will be French, everybody in that courtroom will be French.
+Have you ever seen a French court when a beautiful woman sits on the
+witness stand and lifts her skirt a little? You sit down and pull up
+your pants and where will it get you?</p>
+<p><strong>iranoff</strong>: I suppose you expect us to hand over the
+jewels?</p>
+<p><strong>leon</strong>: Oh, no, no. I am not a highwayman, I’m just a
+nuisance. All I’m trying to do is make things as difficult as
+possible.</p>
+<p><strong>buljanoff</strong>: Not that we are giving in one inch, but
+tell us… what is in your mind?</p>
+<p><strong>leon</strong>: Well, gentlemen, how about my proposition?</p>
+<p><strong>iranoff</strong>: What proposition?</p>
+<p><strong>leon</strong>: I just said let’s have a little lunch. Room
+service.</p>
+<p><strong>leon</strong>: Hey, Sascha! Serge! Misha!</p>
+<p><strong>kopalski</strong>: Yes, Leon…</p>
+<p><strong>iranoff</strong>: What is it, my boy?</p>
+<p><strong>leon</strong>: About this telegram to Moscow. Why should you
+bother? I’ll write it for you.</p>
+<p><strong>buljanoff</strong>: Leon… Leonitchka… Why are you so good to
+us?</p>
+<p><strong>iranoff</strong>: Leon, my little boy.</p>
+<p><strong>kopalski</strong>: Oh, Leon, you are so good.</p>
+<p><strong>leon</strong>: What’s the name of that Commissar on the Board
+of Trade?</p>
+<p><strong>iranoff</strong>: Razinin.</p>
+<p><strong>leon</strong>: Razinin, Board of Trade, Moscow.</p>
+<p><strong>kopalski</strong>: You wouldn’t like Razinin.</p>
+<p><strong>buljanoff</strong>: He’s a bad man. Sends people to
+Siberia!</p>
+<p><strong>iranoff</strong>: We don’t like Razinin.</p>
+<p><strong>buljanoff</strong>: We like you, Leon – don’t we like
+Leon?</p>
+<p><strong>iranoff and kopalski</strong>: Yes, we like Leon… little
+Leonitchka.</p>
+<p><strong>leon</strong>: How does this strike you? Commissar Razinin,
+Board of Trade, Moscow. Unexpected situation here. Duchess Swana in
+Paris claims jewels, and has already brought injunction against sale or
+removal. After long and careful study we suggest in the interest of our
+beloved country a fifty-fifty settlement as best solution. Iranoff,
+Buljanoff, and Kopalski.</p>
+<p><strong>kopalski</strong>: If we say that, Leon… we’ll be sent to
+Siberia!</p>
+<p><strong>iranoff</strong>: And if we have to go to Siberia…</p>
+<p><strong>leon</strong>: I’ll send you a muff.</p>
+<p><strong>buljanoff</strong>: Oh, why are you so good to us?</p>
+<p><strong>iranoff and kopalski</strong>: Yes, you are so good,
+Leon.</p>
+<p><strong>all three russians</strong>: Comrade waiter, dear
+waiteritchka!… Why are you so good to us? You good waiter!</p>
+<p><strong>leon</strong>: Take this telegram to the telegraph office at
+once!</p>
+<p><strong>rakonin</strong>: Yes, monsieur.</p>
+<p><strong>lady lavenham</strong>: Good afternoon, messieurs, mes
+Comrades.</p>
+<p><strong>all three russians</strong>: Good afternoon, Lady
+Lavenham.</p>
+<p><strong>kopalski</strong>: And how is Lord Lavenham?</p>
+<p><strong>buljanoff</strong>: …and little Lady Beatrice?</p>
+<p><strong>lady lavenham</strong>: Very well. Did fortune favor you at
+the races?</p>
+<p><strong>iranoff</strong>: Comme ci, comme ca.</p>
+<p><strong>lady lavenham</strong>: I understand… nothing to write home
+about.</p>
+<p><strong>buljanoff</strong>: Who wants to write home about it?</p>
+<p><strong>lady lavenham</strong>: It’s just a saying. How about joining
+us Saturday night for dinner? We’re having a few friends.</p>
+<p><strong>kopalski</strong>: Are we free, Buljanoff?</p>
+<p><strong>buljanoff</strong>: Possibly.</p>
+<p><strong>iranoff</strong>: We’ll manage.</p>
+<p><strong>lady lavenham</strong>: Then let’s say at nine.</p>
+<p><strong>buljanoff</strong>: Black tie or white tie?</p>
+<p><strong>lady lavenham</strong>: Oh, let’s make it white.</p>
+<p><strong>buljanoff</strong>: Certainly!</p>
+<p><strong>lady lavenham</strong>: Au revoir.</p>
+<p><strong>all three russians</strong>: Au revoir.</p>
+<p><strong>buljanoff</strong>: Nice people.</p>
+<p><strong>iranoff</strong>: Yes, Leon… What is it, Leon?… You can’t
+hurry such things… You must give Moscow a little time… There’s nothing
+we can do about it… why don’t you drop in later?… Au revoir…</p>
+<p><strong>buljanoff</strong>: Misha! Misha!</p>
+<p><strong>iranoff</strong>: What is it?</p>
+<p><strong>buljanoff</strong>: A telegram from Moscow! It must have been
+here all day!</p>
+<p><strong>kopalski</strong>: Halt negotiations immediately. Envoy
+extraordinary arrives Thursday six ten with full power. Your authority
+cancelled herewith. Razinin.</p>
+<p><strong>iranoff</strong>: It is Thursday!</p>
+<p><strong>buljanoff</strong>: It’s six o’clock already!</p>
+<p><strong>kopalski</strong>: I always said it would be Siberia!</p>
+<p><strong>iranoff</strong>: A Special Envoy is coming from Moscow.
+He’ll occupy the Royal Suite. Move our things to the smallest room
+you’ve got.</p>
+<p><strong>manager</strong>: Yes, monsieur.</p>
+<p><strong>iranoff</strong>: Right away… instantly!</p>
+<p><strong>buljanoff and kopalski</strong>: Iranoff!</p>
+<p><strong>iranoff</strong>: I’m coming!</p>
+<p><strong>iranoff</strong>: This is a fine thing. Maybe we’ve missed
+him already.</p>
+<p><strong>kopalski</strong>: How can you find somebody without knowing
+what he looks like?</p>
+<p><strong>iranoff</strong>: That must be the one!</p>
+<p><strong>buljanoff</strong>: Yes, he looks like a comrade!</p>
+<p><strong>bearded man and girl</strong>: Heil Hitler!</p>
+<p><strong>kopalski</strong>: No, that’s not him…</p>
+<p><strong>buljanoff</strong>: Positively not!</p>
+<p><strong>ninotchka</strong>: I am looking for Michael Simonovitch
+Iranoff.</p>
+<p><strong>iranoff</strong>: I am Michael Simonovitch Iranoff.</p>
+<p><strong>ninotchka</strong>: I am Nina Ivanovna Yakushova, Envoy
+Extraordinary, acting under direct orders of Comrade Commissar Razinin.
+Present me to your colleagues.</p>
+<p><strong>iranoff</strong>: Comrade Buljanoff…</p>
+<p><strong>ninotchka</strong>: Comrade.</p>
+<p><strong>iranoff</strong>: Comrade Kopalski…</p>
+<p><strong>ninotchka</strong>: Comrade.</p>
+<p><strong>iranoff</strong>: What a charming idea for Moscow to surprise
+us with a lady comrade.</p>
+<p><strong>kopalski</strong>: If we had known we would have greeted you
+with flowers.</p>
+<p><strong>ninotchka</strong>: Don’t make an issue of my womanhood. We
+are here for work… all of us. Let’s not waste time. Shall we go?</p>
+<p><strong>iranoff</strong>: Porter!</p>
+<p><strong>porter</strong>: Here, please…</p>
+<p><strong>ninotchka</strong>: What do you want?</p>
+<p><strong>porter</strong>: May I have your bags, madame?</p>
+<p><strong>ninotchka</strong>: Why?</p>
+<p><strong>kopalski</strong>: He is a porter. He wants to carry
+them.</p>
+<p><strong>ninotchka</strong>: Why?… Why should you carry other people’s
+bags?</p>
+<p><strong>porter</strong>: Well… that’s my business, madame.</p>
+<p><strong>ninotchka</strong>: That’s no business… that’s a social
+injustice.</p>
+<p><strong>porter</strong>: That depends on the tip.</p>
+<p><strong>kopalski</strong>: Allow me, Comrade.</p>
+<p><strong>ninotchka</strong>: No, thank you.</p>
+<p><strong>buljanoff</strong>: How are things in Moscow?</p>
+<p><strong>ninotchka</strong>: Very good. The last mass trials were a
+great success. There are going to be fewer but better Russians.</p>
+<p><strong>ninotchka</strong>: What’s that?</p>
+<p><strong>kopalski</strong>: It’s a hat, Comrade, a woman’s hat.</p>
+<p><strong>ninotchka</strong>: Tsk, tsk, tsk, how can such a
+civilization survive which permits women to put things like that on
+their heads. It won’t be long now, Comrades.</p>
+<p><strong>buljanoff</strong>: This is the apartment we have reserved
+for you, Comrade Yakushova. I hope you like it.</p>
+<p><strong>ninotchka</strong>: Which part of the room is mine?</p>
+<p><strong>iranoff</strong>: You see… it is a little different here.
+They don’t rent rooms in pieces. We had to take the whole suite.</p>
+<p><strong>ninotchka</strong>: How much does this cost?</p>
+<p><strong>iranoff</strong>: Two thousand francs.</p>
+<p><strong>ninotchka</strong>: A week?</p>
+<p><strong>iranoff</strong>: A day.</p>
+<p><strong>ninotchka</strong>: Do you know how much a cow costs, Comrade
+Iranoff?</p>
+<p><strong>iranoff</strong>: A cow?</p>
+<p><strong>ninotchka</strong>: Two thousand francs. If I stay here a
+week I will cost the Russian people seven cows. Who am I to cost the
+Russian people seven cows?</p>
+<p><strong>buljanoff</strong>: We had to take it on account of the
+safe.</p>
+<p><strong>iranoff</strong>: For ourselves… we are much happier now
+since we moved to a little room next to the servants’ quarters.</p>
+<p><strong>ninotchka</strong>: I am ashamed to put the picture of Lenin
+in a room like this. Comrades, your telegram was received with great
+disfavor in Moscow.</p>
+<p><strong>kopalski</strong>: We did our best, Comrade.</p>
+<p><strong>ninotchka</strong>: I hope so for your sake. Let us examine
+the case. What does the lawyer say?</p>
+<p><strong>buljanoff</strong>: Which lawyer?</p>
+<p><strong>ninotchka</strong>: You didn’t get legal advice?</p>
+<p><strong>buljanoff</strong>: We didn’t want to get mixed up with
+lawyers. They are very expensive here. If you just say hello to a
+lawyer… well, there goes another cow.</p>
+<p><strong>kopalski</strong>: We dealt directly with the representative
+of the Grand Duchess. I am sure if we call him he will give you a very
+clear picture.</p>
+<p><strong>ninotchka</strong>: I will not repeat your mistake. I will
+have no dealings with the Grand Duchess nor her representative.</p>
+<p><strong>ninotchka</strong>: Comrade Buljanoff…</p>
+<p><strong>buljanoff</strong>: Yes, Comrade?</p>
+<p><strong>ninotchka</strong>: Do you spell Buljanoff with one or two
+f’s?</p>
+<p><strong>buljanoff</strong>: With two f’s, if you please.</p>
+<p><strong>ninotchka</strong>: Will you send me some cigarettes, please?
+Comrades, I am not in a position to pass final judgment but at best you
+have been careless in your duty to the State. You were entrusted with
+more than a mere sale of jewelry. Why are we peddling our precious
+possessions to the world at this time? Our next year’s crop is in danger
+and you know it. Unless we can get foreign currency to buy tractors
+there will not be enough bread for our people. And you three
+comrades…</p>
+<p><strong>kopalski</strong>: We did it with the best intentions…</p>
+<p><strong>ninotchka</strong>: We cannot feed the Russian people on your
+intentions. Fifty per cent to a so-called Duchess!… Half of every loaf
+of bread to our enemy! Comrade Kopalski, go at once to our Embassy and
+get the address of the best lawyer in Paris.</p>
+<p><strong>kopalski</strong>: Yes, Comrade.</p>
+<p><strong>ninotchka</strong>: You, Comrade Iranoff, go to the Public
+Library and get me the section of the Civil Code on property.</p>
+<p><strong>buljanoff</strong>: Is there anything I can do, Comrade?</p>
+<p><strong>ninotchka</strong>: You might get me an accurate map of
+Paris. I want to use my spare time to inspect the public utilities and
+make a study of all outstanding technical achievements in the city.</p>
+<p><strong>buljanoff</strong>: Yes, Comrade.</p>
+<p><strong>ninotchka</strong>: Come in.</p>
+<p><strong>cigarette girls</strong>: Hello! Hello! Cigarettes?</p>
+<p><strong>ninotchka</strong>: Comrades, you seem to have been smoking a
+lot.</p>
+<p><strong>desk clerk</strong>: Desk… yes, Monsieur Kopalski… …you are
+expecting Count d’Algout… uh huh… but he is not to go to the Royal Suite
+under any circumstances. He should go to your new room, 985? Thank you,
+monsieur.</p>
+<p><strong>desk clerk</strong>: Good evening, madame.</p>
+<p><strong>ninotchka</strong>: Good evening. She exits out the door.</p>
+<p><strong>ninotchka</strong>: You, please.</p>
+<p><strong>leon</strong>: Me?</p>
+<p><strong>ninotchka</strong>: Yes. Could you give me some
+information?</p>
+<p><strong>leon</strong>: Gladly.</p>
+<p><strong>ninotchka</strong>: How long do we have to wait here?</p>
+<p><strong>leon</strong>: Well – until the policeman whistles again.</p>
+<p><strong>ninotchka</strong>: At what intervals does he whistle?</p>
+<p><strong>leon</strong>: What?</p>
+<p><strong>ninotchka</strong>: How many minutes between the first and
+second whistle?</p>
+<p><strong>leon</strong>: That’s funny. It’s interesting. I never gave
+it a thought before.</p>
+<p><strong>ninotchka</strong>: Have you never been caught in a similar
+situation?</p>
+<p><strong>leon</strong>: Have I? Do you know when I come to think about
+it it’s staggering. If I add it all up I must have spent years waiting
+for signals. Imagine! An important part of my life wasted between
+whistles.</p>
+<p><strong>ninotchka</strong>: In other words you don’t know.</p>
+<p><strong>leon</strong>: No.</p>
+<p><strong>ninotchka</strong>: Thank you.</p>
+<p><strong>leon</strong>: You’re welcome.</p>
+<p><strong>leon</strong>: Can I help you?</p>
+<p><strong>ninotchka</strong>: You might hold this for me.</p>
+<p><strong>leon</strong>: Love to.</p>
+<p><strong>ninotchka</strong>: Correct me if I am wrong… We are facing
+north, aren’t we?</p>
+<p><strong>leon</strong>: Facing north… I’d hate to commit myself
+without my compass… Pardon me… are you an explorer?</p>
+<p><strong>ninotchka</strong>: No… I am looking for the Eiffel
+Tower.</p>
+<p><strong>leon</strong>: Is that thing lost again?… Listen… if you are
+interested in a view…</p>
+<p><strong>ninotchka</strong>: I am interested in the Eiffel Tower from
+a technical standpoint.</p>
+<p><strong>leon</strong>: Technical… I couldn’t help you from that
+angle. You see, a real Parisian only goes to the top of the tower in
+moments of despair to jump off.</p>
+<p><strong>ninotchka</strong>: How long does it take a man to land?</p>
+<p><strong>leon</strong>: Now, isn’t that too bad! The last time I
+jumped I forgot to clock it! Let me see… Eiffel Tower… Your finger,
+please.</p>
+<p><strong>ninotchka</strong>: Why do you need my finger?</p>
+<p><strong>leon</strong>: Bad manners to point with your own… Here… the
+Eiffel Tower.</p>
+<p><strong>ninotchka</strong>: And where are we?</p>
+<p><strong>leon</strong>: Here… here we are… here you are and here I am…
+feel it?</p>
+<p><strong>ninotchka</strong>: I am interested only in the shortest
+distance between these two points. Must you flirt?</p>
+<p><strong>leon</strong>: I don’t have to but I find it natural.</p>
+<p><strong>ninotchka</strong>: Suppress it.</p>
+<p><strong>leon</strong>: I’ll try.</p>
+<p><strong>ninotchka</strong>: For my own information would you call
+your approach toward me typical of the local morale?</p>
+<p><strong>leon</strong>: Madame, it is that kind of approach which has
+made Paris what it is.</p>
+<p><strong>ninotchka</strong>: You are very sure of yourself, aren’t
+you?</p>
+<p><strong>leon</strong>: Nothing has occurred recently to shake my
+confidence.</p>
+<p><strong>ninotchka</strong>: I have heard of the arrogant male in
+capitalistic society. It is having a superior earning power that makes
+you like that.</p>
+<p><strong>leon</strong>: A Russian! I love Russians! Comrade… I have
+been fascinated by your Five- Year Plan for the past fifteen years!</p>
+<p><strong>ninotchka</strong>: Your type will soon be extinct.</p>
+<p><strong>ninotchka</strong>: Please… can you tell me the exact width
+of the foundation on which the piers are resting?… and the depth?</p>
+<p><strong>attendant</strong>: You don’t have to worry. The thing is
+safe.</p>
+<p><strong>ninotchka</strong>: I am not afraid… I want to know…</p>
+<p><strong>leon</strong>: The foundation is one hundred and forty-one
+yards square… I hope you’ll forgive me but I thought you’d…</p>
+<p><strong>ninotchka</strong>: Go ahead.</p>
+<p><strong>leon</strong>: Four massive piers of masonry are sunk to a
+depth of forty-six feet on the side of the Seine, and twenty- nine and
+one-half feet on the other side. The girders of interlaced iron- work
+which stay the structure have an inclination of fifty-four degrees…</p>
+<p><strong>ninotchka</strong>: That’s a strange angle.</p>
+<p><strong>leon</strong>: Yes, very strange.</p>
+<p><strong>leon</strong>: Ascending to the tower is a staircase
+consisting of eight hundred and twenty- nine steps… …and an additional
+two hundred and fifty-four steps to the very top… There is an elevator
+included in the price of admission!</p>
+<p><strong>ninotchka</strong>: You gave me some very valuable
+information. Thank you.</p>
+<p><strong>leon</strong>: And thank you for getting me up here. I’ve
+never seen this before. Beautiful, isn’t it?</p>
+<p><strong>ninotchka</strong>: Yes, it is.</p>
+<p><strong>leon</strong>: I’m glad I saw it before becoming extinct.</p>
+<p><strong>ninotchka</strong>: Do not misunderstand me. I do not hold
+your frivolity against you. As basic material you might not be bad, but
+you are the unfortunate product of a doomed culture. I feel sorry for
+you.</p>
+<p><strong>leon</strong>: You must admit that this doomed old
+civilization sparkles… It glitters!</p>
+<p><strong>ninotchka</strong>: I do not deny its beauty, but it is a
+waste of electricity.</p>
+<p><strong>leon</strong>: What a city! There are the Grands Boulevards…
+blasted out of the heart of the old streets. The Arc de Triomphe… made
+to greet Napoleon’s army. The Opera! And Montmartre… Montparnasse… La
+Boh�me… and now I’ll show you the greatest attraction! It will cost me a
+franc but it is worth it. The most wonderful spot in all Paris – unique!
+Here, look…. What do you see?</p>
+<p><strong>ninotchka</strong>: I see a house that looks like any other
+house. What’s remarkable about it?</p>
+<p><strong>leon</strong>: It’s not the structure but the spirit which
+dwells within. There are three rooms and a kitchenette dedicated to
+hospitality.</p>
+<p><strong>ninotchka</strong>: So that is your house?</p>
+<p><strong>leon</strong>: Well, let’s say I live in it. Such a pleasant
+place… all kinds of comfort, easy to reach, close to street car, bus,
+and subway…</p>
+<p><strong>ninotchka</strong>: Does that mean that you want me to go
+there?</p>
+<p><strong>leon</strong>: Please don’t misunderstand me…</p>
+<p><strong>ninotchka</strong>: Then you don’t want me to go there.</p>
+<p><strong>leon</strong>: Now I didn’t say that either… naturally
+nothing would please me more.</p>
+<p><strong>ninotchka</strong>: Then why don’t we go? You might be an
+interesting subject of study.</p>
+<p><strong>leon</strong>: I will do my best.</p>
+<p><strong>gaston</strong>: No… Count d’Algout is still out. Yes, as
+soon as he returns I’ll tell him. Yes… I’ll tell him Monsieur
+Buljanoff.</p>
+<p><strong>leon</strong>: Good evening, Gaston.</p>
+<p><strong>gaston</strong>: Good evening, Monsieur.</p>
+<p><strong>ninotchka</strong>: Is this what you call the “butler”?</p>
+<p><strong>leon</strong>: Yes.</p>
+<p><strong>ninotchka</strong>: Good evening, comrade. This man is
+horribly old. You should not make him work.</p>
+<p><strong>leon</strong>: He takes good care of that.</p>
+<p><strong>ninotchka</strong>: He looks sad. Do you whip him?</p>
+<p><strong>leon</strong>: No, though the mere thought makes my mouth
+water.</p>
+<p><strong>ninotchka</strong>: The day will come when you will be free.
+Go to bed, little father. We want to be alone.</p>
+<p><strong>gaston</strong>: Count d’Algout, there have been several
+telephone…</p>
+<p><strong>leon</strong>: Go to bed.</p>
+<p><strong>leon</strong>: Well, may I offer you a drink, or how about
+something to eat?</p>
+<p><strong>ninotchka</strong>: Thank you. I’ve had all the calories
+necessary for today.</p>
+<p><strong>ninotchka</strong>: What do we do now?</p>
+<p><strong>leon</strong>: We take off our hat and coat. We sit down – we
+make ourselves comfortable. We adjust ourselves to the prospect of a
+most enjoyable evening. We look at each other. We smile. Well… we don’t
+smile. How about some music?</p>
+<p><strong>ninotchka</strong>: Is that customary?</p>
+<p><strong>leon</strong>: It helps. It has ever since King David wooed
+Bathsheba with the harp. As I am not so fortunate as to have my harp at
+hand, I shall turn on the radio.</p>
+<p><strong>ninotchka</strong>: I should say this room is eighteen by
+twenty-five.</p>
+<p><strong>leon</strong>: Not too big and not too small. What I’d call
+the typical room of an average man. Or shall we say a little above
+average. Now if there are any special aspects you wish to study I have
+nothing to conceal. Just look around. That’s my desk. Those are my
+books, and here am I. Where shall we begin?</p>
+<p><strong>ninotchka</strong>: I will start with you.</p>
+<p><strong>leon</strong>: That’s great. I’m thirty-five years old. Just
+over six feet tall. I weigh a hundred and eighty-two pounds
+stripped.</p>
+<p><strong>ninotchka</strong>: And what is your profession?</p>
+<p><strong>leon</strong>: Keeping my body fit, keeping my mind alert,
+keeping my landlord appeased. That’s a full-time job.</p>
+<p><strong>ninotchka</strong>: And what do you do for mankind?</p>
+<p><strong>leon</strong>: For mankind not a thing – for womankind the
+record is not quite so bleak.</p>
+<p><strong>ninotchka</strong>: You are something we do not have in
+Russia.</p>
+<p><strong>leon</strong>: Thank you. Thank you.</p>
+<p><strong>ninotchka</strong>: That is why I believe in the future of my
+country.</p>
+<p><strong>leon</strong>: I begin to believe in it myself since I’ve met
+you. I still don’t know what to make of it. It confuses me, it frightens
+me a little, but it fascinates me, Ninotchka.</p>
+<p><strong>ninotchka</strong>: You pronounce it incorrectly. Ni-
+notchka.</p>
+<p><strong>leon</strong>: Ni-notchka.</p>
+<p><strong>ninotchka</strong>: That is correct.</p>
+<p><strong>leon</strong>: Ninotchka, do you like me just a little
+bit?</p>
+<p><strong>ninotchka</strong>: Your general appearance is not
+distasteful.</p>
+<p><strong>leon</strong>: Thank you.</p>
+<p><strong>ninotchka</strong>: Look at me. The whites of your eyes are
+clear. Your cornea is excellent.</p>
+<p><strong>leon</strong>: Your cornea is terrific. Tell me – you’re so
+expert on things – can it be that I’m falling in love with you?</p>
+<p><strong>ninotchka</strong>: You are bringing in wrong values. Love is
+a romantic designation for a most ordinary biological, or shall we say
+chemical, process. A lot of nonsense is talked and written about it.</p>
+<p><strong>leon</strong>: Oh, I see. What do you use instead?</p>
+<p><strong>ninotchka</strong>: I acknowledge the existence of a natural
+impulse common to all.</p>
+<p><strong>leon</strong>: What can I possibly do to encourage such an
+impulse in you?</p>
+<p><strong>ninotchka</strong>: You don’t have to do a thing. Chemically
+we are already quite sympathetic.</p>
+<p><strong>leon</strong>: You’re the most improbable creature I’ve ever
+met in my life, Ninotchka, Ninotchka…</p>
+<p><strong>ninotchka</strong>: You repeat yourself.</p>
+<p><strong>leon</strong>: I’d like to say it a thousand times.</p>
+<p><strong>ninotchka</strong>: Don’t do it, please.</p>
+<p><strong>leon</strong>: I’m at a loss, Ninotchka. You must forgive me
+if I appear a little old- fashioned. After all, I’m just a poor
+bourgeois.</p>
+<p><strong>ninotchka</strong>: It’s never too late to change. I used to
+belong to the petty bourgeoisie myself. My father and mother wanted me
+to stay and work on the farm, but I preferred the bayonet.</p>
+<p><strong>leon</strong>: The bayonet? Did you really?</p>
+<p><strong>ninotchka</strong>: I was wounded before Warsaw.</p>
+<p><strong>leon</strong>: Wounded? How?</p>
+<p><strong>ninotchka</strong>: I was a sergeant in the Third Cavalry
+Brigade. Would you like to see my wound?</p>
+<p><strong>leon</strong>: I’d love to. Tsk, tsk, tsk.</p>
+<p><strong>ninotchka</strong>: A Polish lancer. I was sixteen.</p>
+<p><strong>leon</strong>: Poor Ninotchka. Poor, poor Ninotchka.</p>
+<p><strong>ninotchka</strong>: Don’t pity me. Pity the Polish lancer.
+After all, I’m alive.</p>
+<p><strong>leon</strong>: What kind of a girl are you, anyway?</p>
+<p><strong>ninotchka</strong>: Just what you see. A tiny cog in the
+great wheel of evolution.</p>
+<p><strong>leon</strong>: You’re the most adorable cog I ever saw in my
+life. Ninotchka, Cogitska, let me confess something. Never did I dream I
+could feel like this toward a sergeant.</p>
+<p><strong>leon</strong>: Do you hear that?</p>
+<p><strong>ninotchka</strong>: It’s twelve o’clock.</p>
+<p><strong>leon</strong>: It’s midnight. One half of Paris is making
+love to the other half. Look at the clock. One hand has met the other
+hand. They kiss. Isn’t that wonderful?</p>
+<p><strong>ninotchka</strong>: That’s the way a clock works. There’s
+nothing wonderful about it. You merely feel you must put yourself in a
+romantic mood to add to your exhilaration.</p>
+<p><strong>leon</strong>: I can’t possibly think of a better reason.</p>
+<p><strong>ninotchka</strong>: It’s false sentimentality.</p>
+<p><strong>leon</strong>: to make her mood</p>
+<p><strong>ninotchka</strong>: You are very talkative.</p>
+<p><strong>leon</strong>: Was that talkative?</p>
+<p><strong>ninotchka</strong>: No, that was restful. Again.</p>
+<p><strong>ninotchka</strong>: Thank you.</p>
+<p><strong>leon</strong>: Oh, my barbaric Ninotchka. My impossible,
+unromantic, statistical…</p>
+<p><strong>leon</strong>: Glorious, analytical…</p>
+<p><strong>ninotchka</strong>: The telephone is ringing.</p>
+<p><strong>leon</strong>: Oh, let it ring.</p>
+<p><strong>ninotchka</strong>: But one of your friends may be in need of
+you. You must answer.</p>
+<p><strong>leon</strong>: Hello?… Yes… I’m sorry but I couldn’t make it.
+I ran into a friend from the army… What?… The deal is off! Are you
+crazy, Buljanoff?…</p>
+<p><strong>leon</strong>: …A special envoy arrived… What?… That sounds
+better. I’ll be glad to see her any time she wants… Oh, she doesn’t want
+to see me? What do you know about that? Why?… Well, I’ll get in touch
+with her myself. What’s her name?… …What?… Yaku… How do you spell it?…
+Heavens! those Russian names! …I… Oh, Y…</p>
+<p><strong>leon</strong>: Yakushova… Ninotch…</p>
+<p><strong>leon</strong>: All right. Thank you.</p>
+<p><strong>leon</strong>: him as he walks over</p>
+<p><strong>ninotchka</strong>: I must go.</p>
+<p><strong>leon</strong>: Ninotchka, or shall I say Special Envoy
+Yakushova…</p>
+<p><strong>ninotchka</strong>: Let’s forget that we ever met.</p>
+<p><strong>leon</strong>: I have a better suggestion. Let’s forget that
+the telephone ever rang. I never heard that you are Yakushova… you are
+Ninotchka… my Ninotchka…</p>
+<p><strong>ninotchka</strong>: I was sent here by my country to fight
+you.</p>
+<p><strong>leon</strong>: All right, fight me, fight me as much as you
+want, but fight me tomorrow morning! There’s nothing sweeter than
+sharing a secret with a bitter enemy.</p>
+<p><strong>ninotchka</strong>: As a representative of Moscow…</p>
+<p><strong>leon</strong>: Tonight let’s not represent anybody but
+ourselves.</p>
+<p><strong>ninotchka</strong>: It is out of the question. If you wish to
+approach me…</p>
+<p><strong>leon</strong>: You know I want to…</p>
+<p><strong>ninotchka</strong>: Then do it through my lawyer!</p>
+<p><strong>leon</strong>: Ninotchka, you can’t walk out like this… I’m
+crazy about you, and I thought I’d made an impression on you. You liked
+the white of my eye.</p>
+<p><strong>ninotchka</strong>: I must go.</p>
+<p><strong>leon</strong>: But, Ninotchka, I held you in my arms. You
+kissed me!</p>
+<p><strong>ninotchka</strong>: I kissed the Polish lancer too… before he
+died.</p>
+<p><strong>gaston</strong>: Good morning, Your Highness.</p>
+<p><strong>swana</strong>: Good morning, Gaston.</p>
+<p><strong>gaston</strong>: Count d’Algout is still asleep.</p>
+<p><strong>swana</strong>: That’s all right.</p>
+<p><strong>swana</strong>: Leon! What in heaven’s name…!</p>
+<p><strong>leon</strong>: Huh?</p>
+<p><strong>swana</strong>: Is anything wrong? Are you ill?</p>
+<p><strong>leon</strong>: No.</p>
+<p><strong>swana</strong>: Don’t tell me the bed has lost its best
+friend.</p>
+<p><strong>leon</strong>: I just couldn’t sleep. I got up and went back…
+and then got up again. These last few days… whew!</p>
+<p><strong>swana</strong>: Darling, you’re taking my business affairs
+far too seriously. Much as I’d love to rob the Bolsheviks of their
+filthy money, I won’t do it at the expense of your health. Particularly
+as we know we won’t get much. You look so pale… pale but
+interesting.</p>
+<p><strong>swana</strong>: Come in.</p>
+<p><strong>gaston</strong>: Your breakfast, monsieur.</p>
+<p><strong>leon</strong>: I don’t feel like any breakfast.</p>
+<p><strong>swana</strong>: Nonsense. How can you fight the Reds and make
+yourself agreeable to the Whites if you don’t keep up your strength.</p>
+<p><strong>gaston</strong>: Shall I draw your bath, sir?</p>
+<p><strong>leon</strong>: Make it ice cold.</p>
+<p><strong>swana</strong>: Not in your condition. Make it tepid, Gaston…
+tepid and tender. And lay out his gray suit. Afterwards I’ll drive you
+through the Bois. Slowly… in Waltz time.</p>
+<p><strong>gaston</strong>: A blue shirt, perhaps?</p>
+<p><strong>swana</strong>: Blue? Let’s offset his mood. Find a striped
+one, and brighten it with a great blaze of tie.</p>
+<p><strong>gaston</strong>: Very well, Your Highness.</p>
+<p><strong>swana</strong>: Now… here we have two very handsome
+soft-boiled eggs. Do you suppose hens mind what happens to their eggs?
+Probably not. They have such unfeeling eyes. We’ll put in a great nugget
+of butter, plenty of pepper and salt… Darling, I haven’t seen you for
+three livelong days… seventy-two hours!</p>
+<p><strong>leon</strong>: Oh, please, Swana! I don’t know whether I’m
+standing on my head or my heels. Here you are blaming me for neglecting
+you when I’m trying to concentrate on another woman and can’t get near
+her.</p>
+<p><strong>swana</strong>: You haven’t seen her yet?</p>
+<p><strong>leon</strong>: No, and believe me I’ve tried everything! I
+must have telephoned her a hundred times. I’ve sent her telegrams, I’ve
+sent her flowers… I asked her to dinner… I offered her seats for the
+Opera…</p>
+<p><strong>swana</strong>: That proletarian! In the old days we’d have
+had her flogged.</p>
+<p><strong>leon</strong>: That wouldn’t have done any good. Not with
+her. She’s the most incredible creature I’ve ever seen.</p>
+<p><strong>swana</strong>: You just told me you hadn’t seen her.</p>
+<p><strong>leon</strong>: Well… er… I caught a glimpse of her when she
+walked through the lobby.</p>
+<p><strong>swana</strong>: Imagine the carpets of a self- respecting
+Parisian hotel dirtied by the boots of a muzhik! What does she look
+like?</p>
+<p><strong>leon</strong>: You can’t imagine.</p>
+<p><strong>swana</strong>: That bad? Old or young?</p>
+<p><strong>leon</strong>: Timeless. When she comes into a room you’d
+think that the Bolsheviks had taken over Paris. She wears her cheap
+miserable blouse as though it were the latest model by Schiaparelli.
+What a woman! What a woman! There is a Russian snowstorm in each of her
+eyes.</p>
+<p><strong>swana</strong>: You saw all that in one glimpse?</p>
+<p><strong>leon</strong>: Darling, if we’re going to get anywhere
+someone has to keep his eyes open!</p>
+<p><strong>swana</strong>: Now, darling, soak in your beautiful pine
+bath and let Gaston shave you.</p>
+<p><strong>swana</strong>: Gaston!</p>
+<p><strong>the three russians</strong>: How do you do?</p>
+<p><strong>swana</strong>: Yes?</p>
+<p><strong>kopalski</strong>: We want to talk to Count d’Algout. My name
+is Kopalski.</p>
+<p><strong>swana</strong>: Oh… you are the three gentlemen from
+Moscow?</p>
+<p><strong>kopalski</strong>: Yes.</p>
+<p><strong>swana</strong>: You may wait.</p>
+<p><strong>buljanoff</strong>: That’s her.</p>
+<p><strong>kopalski</strong>: Imagine! The niece of the Czar opening the
+door for us.</p>
+<p><strong>buljanoff</strong>: Once in Petersburg I was driving down the
+Nevsky Prospect in my cart and Her Highness in her troika swept down
+from the opposite direction, and when I couldn’t make way quick enough
+she spat in my face.</p>
+<p><strong>iranoff</strong>: Now look here, Buljanoff. You never were in
+Petersburg, you never owned a cart, and she never spat in your face. Who
+are you trying to impress?</p>
+<p><strong>leon</strong>: Hello, boys.</p>
+<p><strong>all three russians</strong>: Leon!</p>
+<p><strong>leon</strong>: Come in, come in.</p>
+<p><strong>leon</strong>: What’s new?</p>
+<p><strong>kopalski</strong>: Leon, Leonitchka, she is not going to
+negotiate! She is going to fight that injunction. She’s going to make a
+precedent of it!</p>
+<p><strong>iranoff</strong>: She says she won’t be intimidated by
+parasites. She called the Duchess a blood-sucking aristocrat and a
+blackmailer.</p>
+<p><strong>leon</strong>: What did she say about me?</p>
+<p><strong>iranoff</strong>: I think she covered you with the
+parasites.</p>
+<p><strong>buljanoff</strong>: And Leonitchka! What she said about
+us…!</p>
+<p><strong>iranoff</strong>: And they might believe her in Moscow.</p>
+<p><strong>buljanoff</strong>: What do you mean they might – they
+will!</p>
+<p><strong>kopalski</strong>: We don’t blame you, Leon, but when we came
+from Russia we believed in simplicity…</p>
+<p><strong>iranoff</strong>: We avoided luxury and extravagance and
+today… well, if you were to offer us a glass of champagne, we wouldn’t
+say no.</p>
+<p><strong>leon</strong>: Well, boys, I’d like to help you but what can
+I do? Yesterday I waited six hours in the lobby!</p>
+<p><strong>kopalski</strong>: She doesn’t leave her room! She has been
+locked in for the last two days with lawyers and law books!</p>
+<p><strong>leon</strong>: All right, then make an appointment with her
+so I can see her!</p>
+<p><strong>kopalski</strong>: We can’t… but you are so ingenious,
+Leon…</p>
+<p><strong>iranoff</strong>: You found your way to us and we weren’t
+easy to reach, were we?</p>
+<p><strong>leon</strong>: No, no.</p>
+<p><strong>buljanoff</strong>: Didn’t we put up a strong resistance?</p>
+<p><strong>leon</strong>: Oh, yes, yes.</p>
+<p><strong>kopalski</strong>: You must help us, Leon… if you don’t win
+her over we’re on our way to Siberia!</p>
+<p><strong>buljanoff</strong>: Or it might be the firing squad!</p>
+<p><strong>kopalski</strong>: Or we can’t go back to Russia!</p>
+<p><strong>iranoff</strong>: What’s wrong with that?</p>
+<p><strong>buljanoff</strong>: Yes! We could stay with Leon!</p>
+<p><strong>iranoff</strong>: Leon, how would you like to have three
+lifelong friends?</p>
+<p><strong>leon</strong>: Boys, boys… don’t forget Russia is your mother
+country. Three sons walking out all at once… that’s too much for any
+mother.</p>
+<p><strong>buljanoff</strong>: Well, if your mother turns against you,
+you have to look for someone to adopt you.</p>
+<p><strong>swana</strong>: Leon! Just a minute…</p>
+<p><strong>swana</strong>: I’m leaving, dear. I’m lunching at Fouquet’s
+if you can make it, and… Leon, remember, a man should think it over
+twice before he decides to become a mother.</p>
+<p><strong>first lawyer</strong>: I seem to remember some additional
+injunctive provision dealing with the property of foreigners residing in
+France.</p>
+<p><strong>ninotchka</strong>: You are referring to paragraph 59b,
+section 25f of the Civil Code.</p>
+<p><strong>ninotchka</strong>: Page eight hundred twenty-four.</p>
+<p><strong>ninotchka</strong>: And do not fail to read the three
+footnotes. While you are studying it I will eat. Food please.</p>
+<p><strong>rakonin</strong>: Room service… Just a moment please.</p>
+<p><strong>leon</strong>: Room service speaking.</p>
+<p><strong>ninotchka</strong>: Send me a plate of raw carrots and beets,
+beets predominating on a ratio of sixty-forty… What? There is a strike
+in the kitchen? Good! Will you assure the strikers of my hearty sympathy
+in their cause. I hope they will not weaken in their demands and tell
+them to put no dressing whatsoever on my vegetables… What? You won’t
+serve me either? Now look here, Comrade, I think it is a fine idea to
+let the capitalists go without luncheon but when you keep food away from
+me you’re weakening the people.</p>
+<p><strong>leon</strong>: So! You want to make a strike breaker out of
+me! I am surprised at you, Comrade! Is it too much for the workers of
+the world to ask you to walk around the corner for lunch? All I can say
+to you is take your hammer and sickle and get out of that Royal
+Suite!</p>
+<p><strong>ninotchka</strong>: Tsk, tsk, tsk.</p>
+<p><strong>taxi driver</strong>: Where to, madame?</p>
+<p><strong>ninotchka</strong>: Can you recommend a restaurant?</p>
+<p><strong>taxi driver</strong>: Well, there’s Pruniers if you care for
+seafood. If you want to lunch in the Bois, there’s…</p>
+<p><strong>ninotchka</strong>: Where do you eat?</p>
+<p><strong>taxi driver</strong>: At P�re Mathieu’s.</p>
+<p><strong>ninotchka</strong>: Where is that?</p>
+<p><strong>taxi driver</strong>: It’s just a place for workmen.</p>
+<p><strong>ninotchka</strong>: Where is it?</p>
+<p><strong>taxi driver</strong>: Eight blocks down in the Rue de
+Poivrel.</p>
+<p><strong>ninotchka</strong>: Thank you.</p>
+<p><strong>p�re mathieu</strong>: This way, madame. Are you alone? By
+the window perhaps? Or a nice little corner table?</p>
+<p><strong>ninotchka</strong>: This will do.</p>
+<p><strong>p�re mathieu</strong>: I think this is the first time you
+have been to my little place. Your face is new to me. Now, what shall it
+be?</p>
+<p><strong>ninotchka</strong>: Raw carrots and beets.</p>
+<p><strong>p�re mathieu</strong>: Oh, madame! This is a restaurant, not
+a meadow.</p>
+<p><strong>p�re mathieu</strong>: Here is what we are offering today.
+Please make your choice. I am sure you will find something to tempt your
+appetite.</p>
+<p><strong>leon</strong>: Why, hello! It certainly is a small world!</p>
+<p><strong>p�re mathieu</strong>: Well, madame? Shall we start with
+soup? Fish soup today. I got up at five to fish them from the Seine.</p>
+<p><strong>leon</strong>: Crayfish soup for me!</p>
+<p><strong>p�re mathieu</strong>: Very well, monsieur. Then, may I
+suggest an omelet with mushrooms?</p>
+<p><strong>ninotchka</strong>: Bring me something simple. I never think
+about food.</p>
+<p><strong>p�re mathieu</strong>: But, madame! If you don’t think about
+food what do you think about?</p>
+<p><strong>ninotchka</strong>: The future of the common people.</p>
+<p><strong>p�re mathieu</strong>: That also is a question of food,
+madame. I’ll bring you a nice little lunch � la P�re Mathieu.</p>
+<p><strong>leon</strong>: Pardon me for addressing you but you insulted
+him, you know that. You hurt his feelings. It was just like telling a
+musician you don’t like music. That good old man believes in food as you
+believe in Karl Marx. You can’t go around hurting people, Comrade
+Yakushova, but maybe you can make it up to him. Do you know how? By
+eating everything with relish, by drinking everything with gusto, by
+having a good time for the first time in your natural life!</p>
+<p><strong>ninotchka</strong>: I don’t like your following me.</p>
+<p><strong>leon</strong>: I didn’t follow you.</p>
+<p><strong>ninotchka</strong>: Then how did you get here?</p>
+<p><strong>leon</strong>: I always eat here.</p>
+<p><strong>ninotchka</strong>: This is a place for workmen.</p>
+<p><strong>leon</strong>: But my dear child, I am most at home among
+working men. I hate the places where you circulate – the Hotel Clarence…
+This is my natural element. After all, what are any of us? Workingmen!
+At least, those of us who are worth our salt. Hyah?</p>
+<p><strong>leon</strong>: Hyah!</p>
+<p><strong>leon</strong>: Hyah, fellows!</p>
+<p><strong>leon</strong>: They are all my friends. They’re a swell
+bunch!</p>
+<p><strong>leon</strong>: Ah, my friend! I’m happy to see you again!</p>
+<p><strong>p�re mathieu</strong>: I’m always glad to meet a new
+customer, and I hope this first visit will not be your last.</p>
+<p><strong>leon</strong>: Just an old man. His memory is getting
+weak.</p>
+<p><strong>ninotchka</strong>: What are you after?</p>
+<p><strong>leon</strong>: Must one always be after something?</p>
+<p><strong>ninotchka</strong>: Your tactics are useless. My name is
+neither Buljanoff, Iranoff, nor Kopalski.</p>
+<p><strong>leon</strong>: Oh, Ninotchka, who wants to talk business. If
+you win the suit, fine. If we win the suit, better. You do me an
+injustice. When we went to my apartment did I have the slightest idea
+that you had any connection with this deal?</p>
+<p><strong>ninotchka</strong>: But you have now, and I know now that you
+are a man who employs business methods which in Russia would be punished
+by death.</p>
+<p><strong>leon</strong>: Death! Death! Always so glum! What about life,
+Ninotchka! Do Russians never think of life? Of the moment in which we
+are living? The only moment we really have? Don’t take it all so
+seriously, Ninotchka. Nothing is worth it. Please… relax… I beg you,
+Sergeant… smile!</p>
+<p><strong>ninotchka</strong>: What?</p>
+<p><strong>leon</strong>: Will you smile?</p>
+<p><strong>ninotchka</strong>: Why?</p>
+<p><strong>leon</strong>: Just smile.</p>
+<p><strong>ninotchka</strong>: At what?</p>
+<p><strong>leon</strong>: At anything. At the whole ludicrous spectacle
+of life. At people being pompous and taking themselves seriously and
+exaggerating their own importance. If you can’t find anything else to
+laugh at you can laugh at you and me.</p>
+<p><strong>ninotchka</strong>: Why?</p>
+<p><strong>leon</strong>: Because we are an odd couple.</p>
+<p><strong>ninotchka</strong>: Then you should go back to your
+table.</p>
+<p><strong>leon</strong>: No, I can’t leave you. I won’t. Not yet. Not
+until I’ve made you laugh… at least once.</p>
+<p><strong>ninotchka</strong>: Ha! Ha! Now go back.</p>
+<p><strong>leon</strong>: That’s not a laugh! I mean a laugh from the
+heart. Now let’s see. I’m going to tell you a funny story. Just a
+moment… I’ve got it! Well, it seems there were a couple of Frenchmen who
+went to America…</p>
+<p><strong>ninotchka</strong>: On which boat?</p>
+<p><strong>leon</strong>: Well, er… let’s drop it. I don’t think you
+would care for that one.</p>
+<p><strong>ninotchka</strong>: Probably not.</p>
+<p><strong>leon</strong>: Do you like Scotch stories?</p>
+<p><strong>ninotchka</strong>: I have never heard one.</p>
+<p><strong>leon</strong>: Two Scotchmen met on the street… and I don’t
+know the name of the street and it really doesn’t matter. Well, anyway,
+one’s name was McIntosh and the other’s was McGillicuddy. McIntosh says
+to McGillicuddy, “Hello, Mr. McGillicuddy,” and McGillicuddy says to
+McIntosh, “Hello, Mr. McIntosh,” and then McIntosh says to McGillicuddy,
+“How is Mrs. McGillicuddy?” and then McGillicuddy says to McIntosh, “How
+is Mrs. McIntosh?”…</p>
+<p><strong>ninotchka</strong>: I wish they had never met.</p>
+<p><strong>leon</strong>: So do I. Now, here’s a great one… Ha! Ha! Ha!
+Well, maybe it’s not so good. Let’s forget it! How’s this? Two men are
+looking at the moon. One says to the other, “Is it true that a lot of
+people live on the moon?” “Yes, it is,” says the other, “five hundred
+million.” “Whew!” replies the first, “they must get pretty crowded when
+it’s half moon!” Ha! Ha! Ha!</p>
+<p><strong>leon</strong>: I suppose you don’t think that’s funny?</p>
+<p><strong>ninotchka</strong>: No.</p>
+<p><strong>leon</strong>: It seemed funny to me when I first heard it.
+Maybe the trouble isn’t with the joke. Maybe it’s with you!</p>
+<p><strong>ninotchka</strong>: I don’t think so.</p>
+<p><strong>leon</strong>: Maybe you haven’t any sense of humor. Well,
+I’ll give you one more chance! Now listen!</p>
+<p><strong>leon</strong>: When I heard this joke for the first time I
+laughed myself sick. Here goes! A man comes into a restaurant and sits
+down and says, “Waiter! Get me a cup of coffee without cream.” After
+five minutes the waiter comes back and says, “I’m sorry, sir, we’re all
+out of cream, can it be without milk?”</p>
+<p><strong>leon</strong>: Not funny, huh?</p>
+<p><strong>ninotchka</strong>: No.</p>
+<p><strong>leon</strong>: So you don’t think that’s funny? It is funny!
+Everyone else thinks so! Maybe you didn’t get it.</p>
+<p><strong>leon</strong>: I’ll tell you that joke again. A man comes
+into a restaurant. Did you get that?</p>
+<p><strong>ninotchka</strong>: Yes.</p>
+<p><strong>leon</strong>: He sits down at the table and says to the
+waiter… Did you get that too?</p>
+<p><strong>ninotchka</strong>: Yes.</p>
+<p><strong>leon</strong>: Well, so far it isn’t funny, but wait. He says
+to the waiter, “Waiter! Bring me a cup of coffee.” So the waiter comes
+back five minutes later and says, “I’m sorry, sir, we have no coffee.”…
+Wait a minute… wait a minute… I’m all mixed up… A man comes in a
+restaurant, he sits down, he calls the waiter and he says, “Waiter! Get
+me a cup of coffee without cream,” and five minutes later the waiter
+comes back and says, “I’m sorry, sir, we have no cream, can it be a
+glass of milk!”</p>
+<p><strong>leon</strong>: Ah! You have no sense of humor! That settles
+it! You have no sense of humor! None! No humor!!</p>
+<p><strong>leon</strong>: What’s funny about this?</p>
+<p><strong>lawyer</strong>: In addition to the arguments above
+enumerated for lifting this injunction, we wish to cite the decision of
+the High Court of Paris, rendered in the case of Princess Marishka
+against the Government of Montenegro on the fifth day of August, 1897.
+Comparing the facts in that case with our present set of facts we feel
+that the Treaty between the Republic of France and the U.S.S.R. should
+prevail over all…</p>
+<p><strong>ninotchka</strong>: I’m sorry, gentlemen. The other day I
+heard such a funny story… It still makes me laugh. It is very funny. I
+am sorry. Oh yes… about this injunction…</p>
+<p><strong>lawyer</strong>: The hearing is set for the twentieth of this
+month.</p>
+<p><strong>ninotchka</strong>: That’s two weeks from Thursday…</p>
+<p><strong>lawyer</strong>: We did our utmost to have it set ahead.</p>
+<p><strong>ninotchka</strong>: completely different from her former</p>
+<p><strong>lawyer</strong>: Yes. It is unfortunate.</p>
+<p><strong>ninotchka</strong>: Well, there’s nothing we can do about it.
+Why get excited?</p>
+<p><strong>lawyer</strong>: We’ll leave these papers here for your
+further consideration. Au revoir, madame.</p>
+<p><strong>ninotchka</strong>: Au revoir.</p>
+<p><strong>ninotchka</strong>: Well, it means another two weeks in
+Paris.</p>
+<p><strong>iranoff</strong>: Too bad we have to waste all that time.</p>
+<p><strong>kopalski</strong>: I acted on your suggestion and got in
+touch with the Power and Light authorities. Whenever you want to visit
+their plants they are open to you.</p>
+<p><strong>ninotchka</strong>: Oh yes, Power and Light. Thank you.</p>
+<p><strong>buljanoff</strong>: There’s something else which I know will
+appeal to you. A visit to the Paris sewers. They tell me it is extremely
+instructive.</p>
+<p><strong>ninotchka</strong>: Huh?… Why don’t you get a haircut,
+Buljanoff? You all look so wintry, Comrades. And why do we always keep
+the windows closed? Isn’t it amazing, at home there’s still snow and ice
+and here… Look at the birds. I always felt a little hurt that our
+swallows deserted us in the winter for capitalistic countries. Now I
+know why. We have the high ideal but they have the climate… well,
+Comrades, I don’t think I need you any more.</p>
+<p><strong>kopalski</strong>: If there is anything we can do for
+you…</p>
+<p><strong>ninotchka</strong>: No, not a thing. Would you like to go
+out?</p>
+<p><strong>all three russians</strong>: Thank you, Comrade.</p>
+<p><strong>ninotchka</strong>: Have you any money?</p>
+<p><strong>ninotchka</strong>: Well, here are fifty francs.</p>
+<p><strong>all three russians</strong>: Thank you, Comrade, thank
+you.</p>
+<p><strong>ninotchka</strong>: Bring me forty-five back.</p>
+<p><strong>all three russians</strong>: Naturally, Comrade.</p>
+<p><strong>leon</strong>: What time have you, Gaston?</p>
+<p><strong>gaston</strong>: Eight forty-two, sir.</p>
+<p><strong>leon</strong>: I guess it is eight forty-two.</p>
+<p><strong>gaston</strong>: You seem to be a bit nervous, sir.</p>
+<p><strong>leon</strong>: I am, Gaston.</p>
+<p><strong>gaston</strong>: If you will forgive me, ever since you met
+that Bolshevik lady I’ve noticed a distinct change in you, sir.</p>
+<p><strong>leon</strong>: Have you?</p>
+<p><strong>gaston</strong>: Decidedly. Yesterday I was greatly amazed
+when I came from the market and found that you had made your bed,
+sir.</p>
+<p><strong>leon</strong>: And Gaston, I was happier all day long. I felt
+I’d contributed something.</p>
+<p><strong>gaston</strong>: Well, sir, if you should do it again, which
+I hope you won’t, please remember the order. Counterpane, blanket,
+blanket, sheet, sheet.</p>
+<p><strong>leon</strong>: Ah, there’s something poetic about the simple
+processes of labor. Counterpane, blanket, blanket, sheet, sheet… it
+should be set to music!</p>
+<p><strong>gaston</strong>: May I add, sir, that it was with great
+amazement that I found a copy of Karl Marx’s Capital on your night
+table. That is a socialistic volume which I refuse to so much as dust,
+sir. I view with alarm, sir, the influence over you of this Bolshevik
+lady.</p>
+<p><strong>leon</strong>: I can’t follow you, Gaston, isn’t it about
+time that you realized the unfairness of your position? You being my
+servant? Wouldn’t you like to stand on an equal footing with me?</p>
+<p><strong>gaston</strong>: No, sir.</p>
+<p><strong>leon</strong>: Isn’t there any revolt in you? Sometimes when
+I order you around don’t you feel like kicking me in the pants?</p>
+<p><strong>gaston</strong>: No, sir.</p>
+<p><strong>leon</strong>: Oh, you’re a reactionary! Don’t you look
+forward to the day when you can come in here and stand square on your
+two feet and say, “Hey, you, d’Algout! from now on it’s going to be
+share and share alike”?</p>
+<p><strong>gaston</strong>: Emphatically not, sir. The prospect
+terrifies me. Now, don’t misunderstand me, sir, I don’t resent your not
+paying me for the past two months, but the thought that I should split
+my bank account with you… that you should take half of my life’s
+savings… that is really too much for me.</p>
+<p><strong>leon</strong>: Go to bed, little father, go to bed.</p>
+<p><strong>ninotchka</strong>: I don’t look too foolish?</p>
+<p><strong>leon</strong>: Foolish? If this dress were to walk down the
+boulevard all by itself I would follow it from one end of Paris to the
+other, and when I caught up with it I would say, “Just a moment, you
+charming little dress, I want you to meet Ninotchka… you two were meant
+for each other.” Ninotchka feels more comfortable.</p>
+<p><strong>leon</strong>: You remember this room?</p>
+<p><strong>ninotchka</strong>: I’ve never been here before. I wonder
+whom you’re thinking of. Oh, I know, a girl with a map, figuring out
+each step, worrying about north and south. Today… now this might shock
+you… I went up to a taxi and said “Eight Rue du Bois”… and here I
+am.</p>
+<p><strong>leon</strong>: You see? Life can be so simple.</p>
+<p><strong>ninotchka</strong>: For twelve francs, seventy-five.</p>
+<p><strong>leon</strong>: Twelve seventy-five from the Clarence? The
+son-of-a-gun made a detour!… But he got you here.</p>
+<p><strong>ninotchka</strong>: It’s nine o’clock.</p>
+<p><strong>leon</strong>: That’s when one half of Paris says to the
+other half, “What are your plans for this evening, madame?”</p>
+<p><strong>ninotchka</strong>: more in the spirit of her change of</p>
+<p><strong>leon</strong>: A wonderful idea! Radio or records?</p>
+<p><strong>ninotchka</strong>: Not radio. Let’s have music that’s just
+for ourselves.</p>
+<p><strong>leon</strong>: I’ll play it softly because I have things to
+tell you about which I can’t shout.</p>
+<p><strong>leon</strong>: Well, my darling… I… we…</p>
+<p><strong>leon</strong>: You see I couldn’t shout that.</p>
+<p><strong>ninotchka</strong>: Leon, you know the jokes you told me a
+few days ago? I wake up in the middle of the night and laugh at them.
+Now, Leon that’s wrong. I know they’re not funny, they’re silly. They’re
+stupid. And still… I laugh… and when I look at Buljanoff and Iranoff and
+Kopalski I know they are scoundrels and I should hate them – then I
+realize who made them like that, and instead of sending my report to
+Moscow I tear it up and go down and buy a ridiculous hat… and if this
+keeps on… am I too talkative?</p>
+<p><strong>leon</strong>: No… go on.</p>
+<p><strong>ninotchka</strong>: Leon, I want to tell you something which
+I thought I never would say, which I thought nobody ever should say,
+because I thought it didn’t exist… and, Leon… I can’t say it…</p>
+<p><strong>leon</strong>: What a gesture for a sergeant.</p>
+<p><strong>ninotchka</strong>: Leon, I would like to ask you
+something.</p>
+<p><strong>leon</strong>: Anything, Ninotchka.</p>
+<p><strong>ninotchka</strong>: If you don’t want to answer, you needn’t.
+But if you do, you must tell me the truth.</p>
+<p><strong>leon</strong>: I promise… I swear.</p>
+<p><strong>ninotchka</strong>: Did you make any change in this room?</p>
+<p><strong>leon</strong>: I don’t think so.</p>
+<p><strong>ninotchka</strong>: When I was here before I noticed a
+photograph of a woman on the desk in a wide silver frame. I thought what
+a waste of silver. That’s all that interested me then. Now I would like
+to know… what happened to the woman?</p>
+<p><strong>ninotchka</strong>: The Duchess.</p>
+<p><strong>ninotchka</strong>: She is very attractive. She has great
+elegance. She’s what you call a woman of the world, isn’t she?</p>
+<p><strong>leon</strong>: Ninotchka, I love you.</p>
+<p><strong>ninotchka</strong>: I suppose she is very entertaining… It
+must be lots of fun to be with her, so witty, so glamorous…</p>
+<p><strong>leon</strong>: Ninotchka, you’re jealous.</p>
+<p><strong>ninotchka</strong>: Leon, don’t ever ask me for a picture of
+myself… I couldn’t bear the thought of being shut up in a drawer… I
+couldn’t breathe, I couldn’t stand it.</p>
+<p><strong>leon</strong>: My darling.</p>
+<p><strong>headwaiter</strong>: Good evening, Your Highness.</p>
+<p><strong>swana</strong>: Good evening, Louis. You seem to be very
+crowded tonight. Can you manage a table near the floor?</p>
+<p><strong>headwaiter</strong>: Certainly, Your Highness, this way
+please… Count d’Algout made the reservation this afternoon.</p>
+<p><strong>swana</strong>: Count d’Algout…</p>
+<p><strong>headwaiter</strong>: It is only a small table but it will be
+no trouble to put in some extra chairs.</p>
+<p><strong>swana</strong>: No, that’s another party.</p>
+<p><strong>lady</strong>: Why don’t we go some other place? It’s so
+crowded here.</p>
+<p><strong>swana</strong>: No, no! This is glory! At last I’m going to
+have a look at that female Bolshevik. Can you give us another table?</p>
+<p><strong>headwaiter</strong>: Only one in the rear, I’m afraid.</p>
+<p><strong>swana</strong>: That’s perfect!</p>
+<p><strong>another woman guest</strong>: You mean Leon’s bringing the
+Bolshevik you told us about?</p>
+<p><strong>swana</strong>: Isn’t it divine?</p>
+<p><strong>another guest</strong>: I wouldn’t have missed this for the
+world.</p>
+<p><strong>swana</strong>: anticipation of a</p>
+<p><strong>headwaiter</strong>: Is this satisfactory?</p>
+<p><strong>swana</strong>: Thank you, Louis.</p>
+<p><strong>headwaiter</strong>: Is it to be dinner, monsieur?</p>
+<p><strong>general savitzky</strong>: Possibly later. We’ll just start
+with champagne.</p>
+<p><strong>swana</strong>: I’m only afraid that the doorman may spoil
+our fun. If only he lets her in!</p>
+<p><strong>general savitzky</strong>: Your Highness…</p>
+<p><strong>swana</strong>: Yes, General Savitzky?</p>
+<p><strong>general savitzky</strong>: I want you to know all the White
+Russian exiles in Paris are keeping their fingers crossed about the
+jewels. They are very interested in the case. Swana suspects her
+countrymen.</p>
+<p><strong>swana</strong>: Are they indeed? Thank you.</p>
+<p><strong>general savitzky</strong>: They hope the settlement will
+bring you a fortune.</p>
+<p><strong>swana</strong>: General, please… if you hear any rumors that
+I am a charitable person, will you please kill them at their source?</p>
+<p><strong>guest</strong>: Look! There’s Leon!</p>
+<p><strong>everyone at the table</strong>: Oh yes! Where? There! Oh! How
+exciting!</p>
+<p><strong>marianne</strong>: Isn’t she something?</p>
+<p><strong>swana</strong>: Shall we dance, General Savitzky?</p>
+<p><strong>guest</strong>: Are you crazy?</p>
+<p><strong>another guest</strong>: How could you make such a remark?</p>
+<p><strong>third guest</strong>: Swana isn’t stupid.</p>
+<p><strong>marianne</strong>: What did I say? I just said “isn’t she
+something?” I didn’t say something what.</p>
+<p><strong>leon</strong>: Is it dry?</p>
+<p><strong>waiter</strong>: Yes, monsieur.</p>
+<p><strong>leon</strong>: Is that right or do you prefer it sweet?</p>
+<p><strong>ninotchka</strong>: I wouldn’t know. The closest I ever came
+to champagne was in a newsreel. The wife of some president was throwing
+it at a battleship.</p>
+<p><strong>leon</strong>: It’s always good luck to launch something with
+champagne; a battleship… or an evening.</p>
+<p><strong>ninotchka</strong>: It’s funny to look back. I was brought up
+on goat’s milk, I had a ration of vodka in the army, and now
+champagne.</p>
+<p><strong>leon</strong>: From goats to grapes. That’s drinking in the
+right direction.</p>
+<p><strong>ninotchka</strong>: Ugh… um… oh… It’s good.</p>
+<p><strong>ninotchka</strong>: From what I read I thought champagne was
+a strong drink. It’s very delicate. Do people ever get drunk on
+this?</p>
+<p><strong>leon</strong>: There have been cases… but the headache the
+next morning is worth while – if you drink it with the right toast. To
+us, Ninotchka!</p>
+<p><strong>swana</strong>: Hello, Leon! What a surprise! You of all
+people! How are you, my dear?</p>
+<p><strong>leon</strong>: Hello, Swana. How do you do, General
+Savitzky?</p>
+<p><strong>general savitzky</strong>: How do you do?</p>
+<p><strong>swana</strong>: You’re looking magnificent, Leon… …isn’t he,
+General Savitzky?</p>
+<p><strong>general savitzky</strong>: Yes.</p>
+<p><strong>leon</strong>: Thank you.</p>
+<p><strong>swana</strong>: Is this your new dress suit?</p>
+<p><strong>leon</strong>: Yes, Swana.</p>
+<p><strong>swana</strong>: Didn’t I tell you Benson and Benson were the
+tailors for you?</p>
+<p><strong>leon</strong>: Yes, Swana, you did.</p>
+<p><strong>swana</strong>: It’s a dream of beauty. He never takes my
+word for anything, but I was right, wasn’t I?</p>
+<p><strong>leon</strong>: Yes, Swana.</p>
+<p><strong>swana</strong>: Am I interrupting?</p>
+<p><strong>leon</strong>: Not at all. Your Highness, may I present
+Madame Yakushova?</p>
+<p><strong>swana</strong>: How do you do?</p>
+<p><strong>ninotchka</strong>: How do you do?</p>
+<p><strong>leon</strong>: And General Savitzky.</p>
+<p><strong>general savitzky</strong>: How do you do?</p>
+<p><strong>ninotchka</strong>: How do you do?</p>
+<p><strong>swana</strong>: I’ve some wonderful news for you, Leon. It’s
+about Punchy… do you mind if I sit down?</p>
+<p><strong>leon</strong>: No… please…</p>
+<p><strong>swana</strong>: General, would you mind making my excuses at
+our table? I’ll be back in a few moments.</p>
+<p><strong>general savitzky</strong>: Certainly.</p>
+<p><strong>swana</strong>: Well, Leon, we can be proud of our Punchy. He
+had a triumph at the dog show.</p>
+<p><strong>swana</strong>: He won another blue ribbon and bit the judge.
+Ha! ha! ha! I bought him the cutest sweater as a reward. You should see
+him strut down the street in it. He looks like a little boulevardier.
+You see, Count d’Algout gave me Punchy for my birthday. You must have
+searched weeks before you found anything as divine as Punchy, didn’t
+you, Leon?</p>
+<p><strong>leon</strong>: Months, Swana.</p>
+<p><strong>swana</strong>: Poor Madame Yakushova… here we are talking in
+mysteries…. I’m sure you wonder what it’s all about.</p>
+<p><strong>ninotchka</strong>: Not at all…. I understand perfectly,
+Count d’Algout gave you a dog. You made it very clear, madame.</p>
+<p><strong>swana</strong>: Dear me… I must be losing my finesse. If I’m
+not careful I’ll be understood by everybody.</p>
+<p><strong>leon</strong>: There’s a charming crowd here tonight, isn’t
+there?</p>
+<p><strong>swana</strong>: I’m going, Leon… but before I leave I must
+compliment you on your gown, Madame Yakushova. Is that what they’re
+wearing in Moscow this year?</p>
+<p><strong>ninotchka</strong>: No, last year, madame.</p>
+<p><strong>swana</strong>: Isn’t it amazing! One gets a wrong impression
+of the new Russia. It must be charming. I’m glad conditions are so
+improved. I assume this is what the factory workers wear at their
+dances?</p>
+<p><strong>ninotchka</strong>: Exactly. You see, it would have been
+embarrassing for people of my sort to wear low-cut gowns in the old
+Russia. The lashes of the Cossacks across our backs were not very
+becoming, and you know how vain women are.</p>
+<p><strong>swana</strong>: You’re absolutely right about the Cossacks.
+We made an unpardonable mistake when we let them use their knouts. They
+had such reliable guns.</p>
+<p><strong>leon</strong>: Will you do me a favor? Stop talking about the
+good old days.</p>
+<p><strong>swana</strong>: A very wise suggestion, Leon. I’m afraid
+madame and I will never agree. The only thing we have in common is our
+lawsuit and that will be decided next week. I understand everything will
+be over by Thursday. Am I right?</p>
+<p><strong>ninotchka</strong>: You’re right, madame, it will all be over
+by Thursday.</p>
+<p><strong>swana</strong>: It is unfortunate that you have so few more
+days in Paris. Be sure and redouble your efforts so that madame can take
+some pleasant memories when she returns to Moscow. Good night. Good
+night, Leon.</p>
+<p><strong>leon</strong>: Good night, Swana.</p>
+<p><strong>ninotchka</strong>: Now I think I need a glass of
+champagne.</p>
+<p><strong>ninotchka</strong>: Quickly, please… tell me one of your
+funny stories.</p>
+<p><strong>leon</strong>: A funny story?</p>
+<p><strong>ninotchka</strong>: You never finished the one about the two
+Scotchmen with the names.</p>
+<p><strong>leon</strong>: Well, there were two Scotchmen. One was named
+McIntosh and one was named McGillicuddy. They met on the street.</p>
+<p><strong>ninotchka</strong>: Go on.</p>
+<p><strong>leon</strong>: No, darling. I’ll tell you another story, a
+much better one. The only thing that will be over on Thursday is the
+lawsuit. There will be no Thursday for us. Not next week or any week. We
+won’t let it happen. I’ll tear it out of the calendar. Is that a good
+story?</p>
+<p><strong>ninotchka</strong>: Wonderful – if one could believe it.</p>
+<p><strong>leon</strong>: You must, darling.</p>
+<p><strong>ninotchka</strong>: To the loveliest story I ever heard.</p>
+<p><strong>ninotchka</strong>: conversation may</p>
+<p><strong>ninotchka</strong>: Oo! Darling! Something is the matter.</p>
+<p><strong>leon</strong>: You just made that trip from goats to grapes a
+little too fast.</p>
+<p><strong>ninotchka</strong>: Oh, everything is so wonderful! It’s
+getting farther and farther away!</p>
+<p><strong>leon</strong>: What, darling?</p>
+<p><strong>ninotchka</strong>: Thursday.</p>
+<p><strong>leon</strong>: Yes. Don’t worry. Everything will be all
+right.</p>
+<p><strong>ninotchka</strong>: Comrades! Comrades!</p>
+<p><strong>leon</strong>: Darling, darling… please!</p>
+<p><strong>ninotchka</strong>: I must talk to my brothers!</p>
+<p><strong>leon</strong>: Shhh! Shhh!</p>
+<p><strong>ninotchka</strong>: Don’t shush me. I am People! I want to
+make a speech. I want to overthrow the Duchess!</p>
+<p><strong>leon</strong>: But, darling, you can’t do that.</p>
+<p><strong>ninotchka</strong>: Comrades! Good people of France!</p>
+<p><strong>leon</strong>: Now, Ninotchka… please!</p>
+<p><strong>ninotchka</strong>: They are all Duchesses here… thousands of
+Duchesses… and I am going to tell them.</p>
+<p><strong>leon</strong>: Quite right… yes, yes, yes, but first you’re
+going in that door and you’re going to take a little spirits of ammonia
+and lie down.</p>
+<p><strong>ninotchka</strong>: No speech?</p>
+<p><strong>leon</strong>: addressing a little</p>
+<p><strong>ninotchka</strong>: I love you, my little Leonitchka!</p>
+<p><strong>leon</strong>: And I adore you, Ninotchua.</p>
+<p><strong>leon</strong>: Give me a double brandy.</p>
+<p><strong>manager</strong>: I’m very sorry, Count d’Algout, it is most
+embarrassing, but the lady you brought with you tonight is spreading
+communistic propaganda in the powder room.</p>
+<p><strong>leon</strong>: Give me another double brandy.</p>
+<p><strong>manager</strong>: That kind of propaganda is bad anywhere,
+but inciting the attendants of a powder room to go on strike…. Well, if
+she succeeds the consequences will be disastrous.</p>
+<p><strong>leon</strong>: What can I do about it?</p>
+<p><strong>manager</strong>: She has been asked to leave the powder room
+but without success. We would appreciate if you would see to it
+yourself.</p>
+<p><strong>leon</strong>: You want me to go in there?</p>
+<p><strong>manager</strong>: I’m sorry, sir, but I must insist.</p>
+<p><strong>leon</strong>: Make it a triple brandy. As we</p>
+<p><strong>leon</strong>: All right… you can tell the Duchess… you can
+tell everybody… they know anyhow… it doesn’t make any difference… now
+get out!</p>
+<p><strong>ninotchka</strong>: Don’t tell them where we’re going,
+sweetheart.</p>
+<p><strong>leon</strong>: No. Nobody will find us.</p>
+<p><strong>ninotchka</strong>: Are we going to build our little
+house?</p>
+<p><strong>leon</strong>: Yes… a little white house.</p>
+<p><strong>ninotchka</strong>: Not white, darling.</p>
+<p><strong>leon</strong>: All right, we’ll make it red.</p>
+<p><strong>ninotchka</strong>: No, don’t let’s have it any color… no
+color… just a house house… let’s form our own party.</p>
+<p><strong>leon</strong>: Right: Lovers of the world unite!</p>
+<p><strong>ninotchka</strong>: And we won’t stretch up our arms…</p>
+<p><strong>leon</strong>: No! No!</p>
+<p><strong>ninotchka</strong>: …and we won’t clench our fist…</p>
+<p><strong>leon</strong>: No! No!</p>
+<p><strong>ninotchka</strong>: Our salute will be a kiss.</p>
+<p><strong>leon</strong>: Yes… a kiss… salute!</p>
+<p><strong>ninotchka</strong>: I am so happy. No one can be so happy
+without being punished. I will be punished and I should be punished. I
+want to confess, darling.</p>
+<p><strong>leon</strong>: I know… it’s the Russian soul.</p>
+<p><strong>ninotchka</strong>: Everyone wants to confess and if they
+don’t confess they make them confess. I am a traitor. When I kissed you
+I betrayed the Russian ideal. Leon, I should be stood up against the
+wall.</p>
+<p><strong>leon</strong>: Would that make you any happier?</p>
+<p><strong>ninotchka</strong>: Much happier.</p>
+<p><strong>leon</strong>: All right.</p>
+<p><strong>ninotchka</strong>: I have paid the penalty. Now let’s have
+some music.</p>
+<p><strong>leon</strong>: Let’s turn on the radio.</p>
+<p><strong>ninotchka</strong>: Radio! What is radio?</p>
+<p><strong>leon</strong>: It’s a little box that you buy on the
+installment plan and before you tune it in they tell you they have a new
+model.</p>
+<p><strong>ninotchka</strong>: Oh yes, yes. It has a little knob that
+turns… a little knob… it must be somewhere around here… yes… here… I
+see…</p>
+<p><strong>ninotchka</strong>: Here it is!</p>
+<p><strong>leon</strong>: What shall we get? The news!</p>
+<p><strong>ninotchka</strong>: No, no news. We don’t want to know what’s
+happening in the world. We want to be left alone, don’t we?</p>
+<p><strong>leon</strong>: Yes, sweetheart… all by ourselves.</p>
+<p><strong>ninotchka</strong>: Well, then we turn twice to the right and
+stop at seven…</p>
+<p><strong>ninotchka</strong>: It’s dead.</p>
+<p><strong>leon</strong>: Well, it has to warm up… you have to give it a
+chance… just like people… like you and me… first you wanted to fight me
+and now we belong to the same party… salute!</p>
+<p><strong>ninotchka</strong>: Now twice to the left and stop at
+seventeen.</p>
+<p><strong>ninotchka</strong>: No music.</p>
+<p><strong>leon</strong>: No, no music.</p>
+<p><strong>ninotchka</strong>: There it is… Thursday… you can’t rip it
+out of the week….</p>
+<p><strong>leon</strong>: But I can throw it out of the window.</p>
+<p><strong>ninotchka</strong>: It wouldn’t be fair to the man in the
+street. There they are… they are terrible things, those jewels….</p>
+<p><strong>leon</strong>: …but big.</p>
+<p><strong>ninotchka</strong>: …they are the tears of Old Russia… see
+that stone?</p>
+<p><strong>leon</strong>: Who cried that one?</p>
+<p><strong>ninotchka</strong>: Czar Peter gave it to his wife, Catherine
+the Great. For it he sold ten thousand serfs in the market.</p>
+<p><strong>leon</strong>: Now, darling, don’t get impatient, wait until
+we are married. You know that worthless butler of mine… that
+reactionary? Some day when I come home to you I may say, “Darling, I
+drove Gaston to the market and look what I got from him!”</p>
+<p><strong>ninotchka</strong>: First ten thousand serfs… now just
+Gaston. It is very encouraging.</p>
+<p><strong>leon</strong>: Come, sweetheart. Let me put it on you. You
+will teach these jewels. For the first time they will learn how they can
+look.</p>
+<p><strong>ninotchka</strong>: They belong to the people.</p>
+<p><strong>leon</strong>: I give them back to the people… I make you
+Ninotchka the Great… Duchess of the People!… Grand Duchess of the
+People!</p>
+<p><strong>ninotchka</strong>: Is this the wish of the masses?</p>
+<p><strong>leon</strong>: It is their wish.</p>
+<p><strong>ninotchka</strong>: Thank you, Leon… thank you, masses. Can I
+make a speech now?</p>
+<p><strong>leon</strong>: Please.</p>
+<p><strong>ninotchka</strong>: Comrades! People of the world! The
+revolution is on the march… I know… wars will wash over us… bombs will
+fall… all civilization will crumble… but not yet, please… wait, wait…
+what’s the hurry? Let us be happy… give us our moment…. We are happy,
+aren’t we, Leon?</p>
+<p><strong>leon</strong>: Yes, sweetheart.</p>
+<p><strong>ninotchka</strong>: So happy and so tired.</p>
+<p><strong>ninotchka</strong>: Smile, little father, smile.</p>
+<p><strong>swana</strong>: Good morning.</p>
+<p><strong>ninotchka</strong>: What?</p>
+<p><strong>swana</strong>: It is tomorrow morning… tomorrow noon, to be
+exact. I hope you will forgive me. I know it’s extremely cruel to waken
+anyone at such an hour. Don’t you recognize me? I am the Duchess
+Swana.</p>
+<p><strong>swana</strong>: I know how you feel, my dear. The morning
+after always does look grim if you happen to be wearing last night’s
+dress. Don’t be embarrassed by my presence, though. You couldn’t have
+found anybody more sympathetic to your condition. I remember once in
+Petrograd when I felt exactly as you do. I had to bow from a balcony to
+the crowd. My dear, the masses have no understanding of the feelings of
+a lady before noon. Don’t you find that true?</p>
+<p><strong>ninotchka</strong>: I think we can cut your visit short. Leon
+is not here.</p>
+<p><strong>swana</strong>: Of course not, my dear! I didn’t come here
+with any such suspicion. How ridiculous! Nor did I come here to pick up
+his hat.</p>
+<p><strong>swana</strong>: How stale last night’s gaiety looks! It has
+the taste of a dead cigarette.</p>
+<p><strong>ninotchka</strong>: If you were encouraged to come here by
+our meeting last night I am afraid you misunderstood my attitude.</p>
+<p><strong>swana</strong>: Don’t worry, you were quite rude enough. Do
+you mind if I let in a little fresh air and sunshine? I’m sure it will
+make you feel better and I want you to be at your very best. In full
+possession of your faculties, at least.</p>
+<p><strong>ninotchka</strong>: Please come to the point. What is it you
+want?</p>
+<p><strong>swana</strong>: I just dropped in to have a little
+heart-to-heart talk with you.</p>
+<p><strong>ninotchka</strong>: We have nothing to discuss.</p>
+<p><strong>swana</strong>: Now there you are completely wrong. If we sit
+down for a little chat, I’m sure we won’t run out of conversation and
+what’s more it won’t be dull.</p>
+<p><strong>ninotchka</strong>: Madame, what is it you people always say,
+regardless of what you mean… “I am delighted to have you here”? I have
+not reached that stage of civilization.</p>
+<p><strong>swana</strong>: That’s all right… I grow on people.</p>
+<p><strong>ninotchka</strong>: I must ask you to leave.</p>
+<p><strong>swana</strong>: Leave? That’s exactly what I came here to ask
+you to do. Leave! I don’t mean this hotel and I don’t mean Paris… I mean
+France. There’s a plane for Moscow at five-forty.</p>
+<p><strong>ninotchka</strong>: Madame, if you…</p>
+<p><strong>swana</strong>: Don’t worry. I have already made
+reservations. It’s perfect flying weather. They assure me there’s a fine
+tail wind which will sweep you back to Moscow in no time.</p>
+<p><strong>ninotchka</strong>: If this is meant to be a joke it is not
+funny. Or do you still think you’re issuing orders from your palace in
+Petrograd?</p>
+<p><strong>swana</strong>: My palace in Petrograd… yes, you took that
+away from me. You took away my czar, my country, my people, everything I
+had… but nothing more – I warn you.</p>
+<p><strong>ninotchka</strong>: People cannot be taken away, madame,
+neither a hundred and sixty million nor one. Not if you have their love.
+You hadn’t. That’s why you’re not in Russia any longer, and that’s why
+you came here this morning.</p>
+<p><strong>swana</strong>: Very interesting, my dear, but couldn’t you
+write all that from Moscow? A dissertation on love on Soviet stationery
+– would be an amusing paradox.</p>
+<p><strong>ninotchka</strong>: It is not enough to be witty, madame.
+People grow tired of being entertained. You made that mistake before.
+Problems were never solved by bowing from a balcony.</p>
+<p><strong>swana</strong>: My dear, you don’t know how impressive I
+could be. Did you ever see me in my regalia with my diadem and all my
+jewels?</p>
+<p><strong>swana</strong>: You can’t deny we gave the people their
+money’s worth – almost – eight tumbling Romanoffs – eight!</p>
+<p><strong>ninotchka</strong>: I must insist that you leave.</p>
+<p><strong>swana</strong>: Not before you agree to use those
+reservations to Moscow.</p>
+<p><strong>ninotchka</strong>: In that case I can only say good-by.</p>
+<p><strong>ninotchka</strong>: �lys�e 2763.</p>
+<p><strong>swana</strong>: I wouldn’t waken Leon. After last night I
+would say not before three o’clock at the earliest.</p>
+<p><strong>ninotchka</strong>: I told you to go, madame.</p>
+<p><strong>swana</strong>: Believe me, Leon can’t help you. He doesn’t
+know anything about the jewels… I give you my word… I swear it.</p>
+<p><strong>ninotchka</strong>: Where are they?</p>
+<p><strong>swana</strong>: You were very careless with our precious
+jewels, my dear. They’re too expensive a toy for two children to play
+with.</p>
+<p><strong>ninotchka</strong>: Where are they?</p>
+<p><strong>swana</strong>: Don’t worry. Fortunately last night a very
+trustworthy friend kept his eyes open. Perhaps he overstepped his
+function as a waiter but he fulfilled his duty as a Russian. I just put
+this on for sentiment. The rest are absolutely safe. I assure you. But
+if you feel like notifying the police…</p>
+<p><strong>ninotchka</strong>: You leave me no choice.</p>
+<p><strong>swana</strong>: Won’t it be rather embarrassing for a Soviet
+Envoy to disclose the circumstances under which she lost them?</p>
+<p><strong>ninotchka</strong>: I will have to face the consequences, but
+so will you. Don’t forget they will ask how you got them.</p>
+<p><strong>swana</strong>: That’s very simple to answer. They were given
+to me by my mother. They were given to her by her mother, in fact
+they’re mine, you cannot steal what belongs to you!</p>
+<p><strong>ninotchka</strong>: They always belonged to the Russian
+people. They were paid for with their sweat, their blood, their lives
+and you will give them back!</p>
+<p><strong>swana</strong>: I told you we had plenty to talk about. Shall
+we sit down?</p>
+<p><strong>swana</strong>: Now, let’s free ourselves from emotionalism
+and try to solve the problem in a practical way. Our situation has
+changed considerably. Before I had only a claim to the jewels. Now I
+have the jewels.</p>
+<p><strong>ninotchka</strong>: In other words moral ideas have no weight
+with you… all right, then let’s deal with legal facts. You know that
+France has recognized the Soviet.</p>
+<p><strong>swana</strong>: Unfortunately.</p>
+<p><strong>ninotchka</strong>: Under Soviet law the jewels belong to the
+State. France is going to uphold that ownership.</p>
+<p><strong>swana</strong>: My lawyer agrees with you. He says France
+will uphold it in every court, but I will drag you through every court,
+don’t forget that. And when I say it will take two years I am, as
+always, conservative.</p>
+<p><strong>ninotchka</strong>: Won’t those two years in court be
+expensive for you? I know that money was no object as long as you could
+squeeze it from the pockets of the people, but now…</p>
+<p><strong>swana</strong>: I may run out of money, but you have already
+run out of bread. Two years is a long time for your comrades to
+wait.</p>
+<p><strong>ninotchka</strong>: I see. You have calculated in terms of
+hunger.</p>
+<p><strong>swana</strong>: No, I just wanted to be absolutely impartial.
+Both of us are faced with two rather uncomfortable years. We can
+condense these two years to two minutes if you want to accept my
+proposition. Ninotchka now realizes what she is after.</p>
+<p><strong>ninotchka</strong>: Go on.</p>
+<p><strong>swana</strong>: I am willing to hand over the jewels and sign
+the necessary papers if you take that five-forty plane to Moscow.</p>
+<p><strong>ninotchka</strong>: That’s not the way to win him back… not
+Leon.</p>
+<p><strong>swana</strong>: I think I know Leon quite as well as you…
+possibly a little better. Leave that worry to me. Five-forty leaves you
+time enough to close the deal with Monsieur Mercier, but naturally
+you’ll be too busy for any farewells. I’ll see to it that everything is
+done in the most expeditious manner and I will also see you to the
+airport. That’s my proposition, Comrade Yakushova.</p>
+<p><strong>ninotchka</strong>: Yes… Oh hello…</p>
+<p><strong>ninotchka</strong>: Good morning, Leon… … no, you didn’t
+waken me… I am fine, thank you…. Yes, it was… marvelous…. What?… for
+luncheon? I’m afraid I can’t. I am going to be very busy… well, I have a
+lot of things to attend to today…. What?… Well to tell you the truth I
+am a little tired and I would like to rest… you may be right… perhaps it
+is the champagne…. For dinner?… Of course… seven o’clock here?… seven
+o’clock is all right…. Where?… That will be lovely…. Yes… Come in. Yes?…
+Just a moment…</p>
+<p><strong>ninotchka</strong>: You can leave it here.</p>
+<p><strong>ninotchka</strong>: Operator, will you switch the call
+please?… Hello?… Darling, your present just arrived…. It’s very silly
+and very wonderful… thank you… No, I won’t forget… seven o’clock….
+Good-by, my darling…. What?… Oh… salute!</p>
+<p><strong>ninotchka</strong>: I am sorry to have kept you waiting,
+madame.</p>
+<p><strong>swana</strong>: Good afternoon, Jacqueline.</p>
+<p><strong>maid</strong>: Good afternoon, Your Highness. Madame, I…</p>
+<p><strong>swana</strong>: You didn’t find my glove. All right, you’re
+forgiven.</p>
+<p><strong>maid</strong>: Thank you, Your Highness. Count d’Algout is
+waiting. He’s been here some time.</p>
+<p><strong>swana</strong>: Leon, darling, how nice! Have you ordered tea
+or a cocktail?</p>
+<p><strong>leon</strong>: No thanks, Swana.</p>
+<p><strong>swana</strong>: Did I act stupidly last night? Should I
+apologize?</p>
+<p><strong>leon</strong>: I’m the one who should apologize. I should
+have talked to you before.</p>
+<p><strong>swana</strong>: Is this, by any chance, going to be a
+confession?</p>
+<p><strong>leon</strong>: Yes.</p>
+<p><strong>swana</strong>: Oh, no, my little Volga boatman. Have you
+forgotten our First Commandment: Never Complain – Never Explain. It has
+worked so often and so perfectly, don’t let’s break the rule. And please
+don’t look so guilty, otherwise I’ll…</p>
+<p><strong>leon</strong>: This time, Swana – just this once – I must ask
+you to listen.</p>
+<p><strong>swana</strong>: All right, I’ll listen.</p>
+<p><strong>leon</strong>: I know you hate the obvious but do you mind
+if, at this moment, I’m not in the least subtle?</p>
+<p><strong>swana</strong>: Brutal frankness, if you insist.</p>
+<p><strong>leon</strong>: There are a hundred ways to approach it, but I
+feel it can best be said in one simple phrase. I’m in love, Swana.</p>
+<p><strong>swana</strong>: And I thought it was something serious! How
+could you frighten me so?</p>
+<p><strong>leon</strong>: It must be serious, Swana. Not long ago I’d
+have considered such a statement rather juvenile and rather middle
+class. Now I can say it without stammering, without a blush. I’m in
+love, Swana.</p>
+<p><strong>swana</strong>: Say it over and over again, Leon. Words are a
+wonderful safety valve, and that’s what you need – because you know it’s
+impossible, don’t you?</p>
+<p><strong>leon</strong>: I have to be simple again, Swana, and you may
+find it shockingly banal. I’ve thought it over and I’m willing to take
+all the consequences, even if it means a complete readjustment of my way
+of living.</p>
+<p><strong>swana</strong>: Leon! This has the ugly sound of
+regeneration.</p>
+<p><strong>leon</strong>: I’m afraid that’s what it is.</p>
+<p><strong>swana</strong>: The same old trouble, Leon. You’re always
+late. Whether you’re taking me to the Opera or calling for me at a
+beauty shop, you’re never on time. And now, when it’s a question of your
+reform – late again. By about five minutes.</p>
+<p><strong>leon</strong>: What is this, Swana?</p>
+<p><strong>swana</strong>: Knowing the efficiency of the French Air
+Service I think I can guarantee that Madame Yakushova has already taken
+off for Moscow.</p>
+<p><strong>leon</strong>: Has done what?</p>
+<p><strong>swana</strong>: She’s gone, Leon.</p>
+<p><strong>leon</strong>: Do you expect me to believe that?</p>
+<p><strong>swana</strong>: Here’s the telephone. If you call the hotel
+you will find that you have no seven o’clock appointment.</p>
+<p><strong>buljanoff</strong>: Imagine, for once in our lives we were in
+Paris and we never went to the Eiffel Tower.</p>
+<p><strong>kopalski</strong>: That’s right.</p>
+<p><strong>iranoff</strong>: They tell me it has a wonderful restaurant
+on the second floor.</p>
+<p><strong>kopalski</strong>: While you eat, you look at the view.</p>
+<p><strong>ninotchka</strong>: Yes, it is an amazing piece of
+engineering. Still the most remarkable iron structure in the world.
+Leading to the top there is a staircase of over a thousand steps… but an
+elevator is included in the price of admission.</p>
+<p><strong>official</strong>: Well, everything is in order. I hope you
+will enjoy your trip to Russia, madame.</p>
+<p><strong>english lady</strong>: Thank you. Oh, by the way, I’ve heard
+so many rumors about laundry conditions in Russia. Is it advisable to
+take one’s own towels?</p>
+<p><strong>official</strong>: Certainly not, madame. That’s only
+capitalistic propaganda. We change the towel every week.</p>
+<p><strong>english lady</strong>: Oh… thank you.</p>
+<p><strong>official</strong>: Yes, please?</p>
+<p><strong>official</strong>: Yes… Comrade Cazabine? No, I’m sorry… he
+hasn’t been with us for six months. He was called back to Russia and was
+investigated. You can get further details from his widow.</p>
+<p><strong>leon</strong>: Pardon me, I am very interested in what you
+just said – you mean when an envoy goes back to Russia – if they don’t
+like what he has done they put him out of the way?</p>
+<p><strong>official</strong>: Not always… look at me… I’ve been back
+twice.</p>
+<p><strong>leon</strong>: Here’s my passport…. Please give me a visa. I
+have to leave for Russia immediately.</p>
+<p><strong>official</strong>: Count Leon d’Algout… a count!… a
+nobleman!</p>
+<p><strong>leon</strong>: Don’t hold that against me… please!</p>
+<p><strong>official</strong>: Why should an aristocrat want to go to
+Russia?</p>
+<p><strong>leon</strong>: Business.</p>
+<p><strong>official</strong>: What business?</p>
+<p><strong>leon</strong>: Private.</p>
+<p><strong>official</strong>: There is no privacy in Russia. This whole
+thing seems very suspicious. What’s the real reason? If you ever want to
+get into Russia, take my advice… confess!</p>
+<p><strong>leon</strong>: Confess what?</p>
+<p><strong>official</strong>: Are you sympathetic to the former
+Czaristic government – the White Russians?</p>
+<p><strong>leon</strong>: On the contrary – I don’t want to have
+anything to do with them.</p>
+<p><strong>official</strong>: You believe in our cause?</p>
+<p><strong>leon</strong>: Oh… I think it’s great! Everyone works –
+everyone contributes – that’s what I want to do – work! I make my own
+bed – you can call up my butler! I don’t believe in the right of the
+individual. I like the Bolshevik ideal – everyone being the same. You
+just like me – me just like you – I use your comb – you use my
+toothbrush – oh, it’s a great life…. Please… give me that visa!</p>
+<p><strong>swana</strong>: Hello, Leon darling!</p>
+<p><strong>leon</strong>: Hello.</p>
+<p><strong>swana</strong>: After our talk last night I took it for
+granted that you would drop in here this morning. Knowing how difficult
+it is to get into Soviet Russia, I thought I might be of some assistance
+to you. May I introduce myself? I am the Duchess Swana of Russia…
+another Russia.</p>
+<p><strong>leon</strong>: Now, please, Swana.</p>
+<p><strong>swana</strong>: Count d’Algout was for several years my
+personal representative and if it is necessary to sign any affidavit for
+him I’ll be delighted.</p>
+<p><strong>leon</strong>: That does it, Swana. Now you mustn’t miss your
+appointment with your hair-dresser.</p>
+<p><strong>swana</strong>: Just in case they don’t give you your visa to
+Russia I want you to know that I have signed a contract for my memoirs
+and rented a lovely little ch�teau in the Touraine, and if you feel the
+need of a change…</p>
+<p><strong>leon</strong>: Thank you, Swana. You are very gracious.</p>
+<p><strong>leon</strong>: She must have her little joke. You’re not
+going to take that seriously.</p>
+<p><strong>official</strong>: The Grand Duchess Swana… active in the
+White Russian movement?</p>
+<p><strong>leon</strong>: Believe me, I have no connection with her any
+longer… I swear I haven’t!</p>
+<p><strong>official</strong>: But you had!</p>
+<p><strong>leon</strong>: Listen, I want to be absolutely frank with
+you. I have no business in Moscow.</p>
+<p><strong>official</strong>: I think so too.</p>
+<p><strong>leon</strong>: I want to see a friend of mine… a very dear
+friend…. It’s a personal matter which has nothing to do with politics or
+social philosophies…. It’s a girl.</p>
+<p><strong>official</strong>: So it’s love which drags you to
+Moscow.</p>
+<p><strong>leon</strong>: Yes!</p>
+<p><strong>official</strong>: No visa.</p>
+<p><strong>leon</strong>: I must get into that country of yours!</p>
+<p><strong>official</strong>: Oh no. No visa.</p>
+<p><strong>leon</strong>: That’s impossible! Nobody has the right…. You
+can’t do that!… If you don’t give me that visa…</p>
+<p><strong>official</strong>: You’re going to force us… huh?</p>
+<p><strong>leon</strong>: Now look here… you advertise all over the
+world that you want people to go into your country and when someone
+tries to get in, you keep him out!</p>
+<p><strong>official</strong>: Why should I take a chance?</p>
+<p><strong>leon</strong>: On what?</p>
+<p><strong>official</strong>: How do I know you don’t want to blow up a
+factory?</p>
+<p><strong>leon</strong>: What for… why?</p>
+<p><strong>official</strong>: Or a tunnel or a bridge…</p>
+<p><strong>leon</strong>: Suspicions… nothing but suspicions!… That’s
+the trouble with you! If you don’t let me in I’ll stand in front of this
+office of yours and warn people to keep away from Russia!… I’ll picket
+your whole country….</p>
+<p><strong>leon</strong>: I’ll boycott you, that’s what I’m going to
+do!… No more vodka… no more caviar… no more Tchaikovsky… no more
+borscht…. Wait a minute, I know something better than that…</p>
+<p><strong>official</strong>: What?</p>
+<p><strong>leon</strong>: And you can tell the Kremlin that’s just the
+beginning!</p>
+<p><strong>official</strong>: No visa.</p>
+<p><strong>radio announcer</strong>: March, march, march! Comrades of
+the World, never has there been such a May Day parade as this! Already
+for four hours the pavements of Moscow have resounded to the tread of a
+million boots! Thousands of gun- carriages have thundered past.
+Thousands of tanks, combined with our mighty air force, have
+demonstrated to a belligerent neighbor that we are ready and invincible!
+Now past me marches the great army of our civilians! Men and women of
+all ages. All servants of the State united in one thought and ideal.
+Group of Several Units Marching</p>
+<p><strong>ninotchka</strong>: Good evening, Anna.</p>
+<p><strong>anna</strong>: Good evening, Ninotchka.</p>
+<p><strong>ninotchka</strong>: Aren’t you late?</p>
+<p><strong>anna</strong>: No, the opera starts an hour later tonight on
+account of the parade.</p>
+<p><strong>ninotchka</strong>: Didn’t you march?</p>
+<p><strong>anna</strong>: They didn’t let me. I am in disgrace. Last
+week at the performance of Carmen I played a sour note. The conductor
+got so excited he yelled, “There’s sabotage in the string section!”</p>
+<p><strong>ninotchka</strong>: Too bad… you missed an inspiring day,
+Anna.</p>
+<p><strong>anna</strong>: I know… my heart is sad… but my feet are
+happy. When all the tanks and guns were roaring over the Red Square I
+sat here all by myself and played a Beethoven sonata. Not bad at all.
+Are you expecting someone?</p>
+<p><strong>ninotchka</strong>: A few friends… just a little dinner
+party.</p>
+<p><strong>anna</strong>: What are you serving?</p>
+<p><strong>ninotchka</strong>: An omelet.</p>
+<p><strong>anna</strong>: An omelet! Aren’t you living a little above
+your ration?</p>
+<p><strong>ninotchka</strong>: Well, I’ve saved up two eggs and each of
+my friends is bringing his own so we’ll manage.</p>
+<p><strong>anna</strong>: It just goes to prove the theory of our State.
+If you stand alone it means a boiled egg but if you’re true to the
+collective spirit and stick together you’ve got an omelet. That reminds
+me… have you heard the latest they’re telling about the Kremlin?</p>
+<p><strong>anna</strong>: I’ll tell you later. That Gurganov, you never
+know whether he’s on his way to the washroom or the Secret Police.</p>
+<p><strong>ninotchka</strong>: You should be more careful, Anna.</p>
+<p><strong>anna</strong>: And you too, Ninotchka.</p>
+<p><strong>ninotchka</strong>: About what?</p>
+<p><strong>anna</strong>: Ever since you have been back from Paris…</p>
+<p><strong>ninotchka</strong>: I haven’t talked to anyone about Paris. I
+haven’t said a word.</p>
+<p><strong>anna</strong>: That’s just it. It makes people feel queer. I
+dont’ want you to get in any trouble.</p>
+<p><strong>ninotchka</strong>: I have nothing to hide.</p>
+<p><strong>anna</strong>: You should. I’ll show you.</p>
+<p><strong>anna</strong>: When I passed through the laundry yard today I
+saw all the women huddled around this so I brought it up here. Things
+like this create a bad feeling. First they didn’t know whose it was.
+Then they saw the Paris label and did it start a commotion! Some said
+it’s what we all ought to wear and others said it’s like hanging foreign
+ideas on our clothesline. It undermines our whole cause.</p>
+<p><strong>ninotchka</strong>: I see.</p>
+<p><strong>anna</strong>: You know how it is today… all you have to do
+is wear a pair of silk stockings and they suspect you of
+counter-revolution.</p>
+<p><strong>ninotchka</strong>: Thank you, Anna. I’ll dry it up here when
+I wash it next. I should hate to see our country endangered by my
+underwear.</p>
+<p><strong>anna</strong>: Ninotchka, you know I am your friend, you can
+trust me…. Did you bring back anything else?</p>
+<p><strong>ninotchka</strong>: No, I left everything in Paris. I just
+happened to be wearing this.</p>
+<p><strong>anna</strong>: Tell me… what else did you have?</p>
+<p><strong>ninotchka</strong>: Well, a hat…</p>
+<p><strong>anna</strong>: What was it like?</p>
+<p><strong>ninotchka</strong>: It was very silly…. I would be ashamed to
+wear it here.</p>
+<p><strong>anna</strong>: As beautiful as that? What else? Come, tell
+me.</p>
+<p><strong>ninotchka</strong>: An evening gown.</p>
+<p><strong>anna</strong>: Evening gown?</p>
+<p><strong>ninotchka</strong>: A dress you wear in the evening.</p>
+<p><strong>anna</strong>: What do you wear in the morning?</p>
+<p><strong>ninotchka</strong>: When you get up you put on a negligee,
+and then you change to a morning frock.</p>
+<p><strong>anna</strong>: You mean to tell me you wear a different dress
+for different times of the day?</p>
+<p><strong>ninotchka</strong>: Yes.</p>
+<p><strong>anna</strong>: Now, Ninotchka, you’re exaggerating.</p>
+<p><strong>ninotchka</strong>: No, my dear, it is true. That’s how they
+live in the other world. Here we dress to have our bodies covered… to
+keep warm….</p>
+<p><strong>anna</strong>: And there?</p>
+<p><strong>ninotchka</strong>: Well, sometimes they’re not completely
+covered but… they don’t freeze.</p>
+<p><strong>anna</strong>: They must have wonderful materials to make a
+thing like this so soft… something you don’t even see.</p>
+<p><strong>ninotchka</strong>: You feel it, though.</p>
+<p><strong>anna</strong>: Ninotchka, I wouldn’t bring this up if we
+weren’t such good friends.</p>
+<p><strong>ninotchka</strong>: What is it, Anna?</p>
+<p><strong>anna</strong>: You know I told you that Pavlov and I are
+going to get married when he comes back from the maneuvers. Would it be
+asking too much…</p>
+<p><strong>ninotchka</strong>: You want this?</p>
+<p><strong>anna</strong>: Just for the honeymoon.</p>
+<p><strong>ninotchka</strong>: You can have it for good. It is my
+wedding present.</p>
+<p><strong>anna</strong>: Ninotchka! Ninotchka!</p>
+<p><strong>anna</strong>: Am I going to play that cadenza tonight!</p>
+<p><strong>voice on radio</strong>: Individuals? Yes, as atoms in the
+cosmos of Soviet Russia. Family? Yes. One great family of one hundred
+and sixty million, struggling, fighting, victorious Russian
+proletarians. Thus shall we pursue our way into the future, fists
+clenched, hearts encased in steel armed against bourgeois sentimentality
+and…</p>
+<p><strong>ninotchka</strong>: No music.</p>
+<p><strong>all three russians</strong>: Ninotchka! Ninotchka!</p>
+<p><strong>ninotchka</strong>: How are you, you three scoundrels?</p>
+<p><strong>kopalski</strong>: Well, we’re back home.</p>
+<p><strong>buljanoff</strong>: You know what they say – there’s nothing
+like home.</p>
+<p><strong>iranoff</strong>: That’s right… and we might as well face
+it.</p>
+<p><strong>ninotchka</strong>: Come, now, you must not talk that way….
+You have to adjust yourselves…. We must be brave.</p>
+<p><strong>iranoff</strong>: Brave… that’s right.</p>
+<p><strong>buljanoff</strong>: Let’s be happy that we’re all alive.</p>
+<p><strong>iranoff</strong>: And that’s something we owe to
+Ninotchka.</p>
+<p><strong>kopalski</strong>: If you hadn’t given Commissar Razinin such
+a wonderful report about us, who knows what would have happened?</p>
+<p><strong>buljanoff</strong>: I can tell you exactly.</p>
+<p><strong>ninotchka</strong>: Now let’s forget everything except that
+we’re together.</p>
+<p><strong>buljanoff</strong>: That’s right.</p>
+<p><strong>iranoff</strong>: Let’s do that.</p>
+<p><strong>kopalski</strong>: It’s a real Paris reunion.</p>
+<p><strong>iranoff</strong>: If you close your eyes and listen to our
+voices we might be in Paris.</p>
+<p><strong>ninotchka</strong>: Let’s not close our eyes. There are many
+good things to see here too.</p>
+<p><strong>buljanoff</strong>: I think I need my glasses.</p>
+<p><strong>kopalski</strong>: A little more tact… look how nicely she’s
+fixed the table – all for us.</p>
+<p><strong>buljanoff</strong>: trying to make up</p>
+<p><strong>iranoff</strong>: What a lovely room you have here.</p>
+<p><strong>buljanoff</strong>: How many families live here with you?</p>
+<p><strong>ninotchka</strong>: Only myself and two other girls. One is a
+cello player in the opera and the other a street-car conductor.</p>
+<p><strong>iranoff</strong>: Just three people in a room this size?
+Whew!</p>
+<p><strong>kopalski</strong>: And your own gas cooker? That’s marvelous!
+Naturally it’s not the Royal Suite…</p>
+<p><strong>ninotchka</strong>: Sssh! Once and for all, we’re in
+Moscow!</p>
+<p><strong>kopalski</strong>: Yes, there’s no doubt of that… Just look
+out of the window and there it is.</p>
+<p><strong>ninotchka</strong>: And it’s great! Think what it was a few
+years ago and what it is now.</p>
+<p><strong>iranoff</strong>: She’s right… anyhow let’s talk ourselves
+into it.</p>
+<p><strong>buljanoff</strong>: Just see how happy the people look… from
+here….</p>
+<p><strong>kopalski</strong>: Can you blame them?… at least the May Day
+parade is over.</p>
+<p><strong>buljanoff</strong>: That’s another thing… it’s spring.</p>
+<p><strong>ninotchka</strong>: The same spring we had in Paris. Just as
+good.</p>
+<p><strong>kopalski</strong>: Even the swallows are back.</p>
+<p><strong>buljanoff and iranoff</strong>: Yes, that’s right.</p>
+<p><strong>iranoff</strong>: Maybe that’s the same swallow we saw in
+Paris!</p>
+<p><strong>buljanoff</strong>: It is, Ninotchka! It is! He must have
+been in Paris! You can see it in his whole attitude! He just picked up a
+crumb of our black bread, shook his head, and dropped it.</p>
+<p><strong>kopalski</strong>: If you asked him why he left France I bet
+he couldn’t name one good reason.</p>
+<p><strong>buljanoff</strong>: I should be a swallow! Right now I would
+be sitting in front of the Caf� de Paris picking up flakes of French
+pastry that would melt in my bill.</p>
+<p><strong>ninotchka</strong>: Now, comrades… there is something better
+in life than crumbs of French pastry.</p>
+<p><strong>kopalski</strong>: Yes, a good piece of apfel strudel….</p>
+<p><strong>ninotchka</strong>: We will get that… we’ll get everything…
+maybe a little bit later but we’ll get it… We must be patient… Finally
+we got the spring, didn’t we? We got the swallows, and you will get your
+apfel strudel too.</p>
+<p><strong>buljanoff</strong>: And if it is too late for you your
+children will eat it.</p>
+<p><strong>iranoff</strong>: Let’s forget the future… let’s stop being
+sentimental… let’s start that omelet.</p>
+<p><strong>kopalski</strong>: That’s right. Here’s my egg.</p>
+<p><strong>iranoff</strong>: And here’s mine.</p>
+<p><strong>buljanoff</strong>: Comrades… I’m out of the omelet.</p>
+<p><strong>ninotchka</strong>: Don’t worry… there will be enough.</p>
+<p><strong>iranoff</strong>: Come, Ninotchka, let’s make it in real
+Parisian style!</p>
+<p><strong>kopalski</strong>: Let’s fill it with confitures, des
+prunes…</p>
+<p><strong>buljanoff</strong>: …des raisins de Mad�re, des
+framboises…</p>
+<p><strong>iranoff</strong>: …des petites fraises des bois… de la cr�me
+de Bretagne…</p>
+<p><strong>kopalski</strong>: …so it blows up that big… what they call
+an Omelette Surprise!</p>
+<p><strong>buljanoff</strong>: And the surprise is there’s nothing in
+it.</p>
+<p><strong>kopalski</strong>: I know, but if we can’t put in all these
+wonderful things at least let’s put in some imagination. In that one
+omelet we’ll taste the whole of Paris!</p>
+<p><strong>iranoff</strong>: Sssh!</p>
+<p><strong>iranoff</strong>: A man like that… all he has to do is to
+walk through a room and the omelet drops.</p>
+<p><strong>vladimir</strong>: Comrade Yakushova, here, the postman left
+a letter for you.</p>
+<p><strong>all three russians</strong>: What is it, Ninotchka?</p>
+<p><strong>ninotchka</strong>: It’s from Paris.</p>
+<p><strong>iranoff and buljanoff</strong>: From Paris?</p>
+<p><strong>kopalski</strong>: A bill?</p>
+<p><strong>ninotchka</strong>: From Leon.</p>
+<p><strong>all three russians</strong>: From Leon!… How is he?… Come,
+tell us… open it… tell us… how is he?</p>
+<p><strong>iranoff</strong>: Bad news?</p>
+<p><strong>ninotchka</strong>: Look for yourselves.</p>
+<p><strong>kopalski</strong>: Well, I think it’s getting late. Good
+night, Ninotchka.</p>
+<p><strong>iranoff</strong>: Thank you for a wonderful dinner.</p>
+<p><strong>ninotchka</strong>: Good night, my friends.</p>
+<p><strong>buljanoff</strong>: They can’t censor our memories, can
+they?</p>
+<p><strong>razinin</strong>: Good morning, Comrade.</p>
+<p><strong>ninotchka</strong>: Good morning, Comrade Commissar. Here is
+my report on the materials available for trading in the next four
+months.</p>
+<p><strong>razinin</strong>: Does this include the products of the Far
+Eastern provinces?</p>
+<p><strong>ninotchka</strong>: Yes, it does.</p>
+<p><strong>razinin</strong>: You mean you have finished the whole
+investigation?</p>
+<p><strong>ninotchka</strong>: Yes.</p>
+<p><strong>razinin</strong>: That’s marvelous…. You must have worked day
+and night…. Don’t you ever sleep?</p>
+<p><strong>ninotchka</strong>: I need very little sleep. We must be
+extremely careful what goods we take in exchange. I have already started
+a survey of our most urgent needs.</p>
+<p><strong>razinin</strong>: Well, Comrade, I am afraid you will have to
+turn over that work to someone else.</p>
+<p><strong>ninotchka</strong>: May I ask why?</p>
+<p><strong>razinin</strong>: Please… sit down.</p>
+<p><strong>razinin</strong>: Cigarette?</p>
+<p><strong>ninotchka</strong>: Thank you.</p>
+<p><strong>razinin</strong>: Well, Comrade, have you heard from your
+friends Kopalski, Buljanoff, and Iranoff?</p>
+<p><strong>ninotchka</strong>: No.</p>
+<p><strong>razinin</strong>: I haven’t either, but I’ve heard about
+them. You must realize it was only on the strength of your Paris report
+that I sent them to Constantinople; without that I never would have
+trusted them on a mission as important as the fur deal.</p>
+<p><strong>ninotchka</strong>: May I ask what has happened?</p>
+<p><strong>razinin</strong>: As soon as our representatives go to a
+foreign country they seem to lose all sense of balance. If I told you
+what’s going on in Constantinople right now you wouldn’t believe it.
+Those three have been sitting there for six weeks and haven’t sold a
+piece of fur. This anonymous report was sent me. They are dragging the
+good name of our country through every caf� and night club. Here… “How
+can the Bolshevik cause gain respect among the Moslems if your three
+representatives, Buljanoff, Iranoff, and Kopalski, get so drunk that
+they throw a carpet out of their hotel window and complain to the
+management that it didn’t fly?”</p>
+<p><strong>ninotchka</strong>: Oh, they shouldn’t do such things. Are
+you sure this report is correct?</p>
+<p><strong>razinin</strong>: It gives details which couldn’t be
+invented. Naturally I want to verify it and that’s why I need you.</p>
+<p><strong>ninotchka</strong>: You want me to go to Constantinople?</p>
+<p><strong>razinin</strong>: Yes… leaving immediately.</p>
+<p><strong>ninotchka</strong>: I appreciate the confidence you show in
+me, but I must ask you to entrust someone else with this mission. I
+should hate to interrupt my present work. I am positive that my survey
+is more important than finding out whether three of our comrades have
+been drinking some extra glasses of champagne.</p>
+<p><strong>razinin</strong>: That is for me to decide, Comrade
+Yakushova.</p>
+<p><strong>ninotchka</strong>: I am sorry, I don’t want to overstep my
+position – but please… don’t send me.</p>
+<p><strong>razinin</strong>: I don’t understand.</p>
+<p><strong>ninotchka</strong>: How can I make myself clear… It is
+difficult to express but I’d rather not go to foreign countries any
+more. Please, Comrade… let me stay here… let me finish my work… I am in
+the rhythm of it now… I don’t want to go away. I don’t want to be sent
+into that foreign atmosphere again. It throws one out of gear…. Let me
+finish my work… I have concentrated everything in it… Please… don’t make
+me go.</p>
+<p><strong>razinin</strong>: Please don’t waste my time, Comrade. Do
+your duty. Good-by.</p>
+<p><strong>ninotchka</strong>: I will do my best.</p>
+<p><strong>living room of a very luxurious hotel suite in
+constantinople.</strong>: Its style should suggest the locale. Ninotchka
+enters with the Three Russians, who are very happy to have her with them
+again.</p>
+<p><strong>kopalski</strong>: How do you like it, Ninotchka? Isn’t it
+wonderful?</p>
+<p><strong>iranoff and buljanoff</strong>: Tell us… tell us.</p>
+<p><strong>ninotchka</strong>: But Buljanoff, Iranoff, Kopalski…</p>
+<p><strong>iranoff</strong>: Now, please, Ninotchka, don’t start
+figuring it out in cows.</p>
+<p><strong>ninotchka</strong>: You’ve done it again and I am
+responsible. How can you forget yourselves this way? You were sent here
+to make money, not to spend it.</p>
+<p><strong>iranoff</strong>: Buljanoff, she still has those old-
+fashioned Bolshevik ideas.</p>
+<p><strong>buljanoff</strong>: It is high time you got out of
+Russia.</p>
+<p><strong>ninotchka</strong>: do with the three</p>
+<p><strong>kopalski</strong>: That’s our old Ninotchka!</p>
+<p><strong>buljanoff and iranoff</strong>: Yes, yes.</p>
+<p><strong>ninotchka</strong>: Don’t forget, the day will come when you
+will have to face Razinin.</p>
+<p><strong>buljanoff</strong>: Good old Razinin! Is he still alive? How
+does he manage?</p>
+<p><strong>ninotchka</strong>: But, Comrades…</p>
+<p><strong>kopalski</strong>: of being free again</p>
+<p><strong>buljanoff</strong>: Imagine, we don’t have to whisper any
+longer.</p>
+<p><strong>iranoff</strong>: We can say whatever we want. We can shout…
+we can complain… Look… The service in this hotel is terrible! See?
+Nobody comes… nobody pays any attention. That’s freedom.</p>
+<p><strong>buljanoff</strong>: No, that’s bad management.</p>
+<p><strong>ninotchka</strong>: Is it possible to bring you back to
+reality for a moment? I must have a complete report of your negotiations
+and a detailed expense account.</p>
+<p><strong>buljanoff</strong>: Don’t ask for it, Ninotchka. There is a
+Turkish proverb which says, “If something smells bad, why put your nose
+in it?”</p>
+<p><strong>ninotchka</strong>: And there is a Russian saying: “The cat
+who has cream on his whiskers had better find good excuses.”</p>
+<p><strong>buljanoff</strong>: With our cream situation what it is, it
+is Russia which should apologize to the cats.</p>
+<p><strong>ninotchka</strong>: Friends… friends, Buljanoff, Iranoff…</p>
+<p><strong>kopalski</strong>: …and Kopalski.</p>
+<p><strong>ninotchka</strong>: Don’t make it difficult for me. This is
+no more a pleasure trip for me than it is for you.</p>
+<p><strong>iranoff</strong>: That was our idea when we first came. All
+we thought we would get out of this trip was a Turkish bath, but… we
+learned better.</p>
+<p><strong>kopalski</strong>: Ninotchka, we are in the magic East, the
+country of Aladdin and His Lamp…</p>
+<p><strong>iranoff</strong>: …Ali Baba and the Forty Thieves… into one
+single hour you can crowd a thousand and one nights.</p>
+<p><strong>buljanoff</strong>: All you have to do is say “open
+sesame.”</p>
+<p><strong>ninotchka</strong>: I don’t know how I can get you out of it
+this time. How will it end? What will happen to you?</p>
+<p><strong>buljanoff</strong>: Shall we tell her?</p>
+<p><strong>iranoff and kopalski</strong>: Yes.</p>
+<p><strong>buljanoff</strong>: Ninotchka, I hope you’ll be our
+guest.</p>
+<p><strong>ninotchka</strong>: Guest?</p>
+<p><strong>buljanoff</strong>: We have opened a restaurant…</p>
+<p><strong>iranoff</strong>: …we have a wonderful electric sign: “Dine
+With Buljanof, Iranoff, and Kopalski.”</p>
+<p><strong>ninotchka</strong>: You mean you are deserting Russia?</p>
+<p><strong>kopalski</strong>: Don’t call it desertion. Our little
+restaurant… that is our Russia… the Russia of borscht, the Russia of
+beef Stroganoff, blinis with sour cream…</p>
+<p><strong>iranoff</strong>: …the Russia of piroshki… people will eat
+and love it.</p>
+<p><strong>buljanoff</strong>: We are not only serving good food, we are
+serving our country… we are making friends.</p>
+<p><strong>ninotchka</strong>: Who gave you this idea? What is
+responsible for all this?</p>
+<p><strong>kopalski</strong>: There’s something in Constantinople…
+something irresistible….</p>
+<p><strong>iranoff</strong>: …it is in the air… it may come around the
+corner as you walk down the street….</p>
+<p><strong>buljanoff</strong>: …it may step out of a bazaar… it may wait
+for you in a corridor… it may hide in the shadow of a minaret….</p>
+<p><strong>kopalski</strong>: Right now it’s on the balcony.</p>
+<p><strong>leon</strong>: They wouldn’t let me in so I had to get you
+out.</p>
+<p><strong>ninotchka</strong>: So – you’re behind all this. I should
+have known.</p>
+<p><strong>leon</strong>: Trying to keep me away from you! It couldn’t
+be done. Naturally I couldn’t go on forever punching passport officials
+in the nose – but I found a way, didn’t I? Darling, I had to see you. I
+wrote and wrote but all my letters came back.</p>
+<p><strong>ninotchka</strong>: The one I got they wouldn’t let me read.
+It began, “Ninotchka, my darling,” and ended, “Yours, Leon.”</p>
+<p><strong>leon</strong>: I won’t tell you what came between… I’ll prove
+it. It will take a long time, Ninotchka… at least a lifetime.</p>
+<p><strong>ninotchka</strong>: But, Leon, I am only here for a few
+days.</p>
+<p><strong>leon</strong>: If you don’t stay with me, I’ll have to
+continue my fight. I’ll travel wherever Russian commissions are. I’ll
+turn them all into Buljanoffs, Iranoffs, and Kopalskis. The world will
+be crowded with Russian restaurants. I’ll depopulate Russia. Once you
+saved your country by going back. This time you can save it by staying
+here.</p>
+<p><strong>ninotchka</strong>: Well, when it is a choice between my
+personal interest and the good of my country, how can I waver? No one
+shall say Ninotchka was a bad Russian.</p>
+</body>
+</html>

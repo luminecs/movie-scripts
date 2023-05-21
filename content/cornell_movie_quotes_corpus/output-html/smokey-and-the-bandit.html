@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>smokey-and-the-bandit</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="smokey-and-the-bandit">smokey-and-the-bandit</h1>
+<p><strong>voice one</strong>: – Breaker, this is Banana Peel…</p>
+<p><strong>voice two</strong>: – Yeah, Breaker go head on.</p>
+<p><strong>voice one</strong>: – Thanks much. I’d like to get me a
+Smokey report?</p>
+<p><strong>voice two</strong>: – Road looks clean as a hound’s
+tooth.</p>
+<p><strong>voice one</strong>: – Okey, doke. Last one to the Roadeo is a
+homo.</p>
+<p><strong>dickey</strong>: Is that Bandit in the lead?</p>
+<p><strong>kyle</strong>: If that sumbitch was in the race, he’d be in
+the winner’s circle by now.</p>
+<p><strong>dickey</strong>: I still think this whole idea is dumb,
+pop.</p>
+<p><strong>kyle</strong>: Then it must be a helluva idea.</p>
+<p><strong>dickey</strong>: Why don’t we just rent a Lear jet and haul
+it back ourselves?</p>
+<p><strong>kyle</strong>: Because I wanna see this hot shot Bandit do
+something that can’t be done. Besides, there’s nothing I like better
+than breaking legends.</p>
+<p><strong>dickey</strong>: But if it can’t be done, how’s he gonna do
+it?</p>
+<p><strong>kyle</strong>: That’s the point, Dickey.</p>
+<p><strong>dickey</strong>: Oh.</p>
+<p><strong>kyle</strong>: Now, you just find him, son.</p>
+<p><strong>dickey</strong>: Yes, sir.</p>
+<p><strong>dickey</strong>: Say, hoss. Where might I locate the
+Bandit?</p>
+<p><strong>husband</strong>: Ain’t seen him.</p>
+<p><strong>wife</strong>: Over there behind his rig.</p>
+<p><strong>kyle</strong>: Aw, ain’t you glad to see me, Bandit?</p>
+<p><strong>bandit</strong>: Yeah, it’s the highlight of my day.</p>
+<p><strong>kyle</strong>: What’s he get if he wins here?</p>
+<p><strong>bandit</strong>: If…?</p>
+<p><strong>dickey</strong>: Five thou.</p>
+<p><strong>kyle</strong>: Chickenshit money.</p>
+<p><strong>bandit</strong>: Could you turn your head?</p>
+<p><strong>bandit</strong>: Look, Kyle; I ain’t in this Truck Roadeo for
+the money. It’s the challenge. You know, the ecstasy of victory, the
+agony of defeat.</p>
+<p><strong>kyle</strong>: I can’t believe there’s two thousand people
+here to watch a bunch of guys back up their trucks.</p>
+<p><strong>bandit</strong>: America’s bored. Now, what do you want?</p>
+<p><strong>kyle</strong>: You to forget this dumbass Roadeo and take on
+a real challenge.</p>
+<p><strong>bandit</strong>: You’re crazy, man. Smart dresser, but
+crazy.</p>
+<p><strong>kyle</strong>: What’s the matter? Legend has it Bandit
+LaRue’s king of the road.</p>
+<p><strong>bandit</strong>: I can make it to Texarkana and back in
+twenty-eight hours… that’s no sweat.</p>
+<p><strong>dickey</strong>: It ain’t ever been done before, hot
+shit.</p>
+<p><strong>bandit</strong>: See, running Coors Beer east of Texas is
+what bothers me. It makes me a bootlegger.</p>
+<p><strong>kyle</strong>: I hear a few weeks ago you smuggled sixteen
+Beaners up to West Virginia.</p>
+<p><strong>bandit</strong>: You know how rumors start.</p>
+<p><strong>dickey</strong>: I think you’re just yellow.</p>
+<p><strong>bandit</strong>: Wonderful psychology. Why don’t you say
+something about my mom? Excuse me.</p>
+<p><strong>kyle</strong>: Look, you make this little run for me, I’ll
+buy you a new rig.</p>
+<p><strong>bandit</strong>: Last year, this was a new rig.</p>
+<p><strong>kyle</strong>: But it wasn’t a Kenworth.</p>
+<p><strong>dickey</strong>: Pop, a K-Whopper’s worth seventy thou.</p>
+<p><strong>bandit</strong>: Seventy-two five. Why do you want this
+barley pop so bad?</p>
+<p><strong>dickey</strong>: He’s thirsty.</p>
+<p><strong>kyle</strong>: I got a boy running in the Peach Tree Classic
+tomorrow and when he wins, I wanna celebrate in style.</p>
+<p><strong>bandit</strong>: How much style?</p>
+<p><strong>kyle</strong>: Four hundred cases worth. Well?</p>
+<p><strong>bandit</strong>: You paying for the gas?</p>
+<p><strong>a woman’s voice</strong>: Whaddya mean, we’re not going to
+the show tonight?</p>
+<p><strong>bandit</strong>: Hot Pants, I got no choice. I gotta make a
+run to Texarkana. Over.</p>
+<p><strong>woman’s voice</strong>: But you been promising to take me for
+three weeks.</p>
+<p><strong>bandit</strong>: Baby, I…</p>
+<p><strong>male voice</strong>: Break. Break.</p>
+<p><strong>woman’s voice</strong>: Yeah, breaker; come on.</p>
+<p><strong>male voice</strong>: Hot Pants, this here is Sugar Man. I’ll
+take you to the show tonight. Pick you up at seven. How am I hitting
+you?</p>
+<p><strong>woman’s voice</strong>: Bull’s-eye, Sugar Man. Bandit?</p>
+<p><strong>bandit</strong>: Yeah?</p>
+<p><strong>woman’s voice</strong>: Go sit on a cold carrot.</p>
+<p><strong>bandit</strong>: Goddamn, Waynette; you sure do look foxy
+today. If you weren’t already married, I’d…</p>
+<p><strong>waynette</strong>: Don’t give me that horseshit, Bandit. You
+ain’t seeing him.</p>
+<p><strong>bandit</strong>: Yes, I am.</p>
+<p><strong>waynette</strong>: No, you ain’t.</p>
+<p><strong>scrawny kid</strong>: Hi, Uncle Bandit.</p>
+<p><strong>waynette</strong>: He ain’t your damn uncle and get that mutt
+outta here. He just peed all over my hot curlers!</p>
+<p><strong>bandit</strong>: Cledus.</p>
+<p><strong>cledus</strong>: No.</p>
+<p><strong>bandit</strong>: Wake up, man; I just got us a hot run for
+big bucks.</p>
+<p><strong>cledus</strong>: Whadda we have to do – kidnap the Pope?</p>
+<p><strong>bandit</strong>: How’d you know?</p>
+<p><strong>bandit</strong>: Look, all we gotta do is make a run to
+Texarkana… …in twenty-eight hours.</p>
+<p><strong>cledus</strong>: Twenty-eight hours! You’re outta your
+gord.</p>
+<p><strong>bandit</strong>: Is that any way to talk to your ole partner?
+Look, it’s only nine hundred miles each way.</p>
+<p><strong>cledus</strong>: That means we gotta average ninety- four
+miles per. Forget it.</p>
+<p><strong>bandit</strong>: No one’s ever done it before. This’ll put us
+on the map.</p>
+<p><strong>cledus</strong>: Or in the slammer.</p>
+<p><strong>bandit</strong>: Did I tell you they’re gonna give us a brand
+new Kenworth?</p>
+<p><strong>cledus</strong>: Waynette!</p>
+<p><strong>waynette</strong>: This ain’t fair. You’re letting him talk
+you into this.</p>
+<p><strong>cledus</strong>: I swear to God, pumpkin; I’ll be back before
+you know it. And then I’ll make you glad you was born a woman.</p>
+<p><strong>waynette</strong>: Well, I just might not be waiting this
+time.</p>
+<p><strong>cledus</strong>: Honey, please… Don’t be this way. You know
+I’d do anything for you.</p>
+<p><strong>waynette</strong>: Anything?</p>
+<p><strong>waynette</strong>: Take Fred.</p>
+<p><strong>cledus</strong>: Believe me, man; Fred’ll be no problem.</p>
+<p><strong>bandit</strong>: Yeah, I can tell he’s gonna be a major
+asset.</p>
+<p><strong>bandit</strong>: All right, Fred; enough fun.</p>
+<p><strong>cledus</strong>: You know of course, we ain’t ever gonna make
+it.</p>
+<p><strong>bandit</strong>: Quit being so negative, guy; ’course we’re
+gonna make it. We ain’t never not made it, have we?</p>
+<p><strong>cledus</strong>: No.</p>
+<p><strong>bandit</strong>: See.</p>
+<p><strong>cledus</strong>: Our asses gonna be in a sling if we get
+caught.</p>
+<p><strong>bandit</strong>: And if we don’t, they’re gonna be riding
+high in a brand new Kenworth.</p>
+<p><strong>bandit</strong>: How long’s this gonna take?</p>
+<p><strong>cledus</strong>: I don’t know, man. Ask him?</p>
+<p><strong>bandit</strong>: We gotta let the slack out, Cledus; this is
+costing us time.</p>
+<p><strong>cledus</strong>: If you ask me, I think we should make that
+run to Choo Choo Town and pick up that load of lumber. Nice. Easy. And
+within the law.</p>
+<p><strong>bandit</strong>: Also boring.</p>
+<p><strong>cledus</strong>: But I still don’t think…</p>
+<p><strong>cledus</strong>: What are you doin’ now?</p>
+<p><strong>bandit</strong>: Running blocker.</p>
+<p><strong>cledus</strong>: All right, here’s our plan of communication,
+so as to avoid Smokey.</p>
+<p><strong>bandit</strong>: Go.</p>
+<p><strong>cledus</strong>: Now, if I say go to channel three, it really
+means go to six.</p>
+<p><strong>bandit</strong>: Six. Got it.</p>
+<p><strong>cledus</strong>: If I say go to twenty-one, go to
+nineteen.</p>
+<p><strong>bandit</strong>: Twenty-one is nineteen.</p>
+<p><strong>cledus</strong>: If I say go to two, it’s really one.</p>
+<p><strong>bandit</strong>: Two is one. Listen, let’s just stay on the
+odd channels and switch everytime. Start in the basement. Now, let’s
+haul ass.</p>
+<p><strong>bandit</strong>: Bandit One, am I hitting you?</p>
+<p><strong>cledus</strong>: You’re wall to wall and tree top tall.</p>
+<p><strong>bandit</strong>: I’m gonna run a couple miles ahead of you.
+Keep both feet on the floor. We’ll be moving ninety and over.</p>
+<p><strong>cledus</strong>: Bandit?</p>
+<p><strong>bandit</strong>: Yeah?</p>
+<p><strong>cledus</strong>: Why are we doing this?</p>
+<p><strong>bandit</strong>: Because they said it couldn’t be done.</p>
+<p><strong>bandit</strong>: Bandit Two, do you read me?</p>
+<p><strong>cledus</strong>: Loud and clear.</p>
+<p><strong>bandit</strong>: Pull your hammer back, Smokey’s coming at
+you.</p>
+<p><strong>cledus</strong>: He’s history.</p>
+<p><strong>bandit</strong>: Okay, we got a straight shot to T Town, so
+let her roll.</p>
+<p><strong>bandit</strong>: Shit! No one’s here.</p>
+<p><strong>cledus</strong>: That’s ’cause we’re damn near an hour ahead
+of schedule.</p>
+<p><strong>bandit</strong>: Let’s keep it that way.</p>
+<p><strong>cledus</strong>: Liquid gold.</p>
+<p><strong>bandit</strong>: Redneck heaven.</p>
+<p><strong>cledus</strong>: You know how to drive one of these
+things?</p>
+<p><strong>bandit</strong>: Can a pig whistle?</p>
+<p><strong>cledus</strong>: Hit the brakes!</p>
+<p><strong>bandit</strong>: They’re jammed!</p>
+<p><strong>bandit</strong>: So much for whistling pigs.</p>
+<p><strong>bandit</strong>: Let’s get the hell outta here.</p>
+<p><strong>cledus</strong>: Shouldn’t we pay ’em for the damages?</p>
+<p><strong>bandit</strong>: Right. Give me your pen. We’ll tell ’em to
+bill Kyle.</p>
+<p><strong>bandit</strong>: We still on schedule?</p>
+<p><strong>cledus</strong>: Forty-two minutes ahead.</p>
+<p><strong>bandit</strong>: I hate to say I told you so.</p>
+<p><strong>cledus</strong>: Save it. We got a long haul.</p>
+<p><strong>bandit</strong>: Clear and rolling.</p>
+<p><strong>girl</strong>: Thanks.</p>
+<p><strong>bandit</strong>: Hey…</p>
+<p><strong>bandit</strong>: Who’s the unlucky guy?</p>
+<p><strong>kate</strong>: Okay. I was in Texas dancing in an industrial
+show for Sunkist Oranges. They say I’m the new Anita Bryant. But I’m
+really a dancer from New York. A lot of credits. Moderate talent.
+Anyway, after opening night, I was walking back to the motor lodge and
+suddenly there he was. A tall Texan with a twenty-nine inch waist. Pure
+dynamite.</p>
+<p><strong>bandit</strong>: All sound reasons for matrimony.</p>
+<p><strong>kate</strong>: Look, I’m a twenty-eight year old hoofer who
+spends most of her time with fags. Besides, I’m impulsive. It runs in
+the family. We’re all crazy. Mind if I smoke? Anyway, today was the ‘bid
+day.’ But as I was walking down the aisle, I realized this is total
+insanity. What am I going to do in Texas the rest of my life? I can’t
+marry Jerry Jeff. I mean, we’re eventually gonna have to talk. So,
+halfway down the aisle, I turned and split. You think I’m nuts,
+right?</p>
+<p><strong>bandit</strong>: Absolutely not. In fact, I picked up a bride
+yesterday; except she was a singer.</p>
+<p><strong>cledus</strong>: Bandit I, do you copy?</p>
+<p><strong>bandit</strong>: This is Bandit I, come back.</p>
+<p><strong>cledus</strong>: Who’s the broad? Over.</p>
+<p><strong>kate</strong>: Kate McConnell.</p>
+<p><strong>bandit</strong>: Kate McConnell. Sweet, shy… well- dressed.
+I’m giving her a lift to the next waterhole.</p>
+<p><strong>cledus</strong>: Listen, pardner; this ain’t no time to be
+getting laid.</p>
+<p><strong>kate</strong>: Believe me, that won’t be a problem.</p>
+<p><strong>cledus</strong>: Never fails. Bandit gets a chick. I get…</p>
+<p><strong>clayton</strong>: Hey!</p>
+<p><strong>first kid</strong>: I swear to God, officer; the car was.
+already like this, we were just trying to…</p>
+<p><strong>clayton</strong>: Did you see the gal who was driving? She
+was wearing a wedding dress.</p>
+<p><strong>second kid</strong>: Yes, sir. She got into a cherry- looking
+Cobra.</p>
+<p><strong>clayton</strong>: You get a look at the driver?</p>
+<p><strong>first kid</strong>: No, but he had Georgia plates. BAN-
+ONE.</p>
+<p><strong>kate</strong>: Why’re you driving so fast?</p>
+<p><strong>bandit</strong>: I gotta get back to Atlanta in thirteen
+hours.</p>
+<p><strong>kate</strong>: Why? You have a bowling date?</p>
+<p><strong>bandit</strong>: Cute. No, ’cause no one’s ever made it from
+Atlanta to Texarkana and back in twenty-eight hours.</p>
+<p><strong>kate</strong>: Who’d want to?</p>
+<p><strong>bandit</strong>: I never looked at it that way. You ask a lot
+of questions.</p>
+<p><strong>kate</strong>: Why are you doing this obviously macho
+feat?</p>
+<p><strong>bandit</strong>: For a new Kenworth. That’s a truck.</p>
+<p><strong>kate</strong>: A truck? You’re doing this for a truck? That’s
+insanity.</p>
+<p><strong>bandit</strong>: It’s not a truck. It’s the Rolls Royce of
+eighteen-wheelers.</p>
+<p><strong>kate</strong>: But you could get killed, right?</p>
+<p><strong>bandit</strong>: Hey, you could get killed crossing the
+street.</p>
+<p><strong>kate</strong>: An existentialist.</p>
+<p><strong>bandit</strong>: A what?</p>
+<p><strong>kate</strong>: Eyes on the road.</p>
+<p><strong>kate</strong>: So tell me about yourself.</p>
+<p><strong>bandit</strong>: Okay.</p>
+<p><strong>kate</strong>: Well?…</p>
+<p><strong>bandit</strong>: Whaddya want to know? My sign?</p>
+<p><strong>kate</strong>: No. I want to know what you think about
+besides ditching Smokey?</p>
+<p><strong>bandit</strong>: Having fun.</p>
+<p><strong>kate</strong>: Is this fun?</p>
+<p><strong>bandit</strong>: Driving?</p>
+<p><strong>kate</strong>: Driving, talking to me…</p>
+<p><strong>bandit</strong>: They’re both a challenge.</p>
+<p><strong>kate</strong>: You have a great profile.</p>
+<p><strong>bandit</strong>: Yeah, I do. Especially from that angle.</p>
+<p><strong>kate</strong>: Where you from?</p>
+<p><strong>bandit</strong>: Mattoon, Illinois. But I moved down south to
+work in the Civil Rights movement.</p>
+<p><strong>kate</strong>: Seriously?!?</p>
+<p><strong>bandit</strong>: Would I lie to you?</p>
+<p><strong>kate</strong>: Guess what?</p>
+<p><strong>bandit</strong>: I give up.</p>
+<p><strong>kate</strong>: You just passed your nemesis.</p>
+<p><strong>kate</strong>: Smokey.</p>
+<p><strong>bandit</strong>: Better fasten your seat belt.</p>
+<p><strong>kate</strong>: Good idea.</p>
+<p><strong>bandit</strong>: Bandit Two. I’m gonna leave you for a
+minute. Back in a flash.</p>
+<p><strong>cledus</strong>: Keep ’er between the ditches.</p>
+<p><strong>kate</strong>: What the hell’s going on?</p>
+<p><strong>bandit</strong>: I forget to tell you. I’m running blocker
+for four hundred cases of illegal brew.</p>
+<p><strong>kate</strong>: And I thought I had problems.</p>
+<p><strong>bandit</strong>: Anything?</p>
+<p><strong>kate</strong>: We’re cool. The dumb schmuck took the wrong
+turn.</p>
+<p><strong>kate</strong>: Can I ask you something?</p>
+<p><strong>bandit</strong>: Shoot.</p>
+<p><strong>kate</strong>: What do you want to be when you grow up?</p>
+<p><strong>cledus</strong>: Bandit I. Bandit I. Do you read me?</p>
+<p><strong>bandit</strong>: Say this is Bandit I. Then, over.</p>
+<p><strong>kate</strong>: This is Bandit I. Over.</p>
+<p><strong>cledus</strong>: Where the hell are you?</p>
+<p><strong>kate</strong>: Smokey was on our tail. We had to take a
+detour to ditch the motherfu…</p>
+<p><strong>bandit</strong>: You can’t swear on these.</p>
+<p><strong>cledus</strong>: What’s going on, Bandit? Come on.</p>
+<p><strong>bandit</strong>: Tell him we’ll be back on the highway in a
+second.</p>
+<p><strong>cledus</strong>: Shut up, Fred.</p>
+<p><strong>kate</strong>: Who’s Fred?</p>
+<p><strong>kate</strong>: Bandit II. We’ll be back on the highway in a
+second. Over.</p>
+<p><strong>cledus</strong>: I’ll keep my eyeballs peeled.</p>
+<p><strong>clayton</strong>: So will I, hoss. So will I.</p>
+<p><strong>kate</strong>: These things are fabulous.</p>
+<p><strong>kate</strong>: You know, you’re not a bad driver.</p>
+<p><strong>bandit</strong>: You know, you’re not a bad passenger.</p>
+<p><strong>bandit</strong>: Bandit II, do you copy?</p>
+<p><strong>cledus</strong>: This is Bandit II. Now, where the hell are
+you?</p>
+<p><strong>bandit</strong>: On two lane blacktop. Mile marker six-one.
+How we doin’ on time?</p>
+<p><strong>cledus</strong>: Thirty-eight minutes ahead of schedule.</p>
+<p><strong>bandit</strong>: What’s your twenty?</p>
+<p><strong>cledus</strong>: I’m ’bout four miles ahead of you,
+turkey.</p>
+<p><strong>bandit</strong>: Not for long, you ain’t.</p>
+<p><strong>voice</strong>: Breaker. Breaker.</p>
+<p><strong>bandit</strong>: Go breaker.</p>
+<p><strong>voice</strong>: Bandit, I just thought I’d lay a Smokey
+report on you.</p>
+<p><strong>bandit</strong>: Go head on, breaker.</p>
+<p><strong>voice</strong>: I would say your future’s looking dim,
+boss.</p>
+<p><strong>bandit</strong>: What’s your twenty and what’s your
+handle?</p>
+<p><strong>voice</strong>: My handle’s Smokey Bear and I got you by the
+tail.</p>
+<p><strong>bandit</strong>: That’s a Texas cop. What the hell’s he doing
+in Arkansas?</p>
+<p><strong>kate</strong>: I don’t know. Maybe Jerry Jeff sent the heat
+after us.</p>
+<p><strong>bandit</strong>: A Texas Bear in Arkansas. Something’s up and
+at this point in my life, I don’t want to know what it is.</p>
+<p><strong>clayton</strong>: I’m gonna get that bastard. No one makes
+Buell Clayton look like a fool. Let’s get going.</p>
+<p><strong>bandit</strong>: I’m whipping around you, Bandit II. Smokey
+on the rubber.</p>
+<p><strong>cledus</strong>: You’re gonna have to create your own lane,
+buddy. You got oncoming.</p>
+<p><strong>kate</strong>: You know, my mother was a dancer, too. Her big
+shot was the touring company of ‘Brigadoon.’ She’s been married three
+times. To a redneck, a poet and her tennis instructor. See, I
+motor-mouth when I get nervous. I was nervous when I first got into the
+car. Now I’m scared shitless.</p>
+<p><strong>bandit</strong>: Believe me, there’s nothing to be afraid
+of.</p>
+<p><strong>bandit</strong>: Still with me?</p>
+<p><strong>cledus</strong>: Bandit I, do I have copy?</p>
+<p><strong>kate</strong>: Yeah, Bandit II, Que pasa?</p>
+<p><strong>cledus</strong>: That’s a Texas bubble gum machine on your
+back porch.</p>
+<p><strong>kate</strong>: What’s he…</p>
+<p><strong>bandit</strong>: Uh, Cledus; I noticed.</p>
+<p><strong>cledus</strong>: What’s a Texas Smokey doing in Arkansas,
+man?</p>
+<p><strong>bandit</strong>: If I knew, Cledus; I’d be on College
+Bowl.</p>
+<p><strong>clayton</strong>: This is Sheriff Clayton. In pursuit of a
+black Shelby Cobra, Georgia license Boy-Adam-Nora. Ocean-Nora- Eddie.
+Request assistance.</p>
+<p><strong>branford</strong>: This is Sheriff Branford of Crossett
+County. We’re already on this joker’s case. I got two units intercepting
+him at Hamburg crossing. You say you was a Sheriff?</p>
+<p><strong>clayton</strong>: That’s a big ten-four. Sheriff Buell
+Clayton. Texas.</p>
+<p><strong>branford</strong>: Texas? What the hell you doing in my
+goddam county?!?</p>
+<p><strong>branford</strong>: I said…</p>
+<p><strong>clayton</strong>: I heard what you said. And I said…</p>
+<p><strong>branford</strong>: I don’t care what you said. You’re from
+Texas and what you said don’t mean jack diddly here in Arkansas!</p>
+<p><strong>branford</strong>: What the hell you looking at?</p>
+<p><strong>clayton</strong>: This is Sheriff Clayton again. I lost the
+Cobra, but he’s deadheaded toward you doing damn near 140. If I was you
+I’d set up a roadblock.</p>
+<p><strong>branford</strong>: – And if I was you, I wouldn’t be telling
+me what to do! Now take a hike, buster!!! Block the road.</p>
+<p><strong>bandit</strong>: Well?</p>
+<p><strong>kate</strong>: We lost him.</p>
+<p><strong>a voice</strong>: Bandit do you read me?</p>
+<p><strong>bandit</strong>: This is Bandit, you’re coming in long and
+strong.</p>
+<p><strong>voice</strong>: My handle’s Silver Tongued Devil and I’m here
+to tell you, your fellow CB’ers are mighty proud of y’all.</p>
+<p><strong>bandit</strong>: Thanks much, Silver Tongued Devil.</p>
+<p><strong>silver tongued devil</strong>: But I got a bad Bear
+story.</p>
+<p><strong>silver tongued devil</strong>: I just rolled past a county
+mounty roadblock down on eighty-two.</p>
+<p><strong>bandit</strong>: Thanks Silver Tongued Devil, we’ll
+avoid.</p>
+<p><strong>silver tongued devil</strong>: Keep the wheels spinning and
+the beavers grinning.</p>
+<p><strong>bandit</strong>: Adios.</p>
+<p><strong>kate</strong>: Classy guy.</p>
+<p><strong>bandit</strong>: Christ, it looks like a Smokey
+convention.</p>
+<p><strong>clayton</strong>: We’ll meet again, Bandit.</p>
+<p><strong>deputy</strong>: I’m gonna pass this fruit!</p>
+<p><strong>branford</strong>: Just back off the hammer, boy.</p>
+<p><strong>deputy</strong>: But sir, he’s gonna get away.</p>
+<p><strong>branford</strong>: He ain’t gonna get nothin’ but a brief
+mention in the obituary column.</p>
+<p><strong>branford</strong>: The bridge up ahead is out.</p>
+<p><strong>bandit</strong>: Listen, we can either give up or…</p>
+<p><strong>kate</strong>: Just do it.</p>
+<p><strong>bandit</strong>: Your honeymoon would’ve never been this
+exciting.</p>
+<p><strong>kate</strong>: I don’t know. We were planning on seeing the
+Astrodome.</p>
+<p><strong>bandit</strong>: Christ, what channel are we on?…</p>
+<p><strong>kate</strong>: Eleven.</p>
+<p><strong>bandit</strong>: Bandit II. Bandit II. Give me a shout.</p>
+<p><strong>cledus</strong>: I hope that’s you, buddy; ’cause I’d hate to
+start believing in ghosts.</p>
+<p><strong>bandit</strong>: What does the old Timex say?</p>
+<p><strong>cledus</strong>: She’s losing minutes so you better start
+running interference or we’re never gonna make it. Might I remind you
+this was your brainstorm.</p>
+<p><strong>bandit</strong>: I’ll drop off my fare, hit a quick
+choke-and-puke and be blocking for you pronto.</p>
+<p><strong>cledus</strong>: Bandit?</p>
+<p><strong>bandit</strong>: Yeah, guy?</p>
+<p><strong>cledus</strong>: Pick up a burger for Fred. He’s going
+crazy.</p>
+<p><strong>kate</strong>: You heard the man. Step on it.</p>
+<p><strong>bandit</strong>: The bus’ll pick you up over there. Uh… you
+got enough bread for a ticket?</p>
+<p><strong>kate</strong>: Enough to get to Jersey. I’ll walk the rest of
+the way. I’ve been sitting a long time. Nice meeting you. It’s been a
+trip.</p>
+<p><strong>bandit</strong>: Hey…</p>
+<p><strong>kate</strong>: Enjoy your Kenworth.</p>
+<p><strong>waitress</strong>: What’s your pleasure?</p>
+<p><strong>bandit</strong>: Couple of cheeseburgers, no condiments…</p>
+<p><strong>waitress</strong>: No what?</p>
+<p><strong>bandit</strong>: Nothing on ’em and two cups of mud; one
+while I’m waiting.</p>
+<p><strong>trucker #1</strong>: Jesus, Richmond; you look like squirrel
+shit.</p>
+<p><strong>trucker #2</strong>: You wanna drive fourteen hundred miles
+for these cheap bastards? I feel like leaving my rig in the middle of
+the highway and tellin’ them to kiss my antenna.</p>
+<p><strong>trucker #1</strong>: I know what you mean, good buddy.</p>
+<p><strong>woman’s voice</strong>: Hi.</p>
+<p><strong>kate</strong>: The bus ain’t passin’ through these here parts
+for a piece. I know. You only have a second.</p>
+<p><strong>kate</strong>: They wouldn’t take Master Charge so I traded
+in my gown.</p>
+<p><strong>waitress</strong>: Coffee?</p>
+<p><strong>kate</strong>: Please.</p>
+<p><strong>kate</strong>: Jesus!!!</p>
+<p><strong>bandit</strong>: Trucker coffee. It’s three times stronger.
+Good for a hundred miles. That, a coupla perks, and you can leap tall
+buildings in a single bound.</p>
+<p><strong>waitress</strong>: Order up!</p>
+<p><strong>bandit</strong>: That’s me.</p>
+<p><strong>bandit</strong>: See ya, Kate.</p>
+<p><strong>kate</strong>: Ciao.</p>
+<p><strong>waitress</strong>: Sure I can’t interest you in anything
+else?</p>
+<p><strong>bandit</strong>: Another time.</p>
+<p><strong>kate</strong>: – Believe me, fellas; I’d love to schmoos,
+but…</p>
+<p><strong>trucker #1</strong>: Don’t be so conceited. You don’t even
+know us.</p>
+<p><strong>trucker #2</strong>: To know us, is to love us.</p>
+<p><strong>bandit</strong>: Hey, how y’all doin’?</p>
+<p><strong>trucker #2</strong>: Who wants to know?</p>
+<p><strong>bandit</strong>: Listen, guys; I’m in a rush. Otherwise I’d
+arrange it so they had to carry you outta here in doggie bags.</p>
+<p><strong>trucker #1</strong>: You and what goddamn army?</p>
+<p><strong>kate</strong>: Bandit, please…</p>
+<p><strong>trucker #2</strong>: Bandit?!? You’re the Bandit? The fella
+been runnin’ the blue troopers ragged?</p>
+<p><strong>trucker #2</strong>: Lemme shake your hand, boy! You’re my
+new goddamn idol.</p>
+<p><strong>trucker #1</strong>: You’re the rage of CB land. We been
+followin’ you for hours.</p>
+<p><strong>trucker #2</strong>: If we’da known you was the Bandit, we
+wouldn’t a never lipped off to your old lady.</p>
+<p><strong>bandit</strong>: Well, she’s not exactly my…</p>
+<p><strong>trucker #3</strong>: Lemme have your autograph, hoss!</p>
+<p><strong>kate</strong>: I’ve done twenty-eight Broadway shows and no
+one’s ever asked me for an autograph.</p>
+<p><strong>bandit</strong>: Listen, guys, I gotta cover ground. I’m due
+in Atlanta in less than ten hours.</p>
+<p><strong>trucker #1</strong>: Good luck.</p>
+<p><strong>trucker #2</strong>: Give our best to Jimmy Carter.</p>
+<p><strong>owner</strong>: It’s on the house.</p>
+<p><strong>bandit</strong>: Thanks.</p>
+<p><strong>owner</strong>: Son…</p>
+<p><strong>owner</strong>: Godspeed.</p>
+<p><strong>bandit</strong>: What the hell are you doing?!?</p>
+<p><strong>kate</strong>: He’s after us again!</p>
+<p><strong>bandit</strong>: You know this guy, don’t you?</p>
+<p><strong>kate</strong>: I’ve never seen him before in my life. I’m
+just trying to help you out.</p>
+<p><strong>bandit</strong>: By stealing my car?</p>
+<p><strong>kate</strong>: I would’ve come back for you.</p>
+<p><strong>bandit</strong>: Yeah.</p>
+<p><strong>kate</strong>: Yeah.</p>
+<p><strong>clayton</strong>: I’m gonna get you, you dirty, stinking,
+rotten sumbitch.</p>
+<p><strong>kate</strong>: Look, the truth is, I didn’t want to be dumped
+at the truck stop. I wanted to go on with you. I needed an excuse.</p>
+<p><strong>bandit</strong>: You could’ve asked.</p>
+<p><strong>kate</strong>: You might have said no. I have trouble
+handling rejection.</p>
+<p><strong>bandit</strong>: Where did you learn how to drive like
+this?</p>
+<p><strong>kate</strong>: Like what?</p>
+<p><strong>kate</strong>: My first father was a redneck. He taught me
+how to drive fast and pants people.</p>
+<p><strong>bandit</strong>: Breaker, this is Bandit I, how are your
+vocal cords?</p>
+<p><strong>cledus</strong>: My vocal cords are fine, but Fred’s ain’t.
+He’s been barking, eating the seats and driving me crackers. Hear that?
+Where’s his chow?</p>
+<p><strong>bandit</strong>: On its way. Give me a coupla minutes,
+okay?</p>
+<p><strong>cledus</strong>: Do I have a choice?</p>
+<p><strong>bandit</strong>: What’s your twenty?</p>
+<p><strong>cledus</strong>: ’Bout fourteen miles this side of
+Mississippi.</p>
+<p><strong>cledus</strong>: I just passed two Kojacks with a Kodak. Man,
+this highway’s crawling with Bears. Ain’t no way we gonna make Atlanta
+on time without you runnin’ blocker.</p>
+<p><strong>bandit</strong>: I’m still trying to ditch this Texas Smokey.
+I don’t know what the sucker wants.</p>
+<p><strong>cledus</strong>: What they all want – to handcuff a hero.</p>
+<p><strong>bandit</strong>: As far as John Law knows, I’m just a joy
+ridin’ Georgia redneck. We keep ’em outta your backyard, we’re cool. Now
+just give me five to ditch this idiot and I’ll meet you in Ole Miss.</p>
+<p><strong>cledus</strong>: If you don’t, we can kiss that Kenworth
+good-bye.</p>
+<p><strong>bandit</strong>: I think we should switch seats.</p>
+<p><strong>bandit</strong>: You go ahead. This seat’s more
+comfortable.</p>
+<p><strong>bandit</strong>: Mississippi’s the other way!</p>
+<p><strong>kate</strong>: You want to lose this putz or not?!?</p>
+<p><strong>kate</strong>: – You know, I used to be a high fashion model.
+Tried it for six months and almost freaked. Makeup, silly clothes, a
+little man saying ‘darling’ every two seconds…</p>
+<p><strong>bandit</strong>: Yeah, it’s tough when your cheek- bones are
+your main asset.</p>
+<p><strong>kate</strong>: Uh-oh.</p>
+<p><strong>bandit</strong>: I think you’d better let me…</p>
+<p><strong>kate</strong>: Baseball needs a little pizzazz.</p>
+<p><strong>clayton</strong>: This is beginning to piss me off.</p>
+<p><strong>bandit</strong>: – Gimme a twenty, pardner.</p>
+<p><strong>cledus</strong>: I’m at marker eight-five.</p>
+<p><strong>bandit</strong>: Son-of-a-gun. Me too.</p>
+<p><strong>kate</strong>: I’m Kate. You must be Cledus.</p>
+<p><strong>cledus</strong>: Yes, ma’am.</p>
+<p><strong>kate</strong>: How’s your twenty?</p>
+<p><strong>bandit</strong>: Here you go, pal.</p>
+<p><strong>cledus</strong>: I thought you were dumping the chick at the
+truck stop.</p>
+<p><strong>bandit</strong>: I ran into complications.</p>
+<p><strong>cledus</strong>: I hate to say it…</p>
+<p><strong>bandit</strong>: Then don’t.</p>
+<p><strong>cledus</strong>: – But everytime we’ve ever messed up, it’s
+because your rhyme’s over- ruling your reason. I know you think you’re
+God’s gift to waitresses, but…</p>
+<p><strong>bandit</strong>: Just don’t worry about it. How we doin’
+timewise?</p>
+<p><strong>cledus</strong>: Not good enough to be standing here shooting
+the bull.</p>
+<p><strong>bandit</strong>: We’re gone.</p>
+<p><strong>cledus</strong>: Bandit?</p>
+<p><strong>cledus</strong>: Nice ass.</p>
+<p><strong>bandit</strong>: Let’s hit it.</p>
+<p><strong>kate</strong>: Nice meeting you, Cledus. Keep on
+truckin’.</p>
+<p><strong>cledus</strong>: Let’s roll, Fred.</p>
+<p><strong>cledus</strong>: C’mon, Fred.</p>
+<p><strong>cledus</strong>: Fred!!!!!!</p>
+<p><strong>kate</strong>: You plan on driving trucks all your life?</p>
+<p><strong>bandit</strong>: No, actually I was thinking of becoming a
+brain surgeon.</p>
+<p><strong>bandit</strong>: – Trucking ain’t the easiest life in the
+world. I mean, you can’t make it much past fifty and you sure as shit
+don’t get a gold watch when you hang it all up. But I like keeping on
+the move. You know?</p>
+<p><strong>kate</strong>: Do I know? I’m an authority on it.</p>
+<p><strong>bandit</strong>: I guess if there’s one lesson I’ve learned,
+it’s that even misery has a tough time hitting a moving target. I forgot
+your question?</p>
+<p><strong>kate</strong>: You plan on driving trucks all your life?</p>
+<p><strong>bandit</strong>: I… uh… I don’t know. I guess don’t like to
+think about it.</p>
+<p><strong>kate</strong>: Then let’s change the subject. What do you
+think about forced school busing?</p>
+<p><strong>kate</strong>: Your foot fall asleep?</p>
+<p><strong>bandit</strong>: Bandit two, Smokey in a plain brown wrapper
+coming your way. Over.</p>
+<p><strong>bandit</strong>: An unmarked police car.</p>
+<p><strong>kate</strong>: How do you know?</p>
+<p><strong>bandit</strong>: I know. Bandit two, bring yourself on
+in.</p>
+<p><strong>bandit</strong>: What’s the matter, Cledus? You got mike
+fright? Bandit two, do you copy?</p>
+<p><strong>cledus</strong>: Yeah, yeah, yeah? What’s up?</p>
+<p><strong>bandit</strong>: Never mind. It’s nothing.</p>
+<p><strong>cledus</strong>: Anything else you don’t want me to know?</p>
+<p><strong>bandit</strong>: Nope. Just keep those wheels churning.</p>
+<p><strong>bandit</strong>: I’m sure the Arkansas Bears put out an
+all-points.</p>
+<p><strong>kate</strong>: You take the front, I’ll take the back.</p>
+<p><strong>a police call</strong>: All units, be on the look out for a
+black 1976 Shelby Cobra, Georgia license…</p>
+<p><strong>bandit</strong>: Bandit two, I gotta make a quick pit
+stop.</p>
+<p><strong>cledus</strong>: Now what?</p>
+<p><strong>bandit</strong>: We’re outta motion lotion.</p>
+<p><strong>cledus</strong>: I’ll keep streaking. Pick me up.</p>
+<p><strong>kate</strong>: Save my seat.</p>
+<p><strong>attendant</strong>: Say, Cobra: what’s your pleasure?</p>
+<p><strong>bandit</strong>: Fill it.</p>
+<p><strong>attendant</strong>: Check the hood, my man?</p>
+<p><strong>attendant</strong>: Aw right. This is a clean machine. Yeah,
+I was thinking ’bout getting me one of these myself. But I figure I’m
+conspicuous enough to the police as it is, so why encourage them more,
+if you know what I mean.</p>
+<p><strong>bandit</strong>: Yeah, I know what you mean.</p>
+<p><strong>a voice</strong>: Bandit, do you read me? Over.</p>
+<p><strong>bandit</strong>: This is Bandit. Who we got on that end?</p>
+<p><strong>clayton</strong>: Just the man who’s gonna see you driven to
+your knees! Sheriff Buell Clayton from Texas.</p>
+<p><strong>bandit</strong>: Not that I don’t have any respect for the
+law, but what’s your problem, man?</p>
+<p><strong>clayton</strong>: You.</p>
+<p><strong>bandit</strong>: Yeah, well I kinda figured that.</p>
+<p><strong>clayton</strong>: You know, you may think you’re gonna get
+away, but I promise you, everytime you turn around, I’ll be there,
+breathing down your neck.</p>
+<p><strong>bandit</strong>: Well, if your breath is as sweet as your
+personality, I got a lot to look forward to. Adios.</p>
+<p><strong>attendant</strong>: That’ll be eight-seventy two.</p>
+<p><strong>attendant</strong>: – Outta ten.</p>
+<p><strong>attendant</strong>: Have a smooth one, Cobra.</p>
+<p><strong>clayton</strong>: It’s all right. It’s not your car. You’re
+doing fine. Just keep going.</p>
+<p><strong>bandit</strong>: – Looks like a clear shot to the ’Bama State
+Line.</p>
+<p><strong>cledus</strong>: I’ll believe it when I see it.</p>
+<p><strong>voice</strong>: Breaker. Breaker.</p>
+<p><strong>bandit</strong>: Pick it up, Breaker.</p>
+<p><strong>voice</strong>: Thanks for the break. Bandit, this here’s the
+Dixie Chicken.</p>
+<p><strong>bandit</strong>: What’s up, Dixie Chicken?</p>
+<p><strong>kate</strong>: Ask if he delivers?…</p>
+<p><strong>dixie chicken</strong>: Been hearin’ all ‘bout y’all and
+wanted to let y’all know, y’all got the Mississippi Bears eatin’ their
+badges. They can’t find hide nor hair of y’all.</p>
+<p><strong>sheriff clayton</strong>: – This is Sheriff Buell Clayton,
+Texas Highway Patrol. That Cobra y’all been lookin’ for with Georgia
+plates, ain’t got no more Georgia plates. She’s now running with
+Mississippi tags. Charles. Alan. Richard. Two. Seven. Three. Vehicle now
+southbound on Interstate 82. Heading for Alabama.</p>
+<p><strong>mississippi cop’s voice</strong>: – That’s a big ten-four,
+Texas. Now, we gonna nail that joy ridin’ sumbitch.</p>
+<p><strong>bandit</strong>: I’m proud of you.</p>
+<p><strong>kate</strong>: Yeah?</p>
+<p><strong>bandit</strong>: You only smoked three cigarettes through the
+entire state of Mississippi.</p>
+<p><strong>bandit</strong>: Good-byes are always tough.</p>
+<p><strong>voice from mississippi hpc</strong>: Pull over, Bandit. This
+road’s a dead end. It’s all over for you, boy!</p>
+<p><strong>clayton</strong>: What happened?</p>
+<p><strong>tow truck driver</strong>: Bandit.</p>
+<p><strong>bandit</strong>: Bandit two, come on.</p>
+<p><strong>cledus</strong>: I’m all ears, good buddy.</p>
+<p><strong>bandit</strong>: You’re gonna hit some heavy precipitation in
+about six minutes. Better let your flaps down, these roads are killers
+when they’re damp.</p>
+<p><strong>cledus</strong>: It shouldn’t last. Gives me time to take a
+go-go juice break.</p>
+<p><strong>bandit</strong>: We’ll be waiting. Over.</p>
+<p><strong>kate</strong>: Are we in Atlanta already?</p>
+<p><strong>cledus</strong>: Gimme three sloppy joes and a coupla cups of
+hot stuff.</p>
+<p><strong>owner</strong>: You pass that funky Cobra on the highway?</p>
+<p><strong>cledus</strong>: Uh-uh. What Cobra?</p>
+<p><strong>owner</strong>: Some boy named Bandit’s been givin’ the
+Highway Patrol shit fits.</p>
+<p><strong>cledus</strong>: Oh, yeah. Good for him.</p>
+<p><strong>owner</strong>: I don’t know where he’s goin’ or what he’s
+doin’, but I sure hope to God he makes it.</p>
+<p><strong>bandit</strong>: Kate…</p>
+<p><strong>kate</strong>: Ummm?</p>
+<p><strong>bandit</strong>: I been thinking. Maybe I should drop you in
+Montgomery. I mean, the way things are going, it might get pretty hairy
+by the time we get to Atlanta.</p>
+<p><strong>kate</strong>: Forget it. This is one of the longest
+relationships I’ve ever had. I’m not blowing it now.</p>
+<p><strong>disc jockey</strong>: I’m gonna dedicate this next one to a
+man out there who’s capturing the hearts of us all. Hey, Bandit; take
+care of yourself and your woman. Hear? It’s raining out and the Red-
+Headed Stranger’s singing this one especially for you.</p>
+<p><strong>cledus</strong>: Hey, pumpkin pie, how you doin’? I should be
+home real soon. Yeah, Fred’s fine. Still po’ed? See, time heals all
+wounds. Anyway, just wanted to check in. Okay, sweetie. You too.
+Bye-bye.</p>
+<p><strong>biker</strong>: Hey, man; this your goddam mutt?</p>
+<p><strong>biker</strong>: He just bit me.</p>
+<p><strong>cledus</strong>: Fred? C’mon, man; he don’t bite.</p>
+<p><strong>biker</strong>: I said the mother bit me.</p>
+<p><strong>cledus</strong>: He couldn’ta bit you. He’s got better taste
+than that.</p>
+<p><strong>cledus</strong>: Hey, back off, huh!?!</p>
+<p><strong>biker</strong>: Animals like this should be put to sleep.</p>
+<p><strong>another biker</strong>: Yeah, let’s put the poor little
+sumbitch outta his misery.</p>
+<p><strong>cledus</strong>: Hey, pal; I told you. Cut that shit out.</p>
+<p><strong>owner</strong>: Hey, c’mon fellas…</p>
+<p><strong>attendant</strong>: That’s seventy-three eighty-four.</p>
+<p><strong>owner</strong>: Pay me next time through, son.</p>
+<p><strong>cledus</strong>: Bandit I, bring yourself in.</p>
+<p><strong>cledus</strong>: Bandit I, do you copy?</p>
+<p><strong>bandit</strong>: We’re listening, Bandit II. Back.</p>
+<p><strong>cledus</strong>: Ran into a little hassle at the eatum-
+up-stop.</p>
+<p><strong>bandit</strong>: You okay?</p>
+<p><strong>cledus</strong>: Just fine. What’s the weather like?</p>
+<p><strong>bandit</strong>: God’s back on our side, so let’s get
+smokin’.</p>
+<p><strong>cledus</strong>: Roger. Keep the shiny side up and the greasy
+side down. Right, Fred?</p>
+<p><strong>kate</strong>: How ’bout one more for the road?</p>
+<p><strong>bandit</strong>: – How we doing?</p>
+<p><strong>cledus</strong>: It’s gonna be close. Real close.</p>
+<p><strong>kate</strong>: – Actually, my heaviest relationship was with
+a rock singer named Ramblin’ Bobby Holt. When I turned twenty- one, I
+went to Europe with visions of being free and independent. My luck, he
+was on the plane. I landed in Paris and fell in love before I could
+claim my baggage. We were together for almost a year. I thought he was
+it.</p>
+<p><strong>bandit</strong>: And?</p>
+<p><strong>kate</strong>: He wasn’t. One day I came home and found him
+taking a shower – with another girl. And her sister.</p>
+<p><strong>kate</strong>: My very words.</p>
+<p><strong>bandit</strong>: Well, that’s what you get for falling in
+love with a guy who’s first name is Ramblin’.</p>
+<p><strong>kate</strong>: They should arrest people for obeying the
+speed limit.</p>
+<p><strong>bandit</strong>: Bandit II?</p>
+<p><strong>cledus</strong>: Talk to me.</p>
+<p><strong>bandit</strong>: We’re gonna have to do a little tightrope
+act.</p>
+<p><strong>cledus</strong>: Let’s boogie.</p>
+<p><strong>bandit</strong>: All right, Kate. You clock it and let Cledus
+know when this school bus goes through.</p>
+<p><strong>kate</strong>: Bandit two, you read me?</p>
+<p><strong>cledus</strong>: You’re soundin’ real bodacious. Back.</p>
+<p><strong>kate</strong>: A yellow school bus just flew past us. I’ll
+count up to closing time – starting… Now. 27, 28, 29, 30, 31…</p>
+<p><strong>kate</strong>: …40, 41, 42, 43, 44…</p>
+<p><strong>kate</strong>: …45, 46, 47…</p>
+<p><strong>kate</strong>: …48… 49… Here comes a black Porsche. Pull
+in.</p>
+<p><strong>kate</strong>: Here we go again, Bandit II.</p>
+<p><strong>clayton</strong>: Goddammit. I’m in a goddam hurry,
+goddammit!!!</p>
+<p><strong>kate</strong>: – It’s hard to believe this schmuck Kyle would
+go to such lengths for Coors beer.</p>
+<p><strong>bandit</strong>: It’s not the beer. He just wants to see me
+fail.</p>
+<p><strong>kate</strong>: What kind of a guy is he?</p>
+<p><strong>bandit</strong>: The minute you see him, you’ll know.</p>
+<p><strong>bandit</strong>: This is Bandit. I’m about twenty- five miles
+outside of Georgia. Heading in on Eighty-five and looking for a Smokey
+report.</p>
+<p><strong>woman’s voice</strong>: This is First Madame, Bandit.</p>
+<p><strong>first madame</strong>: We knew you’d be coming our way and
+decided to take care of the Bears for you. You know, a little
+personalized roadside service.</p>
+<p><strong>bandit</strong>: Send me the bill, First Madame.</p>
+<p><strong>first madame</strong>: Better yet. Why don’t you pay up in
+person?</p>
+<p><strong>bandit</strong>: Maybe I’ll catch you on the flip- flop. Over
+and out.</p>
+<p><strong>bandit</strong>: Believe me, she’s got a heart of gold.</p>
+<p><strong>kate</strong>: What are you gonna do when you get home?</p>
+<p><strong>bandit</strong>: Sleep for a week. Wanna join me?</p>
+<p><strong>bandit</strong>: Thanks, Kate.</p>
+<p><strong>bandit</strong>: Breaker, Breaker. This is Bandit I, coming
+up on a portable gas station. Do you copy?</p>
+<p><strong>voice</strong>: Bandit, this is Mister B, and I’m gearjamming
+this rolling refinery. You got another Smokey on the rubber?</p>
+<p><strong>bandit</strong>: What else? Can you give me cover, Mister
+B?</p>
+<p><strong>mister b</strong>: Come head on, Bandit. We’ll slip you into
+the rocking chair.</p>
+<p><strong>bandit</strong>: Mister B, I don’t know how to thank you.</p>
+<p><strong>mister b</strong>: Thank me by not getting caught.</p>
+<p><strong>bandit</strong>: Bandit II?</p>
+<p><strong>cledus</strong>: I’m all ears.</p>
+<p><strong>bandit</strong>: You’re about to hit a convoy. Tighten up
+your rubber band. The oncoming’s clear.</p>
+<p><strong>cledus</strong>: Hot Lanta, here we come!</p>
+<p><strong>kate</strong>: Why are you stopping?</p>
+<p><strong>bandit</strong>: Weight Station.</p>
+<p><strong>bandit</strong>: Bandit II?</p>
+<p><strong>cledus</strong>: I’m here.</p>
+<p><strong>bandit</strong>: You’re coming up to the scale house.</p>
+<p><strong>cledus</strong>: I’m cucumber cool.</p>
+<p><strong>weight station worker</strong>: Okay, you’re clear to
+roll.</p>
+<p><strong>weight station worker</strong>: Pull ’er ahead and park.</p>
+<p><strong>cledus</strong>: What’s the problem?</p>
+<p><strong>weight station worker</strong>: Just pull it over, please.
+And have your manifest ready.</p>
+<p><strong>cledus</strong>: Oh, Jesus…</p>
+<p><strong>weight station worker</strong>: Paint, huh?</p>
+<p><strong>cledus</strong>: Yep.</p>
+<p><strong>weight station worker</strong>: Paint ain’t usually pulled
+independently.</p>
+<p><strong>cledus</strong>: Hey, I’m a truckin’ whore. They got the
+money, honey; I got the time.</p>
+<p><strong>highway patrolman</strong>: Wanna open her up?</p>
+<p><strong>cledus</strong>: C’mon fella, this paint’s due in Savannah
+yesterday.</p>
+<p><strong>highway patrolman</strong>: Word is some joker’s running
+blocker for an illegal load. We’re just spot checking.</p>
+<p><strong>cledus</strong>: C’mon, Ebersol… I’ve been through this
+chicken coop a hundred times…</p>
+<p><strong>highway patrolman</strong>: We’re just gonna take a quick
+peek- see. You’ll be outta here in no…</p>
+<p><strong>highway patrolman</strong>: …in high speed pursuit of a black
+Shelby Cobra. Mississippi license Charles-Alan-Richard – two-seven-
+three. Vehicle eastbound on Interstate seventy-two. Request
+assistance.</p>
+<p><strong>kate</strong>: Oh, dear God in heaven!</p>
+<p><strong>bandit</strong>: What’ll we do for excitement on our second
+date?</p>
+<p><strong>cledus</strong>: Bandit I, let me offer my heartiest
+congratulations and a piece of advice.</p>
+<p><strong>bandit</strong>: What’s that, pardner?</p>
+<p><strong>cledus</strong>: Don’t take that foot off the hammer, ’cause
+you got wall-to-wall Bears about to pour over you like maple syrup.</p>
+<p><strong>bandit</strong>: I think it’s time to call a mayday. Breaker.
+Breaker. This is Bandit to Hot Pants. Come back.</p>
+<p><strong>hot pants</strong>: Why should I?</p>
+<p><strong>bandit</strong>: Because I need your help, sweet thing. And I
+need it bad.</p>
+<p><strong>hot pants</strong>: I’m working, Bandit. Besides, what’s the
+matter? Won’t your new girl friend help you?</p>
+<p><strong>bandit</strong>: Hot Pants, please. I’m gonna be flying by in
+about five minutes with Smokey on my tail. Can you lock it off behind
+me?</p>
+<p><strong>bandit</strong>: What do you want me to do, Hot Pants?
+Beg?</p>
+<p><strong>hot pants</strong>: Yes.</p>
+<p><strong>bandit</strong>: I’m begging.</p>
+<p><strong>hot pants</strong>: I want you to know I’m doing this against
+my better instincts.</p>
+<p><strong>bandit</strong>: But you’ll do it?</p>
+<p><strong>hot pants</strong>: I’ll do it.</p>
+<p><strong>bandit</strong>: I owe you a big one, Hot Pants.</p>
+<p><strong>hot pants</strong>: You sure do.</p>
+<p><strong>bandit</strong>: Yes, I actually dated a woman who still
+wears hot pants.</p>
+<p><strong>bandit</strong>: How’s the clock, Bandit II.</p>
+<p><strong>cledus</strong>: Ticking away, but it looks like a clear shot
+to Hot Town. Green lights and white lines all the way.</p>
+<p><strong>kate</strong>: Hey, this could be the biggest house I ever
+played to.</p>
+<p><strong>chopper pilot’s voice</strong>: Paydirt!</p>
+<p><strong>chopper pilot’s voice</strong>: – We just picked up the Cobra
+eastbound on Interstate 72 heading for the Peach Tree Classic. Over.</p>
+<p><strong>commander’s voice</strong>: All units converge.</p>
+<p><strong>bandit</strong>: Talk about being popular…</p>
+<p><strong>bandit</strong>: I hate to say it, man; but I think it’s
+over. Time to lay down our hand.</p>
+<p><strong>cledus</strong>: Are you loco, pardner!?! We’ve come this
+far.</p>
+<p><strong>bandit</strong>: Yeah, but…</p>
+<p><strong>cledus</strong>: When we agree to do a job, we do it.
+Right?</p>
+<p><strong>bandit</strong>: But they’re waiting for me. They don’t even
+know Cledus Snow exists.</p>
+<p><strong>cledus</strong>: Well, they’re gonna. It’s time this
+gearjammer rode to glory. Now, move aside; good buddy. I’m coming
+through.</p>
+<p><strong>kyle</strong>: That crazy sumbitch made it.</p>
+<p><strong>dickey</strong>: Congratulations. You just became a legend
+maker.</p>
+<p><strong>kyle</strong>: You got my barley pop?</p>
+<p><strong>bandit</strong>: What do you think?</p>
+<p><strong>dickey</strong>: Have any trouble getting here?</p>
+<p><strong>bandit</strong>: About one to five years worth.</p>
+<p><strong>kate</strong>: One to five?</p>
+<p><strong>bandit</strong>: Maybe six months with good behavior. One to
+five.</p>
+<p><strong>kyle</strong>: Well, I guess I gotta hand it to you.</p>
+<p><strong>dickey</strong>: I wonder if they’ll let you take a K-
+Whooper to prison?</p>
+<p><strong>cledus</strong>: Mind if I cream your son?</p>
+<p><strong>kyle</strong>: Don’t sweat it. I’ll have y’all out on bail in
+no time. Fools like you are valuable.</p>
+<p><strong>bandit</strong>: Well, at least it hasn’t been boring.</p>
+<p><strong>kate</strong>: Well, thanks for the lift.</p>
+<p><strong>bandit</strong>: Hey…</p>
+<p><strong>bandit</strong>: What can I say?</p>
+<p><strong>kate</strong>: Promise me you won’t fall in love with an
+inmate.</p>
+<p><strong>clayton</strong>: Get your hands off my daughter!</p>
+<p><strong>bandit</strong>: Your what?</p>
+<p><strong>kate</strong>: He’s just exhausted.</p>
+<p><strong>bandit</strong>: That man is your father?!?</p>
+<p><strong>kate</strong>: I should’ve told you, but you would’ve thrown
+me out, right?</p>
+<p><strong>bandit</strong>: Absolutely.</p>
+<p><strong>kate</strong>: Listen, he’s nuts. I mean certifiable. But
+believe it or not, he once looked great in Levis. That’s why my mother
+married him. But like all good things… I know what you’re thinking.</p>
+<p><strong>kate</strong>: What are you thinking?</p>
+<p><strong>bandit</strong>: You gotta admire the man’s
+determination.</p>
+<p><strong>kate</strong>: Well, was it worth it?</p>
+<p><strong>kate</strong>: I’ll take care of Fred.</p>
+<p><strong>kate</strong>: See ya, Bandit.</p>
+<p><strong>bandit</strong>: See ya, Kate.</p>
+<p><strong>voice one</strong>: – Breaker, Breaker. This is Banana
+Peel.</p>
+<p><strong>voice two</strong>: – Yeah, Banana Peel, go head on.</p>
+<p><strong>voice one</strong>: – Did ya hear they nailed the Bandit?</p>
+<p><strong>voice two</strong>: – Yeah, I heard. But they won’t hold him
+for long. Anyway, he sure gave them sumbitches a run for their
+money.</p>
+</body>
+</html>

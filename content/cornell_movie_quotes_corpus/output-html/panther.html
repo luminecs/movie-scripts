@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>panther</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="panther">panther</h1>
+<p><strong>voice</strong>: The Black Panthers…</p>
+<p><strong>voice</strong>: People still ask me how it all started? How
+things went so far? And like a lot of questions about the Panthers,
+there are different answers. Different beginnings…</p>
+<p><strong>voice</strong>: What became the Black Panthers really started
+with just two guys – Bobby Seale and Huey Newton – saying two words:
+“Defend Yourselves…” Legend has it they met at some coffee house where
+Bobby was running down a rhyme…</p>
+<p><strong>bobby</strong>: Oh yeah. Yeah it’s easy to see right on your
+black and white TV. Black man. Blue cop. Red blood. Niggers watch other
+niggers die. That’s right Niggers watching niggers die. That’s the
+American way…</p>
+<p><strong>voice</strong>: Pigs threw them in jail. There they starting
+talking about black folks oughta start standing up. No master plan, no
+pot to piss in, nothing like that. Just two fed-up brothers… Next thing
+you know, you got the Black Panther Party for Self Defense…</p>
+<p><strong>voice</strong>: For me, it started different. A lot
+different. You may as well say The Panthers started in my front
+yard…</p>
+<p><strong>shapely woman</strong>: Shucks I see you staring, but I ain’t
+letting go. Them hips is almost forty years old but the hat is brand
+new!</p>
+<p><strong>rose</strong>: Yes indeed, that Bitter Dog… What’s up little
+brother?</p>
+<p><strong>sabu</strong>: I’m telling you, man. The perfect gift for the
+sophisticated lady in your life. Light up her flame with some solid gold
+satisfaction and get a second one half price for your wife. Can’t beat
+my price with a stick, baby.</p>
+<p><strong>cy</strong>: Sabu, why’re you still tryin’ to sell these
+raggedy ass, non workin’ Korean lighters man?</p>
+<p><strong>rita</strong>: Oh lord… not again…</p>
+<p><strong>cy</strong>: God damn… Kid never had a chance…</p>
+<p><strong>rose</strong>: Mothafuck… Hey!!! What the hell!!!</p>
+<p><strong>judge</strong>: People were pissed off. Neighborhood had been
+begging for a stoplight since before dirt was invented. Way I saw it
+then, that boy dying was another shitty thing in a world full of
+shit.</p>
+<p><strong>judge</strong>: Way I see it now… That day. That
+intersection. That’s where it started for me. Only, I didn’t know it
+then…</p>
+<p><strong>rose</strong>: You supposed to be a wounded vet, Motherfucka.
+What you do in ’Nam anyway, shoot gooks or shoot hoops?</p>
+<p><strong>judge</strong>: All of the above, man… And then some.</p>
+<p><strong>tyrone</strong>: Tell me, don’t you fine black men got
+anything better to do than play games?</p>
+<p><strong>rose</strong>: Sure I do, but your sister’s busy. Gimme the
+damn ball.</p>
+<p><strong>tyrone</strong>: Here… Take it. I thought some righteous
+brothers like you might help us out, but I guess that ain’t you…</p>
+<p><strong>jamal</strong>: Help who? With what?</p>
+<p><strong>tyrone</strong>: Your community! That’s who. Maybe you didn’t
+know but a kid died today.</p>
+<p><strong>little bobby</strong>: That’s three this year… same spot.</p>
+<p><strong>tyrone</strong>: Damn straight. And old Reverend Slocum’s
+having a vigil on that corner, trying to get a stoplight put in.</p>
+<p><strong>judge</strong>: My Mom’s at that.</p>
+<p><strong>rose</strong>: Funny you don’t look like church folk to
+me.</p>
+<p><strong>tyrone</strong>: Oh I ain’t. But it seems The Man’s getting
+uptight about black folk standing in the street, causing a fuss. What
+I’m asking for, is some of your able black asses to come down and be
+“Observers” on the cops. Take down badge numbers. They don’t like
+pulling shit with too many eyes on ’em. So that’s how you can help, not
+by praying but by watching.</p>
+<p><strong>drinker #1</strong>: Not me. This able black ass ain’t
+fucking with no cops.</p>
+<p><strong>jamal</strong>: Look, I understand but if some Blacks insist
+on trying to interact with the white man, that’s not our concern. We are
+African, “brother.” Mother Africa is the only…</p>
+<p><strong>tyrone</strong>: No, you look, you phony ass boojie nigger.
+We ain’t in Africa, we’re in Oakland. And in Oakland we got police
+brutality. We got the white man interacting his billy club up against
+the black man’s head. Now if that don’t bother you, then take your skirt
+wearing ass back to Africa… “Uncle.”</p>
+<p><strong>tyrone</strong>: Try it.</p>
+<p><strong>little bobby</strong>: Chickenshit boojie…</p>
+<p><strong>tyrone</strong>: What about you two? You were there, you saw
+that kid?</p>
+<p><strong>judge</strong>: I saw… but…</p>
+<p><strong>tyrone</strong>: But nothing… you do live here don’t you?</p>
+<p><strong>judge</strong>: Yeah, I do.</p>
+<p><strong>tyrone</strong>: Well, act like it. Come on.</p>
+<p><strong>rose</strong>: You young niggas crazy. The Man ain’t gonna
+let us have no say in running shit! Keep it up and he’s gonna come down
+on our ass like a ton of bricks…</p>
+<p><strong>tyrone</strong>: Don’t let the cops provoke you. We’re there
+to watch and take badge numbers…</p>
+<p><strong>judge</strong>: And who is we?</p>
+<p><strong>little bobby</strong>: Brother where you been? We’re the
+Black Panthers.</p>
+<p><strong>cy</strong>: The Panthers… How old are you?</p>
+<p><strong>little bobby</strong>: Sixteen.</p>
+<p><strong>tyrone</strong>: Shit, we made him get his moms to give
+permission before he could sign up.</p>
+<p><strong>judge</strong>: Just a kid.</p>
+<p><strong>tyrone</strong>: Yeah, well, cops kick the shit out of kids
+too.</p>
+<p><strong>judge</strong>: I thought you said all the Panthers were
+gonna be here.</p>
+<p><strong>tyrone</strong>: What you see is what you got. That’s’ Bobby
+Seale.</p>
+<p><strong>tyrone</strong>: Carter… buddy of mine from way back… And
+Gene…</p>
+<p><strong>little bobby</strong>: And that… that’s Huey…</p>
+<p><strong>cy</strong>: Ain’t too many of you is there?</p>
+<p><strong>tyrone</strong>: Only takes a single grain of sand to move
+the world…</p>
+<p><strong>little bobby</strong>: Heads up!!!!</p>
+<p><strong>sgt. schreck</strong>: What in the Sam Hell is this?</p>
+<p><strong>patrolman</strong>: A vigil for some pickaninny got hit
+here.</p>
+<p><strong>sgt. schreck</strong>: Vigil my ass…</p>
+<p><strong>schreck</strong>: Listen up, you all have 30 seconds to
+disperse and return to your homes.</p>
+<p><strong>schreck</strong>: Failure to do so will result in your
+immediate arrest…</p>
+<p><strong>patrolman</strong>: Go on get your black hide outta here…</p>
+<p><strong>bullhorn</strong>: You are resisting arrest!…</p>
+<p><strong>judge</strong>: Oh shit Mom…</p>
+<p><strong>judge</strong>: Jesus…</p>
+<p><strong>huey</strong>: The power structure locks the black man up.
+That’s right. We move from chains to bars and locks. Kangaroo courts put
+brothers in jail. No jury of our peers. No jury of black folks. How do
+we stop this insanity? It’s simple. Organization. That’s the key. We
+must organize. We must maintain discipline…</p>
+<p><strong>tyrone</strong>: That’s right brother… listen and learn.</p>
+<p><strong>huey</strong>: The white power structure wants us to act like
+savages. But we’re a different kind of animal altogether. We’re
+Panthers. And The Black Panther Party for Self Defense is very painfully
+aware that America has historically reserved its most barbaric treatment
+for non-white people since the beginning of the country. So we need to
+organize, we keep our shit correct! And effect revolution. We revolve
+the power into the hands of the people. Where it belongs. Power to the
+people baby…</p>
+<p><strong>gene</strong>: Power? Shit, old folks can’t even sing without
+getting their asses kicked.</p>
+<p><strong>huey</strong>: Well, then like the man said… Maybe it’s time
+we stop singing and start swinging.</p>
+<p><strong>carter</strong>: Yeah, but they got the guns.</p>
+<p><strong>huey</strong>: We can change that. We got the right to bear
+arms, so I’d say it’s time to exercise that right. Like Comrade Mao
+says, “Justice through power, Power through guns.”</p>
+<p><strong>tyrone</strong>: Chickenshits, just harassing our ass, we
+weren’t breaking any law.</p>
+<p><strong>rev. slocum</strong>: But at least we’re free! God has
+delivered us from the lion’s den.</p>
+<p><strong>bobby</strong>: Free? We’re back where we started. Shit we
+still don’t have a stop light.</p>
+<p><strong>huey</strong>: Well as the Rev says, God helps those who help
+themselves. We’ll be our own stoplight.</p>
+<p><strong>cy</strong>: Check it out… Great huh? I tell you those guys
+know what time it is. Man I’m with that…</p>
+<p><strong>judge</strong>: I don’t know. Look around man.</p>
+<p><strong>cy</strong>: C’mon Judge we got to start somewhere.</p>
+<p><strong>judge</strong>: Yeah, and I’m gonna start by getting on my
+feet. Working on things from inside the system.</p>
+<p><strong>cy</strong>: Inside ain’t in the system. It’s right there
+inside you!! I’m joining up.</p>
+<p><strong>judge</strong>: I… I gotta go…</p>
+<p><strong>judge</strong>: It’s okay Mom. I’m allright.</p>
+<p><strong>rita</strong>: You don’t look alright.</p>
+<p><strong>judge</strong>: Yeah… cop hit me…</p>
+<p><strong>rita</strong>: I saw. I saw that big one hit that police man.
+Saw ’em drag you off too. They take you to jail?</p>
+<p><strong>judge</strong>: Yeah.</p>
+<p><strong>rita</strong>: Lord, never thought I’d live to see my boy in
+prison.</p>
+<p><strong>judge</strong>: Mom! It wasn’t like that. It was bullsh… They
+were just harassing us. No charges were filed. It’s alright.</p>
+<p><strong>rita</strong>: You meet those friends of yours in jail
+too?</p>
+<p><strong>judge</strong>: Yes… No… Mom it’s not like you think. They’re
+alright. There out there trying to do something.</p>
+<p><strong>rita</strong>: I hear them boys, those Black Panthers,
+they’re communists. They don’t even believe in God.</p>
+<p><strong>judge</strong>: Mom, black folks been praying to God for four
+hundred years. Maybe it’s time we tried something else…</p>
+<p><strong>rita</strong>: You believe that?</p>
+<p><strong>judge</strong>: I don’t know. I really don’t.</p>
+<p><strong>rita</strong>: I’ll tell you one thing Judge…</p>
+<p><strong>rita</strong>: Them boys gonna start a bunch of trouble they
+keep on like that.</p>
+<p><strong>rodgers</strong>: Those things don’t work…</p>
+<p><strong>dorsett</strong>: Don’t I know it. Come on in Agent Rodgers.
+Sit down. Always a… pleasure to see you. How can I be of help?</p>
+<p><strong>rodgers</strong>: It’s a bit more like how can we help you.
+Bay Area’s become quite a hornet’s nest in terms of subversive
+activities. And… well Mr. Hoover wants to reiterate that the FBI will be
+happy to assist local authorities in any way we can. On a strictly
+advisory basis… of course.</p>
+<p><strong>dorsett</strong>: Of course. Well, I appreciate your offer,
+but we got things pretty well under control. Same bunch of kooks you
+guys already have under surveillance. They’re still doing a lot of
+yelling and pot-smoking but nothing to worry about.</p>
+<p><strong>rodgers</strong>: I see. What about the Black Panther Party
+for Self-Defense?</p>
+<p><strong>dorsett</strong>: Heh, bunch of shines running around in dark
+caps waving their fists about some streetlight. They’re loud, but they
+aren’t dangerous,</p>
+<p><strong>rodgers</strong>: Can you make a deal with them?</p>
+<p><strong>dorsett</strong>: Naw… They’re kids mostly. Idealists. They
+actually think they’re for real.</p>
+<p><strong>rodgers</strong>: Hmmm. As you know the Bureau – and
+Mr. Hoover – is particularly “sensitive” to anything that might agitate
+or solidify the coloreds on the left.</p>
+<p><strong>dorsett</strong>: You want me to put a man on it?</p>
+<p><strong>rodgers</strong>: That would be an excellent start. Tell him
+to keep a low profile.</p>
+<p><strong>sabu</strong>: What do you want? Panama Red? I can get you
+Panama Red Sinsemilla? Got a line on some chocolate hash… get you high
+as a motherfucking monkey…</p>
+<p><strong>white hippie</strong>: Uhh… man I was wondering… can you get
+some Cocaine?</p>
+<p><strong>sabu</strong>: Coke? Shee-it. Yeah, I can get you cocaine.
+But it’s dangerous. Cops everywhere. Gimme twenty dollars and meet me
+back here in an hour. And don’t fuck around white boy, this is the
+serious shit.</p>
+<p><strong>white hippie</strong>: Uh okay, alright. You’ll be here in an
+hour?</p>
+<p><strong>sabu</strong>: Yeah I’ll be here.</p>
+<p><strong>sabu</strong>: Now that was one dumb motherfucker…</p>
+<p><strong>cy</strong>: Sabu, what the fuck you doing? Ain’t nobody
+gonna push on this street.</p>
+<p><strong>sabu</strong>: Shit, I ain’t doing nothing. White bread asks
+for cocaine, I take his money. Shit… you know… It was just a hustle.</p>
+<p><strong>cy</strong>: Sabu… High white dude’s the only thing you could
+hustle.</p>
+<p><strong>sabu</strong>: Man… fuck you. Why you always bustin’ my
+balls? All that high and mighty militant shit. I ain’t doing
+nothing.</p>
+<p><strong>tyrone</strong>: I dig, you just hustling. But you make sure
+it stays like that brother, or you will have much grief on your sorry
+ass.</p>
+<p><strong>sabu</strong>: Motherfucking Panthers, worse than the
+police…</p>
+<p><strong>rose</strong>: What’s the matter Casper, you lost or
+something?</p>
+<p><strong>rose</strong>: Hey! I’m talking to you.</p>
+<p><strong>rose</strong>: Ohhhh… Looky there… It’s a Cop…</p>
+<p><strong>brimmer</strong>: Fuck.</p>
+<p><strong>huey</strong>: …Yeah, it’s a perfect next step, let the
+community know that we’re dedicated to Malcolm’s ideals… Damn where’s
+Bobby Seale?</p>
+<p><strong>bobby seale</strong>: Huey!! Man you gotta check this out…
+You’re gonna love…</p>
+<p><strong>huey</strong>: Hold up a second… We got a decision to
+make.</p>
+<p><strong>bobby seale</strong>: What’s up?</p>
+<p><strong>huey</strong>: Dig it, you know those brothers over in San
+Fran… call themselves the Black Panthers too?</p>
+<p><strong>bobby seale</strong>: Sure, those boojie jokers don’t do
+anything except print up a lotta paper saying “Black is Beautiful.”</p>
+<p><strong>tyrone</strong>: Shit, nothing but Paper Panthers.</p>
+<p><strong>huey</strong>: Yeah… but it seems they’re bringing Malcolm’s
+widow Betty Shabazz to town, to speak at a rally, do an interview for
+Ramparts. And they want us to help with security.</p>
+<p><strong>bobby</strong>: Well if anyone’s gonna protect Malcolm’s
+legacy it better be us.</p>
+<p><strong>huey</strong>: Damn straight… Let’s go check out these Paper
+Panthers.</p>
+<p><strong>roy</strong>: Greetings African brothers… You’re here to help
+us with Sister Shabazz no doubt?</p>
+<p><strong>tyrone</strong>: Fucking boojie…</p>
+<p><strong>huey</strong>: That’s right. We’d be proud to provide as
+escort for Malcolm’s widow. How many men you got?</p>
+<p><strong>roy</strong>: Get the brothers a beer. Me too while you’re at
+it. Men? Well we can spare six for security…</p>
+<p><strong>huey</strong>: No thank you sister. Six?!! That seems a
+little light. Cops are watching Betty, watching her hard. We need at
+least twenty men. And that’s twenty armed Panthers dig? You do have guns
+don’t you?</p>
+<p><strong>roy</strong>: I assure you that we as the revolutionary
+vanguard are as serious about this as you are. We’ll be prepared.</p>
+<p><strong>tyrone</strong>: They ain’t fit for the name Panthers.</p>
+<p><strong>bobby</strong>: Twenty men? I don’t know if we got that.</p>
+<p><strong>huey</strong>: We’ll get them. Right now we got to worry
+about being armed and ready to protect Betty Shabazz. Those phonies sure
+as hell can’t. We need guns.</p>
+<p><strong>tyrone</strong>: We need money first…</p>
+<p><strong>huey</strong>: Yeah… Bobby you gotta…</p>
+<p><strong>bobby</strong>: Got it covered Huey, that’s what I was trying
+to tell you before. Check it out…</p>
+<p><strong>bobby</strong>: Bought every copy in Chinatown. Got us a
+discount too, thirty cents a piece.</p>
+<p><strong>huey</strong>: Here it is Brothers. The Lowdown straight from
+comrade Mao’s mouth. If you open the minds, the bodies will follow.</p>
+<p><strong>carter</strong>: Huey uhhh… these… these guys want to
+join…</p>
+<p><strong>huey</strong>: I’m sorry boys. But right now The Party feels
+it’s important for Black People to do it for themselves. We’re not
+signing up white folk. But, if you are down with what we’re doing,
+organize some righteous white folks. I got a feeling we’re gonna need
+each other.</p>
+<p><strong>judge</strong>: Hey, this what they got you doing now?</p>
+<p><strong>cy</strong>: Party needs the bread. Be hip to the struggle,
+only a dollar!!!</p>
+<p><strong>student</strong>: A dollar? Far out! Is it authentic?</p>
+<p><strong>cy</strong>: Comrade, this here’s the real deal, straight
+from Revolution HQ.</p>
+<p><strong>student</strong>: Huh? Hey, I can dig it man. Thanks! Long
+live the revolution, brother.</p>
+<p><strong>cy</strong>: Money’s cool, but what the party really needs is
+brothers like you. Judge I could use someone like you. These books, hell
+I don’t know half the words. You might.</p>
+<p><strong>judge</strong>: Have to pass on the revolution today man, I
+got class… But how about tonight, I was gonna check out “Cloud Nine.”
+Just like old times.</p>
+<p><strong>cy</strong>: Can’t… they’re having a PE meeting at
+Headquarters tonight, come on down. Check it out.</p>
+<p><strong>judge</strong>: PE? What? You guys doing gym class?</p>
+<p><strong>cy</strong>: No man. PE – “political education.”</p>
+<p><strong>tyrone</strong>: You’re a smart brother… you should dig what
+Huey and Bobby got to say…</p>
+<p><strong>judge</strong>: Maybe…</p>
+<p><strong>tyrone</strong>: Fuck maybe… be there.</p>
+<p><strong>judge</strong>: Like I said… maybe.</p>
+<p><strong>judge</strong>: Rose, what the hell you doing here?</p>
+<p><strong>rose</strong>: Just come for the food, man. Ain’t quite sure
+what their bag is but…</p>
+<p><strong>rose</strong>: That one’s one hell of a cook…</p>
+<p><strong>bobby</strong>: …We… the Black Panther Party are not
+anarchists. We want a government that serves the people. In the black
+community we want a government that serves black people. Black cops for
+Black People. Not the Army we have occupying the community “Army?” you
+ask. “What army? This isn’t Vietnam.” Well the Army’s right out your
+door folks. They’re the cops.</p>
+<p><strong>bobby</strong>: They’re pigs brothers and sisters. And these
+pigs are soldiers fighting against us. Whether you got an Afro or a
+process on. Whether a sister’s got her hair straightened or whether
+she’s got a natural on. Whether it’s a brother in a dashiki or a pimp
+with a sharp suit on. Whether a sister’s prostituting or teaching kids
+to read. The pig will murder you because you’re black. No matter what
+kind of hair you wear. So we best get ourselves together, organize,
+learn our history and put the power in the hands of the black community
+before this army, these pigs wipe this community out.</p>
+<p><strong>cy</strong>: …Glad you came man.</p>
+<p><strong>judge</strong>: Yeah, only I figure you’d be the one doing
+the speaking.</p>
+<p><strong>cy</strong>: Not yet, one of these day’s maybe. Bobby’s party
+chairman. Political Education’s really his bag.</p>
+<p><strong>huey</strong>: You’re Cy’s Vietnam buddy right? C’mere I’d
+like to talk with you…</p>
+<p><strong>huey</strong>: You were. infantry right?</p>
+<p><strong>judge</strong>: Yeah.</p>
+<p><strong>huey</strong>: So I guess it’s safe to say you know about
+firepower.</p>
+<p><strong>judge</strong>: Busted firing pin. You want only the legal
+stuff right?</p>
+<p><strong>tyrone</strong>: Just the legit shit.</p>
+<p><strong>mr. yang</strong>: Nothing wrong with that pistol.</p>
+<p><strong>judge</strong>: Serial number’s been filed. Cop catches you
+with that he figures you either stole it or killed someone with it…</p>
+<p><strong>mr. yang</strong>: I don’t want no trouble. No cops coming to
+me about these guns.</p>
+<p><strong>huey</strong>: No trouble here. You got a permit to sell.
+We’re buying. All perfectly legal.</p>
+<p><strong>mr. yang</strong>: These are worth a lot more.</p>
+<p><strong>bobby seale</strong>: I thought you were a revolutionary. We
+can’t afford em if you don’t cut us some slack. But… you treat us right
+and we’ll be doing a lot of business.</p>
+<p><strong>mr. yang</strong>: Alright.</p>
+<p><strong>huey</strong>: We appreciate your help with this.</p>
+<p><strong>judge</strong>: So what’s the deal?</p>
+<p><strong>huey</strong>: Freedom… We’re just gonna test some of the
+words in that law book.</p>
+<p><strong>huey</strong>: Judge… we’re doing security for Betty
+Shabazz’s visit next week. I’d like to have someone who knows there way
+around a pistol there. Someone like you.</p>
+<p><strong>judge</strong>: I don’t know.</p>
+<p><strong>huey</strong>: You are down for protecting Malcolm’s widow
+aren’t you?</p>
+<p><strong>judge</strong>: Yeah… let me think about it.</p>
+<p><strong>huey</strong>: Okay man I ain’t going to push. But remember
+the revolution isn’t going to wait for anyone. Come on, we’ll give you a
+lift.</p>
+<p><strong>judge</strong>: No man. Gonna walk.</p>
+<p><strong>huey</strong>: This here’s a “Panther Patrol.” We see a
+brother getting busted. We check it out, make sure the pig don’t go
+beating on the man. Brother gets taken downtown, we post bail, hook ’em
+up with a lawyer.</p>
+<p><strong>tyrone</strong>: We’re like policing the police.</p>
+<p><strong>huey</strong>: Damn straight.</p>
+<p><strong>beefy cop #1</strong>: Get me some back up…</p>
+<p><strong>beefy cop</strong>: Okay now, er, Huey, so what’s your
+telephone number?</p>
+<p><strong>huey</strong>: I have confirmed to you my address, that’s all
+I’m required to by law to do. We have broken no law.</p>
+<p><strong>beefy cop</strong>: What are you doing with the gun?</p>
+<p><strong>huey</strong>: What are doing with yours?.</p>
+<p><strong>baby faced cop</strong>: These boys giving you trouble?</p>
+<p><strong>beefy cop</strong>: Here’s another one. That your pistol
+there?</p>
+<p><strong>bobby</strong>: No! It is not his weapon. A handgun would be
+a violation of his probation. It’s mine!</p>
+<p><strong>beefy cop</strong>: Lemme see that rifle son…</p>
+<p><strong>huey</strong>: No! This is my private property. According to
+California law we have a constitutional right to bear arms.</p>
+<p><strong>black voice in crowd</strong>: Them’s some badass
+niggers…</p>
+<p><strong>cop 2</strong>: Okay. Okay. Move along. Go on about your
+business…</p>
+<p><strong>huey</strong>: Wait!! Brothers! Sisters!! You don’t have to
+go anywhere. This is your business. Stay right here. The law says as
+long as you keep a reasonable distance, eight to ten feet to be exact,
+you’ve got a right to observe the police carrying out their duties. From
+what I can see, you’re standing some 22 feet away from this man here. So
+brothers ain’t no law being broken.</p>
+<p><strong>black voice in crowd</strong>: Talk that good shit
+Brother…</p>
+<p><strong>beefy cop</strong>: Is that gun loaded BOY?!!</p>
+<p><strong>huey</strong>: Fish and Game laws clearly state that it is
+unlawful to have a live round of ammunition in the chamber of a shotgun
+or rifle in a vehicle… PIG!!</p>
+<p><strong>black voice in crowd</strong>: Oh sweet Jesus, I do believe I
+have died and gone to heaven…</p>
+<p><strong>cop #2</strong>: Refer to him as officer.</p>
+<p><strong>bobby</strong>: Well then don’t refer to him as BOY!</p>
+<p><strong>beefy cop</strong>: Well… is it loaded?</p>
+<p><strong>huey</strong>: I tell you “officer”, it wasn’t…</p>
+<p><strong>huey</strong>: …but now IT IS!</p>
+<p><strong>beefy cop</strong>: For the last time Boy!!! What do those
+guns mean??!!</p>
+<p><strong>huey</strong>: They mean, Pig!, that the Black Panther Party
+declares that if you try to brutalize our community or take our weapons.
+We are going to shoot you!!!</p>
+<p><strong>black voice in crowd</strong>: Pigs that’s just what the hell
+they are!!!</p>
+<p><strong>voice</strong>: Never thought I’d live to see the day! You
+know the police ain’t nothing but the KKK with badges.</p>
+<p><strong>dorsett</strong>: One: “We want freedom. We want the power to
+determine the destiny of our Black Community.” Two: “We want full
+employment for our people.” Three: “We want to end the robbery by the
+white man of our Black Community.” Christ, they’re asking for
+reparations…</p>
+<p><strong>rodgers</strong>: They couldn’t have thought this up for
+themselves.</p>
+<p><strong>brimmer</strong>: Yeah… Sounds like the Constitution to me.
+With a little of the Bill of Rights thrown in…</p>
+<p><strong>rodgers</strong>: Inspector Brimmer, this is no joke During
+your surveillance have you seen any outside agitators? Professorial
+types? Communists?</p>
+<p><strong>brimmer</strong>: No. I’ve seen Black men handing out bags of
+food. Having meetings. Patrolling the neighborhood. Having more
+meetings. They ain’t…</p>
+<p><strong>rodgers</strong>: They are carrying guns. They are
+threatening police officers. They are undermining the United States of
+America. And you Inspector Brimmer are not taking your duties
+seriously…</p>
+<p><strong>dorsett</strong>: Now hold on Rodgers…</p>
+<p><strong>rodgers</strong>: Chief Dorsett, if the Black Panthers are
+going to remain in your jurisdiction, some fundamental changes in
+attitude need to be made…</p>
+<p><strong>brimmer</strong>: Like?</p>
+<p><strong>rodgers</strong>: Like, you Inspector Brimmer are not going
+to be sitting in your car anymore. I think it’s time for a more active
+type of involvement.</p>
+<p><strong>voice</strong>: Evening Chief. Another hard day keeping the
+streets safe?</p>
+<p><strong>dorsett</strong>: What are you doing out so late?</p>
+<p><strong>voice</strong>: I like to keep an eye on my “investments” so
+to speak. You know we still need to discuss that business expansion we
+spoke of.</p>
+<p><strong>dorsett</strong>: Look, I don’t think…</p>
+<p><strong>trafficante</strong>: That’s a beautiful car. You’d do well
+to remember who paid for it. Good night, Chief, we’ll speak again
+soon.</p>
+<p><strong>cy</strong>: Man, did you see Huey down on Grove street? All
+up on that cop, that was beautiful.</p>
+<p><strong>judge</strong>: Yeah, it was alright. Hey, can you give me a
+lift?</p>
+<p><strong>cy</strong>: You got it. Berkeley?</p>
+<p><strong>judge</strong>: No, Panther Headquarters. Least that way we
+could hang out more like we used to.</p>
+<p><strong>cy</strong>: You joining? My Brother.. My brother.</p>
+<p><strong>face #1</strong>: Sign me up!! Just gimme a gun and point out
+the cops you want me to shoot…</p>
+<p><strong>face #2</strong>: Where’s the free food at?</p>
+<p><strong>face #3</strong>: My momma, she marched with King. Don’t know
+exactly what kinda change that brought. But man you put that cop on
+Grove through some serious changes!!!</p>
+<p><strong>face #4</strong>: I hear you Panther boys get the finest
+pussy.</p>
+<p><strong>face #5</strong>: Vietnam man… I go there and then come back
+to some honky motherfucker telling me what to do, beating my ass if I
+don’t. Man… fuck that.</p>
+<p><strong>cy</strong>: Judge is gonna join us.</p>
+<p><strong>bobby</strong>: Welcome Brother, if we stand together we can
+break the chains.</p>
+<p><strong>tyrone</strong>: Huey wants to see you.</p>
+<p><strong>judge</strong>: Huh?</p>
+<p><strong>tyrone</strong>: He had a feeling you’d be coming by.</p>
+<p><strong>huey</strong>: Welcome brother, have you decided to get down
+with us?</p>
+<p><strong>judge</strong>: I’m down.</p>
+<p><strong>huey</strong>: Yeah… You were a lot of help with those guns.
+Your soldier shit is bad- ass.</p>
+<p><strong>judge</strong>: I’d hoped I was finished with all that.
+But…</p>
+<p><strong>huey</strong>: You know, you’re lucky to be back. Most
+niggers die on the front lines. Seems like that’s what they’re there
+for.</p>
+<p><strong>judge</strong>: Don’t I know it. Every brother I knew in
+’Nam’s dead. My company… a land mine. Twenty of my friends dead in less
+than a second.</p>
+<p><strong>huey</strong>: Mind if I ask you something? Why’d you put up
+with shit like that for someone else’s war?</p>
+<p><strong>judge</strong>: Hey, GI bill pays for school. And shit, if I
+stuck around here, instead of signing up, I’d probably be in jail, or
+sitting on the stoop drinking Bitter Dog with Rose, you know?</p>
+<p><strong>huey</strong>: Yeah I know. You’re smart Judge. You ain’t no
+bourgeois nigger like those Paper Panthers across the bay. I need every
+good man to help us with the security on Betty Shabazz, particularly
+soldiers. You do solid on that I might have something else for you,
+something real important.</p>
+<p><strong>judge</strong>: Whatever you need, I’ll be there.</p>
+<p><strong>huey</strong>: Right on Brother Judge…</p>
+<p><strong>eldridge</strong>: What would you tell young brothers and
+sisters to do in following Brother Malcolm’s footsteps?</p>
+<p><strong>betty shabazz</strong>: I’d say that Malcolm lives in each of
+us. We all need to work together for the community. Like those brothers
+out there are…</p>
+<p><strong>judge</strong>: Huey…</p>
+<p><strong>roy</strong>: Oh oh…</p>
+<p><strong>cop #1</strong>: What’s going on here son?</p>
+<p><strong>huey</strong>: We are breaking no law, you’ve have no right
+to detain us.</p>
+<p><strong>reporter</strong>: There she is!!!</p>
+<p><strong>huey</strong>: Arrest this man!!!</p>
+<p><strong>cop #1</strong>: If I’m gonna arrest anyone it’s going to be
+you…</p>
+<p><strong>huey</strong>: Not today!!</p>
+<p><strong>roy</strong>: Don’t point that gun!!!</p>
+<p><strong>cop #1</strong>: That’s right be a smart nigger like your
+friend.</p>
+<p><strong>huey</strong>: He’s not my friend and I promise you pig. Your
+men draw and this will be a blood bath. It’s your call.</p>
+<p><strong>chuck</strong>: Aren’t you going to do anything…</p>
+<p><strong>cop #1</strong>: Like he said asshole, they’re not breaking
+any law…</p>
+<p><strong>little bobby</strong>: You see that on jive dashiki man,
+hiding under the desk. Shit paper panthers.</p>
+<p><strong>huey</strong>: What it be Judge. Nobody got hurt, Sister
+Betty’s safe. This was a good day…</p>
+<p><strong>judge</strong>: They were empty…</p>
+<p><strong>bobby</strong>: What was empty?</p>
+<p><strong>judge</strong>: The Paper Panthers’ guns, they weren’t
+loaded. I know guns man. Those guns were empty.</p>
+<p><strong>roy</strong>: Like I say Brothers we are the vanguard. Get me
+a beer… I tell you once Cleaver’s story comes out, we’re gonna…</p>
+<p><strong>huey</strong>: We put our lives on the line today. Malcolm
+X’s widow was on the line today. And your guns weren’t even loaded.</p>
+<p><strong>roy</strong>: A gun’s a gun man. It don’t need to be
+loaded.</p>
+<p><strong>huey</strong>: Tell that to the pigs. Better yet tell that to
+Malcolm.</p>
+<p><strong>roy</strong>: Wait a second there brother…</p>
+<p><strong>huey</strong>: No you wait a second. You and your “Panthers”
+got three choices. One you join with us and follow our rules. Two you
+change your name. Or three you face annihilation.</p>
+<p><strong>roy</strong>: Pretty boy, you’re a long way from Oakland.
+Fuck you.</p>
+<p><strong>huey</strong>: You’re exactly the kind of brother we don’t
+need. Kind of brother who gets others killed. Now you gonna change your
+name.</p>
+<p><strong>alma</strong>: Roy, tell him you’ll do it.</p>
+<p><strong>roy</strong>: Please!!! Yes!!! We’ll change the name.</p>
+<p><strong>huey</strong>: You were alright Judge, better than alright.
+You’re what the Party needs. A fighter but also one that’s going to
+school not making the man too nervous.</p>
+<p><strong>judge</strong>: I don’t know about that.</p>
+<p><strong>huey</strong>: I do. You think you’re smart enough to keep
+playing the game?</p>
+<p><strong>judge</strong>: What, I don’t know how you mean?</p>
+<p><strong>huey</strong>: See, the thing about Panthers. For all their
+speed and strength. They are not naturally aggressive. They don’t just
+go out killing, tearing through the jungles murdering. No, the Panther
+keeps his claws hidden until he is attacked, until he’s backed into a
+corner. Then believe me those claws are fierce.</p>
+<p><strong>judge</strong>: Huey, you’re losing me. What are you talking
+about?</p>
+<p><strong>huey</strong>: I’m talking about survival. Yours, mine, all
+of it. Outside and in. You got to do something for me. Staying alive
+might depend on it. The pigs are gonna try to infiltrate us and we’re
+gonna let ’em. But their spy’s gonna be our spy too. How about it?</p>
+<p><strong>judge</strong>: Me? You’ve got a whole lot of other folks
+signing up. Why me?</p>
+<p><strong>huey</strong>: You fit the profile, Brother. You look exactly
+like the kind of nigger they think they can trust…</p>
+<p><strong>hoover</strong>: Get me out man in Oakland…</p>
+<p><strong>tyrone</strong>: Alma!? I uhh I don’t think…</p>
+<p><strong>alma</strong>: What do you mean? We’re black ain’t we? And we
+care about improving the plight of out people don’t we? Or you figure
+oppression stops at that thing dangling between your legs!</p>
+<p><strong>tyrone</strong>: Uhh… I with it sister but…</p>
+<p><strong>alma</strong>: But nothing, we want full fledged membership
+in the Black Panther Party… and none of this “Okay sugah as long as you
+stay in the background washing my socks and rubbing my feet” bullshit
+either!</p>
+<p><strong>bobby</strong>: I can dig that! If your down with the
+Ten-Point-Program, sign up.</p>
+<p><strong>bobby</strong>: There’s a lot of work to be done.</p>
+<p><strong>brimmer</strong>: You’re Judge right? We need to talk.</p>
+<p><strong>judge</strong>: I don’t know you and I got nothing to say to
+you.</p>
+<p><strong>brimmer</strong>: Yeah you do. It’s up to you either here or
+downtown.</p>
+<p><strong>judge</strong>: They tried to recruit me. Just like you
+figured.</p>
+<p><strong>huey</strong>: You’re a little old to be a school boy aren’t
+you brother. Cool it! You’re probably not the only one they’ve gone
+after. Stall a little so they believe you’re for real. Make them trust
+you. Hey Tyrone, you figure feeding our children is gonna make The Man
+jumpy?</p>
+<p><strong>tyrone</strong>: Black people getting uppity, feeding their
+children breakfast, taking their destiny into their own hands. What’s
+this world coming to?</p>
+<p><strong>cop #1</strong>: Hands up, you ain’t going nowhere.</p>
+<p><strong>denzil</strong>: I wasn’t going nowhere in the first place. I
+ain’t done shit.</p>
+<p><strong>cop #2</strong>: “Done shit, SIR!!” Nigger don’t move…</p>
+<p><strong>denzil</strong>: I ain’t done…</p>
+<p><strong>george</strong>: Momma, these here are the Panthers I asked
+over from Oakland.</p>
+<p><strong>momma dowell</strong>: I thank you all for coming to grieve
+with us. The police won’t tell us nothing.</p>
+<p><strong>mourner</strong>: They been shooting Black men down around
+here like they’re going out of style.</p>
+<p><strong>momma dowell</strong>: My boy didn’t do nothing. He didn’t do
+nothing. Can’t nobody do something.</p>
+<p><strong>huey</strong>: We came to do something.</p>
+<p><strong>huey</strong>: …The police report says he was shot three
+times but the coroner’s report says quite clearly that Denzil Dowell was
+shot six times. And two of those shots were in his armpits. Brothers and
+Sisters you know why that is? Because Denzil had his hands up!!</p>
+<p><strong>bobby seale</strong>: No more police brutality! WHAT DO WE
+WANT?</p>
+<p><strong>the crowd</strong>: JUSTICE!</p>
+<p><strong>seale</strong>: More programs man!!! In the car.</p>
+<p><strong>brimmer</strong>: Afternoon asshole… You shoulda told me
+about this. C’mon…</p>
+<p><strong>bobby seale</strong>: WHAT DO WE WANT?</p>
+<p><strong>the panthers</strong>: JUSTICE!!!</p>
+<p><strong>tyrone</strong>: C’mon let’s…</p>
+<p><strong>huey</strong>: No! Just harassment. Can’t let it stop this.
+Brother we got momentum!</p>
+<p><strong>bobby</strong>: What do we want!!??</p>
+<p><strong>the crowd</strong>: JUSTICE!</p>
+<p><strong>reverend slocum</strong>: Amen! The Lord God Almighty be our
+witness. Let us bow our heads and pray for…</p>
+<p><strong>bobby</strong>: POWER TO THE PEOPLE!!!</p>
+<p><strong>crowd</strong>: POWER TO THE PEOPLE!</p>
+<p><strong>deputy</strong>: You’re not getting in here with no gun.</p>
+<p><strong>huey</strong>: This firearm is being carried in plain view
+and is therefore perfectly legal according to California statute…</p>
+<p><strong>cop</strong>: Over my dead body.</p>
+<p><strong>huey</strong>: That’s your call pig.</p>
+<p><strong>rev. slocum</strong>: We come for justice, not bloodshed but
+don’t be pushing us too far.</p>
+<p><strong>bobby</strong>: Bled to death!?!? The Coroner’s report says
+he was shot to death. We demand a grand jury investigation in the death
+of Denzil Dowell and the pattern of brutality against the Black citizens
+of Richmond.</p>
+<p><strong>sheriff</strong>: The Police department has conducted its own
+inquest and concluded that no misconduct occurred. As for a “pattern of
+brutality…” The charge is ridiculous.</p>
+<p><strong>huey</strong>: Then what do you call four dead Black men in
+six months?!</p>
+<p><strong>sheriff</strong>: I call it the police doing there duty under
+the law. You got a problem with that… take it to the legislature but get
+the hell out of my office.</p>
+<p><strong>bobby</strong>: The pig might just have a point.</p>
+<p><strong>brimmer</strong>: So… we understand each other Judge?</p>
+<p><strong>judge</strong>: Yeah.</p>
+<p><strong>brimmer</strong>: Alright then.</p>
+<p><strong>brimmer</strong>: I expect to hear from you soon. If Huey
+Newton takes a crap, I want to know how big it was. Otherwise I’m gonna
+come looking for you. And I won’t be as “friendly” as today.</p>
+<p><strong>judge</strong>: I got you.</p>
+<p><strong>brimmer</strong>: You just remember one thing Judge. You’ve
+got a lot at stake. And The Panthers are gonna lose. Question is, are
+you gonna lose along with them? Your future? Your mother? Think about
+it.</p>
+<p><strong>huey</strong>: As soon as black people exercise their rights
+to bear arms and defend themselves the pigs want to change the law.
+We’re not going to make it easy for them to have unarmed targets. Now,
+you all have a good time cause this here’s our community and it is a
+beautiful thing. Power to the people.</p>
+<p><strong>huey</strong>: This brothers is gonna be a colossal event.
+We’ll shut the mother down right at the capitol, in front of the
+cameras. Will you cool it? What’s up man? What it be Bobby?</p>
+<p><strong>bobby</strong>: What it be is, You aren’t coming with us.</p>
+<p><strong>huey</strong>: What? We’re the leadership, you and me. There
+ain’t enough of us to…</p>
+<p><strong>bobby</strong>: That’s just it Huey. The pigs don’t know how
+many Panthers there are. Both of us show and they might start putting 2
+and 2 together. We’re not even two hundred strong yet… but we got ’em
+guessing thousands.</p>
+<p><strong>huey</strong>: I hear you. Alright. I’ll go, you stay.</p>
+<p><strong>bobby</strong>: Huey… We took a vote. You’re still on
+probation. We can’t risk you. Things is starting to get hot. Go mow yo
+momma’s lawn like you promised.</p>
+<p><strong>huey</strong>: Alright, I’ll stay. Judge, I want to…</p>
+<p><strong>tyrone</strong>: Where you been? I saw the cops rousting you
+at the rally.</p>
+<p><strong>judge</strong>: Aw… uh… it’s was just harassment. My driver’s
+license expired.</p>
+<p><strong>huey</strong>: Chickenshits, they’re grabbing at
+anything.</p>
+<p><strong>huey</strong>: What’s the pig’s name?</p>
+<p><strong>judge</strong>: Brimmer.</p>
+<p><strong>huey</strong>: You got to keep very cool on this. Icy god
+damn cool. Cause baby, you just became the strongest weapon we got. Let
+me guess, he wants you to call him, tell him what we’re doing.</p>
+<p><strong>judge</strong>: Yeah.</p>
+<p><strong>huey</strong>: And you’re gonna do just that. But I’ll tell
+you what to feed the pig. You alright with this?</p>
+<p><strong>judge</strong>: Yeah… I guess. Any of other Panthers know
+about this?</p>
+<p><strong>judge</strong>: Man, this shit’s pretty thick.</p>
+<p><strong>huey</strong>: You got that right. And brother, I got a
+feeling it’s going to get a whole lot thicker.</p>
+<p><strong>newsman</strong>: Is this a militant action? Are the Panthers
+storming the Capitol?</p>
+<p><strong>bobby</strong>: No!!! Definitely not!!! We are here to send a
+message. The Black Panther Party for Self Defense calls upon the
+American people in general and Black people in particular to take
+careful note of the racist California Legislature now considering the
+Mulford Act, which is aimed at keeping Black people disarmed and
+powerless while racist police agencies throughout the country intensify
+the terror, brutality, murder and repression of Black people.</p>
+<p><strong>guard</strong>: You can’t come in here!</p>
+<p><strong>bobby</strong>: We are here to observe the Assembly. You will
+not stop us.</p>
+<p><strong>guard</strong>: This door leads to the Assembly floor, it’s
+closed to the public. You have to go to the Visitor’s Gallery, it’s…</p>
+<p><strong>prosecutor</strong>: Tell the court Mr. Seale are you proud
+to be the co-founder of the Panthers, an anti-white movement.</p>
+<p><strong>bobby</strong>: The Black Panther Party is not anti- white,
+you cannot fight racism with racism.</p>
+<p><strong>judge</strong>: Gentlemen, please approach the bench.</p>
+<p><strong>defense attorney</strong>: My clients broke no law. It was an
+accident, a wrong turn. Besides, the guns were not illegal.
+Dismissal!</p>
+<p><strong>prosecutor</strong>: They will be as soon as the Mulford act
+passes. Six Months for everyone!</p>
+<p><strong>prosecutor</strong>: Okay, last offer. Ninety days, no felony
+charges, just a disturbing the peace.</p>
+<p><strong>defense attorney</strong>: Deal!</p>
+<p><strong>prosecutor</strong>: Not so fast. But only if he and one of
+his lieutenants agree to six months.</p>
+<p><strong>huey</strong>: You got six months to donate to the party,
+Bobby?</p>
+<p><strong>bobby</strong>: You know it brother.</p>
+<p><strong>rodgers</strong>: …at least that takes Bobby Seale off the
+street…</p>
+<p><strong>hoover</strong>: Not good enough Rodgers. Not good enough at
+all. Black terrorists on the floor of a State Capitol. I will not say
+this again, these Negro Commies are to be stopped and now. You tear them
+down. Either from the outside or the inside.</p>
+<p><strong>rodgers</strong>: We’re working on that…</p>
+<p><strong>hoover</strong>: Work harder. And get me some results. Those
+Black Bastards could be up to anything.</p>
+<p><strong>brimmer</strong>: C’mon we’re going for a ride…</p>
+<p><strong>brimmer</strong>: Why didn’t you tell us about the party you
+boys were planning at the capitol?</p>
+<p><strong>judge</strong>: Shit man. It was… you know spontaneous.</p>
+<p><strong>brimmer</strong>: Spontaneous my ass!! You told the press and
+you don’t tell me. Remember you’re working for us.</p>
+<p><strong>judge</strong>: Yeah… whatever you say.</p>
+<p><strong>brimmer</strong>: Are you fucking with me? You smartass piece
+of shit…</p>
+<p><strong>brimmer</strong>: Get out of the car.</p>
+<p><strong>judge</strong>: What’s with you?</p>
+<p><strong>brimmer</strong>: Get out of the fucking car.</p>
+<p><strong>brimmer</strong>: “Whatever you say, Inspector Brimmer.”
+Fucking a right pal. Time you got your wiry head on straight.</p>
+<p><strong>judge</strong>: What are you crazy?</p>
+<p><strong>brimmer</strong>: Do you know how easy it would be for you to
+just disappear. Shit, you wouldn’t even wash up for weeks. Do you
+fucking understand? I want you to move your ass outta neutral. I want a
+bunch of Panthers served up on a fucking plate. I want you to set ’em
+up… armed robbery!!</p>
+<p><strong>judge</strong>: I can’t… they don’t operate that way…</p>
+<p><strong>brimmer</strong>: Fuck how they operate. Just do it. like
+your man says, “By any means necessary.”</p>
+<p><strong>brimmer</strong>: Alright then. Here’s a little help on your
+tuition. Get back in the car.</p>
+<p><strong>tyrone</strong>: Where the hell’s Judge anyway?</p>
+<p><strong>cy</strong>: Between school and the Panthers, he’s been
+running raw. I never see… Aw shit…</p>
+<p><strong>tyrone</strong>: You want a hand?</p>
+<p><strong>cy</strong>: No… go on up. I been kicking his narrow ass
+since high school.</p>
+<p><strong>white girl</strong>: What you got to sell?</p>
+<p><strong>cy</strong>: Lady, every Black man you lay eyes on ain’t a
+dope dealer.</p>
+<p><strong>tyrone</strong>: “My license was expired” Yeah, right.</p>
+<p><strong>cy</strong>: I ain’t gonna tell you no more. No pushing in
+the neighborhood, especially not on my fucking street. You’re killing
+your own people asshole.</p>
+<p><strong>sabu</strong>: Man, fuck you!!!</p>
+<p><strong>cy</strong>: No Fuck you!!!</p>
+<p><strong>cy</strong>: I ain’t playing Sabu. You keep on like this and
+I’m going to bust you up.</p>
+<p><strong>sabu</strong>: Aww man…</p>
+<p><strong>schreck</strong>: Those Panthers are turning into real
+shitheels ain’t they…</p>
+<p><strong>sabu</strong>: Yeah, they’re motherfuckers, all high and
+mighty.</p>
+<p><strong>schreck</strong>: You shouldn’t take that. If I was you… I’d
+stand up for myself, if you know what I mean.</p>
+<p><strong>cy</strong>: Tyrone? Shit, where’d you go?.</p>
+<p><strong>huey</strong>: Look around you, brothers and sisters, we’re
+building the numbers. New members coming in almost every day. I’d like
+to introduce one of them. He’s is the author of “Soul on Ice,” a
+respected journalist and I’m proud to say the newly appointed Minister
+of Information for the Black Panther Party. Brothers and sisters,
+Eldridge Cleaver.</p>
+<p><strong>eldridge</strong>: Brothers and Sisters! You are all well
+aware of the chains that we as a people bear. The chains of slavery, of
+second class citizenship. But there are other, more invisible chains.
+The chains of not speaking your mind. The chains of all the words left
+unsaid out of fear of reprisal by The Man. The silencing of our Black
+voices. I’m here to tell you that we have a voice. And I’d like to prove
+to you. All of you, repeat after me.</p>
+<p><strong>eldridge</strong>: Fuck Ronald Reagan.</p>
+<p><strong>eldridge</strong>: I’m serious. Repeat after me. Fuck Ronald
+Reagan.</p>
+<p><strong>assembly</strong>: Fuck Ronald Reagan!!!</p>
+<p><strong>eldridge</strong>: Feels good don’t it. Amazing how saying
+your mind can free your soul.</p>
+<p><strong>assembly</strong>: Fuck Ronald Reagan!!</p>
+<p><strong>tyrone</strong>: Huey man I got to talk with you…</p>
+<p><strong>huey</strong>: So talk…</p>
+<p><strong>tyrone</strong>: Alone…</p>
+<p><strong>huey</strong>: Look… can we deal with this tomorrow… I’m
+tired…</p>
+<p><strong>huey</strong>: Listen Judge, Oakland’s Panther International
+Headquarters. We shut the Pig’s infiltration down here, they’re gonna
+think twice about running their games on other chapters.</p>
+<p><strong>judge</strong>: Huey, man who’s gonna straighten out the
+brothers if they get on my ass?</p>
+<p><strong>huey</strong>: Like the manual says, “Information is…</p>
+<p><strong>huey and judge</strong>: disseminated on a need-to-know
+basis.”</p>
+<p><strong>huey</strong>: Yeah, and what I need to know, is what exactly
+your gonna do about feeding the pigs a bust?</p>
+<p><strong>judge</strong>: I don’t know man. I don’t know. That reminds
+me. Another little donation from the police.</p>
+<p><strong>huey</strong>: If the pigs only knew they were subsidizing
+The Panthers…</p>
+<p><strong>judge</strong>: Yeah well, they want a lot for their money.
+They want a felony, preferably with “violent intent.” We’ve got to give
+them something. They’ll kill me if I don’t. And the Panthers are going
+to kill me if I do. I’m scared.</p>
+<p><strong>huey</strong>: Me too. That’s why I fight so hard.</p>
+<p><strong>cy</strong>: Hey, it’s the invisible man. Brother where you
+been?</p>
+<p><strong>judge</strong>: Cy… I ain’t even sure.</p>
+<p><strong>cy</strong>: C’mon we’ll walk and talk…</p>
+<p><strong>judge</strong>: Naw… I gotta…</p>
+<p><strong>cy</strong>: I hear you. I’ll catch you in a bit. Feeling
+cooped up in there, you know?</p>
+<p><strong>rose</strong>: Hey… Cy… what now you a righteous Panther man,
+you too uppity to drink with us?</p>
+<p><strong>cy</strong>: You know that’s bullshit.</p>
+<p><strong>cy</strong>: Aaaah, Bitter Motherfucker… I almost forgot how
+nasty that shit is.</p>
+<p><strong>rose</strong>: Well don’t go forgetting your friends.</p>
+<p><strong>cy</strong>: Ain’t gonna happen, stay cool.</p>
+<p><strong>rose</strong>: You know it. Stay Black…</p>
+<p><strong>cy</strong>: Damn straight.</p>
+<p><strong>cy</strong>: I swear, you gotta be a card-carrying member of
+the stupid revolution.</p>
+<p><strong>sabu</strong>: Motherfucker… you stay away…</p>
+<p><strong>cy</strong>: Look this is bull…</p>
+<p><strong>cy</strong>: …shit…</p>
+<p><strong>tyrone</strong>: C’mere…</p>
+<p><strong>tyrone</strong>: Signed up ’bout a month ago. Says his name’s
+Matty. I call him spy!</p>
+<p><strong>tyrone</strong>: Motherfucker gave the pigs the license
+numbers of every Panther car.</p>
+<p><strong>tyrone</strong>: This the finger you ratted on us with?</p>
+<p><strong>tyrone</strong>: What? You don’t like to see a traitor get
+hurt? I wonder why that is?</p>
+<p><strong>judge</strong>: If you got something to say, say it.</p>
+<p><strong>tyrone</strong>: Anything happens to Huey it ain’t gonna be a
+finger. I’ll…</p>
+<p><strong>gene</strong>: It’s Cy… he’s been shot.</p>
+<p><strong>judge</strong>: Cy… Cy… Oh shit man… who did this to you. Was
+it the pigs?</p>
+<p><strong>cy</strong>: N… N…… Not… Oh.</p>
+<p><strong>judge</strong>: Motherfuckers…</p>
+<p><strong>brimmer</strong>: Inspector Brimmer</p>
+<p><strong>judge</strong>: Yeah, it’s me.</p>
+<p><strong>brimmer</strong>: Judge, hold on, is your phone safe?</p>
+<p><strong>judge</strong>: Who fucking cares? You cops killed Cy. And
+before you bastards kill anyone else, I’ll give you your fucking set up.
+That make you happy??!!</p>
+<p><strong>brimmer</strong>: Judge, calm down.</p>
+<p><strong>judge</strong>: I’m calm. I’m calm. You just shut the fuck
+up. And listen…</p>
+<p><strong>tyrone</strong>: What’s up with you?</p>
+<p><strong>judge</strong>: Nothing.</p>
+<p><strong>tyrone</strong>: You got something on your mind…
+“brother.”</p>
+<p><strong>judge</strong>: Yeah, “brother” My best friend is stone
+dead.</p>
+<p><strong>tyrone</strong>: Sorry man…</p>
+<p><strong>judge</strong>: S’alright. I’m sorry too. Shit, I gotta take
+a leak… Pull over at that gas station.</p>
+<p><strong>brimmer</strong>: It’s going down… Right on time.</p>
+<p><strong>older man</strong>: If you want gas my nephew…</p>
+<p><strong>tyrone</strong>: Where’s your bathroom…</p>
+<p><strong>older man</strong>: Out back.</p>
+<p><strong>judge</strong>: Open the god damn register!!!!</p>
+<p><strong>tyrone</strong>: How long can a piss take?</p>
+<p><strong>gene</strong>: Hey… I got one for ya. Two brothers are taking
+a leak off the Bay Bridge. First one says, “Damn, this water’s cold.”
+Other one just smiles and goes, “Yeah and deep too.”</p>
+<p><strong>tyrone</strong>: What the fuck?</p>
+<p><strong>brimmer</strong>: Watch the faces Goddamit!! We want them
+recognizable…</p>
+<p><strong>brimmer</strong>: Easy boy… Or I will blow you right
+away…</p>
+<p><strong>tyrone</strong>: We haven’t done nothing! Why don’t you
+fascist pigs stop harassing us?</p>
+<p><strong>brimmer</strong>: Harassment my ass, pal. You just stuck up
+this station. We got a witness…</p>
+<p><strong>tyrone</strong>: What kind of bullshit…</p>
+<p><strong>rookie cop</strong>: I’ll go get the other one.</p>
+<p><strong>brimmer</strong>: No!!! Get the bastards cuffed, I got
+him…</p>
+<p><strong>brimmer</strong>: It’s me Brimmer. Get the fuck out of
+here.</p>
+<p><strong>dorsett</strong>: Today’s arrest exposes the Black Panthers
+for what they truly are… common criminals. Yes, we have a group of the
+so called revolutionaries in custody right now. Caught red handed
+robbing a local business. And as soon as our witness gives us a positive
+identification, we’ll file charges of armed robbery with intent to
+kill…</p>
+<p><strong>newsman</strong>: Sir… was anybody hurt?</p>
+<p><strong>dorsett</strong>: I have no further comment.</p>
+<p><strong>dorsett</strong>: I want it duly noted, that this operation
+was entirely under the auspices of the Oakland Police Department. The
+FBI doesn’t have a monopoly on agents infiltrating enemy organizations,
+my friend. As I’ve said before, Agent Rodgers, we have things under
+control in our city…</p>
+<p><strong>rodgers</strong>: Are you finished?</p>
+<p><strong>dorsett</strong>: No I’m not. I’d like to say, frankly and
+off the record, that I resent the Bureau’s presence here. “Advisory
+Basis” or not. And, once we get these boys put away and the Panthers
+permanently discredited, I’d appreciate it if you’d leave us to take
+care of our own. Now I’m finished.</p>
+<p><strong>dorsett</strong>: Brimmer, what are you telling me?</p>
+<p><strong>uniformed cop</strong>: He’s blind chief. Couldn’t I.D. his
+own mother.</p>
+<p><strong>brimmer</strong>: He just stands in for his nephew during
+lunch.</p>
+<p><strong>rose</strong>: This cool the heat off you any?</p>
+<p><strong>judge</strong>: I don’t know. But I’m sure I’ll find out.
+Rose, you did me solid.</p>
+<p><strong>rose</strong>: Unh… Unh Man… I don’t take no money from
+friends that need help. Fuck no. What do you think I am a bum?</p>
+<p><strong>judge</strong>: Not at all. I’ll catch you later.</p>
+<p><strong>rose</strong>: Judge… I… I shoulda told you this before but…
+well… fuck…</p>
+<p><strong>judge</strong>: What?</p>
+<p><strong>rose</strong>: It was Sabu killed Cy.</p>
+<p><strong>judge</strong>: Where is he?.</p>
+<p><strong>rose</strong>: Ain’t no one seen him.</p>
+<p><strong>judge</strong>: Why didn’t you tell me?</p>
+<p><strong>rose</strong>: Didn’t want folks to think I was a snitch. You
+know?</p>
+<p><strong>judge</strong>: Yeah man… I know.</p>
+<p><strong>huey</strong>: Shit… check this out.</p>
+<p><strong>song</strong>: …something is happening here…</p>
+<p><strong>huey</strong>: But you don’t know what it is Mr. Jones. See
+Dylan is hip. The part about the geeks getting the worst jobs, that’s
+like us, man. Black folks always get given the lowest shit.</p>
+<p><strong>tyrone</strong>: Yeah man, but where’s Judge?</p>
+<p><strong>huey</strong>: You know I think Brother Judge needs our
+support right now, not our suspicion This is beautiful man. Folks around
+here never read the truth like this before.</p>
+<p><strong>huey</strong>: El Rage what’s with all the Zulu shit?</p>
+<p><strong>elridge</strong>: We can no longer let the white media
+control our image. We gotta let the people know what we are about
+ourselves.</p>
+<p><strong>huey</strong>: That’s what our newspaper will do.</p>
+<p><strong>eldridge</strong>: But lots of our people don’t read, man.
+They need strong imagery to help them out.</p>
+<p><strong>huey</strong>: Yeah… then shouldn’t this be all of us
+together.</p>
+<p><strong>eldridge</strong>: Trust me Huey, this picture will be worth
+a thousand words. Now have you given any thought to that Peace and
+Freedom Party thing. They really want to hook up with us. Do a rally
+together. Hell it’d broaden our base of visibility.</p>
+<p><strong>huey</strong>: Yeah, but aligning with white organizations.
+I’m not sure now’s the time.</p>
+<p><strong>eldridge</strong>: The time, my friend, is what Sartre
+called, “the moment the match is being put to the fuse.” Question is, is
+the hand holding that match gonna be black or white.</p>
+<p><strong>huey</strong>: …no full fledge alliance. But I think we
+should do a rally with them. Show that there’s some common ground
+between Black and White. You all with that? All right then Eldridge, set
+it up.</p>
+<p><strong>crowd</strong>: Hell No! We won’t go! Hell No! We won’t
+go!!!</p>
+<p><strong>avakian</strong>: Not long ago, we came to these steps to
+protest. We were four thousand then. Tonight we are ten thousand.</p>
+<p><strong>brimmer</strong>: Thanks a lot Motherfucker, that blind man
+was real cute.</p>
+<p><strong>avakian</strong>: Ten thousand different voices. All unified,
+saying one thing. That you cannot have an imperialistic war abroad and
+social peace at home. So with that unity, that purpose in mind… Ladies
+and Gentlemen I give you the Minister of Defense of the Black Panther
+Party – Huey Newton.</p>
+<p><strong>huey</strong>: Thank you. The Black Panther Party is proud to
+be here tonight. Here in front of this monument to oppression both at
+home and abroad. Not far from here, Brother Bobby Seale is locked
+down.</p>
+<p><strong>huey</strong>: A victim of the tyranny we feel here at
+home.</p>
+<p><strong>huey</strong>: That same tyranny is at work many miles from
+here. In Vietnam. Black men are dying there, white men are dying there.
+Yellow men are dying there. We’re told they’re dying in the name of
+freedom. Freedom. Well, now if their blood’s keeping us free. How come
+so many of us – like Bobby – are in jail. If they’re dying so we can
+enjoy our rights, how come the police still kill us in the streets?</p>
+<p><strong>huey</strong>: So, when you think about it. The question we
+have to ask is… Why should the Black man go fight the Yellow man for the
+White man? It’s that simple. The answer’s simple too. We shouldn’t!</p>
+<p><strong>huey</strong>: The Black Panther Party is opposed to the war
+in Vietnam! We know our war is here. Against hard drugs in the
+community. Against unemployment. Against a system that beats a Black man
+in his home, then sends him to die in a foreign land. That my brothers
+and sisters, is our war.</p>
+<p><strong>brimmer</strong>: What the fuck?</p>
+<p><strong>rodgers</strong>: Brimmer! Could you come in here please?</p>
+<p><strong>rodgers</strong>: Sit down, This concerns you too. I don’t
+need to say that your department’s handling of the Black Panthers –
+particularly Inspector Brimmer’s “undercover operation” has been a
+complete travesty.</p>
+<p><strong>brimmer</strong>: Just hold on a god damn minute. I…</p>
+<p><strong>rodgers</strong>: These are memos from the commissioner, the
+mayor and Hoover himself, putting the Black Panthers and their
+subversive activities under the full jurisdiction of the Bureau.</p>
+<p><strong>dorsett</strong>: Jesus…</p>
+<p><strong>rodgers</strong>: As far as Mr. Hoover is concerned the worst
+has happened, the Panthers have unified with other organizations – most
+likely sponsored by communists – to undermine the war in Vietnam. By
+doing so, they have quite simply guaranteed their own extinction.</p>
+<p><strong>rodgers</strong>: Of course we welcome any cooperation the
+your department has to “offer…”</p>
+<p><strong>cop</strong>: What’s your name punk?</p>
+<p><strong>gene</strong>: Five.</p>
+<p><strong>cop</strong>: What?!?!?</p>
+<p><strong>gene</strong>: Five!!</p>
+<p><strong>gene</strong>: And I keep saying “Five” like the fifth
+amendment you know? And shit this cop is getting pissed. But there ain’t
+much he can do… So… dig this, he gives me a ticket for littering, on
+account of the papers he ripped outta my hand.</p>
+<p><strong>baby faced cop</strong>: Well, well, well, what do we have
+here, the great Huey P. Newton… Get out of the car.</p>
+<p><strong>huey</strong>: California law does not require the driver to
+leave a vehicle, unless he is being placed under arrest…</p>
+<p><strong>baby faced cop</strong>: Well, then you’re under arrest get
+out of the car…</p>
+<p><strong>gene</strong>: Huey…</p>
+<p><strong>huey</strong>: I am not resisting arrest. Nor am I armed. Any
+use of force on your part is illegal… according to California…</p>
+<p><strong>baby faced cop</strong>: You can take that law book and shove
+it up your ass nigger…</p>
+<p><strong>nervous cop</strong>: Hey… whatcha got…</p>
+<p><strong>baby faced cop</strong>: Buddy, we just got ourselves a
+promotion.</p>
+<p><strong>baby faced cop</strong>: You!!! Get the fuck back in…</p>
+<p><strong>eldridge</strong>: The pigs are going for Murder one…</p>
+<p><strong>tyrone</strong>: Right with Bobby getting out, they try to
+put Huey in the gas chamber… Damn.</p>
+<p><strong>little bobby</strong>: Please Huey stay alive</p>
+<p><strong>bobby seale</strong>: Where’s everybody?</p>
+<p><strong>tyrone</strong>: We had over a hundred people, just on the
+“Free Huey” Defense Committee alone until we chose a lawyer.</p>
+<p><strong>bobby seale</strong>: Can he free Huey?</p>
+<p><strong>eldridge</strong>: If anybody can, he’s the man.</p>
+<p><strong>bobby seale</strong>: Brothers the struggle has begun… We
+need allies and we need ’em fast. Eldridge?</p>
+<p><strong>eldridge</strong>: I’m on it…</p>
+<p><strong>crowd</strong>: Black is beautiful/FREE HUEY!/Set our warrior
+free/FREE HUEY!/Black is beautiful/FREE HUEY/Set our warrior free…</p>
+<p><strong>carmichael</strong>: We say that Huey P. Newton is a prisoner
+of war. Many people say that that’s not true. Or that the Party is
+exaggerating. I think it’s clear, it’s crystal clear that the United
+States has declared war on Black people. She did that when she took the
+first black man from Africa.</p>
+<p><strong>carmichael</strong>: Now of course, she never came out and
+said the words, “I declare war on Black people. She did not do that.
+Well now, the United States to this day has not declared war on Vietnam,
+but there is Vietnam. They did not declare war on North Korea but they
+fought in North Korea. And they did not declare war against the Indians.
+They just wiped them out.</p>
+<p><strong>carmichael</strong>: So we must define our position… We are
+at war. Huey P. Newton, Minister of Defense, is our leader. He is in
+jail. He is a prisoner of war. We must get him by any means necessary.
+If we cannot get him, we must, we must retaliate. Period.</p>
+<p><strong>eldridge</strong>: Man, we can’t make enough of these things.
+We got movie stars calling up, asking how they can help. I tell you
+sister it’s nation time…</p>
+<p><strong>alma</strong>: Yeah I wish we didn’t need no pins… Wish Huey
+was here right now…</p>
+<p><strong>judge</strong>: Me too…</p>
+<p><strong>tyrone</strong>: You sure about that… brother?</p>
+<p><strong>little bobby</strong>: Brothers!!! Sisters! Come here. This,
+you gotta see…</p>
+<p><strong>rita</strong>: You all been working so much… you know. Me and
+some others thought you might be missing the home cooking…</p>
+<p><strong>mrs. hutton</strong>: Hey… you got any more of those…</p>
+<p><strong>rodgers</strong>: Granted, the Free Huey thing has become a
+bit of a rallying cry for the left…</p>
+<p><strong>hoover</strong>: Rallying cry, it’s an insurrection. Seale,
+that god damned Cleaver, Where the hell do these guys come from?</p>
+<p><strong>rodgers</strong>: Well… like they say, there’s a Panther born
+every minute in the ghetto. Uh… we seem to have “underestimated” the
+support of the Black community. It’s their power base…</p>
+<p><strong>hoover</strong>: Well, then we’re going to take that power
+away from those bastards.</p>
+<p><strong>rodgers</strong>: You mean…</p>
+<p><strong>hoover</strong>: Yes, that’s exactly what I mean. And Agent
+Rodgers?… This conversation never occurred.</p>
+<p><strong>dorsett</strong>: Rodgers… this is no good…</p>
+<p><strong>rodgers</strong>: Cut the crap, you’ve been taking the man’s
+money for years. Now it’s time you earned it.</p>
+<p><strong>trafficante</strong>: Gentlemen!!! Forgive me for keeping
+you.</p>
+<p><strong>trafficante</strong>: Odd isn’t it Chief Dorsett? No matter
+how much we try to deny it, we find ourselves on the same side of the
+coin. It’s almost funny…</p>
+<p><strong>dorsett</strong>: To be quite honest it turns my stomach.</p>
+<p><strong>rodgers</strong>: Neither your stomach or your opinion
+matters here Dorsett… What matters is that Mr. Trafficante and the
+Bureau have come up with a solution to our Panther Problem. One might
+say…The Final Solution.</p>
+<p><strong>trafficante</strong>: Well put. As you and Agent Rodgers
+know, my organization has moved into narcotics. It was decided that this
+product would be confined to the ghettos. However, you and your police
+department has made operations in Oakland impossible. I take delivery of
+shipments and they sit. I – and my associates – lose money. Vast sums of
+money. Now, you have some very large problems with the Black
+community.</p>
+<p><strong>rodgers</strong>: More like a revolution. West Oakland’s
+turning into hostile territory.</p>
+<p><strong>trafficante</strong>: I assure you the pacifying properties
+of Heroin are quite remarkable. See, junkie’s politics are different
+from yours and mine. For them the only Party’s the next fix.</p>
+<p><strong>dorsett</strong>: Dealing dope… And you want the department
+to turn a blind eye while you turn Oakland into a city of zombies.</p>
+<p><strong>trafficante</strong>: Not the entire city, just one
+troublesome part.</p>
+<p><strong>dorsett</strong>: And what if it spreads to the rest of the
+population?</p>
+<p><strong>trafficante</strong>: Relax, Chief. That will never happen. I
+gotta little gypsy in me. Soon the moolies gonna be too busy – we’ll
+sell ’em a few guns too – blowing each others brains out over the stuff
+to be fucking with protests. Now I’ve got the product. What I need is a
+center of operation and someone to oversee the movement of the product.
+Not one of my people but a native, someone inside the community.</p>
+<p><strong>rodgers</strong>: I don’t think that will be any problem…</p>
+<p><strong>dorsett</strong>: You talk as if this thing’s already been
+decided.</p>
+<p><strong>rodgers</strong>: It has.</p>
+<p><strong>rita</strong>: Glad to see you boys eat like that. No wonder
+either you’re both looking like scarecrows. Don’t sleep, don’t eat,
+ain’t no way to live…</p>
+<p><strong>little bobby</strong>: It’s good to be skinny, easier to run
+from fat cops. Hey what’s that?</p>
+<p><strong>rita</strong>: Oh no… Dr. King…</p>
+<p><strong>rita</strong>: Oh lord, please god no. No.</p>
+<p><strong>little bobby</strong>: They killed him. He never hurt nobody.
+They killed him…</p>
+<p><strong>young man</strong>: That’s right burn the mother down.</p>
+<p><strong>slocum</strong>: Hold on there, exactly what are you boys
+doing?</p>
+<p><strong>young man</strong>: Sending a message… They shoot Dr. King…
+we burn them…</p>
+<p><strong>slocum</strong>: What good’s burning our neighborhood
+down.</p>
+<p><strong>young man #2</strong>: Fuck you.</p>
+<p><strong>voice</strong>: Brother… you best clean out your head, or we
+will do it for you.</p>
+<p><strong>tyrone</strong>: Reverend’s right, you burn the neighborhood,
+you’re just doing the pig’s work for him. And we sure as hell ain’t
+gonna stand for that. Dig?</p>
+<p><strong>young man</strong>: I dig. But how we gonna let ’em know we
+ain’t gonna take this shit.</p>
+<p><strong>alma</strong>: You know where Black Panther headquarters is?
+You come on down there, speak your mind, listen. Organize.</p>
+<p><strong>young man</strong>: I don’t know…</p>
+<p><strong>tyrone</strong>: Later for that… be there.</p>
+<p><strong>eldridge</strong>: No more words!!! No more god damn words!!
+No more sitting, no more praying for the pig to stop killing us. Later
+for lying down. Later for waiting to get shot like dogs. Nonviolence has
+died in Memphis, died with Dr. King. We must retaliate. We’ve got the
+fucking guns, it’s time to use them.</p>
+<p><strong>bodyguard</strong>: Off the pig man. Off the god damn
+pig.</p>
+<p><strong>bobby</strong>: Brother Eldridge… I hear you. But I disagree.
+And we both know Huey disagrees too. Yeah, we got the guns, but the Pigs
+got more. The Pig has got the National Guard. I’m not afraid to fight.
+But we aren’t stupid either. We got to be smart, not angry.</p>
+<p><strong>eldridge</strong>: Later for that…</p>
+<p><strong>tyrone</strong>: No man… later for you! What? We gonna forget
+Huey and his trial? Start killing pigs, start the revolution now. With
+our leader in jail? We do that and Huey’s a dead man. We’re all dead. No
+man, we stay cool.</p>
+<p><strong>eldridge</strong>: What? You giving me orders now?</p>
+<p><strong>tyrone</strong>: Just telling you what it is.</p>
+<p><strong>eldridge</strong>: Fuck that. It’s time to intensify the
+struggle. That is what it is.</p>
+<p><strong>bobby</strong>: Fuck.</p>
+<p><strong>huey</strong>: You got to sit on Eldridge…</p>
+<p><strong>bobby</strong>: Man, El-Rage is El-Rage. You know him.</p>
+<p><strong>huey</strong>: Yeah, I do, but he’s gotta cool it…</p>
+<p><strong>eldridge</strong>: C’mon.</p>
+<p><strong>little bobby</strong>: Papa E, we got to get out of here.</p>
+<p><strong>eldridge</strong>: Take off your clothes.</p>
+<p><strong>little bobby</strong>: What?</p>
+<p><strong>eldridge</strong>: Take ’em off. Pigs ain’t gonna shoot an
+unarmed, naked man. Where they gonna say you hid a gun.</p>
+<p><strong>little bobby</strong>: No man I can’t.</p>
+<p><strong>eldridge</strong>: Later for that. Just do it.</p>
+<p><strong>cop#1</strong>: Go on, get in that car fuckers, and don’t try
+nothing.</p>
+<p><strong>eldridge</strong>: I am not resisting arrest!!</p>
+<p><strong>cop</strong>: He was going for this…</p>
+<p><strong>eldridge</strong>: Motherfuckers…</p>
+<p><strong>alma</strong>: Little Bobby… Just a kid…</p>
+<p><strong>tyrone</strong>: They’re hurting us, baby. Huey locked up.
+Bobby Seale running all over the country holding things together. Cy
+dead. Little Bobby… I don’t recognize half the faces at meetings.</p>
+<p><strong>tyrone</strong>: ’Cept him…</p>
+<p><strong>bobby</strong>: Look… I gotta get on a plane tonight. Huey’s
+trial’s starting. I need you to make sure there’s a strong Panther
+Presence there.</p>
+<p><strong>tyrone</strong>: What about Cleaver? You got him out on bail,
+didn’t you?</p>
+<p><strong>bobby</strong>: Yeah… but well, things are too hot. Eldridge
+and Kathleen…</p>
+<p><strong>bobby</strong>: …they’re gonna disappear…</p>
+<p><strong>rodgers</strong>: So you enjoy your little “vacation?”</p>
+<p><strong>voice</strong>: I tell you, Vegas don’t have much flavor. But
+it was alright. Good to get back to the neighborhood though.</p>
+<p><strong>rodgers</strong>: That’s what we wanted to talk to you about.
+We have a proposition for you. One that will make you the most powerful
+man in West Oakland…</p>
+<p><strong>sabu</strong>: I’m all ears…</p>
+<p><strong>judge</strong>: Hey… what the hell you doing?</p>
+<p><strong>brimmer</strong>: Shut up. Just shut the fuck up.</p>
+<p><strong>judge</strong>: Brimmer what’s with you man?</p>
+<p><strong>brimmer</strong>: Twenty years asshole. Twenty years on the
+force. I’ve seen some fucked up stuff. Done some fucked up stuff… But
+nothing like this…</p>
+<p><strong>brimmer</strong>: Go! Run! Go on! Get the fuck out of
+here!!</p>
+<p><strong>judge</strong>: What? So you can shoot me? Call it resisting
+arrest?</p>
+<p><strong>brimmer</strong>: I ain’t gonna shoot you Judge. Look… it’s
+over. Just run away. Get out. Stay away from Oakland. Cause it’s gone…
+it’s gone.</p>
+<p><strong>judge</strong>: Brimmer you’re fucked up…</p>
+<p><strong>brimmer</strong>: Yeah… I’m fucked up. You’re fucked up.
+Government’s fucked up. Whole country’s fucked up. You got no idea
+what’s going on here. This is bigger than you and me. We’re just little
+tiny soldiers getting moved around on some big asshole’s desk. The
+Panthers… fuck you’re history… they killed you and you don’t even know
+it.</p>
+<p><strong>judge</strong>: Who’s they?</p>
+<p><strong>brimmer</strong>: Drugs Judge, they’re gonna flood West
+Oakland with dope. Jack you up and string you out like a two dollar
+whore. And while the community’s shuffling for a fix, they’re gonna
+snuff every Panther they can find.</p>
+<p><strong>judge</strong>: Who? I mean besides the FBI?</p>
+<p><strong>brimmer</strong>: I don’t know. Except, it’s one of you.
+Maybe not a Panther, but it’s someone from the neighborhood. Judge.
+Look, just go. Get away. It’s over. You lost. We all lost.</p>
+<p><strong>judge</strong>: Fuck that. Ain’t nothing over.</p>
+<p><strong>voice</strong>: Judge…</p>
+<p><strong>judge</strong>: Rose?</p>
+<p><strong>rose</strong>: Yeah… Look man, what I gotta say. It’s just
+you, me and the rats, right? Alright… well… Sabu’s back.</p>
+<p><strong>judge</strong>: Motherfuck… well then I got something to
+do.</p>
+<p><strong>rose</strong>: No… wait, there’s something else, something
+weird. I hear he’s set up down at that warehouse on fifty deuce. He’s
+talking big and living bigger.</p>
+<p><strong>judge</strong>: God damn it’s him. I gotta go.</p>
+<p><strong>rose</strong>: Judge man. Watch yourself. Sabu’s got juice
+now.</p>
+<p><strong>judge</strong>: You don’t even know it man, but you’re a god
+damn hero.</p>
+<p><strong>crowd</strong>: No more brothers in jail Off the Pig! The
+pigs are gonna catch hell Off the Pig! Revolution has come Off the Pig!
+Time to pick up the gun Off the Pig!</p>
+<p><strong>prosecutor</strong>: Now you say that it was Huey Newton that
+opened fire without any provocation What makes you so sure? It was a
+dark night, there was a lot of confusion.</p>
+<p><strong>wounded cop</strong>: Well, sir I was there.</p>
+<p><strong>prosecutor</strong>: That’s right you were. He was there. He
+saw everything. And he is not on trial. He does not need to lie to save
+his life. Your witness.</p>
+<p><strong>garry</strong>: Thank you. If it would please the court, I
+would like to introduce testimony of a new witness. One who is not on
+trial for his life and… one who was there also. I call Gene McKinney to
+the stand.</p>
+<p><strong>prosecutor</strong>: Objection, who is this man?</p>
+<p><strong>garry</strong>: This is an eyewitness to the shooting. The
+passenger in Huey Newton’s car.</p>
+<p><strong>judge</strong>: Overruled Mr. Garry you may examine your
+witness.</p>
+<p><strong>garry</strong>: Mr. McKinney, were you a passenger in the car
+on the night of October 28, 1967.</p>
+<p><strong>gene</strong>: Yes sir I was.</p>
+<p><strong>garry</strong>: And did you witness the shoot-out?</p>
+<p><strong>gene</strong>: Yes sir, I did.</p>
+<p><strong>garry</strong>: From what you saw, did Huey Newton start the
+shooting?</p>
+<p><strong>gene</strong>: No sir he didn’t.</p>
+<p><strong>garry</strong>: Huh, well then… did someone else start
+shooting?</p>
+<p><strong>gene</strong>: I refuse to answer the question on the grounds
+it might incriminate me.</p>
+<p><strong>garry</strong>: Did you shoot the officers in question?</p>
+<p><strong>gene</strong>: Again I’ll take the fifth amendment on that
+question.</p>
+<p><strong>alma</strong>: That was Garry. He says they’re gonna come
+back with manslaughter.</p>
+<p><strong>young panther</strong>: What’s that mean?</p>
+<p><strong>tyrone</strong>: It means youngblood, Huey’s out in less than
+two years. He ain’t gonna get the chair. He might not be free yet, but
+brothers and sisters he is not going to die.</p>
+<p><strong>tyrone</strong>: I gotta call Bobby…</p>
+<p><strong>tyrone</strong>: Black Panther Party.</p>
+<p><strong>rodgers</strong>: Congratulations asshole. Huey got off, but
+we just got your boy Bobby Seale.</p>
+<p><strong>tyrone</strong>: Who the fuck is this?</p>
+<p><strong>rodgers</strong>: The tooth fairy. And I got a present for
+you. Guy who helped us get Bobby His name’s Judge.</p>
+<p><strong>judge</strong>: Fuck is up?!</p>
+<p><strong>tyrone</strong>: Mothafucker! You just set Bobby Seale up to
+be kidnapped. They dragged him off to some bullshit conspiracy trial in
+Chicago. How much the pigs pay you for this one, Judge?</p>
+<p><strong>judge</strong>: You got it wrong.</p>
+<p><strong>alma</strong>: Let him go. And drop your piece.</p>
+<p><strong>angry cop</strong>: Can’t believe that rat bastard ain’t
+going to the chair. That Newton turd should be taken out and shot.</p>
+<p><strong>partner</strong>: How about a little target practice?</p>
+<p><strong>judge</strong>: You better just kill me Tyrone. And when Huey
+gets out, when Oakland’s just wall to wall junkies, you tell him you
+blew away the only chance we all got. I’m sure he’ll be real happy about
+that.</p>
+<p><strong>tyrone</strong>: What are you saying?</p>
+<p><strong>judge</strong>: The pigs are gonna start flooding us with
+dope. Huey wants us to stop them.</p>
+<p><strong>tyrone</strong>: Bullshit…</p>
+<p><strong>alma</strong>: Tyrone hold on…</p>
+<p><strong>tyrone</strong>: Chickenshits? What you bring your buddies
+with you?</p>
+<p><strong>judge</strong>: No man No!! Tyrone listen… we got to move
+man, they got a warehouse…</p>
+<p><strong>tyrone</strong>: Shut the fuck up!!</p>
+<p><strong>alma</strong>: Tyrone…</p>
+<p><strong>tyrone</strong>: Oh shit Alma… you’re…</p>
+<p><strong>alma</strong>: I’m okay… listen to me… Let’s go with Judge,
+check it out.</p>
+<p><strong>tyrone</strong>: What?!? Don’t tell me you’re buying
+this?</p>
+<p><strong>alma</strong>: Yeah, I believe him. And you do too.</p>
+<p><strong>tyrone</strong>: Alright, but no fucking around.</p>
+<p><strong>alma</strong>: Those ain’t cops.</p>
+<p><strong>tyrone</strong>: And they sure ain’t from the neighborhood.
+Figure Sabu’s in there?</p>
+<p><strong>judge</strong>: Yeah with a whole load of drugs. So, you
+trust me now?</p>
+<p><strong>tyrone</strong>: Brother, I ain’t got a choice…</p>
+<p><strong>shorty</strong>: Fuck was that?</p>
+<p><strong>sabu</strong>: Check the back.</p>
+<p><strong>judge</strong>: You alright?</p>
+<p><strong>tyrone</strong>: Not really. Gimme the keys for the
+trunk.</p>
+<p><strong>tyrone</strong>: Stay here, watch this door. Anybody besides
+me and Judge steps out kill them.</p>
+<p><strong>tyrone</strong>: There it is…</p>
+<p><strong>judge</strong>: Shut the motherfucker down. I’ll find
+Sabu.</p>
+<p><strong>sabu</strong>: You just did.</p>
+<p><strong>sabu</strong>: Drop the gun Panther man.</p>
+<p><strong>sabu</strong>: All your mighty militant bullshit, man you
+don’t know what fucking time it is do you? Dig it this is power
+baby.</p>
+<p><strong>judge</strong>: Sabu you sorry motherfucker…</p>
+<p><strong>sabu</strong>: Sorry? Not me not now. This is my time not
+yours. Black Panthers? Who the fuck are you. Promising everything to
+everyone. Well fuck that. I got mine… Now y’all get yours… brother.</p>
+<p><strong>judge</strong>: You ain’t my fucking brother!!</p>
+<p><strong>tyrone</strong>: Damn straight.</p>
+<p><strong>tyrone</strong>: Alma I told you to…</p>
+<p><strong>alma</strong>: Fuck that, we’ve got company…</p>
+<p><strong>alma</strong>: Judge… hurry!</p>
+<p><strong>judge</strong>: Hey, brother you got a match?</p>
+<p><strong>judge</strong>: Motherfuckers…</p>
+<p><strong>tyrone</strong>: Look… You… take her and get the hell out of
+here. I’ll keep ’em busy.</p>
+<p><strong>alma</strong>: No…</p>
+<p><strong>tyrone</strong>: You gotta. You gotta stay alive. You know
+what they were trying to do here. You got the pigs dead to rights. It’s
+like Huey said, you’re more important than any of us.</p>
+<p><strong>judge</strong>: We’ll all get out of here together.</p>
+<p><strong>tyrone</strong>: Later for that. I’m done either way…</p>
+<p><strong>tyrone</strong>: Go…</p>
+<p><strong>alma</strong>: Tyrone!!!</p>
+<p><strong>tyrone</strong>: Power to the people.</p>
+</body>
+</html>

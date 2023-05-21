@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mr-brooks</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="mr-brooks">mr-brooks</h1>
+<p><strong>mr. brooks</strong>: God grant me the Serenity to accept the
+things I cannot change…</p>
+<p><strong>marshall</strong>: Why do you fight it so hard, Earl?</p>
+<p><strong>mr. brooks</strong>: Courage to change the things I can…</p>
+<p><strong>marshall</strong>: Come on, you’ve been a good boy for a long
+time, you deserve a little fun.</p>
+<p><strong>mr. brooks</strong>: … and Wisdom to know the difference.</p>
+<p><strong>mr. brooks</strong>: Living one day at a time, Enjoying one
+moment at a time, Accepting hardship as a pathway to peace…</p>
+<p><strong>mr. brooks</strong>: … Taking, as He did, this sinful world
+as it is, not as I would have it. Trusting that He will make all things
+right if I surrender to His will. That I may be reasonably happy in this
+life, And supremely happy with Him forever in the next. Amen.</p>
+<p><strong>man</strong>: I could go on and on about what a great guy
+Earl is, how he cuts his toe nails…</p>
+<p><strong>man</strong>: … how he gives freely of his time and money,
+but let’s get Earl up here to speak for himself. Ladies and Gentlemen, I
+give you a businessman, a philanthropist, a great friend and the
+Evanston Chamber of Commerce Man of the Year… Mr. Earl Brooks.</p>
+<p><strong>mr. brooks</strong>: Thank you all very much. The first thing
+I would like to say is… I don’t even know how I cut my toe nails.</p>
+<p><strong>mr. brooks</strong>: Twenty years ago when I started the
+Brooks Box Factory I never dreamed I would one day be standing here.</p>
+<p><strong>emma</strong>: Did you see Sis Wallace’s dress?</p>
+<p><strong>emma</strong>: You could see her nipples. At her age she
+should keep those things hidden.</p>
+<p><strong>mr. brooks</strong>: God grant me the Serenity to accept…</p>
+<p><strong>emma</strong>: The only thing that would have made this
+evening more perfect is if Jane had been here.</p>
+<p><strong>mr. brooks</strong>: She called. She has mid terms coming
+up.</p>
+<p><strong>emma</strong>: She’s dropping out, you know.</p>
+<p><strong>mr. brooks</strong>: We’ll see.</p>
+<p><strong>emma</strong>: Nothing she does is wrong to you, is it?…</p>
+<p><strong>emma</strong>: Well she missed a good party…</p>
+<p><strong>marshall</strong>: Come on, Earl, give yourself a break, you
+know you want to do this.</p>
+<p><strong>mr. brooks</strong>: No.</p>
+<p><strong>marshall</strong>: You’re the fucking ‘man of the year’, you
+deserve it. It’s not like it’s not set up. You already know how to
+by-pass the alarm, you know how to pick the locks. Tonight’s the perfect
+night.</p>
+<p><strong>mr. brooks</strong>: No, Marshall, I said ‘no’!</p>
+<p><strong>marshall</strong>: I heard you, Earl, but you don’t mean
+‘no’.</p>
+<p><strong>emma</strong>: What’s the matter?</p>
+<p><strong>mr. brooks</strong>: Nothing.</p>
+<p><strong>emma</strong>: You were frowning.</p>
+<p><strong>mr. brooks</strong>: I was thinking of what I didn’t say in
+the speech.</p>
+<p><strong>emma</strong>: They laughed, they were touched, I don’t think
+anyone felt left out.</p>
+<p><strong>marshall</strong>: They have their dance class tonight. What
+if we go by and just look at them. There’s no harm in just having a
+look.</p>
+<p><strong>mr. brooks</strong>: No means ‘no’, Marshall.</p>
+<p><strong>marshall</strong>: Please… pretty please.</p>
+<p><strong>mr. brooks</strong>: The food tonight was very good, but I
+wasn’t crazy about the dessert. Would you like to stop somewhere and get
+something sweet?</p>
+<p><strong>emma</strong>: … Labradors are supposed to be nice, or maybe
+a rescue mutt…</p>
+<p><strong>mr. brooks</strong>: The Pound’s a pretty sad place; if you
+want me to, I’ll go with you.</p>
+<p><strong>emma</strong>: There’s an Irish Lab I read about, and I think
+the breeder is…</p>
+<p><strong>marshall</strong>: I bet your dick’s getting hard, isn’t it,
+just imagining what they would look like dead?</p>
+<p><strong>mr. brooks</strong>: … I can’t do this, I can’t do this, I
+can’t do this, please don’t let me do this, God grant me the Serenity to
+accept the things I cannot change…</p>
+<p><strong>mr. brooks</strong>: I’m going to stay up a while, maybe go
+to the studio and play with some glazes.</p>
+<p><strong>emma</strong>: Okay, I’m going to read. If I’m not awake,
+wake me when you come back.</p>
+<p><strong>mr. brooks</strong>: I thought you were wonderful
+tonight.</p>
+<p><strong>mr. brooks</strong>: Don’t do this, don’t do this, please
+don’t do this, don’t do this, don’t do, please don’t do this…</p>
+<p><strong>marshall</strong>: Oh Lordy, Earl my boy, I’ve missed this!
+We are going to have so much fun!</p>
+<p><strong>mr. brooks</strong>: This is the last time, Marshall.
+Understand me?! The very last time!</p>
+<p><strong>marshall</strong>: Don’t you dare quit on me, you piece of
+shit. I want to see what they’re doing.</p>
+<p><strong>mr. brooks</strong>: Hello.</p>
+<p><strong>man</strong>: What the fuck?!</p>
+<p><strong>man</strong>: Hey, man, don’t…</p>
+<p><strong>mr. brooks</strong>: Be quiet and sit up.</p>
+<p><strong>marshall</strong>: Whoa, Earl, what the fuck is this?!!</p>
+<p><strong>marshall</strong>: These pigs liked to fuck with the blinds
+open, you should have known that, Earl. This is a big mistake for you,
+Earl.</p>
+<p><strong>mr. brooks</strong>: Almost like I want to get caught, huh,
+Marshall?</p>
+<p><strong>marshall</strong>: Well, don’t fucking do that. I don’t think
+either of us would enjoy spending the rest of our lives in jail or a
+lethal injection.</p>
+<p><strong>mr. brooks</strong>: Yes, sir.</p>
+<p><strong>mr. brooks</strong>: Please forgive me… Please forgive
+me…</p>
+<p><strong>marshall</strong>: Don’t even think about it. You know the
+rules.</p>
+<p><strong>marshall</strong>: Now go up and make love to your beautiful
+wife.</p>
+<p><strong>older detective</strong>: Where the fuck is Atwood?!</p>
+<p><strong>young detective</strong>: I called ten minutes ago, they said
+she was on her way.</p>
+<p><strong>older detective</strong>: She doesn’t get here soon, these
+bodies won’t even be dead anymore?</p>
+<p><strong>cop</strong>: You looking for the lady Cop?</p>
+<p><strong>older detective</strong>: Yeah.</p>
+<p><strong>cop</strong>: She’s here. She’s been sitting in her car right
+over there for the last half hour.</p>
+<p><strong>older detective</strong>: Oh, Christ.</p>
+<p><strong>older detective</strong>: You thinking of joining us anytime
+soon, Atwood?</p>
+<p><strong>detective atwood</strong>: I really hated yesterday, Snyder,
+and then today came along.</p>
+<p><strong>snyder</strong>: What happened to your wrists?</p>
+<p><strong>detective atwood</strong>: I tried to commit suicide.</p>
+<p><strong>detective atwood</strong>: What’s so funny?</p>
+<p><strong>young detective</strong>: Eh… I… I don’t know, I heard it was
+because you were drunk and got into a fight with a fish tank.</p>
+<p><strong>detective atwood</strong>: Who are you gonna believe? Me or
+the fucking fish?!</p>
+<p><strong>young detective</strong>: Eh… you.</p>
+<p><strong>detective atwood</strong>: Good.</p>
+<p><strong>young detective</strong>: She’s nuts!</p>
+<p><strong>snyder</strong>: And rich.</p>
+<p><strong>snyder</strong>: There are some scratches in the side door
+cylinder. Other than that no signs of forced entry. The alarm was armed
+and we even had to cut the security chains to get in.</p>
+<p><strong>detective atwood</strong>: This guy hasn’t been active for
+over two years…</p>
+<p><strong>detective atwood</strong>: … we think he’s either dead or in
+jail on some other charge. This is probably a copycat.</p>
+<p><strong>snyder</strong>: That’s why we called you. You’re the God
+that tells us peons if we have a simple murder here or something we can
+dump on you.</p>
+<p><strong>detective atwood</strong>: Bite yourself.</p>
+<p><strong>detective atwood</strong>: He always rearranges the bodies,
+but this is out of character. He has never left them in such a crude
+position. Usually it’s more romantic with their arms around each other,
+kissing, their mouths open, their tongues touching.</p>
+<p><strong>snyder</strong>: So we have a copycat?</p>
+<p><strong>detective atwood</strong>: Where are the thumbprints?</p>
+<p><strong>detective atwood</strong>: One his one hers?</p>
+<p><strong>snyder</strong>: That’s what it looks like.</p>
+<p><strong>detective atwood</strong>: What’s that?</p>
+<p><strong>snyder</strong>: The bullets went completely through the
+victims. The killer recovered the slugs.</p>
+<p><strong>detective atwood</strong>: Were these open or closed when you
+got here?</p>
+<p><strong>snyder</strong>: Closed.</p>
+<p><strong>detective atwood</strong>: Hmm…</p>
+<p><strong>detective atwood</strong>: It has never been revealed to the
+public that the Thumbprint Killer retrieves the slugs.</p>
+<p><strong>snyder</strong>: So this one’s yours.</p>
+<p><strong>detective atwood</strong>: I don’t fucking need this.</p>
+<p><strong>detective atwood</strong>: Have you checked the tenants of
+that building?</p>
+<p><strong>snyder</strong>: Only a few of them are home, they say they
+didn’t see anything. We checked the whole neighborhood, so far nobody
+saw a thing.</p>
+<p><strong>detective atwood</strong>: Leaving them like this, he must
+have been angry at them for some reason.</p>
+<p><strong>detective atwood</strong>: Where would they keep their vacuum
+cleaner.</p>
+<p><strong>detective atwood</strong>: I’ll bet you a hundred bucks,
+Snyder, there is no bag in that vacuum cleaner.</p>
+<p><strong>snyder</strong>: I have no idea what you’re looking for.</p>
+<p><strong>detective atwood</strong>: He vacuumed the house and took the
+bag.</p>
+<p><strong>snyder</strong>: Oh, shit. That is scary smart.</p>
+<p><strong>detective atwood</strong>: Okay.</p>
+<p><strong>detective atwood</strong>: Our best hope is if someone in
+there saw something.</p>
+<p><strong>man</strong>: Detective Tracy Atwood?</p>
+<p><strong>detective atwood</strong>: Yes.</p>
+<p><strong>man</strong>: This is for you.</p>
+<p><strong>man</strong>: You have been served.</p>
+<p><strong>detective atwood</strong>: You fucking asshole!! I’m in the
+middle of a fucking murder investigation!!</p>
+<p><strong>man</strong>: Hey, take it easy lady, I’m just the
+messenger.</p>
+<p><strong>detective atwood</strong>: Goddamit!!</p>
+<p><strong>snyder</strong>: What is it?</p>
+<p><strong>detective atwood</strong>: My soon to be ex-husband’s scumbag
+lawyer is trying to show me how painful she can make my life if I don’t
+give them what they want.</p>
+<p><strong>snyder</strong>: This is not the Doctor.</p>
+<p><strong>detective atwood</strong>: The doctor was a couple years ago.
+This one is my stupid mistake.</p>
+<p><strong>leader</strong>: Are there any new members?</p>
+<p><strong>woman</strong>: Hi, my name is Vaughn and I’m an
+alcoholic.</p>
+<p><strong>mr. brooks</strong>: Hi, my name is Earl and I’m an
+addict.</p>
+<p><strong>marshall</strong>: You’re such a fucking hypocrite. If you
+were honest you would step out there and say ‘Hi, I’m Earl. I killed two
+people last night and I really got off on it, but I need your help to be
+cured.’</p>
+<p><strong>mr. brooks</strong>: I’m different Marshall, I won’t argue
+that with you. This is the only place that has ever helped me be normal
+and I’ve been straight up until last night for the past two years. I’m
+not going to kill again and I’m not going to quit coming here because it
+upsets you.</p>
+<p><strong>marshall</strong>: Yeah but for the next 29 days you’re going
+to have to step out there and say ‘Hi, I’m Earl, I’m an addict.’ And
+everybody will know you fell off the wagon. Don’t you feel stupid doing
+that?</p>
+<p><strong>mr. brooks</strong>: No. I feel good.</p>
+<p><strong>mr. brooks</strong>: This is not the top of the line or the
+bottom, but for the money we’re talking about this is the quality I can
+provide you.</p>
+<p><strong>mr. brooks</strong>: Your packaging is the first impression
+your customers will have of your product…</p>
+<p><strong>pa system</strong>: Mr. Brooks, your daughter is waiting for
+you in your office.</p>
+<p><strong>mr. brooks</strong>: … We’d love to work you with on the
+design. It’s fun to challenge our machines. If you check around, you’ll
+find we’re not the cheapest, but we are the best.</p>
+<p><strong>mr. brooks</strong>: Sunday, did Jane call and say she was
+coming?</p>
+<p><strong>sunday</strong>: I would have given you that message,
+Mr. Brooks. She has boxes and suitcases downstairs.</p>
+<p><strong>mr. brooks</strong>: Hold my calls.</p>
+<p><strong>mr. brooks</strong>: What are you doing here, Gorgeous?</p>
+<p><strong>jane</strong>: I’m sorry, Daddy, please don’t be angry with
+me.</p>
+<p><strong>mr. brooks</strong>: I can guess what you’ve done, but why
+don’t you tell me and then I’ll decide.</p>
+<p><strong>jane</strong>: I dropped out of school.</p>
+<p><strong>mr. brooks</strong>: Okay. Have you told your mother
+this?</p>
+<p><strong>jane</strong>: No. I wanted to speak to you first.</p>
+<p><strong>mr. brooks</strong>: You’ll have to tell her, I’m not going
+to do that for you, and then together the three of us will decide where
+to go from here.</p>
+<p><strong>jane</strong>: I’ve thought a lot about this, Dad. College is
+a waste of time for me.</p>
+<p><strong>mr. brooks</strong>: I don’t know how you know that half way
+through your Freshman year, but…</p>
+<p><strong>jane</strong>: You didn’t go to college, Dad, and you’re
+successful. I want to come and work for you.</p>
+<p><strong>marshall</strong>: She’s not telling you everything, she’s
+hiding something.</p>
+<p><strong>mr. brooks</strong>: I know. I’m not hiring right now.</p>
+<p><strong>jane</strong>: Just listen to me. What would happen to the
+business if, God forbid, something happened to you? Mom would probably
+have to sell to strangers. I’m willing to start at the bottom, you can
+treat me as a regular employee, I want to learn everything there is to
+know about running the box business, and then when the time comes, the
+business would stay in the family.</p>
+<p><strong>mr. brooks</strong>: That’s sweet, but you’re talking about
+emotion, not business. In fact your mother and I came very close to
+selling out last year.</p>
+<p><strong>jane</strong>: What?!</p>
+<p><strong>mr. brooks</strong>: If we had been offered a little more
+money, and they may come back to us, we will sell.</p>
+<p><strong>jane</strong>: What would you do without…?!</p>
+<p><strong>mr. brooks</strong>: Yes?</p>
+<p><strong>sunday</strong>: I’m sorry, I know you didn’t want to be
+disturbed, the Man in the waiting room insisted I give you this.</p>
+<p><strong>sunday</strong>: He said you would find what’s inside very
+interesting.</p>
+<p><strong>mr. brooks</strong>: What is he? A salesman?</p>
+<p><strong>sunday</strong>: He won’t say. I’ve never seen him before. I
+can tell him to go away if you want me to.</p>
+<p><strong>mr. brooks</strong>: That’s okay.</p>
+<p><strong>mr. brooks</strong>: Part of spending the four years in
+college is to…</p>
+<p><strong>mr. brooks</strong>: … eh… to give yourself the chance to
+find out who you are and what you want to do.</p>
+<p><strong>jane</strong>: I’ll talk to Mom, but I’m not going back to
+school.</p>
+<p><strong>mr. brooks</strong>: Where would you live?</p>
+<p><strong>jane</strong>: To save money I would move back home, but no
+rules, no curfew, I want to be treated like an adult.</p>
+<p><strong>mr. brooks</strong>: Would you pay for your food, would you
+pay rent?</p>
+<p><strong>jane</strong>: No, dad, you’re a very wealthy man, you can
+afford to keep me.</p>
+<p><strong>mr. brooks</strong>: Sunday, would you show the gentleman who
+gave you the envelope to the conference room, and tell him I’ll meet him
+there and… What happened to the BMW?</p>
+<p><strong>jane</strong>: A friend is driving it across country, it’ll
+be here next weekend.</p>
+<p><strong>mr. brooks</strong>: And get Jane a cab.</p>
+<p><strong>mr. brooks</strong>: Call your mother.</p>
+<p><strong>jane</strong>: Are you going to give me a job?</p>
+<p><strong>mr. brooks</strong>: If it were up to me, and I think your
+mother will agree with this, you should go back to school.</p>
+<p><strong>mr. brooks</strong>: You see all of this?! The factory, the
+houses, the cars, the money, the respect!!…</p>
+<p><strong>mr. brooks</strong>: … I like them! I don’t want to lose
+them!</p>
+<p><strong>mr. brooks</strong>: … That’s why I didn’t want to do the
+dance Couple!</p>
+<p><strong>marshall</strong>: Stop your fucking whining, Earl, you
+enjoyed doing that Couple just as much as I did, and look on the bright
+side, he came to us he didn’t go to the Cops. If he tries to shake us
+down we kill him. Period. We make it fun but we kill him. End of
+story.</p>
+<p><strong>mr. brooks</strong>: What can I do for you, Mr…?</p>
+<p><strong>man</strong>: … Let’s say, ‘Smith’.</p>
+<p><strong>mr. brooks</strong>: Okay, Mr. Smith.</p>
+<p><strong>mr. smith</strong>: Before you get the wrong impression,
+Mr. Brooks, I’m not here to shake you down.</p>
+<p><strong>mr. brooks</strong>: Then these are the only copies of these
+photos and you have no others.</p>
+<p><strong>mr. smith</strong>: No. I have other copies and other photos,
+and if something were to happen to me…</p>
+<p><strong>mr. brooks</strong>: How did you find me, Mr. Smith?</p>
+<p><strong>mr. smith</strong>: You’re ‘Man of the Year’, Mr. Brooks.
+Your picture was in the paper. If it hadn’t been, I don’t know what I
+would have done.</p>
+<p><strong>mr. brooks</strong>: Lucky me. What is it that I can help you
+with?</p>
+<p><strong>mr. smith</strong>: I’ve been watching that Couple for
+months, they liked to make love with the blinds open. Sometimes I would
+take pictures, you know, visual aides for later. It was fun, it was a
+great way to get off; I thought, until I saw you kill them. I have to
+tell you I have never ever felt a rush like that ever. I know you’re the
+Thumbprint killer, you’ve done this before. What I want is to go with
+you the next time you kill someone. And I would like that to be
+soon.</p>
+<p><strong>marshall</strong>: And you were worried that this was going
+to be unpleasant. The answer is simple. Just tell him you’ve decided
+never to kill again and he’ll go away.</p>
+<p><strong>mr. brooks</strong>: You enjoy watching me suffer, don’t
+you?</p>
+<p><strong>marshall</strong>: In a word, yes.</p>
+<p><strong>mr. brooks</strong>: Where do you think he has the other
+pictures?</p>
+<p><strong>marshall</strong>: He put them in a safety deposit box but
+I’ll bet the box is at the bank where he has his checking account and
+the key is on his keychain. He really wants to do this, he’s not going
+to go to the cops.</p>
+<p><strong>mr. smith</strong>: So do we have a deal?</p>
+<p><strong>mr. brooks</strong>: From the angle of these pictures… … you
+live on the third floor of the apartment building across the alley from
+the Couple’s house.</p>
+<p><strong>mr. smith</strong>: Well… eh.</p>
+<p><strong>mr. brooks</strong>: Yes or no, Mr. Smith?</p>
+<p><strong>mr. brooks</strong>: What time do you get home from work?</p>
+<p><strong>mr. smith</strong>: Six thirty, seven, depending on the
+traffic.</p>
+<p><strong>mr. brooks</strong>: You can never come here again, you can
+never call me. Do you understand that?</p>
+<p><strong>mr. smith</strong>: Yes.</p>
+<p><strong>mr. brooks</strong>: Tomorrow night, not tonight, tomorrow
+night, at eight o’clock, leave your apartment and walk east. I’ll pick
+you up.</p>
+<p><strong>mr. smith</strong>: If you’re thinking of doing anything to
+me, Mr. Brooks…</p>
+<p><strong>mr. brooks</strong>: We’re both aware of the rules,
+Mr. Smith, but I feel I must warn you. If it turns out that you enjoy
+killing, it can become very addictive. It could ruin your life.</p>
+<p><strong>mr. smith</strong>: I want to do this.</p>
+<p><strong>mr. brooks</strong>: Have I covered everything?</p>
+<p><strong>marshall</strong>: I can’t think of anything else.</p>
+<p><strong>mr. brooks</strong>: I’ll see you tomorrow night,
+Mr. Smith.</p>
+<p><strong>mr. brooks</strong>: Please God, please help me find a way
+not to do this.</p>
+<p><strong>asian attorney</strong>: We’ve talked to our client and we’ve
+come up with a number that we feel is more than fair.</p>
+<p><strong>asian attorney</strong>: We can have a check for that amount
+in your office by 6 o’clock.</p>
+<p><strong>sheila</strong>: We told you at the beginning what we want
+and that hasn’t changed.</p>
+<p><strong>gray-haired attorney</strong>: You know as well as I do,
+Counselor, if we go to court you’re not going to get a million five.</p>
+<p><strong>sheila</strong>: I don’t know. Let’s see.</p>
+<p><strong>sheila</strong>: This is the front page of yesterday’s paper…
+‘Hangman Escapes’… eh… now, here it is… ‘after torturing the young
+women, Thorton Meeks would hang them in public places - church steeples,
+balconies, Freeway overpasses’… Your client captured Mr. Meeks. This is
+just one example of the cases my client lived through when he was
+married to your client.</p>
+<p><strong>asian attorney</strong>: Your client knew Detective Atwood
+was a homicide detective when he married her.</p>
+<p><strong>sheila</strong>: But he had no idea of the mental anguish
+that being in close proximity to her work would cause him.</p>
+<p><strong>detective atwood</strong>: What about the mental anguish I
+went through being in close proximity to him. Who’s gonna pay me for
+that?</p>
+<p><strong>asian attorney</strong>: We don’t need to get into this,
+Tracy.</p>
+<p><strong>detective atwood</strong>: Yes, we do. I was the one who paid
+for everything while we were married, and now I’m being asked to give
+him a bonus for spending time with me when I’ve already paid for it in
+the first place.</p>
+<p><strong>jesse</strong>: Tracy, this is not a lot of money for you,
+and you know how upset I was when Meeks said that he was going to escape
+and he would come back and kill you.</p>
+<p><strong>sheila</strong>: We’re quite willing to find out what a court
+would think that mental anguish is worth.</p>
+<p><strong>detective atwood</strong>: Jesse… Darling?… you know the best
+thing that could happen to me right now? That you get hit by a truck and
+die.</p>
+<p><strong>sheila</strong>: That’s it! Mr. Vialo and I are leaving.
+You’ve threatened my client, we’re going to ask for a restraining order,
+and we’ll see you in court.</p>
+<p><strong>gray-haired attorney</strong>: That’s going to cost you,
+Tracy.</p>
+<p><strong>detective atwood</strong>: Fuck it. It felt good.</p>
+<p><strong>mr. smith</strong>: Ahhh!!! Ahhh!!! Ahhh!!!</p>
+<p><strong>mr. brooks</strong>: Don’t worry, if I were here to kill you,
+you would already be dead.</p>
+<p><strong>mr. brooks</strong>: After you left today, I realized our
+friendship was a little one- sided.</p>
+<p><strong>mr. brooks</strong>: So when we meet tomorrow night would you
+be so kind as to bring all of the pictures and the memory card from your
+camera. That way we can like each other simply for who we are. If you
+don’t show up, I will presume you’ve gone to the police and I will kill
+you. Even if I go to jail because of you, someone will find you wherever
+you are and kill you.</p>
+<p><strong>mr. smith</strong>: Mr. Brooks?…</p>
+<p><strong>mr. smith</strong>: Mr. Brooks?…</p>
+<p><strong>mr. smith</strong>: Wow!…</p>
+<p><strong>mr. brooks</strong>: It’s nice to have you home.</p>
+<p><strong>mr. brooks</strong>: What’s wrong?</p>
+<p><strong>emma</strong>: Ask your daughter what the real reason is she
+dropped out of school.</p>
+<p><strong>jane</strong>: I keep telling you it’s not the reason.</p>
+<p><strong>emma</strong>: You wanted to go to college, you had good
+grades in High School, your father helped you get into Stanford, we’re
+paying a ton of money, if this is not the reason, then please dear God
+tell me the reason.</p>
+<p><strong>mr. brooks</strong>: Why does your mother think you dropped
+out of school?</p>
+<p><strong>jane</strong>: I’m pregnant. And it’s not the reason I
+dropped out. Being pregnant wouldn’t stop me from going to school if I
+wanted to go.</p>
+<p><strong>mr. brooks</strong>: Who’s the father?</p>
+<p><strong>jane</strong>: Some guy I was seeing.</p>
+<p><strong>emma</strong>: Does he know?</p>
+<p><strong>jane</strong>: Yes, he’s a married man and he doesn’t want to
+have anything to do with me.</p>
+<p><strong>emma</strong>: Oh, Honey, I’m so sorry.</p>
+<p><strong>jane</strong>: I’m going to have an abortion anyway, so there
+is nothing to get upset about. I wasn’t even going to tell you guys.</p>
+<p><strong>mr. brooks</strong>: There will be no abortion.</p>
+<p><strong>jane</strong>: Daddy, you are not going to tell me what to
+do. It’s my body and I will do what I want to do with it.</p>
+<p><strong>mr. brooks</strong>: You’re right. I’m sorry. I said it
+wrong. I’m not trying to tell you what to do. I’m trying to say that a
+grandchild would be a wonderful gift for your mother and me.</p>
+<p><strong>emma</strong>: Please, Honey, don’t have an abortion.</p>
+<p><strong>jane</strong>: Would you really want to have a grandchild,
+even though I’m not married?</p>
+<p><strong>mr. brooks</strong>: Yes. The child is what’s important. We
+would love it and cherish it completely and help you raise it.</p>
+<p><strong>jane</strong>: If it means that much to you, I’ll think about
+it.</p>
+<p><strong>mr. brooks</strong>: Well, we were right, she was hiding
+something.</p>
+<p><strong>marshall</strong>: Pregnant’s not all of it. She’s hiding
+something bigger. Much bigger.</p>
+<p><strong>mr. brooks</strong>: You think so?</p>
+<p><strong>marshall</strong>: I know so, and so do you.</p>
+<p><strong>technician</strong>: It’s not what’s here, it’s what’s not
+here that’s interesting. There’s not a trace of anything foreign. If I
+didn’t know better I’d say these people were killed by a ghost.</p>
+<p><strong>captain lister</strong>: The autopsy found a tiny piece of
+plastic in the female victim’s brain.</p>
+<p><strong>technician</strong>: We’re checking with the ammunition
+manufacturers.</p>
+<p><strong>detective atwood</strong>: That’s a dead end, he bags the
+gun.</p>
+<p><strong>technician</strong>: I don’t understand.</p>
+<p><strong>detective atwood</strong>: He ziplocks a one gallon plastic
+freezer bag to his wrist over the gun. Bang. Bang. A little bit of
+plastic is carried by the first slug, the ejected shells go into the bag
+and it limits the powder residue. I hear you were looking for me.</p>
+<p><strong>captain lister</strong>: Sigy…</p>
+<p><strong>sigy</strong>: Yeah, okay… Did you find anything? Did they
+have enemies, did they owe money, did anybody ever notice someone
+watching the house?</p>
+<p><strong>detective atwood</strong>: So far they are Mr. and Miss
+Normal.</p>
+<p><strong>sigy</strong>: If you find anything, call, it might help
+me.</p>
+<p><strong>captain lister</strong>: I received a subpoena from your
+husband’s lawyer for your work records, where you were, date and times
+for the past two years.</p>
+<p><strong>detective atwood</strong>: That’s blackmail.</p>
+<p><strong>captain lister</strong>: Almost three quarters of your cases
+are current. I can’t let that information go into open court. So until
+you settle your divorce, I’m going to have to put you on a desk.</p>
+<p><strong>detective atwood</strong>: That’s also blackmail.</p>
+<p><strong>captain lister</strong>: That’s one of your big problems,
+Atwood, you don’t know how to ask for help.</p>
+<p><strong>detective atwood</strong>: Do you know what he did to me?</p>
+<p><strong>captain lister</strong>: You can’t grow old as a woman
+without having at least one lousy man in your life.</p>
+<p><strong>detective atwood</strong>: I was so stupid. While we were
+married, while I paid for him to live, the son of a bitch fucked every
+woman he could get his hands on. He fucked my friends, he even fucked a
+cousin of mine. Everyone knew but me, and they were laughing at me
+behind my back. He made me look like an idiot. I was a joke.</p>
+<p><strong>captain lister</strong>: And?…</p>
+<p><strong>detective atwood</strong>: And what?</p>
+<p><strong>captain lister</strong>: Get over it.</p>
+<p><strong>detective atwood</strong>: I made him an offer. I’m not going
+to give him one red cent more.</p>
+<p><strong>captain lister</strong>: I hear what he’s asking for, you
+could take out of pocket change. Do that and go on with your life.</p>
+<p><strong>detective atwood</strong>: I couldn’t live with myself if I
+did.</p>
+<p><strong>captain lister</strong>: I’ll spread your work among the
+other guys and the FBI will be here on thursday… … they’ll take over
+this case.</p>
+<p><strong>detective atwood</strong>: Please, these are my cases. Nobody
+knows them like me. Don’t give them away and don’t give the Thumbprint
+Killer to the FBI. He’s killed people in twelve other states, let them
+fuck up those investigations. This one’s mine.</p>
+<p><strong>captain lister</strong>: You heard Meeks escaped?</p>
+<p><strong>detective atwood</strong>: Yeah.</p>
+<p><strong>captain lister</strong>: Do you want a detail on you in case
+he comes after you?</p>
+<p><strong>detective atwood</strong>: I can take care of myself.</p>
+<p><strong>captain lister</strong>: You’re a good cop, Tracy, I don’t
+want to lose you, but you have to help me if you want me to help
+you.</p>
+<p><strong>detective atwood</strong>: What is wrong with me? What is
+wrong with me? What is wrong with me?</p>
+<p><strong>detective atwood</strong>: Did you choose them because of
+where they lived or how they looked or what jobs they had? Or did you
+just pick them because at the instant you saw them, you had decided to
+kill someone? The side door was perfect. No one could see you pick the
+lock.</p>
+<p><strong>detective atwood</strong>: How did you know where they were
+in the house?</p>
+<p><strong>detective atwood</strong>: It’s darker tonight than it was on
+your night. But still how did you manage not to bump into the furniture?
+Did you have a little light? That would be too dangerous. I’ll bet you
+were in the house before.</p>
+<p><strong>detective atwood</strong>: So I should ask the neighbors if
+they saw a meter reader around the house or a telephone repairman or
+someone from the gas company.</p>
+<p><strong>detective atwood</strong>: Once again, how did you know where
+they were? Did you check the rooms before you found them? She had his
+semen in her vagina, they had just made love, did you hear them or was
+there a light on?</p>
+<p><strong>detective atwood</strong>: And when did you bag the gun?
+Because even though I’m sure you’re an expert at it, there’s still a
+chance of noise from the plastic.</p>
+<p><strong>detective atwood</strong>: Was the door open or did you have
+to open it?</p>
+<p><strong>detective atwood</strong>: Were they asleep or awake? Was the
+light on, or did you turn it on? Because I know you, you wouldn’t risk a
+shot in the dark.</p>
+<p><strong>detective atwood</strong>: Too bright. What if it wasn’t that
+light that was on, but this one?</p>
+<p><strong>detective atwood</strong>: That’s better… What thrill do you
+get by killing people? Is it sexual, is it hate, is it power? Do you
+feel remorse? Probably that part of your brain doesn’t exist. Do you
+have emotions of love or affection or joy? Or have you learned to fake
+them so you won’t stand out in a crowd.</p>
+<p><strong>detective atwood</strong>: What if these are stuck closed
+because you yanked them closed? Which means they were open when you came
+into the room.</p>
+<p><strong>detective atwood</strong>: If Mr. and Miss Normal made love
+with the curtains open and the lights on, someone in that building
+noticed them and may have seen you.</p>
+<p><strong>detective atwood</strong>: Was that what you were angry
+about?</p>
+<p><strong>detective atwood</strong>: Thank you for your time.</p>
+<p><strong>mr. smith</strong>: Oh! You scared me.</p>
+<p><strong>detective atwood</strong>: I’m sorry… … I was about to knock.
+I’m Detective Atwood with the Chicago Police.</p>
+<p><strong>mr. smith</strong>: Thank you.</p>
+<p><strong>detective atwood</strong>: Are you a photographer…
+Mr. Baffert?</p>
+<p><strong>mr. smith</strong>: No… eh, it’s kind of a hobby, I just
+started.</p>
+<p><strong>detective atwood</strong>: I don’t know if you’re aware but
+there was a murder…</p>
+<p><strong>mr. smith</strong>: Oh, yes in the house across the
+alley…</p>
+<p><strong>detective atwood</strong>: Did you happen to see anything
+unusual or suspicious that night around that house? Anything at all?</p>
+<p><strong>mr. smith</strong>: No… I wondered that when I heard what
+happened, but… no. I’m sorry, I’m meeting someone and I don’t want to be
+late.</p>
+<p><strong>detective atwood</strong>: Here’s my card, if you hear
+anything or remember anything.</p>
+<p><strong>mr. smith</strong>: I wish I could be of more help, but
+sorry.</p>
+<p><strong>mr. brooks</strong>: He looks clean. He looks like he’s
+alone.</p>
+<p><strong>marshall</strong>: No, I’m telling you he wants to do
+this.</p>
+<p><strong>mr. brooks</strong>: I guess I should turn around and go pick
+him up.</p>
+<p><strong>marshall</strong>: Nah. Just honk. Maybe he’ll get killed
+crossing the street and save us the mess of doing it.</p>
+<p><strong>mr. smith</strong>: Woof! It’s really coming down out
+there.</p>
+<p><strong>mr. brooks</strong>: They say it’ll be sunny tomorrow.</p>
+<p><strong>mr. smith</strong>: I never trust those guys, when they say
+it’s going to be clear it always rains and when they say it’s going to
+rain, it’s sunny.</p>
+<p><strong>mr. smith</strong>: Here’s what you asked for.</p>
+<p><strong>mr. brooks</strong>: The pictures and the memory card all
+here?</p>
+<p><strong>mr. smith</strong>: Yeah.</p>
+<p><strong>mr. brooks</strong>: You and I both know that not all the
+pictures are in here and you made a copy of the Memory Card, isn’t that
+so?</p>
+<p><strong>mr. smith</strong>: But you understand my position.</p>
+<p><strong>mr. brooks</strong>: Yes, I do. But it’s my hope that once
+you get to know me better you’ll feel comfortable in giving me all that
+I’ve asked for.</p>
+<p><strong>mr. smith</strong>: That sounds fair. Oh, I almost forgot. I
+thought you might be interested in this.</p>
+<p><strong>mr. smith</strong>: It’s the policewoman who’s looking for
+you.</p>
+<p><strong>marshall</strong>: Wow! We’ve never known anyone who’s
+looking for us before.</p>
+<p><strong>marshall</strong>: We’ve got to find out everything there is
+to know about this woman.</p>
+<p><strong>mr. brooks</strong>: This is too close, Marshall, too damn
+close.</p>
+<p><strong>mr. smith</strong>: So, what do we do now? What’s the plan
+for the evening?</p>
+<p><strong>mr. brooks</strong>: We drive around until we see someone we
+think we might enjoy killing.</p>
+<p><strong>mr. smith</strong>: Really? That’s it? I thought you might
+already have someone in mind.</p>
+<p><strong>mr. brooks</strong>: I don’t enjoy this, Mr. Smith. I do it
+because I’m addicted to it. And before you entered my life I had vowed I
+would never kill again. So this is your party, you can chose anyone you
+want and we’ll do it together.</p>
+<p><strong>mr. smith</strong>: Can it be someone I know?</p>
+<p><strong>mr. brooks</strong>: You never kill someone you know. That’s
+the easiest way to get caught.</p>
+<p><strong>stewardess</strong>: I wasn’t in town that night, my roommate
+was, maybe he saw something.</p>
+<p><strong>detective atwood</strong>: May I speak to him?</p>
+<p><strong>stewardess</strong>: He’s on his way to Tokyo now, he’s also
+a Flight Attendant.</p>
+<p><strong>detective atwood</strong>: Did the victims ever leave the
+curtains in the bedroom open?</p>
+<p><strong>stewardess</strong>: All the time. I don’t know if they
+thought we couldn’t see them “fucking” or they didn’t care.</p>
+<p><strong>detective atwood</strong>: Here’s my card, could you ask your
+roommate to call me when he gets back, the people at that number will
+find me any hour of the day or night.</p>
+<p><strong>stewardess</strong>: I won’t be here, but I’ll leave him a
+note.</p>
+<p><strong>mr. brooks</strong>: … maybe I already know how to pick the
+locks on the house, if I don’t…</p>
+<p><strong>mr. brooks</strong>: … I buy one of those locks and I
+practice on it, same with the alarm… some I know how to bypass, some I
+have to study.</p>
+<p><strong>mr. smith</strong>: You don’t mind me asking these
+questions?</p>
+<p><strong>mr. brooks</strong>: No. This is your first time, you’re
+interested. And you should be if you’re…</p>
+<p><strong>mr. smith</strong>: Jesus Christ!!</p>
+<p><strong>mr. smith</strong>: Fuck him!! It was his fault!! What an
+asshole!!</p>
+<p><strong>marshall</strong>: Maybe Mr. Smith would like to kill the
+driver of the pickup.</p>
+<p><strong>mr. brooks</strong>: What about the driver of the pickup?
+What if we killed him?</p>
+<p><strong>mr. smith</strong>: Oh, fuck, yes!! I’ve always wanted to
+kill someone who fucked with me in traffic.</p>
+<p><strong>mr. brooks</strong>: Do you want to kill the driver of the
+pickup or the owner, they may not be the same.</p>
+<p><strong>mr. smith</strong>: The driver.</p>
+<p><strong>mr. brooks</strong>: Okay we’ll follow until we get a look at
+him, or her; would it bother you to kill a woman?</p>
+<p><strong>mr. smith</strong>: No. An asshole’s an asshole.</p>
+<p><strong>mr. smith</strong>: What are you doing?</p>
+<p><strong>mr. brooks</strong>: The asshole shouldn’t know we’ve decided
+to follow him, or her.</p>
+<p><strong>male voice</strong>: Yes?</p>
+<p><strong>detective atwood</strong>: It’s Tracy. Can you carve out some
+time for me tonight?… I’ll be home in an hour and a half. I’ll see you
+there.</p>
+<p><strong>mr. brooks</strong>: Would you recognize him if you saw his
+driver’s license picture?</p>
+<p><strong>mr. smith</strong>: Yeah.</p>
+<p><strong>mr. brooks</strong>: I’ve memorized the license number, you
+write it down. When you get home go on the Internet and find out
+everything you can about this guy.</p>
+<p><strong>mr. smith</strong>: We aren’t going to kill him tonight?</p>
+<p><strong>mr. brooks</strong>: No. We could, but then we wouldn’t be in
+control. We could leave loose ends, and we both know the danger of
+that.</p>
+<p><strong>mr. smith</strong>: I got it.</p>
+<p><strong>mr. brooks</strong>: Look at me.</p>
+<p><strong>mr. brooks</strong>: Close your eyes. What’s the number?</p>
+<p><strong>mr. smith</strong>: VF… eh…</p>
+<p><strong>mr. brooks</strong>: Don’t feel bad, I’ve been doing this a
+long time… Pen, paper. Write it down.</p>
+<p><strong>mr. smith</strong>: What was your first time?</p>
+<p><strong>mr. brooks</strong>: You really don’t want to know that much
+about me, Mr. Smith.</p>
+<p><strong>detective atwood</strong>: Hi.</p>
+<p><strong>larry</strong>: Hi. I brought a dress and a pair of shoes. I
+thought we could leave from here.</p>
+<p><strong>detective atwood</strong>: Great idea.</p>
+<p><strong>larry</strong>: … I gave him my driver’s license, my student
+ID, he didn’t look anything like me, luckily they never checked.</p>
+<p><strong>detective atwood</strong>: I did something like that except I
+was the one who took the test. It wasn’t math, a friend of mine was a
+theology major and needed a second language to get into the Master’s
+program…</p>
+<p><strong>larry</strong>: She started her career in theology with a
+lie?!</p>
+<p><strong>detective atwood</strong>: Isn’t that what all theology is
+based on?</p>
+<p><strong>larry</strong>: Did you pass the test?</p>
+<p><strong>detective atwood</strong>: Oh yeah…</p>
+<p><strong>larry</strong>: Don’t tell me she ended up as Mother Teresa
+or the Pope.</p>
+<p><strong>detective atwood</strong>: No, she realized very quickly
+there wasn’t enough money in religion for her, the last I heard she’d
+written a diet book that was very successful.</p>
+<p><strong>larry</strong>: She stayed in religion.</p>
+<p><strong>larry</strong>: Thank you, this was wonderful.</p>
+<p><strong>detective atwood</strong>: For me too.</p>
+<p><strong>larry</strong>: I’ll see you then?</p>
+<p><strong>detective atwood</strong>: I’d like that. The money is in the
+usual place.</p>
+<p><strong>larry</strong>: It’s not just the money, Tracy. I like
+you.</p>
+<p><strong>detective atwood</strong>: I like you too, Larry. Send me a
+bill for the dress and the shoes.</p>
+<p><strong>larry</strong>: I will. Good-night.</p>
+<p><strong>detective atwood</strong>: Good-night.</p>
+<p><strong>marshall</strong>: I think that was right. Go back.</p>
+<p><strong>mr. brooks</strong>: We’re in.</p>
+<p><strong>marshall</strong>: With the taxes we pay, you’d think they
+could make it more difficult to hack into the Police personnel
+files.</p>
+<p><strong>mr. brooks</strong>: …. Huh… her father’s Gerald Atwood, why
+does that ring a bell?</p>
+<p><strong>marshall</strong>: Someone you did business with, someone we
+killed?</p>
+<p><strong>mr. brooks</strong>: Not someone we killed… MBA… College of
+William and Mary… she’s been a cop for eleven years… Married Doctor
+Carlson, divorced Dr. Carlson, married Jesse Vialo… restaurateur…
+separated from Jesse Vialo, sued for support by Jesse Vialo, seeing a
+shrink because of Jesse Vialo…</p>
+<p><strong>marshall</strong>: Excellent fitness report though.</p>
+<p><strong>mr. brooks</strong>: She caught the Hangman, the guy that
+escaped the other day…</p>
+<p><strong>marshall</strong>: Oooh… She’s caught a lot of people… And
+look here, this isn’t the first time she’s been hunting for us.</p>
+<p><strong>mr. brooks</strong>: I wonder what the deal was with her and
+Jesse Vialo?</p>
+<p><strong>mr. brooks</strong>: Ahhhh… now I remember. Her father,
+Gerald Atwood, never did business with him but Emma and I met him a
+couple times, big political fundraiser. He owns or owned one of the
+largest insurance groups in the country and a lot of other stuff.</p>
+<p><strong>mr. brooks</strong>: Jesse Vialo… Good looking, a little
+younger than she is.</p>
+<p><strong>marshall</strong>: Younger, restaurateur… She married him on
+the rebound from the doctor and I’ll bet he married her for her money
+and her connections.</p>
+<p><strong>mr. brooks</strong>: The old man being rich doesn’t mean
+she’s rich. Maybe he’s one of those guys who would rather give it to the
+Opera than to his kids.</p>
+<p><strong>marshall</strong>: Wouldn’t she have to declare any outside
+income and holdings to the Police?</p>
+<p><strong>mr. brooks</strong>: Hmmm…</p>
+<p><strong>mr. brooks</strong>: The Opera didn’t get much.</p>
+<p><strong>marshall</strong>: Why would a woman with her education and
+worth 60 plus million dollars and probably more to come, want to be a
+cop?</p>
+<p><strong>mr. brooks</strong>: I like that about her.</p>
+<p><strong>marshall</strong>: You’re such a fucking snob, Earl. You like
+her because she’s rich.</p>
+<p><strong>mr. brooks</strong>: No, I like her because she found
+something that’s hers. It’s not the family business. And she’s good at
+it. I’d like Jane to find something that’s hers and that she could be
+good at.</p>
+<p><strong>marshall</strong>: That’s exactly why Atwood scares the shit
+out of me. She’s a cop who doesn’t need the money and she’s looking for
+us. That’s one fucking dangerous human being.</p>
+<p><strong>mr. brooks</strong>: The fact that you’re not wrong doesn’t
+make me admire her any less.</p>
+<p><strong>detective atwood</strong>: Hi…</p>
+<p><strong>asian attorney</strong>: Hi. I got you a Latte.</p>
+<p><strong>detective atwood</strong>: Thanks and thanks for meeting me
+here.</p>
+<p><strong>asian attorney</strong>: We got an injunction to quash the
+subpoena for your work records yesterday. They’ve already appealed.</p>
+<p><strong>detective atwood</strong>: That doesn’t help me does it?</p>
+<p><strong>asian attorney</strong>: Your father has a lot of political
+muscle.</p>
+<p><strong>detective atwood</strong>: My father does nothing for
+nothing.</p>
+<p><strong>asian attorney</strong>: I understand. If you’re willing to
+play the game and ride a desk for a year; I think we can settle for one
+two five, one five.</p>
+<p><strong>detective atwood</strong>: No desk.</p>
+<p><strong>asian attorney</strong>: Then the only other option is money.
+Tell me how high you are willing to go.</p>
+<p><strong>detective atwood</strong>: One five.</p>
+<p><strong>asian attorney</strong>: I can try. If I were on the other
+side I’d hold out for more.</p>
+<p><strong>detective atwood</strong>: How much more?</p>
+<p><strong>asian attorney</strong>: Give me a cap and that’s how high
+we’ll go.</p>
+<p><strong>detective atwood</strong>: Try and get a number out of them
+first. I want to know what ballpark I’m playing in and if it’s a lump
+sum, is it less than something that’s paid in installments.</p>
+<p><strong>asian attorney</strong>: I’ll call them today.</p>
+<p><strong>detective atwood</strong>: I’d like to get this done as soon
+as possible.</p>
+<p><strong>asian attorney</strong>: Are you working on the Thumbprint
+Killer this time?</p>
+<p><strong>detective atwood</strong>: Yeah.</p>
+<p><strong>asian attorney</strong>: That one’s creepy to me. The doors
+are locked, the alarms are armed and the people are dead. It makes you
+feel like you’re not safe anywhere.</p>
+<p><strong>detective atwood</strong>: Where are you parked?</p>
+<p><strong>asian attorney</strong>: I’m right over there.</p>
+<p><strong>detective atwood</strong>: I’m down the street. Call me as
+soon as you have something.</p>
+<p><strong>asian attorney</strong>: Oh, Tracy… I almost forgot, your
+husband says there’s a picture of him holding some trophy that you still
+have.</p>
+<p><strong>detective atwood</strong>: He took all those pictures. He
+took everything.</p>
+<p><strong>asian attorney</strong>: He claims it’s his favorite picture
+and you put it up where you store your suitcases.</p>
+<p><strong>detective atwood</strong>: I’ll look.</p>
+<p><strong>asian attorney</strong>: I know it’s petty, but you’re going
+through a divorce.</p>
+<p><strong>meeks</strong>: Surprise, surprise, Tracy. I told you I was
+coming back to get you.</p>
+<p><strong>meeks</strong>: I already know where I’m gonna hang you. But
+first I’m gonna watch her… … have some fun with you, then she’s gonna
+watch me have some fun with you.</p>
+<p><strong>meeks</strong>: Now, don’t move.</p>
+<p><strong>meeks</strong>: You know the drill, I’m gonna put the cuffs
+on.</p>
+<p><strong>meeks</strong>: Now the left.</p>
+<p><strong>captain lister</strong>: We found the van in an underground
+lot about two miles from where they left you. It was stolen last
+night.</p>
+<p><strong>snyder</strong>: These are the women we have pictures of who
+know Meeks.</p>
+<p><strong>captain lister</strong>: Meeks and the Woman, none of the
+Attendants remember seeing them.</p>
+<p><strong>detective atwood</strong>: That chiropractor, Alvin Griffin,
+who sold Meeks his steroids, he might know where he is.</p>
+<p><strong>captain lister</strong>: His phone’s been tapped since Meeks
+escaped. No contact that way so far and he’s sure not going to talk to
+us.</p>
+<p><strong>detective atwood</strong>: What about a warrant to search his
+house? Get me in the door and he’ll talk to me.</p>
+<p><strong>captain lister</strong>: How’s your divorce going?</p>
+<p><strong>detective atwood</strong>: I took your advice and told my
+lawyer to settle.</p>
+<p><strong>detective atwood</strong>: None of these is the woman in the
+van.</p>
+<p><strong>doctor</strong>: Whoa… I’m sewing up your head here.</p>
+<p><strong>detective atwood</strong>: Sorry.</p>
+<p><strong>captain lister</strong>: And your ego can handle that?</p>
+<p><strong>detective atwood</strong>: It doesn’t like any of the other
+choices.</p>
+<p><strong>captain lister</strong>: Until Meeks is caught, Snyder is
+with you.</p>
+<p><strong>detective atwood</strong>: Nothing personal, Snyder. He’s not
+part of our team.</p>
+<p><strong>captain lister</strong>: He’s there to protect you. And
+listen to him, he’s been alive longer than you have.</p>
+<p><strong>snyder</strong>: I didn’t volunteer for this, Atwood.</p>
+<p><strong>captain lister</strong>: The Parking Lot has a security
+camera. We’re checking the tape. If Meeks and the Woman left in a car
+we’ll have a license number. You have two days then I want a progress
+report on your divorce.</p>
+<p><strong>detective atwood</strong>: I think I have all the pieces on
+the Thumbprint Killer, I’m just not looking at them the right way.</p>
+<p><strong>captain lister</strong>: Okay, you have three days.</p>
+<p><strong>detective atwood</strong>: Every babysitter I ever had loved
+me.</p>
+<p><strong>mr. smith</strong>: Maybe he went home with someone else.</p>
+<p><strong>mr. brooks</strong>: Can you still see his pickup?</p>
+<p><strong>mr. smith</strong>: Uh huh.</p>
+<p><strong>mr. brooks</strong>: This is not the kind of guy who leaves
+his pickup in an unguarded Lot overnight.</p>
+<p><strong>mr. brooks</strong>: Where do we know that guy from?</p>
+<p><strong>marshall</strong>: You really should pay more attention to
+what you read, Earl.</p>
+<p><strong>mr. brooks</strong>: That’s what I have you for,
+Marshall.</p>
+<p><strong>marshall</strong>: His picture was on the front page of the
+paper a couple days ago because he escaped from jail. He’s the killer
+they call the Hangman.</p>
+<p><strong>mr. brooks</strong>: Ahh…</p>
+<p><strong>marshall</strong>: Remember that cop you like, Atwood, who’s
+chasing us, she’s the one who put him away. I think his name is Thorton
+Meeks.</p>
+<p><strong>mr. brooks</strong>: Well, well, well… What would life be
+without surprises?</p>
+<p><strong>mr. smith</strong>: There he is!</p>
+<p><strong>mr. smith</strong>: You know what’s weird? I’ll bet he has
+all these plans of what he’s going to do tonight and tomorrow and he
+doesn’t know he will already be dead and won’t be able to do any of
+them.</p>
+<p><strong>mr. brooks</strong>: I don’t think I want to kill this
+guy.</p>
+<p><strong>mr. smith</strong>: What?! But you promised we would!</p>
+<p><strong>marshall</strong>: Oh, I love what you’re thinking.</p>
+<p><strong>mr. brooks</strong>: You have no idea what I’m thinking.</p>
+<p><strong>marshall</strong>: Oh yes I do, and it’s wonderfully
+twisted.</p>
+<p><strong>mr. brooks</strong>: I know I said we would, but I don’t
+think it would be that much fun.</p>
+<p><strong>mr. smith</strong>: So just like that, you’re saying ‘no’,
+it’s not going to happen.</p>
+<p><strong>mr. brooks</strong>: Yes.</p>
+<p><strong>mr. smith</strong>: I see.</p>
+<p><strong>marshall</strong>: You get the number?</p>
+<p><strong>mr. brooks</strong>: I got it.</p>
+<p><strong>marshall</strong>: Mr. Smith wants you to notice he’s
+pouting.</p>
+<p><strong>mr. brooks</strong>: Yeah, I know.</p>
+<p><strong>mr. brooks</strong>: I know you’re upset, Mr. Smith, and I’m
+sorry.</p>
+<p><strong>mr. smith</strong>: Yeah, I am upset.</p>
+<p><strong>mr. brooks</strong>: Maybe I was a little abrupt back there,
+but let me explain. Finding someone you think would be fun to kill is a
+bit like falling in love. You meet a lot of candidates, and you like
+some of them and they’re nice, but they’re not right; and then that
+special one shows up and your heart beats faster and you know that’s the
+one. The man in the pickup did not make my heart beat faster.</p>
+<p><strong>mr. smith</strong>: Okay, he did not make your heart beat
+faster. If not him, who?</p>
+<p><strong>mr. brooks</strong>: I don’t know, I think I have someone in
+mind.</p>
+<p><strong>mr. smith</strong>: Do you need me to do any work on it?</p>
+<p><strong>mr. brooks</strong>: No, let’s see how it plays out.</p>
+<p><strong>mr. smith</strong>: You see? That’s my problem. That makes me
+feel like I’m being jerked around, Mr. Brooks. I thought it was
+happening last night, then it was happening tonight. And now it’s “Let’s
+see how it plays out”.</p>
+<p><strong>mr. smith</strong>: I feel like you’re planning to back out
+on our deal and I don’t like that feeling at all.</p>
+<p><strong>mr. brooks</strong>: I promise you, it will happen.</p>
+<p><strong>mr. smith</strong>: When? That’s what I want to know,
+Mr. Brooks. When?</p>
+<p><strong>mr. brooks</strong>: Tomorrow night, same time. When you come
+out of your building, turn right, go to the first street you can go west
+on, I’ll pick you up on that street.</p>
+<p><strong>mr. smith</strong>: Okay.</p>
+<p><strong>mr. smith</strong>: I want to do this. But if it drags on too
+long, I could change my mind.</p>
+<p><strong>mr. brooks</strong>: Don’t you think I want to do this,
+Mr. Smith?</p>
+<p><strong>mr. smith</strong>: Maybe you don’t anymore.</p>
+<p><strong>marshall</strong>: Even if that guy was charming and funny I
+still wouldn’t like him.</p>
+<p><strong>mr. brooks</strong>: Hi, what can I do for you?</p>
+<p><strong>detective 1</strong>: I’m Detective Smolny with the Chicago
+Police and this is Detective Carfagno, from Palo Alto, California…</p>
+<p><strong>carfagno</strong>: We’d like to speak to Jane Brooks, if
+that’s possible.</p>
+<p><strong>mr. brooks</strong>: Jane is my daughter, what’s this
+about?</p>
+<p><strong>carfagno</strong>: There was a murder at Stanford not long
+before she left. She may be able to help us.</p>
+<p><strong>mr. brooks</strong>: Is she a suspect?</p>
+<p><strong>carfagno</strong>: Not at this time. We simply would like to
+ask her some questions.</p>
+<p><strong>smolny</strong>: Is your daughter here?</p>
+<p><strong>mr. brooks</strong>: Yes… she is.</p>
+<p><strong>carfagno</strong>: The questions won’t take long.</p>
+<p><strong>mr. brooks</strong>: I’m sure you would have no objection if
+she had an attorney present.</p>
+<p><strong>smolny</strong>: That’s fine. Here’s my card. We can schedule
+a time for later today or tomorrow for her to come in to see us.</p>
+<p><strong>mr. brooks</strong>: If you gentlemen can wait, I will call
+my lawyer right now and see what we can work out.</p>
+<p><strong>smolny</strong>: Oh, that’s even better.</p>
+<p><strong>mr. brooks</strong>: Would you like some coffee?</p>
+<p><strong>smolny</strong>: Thank you.</p>
+<p><strong>marshall</strong>: We both knew she was hiding something
+bigger, I certainly didn’t think it was this big.</p>
+<p><strong>mr. brooks</strong>: She’s not a suspect, Marshall. She may
+not have anything to do with it at all.</p>
+<p><strong>mr. brooks</strong>: Did Jane ever tell you that there was a
+murder at her school?</p>
+<p><strong>emma</strong>: No.</p>
+<p><strong>mr. brooks</strong>: Nothing? Not that a friend died or
+someone she knew died? Or someone in her dorm died?</p>
+<p><strong>emma</strong>: No.</p>
+<p><strong>mr. brooks</strong>: There are two Detectives downstairs, one
+is from Palo Alto, they want to ask her some questions about a murder
+that occurred shortly before she came home.</p>
+<p><strong>emma</strong>: Oh, my Gosh! I’m sure if she was close to
+someone who was murdered, she would have said something.</p>
+<p><strong>mr. brooks</strong>: I called Roger, he suggested a criminal
+attorney, they’ll be here within the hour.</p>
+<p><strong>emma</strong>: I’ll get dressed.</p>
+<p><strong>mr. brooks</strong>: Mr. Clifford, it was a pleasure. Thank
+you for coming on such short notice.</p>
+<p><strong>heavyset lawyer</strong>: There won’t be any more dropping by
+like they did today, they’ll call us first.</p>
+<p><strong>mr. brooks</strong>: Thanks again, Roger. It was a good idea
+to hear what they wanted to know sooner rather than later.</p>
+<p><strong>mr. clifford</strong>: We’ll talk.</p>
+<p><strong>mr. brooks</strong>: Yup.</p>
+<p><strong>mr. brooks</strong>: You did good, Kid. Your answers were
+clear, concise and honest. And when they tried to trip you up, it didn’t
+work.</p>
+<p><strong>jane</strong>: I hope so. I’m not feeling so well.</p>
+<p><strong>emma</strong>: Should you lie down?</p>
+<p><strong>jane</strong>: I think I’d better.</p>
+<p><strong>mr. brooks</strong>: Try and get some sleep.</p>
+<p><strong>mr. brooks</strong>: I think Roger has a handle on this. He
+and Mr. Clifford will take care of it.</p>
+<p><strong>jane</strong>: I’m sorry I didn’t tell you about it, Daddy.
+It was horrible but I really didn’t know the guy that well. It happened
+at about the same time I found out I was pregnant, and it just went out
+of my mind.</p>
+<p><strong>mr. brooks</strong>: I understand.</p>
+<p><strong>mr. brooks</strong>: God grant me the Serenity to accept the
+things I cannot change, Courage to change the things I can, and Wisdom
+to know the difference…</p>
+<p><strong>mr. brooks</strong>: God help me. What do I do?</p>
+<p><strong>marshall</strong>: She did it, didn’t she?</p>
+<p><strong>mr. brooks</strong>: Yeah. It’ll take the Cops a week to ten
+days to put their case together and then they’ll come back and arrest
+her.</p>
+<p><strong>marshall</strong>: What are you going to do?</p>
+<p><strong>mr. brooks</strong>: I’ve been afraid of this since the day
+she was born. She has what I have.</p>
+<p><strong>marshall</strong>: Yes, she does. But you’ve always been
+smart about it. She was stupid. She did it because she got off on it,
+she did it for fun. Why didn’t she think it through? A hatchet! And she
+left it there!!</p>
+<p><strong>mr. brooks</strong>: They were pretty graphic, weren’t
+they?</p>
+<p><strong>marshall</strong>: That was to shock her into making a
+mistake.</p>
+<p><strong>mr. brooks</strong>: What does she think I think? Doesn’t she
+remember what she told me? That the BMW was being driven across country
+by a friend and now right in front of me, she tells the Cops it was
+stolen.</p>
+<p><strong>marshall</strong>: You’ve always cleaned up after her,
+whatever she did, all her life.</p>
+<p><strong>mr. brooks</strong>: If the BMW has anything incriminating in
+it, I hope it was stolen or she dropped it at the bottom of a very deep
+lake.</p>
+<p><strong>marshall</strong>: Do you think she knows what kind of
+trouble she’s in?</p>
+<p><strong>mr. brooks</strong>: I think she thought she had gotten away
+with it until the Cops showed up. I should have listened to her, it was
+there. She was telling me. ‘I didn’t quit school because I was
+pregnant’. I should have dug deeper.</p>
+<p><strong>marshall</strong>: And where would you be but at the exact
+same place you are now. It is not your fault, Earl. Part of your problem
+with her is that you always think it is.</p>
+<p><strong>mr. brooks</strong>: She has what I have, Marshall. So on a
+very basic level, it is my fault.</p>
+<p><strong>marshall</strong>: What are you going to do?</p>
+<p><strong>mr. brooks</strong>: Maybe the best thing for her would be to
+let her go to jail.</p>
+<p><strong>marshall</strong>: And what about her child?</p>
+<p><strong>mr. brooks</strong>: Emma and I would raise it.</p>
+<p><strong>marshall</strong>: You might be right, Earl, you might be.
+Because you know if she’s not stopped, she’s going to do it again. And
+if she wants to take over the box business, the next victim could be
+you.</p>
+<p><strong>mr. brooks</strong>: I don’t think she’d go that far.</p>
+<p><strong>sigy</strong>: We found traces of this in two places.</p>
+<p><strong>sigy</strong>: Here and here.</p>
+<p><strong>sigy</strong>: We did an analysis and it’s made up of
+feldspar, alumina and kaolin.</p>
+<p><strong>detective atwood</strong>: What’s that?</p>
+<p><strong>sigy</strong>: A high fire stoneware clay.</p>
+<p><strong>snyder</strong>: Like you make ashtrays and vases from?</p>
+<p><strong>sigy</strong>: This is more plates and teacups. It was
+slightly wet when whoever it was tracked it into the house and it stuck
+to the carpet fibers. We’re thinking it was the killer.</p>
+<p><strong>detective atwood</strong>: It could have been tracked in by a
+friend.</p>
+<p><strong>sigy</strong>: That’s the thing, you see, the friend would
+have had to have been there almost at the same time the killer was.
+Otherwise the samples would have been dry and the killer would have
+vacuumed them up.</p>
+<p><strong>detective atwood</strong>: Is the clay rare, is it difficult
+to get?</p>
+<p><strong>sigy</strong>: You can buy it almost anywhere.</p>
+<p><strong>snyder</strong>: That’s not much help, Sigy.</p>
+<p><strong>detective atwood</strong>: And this is the only incongruity
+you were able to find in the whole house.</p>
+<p><strong>sigy</strong>: We’ve done everything we know how to do. It
+sure doesn’t break the case wide open, does it?.</p>
+<p><strong>detective atwood</strong>: No, Sigy, it doesn’t. It does give
+me an excuse to ask someone some new questions.</p>
+<p><strong>sunday</strong>: Yes, Mr. Brooks?</p>
+<p><strong>marshall</strong>: Before you open your mouth, be very sure
+this is the right thing to do.</p>
+<p><strong>mr. brooks</strong>: I will never be sure.</p>
+<p><strong>marshall</strong>: You get pissed at me because I’m always
+the one arguing to go ahead and do murder. Not this time, Earl. This is
+your decision.</p>
+<p><strong>mr. brooks</strong>: I know it’s wrong. In my heart I know
+it’s wrong.</p>
+<p><strong>marshall</strong>: Then don’t do it. Go with Mr. Smith
+tonight and end that, then let the Police put Jane in jail. Hopefully
+that will save her and we can happily go on with our tortured lives.</p>
+<p><strong>mr. brooks</strong>: That’s exactly what I want to do. That’s
+exactly what I should do. The thing is, she’s my daughter and I love
+her.</p>
+<p><strong>mr. brooks</strong>: I’m going home. Cancel everything for
+the rest of the day. I might be in tomorrow afternoon. I’ll let you know
+about that.</p>
+<p><strong>sunday</strong>: I’ll take care of it.</p>
+<p><strong>mr. brooks</strong>: If you need me, need me, call my studio,
+that’s where I’ll be.</p>
+<p><strong>mr. brooks</strong>: I probably won’t pick up, just leave a
+message.</p>
+<p><strong>sunday</strong>: I’ll try not to bother you.</p>
+<p><strong>marshall</strong>: The thing that bothers me about this,
+besides the fact we’re not prepared, and a multitude of other things, is
+what does Mr. Smith do when he’s walking west tonight and you don’t show
+up. That little freak could flip out.</p>
+<p><strong>mr. brooks</strong>: I’ll take care of it on the way to the
+airport.</p>
+<p><strong>mr. brooks</strong>: Not - able - to - meet -</p>
+<p><strong>mr. brooks</strong>: - tonight - Do - it - same -</p>
+<p><strong>mr. brooks</strong>: - time - tomorrow -</p>
+<p><strong>mr. brooks</strong>: - night - Don’t - be - stupid -.</p>
+<p><strong>mr. smith</strong>: Fuck you!</p>
+<p><strong>detective atwood</strong>: You remember me?</p>
+<p><strong>detective atwood</strong>: Would you step out of the car,
+please, I want to talk to you.</p>
+<p><strong>detective atwood</strong>: So Mr. Baffert, what is that you
+have to tell me?</p>
+<p><strong>mr. smith</strong>: What do you mean? I don’t have anything
+to tell you.</p>
+<p><strong>detective atwood</strong>: Really? Because I was driving
+around and I got this sudden feeling that you had something to tell me
+about the murders.</p>
+<p><strong>mr. smith</strong>: No. Nothing.</p>
+<p><strong>detective atwood</strong>: That’s disappointing. Because when
+I left you the last time we talked, I felt I had missed a clue that was
+right in front of me that would solve this whole case.</p>
+<p><strong>mr. smith</strong>: I don’t know why you would feel that.</p>
+<p><strong>detective atwood</strong>: Didn’t you tell me you were an
+amateur potter, that you made bowls and vases?</p>
+<p><strong>mr. smith</strong>: No, I said I was an amateur
+photographer.</p>
+<p><strong>detective atwood</strong>: Are you positive? Because we found
+potter’s clay on the carpet of the murder house and I was sure you said
+to me that you worked with clay, that you made pots.</p>
+<p><strong>mr. smith</strong>: No. I said my hobby was photography, not
+pottery.</p>
+<p><strong>detective atwood</strong>: Maybe that was it. The Stewardess
+upstairs said the victims kept their curtains open when they made love.
+Could I see some of the pictures you took of that Couple?</p>
+<p><strong>mr. brooks</strong>: Don’t - be - stupid -.</p>
+<p><strong>mr. smith</strong>: You are harassing me, Detective Atwood.
+You know very well I’m not a potter and I don’t have any pictures! So my
+feeling is that your feeling is wrong and that you should move your car
+and let me go home.</p>
+<p><strong>detective atwood</strong>: What is your job here? What do you
+do?</p>
+<p><strong>mr. smith</strong>: I’m a mechanical engineer.</p>
+<p><strong>detective atwood</strong>: You have to be pretty smart for
+that, don’t you?</p>
+<p><strong>mr. smith</strong>: I guess.</p>
+<p><strong>detective atwood</strong>: Then be smart, Mr. Baffert. You
+lied to me right there at the end. I’ll be watching you. And when you
+want to tell me the truth, you know how to get in touch with me.</p>
+<p><strong>detective atwood</strong>: See you later, alligator.</p>
+<p><strong>detective atwood</strong>: Goddamit…</p>
+<p><strong>snyder</strong>: Captain Lister got us the search warrant for
+Meeks’ Chiropractor.</p>
+<p><strong>detective atwood</strong>: Good. Goddamit!, that guy knows
+something… He almost told me and then something happened.</p>
+<p><strong>snyder</strong>: You think he did it?</p>
+<p><strong>detective atwood</strong>: I don’t think it’s that
+simple.</p>
+<p><strong>stewardess</strong>: Here you are, Sir.</p>
+<p><strong>mr. brooks</strong>: Thank you.</p>
+<p><strong>mr. brooks</strong>: God grant me the Serenity to accept the
+things I cannot change, Courage to change the things I can, and Wisdom
+to know the difference…</p>
+<p><strong>mr. brooks</strong>: You’re awfully quiet back there.</p>
+<p><strong>uniformed policeman</strong>: Mr. Alvin Griffin, this is the
+Chicago Police.</p>
+<p><strong>uniformed policeman</strong>: We have a warrant to search
+your home and premises. We’re coming in.</p>
+<p><strong>detective atwood</strong>: Lights don’t work.</p>
+<p><strong>detective atwood</strong>: We have a dead woman in here.</p>
+<p><strong>snyder</strong>: Hey!</p>
+<p><strong>detective atwood</strong>: I thought you were behind me.</p>
+<p><strong>snyder</strong>: The living room is clean.</p>
+<p><strong>detective atwood</strong>: Snyder, meet Mona.</p>
+<p><strong>uniformed policeman</strong>: I called it in.</p>
+<p><strong>detective atwood</strong>: Do that outside.</p>
+<p><strong>detective atwood</strong>: Meeks did this.</p>
+<p><strong>snyder</strong>: I thought Meeks hung people.</p>
+<p><strong>detective atwood</strong>: Meeks is a steroid freak. This
+Refrigerator was always full of steroids. Mona was Alvin Griffin’s
+niece, receptionist, lover and keeper of the keys.</p>
+<p><strong>detective atwood</strong>: Well, the steroids are certainly
+gone.</p>
+<p><strong>snyder</strong>: You think Meeks has Alvin with him?</p>
+<p><strong>detective atwood</strong>: Meeks thinks Alvin turned him
+in.</p>
+<p><strong>detective atwood</strong>: Let’s go see what’s in the rest of
+the house.</p>
+<p><strong>detective atwood</strong>: Snyder, this is Alvin Griffin.</p>
+<p><strong>marshall</strong>: How do you feel?</p>
+<p><strong>mr. brooks</strong>: Dirty.</p>
+<p><strong>marshall</strong>: That’s understandable. You’ve never killed
+for this reason before. The feeling will go away.</p>
+<p><strong>mr. brooks</strong>: I don’t think so. It’s the whole thing,
+Marshall. If I could find a way to just disappear, where there was
+absolutely no trace of me; because eventually I will get caught doing
+this. And it’ll be very embarrassing for me and Emma and Jane. So I’ve
+been thinking… is there a way that Mr. Smith could kill me and make me
+disappear.</p>
+<p><strong>marshall</strong>: Number one, Mr. Smith is not smart enough
+to do that. Number two, there is no reason, if you’re careful, to
+believe you will ever get caught.</p>
+<p><strong>mr. brooks</strong>: I know I will have to plan it for
+Mr. Smith, but I think that’s what I want to do.</p>
+<p><strong>marshall</strong>: I’m not particularly fond of that plan,
+Earl. Remember if you die, I go with you and I like being alive. I like
+eating, I like fucking, I like killing.</p>
+<p><strong>mr. brooks</strong>: I have to end it, Marshall. One way or
+the other. And I think this is the best way.</p>
+<p><strong>marshall</strong>: Well fuck you then.</p>
+<p><strong>emma</strong>: You worked all night.</p>
+<p><strong>mr. brooks</strong>: I had ideas for pots that took too long
+and the clay kept winning… I’ll be fine.</p>
+<p><strong>mr. brooks</strong>: And there’s a yellow Chinese glaze I’m
+trying to get right…</p>
+<p><strong>detective atwood</strong>: Yes?</p>
+<p><strong>asian attorney</strong>: Hi Tracy, this is Nancy Tang. We
+received a counter offer. Are you sitting down?</p>
+<p><strong>detective atwood</strong>: Yeah, go ahead… He can’t get that,
+can he?!</p>
+<p><strong>nancy</strong>: No, my sense of it is by asking for five,
+they’re hoping you’ll settle anywhere between two five and three.</p>
+<p><strong>detective atwood</strong>: Never. How long can you stall
+them?</p>
+<p><strong>nancy</strong>: They know you want this done quickly, so
+they’re going to expect a quick counter offer.</p>
+<p><strong>detective atwood</strong>: I need two days. Wait two days
+before getting back to them. If they call, tell them it’s a big number,
+I’m thinking about it.</p>
+<p><strong>nancy</strong>: Okay.</p>
+<p><strong>detective atwood</strong>: And the picture he wanted…</p>
+<p><strong>detective atwood</strong>: … tell him I couldn’t find it.</p>
+<p><strong>emma</strong>: Earl… Earl…</p>
+<p><strong>mr. brooks</strong>: Huh?…</p>
+<p><strong>emma</strong>: Roger is on the phone.</p>
+<p><strong>jane</strong>: Oh, Hi, Daddy, I thought you’d already be
+gone.</p>
+<p><strong>mr. brooks</strong>: Roger called. There was another murder
+last night near Stanford.</p>
+<p><strong>jane</strong>: Oh…</p>
+<p><strong>mr. brooks</strong>: Done the same way as the one they talked
+to you about. Right down to the hatchet being left at the scene.</p>
+<p><strong>mr. brooks</strong>: They think they have a serial killer.
+Obviously you were here last night, so you’re in the clear.</p>
+<p><strong>jane</strong>: That’s good news, isn’t it? I mean even if
+you’re innocent it’s good news to know you’re not a suspect.</p>
+<p><strong>mr. brooks</strong>: Oh, yeah. How’s the morning sickness? Do
+you want to ride in with me today?</p>
+<p><strong>jane</strong>: I feel fine, but I don’t know how long that
+will last.</p>
+<p><strong>mr. brooks</strong>: Do you love me, Jane?</p>
+<p><strong>jane</strong>: Of course I love you, daddy, you’re my
+father.</p>
+<p><strong>mr. brooks</strong>: Have you decided whether or not to keep
+the baby?</p>
+<p><strong>jane</strong>: Not yet.</p>
+<p><strong>mr. brooks</strong>: Okay.</p>
+<p><strong>snyder</strong>: What are we doing?</p>
+<p><strong>detective atwood</strong>: ‘Are we there yet?’ , are we there
+yet?’ , you sound like a child. We’re playing a hunch.</p>
+<p><strong>snyder</strong>: We’ve been following this guy all day, he’s
+boring, and everything we run on him comes up clean.</p>
+<p><strong>detective atwood</strong>: If it didn’t, it wouldn’t be
+called a hunch.</p>
+<p><strong>snyder</strong>: Meeks’ finger-prints were all over the
+chiropractor, the note, refrigerator, he’s the guy we should be looking
+for.</p>
+<p><strong>detective atwood</strong>: Look where? Please tell me.
+Everyone knows who Meeks is and is looking for him. The chiropractor was
+the last link to his old life that I know of. The only way we’ll find
+him, now, is if someone turns him in or we trip over him at a bus stop.
+On the other hand, Detective Snyder, no one knows who the Thumbprint
+Killer is or where he is. However, I have a fucking hunch this guy
+Baffert does. I have two days to play that hunch. If you feel like
+you’re wasting your time with me, I’d be happy to do it alone.</p>
+<p><strong>snyder</strong>: I had a fight with my wife this morning;
+what’s your problem?</p>
+<p><strong>detective atwood</strong>: My husband wants five million
+dollars.</p>
+<p><strong>detective atwood</strong>: Bad news?</p>
+<p><strong>snyder</strong>: Lister is pulling you off this case.</p>
+<p><strong>detective atwood</strong>: Why?!</p>
+<p><strong>snyder</strong>: Maybe they caught him.</p>
+<p><strong>detective atwood</strong>: No. She would have said that.</p>
+<p><strong>snyder</strong>: You want to keep following him?</p>
+<p><strong>snyder</strong>: Lister only said you were off the case, not
+me.</p>
+<p><strong>detective atwood</strong>: Good thinking, Tonto.</p>
+<p><strong>detective atwood</strong>: Shit! She just 86’ed you too.</p>
+<p><strong>detective atwood</strong>: Is she in?</p>
+<p><strong>secretary</strong>: She’s with someone.</p>
+<p><strong>detective atwood</strong>: Good.</p>
+<p><strong>detective atwood</strong>: You promised if I settled my
+divorce I had three days on the Thumbprint Killer. I have the rest of
+today and tomorrow left.</p>
+<p><strong>captain lister</strong>: Detective Atwood, meet FBI Agents
+Longnecker and Campbell, they’re taking over your investigation.</p>
+<p><strong>detective atwood</strong>: You promised you would keep them
+out of it for three days.</p>
+<p><strong>captain lister</strong>: They won’t allow me to keep that
+promise.</p>
+<p><strong>detective atwood</strong>: This is my case, what you’re doing
+is fucked. But since I can’t stop you, and she won’t, here’s a tip.
+James Baffert, you should stake him out, he knows something.</p>
+<p><strong>detective longnecker</strong>: We have some other ideas we
+are looking into.</p>
+<p><strong>detective atwood</strong>: Then what’s the problem? You do
+that and I’ll tail Baffert.</p>
+<p><strong>detective longnecker</strong>: Thank you for all your good
+work, Detective. This is our case now.</p>
+<p><strong>detective atwood</strong>: Good luck. Later I suppose you’ll
+fill me in on what I’m supposed to be doing around here. I’m
+confused.</p>
+<p><strong>marshall</strong>: It’s time to go.</p>
+<p><strong>mr. brooks</strong>: Yeah.</p>
+<p><strong>marshall</strong>: Dear Emma and Jane, my loves, I have a
+terminal illness and instead of subjecting you to my deterioration, I
+have decided to disappear. Don’t try to find me, I don’t want to be
+found. Please believe that the time I spent with you brought me the
+greatest joy of my life. Love. Dad.</p>
+<p><strong>marshall</strong>: So you’re going to go through with it.</p>
+<p><strong>mr. brooks</strong>: It’s all planned to work out,
+Marshall.</p>
+<p><strong>mr. brooks</strong>: Are you ready to rock and roll,
+Mr. Smith?</p>
+<p><strong>marshall</strong>: I smell gun oil, a gun oil that’s
+different than yours.</p>
+<p><strong>mr. brooks</strong>: He brought his gun. After he gets what
+he wants he plans to kill me.</p>
+<p><strong>marshall</strong>: Ah… now I get it. You were counting on
+that, weren’t you?</p>
+<p><strong>mr. brooks</strong>: It has a certain logic.</p>
+<p><strong>marshall</strong>: But if your plan is to have him kill you,
+why do you have to kill someone else first?</p>
+<p><strong>mr. brooks</strong>: He’ll need to see that to get up the
+courage to kill me.</p>
+<p><strong>marshall</strong>: Not even you believe that, Earl. It makes
+it more exciting, doesn’t it, to think he’s going to kill you after you
+kill someone else. You’re getting your rocks off big time, that’s why
+you’re doing it.</p>
+<p><strong>mr. brooks</strong>: Not true… and if it were, so what?
+You’re goddamn great, you know. To have the balls to do this.</p>
+<p><strong>mr. smith</strong>: I’m pretty nervous but that’s normal
+right?</p>
+<p><strong>mr. brooks</strong>: Perfectly normal.</p>
+<p><strong>detective atwood</strong>: Hello… Oh, yes, yes. Put him
+through… Hi, this is Detective Atwood speaking, thanks for calling…Yes,
+your roommate said you were in Tokyo… Anything, if you saw anything at
+all it might be helpful.</p>
+<p><strong>flight attendant</strong>: The weird thing is that they
+closed their curtains, at first they were open like they always were and
+they were making love, which they always did, and then when I looked
+again the curtains were closed, and there were what looked like camera
+flashes coming from behind the curtains.</p>
+<p><strong>detective atwood</strong>: Camera flashes?</p>
+<p><strong>flight attendant</strong>: That’s what it looked like.</p>
+<p><strong>detective atwood</strong>: That’s why he poses them.</p>
+<p><strong>flight attendant</strong>: I’m sorry?</p>
+<p><strong>detective atwood</strong>: Nothing.</p>
+<p><strong>flight attendant</strong>: I wish I could be more helpful, I
+didn’t see the killer or anything like that, but since it was weird I
+thought I should call.</p>
+<p><strong>detective atwood</strong>: You’ve been very helpful. This
+answers a lot of questions for me. Thank you very much, Mr. Struber.</p>
+<p><strong>flight attendant</strong>: The guy you should talk to is the
+guy on the floor below us…</p>
+<p><strong>flight attendant</strong>: eh, I can’t remember his name, but
+he told me once that he’d taken some great pictures of that Couple
+making love, he’s the one you should speak to.</p>
+<p><strong>detective atwood</strong>: Would that be, Mr. Baffert?</p>
+<p><strong>flight attendant</strong>: Yeah, I think Jim or James…</p>
+<p><strong>detective atwood</strong>: Thank you very much.</p>
+<p><strong>detective atwood</strong>: Snyder, meet me at Baffert’s
+apartment with a Search Warrant… Listen to me, this is what you tell the
+judge.</p>
+<p><strong>mr. brooks</strong>: Put these on.</p>
+<p><strong>mr. brooks</strong>: Try a couple deep breaths through your
+nose.</p>
+<p><strong>mr. smith</strong>: I have to take a crap so bad.</p>
+<p><strong>mr. brooks</strong>: This won’t take long.</p>
+<p><strong>sheila</strong>: I called your wife’s lawyer. They’re
+thinking about the five million dollars.</p>
+<p><strong>jesse</strong>: Realistically how much do you think we can
+get?</p>
+<p><strong>sheila</strong>: If we go to court, best case, two, if she
+wants to settle, best case, three, but I would be happy with two
+seven.</p>
+<p><strong>jesse</strong>: I’ll be right back.</p>
+<p><strong>jesse</strong>: I think we should hold firm for three.</p>
+<p><strong>sheila</strong>: Let’s not be piggish, two five, two seven,
+would be a good deal.</p>
+<p><strong>sheila</strong>: You’ve already had half a bottle.</p>
+<p><strong>jesse</strong>: You’re late; if we want it, there’s more.</p>
+<p><strong>sheila</strong>: To us.</p>
+<p><strong>jesse</strong>: To three million dollars.</p>
+<p><strong>sheila</strong>: We have to do this fast because remember,
+Marie is meeting us here.</p>
+<p><strong>jesse</strong>: We could ask her to join us.</p>
+<p><strong>sheila</strong>: Not funny.</p>
+<p><strong>jesse</strong>: I wasn’t trying to be.</p>
+<p><strong>sheila</strong>: Are we alone?</p>
+<p><strong>jesse</strong>: Yeah.</p>
+<p><strong>mr. brooks</strong>: Don’t do that.</p>
+<p><strong>detective atwood</strong>: Mr. Baffert?… Mr. Baffert?</p>
+<p><strong>older woman</strong>: He’s gone.</p>
+<p><strong>detective atwood</strong>: Do you have any idea when he’ll be
+back?</p>
+<p><strong>older woman</strong>: He skipped out. I heard him leave this
+evening and a few minutes later there were Movers here. Musta been
+behind on the rent. He didn’t even say good-bye.</p>
+<p><strong>detective atwood</strong>: Thank you.</p>
+<p><strong>older woman</strong>: I told you.</p>
+<p><strong>man</strong>: Obviously Baffert’s gone…</p>
+<p><strong>detective atwood</strong>: Goddamit, Snyder. Knock.</p>
+<p><strong>snyder</strong>: I wasn’t able to get the search warrant.</p>
+<p><strong>detective atwood</strong>: We may have gotten lucky. This is
+the Moving Company’s work order and… … it looks like this is the address
+where they’re taking Baffert’s stuff.</p>
+<p><strong>snyder</strong>: Where were you when you called me?</p>
+<p><strong>detective atwood</strong>: At home in bed.</p>
+<p><strong>snyder</strong>: Can you prove that?</p>
+<p><strong>detective atwood</strong>: I was home in bed, why should I
+have to prove that?</p>
+<p><strong>snyder</strong>: Your husband Jesse and his lawyer were
+killed tonight…</p>
+<p><strong>snyder</strong>: It looks like the Thumbprint Killer, I’ve
+been ordered to bring you in for questioning.</p>
+<p><strong>detective atwood</strong>: Why, I didn’t want Jesse dead, I
+loved him, I hated what he was doing to me…</p>
+<p><strong>snyder</strong>: It’s on record you said you’d like him dead
+and who better to fake a Thumbprint killing than you.</p>
+<p><strong>detective atwood</strong>: You can’t actually believe I would
+do that.</p>
+<p><strong>snyder</strong>: If our jobs have taught us anything, Tracy,
+is that people do strange things. They just want to ask you some
+questions.</p>
+<p><strong>detective atwood</strong>: I will be happy to answer any
+questions after we check out this address.</p>
+<p><strong>snyder</strong>: I have to take you in, Tracy.</p>
+<p><strong>detective atwood</strong>: This is the answer to the
+Thumbprint Killer, Snyder, and this is where I’m going and you’re not
+going to stop me.</p>
+<p><strong>snyder</strong>: Don’t make me cuff you, Tracy, because I
+will if I have to.</p>
+<p><strong>detective atwood</strong>: I believe you would.</p>
+<p><strong>snyder</strong>: You can count on it.</p>
+<p><strong>detective atwood</strong>: It would be nice if you could come
+with me, but if you do and it goes bad, they’ll burn your ass. So this
+never happened.</p>
+<p><strong>mr. smith</strong>: That was great! It was fantastic! It was
+everything I hoped it would be. Thank you.</p>
+<p><strong>mr. brooks</strong>: You’re welcome.</p>
+<p><strong>marshall</strong>: Here comes the gun.</p>
+<p><strong>mr. brooks</strong>: Yup.</p>
+<p><strong>mr. brooks</strong>: What are you doing?!</p>
+<p><strong>mr. smith</strong>: You’re smart enough to figure that out,
+Mr. Brooks.</p>
+<p><strong>mr. brooks</strong>: Well we’re going sixty five miles an
+hour, Mr. Smith, if you shoot me now, there’s a good chance we’ll both
+die.</p>
+<p><strong>mr. smith</strong>: Not now. Take the next off ramp.</p>
+<p><strong>mr. brooks</strong>: That wouldn’t be very smart of me would
+it?</p>
+<p><strong>mr. brooks</strong>: Think about this. You pissed yourself
+back there, you left your DNA at the scene of a double homicide, and
+there’s nothing to indicate that I was ever there. If the Cops do an
+analysis of that urine, and they will, you’re the Thumbprint Killer.</p>
+<p><strong>mr. smith</strong>: No. I still have pictures of you doing
+the first murder.</p>
+<p><strong>mr. brooks</strong>: Yes. But what were you doing at the
+second murder?</p>
+<p><strong>mr. brooks</strong>: Let me help you with a thought. You say
+I forced you to come along and if I’m not here or more specifically my
+body is not here to say different, you might have a chance to beat the
+rap. Now you’re probably asking yourself why I would help you. I’m
+tired, Mr. Smith, I’m tired of killing. But I’m an addict, I can’t quit.
+I’ve tried. I can’t do it on my own. So I’ll let you kill me but I want
+you to do it smart, in a way that I disappear and my family never knows
+what I was.</p>
+<p><strong>mr. smith</strong>: How do I do that?</p>
+<p><strong>mr. brooks</strong>: There’s a cemetery I know about. We find
+an open grave, you shoot me, I fall in the grave, you shovel in just
+enough earth to cover me, tomorrow a casket is lowered onto me and I’ve
+disappeared. It’s a good plan. What do you say?…</p>
+<p><strong>mr. smith</strong>: Why should I trust you?</p>
+<p><strong>mr. brooks</strong>: You don’t have to trust me. You’re the
+man holding the gun, you saw me put mine in the trunk.</p>
+<p><strong>mr. smith</strong>: I don’t know. You really want me to kill
+you?</p>
+<p><strong>mr. brooks</strong>: Yes.</p>
+<p><strong>mr. smith</strong>: Okay… But any sudden moves and you’re
+dead on the spot and I’ll make sure your family knows what you are.</p>
+<p><strong>mr. brooks</strong>: I understand.</p>
+<p><strong>detective atwood</strong>: You’ve come down in the world,
+Mr. Baffert.</p>
+<p><strong>mr. smith</strong>: Uh uh, take your hand out real slow.</p>
+<p><strong>mr. brooks</strong>: It’s locked. You don’t want to climb
+over, do you?</p>
+<p><strong>mr. smith</strong>: What are you doing with a key to a
+cemetery?</p>
+<p><strong>mr. brooks</strong>: I own it.</p>
+<p><strong>mr. smith</strong>: Why do you own a cemetery?</p>
+<p><strong>mr. brooks</strong>: You always want to invest in things
+people can’t do without. Water and cemeteries are pretty safe.</p>
+<p><strong>mr. brooks</strong>: You’ll need this to get out. Now there
+should be an open grave around here somewhere. Let’s see if we can find
+it.</p>
+<p><strong>detective atwood</strong>: Meeks?!!</p>
+<p><strong>meeks</strong>: Atwood?</p>
+<p><strong>detective atwood</strong>: Yeah.</p>
+<p><strong>meeks</strong>: Come on down, there’s something I want to
+show you.</p>
+<p><strong>mr. brooks</strong>: There we are. Now if I stand here…</p>
+<p><strong>mr. brooks</strong>: … and you stand there, not too far away
+and you shoot me, I should fall straight back into the hole.</p>
+<p><strong>mr. smith</strong>: You don’t think I have the guts to do
+this do you?</p>
+<p><strong>mr. brooks</strong>: I’m hoping you do.</p>
+<p><strong>mr. brooks</strong>: Okay, let’s get this over with.</p>
+<p><strong>mr. brooks</strong>: I’ll close my eyes.</p>
+<p><strong>mr. brooks</strong>: I’m sorry.</p>
+<p><strong>mr. brooks</strong>: I really did want you to kill me. But in
+case at the last minute I changed my mind, I returned to your apartment
+and bent the firing pin on your gun.</p>
+<p><strong>mr. brooks</strong>: In fact I even brought another gun for
+you so you could finish me if I had decided to go through with it.</p>
+<p><strong>mr. brooks</strong>: Unfortunately for you, my daughter is
+pregnant and just before you pulled the trigger, I realized how much I
+want to see the end to that story.</p>
+<p><strong>mr. smith</strong>: If you do anything to me, if you touch
+one hair on my head, the Police will find the pictures of you killing
+that Couple.</p>
+<p><strong>mr. brooks</strong>: The contents of your safety deposit box,
+Mr. Smith, have vanished.</p>
+<p><strong>mr. brooks</strong>: Before I was the Thumbprint Killer,
+Mr. Smith, I killed a lot of people in a lot of different ways.</p>
+<p><strong>marshall</strong>: It says here the Thumbprint Killer is a
+monster… annoys you a little bit that you can’t take credit, doesn’t
+it?</p>
+<p><strong>mr. brooks</strong>: Anyone who is good at what they do,
+wants recognition. But since I’m not going to do it anymore, I’ll let
+Mr. Smith take the credit.</p>
+<p><strong>marshall</strong>: Don’t kid yourself, Earl, you’re going to
+kill again.</p>
+<p><strong>mr. brooks</strong>: No, I’m not. I’ll continue the AA
+meetings and I’ll control it.</p>
+<p><strong>mr. brooks</strong>: But there is an answer I would like to
+have.</p>
+<p><strong>officer</strong>: Good work, Atwood.</p>
+<p><strong>detective atwood</strong>: Thanks, Tom.</p>
+<p><strong>another officer</strong>: You should ask the FBI to kiss your
+ass and buy you a Cadillac.</p>
+<p><strong>detective atwood</strong>: I like my ass too much for
+that.</p>
+<p><strong>snyder</strong>: This is bogus. The company doesn’t exist in
+the city, the state, the United States or Canada.</p>
+<p><strong>detective atwood</strong>: So the whole point of this piece
+of paper was to give me Meeks.</p>
+<p><strong>snyder</strong>: That’s what it looks like.</p>
+<p><strong>detective atwood</strong>: Why? Who moved him, where did they
+move him to, and why did he give me Meeks?</p>
+<p><strong>snyder</strong>: That’s what we get paid to find out.</p>
+<p><strong>detective atwood</strong>: I’m going to go to the bathroom
+and think about this.</p>
+<p><strong>detective atwood</strong>: Detective Atwood…</p>
+<p><strong>mr. brooks</strong>: Why are you a cop?</p>
+<p><strong>detective atwood</strong>: Who is this?</p>
+<p><strong>mr. brooks</strong>: You’re rich, you have a good education,
+you could have gone into your father’s business, instead you went
+outside all of that and became successful on your own. Why?</p>
+<p><strong>detective atwood</strong>: You want something from me if you
+don’t tell me who you are I’m going to hang up.</p>
+<p><strong>mr. brooks</strong>: Did you think your husband’s killing was
+random and I certainly didn’t have to give you Meeks.</p>
+<p><strong>detective atwood</strong>: Mr. Baffert?!</p>
+<p><strong>mr. brooks</strong>: What’s the answer?</p>
+<p><strong>detective atwood</strong>: You don’t sound like you.</p>
+<p><strong>mr. brooks</strong>: I have a little cold. Are you going to
+give me the answer?</p>
+<p><strong>detective atwood</strong>: Where are you?</p>
+<p><strong>mr. brooks</strong>: I’ll tell you if you can give me the
+true answer to my question.</p>
+<p><strong>detective atwood</strong>: My father was very disappointed I
+was born a girl and he let me know that. I’ve spent my whole life trying
+to prove him wrong.</p>
+<p><strong>mr. brooks</strong>: Thank you.</p>
+<p><strong>detective atwood</strong>: Wait. You promised to tell me
+where you are.</p>
+<p><strong>mr. brooks</strong>: Me? I’m on top of a building.</p>
+<p><strong>detective atwood</strong>: Why would he be interested in
+that?</p>
+<p><strong>mr. brooks</strong>: Agghhh!!! Agghhh!!!</p>
+<p><strong>emma</strong>: Honey, Earl, Earl…</p>
+<p><strong>emma</strong>: Wake up, wake up…</p>
+<p><strong>emma</strong>: You were having a nightmare.</p>
+<p><strong>mr. brooks</strong>: Oh… I woke you up.</p>
+<p><strong>emma</strong>: It’s okay.</p>
+<p><strong>emma</strong>: I’m here, go back to sleep, I’m here.</p>
+<p><strong>mr. brooks</strong>: … that I may be reasonably happy in this
+life, And supremely happy with Him forever in the next. Amen. …. God
+grant me the Serenity to accept…</p>
+</body>
+</html>

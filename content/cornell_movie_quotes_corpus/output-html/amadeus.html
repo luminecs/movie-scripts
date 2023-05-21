@@ -1,0 +1,2595 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>amadeus</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="amadeus">amadeus</h1>
+<p><strong>old salieri</strong>: Mozart! Mozart! Mozart. Forgive me!
+Forgive your assassin! Mozart!</p>
+<p><strong>old salieri</strong>: Show some mercy! I beg you. I beg you!
+Show mercy to a guilty man!</p>
+<p><strong>valet</strong>: Open the door, Signore! Please! Be good now!
+We’ve brought you something special. Something you’re going to love.</p>
+<p><strong>valet</strong>: Signore Salieri! Open the door. Come now. Be
+good!</p>
+<p><strong>old salieri</strong>: Mozart! Mozart! I confess it! Listen! I
+confess!</p>
+<p><strong>old salieri</strong>: Mozart! Mozart! I cannot bear it any
+longer! I confess! I confess what I did! I’m guilty! I killed you! Sir I
+confess! I killed you!</p>
+<p><strong>old salieri</strong>: Mozart, perdonami! Forgive your
+assassin! Piet�! Piet�! Forgive your assassin! Forgive me! Forgive!
+Forgive!</p>
+<p><strong>valet</strong>: That’s all right, Signore! He heard you! He
+forgave you! He wants you to go inside now and shut the window!</p>
+<p><strong>valet</strong>: Come on, Signore! Look what I have for you! I
+can’t give it to you from down here, can I?</p>
+<p><strong>bystander</strong>: Who is that?</p>
+<p><strong>valet</strong>: No one, sir. He’ll be all right. Poor man.
+He’s a little unhappy, you know.</p>
+<p><strong>valet</strong>: Did he open?</p>
+<p><strong>valet</strong>: Here I am, Signore. Now open the door.</p>
+<p><strong>valet</strong>: Mmmm - this is good! This is the most
+delicious thing I ever ate, believe me! Signore, you don’t know what
+you’re missing! Mmmm!</p>
+<p><strong>valet</strong>: Now that’s enough, Signore! Open!</p>
+<p><strong>valet</strong>: If you don’t open this door, we’re going to
+eat everything. There’ll be nothing left for you. And I’m not going to
+bring you anything more.</p>
+<p><strong>doctor gulden</strong>: He’s going to live. It’s much harder
+to cut your throat than most people imagine.</p>
+<p><strong>doctor gulden</strong>: Here we are. Do you wish me to come
+in with you?</p>
+<p><strong>vogler</strong>: No, Doctor. Thank you.</p>
+<p><strong>vogler</strong>: Herr Salieri?</p>
+<p><strong>old salieri</strong>: What do you want?</p>
+<p><strong>vogler</strong>: I am Father Vogler. I am a Chaplain here. I
+thought you might like to talk to someone.</p>
+<p><strong>old salieri</strong>: About what?</p>
+<p><strong>vogler</strong>: You tried to take your life. You do remember
+that, don’t you?</p>
+<p><strong>old salieri</strong>: So?</p>
+<p><strong>vogler</strong>: In the sight of God that is a sin.</p>
+<p><strong>old salieri</strong>: What do you want?</p>
+<p><strong>vogler</strong>: Do you understand that you have sinned?
+Gravely.</p>
+<p><strong>old salieri</strong>: Leave me alone.</p>
+<p><strong>vogler</strong>: I cannot leave alone a soul in pain.</p>
+<p><strong>old salieri</strong>: Do you know who I am? You never heard
+of me, did you?</p>
+<p><strong>vogler</strong>: That makes no difference. All men are equal
+in God’s eyes.</p>
+<p><strong>old salieri</strong>: Are they?</p>
+<p><strong>vogler</strong>: Offer me your confession. I can offer you
+God’s forgiveness.</p>
+<p><strong>old salieri</strong>: I do not seek forgiveness.</p>
+<p><strong>vogler</strong>: My son, there is something dreadful on your
+soul. Unburden it to me. I’m here only for you. Please talk to me.</p>
+<p><strong>old salieri</strong>: How well are you trained in music?</p>
+<p><strong>vogler</strong>: I know a little. I studied it in my
+youth.</p>
+<p><strong>old salieri</strong>: Where?</p>
+<p><strong>vogler</strong>: Here in Vienna.</p>
+<p><strong>old salieri</strong>: Then you must know this.</p>
+<p><strong>vogler</strong>: I can’t say I do. What is it?</p>
+<p><strong>old salieri</strong>: I’m surprised you don’t know. It was a
+very popular tune in its day. I wrote it. How about this?</p>
+<p><strong>old salieri</strong>: This one brought down the house when we
+played it first.</p>
+<p><strong>old salieri</strong>: Well?</p>
+<p><strong>vogler</strong>: I regret it is not too familiar.</p>
+<p><strong>old salieri</strong>: Can you recall no melody of mine? I was
+the most famous composer in Europe when you were still a boy. I wrote
+forty operas alone. What about this little thing?</p>
+<p><strong>vogler</strong>: Oh, I know that! That’s charming! I didn’t
+know you wrote that.</p>
+<p><strong>old salieri</strong>: I didn’t. That was Mozart. Wolfgang
+Amadeus Mozart. You know who that is?</p>
+<p><strong>vogler</strong>: Of course. The man you accuse yourself of
+killing.</p>
+<p><strong>old salieri</strong>: Ah - you’ve heard that?</p>
+<p><strong>vogler</strong>: All Vienna has heard that.</p>
+<p><strong>old salieri</strong>: And do they believe it?</p>
+<p><strong>vogler</strong>: Is it true?</p>
+<p><strong>old salieri</strong>: Do you believe it?</p>
+<p><strong>vogler</strong>: Should I?</p>
+<p><strong>vogler</strong>: For God’s sake, my son, if you have anything
+to confess, do it now! Give yourself some peace!</p>
+<p><strong>vogler</strong>: Do you hear me?</p>
+<p><strong>old salieri</strong>: He was murdered, Father! Mozart!
+Cruelly murdered.</p>
+<p><strong>vogler</strong>: Yes? Did you do it?</p>
+<p><strong>old salieri</strong>: He was my idol! I can’t remember a time
+when I didn’t know his name! When I was only fourteen he was already
+famous. Even in Legnago - the tiniest town in Italy - I knew of him.</p>
+<p><strong>old salieri</strong>: I was still playing childish games when
+he was playing music for kings and emperors. Even the Pope in Rome!</p>
+<p><strong>old salieri</strong>: I admit I was jealous when I heard the
+tales they told about him. Not of the brilliant little prodigy himself,
+but of his father, who had taught him everything.</p>
+<p><strong>old salieri</strong>: My father did not care for music. He
+wanted me only to be a merchant, like himself. As anonymous as he was.
+When I told how I wished I could be like Mozart, he would say, Why? Do
+you want to be a trained monkey? Would you like me to drag you around
+Europe doing tricks like a circus freak? How could I tell him what music
+meant to me?</p>
+<p><strong>old salieri</strong>: Even then a spray of sounded notes
+could make me dizzy, almost to falling.</p>
+<p><strong>old salieri</strong>: Whilst my father prayed earnestly to
+God to protect commerce, I would offer up secretly the proudest prayer a
+boy could think of. Lord, make me a great composer! Let me celebrate
+your glory through music - and be celebrated myself! Make me famous
+through the world, dear God! Make me immortal! After I die let people
+speak my name forever with love for what I wrote! In return I vow I will
+give you my chastity - my industry, my deepest humility, every hour of
+my life. And I will help my fellow man all I can. Amen and amen!</p>
+<p><strong>old salieri</strong>: And do you know what happened? A
+miracle!</p>
+<p><strong>old salieri</strong>: Suddenly he was dead. Just like that!
+And my life changed forever. My mother said, Go. Study music if you
+really want to. Off with you! And off I went as quick as I could and
+never saw Italy again. Of course, I knew God had arranged it all; that
+was obvious. One moment I was a frustrated boy in an obscure little
+town. The next I was here, in Vienna, city of musicians, sixteen years
+old and studying under Gluck! Gluck, Father. Do you know who he was? The
+greatest composer of his time. And he loved me! That was the wonder. He
+taught me everything he knew. And when I was ready, introduced me
+personally to the Emperor! Emperor Joseph - the musical king! Within a
+few years I was his court composer. Wasn’t that incredible? Imperial
+Composer to His Majesty! Actually the man had no ear at all, but what
+did it matter? He adored my music, that was enough. Night after night I
+sat right next to the Emperor of Austria, playing duets with him,
+correcting the royal sight-reading. Tell me, if you had been me,
+wouldn’t you have thought God had accepted your vow? And believe me, I
+honoured it. I was a model of virtue. I kept my hands off women, worked
+hours every day teaching students, many of them for free, sitting on
+endless committees to help poor musicians - work and work and work, that
+was all my life. And it was wonderful! Everybody liked me. I liked
+myself. I was the most successful musician in Vienna. And the happiest.
+Till he came. Mozart.</p>
+<p><strong>old salieri</strong>: One day he came to Vienna to play some
+of his music at the residence of his employer, the Prince-Archbishop of
+Salzburg. Eagerly I went there to seek him out. That night changed my
+life.</p>
+<p><strong>old salieri</strong>: As I went through the salon, I played a
+game with myself. This man had written his first concerto at the age of
+four; his first symphony at seven; a full-scale opera at twelve. Did it
+show? Is talent like that written on the face?</p>
+<p><strong>old salieri</strong>: Which one of them could he be?</p>
+<p><strong>arco</strong>: Mozart is not here.</p>
+<p><strong>colloredo</strong>: Where is he?</p>
+<p><strong>arco</strong>: They’re looking for him, Your Grace.</p>
+<p><strong>colloredo</strong>: We’ll start without him.</p>
+<p><strong>mozart</strong>: Miaouw! Miaouw! Mouse-wouse? It’s Puss-wuss,
+fangs-wangs. Paws-claws. Pounce-bounce!</p>
+<p><strong>constanze</strong>: Stop it. Stop it!</p>
+<p><strong>constanze</strong>: Stop it!</p>
+<p><strong>mozart</strong>: I am! I am! I’m stopping it - slowly. You
+see! Look, I’ve stopped. Now we are going back.</p>
+<p><strong>constanze</strong>: No! No! No!</p>
+<p><strong>mozart</strong>: Yes! Back! Back! Listen - don’t you know
+where you are?</p>
+<p><strong>constanze</strong>: Where?</p>
+<p><strong>mozart</strong>: We are in the Residence of the Fartsbishop
+of Salzburg.</p>
+<p><strong>constanze</strong>: Fartsbishop!</p>
+<p><strong>constanze</strong>: Your Grace, I’ve got something to tell
+you. I want to complain about this man.</p>
+<p><strong>mozart</strong>: Go ahead, tell him. Tell them all. They
+won’t understand you anyway.</p>
+<p><strong>constanze</strong>: Why not?</p>
+<p><strong>mozart</strong>: Because here everything goes backwards.
+People walk backwards, dance backwards, sing backwards, and talk
+backwards.</p>
+<p><strong>constanze</strong>: That’s stupid.</p>
+<p><strong>mozart</strong>: Why? People fart backwards.</p>
+<p><strong>constanze</strong>: Do you think that’s funny?</p>
+<p><strong>mozart</strong>: Yes, I think it’s brilliant. You’ve been
+doing it for years.</p>
+<p><strong>constanze</strong>: Oh, ha, ha, ha.</p>
+<p><strong>mozart</strong>: Sra-I’m-sick! Sra-I’m sick!</p>
+<p><strong>constanze</strong>: Yes, you are. You’re very sick.</p>
+<p><strong>mozart</strong>: No, no. Say it backwards, shit-wit.
+Sra-I’m-sick Say it backwards!</p>
+<p><strong>constanze</strong>: Sra-I’m-sick. Sick - kiss I’m - my Kiss
+my! Sra-I’m-sick - Kiss my arse!</p>
+<p><strong>mozart</strong>: Em iram! Em iram!</p>
+<p><strong>constanze</strong>: No, I’m not playing this game.</p>
+<p><strong>mozart</strong>: No, this is serious. Say it backwards.</p>
+<p><strong>constanze</strong>: No!</p>
+<p><strong>mozart</strong>: Just say it - you’ll see. It’s very serious.
+Em iram! Em iram!</p>
+<p><strong>constanze</strong>: Iram - marry Em - marry me! No, no!
+You’re a fiend. I’m not going to marry a fiend. A dirty fiend at
+that.</p>
+<p><strong>mozart</strong>: Ui-vol-i-tub!</p>
+<p><strong>constanze</strong>: Tub - but i-tub - but I vol - love but I
+love ui - You. I love you!</p>
+<p><strong>mozart</strong>: Tish-I’m tee. What’s that?</p>
+<p><strong>constanze</strong>: What?</p>
+<p><strong>mozart</strong>: Tish-I’m-tee.</p>
+<p><strong>constanze</strong>: Eat</p>
+<p><strong>mozart</strong>: Yes.</p>
+<p><strong>constanze</strong>: Eat my - ah!</p>
+<p><strong>mozart</strong>: My music! They’ve started! They’ve started
+without me!</p>
+<p><strong>old salieri</strong>: So that was he! That giggling, dirty-
+minded creature I’d just seen crawling on the floor. Mozart. The
+phenomenon whose legend had haunted my youth. Impossible.</p>
+<p><strong>arco</strong>: Follow me, please. The Archbishop would like a
+word.</p>
+<p><strong>mozart</strong>: Certainly!</p>
+<p><strong>mozart</strong>: Well, I think that went off remarkably well,
+don’t you?</p>
+<p><strong>arco</strong>: Indeed.</p>
+<p><strong>mozart</strong>: These Viennese certainly know good music
+when they hear it.</p>
+<p><strong>arco</strong>: His Grace is very angry with you.</p>
+<p><strong>mozart</strong>: What do you mean?</p>
+<p><strong>arco</strong>: You are to come in here and ask his
+pardon.</p>
+<p><strong>arco</strong>: Your Grace.</p>
+<p><strong>colloredo</strong>: Ah, Mozart. Why?</p>
+<p><strong>mozart</strong>: Why what, sir?</p>
+<p><strong>colloredo</strong>: Why do I have to be humiliated in front
+of my guests by one of my own servants?</p>
+<p><strong>mozart</strong>: Humiliated?</p>
+<p><strong>colloredo</strong>: How much provocation am I to endure from
+you? The more license I allow you, the more you take.</p>
+<p><strong>mozart</strong>: If His Grace is not satisfied with me, he
+can dismiss me.</p>
+<p><strong>colloredo</strong>: I wish you to return immediately to
+Salzburg. Your father is waiting for you there patiently. I will speak
+to you further when I come.</p>
+<p><strong>mozart</strong>: No, Your Grace! I mean with all humility,
+no. I would rather you dismissed me. It’s obvious I don’t satisfy.</p>
+<p><strong>colloredo</strong>: Then try harder, Mozart. I have no
+intention of dismissing you. You will remain in my service and learn
+your place. Go now.</p>
+<p><strong>old salieri</strong>: Extraordinary! On the page it looked
+nothing. The beginning simple, almost comic. Just a pulse - bassoons and
+basset horns - like a rusty squeezebox. Then suddenly - high above it -
+an oboe, a single note, hanging there unwavering, till a clarinet took
+over and sweetened it into a phrase of such delight! This was no
+composition by a performing monkey! This was a music I’d never heard.
+Filled with such longing, such unfulfillable longing, it had me
+trembling. It seemed to me that I was hearing a voice of God.</p>
+<p><strong>mozart</strong>: Excuse me!</p>
+<p><strong>old salieri</strong>: But why?</p>
+<p><strong>old salieri</strong>: Why? Would God choose an obscene child
+to be His instrument? It was not to be believed! This piece had to be an
+accident. It had to be!</p>
+<p><strong>kapellmeister giuseppe bonno</strong>: very Italian, cringing
+and time-serving, aged about seventy. And Salieri, wearing decorous
+black, as usual.</p>
+<p><strong>joseph</strong>: How good is he, this Mozart?</p>
+<p><strong>von swieten</strong>: He’s remarkable, Majesty. I heard an
+extraordinary serious opera of his last month. Idomeneo, King of
+Crete.</p>
+<p><strong>orsini-rosenberg</strong>: That? A most tiresome piece. I
+heard it, too.</p>
+<p><strong>von swieten</strong>: Tiresome?</p>
+<p><strong>orsini-rosenberg</strong>: A young man trying to impress
+beyond his abilities. Too much spice. Too many notes.</p>
+<p><strong>von swieten</strong>: Majesty, I thought it the most
+promising work I’ve heard in years.</p>
+<p><strong>joseph</strong>: Ah-ha. Well then, we should make some effort
+to acquire him. We could use a good German composer in Vienna,
+surely?</p>
+<p><strong>von strack</strong>: I agree, Majesty, but I’m afraid it’s
+not possible. The young man is still in the pay of the Archbishop.</p>
+<p><strong>joseph</strong>: Very small pay, I imagine. I’m sure he could
+be tempted with the right offer. Say, an opera in German for our
+National Theatre.</p>
+<p><strong>von swieten</strong>: Excellent, sire!</p>
+<p><strong>orsini-rosenberg</strong>: But not German, I beg your
+Majesty! Italian is the proper language for opera. All educated people
+agree on that.</p>
+<p><strong>joseph</strong>: Ah-ha. What do you say, Chamberlain?</p>
+<p><strong>von strack</strong>: In my opinion, it is time we had a piece
+in our own language, sir. Plain German. For plain people.</p>
+<p><strong>joseph</strong>: Ah-ha. Kapellmeister?</p>
+<p><strong>bonno</strong>: Majesty, I must agree with Herr Dirretore.
+Opera is an Italian art, solamente. German is - scusate - too bruta for
+singing, too rough.</p>
+<p><strong>joseph</strong>: Ah-ha. Court Composer, what do you say?</p>
+<p><strong>salieri</strong>: I think it is an interesting notion to keep
+Mozart in Vienna, Majesty. It should really infuriate the Archbishop
+beyond measure - if that is your Majesty’s intention.</p>
+<p><strong>joseph</strong>: You are cattivo, Court Composer. I want to
+meet this young man. Chamberlain, arrange a pleasant welcome for
+him.</p>
+<p><strong>von strack</strong>: Yes, sir.</p>
+<p><strong>joseph</strong>: Well. There it is.</p>
+<p><strong>salieri</strong>: Si.</p>
+<p><strong>salieri</strong>: Ah! Here she comes. Fraulein Lorl, good
+morning.</p>
+<p><strong>lorl</strong>: Good morning, sir.</p>
+<p><strong>salieri</strong>: What have you got for me today? Let me
+see.</p>
+<p><strong>salieri</strong>: Ah-ha! Siena macaroons - my favourites.
+Give my best thanks to the baker.</p>
+<p><strong>lorl</strong>: I will, sir.</p>
+<p><strong>salieri</strong>: Thank you. Are you well today, Fraulein
+Lorl?</p>
+<p><strong>lorl</strong>: Yes, thank you, sir.</p>
+<p><strong>salieri</strong>: Bene! Bene!</p>
+<p><strong>salieri</strong>: Grazie, Signore.</p>
+<p><strong>mozart</strong>: And the other one?</p>
+<p><strong>mozart</strong>: And the other one?</p>
+<p><strong>mozart</strong>: Oh, they’re both so beautiful, I can’t
+decide. Why don’t I have two heads?</p>
+<p><strong>joseph</strong>: Good, good, good.</p>
+<p><strong>joseph</strong>: Good morning, gentlemen.</p>
+<p><strong>joseph</strong>: Well, what do you have for me today?</p>
+<p><strong>von strack</strong>: Your Majesty, Herr Mozart -</p>
+<p><strong>joseph</strong>: Yes, what about him?</p>
+<p><strong>von strack</strong>: He’s here.</p>
+<p><strong>joseph</strong>: Ah-ha. Well. There it is. Good.</p>
+<p><strong>salieri</strong>: Majesty, I hope you won’t think it
+improper, but I have written a little March of Welcome in his
+honour.</p>
+<p><strong>joseph</strong>: What a charming idea. May I see?</p>
+<p><strong>salieri</strong>: It’s just a trifle, of course.</p>
+<p><strong>joseph</strong>: May I try it?</p>
+<p><strong>salieri</strong>: Majesty.</p>
+<p><strong>joseph</strong>: Delightful, Court Composer. Would you permit
+me to play it as he comes in?</p>
+<p><strong>salieri</strong>: You do me too much honour, Sire.</p>
+<p><strong>joseph</strong>: Let’s have some fun. Bring in Herr Mozart,
+please. But slowly, slowly. I need a minute to practice.</p>
+<p><strong>salieri</strong>: A-flat, Majesty.</p>
+<p><strong>joseph</strong>: Ah-ha!</p>
+<p><strong>majordomo</strong>: Herr Mozart.</p>
+<p><strong>orsini-rosenberg</strong>: Bravo, Your Majesty!</p>
+<p><strong>von strack</strong>: Well done, Sire!</p>
+<p><strong>joseph</strong>: Gentlemen, gentlemen, a little less
+enthusiasm, I beg you. Ah, Mozart.</p>
+<p><strong>mozart</strong>: Your Majesty!</p>
+<p><strong>joseph</strong>: No, no, please! It is not a holy relic. You
+know we have met already? In this very room. Perhaps you won’t remember
+it, you were only six years old. He was giving the most brilliant little
+concert here. As he got off the stool, he slipped and fell. My sister
+Antoinette helped him up herself, and do you know what he did? Jumped
+straight into her arms and said, Will you marry me, yes or no?</p>
+<p><strong>joseph</strong>: You know all these gentlemen, I’m sure.</p>
+<p><strong>joseph</strong>: The Baron Von Swieten.</p>
+<p><strong>von swieten</strong>: I’m a great admirer of yours, young
+man. Welcome.</p>
+<p><strong>mozart</strong>: Oh, thank you.</p>
+<p><strong>joseph</strong>: The Director of our Opera. Count
+Orsini-Rosenberg.</p>
+<p><strong>mozart</strong>: Oh sir, yes! The honour is mine.
+Absolutely.</p>
+<p><strong>joseph</strong>: And here is our illustrious Court Composer,
+Herr Salieri.</p>
+<p><strong>salieri</strong>: Finally! Such an immense joy. Diletto
+straordinario!</p>
+<p><strong>mozart</strong>: I know your work well, Signore. Do you know
+I actually composed some variations on a melody of yours?</p>
+<p><strong>salieri</strong>: Really?</p>
+<p><strong>mozart</strong>: Mio caro Adone.</p>
+<p><strong>salieri</strong>: Ah!</p>
+<p><strong>mozart</strong>: A funny little tune, but it yielded some
+good things.</p>
+<p><strong>joseph</strong>: And now he has returned the compliment. Herr
+Salieri composed that March of Welcome for you.</p>
+<p><strong>mozart</strong>: Really? Oh, grazie, Signore! Sono commosso!
+E un onore per mo eccezionale. Compositore brilliante e
+famossissimo!</p>
+<p><strong>salieri</strong>: My pleasure.</p>
+<p><strong>joseph</strong>: Well, there it is. Now to business. Young
+man, we are going to commission an opera from you. What do you say?</p>
+<p><strong>mozart</strong>: Majesty!</p>
+<p><strong>joseph</strong>: Did we vote in the end for German or
+Italian?</p>
+<p><strong>orsini-rosenberg</strong>: Well, actually, Sire, if you
+remember, we did finally incline to Italian.</p>
+<p><strong>von strack</strong>: Did we?</p>
+<p><strong>von swieten</strong>: I don’t think it was really decided,
+Director.</p>
+<p><strong>mozart</strong>: Oh, German! German! Please let it be
+German.</p>
+<p><strong>joseph</strong>: Why so?</p>
+<p><strong>mozart</strong>: Because I’ve already found the most
+wonderful libretto!</p>
+<p><strong>orsini-rosenberg</strong>: Oh? Have I seen it?</p>
+<p><strong>mozart</strong>: I - I don’t think you have, Herr Director.
+Not yet. I mean, it’s quite n - Of course, I’ll show it to you
+immediately.</p>
+<p><strong>orsini-rosenberg</strong>: I think you’d better.</p>
+<p><strong>joseph</strong>: Well, what is it about? Tell us the
+story.</p>
+<p><strong>mozart</strong>: It’s actually quite amusing, Majesty. It’s
+set - the whole thing is set in a - in a -</p>
+<p><strong>joseph</strong>: Yes, where?</p>
+<p><strong>mozart</strong>: In a Pasha’s Harem, Majesty. A Seraglio.</p>
+<p><strong>joseph</strong>: Ah-ha.</p>
+<p><strong>orsini-rosenberg</strong>: You mean in Turkey?</p>
+<p><strong>mozart</strong>: Exactly.</p>
+<p><strong>orsini-rosenberg</strong>: Then why especially does it have
+to be in German?</p>
+<p><strong>mozart</strong>: Well not especially. It can be in Turkish,
+if you really want. I don’t care.</p>
+<p><strong>von swieten</strong>: My dear fellow, the language is not
+finally the point. Do you really think that subject is quite appropriate
+for a national theatre?</p>
+<p><strong>mozart</strong>: Why not? It’s charming. I mean, I don’t
+actually show concubines exposing their! their! It’s not indecent! It’s
+highly moral, Majesty. It’s full of proper German virtues. I swear it.
+Absolutely!</p>
+<p><strong>joseph</strong>: Well, I’m glad to hear that.</p>
+<p><strong>salieri</strong>: Excuse me, Sire, but what do you think
+these could be? Being a foreigner, I would love to learn.</p>
+<p><strong>joseph</strong>: Cattivo again, Court Composer. Well, tell
+him, Mozart. Name us a German virtue.</p>
+<p><strong>mozart</strong>: Love, Sire!</p>
+<p><strong>salieri</strong>: Ah, love! Well of course in Italy we know
+nothing about that.</p>
+<p><strong>mozart</strong>: No, I don’t think you do. I mean watching
+Italian opera, all those male sopranos screeching. Stupid fat couples
+rolling their eyes about! That’s not love - it’s just rubbish.</p>
+<p><strong>mozart</strong>: Majesty, you choose the language. It will be
+my task to set it to the finest music ever offered a monarch.</p>
+<p><strong>joseph</strong>: Well, there it is. Let it be German.</p>
+<p><strong>joseph</strong>: Ah, this is yours.</p>
+<p><strong>mozart</strong>: Keep it, Sire, if you want to. It is already
+here in my head.</p>
+<p><strong>joseph</strong>: What? On one hearing only?</p>
+<p><strong>mozart</strong>: I think so, Sire, yes.</p>
+<p><strong>joseph</strong>: Show me.</p>
+<p><strong>mozart</strong>: The rest is just the same, isn’t it?</p>
+<p><strong>mozart</strong>: That really doesn’t work, does it?</p>
+<p><strong>mozart</strong>: Did you try this? Wouldn’t it be just a
+little more -?</p>
+<p><strong>mozart</strong>: Or this - yes, this! Better.</p>
+<p><strong>salieri</strong>: Grazie, Signore.</p>
+<p><strong>salieri</strong>: Yes?</p>
+<p><strong>lorl</strong>: Madame Cavalieri is here for her lesson,
+sir.</p>
+<p><strong>salieri</strong>: Bene.</p>
+<p><strong>cavalieri</strong>: Maestro.</p>
+<p><strong>salieri</strong>: Good morning.</p>
+<p><strong>cavalieri</strong>: Well? How do you like it? It’s Turkish.
+My hairdresser tells me everything’s going to be Turkish this year!</p>
+<p><strong>salieri</strong>: Really? What else did he tell you today?
+Give me some gossip.</p>
+<p><strong>cavalieri</strong>: Well, I heard you met Herr Mozart.</p>
+<p><strong>salieri</strong>: Oh? News travels fast in Vienna.</p>
+<p><strong>cavalieri</strong>: And he’s been commissioned to write an
+opera. Is it true?</p>
+<p><strong>salieri</strong>: Yes.</p>
+<p><strong>cavalieri</strong>: Is there a part for me?</p>
+<p><strong>salieri</strong>: No.</p>
+<p><strong>cavalieri</strong>: How do you know?</p>
+<p><strong>salieri</strong>: Well even if there is, I don’t think you
+want to get involved with this one.</p>
+<p><strong>cavalieri</strong>: Why not?</p>
+<p><strong>salieri</strong>: Well, do you know where it’s set, my
+dear?</p>
+<p><strong>cavalieri</strong>: Where?</p>
+<p><strong>salieri</strong>: In a harem.</p>
+<p><strong>cavalieri</strong>: What’s that?</p>
+<p><strong>salieri</strong>: A brothel.</p>
+<p><strong>cavalieri</strong>: Oh!</p>
+<p><strong>salieri</strong>: A Turkish brothel.</p>
+<p><strong>cavalieri</strong>: Turkish? Oh, if it’s Turkish, that’s
+different. I want to be in it.</p>
+<p><strong>salieri</strong>: My dear, it will hardly enhance your
+reputation to be celebrated throughout Vienna as a singing prostitute
+for a Turk.</p>
+<p><strong>cavalieri</strong>: Oh. Well perhaps you could introduce us
+anyway.</p>
+<p><strong>salieri</strong>: Perhaps.</p>
+<p><strong>cavalieri</strong>: What does he look like?</p>
+<p><strong>salieri</strong>: You might be disappointed.</p>
+<p><strong>cavalieri</strong>: Why?</p>
+<p><strong>salieri</strong>: Looks and talent don’t always go together,
+Katherina.</p>
+<p><strong>cavalieri</strong>: Looks don’t concern me, Maestro. Only
+talent interests a woman of taste.</p>
+<p><strong>cavalieri</strong>: Since you are determined, Since you are
+determined, Calmly, with no ferment, Welcome - every pain and woe. Bind
+me then - compel me! Bind me then - compel me! Hurt me. Break me! Kill
+me! At last I shall be freed by death!</p>
+<p><strong>old salieri</strong>: There she was. I had no idea where they
+met - or how - yet there she stood on stage for all to see. Showing off
+like the greedy songbird she was. Ten minutes of ghastly scales and
+arpeggios, whizzing up and down like fireworks at a fairground.</p>
+<p><strong>cavalieri</strong>: Be freed at last by death! Be freed at
+last by death! At last I shall be freed By! Death!</p>
+<p><strong>old salieri</strong>: Understand, I was in love with the
+girl. Or at least in lust. I wasn’t a saint. It took me the most
+tremendous effort to be faithful to my vow. I swear to you I never laid
+a finger on her. All the same, I couldn’t bear to think of anyone else
+touching her - least of all the Creature.</p>
+<p><strong>cast of seraglio</strong>: Pasha Selim May he Live forever!
+Ever, ever, ever, ever! Honour to his regal name! Honour to his regal
+name! May his noble brow emblazon Glory, fortune, joy and fame! Honour
+be to Pasha Selim Honour to his regal name! Honour to his regal
+name!</p>
+<p><strong>joseph</strong>: Bravo, Madame. You are an ornament to our
+stage.</p>
+<p><strong>cavalieri</strong>: Majesty.</p>
+<p><strong>joseph</strong>: And to you, Court Composer. Your pupil has
+done you great credit.</p>
+<p><strong>madame weber</strong>: Let us pass, please! Let us pass at
+once! We’re with the Emperor.</p>
+<p><strong>flunky</strong>: I am sorry, Madame. It is not permitted.</p>
+<p><strong>madame weber</strong>: Do you know who I am? This is my
+daughter. I am Frau Weber. We are favoured guests!</p>
+<p><strong>flunky</strong>: I am sorry, Madame, but I have my
+orders.</p>
+<p><strong>madame weber</strong>: Call Herr Mozart! You call Herr Mozart
+immediately! This is insupportable!</p>
+<p><strong>constanze</strong>: Mother, please!</p>
+<p><strong>madame weber</strong>: Go ahead, Constanze. Just ignore this
+fellow. Go ahead, dear!</p>
+<p><strong>flunky</strong>: I am sorry, Madame, but no! I cannot let
+anyone pass.</p>
+<p><strong>madame weber</strong>: Young man, I am no stranger to
+theatres. I’m no stranger to insolence!</p>
+<p><strong>joseph</strong>: Well, Herr Mozart! A good effort. Decidedly
+that. An excellent effort! You’ve shown us something quite new
+today.</p>
+<p><strong>mozart</strong>: It is new, it is, isn’t it, Sire?</p>
+<p><strong>joseph</strong>: Yes, indeed.</p>
+<p><strong>mozart</strong>: And German?</p>
+<p><strong>joseph</strong>: Oh, yes. Absolutely. German.
+Unquestionably!</p>
+<p><strong>mozart</strong>: So then you like it? You really like it,
+Your Majesty?</p>
+<p><strong>joseph</strong>: Of course I do. It’s very good. Of course
+now and then - just now and then - it gets a touch elaborate.</p>
+<p><strong>mozart</strong>: What do you mean, Sire?</p>
+<p><strong>joseph</strong>: Well, I mean occasionally it seems to have,
+how shall one say? How shall one say, Director?</p>
+<p><strong>orsini-rosenberg</strong>: Too many notes, Your Majesty?</p>
+<p><strong>joseph</strong>: Exactly. Very well put. Too many notes.</p>
+<p><strong>mozart</strong>: I don’t understand. There are just as many
+notes, Majesty, as are required. Neither more nor less.</p>
+<p><strong>joseph</strong>: My dear fellow, there are in fact only so
+many notes the ear can hear in the course of an evening. I think I’m
+right in saying that, aren’t I, Court Composer?</p>
+<p><strong>salieri</strong>: Yes! yes! er, on the whole, yes,
+Majesty.</p>
+<p><strong>mozart</strong>: But this is absurd!</p>
+<p><strong>joseph</strong>: My dear, young man, don’t take it too hard.
+Your work is ingenious. It’s quality work. And there are simply too many
+notes, that’s all. Cut a few and it will be perfect.</p>
+<p><strong>mozart</strong>: Which few did you have in mind, Majesty?</p>
+<p><strong>joseph</strong>: Well. There it is.</p>
+<p><strong>madame weber</strong>: Wolfi! Wolfi, my dear!</p>
+<p><strong>madame weber</strong>: Oh!</p>
+<p><strong>mozart</strong>: Majesty, this is Madame Weber. She is my
+landlady.</p>
+<p><strong>joseph</strong>: Enchanted, Madame.</p>
+<p><strong>madame weber</strong>: Oh, Sire! such an honour! And, and,
+and these are my dear daughters. This is Constanze. She is the fiancee
+of Herr Mozart.</p>
+<p><strong>joseph</strong>: Really? How delightful. May I ask when you
+marry?</p>
+<p><strong>mozart</strong>: Well - Well we haven’t quite received my
+father’s consent, Your Majesty. Not entirely. Not altogether.</p>
+<p><strong>joseph</strong>: Excuse me, but how old are you?</p>
+<p><strong>mozart</strong>: Twenty-six.</p>
+<p><strong>joseph</strong>: Well, my advice is to marry this charming
+young lady and stay with us in Vienna.</p>
+<p><strong>madame weber</strong>: You see? You see? I’ve told him that,
+Your Majesty, but he won’t listen to me.</p>
+<p><strong>madame weber</strong>: Oh, Your Majesty, you give such
+wonderful - such impeccable - such royal advice. I - I - May I?</p>
+<p><strong>joseph</strong>: Well. There it is. Strack.</p>
+<p><strong>constanze</strong>: Get some water!</p>
+<p><strong>mozart</strong>: Katherina! I’ll tell you what I’m going to
+do. I’m going to write another aria for you. Something even more amazing
+for the second act. I have to get some water. Her mother is lying on the
+stage.</p>
+<p><strong>cavalieri</strong>: Don’t bother!</p>
+<p><strong>mozart</strong>: What?</p>
+<p><strong>cavalieri</strong>: Don’t bother.</p>
+<p><strong>mozart</strong>: I’ll be right back.</p>
+<p><strong>constanze</strong>: Are you all right?</p>
+<p><strong>madame weber</strong>: Ah, what an evening! What a wise man
+we have for an Emperor. Oh, my children! Now I want you to write your
+father exactly what His Majesty said.</p>
+<p><strong>mozart</strong>: You should really go home now, Frau Weber.
+Your carriage must be waiting.</p>
+<p><strong>madame weber</strong>: But aren’t you taking us?</p>
+<p><strong>mozart</strong>: I have to talk to the singers.</p>
+<p><strong>madame weber</strong>: That’s all right; we’ll wait for you.
+Just don’t take all night.</p>
+<p><strong>cavalieri</strong>: Did you know? Had you heard?</p>
+<p><strong>salieri</strong>: What?</p>
+<p><strong>cavalieri</strong>: The marriage!</p>
+<p><strong>salieri</strong>: Well, what does it matter to you?</p>
+<p><strong>cavalieri</strong>: Nothing! He can marry who he pleases. I
+don’t give a damn.</p>
+<p><strong>cavalieri</strong>: How was I? Tell me honestly.</p>
+<p><strong>salieri</strong>: You were sublime.</p>
+<p><strong>cavalieri</strong>: What did you think of the music?</p>
+<p><strong>salieri</strong>: Extremely clever.</p>
+<p><strong>cavalieri</strong>: Meaning you didn’t like it.</p>
+<p><strong>mozart</strong>: Oh - excuse me!</p>
+<p><strong>cavalieri</strong>: Is her mother still lying on the
+floor?</p>
+<p><strong>mozart</strong>: No, she’s fine.</p>
+<p><strong>cavalieri</strong>: I’m so relieved.</p>
+<p><strong>salieri</strong>: Dear Mozart, my sincere
+congratulations.</p>
+<p><strong>mozart</strong>: Did you like it, then?</p>
+<p><strong>salieri</strong>: How could I not?</p>
+<p><strong>mozart</strong>: It really is the best music one can hear in
+Vienna today. Don’t you agree?</p>
+<p><strong>cavalieri</strong>: Is she a good fuck?</p>
+<p><strong>mozart</strong>: What??</p>
+<p><strong>cavalieri</strong>: I assume she’s the virtuoso in that
+department. There can’t be any other reason you’d marry someone like
+that.</p>
+<p><strong>cavalieri</strong>: Come in!</p>
+<p><strong>constanze</strong>: Excuse me, Wolfi. Mama is not feeling
+very well. Can we leave now?</p>
+<p><strong>mozart</strong>: Of course.</p>
+<p><strong>cavalieri</strong>: No, no, no, no. You can’t take him away
+now. This is his night. Won’t you introduce us, Wolfgang?</p>
+<p><strong>mozart</strong>: Excuse us, Fraulein. Good night,
+Signore.</p>
+<p><strong>cavalieri</strong>: You really are full of surprises, aren’t
+you? You are quite extraordinary, you little shit!</p>
+<p><strong>old salieri</strong>: At that moment I knew beyond any doubt.
+He’d had her. The Creature had had my darling girl.</p>
+<p><strong>old salieri</strong>: It was incomprehensible. What was God
+up to? Here I was denying all my natural lust in order to deserve God’s
+gift and there was Mozart indulging his in all directions - even though
+engaged to be married! - and no rebuke at all! Was it possible I was
+being tested? Was God expecting me to offer forgiveness in the face of
+every offense, no matter how painful? That was very possible. All the
+same, why him? Why use Mozart to teach me lessons in humility? My heart
+was filling up with such hatred for that little man. For the first time
+in my life I began to know really violent thoughts. I couldn’t stop
+them.</p>
+<p><strong>vogler</strong>: Did you try?</p>
+<p><strong>old salieri</strong>: Every day. Sometimes for hours I would
+pray!</p>
+<p><strong>salieri</strong>: Please! Please! Send him away, back to
+Salzburg. For his sake as well as mine.</p>
+<p><strong>colloredo</strong>: No! I won’t have him back.</p>
+<p><strong>leopold</strong>: But he needs to be here in Salzburg, Your
+Grace. He needs me and he needs you. Your protection, your
+understanding.</p>
+<p><strong>colloredo</strong>: Hardly.</p>
+<p><strong>leopold</strong>: Oh sir, yes! He’s about to make the worst
+mistake of his life. Some little Viennese slut is trying to trick him
+into marriage. I know my son. He is too simple to see the trap - and
+there is no one there who really cares for him.</p>
+<p><strong>colloredo</strong>: I’m not surprised. Money seems to be more
+important to him than loyalty or friendship. He has sold himself to
+Vienna. Let Vienna look out for him.</p>
+<p><strong>leopold</strong>: Sir -</p>
+<p><strong>colloredo</strong>: Your son is an unprincipled, spoiled,
+conceited brat.</p>
+<p><strong>leopold</strong>: Yes, sir, that’s the truth. But don’t blame
+him. The fault is mine. I was too indulgent with him. But not again.
+Never again, I promise! I implore you - let me bring him back here. I’ll
+make him give his word to serve you faithfully.</p>
+<p><strong>colloredo</strong>: And how will you make him keep it?</p>
+<p><strong>leopold</strong>: Oh, sir, he’s never disobeyed me in
+anything. Please, Your Grace, give him one more chance.</p>
+<p><strong>colloredo</strong>: You have leave to try.</p>
+<p><strong>leopold</strong>: Oh, Your Grace - I thank Your Grace! I
+thank you!</p>
+<p><strong>leopold</strong>: My dear son.</p>
+<p><strong>leopold</strong>: I write to you with urgent news. I am
+coming to Vienna. Take no further steps toward marriage until we meet.
+You are too gullible to see your own danger. As you honour the father
+who has devoted his entire life to yours, do as I bid, and await my
+coming.</p>
+<p><strong>mozart</strong>: I will.</p>
+<p><strong>priest</strong>: And will you, Constanze Weber, take this
+man, Wolfgang to be your lawful husband?</p>
+<p><strong>constanze</strong>: I will.</p>
+<p><strong>priest</strong>: I now pronounce you man and wife.</p>
+<p><strong>mozart</strong>: Most beloved father, it is done. Do not
+blame me that I did not wait to see your dear face. I knew you would
+have tried to dissuade me from my truest happiness and I could not have
+borne it. Your every word is precious to me. Remember how you have
+always told me Vienna is the City of Musicians. To conquer here is to
+conquer Europe! With my wife I can do it. I vow I will become regular in
+my habits and productive as never before. She is wonderful, Papa, and I
+know that you will love her. And one day soon when I am a wealthy man,
+you will come and live with us, and we will be so happy. I long for that
+day, best of Papas, and kiss your hand a hundred thousand times.</p>
+<p><strong>joseph</strong>: Good morning, Court Composer. This is my
+niece, the Princess Elizabeth.</p>
+<p><strong>salieri</strong>: Your Highness.</p>
+<p><strong>joseph</strong>: She has asked me to advise her on a suitable
+musical instructor. I think I’ve come up with an excellent idea.</p>
+<p><strong>salieri</strong>: Oh, Your Majesty, it would be such a
+tremendous honour!</p>
+<p><strong>joseph</strong>: I’m thinking about Herr Mozart. What is your
+view?</p>
+<p><strong>salieri</strong>: An interesting idea, Majesty. But -</p>
+<p><strong>joseph</strong>: Yes?</p>
+<p><strong>salieri</strong>: You already commissioned an opera from
+Mozart.</p>
+<p><strong>joseph</strong>: And the result satisfies.</p>
+<p><strong>salieri</strong>: Yes, of course. My concern is to protect
+you from any suspicion of favouritism.</p>
+<p><strong>joseph</strong>: Ah-ha. Favouritism. But I so want
+Mozart.</p>
+<p><strong>salieri</strong>: I’m sure there is a way, Majesty. Some kind
+of a little contest. I could perhaps put together a small Committee, and
+I could see to it naturally that it will select according to Your
+Majesty’s wishes.</p>
+<p><strong>joseph</strong>: You please me, Court Composer. A very clever
+idea.</p>
+<p><strong>salieri</strong>: Sire.</p>
+<p><strong>joseph</strong>: Well. There it is.</p>
+<p><strong>mozart</strong>: What is this, Herr Chamberlain?</p>
+<p><strong>von strack</strong>: What is what?</p>
+<p><strong>mozart</strong>: Why do I have to submit samples of my work
+to some stupid committee? Just to teach a sixteen-year-old girl.</p>
+<p><strong>von strack</strong>: Because His Majesty wishes it.</p>
+<p><strong>mozart</strong>: Is the Emperor angry with me?</p>
+<p><strong>von strack</strong>: On the contrary.</p>
+<p><strong>mozart</strong>: Then why doesn’t he simply appoint me to the
+post?</p>
+<p><strong>von strack</strong>: Mozart, you are not the only composer in
+Vienna.</p>
+<p><strong>mozart</strong>: No, but I’m the best.</p>
+<p><strong>von strack</strong>: A little modesty would suit you
+better.</p>
+<p><strong>mozart</strong>: Who is on this committee?</p>
+<p><strong>von strack</strong>: Kapellmeister Bonno, Count Orsini-
+Rosenberg and Court Composer Salieri.</p>
+<p><strong>mozart</strong>: Naturally, the Italians! Of course! Always
+the Italians!</p>
+<p><strong>von strack</strong>: Mozart -</p>
+<p><strong>mozart</strong>: They hate my music. It terrifies them. The
+only sound Italians understand is banality. Tonic and dominant, tonic
+and dominant, from here to Resurrection! Ba-ba! Ba-ba! Ba-ba! Ba-ba!
+Anything else is morbid.</p>
+<p><strong>von strack</strong>: Mozart -</p>
+<p><strong>mozart</strong>: Show them one interesting modulation and
+they faint. Ohime! Morbidezza! Morbidezza! Italians are musical idiots
+and you want them to judge my music!</p>
+<p><strong>von strack</strong>: Look, young man, the issue is simple. If
+you want this post, you must submit your stuff in the same way as all
+your colleagues.</p>
+<p><strong>mozart</strong>: Must I? Well, I won’t! I tell you straight:
+I will not!</p>
+<p><strong>constanze</strong>: I think you’re mad! You’re really
+mad!</p>
+<p><strong>mozart</strong>: Oh, leave me alone.</p>
+<p><strong>constanze</strong>: One royal pupil and the whole of Vienna
+will come flocking. We’d be set up for life!</p>
+<p><strong>mozart</strong>: They’ll come anyway. They love me here.</p>
+<p><strong>constanze</strong>: No, they will not. I know how things work
+in this city.</p>
+<p><strong>mozart</strong>: Oh yes? You always know everything.</p>
+<p><strong>constanze</strong>: Well, I’m not borrowing any more money
+from my mother, and that’s that!</p>
+<p><strong>mozart</strong>: You borrowed money from your mother?</p>
+<p><strong>constanze</strong>: Yes!</p>
+<p><strong>mozart</strong>: Well, don’t do that again!</p>
+<p><strong>constanze</strong>: How are we going to live, Wolfi? Do you
+want me to go into the streets and beg?</p>
+<p><strong>mozart</strong>: Don’t be stupid.</p>
+<p><strong>constanze</strong>: All they want to see is your work. What’s
+wrong with that?</p>
+<p><strong>mozart</strong>: Shut up! Just shut up! I don’t need
+them.</p>
+<p><strong>constanze</strong>: This isn’t pride. It’s sheer
+stupidity!</p>
+<p><strong>salieri</strong>: Yes.</p>
+<p><strong>servant</strong>: Excuse me, sir, there is a lady who insists
+on talking to you.</p>
+<p><strong>salieri</strong>: Who is she?</p>
+<p><strong>servant</strong>: She didn’t say. But she says it’s
+urgent.</p>
+<p><strong>salieri</strong>: Excuse me, my dear.</p>
+<p><strong>constanze</strong>: Excellency!</p>
+<p><strong>salieri</strong>: Madame. How can I help you?</p>
+<p><strong>salieri</strong>: Frau Mozart?</p>
+<p><strong>constanze</strong>: That’s right, Your Excellency. I’ve come
+on behalf of my hus band. I’m - I’m bringing some samples of his work so
+he can be considered for the royal appointment.</p>
+<p><strong>salieri</strong>: How charming. But why did he not come
+himself?</p>
+<p><strong>constanze</strong>: He’s terribly busy, sir.</p>
+<p><strong>salieri</strong>: I understand.</p>
+<p><strong>salieri</strong>: I will look at them, of course, the moment
+I can. It will be an honour. Please give him my warmest.</p>
+<p><strong>constanze</strong>: Would it be too much trouble, sir, to ask
+you to look at them now? While I wait.</p>
+<p><strong>salieri</strong>: I’m afraid I’m not at leisure this very
+moment. Just leave them with me. I assure you they will be quite
+safe.</p>
+<p><strong>constanze</strong>: I - I really cannot do that, Your
+Excellency. You see, he doesn’t know I’m here.</p>
+<p><strong>salieri</strong>: Really?</p>
+<p><strong>constanze</strong>: My husband is a proud man, sir. He would
+be furious if he knew I’d come.</p>
+<p><strong>salieri</strong>: Then he didn’t send you?</p>
+<p><strong>constanze</strong>: No, sir. This is my own idea.</p>
+<p><strong>salieri</strong>: I see.</p>
+<p><strong>constanze</strong>: Sir, we really need this job. We’re
+desperate. My husband spends far more than he can ever earn. I don’t
+mean he’s lazy - he’s not at all - he works all day long. It’s just!
+he’s not practical. Money simply slips through his fingers, it’s really
+ridiculous, Your Excellency. I know you help musicians. You’re famous
+for it. Give him just this one post. We’d be forever indebted!</p>
+<p><strong>salieri</strong>: Let me offer you some refreshment. Do you
+know what these are?</p>
+<p><strong>salieri</strong>: Cappezzoli di Venere. Nipples of Venus.
+Roman chestnuts in brandied sugar. Won’t you try one? They’re quite
+surprising.</p>
+<p><strong>constanze</strong>: Oh! They’re wonderful.</p>
+<p><strong>constanze</strong>: Thank you very much, Your Excellency.</p>
+<p><strong>salieri</strong>: Don’t keep calling me that. It puts me at
+such a distance. I was not born a Court Composer, you know. I’m from a
+small town, just like your husband.</p>
+<p><strong>salieri</strong>: Are you sure you can’t leave that music,
+and come back again? I have other things you might like.</p>
+<p><strong>constanze</strong>: That’s very tempting, but it’s
+impossible, I’m afraid. Wolfi would be frantic if he found those were
+missing. You see, they’re all originals.</p>
+<p><strong>salieri</strong>: Originals?</p>
+<p><strong>constanze</strong>: Yes.</p>
+<p><strong>salieri</strong>: These are originals?</p>
+<p><strong>constanze</strong>: Yes, sir. He doesn’t make copies.</p>
+<p><strong>old salieri</strong>: Astounding! It was actually beyond
+belief. These were first and only drafts of music yet they showed no
+corrections of any kind. Not one. Do you realize what that meant?</p>
+<p><strong>old salieri</strong>: He’d simply put down music already
+finished in his head. Page after page of it, as if he was just taking
+dictation. And music finished as no music is ever finished.</p>
+<p><strong>old salieri</strong>: Displace one note and there would be
+diminishment. Displace one phrase, and the structure would fall. It was
+clear to me. That sound I had heard in the Archbishop’s palace had been
+no accident. Here again was the very voice of God! I was staring through
+the cage of those meticulous ink- strokes at an absolute, inimitable
+beauty.</p>
+<p><strong>constanze</strong>: Is it no good?</p>
+<p><strong>salieri</strong>: It is miraculous.</p>
+<p><strong>constanze</strong>: Oh yes. He’s really proud of his
+work.</p>
+<p><strong>constanze</strong>: So, will you help him?</p>
+<p><strong>salieri</strong>: Tomorrow night I dine with the Emperor. One
+word from me and the post is his.</p>
+<p><strong>constanze</strong>: Oh, thank you, sir!</p>
+<p><strong>salieri</strong>: Come back tonight.</p>
+<p><strong>constanze</strong>: Tonight?</p>
+<p><strong>salieri</strong>: Alone.</p>
+<p><strong>constanze</strong>: What for?</p>
+<p><strong>salieri</strong>: Some service deserves service in return.
+No?</p>
+<p><strong>constanze</strong>: What do you mean?</p>
+<p><strong>salieri</strong>: Isn’t it obvious?</p>
+<p><strong>salieri</strong>: It’s a post all Vienna seeks. If you want
+it for your husband, come tonight.</p>
+<p><strong>constanze</strong>: But! I’m a married woman!</p>
+<p><strong>salieri</strong>: Then don’t. It’s up to you. Not to be
+vague, that is the price.</p>
+<p><strong>salieri</strong>: Yes.</p>
+<p><strong>old salieri</strong>: Yes, Father. Yes! So much for my vow of
+chastity. What did it matter? Good, patient, hard-working, chaste - what
+did it matter? Had goodness made me a good composer? I realized it
+absolutely then - that moment: goodness is nothing in the furnace of
+art. And I was nothing to God.</p>
+<p><strong>vogler</strong>: You cannot say that!</p>
+<p><strong>old salieri</strong>: No? Was Mozart a good man?</p>
+<p><strong>vogler</strong>: God’s ways are not yours. And you are not
+here to question Him. Offer him the salt of penitence. He will give you
+back the bread of eternal life. He is all merciful. That is all you need
+to know.</p>
+<p><strong>old salieri</strong>: All I ever wanted was to sing to Him.
+That’s His doing, isn’t it? He gave me that longing - then made me mute.
+Why? Tell me that. If He didn’t want me to serve Him with music, why
+implant the desire, like a lust in my body, then deny me the talent? Go
+on, tell me! Speak for Him!</p>
+<p><strong>vogler</strong>: My son, no one can speak for God.</p>
+<p><strong>old salieri</strong>: Oh? I thought you did so every day. So
+speak now. Answer me!</p>
+<p><strong>vogler</strong>: I do not claim to unravel the mysteries. I
+treasure them. As you should.</p>
+<p><strong>old salieri</strong>: Oh yes, yes, yes, yes, yes! Always the
+same stale answers! There is no God of Mercy, Father. Just a God of
+torture.</p>
+<p><strong>old salieri</strong>: Evening came to that room. I sat there
+not knowing whether the girl would return or not. I prayed as I’d never
+prayed before.</p>
+<p><strong>salieri</strong>: Dear God, enter me now. Fill me with one
+piece of true music. One piece with your breath in it, so I know that
+you love me. Please. Just one. Show me one sign of your favour, and I
+will show mine to Mozart and his wife. I will get him the royal
+position, and if she comes, I’ll receive her with all respect and send
+her home in joy. Enter me! Enter me! Please! Te imploro.</p>
+<p><strong>servant</strong>: That lady is back, sir.</p>
+<p><strong>salieri</strong>: Show her in. Then go to bed.</p>
+<p><strong>constanze</strong>: Well, I’m here. My husband has gone to a
+concert. He didn’t think I would enjoy it.</p>
+<p><strong>constanze</strong>: I do apologize for this afternoon. I
+behaved like a silly girl. Where shall we go?</p>
+<p><strong>salieri</strong>: What?</p>
+<p><strong>constanze</strong>: Should we stay here? It’s a charming
+room. I love these candlesticks. Were they here earlier? I didn’t notice
+them I suppose I was too nervous.</p>
+<p><strong>constanze</strong>: Wolfgang was given some candlesticks by
+King George in England, but they were only wood. Oh, excuse me. Let’s
+not talk about him. What do you think of this? It’s real lace.
+Brussels.</p>
+<p><strong>constanze</strong>: Well, it’s much too good for every day. I
+keep saying to Wolfi, don’t be so extravagant. Presents are lovely, but
+we can’t afford them. It doesn’t do any good. The more I tell him, the
+more he spends. Oh, excuse me! There I go again.</p>
+<p><strong>constanze</strong>: Do you still want to look at this? Or
+don’t we need to bother anymore? I imagine we don’t, really.</p>
+<p><strong>salieri</strong>: Go! Go! Go!</p>
+<p><strong>salieri</strong>: Show this woman out!</p>
+<p><strong>constanze</strong>: You shit! You shit! You rotten shit!</p>
+<p><strong>constanze</strong>: What are you staring at?</p>
+<p><strong>old salieri</strong>: From now on, we are enemies, You
+and</p>
+<p><strong>old salieri</strong>: Because You will not enter me, with all
+my need for you; because You scorn my attempts at virtue; because You
+choose for Your instrument a boastful, lustful, smutty infantile boy and
+give me for reward only the ability to recognize the Incarnation;
+because You are unjust, unfair, unkind, I will block You! I swear it! I
+will hinder and harm Your creature on earth as far as I am able. I will
+ruin Your Incarnation.</p>
+<p><strong>old salieri</strong>: What use after all is Man, if not to
+teach God His lessons?</p>
+<p><strong>mozart</strong>: Stanzi! Stanzi! Stanzi-Manzi!</p>
+<p><strong>mozart</strong>: Sssh!</p>
+<p><strong>schikaneder</strong>: Stanzi-Manzi-Banzi-Wanzi!</p>
+<p><strong>mozart</strong>: Sssh! Stay here.</p>
+<p><strong>schikaneder</strong>: Sssh! You’re dishgrashful!</p>
+<p><strong>mozart</strong>: Stanzi? How’s my mouse? Mouse-wouse? I’m
+back - puss-wuss is back!</p>
+<p><strong>mozart</strong>: Stanzi!</p>
+<p><strong>mozart</strong>: What’s the matter? What is it? Stanzi!</p>
+<p><strong>mozart</strong>: Stop it now. Stop it. I’ve brought some
+friends to meet you. They’re next door waiting. Do we have anything to
+eat? They’re all starving.</p>
+<p><strong>constanze</strong>: Tell them to go away. I don’t want to see
+anybody.</p>
+<p><strong>mozart</strong>: What’s the matter with you?</p>
+<p><strong>constanze</strong>: Tell them to go!</p>
+<p><strong>mozart</strong>: Sssh. What is it? Tell me.</p>
+<p><strong>constanze</strong>: No!</p>
+<p><strong>mozart</strong>: Yes!</p>
+<p><strong>constanze</strong>: I love you! I love you!</p>
+<p><strong>constanze</strong>: I love you. Please stay with me. I’m
+frightened.</p>
+<p><strong>joseph</strong>: I don’t think you understand me, Court
+Composer.</p>
+<p><strong>salieri</strong>: Majesty, I did. Believe me, it was a most
+agonizing. decision. But finally, I simply could not recommend Herr
+Mozart.</p>
+<p><strong>joseph</strong>: Why not?</p>
+<p><strong>salieri</strong>: Well, Sire, I made some inquiries in a
+routine way. I was curious to know why he had so few pupils. It is
+rather alarming.</p>
+<p><strong>joseph</strong>: Oh?</p>
+<p><strong>salieri</strong>: Majesty, I don’t like to talk against a
+fellow musician.</p>
+<p><strong>joseph</strong>: Of course not.</p>
+<p><strong>salieri</strong>: I have to tell you, Mozart is not entirely
+to be trusted alone with young ladies.</p>
+<p><strong>joseph</strong>: Really?</p>
+<p><strong>salieri</strong>: As a matter of fact, one of my own pupils -
+a very young singer - told me she was - er - well!</p>
+<p><strong>joseph</strong>: Yes?</p>
+<p><strong>salieri</strong>: Molested, Majesty. Twice, in the course of
+the same lesson.</p>
+<p><strong>joseph</strong>: Ah-ha. Well. There it is.</p>
+<p><strong>servant</strong>: Sir, there is a Herr Mozart waiting for you
+in the salon.</p>
+<p><strong>salieri</strong>: What does he want?</p>
+<p><strong>servant</strong>: He didn’t say, sir. I told him I didn’t
+know when you would be back, but he insisted on waiting.</p>
+<p><strong>salieri</strong>: Come with me. And stay in the room.</p>
+<p><strong>salieri</strong>: Herr Mozart, what brings you here?</p>
+<p><strong>mozart</strong>: Your Excellency, you requested some
+specimens of my work. Here they are. I don’t have to tell you how much I
+need your help. I truly appreciate your looking at these. I have
+pressures on me - financial pressures. As you know, I’m a married man
+now.</p>
+<p><strong>salieri</strong>: So you are. How is your pretty wife?</p>
+<p><strong>mozart</strong>: She is well. She is - well, actually, I’m
+about to become a father! She only told me last night. You are the first
+to know.</p>
+<p><strong>salieri</strong>: I’m flattered. And congratulations to you,
+of course.</p>
+<p><strong>mozart</strong>: So you see, this post is very important to
+me right now.</p>
+<p><strong>salieri</strong>: Why didn’t you come to me yesterday,
+Mozart? This is a most painful situation. Yesterday I could have helped
+you. Today, I can’t.</p>
+<p><strong>mozart</strong>: Why? Here is the music. It’s here. I am
+submitting it humbly. Isn’t that what you wanted?</p>
+<p><strong>salieri</strong>: I have just come from the palace. The post
+has been filled.</p>
+<p><strong>mozart</strong>: Filled? That’s impossible! They haven’t even
+seen my work. I need this post. Please, can’t you help me? Please!</p>
+<p><strong>salieri</strong>: My dear Mozart, there is no one in the
+world I would rather help, but now it is too late.</p>
+<p><strong>mozart</strong>: Whom did they choose?</p>
+<p><strong>salieri</strong>: Herr Sommer.</p>
+<p><strong>mozart</strong>: Sommer? Herr Sommer? But the man’s a fool!
+He’s a total mediocrity.</p>
+<p><strong>salieri</strong>: No, no, no: he has yet to achieve
+mediocrity.</p>
+<p><strong>mozart</strong>: But I can’t lose this post, I simply can’t!
+Excellency, please. Let’s go to the palace, and you can explain to the
+Emperor that Herr Sommer is an awful choice. He could actually do
+musical harm to the Princess!</p>
+<p><strong>salieri</strong>: An implausible idea. Between you and me, no
+one in the world could do musical harm to the Princess Elizabeth.</p>
+<p><strong>mozart</strong>: Look, I must have pupils. Without pupils I
+can’t manage.</p>
+<p><strong>salieri</strong>: You don’t mean to tell me you are living in
+poverty?</p>
+<p><strong>mozart</strong>: No, but I’m broke. I’m always broke. I don’t
+know why.</p>
+<p><strong>salieri</strong>: It has been said, my friend, that you are
+inclined to live somewhat above your means.</p>
+<p><strong>mozart</strong>: How can anyone say that? We have no cook, no
+maid. We have no footman. Nothing at all!</p>
+<p><strong>salieri</strong>: How is that possible? You give concerts,
+don’t you? I hear they are quite successful.</p>
+<p><strong>mozart</strong>: They’re stupendously successful. You can’t
+get a seat. The only problem is none will hire me. They all want to hear
+me play, but they won’t let me teach their daughters. As if I was some
+kind of fiend. I’m not a fiend!</p>
+<p><strong>salieri</strong>: Of course not.</p>
+<p><strong>mozart</strong>: Do you have a daughter?</p>
+<p><strong>salieri</strong>: I’m afraid not.</p>
+<p><strong>mozart</strong>: Well, could you lend me some money till you
+have one? Then I’ll teach her for free. That’s a promise. Oh, I’m sorry.
+I’m being silly. Papa’s right - I should put a padlock on my mouth.
+Seriously, is there any chance you could manage a loan? Only for six
+months, eight at most. After that I’ll be the richest man in Vienna.
+I’ll pay you back double. Anything. Name your terms. I’m not joking. I’m
+working on something that’s going to explode like a bomb all over
+Europe!</p>
+<p><strong>salieri</strong>: Ah, how exciting! Tell me more.</p>
+<p><strong>mozart</strong>: I’d better not. It’s a bit of a secret.</p>
+<p><strong>salieri</strong>: Come, come, Mozart; I’m interested.
+Truly.</p>
+<p><strong>mozart</strong>: Actually, it’s a big secret. Oh, this is
+delicious! What is it?</p>
+<p><strong>salieri</strong>: Cream cheese mixed with granulated sugar
+and suffused with rum. Crema al Mascarpone.</p>
+<p><strong>mozart</strong>: Ah. Italian?</p>
+<p><strong>salieri</strong>: Forgive me. We all have patriotic feelings
+of some kind.</p>
+<p><strong>mozart</strong>: Two thousand, two hundred florins is all I
+need A hundred? Fifty?</p>
+<p><strong>salieri</strong>: What exactly are you working on?</p>
+<p><strong>mozart</strong>: I can’t say. Really</p>
+<p><strong>salieri</strong>: I don’t think you should become known in
+Vienna as a debtor, Mozart. However, I know a very distinguished
+gentleman I could recommend to you. And he has a daughter. Will that
+do?</p>
+<p><strong>schlumberg</strong>: Quiet! Quiet! Quiet! Down there, damn
+you. Welcome to you. Pay no attention, they’re impossible. Stop it, you
+willful things! Come this way. Just ignore them. They’re perfectly
+harmless, just willful. I treat them just like my own children.</p>
+<p><strong>mozart</strong>: And which one of them do you want me to
+teach?</p>
+<p><strong>schlumberg</strong>: What? Ha-ha! That’s funny - I like it.
+Which one, eh? You’re a funny fellow. Hannah! Come this way.</p>
+<p><strong>schlumberg</strong>: Hannah!</p>
+<p><strong>schlumberg</strong>: You won’t be teaching this one either.
+She’s my wife.</p>
+<p><strong>mozart</strong>: Madame.</p>
+<p><strong>schlumberg</strong>: This is Herr Mozart, my dear. The young
+man Herr Salieri recommended to teach our Gertrude. Where is she?</p>
+<p><strong>frau schlumberg</strong>: Upstairs.</p>
+<p><strong>schlumberg</strong>: Gertrude!</p>
+<p><strong>frau schlumberg</strong>: You can’t be Herr Mozart!</p>
+<p><strong>mozart</strong>: I’m afraid I am.</p>
+<p><strong>schlumberg</strong>: Of course, it’s him. Who do you think it
+is?</p>
+<p><strong>frau schlumberg</strong>: I’ve heard about you for ages! I
+thought you must be an old man.</p>
+<p><strong>schlumberg</strong>: Gertrude!</p>
+<p><strong>frau schlumberg</strong>: It’s such an honour for us to have
+you here, Herr Mozart. And for Gertrude.</p>
+<p><strong>schlumberg</strong>: People who know say the girl’s got
+talent. You must judge for yourself. If you think she stinks, say
+so.</p>
+<p><strong>frau schlumberg</strong>: Michael, please! I’m sure you will
+find her most willing, Herr Mozart. She’s really very excited. She’s
+been preparing all morning.</p>
+<p><strong>mozart</strong>: Really?</p>
+<p><strong>frau schlumberg</strong>: Ah, now! Here she comes.</p>
+<p><strong>mozart</strong>: Good morning, Fraulein Schlumberg.</p>
+<p><strong>schlumberg</strong>: Strudel, this is Herr Mozart. Say good
+morning.</p>
+<p><strong>frau schlumberg</strong>: Perhaps a little refreshment first?
+A little coffee, or a little chocolate?</p>
+<p><strong>mozart</strong>: I’d like a little wine, if you have it.</p>
+<p><strong>frau schlumberg</strong>: Wine?</p>
+<p><strong>schlumberg</strong>: Quite right. He’s going to need it.
+Klaus! A bottle of wine. Prestissimo! Now let’s go to it. I’ve been
+waiting all day for this.</p>
+<p><strong>schlumberg</strong>: Now sit down all of you and behave.
+Zeman, Mandi, absolutely quiet! Especially you, Dudelsachs - not one
+sound from you.</p>
+<p><strong>schlumberg</strong>: Come on, then. Up and at it!</p>
+<p><strong>mozart</strong>: Now, please play me something. Just to give
+me an idea. Anything will do.</p>
+<p><strong>gertrude</strong>: I don’t want you to stay.</p>
+<p><strong>frau schlumberg</strong>: That’s all right, dear. Just go
+ahead, as if we weren’t here.</p>
+<p><strong>gertrude</strong>: But you are here.</p>
+<p><strong>schlumberg</strong>: Never mind, Strudel. It’s part of music,
+getting used to an audience. Aren’t I right, Herr Mozart?</p>
+<p><strong>mozart</strong>: Well, yes! on the whole. I suppose. How long
+have you been playing, Fraulein?</p>
+<p><strong>frau schlumberg</strong>: Just one year.</p>
+<p><strong>mozart</strong>: Who was your teacher?</p>
+<p><strong>frau schlumberg</strong>: I was. But she quite outgrew the
+little I could show her.</p>
+<p><strong>mozart</strong>: Thank you, Madame. Come on now - courage.
+Play me something you know.</p>
+<p><strong>mozart</strong>: Perhaps it would be better if we were left
+alone. I think we’re both a little shy.</p>
+<p><strong>schlumberg</strong>: Nonsense. Strudel’s not shy. She’s just
+willful! You give into her now, you’ll be sorry later. Strudel -
+play.</p>
+<p><strong>schlumberg</strong>: I said play!</p>
+<p><strong>frau schlumberg</strong>: Michael!</p>
+<p><strong>mozart</strong>: Perhaps if I were to play a little first, it
+might encourage the Fraulein. Why don’t you let me try the instrument?
+All right?</p>
+<p><strong>schlumberg</strong>: Stop that, Dudelsachs! Stop it at once!
+Don’t let him disturb you. He’ll be all right. He’s just a little
+willful too. Please, please - play. I beg you.</p>
+<p><strong>schlumberg</strong>: Stop it! STOP!</p>
+<p><strong>schlumberg</strong>: No, not you. I was talking to the dog.
+You keep playing. It’s most important. He always howls when he hears
+music. We’ve got to break them of the habit. Play, please. Please!</p>
+<p><strong>schlumberg</strong>: That’s it. Now keep going, just keep
+going. Now you stop that noise, Dudelsachs, you stop it this instant!
+This instant, do you hear me? Keep going, Herr Mozart, that’s it. Go on,
+go on!</p>
+<p><strong>schlumberg</strong>: Good, good, good! Very good dog! Very,
+very good Dudelsachs. Quick, quick, dear, bring his biscuit.</p>
+<p><strong>schlumberg</strong>: Now guess who’s going to get a nice
+reward? Clever, clever Dudi.</p>
+<p><strong>schlumberg</strong>: It’s a miracle, Herr Mozart!</p>
+<p><strong>mozart</strong>: Well, I’m a good teacher. The next time you
+wish me to instruct another of your dogs, please let me know. Goodbye,
+Fraulein, goodbye, Madame! goodbye, Sir!</p>
+<p><strong>frau schlumberg</strong>: What a strange young man.</p>
+<p><strong>schlumberg</strong>: Yes. He is a little strange.</p>
+<p><strong>mozart</strong>: Papa! PAPA!</p>
+<p><strong>mozart</strong>: Why are you here?</p>
+<p><strong>leopold</strong>: Am I not welcome?</p>
+<p><strong>mozart</strong>: Of course, welcome! Welcome ten thousand
+times. Papa! my Papa!</p>
+<p><strong>leopold</strong>: You’re very thin. Does she not feed you,
+this wife of yours?</p>
+<p><strong>mozart</strong>: Feed? Well, of course she feeds me. She
+stuffs me like a goose all day long. She’s the best cook in the world. I
+mean, since Mama. Just wait, you’ll see.</p>
+<p><strong>leopold</strong>: Is she not here?</p>
+<p><strong>mozart</strong>: I don’t know. Stanzi? Stanzi!</p>
+<p><strong>leopold</strong>: Do you always live like this?</p>
+<p><strong>mozart</strong>: Oh, yes. Oh, I mean no - not exactly like
+this. I mean today - just today, Stanzi - I remember now. She had to go
+- yes! She had to help her mother. Yes, she’s like that. Her mother’s a
+very sweet woman, you’ll see.</p>
+<p><strong>mozart</strong>: Oh! I didn’t know you were home. Stanzi,
+this is my father.</p>
+<p><strong>mozart</strong>: We’ll wait, we’ll wait. Why don’t you get up
+now, darling?</p>
+<p><strong>mozart</strong>: She’s very tired, poor creature. You know
+me: I’m a real pig. It’s not so easy cleaning up after me.</p>
+<p><strong>leopold</strong>: Don’t you have a maid?</p>
+<p><strong>mozart</strong>: Oh we could, if we wanted to, but Stanzi
+won’t hear of it. She wants to do everything herself.</p>
+<p><strong>leopold</strong>: How is your financial situation?</p>
+<p><strong>mozart</strong>: It couldn’t be better.</p>
+<p><strong>leopold</strong>: That’s not what I hear.</p>
+<p><strong>mozart</strong>: What do you mean? It’s wonderful. Really,
+it’s - it’s marvelous! People love me here.</p>
+<p><strong>leopold</strong>: They say you’re in debt.</p>
+<p><strong>mozart</strong>: Who? Who says that? Now that’s a malicious
+lie!</p>
+<p><strong>leopold</strong>: How many pupils do you have?</p>
+<p><strong>mozart</strong>: Pupils?</p>
+<p><strong>leopold</strong>: Yes.</p>
+<p><strong>mozart</strong>: Yes.</p>
+<p><strong>leopold</strong>: How many?</p>
+<p><strong>mozart</strong>: I don’t know. It’s not important. I mean, I
+don’t want pupils. They get in the way. I’ve got to have time for
+composition.</p>
+<p><strong>leopold</strong>: Composition doesn’t pay. You know that.</p>
+<p><strong>mozart</strong>: This one will.</p>
+<p><strong>leopold</strong>: What’s that?</p>
+<p><strong>mozart</strong>: Oh, let’s not talk about it.</p>
+<p><strong>leopold</strong>: Why not?</p>
+<p><strong>mozart</strong>: It’s a secret.</p>
+<p><strong>leopold</strong>: You don’t have secrets from me.</p>
+<p><strong>mozart</strong>: It’s too dangerous, Papa. But they’re going
+to love it. Ah, there she is!</p>
+<p><strong>mozart</strong>: My Stanzi - look at her! Isn’t she
+beautiful? Come on now, confess, Papa. Could you want a prettier girl
+for a daughter?</p>
+<p><strong>constanze</strong>: Stop it, Wolfi. I look dreadful. Welcome
+to our house, Herr Mozart.</p>
+<p><strong>mozart</strong>: He’s not Herr Mozart. Call him Papa.</p>
+<p><strong>leopold</strong>: I see that you’re expecting.</p>
+<p><strong>constanze</strong>: Oh, yes.</p>
+<p><strong>leopold</strong>: When, may I ask?</p>
+<p><strong>constanze</strong>: In three months! Papa.</p>
+<p><strong>mozart</strong>: Isn’t that marvelous? We’re delighted.</p>
+<p><strong>leopold</strong>: Why didn’t you mention it in your
+letters?</p>
+<p><strong>mozart</strong>: Didn’t I? I thought I did. I’m sure I
+did.</p>
+<p><strong>constanze</strong>: May I offer you some tea, Herr
+Mozart?</p>
+<p><strong>mozart</strong>: Tea? Who wants tea? Let’s go out! This calls
+for a feast. You don’t want tea, Papa. Let’s go dancing. Papa loves
+parties, don’t you?</p>
+<p><strong>constanze</strong>: Wolfi!</p>
+<p><strong>mozart</strong>: What? How can you be so boring? Tea!</p>
+<p><strong>constanze</strong>: Wolfi, I think your father’s tired. I’ll
+cook us something here.</p>
+<p><strong>leopold</strong>: Thank you. That’ll be fine. Don’t spend any
+money on me.</p>
+<p><strong>mozart</strong>: Why not? Oh, come, Papa! What better way
+could I spend it than on you? My kissable, missable, suddenly visible
+Papa!</p>
+<p><strong>schikaneder</strong>: No, no! You both lost. You both lost.
+You both have to forfeit. And the penalty is you must exchange your
+wigs.</p>
+<p><strong>leopold</strong>: No, please! This is ridiculous! No,
+please!</p>
+<p><strong>leopold</strong>: No, really!</p>
+<p><strong>mozart</strong>: This is just a game, Papa.</p>
+<p><strong>constanze</strong>: This is just a game, Papa!</p>
+<p><strong>bystanders</strong>: This is just a game, Papa!</p>
+<p><strong>mozart</strong>: Oh no, Papa, please! Don’t spoil the fun.
+Come on. Here, take mine.</p>
+<p><strong>schikaneder</strong>: Herr Mozart, why don’t you name your
+son’s penalty?</p>
+<p><strong>mozart</strong>: Yes, Papa, name it. Name it. I’ll do
+anything you say!</p>
+<p><strong>leopold</strong>: I want you to come back with me to
+Salzburg, my son.</p>
+<p><strong>schikaneder</strong>: What did he say? What did he say?</p>
+<p><strong>mozart</strong>: Papa, the rule is you can only give
+penalties that can be performed in the room.</p>
+<p><strong>leopold</strong>: I’m tired of this game. Please play without
+me.</p>
+<p><strong>mozart</strong>: But my penalty. I’ve got to have a
+penalty.</p>
+<p><strong>schikaneder</strong>: I’ve got a good one. I’ve got the
+perfect one for you. Come over here.</p>
+<p><strong>schikaneder</strong>: Now, I want you to play our tune -
+sitting backwards.</p>
+<p><strong>mozart</strong>: Oh, that’s really too easy. Any child can do
+that.</p>
+<p><strong>schikaneder</strong>: And a fugue in the manner of Sebastian
+Bach.</p>
+<p><strong>guests</strong>: Another! Do another! Someone else.</p>
+<p><strong>mozart</strong>: Give me a name. Who shall I do? Give me a
+name.</p>
+<p><strong>guests</strong>: Gluck! Haydn! Frederic Handel!</p>
+<p><strong>constanze</strong>: Salieri! Do Salieri!</p>
+<p><strong>smash cut</strong>: Salieri’s masked face whips around and
+looks at her.</p>
+<p><strong>mozart</strong>: Now that’s hard. That’s very hard. For
+Salieri one has to face the right way around.</p>
+<p><strong>old salieri</strong>: Go on. Mock me. Laugh, laugh!</p>
+<p><strong>old salieri</strong>: That was not Mozart laughing, Father.
+That was God. That was God! God laughing at me through that obscene
+giggle. Go on, Signore. Laugh. Rub my nose in it. Show my mediocrity for
+all to see. You wait! I will laugh at You! Before I leave this earth, I
+will laugh at You! Amen!</p>
+<p><strong>constanze</strong>: Wolfi! Wolfgang!</p>
+<p><strong>mozart</strong>: What is it?</p>
+<p><strong>constanze</strong>: There’s a young girl to see you.</p>
+<p><strong>mozart</strong>: What does she want?</p>
+<p><strong>constanze</strong>: I don’t know.</p>
+<p><strong>mozart</strong>: Well, ask her!</p>
+<p><strong>constanze</strong>: She won’t talk to me. She says she has to
+speak to you.</p>
+<p><strong>mozart</strong>: Oh, damn!</p>
+<p><strong>mozart</strong>: Yes?</p>
+<p><strong>lorl</strong>: Are you Herr Mozart?</p>
+<p><strong>mozart</strong>: That’s right.</p>
+<p><strong>lorl</strong>: My name is Lorl, sir. I’m a maidservant. I was
+asked to come here and offer my services to you.</p>
+<p><strong>mozart</strong>: What?</p>
+<p><strong>lorl</strong>: They’ll be paid for by a great admirer or
+yours who wishes to remain anon - anonymous.</p>
+<p><strong>constanze</strong>: What do you mean? What admirer?</p>
+<p><strong>lorl</strong>: I can’t tell you that, ma’am.</p>
+<p><strong>mozart</strong>: Are you saying that someone is paying you to
+be our maid and doesn’t want us to know who he is?</p>
+<p><strong>lorl</strong>: Yes. I can live in or out just as you
+wish.</p>
+<p><strong>mozart</strong>: Papa, is this your idea?</p>
+<p><strong>leopold</strong>: Mine?</p>
+<p><strong>mozart</strong>: Are you playing a trick on me?</p>
+<p><strong>leopold</strong>: I never saw this girl in my life. Is this a
+kind of joke?</p>
+<p><strong>lorl</strong>: Not at all, sir. And I was told to wait for an
+answer.</p>
+<p><strong>leopold</strong>: Young woman, this won’t do at all. My son
+can’t possibly accept such an offer, no matter how generous, unless he
+knows who is behind it.</p>
+<p><strong>lorl</strong>: But I really can’t tell you, sir.</p>
+<p><strong>leopold</strong>: Oh, this is ridiculous.</p>
+<p><strong>constanze</strong>: What is ridiculous? Wolfi has many
+admirers in Vienna. They love him here. People send us gifts all the
+time.</p>
+<p><strong>leopold</strong>: But you can’t take her without reference.
+It’s unheard of!</p>
+<p><strong>constanze</strong>: Well, this is none of your business.
+Whoever sent you is going to pay, no?</p>
+<p><strong>lorl</strong>: That’s right, ma’am.</p>
+<p><strong>leopold</strong>: So now we are going to let a perfect
+stranger into the house?</p>
+<p><strong>constanze</strong>: Who is we? Who is letting who? Could you
+please wait outside?</p>
+<p><strong>lorl</strong>: Yes, ma’am.</p>
+<p><strong>constanze</strong>: Look, old man, you stay out of this. We
+spend a fortune on you, more than we can possibly afford, and all you do
+is criticize, morning to night. And then you think you can -</p>
+<p><strong>mozart</strong>: Stanzi!</p>
+<p><strong>constanze</strong>: No, it’s right he should hear. I’m sick
+to death of it. We can’t do anything right for you, can we?</p>
+<p><strong>leopold</strong>: Never mind. You won’t have to do anything
+for me ever again. I’m leaving!</p>
+<p><strong>mozart</strong>: Papa!</p>
+<p><strong>leopold</strong>: Don’t worry, I’m not staying here to be a
+burden.</p>
+<p><strong>mozart</strong>: No one calls you that.</p>
+<p><strong>leopold</strong>: She does. She says I sleep all day.</p>
+<p><strong>constanze</strong>: And so you do! The only time you come out
+is to eat.</p>
+<p><strong>leopold</strong>: And what do you expect? Who wants to walk
+out into a mess like this every day?</p>
+<p><strong>constanze</strong>: Oh, now I’m a bad housekeeper!</p>
+<p><strong>leopold</strong>: So you are! The place is a pigsty all the
+time.</p>
+<p><strong>constanze</strong>: Do you hear him? Do you?</p>
+<p><strong>constanze</strong>: When can you start?</p>
+<p><strong>lorl</strong>: Right away, ma’am.</p>
+<p><strong>constanze</strong>: Good! Come in. You’ll start with that
+room there. It’s filthy!</p>
+<p><strong>leopold</strong>: Sorry, sorry! I’m sorry I spoke! I’m just a
+provincial from Salzburg. What do I know about smart Vienna? Parties all
+night, every night. Dancing and drinking like idiot children!</p>
+<p><strong>leopold</strong>: Dinner at eight! Dinner at ten! Dinner when
+anyone feels like it! If anyone feels like it!</p>
+<p><strong>lorl</strong>: They’re out every night, sir. Till all
+hours.</p>
+<p><strong>lorl</strong>: Oh, thank you, sir.</p>
+<p><strong>salieri</strong>: Do any pupils come to the house?</p>
+<p><strong>lorl</strong>: Not that I’ve seen.</p>
+<p><strong>salieri</strong>: Then how does he pay for all this? Does he
+work at all?</p>
+<p><strong>lorl</strong>: Oh, yes, sir, all day long. He never leaves
+the house until evening. He just sits there, writing and writing. He
+doesn’t even eat.</p>
+<p><strong>salieri</strong>: Really? What is it he’s writing?</p>
+<p><strong>lorl</strong>: Oh, I wouldn’t know that, sir.</p>
+<p><strong>salieri</strong>: Of course not. You’re a good girl. You’re
+very kind to do this. Next time you’re sure they’ll be out of the house,
+let me know, will you?</p>
+<p><strong>lorl</strong>: Oh, thank you, sir!</p>
+<p><strong>lorl</strong>: I think I’ve found out about the money,
+sir.</p>
+<p><strong>salieri</strong>: Yes what?</p>
+<p><strong>lorl</strong>: He kept seven snuff boxes in here. I could
+swear they were all gold. And now look there’s only one left. And
+inside, sir, look - I counted them - tickets from the pawnshop. Six of
+them.</p>
+<p><strong>salieri</strong>: Where does he work?</p>
+<p><strong>lorl</strong>: In there, sir.</p>
+<p><strong>joseph</strong>: Bravo, Mozart. Most charming. Yes, indeed.
+Clever man.</p>
+<p><strong>mozart</strong>: Thank you, Sire!</p>
+<p><strong>von swieten</strong>: Well done, Mozart. Really quite
+fine.</p>
+<p><strong>mozart</strong>: Baron!</p>
+<p><strong>mozart</strong>: Majesty, may I ask you to do me the greatest
+favour?</p>
+<p><strong>joseph</strong>: What is it?</p>
+<p><strong>mozart</strong>: May I introduce my father? He is on a short
+visit here and returning very soon to Salzburg. He would so much like to
+kiss your hand. It would make his whole stay so memorable for him.</p>
+<p><strong>joseph</strong>: Ah! By all means.</p>
+<p><strong>leopold</strong>: Your Majesty.</p>
+<p><strong>joseph</strong>: Good evening. We have met before, Herr
+Mozart.</p>
+<p><strong>leopold</strong>: That’s right, Your Majesty. Twenty years
+ago. No, twenty-two! twenty- three! And I remember word for word what
+you said to me. You said - you said –</p>
+<p><strong>joseph</strong>: Bravo?</p>
+<p><strong>leopold</strong>: No! Yes, ‘bravo,’ of course ‘bravo’!
+Everybody always says ‘bravo’ when Wolfi plays. Like the King of
+England. When we played for the King of England, he got up at the end
+and said, ‘Bravo! Bravo! Bravo!’ three times. Three bravo’s. And the
+Pope four! Four bravo’s from the Holy Father, and one ‘bellissimo.’</p>
+<p><strong>mozart</strong>: Father -</p>
+<p><strong>leopold</strong>: Hush! I’m talking to His Majesty. Your
+Majesty, I wish to express only one thing - that you who are the Father
+of us all, could teach our children the gratitude they owe to fathers.
+It is not for nothing that the Fifth Commandment tells us: ‘Honour your
+Father and Mother, that your days may be long upon the earth.’</p>
+<p><strong>joseph</strong>: Ah-ha. Well. There it is.</p>
+<p><strong>salieri</strong>: I’ve just learned something that might be
+of interest to you, Herr Director.</p>
+<p><strong>orsini-rosenberg</strong>: Yes?</p>
+<p><strong>salieri</strong>: Mozart is writing a new opera. An Italian
+opera.</p>
+<p><strong>orsini-rosenberg</strong>: Italian?</p>
+<p><strong>bonno</strong>: Aie!</p>
+<p><strong>salieri</strong>: And that’s not all. He has chosen for his
+subject, Figaro. The Marriage of Figaro.</p>
+<p><strong>orsini-rosenberg</strong>: You mean that play?</p>
+<p><strong>salieri</strong>: Exactly.</p>
+<p><strong>orsini-rosenberg</strong>: He’s setting that play to
+music?</p>
+<p><strong>salieri</strong>: Yes.</p>
+<p><strong>orsini-rosenberg</strong>: You must be mad.</p>
+<p><strong>bonno</strong>: What is this Marriage of Figaro?</p>
+<p><strong>orsini-rosenberg</strong>: It’s a French play, Kapellmeister.
+It has been banned by the Emperor.</p>
+<p><strong>bonno</strong>: Hah!</p>
+<p><strong>orsini-rosenberg</strong>: Are you absolutely sure?</p>
+<p><strong>salieri</strong>: I’ve seen the manuscript.</p>
+<p><strong>orsini-rosenberg</strong>: Where?</p>
+<p><strong>salieri</strong>: Never mind.</p>
+<p><strong>von strack</strong>: I know we banned this play, but frankly
+I can’t remember why. Can you refresh my memory, Herr Director?</p>
+<p><strong>orsini-rosenberg</strong>: For the same reason, Herr
+Chamberlain, that it was banned in France.</p>
+<p><strong>von strack</strong>: Oh yes, yes. And that was?</p>
+<p><strong>orsini-rosenberg</strong>: Well, the play makes a hero out of
+a valet. He outwits his noble master and exposes him as a lecher. Do you
+see the implications? This would be, in a grander situation, as if a
+Chamberlain were to expose an Emperor.</p>
+<p><strong>von strack</strong>: Ah.</p>
+<p><strong>lackey</strong>: Herr Mozart.</p>
+<p><strong>joseph</strong>: Sit down, gentlemen, please.</p>
+<p><strong>joseph</strong>: Mozart, are you aware I have declared the
+French play of Figaro unsuitable for our theatre?</p>
+<p><strong>mozart</strong>: Yes, Sire.</p>
+<p><strong>joseph</strong>: Yet we hear you are making an opera from it.
+Is this true?</p>
+<p><strong>mozart</strong>: Who told you this, Majesty?</p>
+<p><strong>joseph</strong>: It is not your place to ask questions. Is it
+true?</p>
+<p><strong>mozart</strong>: Well, yes, I admit it is.</p>
+<p><strong>joseph</strong>: Would you tell me why?</p>
+<p><strong>mozart</strong>: Well, Majesty, it is only a comedy.</p>
+<p><strong>orsini-rosenberg</strong>: What you think, Mozart, is
+scarcely the point. It is what His Majesty thinks that counts.</p>
+<p><strong>mozart</strong>: But, Your Majesty -</p>
+<p><strong>joseph</strong>: Mozart, I am a tolerant man. I do not censor
+things lightly. When I do, I have good reason. Figaro is a bad play. It
+stirs up hatred between the classes. In France it has caused nothing but
+bitterness. My own dear sister Antoinette writes me that she is
+beginning to be frightened of her own people. I do not wish to see the
+same fears starting here.</p>
+<p><strong>mozart</strong>: Sire, I swear to Your Majesty, there’s
+nothing like that in the story. I have taken out everything that could
+give offense. I hate politics.</p>
+<p><strong>joseph</strong>: I think you are rather innocent, my friend.
+In these dangerous times I cannot afford to provoke our nobles or our
+people simply over a theatre piece.</p>
+<p><strong>mozart</strong>: But, Majesty, this is just a frolic. It’s a
+piece about love.</p>
+<p><strong>joseph</strong>: Ah, love again.</p>
+<p><strong>mozart</strong>: But it’s new, it’s entirely new. It’s so
+new, people will go mad for it. For example, I have a scene in the
+second act - it starts as a duet, just a man and wife quarreling.
+Suddenly the wife’s scheming little maid comes in unexpectedly - a very
+funny situation. Duet turns into trio. Then the husband’s equally
+screaming valet comes in. Trio turns into quartet. Then a stupid old
+gardener - quartet becomes quintet, and so on. On and on, sextet,
+septet, octet! How long do you think I can sustain that?</p>
+<p><strong>joseph</strong>: I have no idea.</p>
+<p><strong>mozart</strong>: Guess! Guess, Majesty. Imagine the longest
+time such a thing could last, then double it.</p>
+<p><strong>joseph</strong>: Well, six or seven minutes! maybe eight!</p>
+<p><strong>mozart</strong>: Twenty, sire! How about twenty? Twenty
+minutes of continuous music. No recitatives.</p>
+<p><strong>von swieten</strong>: Mozart -</p>
+<p><strong>mozart</strong>: Sire, only opera can do this. In a play, if
+more than one person speaks at the same time, it’s just noise. No one
+can understand a word. But with music, with music you can have twenty
+individuals all talking at once, and it’s not noise - it’s a perfect
+harmony. Isn’t that marvelous?</p>
+<p><strong>von swieten</strong>: Mozart, music is not the issue here. No
+one doubts your talent. It is your judgment of literature that’s in
+question. Even with the politics taken out, this thing would still
+remain a vulgar farce. Why waste your spirit on such rubbish? Surely you
+can choose more elevated themes?</p>
+<p><strong>mozart</strong>: Elevated? What does that mean? Elevated! The
+only thing a man should elevate is - oh, excuse me. I’m sorry. I’m
+stupid. But I am fed up to the teeth with elevated things! Old dead
+legends! How can we go on forever writing about gods and legends?</p>
+<p><strong>von swieten</strong>: Because they do. They go on forever -
+at least what they represent. The eternal in us, not the ephemeral.
+Opera is here to ennoble us. You and me, just as much as His
+Majesty.</p>
+<p><strong>bonno</strong>: Bello! Bello, Barone. Veramente.</p>
+<p><strong>mozart</strong>: Oh, bello, bello, bello! Come on now, be
+honest. Wouldn’t you all rather listen to your hairdressers than
+Hercules? Or Horatius? Or Orpheus? All those old bores! people so lofty
+they sound as if they shit marble!</p>
+<p><strong>von swieten</strong>: What?</p>
+<p><strong>von strack</strong>: Govern your tongue, sir! How dare
+you?</p>
+<p><strong>mozart</strong>: Forgive me, Majesty. I’m a vulgar man. But I
+assure you, my music is not.</p>
+<p><strong>joseph</strong>: You are passionate, Mozart! But you do not
+persuade.</p>
+<p><strong>mozart</strong>: Sire, the whole opera is finished. Do you
+know how much work went into it?</p>
+<p><strong>bonno</strong>: His Majesty has been more than patient,
+Signore.</p>
+<p><strong>mozart</strong>: How can I persuade you if you won’t let me
+show it?</p>
+<p><strong>orsini-rosenberg</strong>: That will do, Herr Mozart!</p>
+<p><strong>mozart</strong>: Just let me tell you how it begins.</p>
+<p><strong>von strack</strong>: Herr Mozart -</p>
+<p><strong>mozart</strong>: May I just do that, Majesty? Show you how it
+begins? Just that?</p>
+<p><strong>joseph</strong>: Please.</p>
+<p><strong>mozart</strong>: Look! There’s a servant, down on his knees.
+Do you know why? Not from any oppression. No, he’s simply measuring a
+space. Do you know what for? His bed. His wedding bed to see if it will
+fit.</p>
+<p><strong>orsini-rosenberg</strong>: Well, Mozart is already
+rehearsing.</p>
+<p><strong>salieri</strong>: Incredible.</p>
+<p><strong>orsini-rosenberg</strong>: The Emperor has given him
+permission.</p>
+<p><strong>bonno</strong>: Si, si! Veramente.</p>
+<p><strong>salieri</strong>: Well, gentlemen, so be it. In that case I
+think we should help Mozart all we can and do our best to protect him
+against the Emperor’s anger.</p>
+<p><strong>orsini-rosenberg</strong>: What anger?</p>
+<p><strong>salieri</strong>: About the ballet.</p>
+<p><strong>orsini-rosenberg</strong>: Ballet? What ballet?</p>
+<p><strong>salieri</strong>: Excuse me - didn’t His Majesty specifically
+forbid ballet in his opera?</p>
+<p><strong>orsini-rosenberg</strong>: Yes, absolutely. Is there a ballet
+in Figaro?</p>
+<p><strong>salieri</strong>: Yes, in the third act.</p>
+<p><strong>orsini-rosenberg</strong>: Mozart! Herr Mozart, may I have a
+word with you please. Right away.</p>
+<p><strong>mozart</strong>: Certainly, Herr Director.</p>
+<p><strong>mozart</strong>: Five minutes, please!</p>
+<p><strong>orsini-rosenberg</strong>: Did you not know that His Majesty
+has expressly forbidden ballet in his operas?</p>
+<p><strong>mozart</strong>: Yes, but this is not a ballet. This is a
+dance at Figaro’s wedding.</p>
+<p><strong>orsini-rosenberg</strong>: Exactly. A dance.</p>
+<p><strong>mozart</strong>: But surely the Emperor didn’t mean to
+prohibit dancing when it’s part of the story.</p>
+<p><strong>orsini-rosenberg</strong>: It is dangerous for you to
+interpret His Majesty’s edicts. Give me your score, please.</p>
+<p><strong>orsini-rosenberg</strong>: Thank you.</p>
+<p><strong>mozart</strong>: What are you doing?</p>
+<p><strong>mozart</strong>: What are you doing, Herr Director?</p>
+<p><strong>orsini-rosenberg</strong>: Taking out what you should never
+have put in.</p>
+<p><strong>servant</strong>: Herr Mozart.</p>
+<p><strong>mozart</strong>: Please! Please. I’ve no one else to turn to.
+Please!</p>
+<p><strong>salieri</strong>: Wolfgang, what is it? Sta calmo, per
+favore. What’s the matter?</p>
+<p><strong>mozart</strong>: It’s unbelievable! The Director has actually
+ripped out a huge section of my music. Pages of it.</p>
+<p><strong>salieri</strong>: Really? Why?</p>
+<p><strong>mozart</strong>: I don’t know. They say I’ve got to re-write
+the opera, but it’s perfect as it is. I can’t rewrite what’s perfect.
+Can’t you talk to him?</p>
+<p><strong>salieri</strong>: Why bother with Orsini-Rosenberg? He’s
+obviously no friend of yours.</p>
+<p><strong>mozart</strong>: Oh, I could kill him! I mean really kill
+him. I actually threw the entire opera on the fire, he made me so
+angry!</p>
+<p><strong>salieri</strong>: You burned the score?</p>
+<p><strong>mozart</strong>: Oh no! My wife took it out in time.</p>
+<p><strong>salieri</strong>: How fortunate.</p>
+<p><strong>mozart</strong>: It’s not fair that a man like that has power
+over our work.</p>
+<p><strong>salieri</strong>: But there are those who have power over
+him. I think I’ll take this up with the Emperor.</p>
+<p><strong>mozart</strong>: Oh, Excellency, would you?</p>
+<p><strong>salieri</strong>: With all my heart, Mozart.</p>
+<p><strong>mozart</strong>: Thank you! Oh, thank you.</p>
+<p><strong>salieri</strong>: No, no, no, Herr Mozart, please. It’s not a
+holy relic.</p>
+<p><strong>old salieri</strong>: I’m sure I don’t need to tell you I
+said nothing whatever to the Emperor. I went to the theatre ready to
+tell Mozart that His Majesty had flown into a rage when I mentioned the
+ballet, when suddenly, to my astonishment, in the middle of the third
+act, the Emperor - who never attended rehearsals - suddenly
+appeared.</p>
+<p><strong>joseph</strong>: What is this? I don’t understand. Is it
+modern?</p>
+<p><strong>bonno</strong>: Majesty, the Herr Director, he has removed a
+balleto that would have occurred at this place.</p>
+<p><strong>joseph</strong>: Why?</p>
+<p><strong>orsini-rosenberg</strong>: It is your regulation, Sire. No
+ballet in your opera.</p>
+<p><strong>joseph</strong>: Do you like this, Salieri?</p>
+<p><strong>salieri</strong>: It is not a question of liking, Your
+Majesty. Your own law decrees it, I’m afraid.</p>
+<p><strong>joseph</strong>: Well, look at them.</p>
+<p><strong>joseph</strong>: No, no, no! This is nonsense. Let me hear
+the scene with the music.</p>
+<p><strong>orsini-rosenberg</strong>: But, Sire -</p>
+<p><strong>joseph</strong>: Oblige me.</p>
+<p><strong>orsini-rosenberg</strong>: Yes, Majesty.</p>
+<p><strong>orsini-rosenberg</strong>: Can we see the scene with the
+music back, please?</p>
+<p><strong>mozart</strong>: Oh yes, certainly. Certainly, Herr
+Director!</p>
+<p><strong>mozart</strong>: Ladies and gentlemen, we’re going from where
+we stopped. The Count: Anches so. Right away, please!</p>
+<p><strong>joseph</strong>: What I hoped by that edict, Director, was
+simply to prevent hours of dancing like in French opera. There it is
+endless, as you know.</p>
+<p><strong>orsini-rosenberg</strong>: Quite so, Majesty.</p>
+<p><strong>old salieri</strong>: So Figaro was produced in spite of me.
+And in spite of me, a wonder was revealed. One of the true wonders of
+art. The restored third act was bold and brilliant. The fourth was a
+miracle.</p>
+<p><strong>old salieri</strong>: I saw a woman disguised in her maid’s
+clothes hear her husband speak the first tender words he has offered her
+in years, only because he thinks she is someone else. I heard the music
+of true forgiveness filling the theatre, conferring on all who sat there
+a perfect absolution. God was singing through this little man to all the
+world - unstoppable - making my defeat more bitter with each passing
+bar.</p>
+<p><strong>old salieri</strong>: And then suddenly - a miracle!</p>
+<p><strong>old salieri</strong>: Father, did you know what that meant?
+With that yawn I saw my defeat turn into a victory. And Mozart was lucky
+the Emperor only yawned once. Three yawns and the opera would fail the
+same night; two yawns, within a week at most. With one yawn the composer
+could still get -</p>
+<p><strong>mozart</strong>: Nine performances! Nine! That’s all it’s had
+- and withdrawn.</p>
+<p><strong>salieri</strong>: I know; it’s outrageous. Still, if the
+public doesn’t like one’s work one has to accept the fact
+gracefully.</p>
+<p><strong>mozart</strong>: But what is it they don’t like?</p>
+<p><strong>salieri</strong>: Well, I can speak for the Emperor. You made
+too many demands on the royal ear. The poor man can’t concentrate for
+more than an hour and you gave him four.</p>
+<p><strong>mozart</strong>: What did you think of it yourself? Did you
+like it at all?</p>
+<p><strong>salieri</strong>: I think it’s marvelous. Truly.</p>
+<p><strong>mozart</strong>: It’s the best opera yet written. I know it!
+Why didn’t they come?</p>
+<p><strong>salieri</strong>: I think you overestimate our dear Viennese,
+my friend. Do you know you didn’t even give them a good bang at the end
+of songs so they knew when to clap?</p>
+<p><strong>mozart</strong>: I know, I know. Perhaps you should give me
+some lessons in that.</p>
+<p><strong>salieri</strong>: I wouldn’t presume. All the same, if it
+wouldn’t be imposing, I would like you to see my new piece. It would be
+a tremendous honour for me.</p>
+<p><strong>mozart</strong>: Oh no, the honour would be all mine.</p>
+<p><strong>salieri</strong>: Grazie, mio caro, Wolfgang!</p>
+<p><strong>mozart</strong>: Grazie, a lei, Signor Antonio!</p>
+<p><strong>old salieri</strong>: What was this? I never saw him excited
+before by any music but his own. Could he mean it?</p>
+<p><strong>old salieri</strong>: Would he actually tell me my music had
+moved him? Was I really going to hear that from his own lips? I found
+myself actually hurrying the tempo of the finale.</p>
+<p><strong>mozart</strong>: Well?</p>
+<p><strong>schikaneder</strong>: Sublime! Utterly sublime!</p>
+<p><strong>mozart</strong>: That kind of music should be punishable by
+death.</p>
+<p><strong>joseph</strong>: I believe that is the best opera yet
+written, my friends. Salieri, you are the brightest star in the musical
+firmament. You do honour to Vienna and to me.</p>
+<p><strong>salieri</strong>: Mozart. It was good of you to come.</p>
+<p><strong>mozart</strong>: How could I not?</p>
+<p><strong>salieri</strong>: Did my work please you?</p>
+<p><strong>mozart</strong>: How could it not, Excellency?</p>
+<p><strong>salieri</strong>: Yes?</p>
+<p><strong>mozart</strong>: I never knew that music like that was
+possible.</p>
+<p><strong>salieri</strong>: You flatter me.</p>
+<p><strong>mozart</strong>: Oh no! One hears such sounds and what can
+one say, but - Salieri!</p>
+<p><strong>mozart</strong>: Oh. Everybody’s here! We’ve got guests.
+Good. I’ve brought some more.</p>
+<p><strong>mozart</strong>: We’ll have a little party. Come in. Come in.
+You know Herr Schikaneder? This is! a very nice girl.</p>
+<p><strong>constanze</strong>: Wolfi.</p>
+<p><strong>mozart</strong>: Yes, my love?</p>
+<p><strong>constanze</strong>: These gentlemen are from Salzburg.</p>
+<p><strong>mozart</strong>: Salzburg. We were just talking about
+Salzburg. If you’ve come from my friend the Fartsbishop, you’ve arrived
+at just the right moment. Because I’ve got good news for him. I’m done
+with Vienna. It’s over, finished, done with! Done with! Done with!</p>
+<p><strong>constanze</strong>: Wolfi! Your father is dead.</p>
+<p><strong>mozart</strong>: What?</p>
+<p><strong>constanze</strong>: Your father is dead.</p>
+<p><strong>the commendatore</strong>: Don Giovanni!</p>
+<p><strong>old salieri</strong>: So rose the dreadful ghost in his next
+and blackest opera. There on the stage stood the figure of a dead
+commander calling out ‘Repent! Repent!’</p>
+<p><strong>old salieri</strong>: And I knew - only I understood - that
+the horrifying apparition was Leopold, raised from the dead. Wolfgang
+had actually summoned up his own father to accuse his son before all the
+world. It was terrifying and wonderful to watch.</p>
+<p><strong>old salieri</strong>: Now a madness began in me. The madness
+of a man splitting in half. Through my influence I saw to it Don
+Giovanni was played only five times in Vienna. But in secret I went to
+every one of those five - all alone - unable to help myself, worshipping
+sound I alone seemed to hear.</p>
+<p><strong>old salieri</strong>: And hour after hour, as I stood there,
+understanding even more clearly how that bitter old man was still
+possessing his poor son from beyond the grave, I began to see a way - a
+terrible way - I could finally triumph over God, my torturer.</p>
+<p><strong>emmanuel schikaneder</strong>: Impresario de luxe</p>
+<p><strong>presents</strong>: The Celebrated</p>
+<p><strong>in</strong>: An Evening of</p>
+<p><strong>parody</strong>: Music! Mirth! Magic!</p>
+<p><strong>emmanuel schikaneder</strong>: who personally will appear in
+every scene!</p>
+<p><strong>schikaneder</strong>: Who is it?</p>
+<p><strong>schikaneder</strong>: C-c-c-come in!</p>
+<p><strong>commendatore</strong>: Don Giovannnnnnnnnni!</p>
+<p><strong>commendatore</strong>: Down! Down!</p>
+<p><strong>commendatore</strong>: I’m here! I’m here!</p>
+<p><strong>commendatore</strong>: Don Giovannnnnnnni!</p>
+<p><strong>schikaneder</strong>: Who the devil are you? What do you
+want?</p>
+<p><strong>commendatore</strong>: I’ve come to dinnnnnner!</p>
+<p><strong>schikaneder</strong>: Dinner? How dare you? I am a nobleman.
+I only dine with people of my own height.</p>
+<p><strong>commendatore</strong>: Are you drunk? You invited me. And my
+horse. Here he is. Ottavio!</p>
+<p><strong>commendatore</strong>: Whoa! Whoa! Stop it!</p>
+<p><strong>first lady</strong>: Be careful!</p>
+<p><strong>second lady</strong>: Be careful!</p>
+<p><strong>third lady</strong>: Be careful!</p>
+<p><strong>all three together</strong>: Hold tight now!</p>
+<p><strong>commendatore</strong>: Leave me alone! Stop it! I’m a famous
+horseman.</p>
+<p><strong>ottavio</strong>: And I’m a famous horse!</p>
+<p><strong>first lady</strong>: He’s adorable!</p>
+<p><strong>second lady</strong>: Adorable!</p>
+<p><strong>third lady</strong>: Adorable!</p>
+<p><strong>three ladies</strong>: Give me your hoof, my darling, And
+I’ll give you my heart! Take me to your stable, And never more we’ll
+part!</p>
+<p><strong>ottavio</strong>: I’m shy and very bashful. I don’t know what
+to say.</p>
+<p><strong>three ladies</strong>: Don’t hesitate a second. Just answer
+yes and neigh.</p>
+<p><strong>commendatore</strong>: Stop it. What are you doing? Remember
+who you are! You’re a horse and they are whores.</p>
+<p><strong>schikaneder</strong>: This is ridiculous. I won’t have any of
+it. You’re turning my house into a circus!</p>
+<p><strong>schikaneder</strong>: Shut up. Women, women, women! I’m sick
+to death of them.</p>
+<p><strong>soprano</strong>: Dash me! Bash me! Lash me! Flay me! Slay
+me! At last I will be freed by death!</p>
+<p><strong>commendatore</strong>: Shut up.</p>
+<p><strong>soprano</strong>: Kill me! Kill me! Kill me! Kill me! At last
+I shall be freed by death. At last I shall be freed by dea -</p>
+<p><strong>eight dwarves</strong>: We’re going to make a soprano stew!
+We’re going to make a soprano stew! And when you make a soprano stew!
+Any stupid soprano will do! Any stew- stew-stew-stew-stew! Any stewpid
+soprano will do!</p>
+<p><strong>first lady</strong>: Behold!</p>
+<p><strong>second lady</strong>: Behold!</p>
+<p><strong>third lady</strong>: Behold!</p>
+<p><strong>commendatore</strong>: How long does it take to cook a
+soprano?</p>
+<p><strong>dwarves</strong>: Five hours, five minutes, five seconds.</p>
+<p><strong>commendatore</strong>: I can’t wait that long. I’m
+starving!</p>
+<p><strong>ottavio</strong>: So am I.</p>
+<p><strong>schikaneder</strong>: In the pot, I have got a good dinner.
+Not a sausage or stew, but a singer. Not a sausage or stew but a singer.
+Is the treat that I’ll eat for my meat!</p>
+<p><strong>commendatore</strong>: Oh shut up. I’m sick to death of that
+tune.</p>
+<p><strong>the three girls</strong>: Give me your hoof, my darling, and
+I’ll give you my heart.</p>
+<p><strong>commendatore</strong>: Shut up. I’m sick of that one too.</p>
+<p><strong>commendatore</strong>: And that one, too!</p>
+<p><strong>soprano</strong>: Oil me! Broil me! Boil me!</p>
+<p><strong>soprano</strong>: Soil me! Foil me! Spoil me!</p>
+<p><strong>horse</strong>: I can’t eat her. Sopranos give me hiccups. I
+want some hay!</p>
+<p><strong>first lady</strong>: Hey!</p>
+<p><strong>second lady</strong>: Hey!</p>
+<p><strong>third lady</strong>: Hey!</p>
+<p><strong>schikaneder</strong>: Hey what?</p>
+<p><strong>all three ladies</strong>: Give him some hay, my darling, and
+I’ll give you my heart!</p>
+<p><strong>commendatore</strong>: Shut up.</p>
+<p><strong>schikaneder</strong>: Leporello! We want some hay -
+prestissimo! Leporello - where are you?</p>
+<p><strong>first lady</strong>: Behold!</p>
+<p><strong>second lady</strong>: Behold!</p>
+<p><strong>third lady</strong>: Behold!</p>
+<p><strong>commendatore</strong>: Hey! Hey! Watch out!</p>
+<p><strong>commendatore</strong>: Whoa! Whoa, Ottavio! Whoa!</p>
+<p><strong>schikaneder</strong>: Well, how do you like that?</p>
+<p><strong>mozart</strong>: Wonderful! He liked the monkey, didn’t
+you?</p>
+<p><strong>schikaneder</strong>: Yes, well, it’s all good fun.</p>
+<p><strong>mozart</strong>: I liked the horse.</p>
+<p><strong>schikaneder</strong>: Isn’t he marvelous? He cost me a
+bundle, that horse, but he’s worth it. I tell you, if you’d played Don
+Giovanni here it would have been a great success. I’m not joking. These
+people aren’t fools. You could do something marvelous for them.</p>
+<p><strong>mozart</strong>: I’d like to try them someday. I’m not sure
+I’d be much good at it.</p>
+<p><strong>schikaneder</strong>: ’Course you would. You belong here, my
+boy, not the snobby Court. You could do anything you felt like here -
+the more fantastic the better! That’s what people want, you know:
+fantasy. You do a big production, fill it with beautiful magic tricks
+and you’ll be absolutely free to do anything you want. Of course, you’d
+have to put a fire in it, because I’ve got the best fire machine in the
+city and a big flood - I can do you the finest water effects you ever
+saw in your life. Oh, and a few trick animals. You’d have to use
+those.</p>
+<p><strong>mozart</strong>: Animals?</p>
+<p><strong>schikaneder</strong>: I tell you I picked up a snake in
+Dresden last week - twelve foot long - folds up to six inches, just like
+a paper fan. It’s a miracle.</p>
+<p><strong>schikaneder</strong>: I’m serious. You write a proper part
+for me with a couple of catchy songs, I’ll guarantee you’ll have a
+triumph- de-luxe. Mind you, it’ll have to be in German.</p>
+<p><strong>mozart</strong>: German!</p>
+<p><strong>schikaneder</strong>: Of course! What else do you think they
+speak here?</p>
+<p><strong>mozart</strong>: No, no, I love that. I’d want it to be in
+German. I haven’t done anything in German since Seraglio.</p>
+<p><strong>schikaneder</strong>: So there you are. What do you say?</p>
+<p><strong>constanze</strong>: How much will you pay him?</p>
+<p><strong>schikaneder</strong>: Ah. Well. Ah, I see you’ve got your
+manager with you. Well, Madame, how about half the receipts?</p>
+<p><strong>mozart</strong>: Half the receipts! Stanzi!</p>
+<p><strong>constanze</strong>: I’m talking about now. How much will you
+give him now? Down payment?</p>
+<p><strong>schikaneder</strong>: Down payment? Who do you think I am?
+The Emperor? Whoops, I have to go.</p>
+<p><strong>schikaneder</strong>: Stay where you are. You’re going to
+like this next one. We’ll speak again. Triumph-de-luxe, my boy!</p>
+<p><strong>constanze</strong>: You’re not going to do this?</p>
+<p><strong>mozart</strong>: Why not? Half the house!</p>
+<p><strong>constanze</strong>: When? We need money now. Either he pays
+now, or you don’t do it.</p>
+<p><strong>mozart</strong>: Oh, Stanzi.</p>
+<p><strong>constanze</strong>: I don’t trust this man. And I didn’t like
+what he did with your opera. It was common.</p>
+<p><strong>mozart</strong>: Well, you liked it, didn’t you?
+Monkey-flunki-punki.</p>
+<p><strong>constanze</strong>: Half the house! You’ll never see a penny.
+I want it here, in my hand.</p>
+<p><strong>mozart</strong>: Stanzi-manzi, I’ll put it in your hand!</p>
+<p><strong>constanze</strong>: Shut up! I’ll not let you put anything in
+my hand until I see some money.</p>
+<p><strong>schlumberg</strong>: Herr Mozart. What a surprise. What can I
+do for you?</p>
+<p><strong>mozart</strong>: Is my pupil still anxious to learn the art
+of music?</p>
+<p><strong>schlumberg</strong>: Well, your pupil is married and living
+in Mannheim, young man.</p>
+<p><strong>mozart</strong>: Really? Perhaps your dear wife might care to
+profit from my instruction?</p>
+<p><strong>schlumberg</strong>: What is this, Mozart? What’s the matter
+with you?</p>
+<p><strong>mozart</strong>: Well. Since it appears nobody is eager to
+hire my services, could you favour me with a little money instead?</p>
+<p><strong>schlumberg</strong>: What for?</p>
+<p><strong>mozart</strong>: If a man cannot earn, he must borrow.</p>
+<p><strong>schlumberg</strong>: Well, this is hardly the way to go about
+it.</p>
+<p><strong>mozart</strong>: No doubt, sir. But I am endowed with talent,
+and you with money. If I offer mine, you should offer yours.</p>
+<p><strong>schlumberg</strong>: I’m sorry. No.</p>
+<p><strong>mozart</strong>: Please. I’ll give it back, I promise.
+Please, sir.</p>
+<p><strong>schlumberg</strong>: My answer is no, Mozart.</p>
+<p><strong>mozart</strong>: Please. Please. Please. Please. Please.
+Please.</p>
+<p><strong>von swieten</strong>: This is embarrassing, you know. You
+introduced Mozart to some of my friends and he’s begging from
+practically all of them. It has to stop.</p>
+<p><strong>salieri</strong>: I agree, Baron.</p>
+<p><strong>von swieten</strong>: Can’t you think of anyone who might
+commission some work from him? I’ve done my best. I got him to arrange
+some Bach for my Sunday concerts. He got a fee - what I could afford.
+Can’t you think of anyone who might do something for him?</p>
+<p><strong>salieri</strong>: No, Baron, no. I’m afraid Mozart is a lost
+cause. He has managed to alienate practically the whole of Vienna. He is
+constantly drunk. He never pays his debts. I can’t think of one person
+to whom I dare recommend him.</p>
+<p><strong>von swieten</strong>: How sad. It’s tragic, isn’t it? Such a
+talent.</p>
+<p><strong>salieri</strong>: Indeed. Just a moment - as a matter of fact
+I think I do know someone who could commission a work from him. A very
+appropriate person to do so. Yes.</p>
+<p><strong>salieri</strong>: Herr Mozart?</p>
+<p><strong>salieri</strong>: I have come to commission work from
+you.</p>
+<p><strong>mozart</strong>: What work?</p>
+<p><strong>salieri</strong>: A Mass for the dead.</p>
+<p><strong>mozart</strong>: What dead? Who is dead?</p>
+<p><strong>salieri</strong>: A man who deserved a Requiem Mass and never
+got one.</p>
+<p><strong>mozart</strong>: Who are you?</p>
+<p><strong>salieri</strong>: I am only a messenger. Do you accept? You
+will be paid well.</p>
+<p><strong>mozart</strong>: How much?</p>
+<p><strong>salieri</strong>: Fifty ducats. Another fifty when I have the
+Mass. Do you accept?</p>
+<p><strong>mozart</strong>: How long will you give me?</p>
+<p><strong>salieri</strong>: Work fast. And be sure to tell no one what
+you do. You will see me again soon.</p>
+<p><strong>constanze</strong>: Wolfi? Wolfi!</p>
+<p><strong>constanze</strong>: Who was that?</p>
+<p><strong>mozart</strong>: No one.</p>
+<p><strong>constanze</strong>: I heard voices.</p>
+<p><strong>constanze</strong>: What’s the matter?</p>
+<p><strong>constanze</strong>: What’s that? Oh! Who gave you this? How
+much is it? Wolfi, who gave you this?</p>
+<p><strong>mozart</strong>: I’m not telling you.</p>
+<p><strong>constanze</strong>: Why not?</p>
+<p><strong>mozart</strong>: You’d think I was mad.</p>
+<p><strong>old salieri</strong>: My plan was so simple, it terrified me.
+First I must get the Death Mass and then achieve the death.</p>
+<p><strong>vogler</strong>: What?</p>
+<p><strong>old salieri</strong>: His funeral - imagine it! The
+Cathedral, all Vienna sitting there. His coffin, Mozart’s little coffin
+in the middle. And suddenly in that silence, music. A divine music
+bursts out over them all, a great Mass of Death: Requiem Mass for
+Wolfgang Mozart, composed by his devoted friend Antonio Salieri. What
+sublimity! What depth! What passion in the music! Salieri has been
+touched by God at last. And God, forced to listen. Powerless - powerless
+to stop it. I at the end, for once, laughing at Him. Do you understand?
+Do you?</p>
+<p><strong>vogler</strong>: Yes.</p>
+<p><strong>old salieri</strong>: The only thing that worried me was the
+actual killing. How does one do that? How does one kill a man? It’s one
+thing to dream about it. It’s very different when you have to do it,
+with your own hands.</p>
+<p><strong>constanze</strong>: Wolfi. Wolfi!</p>
+<p><strong>mozart</strong>: No. Don’t answer it!</p>
+<p><strong>constanze</strong>: Why?</p>
+<p><strong>mozart</strong>: Tell him I’m not here. Tell him I’m working
+on it. Come back later.</p>
+<p><strong>schikaneder</strong>: Am I interrupting something?</p>
+<p><strong>constanze</strong>: Not at all.</p>
+<p><strong>schikaneder</strong>: Where’s our friend?</p>
+<p><strong>constanze</strong>: He’s not in. But he’s working on it. He
+said to tell you.</p>
+<p><strong>schikaneder</strong>: I hope so. I need it immediately.</p>
+<p><strong>schikaneder</strong>: Is he happy with it?</p>
+<p><strong>schikaneder</strong>: Is this it?</p>
+<p><strong>schikaneder</strong>: What the devil is this? Requiem Mass?
+Does he think I’m in the funeral business?</p>
+<p><strong>mozart</strong>: Leave that alone!</p>
+<p><strong>schikaneder</strong>: Wolfi!</p>
+<p><strong>mozart</strong>: Put it down!</p>
+<p><strong>schikaneder</strong>: What is this?</p>
+<p><strong>mozart</strong>: Put it down, I said! It’s nothing for
+you.</p>
+<p><strong>schikaneder</strong>: Oh! I’m sorry! I’m sorry! What have you
+got for me? Is it finished?</p>
+<p><strong>mozart</strong>: What?</p>
+<p><strong>schikaneder</strong>: What? The vaudeville, what’d you
+think?</p>
+<p><strong>mozart</strong>: Yes.</p>
+<p><strong>schikaneder</strong>: Can I see it?</p>
+<p><strong>mozart</strong>: No.</p>
+<p><strong>schikaneder</strong>: Why not?</p>
+<p><strong>mozart</strong>: Because there’s nothing to see.</p>
+<p><strong>schikaneder</strong>: Look, I asked you if we could start
+rehearsal next week and you said yes.</p>
+<p><strong>mozart</strong>: Well, we can.</p>
+<p><strong>schikaneder</strong>: So let me see it. Where is it?</p>
+<p><strong>mozart</strong>: Here. It’s all right here, in my noodle. The
+rest is just scribbling. Scribbling and bibbling. Bibbling and
+scribbling. Would you like a drink?</p>
+<p><strong>schikaneder</strong>: Look, you little clown, do you know how
+many people I’ve hired for you? Do you know how many people are
+waiting?</p>
+<p><strong>constanze</strong>: Leave him alone!</p>
+<p><strong>schikaneder</strong>: I’m paying these people. Do you realize
+that?</p>
+<p><strong>constanze</strong>: He’s doing his best.</p>
+<p><strong>schikaneder</strong>: I’m paying people just to wait for you.
+It’s ridiculous!</p>
+<p><strong>constanze</strong>: You know what’s ridiculous? Your
+libretto, that’s what’s ridiculous. Only an idiot would ask Wolfi to
+work on that stuff!</p>
+<p><strong>schikaneder</strong>: Oh yes? And what’s so intelligent about
+writing a Requiem?</p>
+<p><strong>constanze</strong>: Money! Money!</p>
+<p><strong>schikaneder</strong>: You’re mad! She’s mad, Wolfi.</p>
+<p><strong>constanze</strong>: Oh yes, and who are you? He’s worked for
+Kings. For the Emperor. Who are you?</p>
+<p><strong>schikaneder</strong>: Listen, Wolfi. Write it. Please. Just
+write it down. On paper. It’s no good to anyone in your head. And fuck
+the Death Mass.</p>
+<p><strong>salieri</strong>: Now calm yourself. Calm. What’s the matter
+with you?</p>
+<p><strong>lorl</strong>: I’m leaving. I’m not working there anymore.
+I’m scared!</p>
+<p><strong>salieri</strong>: Why? What has happened?</p>
+<p><strong>lorl</strong>: You don’t know what it’s like. Herr Mozart
+frightens me. He drinks all day, then takes all that medicine and it
+makes him worse.</p>
+<p><strong>salieri</strong>: What medicine?</p>
+<p><strong>lorl</strong>: I don’t know. He has pains.</p>
+<p><strong>salieri</strong>: Where?</p>
+<p><strong>lorl</strong>: Here, in his stomach. They bend him right
+over.</p>
+<p><strong>salieri</strong>: Is he working?</p>
+<p><strong>lorl</strong>: I’m frightened, sir. Really! When he speaks,
+he doesn’t make any sense. You know he said he saw - he said he saw his
+father. And his father’s dead.</p>
+<p><strong>salieri</strong>: Is he working?</p>
+<p><strong>lorl</strong>: I suppose so. He sits there all he time, doing
+some silly opera.</p>
+<p><strong>salieri</strong>: Opera? Opera!</p>
+<p><strong>lorl</strong>: Please don’t ask me to go back again. I’m
+frightened! I’m very, very frightened.</p>
+<p><strong>salieri</strong>: Are you sure it’s an opera?</p>
+<p><strong>mozart</strong>: I don’t have it yet. It’s not finished. I’m
+sorry, but I need more time.</p>
+<p><strong>salieri</strong>: Are you neglecting my request?</p>
+<p><strong>mozart</strong>: No, no! I promise you, I’ll give you a
+wonderful piece - the best I ever can!</p>
+<p><strong>mozart</strong>: This is my wife, Stanzi. I’ve been sick, but
+I’m all right now. Aren’t</p>
+<p><strong>constanze</strong>: Oh yes, sir. He’s all right. And he’s
+working on it very hard.</p>
+<p><strong>mozart</strong>: Give me two more weeks. Please.</p>
+<p><strong>salieri</strong>: The sooner you finish, the better your
+reward. Work!</p>
+<p><strong>constanze</strong>: Wolfi, I think you really are going mad.
+You work like a slave for that idiot actor who won’t give you a penny
+and here. This is not a ghost! This is a real man who puts down real
+money. Why on earth don’t you finish it?</p>
+<p><strong>constanze</strong>: Give me one reason I can understand.</p>
+<p><strong>mozart</strong>: I can’t write it!</p>
+<p><strong>constanze</strong>: Why not?</p>
+<p><strong>mozart</strong>: It’s killing me.</p>
+<p><strong>constanze</strong>: No, this is really awful. You’re drunk,
+aren’t you? Be honest - tell me - you’ve been drinking. And I’m so
+stupid I stay here and listen to you!</p>
+<p><strong>constanze</strong>: It’s not fair! I worry about you all the
+time. I try to help you all I can and you just drink and talk nonsense
+and - and frighten me! It’s not fair!</p>
+<p><strong>mozart</strong>: Go back to bed.</p>
+<p><strong>constanze</strong>: Please! Let me sit here. Let me stay here
+with you. I promise I won’t say all word. I’ll just be here, so you know
+no one’s going to hurt you. Please, please!</p>
+<p><strong>mozart</strong>: Stanzi? Stanzi-marini-bini?</p>
+<p><strong>frau weber</strong>: She’s not coming back, you know. She’s
+gone for good. I did it and I’m proud of it. ‘Leave,’ I said. ‘Right
+away! Take he child and go, just go. Here’s the money! Go to the Spa and
+get your health back - that’s if you can.’ I was shocked. Shocked to my
+foundation. Is that my girl? Can that be my Stanzi? The happy little
+moppet I brought up, that poor trembling thing? Oh, you monster! No one
+exists but you, do they? You and your music! Do you know how often she’s
+sat in that very chair, weeping her eyes out of her head because of you?
+I warned her. ‘Choose a man, not a baby,’ I said. But would she listen?
+Who listens? ‘He’s just a silly boy,’ she says. Silly, my arse. Selfish
+- that’s all you are. Selfish! Selfish, selfish, selfish, selfish,
+selfish.</p>
+<p><strong>queen of the night</strong>: A hellish wrath within my heart
+is seething! Death and destruction Flame around my throne! If not by
+thee Sarastro’s light be extinguished. Then be thou mine own daughter
+never more! Rejected be forever! So sundered be forever All the bonds of
+kin and blood! Hear! Hear! Hear God of Vengeance! Hear thy Mother’s
+vow!</p>
+<p><strong>the magic flute</strong>: A Grand Opera in Two Acts</p>
+<p><strong>voice</strong>: Go back!</p>
+<p><strong>papageno</strong>: Merciful Gods! If only I knew by which
+door I came in. Which was it? Was it this one? Come on, tell me!</p>
+<p><strong>voice</strong>: Go back!</p>
+<p><strong>papageno</strong>: Now, I can’t go forward and I can’t go
+back. Oh, this is awful!</p>
+<p><strong>first priest</strong>: Man, thou hast deserved to wander
+forever in the darkest chasms of the earth. The gentle Gods have
+remitted thy punishment, but yet thou shalt never feel the Divine
+Content of the consecrated ones.</p>
+<p><strong>papageno</strong>: Oh well, I’m not alone in that. Just give
+me a decent glass of wine - that’s divine content enough for me.</p>
+<p><strong>first priest</strong>: Man, hast thou no other desire on
+earth, but just to eat and drink?</p>
+<p><strong>papageno</strong>: Well!</p>
+<p><strong>papageno</strong>: Well, actually I do have a rather weird
+feeling in my heart. Perhaps it’s just indigestion. But you know, I
+really would like - I really do want - something even nicer than food
+and drink. Now what on earth could that be?</p>
+<p><strong>andante</strong>: A sweetheart or a pretty little wife is
+Papageno’s wish. A willing, billing, lovey dovey Would be My most tasty
+little dish. Be my most tasty little dish! Be my most tasty little
+dish!</p>
+<p><strong>allegro</strong>: Then that would be eating and drinking I’d
+live like a Prince without thinking. The wisdom of old would be mine - A
+woman’s much better than wine! Then that would be eating and drinking!
+The wisdom of old would be mine - A woman’s much better than wine. She’s
+much better than wine! She’s much better than wine!</p>
+<p><strong>andante</strong>: A sweetheart or a pretty little wife is
+Papageno’s wish. A willing, billing, lovey dovey Would be My most tasty
+little dish.</p>
+<p><strong>allegro</strong>: I need to net one birdie only And I will
+stop feeling so lonely. But if she won’t fly to my aid, Then into a
+ghost I must fade. I need to net one birdie only But if she won’t fly to
+my aid, Then into a ghost I must fade. To a ghost I must fade! To a
+ghost I must fade!</p>
+<p><strong>andante</strong>: A sweetheart or a pretty little wife is
+Papageno’s wish. A willing, billing, lovey dovey Would be My most tasty
+little dish.</p>
+<p><strong>allegro</strong>: At present the girls only peck me. Their
+cruelty surely will wreck me. But one little beak in my own, And I’ll up
+to heaven be flown! At present the girls only peck me. But one little
+beak in my own, And I’ll up to heaven be flown. Up to heaven be flown!
+Up to heaven be flown!</p>
+<p><strong>salieri</strong>: I’ll take care of him.</p>
+<p><strong>salieri</strong>: I have a carriage. Excuse me.</p>
+<p><strong>ugly old woman</strong>: Here I am, my angel.</p>
+<p><strong>papageno</strong>: What? Who the devil are you?</p>
+<p><strong>ugly old woman</strong>: I’ve taken pity on you, my angel. I
+heard your wish.</p>
+<p><strong>papageno</strong>: Oh. Well, thank you! How wonderful. Some
+people get all the luck.</p>
+<p><strong>ugly old woman</strong>: Now you’ve got to promise me
+faithfully you’ll remain true to me forever. Then you’ll see how
+tenderly your little birdie will love you.</p>
+<p><strong>papageno</strong>: I can’t wait.</p>
+<p><strong>ugly old woman</strong>: Well, promise then.</p>
+<p><strong>papageno</strong>: What do you mean - now?</p>
+<p><strong>ugly old woman</strong>: Of course now. Right away, before I
+get any older.</p>
+<p><strong>papageno</strong>: Well, I don’t know! I mean you’re a
+delicious, delightful, delectable little bird, but don’t you think you
+might be just a little tough?</p>
+<p><strong>ugly old woman</strong>: Oh, I’m tender enough for you, my
+boy. I’m tender enough for you.</p>
+<p><strong>mozart</strong>: What happened? Is it over?</p>
+<p><strong>salieri</strong>: I’m taking you home. You’re not well.</p>
+<p><strong>mozart</strong>: No, no. I have to get back. I have -</p>
+<p><strong>salieri</strong>: Thank you. Go.</p>
+<p><strong>mozart</strong>: Papa! Papa!</p>
+<p><strong>salieri</strong>: Come now.</p>
+<p><strong>salieri</strong>: Where is your wife?</p>
+<p><strong>mozart</strong>: Not here! She’s not well, either. She went
+to the Spa.</p>
+<p><strong>salieri</strong>: You mean she’s not coming back?</p>
+<p><strong>mozart</strong>: You’re so good to me. Truly. Thank you.</p>
+<p><strong>salieri</strong>: No, please.</p>
+<p><strong>mozart</strong>: I mean to come to my opera. You are the only
+colleague who did.</p>
+<p><strong>salieri</strong>: I would never miss anything that you had
+written. You must know that.</p>
+<p><strong>mozart</strong>: This is only a vaudeville.</p>
+<p><strong>salieri</strong>: Oh no. It is a sublime piece. The grandest
+operone. I tell you, you are the greatest composer known to me.</p>
+<p><strong>mozart</strong>: Do you mean that?</p>
+<p><strong>salieri</strong>: I do.</p>
+<p><strong>mozart</strong>: I have bad fancies. I don’t sleep well
+anymore. Then I drink too much, and think stupid things.</p>
+<p><strong>salieri</strong>: Are you ill?</p>
+<p><strong>mozart</strong>: The doctor thinks I am. But -</p>
+<p><strong>salieri</strong>: What?</p>
+<p><strong>mozart</strong>: I’m too young to be so sick.</p>
+<p><strong>salieri</strong>: Shall I answer it?</p>
+<p><strong>mozart</strong>: No! No, it’s him!</p>
+<p><strong>salieri</strong>: Who?</p>
+<p><strong>mozart</strong>: The man. He’s here.</p>
+<p><strong>salieri</strong>: What man?</p>
+<p><strong>mozart</strong>: Tell him to go away. Tell him I’m still
+working on it. Don’t let him in!</p>
+<p><strong>mozart</strong>: Wait! Ask him if he’d give me some money
+now. Tell him if he would, that would help me finish it.</p>
+<p><strong>salieri</strong>: Finish what?</p>
+<p><strong>mozart</strong>: He knows. He knows!</p>
+<p><strong>schikaneder</strong>: Herr Salieri.</p>
+<p><strong>salieri</strong>: Yes, I am looking after him.</p>
+<p><strong>schikaneder</strong>: Can we come in?</p>
+<p><strong>salieri</strong>: Well, he’s sleeping now. Better not.</p>
+<p><strong>schikaneder</strong>: But he’s all right?</p>
+<p><strong>salieri</strong>: Oh, yes. He’s just exhausted. He became
+dizzy, that’s all. We should let him rest.</p>
+<p><strong>schikaneder</strong>: Well, tell him we were here, won’t
+you?</p>
+<p><strong>salieri</strong>: Of course.</p>
+<p><strong>schikaneder</strong>: And say everything went wonderfully. A
+triumph-de-luxe - say that! Tell him the audience shouted his name a
+hundred times.</p>
+<p><strong>salieri</strong>: Bene.</p>
+<p><strong>schikaneder</strong>: I’ll call tomorrow.</p>
+<p><strong>salieri</strong>: Yes. And congratulations to all of you. It
+was superb.</p>
+<p><strong>actresses</strong>: Thank you! Thank you, Excellency!</p>
+<p><strong>schikaneder</strong>: Oh, by the way, give him this. This is
+his share. That should cheer him up, eh?</p>
+<p><strong>salieri</strong>: Yes, indeed. Goodnight to you all now. It
+was perfection - truly!</p>
+<p><strong>actresses</strong>: Goodnight, Your Excellency.
+Goodnight!</p>
+<p><strong>mozart</strong>: What happened?</p>
+<p><strong>salieri</strong>: He said to give you this. And if you finish
+the work by tomorrow night, he will pay you another hundred ducats.</p>
+<p><strong>mozart</strong>: Another? But that’s too soon! Tomorrow
+night? It’s impossible! Did he say a hundred?</p>
+<p><strong>salieri</strong>: Yes. Can I - could I help you, in any
+way?</p>
+<p><strong>mozart</strong>: Would you? Actually, you could.</p>
+<p><strong>salieri</strong>: My dear friend, it would be my greatest
+pleasure.</p>
+<p><strong>mozart</strong>: But you’d have to swear not to tell a soul.
+I’m not allowed.</p>
+<p><strong>salieri</strong>: Of course.</p>
+<p><strong>mozart</strong>: You know, it’s all here in my head. It’s
+just ready to be set down. But when I’m dizzy like this my eyes won’t
+focus. I can’t write.</p>
+<p><strong>salieri</strong>: Then, let us try together. I’d regard it as
+such an honour. Tell me, what is this work?</p>
+<p><strong>mozart</strong>: A Mass. A Mass for the Dead.</p>
+<p><strong>officer</strong>: What is it?</p>
+<p><strong>constanze</strong>: I want to go!</p>
+<p><strong>officer</strong>: Where?</p>
+<p><strong>constanze</strong>: I want to go back to Vienna.</p>
+<p><strong>officer</strong>: Now?</p>
+<p><strong>constanze</strong>: Yes!</p>
+<p><strong>officer</strong>: Why?</p>
+<p><strong>constanze</strong>: I feel wrong. I feel wrong being
+here.</p>
+<p><strong>officer</strong>: What are you talking about?</p>
+<p><strong>mozart</strong>: Where did I stop?</p>
+<p><strong>salieri</strong>: The end of the Recordare - Statuens in
+parte dextra.</p>
+<p><strong>mozart</strong>: So now the Confutatis. Confutatis
+Maledictis. When the wicked are confounded. Flammis acribus addictis.
+How would you translate that?</p>
+<p><strong>salieri</strong>: Consigned to flames of woe.</p>
+<p><strong>mozart</strong>: Do you believe in it?</p>
+<p><strong>salieri</strong>: What?</p>
+<p><strong>mozart</strong>: A fire which never dies. Burning one
+forever?</p>
+<p><strong>salieri</strong>: Oh, yes.</p>
+<p><strong>mozart</strong>: Strange!</p>
+<p><strong>salieri</strong>: Come. Let’s begin.</p>
+<p><strong>salieri</strong>: Confutatis Maledictis.</p>
+<p><strong>mozart</strong>: We ended in F Major?</p>
+<p><strong>salieri</strong>: Yes.</p>
+<p><strong>mozart</strong>: So now - A minor. Suddenly.</p>
+<p><strong>mozart</strong>: The Fire.</p>
+<p><strong>salieri</strong>: What time?</p>
+<p><strong>mozart</strong>: Common time.</p>
+<p><strong>mozart</strong>: Start with the voices. Basses first. Second
+beat of the first measure -</p>
+<p><strong>a.</strong>: Con-fu-ta-tis. Second measure, second beat.
+Ma-le-dic-tis. G-sharp, of course.</p>
+<p><strong>salieri</strong>: Yes.</p>
+<p><strong>mozart</strong>: Third measure, second beat starting on E.
+Flam-mis a-cri-bus ad-dic-tis. And fourth measure, fourth beat - D.
+Ma-le-dic-tis, flam-mis a-cri-bus ad- dic-tis. Do you have that?</p>
+<p><strong>salieri</strong>: I think so.</p>
+<p><strong>mozart</strong>: Sing it back.</p>
+<p><strong>mozart</strong>: Good. Now the tenors. Fourth beat of the
+first measure - C. Con-fu-ta-tis. Second measure, fourth beat on D.
+Ma-le-dic-tis. All right?</p>
+<p><strong>salieri</strong>: Yes.</p>
+<p><strong>mozart</strong>: Fourth measure, second beat - F. Flam-mis
+a-cri-bus ad-dic-tis, flam- mis a-cri-bus ad-dic-tis.</p>
+<p><strong>mozart</strong>: Now the orchestra. Second bassoon and bass
+trombone with the basses. Identical notes and rhythm. The first bassoon
+and tenor trombone -</p>
+<p><strong>salieri</strong>: Please! Just one moment.</p>
+<p><strong>mozart</strong>: It couldn’t be simpler.</p>
+<p><strong>salieri</strong>: First bassoon and tenor trombone -
+what?</p>
+<p><strong>mozart</strong>: With the tenors.</p>
+<p><strong>salieri</strong>: Also identical?</p>
+<p><strong>mozart</strong>: Exactly. The instruments to go with the
+voices. Trumpets and timpani, tonic and dominant.</p>
+<p><strong>salieri</strong>: And that’s all?</p>
+<p><strong>mozart</strong>: Oh no. Now for the Fire. Strings in unison -
+ostinato on all - like this.</p>
+<p><strong>mozart</strong>: Second measure on B.</p>
+<p><strong>mozart</strong>: Do you have me?</p>
+<p><strong>salieri</strong>: I think so.</p>
+<p><strong>mozart</strong>: Show me.</p>
+<p><strong>mozart</strong>: Good, good - yes! Put it down. And the next
+measures exactly the same, rising and rising - C to D to E, up to the
+dominant chord. Do you see?</p>
+<p><strong>salieri</strong>: That’s wonderful!</p>
+<p><strong>mozart</strong>: Yes, yes - go on. The Voca Me. Suddenly
+sotto voce. Write that down: sotto voce, pianissimo. Voca me cum
+benedictis. Call me among the blessed.</p>
+<p><strong>mozart</strong>: C Major. Sopranos and altos in thirds. Altos
+on C. Sopranos above. Vo-ca, vo-ca me, vo-ca me cum be-ne- dic-tis.</p>
+<p><strong>salieri</strong>: Sopranos up to F on the second ‘Voca’?</p>
+<p><strong>mozart</strong>: Yes, and on ‘dictis’.</p>
+<p><strong>salieri</strong>: Yes!</p>
+<p><strong>mozart</strong>: And underneath, just violins - arpeggio.</p>
+<p><strong>mozart</strong>: The descending scale in eighth notes, and
+then back suddenly to the fire again.</p>
+<p><strong>mozart</strong>: And that’s it. Do you have it?</p>
+<p><strong>salieri</strong>: You go fast!</p>
+<p><strong>mozart</strong>: Do you have it?</p>
+<p><strong>salieri</strong>: Yes.</p>
+<p><strong>mozart</strong>: Then let me hear it. All of it. The whole
+thing from the beginning - now!</p>
+<p><strong>mozart</strong>: Do you want to rest a bit?</p>
+<p><strong>salieri</strong>: Oh no. I’m not tired at all.</p>
+<p><strong>mozart</strong>: We’ll stop for just a moment. Then we’ll do
+the Lacrimosa.</p>
+<p><strong>salieri</strong>: I can keep going, I assure you. Shall we
+try?</p>
+<p><strong>mozart</strong>: Would you stay with me while I sleep a
+little?</p>
+<p><strong>salieri</strong>: I’m not leaving you.</p>
+<p><strong>mozart</strong>: I am so ashamed.</p>
+<p><strong>salieri</strong>: What for?</p>
+<p><strong>mozart</strong>: I was foolish. I thought you did not care
+for my work - or me. Forgive me. Forgive me!</p>
+<p><strong>constanze</strong>: What are you doing here?</p>
+<p><strong>salieri</strong>: Your husband is ill, ma’am. He took sick. I
+brought him home.</p>
+<p><strong>constanze</strong>: Why you?</p>
+<p><strong>salieri</strong>: I was at hand.</p>
+<p><strong>constanze</strong>: Well, thank you very much. You can go
+now.</p>
+<p><strong>salieri</strong>: He needs me, ma’am.</p>
+<p><strong>constanze</strong>: No, he doesn’t. And I don’t want you
+here. Just go, please.</p>
+<p><strong>salieri</strong>: He asked me to stay.</p>
+<p><strong>constanze</strong>: And I’m asking you -</p>
+<p><strong>constanze</strong>: Wolfi, I’m back. I’m still very angry
+with you, but I missed you so much.</p>
+<p><strong>constanze</strong>: I’ll never leave you again. If you’ll
+just try a little harder to be nice to me. And I’ll try to do better,
+too. We must. We must! This was just silly and stupid.</p>
+<p><strong>constanze</strong>: What is this?</p>
+<p><strong>constanze</strong>: Oh no, not this. Not this, Wolfi! You’re
+not to work on this ever again! I’ve decided.</p>
+<p><strong>constanze</strong>: This is not his handwriting.</p>
+<p><strong>salieri</strong>: No. I was assisting him. He asked me.</p>
+<p><strong>constanze</strong>: He’s not going to work on this anymore.
+It is making him ill. Please.</p>
+<p><strong>constanze</strong>: Please.</p>
+<p><strong>constanze</strong>: Thank you.</p>
+<p><strong>salieri</strong>: But - but - but -</p>
+<p><strong>constanze</strong>: Good night.</p>
+<p><strong>constanze</strong>: I regret we have no servants to show you
+out, Herr Salieri. Respect my wish and go.</p>
+<p><strong>salieri</strong>: Madame, I will respect his. He asked me to
+stay here.</p>
+<p><strong>constanze</strong>: Wolfi? Wolfi?</p>
+<p><strong>vogler</strong>: Why? Why? Why? Why add to your misery by
+confessing to murder? You didn’t kill him.</p>
+<p><strong>old salieri</strong>: I did.</p>
+<p><strong>vogler</strong>: No, you didn’t!</p>
+<p><strong>old salieri</strong>: I poisoned his life.</p>
+<p><strong>vogler</strong>: But not his body.</p>
+<p><strong>old salieri</strong>: What difference does that make?</p>
+<p><strong>vogler</strong>: My son, why should you want all Vienna to
+believe you a murderer? Is that your penance? Is it?</p>
+<p><strong>old salieri</strong>: No, Father. From now on no one will be
+able to speak of Mozart without thinking of me. Whenever they say Mozart
+with love, they’ll have to say Salieri with loathing. And that’s my
+immortality - at last! Our names will be tied together for eternity -
+his in fame and mine in infamy. At least it’s better than the total
+oblivion he’d planned for me, your merciful God!</p>
+<p><strong>vogler</strong>: Oh my son, my poor son!</p>
+<p><strong>old salieri</strong>: Don’t pity me. Pity yourself. You serve
+a wicked God. He killed Mozart, not I. Took him, snatched him away,
+without pity. He destroyed His beloved rather than let a mediocrity like
+me get the smallest share in his glory. He doesn’t care. Understand
+that. God cares nothing for the man He denies and nothing either for the
+man He uses. He broke Mozart in half when He’d finished with him, and
+threw him away. Like an old, worn out flute.</p>
+<p><strong>local priest</strong>: The Lord giveth. The Lord taketh away.
+Blessed be the name of the Lord.</p>
+<p><strong>old salieri</strong>: Why did He do it? Why didn’t He kill
+me? I had no value. What was the use, keeping me alive for thirty-two
+years of torture? Thirty-two years of honours and awards.</p>
+<p><strong>old salieri</strong>: Being bowed to and saluted, called
+‘distinguished - distinguished Salieri’ - by men incapable of
+distinguishing! Thirty-two years of meaningless fame to end up alone in
+my room, watching myself become extinct. My music growing fainter, all
+the time fainter, until no one plays it at all. And his growing louder,
+filling the world with wonder. And everyone who loves my sacred art
+crying, Mozart! Bless you, Mozart.</p>
+<p><strong>attendant</strong>: Good morning, Professor! Time for the
+water closet. And then we’ve got your favourite breakfast for you -
+sugar-rolls. He loves those. Fresh sugar-rolls.</p>
+<p><strong>old salieri</strong>: Goodbye, Father. I’ll speak for you. I
+speak for all mediocrities in the world. I am their champion. I am their
+patron saint. On their behalf I deny Him, your God of no mercy. Your God
+who tortures men with longings they can never fulfill. He may forgive
+me: I shall never forgive Him.</p>
+<p><strong>old salieri</strong>: Mediocrities everywhere, now and to
+come: I absolve you all! Amen! Amen! Amen!</p>
+</body>
+</html>

@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>willow</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="willow">willow</h1>
+<p><strong>druid</strong>: Is it a girl?</p>
+<p><strong>ethna</strong>: It is a girl.</p>
+<p><strong>druid</strong>: Show me its arm.</p>
+<p><strong>druid</strong>: It’s true then. I must tell Queen
+Bavmorda.</p>
+<p><strong>mother</strong>: Ethna, please. Help me. They’re going to
+kill my baby.</p>
+<p><strong>ethna</strong>: They’ll kill you.</p>
+<p><strong>mother</strong>: Please save my baby.</p>
+<p><strong>ethna</strong>: Pretend this is the child.</p>
+<p><strong>mother</strong>: Thank you, Ethna. Thank you.</p>
+<p><strong>bavmorda</strong>: We will start the ritual at dusk. You’re
+certain this is the one?</p>
+<p><strong>druid</strong>: It bears the markings.</p>
+<p><strong>bavmorda</strong>: I must see for myself! Just as the omen
+foretold!</p>
+<p><strong>bavmorda</strong>: So. You were the one.</p>
+<p><strong>mother</strong>: Yes. But nothing you can do will stop the
+prophecy.</p>
+<p><strong>bavmorda</strong>: This child will have no power over
+me….</p>
+<p><strong>bavmorda</strong>: Where’s the baby!</p>
+<p><strong>guard</strong>: The midwife!</p>
+<p><strong>bavmorda</strong>: Find that baby! Use the dogs! Sorsha!</p>
+<p><strong>bavmorda</strong>: Kill her.</p>
+<p><strong>death dog</strong>: Bordak!</p>
+<p><strong>midwife</strong>: I don’t have her! No! No!</p>
+<p><strong>ranon</strong>: Dada! We found something in the river!</p>
+<p><strong>willow</strong>: I can’t run off and play with you now. I’ve
+got work to do.</p>
+<p><strong>ranon/mims</strong>: But Dada, you gotta see it! Hurry!</p>
+<p><strong>willow</strong>: Back! Don’t go near it. We don’t know where
+it’s been. It could be diseased.</p>
+<p><strong>mims</strong>: It’s a baby!</p>
+<p><strong>ranon</strong>: It’s not a Nelwyn baby.</p>
+<p><strong>willow</strong>: No, it’s too big to be a Nelwyn baby. It
+looks like a daikini…</p>
+<p><strong>mims</strong>: Ooh, it’s so cute…</p>
+<p><strong>willow</strong>: Mims! Get back here! It might bite you.</p>
+<p><strong>ranon</strong>: Can’t we keep it, Dada?</p>
+<p><strong>willow</strong>: Absolutely not.</p>
+<p><strong>burglekutt</strong>: Ufgood! Willow Ufgood!</p>
+<p><strong>willow</strong>: Shhh, shhh! It’s the Prefect – that’s all I
+need. Mims, Ranon, keep this thing hidden…</p>
+<p><strong>kiaya</strong>: Mr. Burglekutt! He hasn’t done anything
+wrong!</p>
+<p><strong>burglekutt</strong>: Ufgood! What do you think you’re</p>
+<p><strong>kiaya</strong>: I told him we didn’t steal it, Wil- low.</p>
+<p><strong>burglekutt</strong>: You haven’t paid your debts. Where did
+you get these seeds?</p>
+<p><strong>willow</strong>: In the forest. My family’s been gathering
+them since last fall. There’s no law against that, Bur- glekutt.</p>
+<p><strong>kiaya</strong>: Willow! You left the children alone by the
+river??</p>
+<p><strong>burglekutt</strong>: Too late, Ufgood. You’ll never get your
+planting done before the rains start. You’re gonna lose this land.</p>
+<p><strong>willow</strong>: Absolutely, under no condition, is anyone in
+this family going to fall in love with that baby.</p>
+<p><strong>willow</strong>: Kiaya! We can’t keep that baby. Mims, Ranon.
+Hey! I will not be ignored!</p>
+<p><strong>willow</strong>: This is bad. If we’re caught with that
+little daikini it’ll be the end of us. Careful, Ranon, I need that for
+the festival. Kiaya, what are we going to do?</p>
+<p><strong>kiaya</strong>: We’re gonna give this baby a bath.</p>
+<p><strong>willow</strong>: Burglekutt’s right. There’s not enough time
+to finish plowing. We’ll lose everything and I’ll end up working in the
+mines.</p>
+<p><strong>kiaya</strong>: Willow, do you think we should take her to
+the Village Council?</p>
+<p><strong>willow</strong>: No, no! They’ll think it’s a bad omen.
+There’ll be a flood or a drought or a plague and everybody’ll blame me
+for it!</p>
+<p><strong>ranon</strong>: Look. What’s that?</p>
+<p><strong>willow</strong>: I don’t know. This is trouble. I’ll talk to
+the High Aldwin about it tomorrow at the Festival.</p>
+<p><strong>willow</strong>: And now! For our final amazing bit of magic,
+I will make an entire pig completely disappear!</p>
+<p><strong>crowd</strong>: Aaww! Booo! Sssss!</p>
+<p><strong>willow</strong>: Meegosh, I’m in trouble.</p>
+<p><strong>meegosh</strong>: Hey, it wasn’t that bad. You need a better
+pig, that’s all.</p>
+<p><strong>meegosh</strong>: Now Burglekutt’s got you in the squeeze.
+Soon you’ll be down in the mines like me.</p>
+<p><strong>willow</strong>: Mining. I hate closed-in spaces. That’s the
+last thing I’d ever do. I gotta get my crop planted.</p>
+<p><strong>meegosh</strong>: You know I’ll help you as much as I can,
+Willow.</p>
+<p><strong>mims</strong>: Dada, can we get treacle candy? Can we, can
+we? Please?</p>
+<p><strong>willow</strong>: Meegosh, can you watch the chil- dren? I
+gotta talk to the High Aldwin.</p>
+<p><strong>meegosh</strong>: The High Aldwin?? Why?</p>
+<p><strong>willow</strong>: Sir! I have to talk to you.</p>
+<p><strong>high aldwin</strong>: Not today, Willow.</p>
+<p><strong>willow</strong>: It’s a matter of great importance to me!</p>
+<p><strong>high aldwin</strong>: Intuition, Willow – remember? I know
+you’re eager to be my appren- tice, Willow. But today is the spring
+festival.</p>
+<p><strong>burglekutt</strong>: Apprentice? To the High Aldwin!! Willow
+Ufgood???</p>
+<p><strong>death dog</strong>: Bordak! Bordak!</p>
+<p><strong>meegosh</strong>: What was it looking for?</p>
+<p><strong>a villager</strong>: It said “bordak”! What does it mean?</p>
+<p><strong>councilman</strong>: Baby! It means baby! It was look- ing
+for somebody’s baby!</p>
+<p><strong>mims</strong>: Mommy?</p>
+<p><strong>willow</strong>: Kiaya! Kiaya!</p>
+<p><strong>willow</strong>: We can’t keep this baby, Kiaya. We must take
+her to the Council.</p>
+<p><strong>burglekutt</strong>: An evil beast from the outer world has
+invaded our peaceful village, looking for a baby!</p>
+<p><strong>a villager</strong>: It’s a sign! An omen!</p>
+<p><strong>another villager</strong>: Our crops will die!</p>
+<p><strong>burglekutt</strong>: Silence! One beast we can kill. But
+there may be more! And they won’t give up their search till they’ve
+found what they’re looking for!</p>
+<p><strong>meegosh</strong>: Whose baby is it!</p>
+<p><strong>other villagers</strong>: Who’s to blame for this!</p>
+<p><strong>high aldwin</strong>: Willow Ufgood! Come before me!</p>
+<p><strong>high aldwin</strong>: Earlier today you tried to tell me
+something, Willow.</p>
+<p><strong>willow</strong>: My family found this baby in the river, High
+Aldwin.</p>
+<p><strong>high aldwin</strong>: A daikini child… …of some importance, I
+feel…</p>
+<p><strong>burglekutt</strong>: That’s what the beasts want! Give it
+back!</p>
+<p><strong>willow</strong>: They’ll kill her! We can’t let this baby
+die!</p>
+<p><strong>burglekutt</strong>: What do we care!</p>
+<p><strong>high aldwin</strong>: …importance…yes…this child is
+special…</p>
+<p><strong>councilman</strong>: What should we do?</p>
+<p><strong>high aldwin</strong>: This child must be taken beyond the
+boundaries of our village. All the way to the daikini crossroads.</p>
+<p><strong>a villager</strong>: Who will do that?</p>
+<p><strong>several villagers</strong>: Vohnkar! Vohnkar!</p>
+<p><strong>high aldwin</strong>: The outer world is dangerous and
+corrupt, Vohnkar. And this baby is hunted by blood-hungry beasts. Are
+you willing to sacrifice your life?</p>
+<p><strong>vohnkar</strong>: If I go, who’ll defend you if other beasts
+attack?</p>
+<p><strong>burglekutt</strong>: He’s right! It seems only fair that the
+man to take this baby to the crossroads… …be the very man who plucked
+it… …out of the river!</p>
+<p><strong>willow</strong>: I can’t do it! I haven’t put my crop in!</p>
+<p><strong>a councilman</strong>: You caused this trouble. You found the
+baby…you get rid of it!</p>
+<p><strong>burglekutt</strong>: I nominate Willow Ufgood!</p>
+<p><strong>high aldwin</strong>: I will consult the bones!</p>
+<p><strong>high aldwin</strong>: The bones tell me nothing. But I must
+make a decision. Is there love in your heart for this child?</p>
+<p><strong>willow</strong>: Yes.</p>
+<p><strong>high aldwin</strong>: The bones have spoken! Willow? The
+security of this village depends on you!</p>
+<p><strong>mims</strong>: Dada?</p>
+<p><strong>mims</strong>: Watch out for brownies, Dada.</p>
+<p><strong>willow</strong>: I will, Mims. Goodnight.</p>
+<p><strong>ranon</strong>: Dada, what’s a daikini?</p>
+<p><strong>willow</strong>: Daikinis are giant people who live far far
+away.</p>
+<p><strong>ranon</strong>: Are you scared?</p>
+<p><strong>ranon</strong>: I could be you rguard! I could carry your
+spear!</p>
+<p><strong>willow</strong>: What a great son you are, Ranon. I wish I
+could take you with me. Now go to sleep…</p>
+<p><strong>high aldwin</strong>: Now, you know where you’re going? Down
+there, through those trees, follow the river. You’ll know the crossroads
+by a big daikini struc- ture. Willow, this is serious business. Don’t
+waste any time, the outer world is no place for a Nelwyn. Give the baby
+to the first daikini you see, then hurry home as fast as you can.</p>
+<p><strong>willow</strong>: If I’m not strong enough to be your
+apprentice, how can I do this?</p>
+<p><strong>high aldwin</strong>: You’re strong enough. But you’re going
+to need courage, Willow.</p>
+<p><strong>willow</strong>: I don’t want courage. I don’t want to be a
+warrior. All I’ve ever wanted was to do magic, real magic, like you!</p>
+<p><strong>high aldwin</strong>: Real magic, Willow, is simply the art
+of controlling the reality of others. You lack faith in your- self. You
+must learn to trust your intuition.</p>
+<p><strong>high aldwin</strong>: Go in the direction the bird is
+flying.</p>
+<p><strong>willow</strong>: Oh, if I could do that I’d–I’d turn
+Burglekutt into a toad!</p>
+<p><strong>high aldwin</strong>: Waste magic on revenge? You have much
+to learn, Willow…</p>
+<p><strong>kiaya</strong>: Willow, we’ve never been apart. I miss you
+already. Take this. It will bring you luck.</p>
+<p><strong>willow</strong>: You cut your hair, Kiaya?</p>
+<p><strong>kiaya</strong>: Willow!!</p>
+<p><strong>lieutenant</strong>: We’ve patrolled the hills. This is where
+they killed the nursemaid.</p>
+<p><strong>sorsha</strong>: She must have done something with the child.
+Widen the search!</p>
+<p><strong>lieutenant</strong>: Get away from there!</p>
+<p><strong>willow</strong>: I hate this. Where am I? I should stick you
+in a tree and go back home. I’m sorry. I didn’t mean that.</p>
+<p><strong>willow</strong>: That’s it. The crossroads…</p>
+<p><strong>willow</strong>: I hate this.</p>
+<p><strong>willow</strong>: I hate this.</p>
+<p><strong>willow</strong>: I really hate this.</p>
+<p><strong>madmartigan</strong>: Hey, Peck…get me some water…or you’ll
+diiiiie…!</p>
+<p><strong>willow</strong>: I will–I’ll getcha water–getcha lotsa
+water–anything you say–!</p>
+<p><strong>madmartigan</strong>: Peck!</p>
+<p><strong>madmartigan</strong>: You’re a weasely little Peck! Gimme
+some water!</p>
+<p><strong>willow</strong>: I’m not coming near you!</p>
+<p><strong>madmartigan</strong>: Please? I’m dyin’ of thirst in
+here.</p>
+<p><strong>willow</strong>: Good. How long will it take?</p>
+<p><strong>madmartigan</strong>: Don’t make me angry, Peck.</p>
+<p><strong>willow</strong>: You be careful. I’m a powerful sorcerer. I
+could turn you into a toad just like that.</p>
+<p><strong>madmartigan</strong>: Miserable Pecks.</p>
+<p><strong>madmartigan</strong>: That’s more like it.</p>
+<p><strong>willow</strong>: Do any other daikinis ever come by here?</p>
+<p><strong>madmartigan</strong>: Why.</p>
+<p><strong>willow</strong>: I have to give this baby to some- body.</p>
+<p><strong>madmartigan</strong>: I’m somebody. Lemme out and I’ll take
+care of your baby.</p>
+<p><strong>willow</strong>: No. Somebdoy put you in there for a reason.
+I’ll wait for somebody else.</p>
+<p><strong>willow</strong>: Hey! Somebody’s coming!</p>
+<p><strong>madmartigan</strong>: Peck! Quick! Douse the fire!</p>
+<p><strong>madmartigan</strong>: No, you fool! Put it out I say!
+Out!</p>
+<p><strong>madmartigan</strong>: No!!</p>
+<p><strong>pict</strong>: Whose fire!</p>
+<p><strong>madmartigan</strong>: No! Help! Stop!</p>
+<p><strong>pict</strong>: Where are they? Where did they go?</p>
+<p><strong>madmartigan</strong>: Thanks for your help, Peck.</p>
+<p><strong>willow</strong>: Are you okay?</p>
+<p><strong>madmartigan</strong>: As if you care. I saved your life,
+Peck. Those guys woulda killed us! You wanna give your baby to them??
+They eat babies!</p>
+<p><strong>willow</strong>: I don’t know.</p>
+<p><strong>madmartigan</strong>: The world’s gone insane. Good men
+locked in cages, criminals running free. It doesn’t pay to be honest,
+Peck.</p>
+<p><strong>willow</strong>: Don’t call me a Peck. My name is Willow.</p>
+<p><strong>madmartigan</strong>: Hello, Willow. I’m Madmartigan.</p>
+<p><strong>madmartigan</strong>: You a woodcutter?</p>
+<p><strong>willow</strong>: Farmer.</p>
+<p><strong>madmartigan</strong>: Farmer! I knew it! You’re a vic- tim,
+Willow. Yep, you and me: victims of a rotten, corrupt, cor- rupt, rotten
+world.</p>
+<p><strong>madmartigan</strong>: Listen, Willow my friend. I’m really a
+good man. Give me my freedom, and I’ll look after that baby for you.
+Trust me.</p>
+<p><strong>madmartigan</strong>: That’s it–good–good–like that, yes,
+good, good, the chain–that’s it, come on–come on–!</p>
+<p><strong>willow</strong>: Nooo, I don’t think I should.</p>
+<p><strong>madmartigan</strong>: Peck!! Stupid Peck! I’ll kill ya! Let
+me out!</p>
+<p><strong>madmartigan</strong>: Morning, Willow.</p>
+<p><strong>madmartigan</strong>: Sorry I yelled at you. I’ve been in
+this cage toooo long. Can’t think straight anymore. Owww…!</p>
+<p><strong>willow</strong>: You all right?</p>
+<p><strong>madmartigan</strong>: These burns. My arms. Ouch…</p>
+<p><strong>willow</strong>: See if this helps.</p>
+<p><strong>madmartigan</strong>: Aaaaaahhhh. Better. Here, I made
+something for the baby.</p>
+<p><strong>willow</strong>: What’s inside?</p>
+<p><strong>madmartigan</strong>: A tooth. I’m strving. I got no used for
+it.</p>
+<p><strong>willow</strong>: Stop! Wait!</p>
+<p><strong>madmartigan</strong>: Smells like a battle.</p>
+<p><strong>willow</strong>: Are you a warrior?</p>
+<p><strong>madmartigan</strong>: The greatest swordsman that ever
+lived.</p>
+<p><strong>willow</strong>: What’s that? I hear something!</p>
+<p><strong>madmartigan</strong>: You hear trouble.</p>
+<p><strong>willow</strong>: What is it?</p>
+<p><strong>madmartigan</strong>: A hundred horses…five or six wagons…
+and about six thousand fools.</p>
+<p><strong>willow</strong>: Sir? Sir!</p>
+<p><strong>officer</strong>: Out of the way!</p>
+<p><strong>airk</strong>: Push ’em harder! No rest at mid- day! We need
+to make ten more leagues by dark!</p>
+<p><strong>willow</strong>: Sir! Sir! I have this baby. We found her in
+our village. Will you take her…?</p>
+<p><strong>airk</strong>: We’re going into battle, little one. Find a
+woman to take care of it.</p>
+<p><strong>madmartigan</strong>: He thought you were a woman, Airk!</p>
+<p><strong>airk</strong>: Madmartigan! What did you do this time?</p>
+<p><strong>madmartigan</strong>: Nothing you wouldn’t have done it my
+place!</p>
+<p><strong>airk</strong>: I always knew you’d end up in a crow’s
+cage.</p>
+<p><strong>madmartigan</strong>: Least I’m not down there herding
+sheep!</p>
+<p><strong>airk</strong>: You’re lucky somebody got to you first,
+Madmartigan! I’d’ve killed you myself after that stunt at Land’s
+End!</p>
+<p><strong>madmartigan</strong>: Airk! Come on, Airk. Lemme outa
+here.</p>
+<p><strong>airk</strong>: Hey, remember? You don’t need my help,
+Madmartigan. Little rabbit trap like this? Come on! I could open it for
+you, but I wouldn’t wanna insult you!</p>
+<p><strong>madmartigan</strong>: Gimme a sword, Airk. I’ll win your war
+for you.</p>
+<p><strong>airk</strong>: You’re nothing but trouble, Madmar- tigan. And
+I got plenty of that. Stay in your coffin and rot!</p>
+<p><strong>madmartigan</strong>: I’ll be around long after you’re dead,
+Airk! You slime! When I get outa here I’ll cut your head off and stick
+it on a pig-pole!</p>
+<p><strong>willow</strong>: Friend of yours?</p>
+<p><strong>madmartigan</strong>: Hello, little baby…</p>
+<p><strong>madmartigan</strong>: Whatcha thinkin’ about, Willow?</p>
+<p><strong>willow</strong>: I hate this.</p>
+<p><strong>madmartigan</strong>: Nobody’s gonna take your baby. Know
+why? Nobody cares… Except me. You wanna go back to your farm. You wanna
+go back to your family. I could take care of that baby. I’ll look after
+her like she was me own.</p>
+<p><strong>willow</strong>: You don’t know anything about ba- bies.</p>
+<p><strong>madmartigan</strong>: Ahhh! But I know a lot of women who do.
+Why, if I had somebody in my life–a little daughter for instance–I’d
+have a reason to live…</p>
+<p><strong>madmartigan</strong>: Willow. You can’t let me die here. Not
+when I wanna help you.</p>
+<p><strong>willow</strong>: You gotta promise to feed her.</p>
+<p><strong>madmartigan</strong>: I will.</p>
+<p><strong>willow</strong>: Fresh goat’s milk.</p>
+<p><strong>madmartigan</strong>: Absolutely!</p>
+<p><strong>willow</strong>: And give her a bath everyday, and don’t let
+her get cold. And keep her diaper changed.</p>
+<p><strong>madmartigan</strong>: Of course! I promise!</p>
+<p><strong>madmartigan</strong>: Come to Daddy, little darlin’. I think
+she likes me!</p>
+<p><strong>willow</strong>: Here are her diaper rags. And this is her
+milk bladder. And when she cries–she’s either hungry or she’s tired–rock
+her on your left shoulder. She likes that.</p>
+<p><strong>madmartigan</strong>: Don’t worry, Willow. She’s in good
+hands. You haven’t made a mistake.</p>
+<p><strong>willow</strong>: Bye.</p>
+<p><strong>willow</strong>: Please take good care of her.</p>
+<p><strong>madmartigan</strong>: You’ve done a great job. Now you go
+back to your family and get your crop in.</p>
+<p><strong>willow</strong>: Look, it’s Willow Ufgood! He’s come home!
+Welcome back, Willow! He deserves a medal: he’s quite mystical. For
+honor, for bravery, for his intuitive powers… …let’s make him Apprentice
+Aldwin. Better still: High Aldwin! Make way! It’s Willow Uf- good, High
+Aldwin of—</p>
+<p><strong>willow</strong>: Come back here, you! That’s my baby!!</p>
+<p><strong>willow</strong>: Oh no, it’s a trap!</p>
+<p><strong>willow</strong>: Oh noooooo!!</p>
+<p><strong>willow</strong>: Where am I? Where’s the baby?</p>
+<p><strong>franjean</strong>: I am Franjean, king of the world.</p>
+<p><strong>willow</strong>: That baby’s my responsibility!</p>
+<p><strong>franjean</strong>: I don’t care. We paid for her. Go back to
+sleep, monsieur…</p>
+<p><strong>willow</strong>: Yeow! Madmartigan…I never should’ve trusted
+you…</p>
+<p><strong>teemo</strong>: Tongue.</p>
+<p><strong>willow</strong>: Who are you?</p>
+<p><strong>rool</strong>: Quiet, you fool!</p>
+<p><strong>teemo</strong>: We are emissaries of her majesty, Queen
+Cherlindrea, of the land of Coshairm.</p>
+<p><strong>willow</strong>: Queen Cherlindrea?</p>
+<p><strong>teemo</strong>: She requests the presence of your- self and
+the young princess.</p>
+<p><strong>willow</strong>: Who??</p>
+<p><strong>teemo</strong>: You’re the guardian, aren’t you?</p>
+<p><strong>rool</strong>: Quit yakking, Teemo. We gotta get outa
+here!</p>
+<p><strong>teemo</strong>: Elves! They’re always tormenting babies. They
+make them cry and take their tears.</p>
+<p><strong>rool</strong>: Somebody has to do it.</p>
+<p><strong>willow</strong>: Why??</p>
+<p><strong>rool</strong>: How else they gonna make dew drops?</p>
+<p><strong>willow</strong>: I’m getting her out of there!</p>
+<p><strong>teemo</strong>: No! You let us handle this. Come along,
+Rool!</p>
+<p><strong>teemo</strong>: Watch this. Right between the eyes.</p>
+<p><strong>rool</strong>: He never misses.</p>
+<p><strong>teemo</strong>: Ooops. Was that right? That wasn’t right.</p>
+<p><strong>rool/teemo</strong>: Hyah! Hyah! Git!</p>
+<p><strong>willow</strong>: I can’t go out there with the baby!</p>
+<p><strong>rool/teemo</strong>: Elves!!</p>
+<p><strong>willow</strong>: Ohhh, I hate this.</p>
+<p><strong>teemo</strong>: Take your time. Don’t worry about the elves.
+They won’t come out here.</p>
+<p><strong>willow</strong>: Why not?</p>
+<p><strong>rool</strong>: Because of the trolls.</p>
+<p><strong>willow</strong>: Trolls?</p>
+<p><strong>teemo</strong>: Relax. They only come out at night.</p>
+<p><strong>willow</strong>: This is not going well.</p>
+<p><strong>teemo</strong>: Hurry! Queen Cherlindrea will know what to
+do.</p>
+<p><strong>teemo</strong>: Come on. This is a privilege. No- body ever
+gets called before Her Majesty.</p>
+<p><strong>rool</strong>: Stand up! It’s the queen!</p>
+<p><strong>cherlindrea</strong>: Willow Ufgood.</p>
+<p><strong>willow</strong>: Yes…?</p>
+<p><strong>cherlindrea</strong>: I hope you are comfortable here, inside
+my kingdom…</p>
+<p><strong>teemo</strong>: Talk! Say something!</p>
+<p><strong>willow</strong>: I can’t see anything–she’s too bright!</p>
+<p><strong>cherlindrea</strong>: I’m sorry…</p>
+<p><strong>cherlindrea</strong>: Broke-heart of nightingale for our
+honored guest.</p>
+<p><strong>cherlindrea</strong>: It is Elora Danan! The prophecy has
+come true.</p>
+<p><strong>willow</strong>: You mean, you know who this baby belongs
+to?</p>
+<p><strong>cherlindrea</strong>: She belongs to all of us. She is the
+future queen and ruler of all kingdoms on earth.</p>
+<p><strong>willow</strong>: What a relief. Now I can go home.</p>
+<p><strong>cherlindrea</strong>: No, Willow. Your journey has just
+begun. It has been foretold that this child shall bring about the
+downfall of Queen Bavmorda, whose evil powers have darkened our world.
+Upon you depends this princess’s life.</p>
+<p><strong>willow</strong>: Me?</p>
+<p><strong>cherlindrea</strong>: You are the guardian, Willow. You must
+take her to Tir Asleen.</p>
+<p><strong>willow</strong>: What is Tir Asleen?</p>
+<p><strong>cherlindrea</strong>: It is a distant castle, where a great
+king and queen will look after Elora Danan and keep her safe until she
+is old enough to rule.</p>
+<p><strong>willow</strong>: Where is Tir Asleen? How far is it?</p>
+<p><strong>cherlindrea</strong>: The way has been lost in time. But
+there is one person, a druid sor- ceress, who might guide you there. She
+was exiled by Queen Bavmorda many years ago. Her name is Fin Raziel.</p>
+<p><strong>willow</strong>: You need a warrior for this job. I’m
+nobody.</p>
+<p><strong>cherlindrea</strong>: You are very important, Willow.</p>
+<p><strong>willow</strong>: No I’m not. Have you really looked at me?
+I’m short! Even for a Nelwyn!</p>
+<p><strong>willow</strong>: Why can’t you do it? You have mag- ical
+powers.</p>
+<p><strong>cherlindrea</strong>: My prsence cannot extend beyond this
+forest. But I can give you these…</p>
+<p><strong>cherlindrea</strong>: They will protect you. Use them
+wisely.</p>
+<p><strong>willow</strong>: They look like acorns.</p>
+<p><strong>cherlindrea</strong>: Anything you hurl them at will turn to
+stone.</p>
+<p><strong>willow</strong>: They’re magic? Are you serious?</p>
+<p><strong>cherlindrea</strong>: I am very serious, Willow. There is no
+time to lose.</p>
+<p><strong>willow</strong>: But I’ve got a family to think about! They
+need me!</p>
+<p><strong>willow</strong>: Hello…?</p>
+<p><strong>cherlindrea</strong>: Bavmord’a powers are growing like an
+evil plague. Soon she will con- trol the lives of you children, your
+wife, your village…everyone.</p>
+<p><strong>cherlindrea</strong>: The choice is yours.</p>
+<p><strong>willow</strong>: I’ll do it. Yes, I will, I’ll do it!</p>
+<p><strong>willow</strong>: But I only have one shoe.</p>
+<p><strong>willow</strong>: Wait till I tell my children. Stuff like
+this never happens in my village.</p>
+<p><strong>teemo</strong>: Hey, careful there!</p>
+<p><strong>willow</strong>: How do these work I wonder? I got- ta save
+one to show the High Aldwin.</p>
+<p><strong>rool</strong>: Look! Death below!</p>
+<p><strong>willow</strong>: Daikinis…</p>
+<p><strong>horsemen</strong>: Hyaaaaahh!!</p>
+<p><strong>willow</strong>: Let’s get out of here. Shhh, don’t cry,
+Elora. Things can’t get any worse than this…</p>
+<p><strong>teemo</strong>: I’m not going in there.</p>
+<p><strong>rool</strong>: Me neither!</p>
+<p><strong>willow</strong>: Don’t worry–I’m a sorcerer. What could
+possibly happen?</p>
+<p><strong>willow</strong>: Could you spare some milk for this poor
+hungry baby?</p>
+<p><strong>barmaid</strong>: Get outa here, Peck!</p>
+<p><strong>patrons</strong>: A Peck! Get him out! Beat it, Peck!</p>
+<p><strong>willow</strong>: I could use your help, boys.</p>
+<p><strong>teemo’s voice</strong>: Willow?</p>
+<p><strong>willow</strong>: This is not fun.</p>
+<p><strong>willow</strong>: Woah!</p>
+<p><strong>wench</strong>: Hurry! Hurry!</p>
+<p><strong>the other woman</strong>: How do I look?</p>
+<p><strong>willow</strong>: You!!</p>
+<p><strong>madmartigan</strong>: Where the hell did you come from?</p>
+<p><strong>willow</strong>: I trusted you…</p>
+<p><strong>rool</strong>: Who’s he?</p>
+<p><strong>madmartigan</strong>: You’re crawling with rodents.</p>
+<p><strong>llug</strong>: Where is he!!</p>
+<p><strong>wench</strong>: There’s nobody here except me and my, um,
+cousin.</p>
+<p><strong>madmartigan</strong>: How do you do.</p>
+<p><strong>willow</strong>: Hey! Give me that baby!</p>
+<p><strong>madmartigan</strong>: These Pecks make terrible nurse-
+maids.</p>
+<p><strong>willow</strong>: Nursemaid?!</p>
+<p><strong>madmartigan</strong>: They get too excited.</p>
+<p><strong>llug</strong>: Wanna breeeeeeed?</p>
+<p><strong>willow</strong>: Time to change her diaper.</p>
+<p><strong>madmartigan</strong>: Time to leave.</p>
+<p><strong>sorsha</strong>: You! Are you the mother of that child?</p>
+<p><strong>madmartigan</strong>: No. I mean yes.</p>
+<p><strong>sorsha</strong>: Let me see it.</p>
+<p><strong>madmartigan</strong>: I can’t.</p>
+<p><strong>sorsha</strong>: Let me see it.</p>
+<p><strong>willow</strong>: No! You can’t!</p>
+<p><strong>madmartigan</strong>: I can’t.</p>
+<p><strong>sorsha</strong>: Why not?</p>
+<p><strong>madmartigan</strong>: Why not?</p>
+<p><strong>willow</strong>: Because she’s sick.</p>
+<p><strong>madmartigan</strong>: Because she’s sick.</p>
+<p><strong>sorsha</strong>: Give it to me!</p>
+<p><strong>madmartigan</strong>: Gawd…you’re…beautiful…</p>
+<p><strong>sorsha</strong>: You’re not a woman.</p>
+<p><strong>llug</strong>: Not a woman??!!</p>
+<p><strong>sorsha</strong>: After them!!</p>
+<p><strong>willow</strong>: Madmartigan! Wait!</p>
+<p><strong>willow</strong>: We could’ve been killed, Madmarti- gan!</p>
+<p><strong>willow</strong>: Heeyah! Heeyah!</p>
+<p><strong>willow</strong>: Oh no!</p>
+<p><strong>death</strong>: Bordak!!</p>
+<p><strong>death</strong>: Bordak!!</p>
+<p><strong>willow</strong>: Woah…woah…!</p>
+<p><strong>madmartigan</strong>: That girl is a vision.</p>
+<p><strong>willow</strong>: Where’s the baby??</p>
+<p><strong>madmartigan</strong>: I thought you had her!</p>
+<p><strong>rool/teemo</strong>: Willow!!</p>
+<p><strong>madmartigan</strong>: Now Willow, I know you’re gonna blame
+me for this but it wasn’t my fault…!</p>
+<p><strong>willow</strong>: Elora Danan!</p>
+<p><strong>madmartigan</strong>: When I left the crossroads, I got
+ambushed by an elf!</p>
+<p><strong>willow</strong>: Madmartigan! You saved her life!</p>
+<p><strong>madmartigan</strong>: I did?</p>
+<p><strong>madmartigan</strong>: I mean, of course I saved her life.
+She’s almost my daughter, isn’t she?</p>
+<p><strong>willow</strong>: Let’s get out of here before they come
+back.</p>
+<p><strong>teemo</strong>: Northeast is that way. We’ve come west and
+south. I think.</p>
+<p><strong>rool</strong>: Watch it! You’re gonna set us on fire.</p>
+<p><strong>madmartigan</strong>: Not a bad idea.</p>
+<p><strong>madmartigan</strong>: So you’re on your way to Tir Asleen,
+huh? I hate to tell you this, Willow, but Tir Asleen dosn’t exist.</p>
+<p><strong>willow</strong>: Yes it does. The Fairy Queen told me.</p>
+<p><strong>madmartigan</strong>: The Fairy Queen? And the baby here’s a
+princess? And these two rodents are your guides?</p>
+<p><strong>madmartigan</strong>: Yeah well…in the morning I think I’ll
+be on my way.</p>
+<p><strong>willow</strong>: Madmartigan, I need your help.</p>
+<p><strong>madmartigan</strong>: My help? A great magician like you? You
+don’t need any help.</p>
+<p><strong>willow</strong>: But you’re a great swordsman!</p>
+<p><strong>willow</strong>: You’re not a warrior, Madmartigan! A warrior
+wouldn’t lie there and do nothing!</p>
+<p><strong>willow</strong>: We’re in trouble! You’ve seen the big army
+that’s after us! You’re a fake! You’re a bum! You’re a– you’re a
+coward!!</p>
+<p><strong>madmartigan</strong>: What’s with you, Peck?</p>
+<p><strong>willow</strong>: I miss my wife! I miss my chil- dren! My boy
+Ranon! He’s growing up so fast, he even helps me on the farm now! And
+little Mims! If you ever saw her sweet little face you’d melt
+Madmartigan, you’d melt! Or maybe you wouldn’t. You don’t know anything
+about love. You don’t know anything about any- thing…</p>
+<p><strong>madmartigan</strong>: I was in love once, Willow. She had a
+hold on my heart. I could barely function. I was a great swordsman! I
+was knighted! I could have been king!</p>
+<p><strong>willow</strong>: You?</p>
+<p><strong>madmartigan</strong>: Yeah me. King! But she betrayed me. She
+robbed me of my dream.</p>
+<p><strong>madmartigan</strong>: I’ll never fall in love again…</p>
+<p><strong>willow</strong>: Madmartigan! Madmartigan!</p>
+<p><strong>madmartigan</strong>: Relax, Willow. We’re having fun.</p>
+<p><strong>rool</strong>: That’s it! The sorceress lives there!</p>
+<p><strong>teemo</strong>: Are you sure?</p>
+<p><strong>rool</strong>: Yes! Raziel! She lives out on that island!</p>
+<p><strong>teemo</strong>: That tree dosn’t look like gold to me.</p>
+<p><strong>madmartigan</strong>: Gold!!</p>
+<p><strong>teemo</strong>: Its branches are supposed to be made of gold,
+solid gold.</p>
+<p><strong>willow</strong>: How are we going to get out there?</p>
+<p><strong>madmartigan</strong>: We’ll find a way, Willow. Look over
+there–that looks like a village–maybe they’ve got a boat. Come on, what
+are you waiting for?</p>
+<p><strong>madmartigan</strong>: Give me a hand here, Peck!</p>
+<p><strong>boy</strong>: What are you doing?</p>
+<p><strong>madmartigan</strong>: It’s nothing to do with you.</p>
+<p><strong>willow</strong>: We need to get out to that island.</p>
+<p><strong>boy</strong>: The island is cursed.</p>
+<p><strong>willow</strong>: We’ve traveled a long way. We’re looking for
+Fin Raziel.</p>
+<p><strong>teemo</strong>: The sorceress.</p>
+<p><strong>boy</strong>: She’s there. But you can’t go there. The island
+is cursed.</p>
+<p><strong>madmartigan</strong>: Yeah? Who cursed it?</p>
+<p><strong>boy</strong>: Queen Bavmorda. Her powers govern the
+elements.</p>
+<p><strong>madmartigan</strong>: Ahh, he’s trying to protect the gold.
+Come on, Willow. Jump in.</p>
+<p><strong>willow</strong>: What would the Fairy Queen say?</p>
+<p><strong>rool</strong>: She’s not here.</p>
+<p><strong>teemo</strong>: Obviously.</p>
+<p><strong>willow</strong>: Without Raziel we’ll never find Tir Asleen.
+We’d better go.</p>
+<p><strong>willow</strong>: Raziel? Hello? Fin Raziel?</p>
+<p><strong>raziel</strong>: Get away! Get away!</p>
+<p><strong>raziel</strong>: You’ll die! You’ll die!</p>
+<p><strong>raziel</strong>: Who are you! Who are you!</p>
+<p><strong>willow</strong>: I’m Willow Ufgood. I’m here to find Fin
+Raziel.</p>
+<p><strong>raziel</strong>: That’s me! Raziel! Raziel!</p>
+<p><strong>willow</strong>: This can’t be right. This isn’t a sorceress.
+This is some kind of animal.</p>
+<p><strong>teemo</strong>: Queen Bavmorda transformed her.</p>
+<p><strong>raziel</strong>: What do you want!</p>
+<p><strong>willow</strong>: We need your help. To take this baby to Tir
+Asleen. She’s a prin- cess.</p>
+<p><strong>raziel</strong>: Elora Danan!</p>
+<p><strong>madmartigan</strong>: Rool! Teemo! You were right! This whole
+tree is made of gold!!</p>
+<p><strong>raziel</strong>: Fools! You should never have come to this
+place! We’re all going to die!</p>
+<p><strong>raziel</strong>: We’ve got to get off this island right now.
+Hurry! The boat! It’s our only chance!</p>
+<p><strong>willow</strong>: Madmartigan!</p>
+<p><strong>madmartigan</strong>: Wait! Gold! Gold!</p>
+<p><strong>willow</strong>: Help, Madmartigan! The oar!</p>
+<p><strong>madmartigan</strong>: My gold!</p>
+<p><strong>raziel</strong>: Kill him!</p>
+<p><strong>willow</strong>: No!</p>
+<p><strong>raziel</strong>: Kill him!</p>
+<p><strong>madmartigan</strong>: No!! Help!! Willow!!!</p>
+<p><strong>madmartigan</strong>: Willow…you…you got…magic…! Wait…we
+could team up…!</p>
+<p><strong>raziel</strong>: Flee! Flee!</p>
+<p><strong>sorsha</strong>: Raziel. Did you think my mother would allow
+you to escape?</p>
+<p><strong>sorsha</strong>: This is what we’re looking for. It bears the
+markings.</p>
+<p><strong>madmartigan</strong>: Don’t worry, Willow. If there’s one
+thing I’m good at, it’s charm- ing a woman…</p>
+<p><strong>madmartigan</strong>: So. Couldn’t live without me, huh?</p>
+<p><strong>sorsha</strong>: Lose your skirt? How embarassing.</p>
+<p><strong>madmartigan</strong>: Still got what counts.</p>
+<p><strong>sorsha</strong>: Not for long.</p>
+<p><strong>sorsha</strong>: We’ll join the column. Bring them with
+us.</p>
+<p><strong>teemo</strong>: We gotta follow them.</p>
+<p><strong>rool</strong>: Us?? We’ll never catch them. Any- way, we’re
+all done, Teemo. Let’s go home.</p>
+<p><strong>teemo</strong>: Get back here, Rool!</p>
+<p><strong>rool</strong>: Ouch! Let go of me!</p>
+<p><strong>willow</strong>: I can’t go on…</p>
+<p><strong>madmartigan</strong>: Willow, why don’t you use your mag- ic
+to get us out of here?</p>
+<p><strong>raziel</strong>: He’s no magician.</p>
+<p><strong>madmartigan</strong>: He turned that monster into stone!</p>
+<p><strong>raziel</strong>: Did you give that acorn its power?</p>
+<p><strong>willow</strong>: No.</p>
+<p><strong>raziel</strong>: A magician makes magic. Any fool can use
+it.</p>
+<p><strong>madmartigan</strong>: Then you get us out of here.</p>
+<p><strong>raziel</strong>: I will! But I need help!</p>
+<p><strong>willow</strong>: I’ll help you…!</p>
+<p><strong>madmartigan</strong>: I won’t.</p>
+<p><strong>raziel</strong>: You must learn magic.</p>
+<p><strong>willow</strong>: That’s all I ever wanted!</p>
+<p><strong>raziel</strong>: Then I will teach you.</p>
+<p><strong>madmartigan</strong>: Nice horse…nice hair…real nice hair…I’d
+say you’ve got the most beautiful hair I’ve ever–</p>
+<p><strong>sorsha</strong>: Wolff wants to boil you in oil.</p>
+<p><strong>sorsha</strong>: Don’t tempt me.</p>
+<p><strong>willow</strong>: If you rest the baby on your shoulder,
+she’ll stop crying.</p>
+<p><strong>sorsha</strong>: Shut up.</p>
+<p><strong>madmartigan</strong>: Mmmm, I love the smell of a woman.</p>
+<p><strong>sorsha</strong>: My step-father’s going to tear you
+apart.</p>
+<p><strong>madmartigan</strong>: I’m torn apart already. I mean it!
+Under all that armor is a beautiful–</p>
+<p><strong>madmartigan</strong>: Who is that girl, anyway?</p>
+<p><strong>raziel</strong>: Sorsha, Queen Bavmorda’s daughter.</p>
+<p><strong>madmartigan</strong>: Forget that one, Madmartigan.</p>
+<p><strong>raziel</strong>: Willow. To learn magic, first you must make
+your own philosopher’s stone!</p>
+<p><strong>willow</strong>: What do I need for that?</p>
+<p><strong>raziel</strong>: We must start with feathers, dung, and a
+lock of your hair.</p>
+<p><strong>madmartigan</strong>: Now that’s a woman…!</p>
+<p><strong>raziel</strong>: Keep working at it. Forget all you know, or
+think you know. A magician’s power depends on disord- er of the
+mind.</p>
+<p><strong>madmartigan</strong>: You got that one covered.</p>
+<p><strong>willow</strong>: I hope she’s all right. How much more do I
+have to do of this?</p>
+<p><strong>raziel</strong>: Till it’s in a powder. The energy exits
+within you…</p>
+<p><strong>willow</strong>: I know, and the magician’s goal is to find
+his true self. But what’s this got to do with it?</p>
+<p><strong>raziel</strong>: As below, so above. You hold the univers,
+Willow, in your hand.</p>
+<p><strong>madmartigan</strong>: I’m beginning to think you two deserve
+to be locked up.</p>
+<p><strong>willow</strong>: The universe is a living creature, like you
+and me, Madmartigan.</p>
+<p><strong>madmartigan</strong>: We’re a tiny version of all that?</p>
+<p><strong>raziel</strong>: As above, so below.</p>
+<p><strong>willow</strong>: I’m all finished. Now what?</p>
+<p><strong>raziel</strong>: Burn it to a fine ash.</p>
+<p><strong>willow</strong>: How am I gonna do that?</p>
+<p><strong>raziel</strong>: Patience. Concentrate. You will find a
+way.</p>
+<p><strong>willow</strong>: What’s going on?</p>
+<p><strong>madmartigan</strong>: Hurt him and you’ll answer to me!</p>
+<p><strong>sorsha</strong>: This baby won’t do what I say. You seem to
+know what to do. Here! Make it shut up.</p>
+<p><strong>willow</strong>: She needs to be changed.</p>
+<p><strong>sorsha</strong>: I changed her already!</p>
+<p><strong>willow</strong>: She needs to be changed again.</p>
+<p><strong>sorsha</strong>: Who is that horrible friend of yours?</p>
+<p><strong>willow</strong>: Madmartigan.</p>
+<p><strong>sorsha</strong>: Who is he?</p>
+<p><strong>willow</strong>: I don’t know much about him.</p>
+<p><strong>sorsha</strong>: He’s very bold. Do you really think my hair
+is beautiful?</p>
+<p><strong>willow</strong>: Uh, yes. It’s very nice hair.</p>
+<p><strong>willow</strong>: She’s hungry.</p>
+<p><strong>sorsha</strong>: I know she’s hungry. I tried to feed her but
+she wouldn’t eat a thing. I’m not a wet nurse.</p>
+<p><strong>willow</strong>: Here. Hold her.</p>
+<p><strong>sorsha</strong>: I tried everything. A spoon. I poured milk
+into her mouth, she just spat it out. I don’t know what to do, I’m not a
+mother.</p>
+<p><strong>willow</strong>: Sometimes she likes it heated.</p>
+<p><strong>willow</strong>: She’s a good baby.</p>
+<p><strong>willow</strong>: I did it! I got the ashes!</p>
+<p><strong>raziel</strong>: Good! The first step is complete.</p>
+<p><strong>madmartigan</strong>: Did she ask about me?</p>
+<p><strong>willow</strong>: Who?</p>
+<p><strong>madmartigan</strong>: Come on, Peck, don’t give me a hard
+time. You were in her ten all night. Did she say anything?</p>
+<p><strong>willow</strong>: She said lots of thing.s</p>
+<p><strong>madmartigan</strong>: Willow!</p>
+<p><strong>willow</strong>: She asked about you, Madmartigan.</p>
+<p><strong>madmartigan</strong>: Well what did she say?</p>
+<p><strong>sorsha</strong>: Here. You’re going to need these where we’re
+going.</p>
+<p><strong>madmartigan</strong>: She’s in love.</p>
+<p><strong>willow</strong>: You’re crazy. I think you’re in love.</p>
+<p><strong>raziel</strong>: We don’t have much time left! Go on! Go
+on!</p>
+<p><strong>willow</strong>: I must concetrate my imagination…to creat a
+new…reality!</p>
+<p><strong>raziel</strong>: What’s the magician’s weapon?</p>
+<p><strong>willow</strong>: The limitless power of…</p>
+<p><strong>raziel</strong>: Your will! Your will! What else could it
+be?</p>
+<p><strong>willow</strong>: I can’t remember all these things. What am I
+learning?</p>
+<p><strong>raziel</strong>: The art of transformation!</p>
+<p><strong>willow</strong>: But what am I gonna transform??</p>
+<p><strong>raziel</strong>: Me!</p>
+<p><strong>willow</strong>: You?</p>
+<p><strong>madmartigan</strong>: What are you gonna become, Raziel?
+Queen of the rodents?</p>
+<p><strong>sorsha</strong>: The baby’s cold. Take her.</p>
+<p><strong>raziel</strong>: You remind me of your father, Sor- sha.</p>
+<p><strong>sorsha</strong>: My father was a weakling.</p>
+<p><strong>raziel</strong>: He was a great king. Not like your
+step-father, not like your mother. He ruled Tir Asleen with kindness,
+and a generous heart.</p>
+<p><strong>sorsha</strong>: My mother calls that weakness.</p>
+<p><strong>madmartigan</strong>: What do you call it?</p>
+<p><strong>sorsha</strong>: I do what I’m told.</p>
+<p><strong>madmartigan</strong>: Too bad you’re not more like your
+father.</p>
+<p><strong>sorsha</strong>: Be careful.</p>
+<p><strong>kael</strong>: Don’t tell me what to do.</p>
+<p><strong>madmartigan</strong>: We gotta get the baby out of here.</p>
+<p><strong>raziel</strong>: Tonight! Complete the philosopher’s stone! I
+must be turned back!</p>
+<p><strong>willow</strong>: I’ll do it, Raziel…</p>
+<p><strong>raziel</strong>: Let it settle. Carefully, slowly.
+Concentration and will. Now pour the water off.</p>
+<p><strong>willow</strong>: Oooh, this smells terrible.</p>
+<p><strong>raziel</strong>: That’s the life spark. Exxence of magic and
+sorcery!</p>
+<p><strong>willow</strong>: Ouch!!</p>
+<p><strong>raziel</strong>: Shhhhh!</p>
+<p><strong>willow</strong>: What’d you bit me for!!</p>
+<p><strong>raziel</strong>: We need blood. To nourish the stone. charge
+the stone with ener- gy.</p>
+<p><strong>raziel</strong>: The components of the stone are fusing…</p>
+<p><strong>raziel</strong>: Again: what is the magician’s weapon?</p>
+<p><strong>willow</strong>: His will.</p>
+<p><strong>raziel</strong>: Now use it.</p>
+<p><strong>willow</strong>: I just wanted to test it first.</p>
+<p><strong>raziel</strong>: No! Change me back into a sor- ceress,
+Willow.</p>
+<p><strong>willow</strong>: Avaggdu, supriom, luwatha…</p>
+<p><strong>willow</strong>: What did I do?</p>
+<p><strong>madmartigan</strong>: Not bad, Peck. I’m impressed. You
+busted the lock.</p>
+<p><strong>willow</strong>: Madmartigan. Let’s go. Let’s get Eloran
+Danan.</p>
+<p><strong>madmartigan</strong>: Let’s get Elora Danan.</p>
+<p><strong>raziel</strong>: Wait! What about me!</p>
+<p><strong>madmartigan</strong>: You’re a magician, Willow. But I’m a
+thief. Wait here. I’ll get the baby.</p>
+<p><strong>raziel</strong>: I’m supposed to be a beautiful wo= man.</p>
+<p><strong>willow</strong>: Come on, Madmartigan…!</p>
+<p><strong>willow</strong>: What are you doing? Get out of there…!</p>
+<p><strong>madmartigan</strong>: I love you.</p>
+<p><strong>sorsha</strong>: One move, and you really will be a
+woman.</p>
+<p><strong>sorsha</strong>: You’re a fool. Now put her back.</p>
+<p><strong>madmartigan</strong>: I’m not going to let this baby die.</p>
+<p><strong>sorsha</strong>: Don’t make me kill you.</p>
+<p><strong>madmartigan</strong>: I believe you would…</p>
+<p><strong>sorsha</strong>: Why did you say that?</p>
+<p><strong>madmartigan</strong>: Say what?</p>
+<p><strong>sorsha</strong>: I love you.</p>
+<p><strong>madmartigan</strong>: Because it’s true.</p>
+<p><strong>sorsha</strong>: I don’t believe you.</p>
+<p><strong>madmartigan</strong>: I wish it weren’t true. I swore I’d
+never let this happen. I hate you. I hate your beauty, I hate your
+innocence, I hate the feelings you’ve awakened in me.</p>
+<p><strong>madmartigan</strong>: I’m in love with you, Sorsha. I don’t
+want to be, but a power has enchanted me and I stand helpless against
+it. It’s torture. Battle- field or prison cell was never half as
+cruel.</p>
+<p><strong>madmartigan</strong>: I want you and I can’t have you so I
+want you all the more. If this were another time and another place
+I’d–</p>
+<p><strong>sorsha</strong>: You’d what?</p>
+<p><strong>kael</strong>: What’s going on here!!</p>
+<p><strong>sorsha</strong>: Deceiver!!</p>
+<p><strong>madmartigan</strong>: Whoops!</p>
+<p><strong>madmartigan</strong>: Willow! Jump on the shiled!</p>
+<p><strong>kael</strong>: Bowmen! Horses! After them!</p>
+<p><strong>madmartigan</strong>: Sorsha! I didn’t betray you. I love
+you!</p>
+<p><strong>kael</strong>: Kill them!!</p>
+<p><strong>willow</strong>: Nooo!!!</p>
+<p><strong>madmartigan</strong>: Willow! Willow! Are you all right?</p>
+<p><strong>villager</strong>: King Kael!</p>
+<p><strong>another villager</strong>: Nockmaar troops!</p>
+<p><strong>madmartigan</strong>: Help us.</p>
+<p><strong>airk</strong>: Madmartigan. Settled down with a family
+huh?</p>
+<p><strong>madmartigan</strong>: You left me to die, friend.</p>
+<p><strong>airk</strong>: You managed alright.</p>
+<p><strong>madmartigan</strong>: Is this what’s left of your army?</p>
+<p><strong>officer</strong>: Keep that baby quiet.</p>
+<p><strong>kael</strong>: Where is it! Tell us or we’ll burn your
+village! Sorsha!</p>
+<p><strong>officer</strong>: Kill her.</p>
+<p><strong>madmartigan</strong>: You’ll draw the others.</p>
+<p><strong>airk</strong>: It’s you they’re after, Madmarti- gan. What
+did you do this time?</p>
+<p><strong>madmartigan</strong>: They’re not after me. They want the
+baby.</p>
+<p><strong>airk</strong>: Who is this baby?</p>
+<p><strong>willow</strong>: The princess, Elora Danan.</p>
+<p><strong>people</strong>: The prophecy has come true.</p>
+<p><strong>airk</strong>: Give her to us. We’ll protect her.</p>
+<p><strong>raziel</strong>: Not safe! Not safe!</p>
+<p><strong>willow</strong>: We’re taking her to Tir Asleen. She’ll be
+safe there from Bavmorda’s powers.</p>
+<p><strong>airk</strong>: Tir Asleen is a myth. It doesn’t exist.</p>
+<p><strong>raziel</strong>: It does! It does! I will show you!</p>
+<p><strong>airk</strong>: You gonna be a hero, Madmartigan? I’ve lost
+half my men fighting Kael, and Bavmorda, and the Nock- maar army. Now
+you and this Peck, and that magpie up in the rafters, are gonna take ’em
+on alone?</p>
+<p><strong>madmartigan</strong>: Then come with us.</p>
+<p><strong>airk</strong>: The war is here! In towns and vil- lages like
+this!</p>
+<p><strong>airk</strong>: You’re chasing a dream.</p>
+<p><strong>madmartigan</strong>: Just get me some horses.</p>
+<p><strong>madmartigan</strong>: Once again, Airk, we say goodbye.</p>
+<p><strong>airk</strong>: One day one of us willl stand on the other’s
+grave.</p>
+<p><strong>raziel</strong>: Nockmaar! Nockmaar!</p>
+<p><strong>raziel</strong>: This way! The cave!</p>
+<p><strong>willow</strong>: Madmartigan! I can’t stand being in
+closed-in places.</p>
+<p><strong>madmartigan</strong>: Want me to carry Elora?</p>
+<p><strong>willow</strong>: I’m used to her. How’s she doing?</p>
+<p><strong>madmartigan</strong>: She’s doing a lot better than we are,
+Peck.</p>
+<p><strong>madmartigan</strong>: Willow…this may be a bad time to ask
+this question but…what if Raziel’s wrong?</p>
+<p><strong>willow</strong>: She can’t be wrong. She’s a very very very
+powerful sorceress.</p>
+<p><strong>madmartigan</strong>: She’s a bird, Willow.</p>
+<p><strong>willow</strong>: That’s my fault, not hers. I’ve got to keep
+practicing. I’m still in the learning stage but magic, Madmartigan,
+requires concentration and–</p>
+<p><strong>madmartigan</strong>: Watch it!</p>
+<p><strong>willow</strong>: Ahhh!</p>
+<p><strong>willow</strong>: I hate this.</p>
+<p><strong>madmartigan</strong>: Go, Willow! Run! Run!</p>
+<p><strong>madmartigan</strong>: Willow! Willow!</p>
+<p><strong>kael</strong>: Go after them!</p>
+<p><strong>madmartigan</strong>: Hurry, Willow! Throw it!</p>
+<p><strong>raziel</strong>: Look out!</p>
+<p><strong>kael</strong>: After them!!</p>
+<p><strong>raziel</strong>: Tir Asleen.</p>
+<p><strong>willow</strong>: There’s nobody here.</p>
+<p><strong>raziel</strong>: The Knights of the Pacalcade. The king’s
+bravest warriors.</p>
+<p><strong>raziel</strong>: Turn them back, Willow!</p>
+<p><strong>willow</strong>: How??</p>
+<p><strong>raziel</strong>: Use the philosopher’s stone! Hur- ry!
+Invocation! Release them!</p>
+<p><strong>willow</strong>: Beings within, beings without! Danu danu
+walkail funfawtha!</p>
+<p><strong>willow</strong>: I did it! Madmartigan! Come here! Look! You
+gotta see this! I did it!</p>
+<p><strong>raziel</strong>: More! More!</p>
+<p><strong>kael</strong>: Assault! Scale the walls!</p>
+<p><strong>willow</strong>: Tuatha tuatha danu!</p>
+<p><strong>willow</strong>: Raziel! I transformed them all! I’m a
+magician!</p>
+<p><strong>raziel</strong>: You didn’t transform them, Willow, you
+released them. That was noth- ing. Now change me.</p>
+<p><strong>willow</strong>: I feel like I could do anything!</p>
+<p><strong>knight</strong>: It belonged to our king.</p>
+<p><strong>willow</strong>: Capture the enery…limitless power of the
+will…avvdachh doth indicht rredd baerkinhaekin!</p>
+<p><strong>willow</strong>: Raziel? Is that you? Oh-oh. What
+happened?</p>
+<p><strong>raziel</strong>: I hate this.</p>
+<p><strong>kael</strong>: Attack!!</p>
+<p><strong>madmartigan</strong>: Sorsha.</p>
+<p><strong>sorsha</strong>: Madmartigan.</p>
+<p><strong>madmartigan</strong>: Whose side are you on?</p>
+<p><strong>sorsha</strong>: Yours.</p>
+<p><strong>minion</strong>: Arrrggghhh!</p>
+<p><strong>sorsha</strong>: I love you.</p>
+<p><strong>kael</strong>: Sorsha!!</p>
+<p><strong>kael</strong>: Bordak!</p>
+<p><strong>kael</strong>: Kill them both!</p>
+<p><strong>kael</strong>: Troops! To Nockmaar! Ride with me!</p>
+<p><strong>willow</strong>: I’m sorry. There were too many of them.</p>
+<p><strong>madmartigan</strong>: Out for a little ride in the coun- try,
+Airk?</p>
+<p><strong>airk</strong>: Thought you might get lonely, Mad-
+martigan!</p>
+<p><strong>madmartigan</strong>: Thank you, friend.</p>
+<p><strong>airk</strong>: Let’s go.</p>
+<p><strong>madmartigan</strong>: Sorsha! Any way in there?</p>
+<p><strong>sorsha</strong>: No. The fortress is protected on all
+sides.</p>
+<p><strong>airk</strong>: Make camp! We’ll assault at dawn.</p>
+<p><strong>bavmorda</strong>: Kael!</p>
+<p><strong>kael</strong>: Queen Bavmorda. I have the child.</p>
+<p><strong>bavmorda</strong>: We must start the ritual!</p>
+<p><strong>bavmorda</strong>: Who is that?</p>
+<p><strong>kael</strong>: An army of rebels and traitors.</p>
+<p><strong>bavmorda</strong>: Where is Sorsha?</p>
+<p><strong>kael</strong>: She has turned against you.</p>
+<p><strong>bavmorda</strong>: Purify the altar! Arrange the im-
+plements! I’ll deal with Sorsha!</p>
+<p><strong>bavmorda</strong>: This is not an army!</p>
+<p><strong>raziel</strong>: Willow! Get out of here! Quick! Hide!</p>
+<p><strong>raziel</strong>: Get down! The ritual chant! Quick! Protect
+yourself!</p>
+<p><strong>willow</strong>: Why?</p>
+<p><strong>raziel</strong>: Just do it!</p>
+<p><strong>madmartigan</strong>: We’ve come for Elora Danan! Turn her
+over to us!</p>
+<p><strong>bavmorda</strong>: You dare to challenge me? You are not
+warriors. You’re pigs!</p>
+<p><strong>bavmorda</strong>: You’re all pigs!</p>
+<p><strong>sorsha</strong>: Mother! No!!</p>
+<p><strong>bavmorda</strong>: You made your decision!</p>
+<p><strong>bavmorda</strong>: Begin the ritual. Now! Light the first
+candle.</p>
+<p><strong>bavmorda</strong>: Come, thunder. Come lightning. Touch this
+altar with your pwer. Come into my tower…</p>
+<p><strong>bavmorda</strong>: Dark runes, dark powers! Blend and bind,
+bind and blend, Universal night! And the might of Nockmaar!</p>
+<p><strong>raziel</strong>: It’s over, Willow. You did well. You
+protected yourself.</p>
+<p><strong>willow</strong>: I’ve come all this way and now Elora Dana’s
+going to die!</p>
+<p><strong>raziel</strong>: No! I can still defeat Bavmorda!</p>
+<p><strong>willow</strong>: She’s too powerful, Raziel</p>
+<p><strong>raziel</strong>: A true magician, Willow, never surrenders.
+She is a sorceress–I am a sorceress! Transform me now and I will destroy
+her! Hexagram!</p>
+<p><strong>willow</strong>: Banish all disturbing forces from this
+place. Fire, water, above and below. Balance. Balance. Bal- ance.</p>
+<p><strong>raziel</strong>: Don’t give up! Willow!</p>
+<p><strong>willow</strong>: Raziel!</p>
+<p><strong>raziel</strong>: We’ve got a lot of work to do, Wil- low.
+Bring in our brave men.</p>
+<p><strong>bavmorda</strong>: Black fire forever kindled within, Let the
+second right begin!</p>
+<p><strong>airk</strong>: Uphill with our rough weapons, we’ll never
+make it!</p>
+<p><strong>sorsha</strong>: Elora Danan will die!</p>
+<p><strong>raziel</strong>: By dawn, upon thirteen tolls of the runic
+drum!</p>
+<p><strong>warrior</strong>: Bavmorda is too powerful. We need more
+forces. I say we retreat!</p>
+<p><strong>raziel</strong>: Bavmorda cannot transform you. I’ve
+protected this camp with a spell.</p>
+<p><strong>madmartigan</strong>: Can you use your magic to get our men
+into the fortress, Raziel?</p>
+<p><strong>raziel</strong>: Bavmorda has shielded it with a spell of her
+own.</p>
+<p><strong>willow</strong>: Wait!!</p>
+<p><strong>willow</strong>: I have an idea. Back in my village we catch
+a lot of hedgehogs.</p>
+<p><strong>madmartigan</strong>: Willow, this is war, not agricul-
+ture!</p>
+<p><strong>willow</strong>: I know, I know! But this is a way to get
+into that castle…</p>
+<p><strong>airk</strong>: It’s too much work.</p>
+<p><strong>warrior</strong>: It can’t be done.</p>
+<p><strong>sorsha</strong>: Kael will never fall for it.</p>
+<p><strong>madmartigan</strong>: I don’t know, Willow.</p>
+<p><strong>willow</strong>: Madmartigan, you promised me you’d take care
+of Elora Danan like your own daughter. She is all that matters. Are you
+going to abandon her?</p>
+<p><strong>airk</strong>: Come on, Madmartigan. you gonna listen to a
+Peck? You and I are warriors. You know this plan will never work.</p>
+<p><strong>madmartigan</strong>: We’ll probably die here, Sorsha.</p>
+<p><strong>sorsha</strong>: I have no family.</p>
+<p><strong>raziel</strong>: If we do not fight, and the baby dies, all
+hope for the future is lost. I shall face the danger alone if I have
+to.</p>
+<p><strong>willow</strong>: Me, too.</p>
+<p><strong>madmartigan</strong>: Time is running out. We must now decide
+who’s going to leave and who is going to stay…</p>
+<p><strong>bavmorda</strong>: Ocht veth nockkthirth bordak!</p>
+<p><strong>raziel</strong>: Time is running out.</p>
+<p><strong>willow</strong>: Surrender!!</p>
+<p><strong>willow</strong>: We are all-powerful magicians! Give us the
+baby or we will destroy you!!</p>
+<p><strong>kael</strong>: Kill them!</p>
+<p><strong>raziel</strong>: Patience, Willow.</p>
+<p><strong>willow</strong>: Courage, Willow.</p>
+<p><strong>airk</strong>: Let’s squah ’em!</p>
+<p><strong>sorsha</strong>: No, Willow!!</p>
+<p><strong>sorsha</strong>: I will face my mother alone.</p>
+<p><strong>bavmorda</strong>: Sorsha!!</p>
+<p><strong>sorsha</strong>: I won’t let you kill her!</p>
+<p><strong>bavmorda</strong>: You are a weakling. Like you fa- ther! Can
+you not see that I am about to become all-powerful!</p>
+<p><strong>sorsha</strong>: No!!</p>
+<p><strong>bavmorda</strong>: Raziel…!!</p>
+<p><strong>raziel</strong>: The baby will be queen. It has been
+foretold, Bavmorda.</p>
+<p><strong>bavmorda</strong>: My ritual will kill the prophecy! Now the
+child dies with it, its en- ergy exiled into oblivion! You see? I hold
+the power of the universe!</p>
+<p><strong>raziel</strong>: Not until your ritual is complete!</p>
+<p><strong>bavmorda</strong>: And who will stop me? The elements are
+slaves to my command!</p>
+<p><strong>raziel</strong>: There is no one who can match your sorcery.
+Except me!</p>
+<p><strong>madmartigan</strong>: Airk!!</p>
+<p><strong>madmartigan</strong>: Airk! Airk!</p>
+<p><strong>madmartigan</strong>: Madmartigan…you’re a brave warrior…a
+true friend…a good man…</p>
+<p><strong>madmartigan</strong>: We’re gonna win this war, Airk.</p>
+<p><strong>bavmorda</strong>: As above, so below! Universe of evil,
+Raziel! It conquers even you!</p>
+<p><strong>bavmorda</strong>: Stop! Bring back that child!!!</p>
+<p><strong>bavmorda</strong>: Who are you?</p>
+<p><strong>willow</strong>: I’m Willow Ufgood. I’m a magician.</p>
+<p><strong>willow</strong>: I’m a great magician.</p>
+<p><strong>bavmorda</strong>: Is that the extent of your power?</p>
+<p><strong>bavmorda</strong>: Place it on the altar.</p>
+<p><strong>willow</strong>: No. You can’t have her.</p>
+<p><strong>bavmorda</strong>: By ritual, by sorcery, I well draw the
+lightning and send this child into the destructive realm.</p>
+<p><strong>willow</strong>: And with my magic I’ll send her into
+the…into the…</p>
+<p><strong>bavmorda</strong>: You’re no magician.</p>
+<p><strong>willow</strong>: Into the good.</p>
+<p><strong>bavmorda</strong>: Even I don’t have the power to do that.
+You’re a fraud.</p>
+<p><strong>bavmorda</strong>: Impossible! Bordak! Bordak!</p>
+<p><strong>bavmorda</strong>: Aaaaahhhh!!!</p>
+<p><strong>raziel</strong>: Willow…Willow…how…how did you do that?</p>
+<p><strong>willow</strong>: It was just the old disappearing pig
+trick.</p>
+<p><strong>raziel</strong>: Willow Ufgood. Take this Book of Sorcery.
+You are on your way to becoming a great magician.</p>
+<p><strong>willow</strong>: Your dream has come true, madmarti- gan.</p>
+<p><strong>madmartigan</strong>: Goodbye, Peck.</p>
+<p><strong>willow</strong>: Farewell, Elora Danan.</p>
+<p><strong>kiaya</strong>: Willow!!</p>
+<p><strong>willow</strong>: Kiaya!!</p>
+</body>
+</html>

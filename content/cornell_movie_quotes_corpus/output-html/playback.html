@@ -1,0 +1,2351 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>playback</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="playback">playback</h1>
+<p><strong>canadian official</strong>: Good afternoon. You name,
+please.</p>
+<p><strong>passenger</strong>: George Olson.</p>
+<p><strong>mitchell</strong>: Better stop while it’s still perfect.</p>
+<p><strong>canadian official</strong>: And where were you born,
+Mr. Olson?</p>
+<p><strong>passenger</strong>: Waukegan, Illinois.</p>
+<p><strong>unknown woman</strong>: Is there something I can do for
+you?</p>
+<p><strong>mitchell</strong>: There are a lot of things you could do for
+me.</p>
+<p><strong>immigration inspector</strong>: And this is your wife,
+Mr. Olson?</p>
+<p><strong>passenger</strong>: Yes. She was born in Waukegan, too. Same
+as Jack Benny, you know.</p>
+<p><strong>officer</strong>: Jack Benny?</p>
+<p><strong>unknown woman</strong>: Well, there is something you could do
+for me.</p>
+<p><strong>mitchell</strong>: I’d be delighted.</p>
+<p><strong>unknown woman</strong>: You can move to one side. So my
+husband can get in.</p>
+<p><strong>customs official</strong>: Any firearms? Dutiable articles of
+any kind, Mr. Olson?</p>
+<p><strong>mitchell</strong>: Would you care to see the Seattle
+paper?</p>
+<p><strong>betty</strong>: No thanks, I’ve seen Seattle.</p>
+<p><strong>mitchell</strong>: My name’s Larry Mitchell. I live in
+Vancouver.</p>
+<p><strong>mitchell</strong>: Same as an hour ago. Remember? I’m the
+steady type.</p>
+<p><strong>betty</strong>: I’m afraid there’s nothing I can do about it,
+Mr. Mitchell.</p>
+<p><strong>mitchell</strong>: You could tell me your name. And where
+you’re going.</p>
+<p><strong>betty</strong>: How far does this train go?</p>
+<p><strong>mitchell</strong>: Vancouver, B.C.</p>
+<p><strong>betty</strong>: I’m going to Vancouver, Mr. Mitchell.</p>
+<p><strong>mitchell</strong>: O.K. Be rugged.</p>
+<p><strong>mitchell</strong>: You’re next for the Immigration and
+Customs. I trust your papers are all in order.</p>
+<p><strong>canadian immigration official</strong>: I hope you will enjoy
+your stay in Canada, Mr. Olson.</p>
+<p><strong>olson’s voice</strong>: Thanks.</p>
+<p><strong>canadian immigration official</strong>: Your name,
+please.</p>
+<p><strong>betty</strong>: Betty.. Mayfield.</p>
+<p><strong>official</strong>: Betty Mayfield. Miss or Mrs.</p>
+<p><strong>betty</strong>: Miss Mayfield.</p>
+<p><strong>official</strong>: And where were you born, Miss
+Mayfield?</p>
+<p><strong>betty</strong>: New York, City.</p>
+<p><strong>official</strong>: I see you are wearing a wedding ring.</p>
+<p><strong>betty</strong>: I’ve been married. My Husband..</p>
+<p><strong>inspector</strong>: Then I take it Mayfield was not your
+married name?</p>
+<p><strong>mitchell</strong>: I’ve wired ahead to–</p>
+<p><strong>mitchell</strong>: Inspector Gillette, Isn’t it? I’m Larry
+Mitchell. We’ve met before, several times.</p>
+<p><strong>mitchell</strong>: I cross the border so often I carry an
+identification card.</p>
+<p><strong>inspector</strong>: Yes, I remember you, Mr. Mitchell. You
+know this lady?</p>
+<p><strong>mitchell</strong>: Very well. Since 1940, at least. I met
+her–let me see–it was New York City, wasn’t it Betty?</p>
+<p><strong>inspector</strong>: How long do you expect to be in Canada,
+Miss Mayfield?</p>
+<p><strong>betty</strong>: Oh.. a month.</p>
+<p><strong>inspector</strong>: Thank you. I hope you have a pleasant
+trip.</p>
+<p><strong>customs inspector</strong>: Any firearms? Dutiable articles
+of any kind?</p>
+<p><strong>betty</strong>: No.</p>
+<p><strong>customs official</strong>: Thank you.</p>
+<p><strong>mitchell</strong>: My suitcases are open in the next
+room.</p>
+<p><strong>customs inspector</strong>: Anything dutiable,
+Mr. Mitchell?</p>
+<p><strong>mitchell</strong>: No. Nothing.</p>
+<p><strong>customs inspector</strong>: Thank you.</p>
+<p><strong>mitchell</strong>: Better get rid of the wedding ring. That’s
+what threw him.</p>
+<p><strong>mitchell</strong>: Trouble?</p>
+<p><strong>mitchell</strong>: Or Reno? They always throw them off the
+bridge there, I’ve heard.</p>
+<p><strong>betty</strong>: Perhaps I don’t take it so lightly.</p>
+<p><strong>mitchell</strong>: Where are you staying in Vancouver Royal.
+It’s pretty crowded you know.</p>
+<p><strong>betty</strong>: Is it? I expected to go to the Vancouver
+Royal. Should I have a reservation?</p>
+<p><strong>mitchell</strong>: I’ll make one for you. I live there.</p>
+<p><strong>betty</strong>: Well..</p>
+<p><strong>mitchell</strong>: A very small service. It doesn’t even ask
+for thanks. How long for?</p>
+<p><strong>betty</strong>: I really don’t know.</p>
+<p><strong>mitchell</strong>: Indefinitely?</p>
+<p><strong>betty</strong>: I don’t know.</p>
+<p><strong>mitchell</strong>: You don’t know.</p>
+<p><strong>hotel clerk</strong>: Good afternoon, Mr. Mitchell. Have a
+mice trip? Glad to see you back.</p>
+<p><strong>mitchell</strong>: Fine, thanks. This is Miss Betty Mayfield.
+You have a reservation for her.</p>
+<p><strong>clerk</strong>: Miss Mayfield. Yes, indeed. A balcony room on
+the top floor, Magnificent view. Nothing above it but the penthouse.</p>
+<p><strong>margo</strong>: I’m getting positively haggard. In a couple
+of years people will be describing me as well preserved.</p>
+<p><strong>clarendon</strong>: I see out friend Larry Mitchell is with
+us again.</p>
+<p><strong>margo</strong>: I couldn’t care less.</p>
+<p><strong>clarendon</strong>: And with a very beautiful girl, if my
+eyes don’t deceive me at this distance.</p>
+<p><strong>margo</strong>: I don’t think I want any tea.</p>
+<p><strong>margo</strong>: Mr. Larry Mitchell, please No, never
+mind.</p>
+<p><strong>mitchell</strong>: I’m afraid you’re not very glad to see me,
+Margo.</p>
+<p><strong>margo</strong>: With your charm? How could I help it? Have a
+nice trip?</p>
+<p><strong>mitchell</strong>: So-so.</p>
+<p><strong>margo</strong>: Who’s the girl?</p>
+<p><strong>mitchell</strong>: Her name’s Mayfield. Betty Mayfield.</p>
+<p><strong>margo</strong>: Nice.</p>
+<p><strong>mitchell</strong>: She’s just a girl I met on the train. You
+don’t mind do you?</p>
+<p><strong>margo</strong>: Why should I mind?</p>
+<p><strong>mitchell</strong>: You shouldn’t. You washed me up very
+thoroughly.</p>
+<p><strong>margo</strong>: As thoroughly as I could. It wasn’t easy. But
+you are helping me.</p>
+<p><strong>mitchell</strong>: Margo, darling. You washed me up.
+Remember? We’re just friends. You wanted it that way.</p>
+<p><strong>margo</strong>: She’s very beautiful. She’s much younger than
+I am. And she’s rich, I hope.</p>
+<p><strong>mitchell</strong>: Rich? I haven’t the faintest idea.
+Why?</p>
+<p><strong>margo</strong>: You ought to know why.</p>
+<p><strong>mitchell</strong>: I don’t. My hunch is she’s just torn up an
+unhappy marriage. I was able to do her a small favor.</p>
+<p><strong>margo</strong>: Splendid. Now she can return the
+compliment.</p>
+<p><strong>margo</strong>: She can give you enough money to cover these…
+and the other bad checks you’ve given me.</p>
+<p><strong>mitchell</strong>: I hoped to get enough to cover them before
+they cleared. I wasn’t lucky.</p>
+<p><strong>margo</strong>: You know what would happen to you if I turned
+these over to the police?</p>
+<p><strong>mitchell</strong>: I have a rough idea.</p>
+<p><strong>margo</strong>: You’d go to jail. For a long term.</p>
+<p><strong>mitchell</strong>: Correct. I couldn’t even afford to pay a
+lawyer to defend me.</p>
+<p><strong>mitchell</strong>: What’ll we do about it, Margo?</p>
+<p><strong>margo</strong>: She is much younger than I am. That’s
+something I’m going to have to get used to. Isn’t it, Larry? They’ll all
+be much younger than I am. Here. Tear them up.</p>
+<p><strong>margo</strong>: I guess I’m still in love with you, Larry.
+What an idiot!</p>
+<p><strong>mitchell</strong>: I’ve always been a heel. I guess I always
+will be.</p>
+<p><strong>margo</strong>: You don’t have to make a pose of it.</p>
+<p><strong>mitchell</strong>: It’s the only pose I have left. I’m sunk.
+Broke. I don’t even have my hotel bill.</p>
+<p><strong>margo</strong>: I seem to recognize this routine. First the
+kiss then the touch. Oh, what’s the use. You’re you.</p>
+<p><strong>margo</strong>: I only have a couple of hundred.</p>
+<p><strong>margo</strong>: I seem to remember that you like to help
+yourself.</p>
+<p><strong>mitchell</strong>: That’s not very kind.</p>
+<p><strong>margo</strong>: Kind or not kind. What’s the difference? It
+always ends up the same way.</p>
+<p><strong>mitchell</strong>: What’s this?</p>
+<p><strong>margo</strong>: What does it look like?</p>
+<p><strong>mitchell</strong>: How long have you had it?</p>
+<p><strong>margo</strong>: Years, why?</p>
+<p><strong>mitchell</strong>: It’s against the law to cross the border
+with a gun. The Canadian police might like to know about this.</p>
+<p><strong>margo</strong>: You already have the checks, darling.</p>
+<p><strong>mitchell</strong>: I didn’t mean it that way I’m sorry.</p>
+<p><strong>margo</strong>: Oh, forget it. Clark Brandon’s throwing a
+party up in his penthouse this evening. Take me?</p>
+<p><strong>mitchell</strong>: Of course.</p>
+<p><strong>margo</strong>: How about your new friend?</p>
+<p><strong>mitchell</strong>: I told you she’s just..</p>
+<p><strong>margo</strong>: A girl you meet on the train. Excuse my
+bringing it up again. Be back in an hour. Right?</p>
+<p><strong>mitchell</strong>: Right.</p>
+<p><strong>margo</strong>: In an hour, Larry.</p>
+<p><strong>mitchell</strong>: Good afternoon, Mr. Campbell.</p>
+<p><strong>campbell</strong>: Mr. Mitchell.</p>
+<p><strong>mitchell</strong>: A little something on account perhaps?</p>
+<p><strong>campbell</strong>: Rather more than a little something,
+Mr. Mitchell.</p>
+<p><strong>mitchell</strong>: I’m afraid this is all for the moment.</p>
+<p><strong>campbell</strong>: I think we’d better discuss this in my
+office, Mr. Mitchell.</p>
+<p><strong>mitchell</strong>: Nothing to discuss. Tomorrow the sun will
+shine even brighter. Be grateful for small mercies.</p>
+<p><strong>mitchell</strong>: Oh, I forgot. I have a dinner engagement.
+Excuse me.</p>
+<p><strong>mitchell</strong>: Thank you, Mr. Campbell.</p>
+<p><strong>mitchell</strong>: Nice room. Balcony and everything. Lovely
+view too.</p>
+<p><strong>betty</strong>: Very nice Mitchell turns.</p>
+<p><strong>mitchell</strong>: No thanks?</p>
+<p><strong>betty</strong>: Thank you.</p>
+<p><strong>mitchell</strong>: Suppose I hadn’t known that immigration
+inspector? Hadn’t put in a good word for you?</p>
+<p><strong>betty</strong>: I’m supposing.</p>
+<p><strong>mitchell</strong>: I think you’re a nice girl. I like you.
+But I can read signs if the print is large enough. It was your manner
+more than the wedding ring that bothered the inspector. A sort of
+tenseness, as if you were afraid of something.</p>
+<p><strong>mitchell</strong>: I have a darned good idea you’re name
+isn’t Betty Mayfield at all.</p>
+<p><strong>betty</strong>: Yes?</p>
+<p><strong>mitchell</strong>: How about taking to Uncle Larry into the
+old firm? He’s a useful guy to have on your side.</p>
+<p><strong>mitchell</strong>: Don’t get me wrong, Betty. I’m not
+suggesting you murdered anybody, you know.</p>
+<p><strong>mitchell</strong>: Dine and dance tonight? I’ve got fifty
+bucks to throw away.</p>
+<p><strong>betty</strong>: Not tonight.</p>
+<p><strong>mitchell</strong>: What’s the matter?</p>
+<p><strong>betty</strong>: I’m not in the mood for dining and
+dancing.</p>
+<p><strong>mitchell</strong>: We have some nice places around
+Vancouver.</p>
+<p><strong>betty</strong>: I’m sure you have.</p>
+<p><strong>mitchell</strong>: Well, how about a breeze up to the
+penthouse about six o’clock? A friend of mine is throwing a cocktail
+party up there.</p>
+<p><strong>betty</strong>: I haven’t been invited.</p>
+<p><strong>mitchell</strong>: Nobody gets invited to Clark Brandon’s
+parties. They just go.</p>
+<p><strong>betty</strong>: Perhaps I’d better get you straightened out,
+Mr. Mitchell. You’ve been rather nice to me, in a couple of ways. And
+I’m grateful. But I don’t think this entitles you to put me on a
+leash.</p>
+<p><strong>mitchell</strong>: Nobody I’d rather have on a leash.</p>
+<p><strong>betty</strong>: I’m awfully sorry, but I’d like to take a
+bath and get freshened up.</p>
+<p><strong>mitchell</strong>: The brush-off, huh?</p>
+<p><strong>betty</strong>: I’m trying very hard to be polite about
+it.</p>
+<p><strong>mitchell</strong>: Don’t I even get my face slapped?</p>
+<p><strong>betty</strong>: Would you mind?</p>
+<p><strong>mitchell</strong>: Okay. You win.</p>
+<p><strong>mitchell</strong>: If you change your mind about the cocktail
+party, or anything else, give me a buzz.</p>
+<p><strong>betty</strong>: If I change my mind.</p>
+<p><strong>brandon</strong>: You can have the table yourself, if you’d
+rather. I’m only killing time.</p>
+<p><strong>betty</strong>: No, please.</p>
+<p><strong>brandon</strong>: Sit down then. We often have a double up
+here.</p>
+<p><strong>betty</strong>: I see.</p>
+<p><strong>brandon</strong>: Oh waiter.</p>
+<p><strong>waiter</strong>: Yes sir.</p>
+<p><strong>waiter</strong>: Yes, Miss.</p>
+<p><strong>betty</strong>: I’d like a dry Martini. Very dry, please.</p>
+<p><strong>waiter</strong>: Sorry, Miss. Beer and ale only. Canadian
+law.</p>
+<p><strong>betty</strong>: Beer? Well, all right.</p>
+<p><strong>waiter</strong>: Beer or ale, Miss?</p>
+<p><strong>betty</strong>: Ale. I don’t mind.</p>
+<p><strong>waiter</strong>: Right, Miss.</p>
+<p><strong>betty</strong>: Your liquor laws..</p>
+<p><strong>brandon</strong>: Disgusting, aren’t they? If you really want
+a Martini, I know where you can get one.</p>
+<p><strong>brandon</strong>: A fellow named Brandon has a penthouse
+here. He’s holding open house. I was up there. Too noisy. Bored.</p>
+<p><strong>betty</strong>: I see.</p>
+<p><strong>brandon</strong>: It might be worth a Martini to you.</p>
+<p><strong>betty</strong>: I don’t need it that badly. I don’t enjoy
+crashing other people’s parties.</p>
+<p><strong>brandon</strong>: It’s open-house. No crashing involved.
+Anybody in the hotel’s welcome.</p>
+<p><strong>betty</strong>: What did you say his name was?</p>
+<p><strong>brandon</strong>: Brandon. Clark Brandon. Fellow about my
+age. Lot of money… that he didn’t make. Former American. Now naturalized
+in Canada. Social standing indeterminate. Manners not quite perfect.
+Scotch superb.</p>
+<p><strong>betty</strong>: You don’t sound as if you liked him very
+much.</p>
+<p><strong>brandon</strong>: No.. not very well. And I like his friends
+even less. But.. If you really want a good dry Martini..</p>
+<p><strong>betty</strong>: As I said before…</p>
+<p><strong>brandon</strong>: Sure. But I’d hate like the Dickens to be
+held to everything I’ve said before, wouldn’t you?</p>
+<p><strong>betty</strong>: You’re not paying for this. It’s quite enough
+that you let me sit at your table.</p>
+<p><strong>brandon</strong>: I never pay for anything. They just keep me
+here to amuse the guests.</p>
+<p><strong>betty</strong>: And do you amuse the guests?</p>
+<p><strong>brandon</strong>: No. Are you really going to drink that
+stuff?</p>
+<p><strong>betty</strong>: You’re drinking it.</p>
+<p><strong>brandon</strong>: I can be talked out of it. As a matter of
+fact, I’d like a dry Martini myself.</p>
+<p><strong>betty</strong>: Would it make you anymore amusing?</p>
+<p><strong>brandon</strong>: Whatever you say.</p>
+<p><strong>betty</strong>: I didn’t say anything.</p>
+<p><strong>brandon</strong>: I don’t know you and you don’t know me. I
+made a reasonably polite suggestion. But I’m sure you’d rather be
+alone.</p>
+<p><strong>betty</strong>: I hate to be alone. But I’ve heard all the
+approaches there are… even yours.</p>
+<p><strong>brandon</strong>: Neatly said…but to the wrong man. The
+trouble with pretty girls is that they can’t imagine anyone thinking of
+anything else but the fact they are pretty girls. I get tired of it.</p>
+<p><strong>betty</strong>: Do you think I don’t?</p>
+<p><strong>brandon</strong>: Thanks for the fresh air. That felt
+good.</p>
+<p><strong>betty</strong>: You’re sure Mr. Brandon won’t mind?</p>
+<p><strong>brandon</strong>: He doesn’t even know half the people who
+come up to drink his liquor.</p>
+<p><strong>camera pans brandon and betty over towards the bar,</strong>:
+DISCOVERING Mitchell leaning against it, staring morosely into a drink.
+He drains the last of it.</p>
+<p><strong>mitchell</strong>: Another.</p>
+<p><strong>brandon</strong>: This lady would like a dry Martini. So
+would I.</p>
+<p><strong>bartender</strong>: Very good, sir.</p>
+<p><strong>mitchell</strong>: Well well. Baby wouldn’t come with me.
+Where did you pick her up?</p>
+<p><strong>brandon</strong>: Hello, Mitchell. Having fun?</p>
+<p><strong>mitchell</strong>: The liquors lovely. The rest of the party
+you can have.</p>
+<p><strong>mitchell</strong>: What’s the matter, baby. Don’t you like me
+anymore?</p>
+<p><strong>brandon</strong>: Lay off, can’t you?</p>
+<p><strong>mitchell</strong>: Lay off what? This is my new girl friend.
+Met her on the train. She’s very fond of me. Love at first sight. Wasn’t
+it, baby?</p>
+<p><strong>brandon</strong>: And I’d begun to think this was my lucky
+day.</p>
+<p><strong>servant</strong>: You’re wanted on the telephone,
+Mr. Brandon. Mrs. West.</p>
+<p><strong>brandon</strong>: Thanks. If you are a friend of Larry
+Mitchell’s I’m sure I leave you in good hands.</p>
+<p><strong>brandon</strong>: Hello Margo. Aren’t you coming up?
+Mitchell? Oh yes, he’s here. He came up alone, but it seems he has a new
+girl friend with him now. Don’t be theatrical, Margo. What do you care
+about Mitchell? Come on up and have a drink.</p>
+<p><strong>margo</strong>: I haven’t any intensions of being theatrical.
+Of course I’ll come up. Goodbye.</p>
+<p><strong>elevator boy</strong>: Did you have a nice day,
+Mrs. West?</p>
+<p><strong>margo</strong>: I had a rotten day, if its any of your
+business.</p>
+<p><strong>elevator boy</strong>: I’m terribly sorry, Mrs. West.</p>
+<p><strong>margo</strong>: Don’t let it break you up.</p>
+<p><strong>elevator boy</strong>: Oh, I wouldn’t do that, Mrs. West.</p>
+<p><strong>margo</strong>: What’s so funny?</p>
+<p><strong>killaine</strong>: I’m terribly sorry, Mrs. West.</p>
+<p><strong>margo</strong>: Oh, the Coldstream Guards. Don’t you take
+your hat off in elevators?</p>
+<p><strong>killaine</strong>: I never wear a hat. Oh, so I am. I forgot.
+I guess I’m terribly sorry again, Mrs. West.</p>
+<p><strong>elevator boy</strong>: Penthouse floor, please.</p>
+<p><strong>killaine</strong>: May I?</p>
+<p><strong>margo</strong>: May you what?</p>
+<p><strong>killaine</strong>: Oh nothing.</p>
+<p><strong>margo</strong>: Are you always this witty?</p>
+<p><strong>brandon</strong>: Hi Margo. Hello Killaine. You two come
+together?</p>
+<p><strong>margo</strong>: In the same elevator. It is a public
+conveyance.</p>
+<p><strong>brandon</strong>: Let me introduce you. Mr. Killaine,
+Mrs. West.</p>
+<p><strong>margo</strong>: Fascinated.</p>
+<p><strong>brandon</strong>: What’ll you have, Margo?</p>
+<p><strong>margo</strong>: Martini.</p>
+<p><strong>brandon</strong>: You, Killaine?</p>
+<p><strong>killaine</strong>: Scotch and plain water, I think.</p>
+<p><strong>margo</strong>: Warm water, no doubt.</p>
+<p><strong>brandon</strong>: What?</p>
+<p><strong>killaine</strong>: A private joke.</p>
+<p><strong>killaine</strong>: It goes with this… cold houses and warm
+drinks…the effete Englishman.</p>
+<p><strong>brandon</strong>: You’re not English.</p>
+<p><strong>mitchell</strong>: I’m sorry. I forgot about calling for
+you.</p>
+<p><strong>margo</strong>: It’s quite unimportant, Mr. Mitchell. After
+all, you got what you wanted.</p>
+<p><strong>mitchell</strong>: Be nasty.</p>
+<p><strong>margo</strong>: I have no intension of being nasty,
+Mr. Mitchell.</p>
+<p><strong>mitchell</strong>: In that case, there’s someone here I’d
+like to introduce to you. Over there.</p>
+<p><strong>margo</strong>: She is beautiful. And young. No thank
+you.</p>
+<p><strong>mitchell</strong>: I say YES!</p>
+<p><strong>margo</strong>: You’re not the type to be masterful, darling.
+It takes character.</p>
+<p><strong>margo</strong>: Of course, darling. Anything you say.</p>
+<p><strong>killaine</strong>: That’s what I like about cocktail parties.
+Everyone is so perfectly natural.</p>
+<p><strong>brandon</strong>: How’s life treating you?</p>
+<p><strong>killaine</strong>: The usual grind.</p>
+<p><strong>brandon</strong>: Round of golf Saturday?</p>
+<p><strong>killaine</strong>: If I can get off.</p>
+<p><strong>mitchell</strong>: Betty, this is Margo West. She wants to
+meet you. Miss Mayfield.</p>
+<p><strong>betty</strong>: How do you do?</p>
+<p><strong>margo</strong>: You’re very attractive, my dear. And you look
+very unsophisticated.</p>
+<p><strong>mitchell</strong>: Unsophisticated? If I knew about this
+babe…</p>
+<p><strong>betty</strong>: I think I’d like to dance.</p>
+<p><strong>mitchell</strong>: Why certainly, baby.</p>
+<p><strong>betty</strong>: Please be a little more careful how you talk,
+Mr. Mitchell.</p>
+<p><strong>mitchell</strong>: How careful should I be?</p>
+<p><strong>betty</strong>: I don’t like being referred to as babe, or
+addressed as baby. I don’t like your possessive attitude, nor your hints
+of secret knowledge. In fact, to be very frank, Mr. Mitchell, I don’t
+think I like you.</p>
+<p><strong>mitchell</strong>: Maybe you’re going to have to like me.</p>
+<p><strong>mitchell</strong>: You’ve shed the ring, haven’t you? Took my
+advice. That’s the girl. Keep right on taking my advice and we’ll get
+somewhere.</p>
+<p><strong>betty</strong>: I think you’re drunk.</p>
+<p><strong>mitchell</strong>: Just drunk enough.</p>
+<p><strong>mitchell</strong>: What’s the matter, baby? Don’t you like
+being kissed?</p>
+<p><strong>betty</strong>: Next time you try that, Mr. Mitchell…
+..don’t. I’m warning you.</p>
+<p><strong>brandon</strong>: Do me a favor, Mitchell. Find yourself a
+nice secluded park bench.</p>
+<p><strong>mitchell</strong>: Did I do something wrong?</p>
+<p><strong>brandon</strong>: I wouldn’t know. Just do it somewhere else.
+There is such a thing as good manners.</p>
+<p><strong>mitchell</strong>: How would you know, Brandon?</p>
+<p><strong>brandon</strong>: Want to walk out… or get thrown out?</p>
+<p><strong>mitchell</strong>: You don’t throw guests out, Brandon.</p>
+<p><strong>brandon</strong>: Don’t bet on it. I’m eccentric.</p>
+<p><strong>margo</strong>: It takes two to clinch. Clark. Nice to have
+seen you.</p>
+<p><strong>brandon</strong>: Dance?</p>
+<p><strong>betty</strong>: No thank you.</p>
+<p><strong>clarendon</strong>: Where I come from, Mr. Brandon, the host
+tries to protect his guests from insult.</p>
+<p><strong>brandon</strong>: I stopped him.</p>
+<p><strong>clarendon</strong>: And if he fails, he at least has the good
+manners to apologize.</p>
+<p><strong>brandon</strong>: I don’t exactly regard Larry Mitchell’s
+pick-ups…</p>
+<p><strong>clarendon</strong>: We haven’t been introduced. But if you’ll
+overlook that, I’m sure that between us we can contrive a graceful
+exit.</p>
+<p><strong>betty</strong>: Thank you very much.</p>
+<p><strong>brandon</strong>: Would it have helped if I’d knocked him
+down?</p>
+<p><strong>killaine</strong>: Hardly. Who’s the girl?</p>
+<p><strong>brandon</strong>: Somebody Mitchell picked up on the train. I
+don’t even know her name.</p>
+<p><strong>killaine</strong>: She doesn’t look like a girl who would let
+herself be picked up on a train.</p>
+<p><strong>brandon</strong>: That’s what I thought, at first. Maybe
+somebody else ought to have thrown this party. With my liquor of
+course.</p>
+<p><strong>int. county courthouse - greenwater north carolina
+–</strong>: NIGHT</p>
+<p><strong>bailiff</strong>: Everybody stand up! His Honor, Judge
+Hopkinson! Court now in session!</p>
+<p><strong>judge</strong>: Mr. Bailiff, please make room for Mr. Henry
+Kinsolving, outside the bar of the court.</p>
+<p><strong>judge</strong>: Before the Jury renders its verdict, the
+Court wishes to warn those present that there is to be no demonstrations
+of any kind. No person is to leave the courtroom until the Court rises.
+I repeat… no one is to leave the courtroom.</p>
+<p><strong>judge</strong>: You may proceed, Mr. Clerk.</p>
+<p><strong>clerk</strong>: The Defendant will rise and face the
+Jury.</p>
+<p><strong>clerk</strong>: Gentlemen of the Jury, have you reached a
+verdict?</p>
+<p><strong>foreman</strong>: We have.</p>
+<p><strong>clerk</strong>: And what is your verdict?</p>
+<p><strong>foreman</strong>: We the Jury, find the Defendant, Elizabeth
+Kinsolving, guilty of murder in the first degree.</p>
+<p><strong>leamington</strong>: Motion to pool the Jury, if it please
+the Court.</p>
+<p><strong>judge</strong>: So ordered.</p>
+<p><strong>clerk</strong>: Speak a little louder please.</p>
+<p><strong>juror no. 7</strong>: Guilty of murder in the first
+degree.</p>
+<p><strong>bailiff</strong>: Order in the Court!</p>
+<p><strong>judge</strong>: The Court now has a statement to make.</p>
+<p><strong>judge</strong>: Please sit down, Mrs. Kinsolving.</p>
+<p><strong>judge</strong>: This court, like most courts, has
+occasionally been guilty of judicial error. Prior to the commencement of
+this trail, Mr. Leamington, as attorney for the Defendant, made a motion
+for a change of venue on the ground that a fair trial could not be had
+by this Defendant in this jurisdiction. Most of you know why this motion
+was made. The Defendant was alleged to have been tried and convicted in
+the columns of the daily newspaper owned by her father-in-law, Mr. Henry
+Kinsolving, and as a result public opinion was said to have been
+prejudiced to the extent that it was doubtful twelve Jurors could be
+found with open minds. This Court regretfully denied the motion. It did
+not believe that a Jury with open minds could not be found. The members
+of this Jury declared on oath that their minds were open. The Court had
+no reason at that time to disbelieve them.</p>
+<p><strong>judge</strong>: Elizabeth Kinsolving has been tried and found
+guilty of murder of her husband, Lee Kinsolving. Lee Kinsolving was the
+only son of our most prominent citizen. Mr. Kinsolving controls, or is
+said to control, our leading bank, many of our business enterprises and
+our only daily newspaper. He affords employment to a large number of our
+citizens. His influence on our affairs is very great. Perhaps to
+great.</p>
+<p><strong>prosecutor</strong>: Your Honor, I protest that
+statement!</p>
+<p><strong>judge</strong>: Sit down, Mr. Prosecutor. Your are out of
+order.</p>
+<p><strong>judge</strong>: We all new Lee Kinsolving well, We watched
+him grow up. We observed that he was proud and hot tempered, and had a
+strain of arrogance, not unlike others of his family.</p>
+<p><strong>judge</strong>: From this town Lee Kinsolving went to fight
+for his country. And to this town, before he went overseas, he brought
+the wife he had married up North. To us he returned a war hero badly
+wounded, condemned for the rest of his life to wear a heavy brace around
+his neck. Competent medical testimony has shown that without that brace
+a very slight movement might have been enough to snap his spinal cord.
+This injury humiliated and embittered Lee Kinsolving, made him morose
+and violent, and perhaps caused him to drink to excess. The Defendant
+has admitted that there were bitter quarrels between herself and her
+husband. Such a quarrel took place on the night of his death, Upon the
+manner of that death this entire proceeding rests.</p>
+<p><strong>judge</strong>: In my summing up to the Jury I emphasized
+that the case for the prosecution was, as so many murder cases are,
+purely circumstantial. It was alleged that while Lee Kinsolving slept,
+perhaps in a drunken stupor and perhaps not, the Defendant removed the
+neck brace from his neck and jerked his head sufficiently to rupture the
+spinal cord and cause death. It is admitted that the Defendant was found
+holding the neck brace in her hand, and bending over her husband’s body,
+which was lying on the bed. Not in the bed, mind you, but sprawled
+across it. The Defendant has testified that lee Kinsolving himself
+removed the neck brace to torment her, as it were, with the great danger
+in which this placed him. Then he started to walk towards her, holding
+the brace in his hands, and that being unsteady on his feet, he stumbled
+and fell backwards across the bed. And this fall broke his neck,
+although at the time she did not know it. She has testified that she
+picked the brace up from the floor and was about to attempt to replace
+it on his neck when her father-in-law entered the room and found her in
+that position. By its verdict the Jury declared that Elizabeth
+Kinsolving’s account of the death of her husband to be impossible of
+belief.</p>
+<p><strong>judge</strong>: In all murder trails, a motion by the Defense
+for a directed verdict of acquittal before the case goes to the Jury is
+more or less automatic. It is usually perfunctory, and for that reason
+immediately denied. The laws of this state, and a few other
+jurisdictions, confer upon a Court a right to reserve its ruling upon
+such a motion until after the Jury has rendered its verdict. In this
+proceeding, I, as presiding Judge, availed myself of this power. I most
+honestly hoped that the Jury in this case might act as impartially as it
+declared itself to be.</p>
+<p><strong>judge</strong>: Let me remind you that a Jury is the sole
+Judge of fact, and further let me remind you that the Jury must judge
+all the facts. It may not select nor create nor change facts. It may
+only interpret them. It may not declare something impossible which in
+fact is merely extremely difficult to believe. Impossible is a very big
+word. If we believe Elizabeth Kinsolving’s sworn testimony, we must also
+believe that Lee Kinsolving performed an act which was almost certain to
+cause his death. It is difficult… very difficult to believe. But is it
+impossible? Are we sure that he knew it would cause his death? Or that
+in his then state of mind, he even considered the consequences at all?
+Many people have attempted suicide as a result of domestic quarrels. Not
+all have succeeded, nor meant to succeed. And surely not all those who
+did succeed… fully intended to. Not all knew what they were doing and
+those who did know, there were surely a few whose desire to hurt others
+overcame their fear of hurting themselves. We cannot know what was in
+Lee Kinsolving’s Mind. Therefore, some element of doubt must infallibly
+remain. It was not necessary for this Jury to declare its belief in the
+Defendant’s innocence, nor to declare its that Lee Kinsolving by
+accident or his own intent. It was necessary for the Jury to admit to
+themselves, as reasonable men, the possibility…. however slight… that
+Elizabeth Kinsolving’s story was true. This possibility the Jury has
+refused to admit. It therefore becomes my duty to declare that such a
+possibility does in fact exist… and the Jury’s refusal to recognize it
+was a failure to exercise it proper function.</p>
+<p><strong>judge</strong>: The Court therefore rules that the motion of
+the Attorney for the Defense for a directed verdict of not guilty be now
+granted. The verdict of guilty brought by this Jury is herby set aside,
+and a verdict of not guilty is to be entered on the record. And the
+Defendant, Elizabeth Kinsolving, is here with discharged from custody of
+the Sheriff of this county.</p>
+<p><strong>kinsloving</strong>: For four years I endured your presence
+in my house, although I well knew you were no fit wife for my son.. That
+he had married in haste, and that he would repent it bitterly if he
+survived the war. I had no thought that he would die under his own roof,
+nor that the reward of my patience would be to stand beside his grave. I
+have done my best to avenge him. So far I have failed. But I have not
+finished. You are free to go where you will, but there will be another
+day of reckoning, somewhere, sometime. And when that day comes, I will
+be there. And that time you will not escape.</p>
+<p><strong>int. royal hotel - porter’s desk/corridor/main floor
+–</strong>: NIGHT</p>
+<p><strong>porter</strong>: Good evening, Miss.</p>
+<p><strong>betty</strong>: How soon can I get a plane to Seattle?</p>
+<p><strong>porter</strong>: I’m afraid there’s nothing more tonight,
+Miss. Unless you charter a plane.</p>
+<p><strong>betty</strong>: How long would that take?</p>
+<p><strong>porter</strong>: Well… they have to service the plane… and
+get a pilot down to the field, unless there’s one hanging around there
+still… and then they have to get the immigration officer…</p>
+<p><strong>betty</strong>: Immigration Officer?</p>
+<p><strong>porter</strong>: Crossing the border this time of night
+they’re a bit particular. You’d have to prove your identity, you know…
+unless you’ve got a passport. They might even want to know why you’re in
+such a hurry. Otherwise they might think…</p>
+<p><strong>betty</strong>: They might think I was running away from
+something.</p>
+<p><strong>porter</strong>: Possibly, Miss.</p>
+<p><strong>betty</strong>: Thank you very much.</p>
+<p><strong>brandon</strong>: Leaving us so soon, Miss Mayfield?</p>
+<p><strong>brandon</strong>: I don’t blame you.. For running away.</p>
+<p><strong>elevator boy</strong>: Good night, Miss.</p>
+<p><strong>betty</strong>: Good night.</p>
+<p><strong>elevator boy</strong>: This isn’t the penthouse floor,
+Mr. Brandon.</p>
+<p><strong>brandon</strong>: Miss Mayfield…</p>
+<p><strong>brandon</strong>: I know it’s a littler late for an
+apology.</p>
+<p><strong>betty</strong>: Much too late.</p>
+<p><strong>brandon</strong>: Don’t take it so big… it isn’t a
+tragedy.</p>
+<p><strong>brandon</strong>: What’s the matter with you?</p>
+<p><strong>betty</strong>: You said it wasn’t a tragedy.</p>
+<p><strong>brandon</strong>: What’s funny about that? If you pick up
+people like Larry Mitchell other people are bound to get funny ideas
+about you. The world is full of Larry Mitchells.</p>
+<p><strong>betty</strong>: There’s one less tonight.</p>
+<p><strong>betty</strong>: Out on the balcony.</p>
+<p><strong>brandon</strong>: Through the heart, apparently. Very little
+blood. What’s the story?</p>
+<p><strong>betty</strong>: There isn’t one.. That anyone would believe.
+I went for a walk after dinner, down to the ocean…alone… I came up and
+went to bed. I didn’t sleep very well. Then there was a thunderstorm.
+And it began to rain. I went across to close the French door. That’s the
+first time I saw him out there.</p>
+<p><strong>brandon</strong>: He got in here how?</p>
+<p><strong>betty</strong>: Not with my consent, strange as it seems. I
+don’t know how he got in. I don’t know anything.</p>
+<p><strong>brandon</strong>: Ever see this before?</p>
+<p><strong>betty</strong>: No. And I’ve never fired a gun in my life,
+Aren’t you supposed not to touch it?</p>
+<p><strong>brandon</strong>: Sure… but somebody always does..</p>
+<p><strong>brandon</strong>: Lovely eyes… honest eyes..</p>
+<p><strong>brandon</strong>: They’ll know whether he killed himself.</p>
+<p><strong>betty</strong>: I don’t.</p>
+<p><strong>brandon</strong>: How did you meet him?</p>
+<p><strong>betty</strong>: On a train. He said he lived here, and he
+offered to make a reservation for me.</p>
+<p><strong>brandon</strong>: Nice of him.</p>
+<p><strong>betty</strong>: He knew the immigration officer. He eased
+himself in.</p>
+<p><strong>brandon</strong>: He was a great boy for that. What else?</p>
+<p><strong>betty</strong>: That’s all there is.</p>
+<p><strong>brandon</strong>: They’re still honest eyes… but there’s
+something behind them.</p>
+<p><strong>betty</strong>: Go ahead…if you want to. It doesn’t
+matter.</p>
+<p><strong>brandon</strong>: I’d rather wait until it does matter.</p>
+<p><strong>brandon</strong>: You tried to run away.</p>
+<p><strong>betty</strong>: There wasn’t any plane.</p>
+<p><strong>brandon</strong>: It’s always a mistake to run away.
+Always.</p>
+<p><strong>brandon</strong>: Want a spike in it?</p>
+<p><strong>betty</strong>: No thanks.</p>
+<p><strong>margo</strong>: You make friends quickly, don’t you,
+Clark?</p>
+<p><strong>brandon</strong>: Sometimes.</p>
+<p><strong>margo</strong>: And without much discrimination.</p>
+<p><strong>brandon</strong>: Leave that one lay.</p>
+<p><strong>margo</strong>: They still hang women in Canada, I’ve
+heard.</p>
+<p><strong>clarendon</strong>: So much less refined than frizzling them
+in the chair.</p>
+<p><strong>margo</strong>: Oh, shut up! You haven’t even got your spats
+on.</p>
+<p><strong>margo</strong>: Think I’ll have trouble staying awake?</p>
+<p><strong>margo</strong>: I’m sorry. This thing has just knocked me
+silly. How long do we have to wait for this police character?</p>
+<p><strong>brandon</strong>: Until he comes. He’s a nice guy. You’ve met
+him.</p>
+<p><strong>margo</strong>: That comedian?</p>
+<p><strong>brandon</strong>: Don’t let the eyeglass fool you. That’s
+what it’s for.</p>
+<p><strong>handley</strong>: You Mr. Brandon?</p>
+<p><strong>handley</strong>: Inspector Killaine’s compliments. He’ll be
+up in another ten minutes.</p>
+<p><strong>gore</strong>: You in charge here?</p>
+<p><strong>killaine</strong>: So it seems Sergeant.</p>
+<p><strong>gore</strong>: Right.</p>
+<p><strong>killaine</strong>: I hate to pull rank on you Sergeant, but
+once in a while…for moral purposes…you might address me as “Inspector”.
+In moments of extreme desperation, you might even call me “sir”.</p>
+<p><strong>killaine</strong>: I knew him. He was easy to dislike, poor
+chap.</p>
+<p><strong>gore</strong>: They tell me he’ll be a great loss to the
+liquor trade. This Mayfield girl…</p>
+<p><strong>gore</strong>: … I supposed you knew her, too, Inspector.</p>
+<p><strong>killaine</strong>: I’ve met her.</p>
+<p><strong>gore</strong>: It’s her room. She only got to the Hotel this
+afternoon,. With him. I guess he took too much for granted. Here’s the
+gun.</p>
+<p><strong>killaine</strong>: Pearl-handled .25 Automatic, uh? No, it’s
+a Belgian gun… 6.6 mm.</p>
+<p><strong>gore</strong>: Correct, Inspector. A woman’s gun. U.S. 125
+caliber ammunition in it. It was on a table in there.</p>
+<p><strong>gore</strong>: Nobody’s been questioned yet. You noticed the
+wound entry?</p>
+<p><strong>gore</strong>: Much too low for a suicide. Not conclusive, of
+course. But a woman of ordinary height, standing rather close to a tall
+man, such as he was… …would be apt to shoot him about where he got
+shot.</p>
+<p><strong>gore</strong>: Then there’s the shell.</p>
+<p><strong>gore</strong>: This make of gun throws a shell backwards,
+high, and to the right. The chaise is only about four feet from the
+wall.</p>
+<p><strong>killaine</strong>: So the shell ought to have gone over?</p>
+<p><strong>gore</strong>: Unless the gun was slanted up.</p>
+<p><strong>killaine</strong>: So the wound and the shell give you the
+same answer.</p>
+<p><strong>gore</strong>: Right. A clean deduction from observed facts.
+They’ve got to be simple once in a while, Inspector.</p>
+<p><strong>killaine</strong>: I’ve always looked forward to it. All
+right, let’s get him out of here and tidy up.</p>
+<p><strong>gore</strong>: I’d take a look in her clothes closet if I
+were you, Inspector.</p>
+<p><strong>killaine</strong>: I’m sorry to have kept you waiting,
+Mrs. West, Mr. Clarendon.</p>
+<p><strong>killaine</strong>: Miss Mayfield. There’s not much I can do
+tonight. But there is one thing.</p>
+<p><strong>killaine</strong>: Mr. Clarendon, have you ever seen this
+before?</p>
+<p><strong>clarendon</strong>: I’m sorry, Inspector, I don’t know much
+about..</p>
+<p><strong>killaine</strong>: Recently, then.</p>
+<p><strong>clarendon</strong>: No, Not recently. I’m sure of that.</p>
+<p><strong>killaine</strong>: Thank you.</p>
+<p><strong>killaine</strong>: Mr. West?</p>
+<p><strong>margo</strong>: I never saw it before.</p>
+<p><strong>killaine</strong>: Positive?</p>
+<p><strong>killaine</strong>: Thank you.</p>
+<p><strong>brandon</strong>: Yes, I’ve seen it before.</p>
+<p><strong>killaine</strong>: Where?</p>
+<p><strong>brandon</strong>: On Miss Mayfield’s balcony.. beside the
+chaise, I picked it up. Don’t ask me why. I ought to know better.</p>
+<p><strong>killaine</strong>: Quite sure you had no motive?</p>
+<p><strong>brandon</strong>: Could be.</p>
+<p><strong>killaine</strong>: I rather thought so. And before that, had
+you ever seen the gun?</p>
+<p><strong>brandon</strong>: No.</p>
+<p><strong>killaine</strong>: It was lying where on the balcony?</p>
+<p><strong>brandon</strong>: Near his right hand. About a foot away.
+Perhaps more. Good heavens, one doesn’t use a tape measure.</p>
+<p><strong>killaine</strong>: We do, when we get the chance.</p>
+<p><strong>killaine</strong>: I needn’t keep you any longer,
+Mr. Clarendon.</p>
+<p><strong>clarendon</strong>: Thank you. It is rather late… and I’m not
+young anymore. Good night.</p>
+<p><strong>margo</strong>: What about me?</p>
+<p><strong>killaine</strong>: Not quiet yet.</p>
+<p><strong>killaine</strong>: You knew Mitchell pretty well, didn’t you,
+Mrs. West?</p>
+<p><strong>margo</strong>: I was in love with him… which shows you the
+quality of my brains. Why don’t you ask her about the gun?</p>
+<p><strong>killaine</strong>: I shall. From your knowledge of Mitchell,
+would you say he would be likely to commit suicide?</p>
+<p><strong>margo</strong>: Anybody could commit suicide, if he felt low
+enough. I’ve felt it myself.</p>
+<p><strong>killaine</strong>: Then why not give Miss Mayfield the
+benefit of the doubt?</p>
+<p><strong>margo</strong>: I’d be delighted to… anytime you can show me
+the doubt. I’ll wrap it up in tissue paper and put a Christmas seals on
+it for her.</p>
+<p><strong>killaine</strong>: Thank you very much, Mrs. West.</p>
+<p><strong>brandon</strong>: How about a cup of coffee?</p>
+<p><strong>killaine</strong>: No thanks. I had some. How would you like
+to take a walk for, say, half and hour?</p>
+<p><strong>brandon</strong>: All right.</p>
+<p><strong>killaine</strong>: Mrs. West is a very emotional woman.</p>
+<p><strong>betty</strong>: I don’t know her.. or particularly want
+to.</p>
+<p><strong>killaine</strong>: You probably know the type. You find them
+in hotels and resorts all over the world. They always have clothes, and
+money, and usually have had three or four husbands. They dress and
+enamel themselves with great care. They worry a great deal about those
+little lines at the corner of the eyes.. And they demonstrate their
+incompetence at the art of living bet getting mixed up with people like
+Larry Mitchell. Tell me about yourself, Miss Mayfield.</p>
+<p><strong>betty</strong>: I was born in New York City. I grew up. And
+here I am.</p>
+<p><strong>killaine</strong>: I’ll have to know a little more than
+that.</p>
+<p><strong>betty</strong>: I’m sorry, that’s all there is.</p>
+<p><strong>killaine</strong>: Miss Mayfield, the humor of the situation
+escapes me. Within 24 hours I shall know officially whether Mitchell was
+murdered. Privately, I’m quite sure of it now. It happened in your room,
+and you came to Vancouver with him.. At any rate, he made your hotel
+reservation.. And you arrived together. Here in this room he behaved
+nastily to you, and you said something to him which might be taken as a
+threat. A few hours later he was found dead on your balcony. Would it be
+too much too suggest that all these circumstances taken together are a
+little suspicious?</p>
+<p><strong>killaine</strong>: Please answer my question.</p>
+<p><strong>betty</strong>: You didn’t ask a question. You made a
+speech.</p>
+<p><strong>killaine</strong>: That’s an evasion and you know it.</p>
+<p><strong>betty</strong>: It is?</p>
+<p><strong>margo</strong>: What are you doing here?</p>
+<p><strong>clarendon</strong>: I don’t think you locked your door.</p>
+<p><strong>margo</strong>: What do you want?</p>
+<p><strong>clarendon</strong>: See how easy it is? Perhaps Miss Mayfield
+left her door unlocked. Or if she didn’t, there’s a passkey on every
+floor in the linen room. The head porter has a passkey. The bell captain
+has a passkey. The hotel’s full of passkeys.</p>
+<p><strong>margo</strong>: Passkey?</p>
+<p><strong>clarendon</strong>: Or–since one is a well-known and
+respected guest–one could go to the desk in the lobby and say “Miss
+Mayfield seems to have lost her room key–have you another”? They always
+have another.</p>
+<p><strong>margo</strong>: Don’t be a fool. I loved him. He wasn’t worth
+it, but I loved him.</p>
+<p><strong>clarendon</strong>: And now that he’s safe from all other
+women, you can go on loving him.</p>
+<p><strong>margo</strong>: You nasty, sardonic–</p>
+<p><strong>clarendon</strong>: Sardonic, if you will my dear. Bust
+nasty. You lied about the gun.</p>
+<p><strong>clarendon</strong>: I’m a very observant man. You had
+something in your bag this afternoon, Something that causes you to hold
+it in a particular way. Something that made a particular sound when you
+put it down on the bar. You went out with Mitchell. None of us ever saw
+him again.</p>
+<p><strong>margo</strong>: That’s not enough.</p>
+<p><strong>clarendon</strong>: I saw your face this evening when the
+detective showed you the gun. You lied. It was obvious.</p>
+<p><strong>margo</strong>: He saw my face too.</p>
+<p><strong>clarendon</strong>: So he did–but he hasn’t told you what he
+saw. I have.</p>
+<p><strong>margo</strong>: They’ll arrest that girl. Everything points
+to her.</p>
+<p><strong>clarendon</strong>: Convenient, isn’t it?</p>
+<p><strong>margo</strong>: One of these days, you’re going to wake up in
+the middle of the night and find that you’ve cut your throat.</p>
+<p><strong>clarendon</strong>: How clumsy. I’d never forgive myself.
+Good night my dear.</p>
+<p><strong>margo</strong>: You could have got in that room, just as you
+got in here. How do I know you didn’t kill Larry?</p>
+<p><strong>clarendon</strong>: With what motive?</p>
+<p><strong>margo</strong>: Nastiness. You’re nasty with words. Why
+wouldn’t you be nasty with deeds once in a while? You hated him–and I
+know why.</p>
+<p><strong>clarendon</strong>: He was very easy to hate. If you’ll look
+in your mirror, when you are in a better temper- you’ll know why.</p>
+<p><strong>clarendon</strong>: Very silly of me, isn’t it? I’m not as
+well-off as I was once- and I’m used to my little comforts.</p>
+<p><strong>killaine</strong>: That star up there is Alphard. “The
+lonely”, they call him. I wonder why he’s lonely? Perhaps he’s a
+policeman–a celestial policeman?</p>
+<p><strong>killaine</strong>: Well, that’s not getting us anywhere. You
+won’t tell me who you are, or give any account of yourself. You won’t
+even give me your address in the United States. Why? Unhappy
+marriage?</p>
+<p><strong>betty</strong>: Who told you I was married?</p>
+<p><strong>killaine</strong>: There’s the clear mark of a wedding ring
+on your finger.</p>
+<p><strong>betty.</strong>: I want a cigarette.</p>
+<p><strong>killaine</strong>: The room’s full of cigarettes. But of
+course one would have to be handed to you.</p>
+<p><strong>betty</strong>: Let me see that.</p>
+<p><strong>betty</strong>: Your family coat of arms, Mr. Killaine?</p>
+<p><strong>killaine</strong>: Regimental! Seaforth Highlanders.</p>
+<p><strong>betty</strong>: I’m sorry.</p>
+<p><strong>killaine</strong>: Stop saying you’re sorry. I want
+information, not regrets.</p>
+<p><strong>betty</strong>: Would you be satisfied if I said I shot
+him?</p>
+<p><strong>killaine</strong>: What this?</p>
+<p><strong>betty</strong>: Yes.</p>
+<p><strong>killaine</strong>: Where’s you get it?</p>
+<p><strong>betty</strong>: A graduation present.</p>
+<p><strong>killaine</strong>: That’s a rather inferior grade humor. But
+since you’re being so frank, would you mind telling me why all the
+labels have been removed from your clothes?</p>
+<p><strong>killaine</strong>: An unhappy marriage hardly seems a
+sufficient reason for that.</p>
+<p><strong>betty</strong>: Why don’t you arrest me and be done with
+it.</p>
+<p><strong>killaine</strong>: I probably shall–after I’ve tortured you a
+little more.</p>
+<p><strong>brandon</strong>: How are you two getting along?</p>
+<p><strong>killaine</strong>: Delightfully. Every time Miss Mayfield
+says something, I know less than I did before. Well, I may as well knock
+off for tonight. Good night, Miss Mayfield. Do let me thank you for your
+cooperation.</p>
+<p><strong>betty</strong>: There’s one thing I may as well tell you.
+You’ll find it out anyhow. I tried to run away–when I found him out
+there on the balcony. There wasn’t any plane.</p>
+<p><strong>brandon</strong>: You didn’t have to tell him that.</p>
+<p><strong>killaine</strong>: Why not?</p>
+<p><strong>killaine</strong>: Especially as I already knew it.</p>
+<p><strong>brandon</strong>: Bad?</p>
+<p><strong>betty</strong>: Bad enough.</p>
+<p><strong>brandon</strong>: He could hardly help suspecting you.</p>
+<p><strong>betty</strong>: That’s putting it mildly.</p>
+<p><strong>betty</strong>: What time is it?</p>
+<p><strong>brandon</strong>: Quarter after one. Why?</p>
+<p><strong>betty</strong>: There’s a lot of night left to live
+through.</p>
+<p><strong>brandon</strong>: So there is. You don’t want to go to bed. I
+don’t want to go to bed. Let’s go somewhere and hear some music–have
+something to drink– something to eat–even dance.</p>
+<p><strong>betty</strong>: Dance? Tonight?</p>
+<p><strong>brandon</strong>: Let’s not pretend Mitchell meant anything
+to either of us.</p>
+<p><strong>betty</strong>: Certainly not to me.</p>
+<p><strong>brandon</strong>: Just who are you, anyway?</p>
+<p><strong>betty</strong>: You, too? My name is Betty Mayfield. I was
+born, and I am here. Message ends. That’s what I told him. He didn’t
+like it.</p>
+<p><strong>brandon</strong>: I’m different. I like it fine.</p>
+<p><strong>killaine</strong>: Nice writing–but no information I didn’t
+expect any.</p>
+<p><strong>brandon</strong>: Miss Mayfield would like a little fresh
+air. Any objections?</p>
+<p><strong>brandon</strong>: In case you want to have us followed.</p>
+<p><strong>killaine</strong>: I don’t.</p>
+<p><strong>brandon</strong>: Well–good night.</p>
+<p><strong>brandon</strong>: Cold?</p>
+<p><strong>betty</strong>: Is this the best you can do?</p>
+<p><strong>brandon</strong>: At this time of night. It’s not as bad as
+it looks.</p>
+<p><strong>magruder</strong>: Nice to see you, Mr. Brandon–and the lady.
+What’ll you take?</p>
+<p><strong>brandon</strong>: Scotch?</p>
+<p><strong>brandon</strong>: Scotch. The kind you buy, Magruder, not the
+kind you make.</p>
+<p><strong>magdruder</strong>: Only the best for you, Mr. Brandon.</p>
+<p><strong>blowsy girl</strong>: What you need is a drink, big boy.</p>
+<p><strong>sailor</strong>: Aw, go blow your nose.</p>
+<p><strong>brandon and betty</strong>: She is staring horrified at
+this.</p>
+<p><strong>betty</strong>: Why did you bring me to such a place?</p>
+<p><strong>brandon</strong>: There isn’t anywhere else.</p>
+<p><strong>brandon</strong>: Want to dance?</p>
+<p><strong>betty</strong>: Dance? Here?</p>
+<p><strong>brandon</strong>: Why not?</p>
+<p><strong>betty</strong>: They know you here–know your name.</p>
+<p><strong>brandon</strong>: I know everybody. I don’t look at half of
+life, just the nice half, I look at all of it.</p>
+<p><strong>betty</strong>: All right, then, let’s dance.</p>
+<p><strong>betty</strong>: That man over there. He was in the hotel
+lobby.</p>
+<p><strong>brandon</strong>: I didn’t notice him.</p>
+<p><strong>betty</strong>: We walked right passed him. He’s following
+us.</p>
+<p><strong>brandon</strong>: Killaine’s not that sort of guy. He said
+no–he meant no.</p>
+<p><strong>betty</strong>: Then he’s got to be a detective.</p>
+<p><strong>brandon</strong>: Couldn’t be.</p>
+<p><strong>betty</strong>: Then he’s–</p>
+<p><strong>betty</strong>: Take me out of here, please. Right away. If
+you don’t I’ll go alone.</p>
+<p><strong>brandon</strong>: Quite sure you saw him in the hotel
+lobby?</p>
+<p><strong>betty</strong>: Absolutely sure.</p>
+<p><strong>brandon</strong>: We’ll find out.</p>
+<p><strong>brandon</strong>: You go out and get in the car.</p>
+<p><strong>brandon</strong>: The light’s bad in here, but I seem to
+remember the face. What was the name?</p>
+<p><strong>brandon</strong>: All right, let’s see the buzzer.</p>
+<p><strong>man</strong>: What’s a buzzer?</p>
+<p><strong>brandon</strong>: So you’re not a cop.</p>
+<p><strong>man</strong>: Me a cop? What made you think that,
+Mr. Brandon?</p>
+<p><strong>brandon</strong>: Who told you my name?</p>
+<p><strong>man</strong>: I’ve got good ears.</p>
+<p><strong>brandon</strong>: How are your teeth getting along?</p>
+<p><strong>man</strong>: The new ones are fine. The last set I had gave
+me all kinds of trouble.</p>
+<p><strong>man</strong>: What’s this in favor of?</p>
+<p><strong>brandon</strong>: I don’t like to be tailed. The lady I’m
+with doesn’t like to be stared at. To put the matter in a couple of
+nutshells, I don’t like you.</p>
+<p><strong>man</strong>: You wanna get tough, Mr. Brandon, you gotta
+know the technique. Next time, turn a little sideways, get your hip in
+the way. See what I mean? Good night.</p>
+<p><strong>betty</strong>: Who is he?</p>
+<p><strong>brandon</strong>: He’s a fellow with a very hard knee, and he
+knows how to use it.</p>
+<p><strong>betty</strong>: You don’t know who he is?</p>
+<p><strong>brandon</strong>: He’s not a cop. A cop wouldn’t have kneed
+me.</p>
+<p><strong>betty</strong>: He was following us–but he’s not a
+policeman.</p>
+<p><strong>brandon</strong>: Us?</p>
+<p><strong>betty</strong>: All right–following me.</p>
+<p><strong>brandon</strong>: Why?</p>
+<p><strong>betty</strong>: No matter. There’s nothing I can do about
+it.</p>
+<p><strong>brandon</strong>: Anything I can do about it?</p>
+<p><strong>betty</strong>: Take me home–and forget you ever saw me.
+That’s a silly remark isn’t it?</p>
+<p><strong>brandon</strong>: Try not talking.</p>
+<p><strong>brandon</strong>: It still doesn’t matter if I kiss you?</p>
+<p><strong>betty</strong>: Nothing matters.</p>
+<p><strong>brandon</strong>: No use waiting, then.</p>
+<p><strong>brandon</strong>: That’s the second round I’ve lost tonight.
+That fellow hurt me.</p>
+<p><strong>betty</strong>: So have I.</p>
+<p><strong>brandon</strong>: From you, I like it.</p>
+<p><strong>manager</strong>: Good morning. Can I do something for
+you?</p>
+<p><strong>betty</strong>: I’m Miss Mayfield. Is Mr. Campbell here?</p>
+<p><strong>manager</strong>: I’m Mr. Campbell, Miss Mayfield. Purely as
+a matter of routine, I want to ask the name of your bank.</p>
+<p><strong>betty</strong>: Bank?</p>
+<p><strong>manager</strong>: Merely for our records, Miss Mayfield. It’s
+usual for the guests who come here for the first time.</p>
+<p><strong>betty</strong>: I’m carrying quite a large sum in Travelers
+checks. How much of a deposit would you like?</p>
+<p><strong>campbell</strong>: I wouldn’t dream if questioning your
+credit. Purely a matter of routine, for the hotel records. Just the name
+of your bank–</p>
+<p><strong>betty</strong>: The Hotel records, Mr. Campbell?</p>
+<p><strong>campbell</strong>: I’m afraid I’ve been clumsy. Please
+overlook it, Miss Mayfield.</p>
+<p><strong>betty</strong>: Good morning, Mr. Killaine. I’m sorry I can’t
+give you the name of my bank–because I have no bank at the moment. That
+was a crude trick.</p>
+<p><strong>killaine</strong>: They’re all crude, when they don’t work.
+Had breakfast?</p>
+<p><strong>killaine</strong>: Care for a stroll outside? Beautiful
+morning. The air is like wine, the sky is a deep blue.</p>
+<p><strong>betty</strong>: Deep blue? I’d call it grey-blue.</p>
+<p><strong>killaine</strong>: You must come from pretty far South.</p>
+<p><strong>killaine</strong>: FLorida?</p>
+<p><strong>betty</strong>: I’ve never been to Florida.</p>
+<p><strong>secretary</strong>: Good morning, Mr. Brandon.</p>
+<p><strong>brandon</strong>: Morning. Any calls?</p>
+<p><strong>secretary</strong>: Mr. Reed would like you to call him.</p>
+<p><strong>brandon</strong>: All right. Get him.</p>
+<p><strong>secretary</strong>: And there’s a Mr. Goble to see you. Says
+his business is personal.</p>
+<p><strong>brandon</strong>: Who’s Goble?</p>
+<p><strong>man</strong>: I’m Goble.</p>
+<p><strong>goble</strong>: I’d like a few words with you, in
+private.</p>
+<p><strong>brandon</strong>: I’m not interested in blind dates.</p>
+<p><strong>secretary</strong>: Mr. Reed, please, for Mr. Brandon. Very
+well. Have him call. Mr. Brandon is in his office now. Mr. Reed stepped
+out, Mr. Brandon.</p>
+<p><strong>brandon</strong>: This way.</p>
+<p><strong>brandon</strong>: All right. Talk it up.</p>
+<p><strong>brandon</strong>: “Martin Goble. Insurance Adjuster.”</p>
+<p><strong>brandon</strong>: Nice friendly approach you’ve got. Goble. I
+could hardly walk when I got out of bed this morning.</p>
+<p><strong>goble</strong>: You asked for it.</p>
+<p><strong>brandon</strong>: I’m still asking. What do you want?</p>
+<p><strong>goble</strong>: I’m not sure I want anything from you. You
+might want something from me.</p>
+<p><strong>brandon</strong>: Name it.</p>
+<p><strong>goble</strong>: Information–protection–you might even want to
+hire me to go home and listen to the radio. That’s the funny part of my
+business– once in a while, I get hired not to work. Nice girl you were
+with last night. Known her long?</p>
+<p><strong>brandon</strong>: Private eye?</p>
+<p><strong>goble</strong>: You guessed it. The card’s phony. I got
+plenty of ’em. Different names, different jobs. I work out of San
+Francisco. Go anywhere, do anything. All it takes is the folding.</p>
+<p><strong>brandon</strong>: What are your rates?</p>
+<p><strong>goble</strong>: $40 a day and expenses. Expenses run pretty
+high on a case like this. I’m a long way from home. I don’t have a B.C.
+Licence. I’d need about $500 for a retainer.</p>
+<p><strong>brandon</strong>: What have you got on Miss Mayfield?</p>
+<p><strong>goble</strong>: Mayfield? Oh, that girl you were with last
+night. You haven’t hired me yet. Mr. Brandon.</p>
+<p><strong>brandon</strong>: That’s a nice hard knee you’ve got, Goble.
+How’d you like to trade it for a broken neck?</p>
+<p><strong>goble</strong>: Quit trying to scare me, Mr. Brandon, I’m
+neurotic.</p>
+<p><strong>brandon</strong>: I don’t know whether to knock your teeth
+down your throat–or call the police–or just give you twenty bucks to go
+out and buy yourself a clean nose.</p>
+<p><strong>goble</strong>: You hurt my feelings. I ought to raise the
+price to be a thousand.</p>
+<p><strong>brandon</strong>: If I call the police, your price will go
+down to a minus sign.</p>
+<p><strong>goble</strong>: Bluff. You’ve waited too long.</p>
+<p><strong>brandon</strong>: For five hundred, what do I get?</p>
+<p><strong>goble</strong>: I go home and paint the kitchen.</p>
+<p><strong>brandon</strong>: For two hundred?</p>
+<p><strong>goble</strong>: I stick around and wait for the five
+hundred.</p>
+<p><strong>brandon</strong>: You mentioned information.</p>
+<p><strong>goble</strong>: Sorry. Another client paid for that. You can
+hire me not to use it.</p>
+<p><strong>brandon</strong>: A thousand.</p>
+<p><strong>goble</strong>: Got it on you?</p>
+<p><strong>brandon</strong>: Got the information on you?</p>
+<p><strong>goble</strong>: Get it in half an hour.</p>
+<p><strong>brandon</strong>: There’s two hundred. I’ll meet you in an
+hour–where we met last night</p>
+<p><strong>goble</strong>: Why not here?</p>
+<p><strong>brandon</strong>: I don’t like your perfume in my office.
+Make it somewhere else if you don’t like Charlie’s.</p>
+<p><strong>goble</strong>: Charlie’s suits me fine. I don’t scare.</p>
+<p><strong>goble</strong>: You pay the check, you pick the joint. See
+you.</p>
+<p><strong>killaine</strong>: Down below’s Stanley Park. On the other
+side of the trees, there’s a beach. You can see it. Steveston’s over
+there. Coast Guard station. There’s the Yacht Club, and beyond it, the
+docks. The over on the other side of the inlet, there’s Grouse Mountain.
+It’s about 4000 feet high. There’s a restaurant on top of it. Very nice
+restaurant. I’m sorry we couldn’t have met in pleasanter circumstances,
+Miss Mayfield.</p>
+<p><strong>betty</strong>: We wouldn’t have met at all.</p>
+<p><strong>killaine</strong>: True. I was a bit irritable last night. I
+apologize.</p>
+<p><strong>betty</strong>: You were a galahad, compared to some cops
+I’ve known.</p>
+<p><strong>killaine</strong>: You’ve had dealings with the police
+before?</p>
+<p><strong>betty</strong>: Who hasn’t–one way or another?</p>
+<p><strong>killaine</strong>: But not in the investigation of a major
+crime, I hope.</p>
+<p><strong>betty</strong>: Is it a crime?</p>
+<p><strong>killaine</strong>: We’re 98 per cent certain Mitchell was
+murdered. There are a lot of reasons. Was he very drunk when you last
+saw him?</p>
+<p><strong>betty</strong>: You were there when I last saw him.</p>
+<p><strong>killaine</strong>: I’d like to believe that. It’s not too
+easy.</p>
+<p><strong>killaine</strong>: I’ve been talking to the Immigration
+Inspector who passed you across the border. He was a little suspicious
+of you. Mayfield isn’t really your name, is it?</p>
+<p><strong>killaine</strong>: I’ll find out, you know. Perhaps not
+today–perhaps not tomorrow. But in the end, I’ll find out.</p>
+<p><strong>betty</strong>: The police always do, don’t they?</p>
+<p><strong>killaine</strong>: You’ve has an experience that you don’t
+want to talk about. An unhappy marriage, for example.</p>
+<p><strong>killaine</strong>: I wouldn’t make you talk about it. My job
+is the death of Marry Mitchell. Why can’t you give me your
+confidence?</p>
+<p><strong>betty</strong>: You–or the Vancouver Police Department?</p>
+<p><strong>killaine</strong>: We try to be decent.</p>
+<p><strong>betty</strong>: You’re a police officer. A very nice one–but
+you have a job to do. I’m a girl who’s in a jam, and it’s your job to
+keep me there. Don’t go considerate on me. I might start to bawl.</p>
+<p><strong>killaine</strong>: You won’t tell me who you are? You won’t
+even give me a chance to help you?</p>
+<p><strong>betty</strong>: Nobody can help me. You, least of all.</p>
+<p><strong>killaine</strong>: If I understand what you meant by
+that.</p>
+<p><strong>betty</strong>: You understand perfectly.</p>
+<p><strong>killaine</strong>: Then there isn’t much I can do, is
+there?</p>
+<p><strong>betty</strong>: There isn’t anything you can do.</p>
+<p><strong>goble</strong>: I came here to see Mr. Brandon.</p>
+<p><strong>man with mop</strong>: Who?</p>
+<p><strong>goble</strong>: Brandon. I was to meet him here.</p>
+<p><strong>man with mop</strong>: Okay. Ask the boss.</p>
+<p><strong>goble</strong>: I’m looking for Mr. Brandon.</p>
+<p><strong>magruder</strong>: The joint’s not open, Mac. Who’s
+Brandon?</p>
+<p><strong>goble</strong>: I have an appointment with him, right here,
+right now.</p>
+<p><strong>magruder</strong>: Go live in a tent.</p>
+<p><strong>goble</strong>: It’ll be a tough dollar when guys like you
+learn the alphabet.</p>
+<p><strong>magruder</strong>: Talk English. How do I know you’re
+you?</p>
+<p><strong>magruder</strong>: Mr. Brandon couldn’t be here. He might
+have left something for you. What would it look like?</p>
+<p><strong>goble</strong>: One of those nice long manila
+envelopes–sealed. Not too fat- not too thin.</p>
+<p><strong>magruder</strong>: What do I get for it?</p>
+<p><strong>goble</strong>: You get it’s brother.</p>
+<p><strong>magruder</strong>: Sounds like a fair swap. Let’s take a
+look.</p>
+<p><strong>magruder</strong>: I need a receipt. Sign your name across
+the flap.</p>
+<p><strong>goble</strong>: Open it and count it.</p>
+<p><strong>magruder</strong>: When you sign for it, you count it. It’s
+your dough.</p>
+<p><strong>magruder</strong>: Eight hundred bucks. Ice cream for
+dinner.</p>
+<p><strong>magruder</strong>: You had it coming, didn’t you, baby? Come
+on. You’re not that sick.</p>
+<p><strong>magruder</strong>: Don’t tell me you had a glass head, baby.
+Oh no–not in your business. How could you live so long?</p>
+<p><strong>int. vancouver police headquarters - killaine’s office
+–</strong>: DAY</p>
+<p><strong>gore</strong>: Sit down, Mrs. West. Inspector Killaine will
+be along in a minute.</p>
+<p><strong>margo</strong>: Thank you.</p>
+<p><strong>killaine</strong>: Killaine here. I want a radio contact to
+work with Handley. A motorcycle officer will do.</p>
+<p><strong>voice from dictagraph</strong>: Right away, Inspector.</p>
+<p><strong>killaine</strong>: Remember that time, didn’t I? Good morning
+Mrs. West. Does your visit here mean you’ve changed your mind?</p>
+<p><strong>margo</strong>: How did you know? Clarendon. You cops never
+tell anybody anything, do you.</p>
+<p><strong>killaine</strong>: Other people always know so much more than
+we know–so much more than they’re willing to tell us.</p>
+<p><strong>margo</strong>: It was Clarendon. He knew I had the gun in my
+bag.</p>
+<p><strong>margo</strong>: You couldn’t possible have traced it this
+soon–not possibly.</p>
+<p><strong>killaine</strong>: Of course not. Thanks for telling me. I
+haven’t seen Mr. Clarendon.</p>
+<p><strong>margo</strong>: I am a fool.</p>
+<p><strong>killaine</strong>: That depends upon your motive. You were in
+love with Mitchell, weren’t you?</p>
+<p><strong>margo</strong>: Yes–and he’s already becoming vague to me.
+Funny! Last night I was furiously jealous. Jealous of what? I out that
+gun in my bag deliberately. Who was I going to kill with it? A girl I
+didn’t even know? A man I knew to be a thief and a forger? A half-man? A
+gigolo? It’s already ludicrous. Love! What a comedy!</p>
+<p><strong>killaine</strong>: You didn’t play it for laughs last
+night.</p>
+<p><strong>margo</strong>: Did you ever have a serious operation?</p>
+<p><strong>killaine</strong>: Mortar shells are not funny, either.</p>
+<p><strong>margo</strong>: At first, it doesn’t hurt at all. That’s
+shock. Then it hurts terribly–you wouldn’t believe such pain could
+exist–and six months later you can’t remember what pain felt like. It
+hasn’t taken six months this time. It hasn’t even taken twenty- four
+hours. Is that a beastly thing to say?</p>
+<p><strong>killaine</strong>: Not if it clears the air.</p>
+<p><strong>margo</strong>: It does. May I go now?</p>
+<p><strong>killaine</strong>: I’ll investigate Mr. Clarendon’s financial
+position–</p>
+<p><strong>margo</strong>: I don’t understand.</p>
+<p><strong>killaine</strong>: Perhaps a rich widow would have solved all
+his problems.</p>
+<p><strong>margo</strong>: Now, you’re being beastly.</p>
+<p><strong>killaine</strong>: Sure. You didn’t come here in person just
+to tell me about the gun. You wanted me to be looking across the desk at
+you while you talked about Mitchell. If I believe you, it would be
+psychologically impossible for you to have killed him last night.</p>
+<p><strong>margo</strong>: And if you didn’t believe me?</p>
+<p><strong>killaine</strong>: You would still have planted information
+that Clarendon knew about the gun–and not as an accusation, but in the
+process of defending yourself by making a confession. Very neat. Good
+morning, Mrs. West.</p>
+<p><strong>killaine</strong>: Killaine here.</p>
+<p><strong>supt. mckechnie’s voice</strong>: Come into my office,
+please, Killaine.</p>
+<p><strong>killaine</strong>: Right away, sir.</p>
+<p><strong>int. vancouver police headquarters - mckechnie’s office
+–</strong>: DAY</p>
+<p><strong>mckechnie</strong>: Killaine, this is Mr. Mitchell, Senior.
+Young Mitchell’s father. He just flew in from Toronto.</p>
+<p><strong>killaine</strong>: How do you do, sir.</p>
+<p><strong>mckechnie</strong>: I’ve explained the situation to
+Mr. Mitchell up to a point. Now about this Mayfield girl?</p>
+<p><strong>killaine</strong>: She’s a suspect, naturally. But not the
+only one.</p>
+<p><strong>mckechnie</strong>: She’s the only one who had a dead man in
+her room. The only one who won’t give an account of herself. The only
+one who tried to run away. And the only one, so far, I’ve been told, who
+went to such lengths to disguise her identity that she even removed the
+labels from her clothes. What more do you want?</p>
+<p><strong>mitchell, sr.</strong>: She should have been arrested last
+night.</p>
+<p><strong>mckechnie</strong>: That’s as may be. We’ve ample grounds to
+detain her for questioning. You can’t deny that, surely.</p>
+<p><strong>killaine</strong>: No.</p>
+<p><strong>mckechnie</strong>: I hear she’s a very pretty girl.</p>
+<p><strong>killaine</strong>: Which forces me to arrest her against my
+better judgment.</p>
+<p><strong>mckechnie</strong>: Aye. You have a point there.</p>
+<p><strong>mitchell, sr.</strong>: If so, I must say that it escapes my
+attention. It is my son who has been murdered. He was not always a good
+son–but he was my son. I want his murderer punished. The girl’s
+obviously a criminal of some sort. Otherwise, she’d give an account of
+herself. Arrest her, and you’ll find out soon enough.</p>
+<p><strong>mckechnie</strong>: I think he’s right.</p>
+<p><strong>killaine</strong>: Am I to interpret that as an order to
+arrest Miss Mayfield?</p>
+<p><strong>mckechnie</strong>: When I give an order, you’ll not need it
+interpreted. You have an hour to make your mind up. Well, are ye
+satisfied, Mr. Mitchell?</p>
+<p><strong>mitchell, sr.</strong>: I’ll be satisfied when my son’s
+murderer is convicted and hanged. You’ve given this young man a very
+difficult choice.</p>
+<p><strong>mckechnie</strong>: Aye. That was the point you said you
+didn’t get. That’s all.</p>
+<p><strong>killaine</strong>: Very good, sir.</p>
+<p><strong>driscoll</strong>: May I have a moment, Inspector?</p>
+<p><strong>driscoll</strong>: The Harbor police have just picked up a
+dead man out of the water.</p>
+<p><strong>killaine</strong>: Floater?</p>
+<p><strong>driscoll</strong>: Not a floater. Only just dead.</p>
+<p><strong>killaine</strong>: You’re the waterfront specialist. Find out
+about it. I’ve got a murder to investigate.</p>
+<p><strong>driscoll</strong>: You have two murders to investigate. This
+man’s head was beaten in. And there’s nothing in his pockets.</p>
+<p><strong>killaine</strong>: Drunk-rolling job. They hit him too
+hard.</p>
+<p><strong>driscoll</strong>: I’ve been on the waterfront detail for
+twelve years. This man hadn’t been dead an hour. He wasn’t killed last
+night. He was killed today. In broad daylight. That’s no drunk- rolling
+job.</p>
+<p><strong>killaine</strong>: Let me know when you’ve identified him</p>
+<p><strong>killaine</strong>: And don’t get too logical, Driscoll. In
+police business it doesn’t work. I wish it did. But it doesn’t</p>
+<p><strong>driscoll</strong>: I’m an Irishman, sir. An Irishman is
+always logical.</p>
+<p><strong>close shot – a portion of a tall, spear topped iron
+railing</strong>: ALONG THE SIDEWALK</p>
+<p><strong>long shot – graveled or paved space in front of
+military</strong>: OFFICIAL-LOOKING BUILDING</p>
+<p><strong>close shot – radio dispatcher in communications
+division</strong>: OF POLICE HEADQUARTERS</p>
+<p><strong>dispatcher</strong>: Go ahead, three-eight-six.</p>
+<p><strong>voice from loudspeaker</strong>: Party I am detailed to
+observe is watching guard mount in front of Parliament Buildings.
+Sergeant Handley is standing by.</p>
+<p><strong>dispatcher</strong>: Message received. Stand by. One-
+two-five.</p>
+<p><strong>killaine</strong>: I’ll take over now. Wait for Handley.</p>
+<p><strong>killaine</strong>: I’m relieving you, Handley. Carry on with
+Gore at the hotel.</p>
+<p><strong>handley</strong>: Very good, sir.</p>
+<p><strong>killaine</strong>: This isn’t a very good place to talk.</p>
+<p><strong>betty</strong>: I don’t want to talk.</p>
+<p><strong>killaine</strong>: I’ve come here to arrest you for
+murder.</p>
+<p><strong>voice of command</strong>: Guard HALT!</p>
+<p><strong>voice of command</strong>: Right TURN!</p>
+<p><strong>a sound of feet, a stamp, a slapping of hands against
+rifle</strong>: SLINGS as guard brings its arms to order. Betty turns
+her head to look at Killaine.</p>
+<p><strong>betty</strong>: I expected nothing else.</p>
+<p><strong>killaine</strong>: I might be able to save you. If I knew
+enough.</p>
+<p><strong>betty</strong>: You wouldn’t even try There must be some
+copper in you, or you wouldn’t be an inspector.</p>
+<p><strong>killaine</strong>: There must be– but when I’m with you I
+can’t find it.</p>
+<p><strong>voice of command</strong>: Guard, Present ARMS!</p>
+<p><strong>appropriate sounds are heard, then a roll starts on
+the</strong>: TAP DRUMS.</p>
+<p><strong>killaine</strong>: Everybody loves a guard mount– except the
+guard. My boss gave me an hour to make up my mind. The time’s almost
+up.</p>
+<p><strong>killaine</strong>: I’m about to be very silly. A man passes a
+girl on the street–a very lovely girl–his eyes meet her eyes, and
+something reaches out and takes hold of his heart– and then she goes on
+and is lost in the crowd–and he says to himself, “There goes my lost
+love”– and it’s true–if he never sees her again, it’s still true. Of
+course, after a while, he forgets– or almost forgets–because after a
+while we forget almost everything. But this man is a copper. He gets
+orders–routine orders–to go to a place and investigate a murder– and
+everything points to a certain girl.</p>
+<p><strong>betty</strong>: Points very straight to her.</p>
+<p><strong>killaine</strong>: He looks at the girl, looks into her
+eyes–</p>
+<p><strong>betty</strong>: What does he see?</p>
+<p><strong>killaine</strong>: Palm trees against a sunset–waves breaking
+on a coral reef–the Taj Mahal by moonlight–roses in an English garden,
+just after a shower– Clich�s, one and all–but good ones, with a lot of
+mileage left in them–there’s one thing he does not see–murder–and murder
+was what he was sent to find. Pretty ridiculous, isn’t it?</p>
+<p><strong>betty</strong>: Very ridiculous.</p>
+<p><strong>killaine</strong>: That’s my hard luck–I’m man enough to tell
+you about it–and not be sorry.</p>
+<p><strong>betty</strong>: What do your friends call you?– The ones that
+know you well?–and like you very much?</p>
+<p><strong>killaine</strong>: They call me Jeff.</p>
+<p><strong>betty</strong>: Jeff. Shall we go now, Jeff, and get it over
+with?</p>
+<p><strong>killaine</strong>: Not quiet yet. We know who the gun
+belonged to. Margo West. She told us this morning. It doesn’t mean much.
+Mitchell took it away from her. He had a habit of going through her
+bag.</p>
+<p><strong>betty</strong>: Looking for peanuts, I suppose.</p>
+<p><strong>killaine</strong>: So Mitchell had handled it. Afterwards,
+Brandon picked it up. There’s no indication you handled it.</p>
+<p><strong>betty</strong>: I always wear gloves when I shoot people. A
+bad joke–but better than tears.</p>
+<p><strong>killaine</strong>: Time’s up. I’m off the case.</p>
+<p><strong>betty</strong>: They’ll only find someone else– who won’t be
+so kind.</p>
+<p><strong>killaine</strong>: That’s something I can’t spare you. But I
+won’t do it myself.</p>
+<p><strong>betty</strong>: Because you think your in love with me?</p>
+<p><strong>killaine</strong>: I’m enough of a copper to do my duty. My
+boss made it tough for me. If I don’t arrest you, I’ve gone soft. If I
+do, it’s to save my face. I don’t play those rules.</p>
+<p><strong>killaine</strong>: You’ve got a couple of hours, maybe.</p>
+<p><strong>betty</strong>: To do what?</p>
+<p><strong>killaine</strong>: I can’t answer that.</p>
+<p><strong>betty</strong>: What will they do to you?</p>
+<p><strong>killaine</strong>: That’s they’re business. Can I drop you
+somewhere?</p>
+<p><strong>betty</strong>: You’re still a police officer, Jeff. I saw
+you send those two men away. I know they were watching me.</p>
+<p><strong>betty</strong>: What are you going to do–toss your job into
+Puget Sound? Because I make you think of magnolias? I thought policeman
+was something like a soldier. That his duty came first. However much he
+might happen hate it.</p>
+<p><strong>killaine</strong>: I’ve been a soldier too. There is a
+difference. A policeman, like a judge, has a right to disqualify himself
+on proper grounds.</p>
+<p><strong>betty</strong>: What proper grounds? You can’t be in love
+with me. You hardly know me. I’m not in love with you.</p>
+<p><strong>killaine</strong>: I know that.</p>
+<p><strong>betty</strong>: But even if you were in love with me.</p>
+<p><strong>killaine</strong>: There’s an empty taxi across the street.
+If you’re so anxious, take it. He’ll know the way to the police
+headquarters.</p>
+<p><strong>betty</strong>: You do things the hard way, don’t you?</p>
+<p><strong>killaine</strong>: Sometimes.</p>
+<p><strong>betty</strong>: Not sometimes. Always. Just because it is the
+hard way. You’re that kind of man, Jeff.</p>
+<p><strong>killaine</strong>: Goodbye, Betty.</p>
+<p><strong>cab driver</strong>: Where to, Miss?</p>
+<p><strong>betty</strong>: Downtown somewhere–anywhere.</p>
+<p><strong>cab driver</strong>: Right you are, Miss.</p>
+<p><strong>int. vancouver police headquarters - mckechnie’s office
+–</strong>: DAY</p>
+<p><strong>mckechnie</strong>: Are you a policeman or a soft-headed
+nincompoop?</p>
+<p><strong>killaine</strong>: A little of both, sir, and perhaps not
+quiet enough of either.</p>
+<p><strong>mckechnie</strong>: It won’t look pretty good on your record,
+Killaine. Where’s the girl now?</p>
+<p><strong>killaine</strong>: I don’t know, sir.</p>
+<p><strong>mckechnie</strong>: Well, find out. Who’s covering her?</p>
+<p><strong>killaine</strong>: Nobody’s covering her, I detached the
+officer assigned to that duty.</p>
+<p><strong>mckechnie</strong>: This girl is a murderess, Killaine.</p>
+<p><strong>killaine</strong>: I disagree, sir. As Inspector in charge of
+the case I have the right to form that opinion, the right to act on
+it.</p>
+<p><strong>mckechnie</strong>: Ye have, have ye?</p>
+<p><strong>killaine</strong>: We lifted seven fairly good prints from
+Miss Mayfield’s toilet articles. Washington ought to teletype us within
+a few hours.</p>
+<p><strong>mckechnie</strong>: And in the meantime this girl goes where
+she pleases, does what she pleases?</p>
+<p><strong>killaine</strong>: Yes, sir.</p>
+<p><strong>mckechnie</strong>: “Superintendent J. Mckechnie, Vancouver
+Police Department. Vancouver B.c. Replaying To Your E.P. teletype
+classification No. 2684 incomplete. We advise identification possible.
+Elizabeth Kinsolving, arrested Greenwater, North Carolina, January 8,
+1948, on a charge of murder. Signed, FBI., Washington, D.C. H. Cleary,
+Inspector in charge.” Have ye any comment, Killaine?</p>
+<p><strong>killaine</strong>: Identification on possible, Sir. Not
+conclusive.</p>
+<p><strong>mckechnie</strong>: “Superintendent J. McKechnie, Vancouver
+Police Department. Replying your inquiry Elizabeth Kinsolving. Subject
+was indicted, first degree murder her husband, Lee Kinsolving, January
+this year. Guilty verdict set aside by presiding judge. Prisoner
+discharged, Whereabouts now unknown. Fingerprint classification”– And
+exact correspondence, Killaine.</p>
+<p><strong>mckechnie</strong>: “Physical description: Age 26, Height 5 1
+3/4 inches: Weight, 188 pounds: Light brown hair: Deep blue eyes: Small,
+perfectly formed features: Ears and earlobes small: Slender build: Wears
+size 4 AA shoe: Quiet refined manner: New York accent: No charges
+pending. No prior criminal record. Mayfield, Mother’s name. Air-mailing
+you photographs today. Signed Hubert Tollison, Chief of Police,
+Greenwater, North Carolina.” She bleached her hair, or course. Would
+your sensibilities be offended, if I sent out a general alarm to pick up
+this girl?</p>
+<p><strong>killaine</strong>: I think you’d be entirely justified,
+sir.</p>
+<p><strong>mckechnie</strong>: But you still think she’s innocent.</p>
+<p><strong>killaine</strong>: I do.</p>
+<p><strong>killaine</strong>: I think you’d like to have this.</p>
+<p><strong>mckechnie</strong>: I believe you won decorations during the
+war.</p>
+<p><strong>killaine</strong>: Two.</p>
+<p><strong>mckechnie</strong>: There are people in this world who don’t
+think a police badge is a badge of honor. I’m not one of them.</p>
+<p><strong>killaine</strong>: Nor I. This is why I gave it to you.</p>
+<p><strong>mckechnie</strong>: You’re a young man. You’re romantic. You
+think a pretty face and a clean conscience go together. You think a soft
+voice means a soft heart. You’ll grow out of that.</p>
+<p><strong>killaine</strong>: Not too far, I hope.</p>
+<p><strong>mckechnie</strong>: This badge is not an old newspaper you
+can cast down on the desk. It is not a thing you can give up as of no
+value. It may be taken from you–and you may die defending it. But you’ll
+not use it to make cheap dramatic gesures with. It’s a naked steel of
+the sword of Justice. Put it back in your pocket and hold tight to
+it–and someday you might grow into a worthiness ye lack now.</p>
+<p><strong>mckechnie</strong>: Get out of here!</p>
+<p><strong>killaine</strong>: What are my orders, sir?</p>
+<p><strong>mckechnie</strong>: You think I’m wrong about this bit of a
+girl. Go out and prove it against me!</p>
+<p><strong>mckechnie</strong>: Condense these for an immediate
+all-stations pick-up order.</p>
+<p><strong>int. vancouver police headquarters - killaine’s office
+–</strong>: DAY</p>
+<p><strong>killaine</strong>: Kid Galahad. The Knight of the White
+Plume. Jess Holmes, the fool killer. Boy, you look wonderful in a
+tank–with the turret closed.</p>
+<p><strong>driscoll</strong>: Got a moment, Inspector?</p>
+<p><strong>killaine</strong>: I’ve got a year. Or a second. I’m not sure
+which.</p>
+<p><strong>driscoll</strong>: You told me when we’d identified this
+fellow–</p>
+<p><strong>driscoll</strong>: We’ve done that. He’s a San Francisco
+private eye. Name Martin J. Goble, G-O-B-L-E. Had initials in his hat
+and for once he lived where he bought it. Goble and Greer is the firm
+name.</p>
+<p><strong>killaine</strong>: Swimming with his hat on? That’s
+original.</p>
+<p><strong>driscoll</strong>: If you’d seen the blood on his head–and
+some body had to carry him out to sea–</p>
+<p><strong>killaine</strong>: I understand. Pity to mess up a nice clean
+boat.</p>
+<p><strong>driscoll</strong>: I got through to Greer, his partner in the
+detective business. Greer won’t give out.</p>
+<p><strong>killaine</strong>: I’d suggest a telegram. Something like
+this: Chief of Police, San Francisco. A licensed private detective named
+named Martin J. Goble, address so-and-so, has been found murdered within
+our jurisdiction. His partner, name something-something Greer, refuses
+to give us any information. Correction. Refuses information necessary to
+our investigation. Can you assist? Signed Detective Sergeant Driscoll,
+Vancouver, British Columbia, Police.</p>
+<p><strong>driscoll</strong>: Send that?</p>
+<p><strong>killaine</strong>: Would you?</p>
+<p><strong>driscoll</strong>: If you’re asking my opinion, no. I’d read
+it to Greer over the phone. Ask him if he had any objections.</p>
+<p><strong>killaine</strong>: Catch me at the Vancouver Royal if it’s
+important.</p>
+<p><strong>driscoll</strong>: How important would it have to be? It’s
+only murder, Inspector.</p>
+<p><strong>killaine</strong>: The Super’s just given me the sweetest
+dressing down I’ve ever had. I’m still reeling from it. And believe me,
+I had it coming. I apologize. What you think is important–I think is
+important.</p>
+<p><strong>driscoll</strong>: Thanks, Inspector. What are your orders
+about this wire to San Francisco?</p>
+<p><strong>killaine</strong>: Men like you don’t need orders.</p>
+<p><strong>killaine</strong>: Time for a little chat?</p>
+<p><strong>brandon</strong>: If it doesn’t take too long. Drink?</p>
+<p><strong>killaine</strong>: Thanks. I don’t mind.</p>
+<p><strong>brandon</strong>: Here you are.</p>
+<p><strong>killaine</strong>: Thanks. Lovely view you have, haven’t
+you?</p>
+<p><strong>brandon</strong>: I never notice the view after the first
+week.</p>
+<p><strong>killaine</strong>: I would. Fancy waking up every morning
+with that in your lap. Wonderful thing, money is. Remember what Somerset
+Maugham said about it ?</p>
+<p><strong>brandon</strong>: I wouldn’t know.</p>
+<p><strong>killaine</strong>: “Money is a sort of sixth sense that gives
+meaning to all the others.” Very appealing, especially to a poor
+man.</p>
+<p><strong>brandon</strong>: Could we discuss that some other time?</p>
+<p><strong>killaine</strong>: Sure. Let’s discuss Betty Mayfield. How
+long since you saw her?</p>
+<p><strong>brandon</strong>: A couple of hours.</p>
+<p><strong>killaine</strong>: I have a warrant for her arrest.</p>
+<p><strong>brandon</strong>: That must hurt.</p>
+<p><strong>killaine</strong>: I’ve always thought you were a pretty nice
+guy, Brandon. I’d like to go on thinking so. If you tried to help her
+get away–</p>
+<p><strong>brandon</strong>: Would that make me a heel?</p>
+<p><strong>killaine</strong>: You’d be breaking the law.</p>
+<p><strong>brandon</strong>: Doesn’t answer the question.</p>
+<p><strong>killaine</strong>: The only answer I have for you.</p>
+<p><strong>brandon</strong>: You passed up a dozen chances to arrest
+her. What toughened you up?</p>
+<p><strong>killaine</strong>: Information.</p>
+<p><strong>brandon</strong>: Don’t kid me. You don’t think she murdered
+Mitchell.</p>
+<p><strong>killaine</strong>: It could have been an accident.</p>
+<p><strong>brandon</strong>: That COULD BE TOLD.</p>
+<p><strong>killaine</strong>: Not if she knew she wouldn’t be
+believed.</p>
+<p><strong>brandon</strong>: Your concentrating too hard, Killaine. What
+about Margo West? She had a motive. I guess you know by this time whose
+gun it was?</p>
+<p><strong>brandon</strong>: And old man Clarendon? He had a motive,
+too. Margo and her money.</p>
+<p><strong>killaine</strong>: Mitchell was killed down here. How could
+Clarendon get in to do it? Or Margo for that matter.</p>
+<p><strong>brandon</strong>: How could Mitchell? After that act he put
+on up here, is it likely she’d let him in?</p>
+<p><strong>killaine</strong>: She didn’t have to. He could have climbed
+down from here.</p>
+<p><strong>brandon</strong>: Mitchell was too drunk.</p>
+<p><strong>killaine</strong>: Or just drunk enough. He was with her when
+she registered. He knew where her room was. You were out most of the
+evening. There was a lot of mess to clean up . Waiters coming and going,
+the door standing open. Suppose Mitchell came in to grab a drink for
+himself, then wandered out on this balcony, then realized betty’s
+balcony was just below yours.</p>
+<p><strong>brandon</strong>: Romeo in reverse. Uh-uh. No sale,
+Killaine.</p>
+<p><strong>killaine</strong>: You don’t buy it. Okay. So I still want
+Betty Mayfield. Where is she?</p>
+<p><strong>brandon</strong>: No idea.</p>
+<p><strong>brandon</strong>: Excuse me. My phone.</p>
+<p><strong>brandon</strong>: Hello.</p>
+<p><strong>brandon</strong>: Sorry. It’s not very convenient just
+now.</p>
+<p><strong>int. hudson bay company’s department store - waiting room
+–</strong>: DAY</p>
+<p><strong>betty</strong>: I had no right to call you anyway. I’ve made
+you enough trouble. I– I think I know what to do–if they’ll let me.</p>
+<p><strong>brandon</strong>: It sounds like a fair location. Could you
+be a little more exact?</p>
+<p><strong>betty</strong>: I’m in the Hudson Bay Company’s store. That
+man last night–the one that followed me–</p>
+<p><strong>brandon</strong>: I don’t think that’s on the market anymore.
+I’d like something much closer to the water.</p>
+<p><strong>brandon</strong>: Cant be too close for me. Right across the
+street from it suits me. Anything else listed?</p>
+<p><strong>betty</strong>: There’s another man–right outside the booth
+here. I never saw him Before.</p>
+<p><strong>brandon</strong>: You’re probably mistaken about that. Let’s
+get together sand talk it over. There’s always a solution to these
+problems. But it must be near the water. Quite near– Yes, if you don’t
+mind waiting.</p>
+<p><strong>betty</strong>: Close to the water. Like last night. I’ll
+try. Goodbye.</p>
+<p><strong>betty</strong>: I’m sorry I kept you waiting.</p>
+<p><strong>man</strong>: Don’t give it a thought, Miss. Matter of fact,
+waiting is my trade.</p>
+<p><strong>man</strong>: Pardon me, Madam. Is that your
+handkerchief?</p>
+<p><strong>killaine</strong>: No more for me, thanks. Remember what I
+said. I can’t interfere with the law.</p>
+<p><strong>brandon</strong>: Where would she go, anyway. Don’t tell me
+you haven’t got her covered.</p>
+<p><strong>brandon</strong>: Mitchell was a heel. We both know that. Why
+take it for granted that somebody in the hotel knocked him off?</p>
+<p><strong>brandon</strong>: You forgetting the gag line, Killaine. The
+police don’t take anything for granted.</p>
+<p><strong>killaine</strong>: I’m afraid they do. Far too often. So
+long.</p>
+<p><strong>brandon</strong>: Wait a minute. I’ll go with you.</p>
+<p><strong>killaine</strong>: You do a lot of real estate trading,
+Brandon?</p>
+<p><strong>brandon</strong>: Now and then. Mostly just for the fun of
+it.</p>
+<p><strong>killaine</strong>: I tried it once. I lost my shirt.</p>
+<p><strong>brandon</strong>: I buy my shirts by the dozen.
+Fortunately.</p>
+<p><strong>killaine</strong>: Where did it all come from? Or is that a
+permissible question?</p>
+<p><strong>brandon</strong>: I had a father who knew how to steal.</p>
+<p><strong>killaine</strong>: What?</p>
+<p><strong>brandon</strong>: You asked me where it all came from.</p>
+<p><strong>killaine</strong>: Oh. That was just one of those idle
+questions. One doesn’t expect an answer.</p>
+<p><strong>killaine</strong>: I think I’d like to take another look at
+Mr. Mitchell’s room.</p>
+<p><strong>killaine</strong>: I don’t know why. As a matter of fact, I
+don’t know anything.</p>
+<p><strong>campbell</strong>: It’s about time you did–know
+something.</p>
+<p><strong>killaine</strong>: I agree with you perfectly. But when did
+time ever help a fool?</p>
+<p><strong>handley</strong>: Nothing. She hasn’t shown.</p>
+<p><strong>killaine</strong>: Check the boat?</p>
+<p><strong>handley</strong>: Gore’s out doing it now.</p>
+<p><strong>killaine</strong>: Must be almost tea-time I’ll be in
+Mitchell’s room.</p>
+<p><strong>brandon</strong>: Hop in.</p>
+<p><strong>betty</strong>: I hated to go to that place. I almost went to
+the police station instead.</p>
+<p><strong>brandon</strong>: No percentage in that.</p>
+<p><strong>betty</strong>: They’re going to arrest me.</p>
+<p><strong>brandon</strong>: I know. Killaine has a warrant.</p>
+<p><strong>betty</strong>: I have my own warrant. Stop a minute,
+please.</p>
+<p><strong>brandon</strong>: “Dear Inspector Killaine: This is goodbye.
+You were right, I had a secret. You were right, I changed my name. I
+tried to hide from the past and I walked into almost the same situation
+that I had run away from. I didn’t kill Larry Mitchell, but I can’t
+prove it. I couldn’t prove it the other time, either. Where I am going,
+nothing has to be proved. There’s a lot of water between Vancouver and
+the U.S.A. In that, and in you. Vancouver has been kind to me. I think
+you will understand. Betty Mayfield.</p>
+<p><strong>brandon</strong>: If you meant it, you wouldn’t show it to
+me, Betty. Or am I supposed to deliver it to dear Inspector
+Killaine?</p>
+<p><strong>betty</strong>: Wrote it in the waiting room of the Hudson
+Bay Store. With somebody’s Pekingese trying to climb into my lap.
+Perhaps you’re right. Perhaps I didn’t mean it. All I know is that I’m
+licked.</p>
+<p><strong>brandon</strong>: There’s a lot of water between Vancouver
+and the U.S.A. This note is a suicide note. After you’re gone where
+would they look for you? Why would they look for you? Darkness, and open
+water, and a fast cabin cruiser. And I have a pocket full of money. And
+if I helped you, I’d be committing a crime, or so they tell me.</p>
+<p><strong>betty</strong>: That wasn’t why I called you. Why did I
+hope–when I hadn’t any right to hope?</p>
+<p><strong>brandon</strong>: How bad is it? Bad enough for–</p>
+<p><strong>betty</strong>: Yes. I’ve never been very far from it, for a
+long time. Will you do something for me?</p>
+<p><strong>betty</strong>: Take me where I haven’t the courage to take
+myself.</p>
+<p><strong>brandon</strong>: How bad is the other thing? The secret?</p>
+<p><strong>betty</strong>: I was tried for murdering my husband. Guilty.
+The judge set the verdict aside. There was one man on the jury– –but he
+was afraid. They were all afraid–of my father-in-law. That man followed
+me last night– he came from him of course. My father-in-law will never
+give up. Never. He promised me that. So I came to Vancouver, B.C. As far
+away as I can get from North Carolina. And it happens all over again.
+Almost the same thing. Almost the same way. Do you wonder about
+this–</p>
+<p><strong>brandon</strong>: This is the ace, Betty. But not of spades.
+They’ll find out about the other. They might know already. And when they
+get this– What would they look for? Where? Out there somewhere?</p>
+<p><strong>betty</strong>: They’ll look for you.</p>
+<p><strong>brandon</strong>: I run over to Victoria. Play some golf with
+some people I know. Do it all the time. That’s why I have a cabin
+cruiser. Custom- built.Forty knots. Mr Clark Brandon an almost gentleman
+of almost complete leisure. Member of six golf clubs. Broke 70 once on
+the Shaughnessy Heights Course. You have to be good to do that, And if
+you look out of a front window of the Empress Hotel in Victoria, in a
+few hours you can look right down on Mr. Brandon’s boat, the Valkyrie.
+Came alone? Sure. He always comes alone. Mr Brandon’s a rather lonely
+man.</p>
+<p><strong>betty</strong>: And Betty Mayfield–</p>
+<p><strong>brandon</strong>: Blonde, beautiful, and sad–and nowhere. Of
+course she might have run away–if she knew how. And where to go. She
+might have dyed her hair. Bleached it before probably. And changed her
+name again. But look at this note. And look at her room in the hotel.
+Her stuff is all there. Hasn’t a rag except what she stood up in. You
+don’t run away like that. Not if you are young and beautiful. No
+chance.</p>
+<p><strong>betty</strong>: But that’s what I’m doing. Couldn’t they
+think of that?</p>
+<p><strong>brandon</strong>: If they had any reason to. Why make it
+tough for themselves? Why go to all that trouble? Here’s an open book.
+Close it. No reason to keep it open. She was a nice girl, anyway. And
+perhaps she didn’t kill him on purpose. Perhaps she didn’t kill the
+other one. You never know. Give her the benefit of the doubt. Leave her
+stay where she is. Close the book. Finis.</p>
+<p><strong>betty</strong>: Killaine…</p>
+<p><strong>brandon</strong>: The best interference runner we’ve got. He
+thinks he’s in love with you–and he’s a gentleman. Come here, baby.</p>
+<p><strong>brandon</strong>: I’m not. Or I wouldn’t be doing this right
+now. Even if I didn’t like you, I’d have to do it. Like the guy that was
+dealt thirteen spades in a bridge hand. Or filled an ace- high flush.
+You couldn’t get him out of that game to give him the Pulitzer
+Prize.</p>
+<p><strong>brandon</strong>: Must be raid day at Magruder’s. They always
+raid him before he opens, so he won’t lose any business.</p>
+<p><strong>sight in the opposite direction, then pans back to pick
+up</strong>: THE POLICE CAR IN FRONT OF MAGRUDER’S.</p>
+<p><strong>driscoll</strong>: I want a man from the I-Bureau down here
+as soon as possible. There’s some stuff in the waste basket I’m afraid
+to handle.</p>
+<p><strong>driscoll</strong>: What always throws me about people like
+you is that you’re so stupid. Don’t you know these things have numbers
+on them? And that they have to be registered if they’re owned legally?
+And that if we find a man dead with his pocket’s empty–and identify him
+and find out he’s a private detective from San Francisco–</p>
+<p><strong>magruder</strong>: It needs music.</p>
+<p><strong>driscoll</strong>: All we have to do is call the San
+Francisco Police and get numbers for his guns. For the love of the
+Saints, Magruder, if you’re going into the murder business, why don’t
+you learn a few rules? You must have been pretty desperate to move him
+out of here in broad daylight.</p>
+<p><strong>driscoll</strong>: Don’t you know we have people down in the
+district working for us? They might look like tramps to you, and some of
+them are. But they have eyes.</p>
+<p><strong>magdruder</strong>: The guy pulled a gun on me. I thought it
+was a stick-up. I hit him with a sap. Why wouldn’t I? Maybe I hit him
+too hard, and it scared me. I wanted to get him away from here. A guy
+like me don’t always get believed by guys like you.</p>
+<p><strong>driscoll</strong>: You had over sixteen hundred dollars in
+your pocket, a thousand of them in twenty-dollar bills. With a kind of
+new look about them at that. Would you be interested in what I think
+about this, Magruder?</p>
+<p><strong>driscoll</strong>: Hold him. He’s trying to sag on us.</p>
+<p><strong>driscoll</strong>: This man Goble rented the car, gave a
+false name. He had no licence, no identification. But he put up a
+sufficient deposit. He was a suspicious man. He was on a dubious errand.
+He had a gun in his pocket and I’m thinking one of these manila
+envelopes– Contained those sheets of blank paper which he was going to
+sell for money. And get out before anybody looked at what he’d sold. You
+had the money, Magruder. But you didn’t give it to him. You killed him
+instead.</p>
+<p><strong>driscoll</strong>: Perhaps you didn’t mean to kill him. But
+here he was dead, and his car was outside in the street. So you brought
+it around to the alley and you carried the man down to it, and you drove
+him away. And what happened to him after that, nobody knows until he was
+picked out of the water of the Sound, dead. But not long dead. Where did
+you leave the car, Magruder? Who helped you? What boat did you have? All
+right. Take him in. Set him down. Give him what he wants to make him
+comfortable. And get a stenographer. And warn him. And don’t rough him.
+He’s a nice little man. All he wants is to collect his thoughts. And
+then he’ll tell us the whole story in his own words. Won’t you,
+Magruder, darling?</p>
+<p><strong>driscoll</strong>: He’ll be giving the priest a bad time,
+this one. Maybe You’d better call an ambulance. He might have a wonky
+ticker.</p>
+<p><strong>ext. vancouver yacht club building parking space in front
+–</strong>: DAY</p>
+<p><strong>brandon</strong>: Over this way.</p>
+<p><strong>ext. narrow wooden walk along the side of the yacht
+club</strong>: BUILDING – DAY</p>
+<p><strong>brandon</strong>: You’ll be safe here. I won’t be long. Help
+yourself to anything you want. The galley’s through there. You can make
+coffee if you like.</p>
+<p><strong>betty</strong>: This must have cost a fortune.</p>
+<p><strong>brandon</strong>: It did, but it never paid off– until now. I
+ought to be back within an hour. We can’t leave until near dark
+anyway.</p>
+<p><strong>betty</strong>: Do you have to leave the note?</p>
+<p><strong>brandon</strong>: It’s the frame on the picture. But not if
+you say so.</p>
+<p><strong>brandon</strong>: I’d still go through–even if I ended up in
+jail.</p>
+<p><strong>betty</strong>: You wouldn’t like it. I’ve been there.</p>
+<p><strong>brandon</strong>: My father died in jail, and he was twice
+the man I am.</p>
+<p><strong>brandon</strong>: Well?</p>
+<p><strong>betty</strong>: You leave it.</p>
+<p><strong>voice</strong>: C.V.P.L. Vancouver Police Department.
+Repeating. All points Bulletin No. 611. General alarm. Wanted for
+questioning. A young woman. American. Using the name Betty Mayfield,
+formerly Elizabeth Kinsolving of Greenwater, North Carolina. Height five
+feet one and a half inches. Weight 118 pounds. Hair blonde, may be dyed
+darker. Blue eyes. Slender build. Size 4AA shoes. Quiet refined manner.
+Any person answering this description should be held, Communicate
+immediately with Superintendent J. McKechnie, Vancouver City Police,
+Vancouver, B.C., for F.P. Classification.</p>
+<p><strong>voice</strong>: Outlying cities and towns please rebroadcast.
+Coast Guard stations please rebroadcast. Suspect may attempt to cross
+border. C.V.P.L. Vancouver City Police, Vancouver, B.C. I will repeat
+this bulletin.</p>
+<p><strong>gore</strong>: She didn’t seem the type to lam out–even if
+she got the chance. That stuff was all gone through last night. Anything
+special you’re looking for, Inspector?</p>
+<p><strong>killaine</strong>: I’ll know when I find it.</p>
+<p><strong>gore</strong>: I guess I’m just ballast around here.</p>
+<p><strong>gore</strong>: You get those from rich women–if you are the
+kind of guy Mitchell was.</p>
+<p><strong>killaine</strong>: “G.G. Market one-eight-four-two.”</p>
+<p><strong>gore</strong>: Gigi, huh? Sounds French–one of those fancy
+ladies. Must have been very fancy, if he scratched her phone number in
+gold.</p>
+<p><strong>killaine</strong>: Market… It seems to me that’s a San
+Francisco exchange.</p>
+<p><strong>close on the packet of travelers checks to show the</strong>:
+DENOMINATIONS OF $500 EACH AND THAT THE PACKET IS QUITE A THICK WAD</p>
+<p><strong>brandon</strong>: Killaine’s wise. We can’t wait any longer.
+Here, put this on. But stay out of sight until we clear the harbor. I’ll
+tell you when.</p>
+<p><strong>betty</strong>: Killaine’s wise to what?</p>
+<p><strong>campbell</strong>: I’m getting a little tired of this,
+Sergeant. Mr. Brandon’s a valued guest in this hotel. We’ve known him
+for a long time. I don’t like this prowling into people’s rooms.</p>
+<p><strong>gore</strong>: How many people in your hotel know a man was
+murdered here, Mr.Campbell? Apart from you and the people
+questioned?</p>
+<p><strong>campbell</strong>: None, as far as I know.</p>
+<p><strong>gore</strong>: And you don’t like our methods, huh?</p>
+<p><strong>gore</strong>: That’s all. Thanks, Mr. Campbell.</p>
+<p><strong>campbell</strong>: I insist–</p>
+<p><strong>gore</strong>: That’s all. Thanks, Mr. Campbell.</p>
+<p><strong>ext. the vancouver royal hotel - betty’s room - balcony
+–</strong>: DAY</p>
+<p><strong>killaine</strong>: I’m coming up.</p>
+<p><strong>angle up showing killaine dangling by one hand from
+terrace</strong>: ABOVE</p>
+<p><strong>killaine</strong>: I’m all right.</p>
+<p><strong>reverse shot angle down looking down from the terrace
+to</strong>: THE VIEW BELOW</p>
+<p><strong>gore</strong>: That’s pretty risky business, Inspector.</p>
+<p><strong>killaine</strong>: Somebody did it twice last night– in the
+dark.</p>
+<p><strong>killaine</strong>: Once to put that in the position where it
+is now. And the second time to move it where we found it.</p>
+<p><strong>killaine</strong>: Not too hard, is it?</p>
+<p><strong>gore</strong>: Maybe we’ve been pretty dumb–</p>
+<p><strong>killaine</strong>: There wasn’t any motive…let’s try out the
+act.</p>
+<p><strong>killaine</strong>: I have a gun. It’s not loaded. Pretend it
+is. I’m drunk. I took the gun away from Margo West. Now I’ve said
+something to you that you don’t like. I don’t like the look in your
+eyes, either. I’ve pulled the gun. Take it away from me. And while
+you’re taking it away from me, it goes off. Ready?</p>
+<p><strong>killaine</strong>: Let’s go.</p>
+<p><strong>killaine</strong>: Was that about the right angle?</p>
+<p><strong>gore</strong>: I think so.</p>
+<p><strong>killaine</strong>: Where’s the shell?</p>
+<p><strong>gore</strong>: Should be over there.</p>
+<p><strong>killaine</strong>: Pick it up. Put it in your pocket.</p>
+<p><strong>killaine</strong>: The same with the gun.</p>
+<p><strong>killaine</strong>: You’ve got a dead man on your hands. You
+killed jim–even if it wasn’t murder. What are you going to do about
+it?</p>
+<p><strong>gore</strong>: If I’ve got any sense I’m going to call
+headquarters.</p>
+<p><strong>killaine</strong>: They’ll probably believe you. But they’ll
+want to know what you were fighting about. Why Mitchell had a gun.
+You’ll tell them a simple story. They’ll pretend it sounds all right to
+them. Now you’re headquarters. How does it sound to you?</p>
+<p><strong>gore</strong>: Before I took the story and closed the case,
+I’d want to know a lot more about these people. I’d want to know just
+about everything about them.</p>
+<p><strong>killaine</strong>: Exactly. Now I’m the killer. And there’s
+something I don’t want you to know. Something that would destroy my
+comfortable life, rob me of my friends, my position.</p>
+<p><strong>gore</strong>: Such as?</p>
+<p><strong>killaine</strong>: Assume there is something to hid. I go to
+a lot of trouble. What do I do? What would you do?</p>
+<p><strong>gore</strong>: Do I know who lives down there?</p>
+<p><strong>killaine</strong>: You can find out.</p>
+<p><strong>gore</strong>: Do I know that she’s out of the room? Likely
+to be out of it for some time?</p>
+<p><strong>killaine</strong>: You can find out the first part. The
+second part you have to take a chance on.</p>
+<p><strong>gore</strong>: Pretty big chance, huh?</p>
+<p><strong>killaine</strong>: You’ve got a dead man on your hands. Like
+this.</p>
+<p><strong>gore</strong>: Right–</p>
+<p><strong>killaine</strong>: Let go.</p>
+<p><strong>killaine</strong>: Next?</p>
+<p><strong>gore</strong>: This is the shell. What about the gun?</p>
+<p><strong>killaine</strong>: Well. What about it?</p>
+<p><strong>gore</strong>: I’ve handled it. Mitchell’s handed it. If I
+wipe it off, no suicide. If I take it out and lose it, no suicide. If I
+leave it here….no suicide.</p>
+<p><strong>killaine</strong>: So?</p>
+<p><strong>gore</strong>: I’ve got to find a way to handle it, openly.
+Like Brandon.</p>
+<p><strong>gore</strong>: How did he know he’d get the chance? He
+couldn’t have arranged it.</p>
+<p><strong>killaine</strong>: He could have tried. If he was up there in
+the dark, listening, he’d know when she came home, know when she found
+Mitchell dead, know what she did about it. If she telephoned, he’d
+probably hear that.</p>
+<p><strong>gore</strong>: And she did give him the chance, the way it
+worked out.</p>
+<p><strong>killaine</strong>: If she didn’t–if luck was against him–he
+wipes the gun off, reaches the wall up there–drops it on the chaise.</p>
+<p><strong>gore</strong>: No suicide.</p>
+<p><strong>killaine</strong>: Did we ever really think it was
+suicide?</p>
+<p><strong>gore</strong>: You win, Inspector. You win all along the
+line. Why didn’t we think of Brandon before–or did we– some of us. Yeah.
+Of course you did. When a suspect thinks he’s safe, you go on letting
+him think he’s safe. Wait for a mistake.</p>
+<p><strong>killaine</strong>: And a motive–which we haven’t got. So this
+could all be a dream.</p>
+<p><strong>killaine</strong>: Market one-eight-four-two.</p>
+<p><strong>gore</strong>: Greer and Goble in the Call Building, San
+Francisco. Just like you thought…Two murders in two days. Different
+places, different methods, different people. Nothing connects them, but
+a telephone number.</p>
+<p><strong>killaine</strong>: A think wire—but very, very strong. Let’s
+get out of here.</p>
+<p><strong>brandon</strong>: See anything?</p>
+<p><strong>betty</strong>: I can still see the shoreline. The moon is
+rising.</p>
+<p><strong>brandon</strong>: There would be a moon tonight.</p>
+<p><strong>brandon</strong>: Cold?</p>
+<p><strong>betty</strong>: Frozen.</p>
+<p><strong>brandon</strong>: Go down into the cabin and get yourself a
+drink. Careful how you go, we’re hitting the swell now.</p>
+<p><strong>close on the inside of the jacket pocket and the
+exposed</strong>: CORNER OF THE ENVELOPE. BETTY’S HAND ENTERS THE
+SHOT</p>
+<p><strong>betty</strong>: I decided I didn’t want a drink…I’m beginning
+to wonder.</p>
+<p><strong>brandon</strong>: Wonder what?</p>
+<p><strong>betty</strong>: If you’re doing all this just for me.</p>
+<p><strong>brandon</strong>: That, and the fun of it.</p>
+<p><strong>betty</strong>: I thought you had to be back to the hotel. To
+leave my–my note.</p>
+<p><strong>brandon</strong>: That’s right.</p>
+<p><strong>brandon</strong>: See anything up there?</p>
+<p><strong>betty</strong>: Funny, I never thought of you that way. You
+were so close too. We were all pretty stupid about you.</p>
+<p><strong>brandon</strong>: Including Killaine.</p>
+<p><strong>betty</strong>: Including Killaine…I still can’t think of you
+that way.</p>
+<p><strong>brandon</strong>: I told you my father died in jail. He stole
+a fortune. Most of it pretty dirty money. I don’t care to have that
+known.</p>
+<p><strong>betty</strong>: Larry Mitchell found out. So you killed
+him.</p>
+<p><strong>brandon</strong>: In a way.</p>
+<p><strong>betty</strong>: If it was an accident, you could have told
+the truth.</p>
+<p><strong>brandon</strong>: So could you. But our records were a little
+against us.</p>
+<p><strong>betty</strong>: What your father did doesn’t condemn you.</p>
+<p><strong>brandon</strong>: Nobody believed I wasn’t in on it. I was
+just a dumb-smart collage boy, and he was my father. I thought it was a
+legitimate business. He was a politician, with fingers in a lot of pies.
+I never saw the pies. They had names. For the record. Innocent names.
+You know where that kind of money comes from, don’t you?</p>
+<p><strong>betty</strong>: The money that makes you Mr. Clark Brandon.
+Let’s you live in a penthouse, on top of the Vancouver Royal. Lets you
+own a cruiser. Lets you do as you please, go where you please. You big,
+open-handed, generous guy. That’s the kind of money it takes, isn’t
+it?</p>
+<p><strong>brandon</strong>: It buys things, just like any other
+kind.</p>
+<p><strong>betty</strong>: That man that was following us last night–he
+didn’t come back this morning. I’m beginning to wonder about him, too.
+Was he really following me–or you?</p>
+<p><strong>brandon</strong>: No. I paid him off.</p>
+<p><strong>betty</strong>: He’ll come back…They always come back when
+you give them money.</p>
+<p><strong>brandon</strong>: Not this one. And not Mitchell.</p>
+<p><strong>betty</strong>: You-killed-him?</p>
+<p><strong>brandon</strong>: Magruder obliged me. No use my saying it
+wasn’t planned that way. I had to clean up. I’m not a dumb- smart
+college boy anymore. Nobody in the world would believe I didn’t plan the
+whole thing.</p>
+<p><strong>betty</strong>: I guess I’m a little screwy. Maybe I could
+believe it. Should I try?</p>
+<p><strong>brandon</strong>: Don’t go soft on me, baby. I’ve got your
+note in my pocket. You wrote it, all by your own self. And I have to use
+it. It has to be found in exactly the right place.</p>
+<p><strong>betty</strong>: So that I will never be found.</p>
+<p><strong>int. police headquarters - i-bureau - projection room
+–</strong>: NIGHT</p>
+<p><strong>killaine</strong>: Got anything on the Goble case yet?</p>
+<p><strong>technician</strong>: Yes, I think so. Here are two glazed
+manila envelopes. One is the bag type. The other one had the money in
+it. Don’t ask me how I know. I know.</p>
+<p><strong>killaine</strong>: I’m interested in who handled it.</p>
+<p><strong>technician</strong>: Four different people, Inspector. Three
+men and a women. I’ve made slides for two. They handled both
+envelopes.</p>
+<p><strong>technician</strong>: Goble. Second finger on left hand. On
+the left, the morgue print. On the right, print lifted from the
+envelope.</p>
+<p><strong>technician</strong>: No doubt about that one.</p>
+<p><strong>killaine</strong>: How about Magruder?</p>
+<p><strong>technician</strong>: He checks too.</p>
+<p><strong>killaine</strong>: That leaves two strangers.</p>
+<p><strong>technician</strong>: So far.</p>
+<p><strong>killaine</strong>: Try Betty Mayfield. The Mitchell case.</p>
+<p><strong>technician</strong>: Mayfield? She fit into this?</p>
+<p><strong>killaine</strong>: She might.</p>
+<p><strong>technician</strong>: You’ll have to take my word for it. We
+don’t make slides until we have perfect prints for comparison.</p>
+<p><strong>killaine</strong>: I’ll take your word.</p>
+<p><strong>technician</strong>: Not a chance. Whorl and plain arch.
+Different as salt and sand.</p>
+<p><strong>killaine</strong>: Try this one for the second stranger.</p>
+<p><strong>technician</strong>: Gun permit, huh? Another Whorl–man
+size.</p>
+<p><strong>technician</strong>: This gun permit was issued to Clark
+Brandon?</p>
+<p><strong>killaine</strong>: The card says so, doesn’t it?</p>
+<p><strong>technician</strong>: Brandon handled the money envelope.</p>
+<p><strong>killaine</strong>: What’s the face for, Driscoll?</p>
+<p><strong>driscoll</strong>: Magruder’s conked out. Adrenaline
+injections, oxygen tent. He may come out of it and he may not. As a
+source of quick information, we can’t forget him.</p>
+<p><strong>killaine</strong>: We don’t need him.</p>
+<p><strong>killaine</strong>: Go on in. See what they’ve got. All I need
+now is a warrant and a pair of wings.</p>
+<p><strong>killaine</strong>: Inspector Killaine. Vancouver City Police.
+Commander Goodwin’s expecting me.</p>
+<p><strong>senty</strong>: Very good, sir.</p>
+<p><strong>radio operator</strong>: C.G.L. at all cutters and patrol
+planes on station. Vancouver Police Department bulletin. Wanted for
+murder. Clarke Brandon. A naturalized Canadian citizen. Age 34-35.
+Height six feet, one inch. Weight 190 pounds. Muscular build. Dark hair.
+American accent. Now probably at sea in cabin cruiser Valkyrie. Will
+probably attempt to cross International line under cover of
+darkness.</p>
+<p><strong>brandon</strong>: Get down in the cabin, Betty.</p>
+<p><strong>betty</strong>: Why? To love ten minutes longer? And in the
+meantime, protect you? Why don’t you shoot me now and get it over
+with–</p>
+<p><strong>betty</strong>: If you think you have the time.</p>
+<p><strong>brandon</strong>: Always some fog out here.</p>
+<p><strong>brandon</strong>: There better be.</p>
+<p><strong>shot through the plexiglas head and shoulders of the
+pilot</strong>: AND Co-PILOT.</p>
+<p><strong>betty</strong>: You hoped I’d jumped overboard, didn’t
+you?</p>
+<p><strong>betty</strong>: But I wouldn’t make it that easy for you.</p>
+<p><strong>talker</strong>: Bearing one-three-five. Bearing
+one-three-five, sir.</p>
+<p><strong>coast guard officer</strong>: Get it?</p>
+<p><strong>helmsman</strong>: One-three-five, sir.</p>
+<p><strong>coast guard officer</strong>: There!</p>
+<p><strong>what they see - long shot across open empty water - a
+flare</strong>: HANGING IN THE SKY AND FALLING</p>
+<p><strong>killaine</strong>: Fog!</p>
+<p><strong>coast guard officer</strong>: We got a lot of it out
+here.</p>
+<p><strong>killaine</strong>: Brandon will have counted on that.</p>
+<p><strong>coast guard officer</strong>: No doubt. We have something he
+may not have counted on.</p>
+<p><strong>betty</strong>: You’ll never make it. You’ve out- smarted
+yourself.</p>
+<p><strong>brandon</strong>: I’m still on course to Victoria. Nobody saw
+you get on board, nobody seen you since.</p>
+<p><strong>betty</strong>: You didn’t leave the note.</p>
+<p><strong>brandon</strong>: It wasn’t the time or place. Don’t worry
+about the note, baby. I’m playing for my neck now.</p>
+<p><strong>betty</strong>: And I’m begging for my life–and yours.</p>
+<p><strong>brandon</strong>: Mine?</p>
+<p><strong>betty</strong>: Yes. Yours. You haven’t murdered anybody. You
+killed Mitchell. Wasn’t that an accident? It must have been. If you kill
+a blackmailer, you kill him dead–so that he can’t talk anymore.</p>
+<p><strong>brandon</strong>: Mitchell was dead enough.</p>
+<p><strong>betty</strong>: And that nasty man that followed us last
+night. You didn’t kill him.</p>
+<p><strong>brandon</strong>: Who’d believe it but you? I took him out to
+sea and threw him in the water. Even if they find him, what connects him
+with me?</p>
+<p><strong>betty</strong>: Magruder does.</p>
+<p><strong>brandon</strong>: You think Magruder wants to hang beside
+me?</p>
+<p><strong>betty</strong>: But the next one is murder. First the little
+step, then the longer step , and then the step you can never take back.
+You could tell about Mitchell. You could tell about Magruder–and the
+detective. It would hurt, but you could do it. You could never tell
+about me.</p>
+<p><strong>brandon</strong>: Would I want to?</p>
+<p><strong>betty</strong>: Every day of your life you’ll want me. You’ll
+never get over it. Every time you see your face in the mirror–</p>
+<p><strong>brandon</strong>: Shut up! Cut it out! Even if I have to kill
+both of us–</p>
+<p><strong>coast guard officer</strong>: Nothing yet?</p>
+<p><strong>talker</strong>: Just a minute, sir. I believe–</p>
+<p><strong>operator</strong>: Change course about five degrees south</p>
+<p><strong>operator</strong>: Your dead on now. Hold it there.</p>
+<p><strong>brandon</strong>: Radar.</p>
+<p><strong>brandon</strong>: This is it, Betty. They’ll find us again,
+fog or no fog.</p>
+<p><strong>betty</strong>: If it has to be–do you mind if I do it
+myself? Oh, I don’t mean with the gun. This is no trick. When I wrote
+that note you have in your pocket– that was no trick either. It’s not so
+hard for me as you think. I’m not crying about it, I’ve been skating
+close to it for quite some time. The water is cold down there– But so is
+everything else. And there’s you.</p>
+<p><strong>brandon</strong>: Me?</p>
+<p><strong>betty</strong>: Yes. You. You’re not really a murderer
+yet.</p>
+<p><strong>talker</strong>: Bearing one-eight-one. One-eight-one, sir.
+Changed course due South.</p>
+<p><strong>officer</strong>: One-eight-one..</p>
+<p><strong>helmsman</strong>: One-eight-one, sir.</p>
+<p><strong>brandon</strong>: I’m not a murderer yet, you said. Come
+here. Come closer. Let me look at you.</p>
+<p><strong>brandon</strong>: I think you mean that.</p>
+<p><strong>betty</strong>: Do you think I was faking?</p>
+<p><strong>brandon</strong>: If I did-I don’t-now.</p>
+<p><strong>brandon</strong>: The kiss of death. With a new twist.</p>
+<p><strong>brandon</strong>: “Dear Inspector Killaine. This is goodbye.
+You were right. I had a secret.”</p>
+<p><strong>brandon</strong>: A secret, Betty—as who hasn’t</p>
+<p><strong>brandon</strong>: Stand up! Let them take a good look at you.
+Be sure they see you. That fellow back there has night glasses. Then
+jump—well out to the side. Just as far as you can.</p>
+<p><strong>following shot as betty hits the water and the
+cruiser</strong>: PULLS AWAY RAPIDLY</p>
+<p><strong>coast guard officer</strong>: Full speed astern.</p>
+<p><strong>talker</strong>: Full speed astern.</p>
+<p><strong>coast guard officer</strong>: Better get those wet clothes
+off in a hurry, Miss. My cabin’s at your disposal.</p>
+<p><strong>betty</strong>: Thank you. Thank you very much.</p>
+<p><strong>betty</strong>: He could have killed me a dozen times. You’d
+never have known.</p>
+<p><strong>killaine</strong>: We know everything.</p>
+<p><strong>betty</strong>: No, Jeff. You don’t. He’s not a murderer, I
+tell you. He;s not a murderer.</p>
+<p><strong>killaine</strong>: I hope he can prove it. Come on. You don’t
+want to get pneumonia.</p>
+<p><strong>betty</strong>: But I tell you—if you’d only understand.</p>
+<p><strong>killaine</strong>: I understand, Betty. I understand
+perfectly.</p>
+<p><strong>first passenger</strong>: You always have this kind of
+weather up here?</p>
+<p><strong>second passenger</strong>: Certain times of the year. Always
+a lot of fog. But they never hit anything, somehow.</p>
+<p><strong>officer</strong>: An old packing case, I guess.</p>
+</body>
+</html>

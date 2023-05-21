@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>frozen-river</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="frozen-river">frozen-river</h1>
+<p><strong>t.j.</strong>: We’re out of Capt’n Crunch.</p>
+<p><strong>ray</strong>: Just give him toast.</p>
+<p><strong>t.j.</strong>: We got no butter, we got no jelly.</p>
+<p><strong>t.j.</strong>: What are you doing?</p>
+<p><strong>ray</strong>: Listening for the trucks.</p>
+<p><strong>t.j.</strong>: Are they really coming?</p>
+<p><strong>ray</strong>: Yeah.</p>
+<p><strong>t.j.</strong>: Where’s dad?</p>
+<p><strong>t.j.</strong>: Where’s dad?</p>
+<p><strong>ray</strong>: I don’t know how he found it, T.J.</p>
+<p><strong>t.j.</strong>: Found what?</p>
+<p><strong>t.j.</strong>: The money?</p>
+<p><strong>ray</strong>: I locked it in my glove compartment.</p>
+<p><strong>t.j.</strong>: That was stupid.</p>
+<p><strong>ray</strong>: Yeah, I see that now, but the trucks were
+coming before the bank opened.</p>
+<p><strong>t.j.</strong>: Did you tell him you had it?</p>
+<p><strong>ray</strong>: Duh? No, I guess he just sniffed it out.</p>
+<p><strong>t.j.</strong>: Jesus Christ! The glove compartment!? That’s
+the stupidest place you could have put it.</p>
+<p><strong>ray</strong>: He hasn’t bought a scratch card in almost
+thirty two months. I thought it would be okay!</p>
+<p><strong>t.j.</strong>: Did he leave anything?</p>
+<p><strong>t.j.</strong>: What are you gonna do?</p>
+<p><strong>ray</strong>: Nothing.</p>
+<p><strong>t.j.</strong>: You could look for him?</p>
+<p><strong>ray</strong>: He could be anywhere.</p>
+<p><strong>t.j.</strong>: We should look for him.</p>
+<p><strong>ray</strong>: Where?</p>
+<p><strong>t.j.</strong>: The Rez,</p>
+<p><strong>ray</strong>: With more than four thousand dollars, he’s
+probably in Atlantic City by now.</p>
+<p><strong>t.j.</strong>: So let’s go, let’s find him before he blows it
+all.</p>
+<p><strong>ray</strong>: I can’t.</p>
+<p><strong>t.j.</strong>: What do you mean?</p>
+<p><strong>ray</strong>: I just can’t do it anymore.</p>
+<p><strong>t.j.</strong>: But he’ll lose it all.</p>
+<p><strong>ray</strong>: T.J., we can’t make him stop.</p>
+<p><strong>t.j.</strong>: He stole our money. Call the Troopers.</p>
+<p><strong>ray</strong>: It’s not stealing if you take it from your
+family. Anyway, he made some of it, too.</p>
+<p><strong>t.j.</strong>: So you’re just gonna sit there?</p>
+<p><strong>ray</strong>: I’m sorry.</p>
+<p><strong>t.j.</strong>: Another Christmas in the tin crapper.</p>
+<p><strong>ricky</strong>: Is it here?</p>
+<p><strong>ray</strong>: Hey, little sleepy head.</p>
+<p><strong>ricky</strong>: Is it here yet? `Cause I’m ready.</p>
+<p><strong>ray</strong>: Wait a sec-</p>
+<p><strong>t.j.</strong>: Get down.</p>
+<p><strong>ray</strong>: We’re all ready for ya’.</p>
+<p><strong>versailles</strong>: We’ll need the balloon payment to
+unload.</p>
+<p><strong>ray</strong>: We have it, it’s just that they called Troy
+from Titus last night. That’s where Troy works. The ski place? And
+anyway-</p>
+<p><strong>versailles</strong>: Have you got the $4,372 dollars or
+not?</p>
+<p><strong>ray</strong>: It was some emergency with the lifts. So he
+took off without thinking with the money. Completely forgot you were
+coming. So as soon as he gets back-</p>
+<p><strong>versailles</strong>: When’s he gonna be back?</p>
+<p><strong>ray</strong>: As soon as he can get here, I’ll just run it
+down to you.</p>
+<p><strong>versailles</strong>: This is the second time you’ve dragged
+me out here. If you don’t come up with it by Christmas, you’ve lost your
+fifteen hundred dollar deposit.</p>
+<p><strong>ray</strong>: Look, Mr. Versales, I have a good job at ALL
+FOR A DOLLAR. They’re probably gonna make me a manager after Christmas
+so I can handle the payments if you just leave the house-</p>
+<p><strong>versailles</strong>: Call me when you have the balloon
+payment.</p>
+<p><strong>ray</strong>: I’ll call you…</p>
+<p><strong>ricky</strong>: Wait, where are they going?</p>
+<p><strong>ray</strong>: Listen to me. We’ll get them back.</p>
+<p><strong>ricky</strong>: But why are they leaving?</p>
+<p><strong>ray</strong>: Ricky, I’ll get them back. I promise,
+honey.</p>
+<p><strong>ricky</strong>: That’s our house!</p>
+<p><strong>ray</strong>: We’re gonna get it back.</p>
+<p><strong>ray</strong>: You better hurry or you’re going to miss the
+bus. Let’s get your clothes on, Ricky.</p>
+<p><strong>t.j.</strong>: I can get a job you know.</p>
+<p><strong>ray</strong>: You’re 15, T.J.</p>
+<p><strong>t.j.</strong>: They won’t ask any questions.</p>
+<p><strong>ray</strong>: You’re finishing school.</p>
+<p><strong>t.j.</strong>: Come on, you don’t think we can live on what
+you make at All for a Dollar do you?</p>
+<p><strong>ray</strong>: You’re going to school.</p>
+<p><strong>t.j.</strong>: I bet I could make more than you do.</p>
+<p><strong>ricky</strong>: Where’s daddy?</p>
+<p><strong>ray</strong>: He’ll be back.</p>
+<p><strong>t.j.</strong>: Aren’t we even gonna look for him?</p>
+<p><strong>ray</strong>: No! I’m going to work and you’re going to
+school.</p>
+<p><strong>t.j.</strong>: That’s it?</p>
+<p><strong>ray</strong>: The only thing that changed is that your dad
+started gambling again. Everything else is the same.</p>
+<p><strong>ricky</strong>: Where did he go?</p>
+<p><strong>ray</strong>: He had to take a business trip.</p>
+<p><strong>t.j.</strong>: Aren’t you even gonna look for him?</p>
+<p><strong>ray</strong>: And miss a day of work? No. Not again. We just
+have to live our lives. Now go get your backpack.</p>
+<p><strong>ray</strong>: Go on!</p>
+<p><strong>ricky</strong>: When is daddy coming home?</p>
+<p><strong>ray</strong>: I don’t know, Ricky.</p>
+<p><strong>t.j.</strong>: I can’t believe you’re not even gonna look for
+him.</p>
+<p><strong>ray</strong>: Where? Where do I look?</p>
+<p><strong>t.j.</strong>: The reservation.</p>
+<p><strong>ray</strong>: I told you, he could be in Atlantic City by
+now.</p>
+<p><strong>t.j.</strong>: The glove compartment. That’s so stupid.</p>
+<p><strong>ray</strong>: You’re going to school.</p>
+<p><strong>ray</strong>: Wait, wait.</p>
+<p><strong>ray</strong>: Here. Lunch money.</p>
+<p><strong>ray</strong>: Matt. Could I talk to you?</p>
+<p><strong>ray</strong>: I need to come on full-time.</p>
+<p><strong>matt</strong>: I see you as a short timer.</p>
+<p><strong>ray</strong>: What is that?</p>
+<p><strong>matt</strong>: A short timer. Not here for long, not really
+committed.</p>
+<p><strong>ray</strong>: When I started you said it would be six months
+before I could come on full-time. And that was two years ago.</p>
+<p><strong>matt</strong>: It’s my opinion.</p>
+<p><strong>ray</strong>: Well, I mean, you know, I do show up. Pat’s
+late everyday. She’s late now. She’s always late.</p>
+<p><strong>ray</strong>: See ya’ tomorrow.</p>
+<p><strong>mohawk teenager</strong>: Fill it up?</p>
+<p><strong>ray</strong>: Just three…uh, no…two seventy one, two, three,
+four.</p>
+<p><strong>mohawk teenager</strong>: Two seventy four.</p>
+<p><strong>ray</strong>: Make that seven seventy four.</p>
+<p><strong>ray</strong>: Did you see a Blue Acclaim come in here last
+night?</p>
+<p><strong>mohawk teenager</strong>: Blue Acclaim…no, but I only worked
+until 9 PM. You can ask inside.</p>
+<p><strong>ray</strong>: No, that’s okay.</p>
+<p><strong>mohawk teenager</strong>: Did you want to support our
+Mosquito Lacrosse League. It teaches basic Lacrosse skills to the kids
+three to five.</p>
+<p><strong>mohawk teenager</strong>: Thanks, anyway. Have a good
+day.</p>
+<p><strong>ray</strong>: Thank you. Oh God, thank you, thank you thank
+you…</p>
+<p><strong>ray</strong>: You son of a bitch!</p>
+<p><strong>ticket taker</strong>: Sunrise session is almost over. Next
+session starts at 10:30.</p>
+<p><strong>ray</strong>: I just need to look inside.</p>
+<p><strong>ticker taker</strong>: It’s $5 dollars for admission.</p>
+<p><strong>ray</strong>: I don’t want to play, I just need to look
+around for a second.</p>
+<p><strong>ticket taker</strong>: I’m gonna need the five.</p>
+<p><strong>ray</strong>: I’ll stand right here at the door. I won’t even
+go inside. I just need to see if my husband’s in there.</p>
+<p><strong>ticket taker</strong>: You still gotta pay admission.</p>
+<p><strong>ray</strong>: He’s gambling away the money for our house.</p>
+<p><strong>ticket taker</strong>: What does he look like?</p>
+<p><strong>ray</strong>: Long brown hair. Tall. Skinny. Ponytail.</p>
+<p><strong>ticket taker</strong>: He’s not in there.</p>
+<p><strong>ray</strong>: Can I just look?</p>
+<p><strong>ticket taker</strong>: I told you, lady, he’s not in
+there.</p>
+<p><strong>ray</strong>: Hey!</p>
+<p><strong>ray</strong>: That’s my car.</p>
+<p><strong>lila</strong>: Huh?</p>
+<p><strong>ray</strong>: What are you doing with my car?</p>
+<p><strong>lila</strong>: That? I found it.</p>
+<p><strong>ray</strong>: You stole it.</p>
+<p><strong>lila</strong>: The keys were in it.</p>
+<p><strong>ray</strong>: So you just took it…?</p>
+<p><strong>ray</strong>: We’ll just see what the troopers say about
+that.</p>
+<p><strong>lila</strong>: Go ahead, they got no jurisdiction here. This
+is Mohawk territory.</p>
+<p><strong>ray</strong>: You can cut the bullshit and give me my keys
+now.</p>
+<p><strong>ray</strong>: Troy, are you in there?</p>
+<p><strong>ray</strong>: If you’re in there you better come out.</p>
+<p><strong>ray</strong>: Troy? Versales says as long as we get the money
+in by Christmas we won’t lose the deposit. I think we need to talk about
+this, so come on out. Troy? Troy?</p>
+<p><strong>ray</strong>: I’m not kidding, honey, come on out.</p>
+<p><strong>lila</strong>: The Tribal police don’t like people shooting
+holes in other people’s houses.</p>
+<p><strong>ray</strong>: This is New York State so quit the bullshit and
+give me my damn keys!</p>
+<p><strong>lila</strong>: This camper belongs to my brother in law. He
+won’t like this.</p>
+<p><strong>ray</strong>: Then you should quit stealing cars.</p>
+<p><strong>lila</strong>: I thought it was abandoned, the guy driving it
+got on a bus.</p>
+<p><strong>ray</strong>: Did you see where the bus was headed?</p>
+<p><strong>lila</strong>: New York or Buffalo, I’m not sure.</p>
+<p><strong>ray</strong>: Shit!</p>
+<p><strong>ray</strong>: I’m not leaving this here.</p>
+<p><strong>lila</strong>: I got a friend who might buy that.</p>
+<p><strong>ray</strong>: It’s not for sale.</p>
+<p><strong>lila</strong>: He’ll pay more than it’s worth.</p>
+<p><strong>lila</strong>: Maybe two thousand.</p>
+<p><strong>ray</strong>: Why’s that?</p>
+<p><strong>lila</strong>: He’s always looking for cars with button-
+release trunks.</p>
+<p><strong>lila</strong>: He don’t need papers or anything.</p>
+<p><strong>ray</strong>: Does he use them to rob banks or something?</p>
+<p><strong>lila</strong>: All I know is he pays good for a car like
+this.</p>
+<p><strong>ray</strong>: Where does he live?</p>
+<p><strong>lila</strong>: Through the woods. Not far.</p>
+<p><strong>ray</strong>: What’s in it for you?</p>
+<p><strong>lila</strong>: He’ll give me something for finding it.</p>
+<p><strong>ray</strong>: If you try anything, I’m not afraid to use
+this.</p>
+<p><strong>lila</strong>: Yeah.</p>
+<p><strong>lila</strong>: Turn up there.</p>
+<p><strong>ray</strong>: Where?</p>
+<p><strong>lila</strong>: Where that stump is.</p>
+<p><strong>ray</strong>: There’s no road.</p>
+<p><strong>lila</strong>: There’s a path.</p>
+<p><strong>lila</strong>: It’s not far.</p>
+<p><strong>lila</strong>: Not too fast. There’s ruts.</p>
+<p><strong>ray</strong>: I’m not crossing that!</p>
+<p><strong>lila</strong>: Don’t worry they already put out the Christmas
+trees. There’s no black ice.</p>
+<p><strong>ray</strong>: That’s Canada.</p>
+<p><strong>lila</strong>: No, it’s Mohawk land. The Rez is on both sides
+of the river.</p>
+<p><strong>ray</strong>: What about the border patrol?</p>
+<p><strong>lila</strong>: There’s no border.</p>
+<p><strong>ray</strong>: I’m still not crossing that.</p>
+<p><strong>lila</strong>: Don’t worry, it’ll hold a Plymouth. I’ve seen
+semis cross it.</p>
+<p><strong>lila</strong>: The only other way is the Cornwall bridge and
+they won’t let you take that. .</p>
+<p><strong>lila</strong>: They plow it and everything.</p>
+<p><strong>ray</strong>: This is so fuckin’ stupid.</p>
+<p><strong>lila</strong>: Not too fast, there are ruts.</p>
+<p><strong>lila</strong>: You gotta pick up some speed to get up the
+bank.</p>
+<p><strong>lila</strong>: It’s just on the other side of those
+trees.</p>
+<p><strong>lila</strong>: Honk the horn.</p>
+<p><strong>lila</strong>: Just keep your mouth shut.</p>
+<p><strong>lila</strong>: Just keep it shut. Okay?</p>
+<p><strong>jimmy</strong>: Thunder! SHUT UP!.</p>
+<p><strong>jimmy</strong>: Get back under there!</p>
+<p><strong>lila</strong>: Hi, Jimmy.</p>
+<p><strong>jimmy</strong>: He don’t like whites, Lila.</p>
+<p><strong>lila</strong>: Sorry.</p>
+<p><strong>jimmy</strong>: And your late.</p>
+<p><strong>lila</strong>: Sorry.</p>
+<p><strong>jimmy</strong>: I shouldn’t even be dealing with you.</p>
+<p><strong>lila</strong>: I know. Sorry.</p>
+<p><strong>lila</strong>: Count it.</p>
+<p><strong>ray</strong>: What’s going on here?</p>
+<p><strong>lila</strong>: Just count it.</p>
+<p><strong>lila</strong>: How much is there?</p>
+<p><strong>ray</strong>: Twelve hundred.</p>
+<p><strong>lila</strong>: Let’s go.</p>
+<p><strong>ray</strong>: Wait, who the fuck are they?</p>
+<p><strong>lila</strong>: Just back up.</p>
+<p><strong>ray</strong>: I’m not moving until those people get out of my
+trunk.</p>
+<p><strong>lila</strong>: I’ll give you half. Now let’s go.</p>
+<p><strong>lila</strong>: Let’s go!</p>
+<p><strong>ray</strong>: I’m not taking them over the border. That’s a
+crime.</p>
+<p><strong>lila</strong>: There’s no border here. This is free trade
+between nations.</p>
+<p><strong>ray</strong>: This isn’t a nation.</p>
+<p><strong>lila</strong>: Let’s go.</p>
+<p><strong>lila</strong>: Why’d your husband leave you?</p>
+<p><strong>ray</strong>: Fuck you.</p>
+<p><strong>lila</strong>: Maybe he wanted a younger women.</p>
+<p><strong>lila</strong>: That’s what usually happens.</p>
+<p><strong>lila</strong>: I never have to worry about that. My husband
+is dead. Went down in the river on a run. They never found him. Probably
+tangled in river weeds.</p>
+<p><strong>lila</strong>: You better slow down there are ruts out here.
+You could get stuck in one.</p>
+<p><strong>lila</strong>: Keep going.</p>
+<p><strong>ray</strong>: What if the troopers stop us.</p>
+<p><strong>lila</strong>: They won’t stop you. You’re white.</p>
+<p><strong>lila</strong>: Pull around back then wait for him to come to
+the window.</p>
+<p><strong>lila</strong>: Roll down your window.</p>
+<p><strong>lila</strong>: Count it.</p>
+<p><strong>ray</strong>: Twelve hundred.</p>
+<p><strong>lila</strong>: Let’s go.</p>
+<p><strong>lila</strong>: Turn down there.</p>
+<p><strong>lila</strong>: Stop here.</p>
+<p><strong>lila</strong>: Now open the door.</p>
+<p><strong>lila</strong>: Open the door.</p>
+<p><strong>lila</strong>: Now get out.</p>
+<p><strong>ray</strong>: You can’t have my car.</p>
+<p><strong>lila</strong>: Get out.</p>
+<p><strong>ray</strong>: You can’t have my car.</p>
+<p><strong>ray</strong>: No!</p>
+<p><strong>ray</strong>: Fuckin’ bitch!</p>
+<p><strong>ray</strong>: Little bitch!</p>
+<p><strong>ray</strong>: I told you not to use that thing when I’m not
+here.</p>
+<p><strong>t.j.</strong>: If I get it working I can sell it.</p>
+<p><strong>ray</strong>: I don’t care. Don’t use that thing when I’m not
+here!</p>
+<p><strong>t.j.</strong>: Rentaworld called. They’re coming to get the
+TV if you don’t pay by four tomorrow.</p>
+<p><strong>t.j.</strong>: Did you find him?</p>
+<p><strong>ray</strong>: No.</p>
+<p><strong>t.j.</strong>: Where was the car?</p>
+<p><strong>ray</strong>: At the bus stop on the Rez.</p>
+<p><strong>t.j.</strong>: I bet he went to Atlantic City.</p>
+<p><strong>ray</strong>: You don’t know that.</p>
+<p><strong>t.j.</strong>: Yeah, but you could figure it out. Just find
+out what buses came through last-</p>
+<p><strong>ray</strong>: And then what? Chase him across the country.
+Miss work. No.</p>
+<p><strong>t.j.</strong>: What happened to your face?</p>
+<p><strong>ray</strong>: Nothin’.</p>
+<p><strong>t.j.</strong>: What, did you get in a fight with
+somebody?</p>
+<p><strong>ray</strong>: It was no big deal.</p>
+<p><strong>t.j.</strong>: You got in a fight, for real?</p>
+<p><strong>ray</strong>: Some Indian chick tried to steal your Dad’s
+car.</p>
+<p><strong>t.j.</strong>: No way. I say we go back there and kick some
+Mohawk ass.</p>
+<p><strong>ray</strong>: It doesn’t matter.</p>
+<p><strong>t.j.</strong>: Where’s your car?</p>
+<p><strong>ray</strong>: I’ll get it tomorrow.</p>
+<p><strong>t.j.</strong>: You left it on the rez? That’s so stupid.</p>
+<p><strong>ray</strong>: I didn’t have a tow rope.</p>
+<p><strong>t.j.</strong>: I still say we go back there and kick some
+Mohawk ass.</p>
+<p><strong>ray</strong>: Forget it T.J. Did you and Ricky eat?</p>
+<p><strong>t.j.</strong>: That would be kinda miraculous since there’s
+no food in the house.</p>
+<p><strong>ray</strong>: There’s food.</p>
+<p><strong>t.j.</strong>: Popcorn and Tang.</p>
+<p><strong>mike</strong>: Hi, Lila</p>
+<p><strong>lila</strong>: Mike.</p>
+<p><strong>mike</strong>: How’s life at the Bingo Palace.</p>
+<p><strong>lila</strong>: Good. How’s business?</p>
+<p><strong>mike</strong>: Oh, you know, okay.</p>
+<p><strong>lila</strong>: How much for that one?</p>
+<p><strong>mike</strong>: Come on, Lila.</p>
+<p><strong>lila</strong>: What?! I’ve been saving up.</p>
+<p><strong>mike</strong>: You know what.</p>
+<p><strong>lila</strong>: Does Bernie Littlewolf run your whole
+life?</p>
+<p><strong>mike</strong>: No, but he said not to sell you a car.</p>
+<p><strong>lila</strong>: I gotta walk down 37 with the semis kickin’ up
+snow and mud in my hair just to get to the work.</p>
+<p><strong>mike</strong>: For you, all I got are two Chevettes,a Horizon
+and a Civic.</p>
+<p><strong>lila</strong>: I don’t like Chevettes.</p>
+<p><strong>mike</strong>: I figured.</p>
+<p><strong>lila</strong>: I’ll give you a thousand for the Malibu.</p>
+<p><strong>mike</strong>: Nothing with a trunk.</p>
+<p><strong>lila</strong>: That thing has been sittin’ here for six
+months.</p>
+<p><strong>mike</strong>: I don’t want Bernie in my face. Okay?</p>
+<p><strong>lila</strong>: He doesn’t have to know.</p>
+<p><strong>ricky</strong>: Mommy, I was thinking. What’s gonna happen to
+the tin crapper when we get our new house?</p>
+<p><strong>ray</strong>: They’re gonna flatten it out and send it to
+China.</p>
+<p><strong>ricky</strong>: Then what?</p>
+<p><strong>ray</strong>: They’re gonna melt it down and make little toys
+out if it.</p>
+<p><strong>ricky</strong>: Then what?</p>
+<p><strong>ray</strong>: They’ll send them back here so I can sell them
+at All for a Dollar.</p>
+<p><strong>ricky</strong>: And you can buy me some?</p>
+<p><strong>ray</strong>: That’s right.</p>
+<p><strong>ricky</strong>: Yes!</p>
+<p><strong>t.j.</strong>: I’m not eatin’ that again for dinner.</p>
+<p><strong>ray</strong>: We just have to make it to my paycheck on
+Friday.</p>
+<p><strong>t.j.</strong>: What about Rentacenter?</p>
+<p><strong>ray</strong>: What about them?</p>
+<p><strong>t.j.</strong>: They said they’re coming to get the furniture
+if they don’t get a payment by 4 o’clock.</p>
+<p><strong>ray</strong>: You told me that already.</p>
+<p><strong>ray</strong>: Here, lunch money.</p>
+<p><strong>t.j.</strong>: Look I don’t see why you won’t just let me get
+a job with Mitch.</p>
+<p><strong>ray</strong>: Who’s Mitch.</p>
+<p><strong>t.j.</strong>: He’s got like this whole business he runs.</p>
+<p><strong>ray</strong>: He sells pot to kids?</p>
+<p><strong>t.j.</strong>: No, it’s computers. He works on computers.</p>
+<p><strong>ray</strong>: You’re fifteen, it’s not gonna happen so forget
+it.</p>
+<p><strong>t.j.</strong>: That’s so stupid. We’re gonna lose the TV
+while I’m sitting in some Christmas assembly when I could be-</p>
+<p><strong>ray</strong>: Your job is looking after your brother. Who’s
+gonna take care of him?</p>
+<p><strong>t.j.</strong>: I still say we should go back to the rez, get
+the Horizon and kick some serious butt.</p>
+<p><strong>ray</strong>: I want my part.</p>
+<p><strong>ray</strong>: You hear me!</p>
+<p><strong>ray</strong>: I want my part.</p>
+<p><strong>ray</strong>: I want my part.</p>
+<p><strong>lila</strong>: I’ll give you the money if you give me the
+car.</p>
+<p><strong>ray</strong>: No way.</p>
+<p><strong>lila</strong>: The money’s gone.</p>
+<p><strong>ray</strong>: Then I wanna get some more of those
+Chinese.</p>
+<p><strong>lila</strong>: It’s gonna cost me to get that hole fixed. I
+froze last night.</p>
+<p><strong>ray</strong>: I just need enough for the balloon payment on
+my doublewide then I’m out of this. I’m no criminal.</p>
+<p><strong>lila</strong>: It’s not a crime.</p>
+<p><strong>ray</strong>: You people can call it what you want to. I just
+want my double.</p>
+<p><strong>lila</strong>: I don’t usually work with whites.</p>
+<p><strong>ray</strong>: Suit yourself.</p>
+<p><strong>lila</strong>: How many bedrooms?</p>
+<p><strong>ray</strong>: Three. I got kids.</p>
+<p><strong>lila</strong>: How old?</p>
+<p><strong>ray</strong>: Five and Fifteen.</p>
+<p><strong>lila</strong>: I got a boy. Almost one.</p>
+<p><strong>lila</strong>: He lives with my mother-in-law. She stole him
+from me.</p>
+<p><strong>ray</strong>: Stole him?</p>
+<p><strong>lila</strong>: Yeah. Right out of the hospital.</p>
+<p><strong>ray</strong>: Stole him?</p>
+<p><strong>lila</strong>: Tribal police don’t get involved in stuff like
+that.</p>
+<p><strong>jimmy</strong>: Bernie was askin’ if I’d seen you. I told him
+no.</p>
+<p><strong>lila</strong>: Thanks.</p>
+<p><strong>jimmy</strong>: I don’t want any trouble with him, Lila.</p>
+<p><strong>lila</strong>: Don’t worry about it.</p>
+<p><strong>jimmy</strong>: This guy’s been calling all morning. He’s got
+two up at the Old Casino.</p>
+<p><strong>lila</strong>: Okay.</p>
+<p><strong>ray</strong>: What’s going on?</p>
+<p><strong>lila</strong>: We gotta pick them up.</p>
+<p><strong>ray</strong>: Where?</p>
+<p><strong>lila</strong>: Not far.</p>
+<p><strong>ray</strong>: Where’s that?</p>
+<p><strong>lila</strong>: An old casino through the woods. They used to
+have gambling there in the bootlegger days.</p>
+<p><strong>ray</strong>: What the hell is he doing?</p>
+<p><strong>lila</strong>: Keep that thing down.</p>
+<p><strong>lila</strong>: Roll down the window and see what he
+wants.</p>
+<p><strong>ray</strong>: What the hell is going on here?</p>
+<p><strong>lila</strong>: Just roll it down.</p>
+<p><strong>bruno</strong>: D’ey don’t like de women driver.</p>
+<p><strong>lila</strong>: Count it.</p>
+<p><strong>ray</strong>: Twelve hundred.</p>
+<p><strong>lila</strong>: Open it.</p>
+<p><strong>bruno</strong>: D’is will keep d’em from running.</p>
+<p><strong>ray</strong>: Why would they want to run?</p>
+<p><strong>lila</strong>: To get away from the snakeheads.</p>
+<p><strong>ray</strong>: What’s that?</p>
+<p><strong>lila</strong>: The snakeheads pay to get them here and then
+they gotta work off what they owe .</p>
+<p><strong>ray</strong>: How much does it cost?</p>
+<p><strong>lila</strong>: Forty, fifty thousand. Depends where they’re
+coming from.</p>
+<p><strong>ray</strong>: To get here?</p>
+<p><strong>lila</strong>: Sometimes they gotta work for years to pay it
+off.</p>
+<p><strong>ray</strong>: To get here? No fuckin’ way.</p>
+<p><strong>ray</strong>: God those are ripe.</p>
+<p><strong>lila</strong>: They always stink.</p>
+<p><strong>t.j.</strong>: -Hello Is this Mrs. Irene ThreeRivers?
+-Mrs. Bonaparte, I have good news.</p>
+<p><strong>t.j.</strong>: -I’m the business manager of Mr. E.F.
+ThreeRivers and I have been authorized to inform you that you have
+inherited money. -Are you still there? -Wait, I don’t WANT any money, I
+want to GIVE you money. -That’s right. You have inherited money from his
+computer fortune. -He was the second richest man next to Bill Gates. -He
+left you Twenty-six thousand seven hundred and fifty dollars.</p>
+<p><strong>fifty dollars!</strong>: -Oh no, you have no obligation
+whatsoever, Mrs. ThreeRivers, just a small processing fee of 29.00
+dollars will authorize me to send out your first payment of
+thirteen-thousand three hundred and seventy five dollars. -You can put
+it on any major credit card. Of course, you can always refuse the money.
+-Sure, I can hold.</p>
+<p><strong>ray</strong>: Are they always there?</p>
+<p><strong>lila</strong>: Yeah, but they can’t stop you unless you give
+them a reason.</p>
+<p><strong>ray</strong>: Have you ever gotten caught?</p>
+<p><strong>lila</strong>: Once.</p>
+<p><strong>ray</strong>: What happened?</p>
+<p><strong>lila</strong>: They gave me the choice of paying a fine or
+spending three months in jail.</p>
+<p><strong>ray</strong>: What did you do?</p>
+<p><strong>lila</strong>: I paid the fine. I made the money back in two
+nights of smuggling. But back then it was cigarettes and everybody did
+it. Some of the troopers were into it, too.</p>
+<p><strong>ray</strong>: Smuggling?</p>
+<p><strong>lila</strong>: Yeah. But when they lowered the tax on
+cigarettes in Canada most people got out of it and the rest switched
+over to Chinese.</p>
+<p><strong>lila</strong>: Count it.</p>
+<p><strong>ray</strong>: Right, I know.</p>
+<p><strong>lila</strong>: Well, be sure it’s right. I don’t wanna get
+stiffed.</p>
+<p><strong>ray</strong>: Then why don’t you count it?</p>
+<p><strong>lila</strong>: I got bad eyes.</p>
+<p><strong>ray</strong>: You’re welcome.</p>
+<p><strong>lila</strong>: What about mine?</p>
+<p><strong>ray</strong>: We’re even now.</p>
+<p><strong>t.j.</strong>: My mom told me to give you her credit card
+number.</p>
+<p><strong>rentacenter man</strong>: We only take cash or money
+orders.</p>
+<p><strong>t.j.</strong>: Well, my Mom might be late.</p>
+<p><strong>rentacenter man</strong>: She’s got three minutes.</p>
+<p><strong>ray</strong>: It’s okay. I got it right here. . Two fifty
+five, right?</p>
+<p><strong>ricky</strong>: Mommy!</p>
+<p><strong>ray</strong>: Who wants to go the Price Chopper and get some
+Cap’n Crunch?</p>
+<p><strong>ray</strong>: Wanna to go to the Price Chopper?</p>
+<p><strong>t.j.</strong>: Where’d you get that?</p>
+<p><strong>ray</strong>: Matt made me an assistant manager.</p>
+<p><strong>t.j.</strong>: No way.</p>
+<p><strong>ray</strong>: Is that so hard to believe?</p>
+<p><strong>t.j.</strong>: It’s been like two years.</p>
+<p><strong>ray</strong>: Exactly, and that’s why he gave me a bonus.</p>
+<p><strong>ray</strong>: Do you wanna go to the Price Chopper or
+not?</p>
+<p><strong>evelyn</strong>: Chance! Chance, get in here before you
+freeze your ass off.</p>
+<p><strong>weather man</strong>: Temps will dip tonight and tomorrow.
+Expect a Clipper from Northern Ontario to bring 8 to 12 inches of snow
+and winds gusting 25-45 miles an hour making it feel like minus 30. Area
+farmers are advised to bring in livestock. More on this after a
+message.</p>
+<p><strong>t.j.</strong>: That’s what he wants.</p>
+<p><strong>ray</strong>: What?</p>
+<p><strong>t.j.</strong>: For Christmas.</p>
+<p><strong>ray</strong>: What is it, again?</p>
+<p><strong>t.j.</strong>: Hot Wheels Tech Trax Air Stunt Challenge
+Set.</p>
+<p><strong>ray</strong>: -Hot Wheels Tech Trax, what?</p>
+<p><strong>t.j.</strong>: Air-Stunt-Challenge-Set.</p>
+<p><strong>ray</strong>: I got something even better than that.</p>
+<p><strong>t.j.</strong>: What?</p>
+<p><strong>ray</strong>: The double wide. But don’t mention it to Ricky,
+just in case.</p>
+<p><strong>t.j.</strong>: Yeah, “just in case.”</p>
+<p><strong>ray</strong>: This time is for real.</p>
+<p><strong>t.j.</strong>: Is that why you bought Calgon Bath Stuff?</p>
+<p><strong>ray</strong>: Yes it is. We’re getting a tub, T.J. It’s gonna
+happen.</p>
+<p><strong>t.j.</strong>: Yeah, right.</p>
+<p><strong>ray</strong>: If you keep that attitude I’ll never let you
+use it.</p>
+<p><strong>t.j.</strong>: Be afraid. Be very afraid. What about Dad?</p>
+<p><strong>ray</strong>: What about him?</p>
+<p><strong>t.j.</strong>: What are you gonna do?</p>
+<p><strong>ray</strong>: Why, did he call broke yet?</p>
+<p><strong>t.j.</strong>: No, but maybe he would call if you weren’t so
+bitter.</p>
+<p><strong>ray</strong>: Oh, here we go again with Saint Dad.</p>
+<p><strong>t.j.</strong>: That’s what I mean. You’re always on him.
+“Where’s your paycheck, do you need a meeting, give me your
+receipts.”</p>
+<p><strong>ray</strong>: He’s an addict, T.J.</p>
+<p><strong>t.j.</strong>: You’re still bitter.</p>
+<p><strong>ray</strong>: You gotta help Ricky get the tree up tomorrow
+after school okay?</p>
+<p><strong>t.j.</strong>: Where are you going?</p>
+<p><strong>ray</strong>: Christmas shopping.</p>
+<p><strong>ray’s voice</strong>: Hi, it’s me. leave a message, and maybe
+I’ll call ya back.</p>
+<p><strong>ray</strong>: Hi….it’s me…leave a message and I’ll call ya’
+back.</p>
+<p><strong>ray</strong>: Hey, leave me a message and I’ll call ya’ back.
+You son of a bitch.</p>
+<p><strong>ray</strong>: Hi, it’s me. I can’t take the call right now,
+but if it’s you, Troy, please at least tell me you are alive, because
+the boys are worried about you.</p>
+<p><strong>troy</strong>: Hey, I just got done here. I made two hours
+overtime fixing one of the snow- making machines. Pretty cool, huh? I’ll
+be home late. I’m gonna catch that meeting at 7:30. Love you, bye.</p>
+<p><strong>bernie</strong>: Lila. Get up. I got a job for you!</p>
+<p><strong>bernie</strong>: Lila! Get up.</p>
+<p><strong>bernie</strong>: They got two people out sick today, so if
+you get down there you got the job.</p>
+<p><strong>lila</strong>: Huh?</p>
+<p><strong>bernie</strong>: Get dressed, I got coffee. Let’s go!</p>
+<p><strong>lila</strong>: Where is it?</p>
+<p><strong>bernie</strong>: Get in, I’ll tell you on the way.</p>
+<p><strong>bernie</strong>: Rita said you quit.</p>
+<p><strong>lila</strong>: She fired me.</p>
+<p><strong>bernie</strong>: That’s not what she said.</p>
+<p><strong>lila</strong>: Well, she should have. I can’t see to count
+the money. I told you that. I come up short half the time.</p>
+<p><strong>bernie</strong>: Then get some glasses.</p>
+<p><strong>lila</strong>: They make me carsick.</p>
+<p><strong>bernie</strong>: Gimme a break.</p>
+<p><strong>lila</strong>: So where are we going?</p>
+<p><strong>bernie</strong>: The Tribal Council needs someone to answer
+phones.</p>
+<p><strong>lila</strong>: No way!</p>
+<p><strong>bernie</strong>: Why not? You can answer a phone, can’t
+you?</p>
+<p><strong>lila</strong>: Not there! Not with them.</p>
+<p><strong>bernie</strong>: What’s that?</p>
+<p><strong>lila</strong>: I bought it.</p>
+<p><strong>bernie</strong>: From who?</p>
+<p><strong>lila</strong>: Some white lady.</p>
+<p><strong>lila</strong>: What?</p>
+<p><strong>bernie</strong>: What do you need a car for?</p>
+<p><strong>lila</strong>: To get to work. So I don’t have to walk in the
+breakdown lane. Last week I almost got hit by the plow.</p>
+<p><strong>bernie</strong>: You’ll live. And you know what I’m talking
+about.</p>
+<p><strong>lila</strong>: It doesn’t have a trunk.</p>
+<p><strong>lila</strong>: All right, all right! I’ll go.</p>
+<p><strong>ray</strong>: That’s $87.50.</p>
+<p><strong>ray</strong>: Sorry. Didn’t go through.</p>
+<p><strong>ray</strong>: I can try to put it though again.</p>
+<p><strong>customer</strong>: You got a problem with your machine,
+lady!</p>
+<p><strong>ray</strong>: That’ll be three seventy six.</p>
+<p><strong>trooper</strong>: I got exact.</p>
+<p><strong>rosalie</strong>: Do I have any messages?</p>
+<p><strong>rosalie</strong>: I can’t read this.</p>
+<p><strong>lila</strong>: I think it’s a “T.”.</p>
+<p><strong>rosalie</strong>: No, I can’t read any of it.</p>
+<p><strong>lila</strong>: I told Bernie I couldn’t see.</p>
+<p><strong>lila</strong>: Nevermind. I’ll go.</p>
+<p><strong>lila</strong>: We gotta get extra fluid.</p>
+<p><strong>ray</strong>: I gotta get back before KMART closes.</p>
+<p><strong>lila</strong>: What for?</p>
+<p><strong>ray</strong>: I got nothing for under the tree.</p>
+<p><strong>angle</strong>: Through the window Ray catches sight of Lila
+standing at the table perfectly still.</p>
+<p><strong>ray</strong>: Don’t you people even take Christmas Eve
+off?</p>
+<p><strong>lila</strong>: Mohawks don’t celebrate Christmas.</p>
+<p><strong>ray</strong>: You could fool me the way they were all lined
+up at All for a Dollar today.</p>
+<p><strong>lila</strong>: Those are Christians. The converted.</p>
+<p><strong>ray</strong>: From what?</p>
+<p><strong>lila</strong>: From the Longhouse ways.</p>
+<p><strong>ray</strong>: That’s awful not to have Santa Claus– for the
+kids, I mean.</p>
+<p><strong>ricky</strong>: Daddy is gettin’ me that for Christmas.</p>
+<p><strong>t.j.</strong>: What about Santa Claus?</p>
+<p><strong>ricky</strong>: He’s bringing the new house.</p>
+<p><strong>ray</strong>: Wait. They’re not Chinese.</p>
+<p><strong>lila</strong>: They’re “Pakis.”</p>
+<p><strong>ray</strong>: What does that mean?</p>
+<p><strong>lila</strong>: They’re from Pakistan.</p>
+<p><strong>ray</strong>: Well where’s that?</p>
+<p><strong>lila</strong>: I don’t know. What difference does it
+make?</p>
+<p><strong>ray</strong>: A big difference.</p>
+<p><strong>lila</strong>: If we wait much longer we won’t be able to get
+back across the river.</p>
+<p><strong>ray</strong>: Look, I’m not driving just anybody across the
+border.</p>
+<p><strong>lila</strong>: Do you want the money or not?</p>
+<p><strong>ray</strong>: I wanna know what’s in the bag.</p>
+<p><strong>ray</strong>: What’s in there?</p>
+<p><strong>lila</strong>: They don’t understand you.</p>
+<p><strong>ray</strong>: Well, if they want to come over here so bad,
+they ought’a take the time to learn English.</p>
+<p><strong>ray</strong>: Just hold on a second.</p>
+<p><strong>ray</strong>: I’ll take that.</p>
+<p><strong>lila</strong>: If we keeps snowing like this we won’t be able
+to get across the river.</p>
+<p><strong>ray</strong>: I just hope these aren’t the ones that blow up
+themselves and everybody with them.</p>
+<p><strong>lila</strong>: We don’t have time.</p>
+<p><strong>lila</strong>: Is that a two or a five?</p>
+<p><strong>ray</strong>: A five.</p>
+<p><strong>ray</strong>: Shit!</p>
+<p><strong>lila</strong>: You gotta stop so I can fill up the wiper
+fluid.</p>
+<p><strong>ray</strong>: I’m not stoppin’.</p>
+<p><strong>lila</strong>: It’s a hundred feet deep out here if we get on
+black ice</p>
+<p><strong>lila</strong>: What are you doing?</p>
+<p><strong>ray</strong>: Nuclear power, poison gas,…you can’t tell what
+they might have in there. I’m not gonna be responsible for that.</p>
+<p><strong>ray</strong>: -Hi, I’m gonna be a little late. -I have to
+work. Is Ricky asleep? -Put him on. -Ricky listen to me, he’s not coming
+until you go to sleep.</p>
+<p><strong>ray</strong>: -No. Not yet. He’s still flyin’ over Canada
+okay? He’s not even done with Canada yet, so he’s not coming until you
+get to sleep. Now put your brother on. -I’ll be home in a little while,
+okay? -No, I haven’t got it,yet. What’s it called again? -Hot Wheels
+Tech Trax Air Stunt whatever, right, right, I’ll get it if I can! -I
+can’t promise T.J. -There are more important things to get for Christmas
+this year. Be home in a little while. Okay, bye.</p>
+<p><strong>ray</strong>: You’d think a new house would be enough.</p>
+<p><strong>t.j.</strong>: -Hi, is Mitch there?</p>
+<p><strong>t.j.</strong>: -Hi Mitch. It’s T.J. No, T.J. from school.
+Yeah, man. Right. Uh, I was wondering if you still needed those numbers
+we were talking about `cause I got one. -How much? -Cool, but the thing
+is I don’t really have any wheels at the moment. -On Moira road off 37.
+-Yeah, but there’s one more thing… …no the air stunt challenge set.
+-Yeah, exactly. Yeah, man. Thanks a lot. Bye.</p>
+<p><strong>t.j.</strong>: Ricky, time to eat.</p>
+<p><strong>ricky</strong>: Hey T.J., watch this!</p>
+<p><strong>t.j.</strong>: Yeah, that’s pretty cool. But it’s gonna hurt
+when you sit down.</p>
+<p><strong>t.j.</strong>: Now unwrap yourself, it’s dinner time.</p>
+<p><strong>dealer</strong>: They say there’s a bag.</p>
+<p><strong>ray</strong>: It was too heavy. We had to unload it.</p>
+<p><strong>ray</strong>: What’s the matter with her!?</p>
+<p><strong>dealer</strong>: She had something in the bag.</p>
+<p><strong>ray</strong>: What is she saying!?</p>
+<p><strong>dealer</strong>: She says her baby. Her baby was in the
+bag.</p>
+<p><strong>ray</strong>: It didn’t feel like there was anything in that
+bag.</p>
+<p><strong>lila</strong>: We gotta go back.</p>
+<p><strong>ray</strong>: I can’t believe they put their baby in a duffle
+bag.</p>
+<p><strong>lila</strong>: I can’t believe you left it out there.</p>
+<p><strong>ray</strong>: If you’d let me search it I would never have
+taken it-</p>
+<p><strong>lila</strong>: We gotta go back.</p>
+<p><strong>ray</strong>: I know! I know that.</p>
+<p><strong>mitch</strong>: That’s what you wanted, right?</p>
+<p><strong>t.j.</strong>: Close enough.</p>
+<p><strong>mitch</strong>: Thanks Man, Have a Merry One.</p>
+<p><strong>lila</strong>: Look, there. Tracks.</p>
+<p><strong>ray</strong>: Where?</p>
+<p><strong>lila</strong>: Up there.</p>
+<p><strong>lila</strong>: Slow down, I don’t want to run over it. Stop.
+I think it was here.</p>
+<p><strong>ray’s voice</strong>: Hi, it’s me. I can’t take the call
+right now, but if it’s you, Troy, please at least tell me you’re alive,
+because the boys are worried about you.</p>
+<p><strong>lila</strong>: It’s dead.</p>
+<p><strong>ray</strong>: Come on!</p>
+<p><strong>lila</strong>: It’s dead.</p>
+<p><strong>ray</strong>: Tap the bottom of his feet.</p>
+<p><strong>lila</strong>: Why?</p>
+<p><strong>ray</strong>: That’s what they did to get Ricky breathing
+when he was born.</p>
+<p><strong>lila</strong>: I don’t want to touch it.</p>
+<p><strong>ray</strong>: Well, I can’t hold it and drive.</p>
+<p><strong>lila</strong>: I don’t think it matters.</p>
+<p><strong>ray</strong>: At least put him next to your body. That will
+warm him up.</p>
+<p><strong>lila</strong>: But it’s too late.</p>
+<p><strong>ray</strong>: Just do it! We can’t give it back to her
+cold.</p>
+<p><strong>ray</strong>: Shit!</p>
+<p><strong>lila</strong>: Calm down.</p>
+<p><strong>ray</strong>: Oh shit. What do I do?</p>
+<p><strong>lila</strong>: Calm down. Just pull over.</p>
+<p><strong>ray</strong>: What if he saw us go by before. To Bob’s.</p>
+<p><strong>lila</strong>: He’s got no reason to stop us, unless you give
+him one, so keep your mouth shut.</p>
+<p><strong>ray</strong>: What if he searches the car. What do we say
+about-</p>
+<p><strong>lila</strong>: He won’t, just remember you’re white.</p>
+<p><strong>trooper napoli</strong>: License and registration?</p>
+<p><strong>trooper napoli</strong>: Could you step out of the vehicle,
+ma’am.</p>
+<p><strong>ray</strong>: I wasn’t speeding, was I?</p>
+<p><strong>trooper napoli</strong>: Just step out of the car.</p>
+<p><strong>ray</strong>: Did I do something?</p>
+<p><strong>trooper napoli</strong>: Ma’am I’m just directing you to step
+out of the vehicle?</p>
+<p><strong>ray</strong>: Okay.</p>
+<p><strong>trooper napoli</strong>: Step around to the back of the
+vehicle.</p>
+<p><strong>trooper napoli</strong>: See that.</p>
+<p><strong>trooper napoli</strong>: Your left rear parking light is not
+illuminated.</p>
+<p><strong>ray</strong>: Oh, I didn’t know.</p>
+<p><strong>trooper napoli</strong>: I’m gonna give you a provisional
+citation. Get this repaired in the next 48 hours and you’ll have no
+problem.</p>
+<p><strong>ray</strong>: Thanks.</p>
+<p><strong>trooper napoli</strong>: Who’s your friend?</p>
+<p><strong>ray</strong>: She looks after my kids when I have to work
+late.</p>
+<p><strong>trooper napoli</strong>: Have an enjoyable Holiday.</p>
+<p><strong>ray</strong>: Yeah, you, too.</p>
+<p><strong>lila</strong>: What did he want?</p>
+<p><strong>ray</strong>: Just a blown out tail light.</p>
+<p><strong>lila</strong>: That’s it?</p>
+<p><strong>ray</strong>: Yeah.</p>
+<p><strong>ray</strong>: We gotta take it in.</p>
+<p><strong>ray</strong>: What is it?</p>
+<p><strong>lila</strong>: It’s moving.</p>
+<p><strong>ray</strong>: What? Are you sure?</p>
+<p><strong>lila</strong>: Hello little baby.</p>
+<p><strong>ray</strong>: He was just cold.</p>
+<p><strong>ray</strong>: We found him.</p>
+<p><strong>ray</strong>: Come on. Let’s go.</p>
+<p><strong>lila</strong>: He was dead.</p>
+<p><strong>ray</strong>: He was just cold.</p>
+<p><strong>lila</strong>: He was dead.</p>
+<p><strong>ray</strong>: Okay, whatever, you brought him back to
+life.</p>
+<p><strong>lila</strong>: That was the Great Spirit, not me.</p>
+<p><strong>ray</strong>: All I know is Kmart is closed and I got nothing
+for under the tree.</p>
+<p><strong>ray</strong>: What?</p>
+<p><strong>ray</strong>: Look, I don’t have time for that. I can’t get
+deep about every little thing. I just have to keep on going. I only need
+one more run to have enough for my double.</p>
+<p><strong>ray</strong>: Here.</p>
+<p><strong>ray</strong>: Merry Christmas or whatever.</p>
+<p><strong>lila</strong>: Yeah.</p>
+<p><strong>ray</strong>: What’s that?</p>
+<p><strong>t.j.</strong>: Hot Wheels.</p>
+<p><strong>ray</strong>: Where’d you get it?</p>
+<p><strong>t.j.</strong>: I called a friend.</p>
+<p><strong>ray</strong>: Mitch? Is that the friend you called? It’s
+probably stolen, you know.</p>
+<p><strong>t.j.</strong>: No, its not.</p>
+<p><strong>ray</strong>: Well, I don’t want you hanging around him. That
+kid is bad news.</p>
+<p><strong>t.j.</strong>: It’s not like you were gonna get it.</p>
+<p><strong>ray</strong>: Look , Mister, I got more important things to
+worry about than toys. I’m trying to get our doublewide.</p>
+<p><strong>t.j.</strong>: Oh, yeah. I forgot.</p>
+<p><strong>ray</strong>: Hey, you can lose the attitude. Anyway, Kmart
+was closed by the time I got off work.</p>
+<p><strong>ray</strong>: What’s that smell?</p>
+<p><strong>t.j.</strong>: Popcorn.</p>
+<p><strong>ray</strong>: I told you to be careful with the microwave,
+didn’t I?</p>
+<p><strong>t.j.</strong>: Sorry.</p>
+<p><strong>lila</strong>: Bernie!</p>
+<p><strong>ricky</strong>: Daddy?</p>
+<p><strong>trooper napoli</strong>: Is there a Ray Eddy here?</p>
+<p><strong>ray</strong>: Yes.</p>
+<p><strong>trooper napoli</strong>: Can I speak to you outside for a
+minute.</p>
+<p><strong>ray</strong>: I haven’t gotten the light fixed-</p>
+<p><strong>trooper napoli</strong>: It’s not about that. I just have a
+few questions.</p>
+<p><strong>ray</strong>: Sure.</p>
+<p><strong>trooper napoli</strong>: This is about the woman who was with
+you.</p>
+<p><strong>ray</strong>: Yes.</p>
+<p><strong>trooper napoli</strong>: How long have you known her?</p>
+<p><strong>ray</strong>: Not too long. She looks after my kids.</p>
+<p><strong>trooper napoli</strong>: She’s a smuggler.</p>
+<p><strong>ray</strong>: Really?</p>
+<p><strong>trooper napoli</strong>: Yes.</p>
+<p><strong>ray</strong>: Wow. That’s a shock.</p>
+<p><strong>trooper napoli</strong>: Yes, well, there is that element on
+the Reservation I’m sure you know.</p>
+<p><strong>ray</strong>: Yeah, I’ve heard about it but I didn’t know she
+was involved.</p>
+<p><strong>trooper napoli</strong>: How did you happen to meet her?</p>
+<p><strong>ray</strong>: Uh, I think there was a sign for a baby sitter
+at the Wolf Mart. That’s where I get my gas.</p>
+<p><strong>trooper napoli</strong>: I just thought you should be aware
+of that. She’s known to have smuggled illegal immigrants into the
+country.</p>
+<p><strong>ray</strong>: Oh my God.</p>
+<p><strong>trooper napoli</strong>: If I were you I’d find a new baby
+sitter. You don’t want her around young kids.</p>
+<p><strong>ray</strong>: Absolutely.</p>
+<p><strong>trooper napoli</strong>: Well, you have an enjoyable
+Holiday.</p>
+<p><strong>ray</strong>: Thanks. You, too.</p>
+<p><strong>ricky</strong>: Why is the police man here?</p>
+<p><strong>t.j.</strong>: Shh.</p>
+<p><strong>ray</strong>: T.J. could you come out here for a minute.</p>
+<p><strong>t.j.</strong>: What did he want? Did something happen to
+Dad?</p>
+<p><strong>ray</strong>: No.</p>
+<p><strong>t.j.</strong>: Then what did he want?</p>
+<p><strong>ray</strong>: Did you have a fire last night?</p>
+<p><strong>t.j.</strong>: The pipes froze so I fixed `um.</p>
+<p><strong>ray</strong>: You fixed um?</p>
+<p><strong>t.j.</strong>: Yeah.</p>
+<p><strong>ray</strong>: Did you happen to use the blow torch?</p>
+<p><strong>ray</strong>: Look at this. We can’t live here anymore!</p>
+<p><strong>t.j.</strong>: It’s just a tin crapper.</p>
+<p><strong>ray</strong>: No, it was our house.</p>
+<p><strong>t.j.</strong>: So, we’re gettin’ a new one, right?</p>
+<p><strong>ray</strong>: Jesus, you could have killed yourself and your
+brother.</p>
+<p><strong>t.j.</strong>: It’s not yours, he gave it to me.</p>
+<p><strong>ray</strong>: Put it down.</p>
+<p><strong>t.j.</strong>: No!</p>
+<p><strong>ray</strong>: Put it down.</p>
+<p><strong>t.j.</strong>: Are you gonna shoot me now, too?</p>
+<p><strong>ray</strong>: Put that thing down!</p>
+<p><strong>t.j.</strong>: Maybe he didn’t like gettin’ shot in his own
+house. Maybe that’s why he left.</p>
+<p><strong>ray</strong>: That was an accident.</p>
+<p><strong>t.j.</strong>: Some accident you shot him in the foot.</p>
+<p><strong>ray</strong>: He spent the food money on scratch cards,</p>
+<p><strong>t.j.</strong>: So, he’d done it before.</p>
+<p><strong>ray</strong>: Gimme that thing.</p>
+<p><strong>ray</strong>: T.J. come on now.</p>
+<p><strong>t.j.</strong>: You can’t have it. It’s mine.</p>
+<p><strong>ray</strong>: He was clean for 23 months.</p>
+<p><strong>ray</strong>: I didn’t know how else to keep us together. I
+mean…he’s a good dad when he’s not gamblin’.</p>
+<p><strong>t.j.</strong>: Yeah, awesome dad. Robs us and takes off a
+week before Christmas.</p>
+<p><strong>ray</strong>: I know.</p>
+<p><strong>ticket taker</strong>: The game’s over. They’re verifying the
+last winner.</p>
+<p><strong>ray</strong>: That’s okay. I still wanna buy a ticket.</p>
+<p><strong>ticket taker</strong>: I can’t sell you one.</p>
+<p><strong>ray</strong>: I got money.</p>
+<p><strong>ticket taker</strong>: Sorry.</p>
+<p><strong>ray</strong>: I just want to buy some scratch cards.</p>
+<p><strong>ticket taker</strong>: Go to Wolf Mart, they sell `um
+there.</p>
+<p><strong>lila</strong>: I quit smuggling.</p>
+<p><strong>ray</strong>: T.J. set the trailer on fire.</p>
+<p><strong>ray</strong>: He didn’t mean to, but the pipes froze and he
+got that damn torch out – which I told him not to do touch when I wasn’t
+there – and he tried to thaw them out-</p>
+<p><strong>lila</strong>: I got glasses and now I can see up close.</p>
+<p><strong>ray</strong>: There’s a hole in my bedroom floor. We gotta
+move.</p>
+<p><strong>ray</strong>: I just need one more run to get the double.</p>
+<p><strong>ray</strong>: Look you can have the Acclaim. Okay?</p>
+<p><strong>lila</strong>: I don’t want it.</p>
+<p><strong>ray</strong>: What is it then?!</p>
+<p><strong>ray</strong>: Are you still mad about that baby? `Cause it
+wasn’t all my fault, ya’ know. I mean who puts their kid in a duffle
+bag?</p>
+<p><strong>ray</strong>: You’re gonna need a lot of money to take care
+of a one year old baby.</p>
+<p><strong>lila</strong>: I got enough.</p>
+<p><strong>ray</strong>: Yeah, but you gotta get him first.</p>
+<p><strong>ray</strong>: I’ll help you. You can even borrow my gun.</p>
+<p><strong>angle from bingo palace entrance</strong>: The Ticket Taker
+watches the Acclaim drive away.</p>
+<p><strong>ray</strong>: You should see the inside.</p>
+<p><strong>lila</strong>: How many bedrooms?</p>
+<p><strong>ray</strong>: Three. And it’s got a jacuzzi tub in the master
+bathroom.</p>
+<p><strong>lila</strong>: Wall to wall carpet?</p>
+<p><strong>ray</strong>: Oh yeah. But the best thing is the insulation.
+The pipes can never freeze.</p>
+<p><strong>ray</strong>: I’ll be back.</p>
+<p><strong>versailles</strong>: …what I think you’ll find with the
+Commodore – and you’ll be the judge – is that the vinyl wall covering is
+perfect for small children. There is never a need to repaint or even
+touch up-</p>
+<p><strong>ray</strong>: I wanna schedule a delivery.</p>
+<p><strong>versailles</strong>: Give me just a second.</p>
+<p><strong>versailles</strong>: What do you want?</p>
+<p><strong>versailles</strong>: Is this all of it?</p>
+<p><strong>ray</strong>: It’s three thousand but I want it delivered
+tomorrow.</p>
+<p><strong>versailles</strong>: I told you all or nothing.</p>
+<p><strong>ray</strong>: Take it as a deposit. All you have to do is
+show up. If I don’t have the rest you keep it.</p>
+<p><strong>versailles</strong>: Can’t argue with that. You’ll have to
+sign something, though.</p>
+<p><strong>lila</strong>: Blow the horn.</p>
+<p><strong>jimmy</strong>: Heat wave!</p>
+<p><strong>lila</strong>: You got a run for us, Jimmy?</p>
+<p><strong>jimmy</strong>: It’s pretty slow after Christmas. Unless you
+wanna to go off the Rez, there’s a guy up in Montreal who’s usually got
+heads.</p>
+<p><strong>lila</strong>: How far?</p>
+<p><strong>jimmy</strong>: Twenty miles or so. But…you gotta watch out
+for the Mounties and the Surete. and…this guy deals in ya’ know
+girls.</p>
+<p><strong>ray</strong>: Have you ever been there?</p>
+<p><strong>lila</strong>: A few times. Have you?</p>
+<p><strong>ray</strong>: No, Troy didn’t like to travel. He liked to
+work in his shed, mostly.</p>
+<p><strong>lila</strong>: Up there. That’s it.</p>
+<p><strong>ray</strong>: Can’t miss that.</p>
+<p><strong>bartender</strong>: Oui?</p>
+<p><strong>lila</strong>: Bruno.</p>
+<p><strong>bruno</strong>: You looking for a job.</p>
+<p><strong>lila</strong>: No, Jimmy called-</p>
+<p><strong>bruno</strong>: Oh yeah, Jimmy. Okay.</p>
+<p><strong>bartender</strong>: Put your hands up.</p>
+<p><strong>bruno</strong>: Okay we go.</p>
+<p><strong>bruno</strong>: D’is way.</p>
+<p><strong>bruno</strong>: D’at your car?</p>
+<p><strong>bruno</strong>: Open the trunk.</p>
+<p><strong>lila</strong>: We need to get paid, first.</p>
+<p><strong>bruno</strong>: Oh, yes.</p>
+<p><strong>lila</strong>: You only got six hundred here.</p>
+<p><strong>bruno</strong>: You get the rest at drop off.</p>
+<p><strong>lila</strong>: It’s six hundred apiece.</p>
+<p><strong>bruno</strong>: That’s the deal I make with Jimmy, now you
+want to change?</p>
+<p><strong>lila</strong>: It’s twelve hundred.</p>
+<p><strong>bruno</strong>: You want to make a problem?</p>
+<p><strong>bruno</strong>: …because you’re not making a problem for me.
+And you’re making a problem for them. Let me show you something.</p>
+<p><strong>lila</strong>: Let’s just go.</p>
+<p><strong>ray</strong>: Okay. We’ll take them.</p>
+<p><strong>lila</strong>: Let’s go.</p>
+<p><strong>ray</strong>: Just open the trunk.</p>
+<p><strong>bruno</strong>: You must be the brains of the operation.</p>
+<p><strong>ray</strong>: Turn around!</p>
+<p><strong>ray</strong>: I want the rest.</p>
+<p><strong>bruno</strong>: I don’t have any more.</p>
+<p><strong>ray</strong>: Go get it.</p>
+<p><strong>bruno</strong>: Give it to her.</p>
+<p><strong>lila</strong>: Let’s get out of here. I’ll give you the rest
+of the money.</p>
+<p><strong>ray</strong>: No. But thanks.</p>
+<p><strong>lila</strong>: You’re gonna get us all killed.</p>
+<p><strong>ray</strong>: Put it there.</p>
+<p><strong>bruno</strong>: You aren’t so smart as you look.</p>
+<p><strong>ray</strong>: He shot me.</p>
+<p><strong>lila</strong>: You should’a just taken the money from me?</p>
+<p><strong>ray</strong>: I’m tired of people stealing from me. Is it all
+there?</p>
+<p><strong>lila</strong>: We gotta get outta here, first.</p>
+<p><strong>ray</strong>: Just COUNT IT and make sure it’s all there!</p>
+<p><strong>ray</strong>: Is it there?</p>
+<p><strong>lila</strong>: It’s all there.</p>
+<p><strong>ray</strong>: Good.</p>
+<p><strong>lila</strong>: Slow down a little. We gotta keep it under the
+speed limit.</p>
+<p><strong>lila</strong>: We gotta get off this road.</p>
+<p><strong>lila</strong>: Slow down!</p>
+<p><strong>ray</strong>: I can’t.</p>
+<p><strong>lila</strong>: We gotta get off this road!</p>
+<p><strong>ray</strong>: How much farther to the reservation?</p>
+<p><strong>lila</strong>: Just up at the tree line.</p>
+<p><strong>ray</strong>: What the hell? We’re on the reservation.</p>
+<p><strong>lila</strong>: They can’t arrest us but if they catch us
+they’ll take the money.</p>
+<p><strong>ray</strong>: Shit!</p>
+<p><strong>lila</strong>: That ice is black out here.</p>
+<p><strong>ray</strong>: Will it hold us?</p>
+<p><strong>lila</strong>: I don’t know.</p>
+<p><strong>dispatcher</strong>: …the Quebec Surete in pursuit of a
+vehicle with New York State plates, identified as a blue Plymouth
+Acclaim and the suspects are two women, suspected to be carrying
+illegals…</p>
+<p><strong>lila</strong>: We gotta crawl out the window.</p>
+<p><strong>angle</strong>: Trooper Napoli gets in his cruiser and heads
+down the bank toward the women, lights flashing.</p>
+<p><strong>jimmy</strong>: Hi Mom.</p>
+<p><strong>velma</strong>: Jimmy, I told you not to bring no more half
+frozen people in here off the river.</p>
+<p><strong>jimmy</strong>: We just need to borrow your oven, Mom.</p>
+<p><strong>velma</strong>: I don’t see how I can get any baking done.
+I’m supposed to be baking 200 doughnuts for pee wee Lacrosse and now I
+have people bleeding and dripping all over my kitchen.</p>
+<p><strong>velma</strong>: Sit down, I can’t reach up that high.</p>
+<p><strong>velma</strong>: Looks like somebody tried to blow your brains
+out.</p>
+<p><strong>velma</strong>: Get outta here, Jimmy. They gotta strip down.
+Gimme those jackets.</p>
+<p><strong>velma</strong>: Somebody’s been beatin’ up on you.</p>
+<p><strong>velma</strong>: You, too.</p>
+<p><strong>three rivers</strong>: -Good, good Mike. What can I do for
+you? - -You say non-native smugglers? -A white woman? On the Rez? -I’ll
+look into it and give you a call back. Sure thing. -I’ll take your
+request to the Tribal Council and give you a call back. -No problem,
+Mike. You bet.</p>
+<p><strong>three rivers</strong>: Hi, Rosalie.</p>
+<p><strong>rosalie</strong>: Billy.</p>
+<p><strong>three rivers</strong>: We have a situation with a couple
+smugglers. They got chased by the Quebec police and crossed the river
+but their car went in and now the troopers know they’re on the Rez.</p>
+<p><strong>rosalie</strong>: Who is it?</p>
+<p><strong>three rivers</strong>: Lila Littlewolf and some white
+woman.</p>
+<p><strong>rosalie</strong>: What do the troopers want?</p>
+<p><strong>three rivers</strong>: A surrender of the two illegals and
+the Non-Native smuggler. They need an example here.</p>
+<p><strong>rosalie</strong>: Do you know where they are?</p>
+<p><strong>three rivers</strong>: Probably over at Velma’s.</p>
+<p><strong>rosalie</strong>: What do you think?</p>
+<p><strong>barbara</strong>: Turn them in.</p>
+<p><strong>rosalie</strong>: What about Lila Littlewolf?</p>
+<p><strong>bernie</strong>: We got our own court system.</p>
+<p><strong>rosalie</strong>: We don’t charge people with smuggling.</p>
+<p><strong>barbara</strong>: Maybe we should.</p>
+<p><strong>bernie</strong>: If we did, we’d have to arrest half the
+people on the Rez.</p>
+<p><strong>barbara</strong>: We can expel her.</p>
+<p><strong>bernie</strong>: You can’t start throwin’ Mohawks off the
+Rez, Rosalie. There’s only, what, six thousand of us as it is.</p>
+<p><strong>rosalie</strong>: She makes the Mohawk people look bad.</p>
+<p><strong>bernie</strong>: But she has a Mohawk son.</p>
+<p><strong>rosalie</strong>: She cost us a Mohawk son.</p>
+<p><strong>bernie</strong>: Jake was a big boy. He knew what he was
+doin’</p>
+<p><strong>rosalie</strong>: She’ll never be anything but a
+smuggler.</p>
+<p><strong>bernie</strong>: We’ve had smuggling on the Rez since Al
+Capone.</p>
+<p><strong>rosalie</strong>: Then we’ll take a vote.</p>
+<p><strong>jimmy</strong>: Hi, Billy.</p>
+<p><strong>three rivers</strong>: Velma, seen any smugglers tonight?</p>
+<p><strong>jimmy</strong>: Come on, Billy, you never bothered with
+smugglers before.</p>
+<p><strong>three rivers</strong>: Rosalie is worried people are gonna
+think the Mohawks let in terrorists. Plus, I got the Troopers on my
+back. They want the illegals and they say there’s some white lady with
+them too. Is that true, Jimmy?</p>
+<p><strong>three rivers</strong>: You got white women doing it now?
+Jesus. Well, if you see any, let me know.</p>
+<p><strong>ray</strong>: I gotta go.</p>
+<p><strong>ray</strong>: No. You stay here.</p>
+<p><strong>bernie</strong>: Hi, Lila.</p>
+<p><strong>lila</strong>: Hi Bernie.</p>
+<p><strong>bernie</strong>: You’re in a lot of trouble.</p>
+<p><strong>bernie</strong>: The council voted to expel you.</p>
+<p><strong>lila</strong>: Expel me?</p>
+<p><strong>bernie</strong>: For five years. You can appeal, but you’ll
+never be able to change Rosalie’s mind.</p>
+<p><strong>lila</strong>: They can’t do that.</p>
+<p><strong>bernie</strong>: They’ll make your life miserable if you try
+to stay.</p>
+<p><strong>lila</strong>: They’ve already done that.</p>
+<p><strong>bernie</strong>: Believe me, it could get even worse.</p>
+<p><strong>ray</strong>: I thought this was all legal on the
+reservation.</p>
+<p><strong>ray</strong>: Look, I gotta get home.</p>
+<p><strong>bernie</strong>: If she leaves, they’ll turn you in Lila. The
+troopers want somebody.</p>
+<p><strong>ray</strong>: But, she’s a Mohawk.</p>
+<p><strong>bernie</strong>: The Chiefs want her out, so there’s nothing
+standing between her and the troopers.</p>
+<p><strong>ray</strong>: Listen, my kids got no one but me.</p>
+<p><strong>bernie</strong>: If you leave she won’t see her son
+again.</p>
+<p><strong>lila</strong>: Let her go.</p>
+<p><strong>bernie</strong>: Lila, you’re giving up on him and he’s only
+one year old.</p>
+<p><strong>lila</strong>: Just go.</p>
+<p><strong>ray</strong>: At least you got family to take care of him,
+ya’ know?</p>
+<p><strong>lila</strong>: He might be better off.</p>
+<p><strong>bernie</strong>: Jake wouldn’t agree with that.</p>
+<p><strong>lila</strong>: It was all for a new crib. I wanted the baby
+to have a pretty new crib, not some handmedown. And he wouldn’t let me
+go alone. I was too fat to get behind the steering wheel.</p>
+<p><strong>bernie</strong>: He wanted to keep you and little Jake
+safe.</p>
+<p><strong>ray</strong>: It’s just a few months, right?</p>
+<p><strong>ray</strong>: I got baby stuff in the shed.</p>
+<p><strong>ray</strong>: Get a good used single wide with insulation.
+Insulation is the key thing. Versailles will give you a hard time, but
+that will leave enough for you and the boys to live on for a couple of
+months. Ricky’s allergic to penicillin. And you can’t feed `em Pringles
+all the time. Okay?</p>
+<p><strong>ray</strong>: Okay?</p>
+<p><strong>ray</strong>: But you gotta get there quick, before the
+police, `cause T.J. will get scared. I don’t want him to get scared, you
+know.</p>
+<p><strong>lila</strong>: Okay.</p>
+<p><strong>ray</strong>: And don’t let him jerk you around. Versailles,
+I mean. Go with her. Okay?</p>
+<p><strong>bernie</strong>: Sure.</p>
+<p><strong>ricky</strong>: Can I have more corn?</p>
+<p><strong>lila</strong>: Sorry, Thunder, I got nothing for you.</p>
+<p><strong>evelyn</strong>: What do you want?</p>
+<p><strong>lila</strong>: I need his coat.</p>
+<p><strong>lila</strong>: Where’s his coat?</p>
+<p><strong>evelyn</strong>: You can’t have him.</p>
+<p><strong>lila</strong>: Say goodbye to your Dudah.</p>
+<p><strong>bernie</strong>: She’s gonna kill me for taking this out of
+her car.</p>
+<p><strong>ray</strong>: How long is it for me. You know if I
+confess?</p>
+<p><strong>trooper napoli</strong>: As long as they’re not on a watch
+list. Four months.</p>
+<p><strong>trooper napoli</strong>: I don’t think you have much to worry
+about judging from the look of them, probably brought here to work in
+the sex trade.</p>
+<p><strong>ray</strong>: Will they get sent back?</p>
+<p><strong>trooper napoli</strong>: Not necessarily. They can apply for
+asylum.</p>
+<p><strong>ray</strong>: Can I have a cigarette?</p>
+<p><strong>trooper napoli</strong>: Is there somebody I can call for
+you? To take care of your children.</p>
+<p><strong>ray</strong>: I got somebody.</p>
+<p><strong>trooper napoli</strong>: A relative.</p>
+<p><strong>ray</strong>: A friend.</p>
+<p><strong>ray</strong>: But I need to call my kid.</p>
+<p><strong>t.j.</strong>: Hello. Hi, Mom.</p>
+<p><strong>t.j.</strong>: -Mom are you there? What’s wrong? -What kinda
+trouble? -What did you do? -A smuggler!? Holy shit! -Are you in jail?
+-But are you’re going to jail!?</p>
+<p><strong>t.j.</strong>: -Yeah, okay. What does that mean? But why? I
+can take care of him, I do it all the time. But I don’t see why we
+need-?</p>
+<p><strong>t.j.</strong>: -Who? A baby? No way. -Yeah I know where the
+stuff is. It’s in the shed, but that’s so stupid!.</p>
+<p><strong>t.j.</strong>: -Yeah, I’m here. Somebody’s at the door.</p>
+<p><strong>t.j.</strong>: -Okay. Bye.</p>
+<p><strong>t.j.</strong>: You’re gonna have to get the little pieces up
+high – or he’ll eat them.</p>
+<p><strong>ray</strong>: Hi, You’ve reached Ray. Leave me a message and
+I’ll get back to you just as soon as I can.</p>
+<p><strong>troy</strong>: Ray, are you gonna pick up or not?</p>
+<p><strong>troy</strong>: I need you to send me some money so I can get
+home. I’m stuck here. I could already be back at work by now. Please
+Ray, I’m at the YMCA in Tampa. I love you. I miss you. Please call me
+here. Seriously. And tell the boys-</p>
+</body>
+</html>

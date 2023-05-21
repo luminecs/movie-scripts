@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>antz</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="antz">antz</h1>
+<p><strong>z</strong>: All my life, I’ve lived and worked in the big
+city…</p>
+<p><strong>z</strong>: …which is kind of a problem, since I’ve always
+felt uncomfortably in crowds.</p>
+<p><strong>z</strong>: I feel…isolated. Different. I’ve got abandonment
+issues. My father flew away when I was just a larva. My mother didn’t
+have much time for me…when you have five million siblings, it’s
+difficult to get attention. I feel physically inadequate – I’ve never
+been able to lift more than ten times my own weight. Sometimes I think
+I’m just not cut out to be a worker. But I don’t have any other options.
+I was assigned to trade school when I was just a grub. The whole system
+just…makes me feel…insignificant.</p>
+<p><strong>motivational counsellor</strong>: Terrific! You should feel
+insignificant!</p>
+<p><strong>z</strong>: …I should?</p>
+<p><strong>motivational counsellor</strong>: YES!!! You know, people ask
+me, “Doctor, why are you always happy?” And I tell them it’s mind over
+matter. I don’t mind that I don’t matter! Do you get it? Do you get
+it?</p>
+<p><strong>motivational counsellor</strong>: Z, we’re part of the
+fastest growing species in the whole world!</p>
+<p><strong>motivational counsellor</strong>: Ask me why we’re so
+successful.</p>
+<p><strong>z</strong>: Why are we so successful?</p>
+<p><strong>motivational counsellor</strong>: I’m glad you asked me that
+question!</p>
+<p><strong>motivational counsellor</strong>: What do you see out
+there?</p>
+<p><strong>z</strong>: …Ants…</p>
+<p><strong>motivational counsellor</strong>: Right! Ants! Millions of
+creatures, each with his assigned task, all pulling together!</p>
+<p><strong>motivational counsellor</strong>: You see? Being an ant is
+being able to say, “Hey – I’m meaningless, you’re meaningless.”</p>
+<p><strong>z</strong>: But – but I’ve always felt life was about finding
+meaning…and then sharing it with someone special, someone you love.</p>
+<p><strong>motivational counsellor</strong>: Z…you need help. Whoops!
+We’re gonna have to stop there. Your minute is up!</p>
+<p><strong>motivational counsellor</strong>: Now back to work! We’ve
+made real progress! Remember – let’s be best superorganism we can
+be!</p>
+<p><strong>azteca</strong>: Hello?! Earth to Z! You better snap out of
+it, or there’s gonna be a lot of pissed off ants!</p>
+<p><strong>z</strong>: Sorry Azteca. Here you go, fellas! Fresh dirt!
+Alley oop! Shouldn’t we be wearing gloves? I mean this dirt is
+very…dirty. Doesn’t anyone think of hygiene? Boy am I hungry. I’m so
+hungry I’m seeing double. It looks like there’s two million ants in
+here. When’s lunch? Tomorrow, or the day after?</p>
+<p><strong>azteca</strong>: Z, old pal… SHUT UP!!! It’s bad enough
+there’s a food shortage without you complaining about it every day.</p>
+<p><strong>z</strong>: The squeaky wheel gets the oil.</p>
+<p><strong>azteca</strong>: No, Z. The squeaky wheel gets thrown away,
+alright? You’re a good ant, Z, even though you are a pain in my rear-
+segment. I don’t wanna see anything happen to you. So quit mouthing off,
+before you get in trouble.</p>
+<p><strong>z</strong>: Thank goodness. Breaktime.</p>
+<p><strong>azteca</strong>: Break’s over.</p>
+<p><strong>z</strong>: This colony needs another tunnel like a hole in
+the ground. Why are we even digging this thing?</p>
+<p><strong>azteca</strong>: Who cares, Z. All I know is, we gotta dig.
+We’re not the ones in charge.</p>
+<p><strong>general formica</strong>: Cut the chit-chat down there! We’ve
+spoiled these workers, Carpenter. They’ve never had it so good, and
+listen to them – always grumbling and complaining…</p>
+<p><strong>carpenter</strong>: …Yes, sir.</p>
+<p><strong>general formica</strong>: What have they got to complain
+about? Three square meals a day…</p>
+<p><strong>carpenter</strong>: Actually, sir, we’ve cut them down to
+three roughly rectangular meals a week.</p>
+<p><strong>formica</strong>: Don’t give me statistics, Carpenter. I know
+what I’m talking about. DOORS!</p>
+<p><strong>formica</strong>: Oil that, soldier.</p>
+<p><strong>queen</strong>: Ah! General Formica.</p>
+<p><strong>queen</strong>: General, the severe food shortage that faces
+the colony…pains me. The thought of any of my children going hungry…
+Who’s the cutest widdle worker? You are! Yes, you! Don’t forget to brush
+your teeth! Ship ’er out. What steps are you taking to remedy the
+situation?</p>
+<p><strong>formica</strong>: We are launching a major offensive to
+expand our foraging territory…</p>
+<p><strong>queen</strong>: Yes, what else?</p>
+<p><strong>formica</strong>: Please don’t worry, your majesty. Leave the
+worrying to me. As you know, I’m not an ant of half- measures. I don’t
+pussyfoot around. This crisis is my number one priority, and I promise
+you it’s being dealt with swiftly, and decisively.</p>
+<p><strong>queen</strong>: No snacking between meals! Off you go! Now –
+what were we saying?</p>
+<p><strong>formica</strong>: I do not recollect, your majesty. Will that
+be all?</p>
+<p><strong>queen</strong>: Yes, General Formica. Carry on, my good man!
+I don’t know what we would do without you.</p>
+<p><strong>bala</strong>: General Formica!</p>
+<p><strong>carpenter</strong>: Princess Bala, sir. Your fiancee.</p>
+<p><strong>formica</strong>: Princess! You look – outstanding. Is there
+anything I can do for you?</p>
+<p><strong>bala</strong>: Well – I thought – since we’re getting
+married…it might be nice if we…got to know one another.</p>
+<p><strong>queen</strong>: Bala has always been a hopeless romantic,
+General.</p>
+<p><strong>bala</strong>: It’s just that – well, I’m honored that you
+selected me, and everything, I just thought the marriage might go a
+little more smoothly if – we had a conversation?</p>
+<p><strong>formica</strong>: Conversation…yes…well… Wasn’t she
+briefed?</p>
+<p><strong>queen</strong>: Look, General! A darling baby soldier! Don’t
+try to be a hero! Just make sure you come back in one piece! Next!</p>
+<p><strong>formica</strong>: I’ll take your suggestion under advisement,
+Princess. In the meanwhile –</p>
+<p><strong>bala</strong>: General – we have to talk sometime!</p>
+<p><strong>formica</strong>: Very well. Carpenter, is there a convenient
+time to talk vis-a-vis: relationship?</p>
+<p><strong>carpenter</strong>: Actually, sir, we’re ahead of schedule.
+We have thirty-six seconds available right now.</p>
+<p><strong>formica</strong>: Outstanding. Princess…?</p>
+<p><strong>bala</strong>: So, um…how was your day? What did you do?</p>
+<p><strong>formica</strong>: Well… I declared war!</p>
+<p><strong>bala</strong>: Oh…and I was afraid we had nothing in
+common…</p>
+<p><strong>carpenter</strong>: Fourteen-fifty hours, sir.</p>
+<p><strong>formica</strong>: Duty calls!</p>
+<p><strong>formica</strong>: No squeak. Outstanding!</p>
+<p><strong>queen</strong>: I felt the same way before I got married.
+Confused. Scared.</p>
+<p><strong>bala</strong>: You did?</p>
+<p><strong>queen</strong>: Yes – but I did my duty and sorted out all
+those messy feelings. The wonderful thing about ant life is that
+everything is arranged. Even marriage. You’re lucky – General Formica is
+a paragon of anthood.</p>
+<p><strong>bala</strong>: Yes…he’s wonderful…</p>
+<p><strong>handmaiden #1</strong>: The General’s body segments are
+so…symmetrical.</p>
+<p><strong>handmaiden #2</strong>: I’d let him order me into battle
+anyday.</p>
+<p><strong>handmaiden #1</strong>: Princess? What’s wrong?</p>
+<p><strong>bala</strong>: Wrong? How could anything be wrong? I’m going
+to marry General Formica and be a queen and have millions of babies,
+just like my mom. Do I look fat to you?</p>
+<p><strong>handmaiden #2</strong>: Pre-wedding jitters.</p>
+<p><strong>handmaiden #1</strong>: You just need to blow off some steam.
+Let’s go to the bar at the Royal Club!</p>
+<p><strong>bala</strong>: The Club’s so stuffy. I want to try someplace
+different.</p>
+<p><strong>handmaiden #2</strong>: There isn’t anyplace else – Except
+the worker bar.</p>
+<p><strong>bala</strong>: The worker bar! Yes! That’s where I want to
+go!</p>
+<p><strong>handmaiden #1</strong>: But – we can’t – there’ll be workers
+there.</p>
+<p><strong>z</strong>: We declared war again? Are you scared?</p>
+<p><strong>weaver</strong>: I’ll be back.</p>
+<p><strong>aphids</strong>: Ouch! Ouch!</p>
+<p><strong>bartender</strong>: Two aphid beers.</p>
+<p><strong>z</strong>: Did you see that? How he gave you the beers, not
+me? I’m telling you, he’s got something against workers.</p>
+<p><strong>weaver</strong>: I don’t know what you’re talking about,
+Z.</p>
+<p><strong>z</strong>: Come on – everybody dumps on us workers. You
+soldiers get all the glory. Plus you get to go out into the world, meet
+interesting insects, and kill them.</p>
+<p><strong>weaver</strong>: Yeah, but you get to spend all day with
+those fabulous worker babes.</p>
+<p><strong>z</strong>: Weaver, they’re career girls. They’re obsessed
+with digging. No, I’ll probably never meet the girl for me.</p>
+<p><strong>weaver</strong>: Who said there was a girl for you? I was
+talking about a girl for me. Don’t you want your aphid beer?</p>
+<p><strong>z</strong>: I can’t help it. I have a thing about drinking
+from the anus of another creature. Call me crazy.</p>
+<p><strong>weaver</strong>: Z, we’ve known each other a long time,
+right?</p>
+<p><strong>z</strong>: Of course. You were born two seconds after
+me.</p>
+<p><strong>weaver</strong>: And all the time I’ve known you, you’ve been
+grumping and groaning. You should quit making waves. Go with the
+flow.</p>
+<p><strong>z</strong>: Weaver, I’m an insect, not a liquid.</p>
+<p><strong>drunk scout</strong>: Have you been to Insectopia? Have you?
+No, ya goddam larvas! But I have… …Mosquitos n’ caterpillars n’ beetles
+– all livin’ in peace, stuffin their guts with food…No rules, no
+regulations…you can be your own ant there… It’s Insectopia!
+Insectopia!</p>
+<p><strong>z</strong>: Hey, Weaver, listen!</p>
+<p><strong>drunk scout</strong>: I was cut off from my unit – found it
+by mistake – It changed my life! You see – ya follow the great yellow
+egg, and you come to the land of red and white –</p>
+<p><strong>soldiers</strong>: You’ve had enough for one night! Come on,
+Gramps, before you get in trouble.</p>
+<p><strong>z</strong>: Hey, did you hear what he said?!</p>
+<p><strong>weaver</strong>: Poor guy’s had one too many scouting
+missions.</p>
+<p><strong>handmaiden #2</strong>: We shouldn’t be doing this – it isn’t
+proper!</p>
+<p><strong>bala</strong>: I’m the Princess, aren’t I?</p>
+<p><strong>handmaiden #2</strong>: Of course –</p>
+<p><strong>bala</strong>: And do Princesses do improper things?</p>
+<p><strong>handmaiden #2</strong>: Of course not –</p>
+<p><strong>bala</strong>: Then if I go to the worker bar, it isn’t
+improper. Anyway, don’t worry. No one will recognize us in our
+disguises.</p>
+<p><strong>bala</strong>: I’m just a common worker, cooling off after a
+rough day!</p>
+<p><strong>barker</strong>: Okay, folks. It’s six-fifteen, and that
+means it’s time to dance.</p>
+<p><strong>weaver</strong>: Time to cut a rug, Z!</p>
+<p><strong>z</strong>: I’m not in the mood. Even when they’re off work,
+they follow orders.</p>
+<p><strong>weaver</strong>: Well, you just sit here and be a
+party-pooper.</p>
+<p><strong>barker</strong>: And a left-right-quarterstep-back
+step-halfstep – a left-right- quarterstep-backstep-halfstep – a
+left-right-quarterstep-backstep halfstep –</p>
+<p><strong>bala</strong>: I’m going to ask one of these mindless,
+primitive worker-types to dance with me!</p>
+<p><strong>handmaiden #1</strong>: But General Formica would be
+furious!</p>
+<p><strong>bala</strong>: I know.</p>
+<p><strong>z</strong>: What a bunch of losers. Mindless zombies
+capitulating to an oppressive system –</p>
+<p><strong>bala</strong>: Wanna dance?</p>
+<p><strong>z</strong>: Me?! Yes!!! I mean – Just let me finish my
+beer.</p>
+<p><strong>z</strong>: So uh – how come I haven’t seen you around here
+before?</p>
+<p><strong>bala</strong>: I work in the palace, I don’t get out
+much.</p>
+<p><strong>z</strong>: The palace, hunh? I bet those royals really live
+it up. Of course they’re all a little, you know, from inbreeding –</p>
+<p><strong>bala</strong>: What?</p>
+<p><strong>z</strong>: Now, let’s see, I – it’s been a while since I – I
+think you –</p>
+<p><strong>z</strong>: Here, I’ll lead.</p>
+<p><strong>bala</strong>: Are you sure this is a real dance?</p>
+<p><strong>z</strong>: Well, actually, uh – I’m sort of making it up
+–</p>
+<p><strong>bala</strong>: Really?</p>
+<p><strong>z</strong>: Why should everyone dance the same way? It’s as
+exciting as watching fungus grow.</p>
+<p><strong>bala</strong>: You’re right!</p>
+<p><strong>z</strong>: You – you think I’m right?</p>
+<p><strong>bala</strong>: Why can’t I just do whatever I want to do? Why
+can’t I just go wild?! Yahoo!</p>
+<p><strong>soldier</strong>: Hey! Watch your step, worker.</p>
+<p><strong>bala</strong>: You watch yours, soldier, or my worker friend
+will beat you up!</p>
+<p><strong>z</strong>: Oh, that’s okay, I’ll let him off this time. Are
+you crazy? This guy’s built like a pebble! You know they do great
+prosthetic antennas nowadays –</p>
+<p><strong>bala</strong>: Aren’t you gonna stand up for yourself?</p>
+<p><strong>soldier</strong>: How come you don’t dance like the rest of
+us?</p>
+<p><strong>z</strong>: Because – because I’m an individual!</p>
+<p><strong>soldier #2</strong>: An individual? Never heard of it.</p>
+<p><strong>mandible</strong>: You look like a worker to me.</p>
+<p><strong>weaver</strong>: Hey, lay off my little buddy!</p>
+<p><strong>handmaiden #1</strong>: Princess Bala! Princess Bala!</p>
+<p><strong>z</strong>: Princess? You’re a Princess?</p>
+<p><strong>handmaiden #2</strong>: The police are coming!</p>
+<p><strong>bala</strong>: Uh oh. Goodbye! Gotta run!</p>
+<p><strong>z</strong>: Wait! When can I see you again?</p>
+<p><strong>bala</strong>: Let me think. Hmmnn… Never. Bye!</p>
+<p><strong>z</strong>: Wait! Princess! Wait!</p>
+<p><strong>weaver</strong>: Get real, Z! She just dropped the scarf by
+accident!</p>
+<p><strong>z</strong>: Are you kidding? There were sparks between us!
+This scarf is a sign!</p>
+<p><strong>weaver</strong>: It’s a sign that you’re crazy! Do you know
+what the penalty for impersonating a soldier is?</p>
+<p><strong>z</strong>: What’s gonna go wrong?! I take your place for the
+royal inspection. Bala comes strolling down the line, she sees me –
+bingo! Love is rekindled, and she takes me up to the palace for a
+little… tea and crumpets… and you take your place again, and go march
+around to your heart’s content!</p>
+<p><strong>z</strong>: You have to help me. Please, Weaver. Think of all
+the things I’ve done for you!</p>
+<p><strong>weaver</strong>: I can’t think of any.</p>
+<p><strong>z</strong>: Well I’m gonna start doing things for you…</p>
+<p><strong>weaver</strong>: Will you introduce me to some worker
+girls?</p>
+<p><strong>z</strong>: You bet! They’ll really go for a sensitive guy
+like you!</p>
+<p><strong>weaver</strong>: Maybe I’ll get lucky. You know, Z, I
+wouldn’t do this for anyone but you…</p>
+<p><strong>weaver</strong>: Wear this.</p>
+<p><strong>z</strong>: You’re a real buddy.</p>
+<p><strong>weaver</strong>: Yeah, I know.</p>
+<p><strong>z</strong>: What do I do?</p>
+<p><strong>weaver</strong>: Don’t tell anyone you’re a worker. Follow
+that column over there. And come right back after the inspection!</p>
+<p><strong>z</strong>: Thanks! I owe you!</p>
+<p><strong>z</strong>: Any of you guys know when the Princess will show
+up? She’s kind of a personal friend.</p>
+<p><strong>formica</strong>: First of all, let me make one thing clear.
+Nobody ever won a battle by thinking for himself. All this “thinking”
+stuff is a load of crap. If the almighty had wanted you boys to think,
+he wouldn’t have given you huge mandibles and a brain so small you’d
+misplace it if it wasn’t trapped inside your head.</p>
+<p><strong>z</strong>: “Trapped inside your head” – that’s a good one
+–</p>
+<p><strong>z</strong>: Geez – tough room.</p>
+<p><strong>formica</strong>: We ants survive as a species because we do
+what we’re told. We survive because we work together, as one, we get the
+job done, we do whatever it takes to persevere! Hell, we’re not an army
+of ants…we’re one giant ant, with giant fists, and giant jaws!</p>
+<p><strong>z</strong>: Lays it on a little thick, doesn’t he? If you ask
+me, he’s one giant bore.</p>
+<p><strong>formica</strong>: Now I’ve heard a lot of scuttlebutt about a
+food shortage. Well you boys are gonna be taken care of. But in the
+meantime we’re gonna eat the enemy for breakfast, we are gonna eat the
+enemy for lunch, and we are gonna eat the enemy for dinner!</p>
+<p><strong>z</strong>: Geez, and I forgot my toothbrush.</p>
+<p><strong>formica</strong>: Dammit, I’m proud to be an ant. And I know
+each and every one of you boys will do your duty. Dismissed.</p>
+<p><strong>z</strong>: Bravo! Bring on the Princess!</p>
+<p><strong>colonel</strong>: Stow the gab there, soldier! Let’s move ’em
+out!</p>
+<p><strong>colonel</strong>: Eyes…left!</p>
+<p><strong>z</strong>: Princess! Princess Bala! Hey! It’s me! Z! I’ve
+got your scarf!</p>
+<p><strong>bala</strong>: Who is that idiot?</p>
+<p><strong>queen</strong>: Darling, you must encourage the troops –
+wave!</p>
+<p><strong>z</strong>: Excuse me, guys – That’s my date. Well, it’s been
+fun. Have a great war!</p>
+<p><strong>z</strong>: Hey! Wait!</p>
+<p><strong>barbatus</strong>: You new, kid?</p>
+<p><strong>z</strong>: I just joined up. But I’m quitting! I got a trial
+membership!</p>
+<p><strong>barbatus</strong>: Trial membership? Kid, when you join this
+ant’s army, you’re in for the full hitch.</p>
+<p><strong>z</strong>: Wait a minute, there’s been a mistake! I’ve got
+to get back to the colony!</p>
+<p><strong>barbatus</strong>: Are you crazy, kid? They shoot
+deserters!</p>
+<p><strong>barbatus</strong>: You just stick by old Barbatus. He’ll
+watch out for you. Whatsamatter, kid? Leave a girl behind?</p>
+<p><strong>z</strong>: Yeah. Well – no. She’s kind of playing hard to
+get. As a matter of fact, she’s playing completely unattainable. So,
+what’s on the schedule? A brisk walk? a foraging expedition?</p>
+<p><strong>barbatus</strong>: No – we’re going to attack the
+termites!</p>
+<p><strong>z</strong>: Attack? But – I hate attacking! It’s so
+hostile!</p>
+<p><strong>ant soldiers</strong>: Johnny Comes</p>
+<p><strong>z</strong>: So – these termites, they’re little, shy,
+retiring insects?</p>
+<p><strong>barbatus</strong>: No such luck. Those dirty terms are five
+times bigger than us, and they shoot acid from their foreheads!</p>
+<p><strong>soldier ants</strong>: We ants go marching two by two,
+hurrah! Hurrah! We’ll all be dead before we’re through, hurrah!
+Hurrah!</p>
+<p><strong>z</strong>: Well, what exactly does our platoon do? Serve
+beverages? Process paperwork?</p>
+<p><strong>barbatus</strong>: Our platoon has the best assignment of
+all. We’re the first into battle!</p>
+<p><strong>ant soldiers</strong>: We ants are marching three by three,
+hurrah! Hurrah! Dead ants is what we soon will be, hurrah! Hurrah!</p>
+<p><strong>z</strong>: So we’re going back for more armor, right? I
+mean, these guys are from outer space, how are we supposed to beat
+them?!</p>
+<p><strong>barbatus</strong>: Superior numbers, kid!</p>
+<p><strong>barbatus</strong>: Over the TOOOOOOOOOOOOO-OP!!!</p>
+<p><strong>barbatus</strong>: It’s too damn quiet.</p>
+<p><strong>barbatus</strong>: Don’t be scared, kid. Barbatus’s got yer
+back.</p>
+<p><strong>z</strong>: Maybe they went out for the evening. Let’s leave
+them a message and head home.</p>
+<p><strong>colonel</strong>: Light it up!</p>
+<p><strong>colonel</strong>: They’re here!!!</p>
+<p><strong>barbatus</strong>: Keep your head down!</p>
+<p><strong>z</strong>: Guys! Guys! It isn’t too late for all of us to
+just talk this over!</p>
+<p><strong>z</strong>: Wait! Please! Acid makes me come out in spots! –
+Could I just say I have always had the greatest respect for your
+species? I mean, eating wood – why didn’t I think of that?</p>
+<p><strong>z</strong>: BARBATUS! You – you saved my life!</p>
+<p><strong>barbatus</strong>: Don’t get all sappy about it!</p>
+<p><strong>colonel</strong>: I love the smell of formic acid in the
+morning.</p>
+<p><strong>z</strong>: Look out!</p>
+<p><strong>z</strong>: Excuse me. I seem to be lost, and I was wondering
+if you could give me –</p>
+<p><strong>z</strong>: I’ll let myself out.</p>
+<p><strong>z</strong>: Shoo! – Torro! Torro!</p>
+<p><strong>ant officer</strong>: He’s killed their Queen!</p>
+<p><strong>z</strong>: Hey, I’m sorry, it was a mistake –</p>
+<p><strong>z</strong>: This is terrific! Let’s exact crippling war
+reparations! Let’s set up a puppet government!</p>
+<p><strong>ant officer</strong>: Let’s slaughter them all!</p>
+<p><strong>barbatus</strong>: Z! Over here!</p>
+<p><strong>z</strong>: Barbatus?</p>
+<p><strong>z</strong>: Barbatus!</p>
+<p><strong>barbatus</strong>: Be honest, kid – am I hurt bad?</p>
+<p><strong>z</strong>: No, no, you’re…lookin’ good. You’ve got good
+color in your cheeks.</p>
+<p><strong>barbatus</strong>: No – I can see it in your eyes. I’m a
+goner. It’s alright, Z. In this ant’s army, a soldier’s life ain’t worth
+a sack of fungus. I can’t feel my legs…</p>
+<p><strong>z</strong>: Hang in there, buddy! You can make it! Just –
+take deep breaths, I’ll try and find your body – it’s gotta be around
+here somewhere!</p>
+<p><strong>barbatus</strong>: I wonder…what…was it all…for…</p>
+<p><strong>z</strong>: Barbatus, hang on – Barbatus!!</p>
+<p><strong>barbatus</strong>: Don’t make my mistake, kid… don’t…be a
+grunt…your whole life…</p>
+<p><strong>azteca</strong>: Hey, slow it down, big boy. You’re making
+the rest of us look bad…How come I haven’t seen you around here
+before?</p>
+<p><strong>weaver</strong>: I’m new…I was born yesterday.</p>
+<p><strong>azteca</strong>: Tell me about it.</p>
+<p><strong>weaver</strong>: Nobody told me digging was so much fun! You
+pick up the dirt, you move it, you pick it up again, you move it again –
+lots of repetitions, you exercise the forceps, and the pincers –</p>
+<p><strong>azteca</strong>: Mmm, yes, I see what you mean…</p>
+<p><strong>foreman</strong>: What’s the holdup here?!</p>
+<p><strong>weaver</strong>: Sorry, sir – I was just having a little chat
+with my friend –</p>
+<p><strong>foreman</strong>: Who said you could have a chat? You’re not
+a chatter, you’re a digger! So shut up and dig!</p>
+<p><strong>azteca</strong>: Leave him alone! He’s new.</p>
+<p><strong>foreman</strong>: You too? Well just for that, you lose your
+day’s rations! Now get back to work!</p>
+<p><strong>azteca</strong>: I don’t know what came over me, talking back
+like that. I must be going crazy…</p>
+<p><strong>weaver</strong>: Sorry I got you in trouble. But listen, you
+can share my rations.</p>
+<p><strong>azteca</strong>: Are you asking me out to dinner?</p>
+<p><strong>weaver</strong>: No – I mean yes – I mean – if you don’t have
+other plans.</p>
+<p><strong>azteca</strong>: I’ll make myself available…Listen, better
+watch out with the backtalk. I don’t know want you to end up like the
+guy who used to work next to me. I’m afraid he got… downsized.</p>
+<p><strong>guard ant</strong>: Look! They’re back! The army’s back!
+Alert the colony!</p>
+<p><strong>excited ants</strong>: The army’s returned! Our brave boys
+are back!</p>
+<p><strong>azteca</strong>: It looks like only one soldier made it
+back!</p>
+<p><strong>weaver</strong>: Poor Z – I should never have let you go!</p>
+<p><strong>z</strong>: It was horrible…a massacre, a massacre upon a
+massacre. First we massacred them, then they massacred us, then it was
+halftime. I’ve never seen such violence, such bloodthirstiness, such bad
+manners…I’m the only one that made it!</p>
+<p><strong>z</strong>: No – you – you don’t understand!</p>
+<p><strong>formica</strong>: Damn, I’m proud of you, boy. I wish I had a
+hundred ants of your caliber. The world would tremble. Now, time for
+some R and R. You’re invited to the royal victory party!</p>
+<p><strong>z</strong>: Royal victory party? Will…will Princess Bala be
+there?</p>
+<p><strong>formica</strong>: Of course. The entire royal family will be
+there to honor you.</p>
+<p><strong>azteca</strong>: Wait a minute, that’s no soldier – that’s
+Z!</p>
+<p><strong>weaver</strong>: Z? Our Z? The little guy made it!</p>
+<p><strong>formica</strong>: Son, you’re an ant after my own heart. A
+warrior. An ant that looks death right in the face and laughs.</p>
+<p><strong>z</strong>: Well, I generally just make belittling comments
+and snicker behind death’s back. So, tell me, fellow war-monger…do you
+think Princess Bala likes men in uniform?</p>
+<p><strong>formica</strong>: Well she better – she’s engaged to one.
+Me!</p>
+<p><strong>z</strong>: Engaged? As in you’re getting married?</p>
+<p><strong>formica</strong>: Affirmative.</p>
+<p><strong>z</strong>: So…you two are in love?</p>
+<p><strong>formica</strong>: In love? I’m just a plain old soldier at
+heart. I’ll tell you what I love – the field – blood – death –
+orders…and the company of other warriors.</p>
+<p><strong>z</strong>: Wow, what a spread – you know, there’s a food
+shortage in the rest of the colony.</p>
+<p><strong>formica</strong>: Yes, and do you know why there’s a food
+shortage?</p>
+<p><strong>z</strong>: …Not enough food?</p>
+<p><strong>formica</strong>: Negatory. Too many ants. And while we
+soldiers go out there, and fight, and bleed, and die for the colony, the
+namby-pamby workers live it up back home.</p>
+<p><strong>z</strong>: Well I, I don’t think “living it up” is the right
+term – how about “working themselves to death”?</p>
+<p><strong>formica</strong>: I tell you son, sometimes, at night, I see
+myself in battle, fighting a horrible, faceless enemy, with the future
+of our whole species at stake. And always, the dream ends with each of
+us plunging his sword into the other’s heart…</p>
+<p><strong>z</strong>: Oh, hey, that’s great, I think I see an old war
+buddy over there, it’s been fun chatting. Good luck with the
+hallucinations.</p>
+<p><strong>officer</strong>: What do you call it when 10,000 workers are
+killed in a tunnel cave- in? Who cares? They’re workers!</p>
+<p><strong>z</strong>: But…don’t you think the worker class is the very
+foundation of the colony – I mean, uh, without them, who would we stand
+on?</p>
+<p><strong>bala</strong>: You’re the hero of the recent termite
+campaign, aren’t you?</p>
+<p><strong>z</strong>: Well, if single-handedly vanquishing the enemy
+and slaughtering a whole nestful of termites makes someone a hero, yes I
+am.</p>
+<p><strong>z</strong>: And you are…?</p>
+<p><strong>bala</strong>: I’m Princess Bala.</p>
+<p><strong>z</strong>: Ah, yes. Well, charmed, I’m sure. So, Princess,
+have you ever danced with a hero?</p>
+<p><strong>bala</strong>: Yes.</p>
+<p><strong>z</strong>: Oh…oh well then, one more won’t matter.</p>
+<p><strong>z</strong>: Just warming up…</p>
+<p><strong>across the room</strong>: The Queen and General Formica watch
+the party.</p>
+<p><strong>queen</strong>: All these parties are so marvellously
+alike.</p>
+<p><strong>formica</strong>: They should be… But there’s something funny
+about that soldier.</p>
+<p><strong>formica</strong>: May I cut in?</p>
+<p><strong>z</strong>: Oh, of course –</p>
+<p><strong>bala</strong>: No, General. I’m dancing with the war
+hero.</p>
+<p><strong>z</strong>: Uh, sorry, General, I…I’ve always had this animal
+magnetism, it –</p>
+<p><strong>bala</strong>: You dance…</p>
+<p><strong>z</strong>: Divinely?</p>
+<p><strong>bala</strong>: No weirdly…You remind me of someone…</p>
+<p><strong>bala</strong>: He was swarthy…primitive… earthy…sensual.</p>
+<p><strong>bala</strong>: He was a worker. I danced with him at a
+worker’s bar just the other day. I’m not shocking you, am I?</p>
+<p><strong>z</strong>: No…as a matter of fact…</p>
+<p><strong>oh my god, it’s you! you’re a</strong>: WORKER!!! A filthy,
+stupid, disgusting WORKER!</p>
+<p><strong>z</strong>: Gee, uh, could you say it a little louder, I
+think there are some ants in the next colony who didn’t hear you.</p>
+<p><strong>z</strong>: That’s not what you said the other night –</p>
+<p><strong>bala</strong>: Quiet – sshhh!!</p>
+<p><strong>z</strong>: – At the worker bar! You were pretty hot to trot
+then!</p>
+<p><strong>formica</strong>: What’s this? A worker has been masquerading
+as a war hero?!</p>
+<p><strong>z</strong>: Well it wasn’t a masquerade, really, it was more
+what I’d call a clever ruse –</p>
+<p><strong>z</strong>: Can’t we all settle this like adults – we’re not
+larvae anymore –</p>
+<p><strong>queen</strong>: Oh my god! He’s taking her hostage!</p>
+<p><strong>z</strong>: No I’m not – I mean – nobody move! Or the
+Princess gets it!</p>
+<p><strong>z</strong>: Stay back, you lunatic! Do you think I don’t know
+how to use this?</p>
+<p><strong>z</strong>: Uh-oh.</p>
+<p><strong>hold on</strong>: the GARBAGE CHUTE EXIT. Nothing happens for
+a moment. Then –</p>
+<p><strong>princess</strong>: This is thoroughly unacceptable!</p>
+<p><strong>z</strong>: You’re telling me…</p>
+<p><strong>bala</strong>: I’m coming! I’m coming!</p>
+<p><strong>bala</strong>: I’m going! I’m going’</p>
+<p><strong>bala</strong>: What was that thing?</p>
+<p><strong>z</strong>: How should I know?</p>
+<p><strong>bala</strong>: I order you to find out where we are!</p>
+<p><strong>z</strong>: Alright, alright, I’ll try to get directions from
+one of the locals.</p>
+<p><strong>z</strong>: Excuse me, I – Pardon me – And they call them
+social insects.</p>
+<p><strong>bala</strong>: Climb up that tree and get a better view!</p>
+<p><strong>bala</strong>: I’ve been kidnapped by the village idiot.</p>
+<p><strong>z</strong>: Who’s the bigger idiot – the idiot who gets
+kidnapped, or the idiot who lets herself get kidnapped by the idiot?</p>
+<p><strong>bala</strong>: How dare you speak to me like that? I’m the
+Princess!</p>
+<p><strong>z</strong>: Theoretically, yes. But is the monarchical
+hierarchy applicable without the underlying social structure to support
+it?</p>
+<p><strong>bala</strong>: Of course! It defines society! To deny the
+precept is to say that order is an arbitrary distinction applied by the
+society itself!</p>
+<p><strong>z</strong>: But can there be a society composed of just two
+ants?</p>
+<p><strong>bala</strong>: No! There’s no such thing as “just two ants.”
+You never see just two ants – you see a million ants!</p>
+<p><strong>z</strong>: Look around, sweetheart.</p>
+<p><strong>bala</strong>: I – hate – you.</p>
+<p><strong>z</strong>: Well I guess that makes us even.</p>
+<p><strong>bala</strong>: Ha! Don’t make me laugh. You’re crazy about
+me! That’s why you lied and cheated to get near me!</p>
+<p><strong>z</strong>: Oh come on, you’re the one who came after me –
+the swarthy, earthy, sensual worker!</p>
+<p><strong>bala</strong>: I was slumming it! I danced with you because
+you were the most pathetic specimen in the place!</p>
+<p><strong>z</strong>: Is that the same standard you used to choose
+General Formica?</p>
+<p><strong>bala</strong>: I didn’t choose him. What kind of idiot would…
+…choose who she wanted to marry?</p>
+<p><strong>bala</strong>: Now, worker, you shall take me back to the
+colony, and have your head cut off and stuck on a sharp pole!</p>
+<p><strong>z</strong>: Well, that’s an appealing offer, but…considering
+the options… You go back. Me, I’m going to Insectopia.</p>
+<p><strong>bala</strong>: Insectopia? You stupid worker, that’s just a
+fairy tale!</p>
+<p><strong>z</strong>: Yeah, well I have it on a reliable source… that
+it exists. Now you follow the yellow egg… That direction.</p>
+<p><strong>bala</strong>: Worker! Come back here now!</p>
+<p><strong>z</strong>: I’ve got a name. It’s Z.</p>
+<p><strong>bala</strong>: That’s not a name! That’s just a letter!</p>
+<p><strong>bala</strong>: Worker? Oh WORKER? Where are you? Z? Z? Wait
+for me!!!</p>
+<p><strong>azteca</strong>: I tell ya, I’m gettin’ sick of bein’ yelled
+at.</p>
+<p><strong>worker #1</strong>: What do you want, we’re just workers.</p>
+<p><strong>weaver</strong>: You know, you’re not just workers – you can
+be whatever you want to be! Look at Z! He started as a worker – then he
+became a soldier!</p>
+<p><strong>azteca</strong>: That’s right! He slaughtered hundreds of
+termites single-handedly!</p>
+<p><strong>worker #2</strong>: I heard about this guy. He crashed a
+party at the palace. Then he took a hike with one of the royal babes!
+And when they tried to stop him, he just looked at a couple’a guards,
+and they burst into flames!</p>
+<p><strong>worker ant #1</strong>: You’re nuts, how could a worker do
+all that?</p>
+<p><strong>weaver</strong>: Well, because he’s more than a worker…he’s
+a…what did he call it, Azteca…</p>
+<p><strong>azteca</strong>: Invisible!</p>
+<p><strong>weaver</strong>: No – an individual!</p>
+<p><strong>worker #2</strong>: What’s that?</p>
+<p><strong>weaver</strong>: Well, it’s…someone with his own point of
+view…someone who does what he wants, not whatever he’s told to do!</p>
+<p><strong>azteca</strong>: Someone who follows his heart!</p>
+<p><strong>weaver</strong>: Right…because every ant’s important!</p>
+<p><strong>worker #2</strong>: But that would mean I’m important.</p>
+<p><strong>worker #1</strong>: I’m outta here, this sounds like trouble
+to me.</p>
+<p><strong>weaver</strong>: We can all be individuals! Just like</p>
+<p><strong>bala</strong>: Water…water…</p>
+<p><strong>z</strong>: Water…water – oh, you already said that.</p>
+<p><strong>bala</strong>: My skin’s dry, my exoskeleton is cracking…I
+wish I’d never met you, you ruined my life.</p>
+<p><strong>z</strong>: I ruined your life? Look, I was perfectly happy
+until I met you – alright, I was miserable, but I was happily
+miserable.</p>
+<p><strong>bala</strong>: Look out!</p>
+<p><strong>bala</strong>: We’re going to die!</p>
+<p><strong>z</strong>: Come on – it’s gone! What are the chances of that
+happening again?</p>
+<p><strong>z</strong>: Well I’ll be.</p>
+<p><strong>bala</strong>: Why didn’t I listen to my mother …why’d I have
+to go looking for trouble? Any ant would have given their left legs to
+be in my position…what’s wrong with me?</p>
+<p><strong>z</strong>: Want a list?</p>
+<p><strong>bala</strong>: Wait, I hear something!</p>
+<p><strong>z</strong>: It’s…it’s…</p>
+<p><strong>z</strong>: This lake is huge! And so close to the colony!
+Think of the vacation potential!</p>
+<p><strong>bala</strong>: Cut me down a soft leaf so I can take a
+nap.</p>
+<p><strong>z</strong>: Listen, “Princess”, you can’t order me around.
+Out here, you’re not the boss anymore – out here, you’re just –</p>
+<p><strong>bala</strong>: Out here I’m just what?</p>
+<p><strong>z</strong>: Hlllllllp!</p>
+<p><strong>bala</strong>: Stop fooling around in there.</p>
+<p><strong>bala</strong>: Let me go!!!</p>
+<p><strong>bala</strong>: I’m going to be rescued soon. I’m going to be
+rescued soon. I’m going to be rescued soon.</p>
+<p><strong>z</strong>: Princess, has it ever occurred to you that
+they’re not going to rescue you?</p>
+<p><strong>bala</strong>: General Formica won’t let me die out here. I’m
+his fiancee.</p>
+<p><strong>z</strong>: Look. How many other Princesses are there?</p>
+<p><strong>bala</strong>: Five thousand three hundred and ninety – no.
+About five thousand four hundred by now.</p>
+<p><strong>z</strong>: And only you can become a Queen?</p>
+<p><strong>bala</strong>: Well…no, but –</p>
+<p><strong>z</strong>: So what makes you so special?</p>
+<p><strong>bala</strong>: Well…I am the oldest.</p>
+<p><strong>bala</strong>: By three seconds…</p>
+<p><strong>bala</strong>: You’re right. There are as many Princesses…as
+there are blades of grass.</p>
+<p><strong>formica</strong>: Dammit, this tunnel is priority A-1! We
+can’t afford any delays on this project!</p>
+<p><strong>carpenter</strong>: I’ve never seen anything like it,
+General, they’re they’re…well, look!</p>
+<p><strong>foreman</strong>: Where do ya think you’re going? Get back to
+work!</p>
+<p><strong>worker #1</strong>: Buzz off, I’m important!</p>
+<p><strong>formica</strong>: Notice the big one, holding hands with the
+female?</p>
+<p><strong>carpenter</strong>: Well, uh, who notices workers, sir?</p>
+<p><strong>formica</strong>: No one should have to. Have him brought to
+me.</p>
+<p><strong>formica</strong>: So this Z…he fancies himself an
+individual?</p>
+<p><strong>weaver</strong>: Yeah…I mean…well…I don’t know, really,
+sir.</p>
+<p><strong>formica</strong>: Well now you haven’t fallen for this silly
+idea of individuality, have you?</p>
+<p><strong>weaver</strong>: Oh, no, sir!</p>
+<p><strong>formica</strong>: Good. You’re a good soldier.</p>
+<p><strong>weaver</strong>: Thank you, sir.</p>
+<p><strong>formica</strong>: So tell me. Where’s Z?</p>
+<p><strong>weaver</strong>: I…I have no idea, sir.</p>
+<p><strong>formica</strong>: Okay, son.</p>
+<p><strong>formica</strong>: We know what makes an ant colony strong,
+don’t we? We know that no ant can be an individual. No single ant
+matters, right?</p>
+<p><strong>weaver</strong>: That’s correct, sir!</p>
+<p><strong>formica</strong>: Not that one. Or that one.</p>
+<p><strong>weaver</strong>: No, sir!</p>
+<p><strong>formica</strong>: Or that one? Her life doesn’t matter, does
+it?</p>
+<p><strong>azteca</strong>: Don’t tell that tightass anything,
+Weaver!</p>
+<p><strong>weaver</strong>: Wait! Just let her go! Z’s long gone anyway,
+following some golden egg to Insectopia! You’ll never catch him!</p>
+<p><strong>formica</strong>: Insectopia, hunh?…See why individuality is
+so dangerous? It can always be used against you. If this sissy here
+wants to dig, he’ll dig. Send them both back to the tunnel project.
+Double their workload.</p>
+<p><strong>formica</strong>: What do we have on this “Insectopia”?</p>
+<p><strong>carpenter</strong>: Scattered reports, sir. Rumors. Nothing
+reliable.</p>
+<p><strong>formica</strong>: Desperate times call for desperate
+measures. Get me Ant Team Six.</p>
+<p><strong>carpenter</strong>: Ant Team Six…</p>
+<p><strong>bala</strong>: I swear, we’ve passed this blade of grass
+three times.</p>
+<p><strong>bala</strong>: Face it, Z, we’re lost! We must have walked
+halfway across the world by now! How did I get into this mess…</p>
+<p><strong>z</strong>: Come on…tell me there wasn’t just a
+little…something between us that first night at the bar. The night we
+danced.</p>
+<p><strong>bala</strong>: What difference does it make…we’re both going
+to starve to death, or get squished, or set on fire…</p>
+<p><strong>z</strong>: …The land of red and white…</p>
+<p><strong>z</strong>: We’ve found it! Insectopia! Look at all this
+food’</p>
+<p><strong>bala</strong>: You were right…you were right! Z, it’s
+beautiful!</p>
+<p><strong>z</strong>: Let’s dig in!</p>
+<p><strong>z</strong>: There’s - there’s some kind of force field!</p>
+<p><strong>male wasp</strong>: Muffy, look, party-crashers.</p>
+<p><strong>female wasp</strong>: They’re simply too much, Chip!</p>
+<p><strong>male wasp</strong>: You down there, haven’t you ever been to
+a picnic?</p>
+<p><strong>z</strong>: Hunh?</p>
+<p><strong>female wasp</strong>: Habla Ingles? Well I really don’t know
+who they are.</p>
+<p><strong>z</strong>: We’re ants!</p>
+<p><strong>male wasp</strong>: Poopsie, we know some ants, don’t we? Are
+you related to the Fifth Avenue ants?</p>
+<p><strong>female wasp</strong>: Darling, do you have to talk to any
+insect from off the street?</p>
+<p><strong>male wasp</strong>: Just being friendly, Poopsie.</p>
+<p><strong>bala</strong>: Hello? I’m not just “any insect”. My mother is
+the Queen. I’m Princess Bala!</p>
+<p><strong>male wasp</strong>: They’re Eurotrash, dear.</p>
+<p><strong>male wasp</strong>: Lunch! A little piece of advice, sport –
+bob and weave! Bob and weave!</p>
+<p><strong>bala</strong>: What do you mean?</p>
+<p><strong>male wasp</strong>: Well – like my father used to say –
+there’s no such thing as a free meal!</p>
+<p><strong>the wasps</strong>: Excuse me – I’ll have some potato salad –
+thank-you! – don’t mind if I do! After you!</p>
+<p><strong>z</strong>: I sort of imagined Insectopia a little
+differently –</p>
+<p><strong>bala</strong>: Oh…my…God.</p>
+<p><strong>male wasp</strong>: Muffy! Muffy! Wake up!</p>
+<p><strong>z</strong>: Bala, look out!!</p>
+<p><strong>bala</strong>: MMMffllmmm…</p>
+<p><strong>bala</strong>: Z! Help me!!!</p>
+<p><strong>z</strong>: Bala! I’ll never see her again…</p>
+<p><strong>bala</strong>: Z!!! Get me out of heeeeere!</p>
+<p><strong>z</strong>: These things always come in twos…</p>
+<p><strong>z</strong>: Take me to your leader!</p>
+<p><strong>z</strong>: Whoooooooaaaa!!!</p>
+<p><strong>z</strong>: Bala! Come back here!</p>
+<p><strong>bala</strong>: Z!!!!!!! I’m stuck!</p>
+<p><strong>z</strong>: Aa-ee-ya-ee-yaaaaaaaah!!!!!!!</p>
+<p><strong>bala</strong>: Z! You’re here!</p>
+<p><strong>z</strong>: Yeah. I’m here.</p>
+<p><strong>bala</strong>: Z…if we don’t make it…I just want you to
+know….</p>
+<p><strong>z</strong>: Yes?</p>
+<p><strong>bala</strong>: This is all your fault!!!</p>
+<p><strong>z</strong>: We’re safe…</p>
+<p><strong>z</strong>: Who the hell is that?!!!</p>
+<p><strong>tough voice</strong>: Ant Team Six – take him out!</p>
+<p><strong>major mandible</strong>: And don’t come back, you sissy!</p>
+<p><strong>mandible</strong>: Talk to me.</p>
+<p><strong>commando ant</strong>: Z and the Princess were here, sir.
+Signs of a struggle.</p>
+<p><strong>mandible</strong>: Let’s get a read on that feremone
+track.</p>
+<p><strong>commando ant #1</strong>: Get the sniffer!</p>
+<p><strong>tracker ant</strong>: Bala…find Bala…</p>
+<p><strong>tracker ant</strong>: Nnononononononoyeahyeahnononononono
+no…</p>
+<p><strong>commando ant #3</strong>: Got ’em! Ten clicks from here!</p>
+<p><strong>mandible</strong>: Z – you dirt-digging, fancy-dancing,
+wisecracking, royalty-grabbing, rebel</p>
+<p><strong>mandible</strong>: Let’s MOVE! GO, people! GO! GO!</p>
+<p><strong>bala</strong>: Come on, Z.</p>
+<p><strong>z</strong>: Forget it. You go ahead, I give up. I…I don’t
+know what I was thinking. “Insectopia”.</p>
+<p><strong>z</strong>: There’s only one thing worse than an ant who goes
+around mindlessly following orders, and that’s an ant who’s too dumb to
+go around mindlessly following orders.</p>
+<p><strong>fly</strong>: What’s with the bummer attitude?</p>
+<p><strong>butterfly</strong>: Yeah – nobody stresses out in
+Insectopia!</p>
+<p><strong>bala</strong>: Did you say…</p>
+<p><strong>z</strong>: …Insectopia?</p>
+<p><strong>bala</strong>: Z, we made it!</p>
+<p><strong>fly</strong>: C’mon in! The nectar’s fine!</p>
+<p><strong>z</strong>: Yippeeeeee!</p>
+<p><strong>fly</strong>: Hey, take it easy! There’s nothin’ to be afraid
+of!</p>
+<p><strong>z</strong>: Yeah, well, I make it a practice not to trust
+anyone who shoots acid out of their forehead.</p>
+<p><strong>cricket</strong>: Dude, here in Insectopia, we don’t judge
+people by how many arms and legs we’ve got.</p>
+<p><strong>fly</strong>: Yeah, back home, they called me a fruitfly. But
+here, I’m known as… Superfly.</p>
+<p><strong>cricket</strong>: Anyway, big Gus is mellow.</p>
+<p><strong>z</strong>: Charmed.</p>
+<p><strong>z</strong>: So…you never did tell me…what made you come out
+to the worker bar that night?</p>
+<p><strong>bala</strong>: Just looking for fun, adventure, trouble, I
+guess.</p>
+<p><strong>z</strong>: Well, “trouble” is my middle name. Actually, my
+middle name is .985, but I don’t tell people. Hey, Bala, I…I actually
+have something of yours…you left it at the bar that night.</p>
+<p><strong>z</strong>: Sorry, it’s been through a war, not to mention
+everything else…</p>
+<p><strong>bala</strong>: You held onto this all that time?</p>
+<p><strong>z</strong>: Well, I…I know it’s a little strange, but…I
+thought it might come in handy if I…needed a scarf someday. Well, to be
+honest, I just liked having it.</p>
+<p><strong>beetle</strong>: Hey Z!</p>
+<p><strong>beetle</strong>: Wanna bring back dessert? There’s a thirty
+foot long blimp in the next can, made completely of chocolate!</p>
+<p><strong>z</strong>: Sure. I wasn’t busy or anything.</p>
+<p><strong>z</strong>: Great timing, guys. Ever wonder why they call you
+“pests”?</p>
+<p><strong>tracker ant</strong>: Yesyesyesyesyes –</p>
+<p><strong>mandible</strong>: Talk to me.</p>
+<p><strong>commando #1</strong>: I’ve got a read on the Princess – but
+target Z isn’t accounted for.</p>
+<p><strong>mandible</strong>: Let’s move in.</p>
+<p><strong>cricket</strong>: What if, like…we’re just these tiny little
+things, and we’re just like part of this whole other huge universe,
+that’s like, so big we don’t even know it exists?</p>
+<p><strong>ladybug</strong>: Man…that’s so deep…</p>
+<p><strong>mandible</strong>: Alright, you hippy scum! Make one move and
+I’ll exterminate you!</p>
+<p><strong>bala</strong>: Stop! You don’t understand!</p>
+<p><strong>mandible</strong>: I don’t have to understand, Missy – I’ve
+got orders. Now where’s Z?</p>
+<p><strong>fly</strong>: Man, your girl is fly, know what I’m
+saying?</p>
+<p><strong>z</strong>: Oh, Bala? I guess she’s okay, you know, for a
+princess. I mean, I usually date queens, or you know, empresses, because
+sometimes the lesser nobility are too much in awe of my smouldering
+sensuality. Please stop me if I’m making you feel inadequate.</p>
+<p><strong>z</strong>: What’s the matter? This place is as cheery as a
+Roach Motel at check-out time.</p>
+<p><strong>ladybug</strong>: Bala’s been kidnapped! Some flying ants
+took her back to the colony!</p>
+<p><strong>z</strong>: She’s been kidnapped?! But I can’t live without
+her!</p>
+<p><strong>z</strong>: I’m going back. I’ve got to get her. Who’ll come
+with me?</p>
+<p><strong>male wasp</strong>: I’ll go.</p>
+<p><strong>z</strong>: You?!</p>
+<p><strong>male wasp</strong>: I know what it’s like to lose someone…I
+keep hearing the sound of Muffy’s flapping wings…so I’ll take you.</p>
+<p><strong>z</strong>: Let’s go, pal!</p>
+<p><strong>fly</strong>: Geez. I feel like a real stinkbug.</p>
+<p><strong>z</strong>: Wow…I never saw things this way…</p>
+<p><strong>z</strong>: Things look so close together from up
+here…there’s the desert…and the lake… it’s not far from the colony at
+all…</p>
+<p><strong>male wasp</strong>: Sorry. Turbulence.</p>
+<p><strong>formica</strong>: Princess Bala. Good. Where’s Z?</p>
+<p><strong>bala</strong>: He’s…he’s dead. You don’t have to look for him
+anymore. He was eaten by a praying mantis.</p>
+<p><strong>formica</strong>: It’s a shame he died prematurely…I was
+hoping to kill him myself.</p>
+<p><strong>bala</strong>: Well you’ll never be able to hurt him where he
+is now. I miss him already.</p>
+<p><strong>formica</strong>: You miss him? Why?</p>
+<p><strong>bala</strong>: Because…because he’s twice the ant that you
+are. I could never go through with marrying you. I’m – I’m an
+individual, and when I get married, it’ll be to someone I choose.</p>
+<p><strong>formica</strong>: Princess Bala, I’m just a simple old
+soldier, and the ways of the feminine mind are a little too complex for
+me. But one thing I do know is, there are more Princesses where you came
+from. I just hope they’re not all like you. In the meantime, maybe we
+can arrange for you to see Z again after all.</p>
+<p><strong>male wasp</strong>: Good luck, Z. For a wingless insect,
+you’re alright by me.</p>
+<p><strong>z</strong>: Thanks, Chip.</p>
+<p><strong>z</strong>: How am I going to get in? The place is crawling
+with soldiers!</p>
+<p><strong>soldier ant</strong>: You there! Worker!</p>
+<p><strong>z</strong>: Don’t bite! I surrender!</p>
+<p><strong>soldier ant</strong>: What are you doing out here! All
+workers are to remain inside the colony, by orders of General
+Formica!</p>
+<p><strong>z</strong>: Well…if you insist…</p>
+<p><strong>queen</strong>: Very impressive, General.</p>
+<p><strong>mandible</strong>: Wave that flag, you maggot!</p>
+<p><strong>formica</strong>: Is there anything wrong, your majesty?</p>
+<p><strong>queen</strong>: It’s just…How I miss Bala. I wish she were
+here for this special moment.</p>
+<p><strong>formica</strong>: She is, your majesty. She is.</p>
+<p><strong>z</strong>: Geez, this place really empties out in August.
+Where is everybody?</p>
+<p><strong>tracker ant</strong>: Z! Z! I smell Z!</p>
+<p><strong>z</strong>: You “smell” me? Well look, I – I’ve been out in
+the wilderness for a while, and –</p>
+<p><strong>z</strong>: Hey, wait, you’re…you’re one of those pheremone
+sniffers, aren’t you? Maybe you can help me…I’m looking for a friend of
+mine, Princess Bala.</p>
+<p><strong>tracker ant</strong>: Bala! Yeahyeahyeahyeahyeah! Find Bala!
+Yeahyeahyeahyeah!</p>
+<p><strong>z</strong>: Just remember, I met her first.</p>
+<p><strong>tracker ant</strong>: Yeahyeahyeahyeahyeahyeahyeah…</p>
+<p><strong>z</strong>: Bala’s through there?</p>
+<p><strong>tracker ant</strong>: Bala…Yeahyeahyeahyeahyeahyeah…</p>
+<p><strong>z</strong>: Great. More digging. This is why I left in the
+first place.</p>
+<p><strong>z</strong>: Bala!</p>
+<p><strong>bala</strong>: Z! You came back!</p>
+<p><strong>z</strong>: Why do they have you tied up here?</p>
+<p><strong>bala</strong>: There’s something going on, Z –</p>
+<p><strong>bala</strong>: They’re having a ceremony to open the
+Megatunnel…</p>
+<p><strong>z</strong>: Bala, that – that lake we found – I think the
+tunnel’s right underneath it! – Formica’s going to flood the colony!!!
+That’s what he meant when said there were too many ants!</p>
+<p><strong>bala</strong>: Oh no…</p>
+<p><strong>bala</strong>: Z! what are you doing?</p>
+<p><strong>z</strong>: I know it’s crazy, but – I can’t just leave.
+Don’t argue with me. If I’ve learned anything, it’s that the problems of
+two people don’t add up to a hill of ants in this world. Or beans.
+Something like that. Anyway, I’ve got to warn the others.</p>
+<p><strong>z</strong>: Head for the surface, Bala. If I don’t make it,
+well…we’ll always have Insectopia.</p>
+<p><strong>bala</strong>: Z!!! Wait for me!</p>
+<p><strong>formica</strong>: Your majesty, I’m afraid matters of state
+keep me from attending the ceremony.</p>
+<p><strong>queen</strong>: But General – this tunnel is your baby!
+You’re sure you can’t stay ?</p>
+<p><strong>formica</strong>: ’Fraid not, your majesty. Goodbye, your
+majesty.</p>
+<p><strong>queen</strong>: Very well, General – I know you – all work
+and no play!</p>
+<p><strong>formica</strong>: Alright, let’s move out!</p>
+<p><strong>queen</strong>: In the name of the colony, I declare this
+tunnel open!</p>
+<p><strong>z</strong>: Stoooooop!</p>
+<p><strong>queen</strong>: Bala!</p>
+<p><strong>bala</strong>: Mom!</p>
+<p><strong>z</strong>: Listen up! We’ve all got to get out of here! This
+place is going to flood!</p>
+<p><strong>worker #1</strong>: Are you nuts?</p>
+<p><strong>z</strong>: You’ve got to believe me!</p>
+<p><strong>worker #2</strong>: Oh yeah? What makes you so special,
+Mr. Know-It-All?</p>
+<p><strong>z</strong>: I’m Z.</p>
+<p><strong>worker #3</strong>: You’re Z? Gimme a break! Z’s ten
+milimeters tall!</p>
+<p><strong>worker #4</strong>: – and he can kill termites with his bare
+hands! You’re just some scrawny worker with a mental problem!</p>
+<p><strong>z</strong>: I am Z!</p>
+<p><strong>worker #1</strong>: No you’re not!</p>
+<p><strong>weaver</strong>: Yes he is.</p>
+<p><strong>z</strong>: Weaver!</p>
+<p><strong>workers</strong>: Hey…it is Z…listen to what he says! .</p>
+<p><strong>weaver</strong>: Z…I’m so sorry! I –</p>
+<p><strong>z</strong>: Don’t worry about it, pal.</p>
+<p><strong>queen</strong>: Oh…it’s that social-climbing worker again –
+what does he want?</p>
+<p><strong>z</strong>: To save you all! Now we’ve got to go!</p>
+<p><strong>mandible</strong>: Let ’er rip!</p>
+<p><strong>azteca</strong>: Listen!</p>
+<p><strong>worker #1</strong>: He’s right!!!</p>
+<p><strong>queen</strong>: You there! Stop! I say!</p>
+<p><strong>azteca</strong>: There’s no way out!</p>
+<p><strong>queen</strong>: We’re all going to drown!!!</p>
+<p><strong>bala</strong>: Z…what can we do?</p>
+<p><strong>z</strong>: Dig!</p>
+<p><strong>z</strong>: We’ve got to dig a trench around us!</p>
+<p><strong>worker #1</strong>: Uh…we don’t dig any more. We’re
+individuals.</p>
+<p><strong>worker #2</strong>: Yeah. We’re too important to dig. You
+taught us that, Z. You hate digging!</p>
+<p><strong>z</strong>: Yeah, but I hate drowning more! Now dig!</p>
+<p><strong>weaver</strong>: You heard the ant – DIG!!!</p>
+<p><strong>z</strong>: That’s it! Pass the dirt back to the center! Go
+on!</p>
+<p><strong>z</strong>: Your highness…time to get your hands dirty!</p>
+<p><strong>z</strong>: We need to form a scaffolding around this mound –
+let’s DO IT!</p>
+<p><strong>z</strong>: Now climb!</p>
+<p><strong>z</strong>: Okay boys – take her up!</p>
+<p><strong>worker</strong>: He did it! Z! Z! Z! Z! Z!</p>
+<p><strong>formica</strong>: Z. I should have known. All that work, all
+that preparation, come to nothing. All because of one stinking ant.</p>
+<p><strong>formica</strong>: Folks, you may have survived that flood,
+but there’s no way you’re gonna escape from me. I’ll make you a deal.
+Hand over the rebel leader Z, and you survive.</p>
+<p><strong>formica</strong>: But if you don’t hand him over, you’re all
+going to die, each and every single…“individual” one of you.</p>
+<p><strong>formica</strong>: What shall it be, workers?</p>
+<p><strong>formica</strong>: Have it your way.</p>
+<p><strong>z</strong>: Wait…</p>
+<p><strong>z</strong>: …I’m Z.</p>
+<p><strong>weaver</strong>: No, I’m Z.</p>
+<p><strong>azteca</strong>: I’m Z!</p>
+<p><strong>bala</strong>: No, I’m Z.</p>
+<p><strong>workers</strong>: I’m Z! I’m Z! I’m Z and so is my brother!
+I’ve been Z for weeks now!</p>
+<p><strong>queen</strong>: We are Z.</p>
+<p><strong>all</strong>: I am Z! I am Z! I am Z!</p>
+<p><strong>fly</strong>: Hey, guys!</p>
+<p><strong>wasp</strong>: It’s them!</p>
+<p><strong>wasp</strong>: Are these hooligans giving you trouble, Z?</p>
+<p><strong>fly</strong>: Say the word, Z, and we kick their butts.</p>
+<p><strong>formica</strong>: What are you doing?! ATTACK!! Come on, you
+yellow-bellies! Don’t just stand there, Carpenter! Make an example of
+yourself!</p>
+<p><strong>carpenter</strong>: Uh, actually, we are outnumbered sir…</p>
+<p><strong>formica</strong>: Help…help me…</p>
+<p><strong>formica</strong>: Please…I…I can’t swim…Help me…</p>
+<p><strong>z</strong>: I thought you said that the life of one ant
+doesn’t matter.</p>
+<p><strong>formica</strong>: I guess it does…to the ant.</p>
+<p><strong>carpenter</strong>: Sir, if it’s any consolation, I still
+think you’re completely worthless as an individual.</p>
+<p><strong>z</strong>: So, uh, that’s pretty much it. Just your basic
+“simple worker overthrows the government and winds up with the princess”
+kind of a story. You know: there was the big parade and everything…</p>
+<p><strong>z</strong>: General Formica was almost unemployable. He
+eventually got a gig as a honeydew keg.</p>
+<p><strong>z</strong>: The Queen asked me to take over his job, but I
+said “Sorry, but I’m really not the general type. I’m more the specific
+type.” So they gave the job to Weaver instead.</p>
+<p><strong>z</strong>: Weaver cut the defense budget in half. Now we
+only have an army of five million.</p>
+<p><strong>z</strong>: And me, I guess you could say that I lived
+happily ever after.</p>
+<p><strong>z</strong>: I mean, I’ve got the whole package, right? A
+great life, a beautiful wife, and a few kids.</p>
+<p><strong>bala</strong>: A few?</p>
+<p><strong>z</strong>: Well, so nothing’s perfect. But you know? I
+wouldn’t change a thing.</p>
+</body>
+</html>

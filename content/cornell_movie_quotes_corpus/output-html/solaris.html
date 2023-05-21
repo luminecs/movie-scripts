@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>solaris</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="solaris">solaris</h1>
+<p><strong>a man’s voice</strong>: I’m not a poet. I’ve never moved
+anyone with my words. Maybe that’s why they chose me.</p>
+<p><strong>well-dressed bureaucrat</strong>: Dr. Kelvin?</p>
+<p><strong>gibarian</strong>: We take off into the cosmos, ready for
+anything: solitude, hardship, exhaustion, death. We’re proud of
+ourselves, in a way. But our enthusiasm is a sham. We don’t want to
+conquer the cosmos – we want to extend the boundaries of Earth to the
+cosmos. We are only seeking Man. We don’t want Other Worlds. We want
+mirrors. Maybe we don’t need to know what it is, or why. Maybe just
+knowing that it is should be enough.</p>
+<p><strong>kelvin</strong>: Prometheus, this is Athena 7, on approach,
+do you read me? Prometheus, this is Athena 7, on approach, do you read
+me?</p>
+<p>****: Except for some ROBOTIC, NON-SPEAKING CHARACTERS: the AUTOMATED
+TASKMASTERS. These are small, bug-like repair units that constantly roam
+the ship, fixing things. Their tiny hum is virtually silent, and we see
+them all the time on the Prometheus. They can adhere to any surface at
+any</p>
+<p><strong>gibarian</strong>: Hi, Chris. I’m so glad you came. I still
+have a little time, and I want to tell you something. To warn you. By
+now you know about me, or if you don’t, get Snow or Sartorius to tell
+you; it doesn’t matter. I didn’t lose my mind. You should be able to
+tell from this video. I’m not mad. If it happens to you, remember that
+it isn’t madness. You should know, I’m in favor of destroying Solaris. I
+know that’s… illegal. And unethical. And irresponsible. But it’s the
+only way to make it stop.</p>
+<p><strong>gibarian</strong>: Cut that out. Do you hear me?</p>
+<p><strong>kelvin</strong>: Snow. Didn’t you hear me radio? I’m
+Kelvin.</p>
+<p><strong>snow</strong>: Yes. We heard.</p>
+<p><strong>kelvin</strong>: What’s wrong? What happened to Gibarian?</p>
+<p><strong>snow</strong>: He’s dead.</p>
+<p><strong>kelvin</strong>: How?</p>
+<p><strong>snow</strong>: Suicide.</p>
+<p><strong>snow</strong>: You didn’t bring any chocolate, did you?</p>
+<p><strong>kelvin</strong>: What?</p>
+<p><strong>snow</strong>: I love chocolate. I realized just yesterday
+how much I love it. I thought maybe, if they let you bring personal
+effects, you might have snuck some through, because… well, I’ve been
+thinking about it.</p>
+<p><strong>kelvin</strong>: What happened here?</p>
+<p><strong>snow</strong>: I can’t talk just now. I’m too tired.</p>
+<p><strong>kelvin</strong>: Where’s Sartorius?</p>
+<p><strong>snow</strong>: In his lab. He won’t let you in.</p>
+<p><strong>kelvin</strong>: He’ll let me in.</p>
+<p><strong>snow</strong>: Kelvin, if you see anything unusual…</p>
+<p><strong>snow</strong>: … try to stay calm.</p>
+<p><strong>kelvin</strong>: Let me in.</p>
+<p><strong>sartorius</strong>: You have to give me your word you won’t
+come in. Then I’ll come out.</p>
+<p><strong>kelvin</strong>: All right.</p>
+<p><strong>kelvin</strong>: What happened to Gibarian?</p>
+<p><strong>sartorius</strong>: Didn’t you talk to Snow?</p>
+<p><strong>kelvin</strong>: I want to hear your version.</p>
+<p><strong>sartorius</strong>: Who, here, could possibly care what you
+want? At best, you’re Employee of the Month for the highest bidder in
+the Solaris auction. They have no idea what’s going on up here. They’ve
+never even been in space. And I’m supposed to listen to you?</p>
+<p><strong>kelvin</strong>: I am here to recover this mission, report my
+findings, and make a recommendation. Now: What happened to him?</p>
+<p><strong>sartorius</strong>: The same thing that could happen to any
+of us.</p>
+<p><strong>kelvin</strong>: Where’s his body?</p>
+<p><strong>sartorius</strong>: In the lab. With her, probably.</p>
+<p><strong>kelvin</strong>: Her? Who are you talking about?</p>
+<p><strong>sartorius</strong>: His last wish was to be buried on Earth.
+In dirt, he said. “I want to buried in dirt.” What a clown.</p>
+<p><strong>kelvin</strong>: They shouldn’t let people like you into
+space.</p>
+<p><strong>sartorius</strong>: Just so you know: I’m not going back
+until I understand what it is. I am going to figure out what it is, make
+it stop, and then I will go home.</p>
+<p><strong>kelvin</strong>: Listen –</p>
+<p><strong>sartorius</strong>: We’re done. Oh, I should tell you, I
+don’t trust Snow. There’s something wrong with him.</p>
+<p><strong>kelvin</strong>: Is there anybody else here?</p>
+<p><strong>snow</strong>: Why, who did you see?</p>
+<p><strong>kelvin</strong>: Gibarian warned me. He left me a
+message.</p>
+<p><strong>snow</strong>: Who was it?</p>
+<p><strong>kelvin</strong>: She was real. Where did she come from?</p>
+<p><strong>kelvin</strong>: Tell me. I won’t think you’re insane.</p>
+<p><strong>snow</strong>: Oh, that’s a relief.</p>
+<p><strong>kelvin</strong>: Where did she come from?</p>
+<p><strong>snow</strong>: How much sleep do you need?</p>
+<p><strong>kelvin</strong>: How much sleep?</p>
+<p><strong>snow</strong>: How long can you go without sleep?</p>
+<p><strong>kelvin</strong>: That depends.</p>
+<p><strong>snow</strong>: Well, when you do go to sleep: barricade your
+door.</p>
+<p><strong>kelvin</strong>: The Prometheus, as far as I can tell, is
+functionally intact. Crew status: One dead, Gibarian. Cause of death
+appears to be suicide.</p>
+<p><strong>kelvin</strong>: Interviews with the surviving members and a
+perusal of the deceased’s personal effects indicate he was suffering
+from severe depression with psychotic features, along with bouts of
+hypomania, dementia, delirium, and primary insomnia. All of these
+symptoms, combined with a profound sense of isolation, are commonly
+found in studies of low stimulation environments, particularly long
+range space travel. Snow and Sartorius show indications of depression,
+including dysthymic and bipolar I; a variety of stress disorders,
+including acute and posttraumatic; and suggestions of agoraphobia,
+obsessive/compulsive disorder, and hypersomnia. I emphasize these are
+preliminary opinions on my part. I will attempt to convince Snow and
+Sartorius to return to Earth, but as they currently view me as an
+intruder of sorts, this may take some time.</p>
+<p><strong>kelvin</strong>: Oh, God. I’m awake.</p>
+<p><strong>rheya</strong>: Yes.</p>
+<p><strong>kelvin</strong>: Where did you come from?</p>
+<p><strong>kelvin</strong>: How are you here?</p>
+<p><strong>rheya</strong>: How do you mean? Chris, what’s wrong?</p>
+<p><strong>rheya</strong>: I love you.</p>
+<p><strong>rheya</strong>: Do you love me?</p>
+<p><strong>kelvin</strong>: Yes.</p>
+<p><strong>kelvin</strong>: I need to see Snow.</p>
+<p><strong>rheya</strong>: I’ll go with you.</p>
+<p><strong>kelvin</strong>: I’ll just be a minute.</p>
+<p><strong>rheya</strong>: Don’t.</p>
+<p><strong>kelvin</strong>: Why?</p>
+<p><strong>rheya</strong>: I don’t know. I can’t be alone.</p>
+<p><strong>kelvin</strong>: I’ll be right back.</p>
+<p><strong>kelvin</strong>: All right. All right. Here.</p>
+<p><strong>rheya</strong>: What are they?</p>
+<p><strong>kelvin</strong>: To calm your anxiety.</p>
+<p><strong>rheya</strong>: To calm my anxiety.</p>
+<p><strong>rheya</strong>: We’re taking a flight?</p>
+<p><strong>kelvin</strong>: Yes.</p>
+<p><strong>kelvin</strong>: Go ahead. I’ll close the door behind me.</p>
+<p><strong>snow</strong>: Was her breakfast conversation that bad?</p>
+<p><strong>kelvin</strong>: Shut up.</p>
+<p><strong>snow</strong>: I told you, try to stay calm. You’re supposed
+to be the psychologist of the bunch.</p>
+<p><strong>kelvin</strong>: What was it?</p>
+<p><strong>snow</strong>: Personally, I think it’s God. At least, it
+fits my definition.</p>
+<p><strong>kelvin</strong>: And professionally?</p>
+<p><strong>snow</strong>: I’m not sure. It started with Gibarian. He
+locked himself in his room and refused to talk except through a crack in
+the door. He covered the video lens. Obviously we thought he was having
+a nervous breakdown. I don’t know why he didn’t tell us he had somebody
+in there. By this time, we were getting visitors, too. He was
+desperately trying to figure it out. Day and night. Who was she?</p>
+<p><strong>kelvin</strong>: My wife.</p>
+<p><strong>snow</strong>: Dead?</p>
+<p><strong>snow</strong>: She has materialized from your memory of her.
+What was her name?</p>
+<p><strong>kelvin</strong>: Rheya.</p>
+<p><strong>snow</strong>: It started about three months ago. Right after
+the government sold the expedition. We were ready to go home.</p>
+<p><strong>kelvin</strong>: Will she come back?</p>
+<p><strong>snow</strong>: Probably.</p>
+<p><strong>kelvin</strong>: I wish you’d told me.</p>
+<p><strong>snow</strong>: Told you what?</p>
+<p><strong>snow</strong>: What will you say?</p>
+<p><strong>kelvin</strong>: To who?</p>
+<p><strong>snow</strong>: What are you going to report back to
+Earth?</p>
+<p><strong>kelvin</strong>: I don’t know.</p>
+<p><strong>snow</strong>: An enormous amount of money changed hands to
+get control of this project. We are in little danger of being left alone
+for long. You’ll need to do something. Otherwise they’ll be sending
+someone out to recover you.</p>
+<p><strong>kelvin</strong>: Gibarian said he thinks Solaris should be
+destroyed.</p>
+<p><strong>snow</strong>: That’s ludicrous. This is contact. We have
+found God. The only issue is figuring out how to prove this in a way
+that will make sense back on Earth. So how will we describe it, if we
+choose to describe it at all?</p>
+<p><strong>gibarian</strong>: A pre-biological colloidal envelope,
+possibly exceeding terrestrial structures in complexity; a plasmic
+mechanism. Probably without life as we conceive it, but capable of
+performing functional activities on an astronomic scale. My view is that
+Solaris has reached, in a single bound, the “homeostatic ocean” stage
+without passing through stages of terrestrial evolution. I think it
+bypassed cellular development altogether. It hasn’t taken endless eons
+to adapt itself to its environment, but in fact dominated its
+environment immediately. From the moment it existed, it was the most
+superior element in the Universe. And now it passes the time doing
+extravagant theoretical thinking about the Universe, with us as the
+cast.</p>
+<p><strong>gibarian</strong>: It’s engaged in a never-ending process of
+transformation; an ontological autometamorphosis, begging the question:
+Can thought exist separately from consciousness?</p>
+<p><strong>snow</strong>: It’s God.</p>
+<p><strong>sartorius</strong>: I don’t care what it is, we need to
+figure out how to make it stop.</p>
+<p><strong>gibarian</strong>: Nelson, we have the opportunity –</p>
+<p><strong>sartorius</strong>: What if this thing follows us back to
+Earth? What if what’s happening here started happening on Earth, on a
+mass scale? Don’t you see that as a problem? I think it’s a serious
+mistake to assume it’s benign. For all we know it’s driving us crazy so
+it can watch us kill each other.</p>
+<p><strong>snow</strong>: We’re not even sure it will let us leave.</p>
+<p><strong>gibarian</strong>: Maybe it’s stuck. Maybe its power isn’t
+that God-like. I mean, we have God-like power relative to an insect, but
+that doesn’t mean we can move the Earth around at will. Maybe it’s like
+a spider web, waiting for something to show up. We intercepted some
+brief fragments of what must be an everlasting monologue with itself. Of
+course it was beyond our understanding. I’ve come to hate it here.
+There’s only one way out of its reach, for us. Humans.</p>
+<p><strong>gibarian</strong>: I thought I’d been behaving normally,
+rationally. But a sign of insanity is the inability to think about more
+than one thing. So if I am consumed by the idea that I am insane and
+can’t think of anything else, then I am insane. You ask questions at the
+end of your life, the sort of questions people who are content don’t
+ask. Maybe life just can’t be solved.</p>
+<p><strong>kelvin</strong>: Rheya…</p>
+<p><strong>rheya</strong>: I want you inside me right now.</p>
+<p><strong>kelvin</strong>: “And Death Shall Have No Dominion”.</p>
+<p><strong>rheya</strong>: Book?</p>
+<p><strong>kelvin</strong>: Poem. Dylan Thomas. I thought of it when I
+saw you on the train.</p>
+<p><strong>rheya</strong>: My Thomas is a little rusty.</p>
+<p><strong>rheya</strong>: Not a very happy poem.</p>
+<p><strong>kelvin</strong>: You didn’t look very happy.</p>
+<p><strong>rheya</strong>: I wasn’t.</p>
+<p><strong>kelvin</strong>: And tonight?</p>
+<p><strong>rheya</strong>: Better.</p>
+<p><strong>kelvin</strong>: That’s good to know.</p>
+<p><strong>rheya</strong>: You want to fuck her?</p>
+<p><strong>kelvin</strong>: Stop it.</p>
+<p><strong>rheya</strong>: You behave as though you want to fuck
+her.</p>
+<p><strong>kelvin</strong>: Rheya. Not here.</p>
+<p><strong>rheya</strong>: And I just want to know if I’m crazy or not –
+if what I think is happening is actually happening. Or am I one of those
+people, those women, who are blind to what’s going on? Who pretend not
+to see their husband’s attention toward another woman?</p>
+<p><strong>kelvin</strong>: Let’s go home.</p>
+<p><strong>rheya</strong>: You go home.</p>
+<p><strong>kelvin</strong>: I am. Please come with me. I don’t want to
+do this here.</p>
+<p><strong>rheya</strong>: You talk like an actor.</p>
+<p><strong>rheya</strong>: I’m so sorry. I’m so sorry.</p>
+<p><strong>kelvin</strong>: You’re better when you take them.</p>
+<p><strong>rheya</strong>: I know, I know. But still, somehow I don’t
+feel better.</p>
+<p><strong>kelvin</strong>: All right. How about I feel better when you
+take them?</p>
+<p><strong>rheya</strong>: Right.</p>
+<p><strong>kelvin</strong>: What do you remember?</p>
+<p><strong>rheya</strong>: What do you mean?</p>
+<p><strong>kelvin</strong>: Do you remember Beethoven? The Beatles?
+Movies, books, restaurants, friends?</p>
+<p><strong>rheya</strong>: Yes. But not until you mentioned them. As
+soon as you said those things, I remembered them. And they have
+associations that make me think of other things I remember. It’s like
+filling up.</p>
+<p><strong>rheya</strong>: Is it a planet?</p>
+<p><strong>kelvin</strong>: Not exactly. It exists in a continuum that
+wasn’t proven until ten years ago, a higher mathematical dimension
+superimposed on top of the Universe. An infinite number of them, in
+fact. It was a violation of all of our various laws regarding the
+Universe, Space, or Space-Time. It was completely counter-intuitive. We
+had to unlearn everything.</p>
+<p><strong>rheya</strong>: Is it intelligent?</p>
+<p><strong>kelvin</strong>: Intelligent beyond our comprehension.</p>
+<p><strong>rheya</strong>: Then it’s God, right?</p>
+<p><strong>kelvin</strong>: It’s something.</p>
+<p><strong>rheya</strong>: You still don’t believe in God?</p>
+<p><strong>kelvin</strong>: The whole idea of God was dreamed up by a
+silly animal with a small brain called Man. Even the limits we put on it
+are human limits. It can do this, it can do that! It designs, it
+creates!</p>
+<p><strong>rheya</strong>: Even a God that wasn’t active, that just
+created something and stood back and watched?</p>
+<p><strong>kelvin</strong>: You’re talking about a man in a white beard
+again. You’re ascribing human characteristics to something that isn’t
+human. Human beings look for causes and patterns. How could we know what
+Solaris is up to, if anything?</p>
+<p><strong>rheya</strong>: But what if Solaris is what there was before
+The Big Bang?</p>
+<p><strong>kelvin</strong>: As I said, it is beyond our
+comprehension.</p>
+<p><strong>rheya</strong>: As I said, then it’s God, right?</p>
+<p><strong>rheya</strong>: Why are we talking about this shit when we
+could be fucking?</p>
+<p><strong>snow</strong>: Kelvin, you awake?</p>
+<p><strong>kelvin</strong>: What is it?</p>
+<p><strong>snow</strong>: Can you meet me and Sartorius on B deck in an
+hour?</p>
+<p><strong>kelvin</strong>: Why?</p>
+<p><strong>snow</strong>: Just a little strategy session. But in person
+this time.</p>
+<p><strong>kelvin</strong>: All right?</p>
+<p><strong>kelvin</strong>: Rheya…</p>
+<p><strong>rheya</strong>: What happened?</p>
+<p><strong>kelvin</strong>: You were trying to break down the door. Do
+you know why?</p>
+<p><strong>rheya</strong>: When I saw you were gone I got scared.</p>
+<p><strong>rheya</strong>: Chris, what’s wrong with me?</p>
+<p><strong>rheya</strong>: Am I all right?</p>
+<p><strong>kelvin</strong>: Yes.</p>
+<p><strong>snow</strong>: He won’t do it.</p>
+<p><strong>sartorius</strong>: Why do you say that?</p>
+<p><strong>snow</strong>: He won’t.</p>
+<p><strong>kelvin</strong>: This is my wife, Rheya.</p>
+<p><strong>sartorius</strong>: We thought you’d be alone. We want to
+talk about…</p>
+<p><strong>snow</strong>: We want to talk freely.</p>
+<p><strong>kelvin</strong>: Go ahead.</p>
+<p><strong>sartorius</strong>: I suggest we pool our knowledge regarding
+the… visitors. We can express whatever questions or conclusions we might
+have… share information about our various… experiments. Agreed?</p>
+<p><strong>sartorius</strong>: I would like to start with motivation.
+Why are they here?</p>
+<p><strong>sartorius</strong>: They are not autonomous individuals and
+they’re not actual persons. They are projections materializing from our
+minds, based on a given individual.</p>
+<p><strong>snow</strong>: It’s an experiment.</p>
+<p><strong>kelvin</strong>: No. There’s no behavior modification.</p>
+<p><strong>sartorius</strong>: She reappeared exactly as she had
+before?</p>
+<p><strong>snow</strong>: The same vulnerabilities?</p>
+<p><strong>sartorius</strong>: A recoil, with no compensating
+mechanism.</p>
+<p><strong>snow</strong>: And when a given situation no longer
+corresponds to the normal faculties of the… original, the visitor
+suffers some sort of disconnected consciousness.</p>
+<p><strong>sartorius</strong>: Followed by non-human manifestations.</p>
+<p><strong>snow</strong>: Are the actions of Solaris premeditated?</p>
+<p><strong>kelvin</strong>: Is it being deliberately cruel, you mean? I
+don’t think so.</p>
+<p><strong>snow</strong>: I’m just trying to find an explanation for the
+continual reappearances.</p>
+<p><strong>kelvin</strong>: When you cut yourself pounding the door, did
+it hurt?</p>
+<p><strong>rheya</strong>: Yes. Of course.</p>
+<p><strong>sartorius</strong>: If they’re not learning anything and
+they’re not modifying their behavior, why do they come back?</p>
+<p><strong>snow</strong>: It’s like they’re plugged into a game, which
+goes around and around, endlessly repeating itself.</p>
+<p><strong>kelvin</strong>: Where’ve you been?</p>
+<p><strong>rheya</strong>: I been thinking about how much I hate
+you.</p>
+<p><strong>rheya</strong>: Yes, I remember that. I went back to Lois’
+house and spent the night. Those were dark days.</p>
+<p><strong>rheya</strong>: I would have these – I don’t know how to
+describe them – visions, when I was younger. Maybe not visions, but like
+these waking dream states. Time would just collapse, I would be inside
+time. I would stare at a second hand on a clock until it stopped. Freaky
+stuff.</p>
+<p><strong>kelvin</strong>: How old were you?</p>
+<p><strong>rheya</strong>: Seven, eight. So one day my mother catches me
+sort of staring off into space, and she asks me what I’m doing, and I
+start trying to explain to her, about this state that I can put myself
+in, and this look comes over her face.</p>
+<p><strong>kelvin</strong>: What kind of look?</p>
+<p><strong>rheya</strong>: Scared. No, not scared. Wary. Like I was
+something to be… her guard went up. I was a threat. Now I know why. She
+was afraid she’d be seen. That I would see her for the self-obsessed
+neurotic that she was. I think she thought she had a few more years of
+being on a pedestal. But that’s the cycle, right? I knew a little more
+than she did, she knew a little more than her mother, and on and on. I
+guess that’s part of the reason why –</p>
+<p><strong>kelvin</strong>: I know. I know. We don’t have to talk about
+that.</p>
+<p><strong>rheya</strong>: I remember days of just thinking about
+you.</p>
+<p><strong>rheya</strong>: Thinking what you were doing and saying, just
+being consumed by thinking of you. I loved it so much, that feeling.</p>
+<p><strong>kelvin</strong>: I did too.</p>
+<p><strong>kelvin</strong>: I used to watch you undress.</p>
+<p><strong>kelvin</strong>: I never tired of watching you undress. Every
+time, it was exciting. Right until… to the end.</p>
+<p><strong>rheya</strong>: What happened to us, exactly?</p>
+<p><strong>kelvin</strong>: You don’t know?</p>
+<p><strong>rheya</strong>: I remember… something burning. Coffee
+burning.</p>
+<p><strong>rheya</strong>: You found me?</p>
+<p><strong>kelvin</strong>: I’m sorry. I’m sorry.</p>
+<p><strong>rheya</strong>: Why did you say those things?</p>
+<p><strong>kelvin</strong>: I don’t know. I couldn’t understand why you
+didn’t tell me.</p>
+<p><strong>kelvin</strong>: When you said you wouldn’t make it… I didn’t
+believe you. Or I didn’t take you seriously, which is worse.</p>
+<p><strong>kelvin</strong>: I should have believed you.</p>
+<p><strong>rheya</strong>: I can’t help feeling that I’m cheating when I
+take them.</p>
+<p><strong>kelvin</strong>: It’s genetics. You know this. You know where
+it comes from. There is nothing wrong with uncrossing a few crossed
+wires.</p>
+<p><strong>snow</strong>: You’re unnerved because you’ve spent your
+whole life thinking nobody is looking over you, and suddenly your
+subconscious is an open book. We are, for the first time, experiencing
+changes in natural reality by a force not our own. That proves that
+–</p>
+<p><strong>kelvin</strong>: – we are not sure of that. We are not sure
+we aren’t all hallucinating.</p>
+<p><strong>snow</strong>: If God is beyond our comprehension, and she –
+– is here for reasons that can’t be understood, isn’t God here?</p>
+<p><strong>kelvin</strong>: Not necessarily.</p>
+<p><strong>snow</strong>: Stop equivocating! Unbelievable, how you
+equivocate! You, the atheist, you’re more dogmatic than any holy person
+I’ve ever seen! This is happening, Kevin. Wake up.</p>
+<p><strong>kelvin</strong>: Consciousness is enough, that’s all I’ve
+saying. Consciousness should be enough for anybody.</p>
+<p><strong>snow</strong>: Who are you trying to convince?</p>
+<p><strong>snow</strong>: It will end badly. As inevitably as the rising
+of a bubble.</p>
+<p><strong>snow</strong>: Let’s all meet tomorrow. Sartorius has some
+new ideas, about making it stop.</p>
+<p><strong>rheya</strong>: Do you have any idea how much I like fucking
+you?</p>
+<p><strong>kelvin</strong>: I think so.</p>
+<p><strong>rheya</strong>: Good. Because I want you to know. I really
+like fucking you.</p>
+<p><strong>rheya</strong>: I like that too.</p>
+<p><strong>kelvin</strong>: How could she not be real? I can smell her,
+taste her. She does exactly what she did… it’s not possible.</p>
+<p><strong>rheya</strong>: You know, I’ve decided: I’m just gonna
+believe what you believe about this whole Solaris thing, it’ll make life
+so much easier; the little wife agreeing with her big, strong husband.
+You must get such a headache thinking about those Great Big Problems all
+day.</p>
+<p><strong>kelvin</strong>: Like I said, it’s not possible.</p>
+<p><strong>rheya</strong>: So, Chris, seriously, aren’t you afraid
+you’re going to get fired?</p>
+<p><strong>rheya</strong>: You sure say “God” a lot when we’re doing
+it.</p>
+<p><strong>kelvin</strong>: I know. I’m putting that in my next
+report.</p>
+<p><strong>rheya</strong>: Right. The report. Report and recommend.</p>
+<p><strong>rheya</strong>: What does Snow think you should do?</p>
+<p><strong>kelvin</strong>: Snow thinks we shouldn’t leave until we
+figure out a way to document it, to prove its existence to the planet
+Earth. This is hilarious: He thinks it’s God, but he wants it to sit
+still for a photograph so he can show the folks back home.</p>
+<p><strong>rheya</strong>: Sartorius wants to destroy it.</p>
+<p><strong>kelvin</strong>: Well. He doesn’t think it’s God, but for
+different reasons than me. He’s thinking: If I can figure out how to
+make it stop, than I am smarter than it is, and therefore it cannot be
+God.</p>
+<p><strong>rheya</strong>: He has a point.</p>
+<p><strong>kelvin</strong>: He does have a point. That’s just not the
+way I’d like to see it proven.</p>
+<p><strong>rheya</strong>: You feel sorry for Solaris, or for me?</p>
+<p><strong>kelvin</strong>: It’s a violent response to something we
+haven’t figured out. Don’t let the cowardly demeanor fool you: He is
+ruthless. Unblinking in his prejudice.</p>
+<p><strong>rheya</strong>: It was obvious from the way he first looked
+at me.</p>
+<p><strong>rheya</strong>: Do I really feel like… I am…?</p>
+<p><strong>kelvin</strong>: Yes. Yes.</p>
+<p><strong>rheya</strong>: I’m glad.</p>
+<p><strong>kelvin</strong>: Everything you pursue, you end up becoming
+disinterested in. The fact that you’re good at everything you try makes
+it worse. You have a degree in animal science, you could be a terrific
+vet. You drifted into writing and turned out to be a perceptive
+journalist. Then it was politics, which seemed best of all, you had an
+actual gift for understanding the best pattern for a group of people to
+be arranged for you to achieve your goal. And they didn’t even know they
+were being arranged. But you got bored with it, like you do with
+everything.</p>
+<p><strong>kelvin</strong>: I don’t know what it’s really like, to not
+know what you want to do. To not have anything that you love to do more
+than anything else.</p>
+<p><strong>rheya</strong>: Imagine my frustration.</p>
+<p><strong>kelvin</strong>: What’s wrong.</p>
+<p><strong>rheya</strong>: You don’t love me.</p>
+<p><strong>kelvin</strong>: Stop.</p>
+<p><strong>rheya</strong>: I have to talk to you… I… I don’t know where
+I came from. Do you know?</p>
+<p><strong>rheya</strong>: If you know but can’t tell me now… will you
+ever be able to?</p>
+<p><strong>kelvin</strong>: What are you talking about?</p>
+<p><strong>rheya</strong>: That I am not Rheya. That Rheya died. Killed
+herself. I’m different.</p>
+<p><strong>kelvin</strong>: Who have you been talking to?</p>
+<p><strong>rheya</strong>: Sartorius.</p>
+<p><strong>kelvin</strong>: When? When I’m asleep?</p>
+<p><strong>kelvin</strong>: I’m sure there are worse people to talk to,
+but I don’t know who they are.</p>
+<p><strong>rheya</strong>: I’m just trying to understand what’s going
+on.</p>
+<p><strong>rheya</strong>: How have you lived the last ten years? Did
+you love anyone?</p>
+<p><strong>rheya</strong>: Did you think about me?</p>
+<p><strong>rheya</strong>: But we fought.</p>
+<p><strong>kelvin</strong>: Yes. Especially toward the end.</p>
+<p><strong>rheya</strong>: Why did she do it?</p>
+<p><strong>kelvin</strong>: You… she said I didn’t love her.</p>
+<p><strong>rheya</strong>: Was she right?</p>
+<p><strong>kelvin</strong>: No. I love you.</p>
+<p><strong>rheya</strong>: I love you, too.</p>
+<p><strong>kelvin</strong>: Can you sleep?</p>
+<p><strong>rheya</strong>: I don’t think do. It’s not sleep; it’s
+something else. It’s all around me.</p>
+<p><strong>kelvin</strong>: Those are dreams.</p>
+<p><strong>snow</strong>: Gibarian was under enormous –</p>
+<p><strong>sartorius</strong>: Gibarian was helpless. It’s very simple:
+Man created the science that resulted in the discovery of Solaris, and
+the ship that brought us here.</p>
+<p><strong>kelvin</strong>: Meaning Man can do whatever the fuck it
+wants?</p>
+<p><strong>sartorius</strong>: Yes.</p>
+<p><strong>kelvin</strong>: That’s fantastic.</p>
+<p><strong>sartorius</strong>: Why did you agree to come here?</p>
+<p><strong>sartorius</strong>: Too tired to answer?</p>
+<p><strong>sartorius</strong>: I’ll bet. Is this what they sent you here
+to do? You’ve lost it, you’ve gone native.</p>
+<p><strong>rheya</strong>: You’re the coward.</p>
+<p><strong>kelvin</strong>: Don’t debate him; he’ll say anything.</p>
+<p><strong>rheya</strong>: I’m just as human as you. I see, I hear, I
+touch, and I feel just like you do.</p>
+<p><strong>sartorius</strong>: Prove it.</p>
+<p><strong>rheya</strong>: These “guests” are a part of you, of your
+subconscious. Chris loves me.</p>
+<p><strong>sartorius</strong>: YOU ARE NOT HUMAN! Try to understand that
+if you can understand anything!</p>
+<p><strong>kelvin</strong>: Get out of here.</p>
+<p><strong>sartorius</strong>: Rheya is dead. She’s a copy. A facsimile.
+And she’s seducing you all over again. You’re sick. You think of fucking
+her as research for humanity. It’s just fucking.</p>
+<p><strong>sartorius</strong>: There’s nothing grandiose about it.
+You’ve jumped out of a plane and you’re trying to sew a parachute
+together while you fall.</p>
+<p><strong>sartorius</strong>: It’d be hilarious if it weren’t so damn
+sad.</p>
+<p><strong>snow</strong>: We didn’t even get to hear his new ideas.</p>
+<p><strong>snow</strong>: I’m not feeling well.</p>
+<p><strong>snow</strong>: We can liquidate the station. Take the Athena
+back.</p>
+<p><strong>kelvin</strong>: No.</p>
+<p><strong>snow</strong>: Of course, when we return, we’ll be regarded
+as lunatics if we tell the truth. We’ll chalk it up to isolation,
+collective derangement.</p>
+<p><strong>kelvin</strong>: I’ve never heard you express any desire to
+leave before now. Why now?</p>
+<p><strong>snow</strong>: Well, I think we’re reaching the point of
+diminishing returns here, right? Certainly it’s learning more about us
+than we’ll ever learn about it.</p>
+<p><strong>kelvin</strong>: But why is it doing what it’s doing? Given
+it’s resources, it could have done anything. Presented me with your
+double, and you with mine.</p>
+<p><strong>snow</strong>: Perhaps it did.</p>
+<p><strong>kelvin</strong>: Human beings can die.</p>
+<p><strong>snow</strong>: But they are human. They certainly become
+human with incredible speed. First they’re like they were in our memory,
+but then they fill in on their own. DNA doesn’t determine the hundreds
+of trillions of connections that occur in the brain, it’s not dense
+enough. They build up with experience.</p>
+<p><strong>kelvin</strong>: They come when you sleep.</p>
+<p><strong>snow</strong>: That’s right. And we all have to sleep,
+eventually.</p>
+<p><strong>rheya</strong>: You don’t want me.</p>
+<p><strong>kelvin</strong>: Rheya.</p>
+<p><strong>rheya</strong>: That’s what you were saying. I heard what you
+were saying.</p>
+<p><strong>kelvin</strong>: For a reason that neither of us understand,
+you are forced to stay near me. That’s all I know right now.</p>
+<p><strong>rheya</strong>: I have these strange thoughts, I don’t know
+where they come from. I can’t explain it.</p>
+<p><strong>kelvin</strong>: Neither can I. Not any of it. There’s no
+reference point for what’s going on; it’s never happened before. It’s a
+clean break in the fabric of the Universe; a gap. There is nothing to do
+but experience it, moment-to- moment, and not let it destroy us.</p>
+<p><strong>rheya</strong>: But that’s what happened before.</p>
+<p><strong>kelvin</strong>: Not this time.</p>
+<p><strong>rheya</strong>: Do you want to stay here?</p>
+<p><strong>kelvin</strong>: Do you?</p>
+<p><strong>rheya</strong>: If you’re here.</p>
+<p><strong>kelvin</strong>: Gibarian.</p>
+<p><strong>gibarian</strong>: Leave the light off.</p>
+<p><strong>gibarian</strong>: I wish you’d come a little sooner. I might
+not have had to kill myself.</p>
+<p><strong>gibarian</strong>: You think you’re dreaming me, like you
+dream her. Understand something: I am the real Gibarian. Just a new
+incarnation.</p>
+<p><strong>kelvin</strong>: What do you want?</p>
+<p><strong>gibarian</strong>: You’re being tricked. Sartorius picked a
+fight with you to avoid telling you about his idea for getting rid of
+the visitors. He’s figured out they’re made of subatomic particles
+called neutrinos, and he’s going to create a negative neutrino field.
+Twenty four hours a day, until they’re back on Earth.</p>
+<p><strong>kelvin</strong>: Can it work?</p>
+<p><strong>gibarian</strong>: It can. Ordinary matter, like ours? Not
+affected. Everything else, disintegrates.</p>
+<p><strong>gibarian</strong>: What I’m saying is: Don’t trust anyone.
+Find yourself a weapon of some sort.</p>
+<p><strong>kelvin</strong>: I can trust Rheya.</p>
+<p><strong>gibarian</strong>: You’ll end up like me.</p>
+<p><strong>kelvin</strong>: You’re not Gibarian…</p>
+<p><strong>gibarian</strong>: No? Who am I, then?</p>
+<p><strong>kelvin</strong>: A puppet.</p>
+<p><strong>gibarian</strong>: And you’re not? Maybe you’re my puppet.
+But like all puppets, you think you’re actually human. It’s The Puppet’s
+Dream. Wondering if they’re human!</p>
+<p><strong>rheya</strong>: What’s wrong?</p>
+<p><strong>kelvin</strong>: Gibarian. He was here.</p>
+<p><strong>rheya</strong>: You said he was dead.</p>
+<p><strong>kelvin</strong>: He is. But he was here…</p>
+<p><strong>kelvin</strong>: He spoke to me.</p>
+<p><strong>kelvin</strong>: Are you going to take them?</p>
+<p><strong>rheya</strong>: What’s happening to us?</p>
+<p><strong>kelvin</strong>: It’s all right.</p>
+<p><strong>rheya</strong>: Please don’t lie. I told you before, I don’t
+know how I came to be here. Whatever you think you can’t say to me, I
+need to hear you say it.</p>
+<p><strong>kelvin</strong>: I love you.</p>
+<p><strong>rheya</strong>: Don’t. I’m the one at risk here. If we’re
+playing out what happened before, I won’t survive.</p>
+<p><strong>kelvin</strong>: That won’t happen again. We’re
+different.</p>
+<p><strong>rheya</strong>: How can I tell? You’ve seen both of me. I
+only know what you’re like here. You’re all I know. There is no “You”
+from before.</p>
+<p><strong>rheya</strong>: How could it be so cruel? How could it
+torture us like this?</p>
+<p><strong>kelvin</strong>: I don’t think it knows it’s torturing us.
+It’s just watching.</p>
+<p><strong>snow</strong>: What happened?</p>
+<p><strong>kelvin</strong>: She drank liquid oxygen.</p>
+<p><strong>kelvin</strong>: She’s dead.</p>
+<p><strong>snow</strong>: She’ll come back, don’t worry. But then what?
+My theory is she can only live here, that she will die if she leaves
+this ship.</p>
+<p><strong>snow</strong>: Why do you think she hasn’t suggested that?
+It’s the most obvious solution: Escape. She knows she can’t leave here
+–</p>
+<p><strong>kelvin</strong>: Get out –</p>
+<p><strong>snow</strong>: Oh, this one you love? What about the first
+one, the one you fucked and then put into a rocket and blasted into
+space? You didn’t love her?</p>
+<p><strong>snow</strong>: What happens if she comes back? Is that
+polygamy? And even if you could take her home, how would you get her
+through? You think they’re not going to notice her?</p>
+<p><strong>snow</strong>: I never get used to them, these…
+“Resurrections”.</p>
+<p><strong>rheya</strong>: What am I? Why can’t I die?</p>
+<p><strong>rheya</strong>: I’m not Rheya. You’re always known that.</p>
+<p><strong>kelvin</strong>: Rheya –</p>
+<p><strong>rheya</strong>: Don’t call me that.</p>
+<p><strong>kelvin</strong>: Listen: I don’t care about anything but the
+fact that you are here. You are her, you are Rheya.</p>
+<p><strong>rheya</strong>: I’m disgusting.</p>
+<p><strong>kelvin</strong>: No.</p>
+<p><strong>rheya</strong>: You’re lying. I’m not human.</p>
+<p><strong>kelvin</strong>: Rheya, I am not going back. I’m staying here
+with you.</p>
+<p><strong>rheya</strong>: Then you’ll die.</p>
+<p><strong>kelvin</strong>: I want every second I can get with you.</p>
+<p><strong>rheya</strong>: What will I do, if you die?</p>
+<p><strong>rheya</strong>: Do you think I can get pregnant here?</p>
+<p><strong>kelvin</strong>: We’ll know soon enough.</p>
+<p><strong>rheya</strong>: I can’t be a mother.</p>
+<p><strong>kelvin</strong>: That’s good to know.</p>
+<p><strong>rheya</strong>: Don’t do this. I am literally begging you not
+to do this. Chris.</p>
+<p><strong>kelvin</strong>: You should have told me.</p>
+<p><strong>rheya</strong>: It wouldn’t have made any difference.</p>
+<p><strong>kelvin</strong>: Thank you.</p>
+<p><strong>rheya</strong>: Chris, I had to. I had to. I didn’t think
+you’d react like this.</p>
+<p><strong>kelvin</strong>: Neither did I.</p>
+<p><strong>rheya</strong>: You never said you wanted one.</p>
+<p><strong>kelvin</strong>: I never said I didn’t.</p>
+<p><strong>rheya</strong>: Chris –</p>
+<p><strong>kelvin</strong>: I can’t stay here.</p>
+<p><strong>rheya</strong>: Chris, please. Chris, I’m serious. I won’t
+make it.</p>
+<p><strong>kelvin</strong>: Then you won’t make it.</p>
+<p><strong>kelvin</strong>: I came back. You have to know that. I came
+back that night.</p>
+<p><strong>kelvin</strong>: I couldn’t make it, either. I’m so
+sorry.</p>
+<p><strong>gibarian</strong>: If they succeed, you’ll never see her
+again.</p>
+<p><strong>rheya</strong>: You’re afraid of me. I can’t do this anymore.
+I still don’t understand. It’s not possible.</p>
+<p><strong>rheya</strong>: Don’t –</p>
+<p><strong>rheya</strong>: What do I have to do to stop it?</p>
+<p><strong>kelvin</strong>: I want you here.</p>
+<p><strong>rheya</strong>: You’re lying.</p>
+<p><strong>kelvin</strong>: You exist here. I keep telling you.</p>
+<p><strong>rheya</strong>: That’s impossible. I’m not Rheya.</p>
+<p><strong>kelvin</strong>: Who are you, then?</p>
+<p><strong>rheya</strong>: I… I am Rheya. But I am not the woman you
+loved ten years ago.</p>
+<p><strong>kelvin</strong>: Yes, you are –</p>
+<p><strong>rheya</strong>: Did you hear what Gibarian said? I’m not a
+human being. I’m an instrument. I came from your memory and your
+imagination and I will torture you no matter what. Even if I remain
+passive. That’s when I drank the… I was going mad. It felt like there
+was no body underneath my skin. There was something else. An illusion.
+But I could feel my heart beating, and I remembered you tested my blood.
+Is it like yours?</p>
+<p><strong>kelvin</strong>: Yes. I told you. It was exactly like
+mine.</p>
+<p><strong>rheya</strong>: But then I would be dead now.</p>
+<p><strong>kelvin</strong>: Is that really what you want?</p>
+<p><strong>rheya</strong>: I want to stop taking those pills.</p>
+<p><strong>kelvin</strong>: I wish you wouldn’t.</p>
+<p><strong>rheya</strong>: They do something to me. It’s hard to think
+straight.</p>
+<p><strong>kelvin</strong>: I think they help.</p>
+<p><strong>rheya</strong>: I have consciousness, but I am not mortal.
+Don’t you see why I’m going crazy?</p>
+<p><strong>kelvin</strong>: You have to remember that I love you, that’s
+all that matters –</p>
+<p><strong>rheya</strong>: I can’t –</p>
+<p><strong>kelvin</strong>: It put you here. I’ll admit it, it acted
+like a God and put you here, put you into my consciousness. I was
+asleep, and it put you into my dream. I saw your mouth. And there you
+were. Whether you’ve been sent here to make me happy or punish me, it
+doesn’t matter. The decision we make now is all that matters. Stay with
+me.</p>
+<p><strong>rheya</strong>: Am I really her?</p>
+<p><strong>kelvin</strong>: I don’t know anymore. All I see is you.</p>
+<p><strong>kelvin</strong>: Stay with me. Stay with me.</p>
+<p><strong>kelvin</strong>: She knows everything. She knows who she
+is.</p>
+<p><strong>snow</strong>: She knows everything? Does she know she came
+once before and you put her in –</p>
+<p><strong>kelvin</strong>: No.</p>
+<p><strong>snow</strong>: What do you want?</p>
+<p><strong>kelvin</strong>: I want you to get Sartorius to abandon his
+plan.</p>
+<p><strong>snow</strong>: What plan?</p>
+<p><strong>kelvin</strong>: Just get him to stop.</p>
+<p><strong>snow</strong>: What do you want to do, leave the station with
+her?</p>
+<p><strong>kelvin</strong>: Yes.</p>
+<p><strong>snow</strong>: Kelvin, she’ll disintegrate. You don’t believe
+me? Let’s radio that shuttle pod you launched – better yet, let’s go get
+it. I’ve charted it’s trajectory, only take a few hours…</p>
+<p><strong>kelvin</strong>: Her oxygen would have run out.</p>
+<p><strong>snow</strong>: Maybe she doesn’t need any. Should we
+check?</p>
+<p><strong>snow</strong>: Who are you trying to please? Yourself? Her?
+Which her, this one or that one. Can you face both? We are in a
+situation that is beyond morality. So: Leave with her. You’ll see the
+transformation.</p>
+<p><strong>kelvin</strong>: Into what?</p>
+<p><strong>snow</strong>: You’ll see her die, that’s all. They’re
+mortal, despite what she told you. She will die. Then what will you
+do?</p>
+<p><strong>kelvin</strong>: I love her.</p>
+<p><strong>snow</strong>: You do, you don’t. She’s willing to give her
+life, you’re willing to give yours, it’s touching and magnificent,
+anything you want but – this isn’t the place for it. Don’t you see? No,
+you don’t.</p>
+<p><strong>sartorius</strong>: I’m sending you a message because I feel
+sorry for you. I really do, Kelvin. It is a mistake to become
+emotionally engaged with one of them. You are being manipulated. You are
+going around in circles to satisfy the curiosity of a power we don’t
+understand and can’t control, and she is the living proof that power
+exists. If she were ugly, you wouldn’t want her around; that’s why she’s
+not ugly. She is a mirror that reflects part of your mind. You provide
+the formula. You can only finish where you started, remember that. They
+sold us out to the highest bidder. They had no right to do that. We
+should have been consulted. We’re not fucking hardware.</p>
+<p><strong>rheya</strong>: What are you taking?</p>
+<p><strong>kelvin</strong>: A sleeping pill. Do you want yours?</p>
+<p><strong>kelvin</strong>: What does it want?</p>
+<p><strong>rheya</strong>: I don’t know. Something. Anything.</p>
+<p><strong>rheya</strong>: It created me and yet I can’t communicate
+with it. It must hear me, though. It must know what’s happening to me.
+Don’t you think?</p>
+<p><strong>snow</strong>: I don’t think it dislikes us. I think it just
+noticed us. It lives, thinks, and acts. We are dealing with a living
+creature here, no question. And it’s done something we’ve never been
+able to do: create a perfect human body. Perfect except for the
+subatomic alterations, but…</p>
+<p><strong>gibarian</strong>: If Solaris is inside our brain, and it
+knows everything, and we’re only consciously aware of what 2% of our
+brain is up to at any given moment, it knows us better than we know
+ourselves. It’s not even close.</p>
+<p><strong>rheya</strong>: I’ve decided that if it is God, it’s a sick
+God. Its ambitions exceed its powers, but it doesn’t realize it. It’s
+created a situation without a goal, and I hate that. A God whose passion
+is not a redemption, who saves nothing, fulfills no purpose. And us? We
+would have to have “an arrangement”. An unspoken understanding that I am
+not human. How can I not hate something that does that?</p>
+<p><strong>kelvin</strong>: Please. Don’t.</p>
+<p><strong>kelvin</strong>: I though I was home.</p>
+<p><strong>kelvin</strong>: I thought it was over.</p>
+<p><strong>kelvin</strong>: Where did you go before?</p>
+<p><strong>rheya</strong>: When?</p>
+<p><strong>kelvin</strong>: Last night. You were talking to someone in
+the corridor.</p>
+<p><strong>rheya</strong>: You must have been dreaming.</p>
+<p><strong>kelvin</strong>: What’s the matter?</p>
+<p><strong>kelvin</strong>: Rheya?</p>
+<p><strong>kelvin</strong>: I’m losing my mind. I’m breaking apart.</p>
+<p><strong>kelvin</strong>: Is this what it means to die? Am I in the
+moment of my own death? Is this the last thought I will ever have?</p>
+<p><strong>kelvin</strong>: I am home now. I try to find the rhythm of
+the world where I used to live… but I feel completely and continually
+out of-sync. I am separate. Why did I return to Earth and lie about what
+happened? Lie about having contact with something like Solaris? I knew
+something else was out there, and didn’t tell a soul. I left them in the
+dark. We all did.</p>
+<p><strong>kelvin</strong>: So why come back at all? To see if she comes
+here?</p>
+<p><strong>kelvin</strong>: I don’t believe it will happen.</p>
+<p><strong>kelvin</strong>: But I will wait, anyway.</p>
+<p><strong>kelvin</strong>: I thought it was over.</p>
+<p><strong>rheya</strong>: Don’t blame them. I begged them to do it.
+It’s better this way. I’m sorry. I’m sorry I tried to make you think I
+was human. I read my own suicide note. I found it in your things. I
+realized I was not her.</p>
+<p><strong>rheya</strong>: I know that you loved me, Chris. I know that.
+I love you.</p>
+<p><strong>kelvin</strong>: “Though they go mad they shall be sane.
+Though they sink through the sea they shall rise again.”</p>
+<p><strong>rheya</strong>: “Though lovers be lost love shall not. And
+death shall have no dominion.”</p>
+<p><strong>kelvin</strong>: You killed her!</p>
+<p><strong>sartorius</strong>: Not her. It.</p>
+<p><strong>kelvin</strong>: You murdered her!</p>
+<p><strong>sartorius</strong>: Kelvin, she begged me. I had a
+short-range version of the destabilizer prototype, a miniature with a
+range of a few meters. She walked into it and disappeared. She was
+gone.</p>
+<p><strong>kelvin</strong>: She’ll come back.</p>
+<p><strong>sartorius</strong>: No, she won’t.</p>
+<p><strong>kelvin</strong>: Why would you let her to do that?</p>
+<p><strong>sartorius</strong>: It’s not human, Kelvin. Whatever it is,
+it’s not human, and I am threatened by that. Evolution-of-
+the-species-at-stake threatened. And I want to win. I want humans to
+win. So I am killing it before it kills me.</p>
+<p><strong>kelvin</strong>: You fucking bastard…</p>
+<p><strong>sartorius</strong>: Whose side are you on?</p>
+<p><strong>sartorius</strong>: It’s changing characteristics. It’s
+solidifying taking on weight.</p>
+<p><strong>kelvin</strong>: How quickly?</p>
+<p><strong>sartorius</strong>: If it continues, it will implode from its
+own weight and turn into a black hole in about four hours and pulls us
+in with it.</p>
+<p><strong>kelvin</strong>: Where’s Snow? Did you call him?</p>
+<p><strong>sartorius</strong>: Yes.</p>
+<p><strong>kelvin</strong>: Snow! We need you up here.</p>
+<p><strong>kelvin</strong>: Snow!</p>
+<p><strong>kelvin</strong>: What’s wrong with you? We need your
+help.</p>
+<p><strong>snow</strong>: I won’t be making the trip.</p>
+<p><strong>sartorius</strong>: Snow, get up here, now.</p>
+<p><strong>snow</strong>: I’m not Snow.</p>
+<p><strong>snow</strong>: I got rid of him. I wanted to see if… I wanted
+to be the only one. I wanted to be Snow.</p>
+<p><strong>sartorius</strong>: Fuck me. I knew it.</p>
+<p><strong>kelvin</strong>: When did this happen?</p>
+<p><strong>snow</strong>: Oh, right away. That’s why you never saw me
+with anyone. You should’ve noticed that. I miss him, though. I think I
+made a mistake.</p>
+<p><strong>kelvin</strong>: Jesus…</p>
+<p><strong>snow</strong>: But I can’t leave with you. I won’t make
+it.</p>
+<p><strong>kelvin</strong>: Maybe you can.</p>
+<p><strong>sartorius</strong>: You want it coming back with us?</p>
+<p><strong>snow</strong>: You go ahead. Of what I remember about Earth…
+it’s all one thing now. Everything’s a blur. I like distinctions.</p>
+<p><strong>sartorius</strong>: We do not have time to deal with this.
+Get the diode sail into position and let me know when the bias drive and
+the induction ring are at zero point.</p>
+<p><strong>kelvin</strong>: Earth. What did that word mean to me? I have
+returned. Finally.</p>
+<p><strong>kelvin</strong>: I work in the city now. After work I wander
+and lose myself. I am silent and attentive. I follow the current. I make
+a conscious effort to smile, nod, stand, and perform the millions of
+gestures that constitute life on Earth.</p>
+<p><strong>kelvin</strong>: I will study these gestures until they
+become reflexes again. I will find new interests and occupations, but
+–</p>
+<p><strong>kelvin</strong>: I will not… give myself. I will not give
+myself to anything or anyone, because I am haunted by the idea that I
+remembered her wrong. That I shaded my memory of her to suit myself.
+That I was unfair to her and caused her destruction. What if I was wrong
+about everything? I’ve come to believe that memory is a curse.</p>
+<p><strong>kelvin</strong>: How can you be here…</p>
+<p><strong>rheya</strong>: Shhhh. Just stay with me. Stay with me.
+Everything is forgiven. Everything.</p>
+<p><strong>kelvin</strong>: I love you.</p>
+</body>
+</html>

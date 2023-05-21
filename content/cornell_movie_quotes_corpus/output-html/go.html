@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>go</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="go">go</h1>
+<p><strong>go</strong>: written by John August</p>
+<p><strong>claire</strong>: You know what I like best about Christmas?
+The surprises.</p>
+<p><strong>claire</strong>: It’s like, you get this box, and you’re sure
+you know what’s in it.</p>
+<p><strong>claire</strong>: You shake it, you weigh it, and you’re
+totally convinced you have it pegged. No doubt in your mind.</p>
+<p><strong>claire</strong>: I’m not saying this is anything it’s not.
+But c’mon. This time yesterday, who’dda thunk it?</p>
+<p><strong>`x’</strong>: Christmas MUZAK plays. A baby CRIES.</p>
+<p><strong>ronna</strong>: Paper or plastic?</p>
+<p><strong>ronna</strong>: Paper or plastic?</p>
+<p><strong>ronna</strong>: Paper or plastic?</p>
+<p><strong>stringy haired woman</strong>: Both.</p>
+<p><strong>stringy haired woman</strong>: You didn’t double my
+coupons.</p>
+<p><strong>ronna</strong>: They’re at the bottom. In red. Where it says,
+double coupons.</p>
+<p><strong>stringy haired woman</strong>: You can’t do that. You can’t
+put bleach in the same bag as food. It’s poison.</p>
+<p><strong>stringy haired woman</strong>: Don’t think you’re something
+you’re not. I used to have your job.</p>
+<p><strong>ronna</strong>: Look how far it got you.</p>
+<p><strong>claire</strong>: Don’t.</p>
+<p><strong>simon</strong>: Why not?</p>
+<p><strong>claire</strong>: She’s been on for fourteen hours.</p>
+<p><strong>simon</strong>: Ronna?</p>
+<p><strong>ronna</strong>: No.</p>
+<p><strong>simon</strong>: I haven’t asked you yet.</p>
+<p><strong>ronna</strong>: Answer’s still no.</p>
+<p><strong>simon</strong>: Are you menstrual? Pre-menstrual, post-
+menstrual?</p>
+<p><strong>4a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>ronna</strong>: One of the three. Okay, Simon. In case you
+haven’t heard the buzz, the scoop, the word on the street, I’m getting
+evicted. Tomorrow. So pardon me if I’m not in a holly-jolly mood right
+now.</p>
+<p><strong>simon</strong>: Ronna, they wouldn’t evict you at Christmas.
+You’d be ho-ho-homeless.</p>
+<p><strong>simon</strong>: Is that why all the overtime? How much do you
+owe?</p>
+<p><strong>ronna</strong>: Three eighty.</p>
+<p><strong>simon</strong>: That’s nothing.</p>
+<p><strong>ronna</strong>: More than I got.</p>
+<p><strong>simon</strong>: I’ll give you twenty right now for a
+blowjob.</p>
+<p><strong>simon</strong>: Handjob?</p>
+<p><strong>simon</strong>: Ronna, do you want my shift?</p>
+<p><strong>ronna</strong>: Serious?</p>
+<p><strong>4b.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>simon</strong>: I haven’t punched in yet.</p>
+<p><strong>simon</strong>: Look, my best mates are going to Las Vegas
+this weekend. I’ve never been – I’m told it’s incredible. If you took my
+shift, I could go with them. Everybody wins. Cash up front.</p>
+<p><strong>ronna</strong>: Deal.</p>
+<p><strong>simon</strong>: Ronna? Are you certain I couldn’t have a
+blowjob?</p>
+<p><strong>voice on intercom</strong>: Available cashier to the front.
+Customers waiting.</p>
+<p><strong>voice on intercom</strong>: Repeat, cashier to the front.</p>
+<p><strong>claire</strong>: One of us has to go.</p>
+<p><strong>mannie</strong>: Dead celebrities?</p>
+<p><strong>ronna</strong>: Loser goes up. Steve McQueen.</p>
+<p><strong>claire</strong>: Michael Landon.</p>
+<p><strong>mannie</strong>: Lucille Ball.</p>
+<p><strong>6a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>ronna</strong>: Burt Lancaster. Can you drive?</p>
+<p><strong>mannie</strong>: If you don’t mind The Beast.</p>
+<p><strong>ronna</strong>: I love The Beast.</p>
+<p><strong>claire</strong>: Lane Staley. Alice in Chains.</p>
+<p><strong>ronna</strong>: He’s not dead yet.</p>
+<p><strong>mannie</strong>: It’s true.</p>
+<p><strong>claire</strong>: Lewis Carroll. Alice in Wonderland.</p>
+<p><strong>mannie</strong>: Carole Lombard.</p>
+<p><strong>ronna</strong>: Lee Marvin.</p>
+<p><strong>mannie</strong>: Don’t say Molly Ringwald.</p>
+<p><strong>claire</strong>: Martha Raye.</p>
+<p><strong>mannie</strong>: Nice. Robert Mitchum.</p>
+<p><strong>ronna</strong>: Shit! M. M. MMMMMMMMalcolm X.</p>
+<p><strong>claire</strong>: You can’t say Malcolm X.</p>
+<p><strong>ronna</strong>: He’s famous, he’s dead.</p>
+<p><strong>mannie</strong>: That’s like a rule or something. Nothing
+starts with X.</p>
+<p><strong>ronna</strong>: That’s not my problem.</p>
+<p><strong>mannie</strong>: You can challenge.</p>
+<p><strong>claire</strong>: Okay, I challenge. Give me one dead
+celebrity that starts with X.</p>
+<p><strong>ronna</strong>: This is bullshit. I am not working the
+fucking register.</p>
+<p><strong>ronna</strong>: X…X…There is one. I know I thought of one
+before.</p>
+<p><strong>switterman</strong>: Break was over four minutes ago. Who’s
+up front?</p>
+<p><strong>ronna</strong>: I am.</p>
+<p><strong>mannie</strong>: Xerxes.</p>
+<p><strong>ronna</strong>: What?</p>
+<p><strong>mannie</strong>: Xerxes. Some dead pharaoh guy. Starts with
+X.</p>
+<p><strong>ronna</strong>: That wasn’t it. I never heard of fucking
+“Xerxes.”</p>
+<p><strong>mannie</strong>: Pharaoh coulda saved your ass.</p>
+<p><strong>voice</strong>: There’s an opera about him.</p>
+<p><strong>adam</strong>: Xerxes. I took music appreciation twice.</p>
+<p><strong>adam</strong>: Does a British guy still work here?</p>
+<p><strong>ronna</strong>: He went to Vegas for the weekend.</p>
+<p><strong>adam</strong>: Betcha wonder why we’re buying all this orange
+juice.</p>
+<p><strong>ronna</strong>: Scurvy?</p>
+<p><strong>zack</strong>: Say… Ronna. You don’t know where we could get
+something to go with this orange juice, do you?</p>
+<p><strong>ronna</strong>: Doughnuts, aisle four.</p>
+<p><strong>zack</strong>: But then you get the weird taste in your
+mouth. I was thinking something a little more euphoric. The British guy
+usually hooks us up.</p>
+<p><strong>ronna</strong>: How much?</p>
+<p><strong>zack</strong>: Twenty at twenty.</p>
+<p><strong>ronna</strong>: You’re overpaying.</p>
+<p><strong>zack</strong>: We’re desperate. A bunch of us are going to
+this party tonight, this warehouse thing…</p>
+<p><strong>ronna</strong>: Mary Xmas Supafest.</p>
+<p><strong>adam</strong>: You’re going?</p>
+<p><strong>9a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>zack</strong>: And we had planned this kinda pre-party. Only
+there’s 20 of us, it’s like all or nothing.</p>
+<p><strong>zack</strong>: A friend was supposed to get the stuff in
+Chicago, but now he’s snowed in. So if you could help us out here…</p>
+<p><strong>ronna</strong>: Gimme a number. Let me see what I can do.</p>
+<p><strong>zack</strong>: Kick ass.</p>
+<p><strong>ronna</strong>: So do you want the o.j. or not?</p>
+<p><strong>adam</strong>: Absolutely.</p>
+<p><strong>claire</strong>: You know that Simon’s in Vegas.</p>
+<p><strong>ronna</strong>: I don’t need Simon. I’m going to Todd.</p>
+<p><strong>mannie</strong>: Todd GAINES?</p>
+<p><strong>claire</strong>: Who’s Todd Gaines?</p>
+<p><strong>mannie</strong>: Simon’s dealer.</p>
+<p><strong>claire</strong>: You can’t do that, can you? I mean, go
+around Simon.</p>
+<p><strong>ronna</strong>: Ok, listen up. If Simon were here – which
+he’s not – he would charge fifteen, when I know he gets it for ten.</p>
+<p><strong>10a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>11 continued: 11</strong>: RONNA</p>
+<p><strong>mannie</strong>: But it’s like an evolutionary leap. You’re
+moving up the drug food chain. Without permission.</p>
+<p><strong>claire</strong>: Ronna, you shouldn’t do this.</p>
+<p><strong>ronna</strong>: Both of you chill the fuck out. It’s just
+once. When Simon gets back, we can still overpay for quarters if it
+makes you feel all warm and happy. But this is my deal, so just sit back
+and watch.</p>
+<p><strong>intercom voice</strong>: Speak!</p>
+<p><strong>ronna</strong>: Todd! It’s Ronna Martin. You know me through
+Simon.</p>
+<p><strong>intercom voice</strong>: Yeah?</p>
+<p><strong>ronna</strong>: Can I come up?</p>
+<p><strong>ronna</strong>: Todd?</p>
+<p><strong>gaines</strong>: Don’t let the cat out.</p>
+<p><strong>ronna</strong>: I didn’t wake you up, did I?</p>
+<p><strong>gaines</strong>: Nah.</p>
+<p><strong>gaines</strong>: I thought you were still buying quarters off
+Simon. Least what Simon pretends are quarters.</p>
+<p><strong>ronna</strong>: I keep him honest.</p>
+<p><strong>gaines</strong>: At that level you’re supposed to pinch. It’s
+the economics of it.</p>
+<p><strong>gaines</strong>: You leaving?</p>
+<p><strong>gaines</strong>: Be good.</p>
+<p><strong>gaines</strong>: I take it this is not a social call.</p>
+<p><strong>ronna</strong>: I need a favor.</p>
+<p><strong>gaines</strong>: A favor? Wow. I didn’t know we were such
+good friends, Ronna. Because if we were, you would know I give head
+before I give favors. I don’t even give my best friends head, so the
+chance of your getting a favor right now are pretty fucking slim. You
+might try just telling me what you want to buy.</p>
+<p><strong>ronna</strong>: Twenty hits of ecstacy.</p>
+<p><strong>gaines</strong>: You come here out of the blue asking for
+twenty hits. Just so happens twenty is the magic number where intent to
+sell becomes trafficking.</p>
+<p><strong>ronna</strong>: Todd, I would never fuck you like that.</p>
+<p><strong>gaines</strong>: How would you fuck me? Would you strap it
+on?</p>
+<p><strong>gaines</strong>: What’s the occasion?</p>
+<p><strong>ronna</strong>: There’s this big Christmas party thing.
+Warehouse, you know. A bunch of us are doing sort of a pre-party
+thing.</p>
+<p><strong>gaines</strong>: Friends of yours. You’re not going to go and
+try to sell this on me, are you?</p>
+<p><strong>ronna</strong>: No.</p>
+<p><strong>gaines</strong>: You’re not dealing.</p>
+<p><strong>ronna</strong>: Swear to God.</p>
+<p><strong>gaines</strong>: This is the real thing. Pharmaceutical
+grade, not that crunchy herbal rave shit. Don’t let anyone double dose
+or you’ll be frying eggs off `em in the emergency room. One hit per
+headbanger.</p>
+<p><strong>ronna</strong>: Understood.</p>
+<p><strong>gaines</strong>: Twenty at fifteen is 300.</p>
+<p><strong>ronna</strong>: Fifteen? I was thinking more like ten.</p>
+<p><strong>gaines</strong>: You already did strap it on.</p>
+<p><strong>ronna</strong>: It’s just that I know you charge Simon
+ten.</p>
+<p><strong>gaines</strong>: Inflation’s a bitch.</p>
+<p><strong>ronna</strong>: Here’s the deal. There’s 20 of us. I need all
+of this. But I only have two hundred. I mean, that’s all I have.</p>
+<p><strong>ronna</strong>: No, hear me out. This two-hundred is like a
+downpayment. You give me the stuff, I get the extra hundred from them,
+then I come right back and pay you.</p>
+<p><strong>gaines</strong>: See, that would be doing you a favor, and
+you know how I feel about favors.</p>
+<p><strong>ronna</strong>: I could leave something with you.
+Collateral.</p>
+<p><strong>gaines</strong>: I already got a fucking Swatch. I need
+something I know you’ll come back for.</p>
+<p><strong>ronna</strong>: Claire, could you come up with me for a
+sec?</p>
+<p><strong>ronna</strong>: Forty-five minutes. Hour, tops. You just have
+to sit there.</p>
+<p><strong>claire</strong>: Hello! He’s a drug dealer.</p>
+<p><strong>ronna</strong>: Jesus, Claire. Don’t get 818 on me here. How
+much shit have I done for you? This is nothing.</p>
+<p><strong>claire</strong>: No. No! You’re making me an accessory.</p>
+<p><strong>ronna</strong>: Claire. That bracelet of mine you’re wearing
+is an accessory. You are just some chick who’s sitting in an apartment.
+That’s it.</p>
+<p><strong>ronna</strong>: Okay, no bullshit. I need this. I don’t get
+this money, I get evicted. My ass is out the street.</p>
+<p><strong>claire</strong>: You could…</p>
+<p><strong>ronna</strong>: No, Claire. I don’t have anyone else to go
+to. I am coming to you and I am asking for your help. Please. Help
+me.</p>
+<p><strong>claire</strong>: Forty-five minutes. That’s like eight
+o’clock.</p>
+<p><strong>ronna</strong>: We’ll be back by eight, I promise.</p>
+<p><strong>mannie</strong>: Six-forty-four. Jesus, next time ask for
+directions.</p>
+<p><strong>mannie</strong>: Ronna!</p>
+<p><strong>mannie</strong>: You’re a pro.</p>
+<p><strong>ronna</strong>: I’m a top-seeded amateur.</p>
+<p><strong>mannie</strong>: And I’m a very happy man.</p>
+<p><strong>burke</strong>: Damn good to meet you, Rhonda.</p>
+<p><strong>ronna</strong>: Ronna.</p>
+<p><strong>burke</strong>: Ronna. When I heard Philly got snowed in, I
+thought we were fucked for sure. Glad we found you.</p>
+<p><strong>burke</strong>: Work work work. Friday must be a busy
+night.</p>
+<p><strong>ronna</strong>: That was just a friend.</p>
+<p><strong>burke</strong>: Hey. What can I get you to drink?</p>
+<p><strong>ronna</strong>: Some of that orange juice would be great.</p>
+<p><strong>zack</strong>: So this party tonight sounds like it’s gonna
+be huge.</p>
+<p><strong>18a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>adam</strong>: Massive.</p>
+<p><strong>zack</strong>: That would be a synonym for huge.</p>
+<p><strong>adam</strong>: Just backing you up.</p>
+<p><strong>zack</strong>: And I appreciate that.</p>
+<p><strong>burke</strong>: Ronna hun, we are fresh out of o.j…</p>
+<p><strong>burke</strong>: Cerveza?</p>
+<p><strong>adam</strong>: Oh yeah. Hey. We bought a whole bunch of
+orange juice. It’s in the car.</p>
+<p><strong>burke</strong>: Now, Zack tells me you got 20 at 20, is that
+right?</p>
+<p><strong>ronna</strong>: You got a bathroom?</p>
+<p><strong>adam</strong>: Down the hall on the right.</p>
+<p><strong>zack</strong>: Let me show you…</p>
+<p><strong>burke</strong>: Maybe we could do this first.</p>
+<p><strong>adam</strong>: We said Chicago, you said Philadelphia.</p>
+<p><strong>19a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>adam</strong>: Maybe she didn’t notice.</p>
+<p><strong>burke</strong>: Just wait here. Keep it calm.</p>
+<p><strong>close up</strong>: Ronna locks the door.</p>
+<p><strong>ronna</strong>: You’re fine. You’re fine.</p>
+<p><strong>burke</strong>: Everything all right in there?</p>
+<p><strong>cu</strong>: The handle, rocking back and forth, locked.</p>
+<p><strong>ronna</strong>: Fine.</p>
+<p><strong>cu</strong>: The hole in the center of the door knob. A thin
+allen wrench slips in.</p>
+<p><strong>ronna</strong>: All yours.</p>
+<p><strong>burke</strong>: Ronna, hun, do we got a deal here or not?</p>
+<p><strong>ronna</strong>: No. No, see we don’t. That’s what I came here
+to tell you. I couldn’t get anything.</p>
+<p><strong>burke</strong>: C’mon, resourceful girl like you? I don’t
+believe it.</p>
+<p><strong>ronna</strong>: It’s true.</p>
+<p><strong>burke</strong>: I just want to make a deal here, Ronna. Can
+we make a deal?</p>
+<p><strong>ronna</strong>: Who the fuck are you? Monty Hall?</p>
+<p><strong>ronna</strong>: Did you know I’m only 17?</p>
+<p><strong>ronna</strong>: I probably shouldn’t be drinking this beer,
+should I? Being so underage and all.</p>
+<p><strong>loop</strong>: Man, I don’t know what happened, it’s like the
+machine just ate the tape.</p>
+<p><strong>ronna</strong>: I think it was Simon they were after. He
+deals all the time out of the store. I mean, he makes change out of the
+fucking register.</p>
+<p><strong>mannie</strong>: They didn’t know who was dealing, just that
+it was someone at the store?</p>
+<p><strong>ronna</strong>: They were fishing. I bit.</p>
+<p><strong>ronna</strong>: It’s Claire. She paged me while I was in
+there.</p>
+<p><strong>mannie</strong>: We go back to Todd. Tell him they didn’t
+show up, whatever. And then just swap the pills for Claire.</p>
+<p><strong>ronna</strong>: We can’t.</p>
+<p><strong>mannie</strong>: Why not?</p>
+<p><strong>ronna</strong>: They’re gone. I flushed them.</p>
+<p><strong>mannie</strong>: Oh shit.</p>
+<p><strong>ronna</strong>: Think of something. I need a hundred bucks or
+20 hits of X.</p>
+<p><strong>ronna</strong>: What?!</p>
+<p><strong>ronna</strong>: You took one, didn’t you? Fuck you, Mannie!
+How could you do this to me? I need you now.</p>
+<p><strong>ronna</strong>: Drive.</p>
+<p><strong>mannie</strong>: Where?</p>
+<p><strong>ronna</strong>: Just drive. I have an idea.</p>
+<p><strong>a crappy cd player</strong>: |</p>
+<p><strong>tm</strong>: The two stockboys give a wide-eyed, Spielberg
+stare…</p>
+<p><strong>ronna</strong>: Were they round or oval?</p>
+<p><strong>mannie</strong>: Round. White. Like aspirin. Like baby
+aspirin.</p>
+<p><strong>ronna</strong>: A or B?</p>
+<p><strong>ronna</strong>: You’re sure?</p>
+<p><strong>mannie</strong>: I wasn’t really looking.</p>
+<p><strong>ronna</strong>: Stop fucking paging me, Claire!</p>
+<p><strong>gaines</strong>: Speak!…Just licking my dick, whazzup with
+you?…Yeah…The Crazy Horse, you’ll have to look it up…I don’t know what
+I’m up to. Where’s this party at?</p>
+<p><strong>gaines</strong>: It’s called “Mary Xmas.” Mary like a
+chick…Like her name is Mary, not like you marry her. You fucking moron…I
+dunno, some warehouse shit. Is this gonna be cool?</p>
+<p><strong>claire</strong>: Yeah, I guess.</p>
+<p><strong>gaines</strong>: My friend Claire here says it’s going to be
+a kick-ass-fucking-time…What, you know her? It’s your buddy Simon. He’s
+in Vegas.</p>
+<p><strong>claire</strong>: I know.</p>
+<p><strong>gaines</strong>: She knows…Hell, I dunno… Maybe…Yeah, well
+save a load for me big boy…Whatever.</p>
+<p><strong>gaines</strong>: What do you want for Christmas, Claire?</p>
+<p><strong>claire</strong>: I don’t know.</p>
+<p><strong>gaines</strong>: Do you want to get laid?</p>
+<p><strong>claire</strong>: No.</p>
+<p><strong>gaines</strong>: No, you don’t wanna get laid or no, you do,
+but you don’t want to get laid with me?</p>
+<p><strong>claire</strong>: You can’t answer that. I mean, it’s
+like…</p>
+<p><strong>gaines</strong>: Either way you’re fucked. Where are they,
+Claire?</p>
+<p><strong>claire</strong>: They’ll be here.</p>
+<p><strong>gaines</strong>: They’ll be here. Huh.</p>
+<p><strong>gaines</strong>: Are you a virgin?</p>
+<p><strong>claire</strong>: What?</p>
+<p><strong>gaines</strong>: C’mon, Claire. Answer the question. Answer
+the question, Claire.</p>
+<p><strong>claire</strong>: Breakfast Club. I get it.</p>
+<p><strong>gaines</strong>: Look at me. I want to show you
+something.</p>
+<p><strong>gaines</strong>: I’m kidding!</p>
+<p><strong>gaines</strong>: I’m not kidding. Where the fuck are they,
+Claire?</p>
+<p><strong>gaines</strong>: Speak!</p>
+<p><strong>filtered voice</strong>: It’s Ronna!</p>
+<p><strong>ronna</strong>: Don’t say anything. And try not to look so
+stoned.</p>
+<p><strong>gaines</strong>: That’s no problem. These things happen, I
+understand that.</p>
+<p><strong>ronna</strong>: Todd, I’m trying to explain what happened.
+They had already gotten stuff from somewhere else. It was just a case of
+miscommunication, I thought…</p>
+<p><strong>huxley</strong>: I can hear your thoughts.</p>
+<p><strong>huxley</strong>: Xiang Kai-Shek. Famous Chinese ruler guy.
+Starts with X.</p>
+<p><strong>mannie</strong>: No. “C” Chiang Kai-Shek.</p>
+<p><strong>huxley</strong>: You’re going to die.</p>
+<p><strong>gaines</strong>: I’m keeping fifty. Call it interest.</p>
+<p><strong>ronna</strong>: That’s fine. Todd, I’m really sorry about all
+this.</p>
+<p><strong>gaines</strong>: Hey Ronna.</p>
+<p><strong>gaines</strong>: I just gave you a favor.</p>
+<p><strong>ronna</strong>: And here I thought you just gave me head.</p>
+<p><strong>31a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>ronna</strong>: Pin me.</p>
+<p><strong>claire</strong>: Okay, at the risk of sounding like. You
+know. Me. What are you going to do about getting evicted? You’re still
+short, aren’t you?</p>
+<p><strong>claire</strong>: What? What?</p>
+<p><strong>ronna</strong>: Hi. I’m Kelly, and this is Donna. We were
+wondering if you might want to hang out.</p>
+<p><strong>fila guy</strong>: I think I feel something.</p>
+<p><strong>ronna</strong>: It’s really smooth, isn’t it? Donna’s brother
+is a pharmacist. He got it for us.</p>
+<p><strong>claire</strong>: Chip. His name is Chip. My brother.</p>
+<p><strong>nike hat</strong>: Is it like a wave, or is it like a
+zoom?</p>
+<p><strong>fila guy</strong>: It’s like floating. Like, “Hey down there,
+how’s the ground and shit.”</p>
+<p><strong>nike hat</strong>: I got it. Oh, fuck. Yeah, I feel it.</p>
+<p><strong>anorexic girl</strong>: Is it really that cool?</p>
+<p><strong>fila guy</strong>: You gotta try it. Shit, I’ll buy for
+you.</p>
+<p><strong>ronna</strong>: And you know what makes it even better? If
+you smoke a lot of pot. I mean a lot of it.</p>
+<p><strong>claire</strong>: I can’t believe you are selling allergy
+medicine.</p>
+<p><strong>ronna</strong>: We’re out of that. We’re down to chewable
+aspirin.</p>
+<p><strong>skate-punk guy</strong>: Hey. People are saying you have some
+really good stuff.</p>
+<p><strong>ronna</strong>: Show me your tits.</p>
+<p><strong>claire</strong>: How much have you made?</p>
+<p><strong>ronna</strong>: Four hundred.</p>
+<p><strong>fila guy</strong>: This girl inside. She and her friend have
+it.</p>
+<p><strong>spider marine</strong>: Ecstasy? The real shit?</p>
+<p><strong>fila guy</strong>: Pharmaceutical grade. None of the crunchy
+herbal rave shit.</p>
+<p><strong>anorexia girl</strong>: Best twenty bucks you could
+spend.</p>
+<p><strong>ronna</strong>: What’s wrong? Mannie?</p>
+<p><strong>ronna</strong>: Jesus. You’re burning up.</p>
+<p><strong>mannie</strong>: I can’t feel my hands.</p>
+<p><strong>ronna</strong>: Listen to me. We’re going to find Claire and
+get out of here.</p>
+<p><strong>ronna</strong>: Sweetheart. Mannie. I’m going to leave you
+here. I’m going to get the car and come back for you.</p>
+<p><strong>ronna</strong>: I can’t carry you! Mannie, just hide here.
+Just like a little mouse, okay? You’re going to be fine. Ain’t nobody
+leaving.</p>
+<p><strong>gaines</strong>: How’s it going, Ronna? How are sales?</p>
+<p><strong>ronna</strong>: Todd, I can explain.</p>
+<p><strong>gaines</strong>: I’m not going to ask you to.</p>
+<p><strong>gaines</strong>: The thing is, it’s not like I’m in a highly
+ethical industry. But goddamn, Ronna. You fucked me over for 20 lousy
+hits.</p>
+<p><strong>ronna</strong>: It’s not what it looks like. I mean, it sort
+of is, but it’s complicated.</p>
+<p><strong>gaines</strong>: Not really.</p>
+<p><strong>ronna</strong>: I know I fucked up, but I can make it up to
+you. Please, Todd.</p>
+<p><strong>gaines</strong>: I’m the last fucking person you should be
+expecting a favor from.</p>
+<p><strong>ronna</strong>: I have the cash. I have more than I owe
+you.</p>
+<p><strong>gaines</strong>: So now you’re an entrepreneur.</p>
+<p><strong>ronna</strong>: Mannie!!</p>
+<p><strong>ronna</strong>: Mannie, I got it! I remembered who the fuck
+it was! Perry Farrell’s dead girlfriend. Xiola Blue. X-I-O-L-A. Fuck, I
+knew there was one.</p>
+<p><strong>ronna</strong>: Don’t you get it? I win.</p>
+<p><strong>simon</strong>: No, no. Donde Miguel?</p>
+<p><strong>simon</strong>: Jalisco? Where is Jalisco?</p>
+<p><strong>claire</strong>: Mexico.</p>
+<p><strong>claire</strong>: Simon, no one is going to take your
+shift.</p>
+<p><strong>simon</strong>: Ronna, do you want my shift?</p>
+<p><strong>ronna</strong>: Are you serious?</p>
+<p><strong>simon</strong>: I haven’t punched in yet.</p>
+<p><strong>41a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>simon</strong>: Look, my best mates are going to Las Vegas
+this weekend. I’ve never been, I’m told it’s incredible. If you took my
+shift, I could go with them. Everybody wins.</p>
+<p><strong>simon</strong>: Shit. Shit!</p>
+<p><strong>simon</strong>: Fucking let me out of here!</p>
+<p><strong>tiny</strong>: Mo’fuckin Jack-in-the-box.</p>
+<p><strong>marcus</strong>: Dude, you passed out before we left L.A.</p>
+<p><strong>tiny</strong>: Pop! Goes the asshole.</p>
+<p><strong>tiny</strong>: So this chick, she’s bobbing up and down on my
+dick like she’s fucking Marilyn Chambers.</p>
+<p><strong>singh</strong>: She actually found your dick?</p>
+<p><strong>tiny</strong>: Then she starts going around the ouside– you
+know, painting the tree–when WHACK! It hits her in the eye. And her
+contact, it’s like stuck on my dick.</p>
+<p><strong>tiny</strong>: Her contact lens. It’s stuck on the end of my
+dick.</p>
+<p><strong>marcus</strong>: Was it hard or soft?</p>
+<p><strong>tiny</strong>: What, my dick?</p>
+<p><strong>singh</strong>: The contact lens.</p>
+<p><strong>marcus</strong>: Do you remember if it was a colored lens?
+That she used to have two blue eyes and now she had one blue and one
+brown?</p>
+<p><strong>tiny</strong>: What the fuck does that matter?</p>
+<p><strong>marcus</strong>: It matters because it happened to me. It was
+my story. I told this story about a year ago. The difference was, I knew
+those small-but-important details. That, and it was true.</p>
+<p><strong>tiny</strong>: Oh. Whatever.</p>
+<p><strong>marcus</strong>: Whatever?</p>
+<p><strong>tiny</strong>: Whatever.</p>
+<p><strong>tiny</strong>: Yo, pull your stinky dinky out of my ass. I
+was just trying to make conversation. Fuck. Give a nigger a break.</p>
+<p><strong>marcus</strong>: What nigger? This nigger?</p>
+<p><strong>tiny</strong>: My mother’s mother’s mother was black.</p>
+<p><strong>marcus</strong>: So you say, yet we have never seen a picture
+of this Ebonic woman.</p>
+<p><strong>singh</strong>: Stop. Truce.</p>
+<p><strong>marcus</strong>: If you were any less black, you would be
+clear.</p>
+<p><strong>simon</strong>: Stop.</p>
+<p><strong>marcus</strong>: Look at your skin.</p>
+<p><strong>tiny</strong>: I see black because I know I am. Color is a
+state of mind.</p>
+<p><strong>marcus</strong>: Thank you Rhythm Nation.</p>
+<p><strong>simon</strong>: So what does Valentina do?</p>
+<p><strong>marcus</strong>: She’s a nutritionist. She also teaches a
+class at this college.</p>
+<p><strong>simon</strong>: What class?</p>
+<p><strong>marcus</strong>: Tantric sexuality for couples.</p>
+<p><strong>singh</strong>: She teaches people how to fuck?</p>
+<p><strong>tiny</strong>: Man, I taught myself.</p>
+<p><strong>marcus</strong>: You shouldn’t eat shrimp. It’s loaded with
+iodine.</p>
+<p><strong>tiny</strong>: This shit is expensive. You’re paying five
+bucks for lettuce and seeds and shit.</p>
+<p><strong>marcus</strong>: Thing is, most people really don’t know how
+to make love. They just put it in and move it around until they get off.
+What tantra teaches you is how to prolong and deepen the experience,
+bring it to a higher level. If one man in ten were having the sex I’m
+having, there would be no war.</p>
+<p><strong>simon</strong>: What’s the longest you and her ever did
+it?</p>
+<p><strong>marcus</strong>: Fourteen hours.</p>
+<p><strong>singh</strong>: Holy shit!</p>
+<p><strong>tiny</strong>: How many times you shoot?</p>
+<p><strong>marcus</strong>: Not once.</p>
+<p><strong>simon</strong>: Fourteen hours, you didn’t go once. Not even
+at the end?</p>
+<p><strong>marcus</strong>: You redirect the orgasm inside.</p>
+<p><strong>simon</strong>: Bullshit.</p>
+<p><strong>marcus</strong>: Swear to God. And I do mean Allah.</p>
+<p><strong>singh</strong>: When was the last time you got off? I mean
+like, wet.</p>
+<p><strong>marcus</strong>: I haven’t ejaculated in six months.</p>
+<p><strong>tiny</strong>: Six months!</p>
+<p><strong>marcus</strong>: Anyone can do it. All it takes is
+discipline.</p>
+<p><strong>tiny</strong>: You are some kind of Obi Wan Kenobi
+motherfucker.</p>
+<p><strong>62 continued: 62</strong>: TINY</p>
+<p><strong>marcus</strong>: Todd Gaines. The drug dealer.</p>
+<p><strong>simon</strong>: He gets a discount. He let me use it. He’s a
+good guy.</p>
+<p><strong>marcus</strong>: He’s the good drug dealer. I get
+confused.</p>
+<p><strong>simon</strong>: We’ll pay cash anyway. This is just to get
+the room.</p>
+<p><strong>simon</strong>: Could you answer a question… …Rachel?
+Hypothetically, do you think a man could make love to a woman for 14
+hours without ever achieving climax?</p>
+<p><strong>desk woman</strong>: I think my manager would be better able
+to answer that question. Would you like me to call him over?</p>
+<p><strong>simon</strong>: No. Not necessary.</p>
+<p><strong>desk woman</strong>: Great then. Welcome to the Riviera.</p>
+<p><strong>simon</strong>: Lesbian.</p>
+<p><strong>marcus</strong>: Did I tell you not to eat the shrimp?</p>
+<p><strong>singh</strong>: I have something for you. Where did I put it?
+Oh, it’s right here.</p>
+<p><strong>simon</strong>: Todd, it’s Simon. What’s up?…I’m in Vegas, we
+just got here. What was the name of the place you said we should go…The
+Crazy Horse. What are you doing tonight?</p>
+<p><strong>simon</strong>: You’re going to a wedding?…What is it, a
+rave?</p>
+<p><strong>simon</strong>: No, I know Claire…Are you going to fuck
+her?</p>
+<p><strong>boy</strong>: Who are you?</p>
+<p><strong>marcus</strong>: This is our room.</p>
+<p><strong>boy</strong>: Oh. What are you doing?</p>
+<p><strong>simon</strong>: Raping small children.</p>
+<p><strong>simon</strong>: Did I mention how much I like your
+jacket?</p>
+<p><strong>marcus</strong>: No.</p>
+<p><strong>simon</strong>: There’s a reason.</p>
+<p><strong>simon</strong>: Let me borrow some money.</p>
+<p><strong>marcus</strong>: Where’s your money?</p>
+<p><strong>simon</strong>: I lost it</p>
+<p><strong>marcus</strong>: We’ve been here five minutes.</p>
+<p><strong>simon</strong>: I was playing this game at a hundred dollar
+table and I didn’t understand it, but now I do. I think I figured out
+how to beat it.</p>
+<p><strong>marcus</strong>: Let me see your wallet.</p>
+<p><strong>marcus</strong>: You can have it back in an hour. No, no. No
+buts. One hour, right here.</p>
+<p><strong>various shots</strong>: Simon wanders, bored. He hits on a
+WOMAN at the nickel slots. When she rebuffs him, he turns his attention
+to the COCKTAIL WAITRESS.</p>
+<p><strong>becky</strong>: Okay, if you’re from over there, then where
+did you meet these friends? Of yours. Who I don’t see.</p>
+<p><strong>simon</strong>: They already knew each utter, but Marcus I
+met in traffic school.</p>
+<p><strong>rebecca</strong>: Een traffic skewl?</p>
+<p><strong>simon</strong>: I’m a good driver, I am. I learned everything
+from American television. Hunter, Magnum P.I. – The Knight Rider is an
+excellent program.</p>
+<p><strong>rebecca</strong>: Do you want to be getting high with us?</p>
+<p><strong>becky</strong>: Otherwise, I can’t hold it in.</p>
+<p><strong>becky</strong>: Oh my God!</p>
+<p><strong>rebecca</strong>: You’re fine. You’re fine.</p>
+<p><strong>rebecca</strong>: Tell her she’s fine.</p>
+<p><strong>simon</strong>: You’re beautiful.</p>
+<p><strong>becky</strong>: Did you go?</p>
+<p><strong>becky</strong>: Why not?</p>
+<p><strong>simon</strong>: Tantra, baby.</p>
+<p><strong>marcus</strong>: I am not a bathroom attendant!</p>
+<p><strong>simon</strong>: Hey. We’re leaving.</p>
+<p><strong>marcus</strong>: Fuck yeah.</p>
+<p><strong>ferrari man</strong>: Keep it close and there’s an extra ten
+bucks for you.</p>
+<p><strong>marcus</strong>: Get in. Get in the car. Get in.</p>
+<p><strong>simon</strong>: Question. When you’re doing tantra, you hold
+it in at the end, right?</p>
+<p><strong>marcus</strong>: No. Never. Redirect the energy, but you
+never hold it in. Haven’t you ever gotten blue balls? Hurts like a
+bitch.</p>
+<p><strong>simon</strong>: Sort of a dull ache.</p>
+<p><strong>marcus</strong>: Exactly.</p>
+<p><strong>marcus</strong>: See if there’s a map.</p>
+<p><strong>simon</strong>: Orange County.</p>
+<p><strong>simon</strong>: Holy shit.</p>
+<p><strong>marcus</strong>: Don’t point it at me!</p>
+<p><strong>simon</strong>: How do I know if it’s loaded?</p>
+<p><strong>marcus</strong>: First, you stop pointing it at me.</p>
+<p><strong>marcus</strong>: Floor. Floor!</p>
+<p><strong>simon</strong>: I’ve never held a real gun before. It’s
+heavier than I thought.</p>
+<p><strong>marcus</strong>: Great, put it back.</p>
+<p><strong>simon</strong>: I want to know if it’s loaded. How do</p>
+<p><strong>marcus</strong>: Hold the wheel.</p>
+<p><strong>simon</strong>: I hold ten men’s lives in my hand.</p>
+<p><strong>marcus</strong>: It’s a nine millimeter. It doesn’t have
+stopping power.</p>
+<p><strong>simon</strong>: Right. For that you’d need Magnum Force.</p>
+<p><strong>simon</strong>: This is why I came here. This is America. I’m
+serious. You want to take one symbol for all of America, it’s not the
+flag or the hawk…</p>
+<p><strong>marcus</strong>: …eagle…</p>
+<p><strong>simon</strong>: …or the automobile. America is about a man
+and a gun.</p>
+<p><strong>78 continued: 78</strong>: SIMON</p>
+<p><strong>marcus</strong>: The N-R-A.</p>
+<p><strong>simon</strong>: You’re certain?</p>
+<p><strong>marcus</strong>: The E.R.A. was this chick thing in the
+`70s.</p>
+<p><strong>simon</strong>: Chicks with guns?</p>
+<p><strong>marcus</strong>: Yes.</p>
+<p><strong>singh</strong>: Kill me.</p>
+<p><strong>tiny</strong>: I ain’t your bitch. Kill yourself.</p>
+<p><strong>tiny</strong>: What the fuck?</p>
+<p><strong>boy</strong>: You got some smoke?</p>
+<p><strong>tiny</strong>: You got some pubic hair yet?</p>
+<p><strong>56a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>boy</strong>: Man, I’ve been smoking up since I was
+eight.</p>
+<p><strong>tiny</strong>: Where is your mom at?</p>
+<p><strong>boy</strong>: She’s not my mom.</p>
+<p><strong>boy</strong>: Are you on heroin? Are you kicking?</p>
+<p><strong>tiny</strong>: I’m kicking your ass if you knock again.</p>
+<p><strong>boy</strong>: Fuck you.</p>
+<p><strong>marcus</strong>: Listen up. They’re going to ask if you want
+buy a bottle of champagne. You don’t, but don’t say that right off.</p>
+<p><strong>simon</strong>: Explain.</p>
+<p><strong>marcus</strong>: Champagne means you want a private dance.
+You can’t afford it, neither can I. But if they know we’re not biting,
+they don’t even dangle the bait.</p>
+<p><strong>simon</strong>: So, “champagne” is a code. What does vodka
+mean?</p>
+<p><strong>marcus</strong>: Nothing.</p>
+<p><strong>marcus</strong>: We have one word, champagne. You can order
+anything you want, anything, as long as it’s not champagne.</p>
+<p><strong>simon</strong>: I’d like to buy your most expensive bottle of
+champagne.</p>
+<p><strong>vic jr.</strong>: I need a major credit card.</p>
+<p><strong>vic jr.</strong>: This is a gentlemen’s club. You are
+expected to behave as gentlemen. I will be giving you one rule. If you
+break this rule, I will break your arm. Are we clear?</p>
+<p><strong>marcus</strong>: Yes.</p>
+<p><strong>vic jr.</strong>: The ladies can touch you. You cannot touch
+them. At any point, for any reason. Is this clear?</p>
+<p><strong>simon</strong>: Crystal.</p>
+<p><strong>vic jr.</strong>: Enjoy your evening.</p>
+<p><strong>noelle</strong>: Hands! Hands!</p>
+<p><strong>noelle</strong>: The other one!</p>
+<p><strong>vic jr.</strong>: What the fuck did I tell you!</p>
+<p><strong>marcus</strong>: Yo. Yo! He fucked up, he lost control.</p>
+<p><strong>vic jr.</strong>: Am I talking to you? I’m talking to your
+faggot friend here.</p>
+<p><strong>marcus</strong>: We’re leaving.</p>
+<p><strong>marcus</strong>: Enough! Stop kicking him. I said to fucking
+stop kicking him.</p>
+<p><strong>marcus</strong>: I’m not trying to throw down here.</p>
+<p><strong>vic jr.</strong>: You think you can kick my ass?</p>
+<p><strong>marcus</strong>: I don’t want to try.</p>
+<p><strong>simon</strong>: Everybody back the fuck away.</p>
+<p><strong>marcus</strong>: Oh, man. Fuck.</p>
+<p><strong>simon</strong>: Is there another way out?</p>
+<p><strong>holly</strong>: Behind you.</p>
+<p><strong>victor</strong>: What happened!</p>
+<p><strong>holly</strong>: They shot Vic. They went out the back.</p>
+<p><strong>victor</strong>: Find them.</p>
+<p><strong>holly</strong>: Call 911.</p>
+<p><strong>victor</strong>: No! No cops.</p>
+<p><strong>marcus</strong>: What are you doing?</p>
+<p><strong>simon</strong>: Getting rid of the weapon.</p>
+<p><strong>marcus</strong>: It has your fingerprints on it.</p>
+<p><strong>simon</strong>: Oh shit.</p>
+<p><strong>simon</strong>: Do we answer?</p>
+<p><strong>marcus</strong>: It’s probably Orange County asking where the
+hell his car is.</p>
+<p><strong>simon</strong>: It’s a cell phone. They can trace where we
+are even if we don’t answer.</p>
+<p><strong>marcus</strong>: Get the gun. Go. Find it.</p>
+<p><strong>victor</strong>: Just because a rapper has a white buddy
+doesn’t mean he’s Sidney Fucking Poitier. You check them. You pat them
+down.</p>
+<p><strong>vic jr.</strong>: I know.</p>
+<p><strong>victor</strong>: And you, you were on top of him. You didn’t
+feel anything.</p>
+<p><strong>87 continued: 87</strong>: VICTOR</p>
+<p><strong>holly</strong>: They said they were from Los Angeles.</p>
+<p><strong>victor</strong>: Then they must be staying somewhere, isn’t
+that right Noelle?</p>
+<p><strong>announcer</strong>: Once Karen learned these simple rules,
+she discovered blackjack was as easy as it was fun.</p>
+<p><strong>announcer</strong>: Steve decided to try his hand at
+craps.</p>
+<p><strong>tiny</strong>: Yo! Mmmhmm. Room 875.</p>
+<p><strong>singh</strong>: Who was that?</p>
+<p><strong>tiny</strong>: Some shit, I dunno.</p>
+<p><strong>vic jr.</strong>: They’re at the Riviera.</p>
+<p><strong>victor</strong>: Motherfucker!</p>
+<p><strong>the man</strong>: The other one, honey.</p>
+<p><strong>the woman</strong>: Sure is a fun way to spend Christmas,
+isn’t it?</p>
+<p><strong>the woman</strong>: This isn’t our floor.</p>
+<p><strong>the man</strong>: Maybe we’re five.</p>
+<p><strong>the woman</strong>: Or six. We’ll try both.</p>
+<p><strong>marcus</strong>: All right, listen up. We’re leaving in 30
+seconds. Grab what you can.</p>
+<p><strong>tiny</strong>: What the fuck?</p>
+<p><strong>marcus</strong>: Just do it. Now!</p>
+<p><strong>voice in hall</strong>: Room service.</p>
+<p><strong>tiny</strong>: Hey. Kid.</p>
+<p><strong>tiny</strong>: Kid. Open up the door.</p>
+<p><strong>boy</strong>: Fuck you.</p>
+<p><strong>tiny</strong>: Look, I’m really sorry, you know? It’s just,
+it would be really swell if you would open this door. Now. It’s kind of
+an emergency.</p>
+<p><strong>boy</strong>: Hundred bucks.</p>
+<p><strong>tiny</strong>: Fuck!</p>
+<p><strong>simon</strong>: Give him the money.</p>
+<p><strong>tiny</strong>: Open now!</p>
+<p><strong>tiny</strong>: Fuck!</p>
+<p><strong>singh</strong>: They’re in.</p>
+<p><strong>marcus</strong>: If you let them in here, they will kill you.
+Understood?</p>
+<p><strong>boy</strong>: Down the hall. That way.</p>
+<p><strong>simon</strong>: I got `em.</p>
+<p><strong>marcus</strong>: They’re right behind us.</p>
+<p><strong>tiny</strong>: Who?</p>
+<p><strong>marcus</strong>: Cop. Cop!</p>
+<p><strong>simon</strong>: How did they find us?</p>
+<p><strong>marcus</strong>: It’s their town. I’m sure they have
+people.</p>
+<p><strong>71a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>marcus</strong>: We have to get off the major streets. Take a
+right up here. No, not here!</p>
+<p><strong>simon</strong>: Hold on.</p>
+<p><strong>tiny</strong>: Mother of fuck!</p>
+<p><strong>singh</strong>: I don’t see `em.</p>
+<p><strong>marcus</strong>: Shit.</p>
+<p><strong>singh</strong>: Wait, no. They’re coming in.</p>
+<p><strong>marcus</strong>: We can’t make it!</p>
+<p><strong>74a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>victor</strong>: Sonofabitch!</p>
+<p><strong>singh</strong>: Just so we’re clear. You stole a car, shot a
+bouncer, and had sex with two women?</p>
+<p><strong>tiny</strong>: You had sex with two women?</p>
+<p><strong>simon</strong>: We can be in Mexico by noon. I say we split
+up from there. I’ll take Baja.</p>
+<p><strong>marcus</strong>: Fuck Mexico. We’re going home. To L.A.</p>
+<p><strong>singh</strong>: Simon, think about it. If they were going to
+call the cops, they would have called them in Las Vegas. They just
+wanted us gone, and we’re gone. It’s over.</p>
+<p><strong>victor</strong>: Tommy, it’s Vic. I need you to run a credit
+card for me. You ready?</p>
+<p><strong>victor</strong>: First name
+<code>Todd.' Last name</code>Gaines.’</p>
+<p><strong>76a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>claire</strong>: Don’t.</p>
+<p><strong>simon</strong>: Why not?</p>
+<p><strong>claire</strong>: She’s been on for fourteen hours.</p>
+<p><strong>male voice #1</strong>: I’m not the man you’re looking
+for.</p>
+<p><strong>male voice #2</strong>: We both know you were on the pier.
+You saw what happened to Carmen.</p>
+<p><strong>zack</strong>: Don’t forget, detective. I was cleared of all
+charges.</p>
+<p><strong>adam</strong>: I don’t care how many high-priced lawyers you
+bring in. Eden Valley will never stand for your kind of scum.</p>
+<p><strong>burke</strong>: You work out, don’t you?</p>
+<p><strong>adam</strong>: You have to. It’s in the contract.</p>
+<p><strong>burke</strong>: No, you have a great body.</p>
+<p><strong>burke</strong>: Hey! People in here!</p>
+<p><strong>zack</strong>: Just so we’re clear. Whether you get something
+on this guy or not, Adam and I are done today. Finished. Charges
+dropped. That’s how it works, right?</p>
+<p><strong>zack</strong>: What?</p>
+<p><strong>burke</strong>: Seems to me, if a guy’s so concerned about
+the legal process, how come he finds himself getting busted for
+possession?</p>
+<p><strong>burke</strong>: Relax. I sign your form and the whole thing
+goes away. Your lawyer got you a good deal.</p>
+<p><strong>adam</strong>: Is it safe to have a radio against my balls
+like this?</p>
+<p><strong>loop</strong>: Safe enough.</p>
+<p><strong>loop</strong>: I think my girlfriend watches your show.</p>
+<p><strong>78a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>burke</strong>: Tell them what your girlfriend does.</p>
+<p><strong>loop</strong>: She doesn’t do anything.</p>
+<p><strong>burke</strong>: They’re not even married and she does
+nothing. My wife – we’ve been married two years – she still takes
+overtime three nights a week.</p>
+<p><strong>burke</strong>: My wife’s a deputy sherriff, you believe
+that? A cop and a sherriff, married. It’s like the freakin’ odd
+couple.</p>
+<p><strong>zack</strong>: I smell a pilot.</p>
+<p><strong>burke</strong>: You guys got girlfriends? What am I saying?
+You gotta lot of girlfriends don’t you? You got women sending you their
+panties. Two good- looking guys… What do you say?</p>
+<p><strong>loop</strong>: Pussy magnets.</p>
+<p><strong>burke</strong>: If I was not a happily married man I would be
+rubbing up against you to get some of that. Some of the pussy power.</p>
+<p><strong>adam</strong>: Actually, I’m settled down. Four years
+now.</p>
+<p><strong>loop</strong>: No ring.</p>
+<p><strong>adam</strong>: Nothing legal.</p>
+<p><strong>burke</strong>: How about you?</p>
+<p><strong>zack</strong>: Same.</p>
+<p><strong>burke</strong>: This is a crime. You two should be out
+getting laid.</p>
+<p><strong>adam</strong>: Star light, star bright first star that I see
+tonight…</p>
+<p><strong>adam</strong>: …I wish I may, I wish I might…</p>
+<p><strong>burke</strong>: That’s good. I’m getting him.</p>
+<p><strong>burke</strong>: So, Zack. What does your girlfriend look
+like?</p>
+<p><strong>zack</strong>: About five-eight, brown hair, blue eyes.</p>
+<p><strong>burke</strong>: Hot.</p>
+<p><strong>zack</strong>: Yeah.</p>
+<p><strong>burke</strong>: She faithful?</p>
+<p><strong>zack</strong>: No. I don’t think so.</p>
+<p><strong>burke</strong>: You faithful?</p>
+<p><strong>zack</strong>: Not anymore.</p>
+<p><strong>burke</strong>: Zack’s girlfriend is fucking around on
+him.</p>
+<p><strong>loop</strong>: Man, I’m sorry. How did you find out?</p>
+<p><strong>zack</strong>: It’s no big…I don’t really want to get into
+it.</p>
+<p><strong>loop</strong>: C’mon, tell us.</p>
+<p><strong>adam</strong>: Absolutely. Tell us.</p>
+<p><strong>zack</strong>: I found socks.</p>
+<p><strong>burke</strong>: What, red socks, blue socks?</p>
+<p><strong>zack</strong>: White socks. You know how the good kind of
+socks have band around the ankle that keeps them from stretching out?
+When I moved in, every one of the socks had that. Suddenly, there was
+one sock that didn’t.</p>
+<p><strong>burke</strong>: You hear that? We got John Sherlock Holmes in
+the car here.</p>
+<p><strong>adam</strong>: Alright. But you’ve been fucking around,
+too.</p>
+<p><strong>zack</strong>: Only after I found out.</p>
+<p><strong>adam</strong>: Huh.</p>
+<p><strong>adam</strong>: So, Zack. Do you know who your girlfriend’s
+fucking?</p>
+<p><strong>zack</strong>: No, Adam. I do not. I have suspicions. Mostly
+former boyfriends who keep calling.</p>
+<p><strong>adam</strong>: What a coincidence. I have the exact same
+problem with my girlfriend. In fact, I think she’s been sleeping around
+on me, too.</p>
+<p><strong>zack</strong>: Isn’t it ironic.</p>
+<p><strong>adam</strong>: Don’t you think? Maybe I should start checking
+for socks, too.</p>
+<p><strong>claire</strong>: Gay men are so hot. It’s tragic.</p>
+<p><strong>adam</strong>: He’s not here. What are we supposed to do?
+He’s not here.</p>
+<p><strong>zack</strong>: We’re going to ask. You’re going to ask.</p>
+<p><strong>adam</strong>: Why me?</p>
+<p><strong>zack</strong>: You look more wholesome. Just improv.</p>
+<p><strong>adam</strong>: Who are you calling?</p>
+<p><strong>zack</strong>: Nobody. I’m giving you an opening.</p>
+<p><strong>adam</strong>: He wasn’t there. The British guy, he wasn’t
+there.</p>
+<p><strong>loop</strong>: No, we heard. You guys did great.</p>
+<p><strong>burke</strong>: This chick… Ronna. You think she can
+score?</p>
+<p><strong>adam</strong>: Maybe.</p>
+<p><strong>zack</strong>: Probably.</p>
+<p><strong>burke</strong>: Then that’s all we need. It’s all connected.
+The circle of life.</p>
+<p><strong>burke</strong>: Now they’re both going. What’s up with
+that?</p>
+<p><strong>zack</strong>: So if she gets the stuff, what, you arrest
+her?</p>
+<p><strong>burke</strong>: We try to bring her over. See, we arrest her
+and then what? One crack whore off the street. So we cut her a deal. She
+helps us get this guy. We cut him a deal. He helps us get the guy above
+him. It’s just like what happened with you.</p>
+<p><strong>zack</strong>: So, sooner or later, everybody’s working for
+The Man.</p>
+<p><strong>burke</strong>: Exactly.</p>
+<p><strong>84a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>loop</strong>: She’s coming up.</p>
+<p><strong>zack</strong>: What if she isn’t really a dealer though? If
+you just pulled her into this one thing, wouldn’t that be
+entrapment?</p>
+<p><strong>burke</strong>: If she’s making this deal, she’s a dealer.
+Doesn’t matter if its her first or her last.</p>
+<p><strong>burke</strong>: Cerveza?</p>
+<p><strong>adam</strong>: Oh yeah. Hey. We bought a whole bunch of
+orange juice. It’s in the car.</p>
+<p><strong>burke</strong>: Now, Zack tells me you got 20 at 20, is that
+right?</p>
+<p><strong>ronna</strong>: You got a bathroom?</p>
+<p><strong>adam</strong>: Down the hall on the right.</p>
+<p><strong>zack</strong>: Let me show you…</p>
+<p><strong>zack</strong>: Go.</p>
+<p><strong>burke</strong>: Now watch what I do with his wrist. I twist
+it away while I put on the second cuff. That way he can’t go after me.
+He doesn’t have any leverage.</p>
+<p><strong>burke</strong>: I watch all these cop shows and they never do
+it right. Pisses me off.</p>
+<p><strong>burke</strong>: Hey, feel the abs on this one.</p>
+<p><strong>burke</strong>: You could scrub laundry on these.</p>
+<p><strong>loop</strong>: Full hands.</p>
+<p><strong>burke</strong>: What?</p>
+<p><strong>loop</strong>: Nothing. I’m out of it. Merry Christmas, guys.
+Good to meet you.</p>
+<p><strong>86a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>zack</strong>: We’re done, now, right? That’s what we talked
+about. Whether or not the deal went through, we just had to do our
+part.</p>
+<p><strong>burke</strong>: You did your part.</p>
+<p><strong>zack</strong>: Great. Well, hey. A pleasure.</p>
+<p><strong>burke</strong>: Now that he’s gone, there’s something I
+wanted to ask you guys about. Sort of a proposition. See, my wife and I
+– Irene, she’s my wife – we’re both working on Christmas so we’re gonna
+have Christmas dinner tonight. And I was thinking, maybe you guys would
+want to come over, eat some dinner with us. My wife is great, you’ll
+love her, then I’ll sign your form. How does that sound?</p>
+<p><strong>zack</strong>: Actually, you know, I had plans.</p>
+<p><strong>adam</strong>: You did?</p>
+<p><strong>zack</strong>: I do.</p>
+<p><strong>adam</strong>: With your girlfriend?</p>
+<p><strong>zack</strong>: Yes, Adam, in fact. With my girlfriend.</p>
+<p><strong>adam</strong>: Huh. Wow, I can’t believe I forgot this. I saw
+your girlfriend this morning, and she asked me to tell you that she
+couldn’t make your plans tonight.</p>
+<p><strong>87a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>adam</strong>: It looks like we’re both free.</p>
+<p><strong>irene</strong>: Yes? Hi?</p>
+<p><strong>adam</strong>: Sorry. Phone. Messages. Check?</p>
+<p><strong>irene</strong>: Here.</p>
+<p><strong>adam</strong>: They’re singing Christmas carols. My family.
+Minnesota, they do that.</p>
+<p><strong>zack</strong>: Sorry.</p>
+<p><strong>burke</strong>: No, stay for a sec.</p>
+<p><strong>burke</strong>: Smell this. What does it smell like?</p>
+<p><strong>burke</strong>: CK One. But it’s not.</p>
+<p><strong>zack</strong>: Really.</p>
+<p><strong>burke</strong>: I get this for a quarter what that stuff
+costs.</p>
+<p><strong>zack</strong>: It’s nice.</p>
+<p><strong>burke</strong>: Here.</p>
+<p><strong>burke</strong>: It’s down. So is the liner.</p>
+<p><strong>zack</strong>: It is soft.</p>
+<p><strong>burke</strong>: Get on.</p>
+<p><strong>zack</strong>: That’s okay.</p>
+<p><strong>burke</strong>: Did you hear that?</p>
+<p><strong>zack</strong>: Hear what?</p>
+<p><strong>burke</strong>: Exactly. Individually wrapped springs. Top
+quality.</p>
+<p><strong>burke</strong>: I could be doing aerobics over here and you
+wouldn’t feel it.</p>
+<p><strong>zack</strong>: I sure wouldn’t.</p>
+<p><strong>burke</strong>: So, Zack. Would you say you’re open to new
+things?</p>
+<p><strong>irene</strong>: Of course you like your job. You get to kiss
+all those pretty girls.</p>
+<p><strong>adam</strong>: It does have perks.</p>
+<p><strong>irene</strong>: Tell me something. When you kiss those girls,
+you’re not really kissing them, are you?</p>
+<p><strong>adam</strong>: It’s a stage kiss. Your lips touch, but
+there’s no tongue.</p>
+<p><strong>irene</strong>: There’s no feeling. Nobody gets jealous.</p>
+<p><strong>adam</strong>: It’s acting. It’s not real.</p>
+<p><strong>adam</strong>: See, now, that. There was a tongue there.</p>
+<p><strong>burke</strong>: Honey, red or white?</p>
+<p><strong>irene</strong>: What goes with turkey?</p>
+<p><strong>adam and zack</strong>: White.</p>
+<p><strong>burke</strong>: More wine?</p>
+<p><strong>zack</strong>: No. He doesn’t want any more. Unless he does,
+do you?</p>
+<p><strong>adam</strong>: No.</p>
+<p><strong>zack</strong>: This has been great, just wonderful, but we’re
+going to need to leave. Soon. Adam’s not feeling well.</p>
+<p><strong>adam</strong>: I’m not. It’s true.</p>
+<p><strong>burke</strong>: If you gotta go, then I understand. But Irene
+and I sort of had an ulterior motive inviting you here.</p>
+<p><strong>irene</strong>: He makes it sound sinister. It’s not.</p>
+<p><strong>burke</strong>: She’s right. Okay, you’ve looked around our
+place. Where do you think we got most of this stuff?</p>
+<p><strong>irene</strong>: Just guess.</p>
+<p><strong>adam</strong>: Sears?</p>
+<p><strong>zack</strong>: J.C. Penney’s?</p>
+<p><strong>burke</strong>: It’s actually from Confederated Products.
+Almost everything in this house is from Confederated Products, from the
+toilet paper to the mattress to those candles.</p>
+<p><strong>irene</strong>: The wine.</p>
+<p><strong>burke</strong>: Even that cologne you liked. See,
+Confederated Products is a multi- level direct wholesaling company. That
+means we don’t just sell the products ourselves, we also recruit and
+manage teams who work under us. Irene and I started eight months ago and
+we’re already bringing in fifty thousand a year in revenues.</p>
+<p><strong>irene</strong>: We’re the number four distributor in Southern
+California. By March, we might be number three.</p>
+<p><strong>burke</strong>: Now, as law enforcement officers, Irene and I
+can’t recruit distributors from inside the force. It’s against the rules
+and we’d get fired. So what we do is look for people in other
+industries…</p>
+<p><strong>irene</strong>: …like the entertainment industry.</p>
+<p><strong>zack</strong>: Wait. You want us to sell Amway.</p>
+<p><strong>burke</strong>: Confederated Products. It’s a different
+company, different quality of product.</p>
+<p><strong>zack</strong>: I need to do something terrifically
+unwholesome. I need to bathe in sin.</p>
+<p><strong>adam</strong>: With me, or one of your other boyfriends?</p>
+<p><strong>zack</strong>: I have cheated on you with exactly one
+guy.</p>
+<p><strong>adam</strong>: Ditto.</p>
+<p><strong>zack</strong>: Who?</p>
+<p><strong>adam</strong>: No. See, if I tell you, you will freak out and
+it will be drama. Bad not-funny Roseanne kind of drama and I am just not
+up for it.</p>
+<p><strong>zack</strong>: I’ll tell you mine.</p>
+<p><strong>adam</strong>: No.</p>
+<p><strong>zack</strong>: Why not?</p>
+<p><strong>adam</strong>: You can’t wait to tell me, can you? You’re
+gloating. You think yours is better than mine.</p>
+<p><strong>zack</strong>: I don’t.</p>
+<p><strong>adam</strong>: It’s Sean Connery, isn’t it?</p>
+<p><strong>zack</strong>: Count of three.</p>
+<p><strong>adam</strong>: Alright. Sure. Wait. Okay.</p>
+<p><strong>adam</strong>: Jimmy?</p>
+<p><strong>zack</strong>: Jimmy. Jimmy.</p>
+<p><strong>adam</strong>: Is Jimmy here?</p>
+<p><strong>sandra</strong>: Oh my God. Oh. My God.</p>
+<p><strong>sandra</strong>: I’ll call you back. Jimmy’s not here. He
+went to this thing. Let me find it.</p>
+<p><strong>sandra</strong>: You do know, don’t you?</p>
+<p><strong>zack</strong>: We know.</p>
+<p><strong>sandra</strong>: I take no responsibilty. I was only an
+innocent bystander. But there was once where you missed each other by
+three minutes. It was so exciting.</p>
+<p><strong>sandra</strong>: It’s some sort of rave thing.</p>
+<p><strong>zack</strong>: Mary Xmas Supafest.</p>
+<p><strong>sandra</strong>: He left an hour ago.</p>
+<p><strong>sandra</strong>: You’re not going to kill him, are you? The
+little shit owes me rent.</p>
+<p><strong>zack</strong>: Okay, I just have to say this. The thing is,
+about Jimmy, he wasn’t even that good.</p>
+<p><strong>adam</strong>: I know.</p>
+<p><strong>zack</strong>: Mediocre at best. And the sounds he made, God.
+It was like having sex with Nell.</p>
+<p><strong>zack</strong>: Somewhere off Greenland, hunchback whales were
+beaching themselves.</p>
+<p><strong>adam</strong>: And the ear thing. Hello, I have Q-Tips.
+That’s really not necessary.</p>
+<p><strong>zack</strong>: The only thing I will give him credit for is
+the oral.</p>
+<p><strong>adam</strong>: What do you mean? He was terrible. At some
+point I just had to stop him and correct years of bad technique. I had
+to take him by the ears and retrain him from the throat up.</p>
+<p><strong>zack</strong>: When was that?</p>
+<p><strong>adam</strong>: October, maybe?</p>
+<p><strong>zack</strong>: Early October. And he suddenly got so much
+better.</p>
+<p><strong>adam</strong>: That is so disturbing. It’s like you were
+there.</p>
+<p><strong>zack</strong>: Right. This right. This right! That was the
+right you wanted.</p>
+<p><strong>zack</strong>: What the fuck!</p>
+<p><strong>zack</strong>: Oh my God.</p>
+<p><strong>adam</strong>: It’s…It’s that girl.</p>
+<p><strong>zack</strong>: Ronna.</p>
+<p><strong>zack</strong>: Go. Go. Go!</p>
+<p><strong>adam</strong>: What if she’s…</p>
+<p><strong>zack</strong>: Go!</p>
+<p><strong>zack</strong>: Let’s think about it logically. Either she’s
+alive, or she’s dead. If she’s dead, then there’s nothing we can do. If
+she’s alive, then the guy with the gun, who seemed to want to shoot her,
+probably did shoot her.</p>
+<p><strong>adam</strong>: So even if she’s alive, she’s dead.</p>
+<p><strong>zack</strong>: Exactly.</p>
+<p><strong>zack</strong>: On the plus side, the only witnesses are you,
+me and him. And none of us are going to want to be talking about it. So
+if you really think about it, it didn’t turn out as badly as it could
+have.</p>
+<p><strong>adam</strong>: A girl is dead.</p>
+<p><strong>zack</strong>: I didn’t say it went perfectly.</p>
+<p><strong>operator</strong>: 911 Emergen…</p>
+<p><strong>zack</strong>: Holy sh…</p>
+<p><strong>zack</strong>: They wouldn’t have been listening all this
+time.</p>
+<p><strong>adam</strong>: Hello, they could have been recording it.
+Everything we said could be on tape somewhere. They would know we did
+it.</p>
+<p><strong>zack</strong>: What if we were just running lines? For a
+scene?</p>
+<p><strong>zack</strong>: There’s a pretty good chance no one’s found
+her yet.</p>
+<p><strong>adam</strong>: They will.</p>
+<p><strong>zack</strong>: No. Listen. If there’s no body, there’s no
+crime.</p>
+<p><strong>zack</strong>: Stop. Okay, stop!</p>
+<p><strong>adam</strong>: What?</p>
+<p><strong>zack</strong>: It’s a Miata.</p>
+<p><strong>zack</strong>: We’ll put her in the passenger seat.</p>
+<p><strong>adam</strong>: Where will I…Or you…</p>
+<p><strong>zack</strong>: In the passenger seat. Holding her up.</p>
+<p><strong>zack</strong>: Little help?</p>
+<p><strong>adam</strong>: I can’t.</p>
+<p><strong>zack</strong>: What do you mean?</p>
+<p><strong>adam</strong>: I can’t do this.</p>
+<p><strong>zack</strong>: Okay, listen to me…</p>
+<p><strong>adam</strong>: She’s dead.</p>
+<p><strong>zack</strong>: She’s not dead.</p>
+<p><strong>adam</strong>: She’s dead. I hit her and I killed her.</p>
+<p><strong>zack</strong>: No you didn’t, okay? This is all just
+make-believe. This is a scene. She’s just acting dead. And you’re just
+acting scared.</p>
+<p><strong>zack</strong>: See, there’s the lights, and there’s the
+camera. Watch your blocking. There’s Michelle in wardrobe, say “Hi,
+Michelle!”</p>
+<p><strong>adam</strong>: Hi, Michelle.</p>
+<p><strong>zack</strong>: The craft service truck is right around the
+corner, and they have lots of little veggie burgers on the grill. And
+you can have one if you just help me finish this scene. Can you smell
+them? Can you smell them on the grill?</p>
+<p><strong>adam</strong>: I’m not delusional.</p>
+<p><strong>zack</strong>: Then take her fucking arms!</p>
+<p><strong>adam</strong>: She’s not dead.</p>
+<p><strong>zack</strong>: No shit!</p>
+<p><strong>adam</strong>: If she’s not dead, that means we didn’t kill
+her. We can just leave her.</p>
+<p><strong>zack</strong>: She’s almost dead. We leave her and she dies,
+why did we bother coming back? I mean, you still killed her.</p>
+<p><strong>adam</strong>: What do you mean, I killed her?</p>
+<p><strong>zack</strong>: Christ, I didn’t mean it that way. C’mon. I
+would never testify against you.</p>
+<p><strong>zack</strong>: We have to stick with Plan A.</p>
+<p><strong>adam</strong>: In Plan A she was dead.</p>
+<p><strong>zack</strong>: Okay. New plan.</p>
+<p><strong>car alarm voice</strong>: Back away from the vehicle.</p>
+<p><strong>fila guy</strong>: Hey, it’s Kelly. Somebody beat the crap
+out of her.</p>
+<p><strong>skate-punk guy</strong>: Somebody call an ambulance!</p>
+<p><strong>zack</strong>: Look, she’s fine. They’re getting an
+ambulance. She’s fine.</p>
+<p><strong>adam</strong>: What about that guy? The guy with the gun. He
+could still go after her.</p>
+<p><strong>104a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>zack</strong>: Okay, listen. Girl in ditch – that’s our
+problem. Girl out of ditch – that’s her own problem. We’re done. We did
+the right thing.</p>
+<p><strong>zack</strong>: Okay, approximately the right thing. In a
+half-assed, thrown-together fashion.</p>
+<p><strong>zack</strong>: Home?</p>
+<p><strong>adam</strong>: Home.</p>
+<p><strong>waiter</strong>: Anywhere you want.</p>
+<p><strong>claire</strong>: I’m meeting people.</p>
+<p><strong>claire</strong>: Hey.</p>
+<p><strong>gaines</strong>: Hey.</p>
+<p><strong>claire</strong>: We’re twins.</p>
+<p><strong>claire</strong>: I’ll pay you back for breakfast. Don’t
+worry. I’m not really that hungry.</p>
+<p><strong>105a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>claire</strong>: Have you seen Ronna? Or Mannie?</p>
+<p><strong>claire</strong>: See, when we go out, we always meet here
+afterwards in case we get separated.</p>
+<p><strong>157 continued: 157</strong>: CLAIRE</p>
+<p><strong>claire</strong>: Unless you wanted to eat alone.</p>
+<p><strong>gaines</strong>: No. It’s fine.</p>
+<p><strong>claire</strong>: What do you have against The Family
+Circus?</p>
+<p><strong>gaines</strong>: It’s evil.</p>
+<p><strong>claire</strong>: Besides that.</p>
+<p><strong>gaines</strong>: Okay. Location mostly. Bottom right corner,
+just waiting there to suck. It’s the last thing you read, and it spoils
+everything you read before it.</p>
+<p><strong>claire</strong>: You could just not read it.</p>
+<p><strong>gaines</strong>: I hate it, yet I’m uncontrollably drawn to
+it. Are you going to…</p>
+<p><strong>claire</strong>: Do you know what I like about you?</p>
+<p><strong>106a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>gaines</strong>: What?</p>
+<p><strong>claire</strong>: I’m asking. I don’t know. It’s not your
+face, because you’re only medium cute. I think what it is, is you might
+be the first non-fake person I’ve met here.</p>
+<p><strong>gaines</strong>: Me.</p>
+<p><strong>claire</strong>: I’m serious.</p>
+<p><strong>gaines</strong>: Professional curiousity. What are you
+on?</p>
+<p><strong>claire</strong>: Ginseng and lotsa caffeine.</p>
+<p><strong>claire</strong>: You know what I like best about Christmas?
+The surprises. It’s like, you get this box, and you’re sure you know
+what’s in it. You shake it, you weigh it, and you’re totally convinced
+you have it pegged. No doubt in your mind. But then you open it up, and
+it’s something completely different. Bing! Wow! Bang! Surprise! I mean,
+it’s like you and me here.</p>
+<p><strong>claire</strong>: I’m not saying this is anything it’s not.
+But, c’mon. This time yesterday, who’dda thunk it?</p>
+<p><strong>gaines</strong>: How did you get out?</p>
+<p><strong>gaines</strong>: Simon’s apartment is around the back – the
+gate’s always open. Now, you’re going to take Sunset to Hyperion.</p>
+<p><strong>gaines</strong>: At Hillhurst, you have to keep right – you
+want Sunset Boulevard, not Sunset Drive.</p>
+<p><strong>claire</strong>: Why don’t you just drive him there? Maybe
+you could help pull the trigger.</p>
+<p><strong>simon.</strong>: He charges right into the room, shutting the
+door behind him.</p>
+<p><strong>simon</strong>: Todd, listen, I need hide out here. You won’t
+believe the shit we got into in…</p>
+<p><strong>108a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>onto the coffee table.</strong>: Claire and Gaines both scoot
+back, freaked. Vic Sr. puts the gun to Simon’s head. Panicked, Simon
+squirms, trying to look around. His face is mushed against the
+glass.</p>
+<p><strong>victor</strong>: How was your drive? We flew.</p>
+<p><strong>gaines simon</strong>: HeyHeyHey. Not here, not now. Please
+no. God! Shit! I This is so not where you want don’t wanna die. to be
+doing this.</p>
+<p><strong>victor</strong>: Do it.</p>
+<p><strong>claire</strong>: Wait! Stop! STOP! You can’t do this! You
+won’t get away with it!</p>
+<p><strong>claire</strong>: Hello, witness. Witness. What are you going
+to do, kill us too?</p>
+<p><strong>claire</strong>: What is wrong with you people? Do you think
+this is an effective way of dealing with problems?</p>
+<p><strong>victor</strong>: This fuck shot my boy.</p>
+<p><strong>108b.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>simon</strong>: …in the arm.</p>
+<p><strong>claire</strong>: So, what? You’re going to kill three people?
+What do you actually want?</p>
+<p><strong>victor</strong>: Justice.</p>
+<p><strong>simon</strong>: It’s all flesh here, it should be okay.</p>
+<p><strong>simon</strong>: Right, great.</p>
+<p><strong>vic jr.</strong>: I can’t.</p>
+<p><strong>victor vic jr.</strong>: What do you mean you can’t? It’s
+hard to shoot somebody You pull the fucking trigger. shot. It’s
+dif’rent.</p>
+<p><strong>simon</strong>: It’s all right. Really.</p>
+<p><strong>gaines</strong>: Where are you going?</p>
+<p><strong>claire</strong>: I gotta get to work.</p>
+<p><strong>victor</strong>: Look, now the girl’s leaving.</p>
+<p><strong>simon</strong>: See you, Claire.</p>
+<p><strong>gaines</strong>: Be good!</p>
+<p><strong>simon</strong>: I’m okay!</p>
+<p><strong>ronna</strong>: Hey.</p>
+<p><strong>114a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>ronna</strong>: Okay, real mature.</p>
+<p><strong>ronna</strong>: Claire.</p>
+<p><strong>ronna</strong>: Alright. Mistakes were made. Things didn’t go
+exactly as planned.</p>
+<p><strong>ronna</strong>: But it wasn’t exactly a banner night for me,
+either.</p>
+<p><strong>claire</strong>: You are constantly using us.</p>
+<p><strong>ronna</strong>: Using you? You use me. Come on, if it weren’t
+for me, you would be sitting home every night eating popcorn and
+watching reruns of 90210.</p>
+<p><strong>claire</strong>: Mannie is your chauffeur, and I am… I am
+some chick you leave sitting in an apartment.</p>
+<p><strong>ronna</strong>: That is such bullshit. Mannie does not feel
+that way. Ask him. Ask him! Where is he?</p>
+<p><strong>claire</strong>: Why would I know?</p>
+<p><strong>114b.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>ronna</strong>: He drove you here, didn’t he?</p>
+<p><strong>claire</strong>: No, I got a ride. His car was still in the
+parking lot when I left.</p>
+<p><strong>ronna</strong>: Oh shit. Shit!</p>
+<p><strong>ronna</strong>: Mannie? Mannie?</p>
+<p><strong>claire</strong>: Mannie! Mannie!</p>
+<p><strong>ronna</strong>: Mannie! Can you hear me?</p>
+<p><strong>mannie</strong>: Yeah!</p>
+<p><strong>mannie</strong>: You look like shit.</p>
+<p><strong>ronna</strong>: You fucked Todd Gaines?</p>
+<p><strong>115a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>claire</strong>: No! We made out.</p>
+<p><strong>ronna</strong>: Made out?</p>
+<p><strong>claire</strong>: Kissed. A little. What?</p>
+<p><strong>ronna</strong>: Hello! He’s a drug dealer.</p>
+<p><strong>claire</strong>: Found `em.</p>
+<p><strong>ronna</strong>: You might have brain damage from
+overdosing.</p>
+<p><strong>mannie</strong>: Dain brambage?</p>
+<p><strong>mannie</strong>: Xavier Kugat. Starts with X.</p>
+<p><strong>ronna</strong>: You shit.</p>
+<p><strong>claire</strong>: I’ll drive.</p>
+<p><strong>claire</strong>: So, do you have enough money to pay off your
+rent?</p>
+<p><strong>ronna</strong>: And twenty left over. Maybe I’ll open a
+savings account.</p>
+<p><strong>mannie</strong>: So what are we doing for New Year’s?</p>
+<p><strong>ronna</strong>: Merry Christmas, Mannie.</p>
+<p><strong>116a.</strong>: “GO” 8/26/98 Revisions</p>
+<p><strong>simon</strong>: Who is it?</p>
+<p><strong>male voice</strong>: It’s Todd.</p>
+<p><strong>simon</strong>: Jesus, Todd. Thank God. You won’t believe the
+shit I’ve been through…</p>
+<p>**[note**: These are wild lines to play underneath scenes 6A, 57A and
+121A. Since these scenes are longer than before, we need extra soap
+opera in the background before we get to Adam and Zack.]</p>
+<p><strong>jimmy shubert</strong>: Somethin’ about it just didn’t add
+up. So last night I went back to the pier to do some investigating of my
+own. Turns out there are two boats named the Princess. Only, one just
+got back from two weeks at sea – Sal Dominico’s boat. It got me thinkin’
+– if Chase really did know Carmen was on to him, how come he didn’t tell
+Lucas, or Gamble, or Myerson? Why would he drive up to Pinecliff by
+himself? And why would you still have his briefcase? Answer me that,
+Danielle. If you have an answer.</p>
+<p><strong>zack</strong>: I’m not the man you’re looking for.</p>
+<p><strong>adam</strong>: We both know you were on the pier. You saw
+what happened to Carmen.</p>
+<p><strong>zack</strong>: Don’t forget, detective. I was cleared of all
+charges.</p>
+<p><strong>adam</strong>: I don’t care how many high-priced lawyers you
+bring in. Eden Valley will never stand for your kind of scum.</p>
+</body>
+</html>

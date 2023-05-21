@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mimic</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="mimic">mimic</h1>
+<p><strong>peter</strong>: How we doing?</p>
+<p><strong>susan</strong>: We’ll see…</p>
+<p><strong>anchorman</strong>: Strickler’s Disease crept into Manhattan
+like a thief in the night, claiming its first hundred victims before it
+was even classified.</p>
+<p><strong>anchorman</strong>: Most were children under ten.</p>
+<p><strong>anchorman</strong>: Only after the numbers had reached into
+the thousands were officials able to identify the carrier of the deadly
+infection…</p>
+<p><strong>director</strong>: Cut to three.</p>
+<p><strong>anchorman</strong>: Blattida Germanica. The common
+cockroach.</p>
+<p><strong>director</strong>: Tell them we’re ready for a live feed.</p>
+<p><strong>reporter 1</strong>: …an insect that has proven virtually
+immune to chemical control…</p>
+<p><strong>reporter 2</strong>: …the announcement by the Health
+Department that an end to the nightmare has finally…</p>
+<p><strong>reporter 3</strong>: …an ex-colleague of Doctor Susan
+Wyeth…</p>
+<p><strong>protester</strong>: …Susan has always been opposed to
+biological tampering. A real advocate for ecological causes, it’s
+not…</p>
+<p><strong>peter</strong>: …in Nature, evolution is a long, leisurely
+conversation between an organism and its environment. We, however, did
+not have the luxury of time…</p>
+<p><strong>susan</strong>: With the aid of genetic labs throughout the
+country, we recombined cockroach DNA with genetic information from
+termites and mantids. We were able to create a biological counter-agent.
+A new ally, if you will…</p>
+<p><strong>susan</strong>: Blattida Traditor.</p>
+<p><strong>susan</strong>: The “Judas Roach”.</p>
+<p><strong>susan</strong>: The Judas is a non-carrier of Stricklers,
+with a short life-span and heightened pheromone emission.</p>
+<p><strong>susan</strong>: The female is basically a sexual magnet;
+common males travelled miles and fought for the right to mate with
+them.</p>
+<p><strong>susan</strong>: When they did, they took away something else
+we added – a hormone, passed through sexual congress that causes their
+metabolism to go into overdrive. No matter what their food intake, they
+starved to death in a matter of hours.</p>
+<p><strong>peter</strong>: We’ve achieved almost total eradication of
+the roach population. As of today, the disease has been officially
+contained.</p>
+<p><strong>peter</strong>: Sus, come on. You’re missing it.</p>
+<p><strong>peter</strong>: Fucking thing! I hope someone’s taping this.
+Susan, come on. It’s really good this time. I got most of the lines out.
+Sus?</p>
+<p><strong>peter</strong>: Life’s a bitch. Our 15 minutes came and went
+and all we got was bad cable…</p>
+<p><strong>peter</strong>: Hiding from the hard glare of publicity?</p>
+<p><strong>peter</strong>: A shame. You looked great tonight.</p>
+<p><strong>susan</strong>: Please.</p>
+<p><strong>peter</strong>: You did!</p>
+<p><strong>susan</strong>: Do you think we did the right thing?</p>
+<p><strong>peter</strong>: Taking a cab instead of hiring a limo?</p>
+<p><strong>susan</strong>: You know what I mean…</p>
+<p><strong>susan</strong>: We did no impact evaluation. The consequences
+of…</p>
+<p><strong>peter</strong>: Is this a Catholic guilt thing…?</p>
+<p><strong>newsreader</strong>: …a flawless strategy which has stopped a
+potential epidemic in its tracks…</p>
+<p><strong>peter</strong>: You hear that? Flawless.</p>
+<p><strong>susan</strong>: We just don’t know.</p>
+<p><strong>peter</strong>: We know we saved lives.</p>
+<p><strong>peter</strong>: There’re gonna be a lot of kids running
+around next year because of you.</p>
+<p><strong>peter</strong>: Who know? We get lucky, maybe a couple of
+’em’ll be ours.</p>
+<p><strong>susan</strong>: We’re down to a “couple” now, huh?</p>
+<p><strong>peter</strong>: Oh, I don’t know. People are beginning to
+talk about us…</p>
+<p><strong>susan</strong>: Don’t worry, I’ll save your honor. Maybe I’ll
+even marry you.</p>
+<p><strong>chinese preacher</strong>: No. Please, God, no!</p>
+<p><strong>chuy</strong>: Oxfords, 8 1/2. Black…</p>
+<p><strong>chuy</strong>: Funny, funny shoes…</p>
+<p><strong>peter</strong>: Excuse me, ladies…</p>
+<p><strong>susan</strong>: …no, guys, these have to fit perfectly. No
+spaces in between. Let me tell you why. Insects have no hands. All they
+have is this set of mandibles.</p>
+<p><strong>susan</strong>: See? This little piggy will grab the
+prey.</p>
+<p><strong>susan</strong>: Then this little piggy will tear it in
+half…</p>
+<p><strong>susan</strong>: …and this little one will grind it to a pulp
+and push it in… all the way into the mouth. These are precision tools
+here. Can you remember that?</p>
+<p><strong>susan</strong>: Good. Then get it right.</p>
+<p><strong>peter</strong>: “Baby in a bottle…”</p>
+<p><strong>susan</strong>: Don’t tease.</p>
+<p><strong>peter</strong>: You know where they get this fertility stuff?
+They extract it from the urine of menopausal Italian nuns.</p>
+<p><strong>susan</strong>: Monks bottle their own wine. Don’t they?</p>
+<p><strong>susan</strong>: Trust me. I’ve never been this late.
+Never.</p>
+<p><strong>susan</strong>: If nun’s pee is what it takes…</p>
+<p><strong>susan</strong>: You were the one who ran around with ice in
+his underwear, don’t forget that.</p>
+<p><strong>peter</strong>: Don’t get kinky here…</p>
+<p><strong>peter</strong>: Okay, meet me out front. I gotta go. Josh’s
+picking me up in five. see you tonight.</p>
+<p><strong>susan</strong>: I’ll be late.</p>
+<p><strong>susan</strong>: Siri, sandblast that thing. It looks like
+Trump Tower. Those mounds are supposed to be made of dirt and
+excretions…</p>
+<p><strong>siri</strong>: Just like Trump Tower, then.</p>
+<p><strong>josh</strong>: …So I say “buddy, you have every violation in
+the book. Gimme one good reason not to close you down.” You know what
+the Kraut says to me?</p>
+<p><strong>josh</strong>: The blintzes! “Try the blintzes…”</p>
+<p><strong>peter</strong>: Selling your sould for a fistful of
+carbohydrates…</p>
+<p><strong>josh</strong>: Not just any carbohydrates, mind you. It was
+like being on the receiving end of some kind of transcendent oral sex.
+We should get a strobe on this thing. Maybe even a siren.</p>
+<p><strong>peter</strong>: Yeah, and a loudspeaker so you can yell
+“Epidemic! Epidemic! You’re all going to die!”</p>
+<p><strong>josh</strong>: Health Department…</p>
+<p><strong>peter</strong>: You really love flashing that thing, don’t
+you?</p>
+<p><strong>josh</strong>: Hey. I’m a short guy. Waddaya want?</p>
+<p><strong>peter</strong>: Peter Tyler, DOH. You gentlemen were the
+first on the scene?</p>
+<p><strong>woychek</strong>: We were both on patrol, saw this paint
+mess. Then I looked through that cellar window. We both did…</p>
+<p><strong>peter</strong>: You gone in?</p>
+<p><strong>woychek</strong>: No. We waited.</p>
+<p><strong>peter</strong>: Good.</p>
+<p><strong>peter</strong>: Get the EMT’s in there, now.</p>
+<p><strong>manny</strong>: C’mon Chuy, we’re gonna be late. Cops are bad
+news. Don’t look at them.</p>
+<p><strong>peter</strong>: Jesus.</p>
+<p><strong>woychek</strong>: They look real sick, don’t they?</p>
+<p><strong>susan</strong>: …as long as they’re ready for the opening I
+don’t care, just tell them that.</p>
+<p><strong>siri</strong>: I’m on it. Don’t worry. Look, Susan…I don’t
+mean to pry, but… I kinda overheard you and Peter.</p>
+<p><strong>susan</strong>: Watch your step, Siri. Your grant could be on
+the line here.</p>
+<p><strong>siri</strong>: I just…well, I had this cousin in Delhi. She
+was having problems, too. She, ah…</p>
+<p><strong>susan</strong>: What?</p>
+<p><strong>siri</strong>: She used a baster.</p>
+<p><strong>siri</strong>: Not a big one. I mean, it was like a turkey
+baster.</p>
+<p><strong>susan</strong>: Oh, Jesus.</p>
+<p><strong>susan</strong>: Come on, darlin’…</p>
+<p><strong>siri</strong>: She kept it under her bed. Thing is, it kinda
+worked. I mean, she had to hide it from her husband, but…</p>
+<p><strong>susan</strong>: What’s this?</p>
+<p><strong>siri</strong>: Oh, right… They been here since noon. I told
+them you’re real busy.</p>
+<p><strong>susan</strong>: Hello.</p>
+<p><strong>ricky</strong>: You the bug lady, right?</p>
+<p><strong>susan</strong>: I suppose so.</p>
+<p><strong>ricky</strong>: We’re here to deal.</p>
+<p><strong>susan</strong>: Metaxonycha Godmani, Trigonopelastes Delta.
+Field Butterflies. Have you been upstate?</p>
+<p><strong>davis</strong>: Avenue B.</p>
+<p><strong>susan</strong>: I guess they got lost in this city.</p>
+<p><strong>ricky</strong>: So, you wanna buy em?</p>
+<p><strong>davis</strong>: There’s extra wings in the bag.</p>
+<p><strong>susan</strong>: You guys have done a nice job. How bout five
+dollars?</p>
+<p><strong>ricky</strong>: That’s it?</p>
+<p><strong>davis</strong>: Show her the weirdbug.</p>
+<p><strong>ricky</strong>: Cost a dollar just to look.</p>
+<p><strong>davis</strong>: It’s a great bug. We kinda broke it a
+little…</p>
+<p><strong>susan</strong>: Fellas, I’ll tell you what…ten dollars for
+everything. Plus a killing jar, some tweezers and mounts so the next
+bunch you catch will be in better shape.</p>
+<p><strong>davis</strong>: Deal!</p>
+<p><strong>ricky</strong>: You crazy! That’s the best!!</p>
+<p><strong>davis</strong>: Bug’s almost dead anyway.</p>
+<p><strong>davis</strong>: Thanks, lady.</p>
+<p><strong>siri</strong>: Ten dollars?</p>
+<p><strong>susan</strong>: Alphabet City kids- there’s much worse things
+they could be selling.</p>
+<p><strong>siri</strong>: I hate this fucking window…</p>
+<p><strong>peter</strong>: There’s plenty of systemic infection already,
+so as soon as we get a preliminary reading, start them on anti-biotics.
+You saw this?</p>
+<p><strong>peter</strong>: Internal hemorrage. 2 our of 5 have it. No
+definite signs of TB, but we’ll quarantine them a week just to make
+sure.</p>
+<p><strong>josh</strong>: Immigration’s gonna love you for that.</p>
+<p><strong>peter</strong>: Tell them to send flowers to the usual
+address.</p>
+<p><strong>josh</strong>: Two shifts, people rotating from bed to work.
+One toilet. We’re in Wal-Mart hell, here.</p>
+<p><strong>peter</strong>: Did they get the sleazebag who owns this
+place?</p>
+<p><strong>josh</strong>: Triad, Chinese Mafia. They bring people from
+Yunan. Slave labor… Reverend Harry Wong, a preacher had the flophouse
+fronting for them. No sign of him.</p>
+<p><strong>peter</strong>: Tell her she’s going to be alright. We’ll
+take care of her.</p>
+<p><strong>yang</strong>: She’s delirious. Keeps saying the “Dark
+Angels” are coming for her. She says they took some of her people
+away.</p>
+<p><strong>peter</strong>: Dark Angels?</p>
+<p><strong>yang</strong>: Probably a gang. Chinese people, man. They
+come up with some wacky stuff.</p>
+<p><strong>susan</strong>: Siri? Siri?!</p>
+<p><strong>siri</strong>: …the fuck?</p>
+<p><strong>susan</strong>: Can you…?</p>
+<p><strong>susan</strong>: Could you…help me…?</p>
+<p><strong>susan</strong>: I’m gonna pull it out and I want you to pin
+it down, okay?</p>
+<p><strong>siri</strong>: What is it?</p>
+<p><strong>susan</strong>: I have no idea. Are you ready?</p>
+<p><strong>siri</strong>: Oh my God…</p>
+<p><strong>siri</strong>: Shit!! Get it! Get it!</p>
+<p><strong>susan</strong>: It bit you.</p>
+<p><strong>siri</strong>: No shit.</p>
+<p><strong>susan</strong>: This wing configuration. I’ve never…</p>
+<p><strong>siri</strong>: Fuck! It broke the skin…</p>
+<p><strong>susan</strong>: And they’re not fully developed. This thing’s
+not even an adult.</p>
+<p><strong>susan</strong>: My God.</p>
+<p><strong>siri</strong>: What?</p>
+<p><strong>susan</strong>: It’s breathing.</p>
+<p><strong>siri</strong>: That’s impossible. Insects don’t…</p>
+<p><strong>susan</strong>: I know. Help me get a sample.</p>
+<p><strong>susan</strong>: Hold on, big guy, hold on…</p>
+<p><strong>susan</strong>: Hold on a second…</p>
+<p><strong>siri</strong>: What?</p>
+<p><strong>siri</strong>: Susan?</p>
+<p><strong>susan</strong>: Call security.</p>
+<p><strong>manny</strong>: Not too little, not too much. You rub it in,
+around and around like this. Let the leather take it.</p>
+<p><strong>manny</strong>: You watching? You should learn to work the
+shoes. You’re good with your hands…</p>
+<p><strong>manny</strong>: Chuy…you gonna get all wet.</p>
+<p><strong>manny</strong>: Did you look at the story book I got you?</p>
+<p><strong>manny</strong>: Our Animal Friends. Can you say that, Chico?
+“Friends”?</p>
+<p><strong>manny</strong>: A friend is the one you can trust. When you
+are with a friend, no matter where in the world, you are at home.</p>
+<p><strong>manny</strong>: In this city. A friend is a hard thing to
+find…</p>
+<p><strong>chuy</strong>: Funny Shoes…</p>
+<p><strong>chuy</strong>: Alli. Mr. Funny Shoes.</p>
+<p><strong>manny</strong>: No one is there. Is empty.</p>
+<p><strong>manny</strong>: Chuy, listen to me. They have Jesus on the
+cross, but that is not a holy place. You understand?</p>
+<p><strong>manny</strong>: Ah, Nino. God only knows what goes on in your
+head, eh?</p>
+<p><strong>chuy</strong>: Mr. Funny Shoes…</p>
+<p><strong>peter</strong>: Josh, what was Immigration’s countdown?</p>
+<p><strong>josh</strong>: Thirty-three workers.</p>
+<p><strong>peter</strong>: There are thirty five listed in the reverend
+Wong’s roster…</p>
+<p><strong>josh</strong>: Shit.</p>
+<p><strong>peter</strong>: Remember what that woman said, about people
+being taken? Check with the copsin the area.</p>
+<p><strong>peter</strong>: Sus?</p>
+<p><strong>peter</strong>: Susan?</p>
+<p><strong>peter</strong>: Thought it was my week for that.</p>
+<p><strong>susan</strong>: I needed to think. It was either this or the
+weather channel.</p>
+<p><strong>susan</strong>: This thing was the size of my fist, Peter!!
+That’s off the charts!</p>
+<p><strong>peter</strong>: Okay. So you lost a great specimen-</p>
+<p><strong>susan</strong>: Don’t you get it? It’s more than that.</p>
+<p><strong>susan</strong>: You know why insects don’t grow larger?
+Because they don’t have a complex respiratory system. What I saw did. It
+had lungs.</p>
+<p><strong>susan</strong>: Evolution doesn’t work that fast. Something
+pushed that thing to take the leap. We need to find another
+specimen.</p>
+<p><strong>peter</strong>: We?</p>
+<p><strong>susan</strong>: I did a PH test on its tarsal pads.</p>
+<p><strong>susan</strong>: There’s only two species who match the
+enzymes I found. One’s a leaf-cutter ant in the Amazon…</p>
+<p><strong>susan</strong>: The other we released here two years ago.</p>
+<p><strong>armenian driver</strong>: Avenue B… again! Maybe you got
+wrong letter, uh?</p>
+<p><strong>susan</strong>: Keep going. We’ll tell you when to stop…</p>
+<p><strong>peter</strong>: Maybe they lied to you.</p>
+<p><strong>susan</strong>: Even if they did… that’s all we have, isn’t
+it?</p>
+<p><strong>armenian</strong>: No… Oh, shit. Get away, you Turk!</p>
+<p><strong>susan</strong>: Pull over!</p>
+<p><strong>armenian driver</strong>: What…?</p>
+<p><strong>susan</strong>: Metaxonycha Godmani.</p>
+<p><strong>peter</strong>: So?</p>
+<p><strong>ricky</strong>: If you want your money back, forget it!</p>
+<p><strong>davis</strong>: We already spent it!</p>
+<p><strong>susan</strong>: We’re here to deal.</p>
+<p><strong>peter</strong>: Here, let me…</p>
+<p><strong>susan</strong>: You sure you didn’t see one of these?</p>
+<p><strong>ricky</strong>: Gross. What is it?</p>
+<p><strong>susan</strong>: An “Ootheca”. An eggcase. It probably had
+more, uh “weirdbugs” inside.</p>
+<p><strong>ricky</strong>: No way. I see one of those, I’d puke.</p>
+<p><strong>davis</strong>: It was in that corner over there.</p>
+<p><strong>ricky</strong>: Sucker was fast, man. Had to take it out with
+one a these.</p>
+<p><strong>peter</strong>: Okay, guys. We’ll take it from here.</p>
+<p><strong>ricky</strong>: Make it ten an’ we won’t tell the cops you’re
+here.</p>
+<p><strong>peter</strong>: Let’s keep it at five and I won’t condemn
+your clubhouse.</p>
+<p><strong>peter</strong>: Look, a broken tooth…</p>
+<p><strong>susan</strong>: You okay?</p>
+<p><strong>susan</strong>: There’s something under here.</p>
+<p><strong>peter</strong>: Shit.</p>
+<p><strong>susan</strong>: Let me try. My hands are smaller.</p>
+<p><strong>peter</strong>: Honey, just leave it.</p>
+<p><strong>susan</strong>: No, there’s…</p>
+<p><strong>leonard</strong>: Now don’t tell me.</p>
+<p><strong>leonard</strong>: You lost a token, right?</p>
+<p><strong>peter</strong>: Look, I showed you my badge…</p>
+<p><strong>leonard</strong>: Yeah, and you gonna have to show me a lot
+bigger one you wanna go down there. That’s the old maintenance grid,
+Doc. Swiss cheese: tunnels, tracks…</p>
+<p><strong>peter</strong>: The Department of Public Health…</p>
+<p><strong>leonard</strong>: …should know better’n to go sneakin’ around
+my turf…</p>
+<p><strong>peter</strong>: Fine. You want me to call your
+supervisor?</p>
+<p><strong>leonard</strong>: Please do. He’s a lonely guy.</p>
+<p><strong>chuy</strong>: Gucci. Flat pump.</p>
+<p><strong>ernest</strong>: Your shoes.</p>
+<p><strong>various commuters</strong>: The rolling, comical gait of A
+FAT MAN, the lithe haughty step of A PRIM LADY.</p>
+<p><strong>susan</strong>: That’s wonderful! What grade are you in?</p>
+<p><strong>ernest</strong>: No school. Shoes’re all Chuy knows
+about.</p>
+<p><strong>manny</strong>: He’s special.</p>
+<p><strong>leonard</strong>: He can imitate anything, you just watch
+him.</p>
+<p><strong>peter</strong>: Excuse me, I’m talking to you.</p>
+<p><strong>leonard</strong>: No, you talkin’ at me.</p>
+<p><strong>ernest</strong>: Is there some reward for this?</p>
+<p><strong>susan</strong>: I guess that could be arranged.</p>
+<p><strong>peter</strong>: For Chrissakes. You gonna lay a two- bit
+bureaucratic, territorial number on me?</p>
+<p><strong>leonard</strong>: You wanna keep up the conversation, you
+best come back with the proper permits and the right attitude.</p>
+<p><strong>peter</strong>: You give someone a fucking uniform and… Did
+you hear how he talked to us?</p>
+<p><strong>susan</strong>: I heard how you talked to him.</p>
+<p><strong>peter</strong>: Oh, so I’m the bad guy now?</p>
+<p><strong>susan</strong>: He was just doing his job.</p>
+<p><strong>peter</strong>: Fine, then I’m the bad guy. Jesus!</p>
+<p><strong>peter</strong>: He wants a permit, I’ll get him a permit.</p>
+<p><strong>ernest</strong>: Chrissakes…</p>
+<p><strong>ernest</strong>: Guys, c’mon.</p>
+<p><strong>ernest</strong>: I told you to stick by the maintenance
+area.</p>
+<p><strong>bag lady</strong>: Nah… It’s private property now.</p>
+<p><strong>skeletal bum</strong>: He eats down there.</p>
+<p><strong>ernest</strong>: Who?</p>
+<p><strong>homeless man</strong>: The Stickman.</p>
+<p><strong>bag lady</strong>: Long John.</p>
+<p><strong>ernest</strong>: Graffiti artist, uh? Look guys, just get off
+my beat, you hear? Get moving.</p>
+<p><strong>ernest</strong>: Hey, buddy!</p>
+<p><strong>ernest</strong>: Get off my track…</p>
+<p><strong>ernest</strong>: Sweet Jesus…</p>
+<p><strong>peter</strong>: Heya. Where’s the boss?</p>
+<p><strong>siri</strong>: Ant mound.</p>
+<p><strong>peter</strong>: You okay?</p>
+<p><strong>siri</strong>: It’s just a headache. We were sandblasting
+Trump Tower here since four this morning.</p>
+<p><strong>peter</strong>: Maybe you should sit…</p>
+<p><strong>siri</strong>: I’m fine. Go talk to Susan. She could use a
+good word right now.</p>
+<p><strong>peter</strong>: Great crowd.</p>
+<p><strong>susan</strong>: No such thing, baby.</p>
+<p><strong>susan</strong>: I get the feeling they came more for the
+potroast than the apterids.</p>
+<p><strong>peter</strong>: Fuck ’em. They don’t know what they’re
+missing.</p>
+<p><strong>susan</strong>: Right.</p>
+<p><strong>peter</strong>: What’s wrong?</p>
+<p><strong>susan</strong>: Oh…nothing that a little menopausal’s pee
+daikiri couldn’t cure. Least that’s what I thought.</p>
+<p><strong>peter</strong>: Oh, no, you were-</p>
+<p><strong>susan</strong>: I was just late.</p>
+<p><strong>susan</strong>: Ironic, don’t you think? These guys can hatch
+hundreds of offspring in a single clutch of eggs, right? And here we
+are…</p>
+<p><strong>peter</strong>: Susan, we’re not b-</p>
+<p><strong>siri</strong>: Susan?</p>
+<p><strong>siri</strong>: I’m sorry. I think…I need…</p>
+<p><strong>susan</strong>: Siri…</p>
+<p><strong>susan</strong>: Siri!</p>
+<p><strong>peter</strong>: …I think it’s some kind of systemic
+infection, Chris. I saw a few cases like it yesterday. A sweatshop in
+Canal.</p>
+<p><strong>raymond</strong>: Okay, look. You better come in with me.
+Help me through.</p>
+<p><strong>raymond</strong>: All hands on deck, Pete. Remember the
+dril?</p>
+<p><strong>peter</strong>: It’ll come back to me.</p>
+<p><strong>peter</strong>: Looks like a Lyme disease rash.</p>
+<p><strong>raymond</strong>: It’s not consistent with the internal
+bleeding. Any idea what bit her?</p>
+<p><strong>raymond</strong>: I think we’re gonna need to have that
+specimen here.</p>
+<p><strong>chuy</strong>: Mr. Funny Shoes.</p>
+<p><strong>susan</strong>: …you don’t even know what you’re looking
+for.</p>
+<p><strong>peter</strong>: You said that thing was big as your hand. I
+don’t think I’m going to miss…</p>
+<p><strong>susan</strong>: Why take the chance? Just let me go down
+there with you…</p>
+<p><strong>peter</strong>: No.</p>
+<p><strong>peter</strong>: Susan, listen to me: you handled that insect
+almost as much as Siri…</p>
+<p><strong>susan</strong>: It didn’t bite me.</p>
+<p><strong>peter</strong>: I know. But if it was carrying
+something…there’s a chance you could have been exposed.</p>
+<p><strong>peter</strong>: Chris is going to run some blood tests on
+you. I want you to stay here till he’s absolutely sure you’re clean.
+Okay? Then you’ll call me… You’ll catch up with us…</p>
+<p><strong>peter</strong>: We’ll be all right, Sus. I promise.</p>
+<p><strong>manny</strong>: My father saw me stay in bed, he’d go get a
+pitcher. Cold water, whoosh, I tell you that’s some alarm clock,
+brrrrr!</p>
+<p><strong>manny</strong>: Ah! There you go! The way you like ’em,
+Chu-chu… We’re low on milk, you remind Grampa to pick some up tonight,
+okay?</p>
+<p><strong>workman</strong>: Hold up! We gotta block on filter D.</p>
+<p><strong>workman</strong>: Oh, God…</p>
+<p><strong>voice</strong>: What’s the problem?</p>
+<p><strong>workman</strong>: I think it’s a baby!</p>
+<p><strong>raymond</strong>: How you feeling?</p>
+<p><strong>susan</strong>: You tell me.</p>
+<p><strong>raymond</strong>: Your blood tests were all negative. You
+checked out.</p>
+<p><strong>susan</strong>: What about Siri?</p>
+<p><strong>raymond</strong>: She’s stable. I don’t think there’s any
+immediate danger, but we’ll have to keep her under observation…</p>
+<p><strong>susan</strong>: You think it’s some form of Strickler’s,
+don’t you?</p>
+<p><strong>raymond</strong>: Pathology’s still working on the tissue
+samples. If it is…it must be an errant strain. Shorter incubation
+period. I’m sorry, Sue. We just don’t know yet.</p>
+<p><strong>jeremy</strong>: …how many times I gotta tell you, man: we
+can’t accept this!</p>
+<p><strong>emt</strong>: Well, what the hell else am I suppose to do
+with it?</p>
+<p><strong>jeremy</strong>: Take it out back and throw it in the
+friggin’ dumpster!</p>
+<p><strong>emt</strong>: Not unless somebody signs for it.</p>
+<p><strong>susan</strong>: Oh, my God.</p>
+<p><strong>jeremy</strong>: Hey, you can’t…</p>
+<p><strong>susan</strong>: What’s your name?</p>
+<p><strong>jeremy</strong>: Jeremy…</p>
+<p><strong>susan</strong>: Okay, Jeremy…go get Dr. Chris Raymond, will
+you?</p>
+<p><strong>jeremy</strong>: Lady…</p>
+<p><strong>susan</strong>: Did you hear me? Get Dr. Raymond!</p>
+<p><strong>jeremy</strong>: Okay.</p>
+<p><strong>susan</strong>: Where’d you find it?</p>
+<p><strong>emt</strong>: Washed up at the filtration plant on Bank
+street. Some asshole there thought it was a baby. They called us.</p>
+<p><strong>emt</strong>: It’s a lobster, right?</p>
+<p><strong>leonard</strong>: Better hurry it up, Doc. My shift’s almost
+over.</p>
+<p><strong>peter</strong>: Guess someone requested you for
+overtime…buddy.</p>
+<p><strong>susan</strong>: Posterior sternites are gone…half the
+protonum rotted off.</p>
+<p><strong>raymond</strong>: Maggots…</p>
+<p><strong>susan</strong>: Near hatching. Thing must’ve died about three
+weeks ago.</p>
+<p><strong>susan</strong>: Do you have a polaroid?</p>
+<p><strong>leonard</strong>: You all watch your step. We got some
+burrows goin’ down seven stories here. You fall, I don’t wanna have to
+come pick you up.</p>
+<p><strong>josh</strong>: New York’s finest.</p>
+<p><strong>josh</strong>: There’s really people living down here?</p>
+<p><strong>leonard</strong>: Mole people. This section was pretty
+popular, all the way to Fulton Street…</p>
+<p><strong>leonard</strong>: Substance abusers, mental cases… Then about
+a year ago, Poof! All gone. Rumors got started… Someone found a couple
+of stiffs…</p>
+<p><strong>leonard</strong>: Down here’s the land of talk, see? So the
+wildest version goes the farthest. They mark that area with a sign or a
+drawing, and its as good as closed. We had one fella… for years said he
+was Bela Lugosi. Got him on Geraldo.</p>
+<p><strong>susan</strong>: It’s me. Can you hear me?</p>
+<p><strong>peter</strong>: Yeah, barely. We haven’t found anything down
+here. Nothing…</p>
+<p><strong>susan</strong>: I have.</p>
+<p><strong>susan</strong>: I’m on my way. I’ve got something for you to
+look at…</p>
+<p><strong>peter</strong>: We’ll be back at the platform in…</p>
+<p><strong>leonard</strong>: 20 minutes. If you don’t go sight-seeing
+anymore.</p>
+<p><strong>peter</strong>: 20 minutes. Susan?</p>
+<p><strong>leonard</strong>: Funny. Shoulda seen some track bunnies by
+now.</p>
+<p><strong>josh</strong>: What?</p>
+<p><strong>leonard</strong>: Track bunnies. Rats. They’re usually
+around.</p>
+<p><strong>manny</strong>: No, no, please understand… I can’t wait that
+long.</p>
+<p><strong>manny</strong>: Please. I write it down. 2… 8… 7… 3. What
+does this mean “case number”? Okay. So, now what? When can you…?</p>
+<p><strong>manny</strong>: No, I can’t wait…no, listen…</p>
+<p><strong>manny</strong>: Hijos de puta.</p>
+<p><strong>manny</strong>: Mr. Funny Shoes.</p>
+<p><strong>josh</strong>: Smells like acid.</p>
+<p><strong>peter</strong>: Ammonia.</p>
+<p><strong>josh</strong>: Peter…</p>
+<p><strong>peter</strong>: Yeah…?</p>
+<p><strong>josh</strong>: There’s some weird shit here.</p>
+<p><strong>peter</strong>: Weird shit…?</p>
+<p><strong>josh</strong>: Take a look.</p>
+<p><strong>josh</strong>: Fecal matter, unknown origin: weird shit.
+Whatever it is, it’s not human.</p>
+<p><strong>leonard</strong>: And it needs some metamucil.</p>
+<p><strong>manny</strong>: Chuy…</p>
+<p><strong>manny</strong>: Chuy…</p>
+<p><strong>repairman</strong>: Hey, Lady, all power will be down in five
+minutes, okay?</p>
+<p><strong>susan</strong>: Okay….</p>
+<p><strong>susan</strong>: Peter?</p>
+<p><strong>leonard</strong>: I’ve never been this deep. This area here
+is the Old Armory station. They built it in the 40’s. Ran out of money
+half-way through…</p>
+<p><strong>leonard</strong>: Okay, the fat lady’s singing. Time to
+go.</p>
+<p><strong>peter</strong>: I want a team in here by six tonight, hands
+and knees with toothpicks…</p>
+<p><strong>peter</strong>: Don’t!!</p>
+<p><strong>leonard</strong>: Did you see the size of that thing?!</p>
+<p><strong>peter</strong>: Look what you did! You stupid sonofa-</p>
+<p><strong>josh</strong>: Peter!</p>
+<p><strong>peter</strong>: It’s okay. I’m all right.</p>
+<p><strong>leonard</strong>: Get the hell away from me!</p>
+<p><strong>peter</strong>: He’s all right, too.</p>
+<p><strong>leonard</strong>: Oh, that’s gonna work.</p>
+<p><strong>peter</strong>: You got a better way up?</p>
+<p><strong>leonard</strong>: Show that to the station manager. Tell him
+Leonard’s gonna have his bubble-butt he don’t have someone down here in
+ten.</p>
+<p><strong>josh</strong>: H-how do I get…?</p>
+<p><strong>leonard</strong>: Way we came. Take the first tunnel to your
+right…</p>
+<p><strong>leonard</strong>: Go left. Go left again till you hit the
+fork… Then right again. You got that?</p>
+<p><strong>josh</strong>: I think so. One right, two lefts…</p>
+<p><strong>leonard</strong>: And a right.</p>
+<p><strong>josh</strong>: Right.</p>
+<p><strong>peter</strong>: Go Josh. Now.</p>
+<p><strong>josh</strong>: Oh shit, oh shit, oh shit!</p>
+<p><strong>peter</strong>: Any luck?</p>
+<p><strong>leonard</strong>: Well…there’s an old service elevator half a
+mile down the tracks. Ain’t gonna be much use, though. Lines are
+dead.</p>
+<p><strong>peter</strong>: You said those cables’re still live. Can’t we
+rewire…?</p>
+<p><strong>leonard</strong>: Oh, man, there you go again.</p>
+<p><strong>peter</strong>: What?</p>
+<p><strong>leonard</strong>: Those things bring juice to the new
+stations. You just can’t rewire that shit…</p>
+<p><strong>peter</strong>: For Chrissakes, what’s the problem? You need
+a memo every time you fart?</p>
+<p><strong>leonard</strong>: All right, motherfucker, that’s it.</p>
+<p><strong>peter</strong>: Shh! Shh!</p>
+<p><strong>leonard</strong>: Manny?!</p>
+<p><strong>leonard</strong>: My God, what the hell are you…?</p>
+<p><strong>manny</strong>: Hurry, the woman needs help!</p>
+<p><strong>peter</strong>: Woman?</p>
+<p><strong>susan</strong>: Don’t.</p>
+<p><strong>peter</strong>: Listen to me: we’re getting you out.</p>
+<p><strong>peter</strong>: Give me your belts.</p>
+<p><strong>leonard</strong>: What are you doing down here?</p>
+<p><strong>manny</strong>: Chuy. He was taken. He’s down here somewhere…
+Oh, please, hurry. I saw what was after her.</p>
+<p><strong>peter</strong>: What’s…?</p>
+<p><strong>manny</strong>: Just hurry.</p>
+<p><strong>peter</strong>: I’m coming, Sus, I’m coming.</p>
+<p><strong>susan</strong>: No, Jesus, no.</p>
+<p><strong>peter</strong>: Toss the flare down!</p>
+<p><strong>leonard</strong>: I only got…</p>
+<p><strong>peter</strong>: Just do it!</p>
+<p><strong>peter</strong>: Oh, Jesus…</p>
+<p><strong>leonard</strong>: What the fuck is that?! What the fuck is
+that?!</p>
+<p><strong>susan</strong>: Peter…</p>
+<p><strong>peter</strong>: Wrap it around your hand!</p>
+<p><strong>peter</strong>: Come on!</p>
+<p><strong>peter</strong>: Get on my shoulders!</p>
+<p><strong>peter</strong>: Let’s go!</p>
+<p><strong>peter</strong>: Oh, shit…</p>
+<p><strong>manny</strong>: There!</p>
+<p><strong>leonard</strong>: Get the goddam door!</p>
+<p><strong>peter</strong>: Push it! Push it! Don’t let up!</p>
+<p><strong>leonard</strong>: What the fuck was that?</p>
+<p><strong>leonard</strong>: You better tell me what the hell’s going on
+here!</p>
+<p><strong>manny</strong>: Hey, hey!! Take it easy!!</p>
+<p><strong>peter</strong>: We don’t know!! We don’t know what it is!</p>
+<p><strong>peter</strong>: Wait a minute-</p>
+<p><strong>leonard</strong>: Fuck you, wait a minute. I’m going to-</p>
+<p><strong>peter</strong>: Its muscles are locked.</p>
+<p><strong>leonard</strong>: Oh, Jesus!!</p>
+<p><strong>manny</strong>: Wait…</p>
+<p><strong>leonard</strong>: Oh, Jesus! It’s hitting the bone man, get
+it off!!</p>
+<p><strong>peter</strong>: Hey hey hey…</p>
+<p><strong>manny</strong>: Is how we make loose the ticks back home.</p>
+<p><strong>peter</strong>: Just keep holding it. Can you do that for me?
+Susan?</p>
+<p><strong>manny</strong>: Doctor Tyler?</p>
+<p><strong>peter</strong>: You feel anything?</p>
+<p><strong>leonard</strong>: Yeah, I feel like ripping your fucking eyes
+out…</p>
+<p><strong>peter</strong>: Leonard, listen. I need to see if there’s any
+nerve damage before we carry you back. Look, I’m trying to help you
+here…</p>
+<p><strong>leonard</strong>: Oh, you helped me here, all right, white
+boy. You and your goddam memo. You needed to prove your point, uh?</p>
+<p><strong>peter</strong>: I’m sorry. But I don’t think letting you
+bleed to death is the best apology.</p>
+<p><strong>manny</strong>: Where the hell’d that thing come from?</p>
+<p><strong>peter</strong>: A mistake.</p>
+<p><strong>leonard</strong>: “Mistake”? What’s that supposed to…?</p>
+<p><strong>peter</strong>: It doesn’t matter, all right? It’s dead.</p>
+<p><strong>leonard</strong>: How you know that? Shit, it was runnin’
+around with its buttside gone and a fucking pipe through its heart…</p>
+<p><strong>susan</strong>: It doesn’t have a heart.</p>
+<p><strong>susan</strong>: Just inner chambers…</p>
+<p><strong>manny</strong>: But it look like a man. It… I saw it.</p>
+<p><strong>susan</strong>: No…</p>
+<p><strong>susan</strong>: That’s what it wanted you to see.</p>
+<p><strong>peter</strong>: So, you’re saying this is like those bugs
+that – that look like twigs or leaves or…</p>
+<p><strong>susan</strong>: That’s camouflage…</p>
+<p><strong>susan</strong>: This is mimicry. They evolve to mimic their
+predators. A butterfly can look like the eyes of an owl. A catterpillar
+can copy a snake…</p>
+<p><strong>susan</strong>: This has evolved to mimic the most dangerous
+predator it’s ever had…</p>
+<p><strong>susan</strong>: Us.</p>
+<p><strong>susan</strong>: Mantids can mimic. We gave the Judas that
+code…</p>
+<p><strong>manny</strong>: “…and behold he will come that walks as a
+man, yet is not a man- …”</p>
+<p><strong>susan</strong>: This, is our baby Peter. Yours and mine.
+Aren’t you proud?</p>
+<p><strong>susan</strong>: All these…they’re like tunnels of an insect
+colony. Once these things hit a certain population density, they’ll have
+to move out, form new colonies.</p>
+<p><strong>susan</strong>: We have to get help down here. Burn the
+tunnels before…</p>
+<p><strong>leonard</strong>: Get the doors!</p>
+<p><strong>peter</strong>: Is there a switch?</p>
+<p><strong>leonard</strong>: Third rail is dead. Get me up. There must
+be a manual override in the booth.</p>
+<p><strong>susan</strong>: The lights!</p>
+<p><strong>leonard</strong>: Where’s the damn crank?!</p>
+<p><strong>peter</strong>: They’re coming!</p>
+<p><strong>susan</strong>: I got it!</p>
+<p><strong>susan</strong>: Hurry! Please!</p>
+<p><strong>leonard</strong>: Come on, you son-of-a…</p>
+<p><strong>susan</strong>: Oh, God. The blood…</p>
+<p><strong>susan</strong>: His blood! It’s driving them crazy! We have
+to mask the odor!</p>
+<p><strong>peter</strong>: How?!</p>
+<p><strong>peter</strong>: It’s no use! They know we’re in here!</p>
+<p><strong>susan</strong>: They don’t know anything Peter, they just
+sense. They’re hardwired!</p>
+<p><strong>peter</strong>: Right. Hardwired to eat anything that’s not
+like them!</p>
+<p><strong>susan</strong>: Exac…</p>
+<p><strong>susan</strong>: Give me your razor.</p>
+<p><strong>peter</strong>: What are you doing?</p>
+<p><strong>leonard</strong>: Shit!</p>
+<p><strong>susan</strong>: Rub it on the windows!</p>
+<p><strong>peter</strong>: What-</p>
+<p><strong>susan</strong>: Just do it!!</p>
+<p><strong>leonard</strong>: What are you putting that crap on me
+for?</p>
+<p><strong>susan</strong>: Scent glands. Insects use ’em to identify
+themselves to each other.</p>
+<p><strong>leonard</strong>: Okay. That’s us.</p>
+<p><strong>leonard</strong>: This track we’re on? Goes down into the
+repair area. The elevator’s over here. Leads up to the active
+tunnels.</p>
+<p><strong>peter</strong>: Can we get this car there?</p>
+<p><strong>leonard</strong>: Someone’d have to go to the switchroom,
+pull the coupling lever, that’ll send us left and to the elevator.</p>
+<p><strong>susan</strong>: But the power…</p>
+<p><strong>leonard</strong>: Hell, I might be able to juice the whole
+area, if I can get to the power box. It’s just a couple of cables…</p>
+<p><strong>manny</strong>: Oh, how you gonna get there, Leonard?
+Hop?</p>
+<p><strong>peter</strong>: Just talk me through it. I can go with
+Manny.</p>
+<p><strong>leonard</strong>: It would take a minute or so. You won’t
+last that long out there.</p>
+<p><strong>susan</strong>: Peter, you couldn’t even fix our TV!</p>
+<p><strong>peter</strong>: We’ll cover ourselves with this. They can
+mimic us- we Goddam mimic them!</p>
+<p><strong>susan</strong>: Peter-</p>
+<p><strong>peter</strong>: It worked before…</p>
+<p><strong>susan</strong>: The scent won’t last…</p>
+<p><strong>peter</strong>: That’s why we should do it now.</p>
+<p><strong>leonard</strong>: It’s just a regular old pump switch, okay?
+Right by the track signal board.</p>
+<p><strong>leonard</strong>: The lights come up, you pull the
+switch.</p>
+<p><strong>manny</strong>: I pull.</p>
+<p><strong>leonard</strong>: You don’t do that, we’re on the wrong
+track. You…</p>
+<p><strong>leonard</strong>: You gonna finally get to fuck around with
+the wires. Think you can handle it?</p>
+<p><strong>peter</strong>: Depends. You got a memo?</p>
+<p><strong>leonard</strong>: All right then. You gonna find two wires.
+One’s green. The other’s blue…</p>
+<p><strong>manny</strong>: He’s out there. I heard him. How can he be?
+This things…</p>
+<p><strong>susan</strong>: Manny…</p>
+<p><strong>manny</strong>: I didn’t protect him, lady. He trusted me.
+And I didn’t protect him… His father…I lost his father to the streets
+and now, Chuy…</p>
+<p><strong>susan</strong>: We’ll find him. We’ll be back and find
+him.</p>
+<p><strong>susan</strong>: You’re going to have to keep it really slow.
+Their eyes react to sudden movements.</p>
+<p><strong>susan</strong>: Don’t touch it. And for Godsakes, try not to
+sweat. They can sense chemical changes…</p>
+<p><strong>peter</strong>: Try not to sweat?</p>
+<p><strong>leonard</strong>: Okay, people…</p>
+<p><strong>leonard</strong>: …are we ready for this?</p>
+<p><strong>leonard</strong>: Whatever you do, don’t step on the third
+rail coming back. Six hundred volts’ll blow your leg right off.</p>
+<p><strong>peter</strong>: I was just thinking how I could use a pair of
+pliers… and I remembered where they are…</p>
+<p><strong>susan</strong>: That’s it. That’s it. Breathe easy.</p>
+<p><strong>peter</strong>: In the tool box under the kitchen
+counter…</p>
+<p><strong>susan</strong>: Open it.</p>
+<p><strong>susan</strong>: Choke on it, motherfuckers.</p>
+<p><strong>peter</strong>: Green…Blue…</p>
+<p><strong>manny</strong>: Chuy…?</p>
+<p><strong>manny</strong>: Nino…</p>
+<p><strong>manny</strong>: Chuy…</p>
+<p><strong>peter</strong>: Dammit!</p>
+<p><strong>susan</strong>: The scent’s fading…</p>
+<p><strong>leonard</strong>: What’s Manny doing? I can’t see him
+anymore.</p>
+<p><strong>manny</strong>: Nino, please…</p>
+<p><strong>manny</strong>: Dios mio…</p>
+<p><strong>manny</strong>: Chuy…</p>
+<p><strong>chuy</strong>: Friends.</p>
+<p><strong>chuy</strong>: Friends.</p>
+<p><strong>manny</strong>: God has closed his eyes. This, he cannot
+see…</p>
+<p><strong>susan</strong>: Over here! Over here! Goddam you!!</p>
+<p><strong>peter</strong>: Manny…</p>
+<p><strong>susan</strong>: Peter!!</p>
+<p><strong>peter</strong>: Come on, kid…</p>
+<p><strong>peter</strong>: Jesus!</p>
+<p><strong>susan</strong>: Run!! Peter!!</p>
+<p><strong>leonard</strong>: The kid…</p>
+<p><strong>peter</strong>: The kid’s with them!!</p>
+<p><strong>leonard</strong>: What do you-?</p>
+<p><strong>peter</strong>: Go!! Just go!!</p>
+<p><strong>leonard</strong>: He didn’t do it!</p>
+<p><strong>susan</strong>: What?</p>
+<p><strong>leonard</strong>: Manny never threw the coupling switch!!
+We’re goin’ the wrong way!!!</p>
+<p><strong>susan</strong>: You all right?</p>
+<p><strong>leonard</strong>: Can’t feel it.</p>
+<p><strong>susan</strong>: Which way?</p>
+<p><strong>leonard</strong>: Across both tracks!!</p>
+<p><strong>peter</strong>: Shit.</p>
+<p><strong>leonard</strong>: Lemme go.</p>
+<p><strong>susan</strong>: We’re no leaving you!</p>
+<p><strong>leonard</strong>: No way we can outrun ’em together. Move
+it!</p>
+<p><strong>leonard</strong>: NOW!! GO!! Get the hell off my beat!</p>
+<p><strong>leonard</strong>: Come on. Come to poppa.</p>
+<p><strong>susan</strong>: There.</p>
+<p><strong>leonard</strong>: Come here, you mealy-mouthed…</p>
+<p><strong>leonard</strong>: Multi-legged…</p>
+<p><strong>leonard</strong>: Maggot-munchin’ motherfu…</p>
+<p><strong>susan</strong>: I can’t tell if it’s working!</p>
+<p><strong>susan</strong>: Oh, come on, come on!</p>
+<p><strong>peter</strong>: Jump in.</p>
+<p><strong>peter</strong>: You go first. I’ll be right below you.</p>
+<p><strong>susan</strong>: Your arm, you can’t…</p>
+<p><strong>peter</strong>: I can. We can do this…</p>
+<p><strong>susan</strong>: We’re gonna make it!</p>
+<p><strong>peter</strong>: Don’t hold your breath! Keep it going, even
+flow!</p>
+<p><strong>peter</strong>: C’mon…</p>
+<p><strong>susan</strong>: Ah…</p>
+<p><strong>peter</strong>: Talk to me.</p>
+<p><strong>susan</strong>: Peter…</p>
+<p><strong>susuan</strong>: I’m really glad I’m not pregnant.</p>
+<p><strong>peter</strong>: Hang onto me.</p>
+<p><strong>peter</strong>: Hang on tight!</p>
+<p><strong>peter</strong>: Come on!</p>
+<p><strong>susan</strong>: Don’t look back!</p>
+<p><strong>susan</strong>: No…</p>
+<p><strong>peter</strong>: We can do it!</p>
+<p><strong>little girl</strong>: Mommy, there’s people…</p>
+<p><strong>peter</strong>: We-can-do-this!!!</p>
+<p><strong>peter</strong>: It’ll be fine… it… They’re still down there.
+We’ll seal the whole system, go in with whatever it takes…</p>
+<p><strong>peter</strong>: It’ll be fine… We nailed them before, we’ll
+do it again…</p>
+<p><strong>susan</strong>: They’ve come up…</p>
+<p><strong>train announcer</strong>: The 11:16 local to Poughkeepsie,
+boarding now, Track 32- the 7:20 Connecticut local, making connections
+to South Norwalk-</p>
+</body>
+</html>

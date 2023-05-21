@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>barton-fink</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="barton-fink">barton-fink</h1>
+<p><strong>actor</strong>: I’m blowin’ out of here, blowin’ for good.
+I’m kissin’ it all goodbye, these four stinkin’ walls, the six flights
+up, the el that roars by at three A.M. like a castiron wind. Kiss ’em
+goodbye for me, Maury! I’ll miss ’em � like hell I will!</p>
+<p><strong>actress</strong>: Dreaming again!</p>
+<p><strong>actor</strong>: Not this time, Lil! I’m awake now, awake for
+the first time in years. Uncle Dave said it: Daylight is a dream if
+you’ve lived with your eyes closed. Well my eyes are open now! I see
+that choir, and I know they’re dressed in rags! But we’re part of that
+choir, both of us � yeah, and you, Maury, and Uncle Dave too!</p>
+<p><strong>maury</strong>: The sun’s coming up, kid. They’ll be hawking
+the fish down on Fulton Street.</p>
+<p><strong>actor</strong>: Let ’em hawk. Let ’em sing their hearts
+out.</p>
+<p><strong>maury</strong>: That’s it, kid. Take that ruined choir. Make
+it sing!</p>
+<p><strong>actor</strong>: So long, Maury.</p>
+<p><strong>maury</strong>: So long.</p>
+<p><strong>maury</strong>: We’ll hear from that kid. And I don’t mean a
+postcard.</p>
+<p><strong>lily</strong>: Let’s spit on our hands and get to work. It’s
+late, Maury.</p>
+<p><strong>maury</strong>: Not any more Lil…</p>
+<p><strong>maury</strong>: …It’s early.</p>
+<p><strong>maitre ’d</strong>: Your table is ready, Monsieur Fink…
+several members of your party have already arrived…</p>
+<p><strong>fink</strong>: Is Garland Stanford here?</p>
+<p><strong>maitre ’d</strong>: He called to say he’d be a few minutes
+late… Ah, here we are…</p>
+<p><strong>man</strong>: Barton, Barton, so glad you could make it. You
+know Richard St. Claire…</p>
+<p><strong>man</strong>: …and Poppy Carnahan. We’re drinking champagne,
+dear boy, in honor of the occasion. Have you seen the Herald?</p>
+<p><strong>barton</strong>: Not yet.</p>
+<p><strong>man</strong>: Well, I don’t want to embarrass you but Caven
+could hardly contain himself. But more important, Richard and Poppy here
+loved the play.</p>
+<p><strong>poppy</strong>: Loved it! What power!</p>
+<p><strong>richard</strong>: Yeah, it was a corker.</p>
+<p><strong>barton</strong>: Thanks, Richard, but I know for a fact the
+only fish you’ve ever seen were tacked to a the wall of the yacht
+club.</p>
+<p><strong>richard</strong>: Ouch!</p>
+<p><strong>man</strong>: Bravo! Nevertheless, we were all
+devastated.</p>
+<p><strong>poppy</strong>: Weeping! Copius tears! What did the Herald
+say?</p>
+<p><strong>man</strong>: I happen to have it with me.</p>
+<p><strong>barton</strong>: Please Derek �</p>
+<p><strong>poppy</strong>: Do read it, do!</p>
+<p><strong>derek</strong>: “Bare Ruined Choirs: Triumph of the Common
+Man. The star of the Bare Ruined Choirs was not seen on the stage of the
+Belasco last night � though the thespians involved all acquitted
+themselves admirably. The find of the evening was the author of this
+drama about simple folk � fish mongers, in fact � whose brute struggle
+for existence cannot quite quell their longing for something higher. The
+playwright finds nobility in the most squalid corners and poetry in the
+most callused speech. A tough new voice in the American theater has
+arrived, and the owner of that voice is named… Barton Fink.”</p>
+<p><strong>barton</strong>: They’ll be wrapping fish in it in the
+morning so I guess it’s not a total waste.</p>
+<p><strong>poppy</strong>: Cynic!</p>
+<p><strong>derek</strong>: Well we can enjoy your success, Barton, even
+if you can’t.</p>
+<p><strong>barton</strong>: Don’t get me wrong � I’m glad it’ll do well
+for you, Derek.</p>
+<p><strong>derek</strong>: Don’t worry about me, dear boy � I want you
+to celebrate.</p>
+<p><strong>barton</strong>: All right, but I can’t start listening to
+the critics, and I can’t kid myself about my own work. A writer writes
+from his gut, and his gut tells him what’s good and what’s… merely
+adequate.</p>
+<p><strong>poppy</strong>: Well I don’t pretend to be a critic, but
+Lord, I have a gut, and it tells me it was simply marvelous.</p>
+<p><strong>richard</strong>: And a charming gut it is.</p>
+<p><strong>poppy</strong>: You dog!</p>
+<p><strong>richard</strong>: Aaa-woooooooo!</p>
+<p><strong>barton</strong>: I thought you were going to join us. Jesus,
+Garland, you left me alone with those people.</p>
+<p><strong>garland</strong>: Don’t panic, I’ll join you in a minute.
+What’s you think of Richard and Poppy?</p>
+<p><strong>barton</strong>: The play was marvelous. She wept, copiously.
+Millions of dollars and no sense.</p>
+<p><strong>garland</strong>: We have to talk a little business. I’ve
+just been on the phone to Los Angeles. Barton, Capitol Pictures wants to
+put you under contract. They’ve offered you a thousand dollars a week. I
+think I can get them to go as high as two.</p>
+<p><strong>barton</strong>: To do what?</p>
+<p><strong>garland</strong>: What do you do far a living?</p>
+<p><strong>barton</strong>: I’m not sure anymore. I guess I try to make
+a difference.</p>
+<p><strong>garland</strong>: Fair enough. No pressure here, Barton,
+because I respect you, but let me point out a couple of things. One,
+here you make a difference to five hundred fifty people a night � if the
+show sells out. Eighty five million people go to the pictures every
+week.</p>
+<p><strong>barton</strong>: To see pap.</p>
+<p><strong>garland</strong>: Yes, generally, to see pap. However, point
+number two: A brief tenure in Hollywood could support you through the
+writing of any number of plays.</p>
+<p><strong>barton</strong>: I don’t know, Garland; my place is here
+right now. I feel I’m on the brink of success-</p>
+<p><strong>garland</strong>: I’d say you’re already enjoying some.</p>
+<p><strong>barton</strong>: No, Garland, don’t you see? Not the kind of
+success where the critics fawn over you or the producers like Derek make
+a lot of money. No, a real success � the success we’ve been dreaming
+about � the creation of a new, living theater of, about, and for the
+common man! If I ran off to Hollywood now I’d be making money, going to
+parties, meeting the big shots, sure, but I’d be cutting myself off from
+the wellspring of that success, from the common man.</p>
+<p><strong>barton</strong>: …I guess I’m sprouting off again. But I am
+certain of this, Garland: I’m capable of more good work. Maybe better
+work than I did in Choirs. It just doesn’t seem to me that Los Angeles
+is the place to lead the life of mind.</p>
+<p><strong>garland</strong>: Okay Barton, you’re the artist, I’m just
+the ten percenter. You decide what you want and I’ll make it happen. I’m
+only asking that your decision be informed by a little realism � if I
+can use that word and Hollywood in the same breath.</p>
+<p><strong>garland</strong>: …Look, they love you, kid � everybody does.
+You see Caven’s review in the Herald?</p>
+<p><strong>barton</strong>: No, what did it say?</p>
+<p><strong>garland</strong>: Take my copy. You’re the toast of Broadway
+and you have the opportunity to redeem that for a little cash � strike
+that, a lot of cash.</p>
+<p><strong>garland</strong>: …The common man’ll still be here when you
+get back. What the hell, they might even have one or two of ’em out in
+Hollywood.</p>
+<p><strong>barton</strong>: …That’s a rationalization, Garland.</p>
+<p><strong>garland</strong>: Barton, it was a joke.</p>
+<p><strong>clerk</strong>: Welcome to the Hotel Earle. May I help you,
+sir?</p>
+<p><strong>barton</strong>: I’m checking in. Barton Fink.</p>
+<p><strong>clerk</strong>: F-I-N-K. Fink, Barton. That must be you,
+huh?</p>
+<p><strong>barton</strong>: Must be.</p>
+<p><strong>clerk</strong>: Okay then, everything seems to be in order.
+Everything seems to be in order.</p>
+<p><strong>clerk</strong>: …Are you a tranz or a rez?</p>
+<p><strong>barton</strong>: Excuse me?</p>
+<p><strong>clerk</strong>: Transient or resident?</p>
+<p><strong>barton</strong>: I don’t know… I mean, I’ll be here, uh,
+indefinitely.</p>
+<p><strong>clerk</strong>: Rez. That’ll be twenty-five fifty a week
+payable in advance. Checkout time is twelve sharp, only you can forget
+that on account you’re a rez. If you need anything, anything at all, you
+dial zero on your personal in-room telephone and talk to me. My name is
+Chet.</p>
+<p><strong>barton</strong>: Well, I’m going to be working here, mostly
+at night; I’m a writer. Do you have room service?</p>
+<p><strong>clerk</strong>: Kitchen closes at eight but I’m the night
+clerk. I can always ring out for sandwiches.</p>
+<p><strong>clerk</strong>: …Though we provide privacy for the
+residential guest, we are also a full service hotel including
+complimentary shoe shine. My name is Chet.</p>
+<p><strong>clerk</strong>: …Okay</p>
+<p><strong>barton</strong>: Huh?</p>
+<p><strong>clerk</strong>: Okey-dokey, go ahead.</p>
+<p><strong>barton</strong>: What �</p>
+<p><strong>clerk</strong>: Don’t you wanna go to your room?!</p>
+<p><strong>barton</strong>: …What number is it?</p>
+<p><strong>clerk</strong>: …Six-oh-five. I forgot to tell you.</p>
+<p><strong>clerk</strong>: …Those your only bags?</p>
+<p><strong>barton</strong>: The others are being sent.</p>
+<p><strong>clerk</strong>: I’ll keep an eye out for them. I’ll keep my
+eyes peeled, Mr. Fink.</p>
+<p><strong>barton</strong>: …Six, please.</p>
+<p><strong>elevator man</strong>: Next stop: Six.</p>
+<p><strong>voice</strong>: How d’ya like your room!</p>
+<p><strong>barton</strong>: …Who is this?</p>
+<p><strong>voice</strong>: Chet!</p>
+<p><strong>barton</strong>: …Who?</p>
+<p><strong>voice</strong>: Chet! From downstairs!</p>
+<p><strong>voice</strong>: …How d’ya like your room!</p>
+<p><strong>man</strong>: Is that him?! Barton Fink?! Lemme put my arms
+around this guy!</p>
+<p><strong>man</strong>: …How the hell are ya? Good trip?</p>
+<p><strong>man</strong>: My name is Jack Lipnik. I run this dump. You
+know that � you read the papers.</p>
+<p><strong>man</strong>: Lou treating you all right? Got everything you
+need? What the hell’s the matter with your face? What the hell’s the
+matter with his face, Lou?</p>
+<p><strong>barton</strong>: It’s not as bad as it looks; just a mosquito
+in my room �</p>
+<p><strong>lipnik</strong>: Place okay?</p>
+<p><strong>lipnik</strong>: …Where did we put him?</p>
+<p><strong>barton</strong>: I’m at the Earle.</p>
+<p><strong>lipnik</strong>: Never heard of it. Let’s move him to the
+Grand, or the Wilshire, or hell, he can stay at my place.</p>
+<p><strong>barton</strong>: Thanks, but I wanted a place that was
+less…</p>
+<p><strong>lipnik</strong>: Less Hollywood? Sure, say it, it’s not a
+dirty word. Sat whatever the hell you want. The writer is king here at
+Capitol Pictures. You don’t believe me, take a look at your paycheck at
+the end of every week � that’s what we think of the writer. …so what
+kind of pictures does he like?</p>
+<p><strong>lou</strong>: Mr. Fink hasn’t given a preference,
+Mr. Lipnik.</p>
+<p><strong>lipnik</strong>: How’s about it, Bart?</p>
+<p><strong>barton</strong>: To be honest, I don’t go to the pictures
+much, Mr. Lipnik �</p>
+<p><strong>lipnik</strong>: That’s okay, that’s okay, that’s okay �
+that’s just fine. You probably just walked in here thinking that was
+going to be a handicap, thinking we wanted people who knew something
+about the medium, maybe even thinking there was all kind of technical
+mumbo- jumbo to learn. You were dead wrong. We’re only interested in one
+thing: Can you tell a story, Bart? Can you make us laugh, can you make
+us cry, can you make us wanna break out in joyous song? Is that more
+than one thing? Okay. The point is, I run this dump and I don’t know the
+technical mumbo-jumbo. Why do I run it? I’ve got horse-sense, goddamnit.
+Showmanship. And also, and I hope Lou told you this, I bigger and meaner
+than any other kike in this town. Did you tell him that, Lou? And I
+don’t mean my dick’s bigger than yours, it’s not a sexual thing �
+although, you’re the writer, you would know more about that. Coffee?</p>
+<p><strong>barton</strong>: …Yes, thank you.</p>
+<p><strong>lipnik</strong>: Lou.</p>
+<p><strong>lipnik</strong>: …He used to have shares in the company. An
+ownership interest. Got bought out in the twenties � muscled out
+according to some. Hell, according to me. So we keep him around, he’s
+got a family. Poor schmuck. He’s sensitive, don’t mention the old days.
+Oh hell, say whatever you want. Look, barring a preference, Bart, we’re
+gonna put you to work on a wrestling picture. Wallace Beery. I say this
+because they tell me you know the poetry of the street. That would rule
+out westerns, pirate pictures, screwball, Bible, Roman…</p>
+<p><strong>lipnik</strong>: But look, I’m not one of these guys thinks
+poetic has gotta be fruity. We’re together on that, aren’t we? I mean
+I’m from New York myself � well, Minsk if you wanna go way back, which
+we won’t if you don’t mind and I ain’t askin’. Now people’re gonna tell
+you, wrestling. Wallace Beery, it’s a B picture. You tell them,
+bullshit. We don’t make B pictures here at Capitol. Let’s put a stop to
+that rumor right now.</p>
+<p><strong>lipnik</strong>: …Thanks Lou. Join us. Join us. Talking about
+the Wallace Beery picture.</p>
+<p><strong>lou</strong>: Excellent picture.</p>
+<p><strong>lipnik</strong>: We got a treatment on it yet?</p>
+<p><strong>lou</strong>: No, not yet Jack. We just bought the story.
+Saturday Evening Post.</p>
+<p><strong>lipnik</strong>: Okay, the hell with the story. Wallace Beery
+is a wrestler. I wanna know his hopes, his dreams. Naturally, he’ll have
+to get mixed up with a bad element. And a romantic interest. You know
+the drill. Romantic interest, or else a young kid. An orphan. What do
+you think, Lou? Wally a little too old for a romantic interest? Look at
+me, a writer in the room and I’m askin’ Lou what the goddamn story
+should be!</p>
+<p><strong>lipnik</strong>: …Well Bart, which is it? Orphan? Dame?</p>
+<p><strong>barton</strong>: …Both maybe?</p>
+<p><strong>lou</strong>: …Maybe we should do a treatment.</p>
+<p><strong>lipnik</strong>: Ah, hell, let Bart take a crack at it. He’ll
+get into the swing of things or I don’t know writers. Let’s make it a
+dame, Bart, keep it simple. We don’t gotta tackle the world our first
+time out. The important thing is we all have that Barton Fink feeling,
+but since you’re Barton Fink I’m assuming you have it in spades.
+Seriously Bart, I like you. We’re off to a good start. Dammit, if all
+our writers were like you I wouldn’t have to get so goddamn involved.
+I’d like to see something by the end of the week.</p>
+<p><strong>lipnik</strong>: …Heard about your show, by the way. My man
+in New York saw it. Tells me it was pretty damn powerful. Pretty damn
+moving. A little fruity, he said, but I guess you know what you’re
+doing. Thank you for your heart. We need more heart in pictures. We’re
+all expecting great things.</p>
+<p><strong>barton</strong>: Hello… Chet? This is Barton Fink in room
+605. Yes, there’s uh, there’s someone in the room next door to mine,
+604, and he’s uh… He’s uh… making a lot of… noise.</p>
+<p><strong>barton</strong>: …Thank you.</p>
+<p><strong>man</strong>: Did you… Somebody just complained…</p>
+<p><strong>barton</strong>: No, I didn’t � I mean, I did call down, not
+to complain exactly, I was just concerned that you might � not that it’s
+my business, but that you might be in some kind of… distress. You see, I
+was trying to work, and it’s, well, it was difficult �</p>
+<p><strong>man</strong>: Yeah. I’m damn sorry, if I bothered you. The
+damn walls here, well, I just apologize like hell…</p>
+<p><strong>man</strong>: …My name’s Charlie Meadows. I guess we’re
+neighbors…</p>
+<p><strong>barton</strong>: Barton Fink.</p>
+<p><strong>charlie</strong>: Neighbor, I’d feel better about the damned
+inconvenience if you’d let me buy you a drink.</p>
+<p><strong>barton</strong>: That’s all right, really, thank you.</p>
+<p><strong>charlie</strong>: All right, hell, you trying to work and me
+carrying on in there. Look, the liquor’s good, wuddya say?</p>
+<p><strong>charlie</strong>: … You got a glass? It’s the least I can
+do.</p>
+<p><strong>barton</strong>: Okay… a quick one, sure…</p>
+<p><strong>charlie</strong>: Yeah, just a nip. I feel like hell, all the
+carryings-on next door.</p>
+<p><strong>barton</strong>: That’s okay, I assure you. It’s just that I
+was trying to work �</p>
+<p><strong>charlie</strong>: What kind of work do you do, Barton, if you
+don’t mind my asking?</p>
+<p><strong>barton</strong>: Well, I’m a writer, actually.</p>
+<p><strong>charlie</strong>: You don’t say. That’s a tough racket. My
+hat’s off to anyone who can make a go of it. Damned interesting work,
+I’d imagine.</p>
+<p><strong>barton</strong>: Can be. Not easy, but �</p>
+<p><strong>charlie</strong>: Damned difficult, I’d imagine.</p>
+<p><strong>barton</strong>: And what’s your line, Mr. Meadows?</p>
+<p><strong>charlie</strong>: Hell no! Call me Charlie. Well Barton, you
+might say I sell peace of mind. Insurance is my game � door-to-door,
+human contact, still the only way to move merchandise.</p>
+<p><strong>charlie</strong>: …In spite of what you might think from
+tonight, I’m pretty good at it.</p>
+<p><strong>barton</strong>: Doesn’t surprise me at all.</p>
+<p><strong>charlie</strong>: Hell yes. Because I believe in it. Fire,
+theft, and casualty are not things that only happen to other people �
+that’s what I tell ’em. Writing doesn’t work out, you might want to look
+into it. Providing for basic human need � a fella could do worse.</p>
+<p><strong>barton</strong>: Thanks, I’ll keep it in mind.</p>
+<p><strong>charlie</strong>: What kind of scribbler are you �
+newspaperman did you say?</p>
+<p><strong>barton</strong>: No, I’m actually writing for the pictures
+now �</p>
+<p><strong>charlie</strong>: Pictures! Jesus!</p>
+<p><strong>charlie</strong>: …I’m sorry, brother, I was just sitting
+here thinking I was talking to some ambitious youngster, eager to make
+good. Hell, you’ve got it made! Writing for pictures! Beating out that
+competition! And me being patronizing!</p>
+<p><strong>charlie</strong>: …Is the egg showing or what?!</p>
+<p><strong>barton</strong>: That’s okay; actually I am just starting out
+in the movies � though I was pretty well established in New York, some
+renown there,</p>
+<p><strong>charlie</strong>: Oh, it’s an exciting time then. I’m not the
+best-read mug on the planet, so I guess it’s no surprise I didn’t
+recognize your name. Jesus, I feel like a heel.</p>
+<p><strong>barton</strong>: That’s okay, Charlie. I’m a playwright. My
+shows’ve only played New York. Last one got a hell of a write-up in the
+Herald. I guess that’s why they wanted me here.</p>
+<p><strong>charlie</strong>: Hell, why not? Everyone wants quality. What
+kind of venue, that is to say, thematically, uh…</p>
+<p><strong>barton</strong>: What do I write about?</p>
+<p><strong>charlie</strong>: Caught me trying to be fancy! Yeah, that’s
+it, Bart.</p>
+<p><strong>barton</strong>: Well, that’s a good question. Strange as it
+may seem, Charlie, I guess I write about people like you. The average
+working stiff. The common man.</p>
+<p><strong>charlie</strong>: Well ain’t that a kick in the head!</p>
+<p><strong>barton</strong>: Yeah, I guess it is. But in a way, that’s
+exactly the point. There’s a few people in New York � hopefully our
+numbers are growing � who feel we have an opportunity now to forge
+something real out of everyday experience, create a theater for the
+masses that’s based on a few simple truths � not on some shopworn
+abstractions about drama that doesn’t hold true today, if they ever
+did…</p>
+<p><strong>barton</strong>: …I don’t guess this means much to you.</p>
+<p><strong>charlie</strong>: Hell, I could tell you some stories�</p>
+<p><strong>barton</strong>: And that’s the point, that we all have
+stories. The hopes and dreams of the common man are as noble as those of
+any king. It’s the stuff of life � why shouldn’t it be the stuff of
+theater? Goddamnit, why should that be a hard pill to swallow? Don’t
+call it new theater, Charlie; call it real theater. Call it our
+theater.</p>
+<p><strong>charlie</strong>: I can see you feel pretty strongly about
+it.</p>
+<p><strong>barton</strong>: Well, I don’t mean to get up on my high
+horse, but why shouldn’t we look at ourselves up there? Who cares about
+the Fifth Earl of Bastrop and Lady Higginbottom and � and � and who
+killed Nigel Grinch-Gibbons?</p>
+<p><strong>charlie</strong>: I can feel my butt getting sore
+already.</p>
+<p><strong>barton</strong>: Exactly, Charlie! You understand what I’m
+saying � a lot more than some of these literary types. Because you’re a
+real man!</p>
+<p><strong>charlie</strong>: And I could tell you some stories �</p>
+<p><strong>barton</strong>: Sure you could! And yet many writers do
+everything in their power to insulate themselves from the common man �
+from where they live, from where they trade, from where they fight and
+love and converse and � and � and… so naturally their work suffers, and
+regresses into empty formalism and � well, I’m spouting off again, but
+to put it in your language, the theater becomes as phony as a three
+dollar bill.</p>
+<p><strong>charlie</strong>: Yeah, I guess that’s tragedy right
+there.</p>
+<p><strong>barton</strong>: Frequently played, seldom remarked.</p>
+<p><strong>charlie</strong>: Whatever that means.</p>
+<p><strong>barton</strong>: You’re all right, Charlie. I’m glad you
+stopped by. I’m sorry if � well I know I sometimes run on.</p>
+<p><strong>charlie</strong>: Hell no! Jesus, I’m the kind of guy, I’ll
+let you know if I’m bored. I find it all pretty damned interesting. I’m
+the kind schmoe who’s generally interested in the other guy’s point of
+view.</p>
+<p><strong>barton</strong>: Well, we’ve got something in common
+then.</p>
+<p><strong>charlie</strong>: Well Christ, if there’s any way I can
+contribute, or help, or whatever�</p>
+<p><strong>barton</strong>: Sure, sure Charlie, you can help by just
+being yourself.</p>
+<p><strong>charlie</strong>: Well, I can tell you some stories �</p>
+<p><strong>charlie</strong>: …And look, I’m sorry as hell about the
+interruption. Too much revelry late at night, you forget there are other
+people in the world.</p>
+<p><strong>barton</strong>: See you, Charlie.</p>
+<p><strong>barton</strong>: He looks around to the opposite � bed �
+wall.</p>
+<p><strong>executive</strong>: I’m eating on the lot today �</p>
+<p><strong>executive</strong>: …Who’s he?</p>
+<p><strong>secretary</strong>: Barton Fink, Mr. Geisler.</p>
+<p><strong>geisler</strong>: More please.</p>
+<p><strong>barton</strong>: I’m a writer, Mr. Geisler. Ted Okum said I
+should drop by morning to see you about the �</p>
+<p><strong>geisler</strong>: Ever act?</p>
+<p><strong>barton</strong>: …Huh? No, I’m �</p>
+<p><strong>geisler</strong>: We need Indians for a Norman Steele
+western.</p>
+<p><strong>barton</strong>: I’m a writer. Ted O �</p>
+<p><strong>geisler</strong>: Think about it, Fink. Writers come and go;
+we always need Indians.</p>
+<p><strong>barton</strong>: I’m a writer. Ted Okum said you’re producing
+this Wallace Beery picture I’m working on.</p>
+<p><strong>geisler</strong>: What!? Ted Okum doesn’t know shit. They’ve
+assigned me enough pictures for a goddamn year. What Ted Okum doesn’t
+know you could almost squeeze into the Hollywood Bowl.</p>
+<p><strong>barton</strong>: Then who should I talk to?</p>
+<p><strong>geisler</strong>: Get me Lou Breeze.</p>
+<p><strong>secretary</strong>: Is he in for Mr. Geisler?</p>
+<p><strong>geisler</strong>: Lou? How’s Lipnik’s ass smell this
+morning?… Yeah?… Yeah?… Okay, the reason I’m calling, I got a writer
+here, Fink, all screwy. Says I’m producing that Wallace Beery wrestling
+picture � what’m I, the goddamn janitor around here?… Yeah, well who’d
+you get that from?… Yeah, well tell Lipnik he can kiss my dimpled ass…
+Shit! No, alright… No, no, all right.</p>
+<p><strong>geisler</strong>: …Okay kid, let’s chow.</p>
+<p><strong>geisler</strong>: Don’t worry about it. It’s just a B
+picture. I bring it in on budget, they’ll book it without even screening
+it. Life is too short.</p>
+<p><strong>barton</strong>: But Lipnik said he wanted to look at the
+script, see something by the end of the week.</p>
+<p><strong>geisler</strong>: Sure he did. And he forgot about it before
+your ass left his sofa.</p>
+<p><strong>barton</strong>: Okay. I’m just having trouble getting
+started. It’s funny, I’m blocked up. I feel like I need some kind of
+indication of… what’s expected �</p>
+<p><strong>geisler</strong>: Wallace Beery. Wrestling picture. What do
+you need, a road map?</p>
+<p><strong>geisler</strong>: …Look, you’re confused? You need guidance?
+Talk to another writer.</p>
+<p><strong>barton</strong>: Who?</p>
+<p><strong>geisler</strong>: Jesus, throw a rock in here, you’ll hit
+one. And do me a favor, Fink: Throw it hard.</p>
+<p><strong>man</strong>: Bill Mayhew. Sorry about the odor.</p>
+<p><strong>barton</strong>: Barton Fink.</p>
+<p><strong>barton</strong>: …Jesus. W.P.!</p>
+<p><strong>mayhew</strong>: I beg your pardon?</p>
+<p><strong>barton</strong>: W.P. Mayhew? The writer?</p>
+<p><strong>mayhew</strong>: Just Bill, please.</p>
+<p><strong>barton</strong>: Bill!…</p>
+<p><strong>barton</strong>: …You’re the finest novelist of our time.</p>
+<p><strong>mayhew</strong>: Why thank you, son, how kind. Bein’ occupied
+here in the worship of Mammon, I haven’t had the chance yet to see your
+play �</p>
+<p><strong>mayhew</strong>: …Yes, Mistuh Fink, some of the news reaches
+us in Hollywood.</p>
+<p><strong>barton</strong>: Sir, I’m flattered that you even recognize
+my name. My God, I had no idea you were in Hollywood.</p>
+<p><strong>mayhew</strong>: All of us undomesticated writers eventually
+make their way out here to the Great Salt Lick. Mebbe that’s why I allus
+have such a powerful thrust.</p>
+<p><strong>mayhew</strong>: …A little social lubricant, Mistuh Fink?</p>
+<p><strong>barton</strong>: It’s still a little early for me.</p>
+<p><strong>mayhew</strong>: So be it.</p>
+<p><strong>barton</strong>: …Bill, if I’m imposing you should say so, I
+know you’re very busy � I just, uh… I just wonder if I could ask you a
+favor… That is to say, uh… have you ever written a wrestling
+picture?</p>
+<p><strong>mayhew</strong>: …You are drippin’, suh.</p>
+<p><strong>mayhew</strong>: …Mistuh Fink, they have not invented a genre
+of picture that Bill Mayhew has not, at one time or othuh, been invited
+to essay. I have taken my stabs at the wrastlin’ form, as I have stabbed
+at so many others, and with as little success. I gather that you are a
+fresh-man here, eager for an upperclassman’s council. However, just at
+the moment…</p>
+<p><strong>mayhew</strong>: …I have drinkin’ to do. Why don’t you stop
+at my bungalow, which is numbah fifteen, later on this afternoon…</p>
+<p><strong>mayhew</strong>: …and we will discuss wrastlin’ scenarios and
+other things lit’rary.</p>
+<p><strong>woman</strong>: …Can I help you?</p>
+<p><strong>barton</strong>: I’m sorry, I… My name is Fink… Uh, Bill
+asked me to drop by this afternoon. Is he in?</p>
+<p><strong>woman</strong>: Mr. Mayhew is indisposed at the moment�</p>
+<p><strong>woman</strong>: Mr. Fink, I’m Audrey Taylor, Mr. Mayhew’s
+personal secretary. I know this all must sound horrid. I really do
+apologize…</p>
+<p><strong>barton</strong>: Is, uh… Is he okay?</p>
+<p><strong>audrey</strong>: He will be… When he can’t write, he
+drinks.</p>
+<p><strong>audrey</strong>: I am sorry, it’s so embarassing.</p>
+<p><strong>barton</strong>: How about you? Will you be alright?</p>
+<p><strong>audrey</strong>: I’ll be fine… Are you a writer, Mr Fink?</p>
+<p><strong>barton</strong>: Yes I am. I’m working on a wres � please
+call me Barton.</p>
+<p><strong>audrey</strong>: I’ll tell Bill you dropped by. I’m sure
+he’ll want to reschedule your appointment.</p>
+<p><strong>barton</strong>: Perhaps you and I could get together at some
+point also. �I’m sorry if that sounds abrupt. I just… I don’t know
+anyone here in this town.</p>
+<p><strong>audrey</strong>: Perhaps the three of us, Mr. Fink.</p>
+<p><strong>barton</strong>: Please, Barton.</p>
+<p><strong>audrey</strong>: Barton. You see, Barton, I’m not just Bill’s
+secretary � Bill and I are… I love. We-</p>
+<p><strong>barton</strong>: I see.</p>
+<p><strong>audrey</strong>: …I know this must look… funny.</p>
+<p><strong>barton</strong>: No, no �</p>
+<p><strong>audrey</strong>: We need each other. We give each other… the
+things we need �</p>
+<p><strong>voice</strong>: M’HONEY!!… bastard-ass sons of bitches… the
+water’s lappin’ up…</p>
+<p><strong>audrey</strong>: I’m sorry, Mr. Fink. Please don’t judge us.
+Please…</p>
+<p><strong>charlie</strong>: Howdy, neighbor.</p>
+<p><strong>barton</strong>: Charlie. How are you.</p>
+<p><strong>charlie</strong>: Jesus, I hope I’m not interrupting you
+again. I heard you walking around in here. Figured I’d drop by.</p>
+<p><strong>barton</strong>: Yeah, come in Charlie. Hadn’t really gotten
+started yet � what happened to your ear?</p>
+<p><strong>charlie</strong>: Oh, yeah. An ear infection, chronic thing.
+Goes away for a while, but it always comes back. Gotta put cotton in it
+to staunch the flow of pus. Don’t worry, it’s not contagious.</p>
+<p><strong>barton</strong>: Seen a doctor?</p>
+<p><strong>charlie</strong>: Ah, doctors. What’s he gonna tell me? Can’t
+trade my head in for a new one.</p>
+<p><strong>barton</strong>: No, I guess you’re stuck with the one you’ve
+got. Have a seat.</p>
+<p><strong>charlie</strong>: Thanks, I’d invite you over to my place,
+but it’s a goddamn mess. You married, Bart?</p>
+<p><strong>barton</strong>: Nope.</p>
+<p><strong>charlie</strong>: I myself have yet to be lassoed.</p>
+<p><strong>charlie</strong>: …Got a sweetheart?</p>
+<p><strong>barton</strong>: No… I guess it’s something about my work. I
+get so worked up over it, I don’t know; I don’t really have a lot of
+attention left over, so it would be a little unfair…</p>
+<p><strong>charlie</strong>: Yeah, the ladies do ask for attention. In
+my experience, they pretend to give it, but it’s generally a smoke-
+screen for demanding it back � with interest. How about family, Bart?
+How’re you fixed in that department?</p>
+<p><strong>barton</strong>: My folks live in Brooklyn, with my
+uncle.</p>
+<p><strong>charlie</strong>: Mine have passed on. It’s just the three of
+us now…</p>
+<p><strong>charlie</strong>: …What’s the expression � me myself and
+I.</p>
+<p><strong>barton</strong>: Sure, that’s tough, but in a sense, we’re
+all alone in this world aren’t we Charlie? I’m often surrounded by
+family and friends, but…</p>
+<p><strong>charlie</strong>: Mm… You’re no stranger to loneliness, then.
+I guess I got no beef; especially where the dames are concerned. In my
+line of work I get opportunities galore � always on the wing, you know
+what I’m saying. I could tell stories to curl your hair � but it looks
+like you’ve already heard ’em!</p>
+<p><strong>charlie</strong>: …That’s me in Kansas City, plying my
+trade.</p>
+<p><strong>charlie</strong>: …It was taken by one of my policy holders.
+They’re more than just customers to me, Barton. They really appreciate
+what I have to offer them. Ya see, her hubby was out of town at the time
+�</p>
+<p><strong>barton</strong>: You know, in a way, I envy you Charlie. Your
+daily routine � you know what’s expected. You know the drill. My job is
+to plumb the depths, so to speak, dredge something up from inside,
+something honest. There’s no road map for that territory…</p>
+<p><strong>barton</strong>: …and exploring it can be painful. The kind
+of pain most people don’t know anything about.</p>
+<p><strong>barton</strong>: …This must be boring you.</p>
+<p><strong>charlie</strong>: Not at all. It’s damned interesting.</p>
+<p><strong>barton</strong>: Yeah…</p>
+<p><strong>barton</strong>: …Probably sounds a little grand coming from
+someone who’s writing a wrestling picture for Wallace Beery.</p>
+<p><strong>charlie</strong>: Beery! You got no beef there! He’s good.
+Hell of an actor � though, for my money, you can’t beat Jack Oakie. A
+stitch, Oakie. Funny stuff, funny stuff. But don’t get me wrong � Beery,
+a wrestling picture, that could be a pip. Wrestled some myself back in
+school. I guess you know the basic moves.</p>
+<p><strong>barton</strong>: Nope, never watched any. I’m not that
+interested in the act itself �</p>
+<p><strong>charlie</strong>: Okay, but hell, you should know what it is.
+I can show you in about thirty seconds.</p>
+<p><strong>charlie</strong>: …You’re a little out of your weight class,
+but just for purposes of demonstration �</p>
+<p><strong>barton</strong>: That’s all right, really �</p>
+<p><strong>charlie</strong>: Not a bit of it, compadre! Easiest thing in
+the world! You just get down on your knees to my left, slap your right
+hand here…</p>
+<p><strong>charlie</strong>: …and your left hand here.</p>
+<p><strong>charlie</strong>: …You can do it, champ!</p>
+<p><strong>charlie</strong>: …All right now, when I say “Ready…
+wrestle!” you try and pin me, and I try and pin you. That’s the whole
+game. Got it?</p>
+<p><strong>barton</strong>: …Yeah, okay.</p>
+<p><strong>charlie</strong>: Ready… wrestle!</p>
+<p><strong>charlie</strong>: Damn, there I go again. We’re gonna wake
+the downstairs neighbors. I didn’t hurt ya, did I?</p>
+<p><strong>barton</strong>: It’s okay, it’s okay.</p>
+<p><strong>charlie</strong>: Well, that’s all that wrestling is. Except
+usually there’s more grunting and squirming before the pin. Well, it’s
+your first time. And you’re out of your weight class.</p>
+<p><strong>charlie</strong>: …Jesus, I did hurt you!</p>
+<p><strong>charlie</strong>: …I’m just a big, clumsy lug. I sure do
+apologize.</p>
+<p><strong>charlie</strong>: …You sure you’re okay?</p>
+<p><strong>barton</strong>: I’m fine, Charlie. Really I am. Actually,
+it’s been helpful, but I guess I should get back to work.</p>
+<p><strong>charlie</strong>: Well, it wasn’t fair of me to do that. I’m
+pretty well endowed physically.</p>
+<p><strong>charlie</strong>: …Don’t feel bad, though. I wouldn’t be much
+of a match for you at mental gymnastics. Gimme a holler if you need
+anything.</p>
+<p><strong>by</strong>: W.P. Mayhew”</p>
+<p><strong>mayhew</strong>: If I close m’eyes I can almost smell the
+live oak.</p>
+<p><strong>audrey</strong>: That’s hamburger grease, Bill.</p>
+<p><strong>mayhew</strong>: Well, m’olfactory’s turnin’ womanish on me �
+lyin’ and deceitful…</p>
+<p><strong>mayhew</strong>: …Still, I must say. I haven’t felt peace
+like this since the grand productive days. Don’t you find it so, Barton?
+Ain’t writin’ peace?</p>
+<p><strong>barton</strong>: Well… actually, no Bill…</p>
+<p><strong>barton</strong>: …No, I’ve always found that writing comes
+from a great inner pain. Maybe it’s a pain that comes from a realization
+that one must do something for one’s fellow man � to help somehow to
+ease his suffering. Maybe it’s a personal pain. At any rate, I don’t
+believe good work is possible without it.</p>
+<p><strong>mayhew</strong>: Mmm. Wal, me, I just enjoy maikn’ things up.
+Yessir. Escape… It’s when I can’t write, can’t escape m’self, that I
+want to tear m’head off and run screamin’ down the street with m’balls
+in a fruitpickers pail. Mm…</p>
+<p><strong>mayhew</strong>: …This’ll sometimes help.</p>
+<p><strong>audrey</strong>: That doesn’t help anything, Bill.</p>
+<p><strong>barton</strong>: That’s true, Bill. I’ve never found it to
+help my writing.</p>
+<p><strong>mayhew</strong>: Your writing? Son, have you ever heard the
+story of Soloman’s mammy-</p>
+<p><strong>audrey</strong>: You should read this, Barton. I think it’s
+Bill’s finest, or among his finest anyway.</p>
+<p><strong>mayhew</strong>: So now I’m s’posed to roll over like an ol’
+bitch dog gettin’ ger belly scratched.</p>
+<p><strong>audrey</strong>: Bill �</p>
+<p><strong>barton</strong>: Look, maybe it’s none of my business, but a
+man with your talent � don’t you think your first obligation would be to
+your gift? Shouldn’t you be doing whatever you have to do to work
+again?</p>
+<p><strong>mayhew</strong>: And what would that be, son?</p>
+<p><strong>barton</strong>: I don’t know exactly. But I do know what
+you’re doing with that drink. You’re cutting yourself off from your
+gift, and from me and Audrey, and from your fellow man, and from
+everything your art is about.</p>
+<p><strong>mayhew</strong>: No son, thisahere moonshine’s got nothin’ to
+do with shuttin’ folks out. No, I’m usin’ it to build somethin’.</p>
+<p><strong>barton</strong>: What’s that?</p>
+<p><strong>mayhew</strong>: I’m buildin’ a levee. Gulp by gulp, brick by
+brick. Raisin’ up a levee to keep that ragin’ river of manure from
+lappin’ at m’door.</p>
+<p><strong>audrey</strong>: Maybe you better too, Barton. Before you get
+buried under his manure.</p>
+<p><strong>mayhew</strong>: M’honey pretends to be impatient with me,
+Barton, but she’ll put up with anything.</p>
+<p><strong>audrey</strong>: Not anything, Bill. Don’t test me.</p>
+<p><strong>barton</strong>: You’re lucky she puts up with as much as she
+does.</p>
+<p><strong>mayhew</strong>: Am I? Maybe to a schoolboy’s eye. People who
+know about the human heart, though, mebbe they’d say, Bill over here, he
+gives his honey love, and she pays him back with pity � the basest coin
+there is.</p>
+<p><strong>audrey</strong>: Stop it, Bill!</p>
+<p><strong>mayhew</strong>: The truth, m’honey, is a tart that does not
+bear scrutiny.</p>
+<p><strong>mayhew</strong>: Breach my levee at your peril!</p>
+<p><strong>audrey</strong>: Let him go.</p>
+<p><strong>barton</strong>: That son of a bitch… Don’t get me wrong,
+he’s a fine writer.</p>
+<p><strong>mayhew</strong>: I’ll jus’ walk on down to the Pacific, and
+from there I’ll… improvise.</p>
+<p><strong>barton</strong>: Are you all right?</p>
+<p><strong>mayhew</strong>: Silent upon a hill in Darien!</p>
+<p><strong>barton</strong>: Audrey, you can’t put up with this.</p>
+<p><strong>audrey</strong>: …Oh Barton, I feel so… sorry for him!</p>
+<p><strong>barton</strong>: What?! He’s a son of a bitch!</p>
+<p><strong>audrey</strong>: No, sometimes he just… well, he thinks about
+Estelle. His wife still lives in Fayettesville. She’s… disturbed.</p>
+<p><strong>barton</strong>: Really?…</p>
+<p><strong>barton</strong>: …Well that doesn’t excuse his behavior.</p>
+<p><strong>audrey</strong>: He’ll wander back when he’s sober and
+apologize. He always does.</p>
+<p><strong>barton</strong>: Okay, but that doesn’t excuse his �</p>
+<p><strong>audrey</strong>: Barton. Empathy requires… understanding.</p>
+<p><strong>barton</strong>: What. What don’t I understand?</p>
+<p><strong>charlie</strong>: I hope these are your shoes.</p>
+<p><strong>barton</strong>: Hi, Charlie.</p>
+<p><strong>charlie</strong>: Because that would mean they gave you
+mine.</p>
+<p><strong>barton</strong>: Yeah, as a matter of fact they did. Come on
+in.</p>
+<p><strong>charlie</strong>: Jesus, what a day I’ve had. Ever had one of
+those days?</p>
+<p><strong>barton</strong>: Seems like nothing but, lately.</p>
+<p><strong>charlie</strong>: Jesus, what a day. Felt like I couldn’t’ve
+sold ice water in the Sahara. Jesus. Okay, so you don’t want insurance,
+so okay, that’s your loss. But God, people can be rude. Feel like I have
+to talk to a normal person like just to restore a little of my…</p>
+<p><strong>barton</strong>: Well, my pleasure. I could use a little lift
+myself.</p>
+<p><strong>charlie</strong>: A little lift, yeah…</p>
+<p><strong>charlie</strong>: …Good thing they bottle it, huh pal?</p>
+<p><strong>charlie</strong>: …Did I say rude? People can be goddamn
+cruel. Especially some of their housewives. Okay, so I’ve got a weight
+problem. That’s my cross to bear. I dunno…</p>
+<p><strong>barton</strong>: Well it’s… it’s a defense mechanism.</p>
+<p><strong>charlie</strong>: Defense against what? Insurance? Something
+they need? Something they should be thanking me for offering? A little
+peace of mind?…</p>
+<p><strong>charlie</strong>: …Finally decided to knock off early, take
+your advice. Went to see a doctor about this.</p>
+<p><strong>charlie</strong>: …He told me it was an ear infection. Ten
+dollars, please. I said, hell, I told YOU my ear was infected. Why don’t
+YOU give ME ten dollars? Well, THAT led to an argument…</p>
+<p><strong>charlie</strong>: …Listen to me belly-achin’. As if my
+problems amounted to a hill of beans. How goes the life of the mind?</p>
+<p><strong>barton</strong>: Well, it’s been better. I can’t seem to get
+going on this thing. That one idea, the one that lets you get started �
+I still haven’t gotten it. Maybe I only had one idea in me � my play.
+Maybe once that was done, I was done being a writer. Christ, I feel like
+a fraud, sitting here staring at this paper.</p>
+<p><strong>charlie</strong>: Those two love-birds next door drivin’ you
+nuts?</p>
+<p><strong>barton</strong>: How did you know about that?</p>
+<p><strong>charlie</strong>: Know about it? I can practically see how
+they’re doin’ it. Brother, I wish I had a piece of that.</p>
+<p><strong>barton</strong>: Yeah, but �</p>
+<p><strong>charlie</strong>: Seems like I hear everything that goes on
+in this dump. Pipes or somethin’. I’m just glad I don’t have to ply MY
+trade in the wee-wee hours.</p>
+<p><strong>charlie</strong>: …Ah, you’ll lick this picture business,
+believe me. You’ve got a head on your shoulders. What is it they say?
+Where there’s a head, there’s a hope?</p>
+<p><strong>barton</strong>: Where there’s life there’s hope.</p>
+<p><strong>charlie</strong>: That proves you really are a writer!</p>
+<p><strong>barton</strong>: And there’s hope for you too, Charlie.
+Tomorrow I bet you sell a half-dozen policies.</p>
+<p><strong>charlie</strong>: Thanks, brother. But the fact is, I gotta
+pull up stakes temporarily.</p>
+<p><strong>barton</strong>: You’re leaving?</p>
+<p><strong>charlie</strong>: In a few days. Out to your stompin’ grounds
+as a matter of fact � New York City. Things have gotten all balled up at
+the Head Office.</p>
+<p><strong>barton</strong>: I’m truly sorry to hear that, Charlie. I’ll
+miss you.</p>
+<p><strong>charlie</strong>: Well hell, buddy, don’t pull a long face!
+This is still home for me � I keep my room, and I’ll be back sooner or
+later…</p>
+<p><strong>charlie</strong>: …And � mark my words � by the time I get
+back you’re picture’ll be finished. I know it.</p>
+<p><strong>barton</strong>: New York can be pretty cruel to strangers,
+Charlie. If you need a home-cooked meal you just look up Morris and
+Lillian Fink. They live on Fulton Street with my uncle Dave.</p>
+<p><strong>charlie</strong>: Christ!</p>
+<p><strong>charlie</strong>: …Your room does that too?</p>
+<p><strong>barton</strong>: I guess the heat’s sweating off the
+wallpaper.</p>
+<p><strong>charlie</strong>: What a dump…</p>
+<p><strong>charlie</strong>: …I guess it seems pathetic to a guy like
+you.</p>
+<p><strong>barton</strong>: Well…</p>
+<p><strong>charlie</strong>: Well it’s pathetic, isn’t it? I mean to a
+guy from New York.</p>
+<p><strong>barton</strong>: What do you mean?</p>
+<p><strong>charlie</strong>: This kind of heat. It’s pathetic.</p>
+<p><strong>barton</strong>: Well, I guess you pick your poison.</p>
+<p><strong>charlie</strong>: So they say.</p>
+<p><strong>barton</strong>: Don’t pick up and leave without saying
+goodbye.</p>
+<p><strong>charlie</strong>: Course not, compadre. You’ll see me
+again.</p>
+<p><strong>secretary</strong>: Barton Fink.</p>
+<p><strong>geisler</strong>: Yeah. Fink. Come in.</p>
+<p><strong>geisler</strong>: Wuddya got for me � what the hell happened
+to your face?</p>
+<p><strong>barton</strong>: Nothing. It’s just a mosquito bite.</p>
+<p><strong>geisler</strong>: Like hell it is; there are no mosquitos in
+Los Angeles. Mosquitos breed in swamps � this is a desert town. Wuddya
+got for me?</p>
+<p><strong>barton</strong>: Well I…</p>
+<p><strong>geisler</strong>: On the Beery picture! Where are we? Wuddya
+got?</p>
+<p><strong>barton</strong>: Well, to tell you the truth, I’m having some
+trouble getting started�</p>
+<p><strong>geisler</strong>: Getting STARTED! Christ Jesus! Started?!
+You mean you don’t have ANYthing?!</p>
+<p><strong>barton</strong>: Well not much.</p>
+<p><strong>geisler</strong>: What do you think this is? HAMLET?</p>
+<p><strong>gone with the wind? ruggles of red</strong>: GAP? It’s a
+goddamn B picture! Big men in tights! You know the drill!</p>
+<p><strong>barton</strong>: I’m afraid I don’t really understand that
+genre. maybe that’s the prob-</p>
+<p><strong>geisler</strong>: Understand shit! I though you were gonna
+consult another writer on this!</p>
+<p><strong>barton</strong>: Well, I’ve talked to Bill Mayhew-</p>
+<p><strong>geisler</strong>: Bill Mayhew! Some help! The guy’s a
+souse!</p>
+<p><strong>barton</strong>: He’s a great writer �</p>
+<p><strong>geisler</strong>: A souse!</p>
+<p><strong>barton</strong>: You don’t understand. He’s in pain, because
+he can’t write-</p>
+<p><strong>geisler</strong>: Souse! Souse! He manages to write his name
+on the back of his paycheck every week!</p>
+<p><strong>barton</strong>: But… I thought no one cared about this
+picture.</p>
+<p><strong>geisler</strong>: You thought! Where’d you get THAT from? You
+thought! I don’t know what the hell you said to Lipnik, but the
+sonofabitch LIKES you! You understand that, Fink? He LIKES you! He’s
+taken an interest. NEVER make Lipnik like you. NEVER!</p>
+<p><strong>barton</strong>: I don’t understand-</p>
+<p><strong>geisler</strong>: Are you deaf, he LIKES you! He’s taken an
+interest! What the hell did you say to him?</p>
+<p><strong>barton</strong>: I didn’t say anything-</p>
+<p><strong>geisler</strong>: Well he’s taken an interest! That means
+he’ll make your life hell, which I could care less about, but since I
+drew the short straw to supervise this turkey, he’s gonna be all over me
+too! Fat-assed sonofabitch called me yesterday to ask how it’s going �
+don’t worry, I covered for you. Told him you were making progress and we
+were all very excited. I told him it was great, so now MY ass is on the
+line. He wants you to tell him all about it tomorrow.</p>
+<p><strong>barton</strong>: I can’t write anything by tomorrow.</p>
+<p><strong>geisler</strong>: Who said write? Jesus, Jack can’t read. You
+gotta TELL it to him-tell him SOMEthing for Chrissake.</p>
+<p><strong>barton</strong>: Well what do I tell him?</p>
+<p><strong>geisler</strong>: Projection…</p>
+<p><strong>geisler</strong>: … Jerry? Ben Geisler here. Any of the
+screening rooms free this afternoon?… Good, book it for me. A writer
+named Fink is gonna come in and you’re gonna show him wrestling
+pictures… I don’t give a shit which ones! WRESTLING pictures! Wait a
+minute- isn’t Victor Sjoderberg shooting one now?… Show him some of the
+dailies on that.</p>
+<p><strong>geisler</strong>: …This ought to give you some ideas.</p>
+<p><strong>geisler</strong>: …Eight-fifteen tomorrow morning at Lipnik’s
+house. Ideas. Broad strokes. Don’t cross me, Fink.</p>
+<p><strong>clapper</strong>: DEVIL ON THE CANVAS, twelve baker take
+one.</p>
+<p><strong>voice</strong>: Action.</p>
+<p><strong>wrestler</strong>: I will destroy him!</p>
+<p><strong>voice</strong>: Cut.</p>
+<p><strong>clapper</strong>: Twelve baker take two.</p>
+<p><strong>wrestler</strong>: I will destroy him!</p>
+<p><strong>voice</strong>: Cut.</p>
+<p><strong>clapper</strong>: Twelve baker take three.</p>
+<p><strong>wrestler</strong>: I will destroy him!</p>
+<p><strong>wrestler</strong>: I will destroy him!… I will destroy him!…
+I will destroy him!… I will destroy him!…</p>
+<p><strong>voice</strong>: Okay, take five…</p>
+<p><strong>clapper</strong>: Twelve charlie take one-</p>
+<p><strong>voice</strong>: Action.</p>
+<p><strong>referee</strong>: One… two…</p>
+<p><strong>voice</strong>: Cut.</p>
+<p><strong>clapper</strong>: Twelve charlie take two.</p>
+<p><strong>referee</strong>: One… two…</p>
+<p><strong>barton</strong>: Hello, Chet, it’s Barton Fink in 605. Can
+you try a number for me in Hollywood… Slausen 6-4304.</p>
+<p><strong>barton</strong>: Pick it up… Pick it up. Pick it-</p>
+<p><strong>audrey</strong>: Hello.</p>
+<p><strong>barton</strong>: Audrey, listen, I need help. I know it’s
+late and I shouldn’t be calling you like this � believe me I wouldn’t
+have if I could see any other alternative, but I � I’m sorry - listen,
+how are you � I’m sorry. You doing okay?</p>
+<p><strong>audrey</strong>: …Who is this?</p>
+<p><strong>barton</strong>: Barton. I’m sorry, it’s Barton Fink.</p>
+<p><strong>mayhew</strong>: Sons of bitches! Drown ’em all!</p>
+<p><strong>audrey</strong>: Barton, I’m afraid it’s not a good time-</p>
+<p><strong>mayhew</strong>: Drown all those rascals…</p>
+<p><strong>barton</strong>: I’m sorry, I just feel like �I know I
+shouldn’t ask, I just need some kind of help, I just, I have a deadline
+tomorrow-</p>
+<p><strong>mayhew</strong>: I said drown ’em all! Who is that?</p>
+<p><strong>audrey</strong>: All right Barton, I’ll see if I can slip
+away-</p>
+<p><strong>mayhew</strong>: Who is that?! Gaddamn voices come into the
+house… sons of bitches…</p>
+<p><strong>barton</strong>: If you could, I’d �</p>
+<p><strong>audrey</strong>: If I can. He gets jealous; he-</p>
+<p><strong>mayhew</strong>: Goddamn voices… DROWN ’EM!</p>
+<p><strong>barton</strong>: I need help, Audrey.</p>
+<p><strong>audrey</strong>: I’ll try to slip out. If he quiets down,
+passes out… I’m afraid he thinks � well, he said you were a buffoon,
+Barton. He becomes irrational�</p>
+<p><strong>mayhew</strong>: Hesh up! Be still now! DROWN ’EM!</p>
+<p><strong>audrey</strong>: Hello, Barton.</p>
+<p><strong>barton</strong>: Audrey, thank you for coming. Thank you. I’m
+sorry to be such a… such a… Thank you.</p>
+<p><strong>audrey</strong>: Now that’s all right, Barton. Everything’ll
+be all right.</p>
+<p><strong>barton</strong>: Yes. Thank you. How’s Bill?</p>
+<p><strong>audrey</strong>: Oh, he’s… he drifted off. He’ll sleep for a
+while now. What is it you have to do, exactly?</p>
+<p><strong>barton</strong>: Well I have to come up with � an outline,
+I’d guess you call it. The story. The whole goddamn story. Soup to nuts.
+Three acts. The whole goddamn-</p>
+<p><strong>audrey</strong>: It’s alright, Barton. You don’t have to
+write actual scenes?</p>
+<p><strong>barton</strong>: No, but the whole goddamn � Audrey? Have you
+ever had to read any of Bill’s wrestling scenarios?</p>
+<p><strong>audrey</strong>: Yes, I’m afraid I have.</p>
+<p><strong>barton</strong>: What are they like? What are they about?</p>
+<p><strong>audrey</strong>: Well, usually, they’re… simply morality
+tales. There’s a good wrestler, and a bad wrestler whom he confronts at
+the end. In between, the good wrestler has a love interest or a child he
+has to protect. Bill would usually make the good wrestler a backwoods
+type, or a convict. And sometimes, instead of a waif, he’d have the
+wrestler protecting an idiot manchild. The studio always hated that. Oh,
+some of the scripts were so… spirited!</p>
+<p><strong>audrey</strong>: …Barton.</p>
+<p><strong>audrey</strong>: …Look, it’s really just a formula. You don’t
+have to type your soul into it. We’ll invent some names and a new
+setting. I’ll help you and it won’t take any time at all. I did it for
+Bill so many times �</p>
+<p><strong>barton</strong>: Did what for Bill?</p>
+<p><strong>audrey</strong>: Well… THIS.</p>
+<p><strong>barton</strong>: You wrote his scripts for him?</p>
+<p><strong>audrey</strong>: Well, the basic ideas were frequently
+his-</p>
+<p><strong>barton</strong>: You wrote Bill’s scripts! Jesus Christ, you
+wrote his � what about before that?</p>
+<p><strong>audrey</strong>: Before what?</p>
+<p><strong>barton</strong>: Before Bill came to Hollywood.</p>
+<p><strong>audrey</strong>: Well, Bill was ALWAYS the author, so to
+speak-</p>
+<p><strong>barton</strong>: What do you mean so to speak?! Audrey, how
+long have you been his… secretary?</p>
+<p><strong>audrey</strong>: Barton, I think we should concentrate on OUR
+little project-</p>
+<p><strong>barton</strong>: I want to know how many of Bill’s books you
+wrote!</p>
+<p><strong>audrey</strong>: Barton!</p>
+<p><strong>barton</strong>: I want to know!</p>
+<p><strong>audrey</strong>: Barton, honestly, only the last couple-</p>
+<p><strong>barton</strong>: Hah!</p>
+<p><strong>audrey</strong>: And my input was mostly… EDITORIAL, really,
+when he’d been drinking-</p>
+<p><strong>barton</strong>: I’ll bet. Jesus � “The grand productive
+days.” What a goddamn phony.</p>
+<p><strong>barton</strong>: …W.P. Mayhew. William Goddamn Phony Mayhew.
+All his guff about escape. Hah! I’LL say he escaped!</p>
+<p><strong>barton</strong>: …Well, we don’t have much time.</p>
+<p><strong>audrey</strong>: It’ll be fine… Don’t judge him, Barton.
+Don’t condescend to him…</p>
+<p><strong>audrey</strong>: …It’s not as simple as you think. I helped
+Bill most by appreciating him, by understanding him. We all need
+understanding, Barton. Even you, tonight, it’s all you really need…</p>
+<p><strong>charlie</strong>: Are you all right?</p>
+<p><strong>charlie</strong>: …Can I come in?</p>
+<p><strong>barton</strong>: No!… I’m fine. Thank you.</p>
+<p><strong>charlie</strong>: Are you sure �</p>
+<p><strong>barton</strong>: No… no…</p>
+<p><strong>charlie</strong>: Barton. Are you all right?</p>
+<p><strong>barton</strong>: No… Can I come in?</p>
+<p><strong>charlie</strong>: Why don’t we go to your room-</p>
+<p><strong>barton</strong>: Charlie, I’m in trouble. You’ve gotta help
+me.</p>
+<p><strong>charlie</strong>: Get a grip on yourself, brother. Whatever
+the problem is, we’ll sort it out.</p>
+<p><strong>barton</strong>: Charlie, I’m in trouble � something
+horrible’s happened � I’ve gotta call the police…</p>
+<p><strong>barton</strong>: …Will you stay with me till they get
+here?</p>
+<p><strong>charlie</strong>: Don’t worry about it, Barton. We can sort
+it-</p>
+<p><strong>barton</strong>: Before you go in � I didn’t do this. I don’t
+know how it happened, but I didn’t… I want you to know that…</p>
+<p><strong>charlie</strong>: Okay.</p>
+<p><strong>charlie</strong>: Jesus… Jesus… Jesus have mercy…</p>
+<p><strong>charlie</strong>: …Jesus, Barton, what the hell is this?
+What’re we gonna do?</p>
+<p><strong>barton</strong>: I’ve gotta call the police � or you could
+call for me �</p>
+<p><strong>charlie</strong>: Hold on �</p>
+<p><strong>barton</strong>: You gotta believe me �</p>
+<p><strong>charlie</strong>: Hold on �</p>
+<p><strong>barton</strong>: I didn’t do this, I did NOT do this�</p>
+<p><strong>charlie</strong>: Hold on. Stop. Take a deep breath. Tell me
+what happened.</p>
+<p><strong>barton</strong>: I don’t know! I woke up, she was… God, you
+gotta believe me!</p>
+<p><strong>charlie</strong>: I believe you, brother, but this don’t look
+good.</p>
+<p><strong>barton</strong>: We gotta call the police �</p>
+<p><strong>charlie</strong>: Hold on. I said hold on, so hold on.</p>
+<p><strong>barton</strong>: Yeah.</p>
+<p><strong>charlie</strong>: What do you think happened?</p>
+<p><strong>barton</strong>: I don’t know! Maybe it was her… boyfriend. I
+passed out. I don’t know. Won’t the police be able to �</p>
+<p><strong>charlie</strong>: Stop with the police! Wake up, friend! This
+does not look good! They hang people for this!</p>
+<p><strong>barton</strong>: But I didn’t do it � don’t you believe
+me?</p>
+<p><strong>charlie</strong>: I believe you � I KNOW you. But why should
+the police?</p>
+<p><strong>charlie</strong>: …Did you… Barton, between you and me, did
+you have sexual intercourse?</p>
+<p><strong>charlie</strong>: Jesus… They can tell that…</p>
+<p><strong>barton</strong>: They GOTTA believe me, Charlie! They gotta
+have mercy!</p>
+<p><strong>charlie</strong>: You’re in pictures, Barton. Even if you got
+cleared eventually, this would ruin you.</p>
+<p><strong>charlie</strong>: …Wait in the bathroom.</p>
+<p><strong>charlie</strong>: You passed out.</p>
+<p><strong>barton</strong>: …Uh-huh… Where’s Audrey?</p>
+<p><strong>charlie</strong>: She’s dead, Barton! If that was her
+name.</p>
+<p><strong>charlie</strong>: Barton, listen to me. You gotta act like
+nothing’s happened. Put this totally out of your head. I know that’s
+hard, but your play from here on out is just to go about business as
+usual. Give us some time to sort this out…</p>
+<p><strong>charlie</strong>: …Just put it out of you head…</p>
+<p><strong>lipnik</strong>: Bart! So happy to see ya!</p>
+<p><strong>lipnik</strong>: Sit! Talk! Relax for a minute, then talk!
+Drink?</p>
+<p><strong>barton</strong>: Yeah… rye whiskey?</p>
+<p><strong>lipnik</strong>: Boy! You writers! Work hard, play hard!
+That’s what I hear, anyway…</p>
+<p><strong>lipnik</strong>: … Lou.</p>
+<p><strong>lipnik</strong>: Anyway. Ben Geisler tells me things’re going
+along great. Thinks we’ve got a real winner in this one. And let me tell
+you something, I’m counting on it. I’ve taken an interest. Not to
+interfere, mind you � hardly seems necessary in your case. A writer � a
+storyteller � of your stature. Givitta me in bold strokes, Bart. Gimme
+the broad outlines. I’m sitting in the audience, the lights go down,
+Capitol logo comes up… you’re on!</p>
+<p><strong>barton</strong>: Yeah, okay… well… we fade in…</p>
+<p><strong>barton</strong>: …It’s a tenement building. On the Lower East
+Side…</p>
+<p><strong>lipnik</strong>: Great! He’s poor, this wrestler! He’s had to
+struggle!</p>
+<p><strong>barton</strong>: And then… well…</p>
+<p><strong>barton</strong>: …Can I be honest, Mr. Lipnik?</p>
+<p><strong>lipnik</strong>: CAN you? You damn well better be. Jesus, if
+I hadn’t been honest in my business dealings � well, of course, you
+can’t always be honest, not with the sharks swimming around this town �
+but if you’re a writer, you don’t think about those things � if I’d been
+totally honest, I wouldn’t be within a mile of this pool � unless I was
+cleaning it. But that’s no reason for you not to be. Honest, I mean. Not
+cleaning the pool.</p>
+<p><strong>barton</strong>: Well… to be honest, I’m never really
+comfortable discussing a work in progress. I’ve got it all worked out in
+my head, but sometimes if you force it out in words � prematurely � the
+wrong words � well, your meaning changes, and it changes your own mind,
+and you never get it back � so I’d just as soon not talk about it.</p>
+<p><strong>lou</strong>: …Mr. Fink. Never mind me. Never mind how long
+I’ve been in pictures. Mr. Lipnik has been in pictures just about since
+they were invented. HE practically invented them.</p>
+<p><strong>lou</strong>: …Now I think if he’s interested in what one of
+his contract employees is doing while he draws pay, I think that
+employee ought to tell him, if he wants to stay an employee. Right now
+the contents of your head are the property of Capitol Pictures, so if I
+were you I would speak up. And pretty goddamn fast.</p>
+<p><strong>lipnik</strong>: You lousy sonofabitch! You’re telling this
+man � this ARTIST � what to do?!</p>
+<p><strong>lou</strong>: Mr. Lipnik, I �</p>
+<p><strong>lipnik</strong>: This man creates for a living! He puts food
+on your table and on mine! THANK him for it! Thank him, you ungrateful
+sonofabitch! Thank him or YOU’RE fired!</p>
+<p><strong>barton</strong>: Mr. Lipnik, that’s not really necessar-</p>
+<p><strong>lipnik</strong>: Get down on your knees, you sonofabitch! Get
+down on your knees and kiss this man’s feet!</p>
+<p><strong>lou</strong>: Mr. Lipnik, please �</p>
+<p><strong>barton</strong>: I � Mr. Lipnik �</p>
+<p><strong>lipnik</strong>: …Okay, get out of here. You’re fired, you
+understand me? Get out of my sight.</p>
+<p><strong>barton</strong>: Mr. Lipnik, I �</p>
+<p><strong>lipnik</strong>: I apologize, Barton.</p>
+<p><strong>barton</strong>: No no, Mr. Breeze has actually been a great
+help �</p>
+<p><strong>lipnik</strong>: You don’t have to cover for him. It’s noble
+of you, but these things happen in business.</p>
+<p><strong>barton</strong>: Mr. Lipnik, I really would feel much better
+if you could reconsider �</p>
+<p><strong>lipnik</strong>: Ah, forget it, kid. I want you to pull this
+out of your head. If that sonofabitch wouldn’t apologize to you,
+goddammit, I will. I respect your artistry and your methods, and if you
+can’t fill us in yet, well hell, we should be kissing your feet for your
+fine efforts.</p>
+<p><strong>lipnik</strong>: …You know in the old country we were taught,
+as very young children, that there’s no shame in supplicatin’ yourself
+when you respect someone.</p>
+<p><strong>lipnik</strong>: …On behalf of Capitol Pictures, the
+administration, and all a the stockholders, please accept this as a
+symbol of our apology and respect.</p>
+<p><strong>charlie</strong>: Barton. Can I come in?</p>
+<p><strong>barton</strong>: Jesus… You’re leaving.</p>
+<p><strong>charlie</strong>: Have to, old timer. Just for a while.</p>
+<p><strong>barton</strong>: Jesus, Charlie, I…</p>
+<p><strong>charlie</strong>: Everything’s okay, believe me. I know it’s
+rough mentally, but everything’s taken care of.</p>
+<p><strong>barton</strong>: Charlie! I’ve got no one else here! You’re
+the only person I know in Los Angeles…</p>
+<p><strong>barton</strong>: …that I can talk to.</p>
+<p><strong>charlie</strong>: It’s okay… It’s okay…</p>
+<p><strong>barton</strong>: Charlie, I feel like I’m going crazy � like
+I’m losing my mind. I don’t know what to do… I didn’t do it, believe me.
+I’m sure of that, Charlie. I just…</p>
+<p><strong>barton</strong>: …I just don’t know what… to do�</p>
+<p><strong>charlie</strong>: You gotta get a grip on, brother. You gotta
+just carry on � just for a few days, till I get back. Try and stay here,
+keep your door locked. Don’t talk to anyone. We just gotta keep our
+heads and we’ll figure it out.</p>
+<p><strong>barton</strong>: Yeah, but Charlie �</p>
+<p><strong>charlie</strong>: Dammit, don’t argue with me. You asked me
+to believe you � well I do. Now don’t argue with me.</p>
+<p><strong>charlie</strong>: …Look, pal � can you do something for
+me?</p>
+<p><strong>charlie</strong>: …Keep this for me, till I get back.</p>
+<p><strong>charlie</strong>: …It’s just personal stuff. I don’t wanna
+drag it with me, but I don’t trust ’em downstairs, and I’d like to think
+it’s in good hands.</p>
+<p><strong>barton</strong>: Sure, Charlie.</p>
+<p><strong>charlie</strong>: Funny, huh, when everything that’s
+important to a guy, everything he wants to keep from a lifetime � when
+he can fit it into a little box like that. I guess… I guess it’s kind of
+pathetic.</p>
+<p><strong>barton</strong>: It’s more than I’ve got.</p>
+<p><strong>charlie</strong>: Well, keep it for me. Maybe it’ll bring you
+good luck. Yeah, it’ll help you finish your script. You’ll think about
+me…</p>
+<p><strong>charlie</strong>: …Make me your wrestler. Then you’ll lick
+that story of yours.</p>
+<p><strong>barton</strong>: Thanks, Charlie.</p>
+<p><strong>charlie</strong>: Yeah, well, see you soon, friend. You’re
+gonna be fine.</p>
+<p><strong>barton</strong>: You’ll be back?</p>
+<p><strong>charlie</strong>: Don’t worry about that, compadre. I’ll be
+back.</p>
+<p><strong>barton</strong>: Hello… Chet… Who?…</p>
+<p><strong>barton</strong>: … No, don’t send them up here. I’ll be right
+down.</p>
+<p><strong>barton</strong>: …You read the Bible, Pete?</p>
+<p><strong>pete</strong>: Holy Bible?</p>
+<p><strong>barton</strong>: Yeah.</p>
+<p><strong>pete</strong>: I think so… Anyway, I’ve heard about it.</p>
+<p><strong>policeman</strong>: Fink?</p>
+<p><strong>barton</strong>: Yeah.</p>
+<p><strong>policeman #2</strong>: Detective Mastrionotti.</p>
+<p><strong>policeman #1</strong>: Detective Deutsch.</p>
+<p><strong>barton</strong>: Uh-huh.</p>
+<p><strong>deutsch</strong>: Got a couple questions to ask ya.</p>
+<p><strong>mastrionotti</strong>: What do you do, Fink?</p>
+<p><strong>barton</strong>: I write.</p>
+<p><strong>deutsch</strong>: Oh yeah? What kind of write?</p>
+<p><strong>barton</strong>: Well as a matter of fact, I write for the
+pictures.</p>
+<p><strong>mastrionotti</strong>: Big fuckin’ deal.</p>
+<p><strong>deutsch</strong>: You want my partner to kiss your ass?</p>
+<p><strong>mastrionotti</strong>: Would that be good enough for ya?</p>
+<p><strong>barton</strong>: No, I � I didn’t mean to sound �</p>
+<p><strong>deutsch</strong>: What DID you mean?</p>
+<p><strong>barton</strong>: I � I’ve got respect for � for working guys,
+like you �</p>
+<p><strong>mastrionotti</strong>: Jesus! Ain’t that a load off! You live
+in 605?</p>
+<p><strong>barton</strong>: Yeah.</p>
+<p><strong>deutsch</strong>: How long you been up there, Fink?</p>
+<p><strong>barton</strong>: A week, eight, nine days �</p>
+<p><strong>mastrionotti</strong>: Is this multiple choice?</p>
+<p><strong>barton</strong>: Nine days � Tuesday �</p>
+<p><strong>deutsch</strong>: You know this slob?</p>
+<p><strong>barton</strong>: …Yeah, he… he lives next door to me.</p>
+<p><strong>mastrionotti</strong>: That’s right, Fink, he lives next door
+to you.</p>
+<p><strong>deutsch</strong>: Ever talk to him?</p>
+<p><strong>barton</strong>: …Once or twice. His name is Charlie
+Meadows.</p>
+<p><strong>mastrionotti</strong>: Yeah, and I’m Buck Rogers.</p>
+<p><strong>deutsch</strong>: His name is Mundt. Karl Mundt.</p>
+<p><strong>mastrionotti</strong>: Also known as Madman Mundt.</p>
+<p><strong>deutsch</strong>: He’s a little funny in the head.</p>
+<p><strong>barton</strong>: What did… What did he �</p>
+<p><strong>mastrionotti</strong>: Funny. As in, he likes to ventilate
+people with a shotgun and then cut their heads off.</p>
+<p><strong>deutsch</strong>: Yeah, he’s funny that way.</p>
+<p><strong>mastrionotti</strong>: Started in Kansas City. Couple of
+housewives.</p>
+<p><strong>deutsch</strong>: Couple of days ago we see the same M.O. out
+in Los Feliz.</p>
+<p><strong>mastrionotti</strong>: Doctor. Ear, nose and throat man,.</p>
+<p><strong>deutsch</strong>: All of which he’s now missin’.</p>
+<p><strong>mastrionotti</strong>: Well, some of his throat was
+there.</p>
+<p><strong>deutsch</strong>: Physician, heal thyself.</p>
+<p><strong>mastrionotti</strong>: Good luck with no fuckin’ head.</p>
+<p><strong>deutsch</strong>: Anyway.</p>
+<p><strong>mastrionotti</strong>: Hollywood precinct finds another stiff
+yesterday. Not too far from here. This one’s better looking than the
+doc.</p>
+<p><strong>deutsch</strong>: Female caucasian, thirty years old. Nice
+tits. No head. You ever see Mundt with anyone meets that
+description?</p>
+<p><strong>mastrionotti</strong>: But, you know, with the head still
+on.</p>
+<p><strong>barton</strong>: …No. I never saw him with anyone else.</p>
+<p><strong>deutsch</strong>: So. You talked to Mundt, what about?</p>
+<p><strong>barton</strong>: Nothing, really. Said he was in the
+insurance business.</p>
+<p><strong>deutsch</strong>: Yeah, and he’s Buck Rogers.</p>
+<p><strong>mastrionotti</strong>: No reputable company would hire a guy
+like that.</p>
+<p><strong>barton</strong>: Well that’s what he said.</p>
+<p><strong>deutsch</strong>: What else?</p>
+<p><strong>barton</strong>: He… I’m trying to think… Nothing, really…
+He… He said he liked Jack Oakie pictures.</p>
+<p><strong>mastrionotti</strong>: Ya know, Fink, ordinarily we say
+anything you might remember could be helpful. But I’ll be frank with
+you: That is not helpful.</p>
+<p><strong>deutsch</strong>: Ya see how he’s not writing it down?</p>
+<p><strong>mastrionotti</strong>: Fink. That’s a Jewish name, isn’t
+it?</p>
+<p><strong>barton</strong>: Yeah.</p>
+<p><strong>mastrionotti</strong>: Yeah, I didn’t think this dump was
+restricted.</p>
+<p><strong>mastrionotti</strong>: …Mundt has disappeared. I don’t think
+he’ll be back. But…</p>
+<p><strong>mastrionotti</strong>: …give me a call if you see him. Or if
+you remember something that isn’t totally idiotic.</p>
+<p><strong>woman</strong>: Just a minute and I’ll connect you…</p>
+<p><strong>barton</strong>: Hello? Operator! I can’t… Oh!</p>
+<p><strong>voice</strong>: …Hello.</p>
+<p><strong>barton</strong>: Garland, it’s me.</p>
+<p><strong>garland</strong>: Barton? What time is it? Are you all
+right?</p>
+<p><strong>barton</strong>: Yeah, I’m fine, Garland � I have to talk to
+you. I’m calling long distance.</p>
+<p><strong>garland</strong>: Okay.</p>
+<p><strong>garland</strong>: …It’s Barton. Calling long distance.</p>
+<p><strong>garland</strong>: …What is it Barton? Are you okay?</p>
+<p><strong>barton</strong>: I’m fine, garland, but I have to talk with
+you.</p>
+<p><strong>garland</strong>: Go ahead, son.</p>
+<p><strong>barton</strong>: It’s about what I’m writing, Garland. It’s
+really… I think it’s really big.</p>
+<p><strong>garland</strong>: What do you mean, Barton?</p>
+<p><strong>barton</strong>: Not big in the sense of large � although
+it’s that too. I mean important. This may be the most IMPORTANT work
+I’ve done.</p>
+<p><strong>garland</strong>: Well, I’m… glad to hear that �</p>
+<p><strong>barton</strong>: Very important, Garland. I just thought you
+should know that. Whatever happens.</p>
+<p><strong>garland</strong>: …That’s fine.</p>
+<p><strong>barton</strong>: Have you read the Bible, Garland?</p>
+<p><strong>garland</strong>: …Barton, is everything okay?</p>
+<p><strong>barton</strong>: Yes… Isn’t it?</p>
+<p><strong>garland</strong>: Well, I’m just asking. You sound a little
+�</p>
+<p><strong>barton</strong>: Sound a little what?</p>
+<p><strong>garland</strong>: Well, you just… sound a little�</p>
+<p><strong>barton</strong>: Thanks, Garland. Thanks for all the
+encouragement.</p>
+<p><strong>barton</strong>: …Nitwit.</p>
+<p><strong>“the burlyman</strong>: Motion Picture Scenario By Barton
+Fink”</p>
+<p><strong>girl</strong>: You’re cute!</p>
+<p><strong>sailor</strong>: ’Scuse me, buddy, mind if I cut in?</p>
+<p><strong>barton</strong>: This is MY dance, sailor!</p>
+<p><strong>sailor</strong>: C’mon buddy, I’m shipping out tomorrow.</p>
+<p><strong>barton</strong>: I’m a writer! Celebrating the completion of
+something GOOD! Do you understand that, sailor? I’m a</p>
+<p><strong>voices</strong>: Step aside, four-eyes! Let someone else spin
+the dame! Give the navy a dance! Hey, Four-F, take a hike!</p>
+<p><strong>barton</strong>: I’m a writer, you monsters! I CREATE! He
+points at his head.</p>
+<p><strong>barton</strong>: …This is my uniform!</p>
+<p><strong>barton</strong>: …THIS is how I serve the common man! THIS is
+where I �</p>
+<p><strong>pete</strong>: This stop: six.</p>
+<p><strong>mastrionotti</strong>: Mother: What is to become of him.
+Father: We’ll be hearing from that crazy wrestler. And I don’t mean a
+postcard. Fade out. The end.</p>
+<p><strong>mastrionotti</strong>: …I thought you said you were a
+writer.</p>
+<p><strong>deutsch</strong>: I dunno, Duke. I kinda liked it.</p>
+<p><strong>barton</strong>: Keep your filthy eyes off that.</p>
+<p><strong>deutsch</strong>: You made morning papers, Fink.</p>
+<p><strong>mastrionotti</strong>: Second one of your friends to end up
+dead.</p>
+<p><strong>deutsch</strong>: You didn’t tell us you knew the dame.</p>
+<p><strong>mastrionotti</strong>: Sixth floor too high for you,
+Fink?</p>
+<p><strong>deutsch</strong>: Give you nose bleeds?</p>
+<p><strong>deutsch</strong>: Just tell me one thing, Fink: Where’d you
+put their heads?</p>
+<p><strong>barton</strong>: Charlie… Charlie’s back…</p>
+<p><strong>mastrionotti</strong>: No kidding, bright boy � we smelt
+Mundt all over this. Was he the idea man?</p>
+<p><strong>deutsch</strong>: Tell us where the heads are, maybe they’ll
+go easy on you.</p>
+<p><strong>mastrionotti</strong>: Only fry you once.</p>
+<p><strong>barton</strong>: Could you come back later? It’s just… too
+hot… My head is killing me.</p>
+<p><strong>deutsch</strong>: All right, forget the heads. Where’s Mundt,
+Fink?</p>
+<p><strong>mastrionotti</strong>: He teach you to do it?</p>
+<p><strong>deutsch</strong>: You two have some sick sex thing?</p>
+<p><strong>barton</strong>: Sex?! He’s a MAN! We WRESTLED!</p>
+<p><strong>mastrionotti</strong>: You’re a sick fuck, Fink.</p>
+<p><strong>deutsch</strong>: All right, moron, you’re under arrest.</p>
+<p><strong>barton</strong>: Charlie’s back. It’s hot… He’s back.</p>
+<p><strong>mastrionotti</strong>: …Fred…</p>
+<p><strong>deutsch</strong>: Sit tight, Fink.</p>
+<p><strong>deutsch</strong>: Why’s it so goddamn hot out here?</p>
+<p><strong>mastrionotti</strong>: …Fred…</p>
+<p><strong>deutsch</strong>: … Show yourself, Mundt!</p>
+<p><strong>deutsch</strong>: …Mundt!</p>
+<p><strong>mastrionotti</strong>: There’s a boy, Mundt. Put the policy
+case down and your mitts in the air.</p>
+<p><strong>mastrionotti</strong>: He’s complying.</p>
+<p><strong>charlie</strong>: Heil Hitler.</p>
+<p><strong>charlie</strong>: Barton!</p>
+<p><strong>charlie</strong>: …Brother, is it hot.</p>
+<p><strong>charlie</strong>: How you been, buddy?</p>
+<p><strong>charlie</strong>: …Don’t look at me like that, neighbor. It’s
+just me � Charlie.</p>
+<p><strong>barton</strong>: I hear it’s Mundt. Madman Mundt.</p>
+<p><strong>charlie</strong>: Jesus, people can be cruel…</p>
+<p><strong>charlie</strong>: …if it’s not my build, it’s my
+personality.</p>
+<p><strong>charlie</strong>: …They say I’m a madman, Barton, but I’m not
+mad at anyone. Honest I’m not. Most guys I just feel sorry for. Yeah. It
+tears me up inside, to think about what they’re going through. How
+trapped they are. I understand it. I feel for ’em. So I try and help
+them out…</p>
+<p><strong>charlie</strong>: …Jesus. Yeah. I know what it feels like,
+when things get all balled up at the head office. It puts you through
+hell, Barton. So I help people out. I just wish someone would do as much
+for me…</p>
+<p><strong>charlie</strong>: …Jesus it’s hot. Sometimes it gets so hot,
+I wanna crawl right out of my skin.</p>
+<p><strong>barton</strong>: But Charlie � why me? Why �</p>
+<p><strong>charlie</strong>: Because you DON’T LISTEN!</p>
+<p><strong>charlie</strong>: …Jesus, I’m dripping again.</p>
+<p><strong>charlie</strong>: …C’mon Barton, you think you know about
+pain? You think I made your life hell? Take a look around this dump.
+You’re just a tourist with a typewriter, Barton. I live here. Don’t you
+understand that…</p>
+<p><strong>charlie</strong>: …And you come into MY home… And you
+complain that I’M making too… much… noise.</p>
+<p><strong>barton</strong>: …I’m sorry.</p>
+<p><strong>charlie</strong>: Don’t be.</p>
+<p><strong>charlie</strong>: I’m getting off the merry-go-round.</p>
+<p><strong>charlie</strong>: …I’ll be next door if you need me.</p>
+<p><strong>charlie</strong>: …Oh, I dropped in on your folks. And Uncle
+Dave?</p>
+<p><strong>charlie</strong>: …Good people. By the way, that package I
+gave you? I lied. It isn’t mine.</p>
+<p><strong>barton</strong>: Fink! Morris or Lillian Fink! Eighty- five
+Fulton Street!</p>
+<p><strong>operator</strong>: I understand that, sir �</p>
+<p><strong>barton</strong>: Or Uncle Dave!</p>
+<p><strong>operator</strong>: I understand that, sir, but there’s still
+no answer. Shall I check for trouble on the line?</p>
+<p><strong>lipnik</strong>: Fink.</p>
+<p><strong>barton</strong>: Mr. Lipnik.</p>
+<p><strong>lipnik</strong>: Colonel Lipnik, if you don’t mind.</p>
+<p><strong>lipnik</strong>: …Siddown.</p>
+<p><strong>lipnik</strong>: …I was commissioned yesterday in the Army
+Reserve. Henry Morgenthau arranged it. He’s a dear friend.</p>
+<p><strong>barton</strong>: Congratulations.</p>
+<p><strong>lipnik</strong>: Actually it hasn’t officially gone through
+yet. Had wardrobe whip this up. You gotta pull teeth to get anything
+done in this town. I can understand a little red tape in peacetime, but
+now it’s all-out warfare against the Japs. Little yellow bastards.
+They’d love to see me sit this one out.</p>
+<p><strong>barton</strong>: Yes sir, they �</p>
+<p><strong>lipnik</strong>: Anyway, I had Lou read your script for
+me.</p>
+<p><strong>lipnik</strong>: …I gotta tell you, Fink. It won’t wash.</p>
+<p><strong>barton</strong>: With all due respect, sir, I think it’s the
+best work I’ve done.</p>
+<p><strong>lipnik</strong>: Don’t gas me, Fink. If you’re opinion
+mattered, then I guess I’d resign and let YOU run the the studio. It
+doesn’t and you won’t, and the lunatics are not going to run THIS
+particular asylum. So let’s put a stop to THAT rumor right now.</p>
+<p><strong>barton</strong>: Yes sir.</p>
+<p><strong>lipnik</strong>: I had to call Beery this morning, let him
+know we were pushing the picture back. After all I’d told him about
+quality, about that Barton Fink feeling. How disappointed we were. Wally
+was heartbroken. The man was devastated. He was � well, I didn’t
+actually call him, Lou did. But that’s a fair description, isn’t it
+Lou?</p>
+<p><strong>lou</strong>: Yes, Colonel.</p>
+<p><strong>lipnik</strong>: Hell, I could take you through it step by
+step, explain why your story stinks, but I won’t insult your
+intelligence. Well all right, first of all: This is a wrestling picture;
+the audience wants to see action, drama, wrestling, and plenty of it.
+They don’t wanna see a guy wrestling with his soul � well, all right, a
+little bit, for the critics � but you make it the carrot that wags the
+dog. Too much of it and they head for exits and I don’t blame ’em.
+There’s plenty of poetry right inside that ring, Fink. Look at “Hell Ten
+Feet Square”.</p>
+<p><strong>lou</strong>: “Blood, Sweat, and Canvas”.</p>
+<p><strong>lipnik</strong>: Look at “Blood, Sweat, and Canvas”. These
+are big movies, Fink. About big men, in tights � both physically and
+mentally. But especially physically. We don’t put Wallace Beery in some
+fruity movie about suffering � I thought we were together on that.</p>
+<p><strong>barton</strong>: I’m sorry if I let you down.</p>
+<p><strong>lipnik</strong>: You didn’t let ME down. Or even Lou. We
+don’t live or die by what you scribble, Fink. You let Ben Geisler down.
+He liked you. Trusted you. And that’s why he’s gone. Fired. That guy had
+a heart as big as the outdoors, and you fucked him. He tried to convince
+me to fire you too, but that would be too easy. No, you’re under
+contract and you’re gonna stay that way. Anything you write will be the
+property of Capitol Pictures. And Capitol Pictures will not produce
+anything you write. Not until you grow up a little. You ain’t no writer,
+Fink � you’re a goddamn write-off.</p>
+<p><strong>barton</strong>: I tried to show you something beautiful.
+Something about all of</p>
+<p><strong>lipnik</strong>: You arrogant sonofabitch! You think you’re
+the only writer who can give me that Barton Fink feeling?! I got twenty
+writers under contract that I can ask for a Finktype thing from. You
+swell-headed hypocrite! You just don’t get it, do you? You think the
+whole world revolves inside whatever rattles inside that little kike
+head of yours. Get him outta my sight, Lou. Make sure he stays in town,
+though; he’s still under contract. I want you in town, Fink, and outta
+my sight. Now get lost. There’s a war on.</p>
+<p><strong>beauty</strong>: I said it’s a beautiful day…</p>
+<p><strong>barton</strong>: Yes… It is…</p>
+<p><strong>beauty</strong>: What’s in the box?</p>
+<p><strong>barton</strong>: I don’t know.</p>
+<p><strong>beauty</strong>: Isn’t it yours?</p>
+<p><strong>barton</strong>: I… I don’t know…</p>
+<p><strong>barton</strong>: …You’re very beautiful. Are you in
+pictures?</p>
+<p><strong>beauty</strong>: Don’t be silly.</p>
+</body>
+</html>

@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>silver-bullet</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="silver-bullet">silver-bullet</h1>
+<p><strong>sound</strong>: Crickets.</p>
+<p><strong>arnie</strong>: Stuck tighter’n dogshit in a deep freeze!</p>
+<p><strong>arnie</strong>: Hot damn! Now… a little oil…</p>
+<p><strong>arnie</strong>: It’s not bitter, not sweet… it’s a big
+fuckin’ treat…</p>
+<p><strong>arnie</strong>: Oh n-</p>
+<p><strong>sound</strong>: The HOWL of the WEREWOLF - distant, a bit
+dreamy.</p>
+<p><strong>sound</strong>: A train is approaching. We hear its horn.</p>
+<p><strong>sound</strong>: The train’s horn, MUCH CLOSER.</p>
+<p><strong>jane</strong>: I’m going out for a while, ’kay?</p>
+<p><strong>nan</strong>: All right. Stay close. And make sure your
+brother’s all right.</p>
+<p><strong>note</strong>: JANE is wearing a silver crucifix, and will
+continue to wear it through the whole movie.</p>
+<p><strong>lowe</strong>: For the last ten years…</p>
+<p><strong>lowe</strong>: For the last ten years, I have had a dream. A
+dream of a time when modern medical care would come to this small
+community, which sometimes seems so far from Durham, with her lifesaving
+hospitals. I hope that this meeting, at which I see so many of my
+friends gathered, will be the start of making my dream come true.</p>
+<p><strong>sound</strong>: Enthusiastic applause.</p>
+<p><strong>note</strong>: MARTY is wearing a silver St. Cristopher’s
+medallion, and will through the whole movie.</p>
+<p><strong>marty</strong>: Lemme hold him!</p>
+<p><strong>brady</strong>: I got an idea.</p>
+<p><strong>marty</strong>: What?</p>
+<p><strong>marty</strong>: You wouldn’t.</p>
+<p><strong>marty</strong>: You would.</p>
+<p><strong>lowe</strong>: An endeavor like this seems to me to be the
+very definition of community - all of us pulling together as one,
+farmers and merchants… Protestants and Catholics…</p>
+<p><strong>marty</strong>: It was just a blacksnake, Jane-</p>
+<p><strong>jane</strong>: Look at my knees! Look at my dress! I hate
+you!</p>
+<p><strong>brady</strong>: Did wittle Janie make wee-wee in her
+teddies?</p>
+<p><strong>marty</strong>: Stop it, Brady.</p>
+<p><strong>brady</strong>: Ooooh, naughty!</p>
+<p><strong>marty</strong>: Jane, I’m sorry. It was just a joke. We
+didn’t mean-</p>
+<p><strong>jane</strong>: Oh, no! You never mean to! I hate you, you
+booger!</p>
+<p><strong>marty</strong>: Oh, shut up, Brady. You’re warped.</p>
+<p><strong>jane</strong>: Stella? Is that you?</p>
+<p><strong>jane</strong>: Who’s going away?</p>
+<p><strong>stella</strong>: What am I going to tell my mother? If he
+won’t marry me, what am I going to tell my mother?</p>
+<p><strong>stella</strong>: Oh, leave me alone! Just leave me alone, you
+stupid thing!</p>
+<p><strong>o’banion</strong>: Let us pray.</p>
+<p><strong>o’banion</strong>: May the Grace of God shine upon those
+gathered here… and lift them up… and grant success to the endeavor to
+which they have so openheartedly declared their support. Amen.</p>
+<p><strong>nan</strong>: I want you two to bury the hatchet. You’re
+being very silly, Jane.</p>
+<p><strong>marty</strong>: Jane, I-</p>
+<p><strong>nan</strong>: I think you’re being mean as well as silly.
+Your brother has never had a scraped knee in his whole life.</p>
+<p><strong>jane</strong>: You always take his side because he’s a
+cripple! Well, it’s not my fault that he’s a cripple!</p>
+<p><strong>marty</strong>: Come on, Jane- it was Brady’s idea. I
+couldn’t stop him.</p>
+<p><strong>jane</strong>: Brady’s a booger and so are you!</p>
+<p><strong>nan</strong>: Jane Coslaw!</p>
+<p><strong>bob</strong>: They had to pick up what was left of him in a
+peach basket.</p>
+<p><strong>jane</strong>: Oh, Daddy! Gross!</p>
+<p><strong>marty</strong>: Did he really get his head cut off, Dad?
+That’s what Brady said.</p>
+<p><strong>jane</strong>: If you don’t stop it I’m going to vomit. I
+mean it.</p>
+<p><strong>marty</strong>: Can I come in?</p>
+<p><strong>jane</strong>: What’s the money for?</p>
+<p><strong>marty</strong>: A new pair of panty hose. Is it enough?</p>
+<p><strong>jane</strong>: I don’t want your money. You’re a booger.</p>
+<p><strong>marty</strong>: It was Brady’s idea, Jane. Honest to God.
+Please take the money. I want to make up.</p>
+<p><strong>jane</strong>: I can get a pair of L’Eggs down at the
+pharmacy for a dollar forty-nine. Here.</p>
+<p><strong>marty</strong>: That’s for you, too. Uncle Al gave it to
+me-</p>
+<p><strong>marty</strong>: -but I want you to have it.</p>
+<p><strong>marty</strong>: Yeah, go ahead.</p>
+<p><strong>jane</strong>: You booger!</p>
+<p><strong>jane</strong>: Go to hell!</p>
+<p><strong>sounds</strong>: Canned laughter; TV dialogue.</p>
+<p>**[note**: It would be nice to see that fat moon floating in the
+window!]</p>
+<p><strong>stella</strong>: Suicides go to hell. Especially if they’re
+pregnant. And I don’t even care.</p>
+<p><strong>sounds</strong>: Rattling foliage.</p>
+<p><strong>mother</strong>: Oh my dear God… Stella!</p>
+<p><strong>mother</strong>: Stella!…Stella!</p>
+<p><strong>and your family!</strong>: At the Methodist parsonage, a ’53
+Dodge pulls slowly out and MOTHER RANDOLPH gets out, weeping. As she
+approaches the parsonage door, LESTER LOWE comes out and embraces
+her.</p>
+<p><strong>pete</strong>: What’d they say, Joe?</p>
+<p><strong>haller</strong>: They said they’d be here by noon.</p>
+<p><strong>sound</strong>: The bell rings.</p>
+<p><strong>brady</strong>: Look out! Look out! It’s Madman Marty and the
+Silver Bullet!</p>
+<p><strong>brady</strong>: You glad to be back in jail, Marty?</p>
+<p><strong>marty</strong>: Sure - I like school.</p>
+<p><strong>tammy</strong>: You booger.</p>
+<p><strong>marty</strong>: That’s what my sister says, too. Pretty soon
+I’m going to start checking the mirror to see if I’m turning green.</p>
+<p><strong>brady</strong>: I gotta split - see ya, Marty… Tammy.</p>
+<p><strong>marty</strong>: Not bad, huh? My Uncle Al took off the
+regular muffler and put on a Cherry Bomb.</p>
+<p><strong>tammy</strong>: What’s that?</p>
+<p><strong>marty</strong>: Glasspack. He said he’d come over sometime
+this summer and we’d soup up the engine… but now I dunno. He’s getting a
+divorce and he’s in the doghouse with my mother.</p>
+<p><strong>tammy</strong>: For getting a divorce?</p>
+<p><strong>marty</strong>: Well… it is his third.</p>
+<p><strong>tammy</strong>: Thanks for coming with me, Marty- I was
+scared to go past her house by myself.</p>
+<p><strong>tammy</strong>: I mean, I saw her. All the time.</p>
+<p><strong>tammy</strong>: I used to see her every day, and she never
+knew what was going to happen to her, and neither did I! I mean I know
+how stupid that sounds, but…</p>
+<p><strong>marty</strong>: Hey, take it easy. I know how you feel.</p>
+<p><strong>tammy</strong>: There’s something else scary.</p>
+<p><strong>marty</strong>: What?</p>
+<p><strong>tammy</strong>: I’ve been hearing noises in there.</p>
+<p><strong>marty</strong>: What kind of noises?</p>
+<p><strong>tammy</strong>: Rattling. Rustling.</p>
+<p><strong>marty</strong>: Rats…</p>
+<p><strong>tammy</strong>: And my dad says it’s kids. But it’s not rats
+and it’s not kids. It’s-</p>
+<p><strong>milt</strong>: Tammy, you get on in here and do some
+dishes!</p>
+<p><strong>marty</strong>: I’d go out and take a look myself, but I
+think the Bullet’d get stuck in the garden. It looks sorta greasy.</p>
+<p><strong>tammy</strong>: You would, wouldn’t you?</p>
+<p><strong>tammy</strong>: Well, it’s probably nothing. I’m just spooked
+since… you know.</p>
+<p><strong>marty</strong>: Yeah… but if you hear any more noises, tell
+your father. Okay?</p>
+<p><strong>tammy</strong>: Okay. Have you got enough gas to get home,
+Marty?</p>
+<p><strong>marty</strong>: I’m always doing this! I gotta go, Tammy.</p>
+<p><strong>milt</strong>: ’Bout time. Why you want to hang around that
+cripple?</p>
+<p><strong>tammy</strong>: I like him.</p>
+<p><strong>milt</strong>: Goddamn cripples always end up on welfare.
+Ought to electrocute all of ’em. Balance the fucking budget.</p>
+<p><strong>virgil</strong>: Well, Marty! I see you lucked out again!</p>
+<p><strong>marty</strong>: Yep. Would you fill it up, please,
+Mr. Cutts?</p>
+<p><strong>virgil</strong>: Want me to check the oil?</p>
+<p><strong>marty</strong>: Sure!</p>
+<p><strong>virgil</strong>: Wipe the windshield an check the driver’s
+bullshit level?</p>
+<p><strong>marty</strong>: Okay, okay. I call.</p>
+<p><strong>uncle al</strong>: Wait a minute, wait a minute!</p>
+<p><strong>uncle al</strong>: Ralph Houk! You can’t bet a manager! Stone
+the crows!</p>
+<p><strong>marty</strong>: Okay, okay. Dwight Evans.</p>
+<p><strong>uncle al</strong>: Piss on him. Piss on all the Red Sox.</p>
+<p><strong>nan</strong>: Come on, Marty- bedtime.</p>
+<p><strong>marty</strong>: Mom-!</p>
+<p><strong>uncle al</strong>: Let the boy finish the game, Nan.</p>
+<p><strong>nan</strong>: Make it quick.</p>
+<p><strong>uncle al</strong>: Three kings.</p>
+<p><strong>uncle al</strong>: Bullshit luck!</p>
+<p><strong>nan</strong>: I don’t want you drinking around Marty. That’s
+too much. If you can’t stop it, you better stay away.</p>
+<p><strong>uncle al</strong>: I come here because Marty needs a
+friend.</p>
+<p><strong>nan</strong>: Yes… you’ve always been that to him. But if you
+can’t leave your booze in whatever dump you call home, you better just
+stay away.</p>
+<p><strong>marty</strong>: Mom was really mad at him this time, wasn’t
+she?</p>
+<p><strong>jane</strong>: What do you expect, when he comes in smelling
+like a brewery and looking like an unmade bed?</p>
+<p><strong>marty</strong>: Stop it!</p>
+<p><strong>jane</strong>: He’s okay, Dad!</p>
+<p><strong>marty</strong>: Yes. Go away.</p>
+<p><strong>jane</strong>: Let me help you up.</p>
+<p><strong>nan</strong>: Jane, have you been teasing your brother
+again?</p>
+<p><strong>marty</strong>: She wasn’t, Mom- I dropped my toothbrush and
+fell over when I tried to get it. Jane helped pick me up.</p>
+<p><strong>nan</strong>: Jane Coslaw!</p>
+<p><strong>milt</strong>: Let’s see if you want to come back and break
+my pots all to shit after I put some rock salt in your asses!</p>
+<p><strong>mrs. sturmfuller</strong>: Tammy, where’s your father?</p>
+<p><strong>sound</strong>: Another SCREAM from the greenhouse.</p>
+<p><strong>information leading to the capture of the man</strong>: WHO
+KILLED STELLA RANDOLPH AND MILTON STURMFULLER. And, at the bottom:
+TARKER’S MILLS CITIZENS’ COMMITTEE.</p>
+<p><strong>virgil</strong>: But the woman’s bed was ripped right down
+the middle, Elmer- it’s take a chainsaw to do something like that!</p>
+<p><strong>porter</strong>: Damn straight!</p>
+<p><strong>elmer</strong>: Shut up, Porter. What about the tracks?</p>
+<p><strong>virgil</strong>: That could be something to throw off the
+cops. And it ain’t animals that try to confues the law; it’s people do
+that.</p>
+<p><strong>andy fairton</strong>: Law around here don’t need much
+confusing.</p>
+<p><strong>andy</strong>: Could be I know a fat old fella who ought to
+take care of his mouth before someone comes along and turns it inside
+out. I pay Joe Haller’s salary to keep the people in this town safe, and
+he ain’t doing it.</p>
+<p><strong>andy</strong>: What are you, trying to be smart?</p>
+<p><strong>owen</strong>: You guys turn down the thermostat or I’m gonna
+turn you all out. Now who’s drinking?</p>
+<p><strong>brady</strong>: Drop it!</p>
+<p><strong>jane</strong>: Marty Coslaw, you get down out of that
+tree!</p>
+<p><strong>marty</strong>: Push the Bullet over, Jane, okay?</p>
+<p><strong>jane</strong>: They both are. At me, for not getting you
+sooner. I ought to let you fall.</p>
+<p><strong>jane</strong>: Come on, Marty.</p>
+<p><strong>owen</strong>: Jesus wept.</p>
+<p><strong>pete</strong>: You heard what I said, motormouth.</p>
+<p><strong>herb</strong>: Brady!</p>
+<p><strong>herb</strong>: Get out of my way!</p>
+<p><strong>sound</strong>: A LONG HOWL, now at some distance.</p>
+<p><strong>haller</strong>: Stay off the bandstand, Herb.</p>
+<p><strong>herb</strong>: Is it my boy? Is it Brady?</p>
+<p><strong>haller</strong>: Don’t go up-</p>
+<p><strong>herb</strong>: Br-</p>
+<p><strong>pete</strong>: Joe, is it-</p>
+<p><strong>pete</strong>: Is it the Kicaid b-</p>
+<p><strong>andy</strong>: What the fuck is going on h-</p>
+<p><strong>sound</strong>: HERB SCREAMS. A pause. HERB screams again.
+The men flinch back. HALLER doesn’t look up. Now, from the darkness on
+the bandstand, HERB begins to LAUGH. The men shrink back further,
+looking more uneasy than ever.</p>
+<p><strong>herb</strong>: We’ll bury his shoes because his feet are
+still in them and they’re the only part of him that makes sense
+anymore.</p>
+<p><strong>herb</strong>: It’s gonna be the cheapest funeral this town
+ever saw!</p>
+<p><strong>sound</strong>: An organ is playing that sweet old hymn,
+“Bringing In The Sheaves.”</p>
+<p><strong>lowe</strong>: Mr. and Mrs. Kincaid have asked that there be
+no mass said here this afternoon. There will be a requiem mass for Brady
+Kincaid this Sunday. They did ask me to say a word of comfort to you, if
+I could.</p>
+<p><strong>lowe</strong>: If there is any word of comfort I can give
+you, it’s just this: the face of the beast always becomes known; the
+time of the beast always passes.</p>
+<p><strong>lowe</strong>: If there are times when we feel alone and
+afraid, only small creatures in the dark, then these are the times when
+we must turn to one another for our comfort and our hope. To our
+neighbors. To our community. To our love for each other. I alone cannot
+ease the pain for Herb and Naomi Kincaid, nor can I ease your pain, nor
+you ease mine. But if I believe anything it’s this: we can comfort each
+other. We can heal each other. We can go on together.</p>
+<p><strong>lowe</strong>: The Bible tells us not to fear the terror that
+creepeth by night or that which flieth by noonday, and yet we do… we do.
+Because there is much we don’t know, and we feel very small. But we must
+not be alone. We must not allow ourselves to be alone, for there is the
+wide gate to the hell of terror. Turn to each other. Join hands in your
+sorrow and try to remember that the face of the beast always becomes
+known. The time of the beast always passes. Let us pray.</p>
+<p><strong>uncle al</strong>: You all right, Marty?</p>
+<p><strong>marty</strong>: Yeah.</p>
+<p><strong>uncle al</strong>: There’s a saying- so-and-so was better
+than a poke in the eye with a sharp stick. You ever hear that one?</p>
+<p><strong>marty</strong>: No.</p>
+<p><strong>uncle al</strong>: Well, I’m not sure that was. Christ! They
+better get the guy.</p>
+<p><strong>marty</strong>: Uncle Al, what if it’s not a guy?</p>
+<p><strong>uncle al</strong>: Huh?</p>
+<p><strong>marty</strong>: What if it’s some kind of monster?</p>
+<p><strong>marty</strong>: What’s going on at Owen’s, Uncle Al?</p>
+<p><strong>uncle al</strong>: A bunch of men getting ready to pretend
+they’re Clint Eastwood… Marty, didn’t anybody ever tell you that the
+only monsters are in comic books and drive-in movies?</p>
+<p><strong>marty</strong>: Tammy said she’d been hearing noises in that
+greenhouse. Growling noises, like a big animal. Her father was killed
+that night.</p>
+<p><strong>uncle al</strong>: Marty, you have to get this idea out of
+your head. Psychotics are more active when the moon is full, and this
+guy is a psycho. He’s going to turn out to be as human as you or me. In
+a manner of speaking. Now let’s get you inside.</p>
+<p><strong>andy fairton</strong>: Okay, you all know what group you’re
+in and what area you’ll be covering, right?</p>
+<p><strong>porter zinneman</strong>: Damn straight!</p>
+<p><strong>elmer zinneman</strong>: Shut up, Porter.</p>
+<p><strong>andy</strong>: Groups one through four are in the woods north
+of the Sturmfuller place. Five and six west of Carson Creek.</p>
+<p><strong>elmer</strong>: Shut up, Porter.</p>
+<p><strong>andy</strong>: Just remember, it’s the psycho we want, not
+each other. So look before you-</p>
+<p><strong>haller</strong>: I want all of you folks to go home!</p>
+<p><strong>haller</strong>: I can’t remember deputizing a single one of
+you!</p>
+<p><strong>andy</strong>: That’s right, Joe- the only deputy you got is
+that fat shitbag beside you, and neither one of you has done a damn
+thing about solving this case.</p>
+<p><strong>andy</strong>: You couldn’t catch a cold.</p>
+<p><strong>haller</strong>: The law has a name for what you men are
+planning. It’s private justice, and private justice is about a step and
+a half away from lynch mobs and hang ropes. I’m no J. Edgar Hoover, but
+I am the law in Tarker’s Mills, and I want you men to go home.</p>
+<p><strong>andy</strong>: Don’t let this guy scare you! What’s he done
+since this thing started but hang his face out?</p>
+<p><strong>owen knopfler</strong>: Ah, shut up, Andy.</p>
+<p><strong>andy</strong>: Don’t tell me to-</p>
+<p><strong>herb</strong>: Yes. Correct. Shut up.</p>
+<p><strong>haller</strong>: Herb…I know how upset- how grief-stricken
+you must be…but-</p>
+<p><strong>haller</strong>: Yes. Yes, but-</p>
+<p><strong>herb</strong>: My son was torn to pieces! You come in here
+and talk to these men about private justice. You dare to do that.
+Constable Haller, why don’t you go out to Harmony Hill and dig up what’s
+left of Brady and explain to him about private justice. Would you want
+to do that?</p>
+<p><strong>herb</strong>: No. I thought not. You folks stay here if you
+want. I wouldn’t ask anyone to do anything that runs counter to his
+conscience. As for me… I’m going out and hunt up a little private
+justice.</p>
+<p><strong>lowe</strong>: Billy… Billy, this is a bad idea. Joe can…</p>
+<p><strong>haller</strong>: Let them go.</p>
+<p><strong>lowe</strong>: But-</p>
+<p><strong>haller</strong>: This is that spirit of community you were
+talking about. Grand, ain’t it? Maybe they’ll shoot a hitchhiker or
+something and Andy can mount the head and raffle it off. To benefit the
+Medcu van, of course.</p>
+<p><strong>lowe</strong>: But can’t we do anything?</p>
+<p><strong>haller</strong>: Sure. We can pray to Christ that none of
+them get killed.</p>
+<p><strong>andy</strong>: Well, it’s about frigging time! They’ll have
+his hide tacked to somebody’s barn door before we get out there!</p>
+<p><strong>elmer</strong>: Help me Porter, goddammit!</p>
+<p><strong>elmer</strong>: Don’t pull me! You want to rip the right
+cheek of my ass right off?</p>
+<p><strong>porter</strong>: Well, Elmer, there are folks that’d say
+you’ve been half-assed most of your-</p>
+<p><strong>elmer</strong>: Are you going to unhook me or be a wise
+guy?</p>
+<p><strong>virgil</strong>: Jesus, that was close. Uh, pardon me,
+Rev’runt.</p>
+<p><strong>o’banion</strong>: Come on. Be careful.</p>
+<p><strong>sound</strong>: A RUSTY METALLIC CLANG, followed by a FLESHY
+CHOMP.</p>
+<p><strong>virgil</strong>: Rev’runt! What is it?</p>
+<p><strong>o’banion</strong>: Get it off me! Get it off me!</p>
+<p><strong>bobby robertson</strong>: As far as I could tell, it could
+have come from anywhere.</p>
+<p><strong>andy</strong>: We’ll spread out in a skirmish line. If the
+bastard tries to go around us, we’ll hear him.</p>
+<p><strong>bobby</strong>: I dunno-</p>
+<p><strong>maggie</strong>: I think Bobby Robertson here’s making
+lemonade in his pants. That lemonade got ice cubes in it, Bobby?</p>
+<p><strong>andy</strong>: Okay. Spread out on me. Five feet apart.</p>
+<p><strong>bobby</strong>: No- it’s behind us. I told you you couldn’t
+trust-</p>
+<p><strong>aspinall</strong>: It isn’t on either side.</p>
+<p><strong>andy</strong>: What are you-</p>
+<p><strong>aspinall</strong>: It’s under the fog. It’s right in with
+us.</p>
+<p><strong>sound</strong>: SNARLING…AND A RIPPING CHOMP as dinner is
+served.</p>
+<p><strong>owen</strong>: Come on, then! You want to rock and roll with
+me?</p>
+<p><strong>owen</strong>: Come on, come on! You want to do the bop? I’ll
+bop you, motherfucker! Come on!</p>
+<p><strong>lowe</strong>: Mr. and Mrs. Kincaid have asked that there be
+no mass said here this afternoon. They did ask me to say a word of
+comfort to you if I could.</p>
+<p><strong>herb</strong>: There is no comfort, Father. Only private
+justice.</p>
+<p><strong>lowe</strong>: Uh, if there’s any word of comfort I can give
+you, it’s just this: the face of the beast always becomes known; the
+time-</p>
+<p><strong>lowe</strong>: The time… the time of the beast always passes.
+There are answers… ways… ways to… to cope… if we turn to each other…</p>
+<p><strong>congregation</strong>: Sowing in the morning/sowing seeds of
+kindness/sowing in the noontide/and the dewy eve…</p>
+<p><strong>rev. lowe</strong>: No! No! No!</p>
+<p><strong>mrs. sturmfuller and all</strong>: Won’t you try, won’t you
+buy…</p>
+<p><strong>pete</strong>: Yeah… but what are they doing?</p>
+<p><strong>haller</strong>: Putting on my Sherlock Holmes deerstalker
+cap, I deduce that they are leaving.</p>
+<p><strong>haller</strong>: She’s not the only one. Lot of people
+leaving town. And I guess if we want a beer, we’ll have to drink it at
+home.</p>
+<p><strong>pete</strong>: Joe, what’s wrong with you? I ain’t never seen
+you like this.</p>
+<p><strong>haller</strong>: It was the Kincaid boy. I looked at him… and
+I felt it happen. It was no big deal. No worse than pissing down your
+own leg. You ever do that? Maybe when you were real scared?</p>
+<p><strong>haller</strong>: One minute I had me some guts- as much as
+the next man, anyhow- and then, poof. Gone.</p>
+<p><strong>pete</strong>: Joe… you are going to feel better than this.
+This… this feeling of yours… it’s gonna pass…</p>
+<p><strong>joe</strong>: Is it?</p>
+<p><strong>nan coslaw</strong>: Stop it, Jane.</p>
+<p><strong>jane</strong>: Well, I don’t see why everybody just about
+breaks down and cries whenever he-</p>
+<p><strong>bob</strong>: Stop it, your mother said.</p>
+<p><strong>marty</strong>: It isn’t enough that the monster killed all
+those people- that he killed Brady. Now he’s got them to cancel the
+fair.</p>
+<p><strong>uncle al</strong>: And the fireworks. Hand me that box,
+Marty.</p>
+<p><strong>marty</strong>: Yeah, okay, the fireworks. Jane thinks that’s
+all I’m mad about, but it’s not. Them doing that is just a… a…</p>
+<p><strong>uncle al</strong>: It’s just an outward symbol of everything
+that’s inwardly wrong in this town. Not bad, huh? I read Sherwood
+Anderson in college. I can jive that shit all day.</p>
+<p><strong>marty</strong>: Well… I like it that you always know how to
+say things, Uncle Al.</p>
+<p><strong>uncle al</strong>: I’ll give you the telephone numbers of my
+ex-wives, dear boy- they’ll be interested to hear that.</p>
+<p><strong>marty</strong>: Don’t call me dear boy.</p>
+<p><strong>uncle al</strong>: But you are, you know- you are my dear
+boy.</p>
+<p><strong>uncle al</strong>: Look at this.</p>
+<p><strong>uncle al</strong>: Your mom’s not around, is she?</p>
+<p><strong>marty</strong>: She and dad are out back lighting the
+barbecue. Jane’s walking around like she’s King Shit of Turd Mountain.
+Like always.</p>
+<p><strong>uncle al</strong>: Uh-huh. Only in her case I guess it would
+be Queen Shit of Turd Mountain. Hand me that adjustable.</p>
+<p><strong>uncle al</strong>: The guy killed your best friend, drove
+your girl out of town, and stole the second-best holiday in the year.
+Have I got it right?</p>
+<p><strong>uncle al</strong>: Yeah, Winesburg, Ohio, was never like
+that… but I got something that just might cheer you up.</p>
+<p><strong>marty</strong>: What?</p>
+<p><strong>uncle al</strong>: Wait, dear boy. Just wait. Hand me those
+pliars.</p>
+<p><strong>uncle al</strong>: All is cool, Marty-boy. Go for it.</p>
+<p><strong>uncle al</strong>: Jesus! Not too much!</p>
+<p><strong>uncle al</strong>: You got a pilot’s license, Marty?</p>
+<p><strong>marty</strong>: Do I need one?</p>
+<p><strong>uncle al</strong>: We’re gonna find out. Take it down the
+road a ways and back. Be careful.</p>
+<p><strong>uncle al</strong>: You gave me a heart attack, Marty. I’m
+dying. I hope you’re happy, because you are looking at a dying man.</p>
+<p><strong>marty</strong>: It really goes fast. Thanks, Uncle Al.</p>
+<p><strong>uncle al</strong>: It goes fast, all right- and if your
+mother finds out just how fast, Marty, I will have a new job. Singing
+soprano with the Vienna Boys’ Choir.</p>
+<p><strong>marty</strong>: I don’t get you.</p>
+<p><strong>uncle al</strong>: I know you don’t. But I want this to be
+our secret. You get that, don’t you?</p>
+<p><strong>marty</strong>: Sure.</p>
+<p><strong>uncle al</strong>: Good.</p>
+<p><strong>uncle al</strong>: I’ve got to go, Nan- I had a wonderful
+time.</p>
+<p><strong>nan</strong>: So have I, actually… I wish it could always be
+like this.</p>
+<p><strong>uncle al</strong>: See me around to my car, Marty, and make
+sure I stay out of trouble at least that long.</p>
+<p><strong>marty</strong>: Okay.</p>
+<p><strong>uncle al</strong>: Now I said I had something for you, as I
+believe you will recall.</p>
+<p><strong>marty</strong>: Yeah! What is it?</p>
+<p><strong>uncle al</strong>: You’re gonna have the Fourth of July in
+October, Marty. Just don’t blow your head off. And remember that it
+isn’t just the fireworks. It’s because no crazy shithead should be able
+to stop the good guys, if you can dig that.</p>
+<p><strong>uncle al</strong>: Stay near the house, for Christ’s sake-
+someone’s killing people. I have to be out of my mind to be doing this,
+you know.</p>
+<p><strong>marty</strong>: Yeah, I know. It’s great!</p>
+<p><strong>uncle al</strong>: One of the reasons I love you, Marty, is
+that you’re almost as crazy as I am. Please don’t set off anything that
+goes bang tonight, okay? Just bright colors. Can you tell the
+difference?</p>
+<p><strong>marty</strong>: Yeah… sure.</p>
+<p><strong>uncle al</strong>: Save this one for last.</p>
+<p><strong>marty</strong>: What is it?</p>
+<p><strong>uncle al</strong>: A tracer. You’ll like it.</p>
+<p><strong>marty</strong>: Thanks a million, Uncle Al!</p>
+<p><strong>uncle al</strong>: You’re welcome a million, Marty. Stick ’em
+in the bushes for now.</p>
+<p><strong>distant sound</strong>: The Bullet’s engine.</p>
+<p><strong>sound</strong>: Fast-rushing water.</p>
+<p><strong>sound</strong>: The Silver Bullet approaching.</p>
+<p><strong>sound</strong>: Growling.</p>
+<p><strong>sound</strong>: Hurt, angry growl.</p>
+<p><strong>marty</strong>: Is someone there?</p>
+<p>****: I keep emphasizing the shadowed face, because this is not a
+full-moon period. I’ve been going on the assumption that the guy kind of
+works his way up to full wolfiness, toothiness, hairiness, etc.,
+starting with a partial change at about the second quarter. It’s a
+process like the tide coming in. Thus, if we saw MARTY’S attacker
+clearly at this</p>
+<p><strong>marty</strong>: It’s a werewolf! I saw it! Last night-</p>
+<p><strong>uncle al</strong>: You dreamed it, Marty.</p>
+<p><strong>uncle al</strong>: There are no such things as werewolves.
+Please, dear boy, have some pity.</p>
+<p><strong>uncle al</strong>: Obscene phone caller. Go back to
+sleep.</p>
+<p><strong>jane</strong>: Marty? You okay? You’ve just been sitting here
+all morning.</p>
+<p><strong>marty</strong>: Where’s Mom?</p>
+<p><strong>jane</strong>: Went shopping. Why?</p>
+<p><strong>marty</strong>: Jane, I have to talk to you.</p>
+<p><strong>marty</strong>: I need you to help me. Uncle Al won’t believe
+me, and if you won’t help me, I…</p>
+<p><strong>mrs. thayer</strong>: Jane?</p>
+<p><strong>mr. thayer</strong>: Who is it?</p>
+<p><strong>mrs. thayer</strong>: Jane Coslaw.</p>
+<p><strong>jane</strong>: Hi, Mr. Thayer.</p>
+<p><strong>mr. thayer</strong>: Hello, Jane.</p>
+<p><strong>mrs. thayer</strong>: Bring your cart around to the back,
+Jane- we’ll look in the garage.</p>
+<p><strong>jane</strong>: Thank you.</p>
+<p><strong>jane</strong>: I’m going to bring in a monster load of
+bottles in an hour or so!</p>
+<p><strong>billy</strong>: I know what you’re after, Jane, and you’re
+out of luck. Little Toby Whittislaw was in yesterday, and I gave ’em all
+to him.</p>
+<p><strong>jane</strong>: Oh… okay.</p>
+<p><strong>jane</strong>: That you, Mr. Fairton?</p>
+<p><strong>andy</strong>: No!</p>
+<p><strong>jane</strong>: ’Bye, Mr. McClaren.</p>
+<p><strong>jane</strong>: Father Lowe! I’m ready to turn in my bottles
+and cans!</p>
+<p><strong>lowe</strong>: Take your cart around to the garage and
+unload, Jane! Then bring me your tally sheet!</p>
+<p><strong>jane</strong>: Okay!</p>
+<p><strong>jane</strong>: Father Lowe?</p>
+<p><strong>jane</strong>: Father Lowe?… I’ve got my tally sheet…</p>
+<p><strong>jane</strong>: I… I don’t feel so well, I guess maybe I got
+too much sun.</p>
+<p><strong>lowe</strong>: Would you like to come in the parlor and lie
+down for a bit? Or have a cold drink? I have some soda-</p>
+<p><strong>jane</strong>: No! That is, I have to get home and help my
+mom with lunch.</p>
+<p><strong>lowe</strong>: I’ll give you a ride!</p>
+<p><strong>jane</strong>: No- she… she was going to meet me at the
+market. I’ll be fine.</p>
+<p><strong>lowe</strong>: Give my best to your brother, Jane.</p>
+<p><strong>jane</strong>: I will.</p>
+<p><strong>jane</strong>: I ran faster than I ever ran in my life- what
+do you think, dummox? By the time I got back here, I really thought I
+was going to faint. What are we going to do, Marty? If we tried to tell
+anybody- grown-ups, I mean- they’d laugh. What are we going to do?</p>
+<p><strong>uncle al</strong>:
+Holy-jumped-up-baldheaded-Jesus-CHRIST!</p>
+<p><strong>jane</strong>: Uncle Al-</p>
+<p><strong>marty</strong>: It came for me! I shot it in the eye! Now
+he’s wearing an eye-patch!</p>
+<p><strong>uncle al</strong>: I called Peltzer on my way over here,
+Marty! Father Lowe came into the drugstore two days ago for a bottle of
+otic solution. That’s a fancy way of saying eyewash. He’s got a corneal
+inflammation.</p>
+<p><strong>marty</strong>: Was it a prescription?</p>
+<p><strong>uncle al</strong>: What the hell does that matter?</p>
+<p><strong>marty</strong>: It wasn’t- I’ll bet you it wasn’t. Because to
+get a prescription he’d have to see a doctor.</p>
+<p><strong>uncle al</strong>: Marty, Marty, you should hear
+yourself!</p>
+<p><strong>marty</strong>: Well… was it a prescription?</p>
+<p><strong>uncle al</strong>: I don’t know. But I know you didn’t see
+any werewolf the other night, Marty. You had a dream, that’s all. An
+extremely realistic nightmare brought on by what’s been happening in
+this town.</p>
+<p><strong>marty</strong>: What about the baseball bat Jane saw in his
+shed? You know who used to have a baseball bat like that? Mr. Knopfler!
+He was so proud of it he used to carry it in the Fourth of July parade!
+Jane said it looked like the Green Giant used it for a toothpick!</p>
+<p><strong>uncle al</strong>: You want to know what I think?</p>
+<p><strong>marty</strong>: No- we just got you out here so we could
+admire your pretty face.</p>
+<p><strong>uncle al</strong>: Watch it, dear boy. I think it was a
+hallucination. Probably a broomstick, or something.</p>
+<p><strong>uncle al</strong>: No thank you, Jane. I’m a little old for
+palying the Hardy Boys Meet the Catholic Werewolf.</p>
+<p><strong>marty</strong>: Never mind, Jane. He’ll have gotten rid of it
+by now anyway.</p>
+<p><strong>jane</strong>: If Father Lowe is an innocent little lamb, why
+hasn’t he picked up the telephone and called Constable Haller to tell
+him Marty’s sending poison-pen letters?</p>
+<p><strong>uncle al</strong>: I don’t accept the idea that he knows who
+his letter writer is, Jane. Because I don’t accept the idea that there
+was a big bad wolf who saw Marty in his wheelchair.</p>
+<p><strong>jane</strong>: Why hasn’t he picked up the phone and told
+Constable Haller that someone is sending him poison-pen letters?</p>
+<p><strong>marty</strong>: I’ll bet you a quarter that eyewash stuff was
+nonprescription. And I’ll bet you another quarter he hasn’t said
+anything to Mr. Haller.</p>
+<p><strong>uncle al</strong>: Marty, do you see your suspect?</p>
+<p><strong>uncle al</strong>: Do you really think that a man who took a
+rocket in the eye three nights ago could be out mowing his lawn? He’d
+either be in the hospital… or dead.</p>
+<p><strong>marty</strong>: I didn’t shoot him when he was a man. I shot
+him when he was-</p>
+<p><strong>uncle al</strong>: When he was a werewolf. Yes. Right. Jesus.
+Jane, you don’t really believe this madness, do you?</p>
+<p><strong>jane</strong>: I don’t know exactly what I believe. But I
+know that what I saw was a baseball bat and not a broomstick. I know
+there was something strange about the way the house smelled that day. It
+smelled like an animal’s den. And I believe in Marty. I mean- there are
+times when he makes me so mad I could kill him, but I still believe in
+him. You used to believe in him, too, Uncle Al.</p>
+<p><strong>uncle al</strong>: Kids!</p>
+<p><strong>outfielder</strong>: You comin’ down to Robertson’s for a
+soda, Marty?</p>
+<p><strong>marty</strong>: No- I guess I’ll go home.</p>
+<p><strong>outfielder</strong>: Okay- seeya!</p>
+<p><strong>marty</strong>: Yeah… seeya.</p>
+<p><strong>sound</strong>: Winding roar of a car engine. MARTY turns
+around.</p>
+<p><strong>lowe</strong>: Oh, you bastard!</p>
+<p><strong>marty</strong>: Come on, baby… come on…</p>
+<p><strong>lowe</strong>: I’m very sorry about this. I don’t know if you
+believe that or not, but it’s true. I would never willingly hurt a
+child. You should have left me alone, Marty.</p>
+<p><strong>lowe</strong>: You’re going to have a terrible accident,
+Marty. You’re going to fall into the river.</p>
+<p><strong>sound</strong>: TRACTOR ENGINE. LOWE stops, alert to possible
+danger.</p>
+<p><strong>marty</strong>: I ran out of gas.</p>
+<p><strong>elmer</strong>: Spooky in there, ennit?</p>
+<p><strong>uncle al</strong>: Well… it’s a lot easier to swallow without
+the hair and the foaming jaws. Also, I checked on the otic solution. It
+was counter brand. No prescription needed.</p>
+<p><strong>marty</strong>: I told you!</p>
+<p><strong>uncle al</strong>: Shut up, dear boy- no gloating
+allowed.</p>
+<p><strong>uncle al</strong>: After Marty called me with his latest
+Thrilling Tale of Wonder, I did. He’s had no poison-pen complaints
+lodged at all.</p>
+<p><strong>marty</strong>: I told you!</p>
+<p><strong>jane</strong>: Shut up, Marty.</p>
+<p><strong>marty jane</strong>: What is it? What other thing?</p>
+<p><strong>uncle al</strong>: I probably shouldn’t tell you- you’re both
+hysterical on the subject. I’m starting to feel like a guy handing out
+free Arthur Murray coupons to victims of the dancing sickness.</p>
+<p><strong>marty</strong>: Uncle Al, if you don’t tell me-</p>
+<p><strong>uncle al</strong>: No… but I found some blood, smeared on a
+tree trunk in that grove.</p>
+<p><strong>marty</strong>: There! You see!</p>
+<p><strong>uncle al</strong>: It could have been anything, Marty.</p>
+<p><strong>marty</strong>: What about Father Lowe chasing me in his car
+and trying to run me down? You don’t think that was a dream, do you?</p>
+<p><strong>uncle al</strong>: No.</p>
+<p><strong>uncle al</strong>: Lowe’s car-?</p>
+<p><strong>jane</strong>: Blue. This blue.</p>
+<p><strong>uncle al</strong>: Jesus.</p>
+<p><strong>haller</strong>: That’s just about the craziest damn story
+I’ve ever heard, Al.</p>
+<p><strong>uncle al</strong>: I know. I could have edited out all of the
+completely crazy stuff, but I thought you deserved to hear it with the
+bark on.</p>
+<p><strong>haller</strong>: I appreciate that. Now, the next question:
+Do you believe any of this? You do, don’t you?</p>
+<p><strong>uncle al</strong>: Let’s just say I believe Lester Lowe
+should be checked out.</p>
+<p><strong>haller</strong>: That can be arranged.</p>
+<p><strong>sound</strong>: SHATTERING ROAR and the CLINK AND TUMBLE of
+about nine thousand cans as LOWE erupts from under the aluminum scrap
+heap behind HALLER. He is a mixture of man and werewolf, and quite
+clearly a beastial version of LOWE. In one hand he holds the remains of
+OWEN KNOPFLER’S peacemaker.</p>
+<p><strong>marty</strong>: Mr. Haller said he’d check him out, and guess
+what? No one sees him again!</p>
+<p><strong>uncle al</strong>: And what do you suggest I do about it,
+dear boy?</p>
+<p><strong>marty</strong>: I want you to turn this into a silver
+bullet.</p>
+<p><strong>uncle al</strong>: You’re not going to let it go, are
+you?</p>
+<p><strong>marty</strong>: I saw what I saw.</p>
+<p><strong>uncle al</strong>: Marty, the moon wasn’t even full!</p>
+<p><strong>marty</strong>: Jane… you don’t have to do that.</p>
+<p><strong>jane</strong>: Don’t tell me what I have to do and what I
+don’t, booger-brains.</p>
+<p><strong>marty</strong>: Will you marry me, Jane?</p>
+<p><strong>uncle al</strong>: Would you kids mind telling me how this
+guy Lowe became a werewolf to begin with?</p>
+<p><strong>jane</strong>: I don’t know. Maybe he doesn’t know,
+either.</p>
+<p><strong>marty</strong>: No one knows how cancer begins, either- or
+exactly what it is- but people still believe in it.</p>
+<p><strong>uncle al</strong>: The kid is eleven years old and already he
+sounds like a Jesuit. A French Jesuit.</p>
+<p><strong>marty</strong>: I think he’s going to come for me. Not just
+because I know who he is, but because I hurt him. Only I don’t think
+he’ll try again as Lowe.</p>
+<p><strong>uncle al</strong>: Dear boy, you have gone right out of your
+mind.</p>
+<p><strong>marty</strong>: Will you do it?</p>
+<p><strong>marty</strong>: Please, Uncle Al.</p>
+<p><strong>jane</strong>: Will you?</p>
+<p><strong>uncle al</strong>: All right. I give up. Yes.</p>
+<p><strong>marty jane</strong>: All right! Thanks! Thank you, Uncle
+Al!</p>
+<p><strong>uncle al</strong>: If either of you ever tells anyone I even
+bought a piece of this story, werewolves will be the least of your
+problems.</p>
+<p><strong>mac</strong>: Here it is.</p>
+<p><strong>mac</strong>: Nicest piece of work I ever did, I think. It’s
+got a low-grain load so it won’t tumble. Should be pretty accurate.</p>
+<p><strong>uncle al</strong>: It’s just a gag, that’s all. What would
+you shoot a silver .22 bullet at, anyway?</p>
+<p><strong>nan</strong>: Remember, Al… we’ll be at the Ritz-Carlton in
+Boston tomorrow night! Or at the funeral parlor. It’s Stickney and-</p>
+<p><strong>uncle al</strong>: -and Babcock, I remember. Now go on!</p>
+<p><strong>nan</strong>: And don’t open the door for any trick or
+treaters even if they come!</p>
+<p><strong>uncle al</strong>: We won’t!</p>
+<p><strong>nan</strong>: You kids go to bed on time! You’ve got school
+tomorrow!</p>
+<p><strong>uncle al</strong>: If you keep doing that, you’re going to
+bump your head, sissy. Give my love to Mama- tell her I’ll see her
+Thursday.</p>
+<p><strong>nan</strong>: I will- be good, kids.</p>
+<p><strong>marty jane</strong>: ’Bye, mom! Bye, dad! We will! ’Bye!</p>
+<p><strong>uncle al</strong>: Can I tell you kids something?</p>
+<p><strong>jane</strong>: Sure, Uncle Al.</p>
+<p><strong>uncle al</strong>: When me and sissy were kids, we were just
+like you two.</p>
+<p><strong>marty</strong>: Yeah? Really?</p>
+<p><strong>uncle al</strong>: Yeah. Really. The bitch of it is, we still
+are. Learn from your elders, dearies.</p>
+<p><strong>bob</strong>: I can’t believe that you’d agree to leave the
+kids with him. A year ago I would have laughed at the idea. You used to
+almost breathe fire when Al came in the house.</p>
+<p><strong>nan</strong>: He’s changed. Just this summer. Or something’s
+changed him. Marty, maybe. And the drinking- I think it’s almost
+stopped. Whatever it is, it’s wonderful. And they’ll be safe with him.
+I’m sure of it.</p>
+<p><strong>bob</strong>: I know they’ll be safe with him… but will he
+get them both into bed by nine-thirty?</p>
+<p><strong>sound</strong>: The National Anthem.</p>
+<p><strong>announcer’s voice</strong>: This concludes WDML’s broadcast
+day.</p>
+<p><strong>uncle al</strong>: I suppose so. You kids ought to go up to
+bed.</p>
+<p><strong>marty</strong>: But Uncle Al! You said-</p>
+<p><strong>uncle al</strong>: I know what I said, Marty- but it’s ten
+past one. He’s not coming.</p>
+<p><strong>jane</strong>: The moon’s not down yet…</p>
+<p><strong>uncle al</strong>: Damn near. Now I’ll sit up with this
+stupid gun in my lap because I promised, but you two are going to bed.
+Go on, now, scoot.</p>
+<p><strong>marty</strong>: What if I say no?</p>
+<p><strong>uncle al</strong>: Then I’d have to kick your ass, dear boy.
+Go on, now.</p>
+<p><strong>marty</strong>: If that’d gone off, it would have been the
+end of our silver bullet.</p>
+<p><strong>uncle al</strong>: See, dear boy? Totally unimpaired.</p>
+<p><strong>uncle al</strong>: A very familiar feeling is beginning to
+creep over me.</p>
+<p><strong>marty</strong>: What’s that, Uncle Al?</p>
+<p><strong>uncle al</strong>: I feel like a horse’s ass.</p>
+<p><strong>jane</strong>: Don’t you touch me, snotbrains!</p>
+<p><strong>marty</strong>: Jane-</p>
+<p><strong>uncle al</strong>: Would you kids go to bed? My head’s
+starting to ache.</p>
+<p><strong>marty</strong>: It’s here! It’s outside!</p>
+<p><strong>uncle al</strong>: Jane, it’s just a power fai-</p>
+<p><strong>marty</strong>: Get the gun!</p>
+<p><strong>werewolf</strong>: Reeeal slow, Maa-aaarty-</p>
+<p><strong>werewolf</strong>: Bastard Marty!</p>
+<p><strong>werewolf</strong>: Kill you…</p>
+<p><strong>werewolf</strong>: Bastard Marty!</p>
+<p><strong>jane</strong>: I’m all right… but Marty! Ma-</p>
+<p><strong>uncle al</strong>: If it isn’t now, it will be after I pound
+one of your mother’s silver candlesticks through its heart.</p>
+<p><strong>jane</strong>: Are you all right, Marty?</p>
+<p><strong>marty</strong>: All except my legs… I don’t think I can
+walk.</p>
+<p><strong>jane</strong>: You’re a real booger, you know it?</p>
+</body>
+</html>

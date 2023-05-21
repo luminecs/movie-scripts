@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>klute</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="klute">klute</h1>
+<p><strong>klute</strong>: Klute. With a K. K - L - U -</p>
+<p><strong>ross</strong>: Are you with plant security, Sergeant?</p>
+<p><strong>klute</strong>: Town Police.</p>
+<p><strong>ross</strong>: Then how are you involved?</p>
+<p><strong>klute</strong>: I know Tom Grunemann.</p>
+<p><strong>ross</strong>: You knew the subject Thomas Grunemann. How
+well?</p>
+<p><strong>klute</strong>: We grew up together. Kids.</p>
+<p><strong>ross</strong>: Can you account for his disappearance in any
+way?</p>
+<p><strong>klute</strong>: No.</p>
+<p><strong>ross</strong>: Did he recently appear to you agitated or
+depressed? – indicates no – Did he voice to you grievance or discontent
+with his research work here? Indicates no. Moral or sexual problems or
+peculiarities? –</p>
+<p><strong>klute</strong>: No.</p>
+<p><strong>ross</strong>: Marital problems in general? Indicates
+possibly – am I right Sergeant?</p>
+<p><strong>klute</strong>: Everybody’s got some, I guess.</p>
+<p><strong>ross</strong>: Did he ever mention specifically a girl or
+woman in New York?</p>
+<p><strong>klute</strong>: No.</p>
+<p><strong>ross</strong>: Examine this letter please. We recovered that
+from the shredder – the plant disposal and incinerator system. Grunemann
+apparently typed it Friday, before he left, decided not to send it,
+tossed it away. We’ve already contacted the New York Police; they think
+they know the girl in question.</p>
+<p><strong>ross</strong>: He never mentioned this type thing to you? You
+didn’t know he had these interests?</p>
+<p><strong>holly</strong>: My husband was not like that! My God,
+Klute.</p>
+<p><strong>klute</strong>: It looks like he sent her quite a few of
+those Holly – the girl – she recalls six or seven letters like –</p>
+<p><strong>holly</strong>: – No. I mean sure a little rough stuff, but
+just what people usually – No, I would’ve said we were pretty good.
+Johnnie I don’t understand. I just don’t understand.</p>
+<p><strong>ross</strong>: – has disclosed no evidence of crime or
+criminal intent within the jurisdiction of this bureau, and since
+subject Thom –</p>
+<p><strong>cable</strong>: It’s been almost a year! Tom Grunemann’s been
+missing for a year. And all the FBI has to offer is a report that must
+bore even you.</p>
+<p><strong>ross</strong>: Well sir.</p>
+<p><strong>streiger</strong>: Are you closing the case?</p>
+<p><strong>ross</strong>: No sir, we don’t state that. We’re countin
+–</p>
+<p><strong>cable</strong>: But you don’t find it worth much effort.</p>
+<p><strong>ross</strong>: Well Mr. Cable, you’ve got me here from the
+Bureau. You got Lieutenant Trask here from New York representing his
+department and I don’t frankly consider –</p>
+<p><strong>streiger</strong>: Why couldn’t you ever find out anything
+from the girl?</p>
+<p><strong>ross</strong>: Trask –</p>
+<p><strong>trask</strong>: We first hold her under surveillance expectin
+your boy Grunemann to show up there. Didn’t. Then we bagged – we
+arrested her on a CP charge, convicted, two month’s women’s city prison,
+offer to reduce sentence, she cooperated. Four interrogations. She
+thought she remembered Grunemann – from those letters from before, she
+made that connection – but she hadn’t seen him since and couldn’t
+identify his photograph and she –</p>
+<p><strong>streiger</strong>: Why not?</p>
+<p><strong>trask</strong>: Oh a good call girl, she’ll turn six-seven
+hundred tricks a year. The faces get blurred. And since then, recent
+months, she’s reported several, you know, incidents: like breather
+calls, anonymous phone calls, also somebody maybe following her,
+watching her, things like that. So it’s I guess you could say,
+conceivable Grunemann’s still around there, just hangin around her,
+spooking her. But you know, that –</p>
+<p><strong>ross</strong>: The subject got emotionallv disturbed; he just
+dropped out. There’s thousands.</p>
+<p><strong>streiger</strong>: Inspector we understand your position;
+ours is a little different. We have an investment in Tom Grunemann. The
+Company has an investment, and we feel entitled to investigate for
+ourselves.</p>
+<p><strong>ross</strong>: Private investigation, you mean. Yes sir, of
+course you’re entitled, and there’s some very competent –</p>
+<p><strong>streiger</strong>: Klute offered us his services; we’ve
+accepted.</p>
+<p><strong>streiger</strong>: Klute knew Tom. He has a great many ideas
+about the case –</p>
+<p><strong>ross</strong>: Yes sir, we know he –</p>
+<p><strong>streiger</strong>: We’d expect him to work in cooperation
+with you. He’d report to each of you and to our Company’s New York
+office, to Pete – Pete goes there on a regular schedule back and forth,
+and –</p>
+<p><strong>ross</strong>: Mr. Streiger, speaking frankly – we’ve
+appreciated the Sergeant’s interest you know, all along. Here, locally.
+But New York, that’s - well –</p>
+<p><strong>trask</strong>: Ever done any missing person’s work?</p>
+<p><strong>ross</strong>: Spent much time in the city? You see, I have
+to wonder – speaking frankly; the Sergeant knows I’m only speaking
+frankly -</p>
+<p><strong>cable</strong>: You wonder why we thought of Klute? Frankly?
+He’s interested.</p>
+<p><strong>director</strong>: Honey, no, we don’t have too many.</p>
+<p><strong>director</strong>: Now before it comes to that, let’s have a
+look, et cetera, et cetera –</p>
+<p><strong>director</strong>: – Honey you make it look a little real. It
+should have, you know, that fun to it.</p>
+<p><strong>bree</strong>: Strangle him to death funny?</p>
+<p><strong>director</strong>: Well we go from this into stomach
+diagrams. It can’t be too – look let’s try it again from -</p>
+<p><strong>director</strong>: No – just give us the faces at the end,
+would you?</p>
+<p><strong>director</strong>: – And another family saved by Elso
+tablets. OK – Thank you very much.</p>
+<p><strong>director</strong>: Pierce – Danner -</p>
+<p><strong>bree</strong>: Bree Daniel, any messages? OK, thanks.</p>
+<p><strong>bree</strong>: Trina? Bree. Do I? Oh no, just a commercial I
+thought I might get, that’s all. Well I’d take a quick thirty, hon. Do
+you have a commuter for me? Wait.</p>
+<p><strong>bree</strong>: Hullo.</p>
+<p><strong>bree</strong>: Ooh, I knew I’d like you.</p>
+<p><strong>bree</strong>: Lover, that’s got to be a little extra. I mean
+it sounds very exciting, what you speak of, you’ve got me all excited.
+But something special like that, you know it’s got to cost a little
+more, mm?</p>
+<p><strong>1st annc’r</strong>: –R - W - M, radio’s voice is the
+Shippensburg Valley, on a beautiful clear warm Thurs –</p>
+<p><strong>2nd annc’r</strong>: – Tucky Wonder Beans picking up a half
+cent over yesterday’s price at-</p>
+<p><strong>bree</strong>: Oh lover, oh it’s too much – oh you thrill me
+– yes, like that, it’s – oh it’s beautiful, oh –</p>
+<p><strong>bree</strong>: What is it?</p>
+<p><strong>klute</strong>: Miss Daniel? My name is Klute – John Klute
+–</p>
+<p><strong>klute</strong>: Can I talk to you?</p>
+<p><strong>bree</strong>: What about?</p>
+<p><strong>klute</strong>: My name’s John Klute.</p>
+<p><strong>bree</strong>: You said that.</p>
+<p><strong>klute</strong>: I’m an investigator. I’d like to ask you some
+questions about Tom Grunemann.</p>
+<p><strong>bree</strong>: Who?</p>
+<p><strong>klute</strong>: Tom Grunemann. He wrote you some letters.</p>
+<p><strong>bree</strong>: Gee.</p>
+<p><strong>klute</strong>: He was a research engineer at the Tuscarora
+Laboratories in Pennsylvania. He disappeared from there last April. I’ve
+been hired to look for him.</p>
+<p><strong>bree</strong>: Why?</p>
+<p><strong>klute</strong>: You know what I’m talking about. Miss
+Daniel.</p>
+<p><strong>bree</strong>: Honest?</p>
+<p><strong>klute</strong>: Will you let me ask you some questions?</p>
+<p><strong>bree</strong>: Dew yew hayuv ah-dentifikyshun?</p>
+<p><strong>bree</strong>: You’re not police or FBI; you’re just a
+private investigator?</p>
+<p><strong>klute</strong>: Mm.</p>
+<p><strong>bree</strong>: And you just want to ask me a few
+questions?</p>
+<p><strong>klute</strong>: Mm.</p>
+<p><strong>bree</strong>: – and I take acting classes with Lee Tainter
+–</p>
+<p><strong>agent</strong>: – Lee, yes –</p>
+<p><strong>bree</strong>: – and I was in two of his workshop type
+productions, Uncle Vanya and the girl in Five Characters – – here – and
+then of course I have the modeling and the demonstrator work, the
+trade-fair work – but naturally I feel ready for something more, well
+you know, sustain –</p>
+<p><strong>agent</strong>: Well, thanks very much for coming in.</p>
+<p><strong>bree</strong>: Thank you very much.</p>
+<p><strong>trask</strong>: Man, just a poor pretty little hooker, like
+to be an actress –</p>
+<p><strong>trask</strong>: What you lookin’ to get from her? You think
+she’s got Grunemann hid somewhere, the attic, feedin him soup? Or maybe
+he’s hidin in a dark alley and he’ll jump on her and you jump on him.
+And third place, even if she does know somethin’ she’s right, she don’t
+have to talk to you. You don’t have police power, you can’t make
+her.</p>
+<p><strong>klute</strong>: That’s a lot of people to die unknown.</p>
+<p><strong>trask</strong>: Unknown, unidentified and unwanted. And
+there’s more every day man, there’s more everyday.</p>
+<p><strong>bree voice</strong>: Bree Daniel. Yeah, hi hon.</p>
+<p><strong>bree</strong>: Oh hon, I just don’t know. I’m trying to stay
+out of it.</p>
+<p><strong>girl’s voice</strong>: – comes in with these other yulds
+maybe two or three times a year, and five big ones baby, just one
+evening.</p>
+<p><strong>bree voice</strong>: Marta, thanks, and I’d love to party
+with you hon, but –</p>
+<p><strong>bree</strong>: Well try to get someone else Marty and if I
+change my mind – sure hon, bye.</p>
+<p><strong>bree voice</strong>: Bree Daniel –</p>
+<p><strong>man’s voice</strong>: Oh God baby, oh God I really love
+you.</p>
+<p><strong>bree voice</strong>: That’s nice; who is this?</p>
+<p><strong>man’s voice</strong>: I really love you baby, you know
+that?</p>
+<p><strong>man’s voice</strong>: Hello? Hello? Oh my God, hello?</p>
+<p><strong>bree voice</strong>: Bree Daniel.</p>
+<p><strong>2nd man’s voice</strong>: Bree – Frank Hanley, you remember,
+Fayetterville?</p>
+<p><strong>bree voice</strong>: Oh yeah, hi Frank, sure.</p>
+<p><strong>2nd man’s voice</strong>: Well I’m in town, like to see
+you.</p>
+<p><strong>bree voice</strong>: Well Frank that’s awful nice but I’m out
+of action, sort of, you know –</p>
+<p><strong>spangler</strong>: Bree Daniel, Caucasian, twenty eight, good
+physical health, no narcotics record, presenting an unusually strong
+personality some ways, high intelligence, a high bracket call girl.</p>
+<p><strong>spangler</strong>: – Usual case history – this isn’t a
+medical confidence, it’s all of them – broken family, lonely, confused,
+crummy childhood, early promiscuity, formal prostitution beginning in
+her teens, income twenty-five to thirty thousand a year. Oh they don’t
+keep the money: they get rid of it, they get pimps. Why? Why do you want
+to know all this?</p>
+<p><strong>klute</strong>: I want to know how Tom Grunemann got mixed up
+in it.</p>
+<p><strong>spangler</strong>: Not unusual.</p>
+<p><strong>klute</strong>: Did she talk about him to you?</p>
+<p><strong>spangler</strong>: About his letters – that’s all she
+remembered. Quite violent material, I’d say, obsessive, a quite sick
+man. But that’s not unusual either.</p>
+<p><strong>klute</strong>: Has she talked with you since prison?</p>
+<p><strong>spangler</strong>: No. She had every good intention of it –
+coming to me as a private patient, getting out of the life, devoting
+herself to an acting career.</p>
+<p><strong>klute</strong>: I think she’s trying that.</p>
+<p><strong>spangler</strong>: Oh sure they try. The idea of a better
+life. But they don’t really know much about life: They get confused – or
+scared or frustrated or bored – they pop back to the one thing they can
+handle. The trick. The trick. Men in bed. Not men in general, not life,
+not love, not even real sex – it avoids all that. Just the trick, the
+transaction.</p>
+<p><strong>man</strong>: We had a bet on - if you were real or not. I
+won.</p>
+<p><strong>bree</strong>: Marta –</p>
+<p><strong>bree</strong>: Hi. Bree. Hi. Well I could come over tonight -
+if you’d like – if there’s no one else. I really want to just talk to
+you.</p>
+<p><strong>bree</strong>: Hi? -_</p>
+<p><strong>bree</strong>: Oh –</p>
+<p><strong>bree</strong>: You scared me, Mr. Faber.</p>
+<p><strong>mr. faber</strong>: Good material, not too good cut. I’d do
+better for you.</p>
+<p><strong>bree</strong>: Oh thank you.</p>
+<p><strong>mr. faber</strong>: Enjoy. Well –</p>
+<p><strong>bree</strong>: It’s good to see you. Well – could we do it
+first and then just talk?</p>
+<p><strong>mr. faber</strong>: Sure dear, yes.</p>
+<p><strong>bree</strong>: Well – well I’m just back. And – I must tell
+you – something quite wonderful.</p>
+<p><strong>mr. faber</strong>: Yes?</p>
+<p><strong>bree</strong>: And Cannes was quite fun, quite; and we played
+baccarat and chemindefer and there was a nice little Italian marquis
+quite enthusiastic for me – but a young man can be so silly –</p>
+<p><strong>mr. faber</strong>: Mm.</p>
+<p><strong>bree</strong>: And then one night – at the gaming tables –
+well I just saw him. A stranger – looking at me – and I knew suddenly
+that all my life I’d been –</p>
+<p><strong>bree</strong>: – May I? It’s so –</p>
+<p><strong>mr. faber</strong>: Please –</p>
+<p><strong>bree</strong>: Not young; he wasn’t young – gray at the
+temples, he – well actually he looked like you.</p>
+<p><strong>mr. faber</strong>: Yes?</p>
+<p><strong>bree</strong>: And nobody could tell me who he was – an
+exiled prince or a mercenary or a bullfighter or – but I felt it
+stirring inside me, this – this wild, pagan feeling –</p>
+<p><strong>bree</strong>: And next day at the beach – our beach pavilion
+– I saw him again, his eyes burning into me. I was helpless. Without his
+even speaking to me, without his even touching, I knew that somehow –
+somehow –</p>
+<p><strong>bree</strong>: Whyn’t you just cut out?</p>
+<p><strong>bree</strong>: Oh you bastard.</p>
+<p><strong>bree</strong>: Is it the shakedown hon? You picked a loser, I
+just don’t have it.</p>
+<p><strong>klute</strong>: No, I’m look –</p>
+<p><strong>bree</strong>: If I was taking calls full time would I be
+living in this kip? I’d be back on Park Avenue; I could support the
+whole National Guard!</p>
+<p><strong>klute</strong>: Could I ask some questions?</p>
+<p><strong>bree</strong>: Or you’ll get me shoved back in the brig you
+mean; another month with the bull-dykes.</p>
+<p><strong>bree</strong>: Look, I told the police everything: I don’t
+even remember the schlub!</p>
+<p><strong>bree</strong>: They showed me that one. I understand it’s
+Grunemann, but I told them, I just don’t remember.</p>
+<p><strong>bree</strong>: A family sort of man.</p>
+<p><strong>klute</strong>: – Tom, again.</p>
+<p><strong>klute</strong>: Company outing or picnic or something like
+that.</p>
+<p><strong>bree</strong>: Isn’t that sweet. Well it could be any one of
+them bubi; I get to see them all.</p>
+<p><strong>bree</strong>: Look – please – will you just try to get it
+from my side? A year ago. I was in the life fulltime. I was living on
+Park with leather furniture and a million dresses. Then they dropped on
+me, the fuzz, they caged me – they started asking me about a man, some
+man, I’m supposed to have seen a year before that. Two years ago, two.
+He could be in Yemen!</p>
+<p><strong>bree</strong>: A name. Grunemann. Nothing. And they showed me
+pictures like this and they meant nothing. Then they asked me, well had
+I been getting letters, from someone out there in Cabbageville –</p>
+<p><strong>klute</strong>: – Tuscarora –</p>
+<p><strong>bree</strong>: All right, yes, I had been. Those sick, wild
+letters – I’m watching you, gonna follow you, gonna punish you, kill you
+et cetera. Well, they said, all right that’s Grunemann. So try to
+remember when you and he - when – well I don’t know, there was that
+dumper once, he sounded like that dumper – Dumpers; they get their kicks
+beating you up. A man hired me once, then tried to really kill me -
+that’d be about two years ago.</p>
+<p><strong>bree</strong>: OK Tommy-baby, Allie-Allie-in-free kid, I got
+the gumdrops.</p>
+<p><strong>bree</strong>: You remind me of my uncle.</p>
+<p><strong>klute</strong>: What? What do you remember about that –
+dumper?</p>
+<p><strong>bree</strong>: Nothing. Except he wasn’t kidding. Usually
+it’s a fakeout, you probably know. They pretend to tie you up, and you
+wear a dress with a cloth belt and they pretend to whip you or you –
+Hell it’s their money. I’ll hang from the shower rod and whistle
+Maytime. Except this guy was really tripped out on it; he –</p>
+<p><strong>klute</strong>: But you can’t say that Dumper was Tom
+Grunemann.</p>
+<p><strong>bree</strong>: I can’t say he was anybody!</p>
+<p><strong>bree</strong>: So – OK – that’s all?</p>
+<p><strong>bree</strong>: Well could I have them back now hon? – those
+tape recordings you’ve got downstairs – OK? – and if you want you can
+have a good time and I’ll have a good time and–</p>
+<p><strong>klute</strong>: What about everything since?</p>
+<p><strong>klute</strong>: Everything that’s happened since Tom
+Grunemann disappeared. The phone calls and the –</p>
+<p><strong>bree</strong>: Just phone calls, right? They ring, you
+answer, they don’t say anything, just blank. Kids getting kicks.
+Burglars looking for an empty apartment. I mean there is nothing that
+proves –</p>
+<p><strong>klute</strong>: What about the other things you’ve reported?
+– – being followed on the –</p>
+<p><strong>bree</strong>: Look – I’m sorry – I’ve led everybody wrong. I
+mean yes, I get those feelings, but that’s just me, that’s just
+feelings. I’m sure this will amuse you; I’m scared of the dark. And
+sometimes I get shook up, I hear people or – well, I’ll come out in the
+morning and think someone’s been prying at my mailbox, or there’s a
+little – trash outside my door and I wonder if someone left it there for
+– do you see? – things other people wouldn’t even notice. Well that’s
+not real, it’s just nerves; it’s got nothing to do with –</p>
+<p><strong>bree</strong>: Bree Daniel. Oh yes, Ted Carlin, how is Ted?
+Oh, well, thank you very much but maybe the next time you’re in town?
+Well I just love Ted and I’d love to meet you – you have a very nice
+voice – but I just – Well I’m having a chat with a very nice cop.
+Actually not a real cop; he’s a private inves –</p>
+<p><strong>klute</strong>: Is that how you get most of your dates?
+Someone gives your name to someone else?</p>
+<p><strong>bree</strong>: Most of them.</p>
+<p><strong>klute</strong>: Is that how you met the Dumper? – Someone
+else gave –</p>
+<p><strong>bree</strong>: How would I remember?</p>
+<p><strong>klute</strong>: How else do you meet them? Pimps?</p>
+<p><strong>bree</strong>: You’re very square. Pimps don’t get you dates,
+cookie; they just take the money.</p>
+<p><strong>klute</strong>: I have some names the police gave me. Frank
+Ligourin. Will you tell me what –</p>
+<p><strong>bree</strong>: Look, I’m sure this’ll amuse you too. Ilia
+trying to get away from all that.</p>
+<p><strong>klute</strong>: What about the old gentleman the other night,
+Mr. Faber?</p>
+<p><strong>bree</strong>: You saw that, goddamn you? You saw it? He’s
+seventy. His wife’s dead. He started cutting garments at fourteen. His
+whole life, he’s maybe had a week’s vacation, I’m all he has and he
+never, never touches me, and what harm in it, what –</p>
+<p><strong>bree</strong>: Klute, tell me, what’s your bag? Are you a
+talker, or a button man or a doubler, or maybe you like them very young
+– children – or get your chest walked around with high-heeled shoes, or
+have us watch you tinkle? Or –</p>
+<p><strong>bree</strong>: – You want to wear women’s clothes, or you get
+off ripping things –</p>
+<p><strong>bree</strong>: – you perverted hypocrite square bastards.</p>
+<p><strong>bree</strong>: Gee I hope this doesn’t make my cold any
+worse.</p>
+<p><strong>klute</strong>: Tell me about Frank Ligourin.</p>
+<p><strong>bree</strong>: Mm? Oh, he was my old man. We broke up.</p>
+<p><strong>klute</strong>: When? When did you and Ligourin break up?</p>
+<p><strong>klute</strong>: Mind not doing that?</p>
+<p><strong>bree</strong>: What? This?</p>
+<p><strong>bree</strong>: I thought you could trick me for those tapes.
+Don’t you get lonely in that little green room? Or let me get you
+someone; I have terrific friends, wild.</p>
+<p><strong>klute</strong>: No thanks.</p>
+<p><strong>bree</strong>: Gee. I’ve had men pay two hundred dollars for
+me – here, you’re turning down a freebie. You can get a perfectly good
+dishwasher for that.</p>
+<p><strong>bree</strong>: You’ve changed your mind? You do want to
+play?</p>
+<p><strong>klute</strong>: I don’t want you to look up. There’s someone
+on the skylight.</p>
+<p><strong>klute</strong>: Easy – pretend you’re looking here- –
+here.</p>
+<p><strong>klute</strong>: Now I’m going to walk around – you just keep
+talking, straight through, straight through.</p>
+<p><strong>klute</strong>: Tell me about acting – what are you doing
+tomorrow – where do you go?</p>
+<p><strong>bree</strong>: I go on rounds.</p>
+<p><strong>klute</strong>: Rounds, what are they? – don’t watch me, keep
+talking.</p>
+<p><strong>bree</strong>: You go see agents – or Equity calls, open
+casting calls. And ad agencies – commercials – you don’t get work, you
+just go around.</p>
+<p><strong>bree</strong>: And they’re always polite – show people – they
+say thank you very much. You lie there covered with blood, smiling, they
+say –</p>
+<p><strong>klute</strong>: I couldn’t get him.</p>
+<p><strong>klute</strong>: It’s all right.</p>
+<p><strong>bree</strong>: Well do you think it was him?</p>
+<p><strong>klute</strong>: What do you think?</p>
+<p><strong>bree</strong>: Can’t you get him?</p>
+<p><strong>klute</strong>: Maybe, if you tell me the things you
+haven’t.</p>
+<p><strong>bree</strong>: You asked me where I got that date with the
+dumper – Frank sent me on it.</p>
+<p><strong>klute</strong>: Do you know where he got the dumper?</p>
+<p><strong>bree</strong>: He never told me.</p>
+<p><strong>klute</strong>: Well, let’s go down and ask him.</p>
+<p><strong>bree</strong>: What did you expect? Frankie still has a good
+string, three girls. Figure three hundred a week from each.</p>
+<p><strong>klute</strong>: Is that what you gave him?</p>
+<p><strong>frank</strong>: Bree – hi – come in, come in.</p>
+<p><strong>bree</strong>: Frank – Klute.</p>
+<p><strong>frank</strong>: Hi. Come in. I was just catching up some work
+– mocking up the photographs. I used to be a photographer myself - Bree
+tell you? – Before I got in the publishing.</p>
+<p><strong>bree</strong>: Frank, he knows you’re a pimp. He knows you
+were my pimp.</p>
+<p><strong>frank</strong>: Well Bree, maybe you’d rather –</p>
+<p><strong>frank</strong>: How’s it been?</p>
+<p><strong>frank</strong>: With me Bree it’s eternally the same. Toward
+you. I guess you know that.</p>
+<p><strong>bree</strong>: Yeah Frank, I know that.</p>
+<p><strong>frank</strong>: I’ve always respected Bree. I’d like to make
+something clear.</p>
+<p><strong>klute</strong>: I’ve just got a few –</p>
+<p><strong>frank</strong>: I’d like to make something clear. I don’t go
+after a girl; a girl comes to me. Her choice. Right?</p>
+<p><strong>klute</strong>: I’m looking for a man. Tom Grunemann. Bree
+thinks he may have been the dumper – that call she had two years ago.
+She says you sent her on it.</p>
+<p><strong>frank</strong>: Two years ago? Sorry.</p>
+<p><strong>klute</strong>: They tell me you use narcotics. Could I bring
+someone around to look at your arms?</p>
+<p><strong>frank</strong>: Look – dad – I may stand better with the cops
+than you.</p>
+<p><strong>frank</strong>: OK, a family matter. Between the girls. I had
+two other cows – – two other girls besides Bree.</p>
+<p><strong>klute</strong>: She told me.</p>
+<p><strong>frank</strong>: OK and one of them Jane McKenna – she blows a
+little jealous of Bree - you know? – Bree comes first? And evidently she
+knew the freak — that he was a dumper – she conned me into passing him
+to Bree, you know, so Bree’d get hurt. I didn’t know. Till
+afterwards.</p>
+<p><strong>klute</strong>: Why didn’t you tell Bree, afterwards?</p>
+<p><strong>frank</strong>: You don’t tell them. That one of their own
+in-laws laid a dumper on them? Peace in the family. Beyond that, I don’t
+know. All she wrote.</p>
+<p><strong>klute</strong>: I’d like to talk with Jane McKenna.</p>
+<p><strong>frank</strong>: Would I be telling you all this? She copped
+out long ago. She committed suicide Baxter.</p>
+<p><strong>bree</strong>: Did you like my friend Frankie?</p>
+<p><strong>klute</strong>: No.</p>
+<p><strong>bree</strong>: Didn’t he tell you what you wanted?</p>
+<p><strong>klute</strong>: It didn’t go anywhere. But that’s not why
+–</p>
+<p><strong>bree</strong>: About the dumper, didn’t he tell you that?</p>
+<p><strong>klute</strong>: It was Jane McKenna who sent you the
+dumper.</p>
+<p><strong>bree</strong>: Well – she’s dead.</p>
+<p><strong>bree</strong>: I thought you were going back to the
+apartment.</p>
+<p><strong>klute</strong>: You said you wanted these.</p>
+<p><strong>bree</strong>: Oh golly, oh just what I’ve always dreamed of,
+dirty phone calls. How come?</p>
+<p><strong>klute</strong>: You told me what you could. I guess I’m
+through with your part of it.</p>
+<p><strong>bree</strong>: Is there anything more I could –</p>
+<p><strong>klute</strong>: I don’t see anything, do you?</p>
+<p><strong>bree</strong>: What’re you gonna do next?</p>
+<p><strong>klute</strong>: Try some other ways.</p>
+<p><strong>bree</strong>: What do I do meanwhile? – wait for that clown
+to fall through the skylight on me?</p>
+<p><strong>klute</strong>: And I don’t think that was Tom.</p>
+<p><strong>bree</strong>: You said it was!</p>
+<p><strong>klute</strong>: No, I said what did you think.</p>
+<p><strong>bree</strong>: Oh – wait – oh I get it. You said that just to
+keep me scared. So I’d tell you everything I – oh clever; oh you smart,
+tricky hick.</p>
+<p><strong>klute</strong>: Well –</p>
+<p><strong>bree</strong>: Hey, but did we get to you, Klute? A
+little?</p>
+<p><strong>klute</strong>: Yeah, you got to me.</p>
+<p><strong>bree</strong>: – Us city folks? The sin, the glitter, the
+wickedness?</p>
+<p><strong>klute</strong>: Oh. No. Not that way. I’d say it was more – I
+don’t know – – too bad? Pathetic?</p>
+<p><strong>bree</strong>: Goodbye.</p>
+<p><strong>bree</strong>: What the hell do you mean, pathetic?</p>
+<p><strong>klute</strong>: It’s kind of late.</p>
+<p><strong>bree</strong>: It got lonely upstairs. There’s someone on the
+roof.</p>
+<p><strong>bree</strong>: Oh, don’t be a doo-doo.</p>
+<p><strong>klute</strong>: Not much point to this, is there?</p>
+<p><strong>bree</strong>: Ezra, I’m lots better than you’re used to.
+Tell me – the other night, watching me with Mr. Faber – wasn’t your
+tongue a little bit hanging out?</p>
+<p><strong>klute</strong>: Mm.</p>
+<p><strong>bree</strong>: So you’re not too different from him, or the
+chap on the roof, or Tommy-baby –</p>
+<p><strong>bree</strong>: Look, if you don’t use it somebody else just
+will. And you’ve done your whole bit with me, your entire duty, and so
+now this is my thing. So enjoy, Mr. Faber would say, enjoy.</p>
+<p><strong>klute</strong>: Bree – thanks – I don’t want to.</p>
+<p><strong>bree</strong>: Oh don’t be all hypocrite. Or do you really
+like other kicks? Is it more just having power over someone? – so you
+don’t really need to –</p>
+<p><strong>bree</strong>: Who the hell are you, buttoning me up?</p>
+<p><strong>bree</strong>: I knew it, I knew it, a killer.</p>
+<p><strong>bree</strong>: Oh lover – oh you thrill me – oh, it’s
+beautiful – oh yes, yes – oh like that, like that, yes –</p>
+<p><strong>bree</strong>: What’s the matter hon? You were great.
+Terrific. A tiger.</p>
+<p><strong>klute</strong>: Thanks.</p>
+<p><strong>bree</strong>: Well what’re you down about? You mean because
+you didn’t get me there? You can’t expect that. I mean Frank, yes, he’d
+get me there all the time – but never with a John.</p>
+<p><strong>bree</strong>: And I’m sorry I can’t stay and learn your
+special little games. And I certainly don’t want you to feel bad about
+this – losing your virtue all of a sudden – because I sort of knew you
+would. As I said, like everyone, right?</p>
+<p><strong>bree</strong>: Besides - you can always tell yourself you
+made me come downstairs. Ta, luv.</p>
+<p><strong>bree</strong>: – Why?</p>
+<p><strong>bree</strong>: Why – please, why? – Why lose, why look? Why
+hate and give and want and love? Why get, grieve, g –</p>
+<p><strong>jang</strong>: Thank you very much.</p>
+<p><strong>bree</strong>: – gug – gug –</p>
+<p><strong>bree</strong>: Why? – I want to know what.</p>
+<p><strong>jang</strong>: No, that was very good everybody. Do we have
+all your resumes?</p>
+<p><strong>producer</strong>: Booth – Osman – Zuff – Anjeris Chaka.</p>
+<p><strong>klute</strong>: You asked if there was anything more you
+could help me with.</p>
+<p><strong>bree</strong>: When?</p>
+<p><strong>klute</strong>: I’ve checked the records of Jane McKenna’s
+death – I can’t get anything special. But Frank Ligourin had another
+girl you said, besides McKenna and you.</p>
+<p><strong>bree</strong>: Arlyn Page.</p>
+<p><strong>klute</strong>: Did she and Jane McKenna know each other?</p>
+<p><strong>bree</strong>: Frankie kept them in the same apartment: it
+cut his travel-time.</p>
+<p><strong>klute</strong>: Then maybe Arlyn Page knew the Dumper
+too.</p>
+<p><strong>bree</strong>: Arlyn had a very big habit - heroin - she’s
+the one who started Frank. She’s strung out now; you won’t find her.</p>
+<p><strong>klute</strong>: You could help me find her. You know the
+people. I’ll pay you a hundred dollars.</p>
+<p><strong>bree</strong>: I can make that in a lunch break! Look, Hiram,
+you’re sure it isn’t just me? – you decided you liked it, after all, the
+other night; you’ll hang around for seconds?</p>
+<p><strong>klute</strong>: Don’t worry.</p>
+<p><strong>bree</strong>: Joanie – Mike, hi – Hi Pat.</p>
+<p><strong>pat</strong>: Hey Bree honey, who you got?</p>
+<p><strong>bree</strong>: A new daddy. I’n he cute?</p>
+<p><strong>bree</strong>: Trina this is Klute. I told you about him.</p>
+<p><strong>trina</strong>: Oh yes Mr. Klute – won’t you both join me?
+And how do you like our fair city? There’s so much here don’t you think?
+The museums and the books and the foreign films – Bree, have you seen
+the Godard film?</p>
+<p><strong>bree</strong>: Uh uh.</p>
+<p><strong>trina</strong>: Oh you’ve got to. He does such fun things
+with imagery. And I’ve been reading The Fall – – The Fall by Ahlbair
+Camoo – it’s the same thing, you know the imagery –</p>
+<p><strong>bree</strong>: Trina honey, he just wants to find Arlyn
+Page.</p>
+<p><strong>trina</strong>: Why? She’s a junkie.</p>
+<p><strong>bree</strong>: She was with you after she left Frank.</p>
+<p><strong>trina</strong>: Well she’s not now. I did everything for
+Arlyn. I loved Arlyn I took her right into my apartment, my own sweet
+apartment on First. But she wouldn’t stay off it – the junk – and I wept
+and I pleaded and I held her in my arms - and she started taking things,
+my things, and selling them for horse. My clothes. We could’ve had
+everything together, everything – and then the bitch sold my mink!</p>
+<p><strong>first girl</strong>: Arlyn Page?</p>
+<p><strong>second girl</strong>: You’ll never catch up; she’s grooved
+out.</p>
+<p><strong>bree</strong>: Gil?</p>
+<p><strong>klute</strong>: I’m not looking for her personally - someone
+she might know about.</p>
+<p><strong>pimp</strong>: Try Janie Dale.</p>
+<p><strong>janie dale</strong>: It’s old Mr. Clean from Cleveland. He
+wants to know when he can fly in and clean up the apartment and see you.
+I told him I have all the cleaning equipment and that he can come
+anytime, but it’s up to you.</p>
+<p><strong>girl</strong>: You know he wants us to be dominant.</p>
+<p><strong>janie dale</strong>: Tell him that he’d better have his ass
+in here by one o’clock on Monday afternoon or you won’t let him clean
+the bathroom floor, and tell him the price has gone up twenty bucks –
+Old Dutcn Cleanser’s not as cheap as it used to be.</p>
+<p><strong>janie dale</strong>: You wanted to know about Arlyn, honey? I
+had to let her go dear. Arlyn stopped being reliable. I deal with a high
+type client, business people, you understand? I can’t send them someone
+that’s all the time half zonked out.</p>
+<p><strong>klute</strong>: Do you know where she went?</p>
+<p><strong>janie dale</strong>: Try Momma Reese.</p>
+<p><strong>momma reese</strong>: Try Bill Azure. If you can find
+him.</p>
+<p><strong>azure</strong>: – a couple weeks then she’d drift off a
+couple of weeks, you know what I mean?</p>
+<p><strong>klute</strong>: Have you heard from her recently?</p>
+<p><strong>azure</strong>: She liked me all right but she had what she
+liked better, you know what I mean?</p>
+<p><strong>klute</strong>: Have you heard from her recently?</p>
+<p><strong>proprietress</strong>: – She’d come in and I’d let her have
+something. Why not; she’d been a good customer, a beautiful person, a
+beautiful beautiful person.</p>
+<p><strong>mrs. vasek</strong>: The whore, yeah. I threw out.</p>
+<p><strong>klute</strong>: Do you know where she went from here?</p>
+<p><strong>mrs. vasek</strong>: Live like animals. Her and the man.
+Out.</p>
+<p><strong>klute</strong>: Was she living with a man?</p>
+<p><strong>klute</strong>: What’s the matter?</p>
+<p><strong>bree</strong>: What the hell do you think’s the matter. I
+could wait for you someplace.</p>
+<p><strong>klute</strong>: If Arlyn Page is living with Tom Grunemann
+–</p>
+<p><strong>bree</strong>: – Then you don’t need me.</p>
+<p><strong>klute</strong>: But if it’s someone else I do.</p>
+<p><strong>bree</strong>: You sure pull a lot of mileage out of a
+hundred dollars.</p>
+<p><strong>arlyn</strong>: Cappy?</p>
+<p><strong>bree</strong>: Arlyn? Honey? Look, it’s all right.</p>
+<p><strong>berger</strong>: Is it Cappy? Cappy? –</p>
+<p><strong>bree</strong>: Arlyn, it’s all right.</p>
+<p><strong>berger</strong>: Cappy, I got a radio!</p>
+<p><strong>arlyn</strong>: No –</p>
+<p><strong>arlyn</strong>: Bree – honey - please, we’re waiting for
+someone.</p>
+<p><strong>bree</strong>: Arlyn, he just wanted to ask some questions –
+something you could help us about.</p>
+<p><strong>arlyn</strong>: Can’t you see I’m strung out? Please, we’re
+waiting for it – he’s got to have it!</p>
+<p><strong>klute</strong>: We’ll go. Just something you could tell us,
+first.</p>
+<p><strong>bree</strong>: Honey, a couple of years ago, with Jane and
+Frankie? – Jane sent me a Dumper –</p>
+<p><strong>arlyn</strong>: Please, if he sees you, he won’t come!</p>
+<p><strong>bree</strong>: Arlyn, just tell me, did Jane have a dumper,
+one of her regular Johns?</p>
+<p><strong>arlyn</strong>: What about him? Yes.</p>
+<p><strong>bree</strong>: Did he come around often?</p>
+<p><strong>arlyn</strong>: No. He was an older man hon. The dumper was
+older.</p>
+<p><strong>klute</strong>: Do you remember his name? What can you tell
+me about him?</p>
+<p><strong>berger</strong>: Arlyn, get them out.</p>
+<p><strong>arlyn</strong>: Please, I am begging you.</p>
+<p><strong>klute</strong>: It’s important.</p>
+<p><strong>arlyn</strong>: That’s not the Dumper, that’s all! He was an
+older man!</p>
+<p><strong>klute</strong>: Can you give me any more description than
+that?</p>
+<p><strong>arlyn</strong>: Cappy? –</p>
+<p><strong>arlyn</strong>: It’s all right, they’re all right –</p>
+<p><strong>berger</strong>: Cappy? – Cappy?</p>
+<p><strong>berger</strong>: Cappy it’s all right! I got a radio – don’t
+run, don’t –</p>
+<p><strong>arlyn</strong>: Oh baby – no it’s all right – oh my baby baby
+baby –</p>
+<p><strong>arlyn</strong>: Get out! Don’t cry my baby; I’ll find him,
+I’ll get it. Baby, baby, don’t cry. Leave us alone! Get out and get out
+and leave us alone! My honey, my baby, my baby –</p>
+<p><strong>cable</strong>: She wouldn’t be reliable anyhow – a narcotics
+addict.</p>
+<p><strong>klute</strong>: I believed her, Pete.</p>
+<p><strong>trask</strong>: He’s right you know. Waiting for the pusher,
+she’d tell you anything.</p>
+<p><strong>klute</strong>: I believed her: the Dumper was not Tom
+Grunemann.</p>
+<p><strong>cable</strong>: All right, suppose it wasn’t Tom Grunemann;
+where does that get you?</p>
+<p><strong>klute</strong>: It’s where it doesn’t get me. I’ve got
+nothing left that connects to anything.</p>
+<p><strong>cable</strong>: Then, close the case.</p>
+<p><strong>klute</strong>: I better keep looking.</p>
+<p><strong>cable</strong>: Where, how?</p>
+<p><strong>klute</strong>: I could try Arlyn Page again. She saw much
+more of the Dumper than Bree Daniel.</p>
+<p><strong>cable</strong>: You just finished telling me she had nothing
+to offer. Not Tom, you said, the Dumper was clearly not Tom.</p>
+<p><strong>klute</strong>: It’s got to make sense some way.</p>
+<p><strong>secretary</strong>: Mr. Cable – they are meeting in
+Mr. Camara’s office.</p>
+<p><strong>cable</strong>: Yes Evvie, thanks. Gentlemen, I’m sorry.</p>
+<p><strong>cable</strong>: I’m flying back out to Pennsylvania Friday;
+I’ll fill them in on things.</p>
+<p><strong>klute</strong>: How is it back there?</p>
+<p><strong>cable</strong>: I think you’re homesick. I’ll be out at my
+camp over the weekend. Nice right now, that touch of fall in the air,
+that skim of frost in the early mornings, very peaceful. John, I’ll be
+back here again Thursday; I’ll be in touch. Lieutenant, thank you.</p>
+<p><strong>trask</strong>: They were bringing a freighter down through
+Kill Van Kull; propellers washed it up on top.</p>
+<p><strong>sugarman</strong>: Why didn’t you bring it up on deck?</p>
+<p><strong>deckhand</strong>: Would you bring it up on deck?</p>
+<p><strong>deckhand</strong>: Mickey, get something. Get the eels
+off.</p>
+<p><strong>spence</strong>: They’ll drop off theirselves when she comes
+out.</p>
+<p><strong>trask</strong>: It’ll go to the Examiner. But I don’t see
+nothin that means nothin.</p>
+<p><strong>sugarman</strong>: You help us with ID? We can’t get nothin
+from him.</p>
+<p><strong>klute</strong>: Arlyn Page was probably an alias. She went by
+the names Terry Arlyn and June Price. She may have been from Pittsburgh,
+someone told me. I can give you a list of people who knew her, if that
+would help to –</p>
+<p><strong>sugarman</strong>: No point, thanks.</p>
+<p><strong>klute</strong>: Is he claiming the body?</p>
+<p><strong>sugarman</strong>: Uh uh, that’d mean funeral expenses.</p>
+<p><strong>berger</strong>: Man could you help me?</p>
+<p><strong>klute</strong>: Yeah, what?</p>
+<p><strong>berger</strong>: You know, help me out. That’s my baby there,
+dead. I got to get up.</p>
+<p><strong>berger</strong>: Man you don’t know what that does to me, my
+baby dead –</p>
+<p><strong>klute</strong>: – You’ve got to get up.</p>
+<p><strong>berger</strong>: Yeah.</p>
+<p><strong>trask</strong>: That’s how the other one died, you know. In
+the water.</p>
+<p><strong>klute</strong>: I looked it up.</p>
+<p><strong>trask</strong>: Well?</p>
+<p><strong>klute</strong>: Yeah.</p>
+<p><strong>bree</strong>: Well hello – come on in.</p>
+<p><strong>klute</strong>: I thought you ought to know, Arlyn Page is
+dead.</p>
+<p><strong>bree</strong>: How?</p>
+<p><strong>klute</strong>: The same as Jane McKenna.</p>
+<p><strong>bree</strong>: Thanks for the jolly news. I thought maybe
+you’d left town by now. You kind of just disappeared. But you boys from
+Tuscarora have a habit of disappearing, don’t you?</p>
+<p><strong>klute</strong>: The next few weeks I would like to know where
+you are all the time.</p>
+<p><strong>bree</strong>: Why?</p>
+<p><strong>klute</strong>: Just let me know when you are going out and
+where –</p>
+<p><strong>bree</strong>: What if i go out on tricks - you wanna come
+along? You could sit and read the National Geographic.</p>
+<p><strong>klute</strong>: How can you do it to yourself?</p>
+<p><strong>bree</strong>: I don’t get you.</p>
+<p><strong>klute</strong>: Ligourin: How could you do it?</p>
+<p><strong>bree</strong>: I told you before, you wouldn’t
+understand.</p>
+<p><strong>klute</strong>: You’re right, I don’t understand. Explain it
+to me. You were scared. Arlyn Page, that scared you. Well it should;
+that’s death. So what did you do, you ran straight for it, death.
+Ligourin kills women.</p>
+<p><strong>bree</strong>: No.</p>
+<p><strong>klute</strong>: No, no you’re right, I’m sorry. He uses
+women; he lets them kill themselves. Is that how you want it?</p>
+<p><strong>bree</strong>: Arlyn was a junkie; I’m not on junk!</p>
+<p><strong>klute</strong>: No, you can find some other way. Explain it
+to me. Bree, show me any sense to –</p>
+<p><strong>bree</strong>: You get the Christ out! You dumb stupid
+bastard, you don’t know anything, you square, you get out! I don’t have
+to show you anything; you get out!</p>
+<p><strong>bree</strong>: If I asked you something, would you not laugh?
+– asked you to look at something?</p>
+<p><strong>bree</strong>: I thought it was maybe changing shape or
+something.</p>
+<p><strong>bree</strong>: Look – I hate everybody; and I’m sorry for
+everybody; and I’m scared all the time.</p>
+<p><strong>bree</strong>: Look, I don’t know either. It’s like the only
+thing I know how to do – I feel safe.</p>
+<p><strong>klute</strong>: It’s been a full day.</p>
+<p><strong>bree</strong>: Please.</p>
+<p><strong>klute</strong>: We did this before.</p>
+<p><strong>bree</strong>: No. Well all right. But you want to and I want
+you to and we both know it and all right.</p>
+<p><strong>klute</strong>: I don’t like getting splashed.</p>
+<p><strong>klute</strong>: — Bree —</p>
+<p><strong>klute</strong>: Go back to sleep.</p>
+<p><strong>bree</strong>: I’m still scared. I mean different but still.
+Look, I made it very clear from the start, you’re a yokel, you don’t
+excite me, you don’t even interest me, and so I only have one question
+which is what the hell are you doing in my bed?</p>
+<p><strong>klute</strong>: My bed.</p>
+<p><strong>bree</strong>: Oh!</p>
+<p><strong>bree</strong>: I am scared. The things I do. The things I
+could do to you.</p>
+<p><strong>klute</strong>: Mm.</p>
+<p><strong>bree</strong>: No, not just ‘mm’. You don’t know what I –</p>
+<p><strong>bree</strong>: Oh boy, say, you think you’re pretty good.</p>
+<p><strong>klute</strong>: Yup.</p>
+<p><strong>bree</strong>: Oh –</p>
+<p><strong>bree</strong>: The son of a bitch seduced me!</p>
+<p><strong>bree</strong>: I know: it’s ridiculous. But it’s tearing me
+up and I don’t know why. And look, all right, I came here didn’t I? And
+if I have to, I’ll keep coming here, the works, and talk about my mummy
+and my daddy and I’ll even pay for it, but will you kindly for God’s
+sakes say something?</p>
+<p><strong>spangler</strong>: I’d just be guessing.</p>
+<p><strong>bree</strong>: Guess!</p>
+<p><strong>spangler</strong>: Maybe this wasn’t just a trick. Maybe
+you’re in danger of real love, real involve –</p>
+<p><strong>bree</strong>: I do not love him.</p>
+<p><strong>spangler</strong>: You’ve spent your life avoiding this.
+You’ll try hard to deny it; you’re quite likely to destroy it.</p>
+<p><strong>custodian</strong>: Four – five – what number’d I say?</p>
+<p><strong>klute</strong>: Four ninety-seven, Jane McKenna</p>
+<p><strong>custodian</strong>: – And I keep the authorization,
+please.</p>
+<p><strong>klute</strong>: I thought there’d be more.</p>
+<p><strong>bree</strong>: All right. Loneliness. Well – separated. From
+other people. Forgotten. Well, as if I can be here, I can go through the
+motions, right? But the truth is, I don’t belong.</p>
+<p><strong>spangler</strong>: Don’t belong?</p>
+<p><strong>bree</strong>: Do you always have to repeat?</p>
+<p><strong>spangler</strong>: Sorry.</p>
+<p><strong>bree</strong>: Well it’s more than loneliness. Hate. People
+hating me – and watching me and following and waiting to hurt me – you
+know? I’m all screwed up.</p>
+<p><strong>spangler</strong>: You think people hate you.</p>
+<p><strong>bree</strong>: The truth is I hate them: they must hate me.
+All right, the money. All right, not the money. A kind of put-on. It
+gets things back together. Well let’s say I’d go to one of these
+cattle-calls, a tryout. I mean before – before I got this job – and
+they’d always say thank you very much and i’d feel, you know, brought
+down. They didn’t want me.</p>
+<p><strong>spangler</strong>: Didn’t want you.</p>
+<p><strong>bree</strong>: I said that. Well, so you have a choice. You
+can either feel lonely – you know, the hate – or – So you take a call
+and go to a hotel room and there’s some John you’ve never seen before,
+but he wants you. He must, he’s paying for it. And usually they’re
+nervous and that’s all right, too, because you’re not; you know this
+thing. And then for a while, boy, they really pay attention, you’re all
+there is. And it’s not real and you don’t have to even like them – you
+can even hate them, it’s all right, it safe – you know?</p>
+<p><strong>trask’s voice</strong>: All right, there’s Tom Grunemann,
+you’re right, different margins, different spacing absolutely, sloppy,
+right.</p>
+<p><strong>klute’s voice</strong>: Mm.</p>
+<p><strong>trask’s voice</strong>: All right, try this next guy.</p>
+<p><strong>trask</strong>: Think this is our guy?</p>
+<p><strong>klute</strong>: I don’t know. It looks familiar to me.</p>
+<p><strong>trask</strong>: Thought it might. It’s off an arrest report
+you typed two years ago. Man you wanted samples of everybody.</p>
+<p><strong>trask</strong>: Now the next cat. Mm?</p>
+<p><strong>trask’s voice</strong>: Same margins top and sides. He does
+best with his middle fingers; you get fainter registration from outside
+keys like Q, A, L, P and like that. Next thing look around apostrophes,
+how he hits the space bar before –</p>
+<p><strong>klute</strong>: But what reason could he have? What possible
+reason?</p>
+<p><strong>trask</strong>: Unless he was involved with Grunemann’s
+disappearance.</p>
+<p><strong>klute</strong>: I knew Tom never wrote that letter.</p>
+<p><strong>trask</strong>: What else do you know?</p>
+<p><strong>klute</strong>: I never could believe that Tom was a split
+personality. I never believed he was a Dumper; and I don’t believe he
+disappeared of his own volition; and I don’t believe he’s alive.</p>
+<p><strong>trask</strong>: We have some very tentative circumstantial
+evidence of freeky behavior, but there’s no evidence of murder - there’s
+not even a body.</p>
+<p><strong>klute</strong>: I don’t believe Tom’s alive.</p>
+<p><strong>klute</strong>: But why? Why?</p>
+<p><strong>klute</strong>: Yes, Mr. Cable’s office, please.</p>
+<p><strong>cable’s voice</strong>: John, how are you?</p>
+<p><strong>klute</strong>: I’ll be sending you on a report tonight.</p>
+<p><strong>cable’s voice</strong>: It’s a beautiful day in Tuscarora - I
+don’t envy you that humidity in the city.</p>
+<p><strong>klute</strong>: It’s not so bad.</p>
+<p><strong>klute</strong>: Would you like to know what’s in it? The
+report.</p>
+<p><strong>cable’s voice</strong>: What’s in it?</p>
+<p><strong>klute</strong>: I think Tom Grunemann’s dead. I’ve been a lot
+of places - I’ve asked a lot of people. I’ve found no proof he’s around.
+I’ve found no proof he was ever around.</p>
+<p><strong>cable voice</strong>: How do you go from that to the idea
+Tom’s dead? Suicide you’re suggesting? He killed himself?</p>
+<p><strong>klute</strong>: He could’ve been murdered.</p>
+<p><strong>cable’s voice</strong>: I’m sure the FBI and the Police
+explored that possibility.</p>
+<p><strong>klute</strong>: No. They never did, really. But that’s what
+I’m going to recommend. The next step. Unless something –</p>
+<p><strong>cable’s voice</strong>: Have you discussed this with
+them?</p>
+<p><strong>klute</strong>: It’s in the report.</p>
+<p><strong>cable’s voice</strong>: Do they have the report? Have you
+discussed it with them?</p>
+<p><strong>klute</strong>: I wanted to give it to you first.</p>
+<p><strong>cable’s voice</strong>: All right. All right – John, just sit
+tight will you? I’ll read your report, I’ll discuss it with the others.
+I’ll be back next Thursday, we’ll talk the whole thing over then.
+Nothing til Thursday, all right?</p>
+<p><strong>klute</strong>: All right.</p>
+<p><strong>cable’s voice</strong>: Thank you. Goodbye, John.</p>
+<p><strong>klute</strong>: Goodbye, Pete.</p>
+<p><strong>klute</strong>: He was always at their house on holidays. Tom
+and Holly always had him, over on holidays. Tom felt sorry for him - his
+whole life was work. Tom felt sorry for him.</p>
+<p><strong>bree</strong>: I saw Mr. Faber. You remember Mr. Faber, don’t
+you?</p>
+<p><strong>klute</strong>: Yeah.</p>
+<p><strong>bree</strong>: Is that all you have to say?</p>
+<p><strong>klute</strong>: What am I supposed to say?</p>
+<p><strong>bree</strong>: Well, I told him I wouldn’t - uh - go there
+any more. I know it’s tough to understand, but it wasn’t easy. You see,
+he was nice to me. I mean, it wasn’t just him. I got something out of it
+too I guess. Anyway, I told him I wouldn’t go there anymore.</p>
+<p><strong>klute</strong>: Well, here’s your gold star.</p>
+<p><strong>bree</strong>: Spangler says we have a relationship.</p>
+<p><strong>klute</strong>: What?</p>
+<p><strong>bree</strong>: You and I – a relationship.</p>
+<p><strong>klute</strong>: I was wondering what that was.</p>
+<p><strong>bree</strong>: Hell there’s nothing so mysterious about the
+square life.</p>
+<p><strong>bree</strong>: Oh Jesus. Oh Jesus.</p>
+<p><strong>klute</strong>: Don’t touch anything.</p>
+<p><strong>bree</strong>: You suppose he’s a married fella?</p>
+<p><strong>bree</strong>: He got in my clothing!</p>
+<p><strong>bree</strong>: Oh. Oh.</p>
+<p><strong>bree</strong>: Oh look what he did in them.</p>
+<p><strong>klute</strong>: Drop it.</p>
+<p><strong>klute</strong>: Stay out of there.</p>
+<p><strong>klute</strong>: Listen to me: It’s all right. I’ve been
+expecting something.</p>
+<p><strong>bree</strong>: My God, I thought it was over. And here I am,
+daddy, right back at the start.</p>
+<p><strong>klute</strong>: Bree –</p>
+<p><strong>bree</strong>: Right back at the start, right?</p>
+<p><strong>klute</strong>: Go down in my room.</p>
+<p><strong>bree</strong>: You said it was over, right? You said not to
+worry any more, all over, right?</p>
+<p><strong>klute</strong>: Go down in my room and wait.</p>
+<p><strong>ross</strong>: But if Cable killed Grunemann why would he get
+you hired to look for Grunemann?</p>
+<p><strong>klute</strong>: Because he knew I couldn’t leave the case
+alone. And this way at least he’d keep track of it. And me.</p>
+<p><strong>ross</strong>: What about Grunemann’s letters to the girl,
+everything like that?</p>
+<p><strong>trask</strong>: Cable’s letters, Cable’s phone calls. Cable’s
+everything else. He’s been a Dumper a long time. He just passed off his
+own peculiar habits on the other man – it kept things goin’.</p>
+<p><strong>ross</strong>: OK, pretend I believe you. Tell me how you get
+an indictment.</p>
+<p><strong>trask</strong>: Can’t. Yet. Oh we got everythin’ else: first
+rate evidence Cable typed those dumper letters to Bree Daniel. And Jane
+McKenna: Klute found a couple in her personal remains. We got dates of
+Cable’s trips here coincidin’ with phone calls to Bree Daniel, also the
+dates of death of McKenna and Page. We got some hints of his personal
+history. His father, unsuccessful salesman, committed suicide when he
+was 13. His mother pinned all her hopes on her son. He won a national
+science youth award at the age of eight. They had no money, but she
+hired special tutors for him in the summer time. She saw a good thing.
+He graduated from high school at 14 – college at 16 – no friends – The
+kids in his class thought of him as a freak. He got his Ph.D. at 18 –
+married at age 21 to his then employer’s daughter. The marriage lasted 4
+weeks. Her father had it annulled. She says he was impotent. World War
+II he got in bad trouble about a German girl, no details. We think we
+know why he killed Grunemann – he found out Cable was a dumper; Cable
+couldn’t take that. We think we know why he killed McKenna – she wanted
+to blackmail him for it. All fine. But we got no body, no direct
+witnesses, we can’t go any-damn-where.</p>
+<p><strong>klute</strong>: That’s the reason i told him we had no
+evidence Tom was still alive. We wanted to shake him into another phone
+call or another letter. It didn’t work out just that way.</p>
+<p><strong>trask</strong>: Gov, want to leave me that one. How come he
+got to play with this one, anyway.</p>
+<p><strong>klute</strong>: I left them here. I was doing some work
+here.</p>
+<p><strong>trask</strong>: It’s damn lucky you didn’t have the dossier
+on Cable here.</p>
+<p><strong>klute</strong>: Nobody’s seen that.</p>
+<p><strong>trask</strong>: If we get anything from the lab, we’ll have
+it by noon. And just think – all he really had to do was write us a
+letter.</p>
+<p><strong>ross</strong>: Sounds to me you better shake him again. Put
+him in a spot he has to do something more – but this time give him a
+time and a place to do it.</p>
+<p><strong>klute</strong>: He called this morning from Tuscarora. Asked
+me to meet him at 3:00 at the downtown heliport. He’s on his way to
+Chicago.</p>
+<p><strong>trask</strong>: He sure chalks up a lot of flight time.</p>
+<p><strong>bree</strong>: Ah, Schmendrick – what’s the scam?</p>
+<p><strong>klute</strong>: Those were police laboratory people, they’ve
+been over the apartment.</p>
+<p><strong>bree</strong>: Oh zippidy-doo, they’ll find my fingerprints.
+Can I go in? I need some stuff.</p>
+<p><strong>klute</strong>: Where’d you spend last night?</p>
+<p><strong>bree</strong>: With Trina.</p>
+<p><strong>klute</strong>: I called Trina.</p>
+<p><strong>bree</strong>: Maybe I wasn’t there when you called.</p>
+<p><strong>klute</strong>: Bree, what’s actually happened? It wasn’t
+that bad.</p>
+<p><strong>bree</strong>: How do you know how bad it was?</p>
+<p><strong>klute</strong>: Why couldn’t you stay here with me?</p>
+<p><strong>bree</strong>: Because I didn’t want to be touched! I didn’t
+think you’d get that!</p>
+<p><strong>klute</strong>: Trask wants to talk with you.</p>
+<p><strong>bree</strong>: Hey – look officer – I can explain everything.
+It was just – you know, everything all of a –</p>
+<p><strong>klute</strong>: Trask wants to talk with you.</p>
+<p><strong>trask</strong>: Miss Daniel, be sensible, you find another
+place till we get things cleaned up.</p>
+<p><strong>bree</strong>: Oh well that shouldn’t take you more than
+another, oh, two and a half or three years, should it?</p>
+<p><strong>trask</strong>: A few more days. We know who did this.</p>
+<p><strong>bree</strong>: So do I.</p>
+<p><strong>trask</strong>: No, not Grunemann. He’s dead. The man that
+killed him – also prob’ly Jane McKenna, also Arlyn Page.</p>
+<p><strong>bree</strong>: Arlyn and Jane commited suicide. He said they
+commited suicide.</p>
+<p><strong>trask</strong>: Now there’s a picture I’d like you to –</p>
+<p><strong>bree</strong>: You said someone killed them, you said you
+know who, you said that.</p>
+<p><strong>trask</strong>: Well we’re pretty –</p>
+<p><strong>bree</strong>: Why isn’t he locked up?</p>
+<p><strong>trask</strong>: We don’t want to just lock him up; we want a
+conviction, we wanted him to do something more.</p>
+<p><strong>bree</strong>: Is that why Klute didn’t tell me?</p>
+<p><strong>trask</strong>: I guess he figured it was better.</p>
+<p><strong>bree</strong>: What was better? I made better bait?</p>
+<p><strong>trask</strong>: No, that’s not –</p>
+<p><strong>bree</strong>: Is that what he set me up for? Everything he’s
+told me from the beginning? – don’t worry, don’t –</p>
+<p><strong>trask</strong>: From the beginning I don’t know why the hell
+he’s messin with you. If he was me he’d know better. If he was even a
+city boy he’d know better. You’re a whore Miss Daniel, that’s the truth
+of it, right? Now somethin I’d like you to look at.</p>
+<p><strong>bree</strong>: I don’t have to look at anything. I don’t have
+–</p>
+<p><strong>trask</strong>: Here please.</p>
+<p><strong>bree</strong>: Oh no.</p>
+<p><strong>trask</strong>: Like for you to look for the man.</p>
+<p><strong>bree</strong>: Grunemann? I’ve looked at him a –</p>
+<p><strong>trask</strong>: No. Not Grunemann. The Dumper. Just look
+around – I said look for the Dumper.</p>
+<p><strong>bree</strong>: Oh! –</p>
+<p><strong>cable</strong>: Sorry we had to meet here. But I’m pressed
+for time.</p>
+<p><strong>klute</strong>: Well there’s a couple –</p>
+<p><strong>cable</strong>: I read your report. I had to go along with it
+– the idea of this being a wild goose chase, Tom being nowhere around
+–</p>
+<p><strong>klute</strong>: Well as a matter of –</p>
+<p><strong>cable</strong>: I’ve been up country, you know my summer
+place, my camp. I don’t even have a telephone there. This morning they
+sent a messenger out, that you’d been trying to call me.</p>
+<p><strong>klute</strong>: Yeah.</p>
+<p><strong>cable</strong>: I’m on my way to Chicago. Very important
+meeting tonight. Well – any new developments?</p>
+<p><strong>klute</strong>: Yeah, two things Pete, that –</p>
+<p><strong>cable</strong>: You said Trask was arranging laboratory work.
+Police laboratory. Anything from that?</p>
+<p><strong>klute</strong>: Yeah. It wasn’t Tom.</p>
+<p><strong>cable</strong>: I’m sorry. I don’t understand.</p>
+<p><strong>klute</strong>: It wasn’t Tom that broke in the room.</p>
+<p><strong>cable</strong>: It has to be Tom. You said he ripped up his
+own pictures, he –</p>
+<p><strong>klute</strong>: Not Tom. Whoever it was left a kind of
+souvenir, I told you, in her clothing. Semen. The laboratory got a blood
+group reading from that. The man was blood type 0; Tom was an AB.</p>
+<p><strong>cable</strong>: Some mistake perhaps that –</p>
+<p><strong>klute</strong>: No. No mistake Pete. It doesn’t prove who it
+was – but proves it wasn’t Tom.</p>
+<p><strong>cable</strong>: You must be discouraged.</p>
+<p><strong>klute</strong>: Not too bad. This brings back that Dumper in
+the picture.</p>
+<p><strong>cable</strong>: That who?</p>
+<p><strong>klute</strong>: Dumper, the man Bree Daniel mentioned and
+Arlyn Page knew and Jane McKenna knew.</p>
+<p><strong>cable</strong>: You said he was no possible connection with
+Tom. The Page girl told you that, not Tom.</p>
+<p><strong>klute</strong>: Someone’s been doing all these things.</p>
+<p><strong>cable</strong>: You were hired to look for Tom, not
+someone.</p>
+<p><strong>klute</strong>: Pete, I’ve got a chance to buy Jane McKenna’s
+black book.</p>
+<p><strong>cable</strong>: What?</p>
+<p><strong>klute</strong>: Call-girls generally keep a book, you know, a
+list of their clients. Sometimes, if a girl retires, she’ll even sell it
+worth good money. Jane McKenna had a black book; when she died it was
+stolen. I’ve been after it a long time.</p>
+<p><strong>cable</strong>: You were hired to look for Tom.</p>
+<p><strong>klute</strong>: I’m meeting a man tomorrow night. He wants to
+meet me on East-River Drive – he wants five hundred dollars for the
+book. Can you get that for me Pete?</p>
+<p><strong>cable</strong>: I can’t follow you.</p>
+<p><strong>klute</strong>: Will the Company put up five hundred dollars
+to get Jane McKenna’s list of clients?</p>
+<p><strong>cable</strong>: No. It’s ridiculous. This has nothing to do
+with Tom Grunemann.</p>
+<p><strong>klute</strong>: It probably has the Dumper’s name. It might
+give us some kind of new lead. I want a look at it anyhow.</p>
+<p><strong>cable</strong>: Klute, the Company’s interest is Tom
+Grunemann. Solely and exclusively. You say you can’t find Tom; all
+right, I’ll see that you’re paid off; the case is closed.</p>
+<p><strong>klute</strong>: All right, but I’m going to see that
+list.</p>
+<p><strong>cable</strong>: Why would they deal with you? You don’t know
+these people.</p>
+<p><strong>klute</strong>: No, but Bree does. She’s negotiating for me.
+Bree Daniel.</p>
+<p><strong>cable</strong>: I can talk it over; possibly I can get the
+money. When are you meeting the man?</p>
+<p><strong>klute</strong>: Tomorrow evening, nine. East River Drive and
+73rd Street.</p>
+<p><strong>cable</strong>: Suppose I meet you there a half hour
+before.</p>
+<p><strong>klute</strong>: Just send me a money order.</p>
+<p><strong>cable</strong>: No, I’d – like to be in on it.</p>
+<p><strong>klute</strong>: Well –</p>
+<p><strong>cable</strong>: Tomorrow. See you tomorrow night.</p>
+<p><strong>klute</strong>: Bree?</p>
+<p><strong>klute</strong>: I’m always getting surprises.</p>
+<p><strong>klute</strong>: I don’t want you to do this.</p>
+<p><strong>klute</strong>: Please. I said I don’t want you to do
+this.</p>
+<p><strong>bree</strong>: Trask said I should move. Let’s not make a
+thing of it.</p>
+<p><strong>bree</strong>: Look, too much is going on here. I’m moving in
+with another girl, that’s all. Just for a while.</p>
+<p><strong>frank</strong>: That’s right. This other girl’s got a very
+big apartment, big, plenty of room. Look, it’s not necessarily how it
+looks, right? It’s –</p>
+<p><strong>klute</strong>: No. Please. Not with this son of a bitch.</p>
+<p><strong>frank</strong>: Klute, let’s handle it like grownups? I mean
+we’re all grown up now, right? – we all respect each other, you know
+what I mean? – I respect you, Bree respects you – you could say, it just
+didn’t work out between you and she. But you got to respect her too –
+you know, her best interests, best for her –</p>
+<p><strong>bree</strong>: No!</p>
+<p><strong>frank</strong>: Hey, I’m gonna get you dropped.</p>
+<p><strong>klute</strong>: Please –</p>
+<p><strong>bree</strong>: – until he gets back. Yes I heard you, I
+understand that. I said I’m going to come over, I’ll wait until he gets
+back.</p>
+<p><strong>klute</strong>: Hello? Trask, I don’t get that.</p>
+<p><strong>klute</strong>: Who told you, his secretary? Has someone
+checked his hotel? He always stays at the – I’ll look around, I’ll call
+you back.</p>
+<p><strong>klute</strong>: Bree –</p>
+<p><strong>lela</strong>: Mrs. Daniel –</p>
+<p><strong>lela</strong>: – I have to close up now. Leave your name and
+number with his message service, Mrs. Daniel, and why don’t you just go
+home and wait until he –</p>
+<p><strong>bree</strong>: No.</p>
+<p><strong>lela</strong>: Well I have to close up now.</p>
+<p><strong>bree</strong>: Look – could I use your phone?</p>
+<p><strong>lela</strong>: Yes indeed.</p>
+<p><strong>bree</strong>: Look. I almost killed my – I almost killed
+someone.</p>
+<p><strong>lela</strong>: Well I’m certain Doctor Spangler will want to
+talk with you; excuse me.</p>
+<p><strong>bree</strong>: Is Mr. Faber there? Mr. Faber Senior.</p>
+<p><strong>faber</strong>: Yes? Bree?</p>
+<p><strong>bree</strong>: – I’m – I just have to talk to someone. I’m
+just a little way across town –</p>
+<p><strong>faber</strong>: Yes - yes dear, yes – maybe half an hour,
+sure, yes.</p>
+<p><strong>klute</strong>: Trina, will you call me if you hear from,
+her? Will you check other people she might call? Yeah, if it wasn’t
+trouble I wouldn’t ask vou.</p>
+<p><strong>klute</strong>: Yeah? Nothing yet, Trask; I’m going down the
+list. I’ve tried Spangler’s office and Spangler’s home; I just get his
+message service. I’ll keep– I may have steered Cable that way. I told
+him Bree was dealing for me, for Jane McKenna’s book. Have you found any
+–</p>
+<p><strong>klute</strong>: Yeah.</p>
+<p><strong>foreman</strong>: Lady, it’s closing up there.</p>
+<p><strong>bree</strong>: What?</p>
+<p><strong>foreman</strong>: We’re closing up, quitting time,
+Fabers.</p>
+<p><strong>bree</strong>: I have an appointment with Mr. Faber.</p>
+<p><strong>foreman</strong>: Oh, yeah.</p>
+<p><strong>bree</strong>: I have an appointment with Mr. Faber.</p>
+<p><strong>receptionist</strong>: In there. Mr. Faber –</p>
+<p>****: Mr. Faber –</p>
+<p><strong>nathan</strong>: Yes?</p>
+<p><strong>bree</strong>: I’m sorry – Mr. Faber Senior.</p>
+<p><strong>nathan</strong>: My father went home about fifteen minutes
+ago; he wasn’t feeling too good.</p>
+<p><strong>nathan</strong>: Can I help you?</p>
+<p><strong>bree</strong>: It wasn’t important.</p>
+<p><strong>bree</strong>: Did Mr. Faber leave a message for me or
+anything? Mr. Faber Senior? Bree Daniel.</p>
+<p><strong>receptionist</strong>: Oh, I thought that was for
+tomorrow.</p>
+<p><strong>bree</strong>: Bree Daniel. Has he called in yet? Well if he
+does, I’m at – – two seven eight, three one hundred, and I guess I can
+wait here five minutes; then I’ll try from somewhere else. Just tell him
+Bree Daniel; he knows who.</p>
+<p><strong>bree</strong>: Mr. Faber, I just wanted to leave this for
+your father, and I wondered if you’d –</p>
+<p><strong>bree</strong>: Someone –</p>
+<p><strong>klute</strong>: Did she leave a number? This is a police
+call; don’t make me take time to prove it. Did she leave a number? What
+is the number? What is the number? –</p>
+<p><strong>cable</strong>: Can’t we talk together reasonably, just –
+ordinarily? I know you’re expecting some kind of – extravagant behavior,
+but believe me – do you believe me? –</p>
+<p><strong>bree</strong>: Yes – all right –</p>
+<p><strong>cable</strong>: – We can talk –</p>
+<p><strong>bree</strong>: – Yes.</p>
+<p><strong>cable</strong>: All right, then, an ordinary matter. I’m a
+quite well off man, I have a – position to respect. I would feel
+personally uncomfortable to be connected with a – certain kind of woman,
+I’m sure you understand. Do you? Well I’d like to buy Jane McKenna’s
+book.</p>
+<p><strong>cable</strong>: Her black book, Jane McKenna’s, her list of –
+of persons. I was told you’re negotiating for it on behalf of –</p>
+<p><strong>cable</strong>: That was what Klute told me – you were
+negotiating for him to buy that list. And I’m in a position to pay a
+good deal more for it than he can. Do you understand? I’d like you to
+acquire it on my – Miss Daniel, do you not understand? Miss Daniel, I
+can’t tell whether you understand me. Is this something Klute just
+invented? Is this a trap for me, Miss Daniel; does Klute know about
+me?</p>
+<p><strong>cable</strong>: You have no idea what I’m talking about.</p>
+<p><strong>bree</strong>: Yes – Jane McKenna’s book – I could make a
+phone call.</p>
+<p><strong>cable</strong>: No, you’re frightened, you’re pretending.
+Well – Klute knows about me then. Does everybody know, can you tell
+me?</p>
+<p><strong>bree</strong>: Yes.</p>
+<p><strong>cable</strong>: Then it doesn’t matter what I do any more,
+does it?</p>
+<p><strong>cable</strong>: You people know nothing about pain.</p>
+<p><strong>cable</strong>: I’ve got no idea what I shall do.</p>
+<p><strong>cable</strong>: I’m not going to hurt you, absolutely, I’m
+not.</p>
+<p><strong>bree</strong>: Will you let me go then?</p>
+<p><strong>cable</strong>: It puzzles me so badly. I’ve done terrible
+things but I can’t consider myself a terrible man. I’ve killed three
+people and I’d still want to say it was accident, do you see?</p>
+<p><strong>bree</strong>: If you’ll let me go I could tell them what
+–</p>
+<p><strong>cable</strong>: Tom Grunemann discovered me – we were here on
+business together, he discovered me with Jane McKenna. Then I suppose it
+was the – the contempt I saw in his face and the certainty that sooner
+or later he’d use it against me. Within the Company. I endured that as
+long as I could, do you see?</p>
+<p><strong>bree</strong>: I’m sorry, I’m just frightened. Yes.</p>
+<p><strong>cable</strong>: Excuse me Miss Daniel?</p>
+<p><strong>bree</strong>: I said yes, I see.</p>
+<p><strong>cable</strong>: Oh no, I don’t think –</p>
+<p><strong>bree</strong>: Tell me. I’ll listen. I just want you to tell
+me.</p>
+<p><strong>cable</strong>: You’re willing to listen? You want me just to
+keep talking?</p>
+<p><strong>cable</strong>: That’s what you do, isn’t it; you make a man
+feel accepted. That’s what you all do. Your stock in trade a man’s
+weakness.</p>
+<p><strong>cable</strong>: Why don’t you ask for mercy? My God, what
+mercy has anyone given me?</p>
+<p><strong>cable</strong>: You’re a person of no value, you have no
+value –</p>
+<p><strong>cable</strong>: – Is that contempt? Is it? No, I’m the one
+who feels contempt.</p>
+<p><strong>klute</strong>: Come on. Come on.</p>
+<p><strong>bree</strong>: Hi.</p>
+<p><strong>klute</strong>: I got a call from Ross this morning. Cable
+owned a plot of woodland – he’d go there on weekends. They found Tom
+Grunemann’s body buried there. They’ve notified his wife.</p>
+<p><strong>bree</strong>: Oh. Well it wasn’t us city people that did it
+– your fine rosy-cheeked country boy.</p>
+<p><strong>klute</strong>: Mm.</p>
+<p><strong>bree</strong>: You’re going back?</p>
+<p><strong>klute</strong>: Mm.</p>
+<p><strong>klute</strong>: Wait.</p>
+<p><strong>bree</strong>: Well suppose I hadn’t come downstairs. Would
+you just have folded up and sneaked away?</p>
+<p><strong>klute</strong>: No. I was going to come up. I wanted to ask
+you to marry me.</p>
+<p><strong>bree</strong>: You wanted to, or you are?</p>
+<p><strong>klute</strong>: I am.</p>
+<p><strong>bree</strong>: You could at least look at me!</p>
+<p><strong>bree</strong>: Look – yes. I mean thanks, but – don’t you
+think we better be realistic?</p>
+<p><strong>klute</strong>: About what?</p>
+<p><strong>bree</strong>: Look at me. I’m pretty and sort of clever and
+very well intentioned, and dear God I’d tear your heart out!</p>
+<p><strong>klute</strong>: I don’t think so.</p>
+<p><strong>bree</strong>: How can you not think so? You know the things
+I can do.</p>
+<p><strong>klute</strong>: They don’t scare me any more.</p>
+<p><strong>bree</strong>: What?</p>
+<p><strong>klute</strong>: Doesn’t scare me. I think we could handle
+it.</p>
+<p><strong>bree</strong>: Please, I’m a city person. I’m sure it’s just
+as good as here but I’m a city person, that’s all, I am! Hell I know
+what it’s like. I was in Jersey once: the frogs go bra-a p all night!
+What’im I supposed to do? Mend your socks and sing in the church choir?
+Do you not believe I love you? I’m honestly, honestly just –</p>
+<p><strong>bree</strong>: Look, why should it be yes or no? Can’t we
+keep it going and see? I mean we can keep in touch and visit each other
+and see. People do that, that’s realistic.</p>
+<p><strong>bree</strong>: You don’t believe that either, do you? Why
+can’t you see my side?</p>
+<p><strong>klute</strong>: Can you use these?</p>
+<p><strong>bree</strong>: Can I carry something for you, to the car?
+Will you kiss me?</p>
+<p><strong>klute</strong>: No. I’m sore.</p>
+<p><strong>klute</strong>: Well –</p>
+<p><strong>bree</strong>: Hey.</p>
+<p><strong>bree</strong>: Oh heck – Oh heck –</p>
+<p><strong>bree</strong>: I haven’t decided yet! I haven’t decided yet!
+I haven’t decided yet! –</p>
+</body>
+</html>

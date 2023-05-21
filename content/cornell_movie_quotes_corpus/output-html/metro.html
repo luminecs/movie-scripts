@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>metro</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="metro">metro</h1>
+<p><strong>track announcer</strong>: …at the top of the stretch it’s
+Cozy Girl in front with Backtrack coming on… Cozy Girl by a length,
+Backtrack closing…</p>
+<p><strong>roper</strong>: Come on. Stay up there, Cozy Girl…</p>
+<p><strong>track announcer</strong>: At the eighth pole it’s Cozy Girl
+by half a length… Backtrack closing…</p>
+<p><strong>dispatcher</strong>: One-one-four to Roper.</p>
+<p><strong>roper</strong>: Dig in, Cozy Girl… Roper go.</p>
+<p><strong>dispatcher</strong>: One-four, Roper. Code 2.C.P. 4th and
+Grand.</p>
+<p><strong>track announcer</strong>: It’s Cozy Girl holding on… Cozy
+Girl and Backtrack…</p>
+<p><strong>roper</strong>: I’m en route. E.T.A. in five.</p>
+<p><strong>roper</strong>: Stay up there, Girl…</p>
+<p><strong>track announcer</strong>: Cozy Girl in front by a neck… Now a
+head…</p>
+<p><strong>roper</strong>: Where’s the damn wire?!</p>
+<p><strong>track announcer</strong>: Here comes the wire… and… Backtrack
+gets up in the last jump. Cozy girl a very game second.</p>
+<p><strong>kimura</strong>: Hi, Roper.</p>
+<p><strong>roper</strong>: Hi, Kimura. Where’s the command post?</p>
+<p><strong>kimura</strong>: The suspect came in shortly after the bank
+opened. Botched robbery. A teller hit the silent alarm. He took seven
+hostages. Shot one – the guard. He’s still alive. So far he’s asked
+for…</p>
+<p><strong>roper</strong>: …a car.</p>
+<p><strong>kimura</strong>: That’s right, and a plane waiting at the
+airport. If he doesn’t…</p>
+<p><strong>roper</strong>: …get ’em, he’s going to start shooting
+hostages in five minutes…</p>
+<p><strong>kimura</strong>: That’s right.</p>
+<p><strong>roper</strong>: What’s the suspect’s name?</p>
+<p><strong>kimura</strong>: Earl.</p>
+<p><strong>roper</strong>: Hello, guys.</p>
+<p><strong>baffert</strong>: Hello, Roper. Glad you could join us.</p>
+<p><strong>roper</strong>: Do we have a profile on Mr. Earl?</p>
+<p><strong>baffert</strong>: This guy is no genius.</p>
+<p><strong>roper</strong>: They’re not usually graduate students.</p>
+<p><strong>baffert</strong>: SWAT wants to go in.</p>
+<p><strong>roper</strong>: What’s the rush? They haven’t killed anybody
+yet this week?</p>
+<p><strong>roper</strong>: We got a guy who’s probably on drugs. He’s
+got a record of 459’s and he was busted on possession. But he’s never
+been busted on a major felony. What’s his demeanor?</p>
+<p><strong>kimura</strong>: Well he’s a little fucking agitated – he
+ripped the phone out.</p>
+<p><strong>roper</strong>: I have to go face to face.</p>
+<p><strong>baffert</strong>: No – you can’t do that.</p>
+<p><strong>roper</strong>: You got 7 hostages in there, 1 of them’s
+wounded – We don’t know how bad it is – The guy ripped the phone out –
+SWAT said he’s got a gun to the head of a female hostage. If SWAT makes
+entry now, you’re gonna lose 1 hostage, maybe 2. I gotta go in. Maybe I
+can see what’s going on in there.</p>
+<p><strong>baffert</strong>: I don’t know.</p>
+<p><strong>roper</strong>: He’s never offed anybody. His rap doesn’t
+show any violence.</p>
+<p><strong>baffert</strong>: Not that we know of.</p>
+<p><strong>roper</strong>: We don’t know how much time we have. If I can
+get in to talk to him – maybe we won’t lose anyone.</p>
+<p><strong>baffert</strong>: Maybe we can get a throw phone in
+there.</p>
+<p><strong>kimura</strong>: SWAT says it’s broken – The perp in the last
+situation rendered it inoperable.</p>
+<p><strong>baffert</strong>: What do you mean?</p>
+<p><strong>kimura</strong>: He urinated on it and shorted out the
+circuits.</p>
+<p><strong>roper</strong>: We gonna stand here and talk about it or let
+the guy in there bleed to death. Give me a dozen donuts.</p>
+<p><strong>forbes</strong>: What do you think he’s got in the bag?</p>
+<p><strong>mccall</strong>: Donuts.</p>
+<p><strong>forbes</strong>: You can’t take a guy down with a donut.</p>
+<p><strong>roper</strong>: Hi, Earl, I’m Scott Roper. Wanna donut? I ate
+the glazed but there’s a bunch of chocolate and a –</p>
+<p><strong>roper</strong>: I’m a negotiator, Earl. I don’t carry a
+weapon.</p>
+<p><strong>earl</strong>: Where’s the car?</p>
+<p><strong>roper</strong>: I need to get something straight first.</p>
+<p><strong>roper</strong>: Who’s the manager?</p>
+<p><strong>manager</strong>: I am.</p>
+<p><strong>roper</strong>: When did you start keeping longer hours?</p>
+<p><strong>manager</strong>: Last spring.</p>
+<p><strong>roper</strong>: Really! Because I’ve been thinking of moving
+to this branch. It would be really convenient for me –</p>
+<p><strong>earl</strong>: Do you want me to start killing people?!</p>
+<p><strong>roper</strong>: It’s my job to see that no one gets killed,
+Earl… Including you.</p>
+<p><strong>earl</strong>: Then where’s my FUCKING car!</p>
+<p><strong>roper</strong>: I’m getting it, Earl, but we have to do this
+the right way.</p>
+<p><strong>roper</strong>: First I need you to point that gun away from
+– What’s your name?</p>
+<p><strong>teller</strong>: Debbie…</p>
+<p><strong>roper</strong>: Point the gun away from Debbie.</p>
+<p><strong>earl</strong>: Debbie’s brains are going to be splattered all
+over the floor if I don’t see a car in five minutes!</p>
+<p><strong>roper</strong>: Alright! But let’s be clear about one thing.
+If you kill someone, I can’t help you. The SWAT guys will take you
+out.</p>
+<p><strong>earl</strong>: What are my chances of getting out of
+here?</p>
+<p><strong>roper</strong>: Not bad. Last month, a guy robbed a bank in
+Daly City…</p>
+<p><strong>roper</strong>: How ya doin’?</p>
+<p><strong>roper</strong>: …Cops gave him a car, and he lost them on the
+freeway.</p>
+<p><strong>earl</strong>: Really?</p>
+<p><strong>roper</strong>: Absolutely. Bank robbers are generally your
+smartest criminals.</p>
+<p><strong>roper</strong>: He didn’t kill anybody, though.</p>
+<p><strong>roper</strong>: This is gonna hurt.</p>
+<p><strong>earl</strong>: Hey, leave him alone. What are you doing?</p>
+<p><strong>roper</strong>: It’s part of my negotiator’s oath. If there’s
+an injured party and I can help them, I’m duty bound by my oath to do
+that. You can shoot me if you want, but the next negotiator in here is
+going to tell you the same thing.</p>
+<p><strong>roper</strong>: I’ll be right back, Earl. Point that gun away
+from Debbie.</p>
+<p><strong>roper</strong>: Give me your gun.</p>
+<p>****: Jennings inconspicuously pulls his gun out and slips it to him.
+Roper quickly cocks it and shoves it in his waistband under his shirt
+and vest.</p>
+<p><strong>roper</strong>: I haven’t had to shoot anyone in three
+years.</p>
+<p><strong>jennings</strong>: Why not keep the streak alive?</p>
+<p><strong>roper</strong>: Because this strung-out junkie is too stupid
+to get out of this without killing somebody.</p>
+<p><strong>roper</strong>: As a rule, I need one hostage released as
+show of good faith.</p>
+<p><strong>roper</strong>: Give me Debbie.</p>
+<p><strong>earl</strong>: Take the old guy.</p>
+<p><strong>roper</strong>: The Old Guy? What kind of show of faith is
+that? I want Debbie.</p>
+<p><strong>earl</strong>: Am I gettin’ the car?</p>
+<p><strong>roper</strong>: You’re gettin’ the car.</p>
+<p><strong>earl</strong>: Take them.</p>
+<p><strong>roper</strong>: You two, leave.</p>
+<p><strong>forbes</strong>: This guy is good.</p>
+<p><strong>mccall</strong>: That’s what they say.</p>
+<p><strong>roper</strong>: That was fine, Earl. Now I’m going to get
+your car.</p>
+<p><strong>roper</strong>: Oh, there’s one last thing.</p>
+<p><strong>earl</strong>: What?!</p>
+<p><strong>roper</strong>: You want a convertible or hardtop?</p>
+<p><strong>roper</strong>: Hardtop.</p>
+<p><strong>roper</strong>: Manual or automatic?</p>
+<p><strong>earl</strong>: Automatic.</p>
+<p><strong>roper</strong>: You got it.</p>
+<p><strong>earl</strong>: I give up! I give up!</p>
+<p><strong>radio</strong>: The situation is secured. Suspect in custody.
+Repeat. Situation secured.</p>
+<p><strong>ronnie</strong>: There’s one for the front page.</p>
+<p><strong>roper</strong>: Ronnie, why are you torturing me? I can’t
+live without you.</p>
+<p><strong>ronnie</strong>: Don’t start.</p>
+<p><strong>roper</strong>: This baseball player you’re going out with…
+He’s no good for you.</p>
+<p><strong>ronnie</strong>: Really?! He’s a wonderful guy. He makes two
+million a year, and he worships me.</p>
+<p><strong>roper</strong>: I worship you.</p>
+<p><strong>ronnie</strong>: You worship yourself.</p>
+<p><strong>roper</strong>: Ronnie, forget this what’s-his-name.</p>
+<p><strong>ronnie</strong>: Greg.</p>
+<p><strong>roper</strong>: Did you know he’s already got a bad knee? In
+another 10 years you’re going to be pushing him around in a
+wheelchair.</p>
+<p><strong>ronnie</strong>: You know what I think? I think you only want
+me now, because I’m with somebody else.</p>
+<p><strong>roper</strong>: Who cares what you think. I want you back and
+that’s all that matters.</p>
+<p><strong>roper</strong>: Let me take you out tomorrow night…
+Pleeease.</p>
+<p><strong>ronnie</strong>: I’m going out with Greg tomorrow.</p>
+<p><strong>roper</strong>: This Greg is really getting in my way.</p>
+<p><strong>roper</strong>: Please. I’m begging you.</p>
+<p><strong>ronnie</strong>: Oh, I’ve got to get a shot of this.</p>
+<p><strong>roper</strong>: Hey, that’s my car.</p>
+<p><strong>repo man</strong>: Not anymore. Now it belongs to Silver
+Hills Financial.</p>
+<p><strong>roper</strong>: Hey, Baffert, what’s the story for
+tonight?</p>
+<p><strong>baffert</strong>: Floor seats.</p>
+<p><strong>roper</strong>: You’re my hero.</p>
+<p><strong>baffert</strong>: Dinner’s on you.</p>
+<p><strong>roper</strong>: Deal.</p>
+<p><strong>solis</strong>: He just walked into my office. The Chief
+says, “Good work this morning. Congratulations.”</p>
+<p><strong>roper</strong>: Tell him to give me a raise.</p>
+<p><strong>solis</strong>: He says, “Thank you very much.” I’ll discuss
+it with him right now… Good-bye, Chief.</p>
+<p><strong>solis</strong>: Roper.</p>
+<p><strong>roper</strong>: What?</p>
+<p><strong>solis</strong>: Are you going to make this hard for me?</p>
+<p><strong>roper</strong>: Depends. What’s up?</p>
+<p><strong>solis</strong>: There’s been some concern about you
+continuing to work without back-up.</p>
+<p><strong>roper</strong>: Define concern.</p>
+<p><strong>solis</strong>: What if you die and no one can do what you do
+as well as you do it?</p>
+<p><strong>roper</strong>: Your concern is heartwarming.</p>
+<p><strong>solis</strong>: It’s been decided that you take on another
+partner and train him to be able to take over for you.</p>
+<p><strong>roper</strong>: Is that what the guy in the Sunday School
+suit is doing outside?</p>
+<p><strong>solis</strong>: His name’s Kevin McCall. Every Metro Captain
+agrees that he’s their top sharp-shooter and most likely to succeed.</p>
+<p><strong>roper</strong>: Let me see that.</p>
+<p><strong>roper</strong>: Tested high on his intellectual aptitude… Not
+as high as me but… National marksman finalist… Attended N. Y. C… Went to
+college. Very impressive. F.B.I. sniper school… Mayorial
+commendation.</p>
+<p><strong>roper</strong>: “Additional Skills”: Biathelete, marathoner,
+lip-reading, speaks Spanish…</p>
+<p><strong>roper</strong>: Great, send him to the Marines. This guy’s
+not a negotiator. He’ll quit in two weeks.</p>
+<p><strong>solis</strong>: You let us worry about that.</p>
+<p><strong>roper</strong>: Is there going to be an expression of your
+appreciation?</p>
+<p><strong>solis</strong>: What kind of appreciation are we talking
+about?</p>
+<p><strong>roper</strong>: The financial kind. I figure I’m going to be
+working extra hours. All sorts of overtime… training sessions… Not to
+mention the extra stress…</p>
+<p><strong>solis</strong>: What do you think would be in order?</p>
+<p><strong>roper</strong>: Like ahh… I don’t know… Five thousand
+dollars.</p>
+<p><strong>solis</strong>: Okay, I think I could swing that.</p>
+<p><strong>roper</strong>: And a car.</p>
+<p><strong>solis</strong>: Hey, you just got a five thousand dollar
+raise. Get a car of your own.</p>
+<p><strong>roper</strong>: You know you’ve got nothing but cars down
+there in impound.</p>
+<p><strong>solis</strong>: Impound isn’t a rent-a-car company.</p>
+<p><strong>roper</strong>: The car is part of the deal.</p>
+<p><strong>solis</strong>: What happened to your Trans Am?</p>
+<p><strong>roper</strong>: Repoed this morning.</p>
+<p><strong>solis</strong>: I’ll provide you with transportation.</p>
+<p><strong>roper</strong>: And even if this doesn’t work, I want all the
+money. These SWAT guys don’t have the temperament. They don’t have the
+background…</p>
+<p><strong>roper</strong>: Hey, glad to meet you. I’ve heard nothing but
+good things about you…</p>
+<p><strong>mccall</strong>: Same here. I’ve watched you in action. Very
+impressive.</p>
+<p><strong>roper</strong>: You’ve got a lot of hard work ahead of you if
+you want to be a negotiator.</p>
+<p><strong>mccall</strong>: I’m ready to do it. And I’m going to be here
+more than two weeks.</p>
+<p><strong>roper</strong>: Don’t go reading my lips, man. That’s an
+intrusion. Save that shit for the sniper school. Comprende?</p>
+<p><strong>mccall</strong>: Sorry… Habit.</p>
+<p><strong>solis</strong>: Let’s move past this, gentlemen.</p>
+<p><strong>roper</strong>: We’re already past it, aren’t we, Kevin?</p>
+<p><strong>mccall</strong>: If you say so.</p>
+<p><strong>solis</strong>: Then you’ll have to excuse me. I have other
+work to do.</p>
+<p><strong>solis</strong>: Roper…</p>
+<p><strong>solis</strong>: About the transportation issue… You check
+with the impound sergeant.</p>
+<p><strong>roper</strong>: You ever been in a hostage situation?</p>
+<p><strong>mccall</strong>: Only at the very end.</p>
+<p><strong>roper</strong>: How do you feel after a shooting.</p>
+<p><strong>mccall</strong>: Like it had to be done.</p>
+<p><strong>roper</strong>: It rarely has to be done.</p>
+<p><strong>mccall</strong>: I’ve rarely shot anyone.</p>
+<p><strong>roper</strong>: SWAT is a lifesaving unit, you know.</p>
+<p><strong>mccall</strong>: I know.</p>
+<p><strong>roper</strong>: Try to remember that.</p>
+<p><strong>roper</strong>: Okay, “Dead Eye”, lesson one…</p>
+<p><strong>roper</strong>: Extract that pen cap without touching or
+moving the bottle.</p>
+<p><strong>mccall</strong>: What’s the point of this?</p>
+<p><strong>roper</strong>: A little exercise in lateral thinking. The
+obvious solution isn’t always the only solution… See you tomorrow.</p>
+<p><strong>baffert</strong>: Mind if we make a stop on the way? We
+busted Frank Antonucci on possession. He gave us a lead on that Polk
+Street jewelry heist.</p>
+<p><strong>roper</strong>: “Phoney Frank”? Don’t waste your time. He’d
+tell you his granny was in on the Kennedy assassination if he could
+dodge a collar.</p>
+<p><strong>baffert</strong>: I still gotta do it. Wasting time is half
+my job.</p>
+<p><strong>roper</strong>: Yeah, okay.</p>
+<p><strong>baffert</strong>: This SWAT guy might be a good idea. He may
+be able to take a little pressure off you. I worry about you.</p>
+<p><strong>roper</strong>: You worried about me, too? The chief’s
+worried about me. Solis is worried about me. Maybe you guys should start
+some kind of organization.</p>
+<p><strong>baffert</strong>: Speaking of which. I saw you talking to
+Ronnie this morning. Why can’t you get it back together with her. You’ve
+gotta be out of your mind not to get with that one.</p>
+<p><strong>roper</strong>: It’s not me. It’s her. She’s going out with
+this baseball player – Greg Barnett.</p>
+<p><strong>baffert</strong>: No shit! He’s good!</p>
+<p><strong>roper</strong>: Fuck him. He swings at anything in the dirt.
+I could strike him out.</p>
+<p><strong>baffert</strong>: Don’t give up on her. You’re getting to the
+age when you ought to be thinking about these things.</p>
+<p><strong>roper</strong>: Yep, my rheumatism’s been acting up.</p>
+<p><strong>baffert</strong>: This is it. Space 742.</p>
+<p><strong>roper</strong>: Then he didn’t say 742. He must have said 724
+or something, because this can’t be right.</p>
+<p><strong>roper</strong>: Oh man! What am I, Red Foxx? I’m not riding
+in this shit. I can’t roll in no shit like this.</p>
+<p><strong>baffert</strong>: Where’s the stereo?</p>
+<p><strong>roper</strong>: Fuck the stereo. What’s that smell?</p>
+<p><strong>baffert</strong>: Come on. Just get in. We gotta go.</p>
+<p><strong>baffert</strong>: Apartment 306.</p>
+<p><strong>roper</strong>: You want me to go up with you?</p>
+<p><strong>baffert</strong>: Nah, It probably won’t turn up anything.
+I’m just gonna talk to him.</p>
+<p><strong>roper</strong>: Good. I don’t want to be late.</p>
+<p><strong>roper</strong>: You want anything on the game?</p>
+<p><strong>baffert</strong>: What’s the line?</p>
+<p><strong>roper</strong>: It was Warriors plus 6 this morning.</p>
+<p><strong>baffert</strong>: I’ll take half of your action.</p>
+<p><strong>korda</strong>: Who is it?</p>
+<p><strong>baffert</strong>: It’s Lieutenant Sam Baffert from the San
+Francisco Police Department.</p>
+<p><strong>korda</strong>: What happened? Is there a problem?</p>
+<p><strong>baffert</strong>: May I come in? I would just like to ask you
+a couple of questions.</p>
+<p><strong>baffert</strong>: Count Basie?</p>
+<p><strong>korda</strong>: Duke Ellington. “Things Ain’t What They Used
+To Be”, recorded July 30, 1945.</p>
+<p><strong>baffert</strong>: Yeah… Yeah… Now I can hear it.</p>
+<p><strong>baffert</strong>: Where did you find an old recording like
+that?</p>
+<p><strong>korda</strong>: Used record shop down on Turk Street. I was
+in there looking for some Robert Johnson. Memories… Memory Lane or
+something…</p>
+<p><strong>baffert</strong>: I’ve got to stop in there… Mr. Korda, do
+you know Frank Antonucci?</p>
+<p><strong>korda</strong>: You mean Frank who owns the bakery down the
+street?</p>
+<p><strong>baffert</strong>: No, this is a different Frank. This is a
+man who deals in jewelry. Stolen jewelry usually. You wouldn’t know
+anybody like that?</p>
+<p><strong>korda</strong>: I certainly wouldn’t.</p>
+<p><strong>baffert</strong>: Could I please have a little water?</p>
+<p><strong>korda</strong>: Of course.</p>
+<p><strong>baffert</strong>: The reason I’m asking you is because we
+arrested him with some stolen jewelry. It was traced to the robbery of a
+store down on Polk Street. He said he was fencing it for you.</p>
+<p><strong>korda</strong>: There’s obviously some mistake. I have a
+cousin who has had run-ins with the law.</p>
+<p><strong>korda</strong>: Perhaps for his own reasons he entangled me
+in this… situation.</p>
+<p><strong>baffert</strong>: This cousin of yours… What’s his name?</p>
+<p><strong>korda</strong>: Clarence Teal.</p>
+<p><strong>korda</strong>: Your cough seems to be better.</p>
+<p><strong>baffert</strong>: Thank you.</p>
+<p><strong>baffert</strong>: Well, I’m on my way to the game. I
+appreciate your cooperation, Mr. Korda.</p>
+<p><strong>korda</strong>: Lieutenant…</p>
+<p><strong>korda</strong>: Do you believe that story about Robert
+Johnson…? That he made a deal with the devil at the crossroads?</p>
+<p><strong>baffert</strong>: Could be.</p>
+<p><strong>baffert</strong>: Hello, Judge Stone… This is Lieutenant
+Samuel Baffert. I’m at a suspect’s residence. I’m requesting a
+telephonic search warrant in connection with an armed robbery at a
+jewelry store. There’s visible evidence on the premises. Glassine
+envelopes with jeweler’s markings were seen in the trash can…</p>
+<p><strong>baffert</strong>: …I believe a full search of the premises
+will turn up some stolen property…</p>
+<p><strong>roper</strong>: Get an ambulance!</p>
+<p><strong>solis</strong>: Yes sir. Every resource will be brought to
+bear. We will find this guy… Yeah, he’s here now. I’ll tell him.</p>
+<p><strong>solis</strong>: The chief says to tell you how sorry he is.
+He knew Sam Baffert was a good man.</p>
+<p><strong>roper</strong>: He said he was just going up to talk to him.
+He said… I want to be put on this case.</p>
+<p><strong>solis</strong>: I can’t do that.</p>
+<p><strong>roper</strong>: I want to be put on this case.</p>
+<p><strong>solis</strong>: You know I can’t assign you to this. You’re
+much too close to it. You were much too close to Sam. The department
+will take care of it.</p>
+<p><strong>roper</strong>: Who’s running it?</p>
+<p><strong>solis</strong>: Roper…</p>
+<p><strong>roper</strong>: Who’s running it!</p>
+<p><strong>solis</strong>: Kimura and Glass will head the
+investigation.</p>
+<p><strong>solis</strong>: Scott. Go home. Get some sleep.</p>
+<p><strong>roper</strong>: Hey, hey, hey…</p>
+<p><strong>roper</strong>: Anything on Korda so far?</p>
+<p><strong>kimura</strong>: Solis said to keep you clear of this.</p>
+<p><strong>roper</strong>: I don’t give a damn what Solis said. If you
+get a lead, I want to know.</p>
+<p><strong>ronnie</strong>: Just a minute.</p>
+<p><strong>ronnie</strong>: Hey.</p>
+<p><strong>roper</strong>: Hey yourself. Came by to see Troy.</p>
+<p><strong>ronnie</strong>: A little late for that, Scottie. He’s
+asleep. Jack Daniels?</p>
+<p><strong>roper</strong>: I’m not drunk. Yet.</p>
+<p><strong>ronnie</strong>: Maybe you should be.</p>
+<p><strong>roper</strong>: You heard.</p>
+<p><strong>ronnie</strong>: Yeah. I’m sorry.</p>
+<p><strong>roper</strong>: Can I come in?</p>
+<p><strong>roper</strong>: That a new picture?</p>
+<p><strong>ronnie</strong>: About 4 months old. I’m working in a new
+style.</p>
+<p><strong>roper</strong>: Hey, Troy. How ya doin’ boy? He heard my
+voice.</p>
+<p><strong>roper</strong>: How’s the good dog. I miss you buddy. You
+miss me?</p>
+<p><strong>roper</strong>: He misses me.</p>
+<p><strong>roper</strong>: I won’t stay long. I had to talk to
+someone.</p>
+<p><strong>ronnie</strong>: You don’t usually talk to anyone when you’re
+hurting.</p>
+<p><strong>roper</strong>: It was my fault. I was right downstairs. I
+should have gone up with him.</p>
+<p><strong>ronnie</strong>: Scott, You can’t save everyone.</p>
+<p><strong>roper</strong>: I’ve proved that, didn’t I?</p>
+<p><strong>roper</strong>: Oh, hell, forget it. This won’t work.</p>
+<p><strong>ronnie</strong>: What do you want from me?</p>
+<p><strong>roper</strong>: Something I guess I can’t have anymore.</p>
+<p><strong>ronnie</strong>: Don’t try to make me feel guilty. The whole
+time we were together, you went out of your way to prove you didn’t need
+me. Now, suddenly, for one night, you need me again. I can’t do it. I
+can’t be more than your friend. Because I know what will happen. In a
+few weeks you’ll be back on top, and you’ll shut me out just as soon as
+you don’t need me again.</p>
+<p><strong>roper</strong>: You think I didn’t need you?</p>
+<p><strong>ronnie</strong>: If you did, you never showed it.</p>
+<p><strong>roper</strong>: Ronnie…</p>
+<p><strong>roper</strong>: You expecting someone?</p>
+<p><strong>roper</strong>: This day just keeps getting better.</p>
+<p><strong>ronnie</strong>: They’re on the table where you always leave
+them.</p>
+<p><strong>greg</strong>: Hey, baby, I thought maybe you were…</p>
+<p><strong>roper</strong>: I was just leaving.</p>
+<p><strong>ronnie</strong>: Scottie… take care of yourself.</p>
+<p><strong>korda</strong>: If you weren’t family I’d kill you.</p>
+<p><strong>korda</strong>: You told Antonucci that shit came from
+me.</p>
+<p><strong>clarence</strong>: So that we could get the best price. He’s
+got respect for you. He’s gonna try to lowball me, Mike.</p>
+<p><strong>korda</strong>: You fucking idiot! Why do you think I use
+you?… To be a walking advertisement.</p>
+<p><strong>clarence</strong>: I’m sorry, Mike. I never heard of LaMarra
+flipping on anyone before. He said he had the cops paid off. Antonucci
+never flipped on anyone before. He had the cops paid off.</p>
+<p><strong>korda</strong>: Not the fucking cop that showed up at my
+door!</p>
+<p><strong>clarence</strong>: What happened, Mike.</p>
+<p><strong>korda</strong>: You don’t want to know.</p>
+<p><strong>clarence</strong>: I’m sorry, Mike.</p>
+<p><strong>korda</strong>: God damn it! I still needed to case that
+fucking store. It’s too risky to show my face now.</p>
+<p><strong>clarence</strong>: I got a couple thousand bucks. You could
+leave town.</p>
+<p><strong>korda</strong>: Leave town? They’re going to know me in
+fucking Des Moines now!… They got over ten million in jewels in that
+place. That’s freedom, man. I could go anywhere I want.</p>
+<p><strong>clarence</strong>: Did you kill him, Mike?</p>
+<p><strong>clarence</strong>: I’m sorry, Mike. I’m really sorry…</p>
+<p><strong>korda</strong>: It’s not your fault you’re stupid.</p>
+<p><strong>roper</strong>: What do you got on Korda?</p>
+<p><strong>kimura</strong>: We ran a search on relatives. He has a
+cousin in town – Clarence Teal. Smalltime thief. Last known address was
+on Pine Street. He moved out a month ago. We’ve got a couple leads on
+him to check out.</p>
+<p><strong>roper</strong>: Did you check out DMV for any vehicles
+registration?</p>
+<p><strong>kimura</strong>: Being faxed over now.</p>
+<p><strong>roper</strong>: How about the record room for any incident
+reports? He might be a victim. We can get medical records. Check with
+burglary detail and see if anyone else knows him, knows his habits.</p>
+<p><strong>kimura</strong>: Roper…</p>
+<p><strong>roper</strong>: And what about bars? We can talk to neighbors
+to see what bars he frequents.</p>
+<p><strong>kimura</strong>: Roper, we’re into it…</p>
+<p><strong>solis</strong>: We’ve had this conversation once, Roper.
+You’re not active on this case.</p>
+<p><strong>solis</strong>: It’s in everyone’s best interest.</p>
+<p><strong>roper</strong>: You guys are doing good work.</p>
+<p><strong>mccall</strong>: I’m sorry about your friend. I had a friend
+in SWAT killed. I know how it can be.</p>
+<p><strong>roper</strong>: I appreciate your concern. Let’s leave it at
+that.</p>
+<p><strong>roper</strong>: I don’t see much progress here.</p>
+<p><strong>roper</strong>: Very nice… You get an “A”. Notice… No force
+required. No damage.</p>
+<p><strong>sergeant</strong>: Roper, domestic disturbance at 472 6th
+Street. Possible hostage situation.</p>
+<p><strong>roper</strong>: So, McCall, how come you ended up in San
+Francisco?</p>
+<p><strong>mccall</strong>: They recruited me. Promised me fast
+advancement.</p>
+<p><strong>roper</strong>: Recruited you from where?</p>
+<p><strong>mccall</strong>: National Marksman Competition.</p>
+<p><strong>roper</strong>: With your qualifications you must have had a
+lot of offers. Why here?</p>
+<p><strong>mccall</strong>: Furthest point I could find from New
+York.</p>
+<p><strong>roper</strong>: You don’t like New York?</p>
+<p><strong>mccall</strong>: Spent my whole life there. I just wanted to
+get out for a while.</p>
+<p><strong>roper</strong>: You’d never been out of New York?</p>
+<p><strong>mccall</strong>: Been to Toronto. My mother was born
+there.</p>
+<p><strong>roper</strong>: How did you like Toronto?</p>
+<p><strong>mccall</strong>: It was okay.</p>
+<p><strong>roper</strong>: You’re a real excitable sort, aren’t you?</p>
+<p><strong>mccall</strong>: You caught me on an “up” day. How about you?
+How did you end up in San Francisco?</p>
+<p><strong>roper</strong>: I grew up in Oakland… Crossed the Bay Bridge
+and here I was. So you’re looking for “fast advancement”.</p>
+<p><strong>mccall</strong>: Is there something wrong with that?</p>
+<p><strong>roper</strong>: I’m not sure.</p>
+<p><strong>roper</strong>: Roper. Metro Division. Hostage Negotiator.
+Give me the short version.</p>
+<p><strong>officer #1</strong>: Husband came home. Found that guy and
+his wife “in flagrante”. Now he’s holding her at knife point.</p>
+<p><strong>roper</strong>: Which apartment?</p>
+<p><strong>officer #1</strong>: That one with the bars on the
+windows.</p>
+<p><strong>roper</strong>: How are we gonna get him out of there?</p>
+<p><strong>mccall</strong>: We could fill it with water.</p>
+<p><strong>roper</strong>: Have you evacuated anyone?</p>
+<p><strong>officer #1</strong>: Only that floor.</p>
+<p><strong>roper</strong>: Is the hostage injured?</p>
+<p><strong>officer #1</strong>: Don’t know. She keeps screaming to stay
+out. He keeps screaming to stay out. We decided to stay out.</p>
+<p><strong>roper</strong>: Well, there’s a good amount of agreement on
+that.</p>
+<p><strong>mccall</strong>: I’ll take “highground” until SWAT gets here.
+I can get a good sight-line from that roof across the street.</p>
+<p><strong>roper</strong>: Remember, Quick Draw, we’re trying to limit
+the force here.</p>
+<p><strong>mccall</strong>: I know my job.</p>
+<p><strong>roper</strong>: I’m coming in. I’m not armed.</p>
+<p><strong>wife</strong>: No, Raymond!</p>
+<p><strong>raymond</strong>: Stay the fuck out of here!</p>
+<p><strong>roper</strong>: I know how you feel, Ray.</p>
+<p><strong>raymond</strong>: You don’t know shit, and I suggest you
+leave.</p>
+<p><strong>roper</strong>: I can’t leave, Ray. It’s part of my
+negotiator’s oath. Once I’m in the room with the hostage, I have to
+stay.</p>
+<p><strong>raymond</strong>: You don’t want to see what I’m going to do
+to her.</p>
+<p><strong>roper</strong>: Let me show you something, Ray.</p>
+<p><strong>roper</strong>: Same thing happened to me, man. She cheated
+on me, but I forgave her. You know why?</p>
+<p><strong>raymond</strong>: I ain’t interested in your life story.</p>
+<p><strong>roper</strong>: Because I was partially to blame. I wasn’t
+around as much as I should have been. I forgot how to love her.</p>
+<p><strong>raymond</strong>: She’s the one to blame. Not me.</p>
+<p><strong>roper</strong>: Ray, think about how she looked when you
+married her. Think about how happy you were. Don’t lose that, man. Don’t
+give up everything.</p>
+<p><strong>raymond</strong>: What am I giving up? I’m laid off last
+year. I’m down to my last unemployment check. I’m out on the streets
+looking for work and this bitch is banging some asshole in my bed.</p>
+<p><strong>raymond</strong>: I’m down at Consolidated and I’m begging.
+I’m saying I’ll take half my pay. Eight years, man. I don’t even have to
+work the loading docks anymore. I’ll do maintenance. “We’re cutting
+back. We’re streamlining, Ray. West Central’s running things now. It’s
+out of our hands” Fuck them! Fuck them! FUCK THEM! I’m gonna kill her
+and then I’m gonna kill myself, ’cause I don’t wanna live anymore.</p>
+<p><strong>roper</strong>: Ray, if you walk out of here with me, I’ll
+get you a job.</p>
+<p><strong>raymond</strong>: Doing what? Cleaning toilets?</p>
+<p><strong>roper</strong>: I can’t guarantee you what it will be. But I
+swear on my life, I’ll find you work.</p>
+<p><strong>raymond</strong>: And why the fuck would you do that for
+me?</p>
+<p><strong>roper</strong>: Not for you, Ray. For me. A close friend of
+mine was killed this week. The way I figure it, I stop you from doin’
+what you said, I’m one up on body count.</p>
+<p><strong>raymond</strong>: Who the fuck are you, Mother Teresa?</p>
+<p><strong>roper</strong>: My name’s Scott Roper.</p>
+<p><strong>raymond</strong>: I need my coat.</p>
+<p><strong>roper</strong>: Do you think because the police department
+issued you a sniper rifle, it makes you God! What the fuck goes on in
+your head?</p>
+<p><strong>mccall</strong>: SWAT is a lifesaving unit, remember? I just
+saved a life. Yours.</p>
+<p><strong>roper</strong>: You think I’ve never had a gun pulled on me?!
+You think every fucking time someone pulls a gun they use it?!</p>
+<p><strong>mccall</strong>: Eighty-five percent of domestic disturbances
+of this nature end in murder/suicide.</p>
+<p><strong>roper</strong>: Not the ones I’m at.</p>
+<p><strong>mccall</strong>: Sorry. My mistake.</p>
+<p><strong>investigator</strong>: Looks like a clean shoot. Go home and
+get some rest.</p>
+<p><strong>roper</strong>: Come on. Let’s go for a drink.</p>
+<p><strong>mccall</strong>: I don’t really like to drink.</p>
+<p><strong>roper</strong>: You have to. It’s a tradition.</p>
+<p><strong>mccall</strong>: Well, if I have to, I have to.</p>
+<p><strong>roper</strong>: You got a girlfriend?</p>
+<p><strong>mccall</strong>: Why? You like my ass?</p>
+<p><strong>roper</strong>: Better than your pool game.</p>
+<p><strong>roper</strong>: You wouldn’t want to put a small wager on
+this, would you?</p>
+<p><strong>mccall</strong>: I don’t gamble.</p>
+<p><strong>mccall</strong>: Yeah, I’ve got a girlfriend.</p>
+<p><strong>roper</strong>: You living together?</p>
+<p><strong>mccall</strong>: She’s back in Jersey… going to graduate
+school.</p>
+<p><strong>roper</strong>: Explain how that works.</p>
+<p><strong>mccall</strong>: She’s going to come here when she graduates
+and then we’re gonna get married.</p>
+<p><strong>roper</strong>: She grow up in Livingtston, too?</p>
+<p><strong>mccall</strong>: No, no, no… She’s from Hoboken.</p>
+<p><strong>roper</strong>: Oh, “city girl”. Don’t you ever long for
+companionship with her such a long way away in New Jersey?</p>
+<p><strong>mccall</strong>: We see each other every couple of
+months.</p>
+<p><strong>roper</strong>: Every couple of months, huh?</p>
+<p><strong>roper</strong>: That’s a lot of commitment. I admire
+that.</p>
+<p><strong>mccall</strong>: Do you really?</p>
+<p><strong>roper</strong>: No. Actually I think it’s fucking crazy, I
+don’t know if I could do it.</p>
+<p><strong>mccall</strong>: Thanks for clearing that up. I hear your
+former girlfriend is going out with Greg Barnett.</p>
+<p><strong>roper</strong>: Where did you hear that?</p>
+<p><strong>mccall</strong>: Around. Barnett’s tough competition.</p>
+<p><strong>roper</strong>: Yeah, well that’s a sore subject, and
+therefore out of bounds to a young sprout of a hostage negotiator under
+my tutelage.</p>
+<p><strong>roper</strong>: Lesson two, “Dead Eye”… should have been
+lesson one. Never exchange yourself for a hostage.</p>
+<p><strong>mccall</strong>: I think I can handle that one.</p>
+<p><strong>roper</strong>: Yeah, you think so, but it comes up.</p>
+<p><strong>roper</strong>: Zack, another round.</p>
+<p><strong>roper</strong>: My partner gave himself in exchange for a ten
+year old girl. He got caught in the crossfire. Two dead. My partner and
+the bad guy… Weird thing is, if he was alive, he’d probably do it again.
+Some people never learn.</p>
+<p><strong>roper</strong>: You think you can learn, McCall?</p>
+<p><strong>mccall</strong>: I think so.</p>
+<p><strong>mccall</strong>: I’m Officer McCall, what’s going on?</p>
+<p><strong>bad guy</strong>: What the fuck do you think is going on,
+turdhead? I’m about to waste everyone in this place.</p>
+<p><strong>mccall</strong>: H… how can I help you? Tell me what… I feel
+stupid talking to a dummy.</p>
+<p><strong>roper</strong>: What did you think? I’m going to let you
+practice on real people?</p>
+<p><strong>roper</strong>: First things is, don’t say, “What’s going
+on?” Everybody knows what’s going on. I come into this situation, I say,
+“I’m glad to see nobody’s hurt. That’s good. I’m here to help you.”
+Second: You hesitated. Don’t hesitate. If you’re thinking, talk while
+you’re thinking, or else he’s going to think you’re plotting. Which you
+are. If he thinks you’re plotting, you’re going to make him nervous. You
+don’t want him nervous. Got that?</p>
+<p><strong>mccall</strong>: No.</p>
+<p><strong>roper</strong>: It’ll come. Try again.</p>
+<p><strong>mccall</strong>: My name’s McCall. I’m a hostage negotiator.
+I’m here to help you.</p>
+<p><strong>roper</strong>: How are you going to help me?</p>
+<p><strong>mccall</strong>: Tell me what you need.</p>
+<p><strong>roper</strong>: I need you to bring me the scumbag who ran
+off with my wife so I can cut off his nuts.</p>
+<p><strong>mccall</strong>: I can’t do that.</p>
+<p><strong>roper</strong>: Then get out of my face you worthless piece
+of frogshit.</p>
+<p><strong>mccall</strong>: Is all the name calling necessary.</p>
+<p><strong>roper</strong>: Nah, I just throw that in because I enjoy
+it.</p>
+<p><strong>mccall</strong>: So what do I say to this guy?</p>
+<p><strong>roper</strong>: You could say something like, “Tell me what
+the scumbag’s name is. Maybe we can work something out.”</p>
+<p><strong>mccall</strong>: What? Bring somebody in so he can cut his
+nuts off?</p>
+<p><strong>roper</strong>: If you want to be a successful negotiator,
+you’ve got to learn to lie.</p>
+<p><strong>mccall</strong>: I’m not good at lying.</p>
+<p><strong>roper</strong>: Get good at it.</p>
+<p><strong>mccall</strong>: It’s against my nature.</p>
+<p><strong>roper</strong>: You know the ten commandments?</p>
+<p><strong>mccall</strong>: Yes.</p>
+<p><strong>roper</strong>: What’s the first commandment?</p>
+<p><strong>mccall</strong>: Thou shall have no other God before me.</p>
+<p><strong>roper</strong>: Okay, forget that. What’s the main one.</p>
+<p><strong>mccall</strong>: You tell me.</p>
+<p><strong>roper</strong>: Thou shall not kill… You’ve killed,
+right?</p>
+<p><strong>mccall</strong>: Yes.</p>
+<p><strong>roper</strong>: Why?</p>
+<p><strong>mccall</strong>: To save lives.</p>
+<p><strong>roper</strong>: So why would you hesitate to lie to save
+lives?</p>
+<p><strong>roper</strong>: Let’s try it again.</p>
+<p><strong>mccall</strong>: My name’s McCall. I’m unarmed.</p>
+<p><strong>roper</strong>: Okay, stop.</p>
+<p><strong>roper</strong>: Close your eyes.</p>
+<p><strong>roper</strong>: What did you see?</p>
+<p><strong>mccall</strong>: A dirtbag behind the counter holding a
+sawed-off. A Berretta nine millimeter in his belt. A female hostage, red
+dress, on the floor in front of the cereal display. Male hostage, jeans
+and blue checked shirt, three feet to her right. Another male hostage,
+white pants, green shirt, Nikes, laying in front of the magazine rack. A
+female dirtbag with a gun under her shirt, sitting against the beer
+cooler, trying to pass herself off as a hostage, and there’s a special
+on toilet-paper, four for a buck twenty-nine.</p>
+<p><strong>roper</strong>: Very good. You’ve got good eyes. That’s
+important.</p>
+<p><strong>mccall</strong>: Was that your partner?</p>
+<p><strong>mccall</strong>: Why did he do it?</p>
+<p><strong>roper</strong>: Because he knew the little girl had zero
+chance of survival and his chances would be a little better… We had a
+plan, but SWAT opened up too early. He got caught in the crossfire.
+Let’s move on… Notice this. Always use the eyes to keep the connection.
+It almost like hypnosis. That’s the most important thing. Create a
+connection. You’re always on their side…</p>
+<p><strong>roper</strong>: You know why I like the track?</p>
+<p><strong>mccall</strong>: You’re a compulsive gambler?</p>
+<p><strong>roper</strong>: Because there are a multitude of
+possibility’s. Everything is there to see if you know what to look for.
+You have to read the conditions, just like in a hostage situation.</p>
+<p><strong>roper</strong>: See the four horse. Dropping in class. No
+works. Front wraps. Looks like he’s broken down. But notice the woman in
+the sun hat. She’s the owner. She wouldn’t have come if her horse was
+broken down. He’s live. We use him.</p>
+<p><strong>roper</strong>: See the favorite? Tail up. Washy. He doesn’t
+want to run today. Cross him off… Now the Six looks good. On his toes.
+Coat shiny. This trainer/jockey combo does well. We can’t leave him out.
+What do you think?</p>
+<p><strong>mccall</strong>: I have two words for you… Seek help.</p>
+<p><strong>roper</strong>: I have three words for you… Ex-ac- ta.</p>
+<p><strong>roper</strong>: I bought you a four-six exacta box. You owe
+me twenty bucks.</p>
+<p><strong>mccall</strong>: I do.</p>
+<p><strong>gambler</strong>: Hey, Roper.</p>
+<p><strong>roper</strong>: How you doin’, Marv?</p>
+<p><strong>roper</strong>: We need the 4 and 6 to finish to first and
+second.</p>
+<p><strong>mccall</strong>: Fine.</p>
+<p><strong>mccall</strong>: I’m told that newspaper photographer is your
+former girlfriend.</p>
+<p><strong>roper</strong>: Ronnie… Yeah, so.</p>
+<p><strong>mccall</strong>: Now she’s going out with Greg Barnett?</p>
+<p><strong>roper</strong>: So what do you want?… An autograph.</p>
+<p><strong>mccall</strong>: I don’t know why she’d pick him over
+you.</p>
+<p><strong>mccall</strong>: I’m just practicing my lying.</p>
+<p><strong>roper</strong>: Still needs work.</p>
+<p><strong>mccall</strong>: You’re right. I’ll never be as good a liar
+as you.</p>
+<p><strong>track announcer</strong>: And they’re racing!</p>
+<p><strong>roper</strong>: Okay, we’re in good shape. We’re in good
+shape.</p>
+<p><strong>mccall</strong>: The 6 horse is last.</p>
+<p><strong>roper</strong>: That’s okay. That’s his style.</p>
+<p><strong>mccall</strong>: To run last?</p>
+<p><strong>roper</strong>: To run late!</p>
+<p><strong>roper</strong>: The favorite’s fading. I told you he wasn’t
+going to run today… The four horse has got the lead!</p>
+<p><strong>mccall</strong>: The 6 horse is still last.</p>
+<p><strong>roper</strong>: He’ll be running at the quarter pole.</p>
+<p><strong>roper</strong>: There he goes.</p>
+<p><strong>mccall</strong>: They need to run first and second?</p>
+<p><strong>roper</strong>: Yeah, first and second.</p>
+<p><strong>roper</strong>: Come on, Russell! Come on, Russell.</p>
+<p><strong>come on russell!…</strong>: Who the fuck’s Russell?!</p>
+<p><strong>roper</strong>: The jockey!</p>
+<p><strong>mccall</strong>: We won!</p>
+<p><strong>roper</strong>: We lost.</p>
+<p><strong>mccall</strong>: We won.</p>
+<p><strong>roper</strong>: How much you wanna bet?</p>
+<p><strong>mccall</strong>: You want to bet on whether you won your bet?
+This is getting sick.</p>
+<p><strong>roper</strong>: Yes!</p>
+<p><strong>roper</strong>: That’s eight hundred bucks.</p>
+<p><strong>mccall</strong>: How long you been coming here?</p>
+<p><strong>roper</strong>: About six years. My partner took me.</p>
+<p><strong>mccall</strong>: Is it always like this?</p>
+<p><strong>roper</strong>: Occasionally you lose.</p>
+<p><strong>roper</strong>: Roper here. I’m on my way.</p>
+<p><strong>roper</strong>: We gotta go.</p>
+<p><strong>solis</strong>: We’re working on that, Joe. These things
+aren’t quite that simple.</p>
+<p><strong>mccall</strong>: This does not look good.</p>
+<p><strong>roper</strong>: See this. Solis has me driving the
+shit-mobile, and he picked this up straight out of impound for fourteen
+grand. Probably worth thirty.</p>
+<p><strong>mccall</strong>: Police corruption. It’s everywhere.</p>
+<p><strong>solis</strong>: This will take time to setup. I’ll have to
+get authorizations. Okay, you relax, and I’ll –</p>
+<p><strong>roper</strong>: What do we got?</p>
+<p><strong>solis</strong>: 32 minutes ago the silent alarm went off,
+then the fire alarm. A unit was a block away, and the suspect got
+trapped inside.</p>
+<p><strong>roper</strong>: Any verification on numbers.</p>
+<p><strong>solis</strong>: We’ve only seen and talked to one suspect. He
+calls himself “Joe”. There’s two jewelers, two salespeople, the manager,
+a security guard, and an elderly woman. This particular store is where
+they do a lot of jewelry making and repair. They have anywhere from 8 to
+10 million in raw stones on any given day, so they sure as shit didn’t
+just wander in. They knew what they were coming for.</p>
+<p><strong>roper</strong>: What have you promised them?</p>
+<p><strong>solis</strong>: Just that I’d talk to my superiors.</p>
+<p><strong>roper</strong>: Any good points of entry?</p>
+<p><strong>mccall</strong>: The place is designed to be a vault.</p>
+<p><strong>roper</strong>: My name’s Roper. How are you people doing in
+there? Solis is off the job now, Joe. I’m the guy authorized to give you
+whatever you want. That’s right, but first I need to come down there to
+talk to you.</p>
+<p><strong>korda</strong>: You don’t have to come here.</p>
+<p><strong>roper</strong>: Yes, I do. That way there’s no
+misunderstandings. I need to make sure no one’s hurt, then we can take
+care of business.</p>
+<p><strong>korda</strong>: Alright, Roper. You want to come… come.</p>
+<p><strong>roper</strong>: Good. I won’t be armed. We gotta operate on
+trust here. We’re going to wrap this up and have you guys out of here as
+soon as possible.</p>
+<p><strong>korda</strong>: Stay there.</p>
+<p><strong>roper</strong>: I’m going to put my hands down, okay.</p>
+<p><strong>korda</strong>: Are you in charge, Roper?</p>
+<p><strong>roper</strong>: Yep.</p>
+<p><strong>korda</strong>: I want a car. Like a four wheel drive. I want
+it in perfect condition. I want a uniformed cop to drive it up right
+here. I want him to leave the engine running and walk to the end of the
+street. Then we’ll come out. I don’t want any remote control devices in
+it. I know all the tricks. If it’s not in perfect condition, and I mean
+if its even low on wiper fluid, I’m going to kill somebody and we’re
+gonna start again.</p>
+<p><strong>korda</strong>: I want a plane waiting at the airport. I’ll
+tell them where I want to go when I get there.</p>
+<p><strong>roper</strong>: Is that all?</p>
+<p><strong>korda</strong>: For now that’s all.</p>
+<p><strong>roper</strong>: You’ll get it. But, Joe, I want you to do
+something for me. Let me take a look around inside. Make sure
+everybody’s okay.</p>
+<p><strong>korda</strong>: No. You just do shit for me right now.</p>
+<p><strong>roper</strong>: Joe, I’m doing a lot for you. I think you
+could give me something to cement the deal… One hostage.</p>
+<p><strong>korda</strong>: I’ll give you something.</p>
+<p><strong>korda</strong>: In fifteen minutes it’ll be a bigger piece. I
+assume there are no “misunderstanding”.</p>
+<p><strong>roper</strong>: I understand you completely.</p>
+<p><strong>roper</strong>: We’re going to have to take this guy out.</p>
+<p><strong>solis</strong>: Can’t we wear him down?</p>
+<p><strong>roper</strong>: I believe there’s at least one fatality in
+there already. The fire alarm was probably set off by gunfire. I believe
+he’s working alone, both from his conversation and the fact that he
+wouldn’t come out beyond the doorway. He was holding a gun on the
+hostages while he was talking to me. His demeanor is calm and
+controlled, that’s what really scares me. The other bad news is that he
+also indicated a familiarity with our techniques. So, do you want to go
+in or wait for him to come out?</p>
+<p><strong>mccall</strong>: Let him come out. Too many unknowns in
+there.</p>
+<p><strong>mccall</strong>: When we drive up the car, make sure it’s at
+an angle about three feet from the curb. Put our best man “highground”,
+Twenty degree down angle.</p>
+<p><strong>swat captain</strong>: Have Anderson prep it and notify us
+when he’s on line.</p>
+<p><strong>solis</strong>: I feel this thing going sideways on us.</p>
+<p><strong>roper</strong>: There is some good news. He’s wearing a ski
+mask, so he’s protecting his identity and hasn’t determined to kill all
+the hostages… Yet.</p>
+<p><strong>korda</strong>: Drag them behind the counter.</p>
+<p><strong>woman customer</strong>: I’m not staying here another
+minute.</p>
+<p><strong>salesgirl #1</strong>: No, Mrs. Dotson.</p>
+<p><strong>korda</strong>: Come here, hag.</p>
+<p><strong>manager</strong>: Leave her alone!</p>
+<p><strong>korda</strong>: You’re a brave one, aren’t you?</p>
+<p><strong>salesgirl #2</strong>: Sit down, Doug.</p>
+<p><strong>korda</strong>: If she’s not conscious when it’s time to
+leave, I’ll have to kill her.</p>
+<p><strong>roper</strong>: Okay. Time to give this fucker a call.</p>
+<p><strong>roper</strong>: This fucker’s not answering.</p>
+<p><strong>mccall</strong>: There’s your answer. He’s smart.</p>
+<p><strong>roper</strong>: He’s cutting down the visibility.</p>
+<p><strong>mccall</strong>: And doing a very good job of it.</p>
+<p><strong>mccall</strong>: Come on. Give us one clean shot.</p>
+<p><strong>swat captain</strong>: All positions, you have the green
+light.</p>
+<p><strong>mccall</strong>: They’re out.</p>
+<p><strong>roper</strong>: It’s Korda.</p>
+<p><strong>mccall</strong>: They switched clothes.</p>
+<p><strong>roper</strong>: Hold your fire! Hold your fire!</p>
+<p><strong>roper</strong>: Shit! Where’d that shot come from? Hold your
+fire!</p>
+<p><strong>mccall</strong>: He’s got the girl.</p>
+<p><strong>roper</strong>: Damnit!</p>
+<p><strong>roper</strong>: Are these yours?</p>
+<p><strong>solis</strong>: Yeah, they are but…</p>
+<p><strong>roper</strong>: Come on!</p>
+<p><strong>solis</strong>: Roper, what are you going to do? Don’t take
+my…</p>
+<p><strong>solis</strong>: …car.</p>
+<p><strong>mccall</strong>: Suspect heading west on Sutter now passing
+Jones. Can we get an intercept?</p>
+<p><strong>voice</strong>: R-32-David. We are proceeding south on Hyde.
+Will intercept.</p>
+<p><strong>mccall</strong>: What the fuck is going on.</p>
+<p><strong>roper</strong>: I don’t know, but I’ve got to get on
+there.</p>
+<p><strong>mccall</strong>: You’re crazy.</p>
+<p><strong>roper</strong>: Pull up alongside.</p>
+<p><strong>roper</strong>: Sorry, go.</p>
+<p><strong>roper</strong>: Give me one reason why I shouldn’t kill you
+right here.</p>
+<p><strong>roper</strong>: You know Sam Baffert was a friend of mine. He
+had a wife… and he had a daughter.</p>
+<p><strong>korda</strong>: I don’t give a shit about you or your fucking
+friends.</p>
+<p><strong>korda</strong>: You can’t kill me like this.</p>
+<p><strong>roper</strong>: What if you and me got into a struggle… and
+my gun went off?</p>
+<p><strong>roper</strong>: Could I kill you then? Could I kill you
+then?</p>
+<p><strong>mccall</strong>: Roper! Put it down!… Put it down man, we got
+him. Come on… Put it down.</p>
+<p><strong>roper</strong>: We do this shit by the book, but you ain’t
+gonna be smiling.</p>
+<p><strong>ronnie</strong>: You weren’t at the press conference.</p>
+<p><strong>roper</strong>: I wanted to get this out of the way.</p>
+<p><strong>ronnie</strong>: You got a bet on the game tonight?</p>
+<p><strong>roper</strong>: As a matter of fact, I do.</p>
+<p><strong>ronnie</strong>: It’s already started.</p>
+<p><strong>roper</strong>: I was going to catch the last half on TV.</p>
+<p><strong>ronnie</strong>: Good-night.</p>
+<p><strong>roper</strong>: You having dinner with Mr. Baseball?</p>
+<p><strong>ronnie</strong>: Greg is on a road trip. I was just going to
+make some pasta.</p>
+<p><strong>roper</strong>: That kind with the garlic and the oil that I
+like so much?</p>
+<p><strong>ronnie</strong>: No. The kind from Kraft, with the macaroni
+and the cheese.</p>
+<p><strong>roper</strong>: I’ve been craving that stuff all week.</p>
+<p><strong>ronnie</strong>: And it’s hard to get.</p>
+<p><strong>ronnie</strong>: Just dinner.</p>
+<p><strong>roper</strong>: What do you think?</p>
+<p><strong>ronnie</strong>: Mmm, needs a little something.</p>
+<p><strong>roper</strong>: What are you talking about? This is it. This
+is the stuff right here. Well, maybe just a pinch more sugar.</p>
+<p><strong>ronnie</strong>: Yeah that’s it.</p>
+<p><strong>roper</strong>: Why don’t you just stick your finger in and
+stir it up.</p>
+<p><strong>ronnie</strong>: Scottie…</p>
+<p><strong>roper</strong>: What would you say if I quit gambling?</p>
+<p><strong>ronnie</strong>: I’d say you’d be miserable… It’s not the
+gambling. It’s what the gambling got in the way of. The track is where
+you’d take your troubles instead of sharing them with me…</p>
+<p><strong>ronnie</strong>: Scottie, remember the day you lost that
+hostage in union square. You came over that night and we made mad, crazy
+love. But I didn’t even know what happened… ’til I heard it on the news
+the next morning.</p>
+<p><strong>roper</strong>: It’s because I wanted to keep you away from
+that world.</p>
+<p><strong>ronnie</strong>: It’s not that world. It’s your world. It’s
+part of who you are.</p>
+<p><strong>roper</strong>: Veronica, it’s not easy for me… I don’t know
+if I can change overnight. But what I’m telling you is that I want to
+share everything with you, because I don’t ever want to be without you
+again.</p>
+<p><strong>roper</strong>: What about Greg? What are you gonna tell
+him?</p>
+<p><strong>ronnie</strong>: It’s okay. We broke up.</p>
+<p><strong>roper</strong>: When?</p>
+<p><strong>ronnie</strong>: Just now.</p>
+<p><strong>clarence</strong>: How ya doin’, man?</p>
+<p><strong>korda</strong>: You gotta do something for me… this fucker,
+Roper, he’s gotta girlfriend. She works at the newspaper. I want you to
+take care of her.</p>
+<p><strong>clarence</strong>: Hey, Michael, that’s not my thing.</p>
+<p><strong>korda</strong>: You gotta do this for me. I’m in here because
+of you.</p>
+<p><strong>clarence</strong>: Man, what’s this about? Ya know, you were
+robbing a store. It wasn’t personal. It was his job.</p>
+<p><strong>korda</strong>: Fuck you! You know what he did to me?!…</p>
+<p><strong>korda</strong>: He held a gun to my head and said he should
+kill me right then… He made me…</p>
+<p><strong>korda</strong>: You do this for me Clarence.</p>
+<p><strong>clarence</strong>: Don’t make do it, Mike.</p>
+<p><strong>korda</strong>: Are you going to turn on me too? Who helped
+you when you were strung out? Who gave you money? Who bailed you out of
+jail?</p>
+<p><strong>clarence</strong>: I won’t get away with it.</p>
+<p><strong>korda</strong>: Nobody knows who you are. Make it look like a
+robbery.</p>
+<p><strong>roper</strong>: Hi, I’m going to stop at the corner for some
+wine.</p>
+<p><strong>ronnie</strong>: How’s Paco doing?</p>
+<p><strong>roper</strong>: He was going nuts at the park. He met this
+very attractive poodle. They made plans to meet again next weekend.</p>
+<p><strong>ronnie</strong>: Okay, dinner will be ready when you get
+here.</p>
+<p><strong>roper</strong>: You okay?!</p>
+<p><strong>roper</strong>: Stay.</p>
+<p><strong>cabby</strong>: Jesus Christ. What was he doing?!</p>
+<p><strong>cabby</strong>: There was no way I could miss him.</p>
+<p><strong>cabby</strong>: This isn’t my fault.</p>
+<p><strong>roper</strong>: Shut the fuck up!</p>
+<p><strong>roper</strong>: Get on your radio and get the police
+here.</p>
+<p><strong>roper</strong>: If you try again to hurt me or anyone I know,
+I’m going to have you killed.</p>
+<p><strong>korda</strong>: What in the world are you talking about,
+Mr. Roper?</p>
+<p><strong>roper</strong>: Here’s a picture of your cousin Clarence.
+That gentleman standing over him is the coroner.</p>
+<p><strong>korda</strong>: I used to have an apartment, a car, jewelry.
+I had a fucking eight thousand dollar watch. Now look what I have.</p>
+<p><strong>korda</strong>: You’re threatening me? You think I give a
+fuck? You think you can scare me off? Why don’t you come in here and
+kick my ass? Get some of your guard friends in here to help. I’d like
+that.</p>
+<p><strong>korda</strong>: He really shook you up, didn’t he?… I’ve got
+ten years worth of appeals to figure out how to fuck with you. Who
+knows? Maybe some scumbag lawyer will get me out on a technicality.</p>
+<p><strong>korda</strong>: You came here to threaten me? That’s a laugh.
+Maybe you should BEG me… Go ahead. Get down on your knees.</p>
+<p><strong>roper</strong>: You motherfucker, I swear I’ll kill you!</p>
+<p><strong>mccall</strong>: I’m here to help you.</p>
+<p><strong>mccall</strong>: I’m here to help you. Talk to me.</p>
+<p><strong>solis</strong>: We got a situation at the V.A. Hospital. The
+responding officer has requested a negotiator.</p>
+<p><strong>mccall</strong>: Where’s Roper?</p>
+<p><strong>solis</strong>: He’s on his way. Get over there.</p>
+<p><strong>vet #1</strong>: I can’t fight this technology. They have
+microprocessors made in totally sterile environments. I’ve seen those
+places. Everyone is dressed in white. It’s like paper clothing, man.
+They’re not even human.</p>
+<p><strong>vet #2</strong>: Dave, don’t do this, bro. Pull me in. We’ll
+do a few laps in the park and figure out some other way.</p>
+<p><strong>vet #1</strong>: I can’t help this, man. Do you have any idea
+what those microchips look like? How small they are when they put them
+in your brain?</p>
+<p><strong>officer #4</strong>: When we got here, he was already doing
+his balancing act. I was talking to him, but it made him more agitated
+so I backed off.</p>
+<p><strong>mccall</strong>: Why is he up there?</p>
+<p><strong>officer #4</strong>: Something about a microchip in his
+brain.</p>
+<p><strong>mccall</strong>: Who is he?</p>
+<p><strong>nurse herrin</strong>: David Adler. He likes to be called
+Dave. The other guy is Walter Sinclair.</p>
+<p><strong>voice</strong>: Somebody help me out here. Somebody stop
+him.</p>
+<p><strong>nurse herrin</strong>: What are you waiting for?</p>
+<p><strong>mccall</strong>: Another negotiator is on his way.</p>
+<p><strong>nurse herrin</strong>: We can’t wait for another negotiator.
+You have to do something.</p>
+<p><strong>mccall</strong>: What about the doctors?</p>
+<p><strong>nurse herrin</strong>: He hates all the doctors. He says
+they’re in on the conspiracy.</p>
+<p><strong>vet #1</strong>: Where is everybody? He’s going to kill
+me!</p>
+<p><strong>dave</strong>: Get the fuck out of here!</p>
+<p><strong>mccall</strong>: I… I’m Kevin. I ’m here to help you, D…
+Dave.</p>
+<p><strong>dave</strong>: You can’t help me, man.</p>
+<p><strong>walter</strong>: He’s high on something, man. Give him some
+thorazine or something.</p>
+<p><strong>dave</strong>: No one can help me. They’re controlling my
+mind.</p>
+<p><strong>mccall</strong>: Who’s controlling your mind?</p>
+<p><strong>dave</strong>: Whoa!… The government. They control
+everybody’s mind. You’re too fucking stupid to know that?</p>
+<p><strong>mccall</strong>: This has nothing to do with Walter.</p>
+<p><strong>dave</strong>: They want Walter dead!</p>
+<p><strong>mccall</strong>: Dave, look at me.</p>
+<p><strong>mccall</strong>: Tell me what’s wrong.</p>
+<p><strong>dave</strong>: Particles, man. I feel them all the time. I
+feel them in my arms and legs man, that’s how they punish me.</p>
+<p><strong>mccall</strong>: How can I help you with the particles?</p>
+<p><strong>dave</strong>: It’s not just the particles man, it’s the
+whole fucking machine, this is how they get assassins to operate. It’s
+been this way since the cuban missile crisis.</p>
+<p><strong>mccall</strong>: They have less power over you if you look
+into my eyes.</p>
+<p><strong>dave</strong>: Huh?</p>
+<p><strong>dave</strong>: Huh?</p>
+<p><strong>roper</strong>: Whata ya got?</p>
+<p><strong>fireman</strong>: Some nuts dangling a guy over the edge in a
+wheelchair.</p>
+<p><strong>roper</strong>: Can you get a net out here?</p>
+<p><strong>fireman</strong>: Negative. It’s 14 floors up. No nets gonna
+hold a fall from that high up.</p>
+<p><strong>mccall</strong>: We’ve been onto them for a long time.</p>
+<p><strong>mccall</strong>: Let me show you something.</p>
+<p><strong>mccall</strong>: See this. I’m jamming them, Dave. I’m
+jamming their frequency so they can’t control your mind anymore. Don’t
+you feel that? You don’t have to do what they say.</p>
+<p><strong>walter</strong>: He’s jamming them, Dave. Pull me back
+in.</p>
+<p><strong>mccall</strong>: You see, the particles are gone, they can’t
+punish you anymore.</p>
+<p><strong>dave</strong>: Tell my dad.</p>
+<p><strong>mccall</strong>: Tell him what, what do you want me to tell
+him?</p>
+<p><strong>dave</strong>: Tell my dad I’m sorry about the watch.</p>
+<p><strong>mccall</strong>: I’ll tell him. Where does he live. We’ll get
+him on the phone right now.</p>
+<p><strong>dave</strong>: I hate fucking Springfield.</p>
+<p><strong>mccall</strong>: Is that where you’re family lives?</p>
+<p><strong>dave</strong>: I still hear them, man. You can’t jam them.
+They’ve got the technology, man. They’ve got the satellites, Jack. They
+keep shooting beams off those satellites. What power do I have?</p>
+<p><strong>roper</strong>: McCall!</p>
+<p><strong>roper</strong>: McCall!</p>
+<p><strong>roper</strong>: Where are we going?</p>
+<p><strong>mccall</strong>: Give me a twenty dollar four-six exacta.</p>
+<p><strong>teller</strong>: The six is scratched.</p>
+<p><strong>mccall</strong>: Then give me a fucking four-seven
+exacta.</p>
+<p><strong>mccall</strong>: Come on four horse! Come on Seven horse!</p>
+<p><strong>mccall</strong>: Come on four-seven… Come on… Come on… Come
+on…</p>
+<p><strong>roper</strong>: It might have happened no matter who was up
+there.</p>
+<p><strong>mccall</strong>: Bullshit! Would it have happened to you?</p>
+<p><strong>roper</strong>: Maybe… There’s one thing you have to
+remember… You don’t create the situations. You can only try to save
+people from them.</p>
+<p><strong>mccall</strong>: I thought I could do it. I was so damn sure
+of myself. But I didn’t know what to say. The words wouldn’t come. My
+mouth turned to mush. You make it look so easy, Roper. But it is not.
+It’s not easy. It’s a different job than looking through the rifle
+scope.</p>
+<p><strong>roper</strong>: That it is.</p>
+<p><strong>mccall</strong>: How many have you lost?</p>
+<p><strong>roper</strong>: I look at it as how many I’ve saved. That’s
+the way you’ve got to look at it.</p>
+<p><strong>mccall</strong>: And what about the ones you don’t save?</p>
+<p><strong>roper</strong>: You live with it… and they haunt you. It
+doesn’t leave.</p>
+<p><strong>mccall</strong>: And what if you can’t live with it?</p>
+<p><strong>roper</strong>: You’ve got to decide that for yourself.</p>
+<p><strong>roper</strong>: I’ve lost three. One of them was my partner.
+I think about them every time I go into a situation. There’s a million
+people in this city with all kinds of twisted shit going on in their
+heads, and the bitch of this job is that we expect to go out every day
+and do the impossible – to somehow control all this craziness… and we
+can’t. Nobody’s faulting you for this, McCall. My advice is you let
+yourself off the hook.</p>
+<p><strong>mccall</strong>: I don’t know… I don’t know…</p>
+<p><strong>roper</strong>: Let’s get out of here.</p>
+<p><strong>hawkins</strong>: What the fuck… You bring me all the way
+over here to tell me you’ve got no collateral! What do I look like to
+you – Santa Claus? I’m a bail bondsman!</p>
+<p><strong>korda</strong>: No, no, see what I’m sayin’ is, I’ve got the
+–</p>
+<p><strong>hawkins</strong>: Pick up a fucking phone for chrissake! You
+think I got time for this crap?</p>
+<p><strong>korda</strong>: Hey, hey, I got shit on the outside. I got
+somebody cashing it in for me and –</p>
+<p><strong>hawkins</strong>: Gimme a fuckin’ break.</p>
+<p><strong>korda</strong>: Alright, alright, look, man, look, just leave
+me your card. I can get it to you by tomorrow night.</p>
+<p><strong>roper</strong>: It has a nice “nose”.</p>
+<p><strong>waiter</strong>: The special this evening is braised
+sweetbreads with a white truffle sauce on cracked bulgar.</p>
+<p><strong>roper</strong>: That’s my favorite. Why don’t you give us a
+minute.</p>
+<p><strong>roper</strong>: You like this place?</p>
+<p><strong>ronnie</strong>: It’s very nice.</p>
+<p><strong>roper</strong>: I guess you realize that there’s something
+special that I want to talk to you about.</p>
+<p><strong>ronnie</strong>: There is?</p>
+<p><strong>roper</strong>: For the last week things have been going
+pretty well between us. I think we’ve been doing a good job getting
+intimate and all that stuff…</p>
+<p><strong>ronnie</strong>: Yeah?</p>
+<p><strong>roper</strong>: …Let me just show you.</p>
+<p><strong>ronnie</strong>: Scottie, we should think this over before
+we…</p>
+<p><strong>roper</strong>: Tahiti.</p>
+<p><strong>ronnie</strong>: Ohhh… A vacation… Yeah that sounds like a
+great idea.</p>
+<p><strong>roper</strong>: Oh you thought I was going to ask you…</p>
+<p><strong>roper</strong>: Oh, no-no-no-no-no… Let’s go to Tahiti first
+and see if that works out…</p>
+<p><strong>roper</strong>: I assume you’re having your usual – the “air
+dried venison”.</p>
+<p><strong>korda</strong>: Got another load.</p>
+<p><strong>jail guard #3</strong>: Rack ’em up. Look, man, if it doesn’t
+make it down here by five it’s not my problem.</p>
+<p><strong>korda</strong>: All done.</p>
+<p><strong>a voice</strong>: Hey!</p>
+<p><strong>korda</strong>: …Yeah?</p>
+<p><strong>jail guard #1</strong>: You dropped your card.</p>
+<p><strong>jail guard #1</strong>: You guys are the scum of the
+earth.</p>
+<p><strong>korda</strong>: Just tryin’ to make a living.</p>
+<p><strong>jail guard #2</strong>: I don’t know what to tell you, mam,
+your brother ain’t here. Try San Bruno.</p>
+<p><strong>woman</strong>: I just came from San Bruno – they sent me
+here!</p>
+<p><strong>jail guard #2</strong>: I’m sorry. Then I don’t know where he
+is.</p>
+<p><strong>korda</strong>: Listen, can I just sign outta here?</p>
+<p><strong>woman</strong>: What do you mean, you don’t know where he
+is?! You can’t just lose somebody!</p>
+<p><strong>jail guard #2</strong>: Who are you again?</p>
+<p><strong>korda</strong>: Johnny Hawkins. Bail Bonds. I gotta be over
+at county in fifteen minutes, alright?</p>
+<p><strong>jail guard #2</strong>: Johnny who?</p>
+<p><strong>woman</strong>: Can you believe these people?</p>
+<p><strong>korda</strong>: It’s the criminal justice system. What can I
+tell ya? It’s a mess.</p>
+<p><strong>jail guard #2</strong>: Alright, alright, just sign.</p>
+<p><strong>korda</strong>: If you find him, gimme a call.</p>
+<p><strong>a voice</strong>: Hey!</p>
+<p><strong>jail guard #2</strong>: Hold on a second here.</p>
+<p><strong>korda</strong>: Is there a problem?</p>
+<p><strong>jail guard #2</strong>: You signed out twice.</p>
+<p><strong>korda</strong>: I what?</p>
+<p><strong>jail guard #2</strong>: Look, why don’t you just come on back
+inside for a second.</p>
+<p><strong>korda</strong>: Wait a minute, lemme see that.</p>
+<p><strong>korda</strong>: Well, that’s funny, I wonder how that
+happened.</p>
+<p><strong>roper</strong>: How come in those foreign movies the young
+girl is always with some fat, old guy.</p>
+<p><strong>ronnie</strong>: In Europe women find older men very
+sexy.</p>
+<p><strong>roper</strong>: When I get old and fat, I’m moving to
+Europe.</p>
+<p><strong>ronnie</strong>: I forgot to leave food for Paco. He’s
+probably starving.</p>
+<p><strong>roper</strong>: Damn, my eyes are tired from reading that
+movie.</p>
+<p><strong>ronnie</strong>: I’m sorry, Paco. I forgot –</p>
+<p><strong>ronnie</strong>: Paco?</p>
+<p><strong>ronnie</strong>: Paco?</p>
+<p><strong>ronnie</strong>: Paco, have you been eating my face soap,
+again?</p>
+<p><strong>ronnie</strong>: What is it, Scottie?</p>
+<p><strong>roper</strong>: Korda escaped.</p>
+<p><strong>ronnie</strong>: And you think he’ll…</p>
+<p><strong>roper</strong>: Hey, I’m on edge a little. Let’s relax. I’m
+sure he’s just going to try to get out of town. Anyway we leave
+tomorrow.</p>
+<p><strong>roper</strong>: Why don’t we do some of that European movie
+stuff.</p>
+<p><strong>ronnie</strong>: I don’t think you’re old and fat enough for
+me.</p>
+<p><strong>roper</strong>: Use your imagination.</p>
+<p><strong>mccall</strong>: You sure you packed everything? Maybe you
+forgot your bowling ball.</p>
+<p><strong>ronnie</strong>: I sent that ahead, wise guy.</p>
+<p><strong>roper</strong>: Why don’t you come back up with me,
+Ronnie.</p>
+<p><strong>ronnie</strong>: I think I’ll stand out here in the sun.</p>
+<p><strong>roper</strong>: It’s better if you stay inside.</p>
+<p><strong>ronnie</strong>: You’ve got to calm down –</p>
+<p><strong>roper</strong>: Ronnie, come on baby, we gotta go. Time to
+get movin’.</p>
+<p><strong>roper</strong>: Ronnie?</p>
+<p><strong>roper</strong>: Ronnie, where are you? Time to go.</p>
+<p><strong>roper</strong>: Ronnie.</p>
+<p><strong>roper</strong>: She’s gone.</p>
+<p><strong>mccall</strong>: Scott…</p>
+<p><strong>roper</strong>: That son of a bitch. If he…</p>
+<p><strong>roper</strong>: He’s fucking with you, Scott, be cool… keep
+your head.</p>
+<p><strong>korda</strong>: I got your lady, Roper.</p>
+<p><strong>korda</strong>: You got something that belongs to me, and I
+want it back. Twelve-fifteen, Mare Island, North Entrance off Dixon.
+Building twenty- eight, by the dry docks. I so much as smell another
+cop, I’ll be sending you parts of this bitch for a month.</p>
+<p><strong>roper</strong>: He’s gonna kill her no matter what. If I take
+him these jewels he’s gonna kill me and her.</p>
+<p><strong>mccall</strong>: So what do you want to do?</p>
+<p><strong>roper</strong>: That’s a chance I gotta take.</p>
+<p><strong>mccall</strong>: Then we better get moving… But there’s no
+way we can get the jewels out of evidence.</p>
+<p><strong>frank</strong>: Scott, we go back a long way but you can’t
+expect me to do this!</p>
+<p><strong>roper</strong>: Frank, this guy is a psychopath and he’s got
+Ronnie. It’s the only way I’m going to get close to him.</p>
+<p><strong>frank</strong>: Then go to the Lieutenant or the D.A. with
+it, for Christsakes. You’re asking me to put my fucking job on the
+line!</p>
+<p><strong>roper</strong>: They’ll never approve it, you know that.
+Besides, I involve the department and she’s dead. I got one chance with
+this guy, Frank, alone. He killed Sam and he’ll kill her.</p>
+<p><strong>roper</strong>: What if it were Mary? You’d break every
+fucking rule in the book… wouldn’t you?</p>
+<p><strong>frank</strong>: I hope to God I never have to make that
+decision…</p>
+<p><strong>frank</strong>: …and this conversation never happened. I
+never saw you today. Now I gotta go take a leak.</p>
+<p><strong>roper</strong>: I owe you one, Frank.</p>
+<p><strong>mccall</strong>: Mare Island is an abandoned shipyard,
+cranes, high buildings… he’ll be in place where he can see everything.
+How are we going to get me in there?</p>
+<p><strong>roper</strong>: Good question.</p>
+<p><strong>roper</strong>: Korda!</p>
+<p><strong>korda</strong>: Nice of you to make it, Roper. Take your
+jacket off, put it on the hood.</p>
+<p><strong>korda</strong>: Now, over to the chains, to your left.</p>
+<p><strong>korda</strong>: But first, let’s have a look under the tarp.
+Pull it back.</p>
+<p><strong>korda</strong>: All right, move it.</p>
+<p><strong>korda</strong>: Throw in and your piece.</p>
+<p><strong>korda</strong>: And your back up.</p>
+<p><strong>korda</strong>: Walk under the cranes and down the alleyway.
+At the end, turn right. Building thirty-six.</p>
+<p><strong>roper</strong>: Where the hell are you, McCall?</p>
+<p><strong>korda</strong>: Right there, Roper.</p>
+<p><strong>roper</strong>: Shit.</p>
+<p><strong>korda</strong>: Come on in, there’s someone just dying to see
+you.</p>
+<p><strong>roper</strong>: Where are you?</p>
+<p><strong>pov telescopic sight</strong>: Focusing on Roper, his lips
+moving… McCall, heaving for breath, has just dropped down into position,
+providing a view of Roper and the inside of the glass fronted
+building.</p>
+<p><strong>mccall</strong>: Right here, Scott.</p>
+<p><strong>korda</strong>: Get your ass in here, Roper.</p>
+<p><strong>telescopic pov</strong>: He can see Roper enter, his field of
+vision limited inside the building where the light penetrates, the room
+cast in HARD SHADOWS.</p>
+<p><strong>mccall</strong>: Stay cool, real easy…</p>
+<p><strong>roper</strong>: Where is she, Korda? I want to see her.</p>
+<p><strong>korda</strong>: Walk to the table.</p>
+<p><strong>korda</strong>: Open your shirt.</p>
+<p><strong>roper</strong>: I’m not wearing a wire. This is just between
+you and me.</p>
+<p><strong>korda</strong>: Shut the fuck up and do what I say!</p>
+<p><strong>roper</strong>: Satisfied?</p>
+<p><strong>korda</strong>: Open the bag, dump everything on the
+table.</p>
+<p><strong>roper</strong>: It’s all there.</p>
+<p><strong>korda</strong>: Spread it out.</p>
+<p><strong>roper</strong>: Only the jewels, Korda, you’ve got my
+word.</p>
+<p><strong>korda</strong>: Show me something.</p>
+<p><strong>korda</strong>: Not that one.</p>
+<p><strong>roper</strong>: Right there, the one in front… yeah, that
+one. Toss it.</p>
+<p><strong>korda</strong>: I’m impressed. I didn’t think you could do
+it. What did you have to do, steal them?</p>
+<p><strong>roper</strong>: Yeah.</p>
+<p><strong>korda</strong>: That’s not going to look too good on your
+service record.</p>
+<p><strong>roper</strong>: I’ll worry about that. Let’s get on with
+it.</p>
+<p><strong>korda</strong>: My sentiments exactly.</p>
+<p><strong>mccall</strong>: Wait for the right moment, Scott…</p>
+<p><strong>korda</strong>: Fill it up. Just in case there’s a homing
+device in the other one.</p>
+<p><strong>korda</strong>: Now bring it over here.</p>
+<p><strong>mccall</strong>: Oh, shit…</p>
+<p><strong>mccall</strong>: All right, Scott, bring him out.</p>
+<p><strong>korda</strong>: That’s far enough. Bag on the floor.</p>
+<p><strong>roper</strong>: I’ve kept my end. Ronnie first.</p>
+<p><strong>korda</strong>: Oh, shit, in all the excitement I almost
+forgot. She right here…</p>
+<p><strong>roper</strong>: Be cool, Ronnie, I’m gonna get you out of
+this.</p>
+<p><strong>korda</strong>: No shit, this I gotta see…</p>
+<p>****: Lathe will be cutting into a section of steel plate,
+demonstrating what will happen to Ronnie.</p>
+<p><strong>korda</strong>: Fuckin’ cool, huh? I rewired the switch. You
+see, you have to keep your finger on the button or the little lady gets
+cut…</p>
+<p><strong>korda</strong>: Right in half.</p>
+<p><strong>mccall</strong>: Hold it right there…</p>
+<p><strong>korda</strong>: But then, that’s not my problem.</p>
+<p><strong>mccall</strong>: Light’s out, fucker…</p>
+<p><strong>mccall</strong>: Jesus!</p>
+<p><strong>korda</strong>: You see, it’s out of my hands.</p>
+<p><strong>mccall</strong>: Roper, move…</p>
+<p><strong>korda</strong>: Well, hate to run but I’ve got a plane to
+catch. You take good care of the little lady, hear?</p>
+<p><strong>korda</strong>: How careless of me. You see, there’s only one
+way out of here, and you’re standing right in the way. You could move,
+but then…</p>
+<p><strong>korda</strong>: Sure hate to be in your shoes.</p>
+<p><strong>mccall</strong>: What the hell’s going on?</p>
+<p><strong>roper</strong>: McCall, stop him, stop the car!</p>
+<p><strong>mccall</strong>: What car?</p>
+<p><strong>roper</strong>: McCall!</p>
+<p><strong>roper</strong>: McCall, shoot the son of a bitch!</p>
+<p><strong>korda</strong>: Bye, bye, cop…</p>
+<p><strong>ronnie</strong>: Scottie, Scottie…</p>
+<p><strong>roper</strong>: It’s all over, babe, it’s all over.</p>
+<p><strong>roper</strong>: Stay here, don’t move.</p>
+<p><strong>ronnie</strong>: Scottie…</p>
+<p><strong>roper</strong>: Do it!</p>
+<p><strong>roper</strong>: McCall, you all right?</p>
+<p><strong>mccall</strong>: I’m okay. Korda… went down the side of the
+building…</p>
+<p><strong>roper</strong>: Stay put.</p>
+<p><strong>roper</strong>: Give it up, Korda, you got away with nothing!
+Nothing but a bag of shit! It’s all fake!</p>
+<p><strong>roper</strong>: Go on, you stupid fuck, look at it! It’s all
+shit! A hundred dollars worth of glass!</p>
+<p><strong>korda</strong>: You fuck!!!</p>
+<p><strong>ronnie</strong>: I’ve never seen sea so blue. Tahiti is
+magnificent, Scottie.</p>
+<p><strong>roper</strong>: Yeah, I could get used to this Paradise
+shit.</p>
+<p><strong>roper</strong>: I’ll have another Pena Colada. And this time
+could you shave the ice, please.</p>
+<p><strong>waitress</strong>: Oui, Monsieur. Right away.</p>
+<p><strong>ronnie</strong>: Scottie?</p>
+<p><strong>roper</strong>: Hmm?</p>
+<p><strong>ronnie</strong>: I’ve been thinking.</p>
+<p><strong>roper</strong>: Hmm?</p>
+<p><strong>ronnie</strong>: Things have been going pretty well between
+us, haven’t they?</p>
+<p><strong>roper</strong>: Yeah.</p>
+<p><strong>ronnie</strong>: You’ve changed you know. I don’t think
+there’s anything you can’t do once you put your mind to it.</p>
+<p><strong>ronnie</strong>: I was just thinking… There’s something
+special I want to talk to you about. I think it’s time we went to a
+whole other phase in our relationship. A deeper level.</p>
+<p><strong>roper</strong>: A deeper level?</p>
+<p><strong>ronnie</strong>: That’s right. We’ve got to bare it all. Here
+and now. ’Cause I think I’m finally ready to go for it…</p>
+<p><strong>roper</strong>: Whoa! Wait a minute, Ronnie. Hold on. I know
+it’s beautiful here. The sun, the sand, the sea and all that nature shit
+can really get to you. But we’ve got to keep our perspective here. This
+place isn’t real. This isn’t reality.</p>
+<p><strong>ronnie</strong>: Scott…</p>
+<p><strong>roper</strong>: I mean I said this trip should be a
+‘roadtest’.</p>
+<p><strong>ronnie</strong>: …the hell are you talking about?</p>
+<p><strong>roper</strong>: I’m talking about… What are you talking
+about?</p>
+<p><strong>ronnie</strong>: I’m talking about me ‘n’ you stripping down
+on this beach and gettin’ you know… ‘naked in Tahiti’.</p>
+<p><strong>roper</strong>: You talkin’ about gettin’ ‘nekked?’ Shit, I
+thought you were talkin’ bout, you know… the “M” word.</p>
+<p><strong>ronnie</strong>: You thought I was talking about getting
+married?!</p>
+<p><strong>ronnie</strong>: I’m talking about taking our clothes off,
+silly. You said you would.</p>
+<p><strong>roper</strong>: You crazy? With all those people around?</p>
+<p><strong>ronnie</strong>: Know what you are?! You’re a prude,
+Roper.</p>
+<p><strong>roper</strong>: The hell I am!</p>
+<p><strong>ronnie</strong>: Prude.</p>
+<p><strong>roper</strong>: First you want me to put on one of those
+skinny ass bathing suits – tongs or thongs or whatever you call them –
+with my butt cheeks wrapped around a piece of dental floss… No way.</p>
+</body>
+</html>

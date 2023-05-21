@@ -1,0 +1,2144 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>state-and-main</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="state-and-main">state-and-main</h1>
+<p><strong>morris</strong>: You hear that?</p>
+<p><strong>spud</strong>: Yes, I hear it.</p>
+<p><strong>morris</strong>: Drive a man to drink. Took me near half
+an-hour, get across the street yesterday.</p>
+<p><strong>spud</strong>: I saw Budgie Gagnon, leaning on the bank of
+the building. Said, “What are you doin’?” He said, “I’m waitin’ for the
+’leven o’clock crossing…”</p>
+<p><strong>morris</strong>: Y’wanna fix something, you should fix the
+pothole. Yessir, they should be trussed up, thrown off some high
+building.</p>
+<p><strong>doug</strong>: Who’s that?</p>
+<p><strong>morris</strong>: Whoever spent ten, f’teen thousand dollars,
+a new traffic light, you could grow old, paint your house before it lets
+you cross the street, and then, not fix the pothole.</p>
+<p><strong>spud</strong>: What was wrong with the old traffic light?</p>
+<p><strong>doug</strong>: I’m glad you asked… I’ll tell you what was
+wrong with it. And what was wrong with it was it was behind the times.
+Now: You want to bring business into this town? You have to plan for a
+Waterford that Does Not Exist. Not at the moment, no…</p>
+<p><strong>ann</strong>: Morning, darling.</p>
+<p><strong>doug</strong>: Morning.</p>
+<p><strong>carla</strong>: Hi, Annie.</p>
+<p><strong>ann</strong>: Morning, Carla.</p>
+<p><strong>morris</strong>: …the damn thing…</p>
+<p><strong>spud</strong>: No, I’m serious, election’s coming up, a lot
+of people are pretty upset…</p>
+<p><strong>doug</strong>: They are, yes. I’m sure they are…</p>
+<p><strong>woman at counter</strong>: Annie, I’m going to be a lil’ late
+for the rehearsal, tonight.</p>
+<p><strong>ann</strong>: S’Okay, Maude. You know your lines…?</p>
+<p><strong>doug</strong>: …I’m sure that people are upset…</p>
+<p><strong>maude</strong>: I know ’em, I don’t know what order they come
+in…</p>
+<p><strong>ann</strong>: We’ll work it out.</p>
+<p><strong>jack</strong>: What’re they talking about?</p>
+<p><strong>ann</strong>: Traffic light.</p>
+<p><strong>jack</strong>: Waal, no, th’traffic light’s Doug’s thing.
+That’s his thing, fine.</p>
+<p><strong>doug</strong>: Thank you, Jack, and…</p>
+<p><strong>jack</strong>: But we got to talk about the pothole.</p>
+<p><strong>doug</strong>: Jack…</p>
+<p><strong>jack</strong>: A public office is a public trust… This is why
+this is America. Question is: who owns the street.</p>
+<p><strong>townsman</strong>: Doc, those pills, y’gave me for my back?
+I’m not sure that they work.</p>
+<p><strong>doc wilson</strong>: Well, I’m not sure either, but y’don’t
+hear me complain… come by th’office, end of th’afternoon.</p>
+<p><strong>townsman</strong>: Thanks, Doc…</p>
+<p><strong>bill</strong>: This is your movie, this is small town
+America.</p>
+<p><strong>walt</strong>: Town in New Hampshire was small town America,
+too. Forty thousand dollars a day, to shoot on the street. And then they
+kicked us out…</p>
+<p><strong>bill</strong>: A jacket for five dollars… I can buy this town
+for fifty bucks.</p>
+<p><strong>walt</strong>: You told me that about the last town.</p>
+<p><strong>bill</strong>: Yeah, but they never made a movie here.</p>
+<p><strong>walt</strong>: I’m bleeding, Bill, I’m bleeding…</p>
+<p><strong>bill</strong>: …why am I here?</p>
+<p><strong>walt</strong>: What, what, what, what do they got that can
+pass for the Old Mill?</p>
+<p><strong>walt</strong>: “The Waterford Mill, built in 1825, and long a
+tourist attraction…” Wake up Uberto</p>
+<p><strong>uberto</strong>: Where are we?</p>
+<p><strong>walt</strong>: Givvem a cigarette…</p>
+<p><strong>uberto</strong>: …they ship our Old Mill from New
+Hampshire?</p>
+<p><strong>bill</strong>: They’re holding our Old Mill for ransom.</p>
+<p><strong>uberto</strong>: We build it?</p>
+<p><strong>bill</strong>: We don’t have to build it.</p>
+<p><strong>uberto</strong>: We build the fire hut?</p>
+<p><strong>uberto</strong>: We have to lose the window.</p>
+<p><strong>walt</strong>: …we can’t lose the wind…</p>
+<p><strong>uberto</strong>: Then I can’t do this shot… you wants me to
+push in – I can’t push in through the window… we go back to New
+Hampshire?</p>
+<p><strong>bill</strong>: NO, we can’t ever go back to New
+Hampshire.</p>
+<p><strong>walt</strong>: NO, we’re gonna stay here. This is what my
+people died for. The right to make a movie in this town.</p>
+<p><strong>scott</strong>: May I help you?</p>
+<p><strong>walt</strong>: I want to talk to the manager.</p>
+<p><strong>scott</strong>: Would you like a room?</p>
+<p><strong>bill</strong>: Na, we wanna rent the whole hotel.</p>
+<p><strong>walt</strong>: Hello, Tracy, we gotta new town. We’re…where
+are we?</p>
+<p><strong>bill</strong>: Waterford, Vermont.</p>
+<p><strong>walt</strong>: …you got to get me that street for
+nothing…</p>
+<p><strong>bill</strong>: I will.</p>
+<p><strong>walt</strong>: Waterford, Vermont. Where is it? That’s where
+it is…</p>
+<p><strong>walt</strong>: Because, because…we don’t have to build an Old
+Mill. They have an Old Mill. Yeah. It’s on a stream – that’s where you
+put a mill.</p>
+<p><strong>bill</strong>: …they run on water.</p>
+<p><strong>walt</strong>: Now: I’m looking at the…</p>
+<p><strong>walt</strong>: I’ve got scene twelve… Shouldn’t you be in
+school?</p>
+<p><strong>carla</strong>: It’s night.</p>
+<p><strong>walt</strong>: Scene twelve…arrival at the mill.</p>
+<p><strong>scott</strong>: Mr. Price, Mr. Price…?</p>
+<p><strong>bill</strong>: What…?</p>
+<p><strong>walt</strong>: “Bring it in on time and there’s more where
+these came from. Marty. P.S. I want to talk to you about a product tie
+in…”</p>
+<p><strong>scott</strong>: I’ll put the, in your r…</p>
+<p><strong>walt</strong>: Somebody make a note. I want Li…, for the
+broad…what does she like? Lilacs. Okay. A truck of lilacs when the broad
+comes. And get something for Bab Barrenger, get him, what does he
+like…?</p>
+<p><strong>scott</strong>: Bob Barrenger…Bob…Bob Barrenger’s in this
+movie?</p>
+<p><strong>walt</strong>: That’s cor…</p>
+<p><strong>scott</strong>: He’s staying here? Bob Barrenger is staying
+he…?</p>
+<p><strong>walt</strong>: Put something in his room. What does he
+like?</p>
+<p><strong>bill</strong>: 14-year old girls.</p>
+<p><strong>walt</strong>: Well, get him something else and let’s get out
+of here in one piece. Get him a half of a 28-year old girl.</p>
+<p><strong>joe</strong>: I, I’m sor… …I lost my typewriter…</p>
+<p><strong>carla</strong>: Hi, Mr. Bailey…</p>
+<p><strong>mayor</strong>: Carla, would you tell them that I’m…</p>
+<p><strong>walt</strong>: What? What is it?</p>
+<p><strong>first a.d.</strong>: Could I speak to my wife, please?</p>
+<p><strong>secretary</strong>: You’ve got a call…</p>
+<p><strong>bill</strong>: And Uberto tells me he can’t take this shot,
+unless they let him take out the firehouse window.</p>
+<p><strong>costume designer</strong>: Walt, I’ve got to talk to you
+about the nude scene.</p>
+<p><strong>walt</strong>: Aren’t you ever in school?</p>
+<p><strong>carla</strong>: There’s other things to be learned.</p>
+<p><strong>walt</strong>: Izzat so?</p>
+<p><strong>carla</strong>: The Mayor’s outside.</p>
+<p><strong>walt</strong>: What’s his name?</p>
+<p><strong>carla</strong>: Mr. Bailey.</p>
+<p><strong>walt</strong>: Mr. Bailey…Mr. Bailey…?</p>
+<p><strong>joe</strong>: I lost my typewriter…?</p>
+<p><strong>a.d.</strong>: Yes, could I please speak to my wife…?</p>
+<p><strong>walt</strong>: I have to tell you, I can not express to you
+how happy…</p>
+<p><strong>mayor</strong>: And we’re glad to have you here…</p>
+<p><strong>walt</strong>: My golly, you know? All my life I grew up in
+the city, but every summer… would you like a cigar?</p>
+<p><strong>mayor</strong>: Aren’t these illegal?</p>
+<p><strong>walt</strong>: Why would they be illegal?</p>
+<p><strong>bill</strong>: …there’s a trade embargo against Cuba.</p>
+<p><strong>mayor</strong>: Well, you know, Walt, I just wanted to say
+that anything I could do…</p>
+<p><strong>walt</strong>: That’s very kind of…as a matter-of fact, one,
+I hate to bother you with…</p>
+<p><strong>mayor</strong>: …not at all…</p>
+<p><strong>walt</strong>: …we need the shooting permit for Main
+Street…</p>
+<p><strong>mayor</strong>: Whatever you need. The City Council, of
+course, has to pass on your…</p>
+<p><strong>walt</strong>: …the city council…</p>
+<p><strong>mayor</strong>: On your “permit,” but that is less than a
+formality.</p>
+<p><strong>walt</strong>: …it is?</p>
+<p><strong>mayor</strong>: I am the City Council. We meet Friday, and
+I…</p>
+<p><strong>walt</strong>: George, that is so kind of you.</p>
+<p><strong>mayor</strong>: And, my wife wanted to, wanted me to ask you,
+we’d like to welcome you, we’d, she’d like to have you to dinner at our
+home. I don’t mean to be…</p>
+<p><strong>walt</strong>: Are you kidding me? We would be delighted.</p>
+<p><strong>mayor</strong>: Well, I won’t take more of your time…</p>
+<p><strong>bill</strong>: Walt, it’s Marty on the Coast…</p>
+<p><strong>mayor</strong>: We’ll see you Tuesday, then…</p>
+<p><strong>walt</strong>: It’s one of the great, great pleasures meeting
+you…</p>
+<p><strong>bill</strong>: It’s Marty on the Coast.</p>
+<p><strong>walt</strong>: On the coast? Of course he’s on the coast,
+where’s he gonna be, the Hague?</p>
+<p><strong>walt</strong>: What? Marty?! Hi. We’re… The new town is
+cheaper than the other town. We’re going to save a for…because..because
+we don’t have to rebuild the Old Mill, they’ve got an Old Mill…they’ve
+got a firehouse…they…</p>
+<p><strong>walt</strong>: Baby, baby, I want to save the money just as
+much as you do…no, no it’s not coming out of my pocket. It’s going into
+my pock…my…my and your pock…yeah? Okay. A product placement - tell me
+ab…he’s going through a tunnel. Whoa, whoa, whoa, you wiped out the
+board. DINNER WITH THE MAYOR, TUESDAY NIGHT, write it in red. That’s all
+we need, to miss Dinner with…</p>
+<p><strong>first a.d.</strong>: We can’t shoot in the Old Mill.</p>
+<p><strong>walt</strong>: Wait a sec, Marty. Call us back. Two
+minutes.</p>
+<p><strong>first a.d.</strong>: We can’t shoot in the Old Mill.</p>
+<p><strong>walt</strong>: I just saw the Mayor, he said anything we
+want.</p>
+<p><strong>first a.d.</strong>: It burnt down.</p>
+<p><strong>bill</strong>: When did it burn down?</p>
+<p><strong>first a.d.</strong>: Nineteen-sixty. “Part of a spate of
+suspicious fires, the Old Mill, the…”</p>
+<p><strong>walt</strong>: You told me they had on Old Mill here…</p>
+<p><strong>first a.d.</strong>: “Suspicions of arson, these fires,
+believed set by a disturbed teenager were, in fact, the inspiration for
+the formation of…”</p>
+<p><strong>bill</strong>: But, does it have to be an Old Mill?</p>
+<p><strong>joe</strong>: Hi.</p>
+<p><strong>walt</strong>: Does it have to be an Old Mill? Where have you
+been?</p>
+<p><strong>joe</strong>: I was in New Hampshire. I was at the Old
+Location.</p>
+<p><strong>walt</strong>: We can’t shoot the Old Mill.</p>
+<p><strong>joe</strong>: You know, they told me there were gonna be some
+jokes. Kid the New Guy…</p>
+<p><strong>bill</strong>: The Mill burnt down.</p>
+<p><strong>bill</strong>: Wonderful scr…</p>
+<p><strong>joe</strong>: Can’t…can’t you build the Old Mill?</p>
+<p><strong>walt</strong>: We’re out of money.</p>
+<p><strong>joe</strong>: You built an Old Mill in New Hampshire.</p>
+<p><strong>bi</strong>: They’re holding it for ransom.</p>
+<p><strong>joe</strong>: Uh – why did we have to leave New
+Hampshire?</p>
+<p><strong>walt</strong>: Halo? Marty? What would they have used instead
+of an old mill? We need it tonight. Marty? Yeah you were saying?</p>
+<p><strong>joe</strong>: I can’t write it.</p>
+<p><strong>joe</strong>: I lost my typewriter.</p>
+<p><strong>walt</strong>: Grace: get Mr. White a typewriter.</p>
+<p><strong>joe</strong>: I can only write on a manual.</p>
+<p><strong>walt</strong>: I know the feeling.</p>
+<p><strong>joe</strong>: Well, you know, you know, that’s a lie,</p>
+<p><strong>walt</strong>: Grace…</p>
+<p><strong>joe</strong>: That’s a real fault, I…</p>
+<p><strong>walt</strong>: Grace. Get Mr. White a manual typewriter. It’s
+not a lie, it’s a gift for fiction. And somebody find me my lucky
+pillow.</p>
+<p><strong>walt</strong>: How big is this horse?</p>
+<p><strong>bill</strong>: Fifteen hands.</p>
+<p><strong>walt</strong>: What is that in fingers…? Just kidding, get me
+this horse.</p>
+<p><strong>bill</strong>: This horse is booked.</p>
+<p><strong>walt</strong>: Tell the guy, get me the horse, I’ll give him
+an associate producer credit.</p>
+<p><strong>first a.d.</strong>: Well, no, the labor with a first child
+can sometimes be prolonged, as much as…</p>
+<p><strong>bill</strong>: Find Walt’s lucky pillow.</p>
+<p><strong>joe</strong>: What’s an associate producer credit?</p>
+<p><strong>bill</strong>: It’s what you give to your secretary instead
+of a raise.</p>
+<p><strong>electrician</strong>: …put a VHS and an air-conditioner and a
+refrigerator in that room, she’s going to blow…</p>
+<p><strong>scott</strong>: This isn’t Evian Water.</p>
+<p><strong>delivery man</strong>: It’s water.</p>
+<p><strong>scott</strong>: I can’t sign for it, I’m…</p>
+<p><strong>electrician</strong>: …she’s going to blow.</p>
+<p><strong>scott</strong>: Well, you re-wire…</p>
+<p><strong>electrician</strong>: I rewire it, I’m going to have to tear
+out half the, look, what do they need with fifty-four telephone
+lines?</p>
+<p><strong>scott</strong>: Freddy, Freddy, I work for these people,
+you…it is to be done, you see that it’s done…</p>
+<p><strong>girl p.a.</strong>: I found lilacs!</p>
+<p><strong>scott</strong>: Wonderful, that’s…</p>
+<p><strong>joe</strong>: Did they find…</p>
+<p><strong>joe</strong>: Did they find my typewriter…</p>
+<p><strong>scott</strong>: I told you!!! All of you get back!!! Get
+back!!! This man is a guest here!</p>
+<p><strong>bob</strong>: Hello, I’m…</p>
+<p><strong>scott</strong>: Oh, sir, I know who you are…</p>
+<p><strong>bob</strong>: Bob Barrenger, I’m with the mo…</p>
+<p><strong>scott</strong>: Sir, sir, we’re so, we’re… Front! Front!! We
+are so, I’ve seen, I know everybody says this, but I’ve seen every every
+one of your… Freddy, take Mr…</p>
+<p><strong>electrician</strong>: …I’m working.</p>
+<p><strong>scott</strong>: Your room is 414 through seventeen. I’m Scott
+Larkin. Anything you need, this is my private…</p>
+<p><strong>bob</strong>: Glad to meet you, Scottie. I’m just here to do
+a job, just like the rest of these…</p>
+<p><strong>first a.d.</strong>: Have you got the new pages on the Old
+Mill? Hey, Bob.</p>
+<p><strong>bob</strong>: Hey, Tommy. Heard your wife’s having a
+baby.</p>
+<p><strong>first a.d.</strong>: That’s right.</p>
+<p><strong>bob</strong>: You know who the father is?</p>
+<p><strong>first a.d.</strong>: They think it’s your first wife.</p>
+<p><strong>bob</strong>: That could be.</p>
+<p><strong>first a.d.</strong>: I’m going to give you a list of
+Mr. Barrenger’s dietary requirements.</p>
+<p><strong>chuckie</strong>: Mr. Barrenger, I…</p>
+<p><strong>scott</strong>: Not today, not today, Chuckie. Mr. Barrenger
+has just…</p>
+<p><strong>bob</strong>: How do you spell that, son? With an I.E.?
+Chuck? What’re your hobbies?</p>
+<p><strong>chuckie</strong>: Baseball.</p>
+<p><strong>bob</strong>: Baseball! That’s the national sport. Gimme
+that!</p>
+<p><strong>bob</strong>: Chuckie…</p>
+<p><strong>first a.d.</strong>: How you doin’ with the Old Mill
+pages?</p>
+<p><strong>joe</strong>: I need my typewriter. Did they find my…?</p>
+<p><strong>carla</strong>: Coffee Corner.</p>
+<p><strong>jack</strong>: Fellow gets a calf, it’s forty below, calf
+gets out, he hears that animal, he’s going to, get up, pull on his
+jeans…</p>
+<p><strong>morris</strong>: He’s going to get that calf.</p>
+<p><strong>spud</strong>: Mmm…</p>
+<p><strong>carla</strong>: Thank you. Vanilla Frappe. Two tuna
+B.L.T.’s…</p>
+<p><strong>jack</strong>: What’s a Tuna B.L.T.?</p>
+<p><strong>carla</strong>: Oh, Dad, didn’t you read in People
+Magazine…</p>
+<p><strong>ann</strong>: Well, I for one, am glad of a little diversion
+and I’m glad they’re here.</p>
+<p><strong>doug</strong>: What I am saying, is, we have to Look Out For
+Our Own… Now: they want to close down Main Street.</p>
+<p><strong>jack</strong>: Y’wanna talk about Main Street, whyn’t cha fix
+the pothole?</p>
+<p><strong>ann</strong>: Doug, it’s, what did you…? Three days, three,
+four days. We’ll have a record of our wonderful life.</p>
+<p><strong>doug</strong>: Annie: you stick to the Amateur Theatricals.
+This isn’t quite the same thing, you see? This is Big Business, in
+which, our Life s’no less a commodity than…than our…</p>
+<p><strong>ann</strong>: Water or mineral deposits.</p>
+<p><strong>doug</strong>: Waal, that’s what I’m saying.</p>
+<p><strong>jack</strong>: Communist Country, he hears that Calf it’s two
+a.m., four feet of snow, what does he say? “That’s the State’s Calf out
+there…” He rolls over. “Wake me at Ten.”</p>
+<p><strong>carla</strong>: I think that they’re nice.</p>
+<p><strong>ann</strong>: I’m sure they are.</p>
+<p><strong>jack</strong>: That’s the difference, Communism and you
+know…</p>
+<p><strong>spud</strong>: Communism’s over.</p>
+<p><strong>jack</strong>: That’s what they said about Warner Brothers,
+1985, but if you look at their price-per-share…</p>
+<p><strong>carla</strong>: Dad, I’ve got to go to Terry’s house to study
+tonight…</p>
+<p><strong>jack</strong>: I want you home by Nine.</p>
+<p><strong>doug</strong>: I want to tell you something, Ann: you stay
+soft all your life, people despise you; it awakens Avarice in them, they
+take advantage of you, and that’s Human Nature.</p>
+<p><strong>doug</strong>: We on for tomorrow night?</p>
+<p><strong>ann</strong>: After Drama Group.</p>
+<p><strong>doug</strong>: Drama Group? Practice, I’m yours.</p>
+<p><strong>doug</strong>: Go you Huskies.</p>
+<p><strong>doug</strong>: And I might have something important to tell
+you…</p>
+<p><strong>ann</strong>: What is it, a surprise?</p>
+<p><strong>doug</strong>: That’s right.</p>
+<p><strong>morris</strong>: She coulda done better than him.</p>
+<p><strong>spud</strong>: It takes all kinds.</p>
+<p><strong>morris</strong>: Zat what it takes? I always wondered what it
+took…</p>
+<p><strong>joe</strong>: I, excuse me, the sign says you’ll be back at
+two. It’s quarter to three…</p>
+<p><strong>joe</strong>: You’re doing a play…</p>
+<p><strong>ann</strong>: Local Drama Group. Northern Books. No, it
+hasn’t come in yet. As soon as it does. Yup, you too, Marge.</p>
+<p><strong>joe</strong>: …small town. I suppose. You have to make your
+own fun.</p>
+<p><strong>ann</strong>: Everybody makes their own fun. F’you don’t make
+it yourself, it ain’t fun, it’s entertainment.</p>
+<p><strong>ann</strong>: Northern Books. What can I do for you?</p>
+<p><strong>joe</strong>: I need a</p>
+<p><strong>ann</strong>: We got ’em. North…No, Henry James was the
+novelist, Frank James was the criminal. Yep, you came to the right
+place. Jessie James was the Brother. Of the novelist. That’s right.
+That’s alright, Susie. See you tomorrow, Susie.</p>
+<p><strong>joe</strong>: I want to rent this one.</p>
+<p><strong>ann</strong>: Why don’t you buy it, only forty bucks.</p>
+<p><strong>joe</strong>: I have one, but they lost it.</p>
+<p><strong>ann</strong>: Who?</p>
+<p><strong>joe</strong>: The people in New Hampshire.</p>
+<p><strong>ann</strong>: That’s why they have state borders… whyn’t you
+get a replacement?</p>
+<p><strong>joe</strong>: Well, it had sentimental value.</p>
+<p><strong>ann</strong>: You buy the typewriter, I’ll get it all spruced
+up, good as new. Better than new. It has some history.</p>
+<p><strong>joe</strong>: Other one has history, too. I wrote my play on
+it.</p>
+<p><strong>ann</strong>: You wrote a play on it? What play is that?</p>
+<p><strong>joe</strong>: You haven’t heard of it.</p>
+<p><strong>ann</strong>: What’s it called?</p>
+<p><strong>joe</strong>: “Anguish.”</p>
+<p><strong>ann</strong>: “Anguish” by Joseph Turner White…?</p>
+<p><strong>ann</strong>: You’re Joseph Turner White?</p>
+<p><strong>maude</strong>: Afternoon, Ann.</p>
+<p><strong>ann</strong>: Maude, this man wrote this play!</p>
+<p><strong>maude</strong>: That a fact. Now, is it a good play?</p>
+<p><strong>ann</strong>: Yes, Maude, it is. It is a very good play.</p>
+<p><strong>maude</strong>: Well, then, what’s he doing here?</p>
+<p><strong>ann</strong>: What’re you doing here?</p>
+<p><strong>joe</strong>: Writing the movie.</p>
+<p><strong>maude</strong>: You’re writing a movie…</p>
+<p><strong>joe</strong>: Yes.</p>
+<p><strong>maude</strong>: What’s it about?</p>
+<p><strong>joe</strong>: It’s about the quest for purity.</p>
+<p><strong>bob</strong>: …because he wouldn’t say that: Look: “Sister,
+I’ve just come from a fire. There’s some things I want to think out…”
+now, come one, come on… “Leave me alone.” a gesture…? Alright?</p>
+<p><strong>walt</strong>: What else?</p>
+<p><strong>bob</strong>: Page…three. Now: “It’s a nice evening.” I’m not
+gonna say that…“It’s a nice…”</p>
+<p><strong>walt</strong>: Come in.</p>
+<p><strong>walt</strong>: Hey, Joe…Good. You know B…</p>
+<p><strong>joe</strong>: I grew up on your mov…</p>
+<p><strong>bob</strong>: Do you mind if we don’t go through the usual
+bullshit about how I loved it?</p>
+<p><strong>bob</strong>: I mean, okay, fine, but it’s a motion
+Picture.</p>
+<p><strong>walt</strong>: Thanks, honey, but next time, bring two, save
+yourself a trip.</p>
+<p><strong>bob</strong>: The people came to see a motion Picture. Hold
+on…</p>
+<p><strong>walt</strong>: He’s saying, what are you saying, Bobby?</p>
+<p><strong>bob</strong>: Tell it with…</p>
+<p><strong>walt</strong>: Tell it with pictures.</p>
+<p><strong>bob</strong>: Tell it with pictures. What I’m saying…</p>
+<p><strong>walt</strong>: We’ve got four days to…</p>
+<p><strong>bob</strong>: You look at: girl comes in the room, an apron,
+a brown bag, what is she…? She’s a…?</p>
+<p><strong>walt</strong>: She’s a…</p>
+<p><strong>bob</strong>: She’s a waitress.</p>
+<p><strong>walt</strong>: What…</p>
+<p><strong>bob</strong>: What I…</p>
+<p><strong>walt</strong>: Hold on. What Bob is saying, you don’t
+need…</p>
+<p><strong>bob</strong>: You don’t need, “Hi, I’ve just come from the
+restaurant.”</p>
+<p><strong>walt</strong>: You can go…</p>
+<p><strong>bob</strong>: Alright: Let’s Page five, the fucking horse
+dies. You know, she could be in the movie, she could, she’s got a good
+face, she could be the Doctor’s…uh, why does it have to be his, uh,
+wife…? It could be his…</p>
+<p><strong>walt</strong>: Bob, Bob, stick to the business, will you?</p>
+<p><strong>bob</strong>: No, you’re absolutely…</p>
+<p><strong>walt</strong>: And you go start with that stuff in this
+town…</p>
+<p><strong>bob</strong>: Everybody needs a hobby. Okay, look Page…</p>
+<p><strong>walt</strong>: Claire, when did you…</p>
+<p><strong>claire</strong>: I just…</p>
+<p><strong>walt</strong>: Claire, Bob Bar…</p>
+<p><strong>bob</strong>: I saw Desert Sun, I wanna tell you…</p>
+<p><strong>claire</strong>: No, I was, I was, I was just learning on,
+it’s a…</p>
+<p><strong>bob</strong>: How’d you like working with Richard Hill?</p>
+<p><strong>claire</strong>: I loved it, he…</p>
+<p><strong>bob</strong>: Isn’t he…</p>
+<p><strong>claire</strong>: It’s…</p>
+<p><strong>walt</strong>: We’re just talking about the…</p>
+<p><strong>claire</strong>: Don’t let me dis…I’ll just…</p>
+<p><strong>walt</strong>: No, no…please…</p>
+<p><strong>bob</strong>: I’m looking at Page Five: “It’s…”</p>
+<p><strong>joe</strong>: “It’s a nice evening…”</p>
+<p><strong>walt</strong>: This is Joe White.</p>
+<p><strong>claire</strong>: How can I thank you? How can I repay you for
+this part? It’s a… what a, thank you for this part. The first scene at
+the Old Mill…</p>
+<p><strong>walt</strong>: Joe’s been having some thoughts about the Old
+Mill Scene, Claire.</p>
+<p><strong>claire</strong>: What, what’s there to think about? The
+scene’s perfect…I, I get to say…</p>
+<p><strong>walt</strong>: Yes, but, Joe, Joe’s been, well, he’s just
+been having a few, uh, “thoughts,” about…</p>
+<p><strong>claire</strong>: How many times in your life do you get a
+speech like that?</p>
+<p><strong>walt</strong>: Yeah.</p>
+<p><strong>claire</strong>: This scene is why I’m doing the movie. “Look
+at the mill, Frank – look at the way it goes around…half of the time the
+darned wheel’s under water, but…”</p>
+<p><strong>walt</strong>: Yes, yes, but…</p>
+<p><strong>claire</strong>: “…but still it rises up. It rises up, Frank,
+high as it can go.”</p>
+<p><strong>walt</strong>: Yeah. Joe? Would you, uh, tell Claire the, uh,
+the “thoughts” you’ve been…</p>
+<p><strong>ann</strong>: All ready to go?</p>
+<p><strong>joe</strong>: So young, so unlined, so full of promise. So
+innocent.</p>
+<p><strong>ann</strong>: I beg your pardon?</p>
+<p><strong>joe</strong>: I quit.</p>
+<p><strong>ann</strong>: You quit.</p>
+<p><strong>joe</strong>: I quit the movie.</p>
+<p><strong>ann</strong>: Why did you quit?</p>
+<p><strong>joe</strong>: Actually, I’m not sure if I quit. I think that
+I got fired. I’m such a liar. I never could tell the truth.</p>
+<p><strong>ann</strong>: Don’t be so hard on yourself.</p>
+<p><strong>joe</strong>: I just got kicked off my first movie.</p>
+<p><strong>ann</strong>: Well. Everybody has reversals. If you were
+never down how would you know when you were up?</p>
+<p><strong>joe</strong>: That’s good. That’s really good. You have a
+gift for words.</p>
+<p><strong>ann</strong>: It’s in your play.</p>
+<p><strong>joe</strong>: You like my play.</p>
+<p><strong>ann</strong>: Yes.</p>
+<p><strong>joe</strong>: Why?</p>
+<p><strong>ann</strong>: It’s about life.</p>
+<p><strong>joe</strong>: Could you tell me when’s the next train?</p>
+<p><strong>ann</strong>: N’about ten minutes. What was your movie
+about?</p>
+<p><strong>ann</strong>: No, of course, you don’t want to talk about
+it.</p>
+<p><strong>joe</strong>: It’s about a man who gets a second chance.</p>
+<p><strong>cal</strong>: Evening, Annie.</p>
+<p><strong>ann</strong>: Evening, Cal. Would you tell me about it?</p>
+<p><strong>ann</strong>: No, of course, you want to get out of town.</p>
+<p><strong>joe</strong>: It’s…</p>
+<p><strong>ann</strong>: It’s okay…</p>
+<p><strong>owner</strong>: Evening, Annie. See you at rehearsal.</p>
+<p><strong>ann</strong>: You know your line?</p>
+<p><strong>owner</strong>: “Rise, one need not bend the knee before the
+throne of justice.”</p>
+<p><strong>ann</strong>: Go you Huskies.</p>
+<p><strong>joe</strong>: They leave it out all night?</p>
+<p><strong>ann</strong>: Not worth stealing. Only thing in town worth
+something. Stained glass window.</p>
+<p><strong>joe</strong>: Ever wonder why the dalmation’s the symbol of
+the firehouse?</p>
+<p><strong>ann</strong>: First organized fire department was on the
+border of Dalmatia and Sardinia in the year 642.</p>
+<p><strong>joe</strong>: But why the dalmation?</p>
+<p><strong>ann</strong>: It was either that, or a sardine.</p>
+<p><strong>ann</strong>: You get what you pay for.</p>
+<p><strong>joe</strong>: That’s true. You grow up here?</p>
+<p><strong>ann</strong>: Central High, ‘n’ matinees, the Bijou
+Theatre.</p>
+<p><strong>joe</strong>: Nice town.</p>
+<p><strong>ann</strong>: You want to talk about it?</p>
+<p><strong>joe</strong>: …that…that he prayed for a second chance.
+But…do you see?</p>
+<p><strong>ann</strong>: Yes.</p>
+<p><strong>joe</strong>: That, he says, there are no second chances…that
+he’s been presented what he prayed for…and: he’s ruined it.</p>
+<p><strong>ann</strong>: Yes…</p>
+<p><strong>joe</strong>: But, but but but…</p>
+<p><strong>ann</strong>: No, no, I see…</p>
+<p><strong>joe</strong>: That: in an act of…</p>
+<p><strong>ann</strong>: Yes…</p>
+<p><strong>joe</strong>: Of mercy…off…</p>
+<p><strong>ann</strong>: I understand…</p>
+<p><strong>joe</strong>: …that…he sees that…</p>
+<p><strong>ann</strong>: As the Old Mill goes around…</p>
+<p><strong>joe</strong>: Of course, of course that’s what I’m saying. As
+the Old Mill goes around, he sees…</p>
+<p><strong>ann</strong>: Of course.</p>
+<p><strong>joe</strong>: …that it has been vouchsafed to him.</p>
+<p><strong>ann</strong>: That’s that’s that’s that’s beautiful.</p>
+<p><strong>joe</strong>: And you’re the only one who’ll ever hear that
+speech. Just you.</p>
+<p><strong>ann</strong>: Well. It was a pleasure meeting you.</p>
+<p><strong>joe</strong>: And likewise.</p>
+<p><strong>ann</strong>: Goodbye.</p>
+<p><strong>joe</strong>: Goodbye.</p>
+<p><strong>ann</strong>: Next train in’nt for two hours.</p>
+<p><strong>ann</strong>: So that the Old Mill, the Old Mill
+represents…the wheel of fate is that too…</p>
+<p><strong>joe</strong>: No, no. Of course, that’s exactly what it
+represents.</p>
+<p><strong>ann</strong>: That whole…</p>
+<p><strong>joe</strong>: The, the, the, the sanctity of everyday
+things…</p>
+<p><strong>ann</strong>: Everyday things…yes.</p>
+<p><strong>joe</strong>: For example, he’s just come back from a fire
+and he…um… That’s a fine house. You look at that, and you know, there’s
+nice people that live there.</p>
+<p><strong>ann</strong>: I live there.</p>
+<p><strong>joe</strong>: Really. With the porch swing and
+everything…</p>
+<p><strong>ann</strong>: Surest thing you know.</p>
+<p><strong>joe</strong>: I don’t mean to impose, but…do you think we
+might…</p>
+<p><strong>ann</strong>: That’s what the swing is there fore…</p>
+<p><strong>joe</strong>: …that’s what the swing is there fore…that its
+purpose, isn’t it…</p>
+<p><strong>ann</strong>: …I always thought so…</p>
+<p><strong>joe</strong>: …such a pleasant sound.</p>
+<p><strong>ann</strong>: Mmm.</p>
+<p><strong>joe</strong>: Cause, cause, it’s…it’s the simple things
+that…</p>
+<p><strong>ann</strong>: Yes…</p>
+<p><strong>joe</strong>: …that.</p>
+<p><strong>doug</strong>: Waal, there you are, and Have I Got Some News
+for you…</p>
+<p><strong>ann</strong>: Doug, this is Joe White, and this is, this,
+this is my fiance, Doug Mac…</p>
+<p><strong>joe</strong>: Sa pleasure.</p>
+<p><strong>doug</strong>: Guess who is THIS CLOSE to a nomination to
+State Senate…which is this close to one stop from Congress!</p>
+<p><strong>ann</strong>: …who…?</p>
+<p><strong>joe</strong>: Well, I guess I’ll…get down to the station. It
+was lovely meeting…</p>
+<p><strong>ann</strong>: Mister White is…</p>
+<p><strong>doug</strong>: Nice meeting you…they were, let me tell you,
+they were a bit coy at first, I told them: Look: the people are tired,
+they’re going to vote their pocketbook, yes, but…</p>
+<p><strong>joe</strong>: What happened in 1973?</p>
+<p><strong>walt</strong>: Don’t run off. Don’t run off, we need you. You
+know why? You’re why we’re here. Your script is why we’re here… Gimme
+that. Big deal. We fight a little bit? You show me a family that
+doesn’t. But we got something special. What is it? We’re here to make a
+movie. Can’t use the Old Mill. Well, that happens. What you got to do,
+you find the essence - what was it, that brought us here. It wasn’t a
+building, Joe, it was an idea. It was an essence - what is the essence
+of your story? Joe?</p>
+<p><strong>joe</strong>: It’s about a man who gets a second chance.</p>
+<p><strong>walt</strong>: Then, you write that. And then this is our
+second chance. That’s why we’re here.</p>
+<p><strong>joe</strong>: I want to make a good film.</p>
+<p><strong>walt</strong>: I know you do.</p>
+<p><strong>joe</strong>: And maybe it will be a better movie without the
+old mill, I…</p>
+<p><strong>walt</strong>: Hey, it’s with the G-ds. We don’t have the
+money, we have to write it out. The best or not. And that’s a lesson.
+You get your typewriter yet?</p>
+<p><strong>joe</strong>: Um, no.</p>
+<p><strong>walt</strong>: Grace, get on the other phone. Call that girl:
+well, call her, and have whatsername send up some nosh…what do you like
+to drink…?</p>
+<p><strong>joe</strong>: I don’t drink.</p>
+<p><strong>walt</strong>: Did my matzohs come? Get some for everybody.
+Thank you. Lemme tell you about my first movie…</p>
+<p><strong>doug</strong>: What, what what are you doing here?</p>
+<p><strong>ann</strong>: Yes, that’s right.</p>
+<p><strong>doug</strong>: Look at this. Do you know what they’re
+offering? Look at this. They treat us like we’re their backyard. Do you
+know what they’re offering for three days to close down Main Street?</p>
+<p><strong>ann</strong>: What are they offering?</p>
+<p><strong>doug</strong>: Ten thousand dollars.</p>
+<p><strong>ann</strong>: That’s so beautiful…</p>
+<p><strong>doug</strong>: I beg your pardon?</p>
+<p><strong>ann</strong>: “The mill grinds the grain, but the grain is
+not destroyed. Although it is altered…”</p>
+<p><strong>doug</strong>: Sure, but… ten thousand dollars. Do you know
+what they… this movie is budgeted at fifty million dol…they’re coming up
+here, offer us a meal…</p>
+<p><strong>sherry</strong>: The chairs go, the Lazyboy goes…</p>
+<p><strong>mayor</strong>: …not the Lazyboy…</p>
+<p><strong>cal</strong>: Hi, Sherry…</p>
+<p><strong>sherry</strong>: …put it in the living room. And we have
+thirteen at the table.</p>
+<p><strong>mayor</strong>: …we don’t have thirteen at table…</p>
+<p><strong>sherry</strong>: Bob Barrenger, Claire Wellesley, the
+director…</p>
+<p><strong>mayor</strong>: Waal, then, invite someone else, then…</p>
+<p><strong>sherry</strong>: I don’t want to invite someone else because
+this is the most exclusive…</p>
+<p><strong>mayor</strong>: Waal, then, you know, you do whatever would
+make you happy. Sher. This is your party, and whatever…</p>
+<p><strong>cal</strong>: Hi Doug.</p>
+<p><strong>doug</strong>: Cal. I want a city council meeting.</p>
+<p><strong>mayor</strong>: …little woman has gone crazy about our dinner
+party… City Council? What’s the trouble?</p>
+<p><strong>doug</strong>: Main Street.</p>
+<p><strong>mayor</strong>: Doug, the traffic light…</p>
+<p><strong>doug</strong>: Fuck the traffic light. I’m talking about
+three percent of the adjusted gross of a Major Motion Picture.</p>
+<p><strong>joe</strong>: Hi.</p>
+<p><strong>ann</strong>: What are you doing? I love your script.</p>
+<p><strong>joe</strong>: They decided, I decided to, to…you love
+what?</p>
+<p><strong>ann</strong>: You’re still here.</p>
+<p><strong>joe</strong>: I…I decided to give it another ch…</p>
+<p><strong>ann</strong>: I love your script.</p>
+<p><strong>joe</strong>: What?</p>
+<p><strong>postman</strong>: Mornin’, Annie…</p>
+<p><strong>ann</strong>: See you at rehearsal tonight?</p>
+<p><strong>postman</strong>: “In the name of justice, sir, I bid you
+pause; for she is our Queen…”</p>
+<p><strong>joe</strong>: In fact, in fact, in fact, I’m not sure if I’m
+giving them a second chance, or they’re giving it to me. That’s the
+truth. The truth’s best, don’t you think?</p>
+<p><strong>ann</strong>: You’d know better’n me.</p>
+<p><strong>joe</strong>: How can you say that?</p>
+<p><strong>ann</strong>: It’s in your script…it’s about getting a second
+chance. Innit? “You can go back…”</p>
+<p><strong>joe</strong>: I can?</p>
+<p><strong>ann</strong>: You bet your life. “The mill wheel goes
+around…some times it’s even under water – then it rises up, as high as
+it can go…”</p>
+<p><strong>joe</strong>: But how do I…how do I do a film called “The Old
+Mill” when I don’t have an old mill?</p>
+<p><strong>ann</strong>: Well, first, you got to change the title.</p>
+<p><strong>walt</strong>: No, he doesn’t want to work out with Waterford
+Huskies…Because he’s Bob Barrenger…Call up his girl in Aspen, have ’em
+ship his weight…Yeah, well, fine, he’s not gonna do the Pond scene
+unless he can work out. Call up his girl in Aspen, and have her ship the
+weights out…</p>
+<p><strong>walt</strong>: Who designed these costumes? Who designed
+these costumes? It looks like Edith Head puked and that puke designed
+these costumes. Get Madge.</p>
+<p><strong>secretary</strong>: Your wife is on the phone.</p>
+<p><strong>walt</strong>: I have no wife.</p>
+<p><strong>walt</strong>: We need a new name for the movie. Where’s the
+writer?</p>
+<p><strong>uberto</strong>: Wally, I got to takes out the window from
+the dog. I can’t shoot through…</p>
+<p><strong>costume designer</strong>: …Claire’s got a problem.</p>
+<p><strong>uberto</strong>: Wally, if I hafes a moment of your time,
+look at these storyboards. THIS SHOOT, I can’t shoot this shot, you
+want.</p>
+<p><strong>walt</strong>: Why?</p>
+<p><strong>uberto</strong>: Because they gots a window with a dogs in
+it. You want me to “push in.” Or can I lose the shot.</p>
+<p><strong>walt</strong>: No you can’t lose the shot. The meaning of the
+film is in that shot.</p>
+<p><strong>uberto</strong>: But, Wally, the window of the firehut…</p>
+<p><strong>walt</strong>: I don’t care. Fix it.</p>
+<p><strong>walt</strong>: You show Claire these sketches?</p>
+<p><strong>costume designer</strong>: Yes.</p>
+<p><strong>walt</strong>: Did she throw up?</p>
+<p><strong>costume designer</strong>: That isn’t very nice.</p>
+<p><strong>walt</strong>: Oh, really, then why don’t you sue me in the
+World Court. Did she like the costumes?</p>
+<p><strong>costume designer</strong>: I can’t tell.</p>
+<p><strong>walt</strong>: Why not?</p>
+<p><strong>costume designer</strong>: She won’t stop crying…</p>
+<p><strong>walt</strong>: Find out when Marty Rossen’s arriving, get him
+a bunch of Lilacs to send to the broad.</p>
+<p><strong>first a.d.</strong>: Towns out of Lilacs.</p>
+<p><strong>walt</strong>: You go in her room, take the Lilacs from the
+water, dry them. Go buy some cellophane, wrap ’em up, and get a card
+from Marty. What’s her problem?</p>
+<p><strong>costume designer</strong>: She doesn’t want to bare her
+breasts.</p>
+<p><strong>walt</strong>: She doesn’t want to bare her breasts…what, in
+the “nude scene?” What are we paying her three mil for?</p>
+<p><strong>costume designer</strong>: She’s got “religion.”</p>
+<p><strong>walt</strong>: Her religion bars her from fulfilling her
+contr…</p>
+<p><strong>walt</strong>: Claire?…Claire? Just figure out how to take
+the shot. Claire…Claire? It’s Wally. May I come in?</p>
+<p><strong>walt</strong>: What is it, Pal…?</p>
+<p><strong>walt</strong>: What…?</p>
+<p><strong>claire</strong>: I can’t do it, Walt.</p>
+<p><strong>walt</strong>: You can’t do what?</p>
+<p><strong>claire</strong>: It isn’t right. I can’t…I…I know I si…I,
+they, I don’t know if they told me it was in the con…</p>
+<p><strong>walt</strong>: Forget the contract. Claire. What is it?</p>
+<p><strong>claire</strong>: I don’t want to take my shirt off in that
+con…what are these things that they’re asking of me…? Wha…wha… wha… I
+try to be good. The only thing I care about is…</p>
+<p><strong>walt</strong>: I know that…</p>
+<p><strong>claire</strong>: Is…is the MOVIE!</p>
+<p><strong>walt</strong>: I know that, Claire. I, we all know…</p>
+<p><strong>claire</strong>: Everybody, they, they, they treat me like
+a…</p>
+<p><strong>walt</strong>: …no, they don’t.</p>
+<p><strong>claire</strong>: …they treat me like a child. I, I…to bare my
+body.</p>
+<p><strong>walt</strong>: Now, look. Claire: Listen to me. I want to
+tell you a story.</p>
+<p><strong>walt</strong>: Fuck flowers, we aren’t talking about flowers,
+we’re talking about a human being.</p>
+<p><strong>walt</strong>: Who are these from?</p>
+<p><strong>prod. asst.</strong>: Marty.</p>
+<p><strong>walt</strong>: Well that’s very thoughtful of him. Elanora
+Duse…</p>
+<p><strong>claire</strong>: …I can’t do it, Wally…</p>
+<p><strong>walt</strong>: Listen to me. Elanora Duse was playing Hamlet
+in London in 1905, and Royalty could not get a ticket. She said, “I’m
+not doing the seven shows a week I signed for.” She said, “I cannot bare
+my soul seven times a week. I am an artist. I’ll do four shows a week.”
+The greatest actress of her time. You know what her Producer said?</p>
+<p><strong>claire</strong>: What?</p>
+<p><strong>walt</strong>: Nothing. He held her and he wept. Because
+he…</p>
+<p><strong>walt</strong>: Because he understood. That was her life’s
+blood on the stage.</p>
+<p><strong>walt</strong>: …I know…I know…</p>
+<p><strong>claire</strong>: …and, and, and did she? And she did the
+seven shows?</p>
+<p><strong>walt</strong>: No, she didn’t Claire. But I think you should
+do the scene.</p>
+<p><strong>claire</strong>: Wally…</p>
+<p><strong>walt</strong>: I know, I know.</p>
+<p><strong>walt</strong>: I know, it’s the hardest thing in the world.
+And it seems everybody wants…</p>
+<p><strong>claire</strong>: Yes…</p>
+<p><strong>walt</strong>: …wants a piece…</p>
+<p><strong>claire</strong>: Yes…</p>
+<p><strong>walt</strong>: And you know what?</p>
+<p><strong>claire</strong>: We, we have to give it.</p>
+<p><strong>walt</strong>: …and my heart goes out to you, because I
+know…</p>
+<p><strong>walt</strong>: That, that’s your life’s blood on the st…</p>
+<p><strong>first a.d.</strong>: I don’t know what she’s bitching about,
+she’s flashed her tits in the last five movies, she’d bare her breasts
+to do voice over.</p>
+<p><strong>walt</strong>: Get Mitch Cohn on the phone in New York, tell
+him she’s breaking her contract and we’re very up…</p>
+<p><strong>walt</strong>: We’re very upset with her. Get someone to
+double for her, her tits, the tits scene. Call L.A. I want to see some
+pictures of the women’s tits. Of their tits.</p>
+<p><strong>first a.d.</strong>: I’m very sorry I…</p>
+<p><strong>walt</strong>: You’re very sorry, you passive aggressive,
+son-of-a-bitch! Can we replace him?</p>
+<p><strong>bill</strong>: We start shooting in three days.</p>
+<p><strong>costume designer</strong>: You want to see the fireman’s
+costumes? Cause I found this Moleskin for the collar, it’s not black,
+but it looks black… it’s not brown, but…</p>
+<p><strong>secretary</strong>: Marty Rossen’s touched down.</p>
+<p><strong>joe</strong>: What I need to say…</p>
+<p><strong>ann</strong>: Yes…</p>
+<p><strong>joe</strong>: About conflict…</p>
+<p><strong>ann</strong>: That’s why you didn’t want to take the Mill
+out…you’ve…</p>
+<p><strong>joe</strong>: …the, the, the symbol of the fire…</p>
+<p><strong>ann</strong>: The Firehouse…</p>
+<p><strong>ann</strong>: But but but but but it’s better without…</p>
+<p><strong>joe</strong>: How…?</p>
+<p><strong>ann</strong>: Wait wait wait wait wait he get’s a second
+chance, do you see? And you get a second chance!</p>
+<p><strong>joe</strong>: No, I don’t…</p>
+<p><strong>ann</strong>: He doesn’t go back to the mill, he gets a
+second chance to go back to the firehouse…</p>
+<p><strong>ann</strong>: You don’t need the Mill. This is what you see:
+this is what you are. This is what the script is saying… Hi, Emma, see
+you tonight?</p>
+<p><strong>ann</strong>: This is, look: Go you Huskies. …what I see you
+saying, is: you have the two elements, Fire and Water. The Firehouse,
+and the Old Mill…do you know, you could…</p>
+<p><strong>joe</strong>: What are you doing tonight?</p>
+<p><strong>ann</strong>: Me?</p>
+<p><strong>joe</strong>: Yes.</p>
+<p><strong>ann</strong>: Tonight, tonight, I…I have play practice…</p>
+<p><strong>joe</strong>: …oh…oh. Well. That’s very important.</p>
+<p><strong>walt</strong>: Marteleh, vos macht a yid…?</p>
+<p><strong>marty</strong>: You cool the broad out?</p>
+<p><strong>walt</strong>: I left that for you.</p>
+<p><strong>marty</strong>: That’s thoughtful. Ziz good, you try
+this?</p>
+<p><strong>walt</strong>: Oh yeah, I’m really gonna eat
+carbohydrates.</p>
+<p><strong>marty</strong>: What’d you do, build this…?</p>
+<p><strong>walt</strong>: How was your flight?</p>
+<p><strong>marty</strong>: We’re flying over pigs, we’re flying over
+sheep…</p>
+<p><strong>walt</strong>: Did you bring Bob’s weights</p>
+<p><strong>marty</strong>: They’re coming Fed Ex.</p>
+<p><strong>walt</strong>: What’s in all the bags?</p>
+<p><strong>marty</strong>: My undies, cause, you can’t get this picture
+off on time I’m gonna wet myself.</p>
+<p><strong>walt</strong>: I’m gonna bring it off.</p>
+<p><strong>marty</strong>: 55 days and I take home the camera. I got an
+idea for a product placement…</p>
+<p><strong>doc wilson</strong>: Hiya Sally…</p>
+<p><strong>girl on a scooter</strong>: Hiya Doc…</p>
+<p><strong>doc wilson</strong>: How’s the arm?</p>
+<p><strong>girl on a scooter</strong>: Still itchin’.</p>
+<p><strong>doc wilson</strong>: Good! A sign it’s getting well.</p>
+<p><strong>marty</strong>: Stop…</p>
+<p><strong>walt</strong>: That’s what I said.</p>
+<p><strong>marty</strong>: How are you getting on with these fine
+people?</p>
+<p><strong>walt</strong>: Like dykes and dogs.</p>
+<p><strong>bob</strong>: Yeah. Come in.</p>
+<p><strong>bob</strong>: I’m just…</p>
+<p><strong>carla</strong>: The prices are going up.</p>
+<p><strong>bob</strong>: But, that’s the way of the world, huh?
+Everybody’s gotta eat. Way of the world.</p>
+<p><strong>bob</strong>: Well, I’m pretty impolite. Would you like
+some?</p>
+<p><strong>carla</strong>: I don’t eat vegetables.</p>
+<p><strong>bob</strong>: Well, I can offer you something to drink?</p>
+<p><strong>carla</strong>: Sure, what have you got?</p>
+<p><strong>bob</strong>: What do you drink?</p>
+<p><strong>carla</strong>: Bourbon and milk.</p>
+<p><strong>bob</strong>: How old are you?</p>
+<p><strong>bob</strong>: Then I hope you wouldn’t tell anyone I gave you
+this.</p>
+<p><strong>carla</strong>: I wouldn’t tell anyone anything that happened
+between me and somebody who was my friend.</p>
+<p><strong>bob</strong>: Nice town that you’ve got here.</p>
+<p><strong>carla</strong>: You want to see it better, we could go out on
+the roof.</p>
+<p><strong>bob</strong>: …wouldn’t that be dangerous?</p>
+<p><strong>carla</strong>: …not if you’ve got something to hold on
+to.</p>
+<p><strong>uberto</strong>: Because if you cannot tells me what is it,
+how I, how does I take a pictures of it? Wally wants me, push in through
+the weendow…</p>
+<p><strong>joe</strong>: Yeah, no, can I…if you’d excuse me, I’ve just
+got to…</p>
+<p><strong>ann</strong>: Hello.</p>
+<p><strong>joe</strong>: I thought you had Play Practice.</p>
+<p><strong>ann</strong>: Don’t look good for “Trial of the Heart.”</p>
+<p><strong>joe</strong>: Well, then, it don’t look good for the
+Huskies…</p>
+<p><strong>ann</strong>: That’s for sure.</p>
+<p><strong>joe</strong>: What happened?</p>
+<p><strong>ann</strong>: Cast stood me up.</p>
+<p><strong>joe</strong>: Uh huh.</p>
+<p><strong>ann</strong>: They’re all preparing for the auditions - your
+movie.</p>
+<p><strong>ann</strong>: “Rise, one need not bend the knee before the
+throne of justice.”</p>
+<p><strong>joe</strong>: What?</p>
+<p><strong>ann</strong>: What are you doing down there?</p>
+<p><strong>joe</strong>: My glasses fell apart. I lost the…</p>
+<p><strong>ann</strong>: …lost the screw…</p>
+<p><strong>joe</strong>: You got a paperclip?</p>
+<p><strong>little kid</strong>: Evening, Annie.</p>
+<p><strong>ann</strong>: Evenin’, sweetheart.</p>
+<p><strong>little kid</strong>: Go you Huskies.</p>
+<p><strong>ann</strong>: You said it.</p>
+<p><strong>joe</strong>: You like kids?</p>
+<p><strong>ann</strong>: Never saw the point of ’em.</p>
+<p><strong>joe</strong>: Me, too. You have a paperclip?</p>
+<p><strong>ann</strong>: Paperclip?</p>
+<p><strong>joe</strong>: Fix my glasses.</p>
+<p><strong>ann</strong>: Better idea.</p>
+<p><strong>joe</strong>: Gonna be good as new.</p>
+<p><strong>ann</strong>: Better’n new, cause it’s got a story. Want to
+do the other part?</p>
+<p><strong>joe</strong>: Ow.</p>
+<p><strong>ann</strong>: What?</p>
+<p><strong>ann</strong>: Y’know what you got there? You got a fishhook
+in your finger.</p>
+<p><strong>first a.d.</strong>: I’m looking for the writer.</p>
+<p><strong>doug</strong>: What the hell are you so down about?</p>
+<p><strong>first a.d.</strong>: My wife’s going to have a baby.</p>
+<p><strong>doug</strong>: How about that.</p>
+<p><strong>first a.d.</strong>: Mmmm. You have children?</p>
+<p><strong>doug</strong>: No. No, but we’re planning to.</p>
+<p><strong>first a.d.</strong>: Could you tell me where a fellow goes to
+get a drink in this town?</p>
+<p><strong>doug</strong>: Yes.</p>
+<p><strong>marty</strong>: I want to tell you something, Wally, he’s a
+pussycat. My thing is to see everybody does what they said they would
+and I have to do that. Now: what is this you want Eight hundred Thousand
+Dollars to do what you’re being paid to, you already signed you’d do…?
+What is that?</p>
+<p><strong>claire</strong>: I think I should talk to my agent, Marty,
+you and I should, we should really not discuss…</p>
+<p><strong>marty</strong>: Who is her agent?</p>
+<p><strong>bill</strong>: Mitch Cohn…</p>
+<p><strong>claire</strong>: He’s…</p>
+<p><strong>marty</strong>: Get him on the phone.</p>
+<p><strong>claire</strong>: He’s on the Island, he’ll be back on…</p>
+<p><strong>marty</strong>: Get him on the…</p>
+<p><strong>marty</strong>: I want you to hear this.</p>
+<p><strong>claire</strong>: I really think that business…matters should
+be discussed between you t…</p>
+<p><strong>marty</strong>: Well, I’m going to discuss ’em between you,
+babe, cause it’s your idea, and you think you’re going to sign to do a,
+then hold us up in the wilds sweetheart, you are in error…</p>
+<p><strong>bill</strong>: He’s on the ph…</p>
+<p><strong>marty</strong>: Mitch, th’Marty Rossen, I’m here in…</p>
+<p><strong>bill</strong>: Wat…</p>
+<p><strong>marty</strong>: I’m somewhere in the, I’m on location eh:
+This…well I’m going to solve it here, or this Bimbo you sent me’s going
+to be doing a fuckin’ donkey act in Akron, I’m talking about Restraint
+of Trade, Breach of…IT’S VERY SIMPLE…!</p>
+<p><strong>joe</strong>: Hi!</p>
+<p><strong>marty</strong>: Her tits! Her tits! How, that she signed IN
+HER CONTRACT, we hired her ’cause of ten years at the Actors Studio? The
+way she played Medea? Her last two pictures laid there on the screen
+like my first wife…</p>
+<p><strong>claire</strong>: You have no right to…</p>
+<p><strong>marty</strong>: Cool it babe, you started this…</p>
+<p><strong>joe</strong>: What’s the…</p>
+<p><strong>walt</strong>: Where have you been?</p>
+<p><strong>marty</strong>: You tell me: you tell me now, I’ve got to
+shoot on Wednesday and I will not pay your Blood Money and P.S., pal, I
+put the word out on the street and Betty Boop can look for work in
+squigglevision.</p>
+<p><strong>marty</strong>: Siddown!</p>
+<p><strong>joe</strong>: I really don’t think you should be talking this
+way to a lady.</p>
+<p><strong>marty</strong>: …would you excuse me, please…</p>
+<p><strong>claire</strong>: You can’t treat me like this. I’m not a
+child!</p>
+<p><strong>joe</strong>: She’s absolutely r…</p>
+<p><strong>claire</strong>: I’m not a child. I have feelings… Don’t
+you…don’t, don’t…don’t…</p>
+<p><strong>marty</strong>: Well, you call him, and call me back, but
+this is it, pal. You fuck with me, and I’m going to tear out your heart
+and piss on your lungs through the hole in your chest. And the best to
+Marion… Where have you been?</p>
+<p><strong>marty</strong>: He says they’re looking for you all day,
+you’re on salary, he needs pages, what are you, you been ‘haying?’
+Now:</p>
+<p><strong>walt</strong>: Marty…</p>
+<p><strong>marty</strong>: Later for that, Walt, let’s get this: we need
+the “pages” for the new “Old Mill”… alright? We need a new title, we
+need a…</p>
+<p><strong>bill</strong>: Rewrites that Bob Barrenger requested… the
+“dead horse scene,” the…</p>
+<p><strong>marty</strong>: Whatever it is. Go do it. How you doing on
+the permit?</p>
+<p><strong>walt</strong>: It’s just a formality.</p>
+<p><strong>marty</strong>: That’s why I want it. Type it up and get it
+back to me in…</p>
+<p><strong>joe</strong>: I can’t.</p>
+<p><strong>walt</strong>: Why?</p>
+<p><strong>marty</strong>: You can’t write it?</p>
+<p><strong>joe</strong>: I can write it. I can’t type it.</p>
+<p><strong>walt</strong>: Why?</p>
+<p><strong>joe</strong>: I hurt my fingers.</p>
+<p><strong>walt</strong>: Get a typist. Get’im a typist. Get outta
+here.</p>
+<p><strong>marty</strong>: Eight-hundred grand to show her tits…</p>
+<p><strong>walt</strong>: Pay her.</p>
+<p><strong>marty</strong>: I don’t got the money.</p>
+<p><strong>walt</strong>: Find the money.</p>
+<p><strong>marty</strong>: I got a company…give us a million dollars,
+put their product in the film.</p>
+<p><strong>walt</strong>: No no no no no no no no find me the money…</p>
+<p><strong>joe</strong>: This is Joe White… in six ten, they’re sending
+up a typist?</p>
+<p><strong>joe</strong>: Okay, I thank you. It’s here.</p>
+<p><strong>claire</strong>: You said, “You can’t talk that way to a
+lady…” You stood up for me. What do you have to drink?</p>
+<p><strong>claire</strong>: Matzoh! Are you Jewish?</p>
+<p><strong>joe</strong>: I, actually, yes.</p>
+<p><strong>claire</strong>: I love Jewish men.</p>
+<p><strong>joe</strong>: Why?</p>
+<p><strong>claire</strong>: You know…where’s your bathroom?</p>
+<p><strong>joe</strong>: You liked the script, huh…?</p>
+<p><strong>doug</strong>: Where have you been?</p>
+<p><strong>ann</strong>: Hi!</p>
+<p><strong>doug</strong>: We had a date.</p>
+<p><strong>ann</strong>: We did…?</p>
+<p><strong>doug</strong>: Where have you been?</p>
+<p><strong>ann</strong>: I’ve been thinking.</p>
+<p><strong>doug</strong>: Where have you been, we had a date for
+three…where have you been…?</p>
+<p><strong>ann</strong>: I have to tell you something…</p>
+<p><strong>doug</strong>: Well, I know, because they told me you were
+with that writer from the, you see, this is what I mean, the whole town
+has been warped by the, by the, by the presence of the movie company,
+they holler, and we jump, you have a date, they call, you’re doing
+business nine o’clock at night. It isn’t…</p>
+<p><strong>ann</strong>: I wasn’t doing business…</p>
+<p><strong>doug</strong>: Oh. What were you doing, then, that’s so
+important that you shouldn’t call your fian…</p>
+<p><strong>ann</strong>: It’s all over between us, Doug, I’m sorry, but
+that’s the truth. I’ve found someone else, and, it’s very serious and
+it’s the end. I’m sorry. It isn’t you, j…</p>
+<p><strong>doug</strong>: Wai…It’s so serious you couldn’t call to tell
+me you’d be…what…? What did you say…?</p>
+<p><strong>ann</strong>: It’s all over between us. I’ve found someone
+else.</p>
+<p><strong>doug</strong>: Let me review here: You’re…what are
+you…you’ve…it’s all over between us?</p>
+<p><strong>ann</strong>: I’m sorry.</p>
+<p><strong>doug</strong>: Who is this person that you’ve found?</p>
+<p><strong>ann</strong>: He works on the movie.</p>
+<p><strong>doug</strong>: No. Don’t tell me that.</p>
+<p><strong>ann</strong>: I’m sorry.</p>
+<p><strong>doug</strong>: Why, you whore!</p>
+<p><strong>first a.d.</strong>: Can you type?</p>
+<p><strong>ann</strong>: Never admit you can type.</p>
+<p><strong>first a.d.</strong>: If you can type, they need you over at
+the hotel.</p>
+<p><strong>joe</strong>: Look.</p>
+<p><strong>claire</strong>: I feel so close to you…</p>
+<p><strong>joe</strong>: Look, look, I like you very much…</p>
+<p><strong>claire</strong>: I like you, too.</p>
+<p><strong>joe</strong>: But not that way…</p>
+<p><strong>claire</strong>: But we…</p>
+<p><strong>joe</strong>: Look, look there’s someone else…</p>
+<p><strong>joe</strong>: Great. Who is it?</p>
+<p><strong>ann</strong>: “Room Service!”</p>
+<p><strong>joe</strong>: Would you go in…</p>
+<p><strong>joe</strong>: Would you put on your cl… Just leave it
+outside</p>
+<p><strong>ann</strong>: You have to sign for it.</p>
+<p><strong>ann</strong>: I’m gonna be your typist for this evening.</p>
+<p><strong>joe</strong>: Oh, G-d…</p>
+<p><strong>ann</strong>: And here’s some hydrogen peroxide…</p>
+<p><strong>joe</strong>: I don’t drink.</p>
+<p><strong>ann</strong>: It’s for your finger.</p>
+<p><strong>joe</strong>: One moment.</p>
+<p><strong>joe</strong>: You have to hide.</p>
+<p><strong>claire</strong>: Who is that?</p>
+<p><strong>joe</strong>: That’s my…</p>
+<p><strong>claire</strong>: Oh.</p>
+<p><strong>joe</strong>: Will you help me out…?</p>
+<p><strong>joe</strong>: Hi.</p>
+<p><strong>ann</strong>: You going to ask me in?</p>
+<p><strong>ann</strong>: Thought you might like this.</p>
+<p><strong>joe</strong>: Thank you.</p>
+<p><strong>ann</strong>: Read the card.</p>
+<p><strong>joe</strong>: “To the love of my life, Love, Doug.”</p>
+<p><strong>ann</strong>: The other side.</p>
+<p><strong>joe</strong>: Oh.</p>
+<p><strong>ann</strong>: Don’t you think you should put them in
+water.</p>
+<p><strong>joe</strong>: Why?</p>
+<p><strong>ann</strong>: …because if you don’t, they die.</p>
+<p><strong>ann</strong>: Shouldn’t we start?</p>
+<p><strong>joe</strong>: Start? This isn’t a good time.</p>
+<p><strong>ann</strong>: Oh. That’s alright. Then I’ll come back at a
+better time. What would be a better time.</p>
+<p><strong>joe</strong>: Later on.</p>
+<p><strong>ann</strong>: Then I’ll come back, then.</p>
+<p><strong>joe</strong>: You, um, you, um, you going out with your
+fiance?</p>
+<p><strong>ann</strong>: No, I just broke up with him. I’ll see you
+tomorrow.</p>
+<p><strong>ann</strong>: It occurred to me, you’d wanna have this: sort
+of a memento of our…</p>
+<p><strong>claire</strong>: Hi. I hope I’m not disturbing…</p>
+<p><strong>joe</strong>: She came in here, wait, she…I was giving her a
+massage…wait…wait! She came in here…she… …with respect…she took off her
+clothes, and she got in bed, I told her I could not – we don’t know each
+other, you see…</p>
+<p><strong>claire</strong>: We had a script conference.</p>
+<p><strong>joe</strong>: I told her thank you very much, but it was
+inconvenient because, uh, because…</p>
+<p><strong>ann</strong>: You can do it.</p>
+<p><strong>joe</strong>: Because I’d met someone else.</p>
+<p><strong>ann</strong>: Oh, okay.</p>
+<p><strong>joe</strong>: You believe that?</p>
+<p><strong>ann</strong>: I do if you do.</p>
+<p><strong>joe</strong>: But it’s absurd.</p>
+<p><strong>ann</strong>: So is our electoral process. But we still
+vote.</p>
+<p><strong>joe</strong>: Do you truly believe the electoral process is
+absurd?</p>
+<p><strong>ann</strong>: I used to go out with a politician.</p>
+<p><strong>joe</strong>: You used to go out with him, you broke up with
+him?</p>
+<p><strong>ann</strong>: Sure did.</p>
+<p><strong>joe</strong>: Why?</p>
+<p><strong>ann</strong>: Time for a change. Keep your margins
+straight.</p>
+<p><strong>joe</strong>: Yes.</p>
+<p><strong>ann</strong>: Go you Huskies!</p>
+<p><strong>mayor</strong>: And don’t you worry about that permit…</p>
+<p><strong>marty</strong>: Why, that’s right fine…</p>
+<p><strong>postman</strong>: Mornin’ George.</p>
+<p><strong>mayor</strong>: Hey, Chunky. Well, we’re glad to have you
+here. My wife, Sherry, SHER, YOUR BROTHER’S HERE. We’re having a party,
+matofact, Tuesday night, for Walt and Bob Barrenger…</p>
+<p><strong>marty</strong>: Mmm….</p>
+<p><strong>mayor</strong>: Havin’ ’em over, home-cooked meal, if
+you’d…</p>
+<p><strong>mayor</strong>: Well, I’d be awfully…</p>
+<p><strong>sherry</strong>: Where the hell have you been? It’s…</p>
+<p><strong>mayor</strong>: Sherry, this…</p>
+<p><strong>postman</strong>: Mornin’ Sherry.</p>
+<p><strong>sherry</strong>: It’s a quarter after nine, I’ve been on the
+phone to…</p>
+<p><strong>painter</strong>: Morning, Mrs. Baily, Mista Bailey…</p>
+<p><strong>sherry</strong>: I’ve got two days to get this house…</p>
+<p><strong>mayor</strong>: Dear, this is Mr. Rossen, he is the
+producer.</p>
+<p><strong>sherry</strong>: I am so glad to meet you. We are so glad to
+have you here, and welcome you to our…I, you know, they had c… I’m,
+yearly I redecorate our, to restore it to the, 1835…</p>
+<p><strong>marty</strong>: What is that?</p>
+<p><strong>sherry</strong>: The house, the 1835. The original kitchen,
+of course, burned in 1960, as part of a spate of fires…</p>
+<p><strong>marty</strong>: It’s lovely.</p>
+<p><strong>sherry</strong>: A spate of suspicious fires which were in
+fact the inspiration for the formation of the Waterford Huskies.</p>
+<p><strong>marty</strong>: My oh my.</p>
+<p><strong>sherry</strong>: I’m…Tuesday evening we’re having an informal
+dinner, I didn’t know you’d be ‘on set,’ but if you’d like to join
+your…</p>
+<p><strong>doug</strong>: I have to talk to you.</p>
+<p><strong>mayor</strong>: Doug, this is Mr…</p>
+<p><strong>sherry</strong>: Oh, how thoughtless of me. Would you like a
+cup of tea…</p>
+<p><strong>mayor</strong>: …he’s the producer of the movie.</p>
+<p><strong>doug</strong>: I want you to hear this, pal… Forget the
+overages, forget Ten Thousand Dollars, for three days to two weeks. You
+know what it would cost for them to build this set? Two Million Dollars!
+Now:</p>
+<p><strong>mayor</strong>: Doug…</p>
+<p><strong>doug</strong>: Now: The Waterford Merchant’s Association, of
+who I am Council…</p>
+<p><strong>sherry</strong>: Don’t tell me you’re out of Wallpaper.</p>
+<p><strong>painter</strong>: I told you, we could have it by
+Wednesday…</p>
+<p><strong>sherry</strong>: Wednesday, don’t tell me Wednesday, the
+biggest grossing box office star in the world is coming for dinner
+Tuesday…</p>
+<p><strong>painter</strong>: Waal, if you ordered something common…</p>
+<p><strong>sherry</strong>: Something common? I’m going to give you
+something common. I’m going to give you an injunction, is what I…Mister
+Mayor.</p>
+<p><strong>doug</strong>: Huh. Well, the Waterford Merchant’s
+Association demands, through me as their council, five percent of the
+profits of the movie, as figured by and… geared to the most favorable
+definition the Producer…</p>
+<p><strong>doug</strong>: Why, you little sheeny…</p>
+<p><strong>morris</strong>: “Assembly of Death” did 95 million dollars
+the first weekend.</p>
+<p><strong>spud</strong>: Yeaup, but those grosses are inflated.</p>
+<p><strong>morris</strong>: You think so?</p>
+<p><strong>spud</strong>: Waal, what was the per-screen average…?</p>
+<p><strong>joe</strong>: Cuppa coffee, and a…</p>
+<p><strong>jack</strong>: With you inna moment. I’m a little
+short-handed.</p>
+<p><strong>morris</strong>: Where’s Carla?</p>
+<p><strong>spud</strong>: Hiya, Annie…</p>
+<p><strong>morris</strong>: Annie, sorry I ain’t been to a meetin’ of
+the Drama Club…</p>
+<p><strong>morris</strong>: Oh, good…</p>
+<p><strong>ann</strong>: Good morning to you…whatsa matter?</p>
+<p><strong>joe</strong>: I can’t get it to come out right.</p>
+<p><strong>ann</strong>: What’s the scene…</p>
+<p><strong>joe</strong>: It used to be the Old Mill.</p>
+<p><strong>ann</strong>: What’ve you got?</p>
+<p><strong>joe</strong>: They meet on Main Street. Her horse has just
+died. He’s coming from the fire.</p>
+<p><strong>jack</strong>: Annie, you want something to eat?</p>
+<p><strong>ann</strong>: What’s the scene about…?</p>
+<p><strong>joe</strong>: It’s good to see you, too…</p>
+<p><strong>jack</strong>: Annie?</p>
+<p><strong>ann</strong>: What about…what about…it’s so presumptuous of
+me, to be, to be telling you how to wr…</p>
+<p><strong>joe</strong>: Please…</p>
+<p><strong>ann</strong>: How about, he sees her on the street, he wipes
+the soot from his eyes. He goes up to her. “What happened to the horse?”
+She looks at him. She takes his hand…</p>
+<p><strong>joe</strong>: Ah, ah, ah…</p>
+<p><strong>ann</strong>: I hurt you?</p>
+<p><strong>morris</strong>: What happened to his finger?</p>
+<p><strong>ann</strong>: It was burnt.</p>
+<p><strong>morris</strong>: Mmm.</p>
+<p><strong>ann</strong>: And then it was really hurt.</p>
+<p><strong>joe</strong>: Ah, ah, ah. That’s what she says, that’s what
+she says. He says, “Sister, I’ve come from a fire…” But she, but she,
+she says it was not the fire which hurt you…it…</p>
+<p><strong>morris</strong>: …how was it hurt?</p>
+<p><strong>ann</strong>: …he stuck a fishhook in it.</p>
+<p><strong>joe</strong>: She realizes – it was not the fire which hurt
+him…that the true hurt was her. Was her…</p>
+<p><strong>ann</strong>: …yes.</p>
+<p><strong>joe</strong>: …her unbridled sexuality. That he…</p>
+<p><strong>ann</strong>: …yes.</p>
+<p><strong>joe</strong>: Has been wounded by her heat…by her
+infidelities…</p>
+<p><strong>jack</strong>: Anybody here seen Carla?</p>
+<p><strong>joe</strong>: Because, because, because if it’s about purity,
+it’s…it’s…and then, then, you don’t need the nude scene.</p>
+<p><strong>ann</strong>: Because it’s about purity…</p>
+<p><strong>joe</strong>: That’s…that’s exactly what it’s about.
+Take…</p>
+<p><strong>ann</strong>: That’s right…</p>
+<p><strong>joe</strong>: …take any two people…</p>
+<p><strong>jack</strong>: …anybody seen my daughter…?</p>
+<p><strong>joe</strong>: …take you and me…</p>
+<p><strong>walt</strong>: …the finest people you could ever hope to work
+with… You have the new Old Mill pages?</p>
+<p><strong>first a.d.</strong>: I can’t find the writer.</p>
+<p><strong>walt</strong>: …totally false…totally false. He is the, I
+would say the most responsible human being I have ever…</p>
+<p><strong>first a.d.</strong>: I have to talk to you. My wife…</p>
+<p><strong>walt</strong>: Not now.</p>
+<p><strong>first a.d.</strong>: My wife is going to have a baby,
+and…</p>
+<p><strong>walt</strong>: Oh, that’s great. Let’s bring more people into
+this overcrowded world.</p>
+<p><strong>walt</strong>: Take it off. Take that stupid fucking shirt
+off right now. Well, if I had to say one thing, I would say it’s
+purity.</p>
+<p><strong>walt</strong>: Not now, I’m talking to the press. Claire!</p>
+<p><strong>claire</strong>: What? I have a five-o’clock plane to
+catch.</p>
+<p><strong>walt</strong>: I, uh… I’ve always thought so… Well, you just
+get an idea, and try to find the best way to express it in pictorial
+form. I’ve written a letter to the studio and to SAG protesting… Bill:
+get a copy of that letter…! I just wanted to tell you that I am past
+chagrined, I’m mortified at the way you were spoken to…</p>
+<p><strong>walt</strong>: An artist of your caliber…</p>
+<p><strong>claire</strong>: I’m only trying to…</p>
+<p><strong>walt</strong>: I know what you are, I am so sorry that
+you…when I read that script I said there’s only one person to play that
+part.</p>
+<p><strong>claire</strong>: The minute I read that script I said…</p>
+<p><strong>walt</strong>: I know…</p>
+<p><strong>claire</strong>: …she works with animals, she…</p>
+<p><strong>walt</strong>: …yes…</p>
+<p><strong>claire</strong>: …she has a home…</p>
+<p><strong>walt</strong>: …I know, I’m so…because I said: yes, a woman
+who…the…the community respects her. Please don’t go. Please don’t go.
+What can I do but beseech you…? Trauma, toil…when are we free of them…?
+When…?</p>
+<p><strong>claire</strong>: He treated me as if I were a child…</p>
+<p><strong>walt</strong>: Claire: As an interpretive artist to a
+creative artist: Stay with me. I need you. We start to shoot tomorrow
+and then it belongs to us. Stay. Stay. Tonight…when… When they’ve gone.
+Let’s talk. Let’s really talk. We could, we’ll have dinner, we’ll…a
+bottle of some bad red wine, we’ll get spaghetti, and we’ll…</p>
+<p><strong>claire</strong>: I’m sorry, Walt – it’s gone beyond that.</p>
+<p><strong>walt</strong>: Well, I’ve enjoyed it, too. Any… any…any time…
+What does the woman want from life?</p>
+<p><strong>marty</strong>: She wants eight-hundred thousand dollars to
+show her tits.</p>
+<p><strong>walt</strong>: Pay her off.</p>
+<p><strong>marty</strong>: We don’t have the money.</p>
+<p><strong>walt</strong>: Find it.</p>
+<p><strong>marty</strong>: If you do the product placement…</p>
+<p><strong>walt</strong>: It’s a computer company…IT’S A</p>
+<p><strong>marty</strong>: “Bazoomer dot com.”</p>
+<p><strong>walt</strong>: I can’t put a computer in a movie shot in
+1895…you wanna tell me how I’m gonna do that?</p>
+<p><strong>marty</strong>: Actually, the art department had some ideas
+on…</p>
+<p><strong>marty</strong>: Gimme Howie Gold. Howie? Thizz…I neee… I NEED
+EIGHT-HUNDRED GRAND. I…I don’t care where it comes from. It comes out of
+our end. I…I need…JUST GET ME THE MONEY. I JUST GET ME THE GODDAMN
+MONEY…Look:</p>
+<p><strong>joe</strong>: She doesn’t show her tits!!! She doesn’t show
+her tits. The breasts symbolize motherhood, the audience…</p>
+<p><strong>marty</strong>: The breasts symbolize motherhood…</p>
+<p><strong>joe</strong>: The movie’s about purity. So we don’t show her
+breasts. We show them to him. She keeps her back to the camera.</p>
+<p><strong>walt</strong>: …she keeps her back to the camera?</p>
+<p><strong>bill</strong>: It’ll hurt the box-office.</p>
+<p><strong>joe</strong>: They know what her tits look like.</p>
+<p><strong>walt</strong>: Know? They could draw them from memory. You’re
+fantastic. What a find you are. Get outta here. We need the Dead Horse
+scene.</p>
+<p><strong>joe</strong>: I’m gonna nail it.</p>
+<p><strong>walt</strong>: I know you are. Go you Huskies.</p>
+<p><strong>marty</strong>: We got the permit.</p>
+<p><strong>walt</strong>: Is that one hell of a kid?</p>
+<p><strong>marty</strong>: He just saved us eight-hundred thousand
+bucks.</p>
+<p><strong>walt</strong>: He’s got a gift for fiction.</p>
+<p><strong>marty</strong>: We got to do something nice for him.</p>
+<p><strong>marty</strong>: Gimme a pencil. Get him a bottle of…get him
+some maple syrup. Stick this card on it, and put it in his room.</p>
+<p><strong>prod. asst.</strong>: Maple syrup.</p>
+<p><strong>marty</strong>: Yeah.</p>
+<p><strong>marty</strong>: Hold on, I wanna add to that.</p>
+<p><strong>spud</strong>: You see where Tom Miller’s playin’ the Old
+Farmer?</p>
+<p><strong>morris</strong>: He’s been playin’ Old Farmer nigh on sixty
+years.</p>
+<p><strong>spud</strong>: I read for that part. Did pretty good,
+too.</p>
+<p><strong>morris</strong>: Bet you did.</p>
+<p><strong>spud</strong>: But I couldn’t r’member all the words. Ast
+them would they gimme a second chance.</p>
+<p><strong>morris</strong>: Ain’t no second chances in life.</p>
+<p><strong>spud</strong>: Zat true?</p>
+<p><strong>morris</strong>: Only second chance we git, z’ta make the
+same mistake twice…</p>
+<p><strong>bob</strong>: Get the…</p>
+<p><strong>joe</strong>: Are you al…?</p>
+<p><strong>bob</strong>: We gotta get her out of here.</p>
+<p><strong>bob</strong>: Are you alright?</p>
+<p><strong>bob</strong>: You got to get out of here…</p>
+<p><strong>bob</strong>: Oh G-d, oh G-d, oh G-d…do you have a cig…</p>
+<p><strong>marty</strong>: He’s fine…it’s a…</p>
+<p><strong>doc wilson</strong>: You’re going to be fine. I’ll stop by
+tomorrow.</p>
+<p><strong>walt</strong>: Thank you.</p>
+<p><strong>doc wilson</strong>: Yessir…</p>
+<p><strong>marty</strong>: He’s…you wanna talk to…?</p>
+<p><strong>bob</strong>: Hello, Jerry. I’m fine. I’ll be ready
+Wednes…I’m here to make a movie, Bob. Now don’t you worry your, hey,
+Pal, when have I ever let you down bef…Okay, Babe, you, too.</p>
+<p><strong>walt</strong>: Are you okay?</p>
+<p><strong>bob</strong>: Well, yeah, I’m fine, I reached over to, the
+girl had to be home, I don’t know, it’s a schoolnight, something…</p>
+<p><strong>walt</strong>: Bobby…</p>
+<p><strong>bob</strong>: Everybody needs a hob…</p>
+<p><strong>first a.d.</strong>: Walt, I wonder if I could take a minute
+of your time. I need a day off…</p>
+<p><strong>walt</strong>: Who is it?</p>
+<p><strong>cal</strong>: Thiz the police. Is Mr. Barrenger in there?</p>
+<p><strong>marty</strong>: Okay, look, you, what is she, 19, twenty…oh
+Christ…</p>
+<p><strong>bob</strong>: Uh, look…</p>
+<p><strong>marty</strong>: Look: okay. Okay. Look: look you’re driving,
+countryside, so on, you picked her up, she was hitch…</p>
+<p><strong>walt</strong>: No, hey, hey…al, she hid in the back of the
+car! Happens all the…</p>
+<p><strong>cal</strong>: Is Mr. Barrenger there…?</p>
+<p><strong>marty</strong>: No, wait a, wait a, wait a…we can’t put her
+in the car, she gets it in her head to sue, or rape, or some goddamn,
+she wasn’t in…</p>
+<p><strong>walt</strong>: She wasn’t in…you were al…</p>
+<p><strong>marty</strong>: There’s no witnesses.</p>
+<p><strong>walt</strong>: No, just the…there’s no witnesses, right…?</p>
+<p><strong>bob</strong>: No, I just…just Joe, just Joe…</p>
+<p><strong>walt</strong>: Joe, the writer?</p>
+<p><strong>bob</strong>: Just him and me.</p>
+<p><strong>marty</strong>: Then she wasn’t in the car. Say it.</p>
+<p><strong>bob</strong>: She wasn’t in the…</p>
+<p><strong>marty</strong>: Nobody knows it but us. Alright? It says
+here… Are we together on this? Because it’s sink or swim here, pals…</p>
+<p><strong>marty</strong>: You guys had better leave us a…</p>
+<p><strong>cal</strong>: Mr. Barrenger…</p>
+<p><strong>marty</strong>: Yes…?</p>
+<p><strong>cal</strong>: I’m very sorry to…</p>
+<p><strong>marty</strong>: Well. What seems to be the…?</p>
+<p><strong>cal</strong>: I have to ask you these…um. You have a valid
+drivers’ license?</p>
+<p><strong>marty</strong>: Of course he…</p>
+<p><strong>cal</strong>: Could I see it, please…?</p>
+<p><strong>cal</strong>: Were you under the inf…</p>
+<p><strong>bob</strong>: No.</p>
+<p><strong>cal</strong>: And who was driving the…</p>
+<p><strong>bob</strong>: I was alone in the car. I was driving.</p>
+<p><strong>cal</strong>: Well, now, Mr. Barrenger, I’m very sorry, in
+fact, I’m as sorry as I could be, but…</p>
+<p><strong>marty</strong>: I’m an attorney, if there’s anything you have
+to say to…</p>
+<p><strong>cal</strong>: …I have to give you this ticket for damage to
+city property. I’m really sorry, Sir, it’s a formality, I hope you’ll
+excuse…</p>
+<p><strong>marty</strong>: You have to what?</p>
+<p><strong>cal</strong>: It’s a formality. Any case of damage to city
+prop…you hit the control box of the new stop light, and… They’ll, uh,
+these things happen, I hope you’re alright, and that you’re feeling…</p>
+<p><strong>marty</strong>: Well, officer, don’t worry ab…</p>
+<p><strong>cal</strong>: If there’s anything I…</p>
+<p><strong>walt</strong>: Yeah. Hello, Mr. Mayor…Walt Price! No, no,
+sir, he’s fine. Well, he’s right here! Would you like to…? You are not
+to see that girl again…do you…</p>
+<p><strong>claire</strong>: Hello.</p>
+<p><strong>walt</strong>: …he’s right here, Mr. Mayor…</p>
+<p><strong>claire</strong>: Bob, are you alright?</p>
+<p><strong>joe</strong>: Hi.</p>
+<p><strong>ann</strong>: Hi.</p>
+<p><strong>joe</strong>: Where you going?</p>
+<p><strong>ann</strong>: Going home.</p>
+<p><strong>joe</strong>: Going home, yeah. I told them what you
+said…</p>
+<p><strong>ann</strong>: What?</p>
+<p><strong>joe</strong>: I told them what you said about the script…</p>
+<p><strong>ann</strong>: I didn’t say anything special, I was just
+talking out loud.</p>
+<p><strong>joe</strong>: …how else can you talk?</p>
+<p><strong>ann</strong>: No, that’s true.</p>
+<p><strong>joe</strong>: No. You, I told them, you can’t betray with the
+picture what you’re saying with the words. And, I don’t know, the
+movies, I don’t know. They should be socially uplifting, why does she
+have to show her br…what is this…?</p>
+<p><strong>ann</strong>: Yessuh. Joseph Knights printshop. Vacant for
+thirty years.</p>
+<p><strong>joe</strong>: Is it…</p>
+<p><strong>ann</strong>: Yep, n’it’s for sale. One of the few things
+money can buy.</p>
+<p><strong>joe</strong>: I told them what you said about the script…</p>
+<p><strong>ann</strong>: Would you like to see it? I’ve got the key back
+at my store…</p>
+<p><strong>joe</strong>: I’d love to.</p>
+<p><strong>ann</strong>: How’s your star?</p>
+<p><strong>joe</strong>: Gosh, you look nice.</p>
+<p><strong>ann</strong>: …what…?</p>
+<p><strong>joe</strong>: What would you do with it, the printshop…</p>
+<p><strong>ann</strong>: Start back up the Waterford Sentinel. Town
+newspaper. Show you the plans.</p>
+<p><strong>joe</strong>: Yes, it’s a lovely idea…</p>
+<p><strong>ann</strong>: Print it right here.</p>
+<p><strong>ann</strong>: Oh, my. Life in the country. One second.</p>
+<p><strong>ann</strong>: Well. There you go.</p>
+<p><strong>ann</strong>: Press still works.</p>
+<p><strong>joe</strong>: It does?</p>
+<p><strong>ann</strong>: Did as of last week.</p>
+<p><strong>ann</strong>: Best way I know to get ink on your hands.</p>
+<p><strong>joe</strong>: You’d do the newspaper right here.</p>
+<p><strong>ann</strong>: That’s something a man could do…?</p>
+<p><strong>joe</strong>: You know what else a man can do?</p>
+<p><strong>ann</strong>: What?</p>
+<p><strong>ann</strong>: One moment…</p>
+<p><strong>joe</strong>: Pelting down out there.</p>
+<p><strong>ann</strong>: People might be better off. They thought about
+it, spent the evening back in the…</p>
+<p><strong>ann</strong>: Left the keys inside, in my jacket.</p>
+<p><strong>joe</strong>: Well. ’S’pose I should be getting
+home…look.</p>
+<p><strong>ann</strong>: Cal…</p>
+<p><strong>cal</strong>: Annie, got an umbrella?</p>
+<p><strong>ann</strong>: Nope.</p>
+<p><strong>cal</strong>: I’ll walk you home, you can have my coat.</p>
+<p><strong>ann</strong>: Then you’ll be wet.</p>
+<p><strong>cal</strong>: I’m goin’ off-shift. Come on… I’ll walk you
+home.</p>
+<p><strong>doug</strong>: Ten dollars apiece for outdated textbooks you
+or I could buy retail for a dollar ninety-five.</p>
+<p><strong>doc wilson</strong>: Mornin’, Carla…how’s the itching…?</p>
+<p><strong>carla</strong>: Okay, Doc.</p>
+<p><strong>doug</strong>: Bear with me, now – because what’re we getting
+for our money? See the cat and dog? See what I’m saying? Nice to take
+this opportunity to mount an investigation of…</p>
+<p><strong>maude</strong>: Morning, Carla, what happened to you?</p>
+<p><strong>doc wilson</strong>: She went to fetch a pail of water.</p>
+<p><strong>doug</strong>: You see what I’m saying, take this opportunity
+to mount an investigation of the price of school textbooks. Bear with me
+now: both the cost, and the content of…look here…</p>
+<p><strong>doug</strong>: …because what’re we getting for our money?
+“See the nice dog. See the nice cat?”</p>
+<p><strong>walt</strong>: So you see what I’m saying…the movie is about
+purity…</p>
+<p><strong>bob</strong>: I’ve always seen that.</p>
+<p><strong>walt</strong>: We don’t show her breasts, we just show your
+reaction…</p>
+<p><strong>claire</strong>: I’m so comfortable with that, Walt, I can’t
+tell you…</p>
+<p><strong>walt</strong>: Well, Joe said it, and he’s right.</p>
+<p><strong>carla</strong>: And I have Mr. Barrenger’s Tuna B…</p>
+<p><strong>marty</strong>: Thank you.</p>
+<p><strong>carla</strong>: I, well, you know, I tried to take him, in
+his room.</p>
+<p><strong>marty</strong>: I think he’s moved…</p>
+<p><strong>carla</strong>: I, uh… Um…</p>
+<p><strong>bob</strong>: That makes a lot of sense, Claire, that makes a
+lot of…list…listen, cause the audience isn’t coming to see your breasts.
+They are coming to see you act. What are you doin’ this evening?</p>
+<p><strong>claire</strong>: I’m having dinner with W…</p>
+<p><strong>walt</strong>: We’re going to discuss the scr…you wanna come
+along…?</p>
+<p><strong>bob</strong>: You mind…?</p>
+<p><strong>claire</strong>: No, are you kidding me, Bob, not at all.</p>
+<p><strong>walt</strong>: Marty…</p>
+<p><strong>marty</strong>: Yeah?</p>
+<p><strong>walt</strong>: Would you, tell the guy, get the A.D.,
+someone, somewhere where we can get away, something, I want, you know,
+last day before the shooting, get away, forget it, have some local food.
+You want…</p>
+<p><strong>joe</strong>: I’ve got a date.</p>
+<p><strong>walt</strong>: He’s got a date. He’s got a date, is this guy
+fantastic…? Already he learned how to write a movie, and he found a girl
+to get his toes curled, what a guy, what a…what a literary find!</p>
+<p><strong>first a.d.</strong>: I’m trying, honey. I’m…look, is your Ma,
+when is your mom coming? Oh. What did the midwife…?</p>
+<p><strong>walt</strong>: Did you, where are we going tonight?</p>
+<p><strong>walt</strong>: Some, you were, you were going to make a
+reservation for us? Where’s my schedule? Where are we booked
+tonight?</p>
+<p><strong>first a.d.</strong>: My wife’s having a baby.</p>
+<p><strong>walt</strong>: You what…? Is that on the call sheet, is that
+on the callsheet, or is that personal business? Ah, Christ. Marty…are we
+paying you?</p>
+<p><strong>doug</strong>: She didn’t even finish knitting me the
+sweater…</p>
+<p><strong>bartender</strong>: Mornin’, Doc…</p>
+<p><strong>doc wilson</strong>: You doin’ here, Doug? Thought you
+started out the day with that pernicious caffeine…</p>
+<p><strong>doug</strong>: Kiss my ass.</p>
+<p><strong>doc wilson</strong>: Well.</p>
+<p><strong>bartender</strong>: He had a hard day. Ann’s deserted him for
+some guy on the movie.</p>
+<p><strong>doc wilson</strong>: Well, they don’t always leave with the
+ones they came in with.</p>
+<p><strong>bartender</strong>: Big day last night.</p>
+<p><strong>doc wilson</strong>: Hope to tell you. Didn’t I pick the
+fragments of glass out of Bob Barrenger’s actual head myself.</p>
+<p><strong>bartender</strong>: Mornin’, Carla.</p>
+<p><strong>carla</strong>: Mornin’, Uncle Ron.</p>
+<p><strong>doc wilson</strong>: Cluster of events. Don’t see something,
+ten years, allasudden, three times inna night.</p>
+<p><strong>bartender</strong>: That’s what they call an events cluster.
+Some guy orders a Manhattan, fifteen, twenty years, allasudden, three
+times inna night.</p>
+<p><strong>doug</strong>: Who got their heads cut?</p>
+<p><strong>bartender</strong>: …some fella. Orders a Manhattan.</p>
+<p><strong>doc wilson</strong>: What?</p>
+<p><strong>doug</strong>: Who got their heads cut?</p>
+<p><strong>doc wilson</strong>: Uh, Bob Barrenger, fella, Cameraman…</p>
+<p><strong>doug</strong>: You said three…</p>
+<p><strong>doc wilson</strong>: Did I? I think you’re mistaken.</p>
+<p><strong>carla</strong>: I wasn’t in the car…</p>
+<p><strong>doug</strong>: We’re going to s…</p>
+<p><strong>jack</strong>: Doug, she says that she wasn’t in the c…</p>
+<p><strong>salesman</strong>: Yeah?</p>
+<p><strong>doug</strong>: I’ve got the wrong room.</p>
+<p><strong>doug</strong>: Arrest him.</p>
+<p><strong>marty</strong>: What is the…?</p>
+<p><strong>doug</strong>: Arrest him.</p>
+<p><strong>cal</strong>: For what…?</p>
+<p><strong>doug</strong>: Conspiracy in Statutory Rape.</p>
+<p><strong>marty</strong>: Conspiracy in Statutory Rape? Okay. Of
+whom?</p>
+<p><strong>doug</strong>: This young woman.</p>
+<p><strong>carla</strong>: Nobody touched me, I was at home.</p>
+<p><strong>marty</strong>: Who is it raped you?</p>
+<p><strong>carla</strong>: Nobody.</p>
+<p><strong>marty</strong>: Well, what’s the beef?</p>
+<p><strong>doug</strong>: She was in the car with Bob Barrenger last
+night. And she was injured coming home from a love tryst, so…</p>
+<p><strong>marty</strong>: You were in the car with Bob?</p>
+<p><strong>carla</strong>: No.</p>
+<p><strong>marty</strong>: Then what is the…?</p>
+<p><strong>marty</strong>: Now what is this, you sonofabitch! Because if
+you haven’t heard about the laws of Malicious Prosecution, you’re about
+to. DON’T FLINCH WHILE I’M</p>
+<p><strong>talking to you, you two bit speedtrap</strong>: FRAUD:
+There’s an old saying, two scariest things in the world, a black man
+with a knife and a Jew with a lawyer. Now, I am a lawyer, and I am the
+Jew, and you continue ONE MOMENT with this slanderous shit here in this
+public place, I’m going to have your ass over my mantleplace. THE KID
+WAS NOT IN</p>
+<p><strong>you know it. so i’m not paying patsy</strong>: WITH YOU HERE,
+YOU MOTHERFUCKER. Look in my eyes: I made eleven million bucks last year
+and I don’t like being trifled with. Now I think that the better part of
+valor, though we’ve got your back up here…the better part of valor is to
+step away. Or, before G-d, I will see you disbarred. Now, what do you
+think? We all have a movie to make. Now, can we stay together here…?
+What do you say? Have a cigar.</p>
+<p><strong>marty</strong>: It’s a mistake. It’s all over. I’m sorry that
+we’ve inconvenienced you.</p>
+<p><strong>carla</strong>: I wasn’t in the car.</p>
+<p><strong>marty</strong>: We know that you weren’t.</p>
+<p><strong>claire</strong>: …because you treat me like a child…you treat
+me like a child… that’s why I can’t come…</p>
+<p><strong>carla</strong>: He took advantage of me.</p>
+<p><strong>marty</strong>: …upset and impressionable. Get me the
+Mayor.</p>
+<p><strong>bob</strong>: …I was just talking to that girl in the other
+room.</p>
+<p><strong>marty</strong>: …overcome by the events around her, the
+presence of a high-powered…</p>
+<p><strong>bob</strong>: I never touched her. My mother’s gr…</p>
+<p><strong>marty</strong>: And a fantasy object…</p>
+<p><strong>doug</strong>: Tell him to get dressed…</p>
+<p><strong>cal</strong>: Uh, sir…</p>
+<p><strong>marty</strong>: Wally?</p>
+<p><strong>walt</strong>: Look, Carla, this is a hard time for you. Many
+young people go to Hollywood. I did…and we all dream of it, and here,
+here Hollywood has come to you.</p>
+<p><strong>cal</strong>: Mr. Barrenger, I’m very sorry, but…</p>
+<p><strong>walt</strong>: Here this dream world has come to you. Now,
+you obviously have an active, a vivid imagination.</p>
+<p><strong>carla</strong>: Her…</p>
+<p><strong>bob</strong>: I swear that that woman in my room…</p>
+<p><strong>walt</strong>: Be quiet, Bob. A fertile mind. Now we can use
+that kind of people in our work. Yes, we can. Now, and this is what
+occurs to me… There’s a part in the film…isn’t that right, Marty?</p>
+<p><strong>marty</strong>: Mmm.</p>
+<p><strong>walt</strong>: That we could use you in and I think that’s
+quite a fine trade-off all around and an ill wind that blows somebody
+good.</p>
+<p><strong>marty</strong>: Here it is: Statutory r…blah, blah, blah,
+blah… “statutory”… “unsupported testimony by the…” Hold on, Bobby.
+You’ve got nothing and you know it. By G-d, you know it. Harassment. You
+need a… even if this was true, you need a witness. You need someone puts
+her in the car. And you’ve got nothing. Now we all have…yes, give her
+that part in the film. Yes, we’d love to have you… Now: we all have more
+important things to do, isn’t that right…?</p>
+<p><strong>marty</strong>: Isn’t that right? I’m sorry that you all went
+to this…</p>
+<p><strong>jack</strong>: I knew she wasn’t in the car.</p>
+<p><strong>marty</strong>: This has been just an unfortunate.</p>
+<p><strong>walt</strong>: Yes? Hello, Mr. Mayor. Nothing, just an, an
+unfortunate… It’s the Mayor, he’s saying…</p>
+<p><strong>marty</strong>: Is he cool or angry?</p>
+<p><strong>mayor</strong>: Well, these things happen. Purpose of my
+call, my wife wanted to know what brand of cigarettes Mr. Barrenger
+smokes, so she could lay some out tonight…we got the list of his dietary
+requirements…</p>
+<p><strong>walt</strong>: So we just got lucky.</p>
+<p><strong>bill</strong>: Marty, it’s Howie Gold on the coast. He needs
+your confirmation on a request for money…?</p>
+<p><strong>marty</strong>: And I need a drink.</p>
+<p><strong>walt</strong>: If your memory was as long as your dick, you’d
+be in good shape. How long since you almost went to jail for this
+shit?</p>
+<p><strong>bob</strong>: How could she turn on me like that? I thought
+she liked me.</p>
+<p><strong>walt</strong>: Can we try to keep our pants buttoned and get
+out of this town in one piece?</p>
+<p><strong>bob</strong>: I’m ready!</p>
+<p><strong>walt</strong>: Stay ready. Stay by yourself in your room.</p>
+<p><strong>bob</strong>: What’ll I do for fun?</p>
+<p><strong>marty</strong>: Whyn’t you learn your lines?</p>
+<p><strong>bob</strong>: I know my lines…</p>
+<p><strong>walt</strong>: You do…?</p>
+<p><strong>bob</strong>: I just don’t know what order they come in…</p>
+<p><strong>walt</strong>: I tell you what, let’s ditch these cockamamie
+locals. I need to get outta here. Go to some roadhouse tonight, just us.
+Claire, Bob, siddown, have a bottle of wine. Tell me where we’re going,
+and let’s go.</p>
+<p><strong>mayor</strong>: Well, you must, where did they… where…I…</p>
+<p><strong>doug</strong>: Hey, you’ve gotta eat a peck of dirt…</p>
+<p><strong>first a.d.</strong>: My wife just went into labor…</p>
+<p><strong>doug</strong>: Half a buck I’d close it down. It’s per…you
+know…it’s perfidy, you got your Barrenger, molesting little girls.</p>
+<p><strong>first a.d.</strong>: He should be put in jail.</p>
+<p><strong>doug</strong>: Half a buck I’d put him in jail.</p>
+<p><strong>first a.d.</strong>: You should.</p>
+<p><strong>doug</strong>: I had a witness, I would.</p>
+<p><strong>first a.d.</strong>: A witness to what?</p>
+<p><strong>doug</strong>: You know, the rape, to…even to the
+accident.</p>
+<p><strong>first a.d.</strong>: You mean with White?</p>
+<p><strong>doug</strong>: What?</p>
+<p><strong>first a.d.</strong>: You mean you need a witness in addition
+to White?</p>
+<p><strong>doug</strong>: Who’s White?</p>
+<p><strong>first a.d.</strong>: The writer.</p>
+<p><strong>doug</strong>: He saw the accident…?</p>
+<p><strong>first a.d.</strong>: Sure.</p>
+<p><strong>doug</strong>: He saw the girl in the car…</p>
+<p><strong>first a.d.</strong>: You bet he did.</p>
+<p><strong>sherry</strong>: Don’t you touch that… I want them gone.</p>
+<p><strong>mayor</strong>: I signed the permit. I don’t know how I
+can.</p>
+<p><strong>sherry</strong>: I want them thrown in jail.</p>
+<p><strong>mayor</strong>: Sherry, Sherry…</p>
+<p><strong>mayor</strong>: What? Get me the State Police.</p>
+<p><strong>joe</strong>: Good morning.</p>
+<p><strong>ann</strong>: Sleep well?</p>
+<p><strong>joe</strong>: Yeah, you?</p>
+<p><strong>ann</strong>: Oh yeah…</p>
+<p><strong>joe</strong>: We could live up here, live up in the
+country.</p>
+<p><strong>ann</strong>: Now you’re talking…</p>
+<p><strong>joe</strong>: And we could get up every morning…</p>
+<p><strong>ann</strong>: …well, we do that anyway…</p>
+<p><strong>joe</strong>: And come to the printshop. You know why?</p>
+<p><strong>joe</strong>: To print the newspaper. And I’d come to write.
+To write. To write. Right here in the office.</p>
+<p><strong>ann</strong>: Not without a rolltop desk.</p>
+<p><strong>joe</strong>: Well, I could get a rolltop desk.</p>
+<p><strong>ann</strong>: Happen to know where there’s one for sale.</p>
+<p><strong>joe</strong>: Well ain’t you amazing.</p>
+<p><strong>ann</strong>: Lookit that, up already.</p>
+<p><strong>joe</strong>: That’s why we filmfolk get along so well with
+you farmers. Both up with the chickens.</p>
+<p><strong>tv reporter</strong>: Where Movie Star Bob Barrenger, fresh
+from his troubles with the law last year…</p>
+<p><strong>tv reporter</strong>: …is once again in hot water. Involved
+in a car crash last night with a young, a very young woman,
+Mr. Barrenger is being arrested today for…</p>
+<p><strong>marty</strong>: You better make sure you got your facts
+straight, pal, cause, you step off the line and I’m going to sue you
+personally for…</p>
+<p><strong>trooper</strong>: We’re looking for a Joseph Turner
+White.</p>
+<p><strong>marty</strong>: Oh, good, yes. Good morning. Where are you
+taking Mr. Barrenger?</p>
+<p><strong>trooper</strong>: We are looking for a Mr. Joseph Turner
+White?</p>
+<p><strong>marty</strong>: What are you doing with Mr. Barrenger?</p>
+<p><strong>doug</strong>: He’s under arrest.</p>
+<p><strong>marty</strong>: Oh, good. I’m his lawyer…and you must be
+Perry Mason. Guess what, you’re about one-half step from a world of
+hurt…how diverting…the Mayor’s gonna have your ass. Can I watch?</p>
+<p><strong>doug</strong>: Well, you guess what. The Mayor sent me. I
+have your Mr. Barrenger with a history of…</p>
+<p><strong>marty</strong>: …a history of nothing, he was acquitted.</p>
+<p><strong>doug</strong>: Moral turp…you’re on my home court, friend. I
+have the Mayor and the town behind me, and forget making your movie: I
+may own the studio when I get through with you: I got a civil suit, I
+got rape, I got collusion…</p>
+<p><strong>marty</strong>: You’ve got nothing, you don’t have a
+witness…</p>
+<p><strong>doug</strong>: And I’ve got a witness! Your Mr. White saw the
+crime.</p>
+<p><strong>marty</strong>: He told you that!?</p>
+<p><strong>doug</strong>: He didn’t have to tell.</p>
+<p><strong>marty</strong>: I want to talk to him. Would you ex…</p>
+<p><strong>doug</strong>: Oh, you’re his attorney, too?</p>
+<p><strong>marty</strong>: Later for you, pal.</p>
+<p><strong>doug</strong>: Okay.</p>
+<p><strong>marty</strong>: Bobby, don’t say anything.</p>
+<p><strong>bob</strong>: Nothing happened.</p>
+<p><strong>doug</strong>: We’ll see about that at the inquest.</p>
+<p><strong>marty</strong>: Yeah, hi, pal. I need to talk to you.</p>
+<p><strong>ann</strong>: What is it all about?</p>
+<p><strong>joe</strong>: I saw…</p>
+<p><strong>marty</strong>: How do they know that, you told them?</p>
+<p><strong>joe</strong>: No.</p>
+<p><strong>marty</strong>: What did you say to them?</p>
+<p><strong>joe</strong>: I didn’t say anything to them.</p>
+<p><strong>marty</strong>: How do you know you saw it?</p>
+<p><strong>joe</strong>: I don’t know.</p>
+<p><strong>marty</strong>: Well, then, you didn’t see it, right?</p>
+<p><strong>joe</strong>: I don’t…</p>
+<p><strong>marty</strong>: You didn’t see it…</p>
+<p><strong>joe</strong>: I…? I saw it. I was there.</p>
+<p><strong>marty</strong>: You were there. At…at 10:35…?</p>
+<p><strong>joe</strong>: I was walking down the street…I remember, I was
+writing a…</p>
+<p><strong>marty</strong>: What glasses were you wearing? Were you
+wearing your reading glasses?</p>
+<p><strong>marty</strong>: You told me you were writing. Don’t you wear
+your reading glasses to write…?</p>
+<p><strong>marty</strong>: I’ve got to go to the jail.</p>
+<p><strong>ann</strong>: …he’s going to give you a couple of
+minutes.</p>
+<p><strong>joe</strong>: What am I gonna do?</p>
+<p><strong>ann</strong>: You got to tell ’em that you saw the accident.
+Don’t you?</p>
+<p><strong>joe</strong>: I can’t do that. If I tell them, they’ll, if I
+tell them, they’ll try Bob for rape, they’ll… it’ll ruin his career…</p>
+<p><strong>ann</strong>: But that’s what happened.</p>
+<p><strong>joe</strong>: But it’ll stop the movie.</p>
+<p><strong>ann</strong>: Maybe they’ll be other movies.</p>
+<p><strong>joe</strong>: They’ll…they’ll blackball me.</p>
+<p><strong>ann</strong>: Carla was in the car, right?</p>
+<p><strong>joe</strong>: I…I think that’s right.</p>
+<p><strong>ann</strong>: …you think that’s right…</p>
+<p><strong>joe</strong>: What’m I gonna do?</p>
+<p><strong>cal</strong>: Lotta hubbub on the street. I’m taking you the
+back way.</p>
+<p><strong>walt</strong>: Let’s speak English. You’ve got to help the
+side.</p>
+<p><strong>joe</strong>: You want me to lie.</p>
+<p><strong>walt</strong>: To the contrary. I want you to tell the truth.
+The truth is, you can’t tell me, to a certainty, that you saw the thing.
+You don’t remember, a gun to your head, which glasses you have on. And
+you have a fertile imagination. Imagination wants to fill in the blanks.
+Now. IF you aren’t sure, then they have nothing. Bob walks free. As he
+should. Joe: wasn’t long ago they buried actors at the crossroads with a
+stake through their heart, you know? The people who are talking to you
+about the way we live though we may praise them, we fear them. And they
+fear us. Because we tell the truth. About our lives. Now, this is a damn
+roost, and everyone knows it; the guy is looking for a case, he wants to
+make a name for himself…If we let him do that, if we let him do that,
+then we’re being false to our community…to our community, you
+understand? To our world. Cause you are a part of that world, now. You
+have to take off the steel Rolex and put on the Gold Rolex. And be part
+of your world. I got a five picture deal with the studio. And you stick
+with me. You write one, two more, you stick with me, and you’ll direct
+the third one. You are a part of this world. You have to do the right
+thing: we’re out in the Provinces, the Sheriff, literally is at our
+door. You have to stand with the troops, Joe. That’s the bottom line.
+You have to…if you had the leisure to think it through, you’d see it for
+yourself. The girl wasn’t in the car.</p>
+<p><strong>cal</strong>: …Joseph Turner White…</p>
+<p><strong>bailiff</strong>: Hear ye, hear ye. Sixth District Court. And
+for the county of Kadona, State of Vermont, the honorable James Addison
+Flynn presiding. All those having business before this court, draw
+forward and you will be heard.</p>
+<p><strong>bailiff</strong>: All rise.</p>
+<p><strong>judge</strong>: Please…Mr. White? This is a simple matter
+of…</p>
+<p><strong>judge</strong>: Uh huh, all we need’s a simple fact or
+to…you’re going to give your recollection of the accident last evening,
+at the corner, State and Main. Would you please swear him in.</p>
+<p><strong>bailiff</strong>: Do you swear to tell the truth…</p>
+<p><strong>tv reporter</strong>: …the arraignment, as we said of Bob
+Barrenger, The Bob Barrenger, star of “The Old Mill,” about to begin
+shooting here, in picaresque and sleepy… we should say, formerly
+sleepy…Yes, yes, it’s…yes, it’s Claire Wellesley, and we’re going to try
+to get a look at…</p>
+<p><strong>p.a.</strong>: They need those rewrites on the “Old Mill”
+scene…</p>
+<p><strong>scott</strong>: …about his personal life, though I can tell
+you a few things about…</p>
+<p><strong>joe</strong>: Would you please hold all calls to my room?</p>
+<p><strong>scott</strong>: Though I can tell you a few things about his
+dietary requirements.</p>
+<p><strong>kid on scooter</strong>: Mornin’, Doc.</p>
+<p><strong>doc wilson</strong>: Mornin’, Billy, where ya goin’ in such a
+hurry?</p>
+<p><strong>kid on scooter</strong>: Down the corner, see the ruckus…</p>
+<p><strong>doc wilson</strong>: Watch the curbs, now…</p>
+<p><strong>doc wilson</strong>: Where you off to?</p>
+<p><strong>joe</strong>: I, uh…I’m leaving…</p>
+<p><strong>doc wilson</strong>: Why?</p>
+<p><strong>joe</strong>: I perjured myself. I told a lie, and I ruined
+my life. That’s what I did. I don’t suppose you could help me with that,
+could you? Turn back the clock, or something? Give me back my, give me
+back my purity, I don’t suppose you could just wave your magic wand and
+do that, could you? But what is truth? Eh? Ain’t that the thing? What is
+true?</p>
+<p><strong>doc wilson</strong>: It’s the truth that you should never
+trust anybody, wears a bowtie. Cravat’s s’posed to point down to
+accentuate the genitals, why’d you wanna trust somebody, s’tie points
+out to accentuate his ears?</p>
+<p><strong>joe</strong>: Aren’t you supposed to set an example for
+people?</p>
+<p><strong>doc wilson</strong>: Nope. I’m just supposed to hold people’s
+hands while they die. What’d you say your problem was?</p>
+<p><strong>joe</strong>: I just swore my life away, back in that…</p>
+<p><strong>doc wilson</strong>: Mornin’, Chessy, how’s the back?</p>
+<p><strong>joe</strong>: I ruined my life. Isn’t that funny, that you
+can actually do it in one moment just like they say. I ruined my life
+back in that courthouse.</p>
+<p><strong>bellhop</strong>: What courthouse?</p>
+<p><strong>joe</strong>: Courthouse back in town.</p>
+<p><strong>bellhop</strong>: Town ain’t got no courthouse.</p>
+<p><strong>joe</strong>: What?</p>
+<p><strong>bellhop</strong>: Ain’t got no courthouse. Courthouse burnt
+down, 1960.</p>
+<p><strong>joe</strong>: Well, where do they hold court?</p>
+<p><strong>bellhop</strong>: Hold court, they have to, science lab, the
+high school.</p>
+<p><strong>station master</strong>: Mornin’, judge, what brings you
+here?</p>
+<p><strong>judge</strong>: I’m s’posed to hear some deposition, some
+fool saw the accident last night.</p>
+<p><strong>joe</strong>: …the courthouse burnt down…?</p>
+<p><strong>station master</strong>: Yep. Courthouse burnt down, 1960.
+Part of a spate of fires, Old Mill, Courthouse… S’posed to’ve been set
+by some deranged teenager.</p>
+<p><strong>station master</strong>: Yep, never did discover who set
+’em…</p>
+<p><strong>ann</strong>: I thought you needed to get it out of your
+system.</p>
+<p><strong>sherry</strong>: …a blight, a blight and an obscenity…that’s
+good English, isn’t it? How’s that for entertainment?</p>
+<p><strong>ann</strong>: What are you going to do?</p>
+<p><strong>joe</strong>: I’m going to tell the truth.</p>
+<p><strong>doug</strong>: …and to exterminate this vermin, yes, I use
+that term, who have abused, who have desecrated, yes, the license
+granted to them by a gracious nation…</p>
+<p><strong>doug</strong>: …who spew filth and degradation…</p>
+<p><strong>doug</strong>: …thank you…</p>
+<p><strong>tv reporter</strong>: …you want to clean up?</p>
+<p><strong>doug</strong>: Yes, thank you.</p>
+<p><strong>technician</strong>: Five minutes, and we’re going live to
+the network.</p>
+<p><strong>doug</strong>: …foreign, and un-American perversions of the
+Democratic process. By those we have entrusted with our dreams…</p>
+<p><strong>walt</strong>: Do something.</p>
+<p><strong>marty</strong>: You tell me what to do, I’ll do it.</p>
+<p><strong>walt</strong>: …and I was just paying off my house in
+Malibu…</p>
+<p><strong>walt</strong>: Thank G-d, it’s up to you, Pal. Sup to
+you…</p>
+<p><strong>joe</strong>: I’m out.</p>
+<p><strong>walt</strong>: I don’t getcha.</p>
+<p><strong>joe</strong>: The girl was in the car.</p>
+<p><strong>walt</strong>: I treated you like a son or nephew.</p>
+<p><strong>joe</strong>: It’s no you, it’s…</p>
+<p><strong>walt</strong>: No, what is it?</p>
+<p><strong>joe</strong>: I have to tell the truth.</p>
+<p><strong>walt</strong>: …that’s just so narrow…</p>
+<p><strong>joe</strong>: The girl was in the car.</p>
+<p><strong>walt</strong>: Then you’re finished in show business.</p>
+<p><strong>joe</strong>: So be it.</p>
+<p><strong>walt</strong>: And my company sues your ass for sixty million
+dollars.</p>
+<p><strong>joe</strong>: For what cause?</p>
+<p><strong>walt</strong>: I don’t need a cause, just a lawyer.</p>
+<p><strong>howie</strong>: I’m a lawyer.</p>
+<p><strong>marty</strong>: Howie…</p>
+<p><strong>howie</strong>: Yeah?</p>
+<p><strong>marty</strong>: What are you doing here?</p>
+<p><strong>howie</strong>: What am I doing here is I just flew seven
+hours cause you asked me here.</p>
+<p><strong>walt</strong>: What for?</p>
+<p><strong>howie</strong>: For this…I hope you need it, cause it’s
+coming outta your budget…</p>
+<p><strong>marty</strong>: Hi.</p>
+<p><strong>doug</strong>: I’d prefer it if you didn’t speak to me.</p>
+<p><strong>doug</strong>: …you know, there’s nothing you could say, that
+could possibly make a difference, so, why don’t you just save your
+breath…</p>
+<p><strong>doug</strong>: What’s in the case?</p>
+<p><strong>marty</strong>: Eight-hundred thousand dollars in cash.</p>
+<p><strong>doug</strong>: And what was it you wanted to say?</p>
+<p><strong>marty</strong>: Gut Yuntif.</p>
+<p><strong>joe</strong>: I’ve come to give myself up…</p>
+<p><strong>judge</strong>: Well give yourself up to someone else. I’m
+gonna get in some golf. Hiya, Annie. Give yourself up to her.</p>
+<p><strong>doug</strong>: I have learned a lesson. And the lesson is
+this…that everybody needs a second chance. You, me, and these fine, film
+people here. You know, they have a high profile, but that doesn’t mean
+they aren’t deserving of our trust, and of our respect. You know, I
+think there is a lesson here, and the lesson is this: it is a lesson of
+Tolerance…and, as we look at this industry, at this clean, American
+industry, and as I begin my campaign for congress…</p>
+<p><strong>first a.d.</strong>: Okay. Are we getting set up here…are we
+getting set up…People…? Can we settle…can we settle now…?</p>
+<p><strong>first a.d.</strong>: Okay, this is picture…</p>
+<p><strong>first a.d.</strong>: Quiet, please…</p>
+<p><strong>doc morton</strong>: Mornin’, Harry. Heard you had a little
+fire last night.</p>
+<p><strong>fireman</strong>: Waal, you didn’t have nothin’ to do, Doc,
+wouldn’t life be dull…?</p>
+<p><strong>bob</strong>: Mornin’, sister.</p>
+<p><strong>claire</strong>: We missed you in Church today, Frank.</p>
+<p><strong>bob</strong>: Sister, I’ve just come from a fire…</p>
+<p><strong>sister</strong>: …to come by next Sunday, and we’ll give you
+a second chance.</p>
+<p><strong>bob</strong>: Only second chance I know, chance t’make the
+same mistake twice.</p>
+<p><strong>sister</strong>: Well, time will tell.</p>
+<p><strong>first a.d.</strong>: That’s a cut!</p>
+<p><strong>cal</strong>: Mom’s expecting you for dinner tonight.</p>
+<p><strong>ann</strong>: I’ll be there.</p>
+<p><strong>cal</strong>: You bringing your new friend?</p>
+<p><strong>ann</strong>: Sure plan to</p>
+<p><strong>cal</strong>: He have any special delivery requirements?</p>
+<p><strong>ann</strong>: He’ll eat potroast and like it.</p>
+<p><strong>cal</strong>: Go you Huskies?</p>
+<p><strong>ann</strong>: You bet your life.</p>
+</body>
+</html>

@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>midnight-cowboy</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="midnight-cowboy">midnight-cowboy</h1>
+<p><strong>moderator</strong>: Tonight we’ll discuss a subject most of
+us seem to consider either bad taste or frivolous or funny. But if our
+experts are right, we face what might be called a masculinity crisis.
+Every fourth American man uptight, threatened by the increasing sexual
+demands of American women…</p>
+<p><strong>irate woman</strong>: They always put it that way, but well,
+all it means, you know, is every fourth American woman’s never
+satisfied. That’s it. I never am – have been, you know…</p>
+<p><strong>cool woman</strong>: This, this image of the, the man eating
+woman. It isn’t our increasing demands. I think it’s the shrinking
+American male…</p>
+<p><strong>sad woman</strong>: No, I never had, well, whatever it is you
+call it. But the hours he works, I can’t blame him…</p>
+<p><strong>sad woman’s voice</strong>: … but it’s a problem. A big
+problem. With so many women I know…</p>
+<p><strong>job</strong>: Just keep your pants on, ladies…</p>
+<p><strong>lady commentator</strong>: Before World War One – American
+men outnumbered women by over six percent. Today American women not only
+outnumber men, but live five years longer – leaving them in control of
+vast corporate wealth and seventy-five percent of America’s purchasing
+power…</p>
+<p><strong>joe</strong>: Y’all,line up and take your turn…</p>
+<p><strong>moderator</strong>: My question is this – will American
+know-how come up with a marketable male to replace all the men who are
+worrying themselves into an early grave over women’s increasing sexual
+demands?</p>
+<p><strong>waitress</strong>: Where’s that Joe Buck?</p>
+<p><strong>ralph</strong>: Where’s that Joe Buck?</p>
+<p><strong>joe</strong>: Yeah, where’s that Joe Buck?</p>
+<p><strong>sally buck</strong>: You look real nice, Joe baby…</p>
+<p><strong>manager</strong>: Where’s that Joe Buck?</p>
+<p><strong>joe</strong>: Yeah, where’s that Joe Buck?</p>
+<p><strong>manager</strong>: You’re due here at four o’clock. Look at
+those dishes, look!</p>
+<p><strong>joe</strong>: Know what you can do with those dishes? And if
+you ain’t man enough to do it yourself, I’d be happy to oblige…</p>
+<p><strong>manager</strong>: Four to midnight, understand?</p>
+<p><strong>joe</strong>: Say, look, uh, I gotta have a word with you, if
+you got a second.</p>
+<p><strong>manager</strong>: Later. Later maybe.</p>
+<p><strong>ralph</strong>: You ain’t coming to work?</p>
+<p><strong>joe</strong>: Don’t guess. Just come for my day’s pay owing
+and to tell you I’m heading East.</p>
+<p><strong>waitress</strong>: Cups!</p>
+<p><strong>ralph</strong>: What you gonna do back there, East?</p>
+<p><strong>joe</strong>: Lotta rich women back there…</p>
+<p><strong>ralph</strong>: Yeah?</p>
+<p><strong>joe</strong>: Men, they mostly faggots.</p>
+<p><strong>ralph</strong>: Must be some mess back there.</p>
+<p><strong>joe</strong>: Well, ain’t no use hanging around here.</p>
+<p><strong>ralph</strong>: Ain’t gonna collect your pay?</p>
+<p><strong>joe</strong>: I got me two hundred twenty-four bucks of flat
+folding money… He know what he can do with that chicken-shit day’s pay.
+And if he ain’t man enough to do it for himself, I be happy to
+oblige!</p>
+<p><strong>joe</strong>: Tough tiddy, ladies, you had your chance.</p>
+<p><strong>announcer’s voice</strong>: Benson and Hedges One Hundreds
+makes special awards from time to time for anything that’s longer than
+anything…</p>
+<p><strong>joe</strong>: Care to get out your yardstick, gentlemen?</p>
+<p><strong>joe</strong>: This is a powerful mothah, ain’t it?</p>
+<p><strong>pale blonde</strong>: Do you have a stick of gum?</p>
+<p><strong>pale blonde</strong>: Thank you.</p>
+<p><strong>joe</strong>: Plenty more where that came from.</p>
+<p><strong>pale blonde</strong>: Thank you, no, it’s just till the
+Dramamine works. I get carsick.</p>
+<p><strong>joe</strong>: I only get carsick on boats. But seems to me
+that’s more the fish smell than the bouncing…</p>
+<p><strong>sally buck</strong>: No, a little lower, sugar, yeah, yeah,
+that’s good. Grammaw’s beat.</p>
+<p><strong>salesman’s voice</strong>: You gotta sell yourself, that’s
+the whole trick…</p>
+<p><strong>salesman</strong>: It ain’t the product and it ain’t the
+price, no sir, and it ain’t what you sell, it’s personality, pure and
+simple. I ain’t shined my own shoes or shaved my own face in forty
+years, how’s that? Not bad for a kid that didn’t pass the eighth grade,
+right?</p>
+<p><strong>joe</strong>: Yeah, hell, yeah.</p>
+<p><strong>salesman</strong>: And that’s my golden rule. Make ’em love
+you. Put yourself over and you can sell them anything. If they like you,
+they’ll buy horsemeat for prime beef…</p>
+<p><strong>sally buck</strong>: You get him to the church, honey. He
+ain’t gonna find out you ain’t a real blonde till after you’re married,
+then’s too late.</p>
+<p><strong>sally buck</strong>: You getting too big for your britches,
+sugar.</p>
+<p><strong>sally buck’s voice</strong>: Don’t forget to say your
+prayers, honey…</p>
+<p><strong>old lady</strong>: I want it on.</p>
+<p><strong>evangelist’s voice</strong>: Oh, my friends, I say unto you,
+invest with Jesus, put your dollars to work where they’ll pay off at
+compound interest. The Good Book says money answereth all things…</p>
+<p><strong>joe</strong>: Light?</p>
+<p><strong>evangelist’s voice</strong>: … everyone who sends a dollar to
+the Evangelical Congregation of the Air will get free gratis a genuine
+leatherette hymn book so you can sing along with Sister Rosella and the
+Evangelical Choir…</p>
+<p><strong>joe</strong>: You throw in Sister Rosella and you got a deal,
+right, old timer?</p>
+<p><strong>joe</strong>: Going far?</p>
+<p><strong>old cowhand</strong>: Up the line. Not far.</p>
+<p><strong>joe</strong>: I’m bound for New York City.</p>
+<p><strong>joe</strong>: Ever happen to come across a cowman name of
+Woodsy Niles? Friend of my grammaw Sally Buck…</p>
+<p><strong>sally buck</strong>: Like it, honey? Does it fit?</p>
+<p><strong>woodsy</strong>: You do me good, Sal, you do me real good.
+You know what I gonna give you for that Stetson?</p>
+<p><strong>sally buck</strong>: Woodsy Niles! The boy!</p>
+<p><strong>woodsy</strong>: He don’t know what makes little apples by
+now, it’s time he found out.</p>
+<p><strong>joe</strong>: Smoke?</p>
+<p><strong>woodsy</strong>: … git along little dogies!</p>
+<p><strong>joe</strong>: Nice talking to you, old timer.</p>
+<p><strong>woodsy’s voice</strong>: She-dogs squat, boy. He-dogs stand
+up and lift their leg…</p>
+<p><strong>woodsy</strong>: … but he-men stand and shoot from the
+hip.</p>
+<p><strong>veteran</strong>: Ever stationed at Kennedy? Those Florida
+chicks…</p>
+<p><strong>marine</strong>: Instant V-goddam-D.</p>
+<p><strong>veteran</strong>: This Pensacola teeny-bopper – jail bait –
+but built? Ten bucks she wanted. Three of us made a deal for,
+twenty-five, see, big goddam bargain?</p>
+<p><strong>marine</strong>: Big peni-goddam-cillin bargain, right?</p>
+<p><strong>veteran</strong>: You got it.</p>
+<p><strong>marine</strong>: No. You got it.</p>
+<p><strong>joe</strong>: Jesus goddam Christ, I ain’t laughed so hard
+since I was out at Fort Benning, Georgia.</p>
+<p><strong>marine</strong>: Did you make the Viet?</p>
+<p><strong>joe</strong>: What? Oh, hell no. Motor pool mostly…
+Kee-rist…</p>
+<p><strong>prostitute</strong>: Hey, hey, what you try to do to me? You
+gonna cost me money, soldier!</p>
+<p><strong>sally buck</strong>: Keep your meat hooks off my operators,
+sugar, hear?</p>
+<p><strong>anastasia</strong>: You’re the only one, Joe, the only, only
+one ever!</p>
+<p><strong>joe’s reflection</strong>: Gonna swing my lasso and rope that
+whole goddam island, yeah!</p>
+<p><strong>sally buck’s voice</strong>: There’s a TV dinner in the
+fridge, lover boy…</p>
+<p><strong>sally buck</strong>: You be okay, won’t you? Maybe I bring
+you a treat if you’re a good boy…</p>
+<p><strong>sally buck</strong>: I’m so beat, no point you waiting round,
+toots, think I’ll stop in for a beer or two…</p>
+<p><strong>sally buck</strong>: Expect me when you see me. Looks like I
+got me a new beau, lover boy, how’s that for an old grammaw? I’ll leave
+you movie money…</p>
+<p><strong>joe</strong>: Up yours, lady.</p>
+<p><strong>ralph</strong>: Hell, he know I can’t read…</p>
+<p><strong>joe’s voice</strong>: After all them dishes are washed,
+what?</p>
+<p><strong>joe’s reflection</strong>: Then they bring some more dishes
+and I wash them and then I, uh, sleep some and then wash some more
+dishes and then I…</p>
+<p><strong>joe’s voice</strong>: Say it, lover boy!</p>
+<p><strong>joe’s reflection</strong>: Die.</p>
+<p><strong>joe’s voice</strong>: Well, you better just shake your tail,
+lover boy, and root, hog or die.</p>
+<p><strong>joe</strong>: Goddam if I came to this town to write
+postcards.</p>
+<p><strong>joe</strong>: Beg pardon, ma’am, I’m new here in town, just
+in from Houston, Texas, and looking for the Statue of Liberty.</p>
+<p><strong>rich lady</strong>: Were you looking? About the Statue of
+Liberty?</p>
+<p><strong>joe</strong>: Joking? No, ma’am. Oh no! I mean business!</p>
+<p><strong>rich lady</strong>: I’m sorry. I thought you were – never
+mind – I’ve never actually been there, but let me see, you take the
+Seventh Avenue subway, I think, to the end of the line…</p>
+<p><strong>joe</strong>: You sure are a pretty lady.</p>
+<p><strong>rich lady</strong>: You’re not looking for the Statue of
+Liberty at all.</p>
+<p><strong>joe</strong>: No, ma’am, I’m not.</p>
+<p><strong>rich lady</strong>: Why, that’s perfectly dreadful. Aren’t
+you ashamed of yourself?</p>
+<p><strong>cass’s voice</strong>: Hurry up, Baby. Do um goody-goods for
+Mama.</p>
+<p><strong>joe</strong>: Beg pardon, ma’am. I’m brand spanking new to
+this town, come from Houston, Texas, and hoping to get a look at the
+Statue of Liberty…</p>
+<p><strong>cass</strong>: You’re hoping to get a look at what?</p>
+<p><strong>joe</strong>: The Statue of Liberty.</p>
+<p><strong>cass</strong>: It’s up in Central Park, taking a leak. If you
+hurry, you’ll make the supper show. Now get lost.</p>
+<p><strong>cass</strong>: Hi.</p>
+<p><strong>cass</strong>: Hello?</p>
+<p><strong>cass</strong>: Morey? Hi-ee, honey…</p>
+<p><strong>cass</strong>: I’m just out of breath, honey, running to
+catch the phone.</p>
+<p><strong>cass</strong>: I was walking Baby. Him got to do him
+goody-goods, right?</p>
+<p><strong>cass</strong>: Oh God, oh stop. I can’t stand that. I just
+die… It’s Baby, Morey. Him trying to say hello. Say hello to Morey,
+Baby.</p>
+<p><strong>cass</strong>: Okay, old goosie? Now lookie, when do you want
+me to meet you? Whatever you say. I’ll take a nap, watch TV, you know,
+kill time. Okay, but just one, a big wet one.</p>
+<p><strong>cass</strong>: Ye gods…</p>
+<p><strong>joe’s voice</strong>: Holy shee-it, this is a goddam
+penthouse you got here, Cass, a real goddam penthouse.</p>
+<p><strong>cass’s voice</strong>: Don’t look, baby…</p>
+<p><strong>joe</strong>: Say, Cass, I, uh, sure have enjoyed being here.
+Believe it’s as fine a time as I’ve had in my life!</p>
+<p><strong>cass’s voice</strong>: Me, too, lover.</p>
+<p><strong>joe</strong>: That’s good, it is, cause, well I guess I
+didn’t tell you why I came to New York, did I?</p>
+<p><strong>cass</strong>: Zip this thing, will you, Tex?</p>
+<p><strong>job</strong>: Truth is, Cass, I’m, well, I’m in business.</p>
+<p><strong>cass</strong>: Oh, poor you. Morey’s got terrible ulcers.</p>
+<p><strong>joe</strong>: Don’t know what line Morey’s in, but myself
+now, fact is – I’m a hustler.</p>
+<p><strong>cass</strong>: Hers’n zodda meg a livig.</p>
+<p><strong>joe</strong>: Beg pardon, ma’am?</p>
+<p><strong>cass</strong>: Said, a person’s gotta make a living.</p>
+<p><strong>joe</strong>: You sure you heard what I said?</p>
+<p><strong>cass</strong>: Scuse me, hon, fraid I’m only half here. Maybe
+you oughta run on along. But why don’t you take this phone number?</p>
+<p><strong>cass</strong>: Darn! I didn’t get to the bank – Tex – could
+you let me have a little coin for the taxi-waxi?</p>
+<p><strong>cass</strong>: You’re such a doll. I hate money, don’t you?
+God, it’s been fun.</p>
+<p><strong>joe</strong>: Funny thing, you mentioning money. I was just
+about to ask your for some…</p>
+<p><strong>cass</strong>: You bastard! You son of a bitch! You think
+you’re dealing with some old slut? Look at me! You think just cause
+you’re a longhorn bull you can get away with this crap? Well, you’re out
+of your mind. I am a gorgeous chick, thirty-one, that’s right, you said
+it!</p>
+<p><strong>joe</strong>: Hey. Hey, Cass. Did you think I meant that?
+Christ, would I be asking you for money with a wad like that riding on
+my hip?</p>
+<p><strong>joe</strong>: Hey. You are a gorgeous-looking piece, Cass.
+Guy gets horny, just looking at you. It’s a fact. How much you need for
+that taxi? Ten? Twenty? There you go.</p>
+<p><strong>ratso’s voice</strong>: Excuse me, I’m just admiring that
+colossal shirt…</p>
+<p><strong>ratso</strong>: That is one hell of a shirt. I bet you paid a
+pretty price for it, am I right?</p>
+<p><strong>joe</strong>: Oh, it ain’t cheap. I mean, yeah, I’d say this
+was an all right shirt. Don’t like to, uh, you know, have a lot of cheap
+stuff on my back.</p>
+<p><strong>jackie</strong>: Got a cigarette, cowboy?</p>
+<p><strong>ratso</strong>: More goddam faggots in this town.</p>
+<p><strong>joe</strong>: Shee-it… Kee-rist, you really know the ropes.
+Wish to hell I bumped into you before. I’m Joe Buck from Texas and I’m
+gonna buy you a drink, what do you say to that?</p>
+<p><strong>ratso</strong>: Enrico Rizzo from the Bronx. Don’t mind if I
+do.</p>
+<p><strong>joe</strong>: Same all around! For my friend, too!</p>
+<p><strong>tv host</strong>: … and for the losers, who don’t get the
+girl, we’ll give as consolation prices – a six month supply of underarm
+deodorant…</p>
+<p><strong>joe</strong>: … you see what I’m getting at here? She got a
+penthouse up there with color TV and more goddam diamonds than an
+archbishop and she busts out bawling when I ask for money!</p>
+<p><strong>ratso</strong>: For what?</p>
+<p><strong>joe</strong>: For money.</p>
+<p><strong>ratso</strong>: For money for what?</p>
+<p><strong>joe</strong>: I’m a hustler, hell, didn’t you know that?</p>
+<p><strong>ratso</strong>: How would I know? You gotta tell a person
+these things A hustler? Picking up trade on the street like that – baby,
+believe me – you need management.</p>
+<p><strong>joe</strong>: I think you just put your finger on it, I
+do.</p>
+<p><strong>ratso</strong>: My friend O’Daniel. That’s who you need.
+Operates the biggest stable in town. In the whole goddam metropolitan
+area. A stud like you - paying! – not that I blame you – a dame starts
+crying, I cut my heart for her…</p>
+<p><strong>jackie’s voice</strong>: I’d call that a very minor
+operation…</p>
+<p><strong>jackie</strong>: … in fact, you just sit comfy and I’ll cut
+it out with my fingernail file. You won’t even need Blue Cross,
+Ratso.</p>
+<p><strong>ratso</strong>: The name is Rizzo.</p>
+<p><strong>jackie</strong>: That’s what I said, Ratso.</p>
+<p><strong>joe</strong>: Hey now, you heard him.</p>
+<p><strong>tv date girl</strong>: I pick Number Two! He’s cool!</p>
+<p><strong>ratso</strong>: That’s okay, Joe. I’m used to these types
+that like to pick on cripples. Sewers’re full of ’em.</p>
+<p><strong>jackie</strong>: May I ask one thing, cowboy? If you sit
+there and he sits way over there, how’s he gonna get his hand into your
+pocket? But I’m sure he has that all figured out… Good night,
+sweets.</p>
+<p><strong>tv host</strong>: May present your chosen mate!</p>
+<p><strong>ratso</strong>: Look, with these chicks that want to buy it,
+most of ’em are older, dignified, right? Social register types. They
+can’t be trotting down to Times Square to pick out the merchandise. They
+need a middleman, right? That’s O’Daniel.</p>
+<p><strong>ratso</strong>: It is a crime, a stud like you passing out
+double sawbucks to a chick like that. With proper management you should
+be taking home fifty, a hundred bucks a day. More if you wanta
+moonlight…</p>
+<p><strong>ratso</strong>: Him I placed with O’Daniel just two weeks
+ago. And look. Not much of a stud either, what I hear…</p>
+<p><strong>joe</strong>: Hey, listen, how about you take me to mee this
+Mister O’Diddle bird right now?</p>
+<p><strong>ratso</strong>: Well, Joe, you’re a nice guy, and I’d be
+doing you both a favor, but why? What’m I dragging my bum leg all over
+town for? It’s no picnic and what for, for me myself, what?</p>
+<p><strong>ratso</strong>: Tomorrow when some piece like that’s
+scratching your back in a Fifth Avenue townhouse, where’ll your pal
+Rizzo be? Nedicks.</p>
+<p><strong>joe</strong>: Hold it, just hold it. You think I’m that kinda
+sombitch? Just name your cut, whatever you want, you got it right now.
+Five? Ten, how’s that?</p>
+<p><strong>ratso</strong>: Joe, please. You know what I’d ask anyone
+else? Oh hell, tell you what I’ll do, I’ll take the ten… … but when I
+hand you over to Mr. O’Daniel, I’ll have to have another ten, Joe; just
+to like cover expenses…</p>
+<p><strong>ratso</strong>: This boy is just your meat, Mr. O’Daniel,
+believe it, I’m telling you – what? – Enrico Rizzo from the Bronx. The
+point is he needs you. Right now. Tonight… I got his tongue hanging
+out…</p>
+<p><strong>ratso’s voice</strong>: Name’s Joe Buck. Cowboy. Just in from
+Texas, don’t know the ropes, new to the city, but very promising
+material, sir, and ready, if you get what I mean. Fabulous. Right away.
+What’s that room number there again?</p>
+<p><strong>ratso</strong>: Hold it a second…</p>
+<p><strong>ratso</strong>: Nine-oh-one, got it?</p>
+<p><strong>ratso</strong>: Let’s see how you look. Fine. You look fine.
+Now I’m gonna have to have that other ten…</p>
+<p><strong>joe</strong>: Ten, ten – I got a twenty – take that…</p>
+<p><strong>ratso</strong>: Oh hell, forget it.</p>
+<p><strong>joe</strong>: Now take it. Go on. Listen, where can I reach
+you? Cause I’m gonna make this right with you soon’s I get me set
+up…</p>
+<p><strong>ratso</strong>: Forget it.</p>
+<p><strong>joe</strong>: I mean, dammit, where you live?</p>
+<p><strong>ratso</strong>: Sherry-Netherlands Hotel. Now get your ass in
+there. He’s waiting!</p>
+<p><strong>o’daniel</strong>: You must be Joe Buck. Come in.</p>
+<p><strong>o’daniel</strong>: Am I tickled to find you, boy! Come on in
+and let’s get a look at you. Turn around. Good strong back. You’ll need
+it. So you want help – take a seat, relax, tell me about yourself.
+Cowboy, huh?</p>
+<p><strong>joe</strong>: No sir, I’m no cowboy really, but I’m a first
+class stud.</p>
+<p><strong>o’daniel</strong>: Take it,easy, boy… Seems to me you’re
+different than a lotta boys that come to me. Most of ’em seem troubled,
+confused, but I’d say you knew exactly what you want.</p>
+<p><strong>joe</strong>: You bet I do, sir.</p>
+<p><strong>o’daniel</strong>: But I’ll bet you got one thing in common
+with them other boys. I’ll bet you’re lonesome.</p>
+<p><strong>joe</strong>: Well, not too, I mean, a little.</p>
+<p><strong>o’daniel</strong>: I’m lonesome. I’m lonesome so I’m a drunk.
+I’m lonesome so I’m a dope fiend. I’m lonesome so I’m a thief, a
+fornicator, a whore-monger. Poop, I say, poop! I’ve heard it all and I’m
+sick of it, sick to death.</p>
+<p><strong>joe</strong>: Yessir, I can see that.</p>
+<p><strong>o’daniel</strong>: Lonesomeness is something you take. You
+bear? Dammit, you take it and go about your business, that’s all.</p>
+<p><strong>joe</strong>: Well, uh, I’m raring to go.</p>
+<p><strong>o’daniel</strong>: Yes, I believe you are. Cowboy, huh?</p>
+<p><strong>joe</strong>: Uh, yessir.</p>
+<p><strong>o’daniel</strong>: Ready for hard work, son?</p>
+<p><strong>joe</strong>: Ready for anything.</p>
+<p><strong>o’daniel</strong>: I got a hunch, Joe Buck, it’s gonna be
+easier for you than most.</p>
+<p><strong>joe</strong>: Gonna be like money from home.</p>
+<p><strong>o’daniel</strong>: Money from home, see, there’s your
+strength, you put things in earthy terms any man can understand, son. I
+warn you I’m gonna use you, I’m gonna run you ragged!</p>
+<p><strong>o’daniel</strong>: You’re a wonderful boy. You’n me gonna
+have fun, dammit, it don’t have to be joyless. Say, why don’t we get
+right down on our knees now?</p>
+<p><strong>joe</strong>: Get down – where?</p>
+<p><strong>o’daniel</strong>: Right here, why not? I prayed in saloons,
+I prayed in the street, I prayed an the toilet. He don’t care where,
+what He wants is that prayer.</p>
+<p><strong>job</strong>: Shee-it…</p>
+<p><strong>o’daniel</strong>: That’s the ticket, just open your heart
+and let it flow. It ain’t the words, it’s the love beyond ’em!</p>
+<p><strong>o’daniel’s voice</strong>: Don’t fight it, boy!</p>
+<p><strong>o’daniel</strong>: Pray and you shall be heard!</p>
+<p><strong>o’daniel</strong>: Don’t be frightened, son!</p>
+<p><strong>o’daniel</strong>: Don’t run from Jesus!</p>
+<p><strong>joe</strong>: Say, you know that runty little bastard I was
+with?</p>
+<p><strong>bartender</strong>: I don’t know nothing.</p>
+<p><strong>joe</strong>: Shee-it.</p>
+<p><strong>joe</strong>: Well, now, ma’am, next time you got that
+feeling coming on, you dial Joe Buck. I’ll show you what to do…</p>
+<p><strong>singing commercial</strong>: Need a little easy money? It’s
+E-Z. Want a little easy cash? It’s E-Z.</p>
+<p><strong>jingle</strong>: Easy locations to get to Easy ladies to
+greet you Easy chairs to seat you Easy payments to meet Let E-Z set you
+On Easy Street Joe arrives confident Harassed E-Z receptionist Lines of
+uneasy customers Desperate, angry faces Reams of E-Z forms to fill
+Clerk’s sneer, says Joe has to be kidding</p>
+<p><strong>joe’s voice</strong>: Key to 1014…</p>
+<p><strong>desk clerk</strong>: Looks like you been locked out of your
+room, buddy. Till you pick up your tab.</p>
+<p><strong>joe</strong>: Uh, what about my things’n all?</p>
+<p><strong>desk clerk</strong>: We keep them nice and safe till you get
+this straightened out.</p>
+<p><strong>joe</strong>: Listen, tell you what, you can keep all the
+rest of the goddam junk if you let me have just the suitcase. That
+suitcase means a lot to me.</p>
+<p><strong>desk clerk</strong>: We keep everything. House rules.</p>
+<p><strong>joe</strong>: Screw off.</p>
+<p><strong>joe</strong>: Any objection, gentlemen?</p>
+<p><strong>job</strong>: Y’ain’t gonna eat them?</p>
+<p><strong>joe</strong>: Shee-it.</p>
+<p><strong>sally buck’s voice</strong>: Wet your britches, lover
+boy?</p>
+<p><strong>middle-age lady</strong>: How do I get to Grand Central?</p>
+<p><strong>joe</strong>: Shuttle. Follow the green light.</p>
+<p><strong>joe</strong>: Alright, cowboy. Enough of this shee-it. You
+know what you got to do? Then go do it.</p>
+<p><strong>joe’s voice</strong>: Twenty-three bucks, I got to have
+twenty-three bucks…</p>
+<p><strong>fat boy’s voice</strong>: Okay. Sure. I got twenty-five…</p>
+<p><strong>anastasia</strong>: You’re the only one, Joe, the only, only
+one ever!</p>
+<p><strong>anastasia’s voice</strong>: You’re the best, the very best,
+yes, yes, kiss me, oh God please kiss me, Joe, now, now, now!</p>
+<p><strong>boys’ voices</strong>: Hey, Joe, give someone else a chance!
+What’s he doing for chrisake? He kissing Anastasia? You better swallow a
+whole goddam drugstore, man!</p>
+<p><strong>joe</strong>: I’m awful damn sorry you’re sick, kid, but you
+gonna have to gimme that money like you said.</p>
+<p><strong>fat boy</strong>: I was lying. I don’t have it. What’re you
+going to do to me?</p>
+<p><strong>joe</strong>: What you got in your pockets?</p>
+<p><strong>joe</strong>: How much’s that worth?</p>
+<p><strong>fat boy</strong>: I can’t go home without my watch! My
+mother’d die! She’d die! Take my books! Not my watch! She’d die!</p>
+<p><strong>desperate voice</strong>: Bill, can I call you Bill, Mister
+Bonner? I feel like I know you from listening. What I called about,
+Bill, I’m gonna kill myself…</p>
+<p><strong>bonner’s voice</strong>: Why call me, baby? If you want to do
+it; just do it, don’t talk about it. Are we drunky? Feeling a little
+sorry for ourselves maybe?</p>
+<p><strong>desperate voice</strong>: Well, Bill, what I got thinking, I
+didn’t want the neighbors to have to find me, this young couple with the
+boy I want to have my cat, see, Bill?</p>
+<p><strong>bonner</strong>: Okay, baby, now listen, just hold on while I
+leave the line for a minute. And think about all the kids that are dying
+overseas for you, okay, baby? Got that? I’ll be back in exactly sixty
+seconds. After this message from…</p>
+<p><strong>ratso</strong>: Don’t hit me, I’m a cripple.</p>
+<p><strong>joe</strong>: Oh, I ain’t gonna hit you, I’m gonna strangle
+you to death…</p>
+<p><strong>joe</strong>: … only first I’m gonna turn you upside down and
+shake you out right here and now.</p>
+<p><strong>joe</strong>: What’s in your socks?</p>
+<p><strong>ratso</strong>: Not a cent, I swear to God, I swear on my
+mother’s eyes.</p>
+<p><strong>ratso</strong>: You keep the sixty-four cents. I want you to
+have it.</p>
+<p><strong>joe</strong>: It’s sticky. What you do, slobber on ’em? I
+wouldn’t touch ’em.</p>
+<p><strong>ratso</strong>: How do you like that O’Daniel, flipping out
+like that? I wanted to get in touch with you when I heard, but I been
+laid up with this cold…</p>
+<p><strong>joe</strong>: You want some free medical advice, shut your
+goddam mouth about that night.</p>
+<p><strong>ratso</strong>: Okay, right, right, okay. Another subject.
+Where you living? Still at the hotel?</p>
+<p><strong>joe</strong>: Shee-it. I got better things to do than talk to
+you.</p>
+<p><strong>ratso’s voice</strong>: Hey, wait up, for crissake!</p>
+<p><strong>joe</strong>: Listen, keep away from me, hear? You come near
+me again, I snatch you bald-headed!</p>
+<p><strong>ratso</strong>: I’m inviting you. I mean if you’re not
+located, I got a place. I’m inviting you, goddamit.</p>
+<p><strong>joe</strong>: You inviting shee-it.</p>
+<p><strong>ratso’s voice</strong>: The X on the window means the
+landlord can’t collect rent – which is a convenience, hey? – on account
+of it’s condemned.</p>
+<p><strong>ratso’s voice</strong>: The electric’s off. Another
+convenience. I don’t mess with Con Edison, hey? What the hell, I got
+candles, right?</p>
+<p><strong>ratso</strong>: I got no heat, but by that time, you know,
+cold weather, hey, I’ll be in Florida. Stretch out. Make yourself
+comfortable. You hungry? I’ll put up some water for coffee.</p>
+<p><strong>joe</strong>: Comfortable, kee-rist, I slept on subways
+softer than this.</p>
+<p><strong>anastasia</strong>: Love me, Joe?</p>
+<p><strong>joe</strong>: Smart thing for me to do is haul ass outta
+here.</p>
+<p><strong>ratso</strong>: Whatsa matter now?</p>
+<p><strong>joe</strong>: You don’t seem like no fag…</p>
+<p><strong>ratso</strong>: What’s that supposed to mean?</p>
+<p><strong>ratso</strong>: For crissake!</p>
+<p><strong>joe</strong>: Where’s my boots – ?</p>
+<p><strong>job</strong>: How’d they get off me?</p>
+<p><strong>ratso</strong>: I took ’em off.</p>
+<p><strong>joe</strong>: What for?</p>
+<p><strong>ratso</strong>: So you could sleep! I mean Christ!</p>
+<p><strong>ratso</strong>: I drug in a cot, if you want to stay.</p>
+<p><strong>joe</strong>: Well now, Ratso, I’m gonna tell you something
+for your own good, only first gimme a cigarette.</p>
+<p><strong>joe</strong>: You want me to stay here tonight, is that the
+idea?</p>
+<p><strong>ratso</strong>: I ain’t forcing you, like, I mean, who’s
+forcing you?</p>
+<p><strong>joe</strong>: Oh. Guess I got the wrong impression.</p>
+<p><strong>ratso</strong>: I want you to stay, okay? I goddam invited
+you, didn’t I?</p>
+<p><strong>joe</strong>: Well, I hope you know what you’re in for. I’m a
+very dangerous person. Someone does me bad like you. If I caught up with
+you that night, there’d be one dead Ratso long about now. Hear?</p>
+<p><strong>ratso</strong>: I’m impressed. You’re a killer.</p>
+<p><strong>joe</strong>: So if you want me to hang around for a few
+days, I thought you should know.</p>
+<p><strong>joe</strong>: Property of the YMCA. You make me wanna puke
+sometimes, Ratso.</p>
+<p><strong>ratso</strong>: Joe – do me one favor – this is my place, am
+I wrong? You know, in my own place my name ain’t Ratso. I mean it so
+happens my name is Enrico Salvatore Rizzo.</p>
+<p><strong>joe</strong>: Shee-it, man, I can’t say all that.</p>
+<p><strong>ratso</strong>: Rico then, at least call me Rico in my own
+goddam place.</p>
+<p><strong>joe</strong>: Rico! Rico! Rico! Is that enough? And keep your
+meat hooks off my radio.</p>
+<p><strong>greengrocer</strong>: You! Out! Out! I told you, I calla
+cops!</p>
+<p><strong>joe</strong>: Hey, looka here, that ain’t nice, picking on a
+cripple…</p>
+<p><strong>ratso</strong>: The two basic items necessary to sustain life
+are sunshine and coconut milk. That’s a known fact. If I can find the
+goddam hole the milk squirts out.</p>
+<p><strong>joe</strong>: This is an okay setup you got here, but I’d say
+you ain’t just exactly, uh, flush, is that right or not?</p>
+<p><strong>ratso</strong>: I been sick. Hold this, will ya?</p>
+<p><strong>ratso</strong>: In Florida, they come smooth, ready to eat.
+Down there, your only problem is, diet-wise, you gotta lift an arm to
+wipe warm milk off your chin. Tough, hey?</p>
+<p><strong>joe</strong>: I think finding you’s the smartest thing I ever
+did, for both of us. You just the crooked kinda sneaky little sidewinder
+I need to get me hustling in this town. Hey!</p>
+<p><strong>ratso</strong>: Miami Beach is the only place for a real
+hustler. Florida has more rich chicks per square yard than any resort
+spot in the world. They lie out in their pagodas and pergolas waiting to
+grab the first jockstrap that passes.</p>
+<p><strong>joe</strong>: What’s all this sweet talk about Florida? Your
+friend O’Daniel got a stable down there now?</p>
+<p><strong>ratso</strong>: Cowboy killers! Break my finger, Christ! I
+got news for you, baby, no chick with any class buys that big dumb
+cowboy crap…</p>
+<p><strong>ratso</strong>: … the cowboy bit’s out, except among fags of
+a certain type, which take a certain, type hustler to exploit. Like I
+could handle it – being a stealing operation basically – but take your
+average fag, very few of them want a cripple.</p>
+<p><strong>joe</strong>: Well, I am dumb, that’s for sure. I don’t talk
+right. I can’t think too good. Just only one thing I ever been good
+for’s loving. Women go crazy for me. Fact. Crazy Annie. Had to send her
+away. So I don’t cash in on that, what am I? I’m shee-it. May’s well
+flush me down that hole with the dishwater.</p>
+<p><strong>joe</strong>: That’s why you gonna stop crapping about
+Florida and get your skinny butt moving to earn twenty bucks worth of
+management you owe me…</p>
+<p><strong>joe’s voice</strong>: Make that twenty-three bucks.</p>
+<p><strong>ratso</strong>: Look at yourself, Joe, no offense, but
+frankly, you’re beginning to smell. For a stud in this town that’s a
+handicap.</p>
+<p><strong>joe</strong>: You talk like a man with a tin twat.</p>
+<p><strong>ratso</strong>: You ain’t got a chance in hell. You need
+threads and glitter, baby. A front, hey?</p>
+<p><strong>joe</strong>: Well, uh, my manager’s gonna manage all that
+crap, or else he gonna get a coconut up his flue.</p>
+<p><strong>ratso</strong>: A woman in your condition shouldn’t do that.
+Let me help…</p>
+<p><strong>joe’s voice</strong>: It ain’t right, stealing from a
+pregnant lady.</p>
+<p><strong>ratso</strong>: What did it cost her? The laundromat
+syndicate lost a couple coins. I’m crying.</p>
+<p><strong>ratso</strong>: Where’s mine? The black homburg? I brought it
+in the same time.</p>
+<p><strong>joe</strong>: Hey, you’re good! I bet you could pick up a
+living at this if you tried.</p>
+<p><strong>ratso</strong>: And end up a hunchback like my old man? You
+think I’m crippled? You shoulda caught him the end of a day.</p>
+<p><strong>ratso’s voice</strong>: You think it’s funny?</p>
+<p><strong>ratso</strong>: Stupid bastard coughed his lungs out
+breathing that resin all day. They buried him with gloves on. Even the
+fag undertaker couldn’t get his nails clean.</p>
+<p><strong>joe</strong>: Kee-rist, you pretty damn clever for a skimpy
+little gimp.</p>
+<p><strong>ratso</strong>: You like it? Take a look.</p>
+<p><strong>joe</strong>: Don’t rush me. How I do it, see, I get myself
+primed, like I was turning on the charm for some pretty little blonde
+lady, then kinda mosey away slow and easy and - swing around! – and
+there you are, you handsome devil.</p>
+<p><strong>ratso</strong>: Not bad – for a cowboy – you’re okay, you’re
+okay.</p>
+<p><strong>joe</strong>: What I’m gonna do, I’m gonna make a cowboy
+outta you, kid. How about that? Build you up a little, teach you couple
+little tricks’n turn y’out to stud, Rat-stuff.</p>
+<p><strong>joe</strong>: Okay, you got yourself one handsome,
+sweet-smelling cowboy, strut your stuff…</p>
+<p><strong>ratso</strong>: How do you like that? Cheap bastard… I think
+we struck gold. This is one high-class chick. The Barbizon for
+Women!</p>
+<p><strong>ratso</strong>: Mr. McNeill, I’m calling for Miss Beecham at
+the Barbizon Hotel for Women. She won’t need you tonight…</p>
+<p><strong>ratso’s voice</strong>: Would you believe a whole goddam
+hotel with nothing but lonely chicks?</p>
+<p><strong>ratso</strong>: Score once in that setup, the way chicks
+talk, Christ…</p>
+<p><strong>ratso</strong>: Get the money! Remember Cass Trehune? Cash!
+These rich bitches write a check at night, call the bank and stop
+payment in the morning. Get the cash!</p>
+<p><strong>bellhop</strong>: Hey! No men upstairs!</p>
+<p><strong>miss beecham</strong>: I’m afraid there’s been a terrible
+mistake…</p>
+<p><strong>joe</strong>: I want my money, goddamit, you owe me my money
+whether you get laid or not, lady, shee-it!</p>
+<p><strong>joe</strong>: Shee-it. Cough yourself inside out, then light
+a fag, a goddam fag. You make me puke. Where’d you steal it? In the
+movies?</p>
+<p><strong>ratso</strong>: The coat? A guy I did a favor once gave it to
+me. Christ.</p>
+<p><strong>joe</strong>: Who’d you ever do a favor for? You just let
+some poor bastard freeze to death, wouldn’t you?</p>
+<p><strong>ratso</strong>: Where’d that come from?</p>
+<p><strong>joe</strong>: Forty-second Street. Where’n hell you think it
+come from?</p>
+<p><strong>ratso</strong>: You wanna know the truth? You dumb bastard, I
+got it for you. Look at it. Goddam thing’s ten sizes too big for me.</p>
+<p><strong>joe</strong>: Wear it yourself. I wouldn’t put it on my
+back.</p>
+<p><strong>ratso</strong>: Goddamned if I’ll wear it!</p>
+<p><strong>joe</strong>: Go get your medicine. Before you die on my
+goddam, hands…</p>
+<p><strong>joe’s voice</strong>: Shee-it. I hate boneyards.</p>
+<p><strong>ratso’s voice</strong>: So split. He ain’t your goddam,
+father.</p>
+<p><strong>joe</strong>: Kee-rist, you sure are one twisty little
+bastard, Ratso.</p>
+<p><strong>ratso</strong>: The name’s Rico, at my own father’s grave, a
+man deserves some respect.</p>
+<p><strong>joe</strong>: Respect shee-it! You even steal flowers for his
+grave.</p>
+<p><strong>ratso</strong>: Can he smell the difference, eh?</p>
+<p><strong>joe</strong>: Well, uh, he dam well know he ain’t ‘be-loved
+Aunt Winifred’.</p>
+<p><strong>ratso</strong>: He can’t read. Even dumber than you. Couldn’t
+write his own name. X – that’s what it ought to say there on that goddam
+headstone. One big lousy X like our flat. Condemned. By order of City
+Hall.</p>
+<p><strong>joe</strong>: My Grammaw Sally Buck, she died without letting
+me know.</p>
+<p><strong>ratso</strong>: Just keep your hat on and cry a little. They
+tip you when it’s over.</p>
+<p><strong>joe</strong>: Just ain’t right, cheating someone dead and
+can’t cheat back.</p>
+<p><strong>ratso</strong>: You and my old man. Same kinda mind. Putting
+me down till the day he died… … why can’t you be like your brothers?
+Sons a father could be proud of. Yeah, sure. My brothers. Too goddam
+busy making something of themselves to show up when the old man’s
+dying!</p>
+<p><strong>ratso</strong>: What was that all about?</p>
+<p><strong>joe</strong>: You wanna read something, read this. I been
+invited somewhere.</p>
+<p><strong>joe</strong>: They picked me. The only one in the whole
+goddam place. You see how they looked me over, up and down before they
+give me that?</p>
+<p><strong>ratso</strong>: So?</p>
+<p><strong>joe</strong>: Well, this thought just struck me. It wasn’t
+too long ago I was washing dishes way the hell somewhere in Texas.</p>
+<p><strong>ratso</strong>: Yeah, well, so?</p>
+<p><strong>joe</strong>: Now I’m here. I’m in New York City. Getting
+picked for things. Don’t you see what I’m driving at?</p>
+<p><strong>ratso</strong>: What you’re driving at, you want me to get
+lost so you can go to your fancy-ass party.</p>
+<p><strong>joe</strong>: Did I say that? Did I? It don’t say nothing
+about you…</p>
+<p><strong>ratso</strong>: Don’t say nothing about you either.</p>
+<p><strong>joe</strong>: But they picked me, right? So what I’ll do,
+I’ll just say, now look, you want me? Well, I don’t go nowhere without
+my buddy here.</p>
+<p><strong>ratso</strong>: Well, what the hell, I got nothing better to
+do.</p>
+<p><strong>joe</strong>: Better dry your hair some. You sweating all
+over the goddam place.</p>
+<p><strong>joe</strong>: You got a comb?</p>
+<p><strong>ratso</strong>: Don’t need a comb.</p>
+<p><strong>joe</strong>: Few dozen cooties won’t kill me, don’t
+guess.</p>
+<p><strong>ratso</strong>: Okay? I look okay?</p>
+<p><strong>joe</strong>: Better get a hold of someone and tell them I’m
+here.</p>
+<p><strong>joe</strong>: Well, I made it. This here is Ratso Rizzo and
+I…</p>
+<p><strong>ratso</strong>: Rico. Rico Rizzo.</p>
+<p><strong>hansel</strong>: Do you need anything? I mean there’s beer
+and so forth. Whatever your thing is…</p>
+<p><strong>ratso</strong>: If you want the word on that brother and
+sister act, I’ll give you the word. That Hansel’s a fag and Gretel’s got
+the hots for herself. So who cares, right? Load up on the salami…</p>
+<p><strong>joe</strong>: Shee-it, this is one helluva party!</p>
+<p><strong>shirley</strong>: I can tell, can’t you?</p>
+<p><strong>joe</strong>: Yeah, oh yeah.</p>
+<p><strong>shirley</strong>: What’ll we do? Leave now or what? Your
+place or mine? Oh God, the second I looked at you I knew. Did you?</p>
+<p><strong>ratso’s voice</strong>: She’s hooked…</p>
+<p><strong>ratso</strong>: … I’d say she was good for ten bucks, but
+I’ll ask for twenty…</p>
+<p><strong>shirley’s voice</strong>: Did you know? We were going to make
+it?</p>
+<p><strong>ratso</strong>: You really want to do business?</p>
+<p><strong>shirley</strong>: Who’s he? Oh God! Don’t tell me you two are
+a couple – ?</p>
+<p><strong>hansel’s voice</strong>: Why are you laughing, Joe?</p>
+<p><strong>hansel</strong>: Are you for real, Joe?</p>
+<p><strong>joe</strong>: Well, I ain’t a f’real cowboy, but I’m one hell
+of a stud!</p>
+<p><strong>ratso</strong>: A very expensive stud. And I happen to be his
+manager.</p>
+<p><strong>shirley</strong>: It’s too much – to come face to face with a
+walking talking sex fantasy – to buy a man’s – God!</p>
+<p><strong>shirley’s voice</strong>: I can’t wait to tell my man Monday.
+I should be taking notes. Look at my arm!</p>
+<p><strong>ratso’s voice</strong>: I gotta sit down. I feel crummy.</p>
+<p><strong>shirley’s voice</strong>: Eat it – a man in your line of work
+has to keep his strength up…</p>
+<p><strong>shirley</strong>: It’s fantastic, now I know, everything you
+do has sexual implications. If I you know, bought it – could I take
+pictures of you naked? That’s part of it, isn’t it, kinky kinda
+things?</p>
+<p><strong>hansel’s voice</strong>: We want you, Joe. You’ve been
+chosen.</p>
+<p><strong>shirley’s voice</strong>: I had a thing for him. Before I
+knew. Why should knowing make it more of a thing?</p>
+<p><strong>shirley</strong>: Naturally I’ll have to ask myself why a
+cowboy? And why a cowboy whore? But not tonight.</p>
+<p><strong>shirley</strong>: Incidentally, how much is this going to
+cost me anyway?</p>
+<p><strong>joe</strong>: Tell her, Ratso.</p>
+<p><strong>ratso</strong>: Twenty bucks…</p>
+<p><strong>shirley</strong>: Sold. Let’s go.</p>
+<p><strong>ratso</strong>: … and taxi fare for me.</p>
+<p><strong>shirley</strong>: Get lost.</p>
+<p><strong>ratso</strong>: I agree. And for that service I charge one
+dollar taxi fare.</p>
+<p><strong>shirley</strong>: Your name’s Joe. Which is fabulous. Joe
+could be anyone. Kiss me, Joe, move over, Joe, go away, Joe. It’s just
+perfect.</p>
+<p><strong>shirley</strong>: He fell. Hey, fella, you fell. Is he all
+right?</p>
+<p><strong>ratso</strong>: Is he all right!</p>
+<p><strong>joe</strong>: Well, if you’re awright, why you hanging on the
+bannister. Can you walk or not?</p>
+<p><strong>ratso</strong>: Walk? Naturally I can walk.</p>
+<p><strong>shirley</strong>: He’s got taxi fare.</p>
+<p><strong>joe</strong>: Sure you’re all right?</p>
+<p><strong>ratso</strong>: I said yeah! Yeah, yeah, yeah!</p>
+<p><strong>joe</strong>: Whoopee ti yi yo…!</p>
+<p><strong>shirley’s voice</strong>: That happens. Don’t worry about
+it…</p>
+<p><strong>joe</strong>: Well, that’s something never happened to me
+before, you can bet your bottom dollar. Uh, where’s the matches,
+ma’am?</p>
+<p><strong>shirley</strong>: Top drawer. Maybe if you didn’t call me
+ma’am, things would work out better.</p>
+<p><strong>joe</strong>: First goddam, time it ever quit on me.
+Fact.</p>
+<p><strong>joe</strong>: You think I’m lying!</p>
+<p><strong>shirley</strong>: No. Of course not. Just something struck me
+funny…</p>
+<p><strong>shirley’s voice</strong>: I just put myself in your shoes. I
+had this image of a bugler without a horn, a policeman without a stick,
+etcetera, etcetera and I… I think I’d better shut up, I’m making it
+worse.</p>
+<p><strong>shirley</strong>: Maybe we should take a little nap, see what
+happens?</p>
+<p><strong>joe</strong>: I ain’t sleepy.</p>
+<p><strong>shirley</strong>: I know. Scribbage!</p>
+<p><strong>joe</strong>: Shee-it…</p>
+<p><strong>shirley</strong>: That’s pretty Freudian, Joe.</p>
+<p><strong>joe</strong>: What? It’s a perfectly good word, ain’t it. How
+much time I got? Goddam sand thing drive you crazy. Kee-rist. Spelling
+never was a very strong point with me. Even in school.</p>
+<p><strong>shirley</strong>: If you didn’t talk so much, maybe you could
+think more.</p>
+<p><strong>joe</strong>: Talking helps. Don’t talk, you get muddled in
+your head. Hey! Now you just look at this here!</p>
+<p><strong>shirley</strong>: There’s an E in MONEY. If that’s your
+word.</p>
+<p><strong>joe</strong>: M-O-N-Y – I’m right! That’s just exactly how
+they spell it up there on that big building, bet you could see it from
+here. M-O-N-Y.</p>
+<p><strong>shirley</strong>: Okay. Never argue with a man.</p>
+<p><strong>joe</strong>: Y – what in hell starts with Y?</p>
+<p><strong>shirley</strong>: It can end in Y day, pay, lay – hey, pay
+lay!</p>
+<p><strong>joe</strong>: Cut it out. That’s cheating, teasing me so I
+can’t think. Just one bitsy Y word and I gonna beat you!</p>
+<p><strong>shirley</strong>: You gonna beat me, Joe?</p>
+<p><strong>joe</strong>: Beat your butt, you don’t lemme think!</p>
+<p><strong>shirley</strong>: Gay ends in Y. Fey. You like that – gay fey
+– is that your problem?</p>
+<p><strong>joe</strong>: I show you what problem –</p>
+<p><strong>joe’s voice</strong>: Whoopee ti yi yo…</p>
+<p><strong>shirley</strong>: Well, I really can’t talk now, if you know
+what I mean, but believe me when I say, Myra, it’s an experience every
+emancipated woman owes herself. I’m not. I’m not exaggerating. Well,
+what’s Phil’s poker night? Joe – are you available next Thursday,
+eight-thirty?</p>
+<p><strong>joe</strong>: Well, lemme think now, Thursday, eight-thirty,
+yeah, I guess I could be available. Hell, yeah.</p>
+<p><strong>shirley</strong>: Why don’t you just come here? I’ll be
+working every night this week. I’ll leave a key with the super…</p>
+<p><strong>joe’s voice</strong>: Well, ma’am – Shirley – I sure hate to
+trouble you, but…</p>
+<p><strong>joe</strong>: See what you think of that crap. I’ll pour your
+soup. Got some of that junk you like to swill, too. Mentholatum.
+Aspirin. All that shee it…</p>
+<p><strong>joe</strong>: They wrong?</p>
+<p><strong>ratso</strong>: No. But while you was buying the underwear, I
+could have lifted the socks.</p>
+<p><strong>joe</strong>: You couldn’t lift fly specks from a sugar bowl.
+Can you hold this?</p>
+<p><strong>ratso</strong>: But thanks. Hey, Joe, don’t get sore about
+this or anything. You promise?</p>
+<p><strong>joe</strong>: Yeah.</p>
+<p><strong>ratso</strong>: Well, I don’t think I can walk. I mean, I
+been falling down a lot and, uh…</p>
+<p><strong>joe</strong>: And what?</p>
+<p><strong>ratso</strong>: I’m scared.</p>
+<p><strong>joe</strong>: What of?</p>
+<p><strong>ratso</strong>: What’ll happen. I mean what they do to, you
+know, do with you – if you can’t – ah, Christ!</p>
+<p><strong>joe</strong>: Who?</p>
+<p><strong>ratso</strong>: I don’t know. Cops. Or the – how should I
+know?</p>
+<p><strong>joe</strong>: Okay. Here it is. You gonna go see the doctor.
+I got nine bucks and twenty more Thursday and I gonna be riding high
+before you know it. So you gonna get you the best goddam doctor in this
+town and get yourself straightened out, that’s what.</p>
+<p><strong>ratso</strong>: No doctors. No, sir. Not me. Doctors are like
+goddam auto mechanics. Fix one-thing, unplug another. Operate for piles
+and while they’re there, they unscrew your liver. My old man, for God’s
+sake, wasn’t any sicker’n I am when he went to the doctor.</p>
+<p><strong>joe</strong>: Well, just exactly what the hell you think
+you’re gonna do? Die on me?</p>
+<p><strong>ratso</strong>: I’m going to Florida, that’s my only
+chance.</p>
+<p><strong>joe</strong>: You know what’s wrong with you? You got fevers.
+You kinky as a bedbug. How you gonna get to Florida?</p>
+<p><strong>ratso</strong>: I’ll find the money. If you just get me on
+the bus, that’s all I ask.</p>
+<p><strong>joe</strong>: Just when everything’s going my way, you gotta
+pull a stunt like this.</p>
+<p><strong>ratso</strong>: I don’t even want you to go. Whaddya think of
+that? I got other plans for my life than dragging around some dumb
+cowboy that thinks he’s God’s gift to women. One twenty-buck trick and
+he’s already the biggest stud in New York City. It’s laughable.</p>
+<p><strong>joe</strong>: When I put you on that bus down to Florida
+tonight, that’ll be the happiest day of my life!</p>
+<p><strong>joe</strong>: Hey, Shirley… Miss who? Oh, yeah, well, when
+will Missus Gardner be home? … I’m a friend of hers, a goddam good
+friend… Shee-it, I can’t wait till then…</p>
+<p><strong>towny’s voice</strong>: Bravo…</p>
+<p><strong>towny</strong>: How are you? Townsend P. Locke, from Chicago.
+Call me Towny. I’m here to attend a paper manufacturers’ convention and,
+frankly, to have a little fun, dammit…</p>
+<p><strong>towny</strong>: This is my first night in town and I’ll
+consider it a ghastly omen clouding my entire ten days, if you don’t
+consent to have dinner with me. Anywhere you like…</p>
+<p><strong>towny</strong>: … never mind how you’re dressed. They know
+me. I’ll say you’re with the rodeo. There’s always a rodeo in New York,
+dammit. Besides, you look very elegant…</p>
+<p><strong>towny</strong>: But, dammit all, I just remembered, we’ll
+have to eat in my room because I have this phone call coming at
+nine-thirty…</p>
+<p><strong>towny</strong>: What I like about you, you’re such a
+wonderful conversationalist. So won’t that be nice to have dinner sent
+up?</p>
+<p><strong>towny</strong>: Fifty years ago this was the only hotel in
+Manhattan. My mother always calls me at her bedtime, so I’ve got to be
+there.</p>
+<p><strong>towny</strong>: A drink? I’ve got some nice gin. If you’d
+prefer something else, they’ll send it up…</p>
+<p><strong>joe</strong>: Gin’s okay.</p>
+<p><strong>towny</strong>: It’s so exciting. New York. The mad forward
+thrust of everything. My sense of time here is completely altered.</p>
+<p><strong>towny</strong>: Sometimes it seems to me time stopped twenty
+years ago. There was this war, there was this handsome young man with
+quite black hair and he was supposed to die. But he didn’t. Isn’t that
+amusing?</p>
+<p><strong>joe</strong>: What?</p>
+<p><strong>towny</strong>: Enough about me. I’m through talking for the
+evening. Now I want to hear about conditions in the West. The romance of
+the West holds a tremendous power over me. Mother was actually a pioneer
+woman, can you believe it? When she calls, I’ll introduce you and she’ll
+be so thrilled.</p>
+<p><strong>towny’s voice</strong>: Mama, a coincidence. Guess who was
+being discussed. Discussed. Not disgusted. Discussed! Do you have that
+thing turned up? Why aren’t you wearing it! This is impossible!</p>
+<p><strong>joe’s voice</strong>: Listen, Towny, did I mention I got a
+sick kid?</p>
+<p><strong>joe</strong>: Well, he is, he’s sicker’n shee-it. And I’ve
+gotta get him South quick as I can…</p>
+<p><strong>towny</strong>: I was so childish with her.</p>
+<p><strong>joe</strong>: What d’you want?</p>
+<p><strong>towny</strong>: What?</p>
+<p><strong>joe</strong>: What you got me up here for?</p>
+<p><strong>towny</strong>: Oh, difficult, it’s so difficult. You’re a
+nice person, Joe – I should never have asked you up – a lovely person.
+Oh, how I loathe life. I loathe it. Please go. Please.</p>
+<p><strong>joe</strong>: You want me to leave?</p>
+<p><strong>towny</strong>: No, yes. No, I mean yes please go. Help me to
+be good. Come back tomorrow. Promise.</p>
+<p><strong>joe</strong>: I’m going to Florida.</p>
+<p><strong>towny</strong>: This is terrible. I meet someone who – then –
+wait, I want to give you a present. For your trip. You’ll let me
+please…</p>
+<p><strong>towny</strong>: Please take it. You don’t have to be
+Catholic. Saint Christopher is the patron saint of all travelers. I want
+you to have it. For helping me be good.</p>
+<p><strong>joe</strong>: Listen, I gotta have money.</p>
+<p><strong>towny</strong>: Oh. Yes. Of course. I should have thought.
+You shouldn’t have to ask. That was thoughtless of me. Yes. Wait
+here…</p>
+<p><strong>towny</strong>: Here. Don’t even thank me.</p>
+<p><strong>joe</strong>: I gotta have more’n ten. I gotta have
+fifty-seven dollars.</p>
+<p><strong>towny</strong>: I simply don’t have it, Joe.</p>
+<p><strong>joe</strong>: Get outta my way.</p>
+<p><strong>towny</strong>: You’re wasting your time. There’s nothing in
+there.</p>
+<p><strong>joe</strong>: Let go. Let go of the table.</p>
+<p><strong>towny</strong>: I deserved that, I know I did.</p>
+<p><strong>towny</strong>: I brought this on myself. I’m bleeding, my
+nose is bleeding, isn’t it?</p>
+<p><strong>joe</strong>: You wanna gimme fifty-seven dollars or you
+wanna busted skull?</p>
+<p><strong>joe</strong>: Please let go of that table.</p>
+<p><strong>towny</strong>: Thank you, Joe.</p>
+<p><strong>ratso</strong>: Thirty-one hours.</p>
+<p><strong>ratso</strong>: The trip is. Nine-thirty in the morning we
+get there. Not this morning but the next one at nine thirty.</p>
+<p><strong>joe</strong>: These guys’re good drivers.</p>
+<p><strong>ratso</strong>: They gotta be.</p>
+<p><strong>joe</strong>: Yeah.</p>
+<p><strong>ratso</strong>: You get your first palm tree in South
+Carolina.</p>
+<p><strong>joe</strong>: How’n hell a dumb Bronx kid like you know
+that?</p>
+<p><strong>ratso</strong>: I read it.</p>
+<p><strong>joe</strong>: Shee-it. You believe all you read?</p>
+<p><strong>joe</strong>: If you have to shiver, why don’t you pull the
+blanket up more?</p>
+<p><strong>ratso</strong>: I been thinking. I hope we’re not gonna have
+a lotta trouble about my name down there. Because like what’s the whole
+point of this trip anyway?</p>
+<p><strong>joe</strong>: Keep the goddam blanket on.</p>
+<p><strong>ratso</strong>: I mean New York’s one thing, but can you see
+this guy, imagine it, running around the goddam beach all suntan and
+he’s going in swimming, like, and then somebody yells ‘Hey, Ratso’ – how
+does that sound to you?</p>
+<p><strong>joe</strong>: Sounds like they knew you.</p>
+<p><strong>ratso</strong>: Sounds like crap, admit it. And I’m not gonna
+have it. I’m Rico all the time, okay, do you blame me? That’s agreed,
+okay? We’re gonna tell all these new people my name’s Rico?</p>
+<p><strong>joe</strong>: Hey – whatsa matter?</p>
+<p><strong>ratso</strong>: I’m wet.</p>
+<p><strong>joe</strong>: You’re what?</p>
+<p><strong>ratso</strong>: I wet my pants! My seat’s all wet.</p>
+<p><strong>joe</strong>: Hell, don’t cry about it!</p>
+<p><strong>ratso</strong>: Here I am going to Florida and my leg hurts,
+my butt hurts, my chest hurts, my face hurts, and like that ain’t
+enough, I gotta pee all over myself.</p>
+<p><strong>ratso</strong>: I’m falling apart, that’s funny?</p>
+<p><strong>joe</strong>: You just – just – what happened, you just had a
+little rest stop wasn’t on the schedule.</p>
+<p><strong>joe</strong>: Hey, what size pants you wear?</p>
+<p><strong>joe</strong>: Couple crullers’n coffee to go.</p>
+<p><strong>waitress</strong>: Where you from?</p>
+<p><strong>joe</strong>: New York.</p>
+<p><strong>ratso</strong>: Hey, what the hell you doing?</p>
+<p><strong>joe</strong>: I’m zipping your fly, what the hell you think
+I’m doing?</p>
+<p><strong>ratso</strong>: Thanks, Joe.</p>
+<p><strong>joe</strong>: Shee-it, you know, I got this thing all figured
+out, Ratso. I mean Rico. When we get to Miami, what I’ll do, I’ll go to
+work. I gotta do that, ’cause see, I ain’t no kind of a hustler. I ain’t
+even any goddam good as a bum. I’m a nothing, that’s what I am. So
+reckon I’d better go to work and get me a goddam job. Okay?</p>
+<p><strong>joe</strong>: Yeah, guess that’s what I’m gonna do.</p>
+<p><strong>driver</strong>: Yes, sir?</p>
+<p><strong>joe,</strong>: My friend’s dead in the back seat.</p>
+<p><strong>driver</strong>: Your friend’s what in the back seat?</p>
+<p><strong>joe</strong>: Dead. Dead as a doornail.</p>
+<p><strong>driver</strong>: Is this some kind of…</p>
+<p><strong>driver</strong>: Okay, folks, everything’s fine. Nothing to
+worry about.</p>
+<p><strong>driver</strong>: Is he kin to you?</p>
+<p><strong>driver</strong>: Don’t you want to close his eyes?</p>
+<p><strong>joe</strong>: Close them?</p>
+<p><strong>driver</strong>: Just reach over and close them. That’s
+all.</p>
+<p><strong>driver</strong>: I guess we’ll just drive on, right? Nothing
+else to do.</p>
+<p><strong>joe</strong>: No, sir. Not till Miami. I’ll see to burying
+then.</p>
+<p><strong>driver</strong>: Just a little sickness, folks, nothing
+serious. We’ll be in Miami… … in forty minutes.</p>
+</body>
+</html>

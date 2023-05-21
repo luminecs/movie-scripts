@@ -1,0 +1,2348 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>cobb</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="cobb">cobb</h1>
+<p><strong>close on pipe in ashtray</strong>: Smoke curls. A man’s hand
+picks it up.</p>
+<p><strong>close on man’s hat and coat</strong>: on a coat rack.</p>
+<p><strong>close on waste basket</strong>: Overflowing with crunched-up
+paper.</p>
+<p><strong>man</strong>: lies on a couch near the window. He stands up
+suddenly and looks out the window. AL STUMP, 40, is sharply dressed –
+tie, dress shirt, cufflinks. He’s staring at something.</p>
+<p><strong>stump</strong>: The muse has not descended, Lucille. The muse
+has not descended. God damn it, Lucille, you hear me?</p>
+<p><strong>lucille</strong>: The muse has not descended.</p>
+<p><strong>stump</strong>: Yes! The muse has left me stranded here like
+a beached whale – only one phrase, one word, from finishing the greatest
+essay I’ve ever written! One word, the right word – Flaubert called it
+‘le mot juste’ – I ever tell you that?</p>
+<p><strong>lucille</strong>: ‘Le mot juste’ – the exact right word the
+writer needs to tell his story. Yessir, you’ve mentioned it.</p>
+<p><strong>stump</strong>: Hemingway, Faulkner, Joyce – they all
+searched for ‘le mot juste’ until they cried, until they bled…</p>
+<p><strong>lucille</strong>: Yessir.</p>
+<p><strong>stump</strong>: What is this essay about again?</p>
+<p><strong>lucille</strong>: Fishing.</p>
+<p><strong>stump</strong>: I mean what is it really about?</p>
+<p><strong>lucille</strong>: You said it was about the quote unquote
+primal issues of survival, man against nature, etcetera – that’s what
+you said.</p>
+<p><strong>stump</strong>: Ohyeah… so… we end the essay with…</p>
+<p><strong>stump</strong>: ‘The tarpon leaps shimmering into the late
+cross light of the keys, a primeval moment frozen in… … frozen in’…</p>
+<p><strong>lucille</strong>: Shimmering tarpon – very good, Mr. Stump… …
+‘frozen in’ what?</p>
+<p><strong>stump</strong>: I don’t know, Lucille, that’s what the Muse
+will tell me if she ever descends. … ‘frozen in’…</p>
+<p><strong>lucille</strong>: Yes? Yes? Just a minute, I’ll see if he’s
+available. It’s your wife – are you and she speaking again?</p>
+<p><strong>stump</strong>: I dunno. How does she sound?</p>
+<p><strong>lucille</strong>: Don’t ask me to interpret.</p>
+<p><strong>stump</strong>: Tell her… tell her… I’ll talk… no… tell her
+I’m out – I’ll call her later… God damn it.</p>
+<p><strong>lucille</strong>: Apparently he’s out, Mrs. Stump – I’ll have
+him call you back.</p>
+<p><strong>stump</strong>: I need a drink.</p>
+<p><strong>lucille</strong>: What about ‘le mot juste,’ Mr. Stump?</p>
+<p><strong>stump</strong>: Fuck ‘le mot juste,’ Lucille! Finish the damn
+thing yourself. ‘The primeval moment is frozen in’ whatever the hell you
+want it to be. Did you know that James Joyce let his secretary – none
+other than Samuel Beckett – revise and edit Molly’s solliloquy in
+Ulysses? You’re my Beckett – I give you ‘le mot juste!’ Just get the
+damn thing in the mail so I can get paid.</p>
+<p><strong>lucille</strong>: Problems with the Mrs.?</p>
+<p><strong>stump</strong>: I don’t know. I need a drink.</p>
+<p><strong>2 ext. downtown street - late afternoon 2</strong>: Stump
+pogo sticks down the sidewalk, tipping his hat to pedestrians. They’re
+not alarmed. He’s the town eccentric. He pogos across a street and
+towards –</p>
+<p><strong>3 ext. the sportsman’s lounge - late afternoon 3</strong>: A
+watering hole like a million others. He pogo sticks right in the front
+door.</p>
+<p><strong>frank</strong>: Hey, Stumpy…</p>
+<p><strong>stump</strong>: Awright, awright… how do you get five old
+ladies to say ‘fuck?’</p>
+<p><strong>cronies</strong>: Jeez, I dunno, how? Etc…</p>
+<p><strong>stump</strong>: Yell ‘bingo.’</p>
+<p><strong>reynaldo</strong>: Okay, I got one – A drunk is taking a piss
+in front of a bar, a bus drives by, real fast right along the curb, and
+knocks his thing off. Drunk picks up his thing, puts it in his pocket,
+goes into a bar, reaches into his pocket and puts his thing on the bar.
+‘Look’t that,’ he says, ‘bus knocked my thing off.’ Bartender says,
+‘that ain’t your thing – that’s a cigar butt.’</p>
+<p><strong>reynaldo</strong>: Drunk reaches into his other pocket and
+slaps another thing on the bar. ‘There,’ he says, ‘bus knocked my thing
+off.’ Bartender says, ‘you’re drunk and that ain’t your thing either.
+That’s another cigar butt.’ Drunk looks down at both cigar butts and
+back up at the bartender and says, ‘God damn it, I mushta smoked my
+dick.’</p>
+<p><strong>frank</strong>: Amidst this levity, gentlemen, I have some
+real concerns. Mark my words, people will look back on this year and say
+that 1960 was the year that Western Civilization began its downward
+trajectory.</p>
+<p><strong>bill</strong>: You need to get laid, Frank.</p>
+<p><strong>frank</strong>: Guys, guys, c’mon… do you really think things
+are as good as they used to be? You think Jack Kennedy is qualified to
+be President?</p>
+<p><strong>bill</strong>: Kennedy may not be qualified, but – Jackie’s a
+babe – and that’s good enough for me.</p>
+<p><strong>reynaldo</strong>: They’re a happily married couple and that
+oughta stand for something these days…</p>
+<p><strong>mud</strong>: Speaking of being happily married, Al, are you
+and your old lady still having problems?</p>
+<p><strong>stump</strong>: Oh no, the wife and I are all patched up –
+doin’ fantastic.</p>
+<p><strong>cronies</strong>: Good to hear… awright… way to go,
+Stumpy…</p>
+<p><strong>frank</strong>: I mean look at us – we call ourselves writers
+but we just watch ballgames and get drunk a lot. You call that
+writing?</p>
+<p><strong>stump</strong>: Yes I do.</p>
+<p><strong>mud</strong>: In the department store of life, sports is the
+toy department – so what?</p>
+<p><strong>bill</strong>: Yeah, besides, Alan here’s writing a serious
+novel, aren’t ya?</p>
+<p><strong>mud</strong>: Yeah, well I haven’t started yet but I’m gonna.
+I’ve been busy.</p>
+<p><strong>frank</strong>: You guys are pathetic. Ya write for one
+reason – a paycheck.</p>
+<p><strong>stump</strong>: More art was created for money than for
+passion. Take your platitudes and shove ’em, Frank. I’m gonna write a
+novel too, someday.</p>
+<p><strong>frank</strong>: The Great American Novel, I suppose?</p>
+<p><strong>stump</strong>: It could come from my pen.</p>
+<p><strong>frank</strong>: You’re a barbershop writer, Al – you write
+sugar-coated pieces for guys to skim when they’re waiting for a
+haircut!</p>
+<p><strong>stump</strong>: Awright, that’s it! Let’s go! Settle this
+right here!</p>
+<p><strong>mud</strong>: Hey!</p>
+<p><strong>reynaldo</strong>: Stump! For you.</p>
+<p><strong>stump</strong>: Phone call saved your ass.</p>
+<p><strong>stump</strong>: Yeah… yeah… who?… no… you’re kidding?…
+when?</p>
+<p><strong>stump</strong>: Hey… Shut up!</p>
+<p><strong>stump</strong>: Cobb wants to see me.</p>
+<p><strong>mud</strong>: Cobb who?</p>
+<p><strong>stump</strong>: Ty Cobb! How many Cobbs are there?!</p>
+<p><strong>frank</strong>: Ty Cobb? I thought he was dead?</p>
+<p><strong>stump</strong>: Not yet. He said he wants to tell me the real
+story of his life before he croaks.</p>
+<p><strong>bill</strong>: You were just talking to Ty Cobb?</p>
+<p><strong>stump</strong>: The Georgia Peach himself.</p>
+<p><strong>frank</strong>: They say Cobb is crazy. The meanest
+sonofabitch who ever lived.</p>
+<p><strong>mud</strong>: I heard he killed a man.</p>
+<p><strong>bill</strong>: Maybe so, but – he was the greatest baseball
+player of them all.</p>
+<p><strong>cronies</strong>: Yeah, the best, no one close, etc…</p>
+<p><strong>frank</strong>: Listen, Al, be careful –</p>
+<p><strong>stump</strong>: I ain’t gettin’ my ass shot, don’t worry…</p>
+<p><strong>frank</strong>: No, not that – the story. This is like Ivan
+the Terrible inviting somebody into the Czar’s palace before he
+died.</p>
+<p><strong>stump</strong>: Except Ivan was a nicer guy…</p>
+<p><strong>frank</strong>: Don’t let Cobb bullshit you. This is your
+shot. This is all our shot. When does he want to see you?</p>
+<p><strong>stump</strong>: Immediately.</p>
+<p><strong>stump</strong>: I gathered all the film footage that existed
+on Cobb – which wasn’t much – and rented the local theater for the
+afternoon… I, too, had thought that the great Ty Cobb had been dead for
+awhile…</p>
+<p><strong>6 angle on screen 6</strong>: The screen fills with Movietone
+Newsreel footage of Ty Cobb, complete with overly sincere NARRATION and
+MUSIC.</p>
+<p><strong>newsreel narrator</strong>: This 1905 cameo of an 18-year-old
+youth shows a peaches-and-cream complexion and the piercing eyes of a
+lad who would become, etc…</p>
+<p><strong>stump</strong>: His reputation as being difficult at best,
+psychotic at worst, preceded him. But if there was one thing I knew
+after all my years as a journalist covering politicians, celebrities,
+and sports heroes, it was this –</p>
+<p><strong>6 continued: 6</strong>: Onscreen – Cobb with children, Cobb
+with celebri- ties, Cobb in a parade honoring him, and always, Cobb’s
+dashing, swashbuckling style of play.</p>
+<p><strong>stump</strong>: The ‘facts’ – and public perception of those
+‘facts’ – frequently bear little resemblance.</p>
+<p><strong>stump</strong>: One thing was beyond argument – he was the
+most brilliant athlete of his time… perhaps of any time. I was
+determined to find out who was the real Ty Cobb.</p>
+<p><strong>7 ext. mother lode country - late afternoon 7</strong>:
+Stump’s car, a late model Buick, moves across the stunning grasslands at
+the western base of the Sierra Nevadas. We begin hearing his voice, then
+see him inside the car driving.</p>
+<p><strong>stump</strong>: They said Cobb owned property all over the
+country, but in recent years had been staying in his hunting lodge at
+Lake Tahoe in the Sierra Nevadas.</p>
+<p><strong>10 int. car - dusk 10</strong>: Stump straining to see the
+road, a bit wary of this drive.</p>
+<p><strong>stump</strong>: Driving into the Sierras at night with winter
+coming on wasn’t the smartest decision I’d ever made but it seemed
+better than being late for my first meeting with Cobb.</p>
+<p><strong>stump</strong>: Shit…</p>
+<p><strong>pov shot through windshield</strong>: A dismal, wet and
+obscured view of the mountain road, climbing higher into the Sierras. A
+small roadside gas station comes INTO VIEW, and – Stump pulls his car
+into the station.</p>
+<p><strong>11 ext. jonah’s service station - dusk 11</strong>: Stump
+gets out, blows on his hands. It’s cold, and a man comes out, the gas
+station owner, JONAH, 55. The man services the car throughout the
+conversation.</p>
+<p><strong>stump</strong>: Fill it up and replace the wiper blades.</p>
+<p><strong>jonah</strong>: You got it.</p>
+<p><strong>stump</strong>: Colder than a witch’s tit, eh?</p>
+<p><strong>jonah</strong>: It’s just starting. We got three- four feet
+of snow another thousand feet up. Where ya going? Skiing? I hate
+skiing.</p>
+<p><strong>stump</strong>: Actually, I’m going to meet Ty Cobb.</p>
+<p><strong>jonah</strong>: Cobb?! He stopped here for gas once, I asked
+him for an autograph for my boy and he told me to shove it where the sun
+don’t shine.</p>
+<p><strong>stump</strong>: I hear he’s got a way with kids…</p>
+<p><strong>stump</strong>: Hey, baby, it’s me… Al… your husband… I’m up
+in the woods somewhere on assignment… Listen, sweetheart, listen –
+nobody can love you the way I love you and I want you to take me back. I
+made a mistake. Okay, lots of mistakes. I know I’m not worthy.</p>
+<p><strong>stump</strong>: Honey? Sweetheart? Baby?</p>
+<p><strong>12 ext. mountain road - night 12</strong>: RAIN POUNDS down
+as the car climbs to higher elevation.</p>
+<p><strong>13 int. car - night 13</strong>: Stump struggles with a map
+under the dome light as he drives.</p>
+<p><strong>stump</strong>: I confess I was looking forward to seeing
+Cobb and being near his brilliance. My own life seemed on hold, somehow.
+Everyday churning out the same old articles, drinking at 4 in the
+afternoon with the same old guys, the same old excuses for not writing a
+novel, the same old confused marriages that we all needed and were
+trying to get out of at the same time… Cobb was a god whose brilliance,
+however difficult, could rub off on me. His problems were different than
+mine…</p>
+<p><strong>14 angle on stump’s car 14</strong>: which pulls off the road
+and heads up a small mountain road among snow-covered pines.</p>
+<p><strong>close on stump</strong>: He smiles. Perfect.</p>
+<p><strong>back to scene</strong>: His car heads up a mountain road a
+final hundred yards, comes around a bend in the trees and there it is
+–</p>
+<p><strong>14 pov shot - huge mountain lodge 14</strong>: In the grand
+style but, like the mailbox, grotesquely oversized.</p>
+<p><strong>willie</strong>: Fuck you, Mr. Cobb, I have too much dignity
+to spend another moment with you. I hope you die before the sun comes up
+and may you rot in hell!</p>
+<p><strong>willie</strong>: Who are you?</p>
+<p><strong>stump</strong>: I’m a writer.</p>
+<p><strong>willie</strong>: You mean he actually found somebody to take
+the job?</p>
+<p><strong>16 int. mountain lodge - night 16</strong>: Stump in the
+front door – The place is enormous and barely lit. Taxidermied game
+hangs on the wall. Stump is terrified. A MAN is sitting in an
+overstuffed chair reading a news- paper. Dressed in a business suit and
+tie, he seems oblivious to the surrounding chaos. He also seems out of
+place.</p>
+<p><strong>stump</strong>: Mr. Cobb?</p>
+<p><strong>stump</strong>: Mr. Cobb?</p>
+<p><strong>17 angle on stairs 17</strong>: Stump climbs the stairs with
+caution – Until he’s just outside the half open door from which light
+spills. He hesitates…</p>
+<p><strong>stump</strong>: Hello? Mr. Cobb?</p>
+<p><strong>stump</strong>: Thank you very much, Mr. Cobb, but I don’t
+need this job that bad.</p>
+<p><strong>cobb</strong>: Yes, Mr. Stump – you do need this job that
+bad.</p>
+<p><strong>cobb</strong>: Now come in here and meet the great Ty Cobb. I
+won’t hurt you.</p>
+<p><strong>18 pov shot - ty cobb 18</strong>: Lying in bed in a robe.
+Unshaven. Bottles of booze and food everywhere. And bottles of pills sit
+on every surface. Two hunting dogs sit on the bed with him. A small
+record player sits next to he bed. A record spins, filling the room with
+FRITZ KREISLER VIOLIN SOLOS. He places the gun on his night table,
+knocking pills and bottles to the floor with a crash he barely notices.
+When he speaks it is without a snarl, without threat – simply, even
+sweetly, he says:</p>
+<p><strong>cobb</strong>: On the violin – Fritz Kreisler. I’m a great
+admirer of his. I’m also a great admirer of yours.</p>
+<p><strong>stump</strong>: Thank you.</p>
+<p><strong>cobb</strong>: But you are a hopeless romantic and only a
+moderate success.</p>
+<p><strong>stump</strong>: Sir, I am the most successful sportswriter in
+America and not merely a ‘moderate success.’</p>
+<p><strong>cobb</strong>: Of course. Give me those pills over there.</p>
+<p><strong>18 continued: 18</strong>: Stump retrieves some pills that
+Cobb is pointing towards. Cobb washes down a handful of pills with a
+bottle of Scotch. Momentarily revitalized, Cobb hands Stump a folded
+letter which Stump opens to read.</p>
+<p><strong>cobb</strong>: That’s an invitation to a testimonial dinner
+at the Baseball Hall of Fame in Cooperstown, New York. You’re taking me
+there – when is it?</p>
+<p><strong>stump</strong>: A few weeks.</p>
+<p><strong>cobb</strong>: All the great ones will be there – The great
+Mickey Cochrane will be there! Hornsby, Sisler, Ott, the Waner Brothers…
+we used to have some parties, Stump, I’ll tell ya that right now… We
+can’t forget.</p>
+<p><strong>stump</strong>: I won’t forget.</p>
+<p><strong>cobb</strong>: Look at me closely, Al… Lie after lie has been
+written about me – my whole life I’ve been misunderstood. You’re gonna
+tell the real story of Ty Cobb.</p>
+<p><strong>stump</strong>: What’s the ‘real’ story?</p>
+<p><strong>cobb</strong>: That’s why you’re here. See, there’s two kinds
+of writers. The kind that spin endless yarns about small subjects…
+that’s you.</p>
+<p><strong>cobb</strong>: Or… there’s the kind with one great subject
+that consumes them forever. That could be you. Because I am that
+subject.</p>
+<p><strong>cobb</strong>: Jameson! Get your ass up here!</p>
+<p><strong>stump</strong>: You okay?</p>
+<p><strong>cobb</strong>: Mmmmmm…</p>
+<p><strong>20 close on cobb’s face 20</strong>: His eyes light. A flare
+in his nostrils. A twitch. And utter calm.</p>
+<p><strong>jameson</strong>: Sir?</p>
+<p><strong>cobb</strong>: There’s a small oil company near Bakersfield
+called Honolulu Oil, sitting near the Elk Hills Reserve… I want you to
+buy all the stock you can.</p>
+<p><strong>jameson</strong>: Honolulu Oil?</p>
+<p><strong>cobb</strong>: Getty is expanding in the west, looking for
+companies like that. I got a hunch… Stumpy, c’mere…</p>
+<p><strong>cobb</strong>: I can take that buck. What’ya think?</p>
+<p><strong>stump</strong>: With a pistol? No way.</p>
+<p><strong>21 pov shot - buck in moonlight 21</strong>: searches for
+leaves to eat in the snow. Serene. Unaware.</p>
+<p><strong>cobb</strong>: There’s a board meeting of Coca-Cola in
+Georgia next week. Call them up and tell them I can’t make it for
+medical – – personal – reasons… … and sell all the 3-M stock we got.</p>
+<p><strong>22 cobb 22</strong>: raises the gun – he wobbles badly and
+steadies himself. The gun shakes. Then steadies.</p>
+<p><strong>23 pov shot - buck raises its head 23</strong>: Just as…</p>
+<p><strong>cobb</strong>: Got him.</p>
+<p><strong>stump</strong>: Like hell you did.</p>
+<p><strong>cobb</strong>: Right behind the ear.</p>
+<p><strong>stump</strong>: You’re full of shit.</p>
+<p><strong>cobb</strong>: Jameson?</p>
+<p><strong>jameson</strong>: If Mr. Cobb said he got him, then he got
+him.</p>
+<p><strong>cobb</strong>: You have no vision, Stump. A writer without
+vision is a waste of my time. I think I picked the wrong man.</p>
+<p><strong>jameson</strong>: And I think I better get back to San
+Francisco before the storm hits. I’ll take care of these transactions,
+Mr. Cobb.</p>
+<p><strong>stump</strong>: And I’ll be leaving as well, sir, since you
+think I’m the wrong man for the job.</p>
+<p><strong>cobb</strong>: Shut up, Stump – we both know that I’m your
+meal ticket. We need each other. And we start in the morning.</p>
+<p><strong>stump</strong>: No.</p>
+<p><strong>cobb</strong>: Yes.</p>
+<p><strong>25 ext. mountain lodge - early next a.m. 25</strong>:
+Silence.</p>
+<p><strong>stump</strong>: Ready, Mr. Cobb.</p>
+<p><strong>cobb</strong>: Chapter one, Page one…</p>
+<p><strong>stump</strong>: I’m ready.</p>
+<p><strong>cobb</strong>: ‘Know ye that a prince and a great man has
+fallen this day.’</p>
+<p><strong>stump</strong>: What the hell is that?</p>
+<p><strong>cobb</strong>: That’s what Robert E. Lee said at the burial
+of my grandfather who was a Confederate General killed at
+Fredricksburg.</p>
+<p><strong>stump</strong>: So I’m taking notes?</p>
+<p><strong>cobb</strong>: Hell no. That’s the first line of my
+autobiography.</p>
+<p><strong>stump</strong>: I ain’t writing it.</p>
+<p><strong>cobb</strong>: Why not?</p>
+<p><strong>stump</strong>: It’s horseshit. It’s a third person comment
+about someone who’s already dead. An autobiography has to be in the
+first person – plus it can’t come from the other side of the God damn
+grave.</p>
+<p><strong>cobb</strong>: My story can come from any damn place I
+want.</p>
+<p><strong>stump</strong>: Not to mention you can’t call yourself ‘a
+prince and great man’ – that’s for the world to decide.</p>
+<p><strong>cobb</strong>: What kind of a fucking writer you call
+yourself – all tied up in rules and regulations. What’s the point being
+a writer if you can’t say what you want to?</p>
+<p><strong>stump</strong>: You’re not treating me like a writer – you’re
+treating me like a stenographer.</p>
+<p><strong>stump</strong>: Know ye that a prince and a great man has
+fallen this day…</p>
+<p><strong>cobb</strong>: It has a certain ring to it…</p>
+<p><strong>stump</strong>: Yes it does.</p>
+<p><strong>cobb</strong>: I thought you might like it. It’s yours, a
+gift from me. ‘Cobb, a prince among men, misunderstood in his genius, as
+genius always is’ - This is the second line from what will be the
+greatest biography of a great man ever written – type it!</p>
+<p><strong>cobb</strong>: Bethlehem Steel’s about to dive.</p>
+<p><strong>cobb</strong>: Jameson. Bethlehem’s going in the toilet. Dump
+it all!</p>
+<p><strong>stump</strong>: You got a stock tip for me?</p>
+<p><strong>cobb</strong>: Yeah… buy Coca-Cola. We’re about to go out in
+cans.</p>
+<p><strong>stump</strong>: Coke in cans? I don’t think so.</p>
+<p><strong>cobb</strong>: You know what’s wrong with Ty Cobb?</p>
+<p><strong>stump</strong>: What?</p>
+<p><strong>cobb</strong>: Every disease known to man – I got ‘em all!
+And they’ll never get me in a hospital – never! My heart leaks – the
+doctors who are nothin’ but a buncha hacksaw artists give me Digoxin to
+keep it pumping…</p>
+<p><strong>cobb</strong>: They give me Darvon for the cancer in my back,
+they give me Tace for something eatin’ up my stomach, Fleets Compound
+for an infection in my bowels, Librium for my tension, insulin for my
+diabetes…</p>
+<p><strong>cobb</strong>: Fuckin’ insulin…</p>
+<p><strong>26 continued: 26</strong>: He takes a deep breath as if the
+drug has produced an immediate relief from pain.</p>
+<p><strong>cobb</strong>: And if all that wasn’t enough, it’s been two
+years since I got my pecker in the air… The South may not rise again but
+my dick will.</p>
+<p><strong>cobb</strong>: I ain’t here!</p>
+<p><strong>stump</strong>: Cobb’s residence… hello. He’s not here –
+who’s calling? Ernie? Ernie who? My God… It’s Ernest Hemingway… for
+you.</p>
+<p><strong>cobb</strong>: Tell him to go to hell!</p>
+<p><strong>stump</strong>: Jesus Christ, Ty, this is the great American
+writer – this is the man who inspired me to become a writer!</p>
+<p><strong>cobb</strong>: Tell him to go to hell anyway.</p>
+<p><strong>stump</strong>: Why?</p>
+<p><strong>cobb</strong>: Him and me used to be pals but we went on a
+hunting trip once and he hired a shitty guide.</p>
+<p><strong>stump</strong>: That’s it? You didn’t like a guide he
+hired?</p>
+<p><strong>cobb</strong>: You tell him to go fuck himself or I’ll kick
+your Yankee ass!</p>
+<p><strong>stump</strong>: Mr. Hemingway? Mr. Cobb says… to go to hell.
+By the way I’m a big fan of yours –</p>
+<p><strong>cobb</strong>: Hemingway isn’t a bullfighter – he wrote about
+bullfighting. What the hell is that?! Bullshit… Damn painkillers…</p>
+<p><strong>stump</strong>: Ty, you okay?</p>
+<p><strong>cobb</strong>: It’ll pass… Stumpy, listen to me – you know
+what I need?</p>
+<p><strong>stump</strong>: What do you need?</p>
+<p><strong>cobb</strong>: I need a woman. A woman is definitely what I
+need…</p>
+<p><strong>26 continued: 26</strong>: And Cobb drifts to sleep in his
+chair, momentarily overcome with painkillers.</p>
+<p><strong>stump</strong>: I couldn’t be around the man for long without
+needing a break, which his painkillers gracefully provided. My sanity
+would soon depend upon a frequent breath of fresh air, a walk in the
+woods – any escape from what one sportswriter had called ‘Cobb’s
+brooding soul that bubbled with violence.’</p>
+<p><strong>stump</strong>: I knew most of the Cobb stories – first man
+elected to the Hall of Fame, ahead of the incomparable Babe Ruth.
+Statistics that haven’t been approached in three-quarters of a
+century.</p>
+<p><strong>stump</strong>: But I’d known boxing champions and football
+players – they were gentle souls outside the arena. How much of Cobb was
+an act, a lifetime of theatrical intimidation to preserve his own
+legend?</p>
+<p><strong>stump</strong>: Legends grow in time. Tough guys are tougher,
+women more beautiful, routine acts of self-preservation become
+heroic.</p>
+<p><strong>stump</strong>: My God…</p>
+<p><strong>28 int. lodge - night 28</strong>: Stump bursts into the
+lodge as the brewing storm blows in. Cobb is standing there in a hunting
+jacket, high laced boots, a hat, with a suitcase. He holds a paper bag
+wrapped in twine.</p>
+<p><strong>cobb</strong>: We’re going to Reno. I want a woman.</p>
+<p><strong>stump</strong>: There’s a blizzard out there!</p>
+<p><strong>cobb</strong>: When a man wants a woman, a man wants a
+woman.</p>
+<p><strong>stump</strong>: Let’s just put on some soup, build a fire,
+and we can work on the book.</p>
+<p><strong>cobb</strong>: How cozy. I got 25 thousand in cash and
+negotiable securities in here. Don’t let it out of your sight.</p>
+<p><strong>stump</strong>: Look, Ty, the roads are impassable.</p>
+<p><strong>cobb</strong>: You lead, I’ll follow.</p>
+<p><strong>stump</strong>: I’m not driving in this stuff!</p>
+<p><strong>cobb</strong>: I need a woman!</p>
+<p><strong>29 ext. two lane highway in sierras - dusk 29</strong>: A
+blizzard – two cars ease down an ice-covered road in an increasingly
+horrendous snowstorm.</p>
+<p><strong>30 int. stump’s car - dusk 30</strong>: Stump is terrified,
+straining to see through the flurries which grow thicker by the second.
+He keeps checking his rearview mirror.</p>
+<p><strong>pov shot through rearview mirror</strong>: Cobb at the wheel
+of a huge, black, Chrysler Imperial. He looks possessed.</p>
+<p><strong>31 int. cobb’s car - dusk 31</strong>: Cobb at the wheel – A
+madman.</p>
+<p><strong>cobb</strong>: You call that driving, Alice?! My sister can
+drive faster than that! Step on it!</p>
+<p><strong>31 continued: 31</strong>: He grabs a bottle of bourbon on
+the seat and chugs it down.</p>
+<p><strong>cobb</strong>: Get off the road – ya can’t drive any faster?!
+Move it!</p>
+<p><strong>stump</strong>: Fuck you! I ain’t dying in this God damn ice
+cube!</p>
+<p><strong>cobb</strong>: The man drives like an old woman…</p>
+<p><strong>36 stump’s pov 36</strong>: Cobb waves his fist as he speeds
+past –</p>
+<p><strong>37 close on cobb 37</strong>: He laughs, cackling madly at
+Stump.</p>
+<p><strong>cobb</strong>: Drive, motherfucker, drive!</p>
+<p><strong>38 stump’s pov 38</strong>: The black Chrysler rushes down
+the mountain into the raging storm.</p>
+<p><strong>stump</strong>: struggles to see through the windshield –
+snow is swirling everywhere.</p>
+<p><strong>stump’s pov</strong>: Cobb’s car disappears into the
+blizzard, fishtailing as it goes.</p>
+<p><strong>stump</strong>: Jesus…</p>
+<p><strong>stump</strong>: He’s a goner, Al, save your own God damn
+ass…</p>
+<p><strong>42 another angle 42</strong>: Stump stops his car and gets
+out – He hurries to the edge of the road where the bank drops away
+quickly.</p>
+<p><strong>pov shot - cobb’s car</strong>: lies nose down at the bottom
+of a snow-filled ravine, thirty feet away. The tail lights are still on.
+The car is totalled.</p>
+<p><strong>stump</strong>: Cobb!</p>
+<p><strong>stump</strong>: Cobb?</p>
+<p><strong>cobb</strong>: It’s about fucking time you got here!</p>
+<p><strong>stump</strong>: You’ve alive?</p>
+<p><strong>cobb</strong>: I wouldn’t call it living but it’ll do. Help
+me outta here.</p>
+<p><strong>stump</strong>: There’s blood!</p>
+<p><strong>cobb</strong>: Of course there’s blood! I just put my head
+through the windshield of a car, what the hell ya think, ya big fucking
+jerk.</p>
+<p><strong>stump</strong>: Shut up!</p>
+<p><strong>cobb</strong>: Ty Cobb can’t die like this! They’ll bury me
+and nobody’ll know who it is!</p>
+<p><strong>stump</strong>: I said shut up.</p>
+<p><strong>cobb</strong>: Look’t that! No guard rail! I’m suing the
+State Highway Commission, I’m suing the Governor, I’m suing every God
+damn body! I coulda been killed!</p>
+<p><strong>stump</strong>: God damn it, shut up and get in the car!</p>
+<p><strong>cobb</strong>: Gimme your keys, I’m driving.</p>
+<p><strong>stump</strong>: I’m driving.</p>
+<p><strong>cobb</strong>: Do you know how to get to Reno? Hell, no! I’m
+driving.</p>
+<p><strong>stump</strong>: Over my dead body!</p>
+<p><strong>cobb</strong>: Your call.</p>
+<p><strong>stump</strong>: You miserable son of a bitch. You coward, you
+pathetic, frightened, desperate old man – you can’t do anything without
+that gun and frankly it doesn’t impress me to keep flashing it because I
+know you’re not gonna shoot me ’cause you need me worse than I need you.
+What, you’re gonna kill me?</p>
+<p><strong>cobb</strong>: I’ve killed a man.</p>
+<p><strong>stump</strong>: Fine, then put me outta my fuckin’ misery.
+I’m freezing.</p>
+<p><strong>cobb</strong>: Here ya go, Stumpy. I like a man who stands up
+to me.</p>
+<p><strong>cobb</strong>: Now give me the keys. I’m driving.</p>
+<p><strong>44 int. car in blizzard - night 44</strong>: Cobb at the
+wheel is perfectly happy and at peace. Stump, in the passenger’s seat,
+braces himself for certain death.</p>
+<p><strong>cobb</strong>: It’s only another hour – plenty of time to
+tell you my story before we find us some women.</p>
+<p><strong>stump</strong>: Women? Plural?</p>
+<p><strong>cobb</strong>: Some for you, some for me. We’ll have a
+helluva time. The broads’re probably lining up right now, waiting for
+ol’ Ty and his buddy Stump.</p>
+<p><strong>stump</strong>: Dear God…</p>
+<p><strong>cobb</strong>: I suppose you want to know about my childhood.
+Writers usually do.</p>
+<p><strong>stump</strong>: None of this ‘know ye that a prince and great
+man has fallen’ stuff –</p>
+<p><strong>cobb</strong>: My philosophy is simply this – Life is too
+short to be diplomatic. A man’s friends shouldn’t mind what he does or
+says, and those who are not his friends, well, to hell with ’em.</p>
+<p><strong>cobb</strong>: I was born in a small town in Georgia, of
+course… my sweet sister Florence still lives there…</p>
+<p><strong>cobb</strong>: And I started playing baseball when I was a
+kid like everybody else only I was better than every- body else. When I
+was seventeen I started playing for money – my father didn’t approve. He
+was a great man…</p>
+<p><strong>45 ext. highway 45</strong>: As the snow whirls around the
+car hurtling down the mountain, the snowflakes FILL the SCREEN and turn
+to confetti as we:</p>
+<p><strong>46 ext. royston - day 46</strong>: Confetti falls from the
+sky – PROFESSOR COBB, 40, Ty’s father, waves to the crowd in front of
+city hall. Signs everywhere declare him to be the newly elected MAYOR
+COBB. A band plays “Sweet Georgia Brown” as the Mayor makes a victory
+speech.</p>
+<p><strong>cobb</strong>: He was the mayor, they were grooming him for
+governor, he was a learned man, a professor, and the Head Deacon in the
+Baptist Church.</p>
+<p><strong>47 int. baptist church - day 47</strong>: Professor Cobb
+sings loudly with the Deacons behind the Pastor as the CONGREGATION
+joins in.</p>
+<p><strong>congregation</strong>: ‘There is a fountain filled with Drawn
+from Emmanuel’s veins…’</p>
+<p><strong>cobb</strong>: My mother was the most beautiful woman in the
+county… she married my father when she was twelve which was the way they
+used to do it. And she taught me to believe in the hymns we sang… I
+especially liked the bloody ones… ‘And sinners plunged beneath that Lose
+all their guilty stains…’</p>
+<p><strong>48 ext. river in georgia - day 48</strong>: Young Ty Cobb is
+baptized in the river.</p>
+<p><strong>cobb</strong>: I remember after I was baptized and I was
+walking home with my pals…</p>
+<p><strong>49 ext. train track in rural georgia - day 49</strong>: Young
+Ty and three buddies walk along the track.</p>
+<p><strong>cobb</strong>: I was feeling very Christian, ready to live
+the good life – my father didn’t drink, smoke, gamble or chase women –
+and I wasn’t going to either –</p>
+<p><strong>cobb</strong>: … when all of a sudden a train was coming at
+us.</p>
+<p><strong>cobb</strong>: There I was, a newly baptized child of God who
+hadn’t hardly sinned, and I was gonna die.</p>
+<p><strong>cobb</strong>: The engine bore down on me till I could see
+the whites of the engineer’s eyes – I was thrilled…</p>
+<p><strong>close on young cobb</strong>: His face filled with excitement
+as the space between him and the engine reduces to nothing.</p>
+<p><strong>new angle</strong>: Closer and closer the engine comes – 50
+yards, 25 yards, 10, five, four, three… moments before death – Young Ty
+Cobb leaps to safety, flying in front of the engine, out over the water
+till he splashes, mere milli- seconds before he would have been crushed
+to death.</p>
+<p><strong>cobb</strong>: … it was the greatest thrill in my life not
+counting the first time I saw a woman naked…</p>
+<p><strong>cobb</strong>: I felt protected. By my father, my mother, the
+baptism, I don’t know – but from that moment on I knew I couldn’t be
+hurt.</p>
+<p><strong>series of shots</strong>: Young Cobb hurtles through the air
+toward the river, just missing the locomotive…</p>
+<p><strong>cobb</strong>: My father died in a terrible accident, you
+know.</p>
+<p><strong>stump</strong>: No, I didn’t, really…</p>
+<p><strong>cobb</strong>: Didn’t you do your research on me before you
+came up here?</p>
+<p><strong>stump</strong>: I didn’t have time… I mean, I knew the
+basics.</p>
+<p><strong>cobb</strong>: Then you’ve read that I’m the meanest bastard
+of them all?</p>
+<p><strong>stump</strong>: People have said that, yes…</p>
+<p><strong>cobb</strong>: I don’t care what people think.</p>
+<p><strong>stump</strong>: Then why do you care what I write?</p>
+<p><strong>cobb</strong>: I am who I tell you I am! Why are you making
+things so complicated?!</p>
+<p><strong>stump</strong>: That’s what writers do.</p>
+<p><strong>cobb</strong>: Well writers oughta make things simple!
+Everything’s complicated enough as it is.</p>
+<p><strong>stump</strong>: Maybe you’re right!</p>
+<p><strong>cobb</strong>: Of course I’m right!</p>
+<p><strong>stump</strong>: Ty!</p>
+<p><strong>stump</strong>: Godddddddd!</p>
+<p><strong>cobb</strong>: Don’t shout like that, Stumpy – it just
+increases my tension. I saw that truck all along – you think I’m gonna
+hit a truck when I’m getting close to finding me some women?</p>
+<p><strong>cobb</strong>: My father was murdered, y’know.</p>
+<p><strong>stump</strong>: Your father was murdered?</p>
+<p><strong>cobb</strong>: I mean that’s the sort of thing you’re looking
+for, isn’t it? Murdered on the balcony of his own house… the house I
+grew up in…</p>
+<p><strong>52 ext. gabled house in georgia - night 52</strong>: The head
+of a horse in f.g., shaking its head, uncomfort- able with the bit in
+its mouth. In the b.g., the gabled house in the moonlight. A small light
+spills from a second- floor window onto the balcony. A man on the
+balcony porch moves toward the window from which light spills.</p>
+<p><strong>53 int. car on highway - dusk 53</strong>: Stump is stunned
+by this information as the car careens wildly down the mountainside.</p>
+<p><strong>stump</strong>: Your father was murdered? How come nobody
+knows about this?</p>
+<p><strong>cobb</strong>: The oldtimers in Royston know about it. Nobody
+else’s business. It happened when I was 17, a few days before Detroit
+called me up.</p>
+<p><strong>stump</strong>: But this helps explain why –</p>
+<p><strong>cobb</strong>: Why I’m such a prick? Ha! That’s too easy –
+you’re a better writer than that –</p>
+<p><strong>stump</strong>: Was the killer ever caught?</p>
+<p><strong>cobb</strong>: There was an arrest, a trial, and an
+acquittal. Nobody was ever convicted.</p>
+<p><strong>stump</strong>: Jesus Christ –</p>
+<p><strong>cobb</strong>: Aw, don’t go sob-sister on me, Stumpy. The
+only thing that finally matters is a man’s accomplishments and I must
+say, in all humility, Al, in all humility – I was the greatest
+ballplayer of all time. Nobody is even a close second.</p>
+<p><strong>cobb</strong>: Single to left, steal second, steal third,
+steal home…</p>
+<p><strong>gambler</strong>: Eight to one.</p>
+<p><strong>cobb</strong>: Fuck you!</p>
+<p><strong>gambler</strong>: Ten to one.</p>
+<p><strong>cobb</strong>: You’re on.</p>
+<p><strong>55 ext. on-deck circle - day 55</strong>: Cobb swings the bat
+and shouts at the pitcher.</p>
+<p><strong>cobb</strong>: Hey, greaseball, check your wife – one of the
+players is missing!</p>
+<p><strong>55 continued: 55</strong>: The pitcher flips Cobb the finger
+and takes a sign, deliv- ering a pitch which is swung on and missed,
+strike three.</p>
+<p><strong>cobb</strong>: Who the hell ever signed you?</p>
+<p><strong>teammate</strong>: Go to hell.</p>
+<p><strong>cobb</strong>: Hey, Cyclops, you’re missing a good game.</p>
+<p><strong>umpire</strong>: Shut up, Cobb.</p>
+<p><strong>cobb</strong>: Here ya go…</p>
+<p><strong>cobb</strong>: Your old lady left ’em in my car last night –
+I thought you could give ’em back to her.</p>
+<p><strong>catcher</strong>: You’re going down, Cobb.</p>
+<p><strong>cobb</strong>: Let’s go.</p>
+<p><strong>cobb</strong>: That’s as hard as you can throw?! Shit, it
+that was my fastball I’d wear a dress!</p>
+<p><strong>cobb</strong>: Hey, Wagner! I’d shade me a little up the
+middle if I was you!</p>
+<p><strong>cobb</strong>: You try to take my head off then you throw a
+sinker away, in and out, same old shit – sinker away…</p>
+<p><strong>close on cobb</strong>: His chatter stops, his focus is
+intense and sudden. He holds the bat strangely, with a split grip, a
+left- handed batter, he dangles the bat almost parallel to the ground.
+For all his fierceness, there’s a delicacy in the way he holds the bat.
+A baton, a paintbrush, a magic wand…</p>
+<p><strong>cobb</strong>: You God damn coward! You shoulda thrown at me
+again! You shoulda hit me in the fucking head!</p>
+<p><strong>55 continued: 55</strong>: Cobb looks down at Wagner who
+stands implacably at short- stop, a large, powerfully-built man.</p>
+<p><strong>cobb</strong>: Hey, Krauthead, I’m coming down.</p>
+<p><strong>close on wagner</strong>: He just nods.</p>
+<p><strong>new angle</strong>: The pitcher stretches, looks and delivers
+– and Cobb breaks for second. The pitch is wide. The Catcher fires.</p>
+<p><strong>back in dugout</strong>: More money is wagered.</p>
+<p><strong>pitcher</strong>: Stretches and delivers – Cobb takes off for
+third. The throw is high – he slides in safely.</p>
+<p><strong>cobb</strong>: You want in on the action? My mother has a
+better arm than you! I’m coming to you, greaseball! Coming to kick your
+dago ass!</p>
+<p><strong>catcher</strong>: steals a glance at Cobb who takes a
+menacing lead off third. The Catcher gives a signal to the pitcher.</p>
+<p><strong>cobb</strong>: In those days you didn’t hold hands and dance
+with the men on the other teams. They were the enemy – you fought with
+’em. And I was the most hated man in baseball.</p>
+<p><strong>fan #1</strong>: You’re a shit, Cobb!</p>
+<p><strong>56 continued: 56</strong>: Cobb continues warming up.</p>
+<p><strong>fan #2</strong>: I hate your guts, Cobb!</p>
+<p><strong>cobb</strong>: A good day to you, too, sir…</p>
+<p><strong>cobb</strong>: Do you know what it’s like to be booed like
+that?</p>
+<p><strong>cobb</strong>: It feels wonderful! They couldn’t live without
+me! They came to the ballpark to see me!</p>
+<p><strong>close on mail</strong>: Cut-out letters read: “COBB - YOU’RE
+DEAD”</p>
+<p><strong>cobb</strong>: Fifty thousand fans trying to kill me
+everywhere I went!</p>
+<p><strong>cobb</strong>: I loved it. Only great men are booed. Captains
+of industry and presidents. I knew ’em all…</p>
+<p><strong>cobb</strong>: Woodrow Wilson had the best Scotch…</p>
+<p><strong>cobb</strong>: Warren Harding had the best broads…</p>
+<p><strong>61 int. white house study 61</strong>: A formal portrait with
+President Calvin Coolidge and Cobb. Coolidge doesn’t smile, doesn’t seem
+to do any- thing. Just another portrait.</p>
+<p><strong>cobb</strong>: And Calvin Coolidge wasn’t any damn fun at
+all…</p>
+<p><strong>62 int. car careening down mountainside - dusk 62</strong>:
+Like an out of control bobsled – Cobb races and Stump hangs on for his
+life.</p>
+<p><strong>cobb</strong>: After World War Two, General Patton asked me
+for an autograph – he said he patterned himself after me! Are you
+getting this?</p>
+<p><strong>stump</strong>: I’ll remember.</p>
+<p><strong>cobb</strong>: Why aren’t you writing?!</p>
+<p><strong>stump</strong>: ’Cause I’m trying to have a good grip on
+things when this car goes over the next cliff! I ain’t ready to die
+yet!</p>
+<p><strong>cobb</strong>: But neither am I.</p>
+<p><strong>stump</strong>: Ty!</p>
+<p><strong>cobb</strong>: I said I’m not ready to die.</p>
+<p><strong>stump</strong>: Then watch the fucking road.</p>
+<p><strong>cobb</strong>: But you’re not listening to me! I may have
+every God damn disease known to man but I am never going to check into a
+hospital because I am alive and I am going to get laid in Reno!</p>
+<p><strong>cobb</strong>: You’re gonna get laid, too, Stumpy!</p>
+<p><strong>stump</strong>: Maybe I don’t wanta get laid!</p>
+<p><strong>cobb</strong>: You queer?!</p>
+<p><strong>stump</strong>: I’m married.</p>
+<p><strong>cobb</strong>: I thought you were divorced.</p>
+<p><strong>stump</strong>: We’re in the middle of a… problem. We’re
+talking.</p>
+<p><strong>cobb</strong>: Talking my ass! Quit hanging on – get a
+divorce. Is that why you don’t wanta get laid in Reno? ’Cause you’re
+feeling loyal to a woman you’re divorcing? That’s really stupid,
+Stumpy…</p>
+<p><strong>stump</strong>: I’m not getting a divorce. I’m being
+loyal.</p>
+<p><strong>cobb</strong>: Is that why you used to wine and dine that
+little brunette who had an office across the courtyard from you in Santa
+Barbara?</p>
+<p><strong>stump</strong>: What do you know about her?!</p>
+<p><strong>cobb</strong>: I do my homework, Stumpy. I know where the
+bodies are buried.</p>
+<p><strong>stump</strong>: It didn’t last long!</p>
+<p><strong>cobb</strong>: Hey, no need to defend yourself. When it comes
+to women I’m a total shit – the difference is, Stumpy, that I know I’m a
+shit.</p>
+<p><strong>stump</strong>: Nobody knows about the brunette.</p>
+<p><strong>cobb</strong>: Our little secret, huh? And that part about me
+being a shit with women? That ain’t gonna be in the book.</p>
+<p><strong>stump</strong>: I gotta put your family in my book.</p>
+<p><strong>cobb</strong>: Your book?! My book! And nothing about my
+ex-wives or children are gonna be in it. My book is about baseball!</p>
+<p><strong>stump</strong>: My book is about Cobb!</p>
+<p><strong>cobb</strong>: Cobb is baseball!</p>
+<p><strong>63 ext. highway 63</strong>: Suddenly something appears ahead
+on the roadside. Cobb doesn’t see it. Stump does. It looks like a
+figure, huddled, wrapped, immobile in the swirling snow. It can’t
+be…</p>
+<p><strong>stump</strong>: Ty! Look! It’s a man!</p>
+<p><strong>cobb</strong>: Fuck him…</p>
+<p><strong>stump</strong>: Stop the car!</p>
+<p><strong>cobb</strong>: Whoever it is he’s gotta be pretty stupid to
+be out in this shit.</p>
+<p><strong>stump</strong>: We’re out in this shit!</p>
+<p><strong>64 ext. side of road - dusk 64</strong>: Stump trudges back
+to the half-frozen figure who flails his arms stiffly at the apparition
+of a car in all this. The figure is wrapped in blankets, his head
+covered. We cannot see who it is until we are in his face.</p>
+<p><strong>figure in snow</strong>: Help me. Please help me.</p>
+<p><strong>stump</strong>: My God… it’s you. Are you okay?</p>
+<p><strong>willie</strong>: I can’t believe you found me…</p>
+<p><strong>stump</strong>: Let me help you to the car.</p>
+<p><strong>willie</strong>: I told you that you’d only last one day with
+the bastard.</p>
+<p><strong>stump</strong>: Cobb’s in the car. He’s driving.</p>
+<p><strong>willie</strong>: Mr. Cobb’s in the car?</p>
+<p><strong>stump</strong>: Yeah…</p>
+<p><strong>willie</strong>: Then I’m not getting in the car with that
+son of a bitch. I’d rather take my chances out here.</p>
+<p><strong>stump</strong>: You’re coming!</p>
+<p><strong>willie</strong>: He hates me. He hates black people…</p>
+<p><strong>stump</strong>: He fucking hates everybody. Don’t give him
+the pleasure of dying out here.</p>
+<p><strong>willie</strong>: If dying out here gives him pleasure then I
+won’t die out here.</p>
+<p><strong>stump</strong>: Ty, it’s Willie. We can give him a lift to
+town.</p>
+<p><strong>cobb</strong>: Bullshit! I ain’t givin’ no nigger a ride
+nowhere!</p>
+<p><strong>65 int. stump’s car - dusk 65</strong>: And Stump loses it –
+he grabs Cobb’s pistol off the seat of the car and aims it right at
+Cobb’s head.</p>
+<p><strong>stump</strong>: Shut the fuck up and give him a ride!</p>
+<p><strong>cobb</strong>: Now who’s the coward! You won’t shoot me! You
+need me!</p>
+<p><strong>stump</strong>: No. But I’m sure Willie would take great
+pleasure in it.</p>
+<p><strong>cobb</strong>: You’ll pay for this, Stumpy…</p>
+<p><strong>stump</strong>: Say, Willie, you a baseball fan?</p>
+<p><strong>willie</strong>: Yessir…</p>
+<p><strong>stump</strong>: Who’s the greatest ballplayer of all time, in
+your opinion?</p>
+<p><strong>willie</strong>: Willie Mays, no doubt about it.</p>
+<p><strong>cobb</strong>: That nigger couldn’t hold my jock!</p>
+<p><strong>stump</strong>: Excuse me, Mr. Cobb, the man is speaking…</p>
+<p><strong>66 new angle 66</strong>: And Cobb jumps on the gas – the car
+races off, back down the mountain, fishtailing as it goes.</p>
+<p><strong>willie</strong>: And I’d say the second greatest player of
+all time is Jackie Robinson… or maybe Josh Gibson…</p>
+<p><strong>cobb</strong>: Shut up!!</p>
+<p><strong>willie</strong>: And of course, the greatest base runner of
+all time isn’t riding in this car – the fastest baseball player of all
+time was Cool Papa Bell – Cool Papa would’ve easily broke all your
+stolen base records –</p>
+<p><strong>cobb</strong>: Noooooo!</p>
+<p><strong>willie</strong>: Cool Papa was so fast that when he entered a
+hotel room and flipped the light switch off, he’d be asleep in bed
+before it got dark…</p>
+<p><strong>stump</strong>: And then there’s Satchel Paige…</p>
+<p><strong>willie</strong>: Oh yeah, Satchel Paige could throw a
+porkchop past a wolf, Mr. Cobb, ol’ Satchel woulda had you eatin’ outta
+his hand, he woulda had you hittin’ .220 and kissin’ his black ass to
+boot…</p>
+<p><strong>cobb</strong>: Shut this man up!</p>
+<p><strong>willie</strong>: The man with the gun does the talking, you
+wretched, old prick…</p>
+<p><strong>67 long shot - car 67</strong>: racing down the highway in
+the snow, and we go out hearing Willie recount the greatest ballplayers
+of all time – all of them black – as Cobb seethes, a gun to his head.
+Stump feeds Willie, watching Cobb’s racism simmer.</p>
+<p><strong>stump</strong>: Ice! Slow down! Tyyyy!</p>
+<p><strong>70 close on three men 70</strong>: The world spins around
+them as they cling for their lives. Until: THUD – the car slams into a
+bank of snow. Suddenly, silence.</p>
+<p><strong>cobb</strong>: Fucked up roads. They don’t build highways
+like they used to.</p>
+<p><strong>71 pov - hotel sign in distance 71</strong>: glows a welcome
+sign in the night. It is no longer snowing.</p>
+<p><strong>willie</strong>: Well, Mr. Cobb, thank you for a lift into
+town…</p>
+<p><strong>willie</strong>: And you, sir, should leave this disgusting,
+wretched, sorry son of a bitch immediately. Good evening.</p>
+<p><strong>73 int. last chance hotel - night 73</strong>: Stump helps
+Cobb to the registration desk in a clean, but very modest old hotel. A
+WOMAN, 30s, stands at the counter in the middle of some dispute with the
+clerk. She wears a long, cheap, plain- cloth overcoat and galoshes.
+Stump bursts in, oblivious to the conversation in progress.</p>
+<p><strong>stump</strong>: Two rooms, please…</p>
+<p><strong>woman in wig</strong>: Stand back, you old farts. I’m in the
+middle of something – The heat’s on the blink and the mattress is lumpy
+– I want a discount.</p>
+<p><strong>clerk</strong>: Aw, c’mon, you always want a discount,
+Mona.</p>
+<p><strong>ramona</strong>: Ra-mona… and the mattress is always lumpy
+–</p>
+<p><strong>stump</strong>: Excuse me, I’ve gotta get him checked in.
+He’s very sick.</p>
+<p><strong>ramona</strong>: We’re all sick in the eyes of God – but some
+of us still have manners.</p>
+<p><strong>stump</strong>: Two rooms, next to each other.</p>
+<p><strong>74 int. cobb’s room - night 74</strong>: Stump helps Cobb
+shoot up with insulin – The needle clumsily groping for a vein in the
+old man’s arm.</p>
+<p><strong>cobb</strong>: My money…</p>
+<p><strong>stump</strong>: Your money’s okay, Ty, right here…</p>
+<p><strong>cobb</strong>: My gun…</p>
+<p><strong>stump</strong>: Your gun’s okay, too… right here…</p>
+<p><strong>cobb</strong>: We haven’t missed the testimonial dinner, have
+we?</p>
+<p><strong>stump</strong>: No we haven’t missed the dinner…</p>
+<p><strong>cobb</strong>: Good, good…</p>
+<p><strong>75 int. stump’s room next door - night 75</strong>: Stump
+pours a glass of vodka, settles into a chair, and dials the phone. He
+swallows deeply of the drink, and waits.</p>
+<p><strong>stump</strong>: Hello? Happy Birthday! It’s your Daddy! Yeah!
+Your birthday was yesterday?! No, it couldn’t be!</p>
+<p><strong>stump</strong>: Omigod, what can I say? I feel terrible – no,
+it’s not okay, jeez… When I get off the road we’ll do something special
+– a late birthday, eh? Maybe you can go to spring training or something
+with me, eh? Yeah… Listen, is your mother there? I know she doesn’t want
+to speak to me, but I want to speak to her. Okay, okay – I feel terrible
+about the birthday… I’ll call you real soon. And tell your mother I’m
+not drinking anymore. Okay… ’bye, ’bye…</p>
+<p><strong>stump</strong>: Fuck it…</p>
+<p><strong>stump</strong>: I was a fool for thinking Cobb’s brilliance
+might be what I needed at this moment of my life… Ty Cobb was the last
+thing I needed. He was not misunderstood – he was understood perfectly
+well. He hated blacks, he hated Jews, he hated Catholics – he hated
+everything except himself and his own view of the world… At times it
+seemed like he would drop dead in front of me… … and other times he
+seemed indestructible…</p>
+<p><strong>stump</strong>: I was reluctant to view the great Ty Cobb as
+a pathetic character, lost in the past, paranoia, and the shallow
+defense of ‘his own breeding’…</p>
+<p><strong>77 int. stump’s room at hotel - day 77</strong>: Stump asleep
+– full sun shines in the window. Noon. A BOTTLE CRASHES against the
+headboard jarring Stump to consciousness. He looks up to see: Cobb
+reading the pages in a rage. He tears them as he does.</p>
+<p><strong>cobb</strong>: ‘Pathetic, paranoid, lost in the past!’ What
+is this shit?!</p>
+<p><strong>stump</strong>: Those are my notes! You can’t look at my
+notes!</p>
+<p><strong>cobb</strong>: You’re notes – my life! You’re gonna betray
+me, you son of a bitch!</p>
+<p><strong>stump</strong>: You want the truth? I’m gonna tell the
+truth!</p>
+<p><strong>cobb</strong>: Whose truth?</p>
+<p><strong>stump</strong>: Mine, for crissakes, I’m the writer!</p>
+<p><strong>cobb</strong>: But I’m the legend and legends are not
+pathetic!</p>
+<p><strong>stump</strong>: These are just notes…</p>
+<p><strong>cobb</strong>: Don’t you understand anything about
+‘greatness’?</p>
+<p><strong>stump</strong>: Maybe you should find another writer.</p>
+<p><strong>cobb</strong>: There’s not enough time left.</p>
+<p><strong>stump</strong>: I’m entitled to my opinions –</p>
+<p><strong>cobb</strong>: Now that’s pathetic. Who gives a good God damn
+about the opinions of Al Stump?! What people want to know about is Ty
+Cobb! And they don’t want to know who he hates ’cause everybody hates
+somebody! They don’t wanta know if he had two wives or ten! They don’t
+wanta know if he hit women or if they hit him!</p>
+<p><strong>stump</strong>: You think they wanta know how to steal second
+base?</p>
+<p><strong>cobb</strong>: Yes! Precisely!</p>
+<p><strong>stump</strong>: Well I don’t!</p>
+<p><strong>cobb</strong>: Oh, oh, oh… I get it. You’re one of them
+college psychology type guys. You wanta find the missing piece to finish
+the puzzle known as the Madman Cobb – you think you’re the next
+Hemingway but you’re just a moderate success in a moderate-sized
+pond.</p>
+<p><strong>stump</strong>: Fuck you, Cobb! I’m much more than a moderate
+success!</p>
+<p><strong>cobb</strong>: That’s it, now you’re showing some life. You
+want psychology? I’ll give you some fucking psychology!</p>
+<p><strong>stump</strong>: I’m all ears.</p>
+<p><strong>cobb</strong>: My father was a great man…</p>
+<p>****: A horse shakes its head, attached to a buggy. A man pats the
+horse and ties it to a tree.</p>
+<p><strong>cobb</strong>: My father told my mother he was going out of
+town for the weekend on business. But he didn’t go. He came back ’cause
+he thought she was being unfaithful…</p>
+<p><strong>cobb</strong>: I don’t know why he thought it – ’cause my
+mother was a wonderful woman – but he thought it.</p>
+<p><strong>80 ext. house - night 80</strong>: The father climbing up the
+trellis onto the balcony.</p>
+<p><strong>cobb</strong>: My father thought he would catch the man who
+was trying to steal his wife from him… catch him in the act…</p>
+<p><strong>close on woman</strong>: She turns and looks toward the bed.
+We don’t see whatever she’s looking at.</p>
+<p><strong>woman’s pov</strong>: The window. It starts to open.</p>
+<p><strong>cobb</strong>: My father had high standards… the highest. He
+believed in quality… he believed in education… he believed in God… he
+believed in me… he believed in my mother… But on that night he seemed
+like a prowler… and so –</p>
+<p><strong>82 ext. balcony - night 82</strong>: A SHOTGUN BLAST takes
+out Cobb’s father’s stomach and he reels back onto the balcony. He rolls
+to his elbows and looks up.</p>
+<p><strong>cobb</strong>: My mother killed my father… shot him in the
+belly… And then blew his head clean off…</p>
+<p><strong>82 continued: 82</strong>: A SECOND SHOTGUN BLAST takes his
+head off.</p>
+<p><strong>cobb</strong>: How’s that? A pretty God damn good piece of
+psychology, eh? That what you’re looking for? The childhood incident
+that explans me?!</p>
+<p><strong>cobb</strong>: Well I was a prick before it happened and a
+bigger prick after it happened so stick that up your Sigmund Freud
+ass!</p>
+<p><strong>stump</strong>: Your mother killed your father?</p>
+<p><strong>cobb</strong>: And you ain’t printing it.</p>
+<p><strong>stump</strong>: I have to.</p>
+<p><strong>cobb</strong>: Not if I say so. I don’t think you understand
+something – I have final editorial approval of the book.</p>
+<p><strong>stump</strong>: No, I do. I always have it.</p>
+<p><strong>cobb</strong>: Did you read your contract?</p>
+<p><strong>stump</strong>: It’s my standard contract. I just signed. I
+would never have agreed to this if you had final approval.</p>
+<p><strong>83 continued: 83</strong>: Cobb calmly picks up the phone and
+hands it to Stump.</p>
+<p><strong>cobb</strong>: Call your agent.</p>
+<p><strong>stump</strong>: Hello? Charlie? Al… I’m in Reno… yeah… things
+are fine… Yeah, listen… I’m just checking… did we give away final
+editorial approval on this Cobb book? We did? Cobb has it? Jesus…</p>
+<p><strong>cobb</strong>: Well, you were pretty stupid to give up
+approval, weren’t ya?</p>
+<p><strong>stump</strong>: Fuck you, Cobb?</p>
+<p><strong>cobb</strong>: Fuck me? Why me? Why you mad at me? Your agent
+made the deal, your lawyer, your publisher, you didn’t even read the
+contract because you trusted them! Who the hell ever trusted a lawyer or
+an agent?! If I was Al Stump, the guy I’d be pissed off at would be Al
+Stump!</p>
+<p><strong>stump</strong>: Listen to me, you son of a bitch – if you die
+before the book is finished, I’ll write the story I want.</p>
+<p><strong>cobb</strong>: But I ain’t dying first.</p>
+<p><strong>stump</strong>: I’ll write slow.</p>
+<p><strong>cobb</strong>: I’ll die slow.</p>
+<p><strong>cobb</strong>: Now get dressed so we can go find some
+women…</p>
+<p><strong>louis prima and group</strong>: ’That old black magic has me
+in That old black magic that you</p>
+<p><strong>cobb</strong>: Look’t that – hundred bucks says I get in her
+pants before dawn.</p>
+<p><strong>stump</strong>: My God – it’s Mona… Ra-mona… We met her at
+the hotel…</p>
+<p><strong>cobb</strong>: I don’t remember…</p>
+<p><strong>ramona</strong>: Cigarettes, gentlemen? Cigars? We stockpiled
+some Havanas before Senor Castro did his little number.</p>
+<p><strong>stump</strong>: Coupla Monte Cristos, Ramona, number
+twos.</p>
+<p><strong>ramona</strong>: Have we met?</p>
+<p><strong>stump</strong>: At the hotel – checking in.</p>
+<p><strong>ramona</strong>: Ohyeah, you were the asshole.</p>
+<p><strong>cobb</strong>: Excuse me, young lady, I must apologize for
+the behavior of my friend – he has a crude side.</p>
+<p><strong>ramona</strong>: I accept.</p>
+<p><strong>cobb</strong>: Ramona… Spanish name… lovely… it means
+‘moonlit garden of the gods’…</p>
+<p><strong>ramona</strong>: Actually it’s German and means ‘wise
+protectoress’ but thanks for the thought…</p>
+<p><strong>louis prima</strong>: Ladies and gentlemen, thank you very
+much, you’re a great crowd … I have been informed that we have a
+celebrity with us tonight who is a legend, a man who truly needs no
+introduction…</p>
+<p><strong>louis prima</strong>: … so let’s give a Harrah’s Casino warm
+welcome to the greatest baseball player of all time, the one and only Ty
+Cobb!</p>
+<p><strong>stump</strong>: ‘Moonlit garden of the gods’?</p>
+<p><strong>back onstage - louis prima</strong>: motions to his band.</p>
+<p><strong>louis prima</strong>: And this one’s for the Georgia
+Peach!</p>
+<p><strong>louis prima/keely smith</strong>: No gal made has got a shade
+on Two left feet but oh so sweet is</p>
+<p><strong>louis prima</strong>: The great Ty Cobb! C’mon up here!</p>
+<p><strong>stump</strong>: They want you, Ty –</p>
+<p><strong>cobb</strong>: Of course they want me.</p>
+<p><strong>ramona</strong>: Who’s that?</p>
+<p><strong>stump</strong>: The greatest baseball player of all time.</p>
+<p><strong>ramona</strong>: I don’t know baseball from shmaseball but I
+know a nice man when I see one and I also know it’s time for my coffee
+break. Hasta luego.</p>
+<p><strong>back onstage</strong>: As Cobb arrives…</p>
+<p><strong>louis prima and group</strong>: Fellas, she can’t get, are
+fellas, Georgia made her, Georgia claimed</p>
+<p><strong>louis prima</strong>: My great pleasure, sir – I’ve always
+wanted to ask you something, Mr. Cobb, with all the great ballplayers
+playing right now – how well do you think you’d do against today’s
+players?</p>
+<p><strong>cobb</strong>: Well, I figure against today’s pitchers I’d
+only hit about .275, .280…</p>
+<p><strong>louis prima</strong>: That’s amazing, Mr. Cobb, considering
+your lifetime average is nearly a hundred points higher. Why do you
+think you’d only hit .275 against today’s pitchers?</p>
+<p><strong>cobb</strong>: Because I’m 72 fucking years old, that’s why,
+God damn it. Give me that thing.</p>
+<p><strong>cobb</strong>: First of all I wanta thank you for that song,
+’Sweet Georgia Brown… it’s a great song about my home state and I
+appreciate it… That song has become the theme song for the Harlem
+Globetrotters… It’s too bad such a fine song had to be stole by a buncha
+niggers playing a faggot game in their underwear…</p>
+<p><strong>cobb</strong>: ’Course the Globetrotters are owned by a Jew
+named Saperstein so whadda you expect?</p>
+<p><strong>louis prima</strong>: Thank you very much. Another round of
+applause for the Georgia Peach, Ty Cobb!</p>
+<p><strong>cobb</strong>: I got the mike, Dago – gimme a God damn
+minute. Nobody’s got respect for their elders any more.</p>
+<p><strong>cobb</strong>: Now let me explain to you how to hit a
+baseball. It’s a lost art. Ever since that half-nigger Ruth started
+hitting home runs, the skill, the art, and the science have been
+lost.</p>
+<p><strong>cobb</strong>: Now, say this is a bat…</p>
+<p><strong>casino manager</strong>: Let’s just haul him off –</p>
+<p><strong>security officer</strong>: That’s Ty Cobb! He’ll fucking kill
+me!</p>
+<p><strong>cobb</strong>: You see, the bat is like a wand, a magic wand…
+it should be caressed, held like a woman… like a woman who’s really in
+need of a man…</p>
+<p><strong>offstage</strong>: The Casino Manager winces and
+consults.</p>
+<p><strong>casino manager</strong>: Oh God, here we go…</p>
+<p><strong>cobb</strong>: Hitting a baseball is really very easy… you
+can’t force it… you can’t overpower it… you go with the pitch… you let
+the bat do the work… it’s all rhythm and flow…</p>
+<p><strong>85 int. casino bar - night 85</strong>: Stump sees Ramona at
+the bar, her cigarette/cigar tray on the bar. She’s smoking and working
+her way through a tall drink. He approaches her.</p>
+<p><strong>stump</strong>: Excuse me.</p>
+<p><strong>ramona</strong>: You again? You could learn some manners from
+your friend.</p>
+<p><strong>stump</strong>: I’ll try harder. You’re a beautiful
+woman.</p>
+<p><strong>ramon</strong>: It’s the wig.</p>
+<p><strong>ramona</strong>: The damn thing itches but it’s good for
+tips. Give me a scratch, will ya?</p>
+<p><strong>ramon</strong>: Turn you on? Hey, Harvey, another round. On
+him.</p>
+<p><strong>stump</strong>: Vodka and grapefruit juice.</p>
+<p><strong>stump</strong>: Your wig’s crooked.</p>
+<p><strong>ramona</strong>: Does it bother you?</p>
+<p><strong>stump</strong>: No, no… I was just –</p>
+<p><strong>ramona</strong>: You wanta go to bed with me, right?</p>
+<p><strong>stump</strong>: You want money?</p>
+<p><strong>ramona</strong>: I’m not a whore! I don’t screw for money?!
+Jesus!</p>
+<p><strong>stump</strong>: I’m sorry. I didn’t know. I mean I’m not good
+at this.</p>
+<p><strong>ramona</strong>: Just divorced, huh?</p>
+<p><strong>stump</strong>: Not yet…</p>
+<p><strong>ramona</strong>: It’s written all over ya. Giant letters
+right across the forehead. D-I-V-O-R-C-E. Ha! Plain as day.</p>
+<p><strong>stump</strong>: It’s obvious, huh?</p>
+<p><strong>ramona</strong>: Obvious. So, if ya wanta pay me to screw, I
+won’t do it.</p>
+<p><strong>stump</strong>: Then I won’t.</p>
+<p><strong>ramona</strong>: Screw or pay?</p>
+<p><strong>stump</strong>: Whichever.</p>
+<p><strong>ramona</strong>: So ya don’t wanta screw?</p>
+<p><strong>stump</strong>: No, I do.</p>
+<p><strong>ramona</strong>: All this ambiguity – I see why she’s
+divorcing ya.</p>
+<p><strong>stump</strong>: I don’t know what I’m saying or doing
+anymore… I’m trying to speak my heart.</p>
+<p><strong>ramona</strong>: Oh God…</p>
+<p><strong>stump</strong>: I told my wife I wanted a divorce. She said
+‘okay’ – then I realized maybe I don’t.</p>
+<p><strong>ramona</strong>: Then go back to her.</p>
+<p><strong>stump</strong>: No.</p>
+<p><strong>ramona</strong>: Then quit crying. You want a divorce, you
+don’t want a divorce, you’re asking marital advice from a woman you’re
+trying to get in the sack – Jeez Louise!</p>
+<p><strong>stump</strong>: I’m not myself.</p>
+<p><strong>ramona</strong>: Who is?</p>
+<p><strong>stump</strong>: Another round, Harvey. This assignment has me
+befuddled. I’m supposed to tell the world that a monster is really a
+prince. I’m supposed to lie.</p>
+<p><strong>ramona</strong>: You being paid?</p>
+<p><strong>stump</strong>: Very well.</p>
+<p><strong>ramona</strong>: Then it’s not a lie. It’s a job. Quit
+agonizing – take the money, do what you gotta do, and get it over
+with.</p>
+<p><strong>stump</strong>: I can’t.</p>
+<p><strong>ramona</strong>: Then quit.</p>
+<p><strong>stump</strong>: No!</p>
+<p><strong>ramona</strong>: For godsakes why not?</p>
+<p><strong>stump</strong>: He knows greatness. I’m in the presence of
+greatness. I want to learn about greatness.</p>
+<p><strong>ramona</strong>: Greatness is overrated.</p>
+<p><strong>stump</strong>: Maybe you’re right, maybe you’re right…</p>
+<p><strong>ramona</strong>: So what do you want?</p>
+<p><strong>stump</strong>: I want to be in someone’s arms tonight.</p>
+<p><strong>ramona</strong>: Oh that. Why do men have such a hard time
+saying what they want?</p>
+<p><strong>86 int. stump’s hotel room - night 86</strong>: Stump and
+Ramona stagger in drunkenly – they are awkward and passionate.</p>
+<p><strong>stump</strong>: Wait, wait… don’t drink too much.</p>
+<p><strong>ramona</strong>: Ya think I won’t be able to screw if I’m too
+drunk?</p>
+<p><strong>stump</strong>: Well… yeah…</p>
+<p><strong>ramona</strong>: Screwed, stewed, and tattooed!</p>
+<p><strong>stump</strong>: C’mere… I want to hold you.</p>
+<p><strong>ramona</strong>: You’re so thoughtful – the others are trying
+to get me drunk and you’re trying to keep me sober. You’d be good
+husband material.</p>
+<p><strong>stump</strong>: Not so fast –</p>
+<p><strong>ramona</strong>: I didn’t mean –</p>
+<p><strong>stump</strong>: Come here.</p>
+<p><strong>86 continued: 86</strong>: They embrace – and hold each other
+fully, doing nothing but holding on. Stump relaxes.</p>
+<p><strong>ramona</strong>: I’m not a whore.</p>
+<p><strong>stump</strong>: Shh, shh… I know, I know…</p>
+<p><strong>cobb</strong>: You two-timing bastard! You God damn Judas
+Iscariot! You stealing my girl! I’ll kill you!</p>
+<p><strong>stump</strong>: She’s not ‘your’ girl!</p>
+<p><strong>ramona</strong>: What’re you doing?!</p>
+<p><strong>cobb</strong>: You’re coming with me!</p>
+<p><strong>ramona</strong>: I don’t want to!</p>
+<p><strong>87 int. hotel - cobb’s room - night 87</strong>: Cobb throws
+Ramona to the floor and locks the door. Her wig falls off. Cobb picks it
+up and stares at it.</p>
+<p><strong>cobb</strong>: What’s this?!</p>
+<p><strong>ramona</strong>: My hair.</p>
+<p><strong>cobb</strong>: Put it back on.</p>
+<p><strong>cobb</strong>: That’s better.</p>
+<p><strong>ramona</strong>: Who are you again?</p>
+<p><strong>cobb</strong>: I am the Georgia Peach. I have 4,191 base hits
+in 11,429 at- bats, 920 stolen bases, 2,244 runs scored, and 92 batting
+records… And I want you to undress.</p>
+<p><strong>ramona</strong>: No.</p>
+<p><strong>ramona</strong>: That don’t scare me ’cause if you kill me
+I’ll be dead and you ain’t gonna screw a dead lady.</p>
+<p><strong>cobb</strong>: I might.</p>
+<p><strong>87 continued: 87</strong>: She stares at the madman.</p>
+<p><strong>ramona</strong>: You’re right. You might.</p>
+<p><strong>cobb</strong>: Take your clothes off.</p>
+<p><strong>cobb</strong>: You got big tits. I like big tits.</p>
+<p><strong>ramona</strong>: They aren’t so big. They’re average,
+actually – but these bras are great. Push ’em right up there. I owe a
+lot to the bras and wigs. A girl needs what she needs –</p>
+<p><strong>cobb</strong>: Shut up. Take it off.</p>
+<p><strong>cobb</strong>: Shy, huh? Get on the bed.</p>
+<p><strong>cobb</strong>: You’re a beauty. Roll over.</p>
+<p><strong>close on her face</strong>: Terror and tears.</p>
+<p><strong>ramona</strong>: Mr. Cobb, I –</p>
+<p><strong>cobb</strong>: Shut up.</p>
+<p><strong>cobb</strong>: What I coulda done with you in my prime…</p>
+<p><strong>ramona</strong>: I’m sure you –</p>
+<p><strong>cobb</strong>: Shut up!</p>
+<p><strong>ramona</strong>: What do you want from me?!</p>
+<p><strong>cobb</strong>: Roll over.</p>
+<p><strong>cobb</strong>: I want you to do exactly what I say…</p>
+<p><strong>ramona</strong>: No…</p>
+<p><strong>cobb</strong>: Ramona!</p>
+<p><strong>cobb</strong>: Exactly what I say…</p>
+<p><strong>89 continued: 89</strong>: Cobb pulls a stack of bills from
+his bag.</p>
+<p><strong>cobb</strong>: A thousand dollars…</p>
+<p><strong>ramona</strong>: Do what you gotta do and get it over with,
+Mr. Cobb.</p>
+<p><strong>cobb</strong>: I want you to tell everyone you meet that you
+fucked me and I was the best fuck you ever had.</p>
+<p><strong>ramona</strong>: That’s all?</p>
+<p><strong>cobb</strong>: That’s a lot.</p>
+<p><strong>ramona</strong>: For a thousand bucks? Hell yes.</p>
+<p><strong>cobb</strong>: I’m looking at the most beautiful woman in the
+world, do you hear me?!</p>
+<p><strong>cobb</strong>: And I’m dead down here! Dead! Nothing! And
+it’s been like that for over two years! Nothing! Now get outta here
+before I hit you!</p>
+<p><strong>ramona</strong>: Georgia Peach my ass – Georgia trash is what
+you are!</p>
+<p><strong>89 continued: 89</strong>: Ramona grabs her clothes and runs
+from the room, past Stump who has heard it all. He enters Cobb’s
+room.</p>
+<p><strong>cobb</strong>: She was a great piece of ass, Stumpy, best I
+ever had…</p>
+<p><strong>stump</strong>: Good, good…</p>
+<p><strong>cobb</strong>: Have we missed the Testimonial Dinner?</p>
+<p><strong>stump</strong>: No we haven’t, Ty… now get some sleep…</p>
+<p><strong>close on cobb</strong>: asleep. Even in sleep, dying, he is
+twitching and full of fragments of unspent energy.</p>
+<p><strong>stump</strong>: He slept for days. I thought he was gone for
+sure. But even in sleep he was restless and in motion, a fire always
+burning in his belly…</p>
+<p><strong>90 int. hotel - stump’s room - day 90</strong>: Stump at the
+typewriter, pounding away without interruption.</p>
+<p><strong>stump</strong>: By this time I was working on two manuscripts
+– one was his version, My Life In Baseball – which for better or worse
+was a history of how to steal second base or how to hit the breaking
+ball to the opposite field.</p>
+<p><strong>stump</strong>: It contained nothing about his parents, much
+less the death of his father at the hands of his mother…</p>
+<p><strong>stump</strong>: … It contained nothing about his children and
+ex-wives, none of whom would even speak to him… It contained no insights
+from his friends because I couldn’t find any.</p>
+<p><strong>stump</strong>: It was a baseball book and I kept it in the
+typewriter for him to discover and amend… It was a book I never planned
+to publish.</p>
+<p><strong>stump</strong>: The second version, my version, was written
+on legal pads and hotel stationery and cocktail napkins and anything I
+could scrape together without drawing his attention… I kept my version
+in a box at the bottom of my suitcase –</p>
+<p><strong>92 continued: 92</strong>: Stump packs “his” version into a
+box, hiding it deep in his suitcase.</p>
+<p><strong>stump</strong>: The whole thing had become an agonizing death
+watch, and most days I couldn’t believe the son of a bitch wouldn’t
+die…</p>
+<p><strong>cobb</strong>: Nothing like a cigarette girl and thirty hours
+of sleep to invigorate a man, Stumpy! You look like shit.</p>
+<p><strong>stump</strong>: Been writing, Ty…</p>
+<p><strong>cobb</strong>: Well let’s see how we’re doing…</p>
+<p><strong>cobb</strong>: Yes, God damn it, Stumpy, yes! Now you’re
+getting it! None of this Sigmund Freud bullshit! Baseball, Stumpy,
+baseball! Yes!</p>
+<p><strong>cobb</strong>: You understand! People are no damn good but
+you’re different! You’re okay, Stumpy, you get it! And I can trust
+you…</p>
+<p><strong>cobb</strong>: Now let’s go roll us some dice, Alimony, I
+feel a hot hand coming on!</p>
+<p><strong>93 int. casino - night 93</strong>: Cobb and Stump approach
+the gaming tables and as they do, Cobb is recognized and approached for
+autographs. He signs as he walks, suddenly gracious in this moment.</p>
+<p><strong>cobb</strong>: Y’see how it works, Stumpy… they boo ya your
+whole career, then when you’re about to kiss off, they put ya on a
+pedestal. That’s what being a legend’s all about.</p>
+<p><strong>cobb</strong>: Send the dice to the Peach, boys, and belly up
+to the bar…</p>
+<p><strong>cobb</strong>: Stumpy, what is that?!</p>
+<p><strong>pov - ramona and willie</strong>: are rolling dice at a
+nearby table. They appear friendly, not intimate, two among twelve.</p>
+<p><strong>cobb</strong>: My girl went for the nigger?</p>
+<p><strong>stump</strong>: I think they’re just next to each other by
+accident.</p>
+<p><strong>cobb</strong>: Mona! You with that nigger!</p>
+<p><strong>willie</strong>: He’s crazy.</p>
+<p><strong>ramona</strong>: I know.</p>
+<p><strong>cobb</strong>: Willie! Is she with you?!</p>
+<p><strong>93 continued: 93</strong>: Ramona seizes the moment and
+kisses Willie on the cheek, draping herself all around him as if they
+were close. The intention is strictly to get back at Cobb.</p>
+<p><strong>ramona</strong>: This is my man, Mr. Cobb, and he’s all
+man.</p>
+<p><strong>cobb</strong>: My girl with my nigger!</p>
+<p><strong>stump</strong>: She’s not your girl and he’s not your –</p>
+<p><strong>security officer</strong>: He’s got a gun.</p>
+<p><strong>ramona</strong>: Mr. Cobb!</p>
+<p><strong>willie</strong>: Get down!</p>
+<p><strong>cobb</strong>: What is the world coming to?!</p>
+<p><strong>stump</strong>: We’re leaving, we’re leaving! There’s no
+reason to press charges!</p>
+<p><strong>cobb</strong>: Do you know who I am?!</p>
+<p><strong>security man</strong>: You’re a crazy old fool, that’s who
+you are!</p>
+<p><strong>stump</strong>: Back off, God damn it! We’re leaving!</p>
+<p><strong>cobb</strong>: Where we going, Stumpy, I wanta find us some
+more women!</p>
+<p><strong>stump</strong>: Ty, Ty, Ty, calm down. It’s time for the
+testimonial dinner!</p>
+<p><strong>94 ext. reno arch - dawn 94</strong>: Stump’s car passes
+under the arch, heading out of town, and we go to voice over:</p>
+<p><strong>stump</strong>: Actually the testimonial dinner at the Hall
+of Fame was still weeks away, but it was the only thing that got him
+calmed down enough to get us out of town without getting thrown in jail
+– or getting somebody killed.</p>
+<p><strong>95 ext. route 66 - day 95</strong>: The car takes Stump and
+Cobb eastward.</p>
+<p><strong>stump</strong>: And as we headed across country, Cobb as
+usual was oblivious to the chaos he’d left in his wake. In fact he was
+buoyed with new enthusiasm at the prospects of seeing his cronies once
+again…</p>
+<p><strong>cobb</strong>: Y’know something, Alimony, I believe you’re
+the best friend I ever had.</p>
+<p><strong>stump</strong>: You’re kidding.</p>
+<p><strong>cobb</strong>: Swear on a Bible, Stumpy – I feel I can trust
+you now.</p>
+<p><strong>stump</strong>: I was disturbed, to say the least, that he
+felt we were friends – but at least for the moment it made things
+bearable. And he started talking – the world according to Ty Cobb…</p>
+<p><strong>cobb</strong>: And then this fat ass named Babe Ruth came
+into the league and damn near destroyed the game of baseball… We all
+thought he was gonna eat and fuck his way outta the league but he hung
+around for a few years –</p>
+<p><strong>stump</strong>: ‘Hung around’? He was – – next to you – the
+greatest player of all time. He hit 714 home runs?!</p>
+<p><strong>cobb</strong>: Anybody can hit home runs. Now excuse me, I
+got work to do…</p>
+<p><strong>stump</strong>: Sorry, Ty –</p>
+<p><strong>cobb</strong>: I didn’t care that they cheered and adored
+Ruth – I cared that they respected his ballplaying – Christ, they built
+Yankee Stadium for him with a 297-foot right field line. My sister
+Florence could hit the ball 297 feet!</p>
+<p><strong>97 ext. stadium - day 97</strong>: Game in progress – Detroit
+vs. New York.</p>
+<p><strong>cobb</strong>: Whenever we got into a fight with the New
+Yorkers, 24 of our guys would fight 24 of their guys and me and Ruth
+would take on each other!</p>
+<p><strong>stump</strong>: During the day, we worked on his version of
+the story. At night I worked on mine…</p>
+<p><strong>100 stump 100</strong>: alone in a room, is writing on pads
+of paper.</p>
+<p><strong>100 continued: 100</strong>: He pours another drink and
+lights a cigarette.</p>
+<p><strong>stump</strong>: I was drinking like a fish, smoking
+cigarettes again, and now lying about the hidden manuscript. And by
+writing two versions without telling him, I was becoming something Cobb
+was not. I was becoming a liar.</p>
+<p><strong>cobb</strong>: Fabulous stuff, Stumpy, just brilliant. You’re
+a genius.</p>
+<p><strong>stump</strong>: Thanks, Ty…</p>
+<p><strong>cobb</strong>: I love reading about me.</p>
+<p><strong>cobb</strong>: Goddamn it, who’s out there?</p>
+<p><strong>stump</strong>: He shot up his share of motels for all the
+usual reasons – guests were too noisy, he couldn’t get any sleep, it
+didn’t matter – he was always boiling over…</p>
+<p><strong>101 continued: 101</strong>: Stump leads Cobb back inside and
+calms the locals.</p>
+<p><strong>stump</strong>: … and I became expert at keeping the peace
+wherever we went…</p>
+<p><strong>night</strong>: as Stump helps him shoot up.</p>
+<p><strong>stump</strong>: I also became expert at finding his veins…
+Which always revived him…</p>
+<p><strong>103 ext. somewhere on route 66 - day 103</strong>: The car is
+parked by the side of the highway. Cobb stands with the tape recorder
+next to an endless plain of flat desert or rolling farmland. The hood is
+up on the car, steam spills from the radiator. And Cobb is dictat- ing
+like Marc Antony.</p>
+<p><strong>cobb</strong>: … by the age of 25 I was a millionaire, by the
+age of 30 a multi-millionaire, by the age of 35…</p>
+<p><strong>105 int. car - day 105</strong>: Stump driving as Cobb
+babbles away into the tape recorder.</p>
+<p><strong>stump</strong>: Somewhere along the way I’d gone from
+biographer to stenographer to chauffeur to nurse… I was the only thing
+keeping the bastard alive… and I kept hoping he’d die.</p>
+<p><strong>cobb</strong>: Y’know, Stumpy, with a friend like you, I just
+might go on forever…</p>
+<p><strong>cobb</strong>: Where were we – ohyeah – then, at the age of
+42, I batted .323 which was an embarrassment to me but would be a career
+for anyone else…</p>
+<p><strong>stump</strong>: Until, by the grace of God, we arrived –
+days, weeks, months later, I don’t know – in Cooperstown, New York, for
+his beloved testimonial dinner…</p>
+<p><strong>106 ext. baseball field - dusk 106</strong>: The ball field –
+No game. Nearby, a set of buildings. The Baseball Hall of Fame. Stump’s
+car pulls into town.</p>
+<p><strong>107 ext. abner doubleday motel - dusk 107</strong>: A classic
+50’s motel.</p>
+<p><strong>108 int. motel - dusk 108</strong>: Stump and Cobb get
+dressed for the testimonial dinner. A black-tie affair, Stump has to
+help Cobb finish dressing. Cobb is full of boyish enthusiasm.</p>
+<p><strong>cobb</strong>: You’re gonna meet great athletes, great
+warriors, great men at this Hall of Fame dinner, Stumpy. None of this
+modern, pansy bullshit –</p>
+<p><strong>stump</strong>: I’ve been looking forward to this for a long
+time –</p>
+<p><strong>cobb</strong>: You fucking liar. You’ve been hoping I’d die
+first.</p>
+<p><strong>stump</strong>: You got me wrong.</p>
+<p><strong>cobb</strong>: I got you right. But it’s okay ’cause I need
+your help.</p>
+<p><strong>stump</strong>: Can I help you?</p>
+<p><strong>man</strong>: Cobb here?</p>
+<p><strong>stump</strong>: Why?</p>
+<p><strong>man</strong>: I’m Mickey Cochrane.</p>
+<p><strong>stum</strong>: Jesus. Ty, it’s Mickey Cochrane.</p>
+<p><strong>cobb</strong>: Where’s your tux?</p>
+<p><strong>cochrane</strong>: I don’t have one.</p>
+<p><strong>cobb</strong>: I sent you money for it.</p>
+<p><strong>cochrane</strong>: It didn’t arrive.</p>
+<p><strong>cobb</strong>: You drank it, you mean. You can’t go to the
+Hall of Fame like that. I won’t allow it.</p>
+<p><strong>cochrane</strong>: Things have been rough, Ty.</p>
+<p><strong>cobb</strong>: There’s two things a man should never do –
+complain or explain. Now go buy a God damn tux!</p>
+<p><strong>cochrane</strong>: The stores are closed.</p>
+<p><strong>cobb</strong>: How could you be so good behind the plate and
+so bad everywhere else!</p>
+<p><strong>cobb</strong>: Operator? What’s the best men’s shop in town.
+Who owns it? Jack who? Gimme his home number. Better yet, ring him up
+for me. Jack?! This is Ty Cobb. Go down to your shop and open it up and
+sell a tux to the great Mickey Cochrane. And sell him a cumberbund and a
+shirt and a bow tie and some God damn cologne. He smells like shit.
+What’s the address? He’ll be there in twenty minutes.</p>
+<p><strong>cobb</strong>: God damn it, Mickey, ya gotta give a better
+effort.</p>
+<p><strong>cochrane</strong>: Thanks, Ty.</p>
+<p><strong>cobb</strong>: He’s lost, Stumpy, the poor man’s been lost
+ever since he took a fastball in the ear.</p>
+<p><strong>stump</strong>: You take care of him?</p>
+<p><strong>cobb</strong>: For years – but that ain’t goin’ in the
+book.</p>
+<p><strong>stump</strong>: Jesus, Ty, why not?</p>
+<p><strong>cobb</strong>: Because it would embarrass him.</p>
+<p><strong>cobb</strong>: I don’t wanta take the cane tonight.</p>
+<p><strong>stump</strong>: You’ve got to have your cane.</p>
+<p><strong>cobb</strong>: I don’t have to have anything – if you stay
+near me… in case I wobble or something… just a firm hand right here…
+That’ll keep me upright. I’d appreciate it. Now how do I look?</p>
+<p><strong>stump</strong>: You look like the greatest ballplayer of all
+time. You going to be okay?</p>
+<p><strong>cobb</strong>: I’ll be okay when I hear the crowd.</p>
+<p><strong>109 ext. hall of fame building - night 109</strong>: A crowd
+of locals has gathered and is cheering as the great old warriors of
+baseball get out of one limo after another and pass a phalanx of
+security guards, television cameras, and photogaphers. A P.A. ANNOUNCER
+presents each one.</p>
+<p><strong>p.a. announcer</strong>: The great left-handed pitcher from
+the New York Giants, who struck out five men in a row in the 19–
+All-Star game – Carl Hubbell.</p>
+<p><strong>p.a. announcer</strong>: The great third baseman from the
+Chicago Cubs, Harold Joseph ‘Pie’ Traynor…</p>
+<p><strong>p.a. announcer</strong>: Paul and Lloyd Waner, the Waner
+brothers – Big Poison and Little Poison – from the Pittsburgh
+Pirates…</p>
+<p><strong>p.a. announcer</strong>: Fifty-eight home runs in a season –
+Mr. Double-X – the great Jimmy Foxx!</p>
+<p><strong>p.a. announcer</strong>: And ladies and gentlemen, the
+highest lifetime batting average of all time, first man elected to the
+Hall of Fame, retired with over 90 batting records, the one and only
+Georgia Peach, Ty Cobb!</p>
+<p><strong>cobb</strong>: Your hand, Stumpy, your hand!</p>
+<p><strong>cobb</strong>: Thank you, my friend…</p>
+<p><strong>charles</strong>: Hello, Mr. Cobb, good to see you again.</p>
+<p><strong>110 int. hall of fame - banquet room - night 110</strong>: An
+orchestra is playing “Georgia On My Mind” as Cobb holds court at his
+table of honor. The great old players keep coming up to him, renewing
+old acquaintances. The first is WAHOO SAM CRAWFORD, 80’s, a contemporary
+and at one time both teammate and adversary of young Cobb.</p>
+<p><strong>crawford</strong>: Sam Crawford, Ty, Long time no see.</p>
+<p><strong>cobb</strong>: Good to see you, Sam. You doin’ okay?</p>
+<p><strong>crawford</strong>: I’m alive, Ty, I’m alive…</p>
+<p><strong>cobb</strong>: The boys’ll get together later and have a
+little party, eh?</p>
+<p><strong>crawford</strong>: Be some parties tonight, Peach…</p>
+<p><strong>110 continued: 110</strong>: ROGERS HORNSBY, 60’s, moves in
+as Wahoo Sam Crawford moves on.</p>
+<p><strong>cobb</strong>: Stumpy, meet Rogers Hornsby, next to me the
+greatest hitter of all time –</p>
+<p><strong>hornsby</strong>: How d’ya do. You’re looking good, Ty…</p>
+<p><strong>cobb</strong>: I look like shit and you know it. We’ll have a
+real smoker later, eh?</p>
+<p><strong>hornsby</strong>: Ohyeah… we’ll tear it up good…</p>
+<p><strong>baseball m.c.</strong>: Welcome to Cooperstown, ladies and
+gentlemen. We’re here to acknowledge the greatest ballplayers of all
+time, those men still gracing our presence who were among the earliest
+inductees into the Hall of Fame. Waner, Hubbell, Foxx, Cochrane,
+Hornsby, Traynor – these are the giants, the Old Masters of our
+craft…</p>
+<p><strong>baseball m.c.</strong>: But the greatest of all is with us
+tonight – simply put, the best ballplayer ever – Tyrus Raymond Cobb.</p>
+<p><strong>baseball m.c.</strong>: We have gathered from the archives
+some film on Mr. Cobb… lights, please…</p>
+<p><strong>110 continued: 110</strong>: The lights dim – a giant screen
+is lowered, and the screen fills with old black and white footage of
+Cobb in action.</p>
+<p><strong>film narrator</strong>: This rare footage of Ty Cobb reflects
+his love of children, and they admired him by the thousands…</p>
+<p><strong>film - cobb</strong>: posing with kids in uniforms. He clowns
+with them, tousling their hair, knocking off their caps.</p>
+<p><strong>film narrator</strong>: On another occasion he partakes in a
+Donkey Baseball game, showing his not-so-well-known lighter side…</p>
+<p><strong>film - cobb</strong>: on a donkey in a Donkey Baseball
+game.</p>
+<p><strong>film narrator</strong>: And here’s Cobb with two other
+immortals, Babe Ruth and Tris Speaker…</p>
+<p><strong>film - cobb, ruth and speaker</strong>: pose on the dugout
+steps.</p>
+<p><strong>film narrator</strong>: Cobb and Speaker were great friends
+off the field, and of course were accused of fixing some games by
+pitcher Dutch Leonard…</p>
+<p><strong>113 cobb’s pov - film 113</strong>: Cobb and Speaker
+carousing with obvious gambler types.</p>
+<p>****: Cobb’s POV of the film is subjective and dif- ferentiated from
+the film everyone else is seeing. We,</p>
+<p><strong>film narrator</strong>: Cobb and Speaker were clearly
+involved with unsavory gamblers, but finally were acquitted by Judge
+Landis, though many questions remain unanswered –</p>
+<p><strong>cobb</strong>: What the hell is this?!</p>
+<p><strong>stump</strong>: It’s a great film –</p>
+<p><strong>cobb</strong>: Me and Speaker and the fix?</p>
+<p><strong>stump</strong>: I think the medication’s getting to you, Ty –
+I’m watching you run the bases.</p>
+<p><strong>116 close on cobb 116</strong>: Staring at the screen.</p>
+<p><strong>film narrator</strong>: Cobb’s unique batting style led to an
+unprecedented 12 batting championships and a lifetime average of .367
+which places him far above the field…</p>
+<p><strong>film narrator</strong>: His ruthless competitive spirit has
+sometimes been called psychopathic…</p>
+<p><strong>cobb</strong>: Al, what are you seeing?</p>
+<p><strong>stump</strong>: Your batting stroke.</p>
+<p><strong>119 cobb’s pov - film - cobb in uniform 119</strong>: climbs
+into the stands and starts attacking a heckler with his fists.</p>
+<p><strong>film narrator</strong>: In an infamous incident on August xx,
+19xx, Cobb attacked a heckler who turned out to have no arms or legs,
+and was briefly suspended for the incident…</p>
+<p><strong>120 cobb 120</strong>: stands up next to Stump, who pulls him
+back down.</p>
+<p><strong>cobb</strong>: Stumpy, what’s going on?</p>
+<p><strong>stump</strong>: Ty, I think you’re not well – I’ll take you
+back to the motel.</p>
+<p><strong>cobb</strong>: What’re you seeing?</p>
+<p><strong>stump</strong>: You and Connie Mack.</p>
+<p><strong>122 cobb 122</strong>: settles back down and says nothing the
+rest of the film, though he continues to see different images.</p>
+<p><strong>125 cobb’s pov 125</strong>: He strikes his wife and she
+falls to the floor. He stands over her defiantly.</p>
+<p><strong>film narrator</strong>: Cobb and his friends were notorious
+for booze and sex parties they had in the off-season, parties they
+called ‘Smokers,’ which took place in various hunting cabins they would
+fill with hookers…</p>
+<p><strong>cobb’s pov - naked stripper</strong>: on a table gyrates to a
+room so thick with smoke that Cobb and his cronies are barely visible
+sitting around the room, a hooker on each lap, bottles of booze
+flowing.</p>
+<p><strong>126 close on cobb 126</strong>: He rubs his eyes. What is
+this?</p>
+<p><strong>close on cochrane, hornsby, waner brothers et al.</strong>:
+as they watch the same film Stump is watching.</p>
+<p><strong>127 film - cobb 127</strong>: rounds third and slides home in
+a spray of dirt.</p>
+<p><strong>127 continued: 127</strong>: FREEZE FRAME as the Narrator
+wraps it up.</p>
+<p><strong>film narrator</strong>: And when he retired in 1929, Cobb
+left behind 92 batting records and a legacy of greatness that may never
+be approached.</p>
+<p><strong>129 int. large local hotel - later that night 129</strong>:
+Cobb and Stump move through the hallway.</p>
+<p><strong>cobb</strong>: Crawford and Foxx have something cooking in
+Room 212 –</p>
+<p><strong>stump</strong>: Over here, Ty.</p>
+<p><strong>cobb</strong>: I never partied with these boys but they had a
+reputation.</p>
+<p><strong>room 212</strong>: They knock. JIMMY FOXX opens the door a
+crack.</p>
+<p><strong>foxx</strong>: Ty.</p>
+<p><strong>cobb</strong>: You got some booze?</p>
+<p><strong>foxx</strong>: No.</p>
+<p><strong>cobb</strong>: I do. Who’s in there?</p>
+<p><strong>foxx</strong>: Me, Sam and Pie.</p>
+<p><strong>cobb</strong>: Got any women in there?</p>
+<p><strong>foxx</strong>: Sure do.</p>
+<p><strong>cobb</strong>: Me and Stumpy want some action.</p>
+<p><strong>foxx</strong>: Wanta meet some great broads?</p>
+<p><strong>cobb</strong>: We’re ready.</p>
+<p><strong>130 int. room 212 - night 130</strong>: Wahoo Sam Crawford,
+PIE TRAYNOR, and Jimmy Foxx are sit- ting quietly in the room with their
+wives, each woman in her 60s. Cobb and Stump stand awkwardly.</p>
+<p><strong>crawford</strong>: Hello, Ty. You know my wife, Lillian?</p>
+<p><strong>traynor</strong>: And this is Mrs. Traynor.</p>
+<p><strong>foxx</strong>: Pearl, meet Ty Cobb and –</p>
+<p><strong>stump</strong>: Al Stump.</p>
+<p><strong>cobb</strong>: Hello, ladies.</p>
+<p><strong>foxx</strong>: Hornsby’s got something on the third floor –
+maybe more what you’re looking for.</p>
+<p><strong>cobb</strong>: There it is!</p>
+<p><strong>stump</strong>: You sure you’re up for this?</p>
+<p><strong>cobb</strong>: I’ve never been readier!</p>
+<p><strong>cobb</strong>: Rajah!</p>
+<p><strong>hornsby</strong>: You ain’t comin’ in, Ty.</p>
+<p><strong>cobb</strong>: It’s me! An’ Stumpy here!</p>
+<p><strong>hornsby</strong>: You’re a bastard and you ain’t coming to
+our party.</p>
+<p><strong>cobb</strong>: Who’s in there?!</p>
+<p><strong>hornsby</strong>: Me and Mickey an’ a coupla broads.</p>
+<p><strong>cobb</strong>: Let me talk to Mickey.</p>
+<p><strong>cochrane</strong>: Ty…</p>
+<p><strong>cobb</strong>: Ya look good in that tux, Mick.</p>
+<p><strong>cochrane</strong>: I can’t let ya in, Ty. It’s Rogers’ party.
+I’m an invited guest.</p>
+<p><strong>cobb</strong>: God damn it, let me in!</p>
+<p><strong>cobb</strong>: Presidents of the United States of America
+used to invite me to the White House to drink their Scotch and smoke
+their cigars and fuck their women.</p>
+<p><strong>stump</strong>: Let’s go to the motel, Ty…</p>
+<p><strong>cobb</strong>: Let me in, God damn it! I invented this game!
+Let me in!</p>
+<p><strong>stump</strong>: Let’s go home, Ty, this isn’t a good place to
+be…</p>
+<p><strong>cobb</strong>: I fought for players’ rights and salary
+increases and unions while all you crawled around on your knees begging
+massa’ for bread crumbs just thankful for a job!</p>
+<p><strong>cobb</strong>: Open up, God damn it! Ballplayers can make big
+money but they’re too stupid! You’re all too stupid! The hell with
+ya!</p>
+<p><strong>cobb</strong>: Take me back to the Hall!</p>
+<p><strong>stump</strong>: I appreciate your coming.</p>
+<p><strong>charles</strong>: For Mr. Cobb, no problem.</p>
+<p><strong>133 int. hall of fame - night 133</strong>: The director
+flips on a couple lights – the hall is partially lit. Charles stays in
+the b.g., as – Cobb leads Stump past all the displays, various shrines
+and photos and old bats and balls and records, until –</p>
+<p><strong>133 continued: 133</strong>: Cobb sucks up the tears and
+finally turns to Stump.</p>
+<p><strong>cobb</strong>: What did you see on that film tonight?</p>
+<p><strong>stump</strong>: I saw Ty Cobb playing baseball.</p>
+<p><strong>cobb</strong>: That’s all?</p>
+<p><strong>stump</strong>: That’s all.</p>
+<p><strong>cobb</strong>: I was raised in the Baptist Church but I know
+that Heaven is just the ol’ oskefagus – the change-up. You swing from
+your ass ’cause you think life is a fastball down the middle and after
+your bat has crossed the plate and you’re all off balance and looking
+stupid, the ball just kinda flutters across home, slow and juicy and
+hittable, and as it crosses the plate, the ball looks at you and smiles
+a nasty smile and laughs its way into the catcher’s mitt… We don’t just
+lose – we’re made fools of.</p>
+<p><strong>stump</strong>: You were the best.</p>
+<p><strong>cobb</strong>: Save the romance for the book… … and take me
+home to Georgia.</p>
+<p><strong>stump</strong>: Cobb parted with some of his hard- earned
+money and rented a limo in order to make what he called a ‘grand
+re-entrance to his beloved home town of Royston…’</p>
+<p><strong>stump</strong>: He loved the manuscript, as well he should –
+it made him out to be a saint –</p>
+<p><strong>cobb</strong>: Greatest biography ever written –</p>
+<p><strong>stump</strong>: The book, like Cobb, was almost finished. But
+he was dying slower than I was writing, and like everything else, he
+viewed it as a competition that he was not going to lose.</p>
+<p><strong>close on cobb</strong>: Sweating, pale, hanging on. A grim
+smile.</p>
+<p><strong>stump</strong>: To me, we weren’t riding to Georgia in a
+limo… We were riding in a hearse…</p>
+<p><strong>138 int. hearse - close on cobb - day 138</strong>: staring
+out the window as the Georgia landscape passes.</p>
+<p><strong>cobb</strong>: We’re here. And the fuckin’ sign needs
+paint.</p>
+<p><strong>139 ext. downtown royston - day 139</strong>: The limo moves
+slowly and ominously through the town. Old folks, black and white,
+sitting on chairs and benches in front of the stores, under awnings,
+stare at the strange sight of a limo cruising slowly.</p>
+<p><strong>stump</strong>: It wasn’t exactly the ‘grand re- entrance to
+a home town’ that he talked about…</p>
+<p><strong>close on two old black men</strong>: sitting under an awning.
+They point and discuss among themselves who this could be.</p>
+<p><strong>cobb</strong>: My sister lives down this way… Turn right
+here…</p>
+<p><strong>cobb</strong>: They look kinda the same…</p>
+<p><strong>stump</strong>: When’s the last time you saw her?</p>
+<p><strong>cobb</strong>: About fifteen years ago. But she understands
+me… There! No… damn….</p>
+<p><strong>back to scene</strong>: The limo cruises slowly through a
+quiet neighborhood.</p>
+<p><strong>stump</strong>: Maybe she moved.</p>
+<p><strong>cobb</strong>: There! I think…</p>
+<p><strong>stump</strong>: I’ll see if it’s her. Wait here.</p>
+<p><strong>stump</strong>: Good day, ma’am. I’m looking for Florence
+Cobb ——–.</p>
+<p><strong>florence</strong>: That’s me.</p>
+<p><strong>stump</strong>: I have your brother in the car.</p>
+<p><strong>florence</strong>: Tyrus?</p>
+<p><strong>stump</strong>: Yes. And he’d like to see you.</p>
+<p><strong>florence</strong>: I don’t wish to see him.</p>
+<p><strong>stump</strong>: It’s been a long time, he said. He’s not
+well.</p>
+<p><strong>florence</strong>: I have nothing to say to him, and wish to
+hear nothing he has to say to me.</p>
+<p><strong>stump</strong>: I know there’s been problems, but the family
+is very important to him.</p>
+<p><strong>florence</strong>: Young man, the family he talks about never
+existed.</p>
+<p><strong>stump</strong>: He loved his father.</p>
+<p><strong>florence</strong>: If his father, if my father, was such a
+great man, why did Tyrus turn out to be so evil?</p>
+<p><strong>stump</strong>: He’s dying. He just wants to see you.</p>
+<p><strong>florence</strong>: No.</p>
+<p><strong>142 int. limo - day 142</strong>: Stump climbs back in next
+to Cobb. He motions to the driver to head off – the limo does.</p>
+<p><strong>cobb</strong>: Well?</p>
+<p><strong>stump</strong>: It wasn’t your sister. The woman in the house
+said your sister moved a long time ago… she doesn’t know where.</p>
+<p><strong>cobb</strong>: You cocksucking liar. My sister doesn’t want
+to see me and you’re lying.</p>
+<p><strong>stump</strong>: Liar?! A cocksucking liar?! Of course I’m a
+liar! That’s what I’m paid to do, isn’t it?! Lie about Ty Cobb?!</p>
+<p><strong>cobb</strong>: If you didn’t like the job, why didn’t you
+quit?</p>
+<p><strong>stump</strong>: Who would take care of you?</p>
+<p><strong>cobb</strong>: Don’t give me the sob-sister routine.</p>
+<p><strong>stump</strong>: I listen to your bullshit, I interpret and
+shape and find words for your bullshit and you give me nothing but
+grief!</p>
+<p><strong>cobb</strong>: You love being this close to greatness!</p>
+<p><strong>stump</strong>: Stop the car!</p>
+<p><strong>stump</strong>: I wish you’d die!</p>
+<p><strong>cobb</strong>: I will, Stumpy, I will…</p>
+<p><strong>stump</strong>: And go to hell!</p>
+<p><strong>cobb</strong>: Oh, I’ll do that, too. And look how convenient
+you’ve made it.</p>
+<p><strong>stump</strong>: That was your sister alright, and she didn’t
+want anything to do with you either!</p>
+<p><strong>cobb</strong>: I forgive her.</p>
+<p><strong>stump</strong>: You forgive her?! That’s rich!</p>
+<p><strong>cobb</strong>: Forgiveness is crucial to human maturity and
+religious growth.</p>
+<p><strong>stump</strong>: Religious growth?!</p>
+<p><strong>cobb</strong>: We all need to forgive more, Al… you oughta
+try it. You’re too angry. You’re all pent up.</p>
+<p><strong>stump</strong>: I’m angry?</p>
+<p><strong>cobb</strong>: Are you angry because I discovered you were a
+whore? Is that it, Alimony?</p>
+<p><strong>stump</strong>: I’m angry?!</p>
+<p><strong>cobb</strong>: Is it the divorce? You gotta let go of it…</p>
+<p><strong>stump</strong>: I love her! I don’t want a divorce!</p>
+<p><strong>cobb</strong>: Sure ya do. You’re just so used to
+accommodating people that you don’t know what you want anymore. I
+accommodate nobody.</p>
+<p><strong>stump</strong>: But you have no friends!</p>
+<p><strong>cobb</strong>: Do you? Who are they?! Those drunken hacks you
+hang out with who all think they’re gonna write the great American novel
+but all they’re gonna ever do is bitch and moan and write lousy leads
+about high school football games? How about the brunette in the
+courtyard? Is she your friend? I heard she fucks everybody – she must be
+everybody’s friend!</p>
+<p><strong>cobb</strong>: I’m glad we’re here – I was gonna bring you
+here anyway sooner or later –</p>
+<p><strong>stump</strong>: Which Cobb of Georgia is that?</p>
+<p><strong>cobb</strong>: That is me.</p>
+<p><strong>144 int. mausoleum - day 144</strong>: Just enough room for
+the two men to stand. On either side of them are two crypts, enough for
+four burial vaults. Cobb is very calm now, and lucid. Rain falls heavily
+outside.</p>
+<p><strong>cobb</strong>: When I die, my mother and father will be moved
+in here and, in time, my dear sister, Florence will join us as well. The
+family will be together again.</p>
+<p><strong>stump</strong>: Under one roof? That’s romantic! You want
+that in the book? Ty Cobb brings the family together at last to enter
+the gates of Heaven whole!</p>
+<p><strong>cobb</strong>: You mock my family – you mock me.</p>
+<p><strong>cobb</strong>: My father was a great man!</p>
+<p><strong>stump</strong>: Then why are you such a bastard?</p>
+<p><strong>cobb</strong>: Being a bastard is a small price to pay for
+greatness. I, too, am a great man.</p>
+<p><strong>stump</strong>: Let me go!</p>
+<p><strong>cobb</strong>: My mother didn’t kill my father.</p>
+<p><strong>stump</strong>: What’re you talking about?</p>
+<p><strong>cobb</strong>: My father told my mother he was leaving town
+for the weekend but he came back to the edge of the woods where he tied
+up his horse…</p>
+<p><strong>145 ext. moonlit road through some woods - night
+145</strong>: A horse shakes its head, attached to a buggy.</p>
+<p><strong>cobb</strong>: … because my father thought my mother was
+being unfaithful to him…</p>
+<p><strong>ext. balcony on house - night</strong>: The man climbs over
+the railing and peers in the window. He pulls a pistol from his
+belt.</p>
+<p><strong>cobb</strong>: … he was going to catch my mother with another
+man…</p>
+<p><strong>146 pov shot - woman 146</strong>: Young, thin, beautiful.
+She turns and looks towards a bed we cannot see.</p>
+<p><strong>cob</strong>: I stood by my mother when she was tried for
+murder a few months later. I said she was noble and true and loved my
+father completely and the whole thing was an accident and she was
+acquitted as she should have been…</p>
+<p><strong>146 continued: 146</strong>: His mother looks away at
+something.</p>
+<p><strong>cobb</strong>: Because my mother did not kill my father.</p>
+<p><strong>cobb</strong>: My mother’s lover killed my father.</p>
+<p><strong>close on cobb’s father</strong>: on his back staring up at
+his mother’s lover.</p>
+<p><strong>cobb</strong>: The last thing my father saw was the face of
+the man fucking his wife!</p>
+<p><strong>147 int. mausoleum - day 147</strong>: The rain pours down on
+the cemetery. THUNDER. Lightning. Cobb still holds Stump by the
+throat.</p>
+<p><strong>cobb</strong>: Well?! Is that what you want?! ’Cause that’s
+all I know and the only other people who know about it are dead! But it
+ain’t going in the book, either, ’cause you’re the only friend I got
+left, and you’re the only man I can trust.</p>
+<p><strong>stump</strong>: I don’t want to be your friend! I don’t want
+to feel sorry for you! So your mother’s lover blew your father’s head
+off! I don’t care. You were a prick before it happened, you were a prick
+after it happened, you’ve been a prick ever since, and you’re a prick
+now!</p>
+<p><strong>cobb</strong>: Public relations are overrated.</p>
+<p><strong>stump</strong>: What the hell’re you talking about?</p>
+<p><strong>cobb</strong>: You need a drink.</p>
+<p><strong>stump</strong>: Fuck the drink!</p>
+<p><strong>cobb</strong>: You’re too angry, Al, you just gotta learn to
+let it out.</p>
+<p><strong>stump</strong>: I’m gonna tell the truth about you, Cobb! I’m
+gonna tell the world you hate women, Jews, and niggers!</p>
+<p><strong>cobb</strong>: You shouldn’t use the word ‘nigger’, Stumpy,
+it’s racist and demeaning. And I don’t hate women – I’m just not very
+good with ’em, which puts me in the same boat with you and every other
+man I know.</p>
+<p><strong>stump</strong>: You treat people like dirt!</p>
+<p><strong>cobb</strong>: The children of America need heroes, Al, you
+know that…</p>
+<p><strong>stump</strong>: Get your hands off me!</p>
+<p><strong>cobb</strong>: C’mon, Al… You’re making a fool of yourself
+out here. It’s not dignified… Come in out of the rain…</p>
+<p><strong>148 ext. jefferson davis motel - night 148</strong>: The rain
+is thick – Yet another motel, another neon sign, and the limo parked in
+front of one of the cabins.</p>
+<p><strong>149 int. motel - night 149</strong>: Both men are sitting in
+rocking chairs in front of a fireplace. Stump is in a bathrobe, his feet
+in a big pan of warm water, a bottle of booze in his hand. He looks a
+mess. Cobb is idly playing with his pistol. He’s calm,
+introspective.</p>
+<p><strong>cobb</strong>: You’re an educated man… tell me what you
+think…</p>
+<p><strong>cobb</strong>: Either my father was… inadequate … for my
+mother… he was not the man I thought he was… not a great man… not even a
+good man… … or my mother was… trash… a common whore… It’s that simple,
+isn’t it?</p>
+<p><strong>cobb</strong>: As a boy I stood in court next to her because
+suddenly I was the man of the house but as I stood there steadfastly by
+her side and heard the jury say ‘not guilty’ I knew she’d been with
+another man the night of the killing.</p>
+<p><strong>cobb</strong>: A man must defend his mother at all times,
+isn’t that right, Al? Or am I a fool?</p>
+<p><strong>stump</strong>: A man must defend his mother at all
+times.</p>
+<p><strong>cobb</strong>: That’s what I thought…</p>
+<p><strong>man with briefcase</strong>: Al Stump?</p>
+<p><strong>cobb</strong>: In here.</p>
+<p><strong>149 continued: 149</strong>: Cobb lets the man inside –
+points to Stump in the chair.</p>
+<p><strong>man with briefcase</strong>: Mr. Al Stump?</p>
+<p><strong>man with briefcase</strong>: I’ve been chasing you all over
+the country – – I’m here to serve you papers.</p>
+<p><strong>stump</strong>: Papers?</p>
+<p><strong>cobb</strong>: I’m afraid it’s divorce, Stumpy. I know this
+routine.</p>
+<p><strong>man with briefcase</strong>: You’re being sued for
+divorce.</p>
+<p><strong>stump</strong>: But my wife and I are still talking?!</p>
+<p><strong>cobb</strong>: Yeah, and what she’s saying is ‘fuck you.’</p>
+<p><strong>stump</strong>: Fuck me? Well fuck her. No, fuck him.</p>
+<p><strong>stump</strong>: You ain’t serving me no papers.</p>
+<p><strong>man with briefcase</strong>: I’m just doing a job.</p>
+<p><strong>stump</strong>: I love my wife.</p>
+<p><strong>cobb</strong>: We all loved our wives, Al, that’s got nothing
+to do with it.</p>
+<p><strong>man with briefcase</strong>: You’ll find somebody else.</p>
+<p><strong>cobb</strong>: There’s a million broads out there, Stumpy –
+put down the gun.</p>
+<p><strong>stump</strong>: I am not going to accommodate this man,
+Tyrus.</p>
+<p><strong>cobb</strong>: You’re all mixed up. Give me the gun.</p>
+<p><strong>stump</strong>: You’re absolutely right, Tyrus, I’ve been
+accommodating people my whole life and it stops right here. You’ve
+killed a man. I’ll kill a man.</p>
+<p><strong>man with briefcase</strong>: No! Please, dear God! I have a
+family, too!</p>
+<p><strong>stump</strong>: Don’t give me that sob-sister stuff!</p>
+<p><strong>cobb</strong>: Al… no… Al… Al…</p>
+<p><strong>stump</strong>: Life is too short to be diplomatic. A man’s
+friends don’t care what he says or does. You’re my friend, Ty, right?
+You’re my friend!</p>
+<p><strong>cobb</strong>: No!</p>
+<p><strong>man with briefcase</strong>: You’re crazy! No wonder she
+wants to divorce you! You’re crazy!</p>
+<p><strong>stump</strong>: I almost killed a man.</p>
+<p><strong>cobb</strong>: A little drunken excess…</p>
+<p><strong>stump</strong>: No. I put a gun to a man’s head and pulled
+the trigger. I wanted to kill him.</p>
+<p><strong>cobb</strong>: It’s forgotten already. I saw nothing. Nothing
+happened.</p>
+<p><strong>stump</strong>: Yes it did.</p>
+<p><strong>cobb</strong>: Al, listen to me.</p>
+<p><strong>cobb</strong>: If I was hired to write a biography of the
+greatest sportswriter of our time – a biography of Al Stump – would I
+include what happened tonight? Attorneys are pigs – divorce attorneys
+are lower than pigs. What happened tonight was private. An intimacy.
+Your own business. Our own business. Nobody else’s. It wouldn’t belong
+in a book about greatness.</p>
+<p><strong>stump</strong>: Nobody’s gonna write my biography.</p>
+<p><strong>cobb</strong>: And when the brunette in the courtyard brushed
+against you, I know what happened, Al. A warm summer breeze, the smell
+of jasmine, her black hair against a white blouse – you came to life
+again, you got hard – and when you saw her naked it was more than you
+could bear… it’s okay, Al, it’s okay… The brunette ain’t gonna be in the
+book either…</p>
+<p><strong>cobb</strong>: And the drinking? Well, they used to say ol’
+Ty had a drinking problem but you can booze me right under the table
+right now… no problem… and nobody’s God damn business, either…</p>
+<p><strong>stump</strong>: I get it… I get it…</p>
+<p><strong>cobb</strong>: Then get some sleep. You look pathetic.</p>
+<p><strong>149 continued: 149</strong>: Stump crawls on the bed toward
+the pillows with the stupid grace of a drunk looking for a key under the
+mat.</p>
+<p><strong>back to scene</strong>: He makes it to the bottle – Steadies
+himself – he’s ex- hausted. He takes a deep swig from the Scotch.
+Several deep gulps, enough to kill a horse, but it only helps him steady
+himself. And he sees something in the suitcase – He looks down at –</p>
+<p><strong>cobb’s pov - cardboard box</strong>: which Stump has been
+filling with his secret manuscript.</p>
+<p><strong>cobb</strong>: … ‘vicious, pathological, bubbling with
+violence… Cobb’s demons were not merely exorcized on the baseball field…
+they spilled over into all parts of his miserable life…’</p>
+<p><strong>151 continued: 151</strong>: He rises from the chair, his
+adrenaline has momentarily overwhelmed his system and he moves as a
+young man.</p>
+<p><strong>close on cobb</strong>: He’s crying. He shakes his head.</p>
+<p><strong>cobb</strong>: You don’t have a point of view, Stumpy, you
+ain’t worth killing…</p>
+<p><strong>cobb</strong>: Dear God…</p>
+<p><strong>152 cobb 152</strong>: rushes into the bathroom and faces the
+mirror. Blood gushes from his mouth as he coughs again.</p>
+<p><strong>cobb</strong>: No… no… no… this can’t be… Absolutely not…
+This is not right…</p>
+<p><strong>cobb</strong>: Stumpy?! No…</p>
+<p><strong>cobb</strong>: Our Father, which art in heaven, hallowed by
+Thy name. Thy kingdom come, Thy will be done, on Earth as it is in
+heaven. Give us this day our daily bread, and forgive us our trespasses,
+as we forgive – Aw, fuck it… little late for that sob sister stuff…</p>
+<p><strong>cobb</strong>: … so this is what it feels like…</p>
+<p><strong>cobb</strong>: Can you get me the Emory Hospital? Hello,
+Ma’am? This is Ty Cobb. Can you please prepare your finest room for me?
+Tomorrow morning would be fine.</p>
+<p><strong>154 ext. jefferson davis motel - early next morning
+154</strong>: The limousine pulls away from the motel. The rain has
+stopped.</p>
+<p><strong>155 int. motel - early morning 155</strong>: Stump rolls over
+– The hangover is brutal. He looks worse than we’ve ever seen him. He
+reaches for the bottle. Empty.</p>
+<p><strong>stump</strong>: Ty. Tyrus. Peach…</p>
+<p><strong>stump</strong>: Ty!</p>
+<p><strong>stump</strong>: God…</p>
+<p><strong>back to scene</strong>: He rushes to the fireplace where only
+embers now glow. He sees something –</p>
+<p><strong>cobb</strong>: ‘Dear Alimony, you lying S.O.B. – I’m checking
+myself into the hospital. I think the end is near. Your Pal, Ty.’</p>
+<p><strong>close on stump</strong>: Deeply alarmed.</p>
+<p><strong>156 ext. emory state hospital - day 156</strong>: A cab pulls
+up – Stump gets out. He’s cleaned up now, shaved, dressed neatly. He
+enters.</p>
+<p><strong>157 int. emory state hospital - day 157</strong>: Stump goes
+up to a reception desk and introduces himself.</p>
+<p><strong>stump</strong>: I’m here to see…</p>
+<p><strong>157 continued: 157</strong>: A CRASHING NOISE and shouting
+erupt from down the hall. A tray of food is thrown out into the
+hall.</p>
+<p><strong>cobb</strong>: Get the hell outta here! You call this a
+hospital?! You call this food?! You know who I am?!</p>
+<p><strong>stump</strong>: … Mr. Cobb.</p>
+<p><strong>receptionist</strong>: Be careful. He’s got a gun and we
+haven’t been able to get it away from him.</p>
+<p><strong>stump</strong>: I know, I know…</p>
+<p><strong>nurse #1</strong>: He doesn’t want visitors.</p>
+<p><strong>158 int. cobb’s hospital room - day 158</strong>: Cobb sits
+in bed – His gun and his money are next to him. He’s giving orders,
+ranting and raving in a classic Cobb rage. A bottle hangs from a pole,
+feeding his arm. A doctor and two Nurses are present, trying to deal
+with him.</p>
+<p><strong>cobb</strong>: Hey, Stumpy, where you been? You can’t believe
+the shit they call food in this joint. You get some sleep? Good. I had
+quite a read last night…</p>
+<p><strong>nurse #1</strong>: Excuse me, sir, but I need to draw some
+more blood.</p>
+<p><strong>cobb</strong>: Put a bucket under my chin and I’ll cough up a
+couple pints for ya.</p>
+<p><strong>nurse #1</strong>: I have to do it this way.</p>
+<p><strong>cobb</strong>: Well don’t poke around too long.</p>
+<p><strong>cobb</strong>: She’s a nice piece of ass, eh, Stumpy? You
+come back later and climb on the big fella?</p>
+<p><strong>nurse #1</strong>: It’s against regulations, sir.</p>
+<p><strong>stump</strong>: So you read the book.</p>
+<p><strong>cobb</strong>: Yeah, God damn it, I thought I could trust you
+– I used to be able to figure out people better.</p>
+<p><strong>stump</strong>: That book is the truth.</p>
+<p><strong>cobb</strong>: You’re a God damn romantic! The truth is a
+whore! Just like you and just like my mother!</p>
+<p><strong>nurse #2</strong>: A Mr. Barton is here to see you. He says
+he’s the chairman of the board of Coca Cola.</p>
+<p><strong>cobb</strong>: Tell the son of a bitch to go downstairs and
+have a Pepsi – I got no time for business.</p>
+<p><strong>158 continued: 158</strong>: Nurse #1 tapes Cobb’s arm and
+escapes with the blood sample.</p>
+<p><strong>young doctor</strong>: I need to take your blood pressure,
+sir.</p>
+<p><strong>cobb</strong>: It’s high. What else you need to know?</p>
+<p><strong>young doctor</strong>: I have to do it.</p>
+<p><strong>older doctor</strong>: Mr. Cobb. We cannot allow you to have
+a gun in here.</p>
+<p><strong>cobb</strong>: Come and get it.</p>
+<p><strong>cobb</strong>: Y’know, Stumpy, my oldest son was a doctor – a
+hacksaw artist, that’s all they are – He died of a brain tumor when he
+was forty – hadn’t spoke to me in fifteen years ’cause I was such a
+rotten father – put that in your God damn book!</p>
+<p><strong>cobb</strong>: Bad, ain’t it?</p>
+<p><strong>stump</strong>: I don’t know which version of your life I’m
+going to publish. I really don’t.</p>
+<p><strong>cobb</strong>: There ya go again! Accommodating me and you
+don’t have to! I died faster than you could write!</p>
+<p><strong>cobb</strong>: Get the hell outta here! Everybody but Stumpy!
+Out!</p>
+<p><strong>cobb</strong>: You fooled me, Stumpy, nobody ever fooled me
+but you pulled it off! I thought we were pals!</p>
+<p><strong>stump</strong>: I didn’t know what I was getting into with
+this job.</p>
+<p><strong>cobb</strong>: Quit explaining yourself! Stand by your
+convictions! You beat the great Ty Cobb! I respect that! But if you
+print it – print it all! My second son weighed 300 pounds and he died of
+a heart attack in the arms of a hooker in Paso Robles. My other son I
+lost all track of and my two daughters won’t speak to me and my two ex-
+wives won’t and my siter you know won’t! Print it all! And Ty Cobb can’t
+get it up anymore! Print that too!</p>
+<p><strong>stump</strong>: It’s all… confusing…</p>
+<p><strong>cobb</strong>: It’s not! It’s simple! You won! Tell the world
+that the greatest ballplayer who ever lived was also the biggest
+bastard! Who cares now?! I give you permission and my blessing! From
+here on it’s your story!</p>
+<p><strong>stump</strong>: Here’s a little something might help.</p>
+<p><strong>cobb</strong>: Where’s my money?</p>
+<p><strong>stump</strong>: Right here, Peach… next to your gun.</p>
+<p><strong>cobb</strong>: Stumpy, there’s nothing wrong with wanting
+glory. Now get the hell outta here.</p>
+<p><strong>159 int. hospital hallway - day 159</strong>: Doctors,
+nurses, orderlies, men in suits – all are waiting nervously outside the
+door as Stump emerges.</p>
+<p><strong>older doctor</strong>: What about the gun? Did you get
+it?</p>
+<p><strong>stump</strong>: Naw, I didn’t get the gun…</p>
+<p><strong>pov shot - doctors, et al.</strong>: rushing back into Cobb’s
+room. And –</p>
+<p><strong>160 ext. “welcome to royston” sign - edge of town - day
+160</strong>: A teenage boy re-paints the faded sign that reads “Home of
+Ty Cobb”. The luster returns to the old sign.</p>
+<p><strong>stump</strong>: I gave a few bucks to a local kid to re-paint
+the sign, and disappeared for a while to finish the manuscripts… And
+wait for Cobb to die… And while I waited, Ernest Hemingway blew his
+brains out, Getty bought Honolulu Oil Company, and the brunette in the
+courtyard ran away with a handsome young lawyer…</p>
+<p><strong>stump</strong>: And on July 17, 1961… Ty Cobb died quietly in
+his sleep. I don’t believe it was quiet, nothing he did was quiet, but
+that’s what the newspaper writer said who wrote the lead and we all know
+that writers never lie…</p>
+<p><strong>country gospel</strong>: ‘There is a fountain filled with
+Drawn from Emmanuel’s veins…’</p>
+<p><strong>161 ext. cemetery - day 161</strong>: The mausoleum – The
+coffin sits by the open crypt.</p>
+<p><strong>stump</strong>: Somebody hired a singer…</p>
+<p><strong>country gospel singer</strong>: ‘And sinners plunged beneath
+that Lose all their guilty stains…’</p>
+<p><strong>stump</strong>: … but it was the grimmest damn funeral
+service I’d ever seen.</p>
+<p><strong>stump</strong>: He left all his money to his family, though
+no members of it managed to attend the funeral, and with the rest he
+founded a hospital in his own name and an educational trust fund for
+poor Georgia children.</p>
+<p><strong>stump</strong>: Only three ballplayers attended the service –
+three oldtimers who he’d been supporting financially for many years, a
+fact he didn’t want made public.</p>
+<p><strong>pov shot - school bus</strong>: pulls in and unloads – Dozens
+of Little Leaguers in uniform join in the service.</p>
+<p><strong>stump</strong>: Somebody rounded up some Little Leaguers,
+probably so the press photographers would have some sob sister photos…
+the sort Cobb hated… except the press didn’t bother coming. I’ll give
+him this – the family was under one roof again.</p>
+<p><strong>back to scene</strong>: Stump turns and slips quietly out of
+the cemetery.</p>
+<p><strong>stump</strong>: I called my publisher. The book was ready.
+Only I didn’t know which one to turn in.</p>
+<p><strong>162 ext. sportsman’s lounge - late afternoon 162</strong>:
+The regulars are still there, still drinking, still griping.</p>
+<p><strong>bill</strong>: … so a woman goes into a bar with a duck under
+her arm, sits down next to a drunk who looks up and says, ‘Where’d you
+find that pig?’ An’ the woman says ‘That’s no pig, that’s a duck.’</p>
+<p><strong>bill</strong>: An’ the drunk says, ‘I know, I was talking to
+the duck.’</p>
+<p><strong>bill</strong>: Al!</p>
+<p><strong>frank</strong>: Stranger! Another round on me!</p>
+<p><strong>cronies</strong>: Long time no see, etc…</p>
+<p><strong>stump</strong>: Good to see you guys… how’s it goin’? Alan,
+how’s that novel coming? Must be about done by now?</p>
+<p><strong>mud</strong>: Uh, actually, I haven’t started it yet… been
+kinda busy…</p>
+<p><strong>bill</strong>: We all been busy…</p>
+<p><strong>stump</strong>: Yeah, I know how it is…</p>
+<p><strong>frank</strong>: We read that Cobb died.</p>
+<p><strong>stump</strong>: Yeah… finally gave up the ghost.</p>
+<p><strong>frank</strong>: So? What was he like?</p>
+<p><strong>mud</strong>: Were the stories true or were they
+exaggerated?</p>
+<p><strong>162 continued: 162</strong>: The drinks arrive. Stump plays
+with his, swirling the drink around the ice with his finger, considering
+his answer.</p>
+<p><strong>reynaldo</strong>: Tell us the truth, man, was he a
+monster?</p>
+<p><strong>bill</strong>: Or was he just one of the guys?</p>
+<p><strong>stump</strong>: The truth?</p>
+<p><strong>cronies</strong>: Ohyeah, the absolute truth, no bullshit,
+give it to us straight, etc…</p>
+<p><strong>stump</strong>: The truth?</p>
+<p><strong>stump</strong>: A prince and a great man has fallen.</p>
+<p><strong>cronies</strong>: Yes, awright, we knew it… etc…</p>
+<p><strong>bill</strong>: Helluva guy, eh?</p>
+<p><strong>stump</strong>: A helluva guy, a great man, a misunderstood
+artist, a fierce competitor but a sweet man at heart… a gentle soul…</p>
+<p><strong>163 ext. dirt ballfield in georgia - dusk 163</strong>: Some
+kids play baseball with a taped-up ball, patched up bat, no uniforms,
+rocks for bases. The right way.</p>
+<p><strong>stump</strong>: I published the lie and put the truth in a
+closet…</p>
+<p><strong>stump</strong>: Cobb and his father and mother were together
+at last… The man had some deep, unexpressed sorrow that I could never
+know. I embraced him and I hated him… And I knew I would never write a
+novel, unless you considered ‘Cobb’ a work of fiction – which I did
+not.</p>
+<p><strong>stump</strong>: My friends were thrilled to hear that the
+Georgia Peach was a helluva guy – it excused their own failures – if
+Cobb was okay, then by God, they were okay… But finally I didn’t lie for
+them, or the children of America, or somesuch hogwash – finally I lied
+for myself. I needed Cobb to be somebody he was not. I needed him to be
+a hero. It is my weakness.</p>
+<p><strong>164 continued: 164</strong>: Stump turns to walk off the
+field.</p>
+<p><strong>stump</strong>: The book was a moderate success…</p>
+</body>
+</html>

@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>spartan</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="spartan">spartan</h1>
+<p><strong>scott</strong>: …you better catch her…</p>
+<p><strong>scott</strong>: …your Dad’s napping on the sofa, your Mom’s
+watching Let’s Make A Deal, and God is Dead. What do you expect me to
+do…?</p>
+<p><strong>young man</strong>: …I’m tired, Sir…Sir, there’s no way…</p>
+<p><strong>scott</strong>: There’s always a way…Don’t You tell me
+there’s no way…</p>
+<p><strong>scott</strong>: How ‘bout that? That’s called ’Adrenaline’.
+You said you Wanted In.</p>
+<p><strong>scott</strong>: This is where you get in. The mugger don’t
+care. The shooter don’t care…get up…Or I will beat you to death on this
+fucken hill…Now: you better Catch her…</p>
+<p><strong>scott</strong>: There’s nothing but the mission…</p>
+<p><strong>scott</strong>: Well done.</p>
+<p><strong>young woman</strong>: A signal honor to work with you,
+sir.</p>
+<p><strong>scott</strong>: Thank you, Sergeant.</p>
+<p><strong>jackie black</strong>: Sir: Day or Night. Black or White. You
+reach out for me. “Black, Jaqueline A. US 24191489.”</p>
+<p><strong>scott</strong>: I’ll remember, Sergeant.</p>
+<p><strong>scott</strong>: What’s this then?</p>
+<p><strong>anton</strong>: It was my father’s, sir.</p>
+<p><strong>scott</strong>: He carry it Over There?</p>
+<p><strong>anton</strong>: Yes, sir.</p>
+<p><strong>scott</strong>: He come back?</p>
+<p><strong>anton</strong>: Yes, sir. He did.</p>
+<p><strong>scott</strong>: Well, so.</p>
+<p><strong>scott</strong>: You carry that card, son. It might save your
+life. …You could use it to light a fire, or something…</p>
+<p><strong>blane’s aide</strong>: The Candidate Cadre will fall in on
+the White Line…</p>
+<p><strong>anton</strong>: I just wanted to say, sir…That, to meet
+you…</p>
+<p><strong>scott</strong>: the Ranger card back</p>
+<p><strong>anton</strong>: …I can’t imagine how they live with it…</p>
+<p><strong>scott</strong>: Make sure you can’t imagine it, cause, if you
+can, it’s just one step to doing it.</p>
+<p><strong>scott</strong>: …they’ll be back where they came from by
+Morning, and all this is just a Bad Dream.</p>
+<p><strong>anton</strong>: My name is…</p>
+<p><strong>scott</strong>: Do I need to know? If I want Camaraderie,
+I’ll join the Masons. There’s just the mission.</p>
+<p><strong>blane’s aide</strong>: Congratulations on completion of this
+evolution. I know you would probably like some sleep, but I do not think
+you’d mind sparing ten minutes for Induction.</p>
+<p><strong>blane</strong>: Thank you, Bobby.</p>
+<p><strong>scott</strong>: Not at all, Sir…</p>
+<p><strong>blane</strong>: …You going home?</p>
+<p><strong>scott</strong>: …weather permitting, Sir…</p>
+<p><strong>blane’s aide</strong>: camera tracks with</p>
+<p><strong>blane</strong>: …would you bolt the door, please…?</p>
+<p><strong>blane</strong>: …are you tired, Gentlemen? This is the
+completion of the evolution: Only one of you may join the unit. The
+first man through that door will be inducted.</p>
+<p><strong>scott</strong>: …yeah…you wanted to know the ‘secret
+knowledge’…</p>
+<p><strong>drill instructor</strong>: What the hell are you looking at?
+There ain’t nobody there…</p>
+<p><strong>young worker</strong>: …Frontgate…</p>
+<p><strong>angle, ext</strong>: the helicopter descends into the field
+of a football stadium. A black suburban is waiting.</p>
+<p><strong>scott</strong>: “…Betty Coed, has hair of red for
+Harvard…”</p>
+<p><strong>aide</strong>: It’s not current.</p>
+<p><strong>scott</strong>: Why not…?</p>
+<p><strong>aide</strong>: It seems she got a makeover today. We’re
+working on it.</p>
+<p><strong>scott</strong>: 4PM. Cut n’Curl…</p>
+<p><strong>aide</strong>: Gave her a crewcut, dyed it platinum
+blonde…</p>
+<p><strong>scott</strong>: Met with her boyfriend at ten. Then…?</p>
+<p><strong>scott</strong>: …he’s on Post until he turned her over to the
+Nightwatch…?</p>
+<p><strong>aide</strong>: He says he was…</p>
+<p><strong>scott</strong>: Who else you got…?</p>
+<p><strong>aide</strong>: …we got the boyfriend, Michael Blake.</p>
+<p><strong>scott</strong>: …where is he…?</p>
+<p><strong>aide</strong>: Was not in his dorm last night, we’re shaking
+the trees…And… Professor Gerald Sloane, notably chummy with his female
+students, of which she was one. Weekend home, Martha’s Vineyard…</p>
+<p><strong>scott</strong>: …for sure…?</p>
+<p><strong>aide</strong>: Been there since Friday.</p>
+<p><strong>miller</strong>: I’m light. I’m light, people…I need another
+team on the Professor, I need an overwatch on the boyfriend…</p>
+<p><strong>miller</strong>: You just come from the Cadre.</p>
+<p><strong>scott</strong>: Yes sir.</p>
+<p><strong>miller</strong>: How long since you’ve slept?</p>
+<p><strong>scott</strong>: Not significant.</p>
+<p><strong>miller</strong>: You take a team, and Bulldog. Are you up for
+it?</p>
+<p><strong>scott</strong>: over the materials he</p>
+<p><strong>miller</strong>: Thank you for coming, Bobby.</p>
+<p><strong>scott</strong>: Are you kidding, sir…?</p>
+<p><strong>miller</strong>: I don’t have the bodies. Call em in…call em
+in…</p>
+<p><strong>aide</strong>: His post was Harvard Yard. Harvard Yard,
+Northeast Corner, Lowell House, across from her dorm. Nightwatch
+relieved him there, Midnight…</p>
+<p><strong>interrogator</strong>: Once more:</p>
+<p><strong>gaines</strong>: She, uh. She had lunch with her father.</p>
+<p><strong>interrogator</strong>: Lunch with her father - you seconded
+to that detail?</p>
+<p><strong>gaines</strong>: No, sir. I just had her.</p>
+<p><strong>interrogator</strong>: “…you just had her…”</p>
+<p><strong>gaines</strong>: I. Uh…uh. I had her all day. Tucked her in.
+At Ten. And she…</p>
+<p><strong>interrogator</strong>: …yeah, “she had a tiff with her
+boyfriend…”</p>
+<p><strong>gaines</strong>: Yes. I…</p>
+<p><strong>interrogator</strong>: Michael Blake -</p>
+<p><strong>miller</strong>: What was it about?</p>
+<p><strong>gaines</strong>: I think it was about her…her…</p>
+<p><strong>miller</strong>: Her haircut… So it wasn’t a serious…?</p>
+<p><strong>gaines</strong>: No, no. No. And then I, I held the post
+until relieved…</p>
+<p><strong>miller</strong>: Well, then, we’ve got a little problem.</p>
+<p><strong>gaines</strong>: I was there.</p>
+<p><strong>miller</strong>: 23.12 Hours, 19 May. Harvard Yard, Northeast
+Corner, Lowell House, reveals no Secret Service Presence, neither this
+post nor adjacent… …a second tour, 23.30, reveals, similarly…</p>
+<p><strong>gaines</strong>: I was there, Sir.</p>
+<p><strong>miller</strong>: Who’s lying? You or him?</p>
+<p><strong>scott</strong>: You son of a bitch, I’ve got fifteen years
+in, and three kids, and you’re gonna sit there, and lie away my
+Pension…</p>
+<p><strong>scott</strong>: …don’t you tell me you were there…</p>
+<p><strong>gaines</strong>: I was On Post…</p>
+<p><strong>scott</strong>: …you lying swine…Don’t you tell me you were
+On Post!</p>
+<p><strong>interrogator</strong>: Shall I tell you what’s gonna happen
+to you, when we find you out?</p>
+<p><strong>…i…</strong>: wearily, toward the</p>
+<p><strong>interrogator</strong>: Were you fucking her…? We’re gonna
+find out…</p>
+<p><strong>gaines</strong>: No, I…um…</p>
+<p><strong>interrogator</strong>: …Where Is She?</p>
+<p><strong>miller</strong>: We’ve got until her Monday Morning Class,
+and then it’s Meet the Press; and “Where is she…?” Who’s got the
+Professor…? Where is he…?</p>
+<p><strong>an agent</strong>: Martha’s Vineyard.</p>
+<p><strong>miller</strong>: Who’s got him?</p>
+<p><strong>an agent</strong>: Jones and Shannon.</p>
+<p><strong>miller</strong>: Wake him up, shake him up. He don’t want to
+talk… Here’s what we have him doing with his Female Students, show ’em
+to his wife…The Photo…? Here is the last known photo…of the girl.</p>
+<p><strong>miller</strong>: The lab ran it up, based on the testimony of
+the beauty shop. We have not told Boston or Cambridge PD, nor have
+we…</p>
+<p><strong>an agent</strong>: The Professor…</p>
+<p><strong>miller</strong>: You had him in his home…</p>
+<p><strong>an agent</strong>: Sir, we were in Error, we…</p>
+<p><strong>miller</strong>: Where is he…?</p>
+<p><strong>an agent</strong>: Best guess puts him on his boat. Last seen
+out of West Tisbury, Martha’s Vine…</p>
+<p><strong>miller</strong>: Find him. Put the guard on him. Get me an
+overflight. I’m light, I’m light, people. Shake the Trees. I’m light,
+here…I’m 25 men light. Get ’em in. Who’s got the Coastguard…What’s the
+name of his boat? Professor Gerald Sloane…</p>
+<p><strong>aide</strong>: It’s the boyfriend. He’s moving…</p>
+<p><strong>scott</strong>: I’ve got him…</p>
+<p><strong>miller</strong>: …I’ve got two days to run in. Before the
+Press wakes up.</p>
+<p><strong>scott</strong>: inherent request in</p>
+<p><strong>scott</strong>: Could I see your hands, son…?</p>
+<p><strong>scott</strong>: L. Newton. You lose your mailbox key,
+Mr. Newton…?</p>
+<p><strong>blake</strong>: Um.</p>
+<p><strong>scott</strong>: You a student here?</p>
+<p><strong>blake</strong>: Yes.</p>
+<p><strong>scott</strong>: Could I see some identification, please…?
+Mr. Newton? Ten-Twelve patrol, requesting…</p>
+<p><strong>blake</strong>: No, please…please… Please, Oh, God.</p>
+<p><strong>scott</strong>: Calm down, Son. It’s gonna be what it’s gonna
+be…</p>
+<p><strong>blake</strong>: One minute, could I please talk to you for
+one minute…Look look look: I broke up with My Girlfriend…</p>
+<p><strong>scott</strong>: Laura. Laura Newton? Laura Newton? Is that
+‘the’ Laura Newton…?</p>
+<p><strong>blake</strong>: We broke up. Alright? Laura Newton. They know
+who I am.</p>
+<p><strong>scott</strong>: Who?</p>
+<p><strong>blake</strong>: The Secret Service.</p>
+<p><strong>scott</strong>: The Secret Service?</p>
+<p><strong>blake</strong>: That’s right, that’s right. They know who I
+am. You…They’ve “cleared” me.</p>
+<p><strong>scott</strong>: They didn’t clear you for this.</p>
+<p><strong>blake</strong>: You, you hear me out, and, if you want to,
+Then… Okay? Okay???</p>
+<p><strong>scott</strong>: I have to call it in.</p>
+<p><strong>blake</strong>: Please…please. Five minutes…That’s all I
+want. Please. Please…She would…she… Maybe she’s in her room!</p>
+<p><strong>scott</strong>: You tried the bell, you called her…</p>
+<p><strong>blake</strong>: Maybe she’s ill…</p>
+<p><strong>scott</strong>: …Mzz Newton…? Mz Newton…this is Campus
+Security…</p>
+<p><strong>scott</strong>: Mz Newton…?</p>
+<p><strong>young girl</strong>: Hey, Mike. Sprised to see you there.
+That was some Vicious Performance…</p>
+<p><strong>blake</strong>: …I was just…trying to retrieve the
+letter.</p>
+<p><strong>scott</strong>: …this is not very nice language. How old is
+this girl?</p>
+<p><strong>blake</strong>: She’s…just turned 18. I was mad.</p>
+<p><strong>scott</strong>: …“everything that’s going to happen to
+her”…What was going to happen to her? You hurt her…? Did y’hit her,
+son…?</p>
+<p><strong>blake</strong>: Hit her? No. I… I called her…I called her a
+whore…I…</p>
+<p><strong>scott</strong>: Why…?</p>
+<p><strong>scott</strong>: Where is she?</p>
+<p><strong>blake</strong>: had not occurred to</p>
+<p><strong>scott</strong>: Why…?</p>
+<p><strong>blake</strong>: Because the Secret Service, isn’t…</p>
+<p><strong>scott</strong>: letter,the “Picasso” sign, that is %-}. He
+turns the sign rightside up to show</p>
+<p><strong>blake</strong>: It’s how she signs her letters. Cause she
+looks at everything cockeyed…Like Picasso - she said they called her
+“Picasso”.</p>
+<p><strong>scott</strong>: Who called her that…?</p>
+<p><strong>blake</strong>: You know, her, her… He saw her yesterday!
+Maybe she’s…maybe she’s with him!</p>
+<p><strong>scott</strong>: Why’d you fight with her, Son…?</p>
+<p><strong>blake</strong>: She, uh, she got her hair done…She cut it
+off. She dyed it blonde. I said she looked like a slut…and…</p>
+<p><strong>scott</strong>: Beautiful young girl like that. We’ve all
+seen her pictures. What’d you care how she dyed her hair? What’d you
+care…? Why’s that make her a slut…?</p>
+<p><strong>blake</strong>: She… Uh…</p>
+<p><strong>scott</strong>: She seeing another fella…? …just between us.
+Off-the- record, son…</p>
+<p><strong>scott</strong>: …I was young once, too.</p>
+<p><strong>scott</strong>: I know that nothing hurts worse than that.
+She seeing another guy…?</p>
+<p><strong>i…</strong>: There’s this, um…Teacher…I shouldn’t, I, I
+shouldn’t tell you this: She…</p>
+<p><strong>scott</strong>: She sleeping with a teacher…?</p>
+<p><strong>blake</strong>: She says she isn’t. I said she looked like a
+slut. She wants to fuck old guys, she should go to The Regency. Go all
+the Way.</p>
+<p><strong>scott</strong>: The Regency, what’s that?</p>
+<p><strong>blake</strong>: S’the Club, by the Fenway…it’s like a joke at
+school, it’s like a rumor: this or that girl, made a thousand bucks,
+went with a businessman for One Night… Look: it’s a Lover’s Quarrel. I
+said something I regret. I sent her a note which I regret, and I assure,
+you, Officer. If… If you would…</p>
+<p><strong>agent</strong>: No morgue. No hospital. No note.</p>
+<p><strong>scott</strong>: The parents?</p>
+<p><strong>agent</strong>: The mother, You know where she is…He’s
+holding up… He was in town yesterday. To see her.</p>
+<p><strong>scott</strong>: He was?</p>
+<p><strong>agent</strong>: …we snuck him in, and out.</p>
+<p><strong>miller</strong>: “The Colophon - 36-foot sloop”. Where is
+she…?</p>
+<p><strong>aide</strong>: …the Coast Guard has a watch over this area:
+And they have scheduled the Colophon first…</p>
+<p><strong>guard</strong>: He copped to it.</p>
+<p><strong>scott</strong>: He copped to what?</p>
+<p><strong>guard</strong>: Off-post - punched out early to go boffing
+his girlfriend.</p>
+<p><strong>agent</strong>: Hope she was worth it…</p>
+<p><strong>scott</strong>: Uh huh.</p>
+<p><strong>agent</strong>: We ran it up from a description of the
+colorist from the Beauty Parlor…</p>
+<p><strong>scott</strong>: Gimme your coat.</p>
+<p><strong>scott</strong>: I need five thousand dollars.</p>
+<p><strong>scott</strong>: How long do we have? Sir?</p>
+<p><strong>miller</strong>: It hits the papers, and we’re done.</p>
+<p><strong>scott</strong>: No…note? No…</p>
+<p><strong>scott</strong>: I’ve got it… Can I have some backup?</p>
+<p><strong>scott</strong>: We’re scraping the bottom of the barrel here,
+aren’t we?</p>
+<p><strong>anton</strong>: Yes. Sir.</p>
+<p><strong>young woman</strong>: I need you to sign it.</p>
+<p><strong>scott</strong>: You sign it. Come on, Wallflower…</p>
+<p><strong>scott</strong>: Now: your mouth shut. Your eyes open, and
+form on me…Here’s where we’re going…</p>
+<p><strong>scott</strong>: Don’t look at him. Don’t look at the Downed
+Man. He’s dead… Kick the fool overboard…</p>
+<p><strong>miller</strong>: …who is the girl he went to see? Get her
+in…The girl he was fucking…Who’s got the Coastguard…</p>
+<p><strong>scott</strong>: I’d hate to be the Lucky Duck who frisked
+him…</p>
+<p><strong>anton</strong>: He was off-post when they snatched the
+girl?</p>
+<p><strong>scott</strong>: Yeah. Well, apparently, he felt bad about
+it…</p>
+<p><strong>bartender</strong>: Closing up… Can’t sell you booze after 3
+AM.</p>
+<p><strong>scott</strong>: No, no. I just came buy to pay you that money
+I owe you.</p>
+<p><strong>scott</strong>: …how about them Sox, huh…?</p>
+<p><strong>bartender</strong>: Yuh. Whaddaya gonna do…?</p>
+<p><strong>scott</strong>: “Curse of the Bambino”.</p>
+<p><strong>bartender</strong>: …that’s right.</p>
+<p><strong>scott</strong>: Nice place you got here.</p>
+<p><strong>bartender</strong>: You from out of town…?</p>
+<p><strong>scott</strong>: Yeah, you know, actually, I was just looking
+for my Daughter…</p>
+<p><strong>bartender</strong>: …that’s what you’re looking for…?</p>
+<p><strong>scott</strong>: …I. Uhh…</p>
+<p><strong>bartender</strong>: …ask, because a lot of out-of- town guys,
+come in, lookin, someone else’s daughter.</p>
+<p><strong>scott</strong>: No, I…Oh, no…</p>
+<p><strong>bartender</strong>: You sure…?</p>
+<p><strong>scott</strong>: Abso, absolutely…</p>
+<p><strong>scott</strong>: …girl like that been in tonight…?</p>
+<p><strong>bartender</strong>: …pretty girl…</p>
+<p><strong>scott</strong>: None prettier.</p>
+<p><strong>scott</strong>: Yeah…I’m looking for a girl like that…</p>
+<p><strong>bartender</strong>: …You’re sure it was your daughter…?
+B’cause, a lot of guys, come in here, guys your age, go home with
+some…some rather ‘younger’ girl…</p>
+<p><strong>scott</strong>: Well, why would a, one of these ‘younger
+girls’. What would they want to do with me…?</p>
+<p><strong>zimmer</strong>: ‘Howdy, Pard’.</p>
+<p><strong>scott</strong>: Hello. I wonder if you could help me…</p>
+<p><strong>zimmer</strong>: at his watch, as he</p>
+<p><strong>scott</strong>: …my friend says that you’re…you’re sort of a
+‘matchmaker’…</p>
+<p><strong>zimmer</strong>: Izzat what he says…?</p>
+<p><strong>bouncer</strong>: I put her back in your space…</p>
+<p><strong>scott</strong>: I was looking for a girl…a young girl…</p>
+<p><strong>zimmer</strong>: Aren’t we all.</p>
+<p><strong>scott</strong>: My, my, my, my, my, my question was: why
+would a young girl want to go out with an older man like me? And, if you
+could “answer” that…</p>
+<p><strong>zimmer</strong>: Look, Bub…</p>
+<p><strong>scott</strong>: Don’t touch the piece, don’t touch the piece,
+don’t touch the piece, th’out your gloves on…</p>
+<p><strong>zimmer</strong>: …I think you broke my arm.</p>
+<p><strong>scott</strong>: You seen this girl before…</p>
+<p><strong>zimmer</strong>: …I think it’s broken…</p>
+<p><strong>scott</strong>: You seen her tonight…?</p>
+<p><strong>zimmer</strong>: …I think it’s…</p>
+<p><strong>scott</strong>: Pull him up…</p>
+<p><strong>scott</strong>: Now it’s broken. What’s her name…?</p>
+<p><strong>what’s her name…</strong>: Break his other arm…</p>
+<p><strong>scott</strong>: You don’t know her name, then who is
+she…?</p>
+<p><strong>zimmer</strong>: Some, some ‘girl’…</p>
+<p><strong>scott</strong>: Some ‘girl’, some ‘pal’ of yours? Where is
+she Now…?</p>
+<p><strong>scott</strong>: Oh no… Oh no…this isn’t Rohypnol… Is it…?
+Izziz Rohypnol? Is this “Rho”?</p>
+<p><strong>izziz a one-sided conversation…?</strong>: Whatzisname?</p>
+<p><strong>anton</strong>: Donny Zimmer.</p>
+<p><strong>scott</strong>: Donny. Donny: where’s the girl…? You dose
+her…? Where is she? Donny…?</p>
+<p><strong>scott</strong>: …what is this? Ten, what is it, Fifteen
+thou…? For what…?</p>
+<p><strong>zimmer</strong>: I never saw that girl…</p>
+<p><strong>scott</strong>: Oh, alright, then we’ve got to let you
+go…</p>
+<p><strong>scott</strong>: Where’d you take the girl, Donny…? You touch
+his piece?</p>
+<p><strong>anton</strong>: No.</p>
+<p><strong>scott</strong>: Good.</p>
+<p><strong>scott</strong>: That’s not what girl…? Where’d you take her…?
+Put your glove on. Pick up his pistol. Two knees, the other elbow,
+Mozambique…</p>
+<p><strong>scott</strong>: You bet your life.</p>
+<p><strong>zimmer</strong>: Wait…Wait…Wait…</p>
+<p><strong>scott</strong>: …okay, then…</p>
+<p><strong>scott</strong>: …beautiful night…</p>
+<p><strong>businessman</strong>: ’Less you got hayfever…</p>
+<p><strong>scott</strong>: …you left something back inside.</p>
+<p><strong>businessman</strong>: …I left my case inside.</p>
+<p><strong>scott</strong>: …they got some young girls up there…?</p>
+<p><strong>scott</strong>: You see this girl…?</p>
+<p><strong>anton</strong>: Did you See This Girl…?</p>
+<p><strong>tech</strong>: …she was trying to scrub the thing…</p>
+<p><strong>madam</strong>: …an escort service. There is no impropriety,
+and there is no…</p>
+<p><strong>miller</strong>: of his techs, who</p>
+<p><strong>tech</strong>: …Nadya Tellich, Serb. Green Card, in…</p>
+<p><strong>miller</strong>: Have you seen this girl…?</p>
+<p><strong>nadya</strong>: We see a lot of girls. They apply. For the
+job, as Hostesses…</p>
+<p><strong>nadya</strong>: …a contact for Personal Services…They pay us
+so much for each call, and…The girls pay us! We are just a -</p>
+<p><strong>miller</strong>: They show you proof of their age…</p>
+<p><strong>nadya</strong>: Of course, of course, I…you think I…What do
+you think, I…</p>
+<p><strong>scott</strong>: Where’s Number Fourteen?</p>
+<p><strong>nadya</strong>: …I don’t understand you.</p>
+<p><strong>scott</strong>: …where’s Number Fourteen?</p>
+<p><strong>nadya</strong>: I want my Lawyer…</p>
+<p><strong>miller</strong>: …is this the Girl? Is this her? Was she in
+here?</p>
+<p><strong>nadya</strong>: I, wait, I no…I…I want to talk to my lll…</p>
+<p><strong>miller</strong>: Izzat her? It’s her, isn’t it. She was here.
+Is that her…?</p>
+<p><strong>businessman</strong>: …come over here, you little
+bitch…That’s right, get your sweet ass over here…</p>
+<p><strong>scott</strong>: Make him watch it.</p>
+<p><strong>businessman</strong>: I…I…listen…listen: I’m a wealthy man. I
+am, I am not- without-friends in, in the Administration… …whatever it
+takes to…</p>
+<p><strong>scott</strong>: This here, sir. This is a piece of
+cardboard.</p>
+<p><strong>interrogator</strong>: Don’t you look away, you son of a
+bitch…</p>
+<p><strong>scott</strong>: “I-I-I” - What are you, Carmen Miranda…?</p>
+<p><strong>i…</strong>: turning from Anton to</p>
+<p><strong>businessman</strong>: business card and hands</p>
+<p><strong>scott</strong>: No, Baby. Today we got the Barter System. And
+you best pray to God you got something to trade…</p>
+<p><strong>fool. where is the girl…?</strong>: Businessman, and
+Anton</p>
+<p><strong>truth out of him…</strong>: Come in here, try to buy me off?
+I’ve got Three Daughters…</p>
+<p><strong>anton</strong>: …maybe we’d…</p>
+<p><strong>scott</strong>: the Businessman’s card, and shakes his head.
+He moves back toward the Businessman,</p>
+<p><strong>scott</strong>: the platinum-haired</p>
+<p><strong>young whore</strong>: I…She was sick…she was Not Very Well.
+She came in here…and…and…</p>
+<p><strong>female agent</strong>: …who was she…?</p>
+<p><strong>young whore</strong>: I dunno…some young girl. I dunno…They
+took her, I told Nadya, she shunnt be here, they took her…</p>
+<p><strong>female agent</strong>: Who took her?</p>
+<p><strong>young whore</strong>: I think that was her.</p>
+<p><strong>female agent</strong>: Was she here?</p>
+<p><strong>young whore</strong>: I think that’s the girl…they took her.
+The two, two men…they… …they gave her a shot…</p>
+<p><strong>nadya</strong>: I am entitled to my rights, and I am entitled
+to a phonecall to my lll…</p>
+<p><strong>scott</strong>: Your lawyer ain’t going to help you…want to
+guess ‘why’? Y’understand the picture…</p>
+<p><strong>nadya</strong>: …ohmigod…</p>
+<p><strong>scott</strong>: He’s with me…</p>
+<p><strong>miller</strong>: They don’t know who they’ve got…they just
+snatched “some Young Girl”. When they find out, they’re going to have
+to…</p>
+<p><strong>scott</strong>: She was here. She was here, where is she…?
+WHERE IS SHE? She was here -</p>
+<p><strong>nadya</strong>: …I…I don’t know if this is the…</p>
+<p><strong>scott</strong>: She was here.</p>
+<p><strong>nadya</strong>: looks around, broken,</p>
+<p><strong>scott</strong>: Who did you call. How did they know, to come
+get her?</p>
+<p><strong>nadya</strong>: I…it’s just a number, I…</p>
+<p><strong>miller</strong>: …hello…</p>
+<p><strong>burch</strong>: …where’s the girl…?</p>
+<p><strong>miller</strong>: Sir, we believe she was abducted, from this
+club… That she was taken to…that she was taken to a bordello…</p>
+<p><strong>burch</strong>: …here in Boston…</p>
+<p><strong>miller</strong>: Yessir, and, that…that…</p>
+<p><strong>burch</strong>: Come on, let’s hear it:</p>
+<p><strong>miller</strong>: That she may have been…that she may have
+been delivered - for sale - that she may have been sent down the
+pipeline and overseas.</p>
+<p><strong>burch</strong>: “…just some girl…”</p>
+<p><strong>burch</strong>: How certain are you she was the girl in the
+whorehouse?</p>
+<p><strong>miller</strong>: …we…</p>
+<p><strong>burch</strong>: Was the girl in the whorehouse? What about
+your other leads?…the Boyfriend, the…Professor…?</p>
+<p><strong>miller</strong>: …sir.</p>
+<p><strong>stoddard</strong>: The Professor, where’s his boat?</p>
+<p><strong>miller</strong>: The Coast Guard is on the…</p>
+<p><strong>scott</strong>: …we just go where we’re sent and do what
+we’re told when we get there…</p>
+<p><strong>burch</strong>: You’ve got the fucken Service Agent, shot
+himself…you’re you’re telling me, your best bet, some cocksuckers nabbed
+her, took her, took her, they don’t know who she is. And they’re gonna
+sell her down the river…?</p>
+<p><strong>miller</strong>: Sir…</p>
+<p><strong>burch</strong>: The Detail Agent. Was he fucking her?</p>
+<p><strong>miller</strong>: The girl?</p>
+<p><strong>burch</strong>: The Secret Service Agent, was he fucking
+Laura Newton…?</p>
+<p><strong>miller</strong>: He was off-post, with his girlfriend.</p>
+<p><strong>stoddard</strong>: “Picasso” letter from the Boyfriend, to
+read advertisement of the</p>
+<p><strong>scott</strong>: They kill her.</p>
+<p><strong>burch</strong>: say, “That’s the first</p>
+<p><strong>burch</strong>: Now: Let’s talk some commonsense: What can
+you do for me? …who is that…? …Get in here…</p>
+<p><strong>burch</strong>: …what can you do for me? What can you do for
+me - I need it now - I need it before the Press gets it on Monday. Cause
+they will kill her. The jackals start a feeding frenzy, and she’s red.
+Help me.</p>
+<p><strong>miller</strong>: Sir: This is the number of a public phone in
+Downtown Boston. It’s a cutout, between the Bordello, and the abductors.
+A call is placed when they have a package to deliver.</p>
+<p><strong>burch</strong>: …you going to stake out the phone…?</p>
+<p><strong>miller</strong>: We have a watch on the phone. More
+importantly: N.S.A. reports calls placed to that phone. Regularly.</p>
+<p><strong>burch</strong>: They can track calls to a payphone?</p>
+<p><strong>miller</strong>: In this case they can.</p>
+<p><strong>burch</strong>: How?</p>
+<p><strong>miller</strong>: They were made from a Federal Prison. This
+is Eli Assani. He is a Lebanese National, serving life without, for
+kidnapping. He was the head man in a white slavery scheme.</p>
+<p><strong>burch</strong>: And where is he?</p>
+<p><strong>miller</strong>: He’s in Lewisberg. We have a Plan… I
+hesitate to…</p>
+<p><strong>burch</strong>: Give it to me…</p>
+<p><strong>miller</strong>: They’ve got some action on the Payphone…</p>
+<p><strong>scott</strong>: …who’s walking up on us…?</p>
+<p><strong>scott</strong>: …who is he?</p>
+<p><strong>anton</strong>: Boston. P.D.</p>
+<p><strong>scott</strong>: …always a reflective surface… “…in the city,
+always a reflection. In the Woods. Always a sound…”</p>
+<p><strong>anton</strong>: …and in the Desert?</p>
+<p><strong>scott</strong>: You don’t want to go into the desert.</p>
+<p><strong>anton</strong>: …they’re moving…</p>
+<p><strong>scott</strong>: …what is this…?</p>
+<p><strong>anton</strong>: then realizes the</p>
+<p><strong>scott</strong>: …take it off. …the ring clicks against your
+riflestock, some sonobitch hears that noise, hundred yards out, and
+you’re gonna get me killed.</p>
+<p><strong>scott</strong>: …where’s he going…?</p>
+<p><strong>agent</strong>: One Five Four Nine, Alpha Sierra, Mass Reg.
+William Barak. Somerville, Mass…</p>
+<p><strong>scott</strong>: That’s where he’s going?</p>
+<p><strong>agent</strong>: Also, owner of Record, In Essex…</p>
+<p><strong>scott</strong>: Izzey going toward Essex? …what sort of place
+is it…?</p>
+<p><strong>agent</strong>: It…it’d be a Beach house…</p>
+<p><strong>scott</strong>: Get me there. Get on the net. Call ’em off.
+Everyone off. Just me. Just me and him.</p>
+<p><strong>driver</strong>: …sir…</p>
+<p><strong>scott</strong>: Nobody out there… Just. Him. You indicate
+that you heard me. Put it out. How you doing bright eyes…?</p>
+<p><strong>scott</strong>: …breathe through your nose.</p>
+<p><strong>scott</strong>: It stills the heartrate. You got my back.</p>
+<p><strong>anton</strong>: Sir, Yes, Sir.</p>
+<p><strong>scott</strong>: …alright, then…</p>
+<p><strong>anton</strong>: …you want me to Come Through the Door…?</p>
+<p><strong>scott</strong>: Don’t you go through the door without an
+Overwatch.</p>
+<p><strong>man from the sedan</strong>: …what the fuck…?</p>
+<p><strong>scott</strong>: …I heard the TV, so I came in…</p>
+<p><strong>scott</strong>: …what the hell you got the TV on for, there’s
+nobody here…? I don’t wanna hurt you. Why would I hurt you? I just wanna
+know why the TV’s on.</p>
+<p><strong>scott</strong>: …I just wannit to know, I just came to ask
+you that question…</p>
+<p><strong>scott</strong>: I’m Coming Up…</p>
+<p><strong>scott</strong>: Call em in…</p>
+<p><strong>scott</strong>: …where’s the girl…? You’re dying, pal. Even
+it up. WHERE IS</p>
+<p><strong>scott</strong>: You’re dying. You’re dying, man. Where is the
+girl…</p>
+<p><strong>scott</strong>: …well, you wanted to know…</p>
+<p><strong>scott</strong>: Yeah, everybody wants to know the Secret
+Knowledge…</p>
+<p><strong>scott</strong>: …tell it to the Chaplain.</p>
+<p><strong>brunette talking head</strong>: …apparently, had her hair
+restyled, and cut today, our Newsteam interviewed her stylist, and has
+reconstructed…</p>
+<p><strong>scott</strong>: Ah, shit…</p>
+<p><strong>burch</strong>: the BG silently, showing photos of Laura
+photo of Eli Assani, the Businessman, both in a suit, and in his prison
+garb, with a number in front of him. His name, and</p>
+<p><strong>scott</strong>: Sir, it ain’t mine. On my team, sir.</p>
+<p><strong>burch</strong>: How deep is he?</p>
+<p><strong>scott</strong>: …He’s on the team.</p>
+<p><strong>burch</strong>: Yeah, well. He may have to be a little more
+than On the Team… I’ve been speaking to the father.</p>
+<p><strong>burch</strong>: What about if we had to go “off the
+meter”?</p>
+<p><strong>scott</strong>: …With the Mission, sir.</p>
+<p><strong>burch</strong>: …I’m out of time…</p>
+<p><strong>burch</strong>: …man to man.</p>
+<p><strong>scott</strong>: The door’s closed, Sir.</p>
+<p><strong>burch</strong>: I. Need. To Ask You. To do something.</p>
+<p><strong>scott</strong>: I am here to get the girl back.</p>
+<p><strong>burch</strong>: This man…Placed a phonecall. Yesterday. From
+the phonebank at Lewisberg. To the Copley Payphone. Here’s the
+cut-off-point… …here it is: This man, Eli Assani, is to be transported,
+tomorrow, Wednesday, with another convict. A Man on Death Row. For their
+medical procedures…Now:</p>
+<p><strong>scott</strong>: Shut up.</p>
+<p><strong>heavyset convict</strong>: Yeah, two twelve sierra took all
+the 20 he’s gonna take…Oh, man, you left him there…</p>
+<p><strong>heavyset convict</strong>: …yeah. You marked him Paid in
+Full…</p>
+<p><strong>assani</strong>: …you got to pull over, you got to stop…I’m
+bleeding.</p>
+<p><strong>heavyset convict</strong>: Yeah, he done ate from the tree of
+knowledge, our Sierra Two Twelve.</p>
+<p><strong>assani</strong>: …help me…</p>
+<p><strong>scott</strong>: Shut up.</p>
+<p><strong>scott</strong>: …drag him out… …got some business to do…</p>
+<p><strong>assani</strong>: …help me…</p>
+<p><strong>heavyset convict</strong>: …yeah, I heard yah…</p>
+<p><strong>heavyset convict</strong>: Yeah, Baby. Pass some my way…</p>
+<p><strong>scott</strong>: Sorry, my man…traveling light…</p>
+<p><strong>assani</strong>: Don’t shoot me, don’t shoot me, I have what
+you want. I HAVE</p>
+<p><strong>scott</strong>: Why in the world would I believe a lying
+convict like you…</p>
+<p><strong>assani</strong>: Oh, ah, ah, but you do believe me…I see
+it…you do. I can get us out. Help me. I SWEAR TO YOU. HELP ME…and I will
+treat you like a brother…I…</p>
+<p><strong>scott</strong>: My brother used to beat me Nice guess,
+though.</p>
+<p><strong>assani</strong>: No, no. Listen to me…listen…make one call.
+One call - go in the house. Make One Call. ONE CALL. An Aviation
+Company. Tell…tell them…tell them the word I say, and they will say: THE
+PLANE WILL MEET</p>
+<p><strong>you at…</strong>: moment, and Assani attempts to
+capitalize</p>
+<p><strong>scott</strong>: You a fag my friend?</p>
+<p><strong>assani</strong>: No. I am not.</p>
+<p><strong>scott</strong>: Then why the hell you looking at me?</p>
+<p><strong>assani</strong>: I was thinking…how fucking surprised you’re
+going to be. Because, Baby, you just did that fucken good turn, going to
+Make You Rich, Fat, and Happy…</p>
+<p><strong>scott</strong>: …just get me on that plane.</p>
+<p><strong>assani</strong>: Didn’t they tell you…?</p>
+<p><strong>scott</strong>: All I heard’s a voice on the phone…</p>
+<p><strong>assani</strong>: …you like girls…?</p>
+<p><strong>scott</strong>: Better question, where you’ve been so long,
+do you like girls?</p>
+<p><strong>assani</strong>: We have. You will have…the most
+beautiful…</p>
+<p><strong>scott</strong>: …most beautiful women, eh?</p>
+<p><strong>assani</strong>: Not women, Baby. Girls. You got to trust me,
+I’m the Doctor here…All young. All blonde…</p>
+<p><strong>scott</strong>: And this all takes place Where…?</p>
+<p><strong>assani</strong>: In Dubai. In Yemen…</p>
+<p><strong>scott</strong>: Well, that’s a long way from Tiperrary,
+pal…</p>
+<p><strong>assani</strong>: …what do you have here…?</p>
+<p><strong>scott</strong>: Yeah, but I’m not cut out, to live in a
+fucken tent.</p>
+<p><strong>assani</strong>: If you think you can imagine luxury…I am
+here to tell you, my friend…</p>
+<p><strong>scott</strong>: Well, may it Just Be So…</p>
+<p><strong>assani</strong>: When we get to Maskala…</p>
+<p><strong>scott</strong>: And, now, what’s Maskala…?</p>
+<p><strong>assani</strong>: …when we get to Dubai, better…</p>
+<p><strong>scott</strong>: What’s Maskala…?</p>
+<p><strong>assani</strong>: …that’s where we clean them up. We ship them
+Rough, we make them Smooth, and everybody’s happy.</p>
+<p><strong>scott</strong>: Well, then, you’re a philosopher…huh…? How
+’bout making me happy tonight…</p>
+<p><strong>assani</strong>: If there’s a girl, in the pipeline, tonight,
+you shall have her, what do you say to that?</p>
+<p><strong>scott</strong>: …I say you’re a stone cold whoremaster…</p>
+<p><strong>assani</strong>: No, no baby. Take it to the bank. The Arabs,
+Man. All the oil - all the money in the world. What can’t they have?
+Booze and Pussy. How do they get it…?</p>
+<p><strong>scott</strong>: You the candy man? Is that it?</p>
+<p><strong>scott</strong>: Ah. Hell…</p>
+<p><strong>assani</strong>: Yeah, no. I’m bleeding bad here, friend…</p>
+<p><strong>scott</strong>: Yeah, we just, we got to get some…yeah, you
+need, all we need, some tailoring tools.</p>
+<p><strong>scott</strong>: Yeah, in my wishlist, we had a drugstore, get
+us some morphine, some…</p>
+<p><strong>tv woman</strong>: …America’s Number One Redhead, “She Sets
+the Style, She Brings a Smile”, she’s Betty co-ed, in College, and she’s
+off for what her father’s office says is an “extended sailing weekend”.
+With “person or persons unknown”…yo ho, yo Ho…she “old” enough for that,
+our “Little Red Riding-Hood”, Cathy…?</p>
+<p><strong>anton</strong>: …the helo just went down…</p>
+<p><strong>scott</strong>: …don’t whisper to me, Baby, it draws heat.
+What helo?</p>
+<p><strong>anton</strong>: …the assault helicopter. You’ve got no
+backup, at the house. You’ll be in there, alone, the first few
+minutes…</p>
+<p><strong>scott</strong>: Well, there you go, then.</p>
+<p><strong>anton</strong>: You said “Never go in without an
+overwatch”.</p>
+<p><strong>scott</strong>: That’s all fine, lad, “But this is the
+fleet”.</p>
+<p><strong>anton</strong>: You know you deliver him in the door, you
+know they’re going to waste you.</p>
+<p><strong>scott</strong>: …gimme whatever nine mil you’ve got…</p>
+<p><strong>scott</strong>: …just gimme the mags… …gimme your piece.</p>
+<p><strong>scott</strong>: Thank you…</p>
+<p><strong>anton</strong>: Mister…mister: you forgot your change…</p>
+<p><strong>anton</strong>: …you better take care of yourself,
+because…</p>
+<p><strong>anton</strong>: A…I’m alright…I’m alright…</p>
+<p><strong>miller</strong>: Your partner’s going to be alright.</p>
+<p><strong>scott</strong>: I do not look at the downed man, Sir…</p>
+<p><strong>miller</strong>: Yeah, well…</p>
+<p><strong>scott</strong>: …Sir…?</p>
+<p><strong>miller</strong>: …Air Force Assault is airborne, five minutes
+out. Standing down’s a bitch.</p>
+<p><strong>scott</strong>: I stand down when the girl’s back, sir.</p>
+<p><strong>miller</strong>: They’ll get her out, if she’s in there… You
+did your part, what the fuck do you want, a Citation?</p>
+<p><strong>aide</strong>: …sir…</p>
+<p><strong>miller</strong>: Where are you going.</p>
+<p><strong>scott</strong>: On the dustoff.</p>
+<p><strong>miller</strong>: Forget it.</p>
+<p><strong>scott</strong>: Sir…? Sir…?</p>
+<p><strong>miller</strong>: There’s no room.</p>
+<p><strong>scott</strong>: I’m pleading with you, sir…</p>
+<p><strong>miller</strong>: Let him hear the assault on the Net…</p>
+<p><strong>scott</strong>: I want to see the girl.</p>
+<p><strong>jim</strong>: The death, just reported, the death of Laura
+Newton. The… the…</p>
+<p><strong>talking head woman</strong>: …her father, on the eve of the
+campaign… Jim, can there be any doubt…</p>
+<p><strong>jim</strong>: Tracey, the Secret Service, for obvious
+reasons, their records, the DNA, fingerprints… the… and, she had just
+been in the water a scant, less than four hours, the…apparently the boat
+swamped… she -</p>
+<p><strong>tracey</strong>: She was sailing with…?</p>
+<p><strong>jim</strong>: With her professor, Professor…?</p>
+<p><strong>tracey</strong>: …a Tragedy, such as this.</p>
+<p><strong>jim</strong>: …particularly. Particularly, Tracey, coming,
+right at the start of his Campaign…</p>
+<p><strong>tracey</strong>: Will he delay the start of the Campaign?</p>
+<p><strong>jim</strong>: …his grief…</p>
+<p><strong>tracey</strong>: …he was very close to his daughter, wasn’t
+he?</p>
+<p><strong>jim</strong>: Well, indeed, he saw her, the day…that would
+be, the day before last. He was in Boston for the Strategy Meeting, and
+saw her then…</p>
+<p><strong>tracey</strong>: …and that would be the Last time…that…</p>
+<p><strong>miller</strong>: Her boyfriend called her a slut. She went
+off to prove it. Her and the Professor. Coked up, boat capsized…Both
+bodies washed up naked. Coast Guard dressed ’em up…full of Ecstasy…</p>
+<p><strong>scott</strong>: …he killed her…</p>
+<p><strong>miller</strong>: He was fucking her, they’re stoned…the boat
+capsized…</p>
+<p><strong>miller</strong>: …so much death.</p>
+<p><strong>scott</strong>: if summing the whole</p>
+<p><strong>miller</strong>: I’m sorry about your man.</p>
+<p><strong>scott</strong>: He isn’t my man, Sir. He’s a trainee.</p>
+<p><strong>anton</strong>: …what time is it?</p>
+<p><strong>scott</strong>: What do you care…?</p>
+<p><strong>anton</strong>: I fucked up.</p>
+<p><strong>scott</strong>: …in what way was that?</p>
+<p><strong>anton</strong>: to move, to draw closer</p>
+<p><strong>scott</strong>: What? Do you want some more Dope? Whaddaya
+want, a Dr. Pepper…?</p>
+<p><strong>anton</strong>: …but I was trying to help.</p>
+<p><strong>scott</strong>: …yeah, well, that’s when people generally do
+fuck up. Wait for that to kick in. You’re gonna take that fight to bed
+for a while. You don’t got to do it all now.</p>
+<p><strong>anton</strong>: I saw the sign.</p>
+<p><strong>scott</strong>: …uh huh…</p>
+<p><strong>anton</strong>: I saw the sign…at the Cape. In the House.</p>
+<p><strong>scott</strong>: You saw-the-sign. What sign?</p>
+<p><strong>anton</strong>: …when I dropped the guy. The girl’s Picasso
+sign… She was there. At the Cape. The girl was there.</p>
+<p><strong>scott</strong>: The girl wasn’t there. She was on a boat. She
+fell off the boat. She’s dead. You did what you could. You did what you
+were trained to do. You did what you could.</p>
+<p><strong>anton</strong>: …I saw the sign…</p>
+<p><strong>scott</strong>: …then you are Truly Blessed.</p>
+<p><strong>interrogator</strong>: …from the house, a house, a holding
+facility, a compound? called Maskala. The girls are taken from Maskala,
+to the …Royale Hotel, in Dubai. As time passes, you may remember other
+aspects of…well, You’ve heard this speech before…</p>
+<p><strong>scott</strong>: …would be most grateful, sir, to be included
+on the mission. “At Such Time…”</p>
+<p><strong>blane</strong>: …on a mission to Dubai.</p>
+<p><strong>scott</strong>: Is it in contemplation, sir…?</p>
+<p><strong>scott</strong>: Yes, sir. If and When, Sir…</p>
+<p><strong>blane</strong>: You need a rest, Bobby. Thank you, Bobby…</p>
+<p><strong>scott</strong>: …please don’t touch that.</p>
+<p><strong>lecturer</strong>: …pick it up.</p>
+<p><strong>lecturer</strong>: What are you studying here…? I’m talking
+to you, son… What are you studying?</p>
+<p><strong>trainee</strong>: Sir, this Candidate is studying knife
+fighting.</p>
+<p><strong>lecturer</strong>: Hold your ground, son.</p>
+<p><strong>lecturer</strong>: …you, and your friend…</p>
+<p><strong>lecturer</strong>: There are two ways to fight, you can fight
+fair, or you can fight to win.</p>
+<p><strong>scott</strong>: Don’t you study knife fighting, son. You
+Learn to Kill. And then, f’you meet some other fellow, studied knife
+fighting, you send him to hell.</p>
+<p><strong>lecturer</strong>: Next man:</p>
+<p><strong>lecturer</strong>: Now: I want to see some evil intent.</p>
+<p><strong>grace</strong>: Hey, fuck it, Huh…?</p>
+<p><strong>scott</strong>: I’ve always thought so.</p>
+<p><strong>grace</strong>: How’d the puppy like it out there? He piss in
+the punchbowl?</p>
+<p><strong>scott</strong>: He did okay.</p>
+<p><strong>grace</strong>: I heard he caught poison ivy.</p>
+<p><strong>scott</strong>: He did okay. Why? You goin’ out?</p>
+<p><strong>grace</strong>: What?</p>
+<p><strong>scott</strong>: You recruiting?</p>
+<p><strong>grace</strong>: Why would I be recruiting?</p>
+<p><strong>scott</strong>: You speak Arabic, huh…?</p>
+<p><strong>grace</strong>: That’s what the Arabs tell me.</p>
+<p><strong>scott</strong>: You, reason I ask: you going in the
+Sandbox…?</p>
+<p><strong>grace</strong>: Ain’t you overdue for some Down Time?</p>
+<p><strong>scott</strong>: I’m just saying:</p>
+<p><strong>grace</strong>: Yeah. You Marines are a weepy bunch of
+motherfuckers. …you get a chance to bowl in that tournament…?</p>
+<p><strong>scott</strong>: …beautiful girl…</p>
+<p><strong>trucker</strong>: …you say something, Mister…?</p>
+<p><strong>scott</strong>: No, I was looking at the television. I was
+talking to the television. That girl’s too good-looking for you anyway.
+What are you “rich”? What do you, “own” something?</p>
+<p><strong>scott</strong>: Or are you “funny” or something…? Siddown.
+Lemme buy you a drink.</p>
+<p><strong>scott</strong>: You peel the apple?</p>
+<p><strong>scott</strong>: down from the</p>
+<p><strong>scott</strong>: cleaning the blade on simplest and most and
+sits on the bed, shaking his head to</p>
+<p><strong>girl</strong>: …it’s an odd knife.</p>
+<p><strong>scott</strong>: Yeah. I got it from a Russian fellow.</p>
+<p><strong>girl</strong>: Was it a gift…?</p>
+<p><strong>scott</strong>: No. As I remember, he seemed rather reluctant
+to part with it. It’s just a knife.</p>
+<p><strong>proprietor</strong>: How you been, John…?</p>
+<p><strong>scott</strong>: …workin hard…</p>
+<p><strong>proprietor</strong>: …bet you have…</p>
+<p><strong>scott</strong>: How you, Billy…?</p>
+<p><strong>proprietor</strong>: …one gallon goin to do it…?</p>
+<p><strong>scott</strong>: …you been lookin’ at my house…?</p>
+<p><strong>proprietor</strong>: Nope, just trine a sell you some paint…
+…but, now you mention it…</p>
+<p><strong>new farmer</strong>: …John…</p>
+<p><strong>scott</strong>: Mr. Reese, how are you…? That new saw blade
+come in?</p>
+<p><strong>billy</strong>: No, John. It did not. I beg your pardon. I
+know that’s your baby…I’m gone call them up and get Right On That.</p>
+<p><strong>billy</strong>: …’spected you back a few days ago…</p>
+<p><strong>scott</strong>: I took the Long Way Home.</p>
+<p><strong>scott</strong>: Could I see your Right Hand, please…?</p>
+<p><strong>anton</strong>: There’s nothing in my right hand.</p>
+<p><strong>scott</strong>: Could I see it, please…?</p>
+<p><strong>scott</strong>: You put your wedding ring back on.</p>
+<p><strong>anton</strong>: …yes…?</p>
+<p><strong>scott</strong>: Then I have to guess you’re not “on
+assignment”. You’re in the wrong place, baby. How did you find me…?</p>
+<p><strong>scott</strong>: Well, I guess I’m not as smart as I thought I
+was.</p>
+<p><strong>anton</strong>: I need to talk to you.</p>
+<p><strong>anton</strong>: I saw the sign.</p>
+<p><strong>scott</strong>: “You saw the sign”. You were up for a week,
+you coulda seen Jack Ruby, you don’t know what you saw…your
+first-time-out.</p>
+<p><strong>anton</strong>: I saw the sign.</p>
+<p><strong>scott</strong>: …then, you tell me: you saw the sign, how is
+it, they found the girl, the DNA…why would they do that…? Her father?
+Her father would do that to her?</p>
+<p><strong>anton</strong>: …maybe he doesn’t know…</p>
+<p><strong>scott</strong>: Well. You’re living in a fairyland of your
+Own Devising. You’re seeing snakes.</p>
+<p><strong>anton</strong>: Who’s going to Dubai…? They’ve got a white
+slave ring, in Dubai, with American girls there - are they going in? Are
+they sending you in…? Ask them…</p>
+<p><strong>scott</strong>: You Got. To Leave it for your Betters.</p>
+<p><strong>anton</strong>: Ask them.</p>
+<p><strong>scott</strong>: Why would you want to know? Listen up, Pal.
+THEY don’t go through the door. WE don’t ask why. That’s not a COST,
+it’s a Benefit. Because we Got to Travel Light. You wanna lose sleep
+over it, get over it, or get out. You wanted to go Through the Looking
+Glass. How was it? Was it more fun than Miniature Golf…?</p>
+<p><strong>anton</strong>: I want a favor.</p>
+<p><strong>scott</strong>: Why would I do you a favor?</p>
+<p><strong>old lady</strong>: Morning, John, who’s your friend…?</p>
+<p><strong>scott</strong>: Fella wants to buy my car.</p>
+<p><strong>anton</strong>: I saved your life.</p>
+<p><strong>scott</strong>: Well what were they paying you for…?</p>
+<p><strong>anton</strong>: Bobby, I saw the Sign…</p>
+<p><strong>scott</strong>: My name ain’t Bobby.</p>
+<p><strong>anton</strong>: I saw the sign. I Saw it. At the beach house.
+I’m going back.</p>
+<p><strong>scott</strong>: Back?</p>
+<p><strong>anton</strong>: To the beach house.</p>
+<p><strong>scott</strong>: They took it apart with a tweezers.</p>
+<p><strong>anton</strong>: She was there. The Girl was There. I’m going
+back. I want you to do something.</p>
+<p><strong>scott</strong>: What would that be?</p>
+<p><strong>anton</strong>: The Secret Service Agent. Offed himself.</p>
+<p><strong>scott</strong>: …he was off boffing his girl.</p>
+<p><strong>anton</strong>: He shot himself with a hide-out pistol.</p>
+<p><strong>scott</strong>: Yeah?</p>
+<p><strong>anton</strong>: Who frisked the sonofabitch? You ask
+them.</p>
+<p><strong>stoddard</strong>: Number one, the girl’s dead. Number two,
+the hide-out gun the Agent shot with’s registered in his 1020 for the
+past five years. The man who tossed him has been sacked. His name is
+none of your concern. Now: what the fuck are you doing here?</p>
+<p><strong>scott</strong>: Sir, I am not here to question…</p>
+<p><strong>stoddard</strong>: Well, then, what the fuck are you doing
+here…?</p>
+<p><strong>miller</strong>: Sir, as he said, he is here to apprise you
+of a security leak…</p>
+<p><strong>scott</strong>: …and…</p>
+<p><strong>miller</strong>: To call your attention to what may be a
+problem in discipline with this…</p>
+<p><strong>stoddard</strong>: Granted. Granted. Granted. Fine. Thank
+you.</p>
+<p><strong>scott</strong>: And. Sir…If I may…</p>
+<p><strong>stoddard</strong>: What is it?</p>
+<p><strong>scott</strong>: When the operation is staged in Dubai…</p>
+<p><strong>stoddard</strong>: What is this…?</p>
+<p><strong>miller</strong>: He…</p>
+<p><strong>stoddard</strong>: …what the fuck are you talking about?</p>
+<p><strong>scott</strong>: I am merely saying, when -</p>
+<p><strong>stoddard</strong>: Forget it. Walk away.</p>
+<p><strong>stoddard</strong>: Yeah…you’re a pit bull. I said forget it.
+How do we contact Anton?</p>
+<p><strong>miller</strong>: …Anton…</p>
+<p><strong>stoddard</strong>: Your partner…He’s gone to ground…</p>
+<p><strong>miller</strong>: Yes, sir…</p>
+<p><strong>stoddard</strong>: And, wait, wait, wait, wait, what does
+this mean…? When and if, any operation is staged which may require your
+talents, I give you my word… You impertinent motherfucker. What the fuck
+is with you, you’ve got on your “thinkingcap” all of a sudden…?</p>
+<p><strong>scott</strong>: I’d like to finish what I started.</p>
+<p><strong>stoddard</strong>: And I’m telling you to Stand Down. Where’s
+the kid?</p>
+<p><strong>scott</strong>: Is there no operation in Dubai…?</p>
+<p><strong>pastor</strong>: …in the Service. In the Service of his
+Country. No less than had he died in Combat. George Gaines, a man who
+gave his life to service, to protecting those who…</p>
+<p><strong>driver</strong>: …sucker did the Dutch.</p>
+<p><strong>scott</strong>: I heard it was a training accident.</p>
+<p><strong>driver</strong>: Nope, he Ate the Gun. Didn’t you know?</p>
+<p><strong>scott</strong>: I’ve been out of town.</p>
+<p><strong>driver</strong>: Punched out early, off with the girlfriend,
+his Principal wanders off, winds up dead: hari-kari…</p>
+<p><strong>driver</strong>: …rather you didn’t smoke in here.</p>
+<p><strong>burch</strong>: I put myself in your hands. Didn’t I…?</p>
+<p><strong>scott</strong>: I do not follow you, sir.</p>
+<p><strong>burch</strong>: I reached out to you. I put my life into your
+hands. I entered into a conspiracy with you. To commit Murder. Because
+it needed to be done. I trusted you with my life.</p>
+<p><strong>scott</strong>: I would never betray you, sir.</p>
+<p><strong>burch</strong>: I trusted you with my life. And yet you
+cannot trust me. There are things you have not been told. That’s right.
+And now you’re all out-of-line, “Play me or trade me…”</p>
+<p><strong>burch</strong>: There is an Arab World. To penetrate it makes
+trying to join the Mafia look like a walk in the park. How would you do
+it, Scott? We’re dying. We’re at war. And we have no intelligence. How
+Would you do it? How would you infiltrate their clan structure? Where is
+the interface? It’s at the whorehouse. That’s where they go to get
+frisky, and that’s where we listen to them.</p>
+<p><strong>burch</strong>: For the few, priceless hints that we get from
+that fucking sandpile. Had the girl been there, we would have moved
+heaven and earth - you know we would, and, we would have got her out.
+She was not there. She got drugged up and fell off a boat, and drowned.
+She’s dead. That man, That man a sworn office of the Secret Service,
+went to get laid, and she died. And you are risking the lives of men and
+women in the field, because you won’t take orders. How are you better
+than him? Yes. You had best look sheepish. What the fuck have you got to
+say?</p>
+<p><strong>scott</strong>: No excuse, sir.</p>
+<p><strong>burch</strong>: You’re goddam right. Now: where’s this new
+kid who got you all bothered. Where’s your partner?</p>
+<p><strong>scott</strong>: …I’ll call him off.</p>
+<p><strong>burch</strong>: The fuck you will. You’ve got nothing to say
+to him. He’s gone to the ground. Where is he…?</p>
+<p><strong>scott</strong>: Terrible thing. Did you know him?</p>
+<p><strong>man</strong>: Did you know him…? Where did you know him
+from?</p>
+<p><strong>scott</strong>: …you know.</p>
+<p><strong>man</strong>: He wasn’t in the accounting office. You knew
+that…</p>
+<p><strong>scott</strong>: Yes. I Did.</p>
+<p><strong>man</strong>: I didn’t think, he told anyone what he did.
+Because…because…</p>
+<p><strong>scott</strong>: A few of us knew.</p>
+<p><strong>man</strong>: And all he cared about was doing his
+duty…that’s all…that’s all… He used to tell me…</p>
+<p><strong>scott</strong>: I’m so sorry.</p>
+<p><strong>man</strong>: He was supposed to see me that night…After his
+“shift”…We…His wife…</p>
+<p><strong>scott</strong>: Did she know? His wife. Did she know?</p>
+<p><strong>man</strong>: How could she? How could she…she didn’t know
+him… Oh, the poor children…</p>
+<p><strong>man</strong>: …he was going to come to me that
+night…after…</p>
+<p><strong>scott</strong>: …after his shift.</p>
+<p><strong>man</strong>: …his shift - yes…</p>
+<p><strong>burly man</strong>: …excuse me…</p>
+<p><strong>man</strong>: …after, after he’d finished driving him…</p>
+<p><strong>scott</strong>: …him…?</p>
+<p><strong>burly man</strong>: I said…</p>
+<p><strong>scott</strong>: man, who is backing</p>
+<p><strong>burly man</strong>: Yeah. It’s a man’s world, pal - but
+you’re in the wrong bar.</p>
+<p><strong>second man</strong>: …what the fuck did you do to my
+friend…?</p>
+<p><strong>scott</strong>: …where are you…? No. Tell me later. Look:
+LOOK: Forget the boat house. Look: Yes, tell me in…tel…look: tell me
+when…GET OUT OF THERE.</p>
+<p><strong>scott</strong>: …ohmigod…</p>
+<p><strong>scott</strong>: What the hell are you doing?</p>
+<p><strong>bellboy</strong>: I…I brought you…</p>
+<p><strong>scott</strong>: Why’re you screwing with the door…?</p>
+<p><strong>scott</strong>: Why’re you screwing with the door…?</p>
+<p><strong>bellboy</strong>: I took the…I took the sign off… You had the
+sign on the door. F’they saw me…f’they saw me, knocking on a door, the
+sign on…they’d… An, I…I figured, you needed… You told me you wanted this
+at Ten…</p>
+<p><strong>scott</strong>: …yeah. Thanks.</p>
+<p><strong>bellboy</strong>: …I don’t know why you…</p>
+<p><strong>scott</strong>: You’re right, I’m wrong…I’m wrong.</p>
+<p><strong>scott</strong>: There you go, Pal. Hold on…</p>
+<p><strong>bellboy</strong>: Sure. I just…I just wanted to help.</p>
+<p><strong>scott</strong>: It’s been…quite a while since my last
+confession. That…that “transpired”. On the rear face of a hill, in a
+mortar attack. And I confessed that I was frightened. And I have to
+confess, I’m frightened now. ’Nother “irregular Confession”.</p>
+<p><strong>scott</strong>: …I’m about as frightened as I’m comfortable
+being. And that’s why…I involved you. Which, I suppose, was
+shameful.</p>
+<p><strong>jackie black</strong>: Now: you did me the honor to Call me.
+Now: you tell me how I might help. There in’t nobody here, but two
+people in Green.</p>
+<p><strong>scott</strong>: …this girl’s alive…</p>
+<p><strong>jackie black</strong>: Then, you’d better go get her.</p>
+<p><strong>woman</strong>: …terrible thing, grief…</p>
+<p><strong>woman</strong>: …you want to comfort them, but you don’t know
+how. I always think it’s better to Leave Them Alone…</p>
+<p><strong>scott</strong>: A relative?</p>
+<p><strong>woman</strong>: A psychic.</p>
+<p><strong>scott</strong>: Well. Can we blame her…?</p>
+<p><strong>woman</strong>: That’s right.</p>
+<p><strong>woman</strong>: …who are you…?</p>
+<p><strong>scott</strong>: United States Secret Service.</p>
+<p><strong>woman</strong>: Guess again, ’cause I’m the Secret Service,
+and you follow my directions or I will shoot you dead. Spread your hands
+to your sides, please… Open them…</p>
+<p><strong>donny</strong>: …the motherfuckers pulled the Detail off of
+her…He was in town. Her father was in town, they pulled the Secret
+Service Detail off her, to take him tomcatting. He’s been doing it for
+years. That’s what they do. They turn the Secret Service into a bunch of
+pimps. He took her protection, she got snatched…</p>
+<p><strong>scott</strong>: He’d let her die?</p>
+<p><strong>female agent</strong>: …leaving the post…</p>
+<p><strong>donny</strong>: The start of a campaign: Your daughter got
+kidnapped because you were out getting laid?</p>
+<p><strong>scott</strong>: Her father would let her die…?</p>
+<p><strong>donny</strong>: Who knows if he knows. His ‘people’ would let
+her die in a heartbeat.</p>
+<p><strong>scott</strong>: …her mother…?</p>
+<p><strong>donny</strong>: the earring and she begins to weep. She</p>
+<p><strong>scott</strong>: I need some money. I’m going to get the girl
+back.</p>
+<p><strong>donny</strong>: What can I do?</p>
+<p><strong>scott</strong>: I need money. I need a lot of money.</p>
+<p><strong>donny</strong>: I’ve been signing her checks for years.</p>
+<p><strong>scott</strong>: Alright… Can you go this high, that’s what I
+need…</p>
+<p><strong>donny</strong>: …I…I don’t…is there anywhere else you…</p>
+<p><strong>avi</strong>: Didn’t they tell you not to come?</p>
+<p><strong>scott</strong>: Well, I guess I wasn’t paying attention.</p>
+<p><strong>avi</strong>: Five years ago they told me you were dead.</p>
+<p><strong>scott</strong>: You want to gossip, or you want to do
+business…?</p>
+<p><strong>avi</strong>: Bobby; this is an American girl…?</p>
+<p><strong>scott</strong>: If that were so?</p>
+<p><strong>avi</strong>: If that were so, why don’t your people go and
+fetch her…?</p>
+<p><strong>avi</strong>: …they send a hitter to negotiate…? My question
+is: have you forgot your catechism…?</p>
+<p><strong>scott</strong>: And what’s the answer?</p>
+<p><strong>avi</strong>: The answer is Go Home.</p>
+<p><strong>scott</strong>: Yeah, that’s a good one.</p>
+<p><strong>avi</strong>: …you’re at the Big Table here.</p>
+<p><strong>scott</strong>: I know where I am.</p>
+<p><strong>avi</strong>: Well, then, you better talk to me using the
+Decimal System.</p>
+<p><strong>scott</strong>: Your intel. Two men. Infil, exfil, hardware,
+and com.</p>
+<p><strong>avi</strong>: And com to what? I cannot give you.</p>
+<p><strong>scott</strong>: Well, you could, when you where in the Boy
+Scouts.</p>
+<p><strong>avi</strong>: Yes, but I am not in the Boy Scouts anymore.
+You heard the private sector?</p>
+<p><strong>scott</strong>: Yeah.</p>
+<p><strong>avi</strong>: Well. That’s where you found me. And here’s
+what it costs.</p>
+<p><strong>scott</strong>: …you’re out of your mind.</p>
+<p><strong>avi</strong>: No, you’re out of your fucking mind, and you’re
+out of your league, and my advice to you:…before some mercantile soul
+shops you. …for this job, that’s what it costs…</p>
+<p><strong>scott</strong>: …that’s what it costs…?</p>
+<p><strong>avi</strong>: That’s what it costs you. Go home, Bobby.</p>
+<p><strong>angle int. a sumptuous study, palatial estate. day.</strong>:
+Beautiful Greek and Roman artifacts line the walls, on lighted shelves.
+Scott drags the stunned and abraided Businessman into the study. Scott
+throws him into a chair.</p>
+<p><strong>scott</strong>: Remember me…?</p>
+<p><strong>scott</strong>: …well, I guess you do have friends in High
+Places…I mean here you are home, n’all… And now we’re gonna see if you
+also got all that money that you spoke of. This here’s a Short Subject,
+if you know what I mean. Of you in Carnal Congress with an Underage
+Girl. A PROSTITUE, A MINOR, AND</p>
+<p><strong>somebody’s daughter…</strong>: There’s another…you know how
+cheap it is to make a copy…?</p>
+<p><strong>businessman</strong>: …what do you want?</p>
+<p><strong>scott</strong>: I want what you promised me…</p>
+<p><strong>businessman</strong>: …I’ve, I’ve already made a deal
+with…</p>
+<p><strong>scott</strong>: Yeah, but you haven’t made a deal with me…So,
+today is Your Lucky Day, cause you get to Do, what Most Men only Dream
+of: You get to make Another Human Being Happy.</p>
+<p><strong>scott</strong>: You had your fun, now pay for it, Jim. Get
+your bank on the phone. We’re going to transfer some money.</p>
+<p><strong>scott</strong>: …“how about that”.</p>
+<p><strong>businessman</strong>: …do you know how much trouble you’re
+in…?</p>
+<p><strong>scott</strong>: Yes. And that’s the difference between you
+and me.</p>
+<p><strong>avi</strong>: Maskala is a suburban villa, in Dubai. The
+Friends of your Friend, Operate there, if you will, a “halfway house”.
+For the young women they have induced, coerced or drugged into spending
+their short lives. As the whores of Arabian tourists. Of late the girls
+have been, in the main, from the former Sov-Bloc. Now and again, a North
+American Girl, if she is exceedingly lovely,…blonde, usually blonde…
+Will, unfortunately, find her way to Dubai. They travel drugged, they
+are - - “tidied up”, and sold. For some reason, most of them are sold to
+Yemen. The girls are generally held, in Dubai, until the end of the
+month. When the Merrymakers fly in to examine them. And take their
+purchases home.</p>
+<p><strong>scott</strong>: …and then?</p>
+<p><strong>avi</strong>: That is “and then”. This is a floor plan of the
+building where the girls are held, this is the security arrangements,
+this is the watch plan.</p>
+<p><strong>avi</strong>: The girls are taken from the house in Maskala,
+to the Royale Hotel, I presume you will hit them in transit…?</p>
+<p><strong>scott</strong>: …“Jameson Construction”…They know we’re
+there…?</p>
+<p><strong>avi</strong>: I hope not. The conex container for the exfil,
+also Jameson Construction. A passport for the Young Girl… Between
+fifteen and twenty-five, they all look alike.</p>
+<p><strong>scott</strong>: Is that your experience…?</p>
+<p><strong>avi</strong>: Yes. It is. Nonetheless, we tried to match it
+to a Current Photo…</p>
+<p><strong>avi</strong>: …she was there twelve hours ago.</p>
+<p><strong>scott</strong>: Who took the photo?</p>
+<p><strong>avi</strong>: How would I know…?</p>
+<p><strong>scott</strong>: What does the bonus cost?</p>
+<p><strong>avi</strong>: A gesture of Friendship. But. We thought: if
+you see some of the Yemenins - Any of these, in particular…would you say
+Hello to them?</p>
+<p><strong>scott</strong>: Who else have you done a favor for, Avi?</p>
+<p><strong>avi</strong>: Bobby: the world runs on manners.</p>
+<p><strong>scott</strong>: The last third on exfil, in Geneva. Me and
+the Girl. As agreed.</p>
+<p><strong>avi</strong>: That’s not what I was going to say.</p>
+<p><strong>scott</strong>: What were you going to say…? …the Last Third
+in Geneva…</p>
+<p><strong>scott</strong>: …fourteen, fifteen, sixteen.</p>
+<p><strong>scott</strong>: It’s good. It’s very good. The charge takes
+the car out… We got the flashbangs fore and aft, You hit the driver,
+follow down the driver’s side, the car ain’t going nowhere, the muscle
+gets out, I cap em, I go with the girl. You exfil on your own, we’re on
+to the airport.</p>
+<p><strong>scott</strong>: At the airport. When we hit the Conex. When
+you Seal Us In…you walk away.</p>
+<p><strong>jones</strong>: I understand.</p>
+<p><strong>scott</strong>: I cannot have heat on it. Now: I know: that
+you want to protect the package. But: you have to walk away. And que
+sera, sera.</p>
+<p><strong>jones</strong>: I won’t look back.</p>
+<p><strong>scott</strong>: up, answering Smith’s</p>
+<p><strong>smith</strong>: firearms, generally,</p>
+<p><strong>scott</strong>: …yeah, I’m just a Man of Peace…</p>
+<p><strong>bodyguard</strong>: …stay in your room, and…</p>
+<p><strong>laura</strong>: …who…?</p>
+<p><strong>scott</strong>: Stay by me.</p>
+<p><strong>laura</strong>: …they said they were going to take care of
+me…</p>
+<p><strong>scott</strong>: I’m going to take care of you. You hold on,
+now.</p>
+<p><strong>laura</strong>: Who are you?</p>
+<p><strong>scott</strong>: …you remember, Baby, we went to high school
+together… You dropped your earring.</p>
+<p><strong>scott</strong>: You’re Picasso, right…? That’s who you
+are…</p>
+<p><strong>laura</strong>: …they’re going to send me to a Party.</p>
+<p><strong>scott</strong>: No, Baby, you’re going Home. You’re just
+taking the long way home.</p>
+<p><strong>scott</strong>: …I told you to stay on the bed.</p>
+<p><strong>scott</strong>: …you’re going travelling.</p>
+<p><strong>laura</strong>: …what…?</p>
+<p><strong>scott</strong>: …we’re going to take a little trip.</p>
+<p><strong>scott</strong>: …put that away.</p>
+<p><strong>laura</strong>: …I need a smoke.</p>
+<p><strong>scott</strong>: Y’can’t smoke it. American tobacco. Smell.
+Carry. In the desert air.</p>
+<p><strong>scott</strong>: Put that on. Over your head.</p>
+<p><strong>laura</strong>: Whatsamatter, you don’t like Blondes…?</p>
+<p><strong>scott</strong>: Whole world likes Blondes. That’s why you’re
+here. Put the bandana on.</p>
+<p><strong>laura</strong>: I need a smoke. …gimme the fucken smoke.</p>
+<p><strong>laura</strong>: I could make you give me the smoke.</p>
+<p><strong>scott</strong>: Keep it together. Keep it together, or I’m
+gonna give you a shot and carry you out.</p>
+<p><strong>laura</strong>: Nobody Cares about me…</p>
+<p><strong>scott</strong>: …that’s right…</p>
+<p><strong>laura</strong>: …I’m just a whore…They wouldn’t even come get
+me…</p>
+<p><strong>scott</strong>: They sent me…</p>
+<p><strong>laura</strong>: Did my father send you?</p>
+<p><strong>scott</strong>: …that’s right.</p>
+<p><strong>laura</strong>: One man.</p>
+<p><strong>scott</strong>: One riot, one Ranger, you ever hear that?</p>
+<p><strong>laura</strong>: Leonides, the King of Sparta, when a
+neighboring state would beg for Military Aid. Would send One Man.</p>
+<p><strong>scott</strong>: …well, there you go.</p>
+<p><strong>laura</strong>: …you ever hear that?</p>
+<p><strong>scott</strong>: No. I think we went to different schools.</p>
+<p><strong>scott</strong>: …put the bandana on.</p>
+<p><strong>laura</strong>: Did you hear the one about the king who
+turned his daughter into Gold?</p>
+<p><strong>scott</strong>: Yeah - I heard that one.</p>
+<p><strong>laura</strong>: …I don’t want to go home.</p>
+<p><strong>scott</strong>: I didn’t ask you.</p>
+<p><strong>laura</strong>: I don’t know where we are…</p>
+<p><strong>scott</strong>: You just keep it together.</p>
+<p><strong>scott</strong>: You put this on.</p>
+<p><strong>laura</strong>: …what…?</p>
+<p><strong>scott</strong>: You…</p>
+<p><strong>scott</strong>: A little walk-in-the-park. See there…?</p>
+<p><strong>second man</strong>: …all of the passenger terminals, and all
+access-points to the Cargo and General Aviation…</p>
+<p><strong>laura</strong>: No, you know what my mistake was…?</p>
+<p><strong>scott</strong>: …what was that…?</p>
+<p><strong>scott</strong>: …what was your mistake…?</p>
+<p><strong>laura</strong>: she begins to laugh, as at a great
+private</p>
+<p><strong>scott</strong>: I’m certain of it.</p>
+<p><strong>scott</strong>: No, no…come on baby…come on, come on girl:
+just walk to the plane: Just Get On the Plane…WALK TO THE PLANE…</p>
+<p><strong>scott</strong>: Shussh, baby… shussh… shussh… it’s going to
+be alright…</p>
+<p><strong>scott</strong>: This’s going to make Everything Allright…</p>
+<p><strong>laura</strong>: No!</p>
+<p><strong>stoddard</strong>: Leave her Alone. Don’t shoot him, don’t
+shoot, you’ll blow the thing sky high…</p>
+<p><strong>scott</strong>: Laura…</p>
+<p><strong>stoddard</strong>: Thank God we Found you. You know me. I
+work for Mister Burch. I’ve met you…</p>
+<p><strong>laura</strong>: He said that he came to get me…</p>
+<p><strong>stoddard</strong>: That’s right, Laura…Walk away from him.
+Walk to the Plane…He can’t hurt you now. Walk to the plane…</p>
+<p><strong>scott</strong>: No…</p>
+<p><strong>stoddard</strong>: Cuff ’im…</p>
+<p><strong>stoddard</strong>: Yes…well…</p>
+<p><strong>scott</strong>: Let the girl go home.</p>
+<p><strong>stoddard</strong>: …wait till she lifts off, take him outside
+and shoot him.</p>
+<p><strong>scott</strong>: slightly, continuously, to get a better
+view</p>
+<p><strong>stoddard</strong>: Because she’s dead. You had to know the
+Secret Knowledge. Didn’t you?</p>
+<p><strong>scott</strong>: What is the Secret Knowledge?</p>
+<p><strong>stoddard</strong>: The Secret Knowledge is: There Is No
+Secret Knowledge. You went Beyond What Was Permitted. And the Gods Are
+Angry.</p>
+<p><strong>laura</strong>: …I’m so tired.</p>
+<p><strong>woman</strong>: …I’m going to ask you to do Just the One More
+Thing…</p>
+<p><strong>woman</strong>: I’m going to ask you, now, to walk away from
+this plane, and come with me.</p>
+<p><strong>laura</strong>: No…leave me alone. No - I don’t know you…</p>
+<p><strong>stoddard</strong>: Stoddard, casts a glance outside, and</p>
+<p><strong>female reporter</strong>: Oh, my God…</p>
+<p><strong>stoddard</strong>: Wait…!</p>
+<p><strong>jackie black</strong>: Keep walking…</p>
+<p><strong>henchman</strong>: …do you want me to…?</p>
+<p><strong>female reporter</strong>: Gimme an uplink Gimme an uplink…
+GET IT ON THE SAT. Now Now Now…</p>
+<p><strong>female reporter</strong>: On her. On her, get it on the
+girl…Get us Out of Here…</p>
+<p><strong>scott</strong>: The girl ain’t dead, baby, you’re dead. You
+see: that’s the difference.</p>
+<p><strong>stoddard</strong>: WAIT: WAIT. The girl’s home. You brought
+her home. Now, listen to me, because I am going to tell you…now, you
+wanted to be “inside”…I am going to take you as far inside as you can
+go: Z’at what you want…? Is that what you want?</p>
+<p><strong>scott</strong>: No, I just wanted to bring the girl back.</p>
+<p><strong>jackie black</strong>: …is she safe?</p>
+<p><strong>scott</strong>: That’s right, she’s safe.</p>
+<p><strong>jackie black</strong>: …well, then…</p>
+<p><strong>scott</strong>: …that’s right, Baby…</p>
+<p><strong>spartan</strong>: A Screenplay by David Mamet Copyright c
+2002 By David Mamet</p>
+</body>
+</html>

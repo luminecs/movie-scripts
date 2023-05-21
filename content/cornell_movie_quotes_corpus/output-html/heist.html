@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>heist</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="heist">heist</h1>
+<p>****: What makes the world go around?</p>
+<p><strong>blane</strong>: …you tell me.</p>
+<p><strong>moore</strong>: Gold.</p>
+<p><strong>blane</strong>: Some people say Love.</p>
+<p>****: It is love. It is Love of Gold.</p>
+<p><strong>blane</strong>: …easy to get the gold, hard to get it
+home.</p>
+<p><strong>moore</strong>: …waal, so it takes a little bit of
+thought…</p>
+<p>****: …what’s yours?</p>
+<p><strong>woman</strong>: …Five Cappuccino…</p>
+<p><strong>cashier</strong>: …that ought to keep you up…</p>
+<p><strong>woman</strong>: …you have a nice day.</p>
+<p><strong>cashier</strong>: …Din’t they tell you can’t smoke in
+here…</p>
+<p><strong>blane</strong>: Showtime, Circus Time.</p>
+<p><strong>blane</strong>: …I see five.</p>
+<p><strong>moore</strong>: Five is correct.</p>
+<p>****: No wait.</p>
+<p>****: Alright.</p>
+<p>****: Come here, hold his head up. Now…</p>
+<p><strong>blane</strong>: Move along, please… This area must be secure
+while the Secretary’s on the street… just move alone…</p>
+<p>****: …two minutes…</p>
+<p><strong>pincus</strong>: Forty seconds…</p>
+<p><strong>pincus</strong>: Ten seconds…</p>
+<p><strong>pincus</strong>: …that’s it, that’s gotta be it…</p>
+<p>****: Y’got your marker, five, six hundred yards.</p>
+<p>****: Y’might want to start your turn.</p>
+<p>****: …you lookin to make friends…?</p>
+<p><strong>fran</strong>: No. I’ve got my friends…</p>
+<p><strong>fran</strong>: You put this boat on the rocks, you bought
+it.</p>
+<p><strong>florid man</strong>: I got the sun in my eyes.</p>
+<p><strong>moore</strong>: What do you think?</p>
+<p><strong>florid man</strong>: Think you’re too old for that girl–How’d
+you ever get a girl like that…?</p>
+<p><strong>moore</strong>: I won her in a raffle…</p>
+<p><strong>florid man</strong>: No, I’m serious. What’s a girl like
+hh…</p>
+<p>****: She’s got this “father” thing. You like the boat?</p>
+<p><strong>florid man</strong>: Waal… your price is rather high…</p>
+<p><strong>moore</strong>: I’ll tell you what, then why’nt you go build
+one…</p>
+<p><strong>florid man</strong>: No offense, no offense, I told you I
+liked the boat.</p>
+<p>****: What is he, a touchy fella…?</p>
+<p><strong>fran</strong>: You have to ask him.</p>
+<p>****: What I’d like to do: I’ll take’er out again, me and some
+people… The Weekend…?</p>
+<p><strong>moore</strong>: …we’ll be here…</p>
+<p><strong>florid man</strong>: …I like this boat…</p>
+<p><strong>fran</strong>: …Mister Fletcher, tell you what, you put down
+your deposit, we’re gonna fit you one out. Your specs.</p>
+<p><strong>florid man</strong>: I don’t want you, fit me one out, I want
+to buy this one here. This is a hell of a boat.</p>
+<p><strong>fran</strong>: Well, this one’s not for sale.</p>
+<p><strong>florid man</strong>: Everything’s for sale. I’m gone tell you
+what: you want, sell the boat to me, this weekend, you want to name your
+price, we’ll…</p>
+<p>****: Well, Mr. Fletcher, this weekend, we’re gone on a little trip,
+but…</p>
+<p><strong>florid man</strong>: How often do you see a live one…? I’m
+talking cash. You want a premium, I’m going to pay your premium, and
+I…</p>
+<p><strong>fran</strong>: Excuse me…</p>
+<p><strong>moore</strong>: What do you want me to bring you back?</p>
+<p><strong>fran</strong>: You just come back… Stay in the shadows.</p>
+<p><strong>moore</strong>: Everybody’s lookin’ in the shadows.</p>
+<p><strong>fran</strong>: Then where’s the place to be…?</p>
+<p>****: Place to be’s in the Sun…</p>
+<p><strong>fran</strong>: Well, then, you stay there, then…</p>
+<p>****: …pretty little girl like that, wouldn’t stay away too long…</p>
+<p><strong>fran</strong>: Stay here. Let Bobby do it…</p>
+<p>****: You take care, Baby. I’ll see you tonight.</p>
+<p><strong>blane</strong>: You shouldn’t sneak up on a fella like
+that.</p>
+<p><strong>moore</strong>: …what’s he likely to do…?</p>
+<p><strong>blane</strong>: He’s likely to do all sorts of unpredictable
+shit.</p>
+<p><strong>moore</strong>: What’d you, come into some money?</p>
+<p><strong>blane</strong>: Where you goin to go with the gelt?</p>
+<p><strong>moore</strong>: You know where I’m going. Me and the girl,
+gone get on the boat.</p>
+<p><strong>blane</strong>: You gone go South somewhere… rub yourselves
+all over, Cocoa butter…</p>
+<p><strong>moore</strong>: …that’s right.</p>
+<p><strong>blane</strong>: Get one of them cocker spaniel dogs, pull
+down your bathingsuit…</p>
+<p><strong>moore</strong>: …that’s right…</p>
+<p><strong>blane</strong>: …stick your white ass out at the world…</p>
+<p><strong>moore</strong>: I worked for it.</p>
+<p>****: What’re you gonna do…?</p>
+<p><strong>blane</strong>: I’m gonna open a carwash, n’torch it for the
+insurance… hold on a second…</p>
+<p>****: My nephew, Jimmy.</p>
+<p><strong>moore</strong>: I met him a long time ago.</p>
+<p><strong>bergman</strong>: Did you…?</p>
+<p><strong>moore</strong>: Yeah, I think I did.</p>
+<p><strong>bergman</strong>: You should of shot the girl.</p>
+<p>****: You know, you’re right…</p>
+<p><strong>bergman</strong>: On the other thing, Good News! We got the
+go ahead, we got a date. I got a firm date on the swiss thing.</p>
+<p><strong>moore</strong>: I’m burnt. They got my picture.</p>
+<p>****: They got your picture in drag. Witcher warpaint on.</p>
+<p>****: –I got to go.</p>
+<p><strong>bergman</strong>: You goin down, a Body Shop?</p>
+<p><strong>moore</strong>: Yeah, I’m gonna have’em pound the dents
+out.</p>
+<p><strong>bergman</strong>: …old as you are, it’s a good deal.</p>
+<p><strong>moore</strong>: Waal, they’re honorable scars.</p>
+<p><strong>bergman</strong>: That they are and indeed they are. How you
+doing, Bobby?</p>
+<p><strong>blane</strong>: Well, you’re looking at it.</p>
+<p><strong>bergman</strong>: Anything you guys want, you’re here? Y’want
+to get a present for the Little Lady…</p>
+<p><strong>bergman</strong>: No, you’re the Boss Hog, Joe.</p>
+<p><strong>moore</strong>: Kind of you to say so.</p>
+<p>****: Nobody… gets the goods like you…</p>
+<p><strong>moore</strong>: Anybody can get the goods, the tough part’s,
+getting away.</p>
+<p><strong>bergman</strong>: Uh huh.</p>
+<p><strong>moore</strong>: Plan a good enough getaway, you could steal
+Ebbetts Field.</p>
+<p><strong>bergman</strong>: Ebbet’s Field’s gone…</p>
+<p><strong>moore</strong>: What’d I tell ya…?</p>
+<p>****: Higher than the estimate.</p>
+<p><strong>bergman</strong>: And half of that’s yours. You n’your
+team.</p>
+<p><strong>moore</strong>: Yeah, why’re you telling me that?</p>
+<p><strong>bergman</strong>: …I told you we’re on for the “other” thing?
+The Swiss thing?</p>
+<p><strong>moore</strong>: …why’re you telling me that, Bill? That half
+of it’s mine. I know half of it’s mine. Because, you’ll remember, me and
+my crew? Went in there and got it.</p>
+<p><strong>bergman</strong>: …the other thing?</p>
+<p><strong>moore</strong>: …you remember that?</p>
+<p><strong>bergman</strong>: It’s the shot of the century.</p>
+<p><strong>moore</strong>: Yeah–well, it’s a shame…</p>
+<p><strong>bergman</strong>: I’m locked into it. It’s such a beautiful
+deal, Joe… we waited so long.</p>
+<p><strong>bergman</strong>: …I put myself, n’my friends in hock, set
+the deal up…</p>
+<p><strong>moore</strong>: I need my money. I owe the crew…</p>
+<p>****: I owe my crew, Bill…</p>
+<p><strong>bergman</strong>: If it was me…</p>
+<p><strong>moore</strong>: Yeah, if it was you n’if it was me. I owe my
+crew.</p>
+<p>****: And I got to go.</p>
+<p>****: I got to get outta town.</p>
+<p><strong>bergman</strong>: You should of popped the girl… Look:</p>
+<p>****: This Swiss thing? After how long we waited…?</p>
+<p><strong>moore</strong>: Woulda shoulda coulda.</p>
+<p><strong>bergman</strong>: …I was a publisher man, I’d publish the
+plans… it’s the Mona Lisa.</p>
+<p><strong>moore</strong>: You’re too kind.</p>
+<p><strong>blane</strong>: Why don’t you publish the plans?</p>
+<p><strong>bergman</strong>: Yeah, no, I’m saying, that’s what I would
+do, f’I was in the book business. Unfortunately, I’m a thief, so, I have
+to do that thing. You understand… Joe:</p>
+<p><strong>moore</strong>: What is it I understand…?</p>
+<p><strong>bergman</strong>: You understand my position.</p>
+<p><strong>moore</strong>: Here’s mine? I did the job. Me and my crew.
+We brought you the swag, we’re going to take our cut.</p>
+<p><strong>bergman</strong>: Well, look here, it’s the Golden Rule. You
+know the Golden Rule. Whoever’s got the Fucken Gold, he gets to make the
+Rule… Huh?</p>
+<p>****: Huh…? Look: The normal course of events…</p>
+<p>****: …that’s very literary.</p>
+<p><strong>bella</strong>: Look here, Pal… Look here, Pal… You’re the
+help…</p>
+<p><strong>blane</strong>: I’m what…?</p>
+<p><strong>bella</strong>: …you’re…</p>
+<p><strong>blane</strong>: I’m the “help,” motherfucker? You were
+sitting behind a desk, we were on the street, it seems to me.
+Furthermore:</p>
+<p>****: You wanna play “O.K. Corral?” Is this the plan of the Day? You
+wanna go dress warmly, n’go play Outside? Go for it. Go for it,
+motherfucker: you know where I am, I’m right here…</p>
+<p><strong>bergman</strong>: Yeah. You’re a pitbull.</p>
+<p>****: Your friend’s a pitbull.</p>
+<p><strong>moore</strong>: What do you want, we’re supposed to do, sit
+back, put our feet up while you fucken rob me?</p>
+<p><strong>bergman</strong>: I’m in HOCK to my PEOPLE for the TOYS, all
+the TOYS YOU told me you need, do the Other thing…</p>
+<p><strong>moore</strong>: I got to go.</p>
+<p><strong>bergman</strong>: While I what? Go WEE WEE all the way home
+to my ? Go WEE WEE all the way home to my Backers? You told me this:</p>
+<p>****: the Truck, two Trucks, the stuff the Train, the plans? … you
+told me, “Go Out, Spend the Money,” I did. Now:</p>
+<p><strong>moore</strong>: What do you want from me? They got my face on
+a Cereal box…</p>
+<p><strong>bergman</strong>: I want you do do the Swiss job.</p>
+<p><strong>moore</strong>: Gimme our cut, we worked for, my crew, we do
+the Swiss Job.</p>
+<p><strong>bergman</strong>: Well, now, that’s bullshit, Joe, you know
+that, you just tol me you’re goin travelling– I give you the Money now,
+and you’re gone. You gone play me for some kind of sucker? The other
+job. It’s set up.</p>
+<p><strong>blane</strong>: You trine to play us for, you over-the-hill,
+short-weight motherfucker…</p>
+<p>****: …I don’t think your friend likes me…</p>
+<p><strong>blane</strong>: Like you? I’d like you to spend the rest of
+your life with me… RIGHT NOW…</p>
+<p><strong>right now, motherfucker. here you are: your</strong>: WEIGHT
+AND FATE. How ’bout that… how ’bout that…?</p>
+<p><strong>bergman</strong>: …alright… alright… let’s just…</p>
+<p><strong>blane</strong>: How about that, n’ we’ll let someone else
+clean up…</p>
+<p><strong>moore</strong>: Bag’s empty…</p>
+<p>****: The bag’s empty, Billy…</p>
+<p>****: Put the bag down, it’s empty…</p>
+<p><strong>blane</strong>: What?</p>
+<p><strong>moore</strong>: I said alright.</p>
+<p><strong>bergman</strong>: …you’ll do the Swiss Job?</p>
+<p><strong>moore</strong>: No.</p>
+<p><strong>bergman</strong>: Well, then, it’s not alright. What are you
+telling me…?</p>
+<p><strong>moore</strong>: I’m telling you I’ll think about it.</p>
+<p>****: Lemme think about it.</p>
+<p><strong>blane</strong>: …don’t get up.</p>
+<p><strong>bergman</strong>: You think about it, Joe. I got your money
+sitting for you, right here. You do the job, and I swear to you…</p>
+<p><strong>fran</strong>: …alright: what if we…</p>
+<p><strong>moore</strong>: I’m sorry…</p>
+<p><strong>fran</strong>: …what do you tell me? What is it you tell
+me?</p>
+<p><strong>moore</strong>: What is it I tell you?</p>
+<p><strong>fran</strong>: “Any situation, stand it on its head.”</p>
+<p><strong>moore</strong>: Izzat right…</p>
+<p><strong>fran</strong>: So: stand it on its head.</p>
+<p>****: What if we…</p>
+<p><strong>moore</strong>: Sell the beat.</p>
+<p>****: Call the guy, sell the boat.</p>
+<p><strong>fran</strong>: For cash?</p>
+<p><strong>moore</strong>: That’s the sweetener.</p>
+<p><strong>fran</strong>: I don’t get it.</p>
+<p><strong>moore</strong>: You say “cash,” he knows we’re hungry. He’ll
+counter ten, twenny percent less, you kick around, and accept it.</p>
+<p><strong>fran</strong>: Where’s he gonna get the cash at night?</p>
+<p><strong>moore</strong>: Let him get it tomorrow. You bring him the
+title for the boat.</p>
+<p><strong>fran</strong>: And you?</p>
+<p>****: Hello, Mr. Fletcher…? Could you, I’m looking for Mr. Robert
+Fletcher.</p>
+<p>****: Would you tell him Fran, from Moore Marine.</p>
+<p><strong>moore</strong>: …I’ll meet you in Mexico.</p>
+<p><strong>fran</strong>: How’re you going to Mexico…?</p>
+<p>****: …I’m taking the boat.</p>
+<p>****: I’m not proud…</p>
+<p><strong>fran</strong>: F’you’re taking the boat, Baby, take the boat
+tonight…</p>
+<p><strong>moore</strong>: I ain’t going til I make sure we’re goin get
+the money…</p>
+<p><strong>fran</strong>: Well, would you tell him…</p>
+<p><strong>moore</strong>: …I can’t go down there with nothing…</p>
+<p><strong>fran</strong>: What’re you gonna do about the Other Guys?</p>
+<p><strong>moore</strong>: We’re gonna play some ringolevio. I’m gonna
+need your help–Look here:</p>
+<p><strong>pincus</strong>: You know, in many ways, it isn’t their
+arrogance that hurts, it’s the money.</p>
+<p><strong>blane</strong>: Yeah? What were you gonna do with the
+money?</p>
+<p><strong>pincus</strong>: I was gonna buy a scooter for my niece. You
+know, this’s the goddamndest thing I ever saw: They got his face on tap,
+he’s got to Steal Away like the Arabs.</p>
+<p><strong>blane</strong>: …with what?</p>
+<p><strong>pincus</strong>: Well, what about Times Two. If they stiffed
+him on Monday, what’re they gonna do on Wednesday…</p>
+<p><strong>blane</strong>: Joe? He’s got something in reserve.</p>
+<p><strong>pincus</strong>: …may it be so.</p>
+<p><strong>blane</strong>: …and a back-up plan…</p>
+<p><strong>blane</strong>: …you hold tight with the Crew…</p>
+<p><strong>pincus</strong>: …I hold tight with the Crew, the Crew holds
+tight with me, is all I’m…</p>
+<p><strong>bella</strong>: How’re we all today?</p>
+<p><strong>blane</strong>: F’we got somewhere to go, let’s go.</p>
+<p><strong>moore</strong>: Alright.</p>
+<p><strong>bergman</strong>: You’ll do the job?</p>
+<p><strong>moore</strong>: That’s right.</p>
+<p><strong>bergman</strong>: I’m sorry I put you in a position.</p>
+<p><strong>moore</strong>: It’s very sporting of you to say so.</p>
+<p><strong>bergman</strong>: Well…</p>
+<p><strong>moore</strong>: I’m going to need some walking-around
+money.</p>
+<p>****: And I’m going to need my men’s share, on the last job.</p>
+<p><strong>bergman</strong>: That’s not unreasonable.</p>
+<p><strong>bergman</strong>: …now?</p>
+<p><strong>moore</strong>: …you got it in your pocket.</p>
+<p><strong>bergman</strong>: …you’re ahead of me every turn. How about
+that.</p>
+<p><strong>moore</strong>: …stunning.</p>
+<p><strong>bergman</strong>: …the date holds, you got the shipment on
+the fourteenth.</p>
+<p><strong>moore</strong>: …how do I insure my cut?</p>
+<p><strong>bergman</strong>: I swear to you…</p>
+<p><strong>moore</strong>: …you lost your amateur standing. Here’s what
+the thing is: I go with the gold.</p>
+<p>****: I go with the gold, or there’s no deal. I take my half, you
+take your half on site, we’re done.</p>
+<p><strong>bergman</strong>: …so be it.</p>
+<p><strong>moore</strong>: Now: what’s your little surprise.</p>
+<p>****: …my boy goes on the job with you.</p>
+<p><strong>moore</strong>: …he’s got terrible manners.</p>
+<p><strong>bergman</strong>: Nobody’s perfect.</p>
+<p>****: Gettim over here…</p>
+<p>****: …I’m sorry for what I said.</p>
+<p><strong>blane</strong>: …what’d he say…?</p>
+<p>****: I’m sorry for what I said.</p>
+<p><strong>blane</strong>: Well, you were prolly just overcome by the
+heat of the moment. Is that the thing?</p>
+<p><strong>bella</strong>: …that’s right.</p>
+<p><strong>moore</strong>: Okay, so You called us one, we called you
+one. The way you get along’s you’re gonna go along.</p>
+<p>****: Okay, we’re done negotiating, gimme the money</p>
+<p>****: I’ll see you on the fourteenth…</p>
+<p><strong>blane</strong>: You going to take that lame onna job?</p>
+<p><strong>moore</strong>: I’ll tell you what, you make the decisions,
+and I’ll bitch at you. It’s Fun to Play Pretend!</p>
+<p><strong>blane</strong>: You going to roll over for these guys, I got
+to walkaway… It’s one thing, put your head in the Lion’s Mouth. It’s
+another thing, put your head in the Lion’s Mouth and shoot yourself.
+I…</p>
+<p><strong>moore</strong>: You do whatever the fuck you have to do…</p>
+<p><strong>moore</strong>: You want to show me another way?</p>
+<p>****: …why does he go with the gold?</p>
+<p><strong>bergman</strong>: Y’ever split a piece of cake? One kid gets
+to cut the cake, the other gets to choose. We’re gonna get the gold.
+Your guy gets to go, my guy gets to go.</p>
+<p><strong>moore</strong>: Then we go together.</p>
+<p><strong>bergman</strong>: You go with the gold. That’s the deal.</p>
+<p><strong>blane</strong>: You’re losing a step, Joey.</p>
+<p><strong>moore</strong>: Zat so?</p>
+<p><strong>blane</strong>: Time was, you wuun’t of asked him.</p>
+<p><strong>moore</strong>: Yeah, well, the time was I was the Law West
+of the Pecos.</p>
+<p><strong>blane</strong>: And now…?</p>
+<p><strong>moore</strong>: And now the Time Was, I got to get out of
+Town.</p>
+<p>****: Okay it’s on.</p>
+<p>****: I’ll take care of it.</p>
+<p><strong>moore</strong>: You wanna wash any laundry out inna street…?
+…you said you were gone take care of it, take care of it.</p>
+<p>****: …are you in or out…?</p>
+<p>****: He’d never go soft on you, Joey…</p>
+<p><strong>moore</strong>: Well, then. What’s the thing? Am I missing
+something…?</p>
+<p><strong>blane</strong>: He’s just countin’ the tricks, and the tricks
+don’t add up. Tricks don’t add up. These guys. You get the gold, they
+never let you walk away wi… why would you want to…</p>
+<p>****: We ain’t doin the job. Izzat it? You’re just going to take the
+up front money, walk away.</p>
+<p><strong>moore</strong>: I got to Bobby…</p>
+<p><strong>blane</strong>: I know you do.</p>
+<p><strong>moore</strong>: Tick tock.</p>
+<p><strong>blane</strong>: No, I know.</p>
+<p><strong>moore</strong>: The cops got me on tape. I got to go…</p>
+<p><strong>moore</strong>: But everybody gets his cut from the Jewelry
+store.</p>
+<p><strong>blane</strong>: Yeah, thanks, but after which, what’re you
+going to live on?</p>
+<p><strong>moore</strong>: I’m trine a figure out a way, get somebody,
+throw me inna briar patch.</p>
+<p>****: …just keep walking…</p>
+<p>****: …walk on… just walk on…</p>
+<p>****: …he’s okay.</p>
+<p><strong>moore</strong>: Yeah, well, you know, that was his road
+game.</p>
+<p><strong>pincus</strong>: He’s too old for that.</p>
+<p>****: It’s his job. Let’s get to work.</p>
+<p>****: …an if, an if… well, why didn’t you, no, wait a sec… wait a
+second, f’it’s about your wife, F’It’s about your wife, why din’tcha…
+no, wait a… will you WAIT, what I’m saying, if the whole thing is about
+your wife, you know what, you know what, the hell with it.</p>
+<p>****: Could I have another, please…?</p>
+<p><strong>bartender</strong>: Hope you’re not driving tonight.</p>
+<p><strong>fran</strong>: Well, I hope I am driving tonight, and I run
+into some fucked abutment IF THAT’S WHAT THEY’RE CALLED, and</p>
+<p>****: Thank you…</p>
+<p><strong>middle aged woman</strong>: …take it easy, Baby… stuff’ll eat
+your stomach lining…</p>
+<p><strong>fran</strong>: Yeah, but I get to drink it first…</p>
+<p>****: Can I ask you something…</p>
+<p>****: …see anything you like…?</p>
+<p>****: …what’s the woman’s name…?</p>
+<p><strong>bella</strong>: Croft. Betty Croft.</p>
+<p><strong>blane</strong>: …and she’s on what shift…?</p>
+<p>****: She’s on the swingshift. She’s got two kids. She’s got an
+ulcer. Betty Croft…</p>
+<p>****: I got to report a Bomb throat, I got to report, you’ve got a
+bomb in…</p>
+<p><strong>bella</strong>: What’s the story on your pal?</p>
+<p><strong>blane</strong>: He was born, he suffered, he died.</p>
+<p><strong>bella</strong>: How long’s he been with the girl?</p>
+<p><strong>blane</strong>: What business is it of yours?</p>
+<p><strong>bella</strong>: How long’s he been with her…?</p>
+<p><strong>pincus</strong>: How long is a chinaman’s name.</p>
+<p><strong>bella</strong>: Can he do the thing?</p>
+<p><strong>blane</strong>: He was doing the thing before you were
+born.</p>
+<p><strong>bella</strong>: Well, you see, that’s what, that’s what
+troubles me.</p>
+<p><strong>blane</strong>: Maybe you wanna pray about it.</p>
+<p><strong>bella</strong>: No, I’m not a religious man.</p>
+<p><strong>blane</strong>: That’s a shame. Who’s got the Uniforms…?</p>
+<p><strong>pincus</strong>: …I got em…</p>
+<p><strong>blane</strong>: …the rental trucks…?</p>
+<p><strong>moore</strong>: I got to redo some of these figures.</p>
+<p><strong>bella</strong>: They worked out on the plan, why all a sudden
+now, you…</p>
+<p><strong>moore</strong>: Because, lemme explain it to you: because
+when it starts to go sour, someby’s gonna be pissing their shit, look’n
+around, shoot someb’y inna head, I’d like to have an alternative idea,
+is the explanation.</p>
+<p><strong>moore</strong>: One minute twenty seconds…</p>
+<p><strong>bella</strong>: …why should it go sour?</p>
+<p><strong>moore</strong>: Y’ever cheat on a woman?</p>
+<p>****: Your girl, something…</p>
+<p>****: Stand her up?</p>
+<p><strong>bella</strong>: …what…?</p>
+<p><strong>moore</strong>: D’you ever do that?</p>
+<p><strong>bella</strong>: Yeah.</p>
+<p><strong>moore</strong>: When you called her up, d’you have an
+excuse?</p>
+<p><strong>bella</strong>: Yeah.</p>
+<p><strong>moore</strong>: What is she didn’t ask? What was your alibi,
+a waste of time?</p>
+<p><strong>bella</strong>: What was that about?</p>
+<p><strong>blane</strong>: Well, you see, that’s why he’s running the
+crew, n’you’re somebody’s fucken nephew–</p>
+<p>****: You don’t do anything without: a diversion and a back-up plan.
+Wu’un that your question…?</p>
+<p><strong>moore</strong>: I found a Hotwalker for him.</p>
+<p><strong>blane</strong>: …Fran…?</p>
+<p><strong>moore</strong>: Well, it could be…</p>
+<p><strong>blane</strong>: I don’t mean to ‘pry’</p>
+<p><strong>moore</strong>: …then don’t pry.</p>
+<p>****: I have to redo the figures on the train…</p>
+<p>****: Don’t move the car… don’t move the car…</p>
+<p>****: …is he moving the car…?</p>
+<p>****: Oh, maaan…</p>
+<p>****: Is he getting out of the car…?</p>
+<p><strong>moore</strong>: Hey: what the hell…? What the hell…? Scuse
+me, scuse me, officer, we were sposed to have a detail, doing security
+for us…</p>
+<p><strong>blane</strong>: …Bobby…?</p>
+<p>****: No, it’s no big deal, but we’re standing out here…</p>
+<p><strong>trooper</strong>: …who did you…?</p>
+<p>****: Forget about…</p>
+<p><strong>moore</strong>: No, it burns my butt… we’re out there, we’re
+out there, side-of-the-road, workin’ on the highway, for…</p>
+<p>****: I know it’s not you, I’m sorry, I know it’s not you, but…</p>
+<p><strong>trooper</strong>: …who did you…?</p>
+<p><strong>blane</strong>: …our boss talked to…</p>
+<p><strong>moore</strong>: If this was the first time…</p>
+<p><strong>blane</strong>: Hey, forget about it, we’ll sort it out back
+at the office…</p>
+<p>****: …He ain’t sure yet…</p>
+<p>****: I’m sorry, I know it’s not you, but…</p>
+<p><strong>trooper</strong>: Hey, nothing to it. If…</p>
+<p><strong>moore</strong>: But it’s not the first time… we’re sposed to
+have police pro…</p>
+<p><strong>blane</strong>: We’ll call from the office.</p>
+<p>****: He didn’t mean any offense… He didn’t mean any offense.</p>
+<p>****: …the man’s only doing his job…</p>
+<p><strong>pincus</strong>: …keep it together… keep it together…</p>
+<p><strong>bella</strong>: …can he cool the guy out…</p>
+<p><strong>pincus</strong>: Just pick up your clipboard, and make like
+you’re writing in it.</p>
+<p><strong>bella</strong>: Izzit gonna be cool…?</p>
+<p><strong>pincus</strong>: …my motherfucker is so cool, when he goes to
+bed, sheep count him…</p>
+<p><strong>moore</strong>: I’m trina… I’m trina…</p>
+<p>****: You fucken lame, you want to leave me dead, th’whole crew, the
+side of the highway?</p>
+<p><strong>moore</strong>: You fucken cowboy, I oughta</p>
+<p>****: Tell me why I don’t leave him out inna ditch somewh…</p>
+<p>****: Get us the fuck outtahere.</p>
+<p>****: Hey, I vote we do…</p>
+<p><strong>moore</strong>: …put you down like the fucken dog you are…
+you gonna come, shoot your way to stardom? Don’t do any…</p>
+<p><strong>bella</strong>: …I only</p>
+<p><strong>moore</strong>: I don’t want you to do anything unless and
+until… we hit the City, ditch the car.</p>
+<p><strong>bella</strong>: …I’ll…</p>
+<p><strong>moore</strong>: You do it, you do it.</p>
+<p>****: You do it, Pinky…</p>
+<p><strong>pincus</strong>: The thing of it is, the thing of it is, it’s
+a question of redistribution…</p>
+<p><strong>blane</strong>: How’s that?</p>
+<p><strong>pincus</strong>: The question: how do we get the money from
+there to here… it’s just a question in logistics.</p>
+<p><strong>blane</strong>: “What is the robbing of a bank, compared with
+the founding of a bank?”</p>
+<p><strong>pincus</strong>: Who said that?</p>
+<p><strong>blane</strong>: Anybody ever applied for a loan.</p>
+<p><strong>bella</strong>: …expenses for the truck, and…</p>
+<p><strong>blane</strong>: Yeah, I got it. I got it. Okay.</p>
+<p>****: Well, then…</p>
+<p><strong>fran</strong>: …that’s right.</p>
+<p><strong>bella</strong>: …long time.</p>
+<p><strong>fran</strong>: …that’s right.</p>
+<p><strong>blane</strong>: The plan gonna work?</p>
+<p><strong>moore</strong>: It’s gonna work if we make it work. How’s
+Fran doing?</p>
+<p><strong>blane</strong>: Looks like he maybe wantsa take her to the
+Prom.</p>
+<p><strong>moore</strong>: Well, it’s always the pretty girl stays home,
+innit?</p>
+<p><strong>blane</strong>: Izzat what they said in the White
+Community…?</p>
+<p><strong>moore</strong>: That’s what I hear.</p>
+<p><strong>blane</strong>: And I hear, if you get a goose, it keeps the
+fox off the chickens.</p>
+<p>****: What does that lady see in you, by the way?</p>
+<p><strong>moore</strong>: I’m very resilient.</p>
+<p><strong>blane</strong>: Yeah, so’s Gumby.</p>
+<p><strong>moore</strong>: I got a more striking profile.</p>
+<p><strong>blane</strong>: They’re gonna leave that on the cutting room
+floor, Buenos Aires.</p>
+<p><strong>moore</strong>: I never liked the way I looked anyway…</p>
+<p>****: …seems to be coming along nicely.</p>
+<p>****: My boy there, like to Fertilize the Flowers.</p>
+<p><strong>pincus</strong>: …how’s your leg?</p>
+<p><strong>blane</strong>: You should see the other guy…</p>
+<p>****: …when we do the switch, the Highway…</p>
+<p><strong>moore</strong>: …he can’t hear what you don’t say…</p>
+<p><strong>pincus</strong>: I’m gonna be as quier as an ant pissing on
+cotton.</p>
+<p>****: Don’t think it, Baby. Don’t think it: Don’t be as quiet as an
+ant pissing on cotton, don’t be quiet as an ant thinking about pissing
+on cotton. You be quiet as an ant not even thinking about pissing on
+cotton.</p>
+<p><strong>fran</strong>: …our friend was telling me “What Made Him a
+Criminal…”</p>
+<p><strong>blane</strong>: I’ll get the beer and pretzels.</p>
+<p><strong>bella</strong>: …what made you a criminal?</p>
+<p><strong>blane</strong>: Nobody made me a criminal. I am a
+Criminal.</p>
+<p><strong>moore</strong>: How we doing?</p>
+<p><strong>blane</strong>: How you doing?</p>
+<p><strong>moore</strong>: I’m done.</p>
+<p>****: Well, that’s it them.</p>
+<p><strong>bella</strong>: …din we check’em?</p>
+<p><strong>moore</strong>: I know we checked’em. What I’m doing, I’m.
+I’m asking you a question.</p>
+<p><strong>bella</strong>: What happened to Check It an Forget it?</p>
+<p><strong>moore</strong>: Yeah, well, I went to the Other camp, which
+is Fuss it to Death, and Fuck it into a Cocked Hat, or do you want to
+run the show…?</p>
+<p><strong>blane</strong>: Then we ready to Go Do it?</p>
+<p><strong>pincus</strong>: I’m ready to go do it, you know why? I never
+liked the Swiss in any case. You know why? They make those little
+clocks, two cocksuckers come out of them, little hammers, hit each other
+on the head.</p>
+<p>****: What kind of sick mentality is that?</p>
+<p><strong>bella</strong>: Z’he gonna hold up?</p>
+<p><strong>fran</strong>: Why would you put a man in a position, he’s
+got no way out?</p>
+<p><strong>bella</strong>: What is that, your philosophy?</p>
+<p><strong>fran</strong>: That’s right.</p>
+<p><strong>bella</strong>: …what is it to you?</p>
+<p><strong>fran</strong>: …he’s my Husband.</p>
+<p><strong>bella</strong>: Whose fault is that, you wanna think about
+it? Listen:…</p>
+<p><strong>bella</strong>: …you gonna make an Impassioned Speech?</p>
+<p><strong>moore</strong>: Yeah: Let’s go get the money.</p>
+<p>****: You clean the place down, n’y’thing’ll burn, burn it…, nobody’s
+coming back here, nothing that we need, don’t leave it f’somebody
+else.</p>
+<p><strong>fran</strong>: Z’it gonna work?</p>
+<p><strong>moore</strong>: It’s either gonna be a monumental heist, or a
+real amusing anecdote.</p>
+<p><strong>fran</strong>: …I love you, Joe…</p>
+<p><strong>moore</strong>: Why?</p>
+<p><strong>fran</strong>: You know why? Because you’re thorough.</p>
+<p><strong>moore</strong>: I hope to tell you…</p>
+<p><strong>bella</strong>: You gonna miss it?</p>
+<p><strong>moore</strong>: What?</p>
+<p><strong>bella</strong>: Your boat?</p>
+<p><strong>moore</strong>: Well, it’s a nice boat.</p>
+<p><strong>bella</strong>: Hey, baby, after this job, you’re gone have
+enough money, make this look like a Boat inna Bathtub.</p>
+<p><strong>moore</strong>: That’s right.</p>
+<p><strong>pincus</strong>: …they found the car.</p>
+<p><strong>moore</strong>: …what car?</p>
+<p><strong>pincus</strong>: …the car we used at the Overpass. The cops
+found it, I heard it on the police band.</p>
+<p><strong>moore</strong>: …they found it, how’d they find it? I tole
+you to it? I tole you to ditch it in…</p>
+<p><strong>pincus</strong>: I, I. I stopped off to see my niece, I…</p>
+<p><strong>moore</strong>: Did you wipe it down…?</p>
+<p><strong>blane</strong>: You sonofabitch, what do you mean, you
+stopped off to see your…</p>
+<p><strong>moore</strong>: Did you wipe it down…?</p>
+<p><strong>bella</strong>: …what does this do to the Job…?</p>
+<p><strong>blane</strong>: Man, you din’t wipe it down, they’re gonna be
+on you, they’re gonna be on all of us…</p>
+<p><strong>bella</strong>: …what about the Job…?</p>
+<p><strong>moore</strong>: The job stands…</p>
+<p><strong>pincus</strong>: …I’m sorry, Joe.</p>
+<p><strong>moore</strong>: Shut up. The job stands.</p>
+<p>****: This joint is burnt.</p>
+<p>****: Come with me…</p>
+<p><strong>moore</strong>: Meet at the Overpass.</p>
+<p><strong>bella</strong>: …the job stands…?</p>
+<p><strong>moore</strong>: The meet at the overpass. The 14th…</p>
+<p><strong>pincus</strong>: Joe. Joey, I…</p>
+<p><strong>moore</strong>: Get him out of here.</p>
+<p><strong>pincus</strong>: …I don’t see how they could of found the
+car…</p>
+<p>****: You go on…</p>
+<p><strong>pincus</strong>: Joe. Joe, I swear to God. I swear to God, I…
+are they gone…?</p>
+<p>****: They’re gone.</p>
+<p><strong>pincus</strong>: Well, then, you get gone, too.</p>
+<p><strong>moore</strong>: …that’s right.</p>
+<p><strong>pincus</strong>: You take care, Pally.</p>
+<p><strong>moore</strong>: You get his cut to Bobby…?</p>
+<p><strong>pincus</strong>: You gonna be Okay?</p>
+<p><strong>moore</strong>: I’m okay now.</p>
+<p>****: Yeah? What do you do for cash?</p>
+<p><strong>moore</strong>: …we’re taking down the Boat guy.</p>
+<p><strong>pincus</strong>: You’re taking down the boat guy…</p>
+<p><strong>moore</strong>: That’s right.</p>
+<p><strong>pincus</strong>: That’s your case money…</p>
+<p><strong>moore</strong>: It’s enough, get us away…</p>
+<p><strong>pincus</strong>: And then Aloha.</p>
+<p><strong>moore</strong>: That’s right.</p>
+<p><strong>pincus</strong>: S’a shame, you know what, we din’t get a
+chance, actually do the thing. The Swiss job. At’s a beautiful plan.</p>
+<p><strong>moore</strong>: So was World War One.</p>
+<p><strong>pincus</strong>: …no, it’s a beautiful plan, Joe. You’re the
+maestro.</p>
+<p><strong>moore</strong>: Yeah, well, it’s all in a lifetime…</p>
+<p><strong>pincus</strong>: Izzat so?</p>
+<p><strong>moore</strong>: That’s what they tell me.</p>
+<p><strong>pincus</strong>: See you, Joe.</p>
+<p><strong>moore</strong>: I’ll send you a Papaya.</p>
+<p><strong>pincus</strong>: They’re good for digestion.</p>
+<p><strong>moore</strong>: Say good-bye to your niece.</p>
+<p><strong>moore</strong>: Cute, huh?</p>
+<p><strong>pincus</strong>: …cute as a pail full of kittens…</p>
+<p><strong>moore</strong>: I would of done that.</p>
+<p><strong>fran</strong>: No, I’m the Frontier Wife.</p>
+<p><strong>moore</strong>: …that’s right…</p>
+<p><strong>fran</strong>: You ready to go?</p>
+<p><strong>moore</strong>: Soon as we get the money. Call the guy. Get
+us the money…</p>
+<p><strong>fran</strong>: You’ll miss the guys.</p>
+<p><strong>moore</strong>: Buncha Old Men, talkin’ about Old
+Touches…</p>
+<p><strong>fran</strong>: …that’s right…</p>
+<p><strong>moore</strong>: Cuttin up Old Touches, th’time So and So
+overslept. You know what…?</p>
+<p><strong>fran</strong>: No, but you do.</p>
+<p><strong>moore</strong>: Then I’ll tell you what, is pee ess, if my
+name’s on the thing, then whose fault is it in the First Place, we’re
+having, fight our way Back to Even.</p>
+<p><strong>fran</strong>: Well. You’ve been kicking yourself some…</p>
+<p><strong>moore</strong>: …that’s right.</p>
+<p><strong>fran</strong>: You did, Baby…</p>
+<p><strong>moore</strong>: Well. Help me remember it, huh…?</p>
+<p><strong>fran</strong>: …that’s right…</p>
+<p><strong>moore</strong>: You know, we’re goin’ down there with
+nothing…</p>
+<p><strong>fran</strong>: We’ll get the boat money…</p>
+<p><strong>moore</strong>: …yeah?</p>
+<p><strong>fran</strong>: That’s enough to start over.</p>
+<p><strong>moore</strong>: Is it enough for you…?</p>
+<p><strong>fran</strong>: The Lord hates a coward…</p>
+<p>****: Mr. Mr. Fletcher – Mr. Robert Fletcher… Well, do you… he asked
+me to call him back at… Thank you…</p>
+<p>****: How you doing?</p>
+<p><strong>moore</strong>: I’m about ready to go South.</p>
+<p><strong>fran</strong>: South we go, Baby.</p>
+<p><strong>moore</strong>: …that’s right.</p>
+<p>****: You set to walk away from it?</p>
+<p><strong>moore</strong>: Hey, I got you, what do I care…?</p>
+<p>****: Hello Mr…</p>
+<p>****: Smile at the man, tell im cash, I’m coming to get the money.
+Right now… find out where he…</p>
+<p><strong>fran</strong>: Hello, Mr. Fletcher, I… This is Fran, from…
+Yes, I’m sorry to… you gave me this number. On your ccc… Yes, I’m… Well,
+no, yes, I’ll be glad to call back Monday, but we aren’t going to have a
+boat… but we, we just had a situation where, if, No, I realize that,
+Sir, I don’t want to keep you from your pl… I’m calling, because you
+told me that… Well, it could wait till Monday, but we have another buyer
+interested in the bbb…</p>
+<p>****: Tell him what he needs to hear.</p>
+<p>****: Could, you, could you, hold…</p>
+<p><strong>moore</strong>: Flirt with the guy.</p>
+<p>****: No problem. Can we meet him at His Bank.</p>
+<p><strong>moore</strong>: Superior. You get the address. When?</p>
+<p>****: I caught him going out of town, he… he wants to meet next…</p>
+<p><strong>moore</strong>: Right now. Right now, tell him we got another
+buyer, we…</p>
+<p><strong>moore</strong>: …would you move into the light…? No, don’t
+turn around. Just move into the light…</p>
+<p>****: What’re you, the Social Service Lady?</p>
+<p><strong>moore</strong>: …what did you, come to take the Baby
+back…?</p>
+<p><strong>bella</strong>: I forgot my copy of the plans.</p>
+<p><strong>moore</strong>: How about that.</p>
+<p><strong>bella</strong>: You got to do the job, Joe.</p>
+<p>****: Lookit me like I’m your Good Angel. You can’t walk away from
+it.</p>
+<p>****: Hello… Hello…?</p>
+<p><strong>moore</strong>: …try him back…</p>
+<p><strong>fran</strong>: …hello…?</p>
+<p><strong>moore</strong>: …call him back…</p>
+<p><strong>bella</strong>: You got to do the job…</p>
+<p><strong>moore</strong>: Hold on, here…</p>
+<p>****: Mr. Fletcher. I… I was just talking with him. I… well, can you
+give me that number…? Well, can you re… can you reconnect mmm…</p>
+<p>****: I… I see.</p>
+<p><strong>moore</strong>: Din’t you just make yourself dispensable?</p>
+<p><strong>bella</strong>: You got to do the job. Can you shoot me and
+walk away from it? You know they’ll kill you.</p>
+<p><strong>moore</strong>: You my self-help program…?</p>
+<p><strong>bella</strong>: You gone shoot me, go on the run, with
+nothing? With that pretty little thing?</p>
+<p><strong>moore</strong>: That would be my wife.</p>
+<p><strong>bella</strong>: Is that so?</p>
+<p><strong>moore</strong>: That’s correct.</p>
+<p><strong>bella</strong>: What does she see in you, anyway?</p>
+<p><strong>moore</strong>: You wanna play the dozens. Here you go: They
+called, there was a bookkeeping error at the Hospital, you died at
+birth. Your turn…</p>
+<p><strong>fran</strong>: Joe, leave him…</p>
+<p><strong>moore</strong>: Eh? Cat got your tongue? You wanna make
+peace.</p>
+<p><strong>fran</strong>: …Joe</p>
+<p><strong>moore</strong>: Don’t you know when a man’s whipped, for
+chrissake?</p>
+<p><strong>fran</strong>: …slipped off.</p>
+<p><strong>moore</strong>: Call him back.</p>
+<p>****: Get him back.</p>
+<p><strong>fran</strong>: …he’s gone.</p>
+<p>****: I’m sorry, Joe.</p>
+<p>****: Get up.</p>
+<p><strong>bella</strong>: What’re you gonna do.</p>
+<p><strong>moore</strong>: I’m gonna be Don Ameche in a taxi, honey.</p>
+<p>****: Get up.</p>
+<p><strong>bella</strong>: …and what?</p>
+<p><strong>moore</strong>: Get out.</p>
+<p>****: Get out.</p>
+<p><strong>moore</strong>: It’s me, put it away.</p>
+<p><strong>blane</strong>: …the fuck you doing, sneaking in on a man,
+middle of the</p>
+<p><strong>boxer</strong>: What you doin here?</p>
+<p><strong>fran</strong>: Well, you know, I’m with my friends…</p>
+<p><strong>boxer</strong>: I don’t see nobody else here…</p>
+<p><strong>fran</strong>: No, that’s right…</p>
+<p><strong>blane</strong>: Baby, you shuunt be on the streets, the first
+place…</p>
+<p><strong>moore</strong>: …what’s the move…?</p>
+<p><strong>blane</strong>: The move is:</p>
+<p>****: The move is we got to get the gold.</p>
+<p><strong>moore</strong>: I can’t go for the gold til I can see how to
+get it home…</p>
+<p><strong>blane</strong>: Well, then, we just got to think a little
+harder.</p>
+<p>****: Yes. That’s right.</p>
+<p><strong>blane</strong>: The nephew don’t come back, the first place,
+you’re down on the Tropic Isle.</p>
+<p>****: You shoulda left him on the side of the road.</p>
+<p><strong>moore</strong>: Uh huh… why’d you leave him the plans?</p>
+<p><strong>blane</strong>: Why’d I leave him what?</p>
+<p><strong>moore</strong>: Why’d you leave him the plans?</p>
+<p><strong>blane</strong>: What…?</p>
+<p><strong>moore</strong>: He forgot his “cheat sheet.” S’why he came
+back.</p>
+<p><strong>blane</strong>: Yeah, no, he din’t forget his cheatsheet,
+cause I got it right here.</p>
+<p>****: What’m’I, going to go leaving papers in the hands of some lame?
+Are you kidding me…? He said what?</p>
+<p><strong>moore</strong>: He said that’s why he came back.</p>
+<p><strong>fran</strong>: He came back for me</p>
+<p>****: He came back to make sure I was okay.</p>
+<p>****: I knew him from before.</p>
+<p><strong>moore</strong>: Well, hell, for the luvva god, we’re going to
+do something, let’s do it. Okay. Okay: Fran:</p>
+<p><strong>fran</strong>: Yes.</p>
+<p><strong>moore</strong>: You want to suit up?</p>
+<p><strong>fran</strong>: …that’s right.</p>
+<p><strong>blane</strong>: What’s the shot?</p>
+<p>****: You got to Kiss Rings.</p>
+<p><strong>fran</strong>: …you point me.</p>
+<p>****: What’re we forgetting…?</p>
+<p><strong>blane</strong>: How did we get away with the Gold?</p>
+<p><strong>moore</strong>: Oh yeah.</p>
+<p><strong>pincus</strong>: Robert the Bruce. Watched this Spider, try,
+three hours, to spin this web…</p>
+<p><strong>moore</strong>: Uh huh…</p>
+<p><strong>pincus</strong>: Til finally…</p>
+<p><strong>moore</strong>: Yeah?</p>
+<p><strong>pincus</strong>: He succeeded.</p>
+<p><strong>blane</strong>: That’s the worst story I’ve ever heard.</p>
+<p>****: And it gave him the Idea. To conquer Scotland.</p>
+<p><strong>blane</strong>: I don’t get the connection.</p>
+<p>****: Put him on.</p>
+<p>****: Are you fucken with me? Are you fucken with me, or are you done
+fucken with me? Because I’ve just “financialized” the problem, and
+you’ve just become more trouble than you’re worth.</p>
+<p>****: She says you’re gonna do the job. You said that before, why
+now? What is it, all a sudden…?</p>
+<p>****: Everyone needs money. That’s why they call it “money…”</p>
+<p>****: Well, let me add this sweetener. You do the job. You do the
+job, r’else I turn you over, I drop a fucken dime on you, you’re so hot,
+I on’y got to dial five digits. How strict is that? How strict is that,
+you fucken lame? …I’m sorry that I have to speak this way, in front of a
+Woman… were it not for who, I’d waste your fucken ass. You said you’re
+goin’ the job? Do the job, you’re done with the Charade. Save your bold
+moves for the brilliant players.</p>
+<p>****: I’m sorry for my language.</p>
+<p><strong>fran</strong>: Well, it’s only words.</p>
+<p><strong>bergman</strong>: That’s absolutely right.</p>
+<p>****: You’re in my position, what do you do?</p>
+<p>****: What did she tell you?</p>
+<p><strong>bella</strong>: He’s scared.</p>
+<p><strong>bergman</strong>: I’ve never known him scared.</p>
+<p><strong>bella</strong>: She says he’s getting old.</p>
+<p><strong>bergman</strong>: …she said that…</p>
+<p><strong>bella</strong>: He’s broke. He’s made. The cops’re looking
+for him. He don’t want to go out there with nothing.</p>
+<p>****: She says that he’ll do the job.</p>
+<p><strong>bergman</strong>: …she does…</p>
+<p><strong>bella</strong>: …she…</p>
+<p><strong>bergman</strong>: …please…</p>
+<p><strong>bella</strong>: I think, the thing, she came to plead for
+him.</p>
+<p><strong>bergman</strong>: …she did. She came to plead for him?</p>
+<p><strong>bella</strong>: I think so.</p>
+<p><strong>bergman</strong>: The sonofabitch screwed me once, he’s gone
+screw me again. Why, why, why would she think that I’d believe her?</p>
+<p><strong>bella</strong>: She came to me…</p>
+<p><strong>bergman</strong>: To you.</p>
+<p>****: Ah.</p>
+<p><strong>bella</strong>: …yes.</p>
+<p><strong>bergman</strong>: He put her up, to come to you.</p>
+<p><strong>bella</strong>: I think she came to me on her own.</p>
+<p><strong>bergman</strong>: Well, no, but as Rational Men, don’t we
+have to “doubt” her?</p>
+<p><strong>bella</strong>: She thinks the guy’s weak, he’s scared, she’s
+scared, I think she’s sincere.</p>
+<p><strong>bergman</strong>: Then, let me put a question to you: you had
+the job… you had the job… how would you test her sincerity…?</p>
+<p>****: I’m going to see you back.</p>
+<p><strong>fran</strong>: I’ll be alright…</p>
+<p>****: Hey, you’re alright now…</p>
+<p><strong>moore</strong>: …get me the name of a freight forwarder.</p>
+<p><strong>blane</strong>: …what?</p>
+<p><strong>moore</strong>: …a freight forwarder.</p>
+<p>****: Okay. Alright.</p>
+<p><strong>pincus</strong>: …Mrs. Croft.</p>
+<p><strong>moore</strong>: What do we chat her up about?</p>
+<p><strong>pincus</strong>: She is active in the church choir. She has
+had her job for sixteen years. Last time I saw her, she had stomach
+problems… what’s the response time on the tow truck…?</p>
+<p><strong>blane</strong>: Average, forty five minutes.</p>
+<p>****: Too quick…</p>
+<p>****: On the day. Half hour before the thing, call up, three false
+breakdown calls. Keep’em buys.</p>
+<p><strong>pincus</strong>: …that’s right…</p>
+<p><strong>moore</strong>: You got to givvem breakdown calls on actual
+vehicles, which means you’ll have to go to the Rental…</p>
+<p>****: What, what kind of “freight do you want to…”</p>
+<p>****: …look here:</p>
+<p><strong>bella</strong>: …and how’s he getting his share away…?</p>
+<p><strong>fran</strong>: …what difference, you’re going to screw it out
+of him anyway…</p>
+<p><strong>bella</strong>: …what are you telling me…?</p>
+<p><strong>moore</strong>: …take the wrappers off, hang em in the air,
+get the drycleaning smell out.</p>
+<p><strong>bella</strong>: …tucking Betty Croft in…</p>
+<p><strong>blane</strong>: What’s she, out all night partying…?</p>
+<p><strong>bella</strong>: She’s a wild, wild woman…</p>
+<p>****: Alright, then. No Hard Feelings…?</p>
+<p><strong>bella</strong>: …last thing in the World…</p>
+<p><strong>moore</strong>: …I don’t give a fuck. The only thing is: Get
+the Gold. Get the gold, Baby. Get the Gold. They ain’t gonna pay for
+Yardage…</p>
+<p><strong>blane</strong>: …you feeling?</p>
+<p><strong>bella</strong>: I’m fine…</p>
+<p><strong>blane</strong>: Sometimes, th’drenaline, hits you, gives you
+the shakes…</p>
+<p><strong>bella</strong>: I’m alright.</p>
+<p><strong>blane</strong>: I’m saying, some people, adrenaline, gives’em
+the shakes… some people, mistake it for cowardice…</p>
+<p><strong>bella</strong>: I’m fine.</p>
+<p><strong>blane</strong>: …nothing wrong with prayer.</p>
+<p><strong>bella</strong>: …you think so…?</p>
+<p><strong>blane</strong>: I was in this firefight? One time?
+Motherfucker, always carried a bible, next to his heart. And we used to
+mock him. But that bible stopped a bullet.</p>
+<p><strong>bella</strong>: No shit.</p>
+<p><strong>blane</strong>: My hand to god. That bible, stopped a bullet,
+would have ruined that fucker’s heart.</p>
+<p>****: And had he had another bible, in front of his face, that man
+would be alive today. What time you got?</p>
+<p><strong>bella</strong>: Five eighteen.</p>
+<p><strong>blane</strong>: …make the call.</p>
+<p>****: Hello? I’ve, hello?</p>
+<p>****: to fix the…</p>
+<p><strong>blane</strong>: …let’s go…</p>
+<p>****: …would you do that? Thank you…</p>
+<p>****: …of my ulcer–Doctor said it’s… it isn’t the caffeine, but the
+acids in the coffee that…</p>
+<p><strong>moore</strong>: Mrs. Croft?</p>
+<p>****: Betty Croft…?</p>
+<p>****: Yes?</p>
+<p>****: My name is… could I see some identification, please? My name is
+Wilson, I’m with the F.A.A. Could I see your badge, please?</p>
+<p><strong>mrs. croft</strong>: …just coming to work…</p>
+<p><strong>moore</strong>: I understand. …I believe we’ve met before, on
+my last…?</p>
+<p>****: …You are on Gate twenty-one this morning?</p>
+<p><strong>mrs. croft</strong>: …that is correct, Sir.</p>
+<p><strong>moore</strong>: We will be conducting a Security Check. I
+will be coming through the metal detector in</p>
+<p>****: approximately ten minutes. I will be quote Armed, and carrying
+a toolkit in which are hidden three potentially lethal or dangerous
+items. This is a test of the security personnel and of the apparatus
+under your control. Now. I must caution you that, from that time to this
+you will be under covert surveillance, and should you attempt to
+communicate</p>
+<p><strong>mrs. croft</strong>: I wouldn’t…</p>
+<p>****: …you’ve been warned. Now: the guard under your supervision will
+be graded on the following:</p>
+<p><strong>fran</strong>: Here they come.</p>
+<p><strong>moore</strong>: …yeah… okay… okay… it’s okay.</p>
+<p>****: What happened to Betty? Betty Croft…?</p>
+<p><strong>coffeeman</strong>: Hey, I don’t know… she…</p>
+<p><strong>moore</strong>: Gimme a cuppacoffee.</p>
+<p>****: Gimme one of those…</p>
+<p><strong>security guard.</strong>: …up early or up late.</p>
+<p>****: Not up at all, till I get that down…</p>
+<p><strong>security guard.</strong>: I heard that.</p>
+<p><strong>moore</strong>: Where’s the, uh, where’s the girl’s usually
+here, your Supervisor? They lett’n you play all ? They lett’n you play
+all by yourself?</p>
+<p><strong>security guard.</strong>: Na, she’s got this stomach thing.
+Least little…</p>
+<p><strong>moore</strong>: Uh huh…</p>
+<p><strong>security guard.</strong>: …least little thing, sets her
+off…</p>
+<p>****: I have to inform you we have placed three bombs… Three bombs.
+Inside your facility.</p>
+<p><strong>moore</strong>: …how tired I am, I left my…</p>
+<p><strong>moore</strong>: Please tell me the code for the main
+gate.</p>
+<p>****: Who the hell d’you think you’re kidding with that lll…</p>
+<p><strong>moore</strong>: Please tell me the code.</p>
+<p><strong>pincus</strong>: …hold that door… hold that door…</p>
+<p><strong>loudspeaker</strong>: Attention… Attention, we have a code
+Four, and a Fire. I repeat, a code Four, and a Fire, at…</p>
+<p><strong>pilot</strong>: …clearance for…</p>
+<p>****: …Yes. Aero, 294. Requests permission to take the Active…</p>
+<p>****: Aero 294 for runway two-six.</p>
+<p>****: Let’s get out of here…</p>
+<p>****: …what the hell is that…?</p>
+<p><strong>pilot</strong>: Affirmative. 294, to return to Area A</p>
+<p>****: 294.</p>
+<p>****: Back to the barn…</p>
+<p>****: …yes. We understand…</p>
+<p><strong>blane</strong>: …stick with the program. Stick with the
+program…</p>
+<p><strong>moore</strong>: …we have a report of…</p>
+<p><strong>pilot</strong>: Yes, we’re getting it over the radio…</p>
+<p><strong>moore</strong>: …make sure they’re breathing…</p>
+<p><strong>blane</strong>: …let’s get with it…</p>
+<p><strong>trooper</strong>: Get the gate open…</p>
+<p>****: I got to take down your badge nnn…</p>
+<p>****: I’m holdin’ it up to the damn…</p>
+<p><strong>pincus</strong>: …the video’s out.</p>
+<p>****: Get the gate open…?</p>
+<p><strong>pincus</strong>: You’re looking at me doing it…</p>
+<p><strong>trooper</strong>: …who’s been through here…?</p>
+<p><strong>pincus</strong>: Well I. I can tell you who’s…</p>
+<p>****: Gimme a list of any…</p>
+<p><strong>pincus</strong>: I put it on, it’s all on the computer, n’the
+computer went down…</p>
+<p>****: Don’t touch the door. For Godsake. Don’t touch the door– din’t
+you hear, on the rrr… one guy, got his arm blown off, the bombsquad said
+not to…</p>
+<p>****: Honk the horn.</p>
+<p>****: …what’m I telling you…?</p>
+<p>****: Would you please, would you please…?</p>
+<p>****: Excuse me. Excuse me… No one is to leave this…</p>
+<p>****: …would you get out of the way…?</p>
+<p><strong>pincus</strong>: I’m trying to do my job, I’m</p>
+<p>****: I am a, like you, just like you, I am trying to do my
+Sworn…</p>
+<p><strong>blane</strong>: Don’t look back… don’t look back…</p>
+<p><strong>bella</strong>: How’s he… how is he…?</p>
+<p><strong>blane</strong>: Well, that’s just gonna have to be as it
+is…</p>
+<p>****: I got a broke down truck, excuse me, I called, could I speak to
+your supervisor please…? I got one of your trucks, engine failure, I
+called first at Five, five twenty, this… this is my forth call… Right
+outside the Airport.</p>
+<p>****: Industrial and 2-0-seventh, I… Yes, thank you. I’m an attorney…
+could I have your name please…? Could I have your name, please, because
+I’m going to have to speak to your supervisor…</p>
+<p>****: Four nine, go.</p>
+<p>****: Where…? Oh shit…</p>
+<p>****: Aerohelvetica. Cargo…?</p>
+<p><strong>pincus</strong>: Bay Five. Go Left. Bay Five…</p>
+<p><strong>fran</strong>: How…?</p>
+<p><strong>pincus</strong>: Wait wait wait wait wait.</p>
+<p><strong>blane</strong>: …where’s your explosion…?</p>
+<p>****: Do it…</p>
+<p>****: Here she comes…</p>
+<p><strong>moore</strong>: Is he with her…?</p>
+<p><strong>blane</strong>: Yeah he’s there.</p>
+<p>****: Where’s my diversion…?</p>
+<p><strong>pincus</strong>: I… I threw it in the garb… Joe: Joe,
+Listen:</p>
+<p><strong>moore</strong>: Where’s my explosion, I’m up here naked…</p>
+<p><strong>pincus</strong>: Joe: they got your…</p>
+<p><strong>pincus</strong>: Joe… they got your…</p>
+<p>****: How’d it go?</p>
+<p><strong>blane</strong>: It got a little tight in there.</p>
+<p>****: They got your photo.</p>
+<p><strong>moore</strong>: Who?</p>
+<p><strong>pincus</strong>: The Staties. I saw it in the car. I.</p>
+<p><strong>moore</strong>: Forget it. Let’s…</p>
+<p><strong>bella</strong>: …they got your photo…?</p>
+<p><strong>moore</strong>: Yeah, well, that’s a Hazard of the jjj…</p>
+<p><strong>bella</strong>: You can’t go through the roadblock if…</p>
+<p><strong>moore</strong>: I told you on the day, they had me, you…</p>
+<p><strong>bella</strong>: Yeah, but you… I can’t have you going through
+the…</p>
+<p><strong>moore</strong>: I stay with the gold.</p>
+<p><strong>fran</strong>: Joe, he’s right if…</p>
+<p><strong>moore</strong>: You’re gonna side with the guy, you’re gonna
+side against me? You gonna talk against me, Fran?</p>
+<p><strong>fran</strong>: I’m saying…</p>
+<p><strong>bella</strong>: Fuck it… if they got you on film I am not
+going through that with the gold and you in the truck.</p>
+<p><strong>moore</strong>: I stay with the gold.</p>
+<p>****: I stay with the gold.</p>
+<p><strong>bella</strong>: They got you on film, you got to go. You’ll
+never make the road block… Joe…</p>
+<p><strong>moore</strong>: I got to go with the gold.</p>
+<p><strong>bella</strong>: You know, your wife said it…</p>
+<p><strong>blane</strong>: Joe, we gotta go.</p>
+<p><strong>moore</strong>: You go. See you at the rendezvous…</p>
+<p><strong>pincus</strong>: …parking tickets, you’ve been here two
+days…</p>
+<p><strong>bella</strong>: …you’re burnt.</p>
+<p><strong>moore</strong>: Then we’ll all go together.</p>
+<p><strong>bella</strong>: I do not see the percentage…</p>
+<p><strong>moore</strong>: You don’t have to, Baby…</p>
+<p><strong>fran</strong>: …you can’t make the Roadblock, Joe…</p>
+<p><strong>bella</strong>: You’re burnt, for chrissake. You’re fucken
+burnt Old Man… What’re you, telling your Beads “I go with the Gold”…
+Look here: You tell me: what’re they gonna be looking harder at? You
+tell me, you here with us, or you in an empty car.</p>
+<p>****: You tell me.</p>
+<p>****: You tell me? You follow us. Through the roadblock, for
+chrissake.</p>
+<p>****: Eh? You follow us thr…</p>
+<p><strong>blane</strong>: You’re burnt, Joe. You’re burnt. It’s the
+wise thing. What do you lll…?</p>
+<p><strong>moore</strong>: I follow you to the rendezvous…</p>
+<p>****: Gimme the keys…</p>
+<p><strong>pincus</strong>: …Joe, get in the c…</p>
+<p><strong>moore</strong>: …stay with the ggg…</p>
+<p>****: You palmed the keys, you palmed the keys, you motherf…</p>
+<p><strong>fran</strong>: …no…</p>
+<p><strong>bella</strong>: Get in the truck. Get in the truck… Get in
+the truck…</p>
+<p>****: Gimme the ticket.</p>
+<p>****: Gimme the ttt…</p>
+<p><strong>fran</strong>: …you left’em up there with Joe…</p>
+<p><strong>cashier</strong>: …morning…</p>
+<p><strong>bella</strong>: I, uh…</p>
+<p>****: …get us out of here…</p>
+<p><strong>bella</strong>: I seem to’ve lost my ticket…</p>
+<p><strong>cashier</strong>: Oh, man. I’m sorry.</p>
+<p><strong>bella</strong>: …just…</p>
+<p><strong>cashier</strong>: Look, f’you c’n show me some… something,
+your airline ticket, something…</p>
+<p><strong>cashier</strong>: Sure, but, between you ’n me? They give me
+some leeway, so, f’you c’n show me some “Proof,” ’bout, how long…</p>
+<p><strong>fran</strong>: Just, would you just, however long, the…</p>
+<p><strong>cashier</strong>: …lost Ticket charge, hundred fifty dollars.
+I don’t think you…</p>
+<p><strong>fran</strong>: We’re in a hurry…</p>
+<p><strong>cashier</strong>: …you must be some kind of rich…</p>
+<p><strong>fran</strong>: You didn’t have to hit him…</p>
+<p><strong>bella</strong>: Yea? When’d you get so tough. You didn’t used
+to be so tough…</p>
+<p><strong>bella</strong>: Yeah, that’s about as close as I ever want it
+to be…</p>
+<p><strong>fran</strong>: …why did you have to hurt him…?</p>
+<p><strong>bella</strong>: …hey, din’t we make that decision…?</p>
+<p><strong>fran</strong>: Where the, where the hell, excuse me. Good
+morning. We’ve been sitting here, since…</p>
+<p><strong>mechanic</strong>: I’m sorry, we’ve got a full day… I got
+four false calls this morning, four false calls.</p>
+<p><strong>fran</strong>: That’s not going to do you a whole raft of
+good. That’s dead as Kelsey’s nuts…</p>
+<p><strong>bella</strong>: …what kind of people try to look calm…?</p>
+<p>****: Morning,</p>
+<p><strong>officer two</strong>: …would you stand away, please…?</p>
+<p>****: How long has this truck been here?</p>
+<p>****: Ask him…</p>
+<p><strong>mechanic</strong>: …the, uh, we got the first call at…</p>
+<p><strong>fran</strong>: We’ve been here since…</p>
+<p><strong>officer one</strong>: One moment, please.</p>
+<p><strong>mechanic</strong>: We got the breakdown call at five-twenty,
+this.</p>
+<p><strong>fran</strong>: This is great, this is great, a four hour
+breakdown n’i’m gonna get arrested, all in One Swell Day. Whatsa
+Charge…?</p>
+<p>****: …what you hauling…?</p>
+<p><strong>fran</strong>: Marine ’quipment.</p>
+<p><strong>officer two</strong>: Marine what…?</p>
+<p><strong>officer one</strong>: …would you open the rear, please…?</p>
+<p><strong>fran</strong>: …it’s an auxiliary engine, some rich guy’s
+toy…</p>
+<p><strong>officer</strong>: …some toy.</p>
+<p>****: …maybe he’s compensating fr’something…</p>
+<p>****: what’s the deal, what’re you looking for…?</p>
+<p><strong>officer two</strong>: How long you been out here…?</p>
+<p><strong>bella</strong>: Broke down, this morning, five, five
+fifteen…</p>
+<p><strong>officer two</strong>: What’dja eat…?</p>
+<p><strong>bella</strong>: Nothing, you know, nothing to eat… nothin’ to
+eat but luckies…</p>
+<p><strong>officer one</strong>: …you been sitting out here all
+morn…?</p>
+<p><strong>fran</strong>: You guys wanna wave your magic wand n’make it
+different, that’s awright with me…</p>
+<p><strong>bella</strong>: …look at the paperwork…</p>
+<p><strong>fran</strong>: Yeah. Lookit the paperwork. Tell you what,
+keep the paperwork.</p>
+<p><strong>officer one</strong>: Back’s clean…</p>
+<p><strong>fran</strong>: Hey, y’gonna leave, just when we’re gettin’ to
+know each other…?</p>
+<p><strong>officer two</strong>: Duty calls…</p>
+<p><strong>fran</strong>: Ships-in-the-night…</p>
+<p><strong>supervisor</strong>: I’m sorry, I believe It’ll take us four
+or five hours to… you know, f’you want, I’ll be glad, transfer your
+load…</p>
+<p><strong>bella</strong>: …thank you, but we got that thing palletted
+in there, pretty good, and… I, uh, I don’t want to change it, I’d rather
+wait.</p>
+<p><strong>supervisor</strong>: No problem, just thought I’d make the
+offer…</p>
+<p><strong>bella</strong>: I figure, we can’t be any safer than in
+here.</p>
+<p><strong>fran</strong>: …you think pretty good on your feet.</p>
+<p><strong>bella</strong>: …I think pretty good off my feet, too.</p>
+<p>****: F’you remember…</p>
+<p>****: You remember that…?</p>
+<p><strong>bella</strong>: …what is it?</p>
+<p><strong>fran</strong>: Why’d you have to hit him?</p>
+<p><strong>bella</strong>: …to make him see my point of view.</p>
+<p><strong>fran</strong>: Is he going to be alright?</p>
+<p><strong>bella</strong>: Well, you know, he’s gonna have a
+headache.</p>
+<p>****: Or is that what you’re asking?</p>
+<p>****: In which case, we’re way past that. Don’t you think?</p>
+<p>****: Because lemme run this down to you: And you tell me the error
+in my logic. One: an old man. On the run. Might as well have his face on
+a Postage Stamp. N’he’s looking for his money. Two: You and me. For
+example:</p>
+<p>****: And the prize in the Crackerjack.</p>
+<p>****: And a wet afternoon to kill. Talking about it.</p>
+<p><strong>fran</strong>: I. Uh… let’s get out of here…</p>
+<p>****: I’m getting too close to you?</p>
+<p><strong>fran</strong>: Yeah, you’re gettin’ too close to me.</p>
+<p><strong>bella</strong>: Uh huh. What? I took the thrill out of
+“slumming…”</p>
+<p><strong>fran</strong>: Let’s get to the Rendezvous.</p>
+<p><strong>bella</strong>: …we’re going to the rendezvous.</p>
+<p><strong>fran</strong>: Let’s get there.</p>
+<p><strong>bella</strong>: We got twelve hours.</p>
+<p><strong>fran</strong>: Yeah, no, let’s go now.</p>
+<p><strong>bella</strong>: The truck’s broken.</p>
+<p><strong>fran</strong>: Tell’im what’s wrong with it.</p>
+<p><strong>bella</strong>: …why don’t we just?</p>
+<p>****: Because if you sold everybody else out, why wouldn’t you sell
+me out?</p>
+<p>****: You remember the reason for that…</p>
+<p><strong>bella</strong>: S’alot of money we’ve got back there.</p>
+<p>****: I said…</p>
+<p><strong>fran</strong>: Yes. Thank you. I know what you said.</p>
+<p><strong>bella</strong>: What’re you, filled with Remorse,
+something…?</p>
+<p>****: …this is our exit.</p>
+<p><strong>bella</strong>: Are you filled with remorse…?</p>
+<p><strong>fran</strong>: …not yet.</p>
+<p><strong>bella</strong>: Well, good, cause…</p>
+<p><strong>fran</strong>: This is the exit for the meet.</p>
+<p><strong>bella</strong>: Yes, Indeed it is, but I’m going to tell you
+something…</p>
+<p>****: Take your hands off the wheel…</p>
+<p><strong>fran</strong>: …alright.</p>
+<p><strong>bella</strong>: …we’re gonna. That lame, that old lame you
+were with… he was… what did you think he was? He was a non-starter… what
+did you think… what way in hell was he going to go home with the gold?
+Based on what Fairy tale…? YOU knew that… only one who didn’t know that
+was…</p>
+<p><strong>fran</strong>: You missed the exit for the meet.</p>
+<p><strong>bella</strong>: Well, yeah, no, I told you… we aren’t going
+to the Meet.</p>
+<p>****: You know we aren’t going there.</p>
+<p>****: Why would we want to go there…?</p>
+<p><strong>fran</strong>: What am I, just going to go off with you
+forever?</p>
+<p><strong>bella</strong>: You want me to tell you why…?</p>
+<p><strong>fran</strong>: Take me to the Meet.</p>
+<p><strong>bella</strong>: There is no meet, for the luvva God. You know
+that.</p>
+<p>****: You know that.</p>
+<p>****: You know that…</p>
+<p><strong>fran</strong>: I need a drink.</p>
+<p><strong>bella</strong>: Yeah. I’ll get you a drink, and here’s a
+bracer… We left the meet at the Airport. We left the Meet, your guy went
+out, got his picture on the Videott… and let’s cut out the Shucking and
+the Jivin’: what kind of man, sends you to me, sends his wife to me… to
+“distract” me… Oh? Surprise! I was All Taken In… How About That… What a
+fool I am… Would I do that to you?</p>
+<p>****: Would I do that to you…? Except pee ess, who liked it?</p>
+<p>****: So, Old Times Sake, I’m gonna tell you something, why’nt we cut
+the nonsense, and Say What It Is?</p>
+<p><strong>fran</strong>: …I need a drink. Turn around.</p>
+<p><strong>bella</strong>: …nothing simpler.</p>
+<p><strong>fran</strong>: I, uh, I need some time, I need a little time,
+to…</p>
+<p><strong>bella</strong>: We’re gonna siddown, and I’ll draw you the
+scheme of it, the New Thing, on a Napkin.</p>
+<p><strong>fran</strong>: leave it.</p>
+<p>****: Are you crazy…</p>
+<p><strong>bella</strong>: …we can get a few, we can bury the bars, if
+we bury the bars in the…</p>
+<p>****: For godsake, walk away from it. Leave it…</p>
+<p><strong>bella</strong>: Okay. Look: we fit’em back into the
+container. We… come on, come on…</p>
+<p>****: Come on…</p>
+<p>****: The truck’s clean, for chrissake, the truck’s clean: we put it
+back together, we calla towtruck – am I gone to walkaway from all this
+gold…?</p>
+<p><strong>fran</strong>: Yeah, well, Can I, uh, can I make a credit
+card call on that phone?</p>
+<p><strong>counterman</strong>: No, I don’t think so.</p>
+<p>****: Then, anybody got a coin…?</p>
+<p>****: Excuse me, what are you looking at, All Due Respect?</p>
+<p>****: I was wondering, Maam, if you needed any assistance.</p>
+<p><strong>fran</strong>: Well, thank you, Sir. It would be nice, to
+meet a gentleman… to meet a gentleman for once in my life… But I, uh… I,
+uh…</p>
+<p>****: In fact, you know, I’m fine… I had a fight with my husband… and
+he said… I said… “then let me out of the car…” … and he did…</p>
+<p><strong>blane</strong>: How you doing?</p>
+<p><strong>moore</strong>: I ain’t feeling too well.</p>
+<p><strong>blane</strong>: …Hywest Foundry?</p>
+<p>****: We had a robbery of the pll…</p>
+<p>****: Could you check my numbers, Please…?</p>
+<p>****: Yeah, no, they got what they came for, Pal. It wasn’t
+yours…</p>
+<p><strong>moore</strong>: …thank God.</p>
+<p><strong>trooper</strong>: …precious stuff, huh?</p>
+<p><strong>moore</strong>: It would mean my job…</p>
+<p><strong>mother</strong>: …Uncle Donn to get up so early in the
+morning, Walk you to the Bus Today.</p>
+<p><strong>pincus</strong>: Glad to do it, glad to do it, glad to do
+it.</p>
+<p>****: …come over for dinner, Thursday.</p>
+<p><strong>pincus</strong>: Waal, we’re gonna have to see…</p>
+<p><strong>girl</strong>: …come to dinner.</p>
+<p><strong>pincus</strong>: We’re gonna have to see.</p>
+<p><strong>girl</strong>: You always say that, and it means you
+won’t.</p>
+<p><strong>pincus</strong>: Well, it’s possible, it’s possible, you see,
+that my ‘business’…</p>
+<p><strong>girl</strong>: …uh huh…</p>
+<p><strong>pincus</strong>: …that I might have to go ‘travelling’ for a
+while…</p>
+<p><strong>girl</strong>: Why can’t you do your business here?</p>
+<p><strong>pincus</strong>: Wish I could, Baby. Fact it. Fact is: I got
+to get out of here, this morning.</p>
+<p><strong>girl</strong>: This morning?</p>
+<p><strong>pincus</strong>: That’s when my plane leaves.</p>
+<p><strong>girl</strong>: …there’s the bus…</p>
+<p><strong>pincus</strong>: Well, there you go. Times change. My day,
+all kids, had to walk all the way to school.</p>
+<p><strong>girl</strong>: Yes. But the streets were safer.</p>
+<p><strong>pincus</strong>: Izzat so…?</p>
+<p>****: You take care of yourself, kid…</p>
+<p><strong>girl</strong>: Bye, Uncle Donny…</p>
+<p><strong>pincus</strong>: Good day for the race.</p>
+<p><strong>bergman</strong>: What race is that?</p>
+<p><strong>pincus</strong>: The Human Race.</p>
+<p>****: Kids growing up, so on…</p>
+<p>****: Hope of the Future.</p>
+<p><strong>thug</strong>: Get in the fucken car.</p>
+<p><strong>bergman</strong>: Get in the car.</p>
+<p>****: …where’s pinky…?</p>
+<p><strong>bergman</strong>: Where’s the Gold?</p>
+<p><strong>pincus</strong>: Well, I, uh, I, uh, I, you know, I’m
+reluctant to tell you.</p>
+<p><strong>bergman</strong>: When we put it to you.</p>
+<p>****: You know when we put it to you, you’re gone be telling us the
+gross national product of Bolivia…</p>
+<p><strong>pincus</strong>: …hey…</p>
+<p><strong>bergman</strong>: You’re gonna be telling us the area codes,
+Belgium and Luxembourg…</p>
+<p><strong>pincus</strong>: Hey, look: Z’all I know…</p>
+<p><strong>bergman</strong>: This is all you know. This is all you know…
+This is all you know. N’we got you, going to St. Croix</p>
+<p>****: Where’s your share? How do you pick up your share, and where’s
+the meet? WHERE’S THE</p>
+<p><strong>pincus</strong>: What’re you, gonna hurt me…?</p>
+<p><strong>bergman</strong>: Yeah, no, actually</p>
+<p>****: No, I’m not going to hurt you. No.</p>
+<p><strong>pincus</strong>: The way you’re looking at the deal the deal
+was we get away with the gold. Cute huh?</p>
+<p><strong>bergman</strong>: Yeah, no. It’s charming. And then what?</p>
+<p><strong>pincus</strong>: We, uh, we “slip away.”</p>
+<p><strong>bergman</strong>: You “slip away.” Me and my guys go to the
+Meet, we find a truck full of Pig Iron. Zat the thing?</p>
+<p><strong>pincus</strong>: Well, you know, Joe figured, you weren’t
+never going to the Meet.</p>
+<p><strong>bergman</strong>: He did… And where’s the Gold. Where’s the
+Gold all this time?</p>
+<p>****: Y’know? Your guy din’t get it in his head, fly off on a
+Variation, we’re out on the Patio right now, and everybody’s got a
+Margarita. Where’s the Gold?</p>
+<p><strong>pincus</strong>: …You know:</p>
+<p><strong>bergman</strong>: Yeah, no, where’s the Gold, what’s the
+Back-up Plan…?</p>
+<p><strong>pincus</strong>: You can understand my reluctance to tell
+you.</p>
+<p>****: Take him and show him something…</p>
+<p><strong>blane</strong>: Fran…?</p>
+<p><strong>moore</strong>: No, she won’t be calling in till she ditches
+the guy.</p>
+<p><strong>blane</strong>: How’s she gonna ditch him?</p>
+<p><strong>moore</strong>: She could talk her way outta a sunburn.</p>
+<p><strong>blane</strong>: …and then where’s Pinky…?</p>
+<p><strong>moore</strong>: Let’s finish up…</p>
+<p>****: Joe.</p>
+<p>****: …Yeah. How you doing?</p>
+<p>****: Just to check in.</p>
+<p>****: Fine. Finest kind.</p>
+<p>****: Yeah, no, I saw the truck go through, too. Innit. See you at
+the meet.</p>
+<p>****: Yeah.</p>
+<p>****: Yeah. Checked in.</p>
+<p>****: The meet is at.</p>
+<p>****: …and where’s the Gold…</p>
+<p>****: …you’re shitting me… Hah. Yeah. yeah. Well, no, thank you…</p>
+<p><strong>pincus</strong>: …alright…?</p>
+<p><strong>thug</strong>: Yeah, alright.</p>
+<p><strong>blane</strong>: Pinky Called.</p>
+<p><strong>moore</strong>: Yeah.</p>
+<p><strong>blane</strong>: What’s the report?</p>
+<p><strong>moore</strong>: Says he’s fine.</p>
+<p><strong>blane</strong>: He said so, huh?</p>
+<p><strong>moore</strong>: That’s what he said.</p>
+<p><strong>blane</strong>: Well…</p>
+<p><strong>moore</strong>: Good of him to keep in touch.</p>
+<p><strong>moore</strong>: How’re you doing? Blane’s Okay. Billy’s Okay,
+Pinky called, he…</p>
+<p><strong>bergman</strong>: Yeah, yeah, what there was a change in
+Plans…? You couldn’t get to me to tell me?</p>
+<p><strong>moore</strong>: Let my wife go.</p>
+<p><strong>bergman</strong>: Do you mind if I say something
+personal?</p>
+<p>****: You wife’s a whore. She’n’you, ’ve fucked this perfect little
+plan, into…</p>
+<p>****: Well. Do you want to wrap it up, or you want to stand around
+out here, guess my Real Name?</p>
+<p><strong>moore</strong>: What is your real name?</p>
+<p><strong>bergman</strong>: It’s Rumplestiltskin.</p>
+<p><strong>moore</strong>: What was it before you changed it?</p>
+<p><strong>fran</strong>: Don’t hurt him…</p>
+<p><strong>bergman</strong>: You had to go out on a limb – you had to go
+out on a limb, Didn’t you…? Didn’t you…</p>
+<p><strong>moore</strong>: Let the girl go, I’ll give up the gold.</p>
+<p><strong>bergman</strong>: Yeah, we had, basically, we had in mind a
+different deal… a different deal. How bout that, I hear, if you’re
+flexible, it Keeps you Young.</p>
+<p><strong>moore</strong>: I’ll give up the Gold, Me and the girl leave
+on the boat.</p>
+<p><strong>bergman</strong>: Well, that’s very sentimental. But what if
+the gold’s on the boat.</p>
+<p><strong>moore</strong>: Search the boat.</p>
+<p><strong>bergman</strong>: Yeah, no, I don’t got to search the
+boat.</p>
+<p><strong>bergman</strong>: Yeah, no, your wife just made another deal.
+The deal she made, we get the gold, we let you live. Whaddaya think?</p>
+<p><strong>moore</strong>: You let me walk away.</p>
+<p><strong>bergman</strong>: That’s right.</p>
+<p><strong>moore</strong>: Me and her.</p>
+<p><strong>bella</strong>: Well, not quite.</p>
+<p><strong>moore</strong>: What did you do to her…</p>
+<p><strong>fran</strong>: I gave you up, Baby. I gave up the gold.</p>
+<p><strong>bergman</strong>: Yeah, that’s what we did for her, we let
+you live.</p>
+<p><strong>fran</strong>: I gave you up. I had to.</p>
+<p>****: Let’s get this boat out of here.</p>
+<p>****: We’re letting you live cause it makes the broad happy. That’s
+what she traded us for the gold.</p>
+<p><strong>moore</strong>: Hold on, hold on, let’s siddown…</p>
+<p><strong>bergman</strong>: Oh, yeah, let’s siddown. You fucken dog
+inna manger, we sit here a little long enough, the Boys in Blue come
+visit, n’there goes the neighborhood…</p>
+<p><strong>moore</strong>: One second. Hold on…</p>
+<p><strong>bergman</strong>: You’re bust, Baby. You got Broke… go cry a
+little</p>
+<p>****: You fortunate motherfucker, she don’t step up, you’re gone stay
+here, for, like, a little bit of forever…</p>
+<p><strong>moore</strong>: Take the gold. Take the gold off, leave me
+the boat.</p>
+<p><strong>bergman</strong>: Don’t make me lose my respect for you. By
+the way, we already had the gold. Pincus gave it up. That’s what she
+traded for your life.</p>
+<p>****: She’s got a very commercial mind…</p>
+<p>****: Get a number, call’im up, we need a private slip, what do you
+call it, a shed. Tell’im we’ll pay in cash. Get the thing squared away,
+we’ll take the gold out…</p>
+<p>****: You don’t want to stay here, pal. They’re coming for you…
+they’re coming for you…</p>
+<p>****: Leave him some money. Give him some money… don’t let him go out
+there with nothing…</p>
+<p><strong>bergman</strong>: Yeah, we don’t want, to send you out there
+broke… here: go buy yourself something nice… You don’t mind if I pay you
+in Gold…?</p>
+<p><strong>moore</strong>: Where would you like it to be…?</p>
+<p><strong>bergman</strong>: What is it, with your pal…?</p>
+<p><strong>moore</strong>: How you doing?</p>
+<p><strong>blane</strong>: I’m leaking?</p>
+<p>****: You hurt?</p>
+<p><strong>bergman</strong>: Cute. Very cute.</p>
+<p><strong>moore</strong>: I just did.</p>
+<p>****: I hear…</p>
+<p><strong>moore</strong>: Hey, you can’t worry about every little
+thing…</p>
+<p><strong>waitress</strong>: Heat it up?</p>
+<p>****: No, I think we gotta be moving on.</p>
+<p><strong>blane</strong>: Too bad about Pinky.</p>
+<p><strong>moore</strong>: Ain’t that so.</p>
+<p><strong>blane</strong>: …always made me laugh.</p>
+<p><strong>moore</strong>: Well, what more can you say of anyone?</p>
+<p><strong>blane</strong>: Nothing…</p>
+<p><strong>moore</strong>: Yeah?</p>
+<p><strong>blane</strong>: Why’d they call him Robert “The” Bruce…</p>
+<p><strong>moore</strong>: …what?</p>
+<p><strong>blane</strong>: Why’d they call him Robert “The” Bruce?</p>
+<p><strong>moore</strong>: Because he asked them to.</p>
+<p><strong>blane</strong>: Y’go to that Plastic Surgeon, don’t lettem
+put you all the way under. I knew a guy in Statesville, went to get his
+face fixed, woke up, sucker’d given him a pair of tits.</p>
+<p><strong>moore</strong>: Yeah, that’s no bargain.</p>
+<p><strong>blane</strong>: Well, he landed back inside, he never had to
+want for Cigarettes…</p>
+<p><strong>moore</strong>: Send your cut there…?</p>
+<p><strong>blane</strong>: Wire it there, when you get where you’re
+going.</p>
+<p><strong>moore</strong>: That I will, Pal.</p>
+<p><strong>blane</strong>: I hear it’s nice down there in the Sun.</p>
+<p><strong>moore</strong>: Zat where I’m going?</p>
+<p><strong>blane</strong>: Wherever it is, Brother, don’t come back.</p>
+<p><strong>moore</strong>: Yeah, I knew you’d show.</p>
+<p><strong>fran</strong>: Good, good plan, baby…</p>
+<p><strong>moore</strong>: Yeah, I wouldn’t clear my throat, without a
+backup plan…</p>
+<p><strong>fran</strong>: That’s the right way to do it.</p>
+<p><strong>moore</strong>: End of the day, though, end of the day,
+what’s the important thing…?</p>
+<p><strong>fran</strong>: That’s right.</p>
+<p><strong>moore</strong>: What’s the important thing…?</p>
+<p><strong>fran</strong>: Shame about Pinky…</p>
+<p><strong>moore</strong>: You heard.</p>
+<p>****: Come on, get in.</p>
+<p><strong>fran</strong>: Y’all loaded up?</p>
+<p><strong>moore</strong>: C’mon, get in, we’ll talk on the road. You
+heard about Pinky…</p>
+<p><strong>fran</strong>: Yeah. I heard. I’m sorry about that.</p>
+<p><strong>moore</strong>: Yeah, well, it just went bad there, that
+little bit. Dinnit…?</p>
+<p><strong>fran</strong>: Yes, It did.</p>
+<p><strong>moore</strong>: …yes, it did… it got kind of convincing.</p>
+<p><strong>fran</strong>: …and, so, you got hurt.</p>
+<p><strong>moore</strong>: Well, you can’t do it halfway, can you…?</p>
+<p><strong>fran</strong>: No, anything you do, you got to do full-out.
+Don’t you?</p>
+<p><strong>moore</strong>: Indeed you do.</p>
+<p><strong>fran</strong>: And, sometimes…</p>
+<p>****: Then, that’s just the Price.</p>
+<p><strong>fran</strong>: That’s right. That’s what you taught me.
+That’s part of it.</p>
+<p><strong>moore</strong>: Well, but didn’t you do great. Played it down
+to the last recorded syllable…</p>
+<p><strong>fran</strong>: I went to a good school.</p>
+<p><strong>moore</strong>: Never seen it done n’y better. You hotwalked
+that dude so good.</p>
+<p><strong>fran</strong>: …thank you, Joe.</p>
+<p><strong>moore</strong>: Cooled him out the livelong day. You made it
+look so real.</p>
+<p>****: …yes, you did.</p>
+<p><strong>fran</strong>: Well, you know…</p>
+<p><strong>moore</strong>: …what d’you mean, “that’s part of it?”</p>
+<p><strong>fran</strong>: I don’t get you?</p>
+<p><strong>moore</strong>: I was talking about Pinky.</p>
+<p><strong>fran</strong>: Uh huh.</p>
+<p><strong>moore</strong>: I said we paid the price. And you said. We
+paid part of it.</p>
+<p><strong>fran</strong>: Yes. That’s right.</p>
+<p><strong>moore</strong>: …what’s the rest of it…?</p>
+<p>****: What’s the rest of it…?</p>
+<p><strong>bella</strong>: Well. They don’t always leave with the Ones
+they came In with.</p>
+<p>****: Oh.</p>
+<p>****: It was dead, anyway.</p>
+<p>****: You know it was.</p>
+<p><strong>moore</strong>: Was it…?</p>
+<p>****: You shouldn’t of sent me to him.</p>
+<p><strong>moore</strong>: Well, you can’t think of everything.</p>
+<p><strong>moore</strong>: I’m sorry.</p>
+<p><strong>fran</strong>: Well…</p>
+<p><strong>moore</strong>: I’m sorry…</p>
+<p><strong>fran</strong>: You knew it was over…</p>
+<p>****: …it’s in the back.</p>
+<p>****: Why dun’ he shoot me?</p>
+<p><strong>fran</strong>: Cause it’s over. It’s all done. That’s the
+deal.</p>
+<p><strong>moore</strong>: He ain’t gonna shoot me?</p>
+<p><strong>fran</strong>: No.</p>
+<p><strong>moore</strong>: Then he hadn’t aughta point a gun at me.</p>
+<p>****: It’s insincere…</p>
+<p>****: I’m sorry, Baby.</p>
+<p><strong>moore</strong>: Well, no. You told me, “you knew him
+before.”</p>
+<p><strong>fran</strong>: That’s right. I did.</p>
+<p>****: I’m sorry.</p>
+<p><strong>moore</strong>: You said that.</p>
+<p>****: Well.</p>
+<p>****: You must be under quite a lot of stress.</p>
+<p><strong>fran</strong>: Hmm.</p>
+<p><strong>moore</strong>: It was a pretty plan, though, wunnit…?</p>
+<p><strong>fran</strong>: Cute as a Chinese baby…</p>
+<p><strong>moore</strong>: Thanks for everything.</p>
+<p><strong>fran</strong>: You’ll be alright.</p>
+<p><strong>moore</strong>: You think so?</p>
+<p><strong>fran</strong>: You always are.</p>
+<p><strong>moore</strong>: Well, I missed this trick, though, didn’t</p>
+<p><strong>fran</strong>: …the best laid plans of mice and men…</p>
+<p><strong>moore</strong>: …what?</p>
+<p><strong>fran</strong>: I said Nobody’s Perfect.</p>
+<p>****: You take care.</p>
+<p>****: Alright, let’s go.</p>
+</body>
+</html>

@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>peeping-tom</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="peeping-tom">peeping-tom</h1>
+<p><strong>dora</strong>: It’ll be two quid…</p>
+<p><strong>man</strong>: Hey, you peeping…</p>
+<p><strong>small man</strong>: What paper are you from?</p>
+<p><strong>mark</strong>: I beg your pardon?</p>
+<p><strong>small man</strong>: What paper are you from?</p>
+<p><strong>mark</strong>: The Observer.</p>
+<p><strong>mr. peters</strong>: You’re late!</p>
+<p><strong>mark</strong>: Sorry, sir.</p>
+<p><strong>mr. peters</strong>: Hold on, Mark.</p>
+<p><strong>mr. peters</strong>: Mark… I’ve a question for you.</p>
+<p><strong>mr. peters</strong>: Which magazines sell the most
+copies?</p>
+<p><strong>mark</strong>: Those with girls on the front covers - and no
+front covers on the girls.</p>
+<p><strong>mr. peters</strong>: Exactly!… And it’s just the same with
+the work you do for me.</p>
+<p><strong>mr. peters</strong>: Look busy.</p>
+<p><strong>elderly gentleman</strong>: The Times, please.</p>
+<p><strong>mr. peters</strong>: Certainly, sir.</p>
+<p><strong>elderly gentleman</strong>: And The Telegraph.</p>
+<p><strong>mr. peters</strong>: Certainly, sir - anything else?</p>
+<p><strong>elderly gentleman</strong>: I… er… have been told by a friend
+that you… er… have some views for sale?</p>
+<p><strong>mr. peters</strong>: What sort of views, sir?</p>
+<p><strong>elderly gentleman</strong>: Well, er…</p>
+<p><strong>mr. peters</strong>: This sort, sir?</p>
+<p><strong>elderly gentleman</strong>: I, er… how much each?</p>
+<p><strong>mr. peters</strong>: Five shillings, sir.</p>
+<p><strong>elderly gentleman</strong>: I’ll take this one… and, er… this
+one… and, er… how much would the lot be?</p>
+<p><strong>mr. peters</strong>: To you - five pounds, sir…</p>
+<p><strong>mr. peters</strong>: Tell you what, sir. Four pounds ten -
+and I’ll throw in The Times and Telegraph… how’s that?</p>
+<p><strong>elderly gentleman</strong>: Well, er… thank you very
+much.</p>
+<p><strong>mr. peters</strong>: Let me wrap it for you, sir.</p>
+<p><strong>mr. peters</strong>: Shall I put you on our mailing list?</p>
+<p><strong>elderly gentleman</strong>: Oh no! But I’ll look in
+again…</p>
+<p><strong>mr. peters</strong>: By all means, sir.</p>
+<p><strong>mr. peters</strong>: He won’t be doing the crossword
+tonight!</p>
+<p><strong>mr. peters</strong>: Those pictures he chose… were all yours!
+This is yours!</p>
+<p><strong>mr. peters</strong>: And this is yours too…</p>
+<p><strong>mr. peters</strong>: And that’s what I want to talk to you
+about. It’s a clever picture - because you’re a clever lad… but, Mark…
+It’s all face.</p>
+<p><strong>mr. peters</strong>: I don’t want to hurt your feelings, son
+- but if people want the Mona Lisa they go to the National Gallery.</p>
+<p><strong>mark</strong>: The Louvre.</p>
+<p><strong>mr. peters</strong>: Well, wherever they go, they don’t come
+here… so no more of this fancy stuff…</p>
+<p><strong>mr. peters</strong>: … now get upstairs - the girls are
+waiting… and so is a bonus if you give me what I want.</p>
+<p><strong>mark</strong>: Thank you, sir.</p>
+<p><strong>mr. peters</strong>: What do you do with all your money?</p>
+<p><strong>mark</strong>: Buy cameras.</p>
+<p><strong>milly</strong>: Well look who’s here! Cecil Beaton!</p>
+<p><strong>milly</strong>: Come on, sonny… make us famous.</p>
+<p><strong>milly</strong>: Did you read about that girl who was murdered
+last night?</p>
+<p><strong>milly</strong>: The same thing nearly happened to me!</p>
+<p><strong>lorraine</strong>: When?</p>
+<p><strong>milly</strong>: Last night! I went out with my boyfriend…
+We’re getting married next month… trouble was my fiance saw us.</p>
+<p><strong>milly</strong>: can you fix it so the bruises don’t show?</p>
+<p><strong>milly</strong>: Well, can you?</p>
+<p><strong>mark</strong>: …think so, Milly.</p>
+<p><strong>milly</strong>: Then be quick about it, sonny! I’m
+freezing.</p>
+<p><strong>milly</strong>: There he goes again! What have you got under
+there? A girlfriend?</p>
+<p><strong>milly</strong>: I suppose you have a girlfriend?</p>
+<p><strong>mark</strong>: No, Milly.</p>
+<p><strong>milly</strong>: Hear that, Lorraine? He’s available.</p>
+<p><strong>mark</strong>: Raise your head, please - and look at the
+sea.</p>
+<p><strong>milly</strong>: What sea?</p>
+<p><strong>milly</strong>: What sea?</p>
+<p><strong>mark</strong>: I just wanted that puzzled look.</p>
+<p><strong>milly</strong>: Oh, did you? Well if you want it again, I’ll
+think of you!</p>
+<p><strong>milly</strong>: You’re a puzzle and a half.</p>
+<p><strong>milly</strong>: This is a spare time job for you, isn’t
+it?</p>
+<p><strong>mark</strong>: Yes, Milly.</p>
+<p><strong>milly</strong>: Well, what do you do for a living?</p>
+<p><strong>mark</strong>: Take pictures.</p>
+<p><strong>milly</strong>: This sort?</p>
+<p><strong>mark</strong>: No, Milly.</p>
+<p><strong>milly</strong>: Don’t you like this sort?</p>
+<p><strong>mark</strong>: No, Milly.</p>
+<p><strong>milly</strong>: Well what sort do you like?</p>
+<p><strong>mark</strong>: I may show you - one day.</p>
+<p><strong>milly</strong>: That’ll be a treat, I’m sure.</p>
+<p><strong>mark</strong>: That’s all, Milly.</p>
+<p><strong>milly</strong>: Oh no, sonny! Now take one I can show my
+mother.</p>
+<p><strong>mark</strong>: Think of her then.</p>
+<p><strong>mr. peters</strong>: On the house.</p>
+<p><strong>milly</strong>: Some house! Hope it falls on his ruddy
+earhole!</p>
+<p><strong>milly</strong>: It’s your turn now, love…</p>
+<p><strong>milly</strong>: … it’s her first time.</p>
+<p><strong>milly</strong>: Come on, love. Don’t be shy.</p>
+<p><strong>lorraine</strong>: He said… you needn’t photograph my
+face!</p>
+<p><strong>mark</strong>: I want to.</p>
+<p><strong>lorraine</strong>: I suppose you’ll fix my bruises too?</p>
+<p><strong>mark</strong>: I want to…</p>
+<p><strong>milly</strong>: What about the customers?</p>
+<p><strong>mark</strong>: You needn’t be shy… of me… it’s my first time
+too.</p>
+<p><strong>lorraine</strong>: Yours?</p>
+<p><strong>mark</strong>: In front of eyes… like…</p>
+<p><strong>mark</strong>: …eyes… as full of…</p>
+<p><strong>mark</strong>: Lorraine - let my camera tell you.</p>
+<p><strong>young people</strong>: Happy birthday to you, Happy birthday
+to you,</p>
+<p><strong>tony</strong>: Happy birthday… dear Helen</p>
+<p><strong>tony</strong>: happy birthday to you.</p>
+<p><strong>young people</strong>: Twenty-one today, She’s twenty-one
+today, She’s got the key of the door, She’s never been twenty-one
+before.</p>
+<p><strong>mrs. partridge</strong>: You must be very proud of your
+daughter, Mrs. Stephens.</p>
+<p><strong>tony</strong>: May I?</p>
+<p><strong>young man</strong>: Look!</p>
+<p><strong>tony</strong>: It’s that chap from upstairs.</p>
+<p><strong>helen</strong>: I’ll ask him in…</p>
+<p><strong>helen</strong>: Excuse me!</p>
+<p><strong>helen</strong>: I don’t know how many times we’ve passed each
+other on the stairs?</p>
+<p><strong>helen</strong>: … but tonight I’m determined at least to say
+hello to you! So hello!</p>
+<p><strong>helen</strong>: I’m Helen Stephens.</p>
+<p><strong>helen</strong>: I’m having a party - and the other tenants
+are there… And a few friends. We’d like you to join us.</p>
+<p><strong>mark</strong>: Mark…</p>
+<p><strong>helen</strong>: Pardon?</p>
+<p><strong>mark</strong>: I’m Mark…</p>
+<p><strong>helen</strong>: Hallo, Mark.</p>
+<p><strong>helen</strong>: Please come in… you’ll meet the others who
+live here, and…</p>
+<p><strong>mark</strong>: Thank you, but… work.</p>
+<p><strong>helen</strong>: Oh…</p>
+<p><strong>helen</strong>: Well, I hope to keep it going for hours yet…
+so when you’ve finished why not look in?</p>
+<p><strong>helen</strong>: …Mark?</p>
+<p><strong>tony</strong>: Darling, your cake - everyone’s waiting.</p>
+<p><strong>mark</strong>: Thank you.</p>
+<p><strong>mark</strong>: Happy Birthday.</p>
+<p><strong>mark</strong>: …minute…</p>
+<p><strong>helen</strong>: I hope I’m not disturbing you?</p>
+<p><strong>helen</strong>: I knew you wouldn’t come down… so I’ve
+brought you this.</p>
+<p><strong>mark</strong>: Thank you…</p>
+<p><strong>mark</strong>: … very much…</p>
+<p><strong>helen</strong>: I mustn’t keep you from your work</p>
+<p><strong>mark</strong>: I’d like to offer you a drink.</p>
+<p><strong>helen</strong>: Thank you, Mark.</p>
+<p><strong>mark</strong>: I haven’t one.</p>
+<p><strong>helen</strong>: I’d adore some water.</p>
+<p><strong>helen</strong>: a hostess can’t drink water at her own party,
+it looks like a hint to the guests.</p>
+<p><strong>mark</strong>: Will you… would you… like to come in?</p>
+<p><strong>helen</strong>: Yes, Mark…</p>
+<p><strong>mark</strong>: There’s milk… if you’d like some?</p>
+<p><strong>helen</strong>: Very much… if you can spare it?</p>
+<p><strong>mark</strong>: Yes.</p>
+<p><strong>helen</strong>: Thank you, Mark…</p>
+<p><strong>helen</strong>: This is a pleasant room… and you’ve another
+inside?</p>
+<p><strong>mark</strong>: Yes.</p>
+<p><strong>helen</strong>: How long have you lived here?</p>
+<p><strong>mark</strong>: All my life.</p>
+<p><strong>mark</strong>: I was born in this house Oh?</p>
+<p><strong>mark</strong>: It’s my father’s.</p>
+<p><strong>helen</strong>: Do you mean I’ve at last found out who our
+landlord is? Your father?</p>
+<p><strong>mark</strong>: Well - no… he’s dead!</p>
+<p><strong>mark</strong>: I’m the landlord.</p>
+<p><strong>mark</strong>: Yes.</p>
+<p><strong>helen</strong>: But you walk about as if you haven’t paid the
+rent.</p>
+<p><strong>mark</strong>: I haven’t.</p>
+<p><strong>helen</strong>: I meant…</p>
+<p><strong>mark</strong>: I know.</p>
+<p><strong>mark</strong>: It’s his house - and I’ll never sell it… but I
+can’t afford the upkeep, so I let rooms.</p>
+<p><strong>mark</strong>: … if I charge too much, tell me and I’ll tell
+the agents.</p>
+<p><strong>helen</strong>: The rent’s very reasonable, but don’t say
+anything to the others or you’ll have no peace.</p>
+<p><strong>mark</strong>: Peace…?</p>
+<p><strong>helen</strong>: Mark, what do you do?</p>
+<p><strong>mark</strong>: Most of the time, I work in a film studio.</p>
+<p><strong>helen</strong>: On the photographic side, I’ll bet.</p>
+<p><strong>mark</strong>: I hope to be a film director… very soon.</p>
+<p><strong>helen</strong>: How exciting.</p>
+<p><strong>mark</strong>: I have some spare time jobs… as well.</p>
+<p><strong>helen</strong>: To do with photography?</p>
+<p><strong>mark</strong>: More milk?</p>
+<p><strong>helen</strong>: No thank you… to do with photography?</p>
+<p><strong>mark</strong>: Yes… to do with photography…</p>
+<p><strong>helen</strong>: When I came in were you looking at some
+films?</p>
+<p><strong>mark</strong>: Yes.</p>
+<p><strong>helen</strong>: Of yours?</p>
+<p><strong>mark</strong>: Yes.</p>
+<p><strong>helen</strong>: I’d like to see them…</p>
+<p><strong>helen</strong>: Know I’m being rude… but I really would like
+to see them… …it would be a birthday present… from you to me.</p>
+<p><strong>mark</strong>: Would it?</p>
+<p><strong>helen</strong>: Yes, Mark.</p>
+<p><strong>mark</strong>: Oh…</p>
+<p><strong>helen</strong>: But I suppose you’re too busy?</p>
+<p><strong>mark</strong>: Will you… would you… like to see them now?</p>
+<p><strong>helen</strong>: Thank you…</p>
+<p><strong>mark</strong>: I’ll… go first.</p>
+<p><strong>helen</strong>: This is so… well - so many things… but above
+all - it’s so…</p>
+<p><strong>helen</strong>: …completely unexpected!</p>
+<p><strong>helen</strong>: Is all of it yours?</p>
+<p><strong>mark</strong>: Yes.</p>
+<p><strong>helen</strong>: I mean… is it designed by you? Furnished by
+you? Tell me about this room.</p>
+<p><strong>mark</strong>: It belonged to my father</p>
+<p><strong>helen</strong>: What was he?</p>
+<p><strong>mark</strong>: Scientist…</p>
+<p><strong>helen</strong>: Then this equipment was his?</p>
+<p><strong>mark</strong>: No…</p>
+<p><strong>mark</strong>: Sold his to buy it…</p>
+<p><strong>helen</strong>: But it seems to be so… technical.</p>
+<p><strong>helen</strong>: If this is where you work, I can’t wait to
+see what you work at.</p>
+<p><strong>mark</strong>: Don’t know what to show you?</p>
+<p><strong>helen</strong>: Well… what were you looking at when I
+interrupted you?</p>
+<p><strong>mark</strong>: All right!</p>
+<p><strong>mark</strong>: This is the first… twenty-first birthday
+present… I’ll ever have given.</p>
+<p><strong>helen</strong>: It’s the first I’ve ever asked for…</p>
+<p><strong>helen</strong>: Mark, what a beautiful child.</p>
+<p><strong>helen</strong>: Who is he?</p>
+<p><strong>mark</strong>: Me</p>
+<p><strong>helen</strong>: Of course it is! Then who took this film?</p>
+<p><strong>mark</strong>: My Father.</p>
+<p><strong>helen</strong>: What a wonderful idea…</p>
+<p><strong>helen</strong>: You’ll be able to show it to your own
+chi…</p>
+<p><strong>helen</strong>: You must have had a bad dream…</p>
+<p><strong>helen</strong>: …but what was that light? …The camera, I
+suppose?</p>
+<p><strong>helen</strong>: Whatever are you after?</p>
+<p><strong>helen</strong>: Naughty boy I hope you were spanked!</p>
+<p><strong>helen</strong>: … but, Mark… what a strange thing for your
+father to photograph.</p>
+<p><strong>mark</strong>: Switch off?</p>
+<p><strong>helen</strong>: No.</p>
+<p><strong>helen</strong>: No.</p>
+<p><strong>mrs. stephens</strong>: Tony!</p>
+<p><strong>tony</strong>: Me, Mrs. Stephens?</p>
+<p><strong>mrs. stephens</strong>: I want a word with you.</p>
+<p><strong>helen</strong>: I hate people who chatter in films - but
+there’s so much I want to ask.</p>
+<p><strong>helen</strong>: Again?</p>
+<p><strong>helen</strong>: Mark, this isn’t some kind of jo…</p>
+<p><strong>mark</strong>: No, Helen.</p>
+<p><strong>helen</strong>: Mark, whatever is that?</p>
+<p><strong>helen</strong>: What are you…</p>
+<p><strong>mark</strong>: wanted to photograph you… watching…</p>
+<p><strong>helen</strong>: No, Mark!</p>
+<p><strong>helen</strong>: No!</p>
+<p><strong>helen</strong>: help me to understand this… this
+nightmare…</p>
+<p><strong>man’s deep voice</strong>: That’ll do Mark… dry your eyes and
+stop being silly.</p>
+<p><strong>helen</strong>: All right… now look… Mark - what was all that
+about?</p>
+<p><strong>helen</strong>: … that was a lizard, wasn’t it? Or a…</p>
+<p><strong>mark</strong>: Liz…</p>
+<p><strong>helen</strong>: Well how did it get there?… How did it get
+there Mark?… Was it a pet?</p>
+<p><strong>mark</strong>: Not mine…</p>
+<p><strong>helen</strong>: Won’t you try to explain?</p>
+<p><strong>mark</strong>: You’d better go!</p>
+<p><strong>helen</strong>: I like to understand what I’m shown!</p>
+<p><strong>helen</strong>: What was your father trying to do?…
+Photographing you at nigh…</p>
+<p><strong>mark</strong>: better go…</p>
+<p><strong>helen</strong>: Mark… what is this?</p>
+<p><strong>mark</strong>: I am saying… goodbye… my mother…</p>
+<p><strong>helen</strong>: He… photographed… that…?</p>
+<p><strong>mark</strong>: Yes.</p>
+<p><strong>mark</strong>: …and this!</p>
+<p><strong>mark</strong>: …her funeral!</p>
+<p><strong>mark</strong>: …and this!</p>
+<p><strong>mark</strong>: …her burial!</p>
+<p><strong>mark</strong>: …and this!</p>
+<p><strong>helen</strong>: Mark, who is that?</p>
+<p><strong>mark</strong>: Her successor.</p>
+<p><strong>helen</strong>: Suc-?</p>
+<p><strong>mark</strong>: He married her… six weeks after… the previous
+sequence.</p>
+<p><strong>mark</strong>: She filmed… what comes now.</p>
+<p><strong>helen</strong>: Is that your father?</p>
+<p><strong>mark</strong>: The morning that he left for his
+honeymoon.</p>
+<p><strong>helen</strong>: What is he doing?</p>
+<p><strong>mark</strong>: Giving me a present…</p>
+<p><strong>helen</strong>: What was it?</p>
+<p><strong>mark</strong>: Can’t you guess?</p>
+<p><strong>mark</strong>: A camera…</p>
+<p><strong>helen</strong>: Switch it off!</p>
+<p><strong>helen</strong>: Switch it off, Mark!</p>
+<p><strong>helen</strong>: So he was a scientist?</p>
+<p><strong>helen</strong>: What kind of scientist, Mark?</p>
+<p><strong>mark</strong>: Biologist.</p>
+<p><strong>helen</strong>: What was he trying to do to you?</p>
+<p><strong>helen</strong>: Mark!…</p>
+<p><strong>helen</strong>: What was he trying to do to you?</p>
+<p><strong>mark</strong>: Watch me… grow up…</p>
+<p><strong>mark</strong>: He wanted a record of a growing child…
+complete in every detail - if such a thing were possible - and he tried
+to make it possible by training a camera on me… at all times…</p>
+<p><strong>mark</strong>: I never knew… the whole of my childhood… one
+moment’s privacy…</p>
+<p><strong>helen</strong>: And those lights in your eyes?… and that -
+thing?</p>
+<p><strong>mark</strong>: He was interested … in the reactions of the
+nervous system… to fear… Fear?</p>
+<p><strong>helen</strong>: Fear?</p>
+<p><strong>mark</strong>: Fear.</p>
+<p><strong>mark</strong>: Especially fear in children - and how they
+react to it.</p>
+<p><strong>mark</strong>: I think he learned a lot… from me… I’d wake
+up… screaming… sometimes… and he’d be there… taking notes… and pictures…
+and I’m sure good came of it… for some people… He was brilliant.</p>
+<p><strong>helen</strong>: A scientist drops a lizard onto a child’s bed
+- and good comes of it?</p>
+<p><strong>mark</strong>: I don’t know… if he did… but if he did… he’ll
+have learned something of value…</p>
+<p><strong>helen</strong>: If only about lizards! Mark - it sounds to me
+as if your father was…</p>
+<p><strong>mark</strong>: He founded clinics.</p>
+<p><strong>helen</strong>: He sounds completely…</p>
+<p><strong>mark</strong>: He was famous! Professor A. N. Lewis… three
+clinics.</p>
+<p><strong>helen</strong>: Why do you still live in his house… and watch
+his films?</p>
+<p><strong>mark</strong>: They helped make me… what I am.</p>
+<p><strong>helen</strong>: A photographer? It’s no wonder, is it? But
+you still haven’t shown me anything you’ve photographed!</p>
+<p><strong>helen</strong>: Will you?</p>
+<p><strong>mark</strong>: One day…</p>
+<p><strong>tony</strong>: Excuse me, but…</p>
+<p><strong>tony</strong>: Oh, there you are, Helen.</p>
+<p><strong>tony</strong>: The party looks like breaking up, and we were
+wondering if…</p>
+<p><strong>helen</strong>: I’m coming.</p>
+<p><strong>helen</strong>: I wish you’d join us.</p>
+<p><strong>mark</strong>: Thanks… work.</p>
+<p><strong>helen</strong>: I hope that you…</p>
+<p><strong>helen</strong>: … have a sweet tooth!</p>
+<p><strong>helen</strong>: Thank you… for my present.</p>
+<p><strong>tony</strong>: Good night, old boy.</p>
+<p><strong>baden</strong>: OK. Print that one!</p>
+<p><strong>assistant director</strong>: All right, everyone! Back at
+two!</p>
+<p><strong>vivian</strong>: Mark?</p>
+<p><strong>mark</strong>: Hallo…</p>
+<p><strong>vivian</strong>: Were you spotted?</p>
+<p><strong>mark</strong>: Don’t think so.</p>
+<p><strong>vivian</strong>: Is it tonight?</p>
+<p><strong>mark</strong>: Yes.</p>
+<p><strong>vivian</strong>: Mark…</p>
+<p><strong>mark</strong>: Yes?</p>
+<p><strong>vivian</strong>: You’re sure we won’t be caught?</p>
+<p><strong>mark</strong>: Not if you do as I tell you.</p>
+<p><strong>vivian</strong>: I will, I promise.</p>
+<p><strong>mark</strong>: You haven’t… said anything… to anyone?</p>
+<p><strong>vivian</strong>: Of course not.</p>
+<p><strong>mark</strong>: Good… like some cake?</p>
+<p><strong>vivian</strong>: Thank you.</p>
+<p><strong>vivian</strong>: Mark… I want to be quite clear about
+this…</p>
+<p><strong>vivian</strong>: Tonight, when the studio’s empty… I’m to
+come back-and you’re going to give me a film test… right?</p>
+<p><strong>mark</strong>: Right.</p>
+<p><strong>vivian</strong>: You’ll then print the film - so I can show
+it to my agent and anyone else who matters - right?</p>
+<p><strong>mark</strong>: Right.</p>
+<p><strong>vivian</strong>: Mark…</p>
+<p><strong>vivian</strong>: I’ve been offered film tests before… but I
+haven’t liked the terms.</p>
+<p><strong>mark</strong>: There aren’t any.</p>
+<p><strong>vivian</strong>: Then why are you doing this? Risking your
+job and…</p>
+<p><strong>mark</strong>: Not just for you… Viv… I have an agent too -
+and I want to show him what I can do… I want to direct…</p>
+<p><strong>vivian</strong>: There’s someone coming.</p>
+<p><strong>extra</strong>: Hallo - lousy morning’s work, wasn’t it?</p>
+<p><strong>vivian</strong>: Yes.</p>
+<p><strong>extra</strong>: Thought I saw you talking to somebody…</p>
+<p><strong>vivian</strong>: I was learning my lines.</p>
+<p><strong>extra</strong>: Didn’t know you had any…</p>
+<p><strong>extra</strong>: Want a drink? Dutch?</p>
+<p><strong>vivian</strong>: Later… perhaps.</p>
+<p><strong>extra</strong>: Be seeing you</p>
+<p><strong>vivian</strong>: Mark…</p>
+<p><strong>mark</strong>: Yes?</p>
+<p><strong>vivian</strong>: You didn’t mind me asking?</p>
+<p><strong>mark</strong>: No, more cake?</p>
+<p><strong>vivian</strong>: No… you want to direct… more badly than
+anything don’t you?</p>
+<p><strong>vivian</strong>: Don’t you, Mark?</p>
+<p><strong>mark</strong>: I want… to photograph… the impossible…</p>
+<p><strong>vivian</strong>: What is impossible?</p>
+<p><strong>mark</strong>: Something… that has never been photographed
+before.</p>
+<p><strong>vivian</strong>: What?</p>
+<p><strong>mark</strong>: You really want to know…?</p>
+<p><strong>vivian</strong>: Very much, especially if there’s a part for
+me.</p>
+<p><strong>mark</strong>: I want… to photograph a murder… while it’s
+being committed.</p>
+<p><strong>vivian</strong>: No part for me then.</p>
+<p><strong>mark</strong>: But that… isn’t enough.</p>
+<p><strong>vivian</strong>: Is this a new script?</p>
+<p><strong>mark</strong>: I want… to frighten… someone… to death… and
+photograph… their expression of fear…</p>
+<p><strong>vivian</strong>: Mark! What’s this story called?</p>
+<p><strong>mark</strong>: That is something… he never photographed…</p>
+<p><strong>vivian</strong>: Who?</p>
+<p><strong>vivian</strong>: Who is he, Mark?</p>
+<p><strong>mark</strong>: Anyone.</p>
+<p><strong>vivian</strong>: No one could… they’d be caught!</p>
+<p><strong>mark</strong>: I wouldn’t care… if I had my picture.</p>
+<p><strong>vivian</strong>: Besides, how would you frighten anyone to
+death?</p>
+<p><strong>mark</strong>: There’s a way.</p>
+<p><strong>vivian</strong>: Well, what?</p>
+<p><strong>mark</strong>: There’s a way.</p>
+<p><strong>vivian</strong>: You’d better not tell me! I’ll be scared to
+death tonight as it is!</p>
+<p><strong>vivian</strong>: Back on the set - shall I go first?</p>
+<p><strong>mark</strong>: Please.</p>
+<p><strong>vivian</strong>: What are you doing?</p>
+<p><strong>mark</strong>: Getting into practice.</p>
+<p><strong>vivian</strong>: See you tonight!</p>
+<p><strong>mark</strong>: See you tonight!</p>
+<p><strong>baden</strong>: Would you enquire if our leading lady is
+ready to start leading.</p>
+<p><strong>assistant</strong>: Miss Diane Ashley, please!… Miss Diane
+Ashley, please!…</p>
+<p><strong>diane</strong>: How are you, Sparks? Chippy? Bob?</p>
+<p><strong>voices</strong>: Hallo, Diane…</p>
+<p><strong>diane</strong>: How are you, Tom? Roger?</p>
+<p><strong>voices</strong>: Hallo, Diane…</p>
+<p><strong>diane</strong>: How are you, Phil?… Mark?</p>
+<p><strong>mark</strong>: Hallo, Miss Ashley.</p>
+<p><strong>diane</strong>: How are you, Pete…?</p>
+<p><strong>voice</strong>: Hi, Di!</p>
+<p><strong>baden</strong>: Darling, you’ve only been playing this part
+for three weeks, so in case you haven’t yet had a chance to read the
+script…</p>
+<p><strong>baden</strong>: … may I remind you that you’re a girl with an
+irresistible impulse!</p>
+<p><strong>baden</strong>: a kleptomaniac! Who cannot help stealing… Get
+inside her, Diane!… What - in all the world - do you most want to
+steal?</p>
+<p><strong>diane</strong>: The limelight!</p>
+<p><strong>baden</strong>: We’ll run the scene where you catch sight of
+the store detective and faint… Where’s the girl who plays the
+bystander?</p>
+<p><strong>baden</strong>: How are you?</p>
+<p><strong>vivian</strong>: Hallo, Diane…</p>
+<p><strong>1st assistant</strong>: Positions, everyone!</p>
+<p><strong>baden</strong>: Hit that floor with a thud!</p>
+<p><strong>baden</strong>: D.J. insists on realism!</p>
+<p><strong>voice</strong>: …it’s a wonderful subject, D.J…. Paramount
+wants it, M.G.M. wants it, Columbia wants it.</p>
+<p><strong>jarvis</strong>: But is it commercial?</p>
+<p><strong>voice</strong>: Danny Angel wants it!</p>
+<p><strong>jarvis</strong>: Are those budgets ready? Well bring ’em
+in.</p>
+<p><strong>voice</strong>: Send me a memo - we’ll discuss it next
+week.</p>
+<p><strong>jarvis</strong>: There’s an error! The total should be a
+hundred and fifty thousand pounds fourteen shillings and sixpence - not
+thirteen and ninepence… That could mean the difference between profit
+and loss on a first feature!</p>
+<p><strong>miss simpson</strong>: Sorry, D.J.</p>
+<p><strong>jarvis</strong>: Any units working late tonight?</p>
+<p><strong>miss simpson</strong>: Only one, sir. Night exteriors on the
+lot. The Elephant with two…</p>
+<p><strong>jarvis</strong>: That animal needs a stick of dynamite!</p>
+<p><strong>jarvis</strong>: Remind me to pay them a visit tonight.</p>
+<p><strong>miss simpson</strong>: Yes, D.J.</p>
+<p><strong>jarvis</strong>: Now, Miss Simpson… take a memo to all
+department heads…</p>
+<p><strong>jarvis</strong>: In light of the new economy drive…</p>
+<p><strong>baden</strong>: Again, please… and, darling…</p>
+<p><strong>baden</strong>: … just this once… will you please make an
+effort to forget that you’re stunning, and try to look as if you’re
+stunned…?</p>
+<p><strong>diane</strong>: Say one kind word - and I would be!</p>
+<p><strong>assistant</strong>: Positions, everyone!</p>
+<p><strong>diane</strong>: If I have to faint once more I shall
+faint!</p>
+<p><strong>baden</strong>: Cut! How was that?… Mark?</p>
+<p><strong>baden</strong>: Print it!</p>
+<p><strong>assistant</strong>: That’s it, boys and girls . . . wrap it
+up! Night-night everyone! Baden puts his arm round Diane’s shoulder.</p>
+<p><strong>baden</strong>: How are you, darling?</p>
+<p><strong>clapper boy</strong>: Catching the bus?</p>
+<p><strong>mark</strong>: Not tonight… meeting someone… for a drink.</p>
+<p><strong>clapper boy</strong>: Wanted to discuss the film at the
+Everyman… Tomorrow then?</p>
+<p><strong>mark</strong>: I hope so.</p>
+<p><strong>clapper boy</strong>: Good night, Mark.</p>
+<p><strong>mark</strong>: Good night.</p>
+<p><strong>extra</strong>: Greetings… lousy afternoon’s work, wasn’t it?
+Who wants a lift to town?</p>
+<p><strong>1st girl</strong>: In what?</p>
+<p><strong>extra</strong>: colleague’s car… there’s room for two on my
+lap - three at a pinch.</p>
+<p><strong>1st girl</strong>: Which is what we’d get.</p>
+<p><strong>2nd girl</strong>: You, Viv?</p>
+<p><strong>vivian</strong>: No, thanks… I’ve a date… at the Local.</p>
+<p><strong>1st girl</strong>: Us two then?</p>
+<p><strong>2nd girl</strong>: I’m game… might as well get pinched in a
+car as squeezed in a tube.</p>
+<p><strong>miss simpson</strong>: I’m to remind you to pay a surprise
+visit tonight to The Elephant with…</p>
+<p><strong>miss simpson</strong>: Good night, D.J.</p>
+<p><strong>vivian</strong>: Mark…?</p>
+<p><strong>vivian</strong>: Mark…?</p>
+<p><strong>vivian</strong>: Mark…?</p>
+<p><strong>vivian</strong>: Mark!</p>
+<p><strong>vivian</strong>: Listen… we must…</p>
+<p><strong>vivian</strong>: Where are you?</p>
+<p><strong>mark</strong>: Here, Viv…</p>
+<p><strong>vivian</strong>: You frightened me!</p>
+<p><strong>vivian</strong>: Now listen… they’re working late on the
+lot.</p>
+<p><strong>mark</strong>: I know. They’re branched off this stage - I’m
+using their juice.</p>
+<p><strong>vivian</strong>: We must call it off… someone’s bound to see
+us.</p>
+<p><strong>mark</strong>: They might… … but they won’t interrupt us
+while we’re filming… I’ve put the red light on.</p>
+<p><strong>vivian</strong>: You’ve what?…</p>
+<p><strong>mark</strong>: Put the…</p>
+<p><strong>vivian</strong>: Then they’ll know someone’s here.</p>
+<p><strong>mark</strong>: They won’t come in.</p>
+<p><strong>vivian</strong>: They’ll wait outside… what’s the
+difference?</p>
+<p><strong>mark</strong>: The difference is… a perfect film…</p>
+<p><strong>mark</strong>: … have waited… a long time… for this… and so
+have you … no one… must interrupt it.</p>
+<p><strong>vivian</strong>: We’ll be caught.</p>
+<p><strong>mark</strong>: What does that matter?</p>
+<p><strong>vivian</strong>: Matter!</p>
+<p><strong>mark</strong>: You stand to lose… a job as an extra… I stand
+to lose… nothing.</p>
+<p><strong>mark</strong>: …the results must be so perfect… that the
+risks don’t count…</p>
+<p><strong>mark</strong>: So perfect… that even he … … even he… would
+say…</p>
+<p><strong>vivian</strong>: Who Don Jarvis!?</p>
+<p><strong>vivian</strong>: Oh! He’d say: Sign on the dotted line,
+kiddies! You can use my pen, but bring your own ink! Mark… if you’re
+sure it’s worth it?</p>
+<p><strong>mark</strong>: It’s time to find out, Viv…</p>
+<p><strong>vivian</strong>: Come on! Get hot!</p>
+<p><strong>mark</strong>: You belong there…</p>
+<p><strong>vivian</strong>: I do feel alone in front of it… I suppose
+stars never do?</p>
+<p><strong>mark</strong>: They feel alone without it…</p>
+<p><strong>mark</strong>: … and the great ones… feel alone… all the
+time…</p>
+<p><strong>vivian</strong>: Then I’m great, boy! What is it you want me
+to act?</p>
+<p><strong>vivian</strong>: Being frightened to death?</p>
+<p><strong>mark</strong>: You remembered?</p>
+<p><strong>vivian</strong>: Yes - and I’ll have a go!</p>
+<p><strong>vivian</strong>: I’ve been wondering all the afternoon how
+you’d do it! I’ll bet you’ve thought of a wonderful twist!</p>
+<p><strong>vivian</strong>: What are you doing?</p>
+<p><strong>mark</strong>: Building us a set.</p>
+<p><strong>vivian</strong>: Why not pull the studio down while you’re
+about it? They can only hang you once.</p>
+<p><strong>mark</strong>: Exactly.</p>
+<p><strong>vivian</strong>: If only Don Jarvis could see me now!</p>
+<p><strong>vivian</strong>: If only I could see Don Jarvis now!</p>
+<p><strong>vivian</strong>: I warn you, Mark - I’m hysterical… I’d
+rather act dying of laughter, if it’s all the same to you…</p>
+<p><strong>1st electrician</strong>: So he did it again! Now you tell
+one.</p>
+<p><strong>2nd electrician</strong>: Half a mo…</p>
+<p><strong>1st electrician</strong>: One lump or two?</p>
+<p><strong>2nd electrician</strong>: As the starlet said to the casting
+director…</p>
+<p><strong>vivian</strong>: What are you doing?</p>
+<p><strong>mark</strong>: Be patient, Viv… it’s going to be worth
+it.</p>
+<p><strong>vivian</strong>: Oh well! I’ve stood alone in front of a
+studio camera! That’s more than most have.</p>
+<p><strong>mark</strong>: Ever stood… behind one?</p>
+<p><strong>vivian</strong>: No.</p>
+<p><strong>mark</strong>: Help yourself.</p>
+<p><strong>vivian</strong>: I can see you, Mark… perfectly!</p>
+<p><strong>mark</strong>: Good…</p>
+<p><strong>vivian</strong>: Yes, sir! I’ll bet I’m the best camerawoman
+in the business! . . .</p>
+<p><strong>vivian</strong>: I’ve lost you!</p>
+<p><strong>mark</strong>: I’ll be back.</p>
+<p><strong>vivian</strong>: Welcome, stranger!</p>
+<p><strong>vivian</strong>: What are you doing?</p>
+<p><strong>mark</strong>: Photographing you photographing me…</p>
+<p><strong>vivian</strong>: Mark, you’re brilliant…</p>
+<p><strong>vivian</strong>: Lost you again!</p>
+<p><strong>mark</strong>: Never mind.</p>
+<p><strong>mark</strong>: I’m ready now, Viv…</p>
+<p><strong>mark</strong>: Go and stand on that cross, will you?</p>
+<p><strong>vivian</strong>: Yes, sir, Mr. Director, sir.</p>
+<p><strong>1st electrician</strong>: …and here’s one of the wife and
+nipper…</p>
+<p><strong>vivian</strong>: Am I supposed to imagine someone is going to
+put me in there?</p>
+<p><strong>mark</strong>: Yes, Viv…</p>
+<p><strong>vivian</strong>: Mark - I hope I won’t let you down… I know
+you’re trying to create atmosphere for me - but… I just don’t feel
+frightened! Wouldn’t it be better if I just did my number?</p>
+<p><strong>mark</strong>: Later.</p>
+<p><strong>vivian</strong>: Oh all right! I could do anything - I feel
+so relaxed - and that’s due to you… You’re so at home with that camera
+you make me feel at home too… you have it in you, boy!</p>
+<p><strong>mark</strong>: Ready, Viv?</p>
+<p><strong>mark vivian</strong>: Well-I’ll try -</p>
+<p><strong>mark vivian</strong>: But what… would… frighten me to death?
+Set the mood for me, Mark…</p>
+<p><strong>mark</strong>: Well…</p>
+<p><strong>mark</strong>: Imagine someone… coming towards you… who’s
+going to kill you - regardless of consequences…</p>
+<p><strong>vivian</strong>: A madman?</p>
+<p><strong>mark</strong>: Yes - but he knows it… and you don’t… and just
+to kill you… isn’t enough for him.</p>
+<p><strong>vivian</strong>: But how would he frighten me to?</p>
+<p><strong>mark</strong>: Stay there, Viv… you’re… just right.</p>
+<p><strong>vivian</strong>: I can’t imagine what you’ve thought of!</p>
+<p><strong>mark</strong>: Suppose this… were one of his weapons…</p>
+<p><strong>jarvis</strong>: Smoking on duty!</p>
+<p><strong>jarvis</strong>: Come with me!</p>
+<p><strong>vivian</strong>: That..?</p>
+<p><strong>vivian</strong>: Yes… that would be frightening!</p>
+<p><strong>mark</strong>: But… there’s something else…</p>
+<p><strong>vivian</strong>: Well? What is it?</p>
+<p><strong>vivian</strong>: That…?</p>
+<p><strong>vivian</strong>: Mark… take it…</p>
+<p><strong>vivian</strong>: … away!</p>
+<p><strong>helen’s voice</strong>: And that, darling, is the end of the
+news! Unless you want the football results?</p>
+<p><strong>mrs. stephens</strong>: No thank you.</p>
+<p><strong>helen</strong>: What else can I read you?</p>
+<p><strong>mrs. stephens</strong>: The label on this whisky bottle! Are
+you sure it says seventy per cent proof?</p>
+<p><strong>helen</strong>: Certain.</p>
+<p><strong>mrs. stephens</strong>: They’re bigger liars than the
+press!</p>
+<p><strong>helen</strong>: Is that your last tonight?</p>
+<p><strong>mrs. stephens</strong>: I doubt it.</p>
+<p><strong>helen</strong>: Your last but one?</p>
+<p><strong>mrs. stephens</strong>: Don’t haggle.</p>
+<p><strong>helen</strong>: Toss me double or nothing?</p>
+<p><strong>mrs. stephens</strong>: Done!</p>
+<p><strong>mrs. stephens</strong>: Heads.</p>
+<p><strong>helen</strong>: Bad luck, darling.</p>
+<p><strong>mrs. stephens</strong>: Huh.</p>
+<p><strong>mrs. stephens</strong>: What are you looking at?</p>
+<p><strong>helen</strong>: The ceiling!</p>
+<p><strong>mrs. stephens</strong>: Wondering if that young man is
+home?</p>
+<p><strong>helen</strong>: Yes.</p>
+<p><strong>mrs. stephens</strong>: Well he is… I heard him come in… four
+paragraphs ago.</p>
+<p><strong>mrs. stephens</strong>: Do you like him?</p>
+<p><strong>helen</strong>: Yes, darling.</p>
+<p><strong>mrs. stephens</strong>: Why?</p>
+<p><strong>helen</strong>: He has a quality…</p>
+<p><strong>mrs. stephens</strong>: Wish this had.</p>
+<p><strong>helen</strong>: … and I think he could help me.</p>
+<p><strong>mrs. stephens</strong>: With your photographs?</p>
+<p><strong>helen</strong>: Yes…</p>
+<p><strong>mrs. stephens</strong>: Helen…</p>
+<p><strong>helen</strong>: Yes?</p>
+<p><strong>mrs. stephens</strong>: It doesn’t matter.</p>
+<p><strong>helen</strong>: Mummy, what’s worrying you?</p>
+<p><strong>mrs. stephens</strong>: The price of whisky.</p>
+<p><strong>helen</strong>: What else?</p>
+<p><strong>mrs. stephens</strong>: What else matters?</p>
+<p><strong>helen</strong>: Don’t you like Mark?</p>
+<p><strong>mrs. stephens</strong>: Haven’t met him.</p>
+<p><strong>helen</strong>: You don’t like him! Now why not?</p>
+<p><strong>mrs. stephens</strong>: I distrust a man who walks
+quietly.</p>
+<p><strong>helen</strong>: He’s shy!</p>
+<p><strong>mrs. stephens</strong>: His footsteps aren’t! They’re
+stealthy…</p>
+<p><strong>helen</strong>: Now darling.</p>
+<p><strong>mrs. stephens</strong>: Are you going up to him?</p>
+<p><strong>helen</strong>: May I?</p>
+<p><strong>mrs. stephens</strong>: We both have the key of the door…
+Mine needs oiling - and yours needs exercise… Off you go.</p>
+<p><strong>helen</strong>: Thank you.</p>
+<p><strong>helen</strong>: remember that you lost the toss.</p>
+<p><strong>mrs. stephens</strong>: Helen…</p>
+<p><strong>helen</strong>: Yes, darling?</p>
+<p><strong>mrs. stephens</strong>: If you’re back in five minutes… I
+won’t even finish this.</p>
+<p><strong>helen</strong>: Done!</p>
+<p><strong>mark</strong>: Who is it?</p>
+<p><strong>helen</strong>: Helen…</p>
+<p><strong>mark</strong>: Come in, Helen!</p>
+<p><strong>mark</strong>: Would you… please… wait in there?…
+Developing.</p>
+<p><strong>helen</strong>: Mother heard you come in - so I guessed you
+wouldn’t be in bed …</p>
+<p><strong>helen</strong>: Are you sure this is conven…</p>
+<p><strong>mark</strong>: Won’t be long!</p>
+<p><strong>mark</strong>: Hallo.</p>
+<p><strong>helen</strong>: Hallo, Mark…</p>
+<p><strong>helen</strong>: I hope you don’t mind - is it a
+tape-recorder?</p>
+<p><strong>mark</strong>: Yes.</p>
+<p><strong>helen</strong>: I’m sure I’m being a nuisance… but, Mark, I
+very much want to…</p>
+<p><strong>mark</strong>: Happy birthday.</p>
+<p><strong>helen</strong>: Mark! That’s very sweet of you - but
+really.</p>
+<p><strong>mark</strong>: It isn’t much… I don’t know anything about…
+presents for twenty-one… but I saw it this morning… so… please.</p>
+<p><strong>helen</strong>: Thank you…</p>
+<p><strong>helen</strong>: It’s beautiful…</p>
+<p><strong>mark</strong>: I like the design… More milk?</p>
+<p><strong>helen</strong>: More?… No, thank you, Mark… and I really
+appreciate this… I’m going to put it on now.</p>
+<p><strong>helen</strong>: There?… Or there?…</p>
+<p><strong>mark</strong>: The first place…</p>
+<p><strong>helen</strong>: I think so too!…</p>
+<p><strong>helen</strong>: I am keeping you.</p>
+<p><strong>mark</strong>: No… I promise.</p>
+<p><strong>helen</strong>: Mark, I’m here for some advice.</p>
+<p><strong>mark</strong>: From me? Please…</p>
+<p><strong>helen</strong>: … I work in a public library - in the
+children’s section… I’m telling you that to postpone admitting what
+always embarrasses me…</p>
+<p><strong>helen</strong>: In my spare time… I write.</p>
+<p><strong>mark</strong>: What’s embar…</p>
+<p><strong>helen</strong>: I write stories for children… but so did
+Grimm… Hans Andersen… Lewis Carroll…</p>
+<p><strong>mark</strong>: Had any published?</p>
+<p><strong>helen</strong>: Some short stories.</p>
+<p><strong>mark</strong>: I’d like to read…</p>
+<p><strong>helen</strong>: I learned today… that my first book… has been
+accepted! … For publication in the spring…</p>
+<p><strong>mark</strong>: But that’s wonderful… what’s it about?</p>
+<p><strong>helen</strong>: A magic camera - and what it photographs…</p>
+<p><strong>mark</strong>: Whatever made you… think of that?</p>
+<p><strong>helen</strong>: I’ll tell you one day - I promise…</p>
+<p><strong>mark</strong>: Well what does it photograph?</p>
+<p><strong>helen</strong>: I’ll tell you that too - but, Mark… this is
+the problem… The children who read the book will want to see the
+pictures the camera takes - but the publishers say they’re impossible to
+photograph, and suggest drawings… but I don’t agree.</p>
+<p><strong>mark</strong>: No - nothing’s impossible.</p>
+<p><strong>helen</strong>: was hoping you’d say that! There must be
+photographs - however difficult to take - and I was wondering, Mark - if
+you’d…</p>
+<p><strong>mark</strong>: Oh yes.</p>
+<p><strong>helen</strong>: discuss it with me.</p>
+<p><strong>mark</strong>: take them.</p>
+<p><strong>helen</strong>: Mark - I can’t ask you to do that…</p>
+<p><strong>helen</strong>: I mean… the publisher’s mightn’t agree.</p>
+<p><strong>mark</strong>: I’d take them… for you.</p>
+<p><strong>helen</strong>: Yes but… the money.</p>
+<p><strong>mark</strong>: There are some things… which I photograph… for
+nothing.</p>
+<p><strong>helen</strong>: I didn’t mean to offend you.</p>
+<p><strong>mark</strong>: Offend?</p>
+<p><strong>mark</strong>: Helen… if you knew what it meant… for
+something to happen to me… that I don’t have to make happen… it’s like…
+you’ve given me a twenty-first birthday…</p>
+<p><strong>mark</strong>: What does your camera photograph?</p>
+<p><strong>helen</strong>: Mark - I must go… I just wanted to know… if
+you’d talk it over with me.</p>
+<p><strong>mark</strong>: When please?</p>
+<p><strong>helen</strong>: That’s up to you.</p>
+<p><strong>mark</strong>: Helen … I don’t know much about… dinner out…
+but would you come with me?</p>
+<p><strong>helen</strong>: Thank you.</p>
+<p><strong>mark</strong>: Thank you.</p>
+<p><strong>helen</strong>: When?</p>
+<p><strong>mark</strong>: Oh…</p>
+<p><strong>helen</strong>: What’s the matter?</p>
+<p><strong>mark</strong>: It had better be soon…</p>
+<p><strong>helen</strong>: Are you going away?</p>
+<p><strong>mark</strong>: Almost for certain! …</p>
+<p><strong>helen</strong>: Oh… well you suggest when.</p>
+<p><strong>mark</strong>: Are you free… tomorrow night?</p>
+<p><strong>helen</strong>: Yes.</p>
+<p><strong>mark</strong>: I hope I am!</p>
+<p><strong>helen</strong>: I’ll understand if you’re not.</p>
+<p><strong>mark</strong>: I’ll try to be - I’ll try my hardest to
+be.</p>
+<p><strong>helen</strong>: Thank you for listening… and for my
+present.</p>
+<p><strong>mark</strong>: and for mine.</p>
+<p><strong>helen</strong>: Good night, Mark…</p>
+<p><strong>mark</strong>: Good night… Helen…</p>
+<p><strong>man’s voice</strong>: Looking for a trunk?</p>
+<p><strong>diane</strong>: I’d like to see that one.</p>
+<p><strong>baden</strong>: No - no - no - we must get some comedy into
+this…!</p>
+<p><strong>baden</strong>: We’ll retake it this morning…</p>
+<p><strong>diane</strong>: I’ll take it.</p>
+<p><strong>baden</strong>: I want some comedy in this scene…</p>
+<p><strong>baden</strong>: Instead of taking the first trunk you see, I
+want you, darling… to ask for a blue trunk - and when he brings it to
+you, to ask for a red one - and when he brings that, to ask for a white
+one… And you, Michael… get the trunks one by one - growing more and more
+fed up - and we’ll end on a gag which I’ll think of in a minute - all
+right?</p>
+<p><strong>diane</strong>: I don’t feel it!</p>
+<p><strong>baden</strong>: Don’t feel it! Do it!</p>
+<p><strong>assistant director</strong>: Positions, everyone!</p>
+<p><strong>assistant director</strong>: Anyone seen Vivian?</p>
+<p><strong>baden</strong>: Who?</p>
+<p><strong>assistant director</strong>: The red-headed bystander -
+Viv.</p>
+<p><strong>baden</strong>: Never mind - I’m cutting her out of this
+scene… Let’s run it.</p>
+<p><strong>assistant director</strong>: Quiet, everyone!</p>
+<p><strong>assistant</strong>: Can I interest you in a trunk?</p>
+<p><strong>diane</strong>: Thank you… I’d like to see that one…</p>
+<p><strong>assistant</strong>: Certainly, madam…</p>
+<p><strong>assistant director</strong>: It’s beautifully fitted -</p>
+<p><strong>diane</strong>: I’d like to see one in red.</p>
+<p><strong>assistant</strong>: Certainly, madam.</p>
+<p><strong>diane</strong>: … do you have one in white?</p>
+<p><strong>assistant</strong>: Certainly, madam.</p>
+<p><strong>diane</strong>: Do you have one in blue?</p>
+<p><strong>assistant</strong>: Certainly, madam…</p>
+<p><strong>baden</strong>: The silly bitch! She’s fainted in the wrong
+scene…</p>
+<p><strong>head of publicity</strong>: is this a gag?… A girl in a
+trunk!… Who is she?… Well, which unit?… The walls are closing in?… What
+a break for them!… I mean what a heartbreak! call a press conference.
+I’m on my way down!</p>
+<p><strong>sergeant miller</strong>: Excuse me, Chief.</p>
+<p><strong>chief inspector</strong>: Mm?</p>
+<p><strong>sergeant miller</strong>: We pass my house when we reach the
+bypass. Would you mind if I drop off for a minute?</p>
+<p><strong>chief inspector</strong>: To collect your kid’s autograph
+book?</p>
+<p><strong>sergeant miller</strong>: Yes, Chief!… If the nipper hears
+where I’ve been…</p>
+<p><strong>chief inspector</strong>: All right, Dawson - anything to
+help the Sergeant… … and it’s about time the Sergeant helped me - we’re
+getting nowhere with this.</p>
+<p><strong>sergeant</strong>: What about that man the landlady
+passed?</p>
+<p><strong>chief inspector</strong>: She couldn’t describe him - except
+to say that he was carrying something that she couldn’t see.</p>
+<p><strong>sergeant</strong>: That’s a help.</p>
+<p><strong>chief inspector</strong>: Sergeant, I’ve been on the force
+thirty odd years… and I have never seen such fear on anyone’s face as on
+this girl’s… What was it she saw?</p>
+<p><strong>sergeant</strong>: Surely, Chief… a man coming at her - with
+a sharp weapon.</p>
+<p><strong>chief inspector</strong>: I’m familiar with that kind of
+terror. This is something new to me… but what?</p>
+<p><strong>chief inspector</strong>: …now take a look at how we found
+her.</p>
+<p><strong>girl</strong>: How much longer must we wait in here?</p>
+<p><strong>assistant director</strong>: Till the police arrive… D.J.’s
+orders.</p>
+<p><strong>assistant</strong>: and when she opened that trunk… and I saw
+what was inside… my dears - I nearly fainted with her - and do you know
+what horrified me most?</p>
+<p><strong>assistant director</strong>: D.J. says not to discuss it.</p>
+<p><strong>assistant</strong>: Any more sauce from D.J. and I shall
+refuse to sign for seven years! My dears… that poor girl’s
+expression.</p>
+<p><strong>sergeant</strong>: Chief, it’s exactly the…</p>
+<p><strong>inspector</strong>: I know… … don’t say anything. Well, sir…
+we shall probably have to interview everyone at the studio, so we’d
+better plan a campaign that won’t interfere too much with your
+productions.</p>
+<p><strong>jarvis</strong>: Thank you, Chief Inspector… if you knew what
+even a single day’s delay could cost.</p>
+<p><strong>inspector</strong>: Oh, we do sir.</p>
+<p><strong>jarvis</strong>: If I may have your attention, please.</p>
+<p><strong>jarvis</strong>: The police wish to interview each of you
+individually… after which you will be at liberty to leave.</p>
+<p><strong>jarvis</strong>: There will, of course, be no shooting today…
+but work will be resumed, as usual, tomorrow… with, I hope, all of you
+present.</p>
+<p><strong>jarvis</strong>: I look to you to give the police your
+fullest cooperation.</p>
+<p><strong>sergeant miller</strong>: Well now… let’s get ourselves
+organized… We don’t want to keep you cooped up in here, so we’ve worked
+out a timetable… We’ll talk to the artists first, then the technicians
+in this order…</p>
+<p><strong>extra</strong>: …she said she didn’t want a lift - because
+she had a call to make locally.</p>
+<p><strong>chief inspector</strong>: Did she say where?</p>
+<p><strong>extra</strong>: No, sir… and when I left, she was still in
+the dressing room.</p>
+<p><strong>chief inspector</strong>: I see… let’s have a look at this
+dressing room, shall we?</p>
+<p><strong>extra</strong>: Yes, sir …</p>
+<p><strong>girl</strong>: Hallo, Mark…</p>
+<p><strong>mark</strong>: Hallo.</p>
+<p><strong>sergeant</strong>: Hey, I don’t think you ought to do
+that!</p>
+<p><strong>mark</strong>: Sorry, sir.</p>
+<p><strong>inspector</strong>: Do what?</p>
+<p><strong>sergeant</strong>: Make me famous. Some chap was giving me a
+screen test</p>
+<p><strong>extra</strong>: That’s where she sat. Inspector.</p>
+<p><strong>voice</strong>: And whoever did it must be…</p>
+<p><strong>chief cameraman</strong>: You’re next.</p>
+<p><strong>clapper boy</strong>: I’ve been watching you…</p>
+<p><strong>mark</strong>: Oh?</p>
+<p><strong>clapper boy</strong>: Have you been filming those
+policemen?</p>
+<p><strong>mark</strong>: Yes, I’ve a few quite interesting shots of
+them - it’s a chance I never expected!</p>
+<p><strong>clapper boy</strong>: A chance for what?</p>
+<p><strong>mark</strong>: To photograph… an investigation… or as much of
+it as I can.</p>
+<p><strong>clapper boy</strong>: What on earth for?</p>
+<p><strong>mark</strong>: It will complete a documentary I’m making.</p>
+<p><strong>clapper boy</strong>: documentary?</p>
+<p><strong>clapper boy</strong>: What’s it about?</p>
+<p><strong>mark</strong>: I’d rather not tell you till it’s finished.
+And it soon will be …</p>
+<p><strong>clapper boy</strong>: But suppose they catch you?</p>
+<p><strong>mark</strong>: Oh they will - they look very efficient.</p>
+<p><strong>clapper boy</strong>: Don’t you mind?</p>
+<p><strong>mark</strong>: No.</p>
+<p><strong>clapper boy</strong>: But they might confiscate your
+camera.</p>
+<p><strong>mark</strong>: I’m afraid they will! But by then… I’ll have
+finished with it.</p>
+<p><strong>clapper boy</strong>: I don’t…</p>
+<p><strong>crew-member</strong>: You, Mark?</p>
+<p><strong>mark</strong>: Thanks…</p>
+<p><strong>clapper boy</strong>: Mark, hadn’t you better leave that with
+me?</p>
+<p><strong>mark</strong>: No, John.</p>
+<p><strong>clapper boy</strong>: I’d look after it.</p>
+<p><strong>mark</strong>: I’m sure of that - but I’d like to photograph
+them while they’re questioning me.</p>
+<p><strong>mark</strong>: I don’t suppose they’ll let me.</p>
+<p><strong>clapper boy</strong>: Mark, are you potty?</p>
+<p><strong>mark</strong>: Yes, do you think they’ll notice?</p>
+<p><strong>clapper boy</strong>: Don’t get into any trouble for heaven’s
+sake � I want to discuss that film at the Everyman…</p>
+<p><strong>mark</strong>: Yes… I’d like that…</p>
+<p><strong>sergeant</strong>: Mark Lewis - focus-puller… Whatever that
+may be?</p>
+<p><strong>sergeant</strong>: Come in.</p>
+<p><strong>inspector</strong>: Mr. Lewis?</p>
+<p><strong>mark</strong>: Yes, sir…</p>
+<p><strong>inspector</strong>: I’m Chief Inspector Gregg and this is
+Sergeant Miller. Grab a chair.</p>
+<p><strong>sergeant</strong>: Ah! My photographer.</p>
+<p><strong>mark</strong>: I’ve brought the camera in case you want to
+take the film away.</p>
+<p><strong>inspector</strong>: That’s all right, Mr. Lewis - as long as
+we don’t appear at the Odeon next week in place of the cartoon.</p>
+<p><strong>mark</strong>: Thank you, sir.</p>
+<p><strong>inspector</strong>: Well now; have you anything to tell
+us?</p>
+<p><strong>mark</strong>: Don’t think so, sir.</p>
+<p><strong>inspector</strong>: Did you know the girl?</p>
+<p><strong>mark</strong>: Yes, sir…</p>
+<p><strong>inspector</strong>: How well?</p>
+<p><strong>mark</strong>: Mainly by sight.</p>
+<p><strong>inspector</strong>: When did you see her last?</p>
+<p><strong>mark</strong>: Yesterday afternoon - when we broke…</p>
+<p><strong>inspector</strong>: Speak to her?</p>
+<p><strong>mark</strong>: Called out good night - don’t know if she
+heard?</p>
+<p><strong>inspector</strong>: What did you do then?</p>
+<p><strong>mark</strong>: Took sqme shots, sir - for a film I’m
+making.</p>
+<p><strong>inspector</strong>: Oh… where?</p>
+<p><strong>mark</strong>: All over the place, sir… it’s a
+documentary.</p>
+<p><strong>inspector</strong>: Anyone with you?</p>
+<p><strong>mark</strong>: No, sir. Just my camera.</p>
+<p><strong>inspector</strong>: What time did you arrive home,
+Mr. Lewis?</p>
+<p><strong>mark</strong>: About ten… ten-thirty…</p>
+<p><strong>inspector</strong>: Anyone see you?</p>
+<p><strong>mark</strong>: Yes… the people downstairs.</p>
+<p><strong>inspector</strong>: I see.</p>
+<p><strong>sergeant</strong>: Sergeant Miller - Right, I’ll tell
+him…</p>
+<p><strong>sergeant</strong>: The doctor’s finished his examin…</p>
+<p><strong>sergeant</strong>: …wants to see you -</p>
+<p><strong>inspector</strong>: Right. That’ll be all for the moment,
+Mr. Lewis - thank you.</p>
+<p><strong>mark</strong>: Thank you, sir …</p>
+<p><strong>inspector</strong>: Wait a minute.</p>
+<p><strong>inspector</strong>: direct me to that set of yours, will you?
+I’d probably end on location.</p>
+<p><strong>mark</strong>: I’ll take you there, sir.</p>
+<p><strong>inspector</strong>: Thanks. Carry on with the interviews,
+Sergeant.</p>
+<p><strong>sergeant</strong>: Yes, sir.</p>
+<p><strong>clapper boy</strong>: I warned him to be careful!</p>
+<p><strong>inspector</strong>: I think I can find my way now…</p>
+<p><strong>inspector</strong>: …thanks for the escort</p>
+<p><strong>doctor</strong>: No doubt at all… wounds were caused by the
+same instrument…</p>
+<p><strong>doctor</strong>: … both women… subjected to the most violent
+shock…</p>
+<p><strong>inspector</strong>: What sort of shock?</p>
+<p><strong>doctor</strong>: …still cannot determine - but look!</p>
+<p><strong>inspector</strong>: Quiet, everyone. Please…</p>
+<p><strong>detective</strong>: I thought I heard a putty cat!</p>
+<p><strong>inspector</strong>: I don’t want to spoil anyone’s fun, but
+we do have a maniac on our hands, and if we don’t get him quickly
+there’ll be a third unsolved murder to report to the Commissioner. So
+let’s hurry things up, shall we?</p>
+<p><strong>detective</strong>: Sorry, Chief!</p>
+<p><strong>helen</strong>: she was appearing in Arthur Baden’s new film
+The Walls Are Closing In, starring Diane Ashley.</p>
+<p><strong>helen</strong>: a spokesman at the studio said that her
+performance in the film showed such promise, that her role was to have
+been built up… All work at the studio ceased today as a tribute to her
+memory!</p>
+<p><strong>mrs. stephens</strong>: Mark is in films, isn’t he?</p>
+<p><strong>helen</strong>: Yes, darling… It is reliably…</p>
+<p><strong>mrs. stephens</strong>: I wonder if he knew her?</p>
+<p><strong>helen</strong>: I’ll ask him tonight…</p>
+<p><strong>mrs. stephens</strong>: Is he taking you out?</p>
+<p><strong>helen</strong>: If he’s free.</p>
+<p><strong>mrs. stephens</strong>: That’s very chivalrous of him.
+Where’s he taking you?</p>
+<p><strong>helen</strong>: I’ve no idea - and I don’t suppose he
+has…</p>
+<p><strong>mrs. stephens</strong>: Which studio does he work at?</p>
+<p><strong>helen</strong>: I’ll ask him.</p>
+<p><strong>mrs. stephens</strong>: If he’s free.</p>
+<p><strong>helen</strong>: I’ll bring him in and introduce you if…</p>
+<p><strong>mrs. stephens</strong>: I feel I know him.</p>
+<p><strong>helen</strong>: Now how can you?</p>
+<p><strong>mrs. stephens</strong>: He’s here.</p>
+<p><strong>mrs. stephens</strong>: Why don’t we make him a present of
+the window? He practically lives there!</p>
+<p><strong>helen</strong>: How did you know where he was standing?</p>
+<p><strong>mrs. stephens</strong>: The back of my neck told me… the part
+that I talk out of!</p>
+<p><strong>helen</strong>: Hallo…</p>
+<p><strong>mark</strong>: Free?</p>
+<p><strong>helen</strong>: Yes.</p>
+<p><strong>mark</strong>: Good! So am I…</p>
+<p><strong>helen</strong>: I’d like you to come in for a moment - and
+meet my mother.</p>
+<p><strong>mark</strong>: Yes, please…</p>
+<p><strong>helen</strong>: Darling, this is Mark… Mark, my mother.</p>
+<p><strong>mark</strong>: How do you do… Mrs. Stephens…</p>
+<p><strong>mrs. stephens</strong>: Hallo, Mark.</p>
+<p><strong>mrs. stephens</strong>: Have you been running, young man?</p>
+<p><strong>mark</strong>: Yes… … didn’t want to be late for Helen.</p>
+<p><strong>helen</strong>: Thank you, Mark - You deserve a drink for
+that! What would you like?</p>
+<p><strong>mark</strong>: Nothing - thank you… very much…</p>
+<p><strong>helen</strong>: Darling, I’ve left your supper in the…</p>
+<p><strong>mrs. stephens</strong>: Tell me young man… Which studio do
+you work at?</p>
+<p><strong>mark</strong>: Chipperfield Studio . . .</p>
+<p><strong>mrs. stephens</strong>: And that poor girl… where did she
+work?</p>
+<p><strong>helen</strong>: At Brookwood.</p>
+<p><strong>mrs. stephens</strong>: We were wondering if you knew
+her?</p>
+<p><strong>mark</strong>: No - No, I didn’t…</p>
+<p><strong>mrs. stephens</strong>: A pity. I do like first-hand
+information.</p>
+<p><strong>mrs. stephens</strong>: Oh, well - I mustn’t keep you
+gossiping after you’ve run all the way from - Where?</p>
+<p><strong>mark</strong>: The station.</p>
+<p><strong>helen</strong>: Darling, may I tell you about your
+supper?</p>
+<p><strong>mrs. stephens</strong>: No… go and be told about yours!
+Goodbye, Mark… I expect we shall meet again.</p>
+<p><strong>mark</strong>: I hope so - Goodbye…</p>
+<p><strong>helen</strong>: Darling, we forgot to toss.</p>
+<p><strong>helen</strong>: Supper’s laid out in the kitchen.</p>
+<p><strong>mrs. stephens</strong>: If you’re not back early, you’ll find
+me laid out with it!</p>
+<p><strong>helen</strong>: We’ll be early! Good night, darling.</p>
+<p><strong>mrs. stephens</strong>: Good night…</p>
+<p><strong>helen</strong>: Mark…</p>
+<p><strong>mark</strong>: Yes, Helen?</p>
+<p><strong>helen</strong>: I want to ask you something rather
+personal…</p>
+<p><strong>helen</strong>: How long is it since you’ve gone out without
+that?</p>
+<p><strong>mark</strong>: Without what?</p>
+<p><strong>helen</strong>: Your camera…</p>
+<p><strong>mark</strong>: Oh…</p>
+<p><strong>mark</strong>: I… don’t think I know?</p>
+<p><strong>helen</strong>: Exactly. I’ve never seen you without it… but
+are you going to need it tonight?</p>
+<p><strong>helen</strong>: Well are you? And if so… shall I bring some
+work with me too?</p>
+<p><strong>mark</strong>: I’m not going to need it tonight!</p>
+<p><strong>helen</strong>: Good - then give it to me!</p>
+<p><strong>helen</strong>: …It’ll be quite safe - I’ll put it away for
+you.</p>
+<p><strong>mark</strong>: No!</p>
+<p><strong>helen</strong>: Then take it upstairs - if you can’t trust me
+with it…</p>
+<p><strong>mark</strong>: I trust you.</p>
+<p><strong>helen</strong>: Then look…</p>
+<p><strong>helen</strong>: …let’s put it in here.</p>
+<p><strong>helen</strong>: Come in - and see for yourself.</p>
+<p><strong>helen</strong>: We’ll put it in here - and lock it.</p>
+<p><strong>mark</strong>: This… was my mother’s room.</p>
+<p><strong>helen</strong>: Was it, Mark?…</p>
+<p><strong>helen</strong>: I am being tactless, aren’t I? … It’s just
+that… I thought it was growing into an extra limb, and - but you bring
+it with you if you want to.</p>
+<p><strong>helen</strong>: Thank you…</p>
+<p><strong>mark</strong>: You…</p>
+<p><strong>helen</strong>: Thank you.</p>
+<p><strong>mark</strong>: I feel…</p>
+<p><strong>helen</strong>: Yes?</p>
+<p><strong>mark</strong>: Can’t describe it! Could only photograph it
+-</p>
+<p><strong>helen</strong>: Shall I tell you what I feel?</p>
+<p><strong>mark</strong>: Yes.</p>
+<p><strong>helen</strong>: Famished!</p>
+<p><strong>mark</strong>: Good!</p>
+<p><strong>mark</strong>: There’s a small place round the corner… It’s
+awfully good on Christmas Day.</p>
+<p><strong>helen</strong>: Is it?</p>
+<p><strong>mark</strong>: Yes… there aren’t too many open then.</p>
+<p><strong>helen</strong>: No - it sounds fun.</p>
+<p><strong>mark</strong>: This way.</p>
+<p><strong>helen</strong>: I adore new restaurants…</p>
+<p><strong>helen</strong>: Where is this restaurant?</p>
+<p><strong>mark</strong>: Round the corner…</p>
+<p><strong>mrs. stephens</strong>: Know much about films?</p>
+<p><strong>helen</strong>: Come on then…</p>
+<p><strong>mark</strong>: Thank you.</p>
+<p><strong>mrs. stephens</strong>: Sorry, young man, Helen’s out.</p>
+<p><strong>tony</strong>: Oh!</p>
+<p><strong>mrs. stephens</strong>: With Mark - from upstairs.</p>
+<p><strong>tony</strong>: Oh!</p>
+<p><strong>mrs. stephens</strong>: You can stay and talk to me - if you
+like?</p>
+<p><strong>tony</strong>: Well I…</p>
+<p><strong>mrs. stephens</strong>: Know much about films?</p>
+<p><strong>tony</strong>: Well…</p>
+<p><strong>mrs. stephens</strong>: Or film studios?</p>
+<p><strong>tony</strong>: No, I…</p>
+<p><strong>mrs. stephens</strong>: Where’s Chipperfield Studios?</p>
+<p><strong>tony</strong>: Chipperfield, I suppose…</p>
+<p><strong>mrs. stephens</strong>: There’s a phone book outside… Look up
+the number, will you? And see if you can get it.</p>
+<p><strong>tony</strong>: Certainly… and then I must go to my room.</p>
+<p><strong>mrs. stephens</strong>: Granted.</p>
+<p><strong>helen</strong>: I like this place! And this dinner!</p>
+<p><strong>helen</strong>: …thank you, Mark…</p>
+<p><strong>mark</strong>: Are you ready to talk about your book?</p>
+<p><strong>helen</strong>: I’m ready to talk about you…</p>
+<p><strong>helen</strong>: It won’t take a second - and it’s best to
+have it said.</p>
+<p><strong>helen</strong>: Carrying a camera is only one of your habits,
+isn’t it, Mark?</p>
+<p><strong>helen</strong>: … when you stared at that couple, you were
+like the little boy on that film you showed me… looking over the wall at
+something he shouldn’t see. But Mark - you’re strong enough now to lift
+that child off the wall… aren’t you?</p>
+<p><strong>helen</strong>: … aren’t you?</p>
+<p><strong>mark</strong>: I’ll try to be.</p>
+<p><strong>helen</strong>: Will you, Mark?… Will you really?</p>
+<p><strong>mark</strong>: Yes…</p>
+<p><strong>helen</strong>: Lecture finished…</p>
+<p><strong>mark</strong>: When your book’s published - will you go on
+working in a library?</p>
+<p><strong>helen</strong>: Yes, Mark… in case, one day, a child comes in
+and asks for it!</p>
+<p><strong>mark</strong>: I’ll come in.</p>
+<p><strong>helen</strong>: I’m not popular with my customers! They ask
+me for horror comics - and I take their sticky hands and drag them to
+where there are books!</p>
+<p><strong>helen</strong>: … and do you know, Mark, waiting for them to
+come in next time and ask for books… is as exciting… as a horror
+comic…</p>
+<p><strong>mark</strong>: What does your magic camera photograph?</p>
+<p><strong>helen</strong>: People…</p>
+<p><strong>mark</strong>: Yes?…</p>
+<p><strong>helen</strong>: It’s owned by a little boy who is terrified
+of grown-ups… but when he looks in his magic camera he sees grown-ups as
+they were when they were children… and he isn’t frightened any
+longer.</p>
+<p><strong>helen</strong>: … and one day he gives his camera away to a
+little boy who is even more frightened of grown-ups than he was - and do
+you know what he finds?</p>
+<p><strong>helen</strong>: … that when he looks at grown- ups without
+his camera he can still see them as they were when they were children!
+And that means that he’s grown up himself…</p>
+<p><strong>mark</strong>: What made you think of this story?</p>
+<p><strong>helen</strong>: You did!</p>
+<p><strong>helen</strong>: … I looked out of my window - and saw you
+going off to work carrying that camera like a little boy with a satchel…
+and an idea came… so thank you…</p>
+<p><strong>mark</strong>: I’d like to think… I was responsible… in some
+way…</p>
+<p><strong>helen</strong>: Now what do I do about the photographs?</p>
+<p><strong>mark</strong>: Take ’em!</p>
+<p><strong>mark</strong>: Oh!</p>
+<p><strong>mark</strong>: There isn’t a single face that doesn’t look
+like a child’s - not a single one - if you catch it at the right
+moment.</p>
+<p><strong>mark</strong>: It would be a challenge!… Unlike anything I’ve
+photographed!</p>
+<p><strong>helen</strong>: What have you photographed, Mark?</p>
+<p><strong>mark</strong>: Everything. But nothing I’d want children to
+see.</p>
+<p><strong>mark</strong>: But this would belong to them - and they’d
+know if it wasn’t right… Oh, Helen… I would like to find those faces for
+you… with you…</p>
+<p><strong>helen</strong>: Very well! Let’s try!</p>
+<p><strong>mark</strong>: You made a promise to your mother -</p>
+<p><strong>helen</strong>: Yes, Mark…</p>
+<p><strong>mark</strong>: You’d better keep it.</p>
+<p><strong>helen</strong>: Thank you…</p>
+<p><strong>helen</strong>: Mother must have gone to bed. Mark, it was a
+wonderful evening…</p>
+<p><strong>mark</strong>: That’s what I was going to say… a wonderful
+evening…</p>
+<p><strong>helen</strong>: And you made it wonderful… without your
+camera.</p>
+<p><strong>helen</strong>: I’ll get it for you.</p>
+<p><strong>helen</strong>: wonder how this sees grown-ups? …me, for
+instance… now that I am one.</p>
+<p><strong>mark</strong>: Not you!</p>
+<p><strong>helen</strong>: Mark.</p>
+<p><strong>mark</strong>: It never will… see you!</p>
+<p><strong>helen</strong>: Why not?</p>
+<p><strong>mark</strong>: Whatever I photograph -</p>
+<p><strong>helen</strong>: Yes?</p>
+<p><strong>mark</strong>: I always - lose…</p>
+<p><strong>helen</strong>: I don’t understand.</p>
+<p><strong>helen</strong>: He’ll wake Mother!</p>
+<p><strong>helen</strong>: … thank you, again, for my evening. Will you
+go to bed now - and not stop up watching those films?</p>
+<p><strong>mark</strong>: Well… I’ve a little work to do… then I’ll go
+to bed… and think of how to find faces for you…</p>
+<p><strong>mark</strong>: …faces which - are faces which…</p>
+<p><strong>helen</strong>: Good night, Mark…</p>
+<p><strong>mrs. stephens</strong>: Good evening, Mark…</p>
+<p><strong>mark</strong>: …how did you?</p>
+<p><strong>mrs. stephens</strong>: The young man bathing himself brought
+me to your door… I managed the rest of the adventure alone…</p>
+<p><strong>mrs. stephens</strong>: This is one room I expected to find
+locked.</p>
+<p><strong>mark</strong>: I was never allowed a key…, can’t get used to
+them.</p>
+<p><strong>mark</strong>: I brought her home early.</p>
+<p><strong>mrs. stephens</strong>: Thank you…</p>
+<p><strong>mark</strong>: Is there something you…</p>
+<p><strong>mrs. stephens</strong>: … a talk.</p>
+<p><strong>mark</strong>: Next door would be more…</p>
+<p><strong>mrs. stephens</strong>: I’m at home here… I visit this room
+every night.</p>
+<p><strong>mark</strong>: Visit?</p>
+<p><strong>mrs. stephens</strong>: The blind always live in the rooms
+they live under…</p>
+<p><strong>mrs. stephens</strong>: Every night you pace for hours above
+my head! Why?</p>
+<p><strong>mark</strong>: I’ve no one to talk to… in the rooms I live
+over…</p>
+<p><strong>mrs. stephens</strong>: I’m told that you stare too much… so
+do I.</p>
+<p><strong>mrs. stephens</strong>: Cloth… with something hard inside
+it…</p>
+<p><strong>mark</strong>: It’s a changing bag… we put films in it - so
+that the light won’t spoil them…</p>
+<p><strong>mrs. stephens</strong>: How odd - that the light can spoil
+anything…</p>
+<p><strong>mrs. stephens</strong>: Every night you switch on that film
+machine.</p>
+<p><strong>mrs. stephens</strong>: What are these films you can’t wait
+to look at?</p>
+<p><strong>mark</strong>: Like a chair?</p>
+<p><strong>mrs. stephens</strong>: What is the film you’re showing
+now?</p>
+<p><strong>mrs. stephens</strong>: Why don’t you lie to me? I’d never
+know…</p>
+<p><strong>mark</strong>: You’d know at once -</p>
+<p><strong>mrs. stephens</strong>: Take me to your cinema.</p>
+<p><strong>mark</strong>: Yes.</p>
+<p><strong>mrs. stephens</strong>: What am I seeing, Mark?</p>
+<p><strong>mrs. stephens</strong>: Why don’t you answer?</p>
+<p><strong>mark</strong>: It’s no good - I was afraid it wouldn’t
+be.</p>
+<p><strong>mrs. stephens</strong>: What?</p>
+<p><strong>mark</strong>: The lights failed too soon.</p>
+<p><strong>mrs. stephens</strong>: They always do.</p>
+<p><strong>mark</strong>: I’ll have to try again.</p>
+<p><strong>mrs. stephens</strong>: I’ve yet to meet an artist who could
+judge his own work…</p>
+<p><strong>mrs. stephens</strong>: What do you think you’ve spoiled?</p>
+<p><strong>mark</strong>: An opportunity… now I must find another.</p>
+<p><strong>mrs. stephens</strong>: Why are you putting those lights on
+my face?</p>
+<p><strong>mrs. stephens</strong>: Mark…</p>
+<p><strong>mark</strong>: It’s almost over…</p>
+<p><strong>mark</strong>: Please let me finish! It’s for Helen!</p>
+<p><strong>mrs. stephens</strong>: What do you mean? It’s for Helen?</p>
+<p><strong>mark</strong>: She wants to see something I’ve
+photographed!</p>
+<p><strong>mrs. stephens</strong>: My daughter sees enough of my face
+without photographs…</p>
+<p><strong>mark</strong>: Please… don’t be frightened.</p>
+<p><strong>mrs. stephens</strong>: Not frightened! Hot!</p>
+<p><strong>mrs. stephens</strong>: So put that camera away…</p>
+<p><strong>mark</strong>: Yes!</p>
+<p><strong>mrs. stephens</strong>: In rather a hurry, aren’t you?</p>
+<p><strong>mark</strong>: It’s late.</p>
+<p><strong>mark</strong>: You must be tired…</p>
+<p><strong>mrs. stephens</strong>: You’re anxious to get rid of me all
+of a sudden.</p>
+<p><strong>mrs. stephens</strong>: I won’t be selfish… You can take some
+more pictures - if you want to…</p>
+<p><strong>mark</strong>: No… thank you.</p>
+<p><strong>mrs. stephens</strong>: Why not, Mark?</p>
+<p><strong>mark</strong>: Run out of film.</p>
+<p><strong>mrs. stephens</strong>: Can’t you find some - to please
+Helen?</p>
+<p><strong>mrs. stephens</strong>: You don’t trust yourself to take any
+more, do you?</p>
+<p><strong>mrs. stephens</strong>: Instinct’s a wonderful thing, isn’t
+it Mark? A pity it can’t be photographed.</p>
+<p><strong>mrs. stephens</strong>: if I’d listened to it years ago, I
+might have kept my sight. I wouldn’t have let a man operate I had no
+faith in… so I’m listening to it now… It says all this filming isn’t
+healthy - and that you need help…</p>
+<p><strong>mrs. stephens</strong>: … get it, Mark… get it quickly… and
+until you’ve got it… I don’t want you and Helen to see each…</p>
+<p><strong>mark</strong>: I’ll never photograph her… I promise you
+that.</p>
+<p><strong>mrs. stephens</strong>: I’d rather you don’t have the
+chance.</p>
+<p><strong>mrs. stephens</strong>: I mean it, Mark. And if you don’t
+listen to me… one of us will move from this house - which would be a
+pity, because we’d never find a cheaper…</p>
+<p><strong>mark</strong>: You’ll never have to move… because of me… I
+promise you.</p>
+<p><strong>mrs. stephens</strong>: Good boy. The stairs are the
+difficult part…</p>
+<p><strong>mrs. stephens</strong>: Far enough, Mark…</p>
+<p><strong>mark</strong>: taking my picture?</p>
+<p><strong>mrs. stephens</strong>: Yes …</p>
+<p><strong>mark</strong>: It’s been a long time… since anyone did…</p>
+<p><strong>mrs. stephens</strong>: Mark… what’s troubling you?</p>
+<p><strong>mark</strong>: Good night, Mrs. Stephens.</p>
+<p><strong>mrs. stephens</strong>: …you’ll have to!</p>
+<p><strong>jarvis</strong>: Have you any suspicions, Chief
+Inspector?</p>
+<p><strong>inspector</strong>: It could be any of them…</p>
+<p><strong>sergeant</strong>: That’s the trouble with film people -
+they’re all peculiar… … present company excepted.</p>
+<p><strong>publicity man</strong>: Speaking of peculiar people.</p>
+<p><strong>publicity man</strong>: We’ve a psychiatrist coming down
+today. Dr Rosen -</p>
+<p><strong>inspector</strong>: I know him.</p>
+<p><strong>publicity man</strong>: It’s pure publicity - and I promise
+he won’t do any work.</p>
+<p><strong>inspector</strong>: What will he do?</p>
+<p><strong>publicity man</strong>: Get himself photographed… We’re
+telling the press he’s here to help the case - and to see if he can spot
+the murderer.</p>
+<p><strong>sergeant</strong>: And the best of luck!</p>
+<p><strong>jarvis</strong>: Do you object. Chief Inspector?</p>
+<p><strong>inspector</strong>: No…</p>
+<p><strong>inspector</strong>: I’ll be frank. I’d welcome anyone’s help…
+I don’t know how this maniac kills - or why he kills - or who he’ll kill
+next, but if he isn’t caught quickly…</p>
+<p><strong>baden</strong>: Inspector, have you convinced yourself he’s a
+member of my unit?</p>
+<p><strong>inspector</strong>: No, sir … but a few things seem to point
+to it… No one outside your unit admits to knowing the girl… There was a
+trunk all ready for her… and with the risks he was running, I think he’d
+have to use surroundings he was familiar with… Where is your unit
+now?</p>
+<p><strong>baden</strong>: Waiting for me on the set.</p>
+<p><strong>inspector</strong>: I’d like to watch them at their jobs,
+sir. It may tell me more than a hundred interviews.</p>
+<p><strong>baden</strong>: But, Inspector, the strain on them is
+already…</p>
+<p><strong>jarvis</strong>: Come now, Arthur, if that’s what the
+Inspector wants.</p>
+<p><strong>inspector</strong>: I’m afraid it is, sir… now where could I
+get the best view?</p>
+<p><strong>baden</strong>: On the dolly… the camera… You can watch
+everyone and everything from there… including me!</p>
+<p><strong>inspector</strong>: Very well, sir … I’ll become a member of
+your camera crew…</p>
+<p><strong>baden</strong>: … if the unions don’t object!</p>
+<p><strong>voice 1</strong>: I hear they’re making an arrest today.</p>
+<p><strong>voice 2</strong>: hope it’s D.J. It’s about time they caught
+up with him!</p>
+<p><strong>driver</strong>: We’re there, Doctor.</p>
+<p><strong>doctor</strong>: Dr Rosen! What a pity.</p>
+<p><strong>baden</strong>: Try it, darling… We’ll all be with you.</p>
+<p><strong>assistant director</strong>: Quiet, everyone. Let’s run
+it!</p>
+<p><strong>doctor</strong>: Terribly sorry.</p>
+<p><strong>assistant cameraman</strong>: That sneezer geezer’s a
+psychiatrist!… Heard it on the grapevine.</p>
+<p><strong>assistant director</strong>: All right, everyone - let’s run
+it…</p>
+<p><strong>diane</strong>: I’d like to see… that one…</p>
+<p><strong>diane</strong>: … have you it… in red…?</p>
+<p><strong>assistant</strong>: Certainly, madam.</p>
+<p><strong>diane</strong>: … in… red I can’t! I can’t, Arthur!</p>
+<p><strong>assistant director</strong>: Ten minutes break, everyone!</p>
+<p><strong>assistant director</strong>: Can you suggest anything,
+Doctor?</p>
+<p><strong>doctor</strong>: No. It looked jolly interesting to me.</p>
+<p><strong>assistant director</strong>: I mean to help her
+psychologically…</p>
+<p><strong>doctor</strong>: Yes. Give the girl a proper rest… Ten
+minutes is useless!</p>
+<p><strong>assistant director</strong>: Thank you, Doctor.</p>
+<p><strong>doctor</strong>: What’s your job?</p>
+<p><strong>mark</strong>: I’m a focus-puller…</p>
+<p><strong>doctor</strong>: Oh… so am I, in a way.</p>
+<p><strong>mark</strong>: I was wondering if you knew my father -
+Professor Lewis…</p>
+<p><strong>doctor</strong>: Professor… but of course I knew him. He
+lectured to me.</p>
+<p><strong>doctor</strong>: He was an extraordinary man - quite
+brilliant!</p>
+<p><strong>mark</strong>: You know what he was interested in before he
+died?</p>
+<p><strong>doctor</strong>: No? Tell me…</p>
+<p><strong>mark</strong>: I don’t remember what he called it… It was
+something to do with what causes people to be… peeping Toms…</p>
+<p><strong>doctor</strong>: Scoptophilia!… That would interest him! A
+most fertile mind.</p>
+<p><strong>mark</strong>: Scopto…?</p>
+<p><strong>doctor</strong>: philia… The morbid urge to gaze… Coined
+since his day… Have you any manuscripts of his which I could…?</p>
+<p><strong>mark</strong>: He thought… it could be cured…</p>
+<p><strong>doctor</strong>: Usually. Now about his manuscripts -</p>
+<p><strong>mark</strong>: Quickly?</p>
+<p><strong>doctor</strong>: The cure? Very quick… A couple of years
+analysis - three times a week - an hour a time - and it’s soon
+up-rooted…</p>
+<p><strong>doctor</strong>: … if you’ve any of his papers on the
+subject?</p>
+<p><strong>mark</strong>: Yes, Doctor…</p>
+<p><strong>doctor</strong>: I’d like to see them - I’ll give you my
+address, young man.</p>
+<p><strong>sergeant</strong>: Wonder what all that’s about?</p>
+<p><strong>inspector</strong>: We’ll find out afterwards… Now, listen… I
+want you to watch who brings their own lunches… Someone ate homemade
+cakes and sandwiches by the side of those bushes - and we may get a
+lead.</p>
+<p><strong>sergeant</strong>: Right, sir.</p>
+<p><strong>assistant director</strong>: We’re stopping at four today -
+so have a quick lunch, everyone! Back at two sharp!</p>
+<p><strong>voice</strong>: Hey, Mark!</p>
+<p><strong>clapper boy</strong>: Can’t wait to show you this! I ought to
+charge you!</p>
+<p><strong>clapper boy</strong>: You don’t get that in Sight and Sound -
+Isn’t she terrific? Got some more - if you’re interested?</p>
+<p><strong>mark</strong>: You’ve given me… an idea…</p>
+<p><strong>clapper boy</strong>: I’ll bet I have!</p>
+<p><strong>clapper boy</strong>: Hey! Where are you going?</p>
+<p><strong>mark</strong>: Phone - may be my last chance - and…
+thanks.</p>
+<p><strong>clapper boy</strong>: But your lunch?</p>
+<p><strong>mark</strong>: You have it!</p>
+<p><strong>clapper boy</strong>: … some photograph! Well lit too!</p>
+<p><strong>mark</strong>: Can’t manage Saturday, sir, but they’re
+letting us off early today! This afternoon - after work - may be my last
+chance!</p>
+<p><strong>mr. peters</strong>: … be here at six o’clock. Milly’ll be
+waiting.</p>
+<p><strong>mark</strong>: Six o’clock…</p>
+<p><strong>mr. peters</strong>: On the dot, Mark, or she’ll go.</p>
+<p><strong>mark</strong>: I’ll be there, sir.</p>
+<p><strong>mr. peters</strong>: You’d better be!</p>
+<p><strong>mark</strong>: Hallo? Is that the Public Library? … You have
+a Miss Helen Stephens employed there? Yes… can you tell me if her name
+is spelt with a V or a PH, I want to send her a tic-PH? … Thank you.</p>
+<p><strong>clapper boy</strong>: They’re waiting!</p>
+<p><strong>doctor rosen</strong>: He asked if I knew his father… which I
+did… a brilliant man!</p>
+<p><strong>inspector</strong>: Is that all he wanted?</p>
+<p><strong>doctor</strong>: think so… we had a little chat about
+scoptophilia - and he’s going to show me…</p>
+<p><strong>inspector</strong>: About what?</p>
+<p><strong>doctor</strong>: Voyeurism.</p>
+<p><strong>inspector</strong>: Eh?</p>
+<p><strong>doctor</strong>: What makes people into Peeping Toms, one of
+his father’s subjects, apparently.</p>
+<p><strong>inspector</strong>: Peeping Toms…</p>
+<p><strong>doctor</strong>: An interesting boy… he has his father’s
+eyes… you don’t suspect him, do you?</p>
+<p><strong>inspector</strong>: I suspect ’em all - what about you?</p>
+<p><strong>doctor</strong>: I’m interested in that chap with the bald
+head and hatchet face… there’s something on his mind!</p>
+<p><strong>inspector</strong>: No wonder… he’s the director!</p>
+<p><strong>assistant director</strong>: All right, everyone. This is the
+last shot… Make it a good one!</p>
+<p><strong>inspector</strong>: Got your list, Sergeant?</p>
+<p><strong>inspector</strong>: I want to see how some of them spend
+their spare time…</p>
+<p><strong>sergeant</strong>: Which ones, sir?</p>
+<p><strong>inspector</strong>: Exactly, Sergeant… … which ones?</p>
+<p><strong>mr. peters</strong>: Don’t make a habit of this!</p>
+<p><strong>mark</strong>: I won’t, sir.</p>
+<p><strong>mr. peters</strong>: Milly’s upstairs.</p>
+<p><strong>mark</strong>: Right, sir.</p>
+<p><strong>mr. peters</strong>: I’ve got to go out… If you finish before
+I’m back, lock up and put this through the letter-box…</p>
+<p><strong>mr. peters</strong>: What’s the matter? Haven’t you ever seen
+a key before?</p>
+<p><strong>mr. peters</strong>: The till will be empty - if that’s what
+you’re smiling about.</p>
+<p><strong>mr. peters</strong>: You know what I want now! No fancy
+stuff…</p>
+<p><strong>milly</strong>: You’ve spoiled my whole evening, you
+have!</p>
+<p><strong>mark</strong>: Sorry, Milly.</p>
+<p><strong>milly</strong>: What’s the idea?</p>
+<p><strong>mark</strong>: I shan’t be here tomorrow.</p>
+<p><strong>milly</strong>: Why? Going on manoeuvres with the boy
+scouts?</p>
+<p><strong>mark</strong>: I thought so!</p>
+<p><strong>milly</strong>: Have you gone absolutely…</p>
+<p><strong>mark</strong>: I’m just… completing a documentary.</p>
+<p><strong>milly</strong>: You’re a document and a half, you are. Is it
+safe to be alone with you?</p>
+<p><strong>milly</strong>: … might be more fun if it wasn’t…</p>
+<p><strong>black out</strong>: The screen remains dark for a moment.</p>
+<p><strong>helen</strong>: Darling…</p>
+<p><strong>helen</strong>: Darling.</p>
+<p><strong>tony</strong>: Hallo.</p>
+<p><strong>helen</strong>: Hallo, Tony…</p>
+<p><strong>tony</strong>: Where are you going?</p>
+<p><strong>helen</strong>: To leave something for Mark…</p>
+<p><strong>tony</strong>: You haven’t much time for me these days.</p>
+<p><strong>helen</strong>: Tony…</p>
+<p><strong>tony</strong>: It’s all right - I’ll be here - if you want
+me. … by the way… your mother was yelling out something before you came
+in… about Mark photographing her.</p>
+<p><strong>helen</strong>: Photographing Mother? You must be
+mistaken!</p>
+<p><strong>tony</strong>: Of course. See you sometime.</p>
+<p><strong>helen</strong>: Mark…?</p>
+<p><strong>helen</strong>: Mark? No answer. She looks thoughtfully at
+the envelope in her hand - then goes in to the dark-room.</p>
+<p><strong>detective</strong>: … don’t know what to make of it, sir … He
+went to a library, a solicitor’s office, and a newsagent’s shop -
+private photography there, if you ask me. Shall I hang around outside
+the house, sir? Don’t think so, either… All right, sir, I’ll give you
+the details when I get back… Bye, sir.</p>
+<p><strong>chief inspector</strong>: Chief Inspector Gregg! What? Put
+him on the line…</p>
+<p><strong>mr. peters</strong>: went up to look around - found her.</p>
+<p><strong>chief inspector</strong>: Yes, yes… What’s the address? …
+Newsagent’s shop? … Did you say news…?</p>
+<p><strong>mark</strong>: Don’t let me see you… frightened… Leave!
+Hurry, Helen!</p>
+<p><strong>helen</strong>: Not…</p>
+<p><strong>mark</strong>: Leave!</p>
+<p><strong>helen</strong>: Not… … till I know…</p>
+<p><strong>mark</strong>: Now!</p>
+<p><strong>helen</strong>: That film…</p>
+<p><strong>helen</strong>: That film…</p>
+<p><strong>helen</strong>: … is … just a film…</p>
+<p><strong>helen</strong>: … isn’t it?</p>
+<p><strong>helen</strong>: … horrible … horrible… but… just a film…
+isn’t it?</p>
+<p><strong>mark</strong>: No… I killed them… And now that you know… I
+want you with me… a while.</p>
+<p><strong>mark</strong>: You’ll be safe - as long as I can’t see you
+frightened - so stand in the shadows, Helen… please…</p>
+<p><strong>mark</strong>: … please…</p>
+<p><strong>helen</strong>: She’s right… your mother… must tell someone
+everything… sorry… has to be you!</p>
+<p><strong>helen</strong>: This was his laboratory… and you know some of
+what he did… but not all.</p>
+<p><strong>mark</strong>: … aged five…</p>
+<p><strong>mark</strong>: … aged seven…</p>
+<p><strong>mark</strong>: All the rooms were wired for sound… and… still
+are.</p>
+<p><strong>mark</strong>: Your room.</p>
+<p><strong>mark</strong>: Your mother’s .</p>
+<p><strong>mark</strong>: Tony’s.</p>
+<p><strong>tony</strong>: No one will come in… honestly, darling…</p>
+<p><strong>girl’s voice</strong>: I don’t care!</p>
+<p><strong>tony</strong>: But darling…</p>
+<p><strong>girl’s voice</strong>: Stop it, Tony!</p>
+<p><strong>helen</strong>: Turn it off!</p>
+<p><strong>helen</strong>: Look at me, Mark!</p>
+<p><strong>mark</strong>: Not if you’re frightened…</p>
+<p><strong>helen</strong>: Look at me!</p>
+<p><strong>helen</strong>: What did you do… to those girls?</p>
+<p><strong>mark</strong>: No.</p>
+<p><strong>helen</strong>: What did you do, Mark…?</p>
+<p><strong>helen</strong>: If you want to torment me… for the rest of my
+life… then make me imagine!</p>
+<p><strong>helen</strong>: What did you do … to those girls?</p>
+<p><strong>mark</strong>: Can’t…</p>
+<p><strong>helen</strong>: Show me, Mark…</p>
+<p><strong>mark</strong>: But if you’re frightened…</p>
+<p><strong>helen</strong>: Show me - or I’ll remain frightened… for the
+rest of my life. Show me!</p>
+<p><strong>mark</strong>: Do you know… what the most frightening thing
+in the world is?…</p>
+<p><strong>mark</strong>: It’s fear.</p>
+<p><strong>mark</strong>: So I did something… very simple…</p>
+<p><strong>mark</strong>: Very simple.</p>
+<p><strong>mark</strong>: When they felt the spike… touching their
+throats… and knew I was going to kill them…</p>
+<p><strong>mark</strong>: … I made them - watch their own deaths!</p>
+<p><strong>mark</strong>: Made them see their own terror as the spike
+went in… and if death has a face, they saw that too!</p>
+<p><strong>mark</strong>: Not you! Not you! I’ll never photograph you! I
+promised - I promised - Not you!</p>
+<p><strong>helen</strong>: … frightened … for you…</p>
+<p><strong>sergeant</strong>: Look out!</p>
+<p><strong>helen</strong>: Mark! Mark! Give yourself up!</p>
+<p><strong>mark</strong>: I’ve been ready for this… for such a long
+time…</p>
+<p><strong>helen</strong>: What are you…</p>
+<p><strong>mark</strong>: It’ll be all right.</p>
+<p><strong>mark</strong>: I can beat that!</p>
+<p><strong>helen</strong>: Give yourself up… Mark!</p>
+<p><strong>mark</strong>: Watch them, Helen… Watch them say goodbye -
+one by one - I’ve timed this… so often…</p>
+<p><strong>helen</strong>: No - No!</p>
+<p><strong>mark</strong>: I wish… I could have found your faces for
+you…</p>
+<p><strong>mark</strong>: Helen - I’m afraid!</p>
+<p><strong>mark</strong>: I’m glad I’m afraid!</p>
+<p><strong>father’s voice</strong>: Don’t be a silly boy… there’s
+nothing to be afraid of…</p>
+<p><strong>child’s voice</strong>: Good night, Daddy…</p>
+</body>
+</html>

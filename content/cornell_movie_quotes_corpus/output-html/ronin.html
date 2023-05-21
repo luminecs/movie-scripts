@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ronin</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="ronin">ronin</h1>
+<p><strong>draft</strong>: May 20, 1997</p>
+<p><strong>killer</strong>: God loves me.</p>
+<p><strong>killer</strong>: But I don’t think he’s too fond of you…</p>
+<p><strong>ugly american</strong>: What is this?</p>
+<p><strong>ugly american</strong>: This is not football…</p>
+<p><strong>ugly american</strong>: …Football is three hundred pound
+guys, they run way too fucking fast, they got helmets made of kevlar
+they use to spear the quarterback into the next life.</p>
+<p><strong>larry</strong>: You wanna know what football is? It’s hitting
+the other guy dirty and then spitting in his face when he’s down.
+Football is all things American, and American is A-Number-One the
+absolute fucking best there is. That’s what football is… …And that’s not
+football.</p>
+<p><strong>vincent</strong>: Football – American football – is a game
+for faggots.</p>
+<p><strong>a woman’s voice</strong>: Yes?</p>
+<p><strong>deirdre</strong>: Can I help you?</p>
+<p><strong>sam</strong>: No…</p>
+<p><strong>deirdre</strong>: I’m here… No, it was nothing.</p>
+<p><strong>sam</strong>: Sorry I’m late…</p>
+<p><strong>vincent</strong>: What makes you think we’re here to meet
+you?</p>
+<p><strong>sam</strong>: Who else would you be?</p>
+<p><strong>vincent</strong>: Perhaps the police?</p>
+<p><strong>sam</strong>: I know cops – and you’re no cop.</p>
+<p><strong>vincent</strong>: Cigarette?</p>
+<p><strong>sam</strong>: No thanks.</p>
+<p><strong>sam</strong>: He trusts you to lock up?</p>
+<p><strong>vincent</strong>: Let’s just say he knows who I am.</p>
+<p><strong>larry</strong>: Anybody wanna tell me what we’re waiting
+for?</p>
+<p><strong>vincent</strong>: The question isn’t what we’re waiting for…
+it’s who.</p>
+<p><strong>larry</strong>: And who the fuck is that?</p>
+<p><strong>gregor</strong>: Whoever hired us.</p>
+<p><strong>sam</strong>: I got this gig through a contractor. And he
+most definitely didn’t know who was doing the hiring, only that they
+were paying a lot of money…</p>
+<p><strong>sam</strong>: So none of us knows who’s paying the freight,
+this is just some anonymous job. For all we know, we’re working for
+different people.</p>
+<p><strong>gregor</strong>: Now that is an interesting proposition.</p>
+<p><strong>swede</strong>: How so?</p>
+<p><strong>gregor</strong>: Because if there’s more than one party
+involved, if we really are working for different people, then perhaps
+some of us are on different sides. Your orders might be different from
+mine.</p>
+<p><strong>larry</strong>: What’re you talking about, man? I don’t
+understand.</p>
+<p><strong>swede</strong>: What a surprise…</p>
+<p><strong>larry</strong>: I got a surprise for you, blondie…</p>
+<p><strong>gregor</strong>: Why don’t both of you shut up?</p>
+<p><strong>larry &amp; swede</strong>: Fuck you!</p>
+<p><strong>sam</strong>: Knock it off!</p>
+<p><strong>sam</strong>: The point remains: we could be working for
+different people. There’s a chance for one of us… Maybe more than one of
+us – has been paid to cross the others. I don’t know about you guys, but
+I like to know who I’m working for. It can help prevent a great deal of…
+…unpleasantness.</p>
+<p><strong>larry</strong>: Anybody tries to unpleasant me I’ll put two
+between his eyes – one to do the job and the other to make sure it
+takes.</p>
+<p><strong>deirdre</strong>: It’s good to see you’ve all got such faith
+in our little undertaking.</p>
+<p><strong>larry</strong>: Who the fuck are you?</p>
+<p><strong>deirdre</strong>: The name is Deirdre, and I’m running this
+show.</p>
+<p><strong>gregor</strong>: Who are you? IRA?</p>
+<p><strong>deirdre</strong>: Not likely. Once, yeah, I was – but there
+wasn’t an inch of profit in it, and I’m a cash oriented girl, if you
+take my meaning. I’m a hired gun, same as the rest of you, and that’s
+all any of us needs to know about the other.</p>
+<p><strong>deirdre</strong>: From here on in you want something you pay
+cash for it: no credit cards, no bank accounts are in place: ten percent
+up front, the rest when the job is done. You. What do you do and what
+should we call you?</p>
+<p><strong>gregor</strong>: These days they they call me Gregor – and
+I’m a tech. I do electronic work, surveillance, computer runs.</p>
+<p><strong>sam</strong>: Sam. I’m a weapons guy.</p>
+<p><strong>deirdre</strong>: You were a soldier, were you?</p>
+<p><strong>sam</strong>: Once.</p>
+<p><strong>larry</strong>: I drive – and my name is Larry. Larry from
+the States.</p>
+<p><strong>deirdre</strong>: And who are you?</p>
+<p><strong>vincent</strong>: I’m Vincent. And I coordinate.</p>
+<p><strong>sam</strong>: Coordinate what?</p>
+<p><strong>vincent</strong>: Things. This is my country, you know.</p>
+<p><strong>deirdre</strong>: Coordinate all you want, but make sure
+whatever you do gets cleared through me. Are we in sync on this,
+Vincent?</p>
+<p><strong>vincent</strong>: Of course.</p>
+<p><strong>swede</strong>: They call me Swede.</p>
+<p><strong>larry</strong>: Who’s they?</p>
+<p><strong>swede</strong>: Everybody.</p>
+<p><strong>vincent</strong>: And what is it you do?</p>
+<p><strong>swede</strong>: Me? I kill.</p>
+<p><strong>sam</strong>: You shoot alright.</p>
+<p><strong>larry</strong>: Gets the job done.</p>
+<p><strong>sam</strong>: All in the stomach, though. Your man might
+live.</p>
+<p><strong>larry</strong>: Not for long.</p>
+<p><strong>sam</strong>: Long enough to shoot back.</p>
+<p><strong>larry</strong>: Is that right?</p>
+<p><strong>sam</strong>: It’s been known to happen.</p>
+<p><strong>larry</strong>: Why don’t you go do better, then…</p>
+<p><strong>larry</strong>: Yeah, well… My way works too.</p>
+<p><strong>sam</strong>: My way is better.</p>
+<p><strong>deirdre</strong>: Is it alright?</p>
+<p><strong>gregor</strong>: It’s quite satifactory.</p>
+<p><strong>deirdre</strong>: Good, because it cost enough. There’s
+cheaper phones by far than that one, man: you better fucking use it.</p>
+<p><strong>gregor</strong>: I intend to. This phone is wired like no
+other: it’s got an encryption chip and instant sat-a-link recognition,
+it can talk to any computer in any language and make it understand. With
+my custom hardware and this phone I can trace the target’s cell phone
+signature and follow him anywhere he goes…</p>
+<p><strong>deirdre</strong>: You sure about this?</p>
+<p><strong>gregor</strong>: I’d stake my reputation.</p>
+<p><strong>deirdre</strong>: But would you stake your life, that’s the
+question…</p>
+<p><strong>gregor</strong>: In this business, your life and your
+reputation are more often than not one and the same.</p>
+<p><strong>swede</strong>: You should watch what you eat.</p>
+<p><strong>larry</strong>: Who the fuck died and appointed you food
+czar?</p>
+<p><strong>swede</strong>: I’m just worried about your health, Larry.
+You could stand to shed a few pounds.</p>
+<p><strong>larry</strong>: And you could stand to get a little smarter,
+ain’t that right you dumb blonde fuck?</p>
+<p><strong>swede</strong>: Who you calling dumb, dickless?</p>
+<p><strong>deirdre</strong>: Next one of you fuckers plays this game I’m
+going to do for you myself. I won’t say it again: we don’t have time for
+this shit! There’s a clock running on this job, gentlemen, and I mean to
+be on schedule.</p>
+<p><strong>vincent</strong>: Let’s go for a ride.</p>
+<p><strong>sam</strong>: Where to?</p>
+<p><strong>vincent</strong>: To see a man about a thing.</p>
+<p><strong>sam</strong>: I can do that.</p>
+<p><strong>leader</strong>: Who gave you permission to park here?</p>
+<p><strong>sam</strong>: What’s he saying?</p>
+<p><strong>vincent</strong>: Pretty much what you’d expect.</p>
+<p><strong>sam</strong>: That’s what I thought.</p>
+<p><strong>leader</strong>: There’s a charge for parking on our
+block.</p>
+<p><strong>vincent</strong>: He says this is their block.</p>
+<p><strong>sam</strong>: As in, they own it?</p>
+<p><strong>vincent</strong>: Something like that…</p>
+<p><strong>sam</strong>: And I suppose he’s saying that we oughta give
+them something for using it, huh?</p>
+<p><strong>vincent</strong>: I didn’t know that you spoke French.</p>
+<p><strong>sam</strong>: I don’t. But the language he’s speaking is
+universal.</p>
+<p><strong>sam</strong>: I guess we oughta give them something…</p>
+<p><strong>cut back to</strong>: Vincent and Sam.</p>
+<p><strong>vincent</strong>: If you think we should.</p>
+<p><strong>sam</strong>: Oh man, I am sorry about that… Let me give you
+a hand.</p>
+<p><strong>sam</strong>: What’d you say to him?</p>
+<p><strong>vincent</strong>: I asked if we could give him anything
+else.</p>
+<p><strong>vincent</strong>: That was a nice move you did on our young
+friend. Judo?</p>
+<p><strong>sam</strong>: Jujitsu.</p>
+<p><strong>vincent</strong>: Same thing, isn’t it?</p>
+<p><strong>sam</strong>: Not at all. Similar, but not the same.</p>
+<p><strong>vincent</strong>: What’s the difference?</p>
+<p><strong>sam</strong>: One’s a lot more painful than the other.</p>
+<p><strong>sam</strong>: Could I get one of those?</p>
+<p><strong>vincent</strong>: Help yourself. Since when do you smoke?</p>
+<p><strong>sam</strong>: I have, I don’t know, maybe a cigarette a
+week.</p>
+<p><strong>vincent</strong>: A cigarette? As in one? One cigarette a
+week, who smokes like that?</p>
+<p><strong>sam</strong>: I do.</p>
+<p><strong>vincent</strong>: Christ, I smoke a pack-and-a-half a day,
+and I tell myself I could be worse. It’s just so damned pleasurable.</p>
+<p><strong>sam</strong>: It has it’s moments. Course, you get cancer and
+die, that’s the down side.</p>
+<p><strong>vincent</strong>: There is that.</p>
+<p><strong>sam</strong>: So, Vincent: why bring me along for the ride?
+Job like this calls for a warm body, somebody who can stand around and
+look threatening. A tough guy.</p>
+<p><strong>vincent</strong>: Like Larry or Swede.</p>
+<p><strong>sam</strong>: Exactly. Why not bring them?</p>
+<p><strong>vincent</strong>: Let’s just say I thought the conversational
+possibilities were limited. Of course, I might have brought Gregor, but
+he didn’t seem like the right candidate – for this.</p>
+<p><strong>sam</strong>: Watch that one, he’s an ex-spook for sure,
+maybe Stasi, maybe KGB. He’s smart, Gregor is.</p>
+<p><strong>vincent</strong>: So is the woman.</p>
+<p><strong>sam</strong>: Deirdre? Smart, yeah, and seriously goddamned
+dangerous.</p>
+<p><strong>vincent</strong>: I wonder if she truly left the IRA.</p>
+<p><strong>sam</strong>: I’ve wondered that myself. None of this answers
+my question, though… Why bring me?</p>
+<p><strong>vincent</strong>: I wanted to see who you were.</p>
+<p><strong>sam</strong>: Who am I?</p>
+<p><strong>vincent</strong>: You were once some kind of special forces.
+Airborne Ranger, maybe a Navy SEAL. After that you rode shotgun for the
+CIA in some place like El Salvador or Afghanistan, a real mercenary.
+Only now – now you’re like the rest of us, it’s a very competitive
+market since the end of the cold war. There’s a lot of hired guns out
+here, and not nearly enough work to go around.</p>
+<p><strong>sam</strong>: That’s right: there’s not hardly enough work
+these days, nothing that pays the big money, anyhow. Then along comes
+this job, paying so much goddamned money I couldn’t afford not to take
+it. Somebody’s paying through the nose for this.</p>
+<p><strong>vincent</strong>: They certainly are. Whatever it is we’re
+going to steal, it must be quite something.</p>
+<p><strong>sam</strong>: Whatever it is it must be goddamned
+priceless.</p>
+<p><strong>vincent</strong>: Lovely, isn’t it?</p>
+<p><strong>sam</strong>: They’d have to keep something like this under
+lock and key in New York, and it would still get fucked up.</p>
+<p><strong>francois</strong>: That’s good right where you are,
+Vincent.</p>
+<p><strong>vincent</strong>: Do you have it?</p>
+<p><strong>francois</strong>: Not so fast. Who’s that?</p>
+<p><strong>vincent</strong>: He’s company.</p>
+<p><strong>francois</strong>: Bad company…</p>
+<p><strong>vincent</strong>: What do you mean?</p>
+<p><strong>francois</strong>: He’s a cop, Vincent, he’s French and he’s
+a cop and you better shoot him in the fucking head right now!</p>
+<p><strong>sam</strong>: What’s going on?</p>
+<p><strong>vincent</strong>: I just wanted to see something.</p>
+<p><strong>sam</strong>: See what?</p>
+<p><strong>francois</strong>: He wanted to see how you reacted when I
+said that you were a cop.</p>
+<p><strong>sam</strong>: You told him I was a cop?</p>
+<p><strong>francois</strong>: He asked me to say it.</p>
+<p><strong>sam</strong>: He asked you to?</p>
+<p><strong>vincent</strong>: I needed to know.</p>
+<p><strong>sam</strong>: You need to know a lot of shit, Vincent.</p>
+<p><strong>francois</strong>: Are you ready?</p>
+<p><strong>vincent</strong>: Here’s yours.</p>
+<p><strong>francois</strong>: There’s been a slight problem.</p>
+<p><strong>vincent</strong>: What’s that?</p>
+<p><strong>francois</strong>: If you say a word in English, Vincent, my
+friend with the high powered sporting rifle will shoot you in the
+throat. Sorry to screw you over like this, but the information you want
+might get me killed if I give it to you, and that’s a price I’m not
+willing to pay.</p>
+<p><strong>vincent</strong>: I take it you still want the money…</p>
+<p><strong>francois</strong>: Of course.</p>
+<p><strong>sam’s pov</strong>: Looking at Vincent and Francois.</p>
+<p><strong>vincent</strong>: Where’s my information?</p>
+<p><strong>francois</strong>: In here…</p>
+<p><strong>vincent</strong>: Then you better find it in your heart to
+tell me, Francois, because while your death is inevitable, it still
+isn’t decided how painful it’s going to be.</p>
+<p><strong>sam</strong>: Now would be a good time to get the fuck out of
+here.</p>
+<p><strong>sam</strong>: You know, what you pulled back there, that was
+bullshit.</p>
+<p><strong>vincent</strong>: I needed to see if you were a cop. I’m a
+popular man with the police, Sam, and whenever they try to catch me they
+always do it with an inside guy – some man on some job who seems more
+trustworthy than all the others put together. And that’s the guy you
+have to watch out for. I hate cops…</p>
+<p><strong>sam</strong>: Well I ain’t a cop.</p>
+<p><strong>vincent</strong>: How did you know?</p>
+<p><strong>sam</strong>: Know what?</p>
+<p><strong>vincent</strong>: That there was a gun pointed at me.</p>
+<p><strong>sam</strong>: I saw you look off when Francois nodded his
+head. I figured he wasn’t pointing out a particularly rare shrub, and
+the rest was easy.</p>
+<p><strong>vincent</strong>: But how did you know I would have the
+presence of mind to pull my weapon when I did?</p>
+<p><strong>sam</strong>: Because that’s what I would have done…</p>
+<p><strong>vincent</strong>: You saved my life back there in the park. I
+know this doesn’t begin to make it right between us…</p>
+<p><strong>sam</strong>: What I did back in the park I did because we’re
+working together – we’re on the same team. This is business – this is
+work. We did it together, we share the spoils, even split.</p>
+<p><strong>vincent</strong>: I owe you a heavy debt.</p>
+<p><strong>sam</strong>: Whatever you say.</p>
+<p><strong>deirdre</strong>: What’d you do with the money?</p>
+<p><strong>vincent</strong>: We kept it…</p>
+<p><strong>deirdre</strong>: Is that right?</p>
+<p><strong>sam</strong>: Hazard pay…</p>
+<p><strong>deirdre</strong>: The two of you were supposed to go to a
+simple meet and come back with a simple piece of information, and
+instead you went to fucking war…</p>
+<p><strong>sam</strong>: We weren’t real thrilled about it either…</p>
+<p><strong>larry</strong>: So what’s the deal?</p>
+<p><strong>deirdre</strong>: The deal? The deal is we leave for Nice at
+first light.</p>
+<p><strong>larry</strong>: What’d you guys do?</p>
+<p><strong>deirdre</strong>: I feel as if I’ve wandered onto the set of
+Enter The Dragon. Could you teach me to do that?</p>
+<p><strong>sam</strong>: I didn’t think to see you again tonight. You
+were pretty pissed.</p>
+<p><strong>deirdre</strong>: I still am.</p>
+<p><strong>sam</strong>: Is that right?</p>
+<p><strong>deirdre</strong>: That’s right.</p>
+<p><strong>sam</strong>: Part of me says I should just look at this as a
+perk. You know, a bonus. But then I remember you’re you – Deirdre who
+used to belong to the IRA – and it occurs to me that deceit and
+subterfuge come very naturally to you.</p>
+<p><strong>deirdre</strong>: Nobody’s saying they don’t.</p>
+<p><strong>sam</strong>: And when I consider that, I have to wonder if
+you don’t have some ulterior motive for being here, with me, right
+now.</p>
+<p><strong>deirdre</strong>: I probably do. But for the time being, I’m
+willing to forget about it…</p>
+<p><strong>gregor</strong>: I would imagine that the great satisfaction
+in all of this will be killing the American.</p>
+<p><strong>swede</strong>: I hadn’t thought about it. Understand me,
+Gregor – I take no pleasure in killing. It doesn’t bother me one bit,
+but I don’t get off on it.</p>
+<p><strong>gregor</strong>: A means to an end, is that it?</p>
+<p><strong>swede</strong>: That’s it.</p>
+<p><strong>gregor</strong>: Then I guess we’re set.</p>
+<p><strong>swede</strong>: There is one other thing…</p>
+<p><strong>gregor</strong>: What’s that?</p>
+<p><strong>gregor</strong>: What are you doing?</p>
+<p><strong>swede</strong>: Don’t cross me…</p>
+<p><strong>gregor</strong>: Nobody’s going to do that!</p>
+<p><strong>swede</strong>: Really?</p>
+<p><strong>gregor</strong>: I need you, Swede, I can’t do this without
+you!</p>
+<p><strong>swede</strong>: I just wanted to make sure you knew who you
+were dealing with.</p>
+<p><strong>gregor</strong>: I do, I do…</p>
+<p><strong>swede</strong>: Just remember it, then.</p>
+<p><strong>sam</strong>: No goodbye?</p>
+<p><strong>deirdre</strong>: Look, Sam, don’t take it the wrong way when
+I tell you we won’t be doing this again.</p>
+<p><strong>sam</strong>: You don’t have to explain yourself to me,
+Deirdre.</p>
+<p><strong>deirdre</strong>: I know I don’t have to, Sam, it’s just
+that, for once, I want to. when I was a - Patriot, it was a given I’d
+sleep with any man it was deemed necessary for me to sleep with. You
+know: any man who needed setting up. Sometimes so we might blackmail
+him, sometimes so he could be killed. Sometimes so I could kill him
+myself. IRA isn’t exactly an enlightened feminist organization, Sam. To
+most of the men I with I was always the girl. “Send the girl to do it.”
+“Tell The girl to take care of it.” “Have the girl fuck him.” But I look
+at you and I get this feeling you take me for what I am: no more, no
+less.</p>
+<p><strong>sam</strong>: You’re a hired gun, Deirdre – just like me.</p>
+<p><strong>deirdre</strong>: Exactly. And last night I wanted to be with
+someone who was just like me.</p>
+<p><strong>deirdre</strong>: I better be getting that.</p>
+<p><strong>sam</strong>: Duty calls?</p>
+<p><strong>deirdre</strong>: Just business.</p>
+<p><strong>deirdre</strong>: Now then, let’s run through it one more
+time, shall we? What’s your job?</p>
+<p><strong>gregor</strong>: I use my cell phone to get computer access
+to the telecommunications satellite used by our target. I trace his cell
+phone signature and use it to pin point his location as he moves through
+Nice, relaying that information to you.</p>
+<p><strong>deirdre</strong>: Next.</p>
+<p><strong>larry</strong>: You call me with the target’s route, I follow
+along until we’ve reached the attack point and then I run his squag ass
+off the road.</p>
+<p><strong>deirdre</strong>: Which leads us to…</p>
+<p><strong>swede</strong>: I ride with fat-boy…</p>
+<p><strong>larry</strong>: Eat shit and die slowly…</p>
+<p><strong>swede</strong>: After we stop the target car I get out and
+use the heavy artillery to kill the driver and his bodyguard.</p>
+<p><strong>larry</strong>: I blast the lead car into oblivion…</p>
+<p><strong>vincent</strong>: While Sam and I take out the back two
+cars…</p>
+<p><strong>deirdre</strong>: Leaving…</p>
+<p><strong>swede</strong>: …Leaving me to step in, drop the target in
+the back seat, and get the package…</p>
+<p><strong>deirdre</strong>: While…</p>
+<p><strong>sam</strong>: …While I back him up, making sure to get the
+package if something goes wrong and somebody takes Swede down.</p>
+<p><strong>swede</strong>: Nobody’s taking me anywhere…</p>
+<p><strong>deirdre</strong>: And then…</p>
+<p><strong>larry</strong>: Then Swede and I split with the package and
+meet you back at the rendezvous.</p>
+<p><strong>deirdre</strong>: And then…</p>
+<p><strong>vincent</strong>: And then Sam, you and I clean up whatever’s
+left to be cleaned.</p>
+<p><strong>deirdre</strong>: Very good. Now all we have to do is live
+long enough to get paid.</p>
+<p><strong>deirdre</strong>: Alright, Gregor, I’m…</p>
+<p><strong>gregor</strong>: Ready when you are…</p>
+<p><strong>larry</strong>: Where is this broad?</p>
+<p><strong>swede</strong>: You should learn a little patience.</p>
+<p><strong>larry</strong>: Is that right?</p>
+<p><strong>swede</strong>: It’s consider a virtue in some corners of the
+world.</p>
+<p><strong>larry</strong>: Not in mine.</p>
+<p><strong>deirdre</strong>: Hello gentlemen, are we ready?</p>
+<p><strong>deirdre</strong>: You want to take a left, then, so that
+you’re going west.</p>
+<p><strong>the target</strong>: Fuck you!</p>
+<p><strong>swede</strong>: Not today.</p>
+<p><strong>swede</strong>: I don’t particularly like killing, tubby, but
+I want you to know that this one I’m going to enjoy.</p>
+<p><strong>larry</strong>: I don’t think so.</p>
+<p><strong>larry</strong>: He just…I don’t believe that son-of- a…</p>
+<p><strong>larry</strong>: We’ve been crossed…</p>
+<p><strong>larry</strong>: What is this?</p>
+<p><strong>sam</strong>: It’s a cocktail. Mostly demerol, cut with a
+little crank because we might need you awake in the real near
+future.</p>
+<p><strong>larry</strong>: Fine with fucking me, we got work to do. I
+don’t care what it takes, we are getting our property back and putting
+it into the hands of the people who are gonna pay us a great deal of
+money when we do. I don’t know about the rest of you guys, but I’m not
+the kind of guy to just sit back and take it in the ass. I don’t mean
+that in, like, a literal way…</p>
+<p><strong>deirdre</strong>: Of course.</p>
+<p><strong>vincent</strong>: Finding this package is a thing easier said
+than done. We don’t even know what it is. What did we steal?</p>
+<p><strong>deirdre</strong>: I don’t know.</p>
+<p><strong>vincent</strong>: When this whole thing started you made it
+clear: you’re running the show. And I don’t believe you’d be running
+this show if you didn’t know what was going on.</p>
+<p><strong>deirdre</strong>: Well I don’t!</p>
+<p><strong>vincent</strong>: And I don’t believe you…</p>
+<p><strong>deirdre</strong>: You go shoot me if you want, Vincent, but
+you’ll be dead before I hit the ground.</p>
+<p><strong>vincent</strong>: I don’t want you dead, woman, I want the
+the truth!</p>
+<p><strong>sam</strong>: Both of you…</p>
+<p><strong>sam</strong>: …put your guns down and chill out.</p>
+<p><strong>sam</strong>: Like it or now, we’re on the same side: we’re
+here and the package isn’t. You’re not the boss any more, you’re our
+partner. So tell us what you know, so we can figure a way out of this
+mess.</p>
+<p><strong>sam</strong>: Now, what did we steal?</p>
+<p><strong>deirdre</strong>: I don’t know… Well I don’t! It’s a
+goddamned mystery to me just like it is to you. But I do know who we’re
+working for. My people, and the Russian mob.</p>
+<p><strong>larry</strong>: Your people? Who the fuck is your people?</p>
+<p><strong>vincent</strong>: Who do you think, Larry? The IRA.</p>
+<p><strong>deirdre</strong>: And you believed me? But it wasn’t my
+people who did it.</p>
+<p><strong>larry</strong>: How do we know that?</p>
+<p><strong>sam</strong>: Because if they had she’d be gone along with
+the package, instead of sitting here with us.</p>
+<p><strong>deirdre</strong>: Exactly. Gregor, he was the Russian’s man.
+It was my people came up with the idea for this run, but the Russians
+who had the capital to finance it. Gregor, he was their insurance, and I
+was ours. Everybody else was supposed to be neutral. Gregor must’ve got
+to Swede…</p>
+<p><strong>larry</strong>: I never did trust that blonde fuck…</p>
+<p><strong>deirdre</strong>: That’s why you were riding with him.</p>
+<p><strong>vincent</strong>: The question still remains: what do we do
+now?</p>
+<p><strong>sam</strong>: Gregor’s cell phone…</p>
+<p><strong>larry</strong>: What are you gonna do, call him up and ask
+him to give us back our shit?</p>
+<p><strong>sam</strong>: Did he bring that with him?</p>
+<p><strong>deirdre</strong>: I bought it for him – all the stuff he was
+using, it was in his contract. Cost a nice penny, too, especially that
+goddamned phone: Gregor had expensive tastes.</p>
+<p><strong>sam</strong>: Check this out. Gregor’s a spook, or he was one
+until recently. When he was a spy he lived the life – you know, a prince
+in some Eastern Bloc country where nobody had shit and Gregor had
+everything. Then the wall goes down. No more Cold War. And Gregor is out
+of a job. No apartment, no special stores with Western food and video
+tapes. I would bet dollars against shit that Gregor liked that phone and
+he doesn’t want to give it up. And I wouldn’t be surprised if he’s
+arrogant enough to think…</p>
+<p><strong>deirdre</strong>: That we’re too stupid to trace his
+calls.</p>
+<p><strong>gregor</strong>: It’s a beautiful street, no?</p>
+<p><strong>dapper gent</strong>: Do you have it?</p>
+<p><strong>gregor</strong>: Always in a rush, you are. All these years
+I’ve known you, you could never wait for anything.</p>
+<p><strong>dapper gent</strong>: This is important.</p>
+<p><strong>gregor</strong>: Do you really think so?</p>
+<p><strong>dapper gent</strong>: You know it is.</p>
+<p><strong>gregor</strong>: Relax!</p>
+<p><strong>gregor</strong>: Look over there.</p>
+<p><strong>gregor &amp; the gent’s pov: through the windshield - a group
+of</strong>: CHILDREN are playing.</p>
+<p><strong>gregor</strong>: Do you see that one? The girl in the light
+blue dress?</p>
+<p><strong>dapper gent</strong>: What are you doing, have you lost your
+mind?!?</p>
+<p><strong>dapper gent</strong>: Why did you do that?</p>
+<p><strong>gregor</strong>: To make a point. I don’t know her, and I was
+ready to splatter her brains all over the sidewalk. I don’t particularly
+like you, so imagine what I’ll do if you try anything…</p>
+<p><strong>dapper gent</strong>: Enough! We’ve been driving for an hour,
+where is my package?</p>
+<p><strong>gregor</strong>: It’s under your seat.</p>
+<p><strong>dapper gent</strong>: What?</p>
+<p><strong>gregor</strong>: As my American friend Larry would say: are
+you fucking deaf? It’s under your seat.</p>
+<p><strong>dapper gent</strong>: I can’t believe you’d do that, Gregor.
+I thought I trained you better than that.</p>
+<p><strong>dapper gent</strong>: I’ve never particularly liked you
+either, Gregor.</p>
+<p><strong>phone voice</strong>: Is it done?</p>
+<p><strong>gregor</strong>: It’s done.</p>
+<p><strong>phone voice</strong>: Gregor, is that you?</p>
+<p><strong>gregor</strong>: Much to your disappointment, no doubt.</p>
+<p><strong>phone voice</strong>: It was a mistake, it shouldn’t have
+happened.</p>
+<p><strong>gregor</strong>: I’m in the middle of saving you people a
+great deal of money – the least you could do is have the decency to pay
+me!</p>
+<p><strong>phone voice</strong>: So what do we do?</p>
+<p><strong>gregor</strong>: What I do is none of your concern. What you
+should do is wait for my next phone call. I’m going to find a place
+where I can tilt the field in my favor. When I’m ready, I’ll call you
+and tell you what I want you to do.</p>
+<p><strong>the bathroom</strong>: pitch black. He moves in, swipes the
+string of the overhead light and - nothing. Nobody’s here. The only
+place left is the front door, and now Vincent approaches. He opens the
+door, gun still at ready, and moves out into -</p>
+<p><strong>sam</strong>: What’s going on?</p>
+<p><strong>vincent</strong>: You weren’t around when I woke up, I
+thought maybe something had happened. This has been one very fucked up
+job, Sam, and I’m not taking any more chances on anybody… Including
+you…</p>
+<p><strong>sam</strong>: I came up here to sneak a smoke.</p>
+<p><strong>vincent</strong>: You were smoking?</p>
+<p><strong>sam</strong>: I hope you don’t mind I took your pack. It was
+on the table.</p>
+<p><strong>vincent</strong>: Please, help yourself. Smoke as many you’d
+like.</p>
+<p><strong>sam</strong>: I borrowed that, too…</p>
+<p><strong>vincent</strong>: Of course…whenever you feel like it just
+help yourself.</p>
+<p><strong>sam</strong>: I have a feeling I’m about to start buying my
+own.</p>
+<p><strong>vincent</strong>: That was a bad bit of business, today.</p>
+<p><strong>sam</strong>: It was at that.</p>
+<p><strong>vincent</strong>: A lot of people died.</p>
+<p><strong>sam</strong>: I’ve seen a lot of people die before.</p>
+<p><strong>vincent</strong>: I haven’t. Not like that. How do you get
+used to it?</p>
+<p><strong>sam</strong>: You don’t. You just learn to live with it.</p>
+<p><strong>vincent</strong>: I won’t lie – there have been times when I
+had to do it, times when the only way to get out alive was to see that
+the other man didn’t.</p>
+<p><strong>sam</strong>: We live in a singular world, my friend.</p>
+<p><strong>vincent</strong>: I never really thought I was part of the
+world you move in, Sam, to tell you the truth. I’m a hood, a thief. Big
+time in a small time king of way. To the local police I’m a prize, to
+the local hoods I’m a legend. But to a guy like you I’m just another two
+bit hired gun.</p>
+<p><strong>sam</strong>: You might be a hired gun, Vincent, but I got a
+feeling you cost more than two bits.</p>
+<p><strong>deirdre</strong>: Christ, I was starting to think that the
+two of you had thrown it in and walked away. There’s someone on the
+phone downstairs asking for you, and my somewhat limited French leads me
+to believe that he might have something to tell us about Gregor.</p>
+<p><strong>larry</strong>: I’m telling you…</p>
+<p><strong>larry</strong>: That I could be dead and I’d drive better
+than you.</p>
+<p><strong>deirdre</strong>: Oh shut up…</p>
+<p><strong>vincent</strong>: He’s going north. That’s Aix en Provence,
+where he used the phone.</p>
+<p><strong>sam</strong>: He’s going back.</p>
+<p><strong>vincent</strong>: Not necessarily. He could go off road at
+any number of places. He might not even be in the country anymore.</p>
+<p><strong>sam</strong>: It’s Paris. The route’s too indirect for
+anything else. A guy like Gregor, he doesn’t waste time on this road
+unless he has to be on it in the first place. Otherwise, he’d be out of
+the country by now. He’s going to Paris. Now I just hope we can find him
+before he gets there.</p>
+<p><strong>deirdre</strong>: If somebody else doesn’t find him
+first.</p>
+<p><strong>a table of american tourists</strong>: a Family. Dad is angry
+at Mom.</p>
+<p><strong>dad</strong>: Opera? This is an opera festival?</p>
+<p><strong>mom</strong>: I told you that, Henry.</p>
+<p><strong>dad</strong>: I thought you meant Phantom of the Opera. You
+know, Andrew Lloyd Weber, Cats, that kind of thing.</p>
+<p><strong>larry</strong>: This…this is incredible. Is the rest of
+Europe like this?</p>
+<p><strong>deirdre</strong>: Some places, not all. Italy, for instance,
+they’re serious about their food. But try bloody Britain, anywhere in
+the U.K., you don’t get much fancier than a deep-fried bar egg. Food’s
+not our thing, you see.</p>
+<p><strong>larry</strong>: What is?</p>
+<p><strong>deirdre</strong>: Best beer in the world known to man or
+God.</p>
+<p><strong>larry</strong>: Best beer in the world? Budweiser for me,
+thanks.</p>
+<p><strong>deirdre</strong>: Budweiser? You talk to me of beer and
+you’ve the unbridled gall to mention Budweiser in the same sentence?
+That’s not beer! Christ, it’s not even a poor excuse for rabbit
+piss.</p>
+<p><strong>larry</strong>: Oh yeah? Whatta you drink, then?</p>
+<p><strong>deirdre</strong>: I drink what every civilized man, woman and
+child in the world drinks: Guinness.</p>
+<p><strong>vincent</strong>: I hate to interrupt a conversation of such
+cultural depth…</p>
+<p><strong>cut away to reveal</strong>: Vincent -</p>
+<p><strong>vincent</strong>: …but we’ve got to get back on the road.</p>
+<p><strong>vincent</strong>: We’ve got him.</p>
+<p><strong>larry</strong>: I’m driving.</p>
+<p><strong>vincent</strong>: I know those men.</p>
+<p><strong>sam</strong>: Whatever you hear, whatever happens, when your
+partners come back out, you make sure you’re here with the motor
+running.</p>
+<p><strong>gregor</strong>: Thank you, gentleman, that will do
+nicely.</p>
+<p><strong>gregor</strong>: Edvard, is that you?</p>
+<p><strong>edvard</strong>: Yes, Gregor, they sent me.</p>
+<p><strong>gregor</strong>: I’m touched, really, that they’d send
+someone of your caliber. It’s nice to know that they didn’t make the
+mistake of underestimating me twice.</p>
+<p><strong>edvard</strong>: That was a mistake, trying to kill you.
+Mikhi did it without consulting me, I’d have never allowed it.</p>
+<p><strong>gregor</strong>: I’m sure. But I’m sorry to say that it’s too
+late for trust: we have a serious problem.</p>
+<p><strong>edvard</strong>: We’ll double your price.</p>
+<p><strong>gregor</strong>: Really? Do you have the money with you?</p>
+<p><strong>edvard</strong>: Do you have the material?</p>
+<p><strong>gregor</strong>: You first, Edvard.</p>
+<p><strong>edvard</strong>: Perhaps we could both go at the same
+time…</p>
+<p><strong>gregor</strong>: I think not. After you…</p>
+<p><strong>sam</strong>: After you, asshole.</p>
+<p><strong>sam</strong>: You might have been one mean technical spook,
+Gregor, but you wouldn’t have lasted a week in the field.</p>
+<p><strong>cut to the gunmen’s pov</strong>: Looking into the Tunnel -
+It’s dark, they can’t see a thing, but they’ve heard Sam’s voice and
+they know something’s wrong.</p>
+<p><strong>edvard</strong>: Gregor, are you alright?</p>
+<p><strong>deirdre</strong>: Gregor’s fine…</p>
+<p><strong>cut away to reveal</strong>: Deirdre -</p>
+<p><strong>deidre</strong>: …but I think you’re in a bit of trouble.</p>
+<p><strong>vincent</strong>: Don’t even think it.</p>
+<p><strong>cut away to reveal</strong>: Vincent - And his piece is also
+out – the Gunmen are trapped, and they know it. Now we notice that - The
+Ancient Geezer and his Tour Group are coming towards us. Meanwhile, back
+in -</p>
+<p><strong>sam</strong>: Don’t talk to me unless you tell me what I want
+to hear, understand?!? You have no choice in this, don’t think about
+winning, think about staying alive. I want the item, and if you don’t
+give it to me, I’m gonna kill you.</p>
+<p><strong>gregor</strong>: I don’t have it with me…</p>
+<p><strong>sam</strong>: Bullshit!</p>
+<p><strong>gregor</strong>: I swear…</p>
+<p><strong>sam</strong>: Then where is it?</p>
+<p><strong>gregor</strong>: I sent it to myself in Paris.</p>
+<p><strong>sam</strong>: Sent it where?</p>
+<p><strong>gregor</strong>: A post office box.</p>
+<p><strong>edvard</strong>: Do you know who he is? He’s with Interpol,
+the Internation Police. He’s a cop.</p>
+<p><strong>vincent</strong>: You’re a cop…you’re a fucking cop…I should
+kill you.</p>
+<p><strong>sam</strong>: But you can’t.</p>
+<p><strong>seamus</strong>: If you want to live you’ll do exactly as I
+tell you.</p>
+<p><strong>edvard</strong>: Where do I know you from?</p>
+<p><strong>vincent</strong>: Vienna.</p>
+<p><strong>edvard</strong>: Of course…I remember. I quite liked you, I’m
+sorry to have to do this.</p>
+<p><strong>sam</strong>: Hey…</p>
+<p><strong>deirdre</strong>: Cold cocking the poor son-of-a-bitch would
+have sufficed, Seamus, don’t you think?</p>
+<p><strong>vincent</strong>: That double-crossing bitch.</p>
+<p><strong>vincent</strong>: That makes twice now you’ve saved my
+life.</p>
+<p><strong>sam</strong>: I didn’t save your life back there. Risked it,
+maybe – but I didn’t save shit.</p>
+<p><strong>vincent</strong>: You see it your way, I’ll see it mine. You
+need a doctor.</p>
+<p><strong>sam</strong>: You know one around here? Somebody you
+trust?</p>
+<p><strong>vincent</strong>: No…I thought I’d take you to the
+hospital.</p>
+<p><strong>sam</strong>: No hospitals. I’ll fix this myself if I have
+to.</p>
+<p><strong>vincent</strong>: Fix it yourself? Why are we even doing
+this? There’s no need to run, Christ… You’re a cop.</p>
+<p><strong>sam</strong>: Not exactly.</p>
+<p><strong>vincent</strong>: You’re with Interpol – you’re a cop.</p>
+<p><strong>sam</strong>: If I was a cop, a real cop, I’d have busted you
+a long time ago. This isn’t about you, it’s about the job I have to
+do.</p>
+<p><strong>vincent</strong>: And what job is that?</p>
+<p><strong>sam</strong>: My job, Vincent, a job you don’t need to know
+about. I can’t go to the local cops – they’d never be able to get close
+enough at this point. It’s me or nobody, and I’ve been on this job too
+goddamned long not to finish.</p>
+<p><strong>vincent</strong>: It looks to me like we’re all that’s left
+of our group.</p>
+<p><strong>sam</strong>: We? There is no we in my world now, Vincent,
+just me.</p>
+<p><strong>vincent</strong>: I’m going with you.</p>
+<p><strong>sam</strong>: This doesn’t involve you, don’t you understand?
+I can’t even guarantee you any money out of all this.</p>
+<p><strong>vincent</strong>: It isn’t about money for me, not
+anymore.</p>
+<p><strong>sam</strong>: You don’t have to do this.</p>
+<p><strong>vincent</strong>: Yes I do.</p>
+<p><strong>deirdre</strong>: When we’re done with this, I want to do for
+that one myself.</p>
+<p><strong>seamus</strong>: Now there’s the Deirdre I know.</p>
+<p><strong>deirdre</strong>: And what’s that supposed to mean, Seamus
+Reilly?</p>
+<p><strong>seamus</strong>: It means I was worried that all the time you
+spent away from the fold might have affected you. You’ve been living the
+life of the hired gun – the well paid hired gun, I might note. There’s
+no glory to it, but there are those that like it.</p>
+<p><strong>deirdre</strong>: So you thought that maybe I’d grown too
+attached to this charade I’ve been playing, is that it?</p>
+<p><strong>seamus</strong>: It’s been known to happen.</p>
+<p><strong>deirdre</strong>: Not to me, you know that.</p>
+<p><strong>seamus</strong>: I thought I did.</p>
+<p><strong>deirdre</strong>: I guess you don’t know me, then, if you
+think I won’t kill you for an insult like that!</p>
+<p><strong>seamus</strong>: Just testing, lass. Forgive me, but I had to
+do it.</p>
+<p><strong>deirdre</strong>: Remember what we agreed on, Seamus: when we
+get home, I don’t play “the girl” again.</p>
+<p><strong>vincent</strong>: Hello, Jean-Pierre.</p>
+<p><strong>jean-pierre</strong>: Hello, my friend. He doesn’t look
+French to me, Vincent.</p>
+<p><strong>sam</strong>: American.</p>
+<p><strong>jean-pierre</strong>: Well, Vincent’s American friend, shall
+we see what we can do for you?</p>
+<p><strong>vincent</strong>: It’s right there, beneath the surface. I
+can just make it out.</p>
+<p><strong>jean-pierre</strong>: Are you sure you won’t have a
+drink?</p>
+<p><strong>sam</strong>: No booze…Pain’s in the mind, and the mind I can
+control. Alright, let’s do it.</p>
+<p><strong>sam</strong>: Douse the wound with alcohol.</p>
+<p><strong>sam</strong>: Take that sponge and wipe away as much of the
+blood as you can, keep it clean so I can see.</p>
+<p><strong>sam</strong>: Take the clamp…</p>
+<p><strong>sam</strong>: Peel back the skin and attach the clamp.</p>
+<p><strong>vincent</strong>: Alright, it’s done.</p>
+<p><strong>sam</strong>: You see the bullet?</p>
+<p><strong>vincent</strong>: Clearly.</p>
+<p><strong>sam</strong>: Good. Now take the forceps, and remember,
+Vincent, what we’re doing here is routine. I’ve done stuff like this at
+least twenty times in the field. There are no vital organs where you’re
+working, no major muscles or arteries – you can’t kill me. Just make
+sure you’ve got the bullet before you try to pull it out.</p>
+<p><strong>vincent</strong>: A souvenir…</p>
+<p><strong>sam</strong>: You think you can stitch me up on you own?</p>
+<p><strong>jean-pierre</strong>: Don’t worry, we’ll take care of it.</p>
+<p><strong>sam</strong>: Then if you don’t mind… I’m gonna pass out.</p>
+<p><strong>jean-pierre</strong>: He’s tough, your American friend.</p>
+<p><strong>vincent</strong>: Yes, Sam’s tough alright.</p>
+<p><strong>jean-pierre</strong>: And you respect him.</p>
+<p><strong>vincent</strong>: Of course. Don’t you?</p>
+<p><strong>jean-pierre</strong>: I’ve never seen a man who could have
+taken what he just went through. He’s a cop?</p>
+<p><strong>vincent</strong>: Not exactly.</p>
+<p><strong>jean-pierre</strong>: Not exactly? But close enough, eh? So
+he saved your life, then?</p>
+<p><strong>vincent</strong>: How did you know?</p>
+<p><strong>jean-pierre</strong>: If he hadn’t you’d have put a bullet in
+his head a long time ago.</p>
+<p><strong>jean-pierre</strong>: You’re feeling better?</p>
+<p><strong>sam</strong>: Some, thanks. Enough to move on, for now.</p>
+<p><strong>jean-pierre</strong>: You should really let a doctor look at
+that.</p>
+<p><strong>sam</strong>: Soon.</p>
+<p><strong>jean-pierre</strong>: But first you have something to take
+care of?</p>
+<p><strong>sam</strong>: Yeah.</p>
+<p><strong>jean-pierre</strong>: Something important? A thing that
+cannot wait?</p>
+<p><strong>sam</strong>: It gets done now or not at all. Another couple
+of days and the parties concerned are gone where I can’t get them.</p>
+<p><strong>jean-pierre</strong>: Forgive my intrusion into your affairs,
+but I am the one who connected Vincent to this job, his agent, if you
+will. He is one of my oldest friends and I owe him a great debt, much
+like the debt I suspect he owes you.</p>
+<p><strong>sam</strong>: Vincent doesn’t owe me a thing.</p>
+<p><strong>jean-pierre</strong>: He sees this differently, as you well
+know.</p>
+<p><strong>sam</strong>: I didn’t expect that he would.</p>
+<p><strong>jean-pierre</strong>: You suffered through an agonizing pain
+last night, pain you could have avoided by declaring yourself an agent
+of the law.</p>
+<p><strong>sam</strong>: Vincent told you that I’m a cop?</p>
+<p><strong>jean-pierre</strong>: Not a word. But no ordinary criminal
+would have the extensive military and medical expertise you do. And so I
+place the pieces of the puzzle together in a way that makes sense to me.
+You work for some government agency and you carry a gun, and in my
+world, that makes you a cop.</p>
+<p><strong>sam</strong>: So this is what, a test?</p>
+<p><strong>jean-pierre</strong>: Call it a reckoning of character.</p>
+<p><strong>sam</strong>: If I was healthy, I could take that away from
+you.</p>
+<p><strong>jean-pierre</strong>: Perhaps. But you are not healthy, and
+if you try I’ll kill you.</p>
+<p><strong>quick cut to</strong>: Vincent - Who stands inside the house,
+out of sight, but not out of ear shot. He’s listening to everything, and
+we notice that Vincent has taken out his own gun.</p>
+<p><strong>sam</strong>: So what is it you want to know?</p>
+<p><strong>jean-pierre</strong>: I suppose I want to know how a man like
+you is created.</p>
+<p><strong>sam</strong>: Created?</p>
+<p><strong>jean-pierre</strong>: Perhaps forged is a better word. Like
+steel. Like a sword. You’re a modern Samurai. I’ve spent my life around
+extraordinary men – men like Vincent. But I’ve never seen anyone like
+you. I’m afraid Vincent will die if he goes with you.</p>
+<p><strong>sam</strong>: Vincent’s life is his own burden; he’ll have to
+carry it for himself. And I’m not any kind of Samurai.</p>
+<p><strong>jean-pierre</strong>: You seem one to me.</p>
+<p><strong>sam</strong>: A Samurai has honor, a Samurai live by the code
+of Bushido, the way of the warrior. I’m just a killer for hire. The
+world isn’t about honor, anymore. It’s about survival.</p>
+<p><strong>jean-pierre</strong>: Survival. I suppose that’s as good a
+cause as any.</p>
+<p><strong>deirdre</strong>: Where’s the case?</p>
+<p><strong>gregor</strong>: There’s a problem…</p>
+<p><strong>seamus</strong>: Problem my ass! I think you’re lying to me,
+and if you are you’re a dead man!</p>
+<p><strong>deirdre</strong>: Would somebody tell me what fucking well
+happened in there?</p>
+<p><strong>seamus</strong>: Nothing.</p>
+<p><strong>gregor</strong>: The package didn’t come. I’m sure it will
+tomorrow.</p>
+<p><strong>seamus</strong>: If you’re lying to me you poor excuse for a
+human being, I’m gonna blow your brains all over this car.</p>
+<p><strong>gregor</strong>: I swear, it has to come here! It has to…</p>
+<p><strong>seamus</strong>: Ease up, man…I’m just checking to make sure
+you’re on the level.</p>
+<p><strong>seamus</strong>: And it seems to me I saw a sign in there
+that says they got a late afternoon delivery. Why don’t we come back
+later today and do this all over again, huh?</p>
+<p><strong>tony</strong>: Hey, man, they’re both great movies. One is
+more of a character study, the other is more of a straight action thing,
+but they’re great movies, and he’s an amazing fucking filmmaker.</p>
+<p><strong>tony</strong>: Excuse me…</p>
+<p><strong>tony</strong>: My man, how you doing?</p>
+<p><strong>vincent</strong>: I’m alright. And you?</p>
+<p><strong>tony</strong>: Doing well. This is?</p>
+<p><strong>vincent</strong>: A friend. I was telling him about how you
+always have the latest tapes.</p>
+<p><strong>tony</strong>: Why don’t we step into my office…</p>
+<p><strong>tony</strong>: So what can I do for you?</p>
+<p><strong>vincent</strong>: I was wondering if you had any movies that
+were particularly new.</p>
+<p><strong>tony</strong>: Matter of face there’s this flick I’ve been
+hearing about. I haven’t seen it, but from what I hear it’s pretty
+cool.</p>
+<p><strong>sam</strong>: What’s the story?</p>
+<p><strong>tony</strong>: It’s an international thing. Several different
+peoples involved, criminals from all over the world, experts brought
+together to do a job. But maybe the most interesting thing about it is
+that preeminent in the plot we find the Russian Mob and the IRA in bed
+together. An unlikely group of partners.</p>
+<p><strong>vincent</strong>: Do you have the tape?</p>
+<p><strong>tony</strong>: I might know where you could get a copy.</p>
+<p><strong>tony</strong>: Let me do some business with my boy here, and
+I’ll meet you across the street in five. I gotta make homes here feel
+like he’s getting a good deal while I give him the pleasure of
+overpaying me for a couple of second generation pirates.</p>
+<p><strong>tony</strong>: What I’ve heard so far, it’s all a lot of
+talk. I wasn’t so sure what to make of it at first, cause, like I said,
+the Irish and the Russians are an unlikely mix.</p>
+<p><strong>vincent</strong>: You said you might know where we can get a
+copy of this tape?</p>
+<p><strong>tony</strong>: All depends on whether you want the Russian or
+the Gaelic language version.</p>
+<p><strong>sam</strong>: Gaelic.</p>
+<p><strong>tony</strong>: You sure?</p>
+<p><strong>sam</strong>: I’m sure.</p>
+<p><strong>vincent</strong>: Can you get it?</p>
+<p><strong>tony</strong>: The Russian would be easier.</p>
+<p><strong>sam</strong>: Why’s that?</p>
+<p><strong>tony</strong>: Cause the Russian production company would be
+easier to find.</p>
+<p><strong>sam</strong>: It’s the Irish tape we want.</p>
+<p><strong>tony</strong>: Gonna be tough.</p>
+<p><strong>tony</strong>: Last I heard there was a film rep for the
+Irish players staying at this address, name of Seamus Reilly.</p>
+<p><strong>sam</strong>: Seamus Reilly.</p>
+<p><strong>vincent</strong>: You know him?</p>
+<p><strong>sam</strong>: I know of him.</p>
+<p><strong>tony</strong>: Seamus Reilly, boy’s a serious Irish Auteur –
+a real firebrand. Thinks his more moderate filmmaking brethren have
+turned to making movies for peace-loving pussies, if you see what I’m
+saying.</p>
+<p><strong>vincent</strong>: I get the picture.</p>
+<p><strong>vincent</strong>: Tony and I have to talk some business,
+first.</p>
+<p><strong>tony</strong>: I gotta try and overcharge him, he has to moan
+about the price, we settle somewhere in the middle.</p>
+<p><strong>vincent</strong>: It’s a matter of respect. Why don’t you
+wait outside, this won’t take long.</p>
+<p><strong>sam</strong>: The Irish representative?</p>
+<p><strong>vincent</strong>: Yes.</p>
+<p><strong>sam</strong>: What’s this?</p>
+<p><strong>vincent</strong>: The address of the Russian production
+company. Just in case we need to find them.</p>
+<p><strong>sam</strong>: Thorough man.</p>
+<p><strong>an apartment house</strong>: 35 Rue de Glacon. We PUSH IN on
+the -</p>
+<p><strong>sam</strong>: You sure your friend got the right place?</p>
+<p><strong>vincent</strong>: If Tony says this is it, then it’s it.</p>
+<p><strong>vincent</strong>: Tell me, Sam: why do you do this?</p>
+<p><strong>sam</strong>: Do what?</p>
+<p><strong>vincent</strong>: Continue when it would be so much easier to
+give it up.</p>
+<p><strong>sam</strong>: It’s my job.</p>
+<p><strong>vincent</strong>: Then quit. You don’t work for Interpol,
+Sam.</p>
+<p><strong>sam</strong>: Sure I do. You heard him, you heard the guy –
+that’s what he said, what Edvard said.</p>
+<p><strong>vincent</strong>: It’s a cover, then. A cover within a cover,
+a feint within a feint. You work for the CIA, it’s the only possible
+answer.</p>
+<p><strong>sam</strong>: I’m a field agent – last of an already extinct
+breed. I do dark ops.</p>
+<p><strong>vincent</strong>: Dark ops?</p>
+<p><strong>sam</strong>: Dark operations. Wet work. Kidnaping.
+Assassination.</p>
+<p><strong>vincent</strong>: Very ugly.</p>
+<p><strong>sam</strong>: It is at that.</p>
+<p><strong>vincent</strong>: Not very zen of you, huh? Not so much the
+modern Samurai after all.</p>
+<p><strong>sam</strong>: I never made that claim.</p>
+<p><strong>vincent</strong>: I know. Jean-Pierre did.</p>
+<p><strong>sam</strong>: You were behind the door?</p>
+<p><strong>vincent</strong>: I was waiting to see what would happen. I
+didn’t want to kill him if I didn’t have to.</p>
+<p><strong>sam</strong>: You would have done that?</p>
+<p><strong>vincent</strong>: I would have tried not to. But yes, if it
+would have kept him from shooting you, I would have.</p>
+<p><strong>sam</strong>: How could you have done that?</p>
+<p><strong>vincent</strong>: Because I owe you. Look at that…</p>
+<p><strong>their pov</strong>: Through the Windsheild - Deirdre exits
+the apartment building.</p>
+<p><strong>sam</strong>: All things come to those who wait.</p>
+<p><strong>vincent</strong>: He’s not dead.</p>
+<p><strong>sam</strong>: They don’t have the package.</p>
+<p><strong>vincent</strong>: You think?</p>
+<p><strong>sam</strong>: You said it yourself: Gregor’s not dead. If
+they had the package, they’d have killed him.</p>
+<p><strong>vincent &amp; sam</strong>: They’re going to get it.</p>
+<p><strong>sam</strong>: Don’t do it…</p>
+<p><strong>deirdre</strong>: Well, if it isn’t Mr. Interpol himself. I
+can’t believe I misjudged you like I did.</p>
+<p><strong>sam</strong>: Oh please..you’re on some sort of holy
+mission?</p>
+<p><strong>deirdre</strong>: I’m a patriate.</p>
+<p><strong>sam</strong>: Don’t even think that I’m buying that.</p>
+<p><strong>deirdre</strong>: Where do you get off saying word one? All
+the time pretending to be one of us, it’s the same thing we were doing,
+Seamus and myself. And here you are so high and mighty, like you’re so
+different from the rest of us.</p>
+<p><strong>sam</strong>: I didn’t say I was.</p>
+<p><strong>deirdre</strong>: Bloody fucking hell…</p>
+<p><strong>cut away to</strong>: Gregor and Seamus are leaving the post
+office. By now, Seamus has taken the package away from Gregor. Unseen by
+these two men - Vincent is approaching from the side, on an intercept
+course, his hand inside a bag which he carries with him. Now - Deirdre
+turns and shoots Sam a look. He’s still watching her keenly, and we can
+see that she’s aching to reach for her piece, but she can’t because Sam
+is still on her like a hawk.</p>
+<p><strong>sam</strong>: Don’t even think it.</p>
+<p><strong>sam</strong>: I’d kill you before you had it halfway out.</p>
+<p><strong>sam</strong>: Put your seatbelt on.</p>
+<p><strong>vincent</strong>: What the fuck happened?</p>
+<p><strong>sam</strong>: I don’t know…</p>
+<p><strong>vincent</strong>: You don’t know? Bullshit, you had her,
+there was no way out.</p>
+<p><strong>seamus</strong>: What in bloody hell is going on?</p>
+<p><strong>deirdre</strong>: They’re part of the team. One of them’s the
+guy I told you about.</p>
+<p><strong>seamus</strong>: From Interpol?</p>
+<p><strong>deirdre</strong>: That’s him.</p>
+<p><strong>vincent</strong>: Why didn’t you kill her?</p>
+<p><strong>seamus</strong>: Why didn’t you kill him?</p>
+<p><strong>vincent</strong>: You slept with her!</p>
+<p><strong>seamus</strong>: How is it these fellahs managed to get the
+drop on us?</p>
+<p><strong>deirdre</strong>: I told you: they’re good…</p>
+<p><strong>vincent</strong>: You slept with her!</p>
+<p><strong>seamus</strong>: You should have kill him when you had the
+chance. But no…</p>
+<p><strong>vincent</strong>: You put everything on the line because
+you…</p>
+<p><strong>seamus</strong>: You slept with the fucker!!</p>
+<p><strong>vincent</strong>: Fuck…</p>
+<p><strong>vincent</strong>: Left left left!!!</p>
+<p><strong>seamus</strong>: This better be the real thing or you’re a
+dead man!</p>
+<p><strong>gregor</strong>: It is, I’m telling you it is!!</p>
+<p><strong>seamus</strong>: You’ve told me a lot of things, boyo…</p>
+<p><strong>seamus</strong>: Lose them!</p>
+<p><strong>deirdre</strong>: You lose them!</p>
+<p><strong>seamus</strong>: To the right!!!</p>
+<p><strong>sam</strong>: Give me a cigarette.</p>
+<p><strong>vincent</strong>: Right now?</p>
+<p><strong>sam</strong>: Gimme a goddamn cigarette!!!!</p>
+<p><strong>vincent</strong>: Why are you driving? You’re not French, you
+don’t live here, you don’t know these roads. Why are you driving?</p>
+<p><strong>seamus</strong>: About time!</p>
+<p><strong>deirdre</strong>: Not yet…</p>
+<p><strong>seamus</strong>: Good Christ! Can’t you lose these
+jokers?</p>
+<p><strong>deirdre</strong>: They’re good!</p>
+<p><strong>vincent</strong>: We don’t have much time.</p>
+<p><strong>sam</strong>: Nice place.</p>
+<p><strong>vincent</strong>: I’m not here very much.</p>
+<p><strong>sam</strong>: Business keeps you on the road?</p>
+<p><strong>vincent</strong>: Something like that.</p>
+<p><strong>sam</strong>: I know I don’t need to say this to you, but I
+need to say it to you. This is my job, I have to do it.</p>
+<p><strong>vincent</strong>: So I do it.</p>
+<p><strong>sam</strong>: No you don’t, and you know it.</p>
+<p><strong>vincent</strong>: If our positions were reversed, would you
+leave me?</p>
+<p><strong>sam</strong>: In a minute.</p>
+<p><strong>vincent</strong>: I think not.</p>
+<p><strong>vincent</strong>: Do we need anything else?</p>
+<p><strong>sam</strong>: Yeah. We need out fucking heads examined.</p>
+<p><strong>deirdre</strong>: You better be careful, Seamus, before
+something happens a plastic surgeon can’t fix.</p>
+<p><strong>seamus</strong>: Plastic fucking surgeon? You think I’m going
+to fix this, Deirdre lass? It’s the mark of the patriot, and I’ll wear
+it like a badge. As for those who done it to me, I’ll take my pound of
+flesh before this is all over.</p>
+<p><strong>deirdre</strong>: You’re thinking with your gun, Seamus, and
+not your head…</p>
+<p><strong>seamus</strong>: Shut up!!! Shut up and drive! I’m your
+superior officer and you will do as I goddamn well say, is that
+understood?!?</p>
+<p><strong>seamus</strong>: Do I need to repeat myself?</p>
+<p><strong>deirdre</strong>: No, Seamus. I heard you the first time.</p>
+<p><strong>sam</strong>: Not here. They might see it.</p>
+<p><strong>vincent</strong>: If I’m going to die for the CIA, I’m going
+to go out smoking. Besides, there’s half a forest between us and them,
+they can’t see a goddamned thing.</p>
+<p><strong>sam</strong>: Time to quit.</p>
+<p><strong>vincent</strong>: Just like that?</p>
+<p><strong>sam</strong>: Not just like that… Just before I turn around
+and it’s six months from now and the first thing I do when I wake up in
+the morning is light a cigarette.</p>
+<p><strong>vincent</strong>: What of it? Samurai pain in the ass.</p>
+<p><strong>sam</strong>: Would you stop with that…</p>
+<p><strong>vincent</strong>: Why? You’ve got more force of will than
+anyone I’ve ever seen. You handle a gun like it’s a part of you, you
+perform surgery on yourself without anesthesia… And most amazing of all,
+you quit smoking, just like that.</p>
+<p><strong>sam</strong>: The mark of a true Samurai. What I do for the
+Company, Vincent, is no different than what you do. We’re both hired
+guns, and this is a job – like any other job.</p>
+<p><strong>vincent</strong>: Why then, Sam, don’t you act like this is a
+job like any other? Surely, if you are a hired gun, you realize that
+some times you just have to walk away without getting what you came
+for.</p>
+<p><strong>sam</strong>: Because I don’t walk away.</p>
+<p><strong>vincent</strong>: Why not?</p>
+<p><strong>sam</strong>: It’s the one thing I’ve got left to hold onto.
+Jean-Pierre is one of your closest friends, is he not?</p>
+<p><strong>vincent</strong>: Closest and oldest.</p>
+<p><strong>sam</strong>: And yet you would have killed him to save my
+life. You have a sense of honor, Vincent, that I can’t even remember
+anymore. I don’t know that I ever even had it to begin with. All I know
+to do, Vincent, is to finish my job.</p>
+<p><strong>vincent</strong>: And when you finish? What then? This
+package, whatever it is, do you give it to the CIA? Do you really think
+they deserve it?</p>
+<p><strong>sam</strong>: That’s a good question.</p>
+<p><strong>vincent</strong>: Do you have a good answer?</p>
+<p><strong>sam</strong>: No, I don’t.</p>
+<p><strong>mikhi</strong>: Sit, sit… Would you like one?</p>
+<p><strong>gregor</strong>: No, Mikhi, I wouldn’t. Since I won’t speak
+your language, and you can’t speak mine, English will do nicely.</p>
+<p><strong>mikhi</strong>: Whatever you wish… This has all been a
+terrible mistake, Gregor. I wanted to play straight with you, but Edvard
+insisted we try and kill you.</p>
+<p><strong>gregor</strong>: Edvard said the same thing about you before
+he died.</p>
+<p><strong>mikhi</strong>: I’m shocked, shocked to think that you’d
+believe him.</p>
+<p><strong>gregor</strong>: Enough!</p>
+<p><strong>mikhi</strong>: Ahh…</p>
+<p><strong>seamus</strong>: The moment of truth, is it?</p>
+<p><strong>gregor</strong>: What is he doing here?</p>
+<p><strong>seamus</strong>: What am I doing here? Why, I’m here to see
+my partners, Gregor, the boys in the Russian Mafia. See, your bosses had
+hoped to screw me by hiring you to pull your thieving double cross. But
+they only just found out that what’s in the briefcase is completely
+useless without me. I can’t fight them, and they can’t kill me – that
+means we’re gonna have to do business together.</p>
+<p><strong>gregor</strong>: But you hate each other!</p>
+<p><strong>seamus</strong>: What’s a little hate between business
+partners?</p>
+<p><strong>sam</strong>: I’m on point, Vincent.</p>
+<p><strong>gregor</strong>: So, you’ve got it all figured, do you?</p>
+<p><strong>seamus</strong>: Figured enough to know there’s an odd man
+out and I’m looking at him.</p>
+<p><strong>gregor</strong>: I think not. I have, of course, taken the
+precaution of wiring the briefcase to explode five seconds after it
+opens. Unless, of course, I deactivate it before it goes off.</p>
+<p><strong>deirdre</strong>: That fucking figures…</p>
+<p><strong>gregor</strong>: Should any of you decide to rush me, I’ll
+kill myself and whoever happens to be near me at the time.</p>
+<p><strong>mikhi</strong>: And more importantly –</p>
+<p><strong>gregor</strong>: I’ll destroy whatever’s in the case.</p>
+<p><strong>seamus</strong>: It looks, Gentlemen, as if we’re gonna have
+to sit down to table and work out an agreement.</p>
+<p><strong>mikhi</strong>: What was that?</p>
+<p><strong>vincent</strong>: That’s one less I owe you…</p>
+<p><strong>deirdre</strong>: You two stay here and watch our mutual
+interest.</p>
+<p><strong>sam</strong>: Let’s work our way through the building. I’ll
+take one wing, you take the other.</p>
+<p><strong>sam</strong>: Watch your back, Vincent.</p>
+<p><strong>seamus</strong>: I can’t take it anymore. Watch him, man, I’m
+going out and finish what needs finishing!</p>
+<p><strong>sam</strong>: Go on, them…</p>
+<p><strong>deirdre</strong>: Let it go, Sam, walk away.</p>
+<p><strong>deirdre</strong>: God damn it!</p>
+<p><strong>gregor</strong>: We’ll die if we stay here!</p>
+<p><strong>mikhi</strong>: You’ll die if you leave here.</p>
+<p><strong>vincent</strong>: You have to stop doing that!</p>
+<p><strong>sam</strong>: I’ll work on it…</p>
+<p><strong>seamus</strong>: Turn around real slow, and try hard not to
+breathe when you do it.</p>
+<p><strong>seamus</strong>: It’s you… You’re the one did this to my
+face, are you?</p>
+<p><strong>sam</strong>: That’s me.</p>
+<p><strong>seamus</strong>: Have a nice afterlife.</p>
+<p><strong>deirdre</strong>: Seamus!</p>
+<p><strong>seamus</strong>: Deirdre, do for him, woman, put a fucking
+bullet in his head!</p>
+<p><strong>seamus</strong>: Do it, for Christ’s sake, do it so we can
+find that stinking Gregor, he’s got the bloody package! For God’s sake,
+you’re a soldier…</p>
+<p><strong>seamus</strong>: You’re one of us…You been born and bred with
+your own people, you can’t go against your nature. C’mon, girl, I’m
+you’re people.</p>
+<p><strong>deirdre</strong>: I’m no girl, Seamus…</p>
+<p><strong>deirdre</strong>: And you ain’t nobody’s people.</p>
+<p><strong>sam</strong>: Let’s get him out of here…</p>
+<p><strong>vincent</strong>: Finish the job…</p>
+<p><strong>sam</strong>: And now…</p>
+<p><strong>vincent</strong>: Finish it!</p>
+<p><strong>deirdre</strong>: Sam…</p>
+<p><strong>vincent</strong>: I’m really sick of you saving my life. Go
+out and get the bastard.</p>
+<p><strong>deirdre</strong>: He’s got the briefcase rigged to explode
+five seconds after anybody other than himself tries to open it.</p>
+<p><strong>sam</strong>: Deirdre, wait up –</p>
+<p><strong>gregor</strong>: You might have made a good field agent you
+arrogant American prick, but you’re not smart enough to go up against
+me.</p>
+<p><strong>gregor</strong>: Go ahead, shoot… Shoot and kill the bitch, I
+don’t care. And yet you don’t shoot. Interesting. Put down your weapon
+and walk away.</p>
+<p><strong>deirdre</strong>: Don’t do it, Sam!</p>
+<p><strong>gregor</strong>: Shut up!</p>
+<p><strong>deirdre</strong>: He’ll kill me anway, Sam, shoot though me
+and kill this fucker.</p>
+<p><strong>seamus</strong>: If you don’t, I will…</p>
+<p><strong>seamus</strong>: Shoot that traitorous bitch and I’ll let you
+live.</p>
+<p><strong>sam</strong>: Are you alright?</p>
+<p><strong>deirdre</strong>: Alright? It’s bloody fucking freezing in
+here!</p>
+<p><strong>detective</strong>: I need to speak with that man.</p>
+<p><strong>sam</strong>: I’m sorry, I can’t allow that.</p>
+<p><strong>sam</strong>: Call that number and ask them what you should
+do.</p>
+<p><strong>doctor</strong>: You can see your friend, now.</p>
+<p><strong>sam</strong>: Thank you very much.</p>
+<p><strong>doctor</strong>: The field dressing you put on saved his
+life. Where di you learn to do that?</p>
+<p><strong>sam</strong>: Here and there, I guess.</p>
+<p><strong>vincent</strong>: You son-of-a-bitch…</p>
+<p><strong>sam</strong>: What?</p>
+<p><strong>vincent</strong>: You speak French.</p>
+<p><strong>sam</strong>: What of it?</p>
+<p><strong>vincent</strong>: Nothing…</p>
+<p><strong>vincent</strong>: “Your field dressing saved his life.”
+That’s three I owe you.</p>
+<p><strong>sam</strong>: You don’t owe me a goddamned thing, Vincent,
+and you know it. You stepped in front of a bullet for me. I owe you a
+heavy debt.</p>
+<p><strong>vincent</strong>: I know.</p>
+<p><strong>sam</strong>: You better get some sleep, alright?</p>
+<p><strong>vincent</strong>: Tell me something first. The package: what
+was it?</p>
+<p><strong>sam</strong>: I don’t know. Nobody knows, except a bunch of
+people who are too dead to tell us. There’s probably a couple of guys
+back at the Company who know, but I don’t think they plan to tell me
+anytime soon.</p>
+<p><strong>vincent</strong>: What happened to it?</p>
+<p><strong>sam</strong>: Gone. Destroyed.</p>
+<p><strong>vincent</strong>: I guess that’s for the best.</p>
+<p><strong>vincent</strong>: Sam, when Gregor had Deirdre by the lake,
+you could have killed the two of them with one shot. You could have had
+the package, finished the job. But you didn’t, you sacrificed the job to
+save her life. Why?</p>
+<p><strong>sam</strong>: It’s what you would have done.</p>
+<p><strong>a title</strong>: One month later…</p>
+<p><strong>vincent</strong>: Would you just smoke already…</p>
+<p><strong>sam</strong>: I told you, I quit.</p>
+<p><strong>vincent</strong>: Just to keep me company, Sam – I hate
+smoking alone. How about you? I thought all you IRA types smoked.</p>
+<p><strong>deirdre</strong>: Only the stupid ones. Cigarettes kill more
+patriots than bullets. Besides, I’m not IRA no more.</p>
+<p><strong>vincent</strong>: So where do you go from here?</p>
+<p><strong>deirdre</strong>: I don’t know. I was thinking…Maybe the
+three of us might partner up – guns for hire, that sort of thing.</p>
+<p><strong>vincent</strong>: I’m up for that…</p>
+<p><strong>sam</strong>: Not me. You work too often with the same people
+and you become friends – clouds your judgement.</p>
+<p><strong>deirdre</strong>: Come off it, Sam – if we weren’t friends
+already we wouldn’t be here now, would we?</p>
+<p><strong>vincent</strong>: She’s got a point. Besides, I know of a job
+that’s available.</p>
+<p><strong>sam</strong>: How much does it pay?</p>
+<p><strong>punk</strong>: This is for Seamus!</p>
+<p><strong>vincent</strong>: We have to go, Sam, we can’t be here.</p>
+<p><strong>vincent</strong>: Let’s go!!</p>
+<p><strong>vincent</strong>: Doctor’s orders…</p>
+<p><strong>vincent</strong>: Goodbye, Sam…</p>
+</body>
+</html>

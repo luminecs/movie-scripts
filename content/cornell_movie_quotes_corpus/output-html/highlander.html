@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>highlander</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="highlander">highlander</h1>
+<p><strong>first man</strong>: MacLeod.</p>
+<p><strong>mother</strong>: My, but are you the picture.</p>
+<p><strong>conor</strong>: It’s a bit tight.</p>
+<p><strong>father</strong>: Ah, Conor, how you look a man.</p>
+<p><strong>mother</strong>: Have you time for some- thing to eat?</p>
+<p><strong>conor</strong>: No, Mother. They’ll be here shortly.</p>
+<p><strong>father</strong>: Your grandfather wore that in his service to
+the King, and I to fight for the Duke.</p>
+<p><strong>mother</strong>: Must he go?</p>
+<p><strong>father</strong>: Aye. It is his duty. All of ours.</p>
+<p><strong>mother</strong>: But Ian, he’s still but a boy.</p>
+<p><strong>father</strong>: He’s a MacLeod.</p>
+<p><strong>conor</strong>: I’ll be fine Mother.</p>
+<p><strong>clansman</strong>: They march.</p>
+<p><strong>knight</strong>: Is the boy among them?</p>
+<p><strong>clansman</strong>: Aye.</p>
+<p><strong>vassal #1</strong>: Is a bad day for this.</p>
+<p><strong>vassal #2</strong>: The Duke has been compro- mised. He will
+have his due.</p>
+<p><strong>vassal #1</strong>: By day’s end he will have our heads.</p>
+<p><strong>vassal #2</strong>: We ride against the Suther- lands. That
+is all that matters.</p>
+<p><strong>vassal #1</strong>: This makes no sense to me.</p>
+<p><strong>friend</strong>: The fog is bad. We cannot even see the sides
+of our own ranks.</p>
+<p><strong>friend</strong>: Is this your first?</p>
+<p><strong>conor</strong>: Aye.</p>
+<p><strong>friend</strong>: It’s begun.</p>
+<p><strong>knight</strong>: There can be but one.</p>
+<p><strong>vassal #1</strong>: Leave him!</p>
+<p><strong>officer #1</strong>: Kevin! Get is a backup.</p>
+<p><strong>taupin</strong>: I was merely walking by when-</p>
+<p><strong>officer #1</strong>: Don’t move.</p>
+<p><strong>officer #2</strong>: They’re on their way.</p>
+<p><strong>priest</strong>: …Libera Domine Animan servi tui sicut
+libertasi David de manu regis Saul…</p>
+<p><strong>priest</strong>: …In mamus tuas domine commendo spiritum
+meum…</p>
+<p><strong>vassal #1</strong>: Has the boy died?</p>
+<p><strong>clansman</strong>: He is having the last rites now. It should
+be over by morning.</p>
+<p><strong>vassal #1</strong>: Never seen anybody cut as bad live so
+long. He should have died on the field.</p>
+<p><strong>clansman</strong>: Tonight or tomorrow, it’s all the
+same.</p>
+<p><strong>priest</strong>: …Auditorium nostrum in nomine domini…</p>
+<p><strong>vassal #1</strong>: This has been a dark day.</p>
+<p><strong>priest</strong>: …Requiescant in pace…</p>
+<p><strong>examiner</strong>: Real clean. No sawing action at all.
+Whatever it was did it in one swipe. Like the other one.</p>
+<p><strong>moran</strong>: What about that?</p>
+<p><strong>examiner</strong>: Hasn’t any blood on it.</p>
+<p><strong>moran</strong>: About the only thing that doesn’t.</p>
+<p><strong>examiner</strong>: I’ll give it a closer look when I get
+back.</p>
+<p><strong>officer #3</strong>: Come on Brenna, you know better than
+that.</p>
+<p><strong>brenna</strong>: I’m invited.</p>
+<p><strong>brenna</strong>: Mr. Levine…</p>
+<p><strong>examiner</strong>: Hope this isn’t past your bedtime.</p>
+<p><strong>brenna</strong>: Doesn’t have a head, does he?</p>
+<p><strong>examiner</strong>: This one came unassembled.</p>
+<p><strong>moran</strong>: Just show her what she came for, Tom.</p>
+<p><strong>examiner</strong>: Come on, this is more your line of
+work.</p>
+<p><strong>examiner</strong>: How’s your uncle? I hardly ever see him
+anymore.</p>
+<p><strong>brenna</strong>: Fine.</p>
+<p><strong>examiner</strong>: There you go.</p>
+<p><strong>examiner</strong>: Didn’t look like it came from
+“Toys-Are-Us”, that’s why I called you.</p>
+<p><strong>brenna</strong>: Didn’t think it was my buddy over there.</p>
+<p><strong>examiner</strong>: Figured you knew more about swords than I
+did.</p>
+<p><strong>brenna</strong>: Claymore.</p>
+<p><strong>examiner</strong>: Huh?</p>
+<p><strong>brenna</strong>: Scottish claymore. Take a French epee, add
+twenty pounds of ballast so it means business, and you’ve got a
+claymore.</p>
+<p><strong>examiner</strong>: You’re the expert.</p>
+<p><strong>brenna</strong>: It’s in good condition.</p>
+<p><strong>moran</strong>: This your present address?</p>
+<p><strong>taupin</strong>: Yes.</p>
+<p><strong>moran</strong>: Mr.- Taupin, what were you doing in that
+alley?</p>
+<p><strong>taupin</strong>: I was walking by when I heard a shout. Your
+men came right after.</p>
+<p><strong>moran</strong>: Did you know the victim?</p>
+<p><strong>taupin</strong>: No.</p>
+<p><strong>moran</strong>: His name was Iman Fasil if that jogs your
+memory.</p>
+<p><strong>taupin</strong>: It doesn’t.</p>
+<p><strong>moran</strong>: He was carrying a Syrian passport and had
+been in the country less than a week.</p>
+<p><strong>moran</strong>: Two days ago a Bulgarian national was
+murdered the same way. He’d also been in the country less than a week.
+What is your citizenship?</p>
+<p><strong>taupin</strong>: American.</p>
+<p><strong>moran</strong>: Do you make a habit of hanging out in that
+neigh- borhood at night?</p>
+<p><strong>taupin</strong>: What are you getting at?</p>
+<p><strong>moran</strong>: Let’s just say that in my years with this
+department I’ve seen more than one well dressed business man look for a
+hand job on 14th Street.</p>
+<p><strong>moran</strong>: What were <em>you</em> looking for?</p>
+<p><strong>taupin</strong>: That’s none of your business.</p>
+<p><strong>moran</strong>: You’re wrong.</p>
+<p><strong>moran</strong>: Do you know what this is?</p>
+<p><strong>taupin</strong>: I presume it’s a sword.</p>
+<p><strong>moran</strong>: A claymore to be exact. You wouldn’t know
+anything about it would you?</p>
+<p><strong>taupin</strong>: Your murder weapon?</p>
+<p><strong>moran</strong>: It was covered with Mr. Fasil’s fingerprints,
+but none of his blood.</p>
+<p><strong>taupin</strong>: A mystery.</p>
+<p><strong>moran</strong>: For the moment.</p>
+<p><strong>moran</strong>: All right Mr. Taupin, we’ll be in touch.</p>
+<p><strong>mother</strong>: Ah Steven, it is good to see you.</p>
+<p><strong>traveller</strong>: I only just heard of Conor. I came up
+from Catroch as soon as I could.</p>
+<p><strong>mother</strong>: You’re a kind man to be sure.</p>
+<p><strong>traveller</strong>: I thought it only proper to pay me last
+respects to the family.</p>
+<p><strong>mother</strong>: Steven, Conor didn’t die.</p>
+<p><strong>traveller</strong>: But I had heard his wounds were
+mortal.</p>
+<p><strong>mother</strong>: They were Steven, they were. It’s been a
+miracle it has. He lasted right through and healed. No one in the
+village has ever seen anything like it. Ever.</p>
+<p><strong>conor</strong>: You’re pretty today.</p>
+<p><strong>conor</strong>: I’m your future husband, remember?</p>
+<p><strong>mara</strong>: I have no future husband.</p>
+<p><strong>conor</strong>: I don’t understand. Not a week ago your
+father gave us his blessing.</p>
+<p><strong>mara</strong>: My future husband died in battle against the
+Sutherlands.</p>
+<p><strong>conor</strong>: What are you saying? I’m standing here as
+real as you.</p>
+<p><strong>mara</strong>: You cannot be real, Conor. You had the last
+rites. No man has been cut half as bad and lived.</p>
+<p><strong>conor</strong>: But I did live.</p>
+<p><strong>mara</strong>: Live? In less than a week you’re prancing
+about the country like a squirrel.</p>
+<p><strong>conor</strong>: So why the crazy talk? It’s a miracle it is.
+Saint Andrew has smiled on me. On us.</p>
+<p><strong>mara</strong>: Some think not.</p>
+<p><strong>conor</strong>: Who?</p>
+<p><strong>mara</strong>: There’s rumor in the village. Some call it
+magic.</p>
+<p><strong>conor</strong>: That’s mad. Surely you don’t take their
+word?</p>
+<p><strong>mara</strong>: I don’t know, Conor. It’s not natural. Maybe
+something has touched you.</p>
+<p><strong>conor</strong>: You’re sounding like that mad woman, Widow
+Baggins.</p>
+<p><strong>mara</strong>: Me father has taken back my hand.</p>
+<p><strong>conor</strong>: Ah, Lassie…</p>
+<p><strong>mara</strong>: Please not be touching me, Conor.</p>
+<p><strong>conor</strong>: I’ll not take that kind of talk from you.
+From those others below, maybe. But not from you.</p>
+<p><strong>mara</strong>: Leave me alone, Conor. Please.</p>
+<p><strong>conor</strong>: You’re not talking sense, Mara!</p>
+<p><strong>conor</strong>: If you send me away now, Mara, I’ll not come
+looking for you.</p>
+<p><strong>mara</strong>: Do what you must.</p>
+<p><strong>receptionist</strong>: Mrs. Thompson agreed to settle for
+fifteen, Melvin’s wants to make a pick-up at three o’clock, the coffee
+machine’s broken, and there’s a Miss Cartwright from the Smithsonian in
+your office.</p>
+<p><strong>brenna</strong>: Do you play?</p>
+<p><strong>taupin</strong>: Yes.</p>
+<p><strong>brenna</strong>: Very traditional.</p>
+<p><strong>taupin</strong>: Miss Cartwright, what is it I can do for
+you?</p>
+<p><strong>brenna</strong>: I’d like to ask you about the claymore.</p>
+<p><strong>taupin</strong>: It’s not mine.</p>
+<p><strong>brenna</strong>: It’s quite rare you know, some- thing so
+common in its time so well looked after all these years.</p>
+<p><strong>taupin</strong>: Miss Cartwright, unless you have come here
+to sell the sword, there’s very little I can help you with. Now if you
+will excuse me, I have a great deal of work to do.</p>
+<p><strong>brenna</strong>: Byzantine?</p>
+<p><strong>taupin</strong>: Basil the II.</p>
+<p><strong>brenna</strong>: Charming guy, Basil. Once after beating an
+army of Serbians he blinded all but-</p>
+<p><strong>taupin</strong>: -All but one out of a hundred, I know. All
+left to be led like donkeys back home. Now if you will please-</p>
+<p><strong>brenna</strong>: Good reflexes.</p>
+<p><strong>taupin</strong>: Good day, Miss Cartwright.</p>
+<p><strong>brenna</strong>: I don’t believe him.</p>
+<p><strong>supervisor</strong>: Why?</p>
+<p><strong>brenna</strong>: He’s too cool. Too sharp. I think he’s got
+something to do with it.</p>
+<p><strong>researcher #1</strong>: Oh, has your penetrating research on
+9th Century Lithuanian dildos suddenly made you an expert on the
+criminal mentality?</p>
+<p><strong>brenna</strong>: Screw off, Larry.</p>
+<p><strong>researcher #2</strong>: The cops bought it. They let him
+go.</p>
+<p><strong>brenna</strong>: What could they hold him for? I think
+they’re just waiting for something concrete before they haul him in for
+real. We should look into it. He had to have gotten that sword from
+somewhere.</p>
+<p><strong>supervisor</strong>: Hang on a sec, you did your little favor
+for the boys downtown, I’m sure your uncle and the rest are perfectly
+capable of taking it from here.</p>
+<p><strong>brenna</strong>: I’ve seen nobleman swords that weren’t as
+well preserved. It’s just a hunk of peasant iron. Why would he be
+carrying it around in an alley?</p>
+<p><strong>researcher #1</strong>: Here we go. Everytime there’s a
+murder in town we have to put up with junior D.A.</p>
+<p><strong>researcher #2</strong>: Must be genetic.</p>
+<p><strong>brenna</strong>: Someone should check him out. Maybe a
+collection somewhere got knocked over. He has one, he might have
+two.</p>
+<p><strong>supervisor</strong>: You see that desk? <em>Your</em> desk?
+You see the crap piled up on it?</p>
+<p><strong>brenna</strong>: Give it a rest Ned, huh?</p>
+<p><strong>researcher #2</strong>: Might be interesting to see what his
+family connections are. That’s a hell of a piece to be just chuck- ing
+around in an alley.</p>
+<p><strong>supervisor</strong>: I swear to God Brenna, between you and
+Thompson’s novels I’m going to get a bloody ulcer.</p>
+<p><strong>conor</strong>: Evening, Douglas.</p>
+<p><strong>douglas</strong>: Conor.</p>
+<p><strong>conor</strong>: Ale suits me.</p>
+<p><strong>tavern man #1</strong>: We rather you not be sitting with us,
+Conor.</p>
+<p><strong>tavern man #2</strong>: We be drinking alone as well.</p>
+<p><strong>conor</strong>: What’s wrong with you all?</p>
+<p><strong>tavern man #2</strong>: Requiem acer’nam donaei-</p>
+<p><strong>conor</strong>: What are you doing man?</p>
+<p><strong>tavern man #2</strong>: -Et lux perpetua-</p>
+<p><strong>conor</strong>: You’ll not be bringing the church into
+this.</p>
+<p><strong>tavern man #2</strong>: -Luceat ei-</p>
+<p><strong>conor</strong>: Be quiet.</p>
+<p><strong>tavern man #2</strong>: -Auditorium nostrum-</p>
+<p><strong>conor</strong>: Stop.</p>
+<p><strong>tavern man #2</strong>: -In nomine sanctus esperitu-</p>
+<p><strong>conor</strong>: Stop!</p>
+<p><strong>mother</strong>: Please take care of yourself.</p>
+<p><strong>conor</strong>: Aye.</p>
+<p><strong>father</strong>: I wish there was some other way.</p>
+<p><strong>father</strong>: Goodbye, Conor.</p>
+<p><strong>conor</strong>: Goodbye.</p>
+<p><strong>desk officer</strong>: This is against the rules.</p>
+<p><strong>brenna</strong>: So’s playing choo-choo with two high school
+cheerleaders in the middle of-</p>
+<p><strong>desk officer</strong>: -Okay okay.</p>
+<p><strong>brenna</strong>: You owe me. Besides, I’m cute.</p>
+<p><strong>desk officer</strong>: Taupin, Richard Marshall. Born March
+16, 1945 in Church Hill, Maryland. Received first driver permit 1967 in
+Philadelphia.</p>
+<p><strong>brenna</strong>: Church Hill, that’s pretty close, isn’t
+it?</p>
+<p><strong>desk officer</strong>: Anything in Maryland is close.</p>
+<p><strong>taupin</strong>: Where is he?</p>
+<p><strong>taupin</strong>: Where!</p>
+<p><strong>intruder</strong>: I don’t know.</p>
+<p><strong>taupin</strong>: What name is he using?</p>
+<p><strong>intruder</strong>: Smith. Carl Smith.</p>
+<p><strong>taupin</strong>: How many came?</p>
+<p><strong>intruder</strong>: The last four.</p>
+<p><strong>taupin</strong>: And the Bulgarian?</p>
+<p><strong>intruder</strong>: He got him. He always does.
+Eventually.</p>
+<p><strong>taupin</strong>: He knows I’m here. How?</p>
+<p><strong>intruder</strong>: None of this would be happening if you
+hadn’t run…</p>
+<p><strong>taupin</strong>: <em>Answer</em> me.</p>
+<p><strong>intruder</strong>: We learned he’d found the immigration
+notaries in Liverpool and traced them to New York. Then he figured out
+the birth records in Church Hill…</p>
+<p><strong>brenna</strong>: Taupin…Taupin…</p>
+<p><strong>brenna</strong>: Tarmin…Tatum…Taupin, Richard Marshall. Born
+to William and Karen Taupin, no address. Attend- ing physician,
+Dr. Willis Kidell.</p>
+<p><strong>kidell</strong>: 1945, that strains the memory. Here we are,
+Richard Taupin.</p>
+<p><strong>kidell</strong>: Would you like more tea?</p>
+<p><strong>brenna</strong>: No thank you, I’m fine.</p>
+<p><strong>kidell</strong>: He was unsual.</p>
+<p><strong>brenna</strong>: Why?</p>
+<p><strong>kidell</strong>: Well, this is a small town, and it was even
+smaller then. Most all the babies I delivered were from local families.
+Richard’s parents were just passing through when his mother’s time came.
+I did it right here at the house.</p>
+<p><strong>brenna</strong>: Then you didn’t know Richard later on.</p>
+<p><strong>kidell</strong>: No.</p>
+<p><strong>brenna</strong>: I’ve been trying to find somebody who knew
+him and any connections his family might have had with museums or
+historical societies.</p>
+<p><strong>kidell</strong>: Don’t know about any of that. Suppose nobody
+does.</p>
+<p><strong>brenna</strong>: I don’t follow you.</p>
+<p><strong>kidell</strong>: Poor little tyke didn’t have a chance.
+Hopelessly premature. He died a few days after he was born.</p>
+<p><strong>brenna</strong>: The boy <em>died</em>?</p>
+<p><strong>kidell</strong>: Mother too. Sad case it was. The young lady
+just couldn’t make it through labor. Never even saw her son.</p>
+<p><strong>kidell</strong>: My brother worked for the town paper at the
+time. He took this picture of the funeral.</p>
+<p><strong>brenna</strong>: Have you spoken to anyone else about
+this?</p>
+<p><strong>kidell</strong>: There was this one fella. Asked a lot of
+questions. I was out of town but I heard he spent near a full day in the
+records office.</p>
+<p><strong>brenna</strong>: Would you remember his name?</p>
+<p><strong>kidell</strong>: Carl Smith.</p>
+<p><strong>officer</strong>: Just tell us when you see the one.</p>
+<p><strong>uncle joe</strong>: Forget it.</p>
+<p><strong>brenna</strong>: I’m just curious.</p>
+<p><strong>uncle joe</strong>: You’re never “just curious”. You’ve met
+my neice, Brenna.</p>
+<p><strong>assistant</strong>: Hi Brenna.</p>
+<p><strong>officer</strong>: Number 5, lift your coat up more.</p>
+<p><strong>uncle joe</strong>: Aren’t you getting a little old for this?
+You flunked out of law school.</p>
+<p><strong>brenna</strong>: Now there’s a new topic.</p>
+<p><strong>uncle joe</strong>: Don’t they have enough for you to do at
+the castle?</p>
+<p><strong>uncle joe</strong>: Forgers do it all the time. They take the
+birth certificate of some- one who died young and use it to get legit
+I.D. Usually they carry it long enough to pass some bad checks then dump
+it.</p>
+<p><strong>brenna</strong>: Thanks.</p>
+<p><strong>uncle joe</strong>: Call your mother. You never call her.</p>
+<p><strong>officer</strong>: Well?</p>
+<p><strong>old lady</strong>: I don’t know. I’d have to see his
+thing.</p>
+<p><strong>brenna</strong>: I can’t figure out why he’s doing it. He’s
+been Richard Taupin at least since 1967. And the guys rich. You should
+see the stuff he has in that shop.</p>
+<p><strong>dennis</strong>: Maybe he’s hiding from something.</p>
+<p><strong>brenna</strong>: Some guy named Smith was asking about him in
+Church Hill. I passed his name around with your buddies downtown but
+they drew a blank. So he isn’t a cop. District anyway.</p>
+<p><strong>dennis</strong>: Probably just some exec ducking an
+ex-wife.</p>
+<p><strong>brenna</strong>: Dr. Kidell had a picture in his file of the
+funeral. The father looked just like Richard. Even had a mark on his
+cheek.</p>
+<p><strong>dennis</strong>: How old is Richard?</p>
+<p><strong>brenna</strong>: P.D. says 41, but he barely looks 30.</p>
+<p><strong>dennis</strong>: Find the father. That should clear things
+up.</p>
+<p><strong>dennis</strong>: Taupin, isn’t that the guy Moran picked up
+the other night?</p>
+<p><strong>brenna</strong>: Yeah.</p>
+<p><strong>dennis</strong>: He’d want to know about all this.</p>
+<p><strong>brenna</strong>: Mr. Congeniality? Let him find his own
+clues. There’s a journal article in this somewhere.</p>
+<p><strong>dennis</strong>: Uncle Joey’s little girl. Can’t get the
+taste out of her mouth.</p>
+<p><strong>dennis</strong>: Well, the cream of society awaits. If you’re
+ever in the neighborhood…</p>
+<p><strong>brenna</strong>: Sure.</p>
+<p><strong>officer</strong>: They found it.</p>
+<p><strong>officer</strong>: It was about fifty yards down- stream from
+the head.</p>
+<p><strong>officer</strong>: Both were cut real clean. Like the other
+ones…</p>
+<p><strong>moran</strong>: There’s been another murder.</p>
+<p><strong>taupin</strong>: My condolences.</p>
+<p><strong>moran</strong>: Where were you Tuesday night?</p>
+<p><strong>taupin</strong>: Home.</p>
+<p><strong>moran</strong>: A neighbor saw your car leave.</p>
+<p><strong>taupin</strong>: He’s mistaken.</p>
+<p><strong>moran</strong>: Look, I don’t know what the hell you’re up
+to, but I think I’ve got a pretty good idea.</p>
+<p><strong>taupin</strong>: Do you?</p>
+<p><strong>moran</strong>: All I need is time.</p>
+<p><strong>taupin</strong>: I’ve got all the time in the world. Except
+right now. If you will excuse me, Lieutenant.</p>
+<p><strong>brenna</strong>: Someone beat you.</p>
+<p><strong>taupin</strong>: Have you taken to touring small town
+cemetaries, Miss Cartwright?</p>
+<p><strong>brenna</strong>: Grave robbers?</p>
+<p><strong>taupin</strong>: Probably.</p>
+<p><strong>brenna</strong>: Who?</p>
+<p><strong>taupin</strong>: People like that rarely leave business
+cards.</p>
+<p><strong>brenna</strong>: Does Carl Smith?</p>
+<p><strong>taupin</strong>: I don’t know what you’re talking about.</p>
+<p><strong>brenna</strong>: I think you do. Better yet, I don’t think
+anything was stolen because nothing was there in the first place. And I
+think Mr. Smith, whoever he is, now knows that.</p>
+<p><strong>taupin</strong>: You have an active imagination.</p>
+<p><strong>brenna</strong>: I’ve been to Church Hill.</p>
+<p><strong>taupin</strong>: Miss Cartwright, you are involving yourself
+in matters that do not concern you. I strongly suggest you return to
+Washington and stay out of small town cemetaries.</p>
+<p><strong>brenna</strong>: I could find him.</p>
+<p><strong>brenna</strong>: I have friends.</p>
+<p><strong>taupin</strong>: I doubt that. Good day, Miss Cartwright.</p>
+<p><strong>brenna</strong>: What’s wrong?</p>
+<p><strong>taupin</strong>: Your help may be unneccessary.</p>
+<p><strong>voice</strong>: Good afternoon, “Mr. Taupin”.</p>
+<p><strong>knight</strong>: Long time.</p>
+<p><strong>taupin</strong>: Not so long.</p>
+<p><strong>taupin</strong>: You’ve been here from the start.</p>
+<p><strong>knight</strong>: My quarry grows clever with age. And the
+others, incompetent.</p>
+<p><strong>knight</strong>: Friend of yours?</p>
+<p><strong>taupin</strong>: Of sorts.</p>
+<p><strong>knight</strong>: I do hope she enjoys a good show.</p>
+<p><strong>knight</strong>: So now it ends.</p>
+<p><strong>knight</strong>: Generation upon generation. Tens of
+thousands of miles.</p>
+<p><strong>knight</strong>: You’re the last, MacLeod. Romirez, Lacroux,
+Neuvich, those fools that followed me, their heads all line my shelf.
+All but yours.</p>
+<p><strong>knight</strong>: Can you feel it, MacLeod? Can you
+<em>feel</em> it!</p>
+<p><strong>knight</strong>: There can be but one.</p>
+<p><strong>watchman</strong>: Hey! What’s going on here?</p>
+<p><strong>taupin</strong>: Run!</p>
+<p><strong>taupin</strong>: Run!</p>
+<p><strong>brenna</strong>: Jesus Christ.</p>
+<p><strong>taupin</strong>: You’ll be safe here. He won’t kill in a
+church.</p>
+<p><strong>brenna</strong>: Why not?</p>
+<p><strong>taupin</strong>: Tradition.</p>
+<p><strong>brenna</strong>: What the hell is going on?</p>
+<p><strong>conor</strong>: Afternoon.</p>
+<p><strong>romirez</strong>: Your name is Conor?</p>
+<p><strong>conor</strong>: Aye.</p>
+<p><strong>romirez</strong>: Juan Cid Romirez. Chief surveyor and
+alchemist.</p>
+<p><strong>conor</strong>: You’re not from these parts.</p>
+<p><strong>romirez</strong>: I am from Spain. And I would like a moment
+of your time.</p>
+<p><strong>conor</strong>: I haven’t much to offer, Mr. Romirez from
+Spain, but you’re welcome to what’s here.</p>
+<p><strong>romirez</strong>: Please go to no trouble.</p>
+<p><strong>romirez</strong>: Your back, it would seem perhaps you were
+injured in battle?</p>
+<p><strong>conor</strong>: Five years past me clan fought another over
+some- thing I cannot even re- member.</p>
+<p><strong>romirez</strong>: Your marks would suggest great injury.</p>
+<p><strong>conor</strong>: I was nearly killed.</p>
+<p><strong>romirez</strong>: But you lived.</p>
+<p><strong>conor</strong>: I did at that.</p>
+<p><strong>romirez</strong>: And but for a mark you are well as any man,
+no?</p>
+<p><strong>conor</strong>: Aye.</p>
+<p><strong>romirez</strong>: I should imagine that your recovery must
+have alarmed your fellow villagers, perhaps giving them reason to invent
+an explanation. And a solution.</p>
+<p><strong>conor</strong>: I was driven out.</p>
+<p><strong>romirez</strong>: And now you live in a small village miles
+away from all you knew.</p>
+<p><strong>conor</strong>: How can you know this?</p>
+<p><strong>romirez</strong>: First food, no? A good meal makes
+conversation so much easier.</p>
+<p><strong>romirez</strong>: Hmm, que rico. What is it you call
+this?</p>
+<p><strong>conor</strong>: Pheasant.</p>
+<p><strong>romirez</strong>: You Scots have a way with game. It still
+has life in it. Spirit. Back home the food is so…domestic.</p>
+<p><strong>conor</strong>: Why are you here?</p>
+<p><strong>romirez</strong>: I was sent by his majesty of Spain to
+Inverness as a con- sultant on matters of metal.</p>
+<p><strong>conor</strong>: You’re a long way from Inverness.</p>
+<p><strong>romirez</strong>: In my travels I heard the story of the
+MacLeod boy struck down and brought from the hand of death by powers not
+of this Earth.</p>
+<p><strong>conor</strong>: You know me home. Me name.</p>
+<p><strong>romirez</strong>: It was time for our paths to cross.</p>
+<p><strong>romirez</strong>: You see this?</p>
+<p><strong>romirez</strong>: When I was a boy a cart driven by a drunken
+fool crushed me. All thought I would die or be maimed for life. But I
+healed quickly. And like you I paid the price for being different.</p>
+<p><strong>conor</strong>: You are the same?</p>
+<p><strong>romirez</strong>: Do you ever feel a flow, as if some- thing
+were pushing against you?</p>
+<p><strong>conor</strong>: Yes. Always.</p>
+<p><strong>romirez</strong>: Does it change with me in the room?</p>
+<p><strong>conor</strong>: It is less.</p>
+<p><strong>romirez</strong>: You feel you know me.</p>
+<p><strong>conor</strong>: I don’t know why.</p>
+<p><strong>romirez</strong>: We are brothers.</p>
+<p><strong>conor</strong>: He told me there could be only one.</p>
+<p><strong>romirez</strong>: Some cling to sanity through time with the
+one continuity and trad0 ition their lives have known: The Game. You and
+I Conor, we are different from all others around us. You know this, you
+can feel it. We are flesh and bone like any man, but unlike our
+neighbors we are rather difficult to injure, permanently.</p>
+<p><strong>conor</strong>: I don’t understand.</p>
+<p><strong>romirez</strong>: You are still so very young.</p>
+<p><strong>conor</strong>: I’m twenty-two.</p>
+<p><strong>romirez</strong>: Not even a single lifetime.</p>
+<p><strong>romirez</strong>: Conor, you and I, we cannot be killed.</p>
+<p><strong>conor</strong>: What?</p>
+<p><strong>romirez</strong>: We are immortal.</p>
+<p><strong>conor</strong>: No, that can’t be.</p>
+<p><strong>romirez</strong>: It is as you are.</p>
+<p><strong>conor</strong>: No!</p>
+<p><strong>romirez</strong>: Listen to me. Hear the words.</p>
+<p><strong>conor</strong>: This is madness!</p>
+<p><strong>romirez</strong>: It is the truth.</p>
+<p><strong>conor</strong>: No!</p>
+<p><strong>male voice</strong>: This is Dr. Wickland at GWU. Your test
+came back today. You can call me here at the med center if you have any
+questions.</p>
+<p><strong>supervisor’s voice</strong>: Brenna, where the hell are you?
+The place is full of cops asking weird questions. What’s going on? I’ve
+got work stacking up. Get in here right away.</p>
+<p><strong>knight’s voice</strong>: Brenna.</p>
+<p><strong>knight’s voice</strong>: My quarrel is not with you. Meet
+me.</p>
+<p><strong>knight’s voice</strong>: We have much to talk of, you and I.
+Answers for the young historian. O’Reily’s. Tonight. I’ve grown to like
+taverns.</p>
+<p><strong>several little girls</strong>: Happy birthday to you, happy
+birth- day to you, happy birthday dear Brenna, happy birthday to
+you.</p>
+<p><strong>mother’s voice</strong>: Hi Brenna, it’s mom. Me and your
+neices just wanted to call and wish you a happy birthday. Crissy made a
+real cute card for you, be sure to call her. Will you be home for
+Easter? Call when you can. Love you.</p>
+<p><strong>romirez</strong>: Three days you’ve laid there. It’s time you
+ate.</p>
+<p><strong>conor</strong>: This can’t be.</p>
+<p><strong>romirez</strong>: You are not dead, boy. Accept it.</p>
+<p><strong>conor</strong>: This is monstrous. I’ll burn in hell for all
+eternity.</p>
+<p><strong>romirez</strong>: You’d have to die first. Aqui.</p>
+<p><strong>conor</strong>: What is to become of me? Am I to wander the
+Earth forever like a ghost?</p>
+<p><strong>romirez</strong>: You will live. Survive.</p>
+<p><strong>conor</strong>: Then they were right. I am evil. This is
+God’s punishment.</p>
+<p><strong>romirez</strong>: You have done nothing wrong Conor
+MacLeod.</p>
+<p><strong>conor</strong>: Oh my God. Oh my God I’m lost.</p>
+<p><strong>conor</strong>: Why does he want to kill me?</p>
+<p><strong>romirez</strong>: You recall how I spoke of the push you feel
+and how I make it less?</p>
+<p><strong>conor</strong>: Aye.</p>
+<p><strong>romirez</strong>: It is always less with my living. Far or
+near. But if I were to die the push would become stronger than ever
+before. There is power in this. And as long as you and I live, The
+Knight can never have it all.</p>
+<p><strong>conor</strong>: But we cannot be killed.</p>
+<p><strong>romirez</strong>: There is an imperfection. For all your
+healing, if your head ever leaves your neck, you are dead. You can
+survive anything but steel against your threat. Then it is over. The
+end.</p>
+<p><strong>conor</strong>: How can I stop such a man?</p>
+<p><strong>romirez</strong>: Hide. Run to the ends of the Earth till you
+learn. You must learn to defend yourself. In this I can help.</p>
+<p><strong>conor</strong>: Why?</p>
+<p><strong>romirez</strong>: We are brothers. And you are a defense- -of
+sorts.</p>
+<p><strong>mr. north</strong>: When your father died I saw to it that
+the grounds were kept up.</p>
+<p><strong>taupin</strong>: The money in the estate was enough to cover
+your costs?</p>
+<p><strong>mr. north</strong>: Oh yes, more than enough.</p>
+<p><strong>mr. north</strong>: Most of the furniture was put into
+protective storage. I’ll have some boys come up and clean the place out
+for you.</p>
+<p><strong>mr. north</strong>: You’re one of William’s kids, huh?</p>
+<p><strong>taupin</strong>: His only kid.</p>
+<p><strong>mr. north</strong>: Sure take after him. Never seen a father
+and son look more alike.</p>
+<p><strong>taupin</strong>: We were very close.</p>
+<p><strong>mr. north</strong>: The resemblance is amazing.</p>
+<p><strong>taupin</strong>: When may I expect the cleaners?</p>
+<p><strong>mr. north</strong>: I’ll send them right up.</p>
+<p><strong>man</strong>: That stuff’ll put you away if you’re not
+careful.</p>
+<p><strong>brenna</strong>: There was a Count. Count Dusan. He would
+invite the local peasants to his chateau, fill them full of wine, then
+slice their bellies so he could reuse it. The symmetry of that somehow
+always appealed to me.</p>
+<p><strong>man</strong>: You’re very macabre.</p>
+<p><strong>brenna</strong>: It’s my birthday.</p>
+<p><strong>man</strong>: Happy birthday.</p>
+<p><strong>brenna</strong>: Thanks.</p>
+<p><strong>brenna</strong>: Buy a birthday girl a drink?</p>
+<p><strong>taupin</strong>: Lager and lime.</p>
+<p><strong>kahn</strong>: MacLeod.</p>
+<p><strong>kahn</strong>: Spare a chair?</p>
+<p><strong>taupin</strong>: Kahn?</p>
+<p><strong>kahn</strong>: Are you going to offer me a chair or leave me
+standing here all night?</p>
+<p><strong>taupin</strong>: Sit.</p>
+<p><strong>taupin</strong>: How are you?</p>
+<p><strong>kahn</strong>: Head still secure to the neck.</p>
+<p><strong>taupin</strong>: How did you find me?</p>
+<p><strong>kahn</strong>: How many places this side of the Atlantic
+serve lager and lime?</p>
+<p><strong>kahn</strong>: Old habits die hard. Waitress! A round of
+Nitzhic! Peasant drool, I know. But it’s the closest thing they stock to
+my side of the fence.</p>
+<p><strong>taupin</strong>: What are you doing here?</p>
+<p><strong>kahn</strong>: It is the gathering, my friend. The settling
+of old scores.</p>
+<p><strong>taupin</strong>: And have you something to settle with
+me?</p>
+<p><strong>kahn</strong>: Not tonight. Tonight I have a drink with an
+old friend.</p>
+<p><strong>taupin</strong>: It’s good to see you, Kahn.</p>
+<p><strong>kahn</strong>: Come, toast with me the past. To old
+conquests, old loves, and to a time when we cared about either.</p>
+<p><strong>kahn</strong>: Waitress!</p>
+<p><strong>kahn</strong>: I’ll never forget the look on that Papal
+commander’s face when his “heretic stronghold” turned out to be a rock
+full of whores climbing all over Neuvich.</p>
+<p><strong>taupin</strong>: Neuvich, the clown of the crusades.</p>
+<p><strong>kahn</strong>: But then rides up Pope Pius who calmly brushes
+the dust from his papal cross, climbs off his papal horse, draws his
+papal sword and asks just what the hell is going on. And what did
+Neuvich, dear dear drunken Neuvich do?</p>
+<p><strong>taupin</strong>: Offered the Pope one of his whores.</p>
+<p><strong>taupin</strong>: Had a great swing with his blade. For a
+Pope.</p>
+<p><strong>kahn</strong>: Good times then. A man could stretch his legs
+without bring- ing half the world down around his ears. Not like
+now.</p>
+<p><strong>taupin</strong>: He found us even there.</p>
+<p><strong>kahn</strong>: He always did.</p>
+<p><strong>taupin</strong>: I haven’t drunk this much since-</p>
+<p><strong>kahn</strong>: -Since you last saw me.</p>
+<p><strong>kahn</strong>: Come on.</p>
+<p><strong>kahn</strong>: I love zoos. Ever since I was a kid.</p>
+<p><strong>taupin</strong>: You were never a kid.</p>
+<p><strong>kahn</strong>: I knew his great-grandfather.</p>
+<p><strong>taupin</strong>: You’re insane.</p>
+<p><strong>kahn</strong>: No, seriously. We used to shoot pool together
+in Rangoon.</p>
+<p><strong>taupin</strong>: How do you do it, Kahn? How do you live so
+full of life for so long?</p>
+<p><strong>kahn</strong>: Tasting and enjoying life is the only thing of
+value we have. All else is just marking time. You’re marking time.</p>
+<p><strong>taupin</strong>: I’ve had a few more concerns.</p>
+<p><strong>kahn</strong>: The pressure only comes when you let the taste
+slip into your mouth.</p>
+<p><strong>taupin</strong>: You’re wrong.</p>
+<p><strong>kahn</strong>: You don’t run as hard, MacLeod. You just don’t
+run as hard anymore.</p>
+<p><strong>auctioneer</strong>: I apoligize for the lateness of the
+hour, but I’m sure you will all agree the quality of this year’s
+collection is well worth the time.</p>
+<p><strong>auctioneer</strong>: For this fine example of medieval
+religious art, let us open the bid at 4,000 dollars.</p>
+<p><strong>auctioneer</strong>: 10,500 once, 10,500 twice…</p>
+<p><strong>auctioneer</strong>: 11,000. A bid at 11,000.</p>
+<p><strong>brenna</strong>: No, I-</p>
+<p><strong>brenna</strong>: Mr. Taupin? I have to talk to you.</p>
+<p><strong>taupin</strong>: Finished?</p>
+<p><strong>brenna</strong>: He tried to kill me last night.</p>
+<p><strong>taupin</strong>: Where?</p>
+<p><strong>brenna</strong>: Dupont Circle.</p>
+<p><strong>brenna</strong>: Who is he?</p>
+<p><strong>taupin</strong>: At the moment? Carl Smith.</p>
+<p><strong>brenna</strong>: And you?</p>
+<p><strong>brenna</strong>: What will you do now?</p>
+<p><strong>taupin</strong>: You needn’t worry Miss Cartwright. I’ve been
+at this a very long time.</p>
+<p><strong>brenna</strong>: He called you “MacLeod”.</p>
+<p><strong>taupin</strong>: Not your concern.</p>
+<p><strong>brenna</strong>: I left a man dead in Felton. But you don’t
+really care, do you?</p>
+<p><strong>taupin</strong>: That bothers you?</p>
+<p><strong>brenna</strong>: He was innocent.</p>
+<p><strong>taupin</strong>: He’s dead. Whatever I may or may not feel
+means exceedingly little to him now.</p>
+<p><strong>brenna</strong>: What about me?</p>
+<p><strong>taupin</strong>: You?</p>
+<p><strong>brenna</strong>: I’m a witness to a murder. That seems to put
+me pretty high on your friend’s chop list.</p>
+<p><strong>taupin</strong>: Have you gone to the police?</p>
+<p><strong>brenna</strong>: No.</p>
+<p><strong>taupin</strong>: Why not? I’m sure they’d love to hear your
+story.</p>
+<p><strong>brenna</strong>: I’d rather hear yours.</p>
+<p><strong>taupin</strong>: You are being foolish.</p>
+<p><strong>brenna</strong>: I’m a historian, Mr. Taupin. Only once in a
+lifetime do you stare history in the face.</p>
+<p><strong>taupin</strong>: Go home.</p>
+<p><strong>brenna</strong>: Why does he want to kill you?</p>
+<p><strong>taupin</strong>: He sees me as a threat.</p>
+<p><strong>brenna</strong>: Are you?</p>
+<p><strong>romirez</strong>: Concentrate!</p>
+<p><strong>romirez</strong>: Harder. Concentrate harder.</p>
+<p><strong>conor</strong>: Me arm hurts.</p>
+<p><strong>romirez</strong>: Again. Try again.</p>
+<p><strong>romirez</strong>: Harder! You swing like an impotent cow!</p>
+<p><strong>conor</strong>: Go to hell.</p>
+<p><strong>romirez</strong>: Oh, the boy has a mouth, now if only he had
+an arm.</p>
+<p><strong>conor</strong>: Impotent cow.</p>
+<p><strong>romirez</strong>: Muy Bien!</p>
+<p><strong>romirez</strong>: Here my boy, from vineyards as sweet and
+smooth as a young girl’s thigh.</p>
+<p><strong>romirez</strong>: It will take less effort as you learn.</p>
+<p><strong>conor</strong>: It’s like to kill me first.</p>
+<p><strong>romirez</strong>: You have a gift. One you must protect.</p>
+<p><strong>conor</strong>: And what is this great gift that cannot be
+seen or smelt?</p>
+<p><strong>romirez</strong>: The Fabric of life. The spark that allows
+the passing of existence from one generation to another.</p>
+<p><strong>conor</strong>: If that was meant to be an ex- planation
+Mr. Romirez from Spain, I’m afraid you’ve failed.</p>
+<p><strong>romirez</strong>: Come. Enough sword play for an
+afternoon.</p>
+<p><strong>conor</strong>: You’re no match for Scot, Mr. Romirez. We’re
+raised as riders.</p>
+<p><strong>romirez</strong>: Point conceeded, Mr. MacLeod.</p>
+<p><strong>conor</strong>: What is the fascinatioon? It is only a
+leaf.</p>
+<p><strong>romirez</strong>: All living things pay dues, Conor. They
+must be respected for that.</p>
+<p><strong>romirez</strong>: As they age they contribute to a sum that
+is the kindling from which all future life comes. To feel it, to know
+it, is to be in touch with the will of every living thing.</p>
+<p><strong>conor</strong>: I do not think I like the sound of that.</p>
+<p><strong>romirez</strong>: It does not feel nearly as frightening as
+it sounds. But the consequences of such feelings can be very
+frightening. For it gives you great strength. The strength of
+<em>knowledge</em>. The ability to stand between the giving of what has
+always been to what will always be.</p>
+<p><strong>conor</strong>: I feel hardly nothing.</p>
+<p><strong>romirez</strong>: You have not been fully trained. But you
+will learn. And you will be good, I can feel that. You have apt- itude.
+This is why our friend is so concerned.</p>
+<p><strong>conor</strong>: But why be so concerned about me?</p>
+<p><strong>romirez</strong>: This power is divided amongst you, me, and
+others like cuts in a pie. But the cuts are not equal. Some, like you
+and he, have more. Much more.</p>
+<p><strong>conor</strong>: And you?</p>
+<p><strong>romirez</strong>: I am a small player. But if by helping you
+I can keep that monster from being the last, then perhaps my life has
+meant something.</p>
+<p><strong>conor</strong>: I am not ready for this.</p>
+<p><strong>romirez</strong>: You must be. You have responsibilities. You
+must learn the rules. You can never attract attention to yourself, never
+show the side that will draw others to you. You will always know when
+you are in the presence of another. Beware. But more importantly Conor
+MacLeod, will be your battle against time. In the coming years you will
+see kingdoms rise then rot like wheat. People will become a transitory,
+pathetic lot. The only constant you will know will be the others and the
+tradition their greed and quest represent. But life without morality,
+without the ability to truly taste the sweetness of wine and love, is no
+life at all. That is how the others exist. Nothing more than walking
+corpses living only to slaughter each other in an insane quest to be the
+last. Keep your soul sewed to the earth. Do not become one of them.</p>
+<p><strong>conor</strong>: Of course.</p>
+<p><strong>romirez</strong>: You are young, inexperienced. You do not
+know what time can do. How it can sap all pity, all love.</p>
+<p><strong>conor</strong>: That is not me.</p>
+<p><strong>romirez</strong>: With the proper tools, Conor, a naive man
+can be much more dangerous than an evil one.</p>
+<p><strong>villager</strong>: Conor!</p>
+<p><strong>conor</strong>: Yes, Darin.</p>
+<p><strong>villager</strong>: Hate to be bothering you like this, but me
+mare threw a shoe.</p>
+<p><strong>romirez</strong>: Go ahead, Senor. I have my friend to keep
+me company.</p>
+<p><strong>conor</strong>: I’ll be back when I can.</p>
+<p><strong>knight</strong>: Romirez. What a surprise.</p>
+<p><strong>romirez</strong>: Madonna!</p>
+<p><strong>knight</strong>: Bastard!</p>
+<p><strong>romirez</strong>: Oh, Santa Maria!</p>
+<p><strong>knight</strong>: Why run?</p>
+<p><strong>romirez</strong>: Demonio!</p>
+<p><strong>knight</strong>: To hell with you.</p>
+<p><strong>librarian</strong>: Come on Brenna, your ass is already in a
+sling, don’t drag me into it.</p>
+<p><strong>brenna</strong>: All I need is for you to check the name.</p>
+<p><strong>librarian</strong>: You talked to your supervisor lately?
+He’s burning up the place about you just dropping out of sight. That on
+top of the cops bugging him.</p>
+<p><strong>brenna</strong>: I’ll take care of that Corey, but I need
+this now.</p>
+<p><strong>brenna</strong>: Corey, you <em>owe</em> me.</p>
+<p><strong>librarian</strong>: It’s that important?</p>
+<p><strong>brenna</strong>: Yeah.</p>
+<p><strong>researcher</strong>: Wilson know about this?</p>
+<p><strong>brenna</strong>: I’m doing it on my own.</p>
+<p><strong>librarian</strong>: Good way to lose your job.</p>
+<p><strong>brenna</strong>: Some job. Card filing and cabinet dusting.
+Four years in this dump and I haven’t written anything for Wilson that a
+wounded yak couldn’t do.</p>
+<p><strong>librarian</strong>: I liked the bit you did about Baltic
+chastity belts. Too bad no one else did.</p>
+<p><strong>brenna</strong>: It’s bullshit. Everything. My job, the
+people I get involved with, I’m up to here with it.</p>
+<p><strong>librarian</strong>: You always were hard to impress.</p>
+<p><strong>brenna</strong>: Who is it?</p>
+<p><strong>librarian</strong>: Not who. What. Worstick’s a town in
+Pennsylvania.</p>
+<p><strong>brenna</strong>: Chris, have you seen my notebook?</p>
+<p><strong>brenna</strong>: Why, that son of a bitch.</p>
+<p><strong>brenna</strong>: What’s wrong Wilson, huh? Not enough
+excitement in your own desk? What the hell were you looking for in
+mine?</p>
+<p><strong>moran</strong>: A murder.</p>
+<p><strong>brenna</strong>: You better have a warrant. That’s my
+notebook, you’ve got no right to be sticking your fingers into it.</p>
+<p><strong>moran</strong>: I’ve got a morgue filling up with bodies.
+That’s my right.</p>
+<p><strong>brenna</strong>: What do you want from me?</p>
+<p><strong>moran</strong>: Well, the man of the hour that we all would
+like to talk to about now has apparently skipped town. And all of a
+sudden the Smithsonian’s ambulence chaser is an expert on missing
+persons.</p>
+<p><strong>brenna</strong>: I’m calling an attorney.</p>
+<p><strong>moran</strong>: You and I should talk first.</p>
+<p><strong>brenna</strong>: We’ve got nothing to say.</p>
+<p><strong>moran</strong>: What are you going to tell them? That you’re
+protecting a man who’s killed four people?</p>
+<p><strong>brenna</strong>: Four?</p>
+<p><strong>moran</strong>: All fashionably without heads.</p>
+<p><strong>brenna</strong>: Spare me the details.</p>
+<p><strong>moran</strong>: But there’s more. Wednesday someone played
+javelin with the cemetary curator in Felton, Delaware. Some locals
+spotted two cars with D.C. plates and surprise surprise, they turn out
+to be registered to our own Brenna Cartwright and the ever popular
+Richard Taupin.</p>
+<p><strong>brenna</strong>: What are you getting at, Moran?</p>
+<p><strong>moran</strong>: You’ve been a busy little beaver. Especially
+with that records mess up in Church Hill. Your notes are very complete.
+Naturally my feelings were crushed when you didn’t rush right over and
+tell us what you knew. In fact, we’re considering book- ing the
+ambulence chaser as an accessory to murder.</p>
+<p><strong>brenna</strong>: It’ll never stick.</p>
+<p><strong>moran</strong>: But we might just give it the ’ole college
+try. What with the court back ups, it could be days before you got an
+arraignment. But then, I’m sure the flunk-out neice of the D.A. knows
+all about that.</p>
+<p><strong>brenna</strong>: You’re an asshole, Moran.</p>
+<p><strong>moran</strong>: I want Taupin.</p>
+<p><strong>brenna</strong>: What makes you so sure he’s the one?</p>
+<p><strong>moran</strong>: Just for laughs we raided wonder boy’s house.
+There was a gallon of one of the corpse’s blood in his carpet. I think
+it was about then I withdrew his name for humanitarian of the year.</p>
+<p><strong>brenna</strong>: What’s all of this got to do with me?</p>
+<p><strong>moran</strong>: What were you doing in Felton?</p>
+<p><strong>brenna</strong>: Research. If your pal was there I never saw
+him.</p>
+<p><strong>moran</strong>: I have witnesses that can put the two of you
+together.</p>
+<p><strong>brenna</strong>: Never take up poker, Detective.</p>
+<p><strong>moran</strong>: Don’t be stupid, lady. Your neck can be
+sliced as fast as anyone else’s.</p>
+<p><strong>brenna</strong>: Why don’t you wait until it comes out in
+paperback?</p>
+<p><strong>dennis</strong>: I warned you.</p>
+<p><strong>brenna</strong>: Go to hell.</p>
+<p><strong>taupin</strong>: You shouldn’t have come.</p>
+<p><strong>taupin</strong>: We’re you followed?</p>
+<p><strong>brenna</strong>: No.</p>
+<p><strong>taupin</strong>: No one knows you’re here?</p>
+<p><strong>brenna</strong>: No. I had to talk to you.</p>
+<p><strong>taupin</strong>: You had to do <em>nothing</em>!</p>
+<p><strong>brenna</strong>: You’re wrong.</p>
+<p><strong>taupin</strong>: You’re a fool.</p>
+<p><strong>brenna</strong>: Maybe.</p>
+<p><strong>taupin</strong>: Come inside.</p>
+<p><strong>brenna</strong>: Is this what you killed them with?</p>
+<p><strong>taupin</strong>: You’ve been listening to rumors.</p>
+<p><strong>brenna</strong>: Our cars were seen together in Felton.
+They’re calling me an accessory to murder.</p>
+<p><strong>taupin</strong>: You are. Now.</p>
+<p><strong>taupin</strong>: There’s several bedrooms down the hall. Take
+your pick.</p>
+<p><strong>officer</strong>: No, that’s the last place we saw her. Okay,
+will do.</p>
+<p><strong>partner</strong>: Well?</p>
+<p><strong>officer</strong>: We keep looking.</p>
+<p><strong>partner</strong>: Wonderful.</p>
+<p><strong>brenna</strong>: What’s all that?</p>
+<p><strong>taupin</strong>: Richard Taupin has become cumbersome. It
+would be best if he just disappeared.</p>
+<p><strong>brenna</strong>: You did kill those men.</p>
+<p><strong>taupin</strong>: Not all of them.</p>
+<p><strong>brenna</strong>: When you finish, what then?</p>
+<p><strong>taupin</strong>: I go my way and you can write all you want
+about the big bad Mr. Taupin.</p>
+<p><strong>brenna</strong>: You make it all sound so simple.</p>
+<p><strong>taupin</strong>: The only real difficulty comes in changing
+over the ownership of property I’ve aquired. That requires certain
+records and most importantly a personal appearance at the county seat in
+Gettysburg. But that’s where you come in.</p>
+<p><strong>brenna</strong>: You want me to front for you.</p>
+<p><strong>taupin</strong>: The less exposure I recieve around
+government buildings the better. You, as Mrs. Taupin, will attract
+considerably less attention than I.</p>
+<p><strong>taupin</strong>: Not such a bad trade. The story of a
+lifetime for a few days work?</p>
+<p><strong>inspector</strong>: They lost her outside of Thurmont.</p>
+<p><strong>moran</strong>: I want people in here to check over every
+piece of this stuff.</p>
+<p><strong>inspector</strong>: Figure she’s with him?</p>
+<p><strong>moran</strong>: Yeah.</p>
+<p><strong>inspector</strong>: We ran down that Church Hill info. She’s
+right. There is no Richard Taupin.</p>
+<p><strong>moran</strong>: Any other I.D.s come up?</p>
+<p><strong>inspector</strong>: Not yet. Called FBI yesterday. Thompson’s
+going to try CIA this afternoon. Y’never know.</p>
+<p><strong>moran</strong>: Should have seen him the first night. Son of
+a bitch stood there with a quart of blood on his pant leg and didn’t
+even blink.</p>
+<p><strong>inspector</strong>: You’d think he’d had practice.</p>
+<p><strong>moran</strong>: I think he has.</p>
+<p><strong>aide</strong>: The men are assembled, Major.</p>
+<p><strong>general</strong>: See that they are indeed ready, Dupont.</p>
+<p><strong>dupont</strong>: Yes General.</p>
+<p><strong>staff sargeant</strong>: Regiment ready for review, sir.</p>
+<p><strong>dupont</strong>: Stand straight, you are a soldier of the
+King.</p>
+<p><strong>soldier #1</strong>: Yes sir.</p>
+<p><strong>dupont</strong>: Where is your bayonet?</p>
+<p><strong>solider #3</strong>: Lost it sir.</p>
+<p><strong>dupont</strong>: Where?</p>
+<p><strong>staff sargeant</strong>: You heard the Major! Where!</p>
+<p><strong>soldier #3</strong>: Whorehouse sir.</p>
+<p><strong>dupont</strong>: Your rifle. Hand it to me.</p>
+<p><strong>dupont</strong>: The flint is cracked. No spark will reach
+your powder. You will die tomorrow.</p>
+<p><strong>dupont</strong>: Tomorrow you go to <em>battle</em>! And you
+look like children! The General has charged me with seeing that you are
+prepared, and prepared you will be! If necessary you stand here all
+night! Sargeant!</p>
+<p><strong>sargeant</strong>: Yes sir.</p>
+<p><strong>dupont</strong>: See to it.</p>
+<p><strong>sargeant</strong>: Yes sir.</p>
+<p><strong>dupont</strong>: Your name?</p>
+<p><strong>mulet</strong>: Mulet.</p>
+<p><strong>captain</strong>: …And what a sight! That old mare just kept
+falling over her own guts till someone finally shot her.</p>
+<p><strong>major</strong>: Complete your inspection?</p>
+<p><strong>dupont</strong>: They’re nothing but boys. It will be a
+slaughter tomorrow.</p>
+<p><strong>major</strong>: I doubt much can change that. The enemy has
+five brigades waiting for us.</p>
+<p><strong>dupont</strong>: We need more time.</p>
+<p><strong>major</strong>: Won’t get it. We are a sacrifice. A
+diversion.</p>
+<p><strong>major</strong>: Eat up Dupont. It will probably be your
+last.</p>
+<p><strong>dupont</strong>: Not likely.</p>
+<p><strong>dupont</strong>: I thought I gave orders the regiment was to
+drill.</p>
+<p><strong>mulet</strong>: Staff sargeant detailed me to prepare
+firewood for the break- fast cooking.</p>
+<p><strong>dupont</strong>: What is your position?</p>
+<p><strong>mulet</strong>: Second musketeer.</p>
+<p><strong>dupont</strong>: I understand you joined up in Bremen.</p>
+<p><strong>mulet</strong>: You seem to understand a great deal.</p>
+<p><strong>dupont</strong>: I am a Major, Private. You would do well
+remembering that when addressing me.</p>
+<p><strong>mulet</strong>: Excuse me, “sir”. I thought we spoke as
+equals.</p>
+<p><strong>dupont</strong>: Equals?</p>
+<p><strong>mulet</strong>: If you wish to play games, Major.</p>
+<p><strong>dupont</strong>: Wait. I think we understand each other.</p>
+<p><strong>mulet</strong>: We have no understanding.</p>
+<p><strong>dupont</strong>: Then it is time two of us did. You are very
+young. I was once young. I can help.</p>
+<p><strong>mulet</strong>: Help? I’ve seen others “help”. Somehow a head
+always ended up on the counter.</p>
+<p><strong>dupont</strong>: It can be different. It must be.</p>
+<p><strong>mulet</strong>: It never changes, Major.</p>
+<p><strong>dupont</strong>: We must talk.</p>
+<p><strong>mulet</strong>: Stay out of it.</p>
+<p><strong>dupont</strong>: Don’t threaten me, Private.</p>
+<p><strong>mulet</strong>: Who do you think I am? One of your freckle
+faced children waiting to die tomorrow? “Threaten you”? You and I just
+living will always be a threat. Forever. Look at your life, Major. Look
+at mine. Nothing there but threat. Threats and nothingness. It’s what we
+live for.</p>
+<p><strong>dupont</strong>: Do not turn your back on me.</p>
+<p><strong>mulet</strong>: You are really going to force this, aren’t
+you?</p>
+<p><strong>dupont</strong>: Either you are with me or against me.</p>
+<p><strong>mulet</strong>: Have I a choice?</p>
+<p><strong>mulet</strong>: You see Major? You are not so different.</p>
+<p><strong>mulet</strong>: You see Major? You are not so different…</p>
+<p><strong>dupont</strong>: I had no choice.</p>
+<p><strong>dupont</strong>: Who am I deceiving?</p>
+<p><strong>knight</strong>: Certainly not me.</p>
+<p><strong>knight</strong>: You needn’t look so flushed, Major. You are
+quite safe in church.</p>
+<p><strong>knight</strong>: State of grace and all that.</p>
+<p><strong>dupont</strong>: Tradition.</p>
+<p><strong>knight</strong>: It’s all we have.</p>
+<p><strong>knight</strong>: All this time and still a scared little
+boy.</p>
+<p><strong>dupont</strong>: Not so scared.</p>
+<p><strong>knight</strong>: Perhaps not. You seem to have misplaced a
+private. No doubt by now his head is stranger to his neck.</p>
+<p><strong>dupont</strong>: No doubt.</p>
+<p><strong>knight</strong>: You surprise me. Eliminating a rival like
+that. Such are the actions of a man of conquest. I was mistaken. 300
+years have turned the boy’s fear into ambit- ion.</p>
+<p><strong>dupont</strong>: You’re wrong.</p>
+<p><strong>knight</strong>: I know you very well, Conor MacLeod. And I
+can see the truth beginning to make itself clear to you. Mulet, Romirez,
+they were fools without vision. It was destined that the board would be
+cleared for the real players.</p>
+<p><strong>dupont</strong>: Romirez understood. Not you.</p>
+<p><strong>knight</strong>: Romirez is dust.</p>
+<p><strong>knight</strong>: Finish your prayers?</p>
+<p><strong>dupont</strong>: Finish yours?</p>
+<p><strong>knight</strong>: Our common heritage. I am your only real
+friend, you know. The only one who truly understands you. I look forward
+to the day we meet again. And I kill you.</p>
+<p><strong>dupont</strong>: So sure?</p>
+<p><strong>knight</strong>: You can’t stay in church forever.</p>
+<p><strong>knight</strong>: Good night, Major.</p>
+<p><strong>mr. north</strong>: Morning Mr. North</p>
+<p><strong>taupin</strong>: Same.</p>
+<p><strong>mr. north</strong>: Such a pretty day. If I live to be 90
+I’ll never tire of mornings like this. Mind you I’m 74 now.</p>
+<p><strong>taupin</strong>: No.</p>
+<p><strong>mr. north</strong>: Yes sir. When you get older your
+priorities change. It’s the simple things that count. Without them
+growing old can be a very lonely thing.</p>
+<p><strong>taupin</strong>: I’m sure that’s true.</p>
+<p><strong>taupin</strong>: Here. The hook should go just below the
+head, where the meat is toughest.</p>
+<p><strong>grandson</strong>: Thanks.</p>
+<p><strong>taupin</strong>: Show you a trick.</p>
+<p><strong>taupin</strong>: Fish are creatures of habit. They like their
+food where they’re used to it. At the top, hiding in old leaves.</p>
+<p><strong>grandson</strong>: Where did you learn that?</p>
+<p><strong>taupin</strong>: My father taught me.</p>
+<p><strong>grandson</strong>: Your father must be smart.</p>
+<p><strong>taupin</strong>: Yes, he was.</p>
+<p><strong>taupin</strong>: There was a man once. Just a simple
+woodcarver. But he understood. More than anyone he could see to the
+heart of it. It never ends. Today is the same as the first. Tomorrow
+will be the same as today. So much time. And all of it wasted. You love
+history?</p>
+<p><strong>brenna</strong>: Yes.</p>
+<p><strong>taupin</strong>: I wish I could.</p>
+<p><strong>brenna</strong>: The estate stuff is pretty straight forward.
+Just lots of forms and an appearance at the county seat.</p>
+<p><strong>taupin</strong>: It will take some time for the forms to
+clear before you go to Gettysburg.</p>
+<p><strong>taupin</strong>: Second thoughts?</p>
+<p><strong>brenna</strong>: No. So what now? We just wait?</p>
+<p><strong>taupin</strong>: Yes.</p>
+<p><strong>brenna</strong>: Well, as long as we’re stuck here.</p>
+<p><strong>brenna</strong>: It’s some sort of party the town is
+throwing.</p>
+<p><strong>taupin</strong>: They do it each year.</p>
+<p><strong>brenna</strong>: I thought it might be a nice break from all
+of this.</p>
+<p><strong>taupin</strong>: Maybe it would do us both good.</p>
+<p><strong>brenna</strong>: There’s a catch. You’re supposed to wear
+19th century clothing.</p>
+<p><strong>taupin</strong>: My father was something of a junk
+collector.</p>
+<p><strong>taupin</strong>: Here, try this. I suppose they’re still
+making women the same as back then.</p>
+<p><strong>brenna</strong>: It’s beautiful.</p>
+<p><strong>taupin</strong>: A little dusty.</p>
+<p><strong>katherine</strong>: Do it again.</p>
+<p><strong>conor</strong>: All right.</p>
+<p><strong>conor</strong>: A lion.</p>
+<p><strong>katherine</strong>: Oh please. Another one.</p>
+<p><strong>conor</strong>: What would you like?</p>
+<p><strong>katherine</strong>: Something pretty.</p>
+<p><strong>conor</strong>: Like you.</p>
+<p><strong>katherine</strong>: That’s wonderful. Where did you ever
+learn it?</p>
+<p><strong>conor</strong>: Far away.</p>
+<p><strong>katherine</strong>: Kiss me.</p>
+<p><strong>young man</strong>: You’ll be leaving the girl alone.</p>
+<p><strong>katherine</strong>: David.</p>
+<p><strong>conor</strong>: Do you have cause to bothering us?</p>
+<p><strong>young man</strong>: That’s my girl.</p>
+<p><strong>katherine</strong>: David, we’ve already spoken of this.</p>
+<p><strong>young man</strong>: He’s not what he pretends to be.</p>
+<p><strong>conor</strong>: You best leave, son.</p>
+<p><strong>young man</strong>: You think you’re so high and mighty,
+coming into town and taking a man’s woman. Well I know about you. I know
+about the things you do.</p>
+<p><strong>conor</strong>: I said you best leave.</p>
+<p><strong>young man</strong>: You’d like that, wouldn’t you? Ask him
+about his friends. The ones he meets in the town square. Ask him about
+the blade he keeps beneath his bed.</p>
+<p><strong>conor</strong>: Leave. While you still can.</p>
+<p><strong>young man</strong>: You don’t frighten me.</p>
+<p><strong>conor</strong>: I should.</p>
+<p><strong>katherine</strong>: No! Leave him. Please don’t hurt him.
+Please.</p>
+<p><strong>young man</strong>: He’s not what you think.</p>
+<p><strong>young man</strong>: He’s not what you think!</p>
+<p><strong>katherine</strong>: I don’t care who you are or where you
+come from.</p>
+<p><strong>katherine</strong>: I love you.</p>
+<p><strong>mr. north</strong>: Mr. Taupin! Glad you could make it. Best
+get some punch before it’s gone. Near the whole valley showed up.</p>
+<p><strong>woman</strong>: If I didn’t know better I’d say William
+Taupin.</p>
+<p><strong>taupin</strong>: His son. Richard.</p>
+<p><strong>mr. north</strong>: Mr. Taupin is up from Washington to look
+over his father’s estate.</p>
+<p><strong>woman</strong>: Your father died some years ago. This is your
+first visit?</p>
+<p><strong>taupin</strong>: Of sorts.</p>
+<p><strong>woman</strong>: I suppose a Taupin had to show up
+eventually.</p>
+<p><strong>taupin</strong>: Good evening, Mrs. Butler.</p>
+<p><strong>brenna</strong>: What was all that about?</p>
+<p><strong>mr. north</strong>: Sorry Mr. Taupin. That’s not meant for
+you. Just some didn’t take much to your father.</p>
+<p><strong>brenna</strong>: Why?</p>
+<p><strong>taupin</strong>: My father was never one for social
+whirls.</p>
+<p><strong>mr. taupin</strong>: Kept to himself for sure. Then with all
+that business in ’31.</p>
+<p><strong>brenna</strong>: What business?</p>
+<p><strong>mr. north</strong>: Family down the road from the Taupin
+place was murdered. All cut up they were. Horrible. Two strangers were
+also found with the bodies. No one ever accused William, but with his
+reputation as a loner and the rumors about him and some of the wives in
+town, folks just never forgot. Most were relieved when they heard he’d
+died. Sorry Mr. Taupin.</p>
+<p><strong>taupin</strong>: Nothing to be sorry about.</p>
+<p><strong>mr. north</strong>: Just your pappy scared some.</p>
+<p><strong>portly</strong>: All right, the kids have had their fun. Now
+it’s time for a little more traditional dancing.</p>
+<p><strong>brenna</strong>: I don’t know any of these. I’ll make a fool
+of myself.</p>
+<p><strong>taupin</strong>: Follow me.</p>
+<p><strong>brenna</strong>: William Taupin seems to have left his
+mark.</p>
+<p><strong>taupin</strong>: Yes.</p>
+<p><strong>brenna</strong>: And you are William Taupin, aren’t you?</p>
+<p><strong>taupin</strong>: Yes.</p>
+<p><strong>brenna</strong>: You’re using your son’s name.</p>
+<p><strong>taupin</strong>: No. Just the child of some lonely girl I
+gave a ride to. When they died I put them in a grave with my name on it.
+Twenty years later I became the son.</p>
+<p><strong>taupin</strong>: More punch?</p>
+<p><strong>brenna</strong>: Then you must be at least 70 years old.</p>
+<p><strong>taupin</strong>: At least.</p>
+<p><strong>brenna</strong>: That’s impossible.</p>
+<p><strong>brenna</strong>: It’s frightening sometimes the way you talk
+about other people’s lives.</p>
+<p><strong>taupin</strong>: A factor of age.</p>
+<p><strong>brenna</strong>: I hope I never get that old.</p>
+<p><strong>taupin</strong>: You won’t.</p>
+<p><strong>brenna</strong>: I must be insane. Leaving work, ditching
+cops. All to follow a murderer. A very old murderer, but a murderer just
+the same.</p>
+<p><strong>taupin</strong>: Why are you here?</p>
+<p><strong>brenna</strong>: I’ve been telling myself it’s the award
+winning journal article I’m going to write. But it’s not. It’s you.</p>
+<p><strong>taupin</strong>: I see.</p>
+<p><strong>brenna</strong>: I’m not even sure why.</p>
+<p><strong>taupin</strong>: Hardly a reason to run off with a
+murderer.</p>
+<p><strong>brenna</strong>: My life has been chock full of people with
+complications and weak- nesses. I can’t stand it. But you’re different.
+It’s in your hands. A clarity.</p>
+<p><strong>taupin</strong>: You are a very perceptive young woman.</p>
+<p><strong>brenna</strong>: Just a little crazy.</p>
+<p><strong>taupin</strong>: Miss Cartwright, it’s time I showed you
+something.</p>
+<p><strong>taupin</strong>: Miss Cartwright?</p>
+<p><strong>brenna</strong>: My God.</p>
+<p><strong>taupin</strong>: I had this room built some time ago.</p>
+<p><strong>brenna</strong>: Who are you?</p>
+<p><strong>taupin</strong>: That would be difficult to explain.</p>
+<p><strong>brenna</strong>: I’d like you to try.</p>
+<p><strong>taupin</strong>: I was born Conor MacLeod in the village of
+Ardvrek on the High- land plain of Strathnaver in the clan of MacLeod
+under the King of Scotland. On the eleventh of December, 1408.</p>
+<p><strong>taupin</strong>: I have served in the armies of twelve
+nations, married nine women, fathered thirty-eight children and buried
+them all.</p>
+<p><strong>taupin</strong>: I carried that rifle in World War I. This
+book is a 16th Century policy report for the King of Austria. The
+diploma is my con- ference of degree in Latin from Trinity College.
+Class of 1672. It goes on.</p>
+<p><strong>brenna</strong>: That’s why Smith called you MacLeod.</p>
+<p><strong>taupin</strong>: Yes.</p>
+<p><strong>brenna</strong>: He knows about you.</p>
+<p><strong>taupin</strong>: He is older than I.</p>
+<p><strong>brenna</strong>: What could possibly be worth all this murder
+and distruction.</p>
+<p><strong>taupin</strong>: Sometimes I think it’s just for something to
+do. A conquest to be the last. Something to hold onto while everything
+else around you withers and blows away. Some- thing to replace the love
+that can never work.</p>
+<p><strong>brenna</strong>: That’s insane.</p>
+<p><strong>taupin</strong>: Perhaps. There is something more. An
+inheritance.</p>
+<p><strong>brenna</strong>: Of bodies.</p>
+<p><strong>taupin</strong>: I didn’t kill the watchman.</p>
+<p><strong>brenna</strong>: You killed those other two.</p>
+<p><strong>taupin</strong>: Not the same.</p>
+<p><strong>brenna</strong>: What about that family in ’31?</p>
+<p><strong>taupin</strong>: Sometimes innocents become involved.</p>
+<p><strong>brenna</strong>: You and your buddy make a real team, don’t
+you? Exchanging eloquent threats in iambic pen- tameter while hacking up
+all the innocents in between.</p>
+<p><strong>taupin</strong>: There are differences.</p>
+<p><strong>brenna</strong>: You kill with your left hand?</p>
+<p><strong>taupin</strong>: I haven’t killed <em>you</em>.</p>
+<p><strong>brenna</strong>: Is that a threat?</p>
+<p><strong>taupin</strong>: No.</p>
+<p><strong>brenna</strong>: Don’t.</p>
+<p><strong>taupin</strong>: Come here, Brenna.</p>
+<p><strong>brenna</strong>: Damn you.</p>
+<p><strong>minister</strong>: May God commend into his kingdom the soul
+of our dear departed Jason, son of Katherine-</p>
+<p><strong>minister</strong>: And brother to Howard and James-</p>
+<p><strong>old woman</strong>: You.</p>
+<p><strong>conor</strong>: Katherine.</p>
+<p><strong>old woman</strong>: What are you doing here?</p>
+<p><strong>conor</strong>: I owe him this.</p>
+<p><strong>old woman</strong>: He never knew you.</p>
+<p><strong>son #1</strong>: Is something wrong, Mother?</p>
+<p><strong>old woman</strong>: Howard. James. This is your father…</p>
+<p><strong>taupin</strong>: “Brenna”. In Celtic is means “woman with
+raven hair”. Only chieftan’s daughters were allowed it.</p>
+<p><strong>brenna</strong>: What is it like? Being you?</p>
+<p><strong>taupin</strong>: Empty. And fear. Fear of those that would
+kill you and fear of those that would love you. It can never last, and
+in the end you always end up destroying both.</p>
+<p><strong>brenna</strong>: But you’re known so much. History I’ll only
+read about.</p>
+<p><strong>taupin</strong>: It’s all the same. Half lives that never go
+away.</p>
+<p><strong>brenna</strong>: What is it you want?</p>
+<p><strong>taupin</strong>: All of it finished.</p>
+<p><strong>taupin</strong>: Gettysburg’s an hour’s drive at most. You
+should be back by nightfall.</p>
+<p><strong>brenna</strong>: Will I see you again?</p>
+<p><strong>taupin</strong>: Be careful. Don’t stay any longer than you
+have to.</p>
+<p><strong>taupin</strong>: Good luck.</p>
+<p><strong>moran</strong>: Are you sure?</p>
+<p><strong>inspector</strong>: Won’t know till the records department
+comes back with it this after- noon. Looks good though. They found the
+receipt in his townhouse. It was pretty smeared but had Taupin’s father
+listed as a signatory.</p>
+<p><strong>moran</strong>: Round up who you can and put them on
+standby.</p>
+<p><strong>inspector</strong>: Think we should call the local P.D. out
+there first?</p>
+<p><strong>moran</strong>: No. I want this to be all ours.</p>
+<p><strong>clerk</strong>: O.K. Mrs. Taupin, that’s all I need.</p>
+<p><strong>clerk</strong>: Just take this down the hall to the regis-
+trar. Hurry up though, it’s near closing time. Most everyone’s gone home
+already.</p>
+<p><strong>clerk #2</strong>: I’ll be right back.</p>
+<p><strong>brenna</strong>: Do you have a drinking fountain?</p>
+<p><strong>clerk #3</strong>: Around the corner.</p>
+<p><strong>brenna</strong>: Oh God…</p>
+<p><strong>brenna</strong>: Go away! Oh God, go away!</p>
+<p><strong>knight’s voice</strong>: We have some unfinished
+business.</p>
+<p><strong>taupin</strong>: Are you here?</p>
+<p><strong>knight’s voice</strong>: I want you to come to me.</p>
+<p><strong>taupin</strong>: And if I refuse?</p>
+<p><strong>knight’s voice</strong>: Give me an address where I can
+forward Miss Cart- wright’s head.</p>
+<p><strong>knight’s voice</strong>: Yes laddie, I have her.</p>
+<p><strong>taupin</strong>: Should I care?</p>
+<p><strong>knight</strong>: You have three hours.</p>
+<p><strong>inspector</strong>: He’s not here.</p>
+<p><strong>knight</strong>: Welcome.</p>
+<p><strong>knight</strong>: Kahn sends his best.</p>
+<p><strong>taupin</strong>: Let her go.</p>
+<p><strong>knight</strong>: You disappoint me. I thought you’d finally
+gotten over that sort of thing.</p>
+<p><strong>taupin</strong>: Leave her out of this.</p>
+<p><strong>knight</strong>: As you wish.</p>
+<p><strong>knight</strong>: You can do better than that.</p>
+<p><strong>boy</strong>: It’s from over near the memorial.</p>
+<p><strong>boy</strong>: Shit.</p>
+<p><strong>moran</strong>: Moran. All right, get a patrol unit out there
+right away. I’ll meet them.</p>
+<p><strong>knight</strong>: No. Not now.</p>
+<p><strong>dennis</strong>: Brenna?</p>
+<p><strong>knight</strong>: Get up.</p>
+<p><strong>taupin</strong>: What’s the point?</p>
+<p><strong>knight</strong>: This isn’t done. Get up.</p>
+<p><strong>taupin</strong>: What’s the point! You have me, finish
+it!</p>
+<p><strong>knight</strong>: I have waited forever for this. You will not
+cheapen it, little boy.</p>
+<p><strong>taupin</strong>: Tradition.</p>
+<p><strong>knight</strong>: It’s all we have.</p>
+<p><strong>taupin</strong>: Go to hell.</p>
+<p><strong>knight</strong>: Perhaps Miss Cartwright would like to
+play.</p>
+<p><strong>taupin</strong>: Leave her alone.</p>
+<p><strong>knight</strong>: Get up.</p>
+<p><strong>brenna</strong>: You bastard!</p>
+<p><strong>knight</strong>: Be silent.</p>
+<p><strong>brenna</strong>: Leave him alone.</p>
+<p><strong>knight</strong>: You will be silent!!</p>
+<p><strong>knight</strong>: I do hope you’re enjoying this as much as
+me.</p>
+<p><strong>knight</strong>: Get out.</p>
+<p><strong>knight</strong>: This is nothing that concerns you.</p>
+<p><strong>knight</strong>: You will leave!</p>
+<p><strong>taupin</strong>: Don’t.</p>
+<p><strong>taupin</strong>: Stop. You don’t understand.</p>
+<p><strong>taupin</strong>: In mamus tuas Domine commendo spiritum meum.
+Auditorium nostrum in nomine Domine.</p>
+<p><strong>taupin</strong>: Requiescant in pace.</p>
+<p><strong>brenna</strong>: My God.</p>
+<p><strong>brenna</strong>: Conor.</p>
+<p><strong>knight</strong>: And now you know.</p>
+<p><strong>brenna</strong>: What’s wrong?</p>
+<p><strong>taupin</strong>: I can’t stand it. Oh God, I can’t stand
+it!</p>
+<p><strong>taupin</strong>: The scream of your blood. The shriek of
+trees. Stop it! Stop it!</p>
+<p><strong>brenna</strong>: What is it?</p>
+<p><strong>taupin</strong>: I’m the last. Oh Christ, I’m the <em>last
+one</em>!</p>
+<p><strong>taupin</strong>: Get out.</p>
+<p><strong>brenna</strong>: No!</p>
+<p><strong>taupin</strong>: I’ll destroy you. I’ve destroyed everything
+I’ve ever touched! Oh God…</p>
+<p><strong>brenna</strong>: Conor…</p>
+<p><strong>taupin</strong>: <em>Get out</em>!</p>
+<p><strong>brenna</strong>: What are we supposed to say?</p>
+<p><strong>taupin</strong>: The emptyness. The years and years of void.
+Nothingness. Bordered only by the quest for ultimate nothingness. Who
+would have guessed?</p>
+<p><strong>brenna</strong>: The inheritance.</p>
+<p><strong>taupin</strong>: Not power. Not control.</p>
+<p><strong>taupin</strong>: Life. It is the gift and the under- standing
+of life.</p>
+<p><strong>brenna</strong>: You have lived forever.</p>
+<p><strong>taupin</strong>: Life is only life when it is bounded by
+death. The inheritance is death. The gift is the finality of life. To be
+part of the fabric. The inside. I love you Brenna.</p>
+<p><strong>taupin</strong>: It will be horrible. The future. I may die
+tomorrow or 10,000 tomorrows. I can promise you nothing. Nothing but a
+moment. Maybe two. But a moment of love, is that not worth a
+lifetime?</p>
+<p><strong>brenna</strong>: Yes.</p>
+<p><strong>taupin</strong>: It’s taken me so long. So very long.</p>
+</body>
+</html>

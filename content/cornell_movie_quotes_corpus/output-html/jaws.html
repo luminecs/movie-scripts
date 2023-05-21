@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jaws</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="jaws">jaws</h1>
+<p><strong>tom</strong>: Hey! Hey hey! I’m with you, right?</p>
+<p><strong>chrissie</strong>: C’mon!</p>
+<p><strong>chrissie</strong>: Tommy? Don’t dunk me…</p>
+<p><strong>radio announcer</strong>: Hayes Landing reports conditions
+good, with stripers and jacks. The Coast Guard has no storm warning from
+Block Island to Cape Hatteras; a light chop with freshening winds,
+continued clear and mild…</p>
+<p><strong>brody</strong>: How come the sun didn’t used to shine in
+here?</p>
+<p><strong>ellen</strong>: ’cause when we bought the house it was
+Autumn. This is summer. Feed the dogs.</p>
+<p><strong>brody</strong>: Right.</p>
+<p><strong>ellen</strong>: Do you see the kids?</p>
+<p><strong>brody</strong>: Probably out in the back yard.</p>
+<p><strong>ellen</strong>: In Amity, you say ‘Yahd.’</p>
+<p><strong>brody</strong>: The kids are in the yahd, playing near the
+cah. How’s that sound?</p>
+<p><strong>ellen</strong>: Like you’re from N’Yawk.</p>
+<p><strong>brody</strong>: Give me 30 years, I’ll get it.</p>
+<p><strong>brody</strong>: Did you burn another kettle? Y’know you’re a
+fire hazard? This is the third one!</p>
+<p><strong>ellen</strong>: I never hear the whistle.</p>
+<p><strong>brody</strong>: Feed the dogs.</p>
+<p><strong>ellen</strong>: You want to go through those? I’m taking them
+to the Thrift Shop. It’s Marcia Vaughn’s pet charity. Pick out what you
+want to keep – it’s mostly your city clothes.</p>
+<p><strong>brody</strong>: I used to wear this to the Garden. Garbage
+strikes. Dog shit. Muggers. Ship it.</p>
+<p><strong>ellen</strong>: Don’t be silly -� You’re going to make summer
+better for them…</p>
+<p><strong>michael</strong>: Cut my hand. Hit by a vampire.</p>
+<p><strong>brody</strong>: On the swing? I told you not to play near
+there until I sanded it down. See what your son did?</p>
+<p><strong>ellen</strong>: Go upstairs and bring Mommy a band- aid.</p>
+<p><strong>ellen</strong>: Don’t forget these.</p>
+<p><strong>brody</strong>: Oh, yeah. How do I look? Older, huh?</p>
+<p><strong>ellen</strong>: I think they make you look sexy.</p>
+<p><strong>brody</strong>: Sexy, hm? What was I before?</p>
+<p><strong>ellen</strong>: Older, sillier.</p>
+<p><strong>brody</strong>: coffee, he fumbles</p>
+<p><strong>brody</strong>: Let’s see…</p>
+<p><strong>brody</strong>: Brody… yeah, what’s up… mmm… Well, what do
+they usually do, float or wash up? Really?… okay, I’ll meet both of you
+at the beach in …20 minutes, okay? Okay. First goddamn weekend of the
+summer.</p>
+<p><strong>ellen</strong>: There. What was that?</p>
+<p><strong>brody</strong>: his shirt on over</p>
+<p><strong>ellen</strong>: Be careful.</p>
+<p><strong>brody</strong>: Here? You gotta be kiddin’.</p>
+<p><strong>brody</strong>: Love ya.</p>
+<p><strong>ellen</strong>: Hey Chief. Bring my cup back.</p>
+<p><strong>brody</strong>: Christine what?</p>
+<p><strong>cassidy</strong>: Worthingsly… Worthington – no one ever died
+on me before.</p>
+<p><strong>brody</strong>: You picked her up on the ferry.</p>
+<p><strong>cassidy</strong>: I didn’t know her.</p>
+<p><strong>brody</strong>: And nobody else saw her in the water?</p>
+<p><strong>cassidy</strong>: Somebody could’ve – I was sort of passed
+out.</p>
+<p><strong>brody</strong>: Think she might’ve run out on you?</p>
+<p><strong>cassidy</strong>: Oh, no, sir. I’ve never had a woman do
+that. I’m sure she drowned.</p>
+<p><strong>brody</strong>: You from around here?</p>
+<p><strong>cassidy</strong>: No. Cambridge. Harvard. My family’s in
+Tuxedo, New York, though.</p>
+<p><strong>brody</strong>: You here for the summer?</p>
+<p><strong>cassidy</strong>: Some friends and me took a house.</p>
+<p><strong>brody</strong>: What d’you pay for a place just for the
+summer?</p>
+<p><strong>cassidy</strong>: A thousand apiece, something like that.
+There’s five of us. And we each kick in a hundred a week for beer and
+cleaning, stuff like that.</p>
+<p><strong>brody</strong>: Pretty stiff.</p>
+<p><strong>brody</strong>: Maybe that’s your girl.</p>
+<p><strong>cassidy</strong>: You can’t make me look – !</p>
+<p><strong>brody</strong>: If this is going to work, you’ve got to keep
+current stuff out here, and put ‘closed’ files in there. The ‘Pendings’
+stay on my desk, okay?</p>
+<p><strong>polly</strong>: This is in no order of importance, Chief:
+There’s a meeting on the Amity Town Council on Aging this Monday night,
+Bentoncourt Hall. The Fire Inspector wants you to go over the fireworks
+site with him before he catches the one o’clock ferry. Mainly, you have
+a batch of calls about that new Karate school.</p>
+<p><strong>polly</strong>: Searle’s Rent-a-Bike, the Rainy Ale,
+Tisberry’s Hardware… they say it’s those nine-year-olds from the school
+practicing karate on all those nice picket fences.</p>
+<p><strong>polly</strong>: It’s the Coroner. Somebody pass away in the
+night?</p>
+<p><strong>brody</strong>: Jesus, Santos.</p>
+<p><strong>polly</strong>: What’s the matter?</p>
+<p><strong>brody</strong>: Polly, I want to know what water recreation
+is on for today.</p>
+<p><strong>polly</strong>: Right this minute?</p>
+<p><strong>brody</strong>: Where’d you hide the ‘Beach Closed’
+signs?</p>
+<p><strong>hendricks</strong>: We never had any. What’s the problem?</p>
+<p><strong>local merchant</strong>: Glad I caught you. There’s a city
+truck with New Hampshire plates parked right in front of my…</p>
+<p><strong>keisel</strong>: Wait-a-minute. Glasses, right?</p>
+<p><strong>keisel</strong>: Look at those fences! Little guys about
+eight to ten years old. And look at this!</p>
+<p><strong>keisel</strong>: They did that with their bare hands.</p>
+<p><strong>brody</strong>: Call me later in the day, okay, Harry?</p>
+<p><strong>lynwood</strong>: Stuff’s no good to me in August when the
+Pilgrims come in June… Go on and help yourself to whatever you need,
+Chief. Can you work the register?</p>
+<p><strong>hendricks</strong>: Polly told me to tell you there’s a scout
+troop in Avril Bay doing the mile swim for their Merit Badges. I
+couldn’t call them in, there’s no phone out there.</p>
+<p><strong>brody</strong>: Get out of there � take these back to the
+office and make up some ‘Beach Closed’ signs, and let Polly do the
+printing.</p>
+<p><strong>hendricks</strong>: What’s the matter with my printing?</p>
+<p><strong>vaughn</strong>: What have you got there, Lenny?</p>
+<p><strong>hendricks</strong>: We had a shark attack at South Chop this
+morning, Mayor. Fatal. Gotta batten down the beach.</p>
+<p><strong>vaughn</strong>: Who’ve you told this to, Lenny?</p>
+<p><strong>hendricks</strong>: I just found out about it – but there’s a
+bunch of Boy Scouts in the water a coupla miles down the coast from
+where we found the girl. Avril Bay, thereabouts. Chief went to dry them
+off.</p>
+<p><strong>vaughn</strong>: Take my car, okay? You come with us,
+Lenny.</p>
+<p><strong>hendricks</strong>: I’ve got all these signs here…</p>
+<p><strong>vaughn</strong>: C’mon, it’ll give us time to think about
+what they’re going to say.</p>
+<p><strong>scoutmaster</strong>: Let’s go, Robbie. You too, Hofner.
+Boyle, keep your head up. Alberts, keep kicking…</p>
+<p><strong>vaughn</strong>: Martin! Are you going to shut down the beach
+on your own authority?</p>
+<p><strong>brody</strong>: Do I need any more authority?</p>
+<p><strong>meadows</strong>: Technically, you need the instruction of a
+civic ordinance, or a special meeting of the town selectmen…</p>
+<p><strong>vaughn</strong>: That’s just going by the book. We’re just a
+little anxious that you’re rushing into something serious here. This is
+your first summer.</p>
+<p><strong>brody</strong>: Now tell me something I don’t know.</p>
+<p><strong>vaughn</strong>: All I’m saying is that Amity is a summer
+town – we need summer dollars, and if they can’t swim here, they’ll use
+the beaches at Cape Cod, or Long Island.</p>
+<p><strong>brody</strong>: So we should set out a smorgasbord?</p>
+<p><strong>meadows</strong>: We’re not even sure what it was.</p>
+<p><strong>brody</strong>: What else could’ve done that?</p>
+<p><strong>vaughn</strong>: Boat propeller?</p>
+<p><strong>doctor</strong>: I think, possibly… sure. A boating
+accident.</p>
+<p><strong>vaughn</strong>: Some weekend tramp accidentally goes
+swimming too far, she’s a little drunk, a fishing boat comes along –</p>
+<p><strong>meadows</strong>: Remember when Fred Ganz went scalloping in
+his BVD’s? He was going to swim to New Bedford, he said.</p>
+<p><strong>meadows</strong>: …and Bill Mayhew almost caught him in his
+net…?</p>
+<p><strong>brody</strong>: Doctor, you’re the one who told me what it
+was!</p>
+<p><strong>doctor</strong>: I was wrong. We’ll have to amend the
+report.</p>
+<p><strong>meadows</strong>: We never had that kind of trouble here.</p>
+<p><strong>vaughn</strong>: I don’t think you can appreciate the gut
+reaction people have to these things.</p>
+<p><strong>brody</strong>: I was only reacting to what I was told.</p>
+<p><strong>vaughn</strong>: It’s all psychological, anyway. You yell
+‘Barracuda’ and everyone says ‘huh’. You yell ‘Shark’ and we’ve got a
+panic on our hands. I think we all agree we don’t need a panic this
+close to the 4th of July.</p>
+<p><strong>brody</strong>: I can’t work in a vacuum. Why don’t you make
+Hendricks Chief? His family’s been here since the Puritans – half this
+island are his cousins.</p>
+<p><strong>vaughn</strong>: Martin, we hired the best man we could
+find.</p>
+<p><strong>vaughn</strong>: We need someone who isn’t prejudiced by old
+feuds or family ties, someone who can referee things.</p>
+<p><strong>meadows</strong>: You have our complete support.</p>
+<p><strong>vaughn</strong>: Now then. We’ve got a vandalism problem we
+ought to talk about…</p>
+<p><strong>shopkeeper</strong>: Hello, Mr. Quint.</p>
+<p><strong>quint</strong>: Four spools of Number 12 piano wire, Okay? I
+ordered them.</p>
+<p><strong>shopkeeper</strong>: Yessir, right here. What do those fish
+do, eat this stuff?</p>
+<p><strong>quint</strong>: They choke on it.</p>
+<p><strong>shopkeeper</strong>: Bye now.</p>
+<p><strong>max taft</strong>: Looks like another big season. Gets worse
+every year.</p>
+<p><strong>mrs. taft</strong>: And none of them from the Island. Just a
+lot of bother.</p>
+<p><strong>brody</strong>: What?</p>
+<p><strong>taft</strong>: Present company excepted, but off- islanders
+are a pain in the butt. Pardon my French.</p>
+<p><strong>ellen</strong>: What about this kid? What if he were born
+here. That make him an islander?</p>
+<p><strong>taft</strong>: Just ’cause a cat has kittens in an oven, it
+don’t make them muffins.</p>
+<p><strong>sean</strong>: I’m not a muffin! I’m a boy!</p>
+<p><strong>mrs. kintner</strong>: Alex! Alex Kintner! Where do you think
+you’re going?</p>
+<p><strong>alex</strong>: Water. Just once more, please?</p>
+<p><strong>mrs. kintner</strong>: Let me see your fingers –</p>
+<p><strong>mrs. kintner</strong>: They’re beginning to prune. 10 minutes
+more.</p>
+<p><strong>ellen</strong>: Do you want the boys to come in? Honey, if
+you’re worried…</p>
+<p><strong>brody</strong>: How’s the water?</p>
+<p><strong>keisel</strong>: Too cold. I’m going in again Labor Day. Hope
+we get this weather next weekend.</p>
+<p><strong>ellen</strong>: You’re very tight, y’know? Right there.</p>
+<p><strong>brody</strong>: Ow. He’s gotta be more careful in the
+water…</p>
+<p><strong>dog man</strong>: Buster! Hey, Buster! Here boy! He continues
+to ad lib calling his dog, but there’s no answer, no dog in the
+water.</p>
+<p><strong>a kid</strong>: Hey, no fair splashing in the eyes!</p>
+<p><strong>tourist</strong>: Something in the water. Right there! Didn’t
+anyone see it?</p>
+<p><strong>woman</strong>: There’s blood in the water.</p>
+<p><strong>ellen</strong>: What is it…?</p>
+<p><strong>brody</strong>: Michael! Sean! Out of the water. Everybody
+out of the water! Michael! Get out!</p>
+<p><strong>mrs. kintner</strong>: Alex! Alex? Alex…!</p>
+<p><strong>brody</strong>: Look, I’ve got to talk to her. This isn’t a
+contest we want the whole country entering.</p>
+<p><strong>meadows</strong>: I agree. If she’s going to advertise, I
+wouldn’t recommend out-of-town papers. Amity people could take care of
+this.</p>
+<p><strong>brody</strong>: I’m responsible for public safety around
+here…</p>
+<p><strong>vaughn</strong>: Then go out tomorrow and make sure no one
+gets hurt. Everybody, could I have your attention? Since this affects
+all of us, I suggest we move into council chambers, where there’s more
+room…</p>
+<p><strong>vaughn</strong>: Well, here we all are; anyone have any
+special questions?</p>
+<p><strong>denherder</strong>: Is that $3000 bounty on the shark in cash
+or check?</p>
+<p><strong>vaughn</strong>: That’s private business between you brave
+fishermen and Mrs. Kintner. – Chief –</p>
+<p><strong>brody</strong>: I’d like to tell you what we’re doing so far.
+These are some of the steps I’ve taken as Chief of Police…</p>
+<p><strong>meadows</strong>: What’s going on with the beaches,
+Chief?</p>
+<p><strong>brody</strong>: I’ll get to that in a minute. First, I plan
+to start our seasonal summer help early, and to use shark spotters on
+beaches open to the sea. I’d like cooperation from local fishermen, and
+I’ve also contacted the Oceanographic Institute over on the
+mainland.</p>
+<p><strong>vaughn</strong>: No need to involve outsiders in our
+business, Martin.</p>
+<p><strong>woman</strong>: Are you going to close the beaches?</p>
+<p><strong>brody</strong>: Larry and I have also decided to close the
+beaches for a short time.</p>
+<p><strong>vaughn</strong>: Only 24 hours!</p>
+<p><strong>brody</strong>: I didn’t agree to that!</p>
+<p><strong>mrs. taft</strong>: That official business could take all
+summer!</p>
+<p><strong>mr. keisel</strong>: Maybe it’s better to close.</p>
+<p><strong>mr. wiseman</strong>: We should make sure there is no
+danger.</p>
+<p><strong>mr. hassett</strong>: I didn’t raise my kids to be some
+fish’s lunch!</p>
+<p><strong>mrs. taft</strong>: The motel is all I own – you pull the
+plug on this town and I go down the drain with it.</p>
+<p><strong>mr. posner</strong>: Nobody’s seen a shark.</p>
+<p><strong>mr. polk</strong>: We’ll lose business, we lose taxes, we
+lose our shirts!</p>
+<p><strong>quint</strong>: You all know me. You know what I do for a
+living. I’ll go out and get this bird for you. He’s a bad one and it’s
+not like goin’ down the pond chasing blue-gills and tommy- cods. This is
+a fish that can swallow a man whole. A little shakin’, a little
+tenderizing and down ya’ go. You gotta get this fellow and get him
+quick. If you do, it’ll bring a lot of tourist business just to see him
+and you’ve got your business back on a paying basis. A shark of that
+size is no pleasure and I value my neck at a hell of a lot more’n 3,000
+bucks. I’ll find him for three. But I’ll kill him for ten.</p>
+<p><strong>quint</strong>: The bastard is costing you more’n that every
+day. Do you wanna stay alive and annee up the ten or play it cheap and
+be on welfare next winter. I’m gonna kill this thing… just a matter of
+whether I do it now – or at the end of summer.</p>
+<p><strong>vaughn</strong>: Thank you very much, Mr. Quint, the
+Selectmen will take your offer under advisement</p>
+<p><strong>ellen</strong>: Can you stand something to eat?</p>
+<p><strong>brody</strong>: Love a cup of tea. With lemon.</p>
+<p><strong>ellen</strong>: Mikey loves his birthday present.</p>
+<p><strong>brody</strong>: Where is he?</p>
+<p><strong>ellen</strong>: He’s sitting in it.</p>
+<p><strong>ellen</strong>: Honey. He has it tied up to the jetty with a
+double-knot.</p>
+<p><strong>brody</strong>: Son! – Out of the water now!</p>
+<p><strong>michael</strong>: My boat’s neat, dad!</p>
+<p><strong>brody</strong>: I want him out of the ocean.</p>
+<p><strong>ellen</strong>: It’s three feet deep, Martin</p>
+<p><strong>brody</strong>: Michael! Come inside!</p>
+<p><strong>ellen</strong>: It’s his birthday present, and you closed the
+beach, Honey. I told him not to go in the water after what happened
+yesterday. I don’t believe he’ll ever do it again.</p>
+<p><strong>brody</strong>: I told him not to go out until he memorized
+the handbook and the safety safety regulations, until he was sure of
+himself…</p>
+<p><strong>ellen</strong>: You heard your father! Out right now!</p>
+<p><strong>denherder</strong>: You wanna call it a night after here?</p>
+<p><strong>charlie</strong>: It’s only two-thirty. What, are you
+tired?</p>
+<p><strong>denherder</strong>: Yeah, Charlie, I got my second wind three
+nibbles back.</p>
+<p><strong>denherder</strong>: Leg of lamb this time?</p>
+<p><strong>charlie</strong>: Screw lamb – let’s shoot the sirloin!</p>
+<p><strong>denherder</strong>: We’re blowin’ half the bounty on bait
+–</p>
+<p><strong>denherder</strong>: One more after this, then I’m going
+home.</p>
+<p><strong>charlie</strong>: Set?</p>
+<p><strong>charlie</strong>: Tide’s taking it right out.</p>
+<p><strong>denherder</strong>: You do this all the time, right,
+Charlie?</p>
+<p><strong>charlie</strong>: Twenty years.</p>
+<p><strong>denherder</strong>: I can’t believe that people pay money to
+go fishing. This is really dumb. This isn’t even relaxing… it’s just
+boring.</p>
+<p><strong>denherder</strong>: Hey! What’s this?</p>
+<p><strong>charlie</strong>: Look at him take it!</p>
+<p><strong>denherder</strong>: Do I set the goddam hook?</p>
+<p><strong>charlie</strong>: Let him do it! Go-go-go-go-go!</p>
+<p><strong>charlie</strong>: Holy Jesus Christ!</p>
+<p><strong>denherder</strong>: Get the hell out! Charlie! Swim!</p>
+<p><strong>hendricks</strong>: …So then Denherder and Charlie sat there
+trying to catch their breath, and figuring out how to explain to
+Charlie’s wife what happened to her freezer full of meat.</p>
+<p><strong>brody</strong>: That wasn’t funny.</p>
+<p><strong>hendricks</strong>: Mrs. Kintner must’ve put her ad in Field
+and Stream.</p>
+<p><strong>brody</strong>: Looks more like the readers of the National
+Enquirer.</p>
+<p><strong>out-of-towner</strong>: You’re charging me double the usual
+rent! I didn’t come up here all the way from New Rochelle to be gouged
+by some Yankee Cracker!</p>
+<p><strong>boat rental man</strong>: Prices go up June First every year.
+You want a nice cheap, leaky boat, you go down to the Hamptons. Right,
+Chief?</p>
+<p><strong>brody</strong>: Hey! You know how many men that’s supposed to
+hold?</p>
+<p><strong>man in boat</strong>: Whatever’s safe, right?</p>
+<p><strong>brody</strong>: What you got ain’t safe. You take some guys
+off or you don’t go out.</p>
+<p><strong>hooper</strong>: Hello.</p>
+<p><strong>gardner</strong>: Hello, back.</p>
+<p><strong>brody</strong>: You going out too, Ben?</p>
+<p><strong>gardner</strong>: Might give it a try. That three thousand
+bounty beats working for a living. We ready?</p>
+<p><strong>brody</strong>: Just back up! No, the other way! Cut it to
+your left! Your other left! The big boat, your front end is out way too
+far. Little boat, stay still!</p>
+<p><strong>skipper 1</strong>: Dammit, a vessel under sail has the right
+of way!</p>
+<p><strong>skipper 2</strong>: You schmuck, you ain’t under sail, you’re
+goddam drifting!</p>
+<p><strong>hooper</strong>: Ahoy, sail! You got an oar? Well, scull it
+out!</p>
+<p><strong>sailboat skipper</strong>: Tell that stinkpotter to
+belay!</p>
+<p><strong>motorboat skipper</strong>: Tell that ragsetter I’m going to
+poke him in the snoot!</p>
+<p><strong>hooper</strong>: Just cast off in turn and make for the
+channel, OK?</p>
+<p><strong>brody</strong>: Thanks.</p>
+<p><strong>hooper</strong>: Excuse me, I wonder if you could tell
+me…</p>
+<p><strong>hooper</strong>: Is that dynamite?</p>
+<p><strong>brody</strong>: If that’s dynamite, give it here, or don’t
+leave port.</p>
+<p><strong>man</strong>: Aw, c’mon, it’s just fireworks. Sharks like
+fireworks, it attracts them.</p>
+<p><strong>brody</strong>: Hand it over.</p>
+<p><strong>hooper</strong>: There’s a fantail launch out there that
+won’t make it beyond the breakwater.</p>
+<p><strong>brody</strong>: You’re tellin’ me. I swear, this town has
+gone crazy.</p>
+<p><strong>hooper</strong>: Officer, I wonder if you could tell me where
+I could find Chief Brody?</p>
+<p><strong>brody</strong>: Who are you?</p>
+<p><strong>hooper</strong>: Hooper, Matt Hooper. From the Oceanographic
+Institute.</p>
+<p><strong>pratt</strong>: Well, get over there! He ain’t caught it
+yet!</p>
+<p><strong>pratt</strong>: Hand me that pole! Quick!</p>
+<p><strong>harry</strong>: Beat it! I hooked him!</p>
+<p><strong>pratt</strong>: How’s the family, Harry? Go on and do it!</p>
+<p><strong>man with gaff</strong>: We split down the middle?</p>
+<p><strong>harry</strong>: Let go my shark!</p>
+<p><strong>brody</strong>: Let’s show Mr. Hooper our accident.</p>
+<p><strong>hooper</strong>: Victim One, identified as Christine Watkins,
+female Caucasian…</p>
+<p><strong>hooper</strong>: …height and weight may only be estimated
+from partial remains. Torso severed in mid-thorax, eviscerated with no
+major organs remaining. May I have a drink of water? Right arm severed
+above the elbow with massive tissue loss from upper musculature.
+Portions of denuded bone remaining. – did you notify the coast
+guard?</p>
+<p><strong>brody</strong>: No, it was local jurisdiction.</p>
+<p><strong>hooper</strong>: Left arm, head, shoulders, sternum and
+portions of ribcage intact. Please don’t smoke. With minor post- mortem
+lacerations and abrasions. Bite marks indicate typical non-frenzy
+feeding pattern of large squali, possibly carchaninus lonimanus, or
+isurus glaucas. Gross tissue loss and post-mortem erosion of bite
+surfaces prevent detailed analysis; however, teeth and jaws of the
+attacking squali must be considered above average for these waters. –
+Did you go out in a boat and look around?</p>
+<p><strong>brody</strong>: No, we just checked the beach…</p>
+<p><strong>hooper</strong>: It wasn’t an ‘accident,’ it wasn’t a boat
+propeller, or a coral reef, or Jack the Ripper. It was a shark. It was a
+shark.</p>
+<p><strong>meadows</strong>: Ginny, get this out on the state wire to AP
+and UPI in Boston and New York. Have one of them pick it up for the
+national and call Dave Axelrod in New York and tell him this is from me
+and he owes me one… let’s get a picture.</p>
+<p><strong>hooper</strong>: Well, if one man can catch a fish in 50
+days, then I guess 50 of these bozos can catch a fish in one day –
+beginner’s luck.</p>
+<p><strong>brody</strong>: You did it! Did Ben Gardner catch this?</p>
+<p><strong>meadows</strong>: Okay, everybody, I want to get a picture
+for the paper – could everyone clear out of the way?</p>
+<p><strong>meadows</strong>: Could you get out of the shot, young
+man?</p>
+<p><strong>hooper</strong>: Who, me? Okay…</p>
+<p><strong>brody</strong>: Larry, if you’d see these clowns leave, you’d
+never believe they’d come back with anything. But they got him!</p>
+<p><strong>vaughn</strong>: That’s good. That’s real good. Ben Meadows
+getting pictures for the paper.</p>
+<p><strong>brody</strong>: Sure he is.</p>
+<p><strong>hooper</strong>: It’s a tiger shark. Very rare in these
+waters, and definitely a maneater.</p>
+<p><strong>vaughn</strong>: Who’s that young man?</p>
+<p><strong>brody</strong>: Matt Hooper, the specialist they send down
+from the Oceanographic Institute.</p>
+<p><strong>vaughn</strong>: I think we all owe a debt of gratitude to
+these men for catching this monster.</p>
+<p><strong>pratt</strong>: Whadya mean, ‘Bite Radius?’ What’s that?</p>
+<p><strong>gaffer</strong>: Teeth are teeth, right?</p>
+<p><strong>hooper</strong>: I didn’t say this wasn’t the shark, I just
+said I wasn’t sure this was the one…</p>
+<p><strong>brody</strong>: What d’ya mean?</p>
+<p><strong>hooper</strong>: There are hundreds of different kinds of
+sharks; makos, blues, hammerheads, white-tips… any one of them could’ve
+attacked. Look – shark digestion is slow. We could open this one up, and
+find whatever he’s been eating is still inside.</p>
+<p><strong>vaughn</strong>: That’s disgusting! This is the largest,
+meanest, most vicious shark ever landed off Amity Island, and a known
+maneater!</p>
+<p><strong>hooper</strong>: Let’s just cut him open and see what’s
+inside…</p>
+<p><strong>brody</strong>: Why not, Larry? We could get a positive
+confirmation that way.</p>
+<p><strong>vaughn</strong>: Be reasonable, boys – this isn’t the time or
+the place to do some kind of half-assed autopsy on a fish. Ben… do you
+have all the pictures you need?</p>
+<p><strong>meadows</strong>: Plenty.</p>
+<p><strong>hooper</strong>: Wait a minute…</p>
+<p><strong>vaughn</strong>: offstage, with low</p>
+<p><strong>vaughn</strong>: Chief, I’ll take responsibility for this.
+Boys, cut this ugly sonofabitch down before he stinks up the whole
+island. Harve, tomorrow you and Carl take him out and dump him right in
+the drink.</p>
+<p><strong>mrs. kintner</strong>: Chief Brody?</p>
+<p><strong>mrs. kintner</strong>: My Alex was a beautiful little boy and
+you killed him. Did you know that? You knew there was a shark out there.
+You knew a girl got killed here last week. I just found that out. But
+you knew. You knew it was dangerous, but you let people go swimming
+anyway. You knew all those things, and still my boy is dead now and
+there’s nothing you can do about that. My boy is dead. I wanted you to
+know that.</p>
+<p><strong>vaughn</strong>: I’m sorry, Martin. She’s in a sick, terrible
+state.</p>
+<p><strong>hooper</strong>: Look, maybe this is the wrong time to pursue
+this, but I’m not sure…</p>
+<p><strong>brody</strong>: She’s right.</p>
+<p><strong>vaughn</strong>: Let’s all get out of here, this place
+stinks.</p>
+<p><strong>brody</strong>: I’m going home.</p>
+<p><strong>brody</strong>: C’mere and give Daddy a kiss.</p>
+<p><strong>sean</strong>: Why?</p>
+<p><strong>brody</strong>: Because he needs it.</p>
+<p><strong>hooper</strong>: Martin Brody residence?</p>
+<p><strong>hooper</strong>: Hi. I’m Matt Hooper. If your husband is
+here, I’d like to talk to him.</p>
+<p><strong>ellen</strong>: So would I. Come on in.</p>
+<p><strong>ellen</strong>: Would you like something? Some coffee?</p>
+<p><strong>hooper</strong>: Is anyone having this…?</p>
+<p><strong>hooper</strong>: Dynamite! How was your day…?</p>
+<p><strong>brody</strong>: Swell.</p>
+<p><strong>hooper</strong>: Here… one red, one white.</p>
+<p><strong>hooper</strong>: Ummm. Really good.</p>
+<p><strong>ellen</strong>: My husband tells me you’re in sharks.</p>
+<p><strong>hooper</strong>: I wouldn’t put it that way. But I love
+sharks.</p>
+<p><strong>ellen</strong>: You love sharks?</p>
+<p><strong>hooper</strong>: I do. But you’ve still got a problem here,
+there’s a shark just off the island somewhere.</p>
+<p><strong>brody</strong>: How come you have to tell them that?</p>
+<p><strong>ellen</strong>: Excuse me, but what are you talking about?
+Didn’t they catch the shark this afternoon? It was on the Cape station
+news.</p>
+<p><strong>hooper</strong>: They caught a shark, not the shark. Big
+difference. I could’ve proved it this afternoon, by cutting that one
+open and examining his stomach contents. Also, his bite was too
+small.</p>
+<p><strong>hooper</strong>: I was lucky to find that in town – it’s an
+estate bottled vintage year…</p>
+<p><strong>hooper</strong>: We ought to let it breathe… Whatever.</p>
+<p><strong>brody</strong>: Let’s all have a drink.</p>
+<p><strong>brody</strong>: You too, sweetheart…</p>
+<p><strong>ellen</strong>: Thank you.</p>
+<p><strong>hooper</strong>: Here’s to your husband, the only other
+rational man on the island. Day after tomorrow, I’ll be gone, and he’ll
+be the only one.</p>
+<p><strong>ellen</strong>: You’re leaving?</p>
+<p><strong>hooper</strong>: Going out on the ‘Aurora.’</p>
+<p><strong>ellen</strong>: Is that a boat?</p>
+<p><strong>hooper</strong>: Is it! The best-funded research expedition
+to ever study the shark… around the world in 18 months.</p>
+<p><strong>ellen</strong>: Like those Cousteau specials on television? I
+think it’s for the kids, but I love them.</p>
+<p><strong>hooper</strong>: Better than Cousteau, or Compagno with
+computers, telemetry, Defense Department funding…</p>
+<p><strong>ellen</strong>: I saw a show with sea otters, and a big
+turtle… Mikey loved it. Made me promise to get him one. Will you live on
+the boat?</p>
+<p><strong>hooper</strong>: Yep.</p>
+<p><strong>ellen</strong>: Martin hates boats. Hates the water. On the
+ferry to the mainland, he sits in the car the whole way over. He’s got
+this childhood thing, there’s a clinical word for it.</p>
+<p><strong>brody</strong>: Drowning. Lemme ask you something. Is it true
+most attacks take place in three feet of water, around 10 feet from the
+beach?</p>
+<p><strong>hooper</strong>: Yeah. Like the kid on your beach. I wish I
+could’ve examined that shark they caught…</p>
+<p><strong>brody</strong>: Something else. Do most attacks go
+unreported?</p>
+<p><strong>hooper</strong>: About half of them. A lot of ‘missing
+swimmers’ are really shark victims.</p>
+<p><strong>brody</strong>: There’s a kind of a lone shark, called,
+uh…</p>
+<p><strong>hooper</strong>: Rogue?</p>
+<p><strong>brody</strong>: Yeah. Rogue. Picks out an area where there’s
+food and hangs out there as long as the food supply lasts?</p>
+<p><strong>hooper</strong>: It’s called Territoriality. It’s a
+theory.</p>
+<p><strong>brody</strong>: And before 1900, when people first starting
+swimming for recreation, before public bathing and resorts, there were
+very few shark attacks, cause sharks didn’t know what they were
+missing?</p>
+<p><strong>hooper</strong>: You could say that.</p>
+<p><strong>brody</strong>: Why don’t we have one more drink, you and I,
+and then we go down and cut open that old shark and see for sure what’s
+inside him, or not.</p>
+<p><strong>ellen</strong>: Can you do that?</p>
+<p><strong>brody</strong>: I am Chief of Police. I can do anything I
+want. You want to come?</p>
+<p><strong>hooper</strong>: I’m flattered you should ask.</p>
+<p><strong>hooper</strong>: …And it was Dartmouth Winter weekend, and
+she was Homecoming Queen, and I was her date; then she got into the fact
+that her family had more money than my family, and she was right – her
+great-grandfather was in mining, and my ancestors were Yankee
+shipbuilders. So we broke up and I went home with some beatnik from
+Sarah Lawrence.</p>
+<p><strong>brody</strong>: What stinks so bad?</p>
+<p><strong>hooper</strong>: Our friend, the shark.</p>
+<p><strong>hooper</strong>: We always had a summer place on the water –
+Newport, the Vineyard, so I figured I’d major in something I knew about.
+Oceanography, marine biology. It was that, or design racing yachts like
+my older brother. Hmmm. He we go. Up the old alimentary canal. Hold the
+light.</p>
+<p><strong>hooper</strong>: We open the abdominal cavity and check the
+digestive tract. Simple.</p>
+<p><strong>brody</strong>: What’s that?</p>
+<p><strong>hooper</strong>: Half a flounder. Hmmm… a burlap bag… a paint
+can… aha!</p>
+<p><strong>brody</strong>: What? What?!</p>
+<p><strong>hooper</strong>: Just as I thought. He drifted up here with
+the Gulf Stream, from southern waters.</p>
+<p><strong>brody</strong>: How can you tell?</p>
+<p><strong>hooper</strong>: Florida license plate.</p>
+<p><strong>brody</strong>: He ate a car?</p>
+<p><strong>hooper</strong>: No, but Tiger sharks are the garbage cans of
+the ocean. They eat anything. But this one didn’t eat any people.
+There’s nothing here…</p>
+<p><strong>hooper</strong>: …Nothing.</p>
+<p><strong>brody</strong>: What do we do?</p>
+<p><strong>hooper</strong>: If you’re looking for a shark, you don’t
+look on land. You go out and chum for him.</p>
+<p><strong>brody</strong>: Chum?</p>
+<p><strong>hooper</strong>: Only one sure way to find him – offer him a
+little something to eat. Chum – blood, waste meat, fish, anything. They
+can sense it miles away. If he’s out there, we might be able to get a
+closer look at him. It’s a good time, too. They’re night feeders…</p>
+<p><strong>hooper</strong>: That’s the Cape Light – we’re on the stretch
+where he’s feeding, if he’s still here.</p>
+<p><strong>brody</strong>: What is all this stuff?</p>
+<p><strong>hooper</strong>: Depth-finder, fathometer, sonar,
+closed-circuit TV – fore and aft – RDF, single side band… And two loose
+nuts behind the wheel.</p>
+<p><strong>brody</strong>: Can you tell from that if a big man- eater is
+around?</p>
+<p><strong>hooper</strong>: Sometimes. Look here – something big,
+probably a school of mackerel clumped together. And staying right with
+us.</p>
+<p><strong>brody</strong>: Where’d you get all this?</p>
+<p><strong>hooper</strong>: I Bought it. Both sets of grandparents set
+up trust funds for me; stocks went up, so I don’t have to touch my
+principal.</p>
+<p><strong>brody</strong>: You’re at the Institute full time? Or do you
+have a job?</p>
+<p><strong>hooper</strong>: It is a job. I’m not fooling around like
+some amateur. It’s my life!</p>
+<p><strong>brody</strong>: We gotta get back soon…</p>
+<p><strong>brody</strong>: Hey!</p>
+<p><strong>brody</strong>: What the hell?</p>
+<p><strong>brody</strong>: That’s Ben Gardner’s boat! It’s the Flicka!
+Ben? Ben!</p>
+<p><strong>brody</strong>: What happened?</p>
+<p><strong>hooper</strong>: I want to check something. Hold my feet.</p>
+<p><strong>brody</strong>: Don’t they have lifejackets or something? An
+extra boat?</p>
+<p><strong>hooper</strong>: They must’ve hit something.</p>
+<p><strong>hooper</strong>: He didn’t have a dinghy aboard. I’m going
+down to take a look at his hull.</p>
+<p><strong>brody</strong>: Why don’t we just tow it in?</p>
+<p><strong>hooper</strong>: We will. There’s something I’ve got to find
+out.</p>
+<p><strong>brody</strong>: Be careful, for chrissake.</p>
+<p><strong>brody</strong>: You all right?</p>
+<p><strong>hooper</strong>: A White! A Great White, I found a tooth
+buried in the hull. He must’ve attacked… I knew it… Gardner’s dead in
+there. I didn’t see the mate…</p>
+<p><strong>brody</strong>: No shark did that to a boat!</p>
+<p><strong>hooper</strong>: Jesus Christ! A Great White! Who’d believe
+it! We’re not talking about a shark, we’re talking about a Shark!</p>
+<p><strong>brody</strong>: There is a kind of shark called a Great White
+Shark that every expert in the world agrees is a maneater.</p>
+<p><strong>hooper</strong>: You’re situation here suggests that a Great
+White has staked out a claim in the waters around Amity Island, and that
+he will continue to feed here as long as there is food in the water.</p>
+<p><strong>brody</strong>: There’s no limits to where he can strike, and
+we’ve had three attacks and two deaths in the past few days. It happened
+like this before, in 1916, when a Great White killed five swimmers at
+Jones Beach, in Long Island.</p>
+<p><strong>hooper</strong>: A shark’s attack is stimulated by the kind
+of splashing and activity that occurs whenever humans go swimming – you
+can’t avoid it!</p>
+<p><strong>brody</strong>: A 4th of July beach is like ringing a dinner
+bell, for Chrissake!</p>
+<p><strong>hooper</strong>: I just pulled a shark tooth the size of a
+shot glass out of the hull of a wrecked boat out there.</p>
+<p><strong>brody</strong>: We towed Ben Gardner’s boat in, Larry; he was
+dead and his boat was all chewed up.</p>
+<p><strong>vaughn</strong>: Is that tooth here? Did anyone see it?</p>
+<p><strong>hooper</strong>: I don’t have it.</p>
+<p><strong>brody</strong>: He lost it on the way up.</p>
+<p><strong>vaughn</strong>: What kind of a shark did you say it was?</p>
+<p><strong>hooper</strong>: Carcaradon carcharias. A Great White.</p>
+<p><strong>vaughn</strong>: Well, I’m not going to commit economic
+suicide on that flimsy evidence. We depend on the summer people for our
+lives, and if our beaches are closed, then we’re all finished.</p>
+<p><strong>brody</strong>: We have got to close the beaches. We have got
+to get someone to kill the shark, we need non-corrosive mesh netting, we
+need scientific support… It’s gonna cost money just to keep the nuts out
+and save what we have.</p>
+<p><strong>vaughn</strong>: I don’t thing either of you is familiar with
+our problems…</p>
+<p><strong>hooper</strong>: I’m familiar with the fact that you are
+going to ignore this thing until it swims up and bites you on the ass!
+There are only two ways to solve this thing: you can kill it, or you can
+cut off its food supply…</p>
+<p><strong>brody</strong>: That means closing the beaches.</p>
+<p><strong>vaughn</strong>: Come here, I want to show you something.</p>
+<p><strong>vaughn</strong>: Sick vandalism! Brody, that’s a deliberate
+mutilation of a public service message! I want those little paint-happy
+bastards caught and hung up by their baby Buster Browns!</p>
+<p><strong>hooper</strong>: That’s it! I’m standing here arguing with a
+guy who can’t wait to be a hot lunch. Goodbye.</p>
+<p><strong>brody</strong>: Wait a minute! I need you.</p>
+<p><strong>hooper</strong>: Out there is a Perfect Engine, an Eating
+Machine that is a miracle of evolution – it swims and eats and that’s
+all. Look at that! Those proportions are correct. I know sharks.</p>
+<p><strong>vaughn</strong>: You’d love to prove that. Getting your name
+in the National Geographic.</p>
+<p><strong>brody</strong>: Larry, we can re-open the beaches in
+August.</p>
+<p><strong>vaughn</strong>: August! Tomorrow is the 4th of July, and we
+are going to open for business. It’s going to be our best summer in
+years. If you’re so concerned about the beaches, you two, you do
+whatever you have to to keep them safe, but with you or without you, the
+beaches stay open this weekend.</p>
+<p><strong>officer</strong>: Martin Brody? I’ll need your signature
+here… here… and here.</p>
+<p><strong>brody</strong>: What is this?</p>
+<p><strong>officer</strong>: Authorization for direct payment of flight
+expenses not directly connected to a normal mission of this command. You
+pay for the gas.</p>
+<p><strong>brody</strong>: I signed on the wrong line…</p>
+<p><strong>officer</strong>: Just erase your signature and initial your
+erasure.</p>
+<p><strong>brody</strong>: I want to thank you guys from local agencies
+for cooperating, and I hope we won’t actually be needing your services.
+But I’m glad to have you here.</p>
+<p><strong>ensign</strong>: I want to get our lines and repellent out,
+so we better shove off.</p>
+<p><strong>brody</strong>: We’re all on one channel, so let’s keep radio
+traffic to a minimum, okay?</p>
+<p><strong>hooper</strong>: I hope we get some more help.</p>
+<p><strong>brody</strong>: I wish it would rain…</p>
+<p><strong>monitor</strong>: CAMERA 1: Holding on a group of happy
+citizen-bathers as they unpack their gear, wave to camera, run into the
+water.</p>
+<p><strong>monitor</strong>: CAMERA 2: The Repellent Line, set in place
+by Coast Guardsmen in small boats, setting out floats, dumping repellent
+into the ocean.</p>
+<p><strong>monitor</strong>: CAMERA 3: Close on the Bandstand, where
+Amity’s band is playing lilting patriotic airs.</p>
+<p><strong>tv director</strong>: Put 1 on the line. In five. 4. 3. 2. 1.
+Roll.</p>
+<p><strong>announcer</strong>: …and with me is the Mayor of Amity,
+Lawrence Vaughn. Mr. Vaughn, how about those rumors?</p>
+<p><strong>vaughn</strong>: How about them indeed. I’m pleased and happy
+to repeat the news that we have, in fact, caught and killed a large
+predator that supposedly injured some bathers here. As you can see, it’s
+a beautiful day, the beaches are open, and the folks here are having a
+wonderful time. Amity, y’know, means ‘Friendship.’</p>
+<p><strong>monitor</strong>: CAMERA 1: As Vaughn speaks to us on the
+monitors, the monitor for Camera 1 pans over to show a Sightseeing Bus
+pull up in the parking area, and a horde of media vultures spilling out,
+carrying cameras with long lenses and tripods, telescopes, sunshades and
+parasols, all the equipment of the curious and none of the equipment of
+the holiday bather or swimmer.</p>
+<p><strong>tape 1 and line monitors</strong>: Close on the Announcer,
+Vaughn out of the picture.</p>
+<p><strong>announcer</strong>: Also here today is a Marine Biologist and
+Research Fellow from the Oceanographic Institute, Matthew Hooper.
+Mr. Hooper, what’ve you heard?</p>
+<p><strong>hooper</strong>: What I’ve heard and what I’ve seen are two
+different things. I believe there is a large Great White Shark –
+Carcharodon Cacharias - in the waters off this very beach, that he has
+killed and that he will kill again…</p>
+<p><strong>announcer</strong>: And there you have it – two different
+opinions, by men of good will. The holiday crowd here at Amity seems to
+be making up its own mind…</p>
+<p><strong>monitor</strong>: CAMERA 3: Zooms in on the puffing face of
+the tuba player.</p>
+<p><strong>monitor</strong>: CAMERA 2: Brody and the Announcer.</p>
+<p><strong>monitor</strong>: TAPE 1 and LINE: Back on the Announcer, his
+lips moving, but his sound turned off. We hear, instead, the sound from
+Monitor Camera 2, Brody and the same Announcer.</p>
+<p><strong>brody</strong>: I’m sorry, I just don’t have the time.</p>
+<p><strong>tv director</strong>: Recue the machines. 2, pan off the
+Chief and show me some tits and ass. 1, get me some cute kids. 3… see if
+you got a shot at the water.</p>
+<p><strong>monitors</strong>: CAMERAS 1, 2 and 3: The cameras seek out
+the appropriate activity as the Director calls for it.</p>
+<p><strong>assistant director</strong>: Mayor, 43 seconds, Biologist 45
+seconds. That’s equal time, right?</p>
+<p><strong>director</strong>: Right. Jerry, come on in and look at this.
+Roll 2. In five, 4. 3. 2. 1.</p>
+<p><strong>announcer</strong>: Amity Island is famed for its clear air
+and white sand beaches. But a cloud appeared…</p>
+<p><strong>announcer</strong>: Look at that shine on my nose. It’s a
+beacon.</p>
+<p><strong>director</strong>: Close enough for remote.</p>
+<p><strong>vaughn</strong>: …I’m pleased and happy…</p>
+<p><strong>director</strong>: Think we ought to stick around?</p>
+<p><strong>announcer</strong>: What else you got?</p>
+<p><strong>assistant director</strong>: Teachers’ strike downtown.</p>
+<p><strong>cameraman’s voice</strong>: Christenson, this is Al. Union
+says time for Engineering Five.</p>
+<p><strong>director</strong>: That’s five minutes, guys. Coffee.</p>
+<p><strong>vaughn</strong>: Why don’t you get in the water?</p>
+<p><strong>selectman</strong>: I don’t want to wash off my suntan
+lotion. I’ll get a burn…</p>
+<p><strong>vaughn</strong>: Nobody’s going in!</p>
+<p><strong>woman</strong>: Is there nobody going in? What a shame.
+Arthur, should I be going in?</p>
+<p><strong>arthur</strong>: If you’d like.</p>
+<p><strong>arthur</strong>: It’s very nice. Not too cold… Quite
+refreshing… Very pleasant….</p>
+<p><strong>arthur</strong>: No sharks, m’lady.</p>
+<p><strong>woman</strong>: This is marvelous! Arthur, I want to come
+back to this very spot. Will you make a note of where we are?</p>
+<p><strong>hendricks</strong>: Anything? Thought I saw a shadow.
+Over.</p>
+<p><strong>copter spotter</strong>: Nothing from up here, Daisy.
+Over.</p>
+<p><strong>hendricks</strong>: False alarm. Must be this glare.</p>
+<p><strong>voices</strong>: Who’s scared to go in! I was in! Up to your
+knees, yeah – So come with me – I’ll go again.</p>
+<p><strong>meadows</strong>: Beautiful day, Chief!</p>
+<p><strong>brody</strong>: Hey Mikey – !</p>
+<p><strong>brody</strong>: You’re not going to the ocean with that, are
+you son?</p>
+<p><strong>michael</strong>: I’m all checked out for light surf and look
+at it.</p>
+<p><strong>brody</strong>: Do me this favor just once. Use the
+ponds.</p>
+<p><strong>michael</strong>: Dad, the ponds are for old ladies.</p>
+<p><strong>brody</strong>: Just a favor for your old man.</p>
+<p><strong>michael</strong>: Sure, Dad.</p>
+<p><strong>copter spotter</strong>: Copter to Daisy! Red Four, Red
+Four!</p>
+<p><strong>hendricks</strong>: Where – ?</p>
+<p><strong>copter spotter</strong>: Went under your – There!</p>
+<p><strong>sonar operator</strong>: Jesus Christ – Shark!</p>
+<p><strong>brody</strong>: Everybody out! Out of the water, please –
+leave the water, please –</p>
+<p><strong>brody</strong>: No whistles! No whistles!</p>
+<p><strong>tv director</strong>: Why did we wrap? Get that! Somebody get
+that!</p>
+<p><strong>the victim</strong>: Michael, who half extends one hand,
+as</p>
+<p><strong>hooper</strong>: Block the estuary! The estuary!</p>
+<p><strong>brody</strong>: He’s in shock. Get blankets!</p>
+<p><strong>nurse</strong>: The doctor said it’s okay – mild shock. He
+can come home in the morning.</p>
+<p><strong>ellen</strong>: Hey, big guy – you want anything from
+home?</p>
+<p><strong>michael</strong>: My cars. And a comic book.</p>
+<p><strong>brody</strong>: Here – Take him home.</p>
+<p><strong>ellen</strong>: Home… New York?</p>
+<p><strong>brody</strong>: No. Home here.</p>
+<p><strong>brody</strong>: Got a pen on you?</p>
+<p><strong>vaughn</strong>: Why?</p>
+<p><strong>brody</strong>: There’s only one thing you’re good for
+anymore – signing a damn voucher. Here. It’s an authorization to employ
+a contractor.</p>
+<p><strong>vaughn</strong>: I don’t know if I can do that without a…</p>
+<p><strong>brody</strong>: I’m going to hire Quint to kill the fish. I
+want to see that shark dead.</p>
+<p><strong>vaughn</strong>: Maybe we can save August…</p>
+<p><strong>brody</strong>: Forget it. This summer’s had it. Next
+summer’s had it. You’re the mayor of Shark City. You wanted to keep the
+beaches open. What happens when the town finds out about that?</p>
+<p><strong>vaughn</strong>: I was acting in the town’s best
+interests…</p>
+<p><strong>brody</strong>: The best interest in this town would be to
+see that fish belly-up in the water with a hole in his head. You do the
+right thing. You authorize me. Right there. Whatever it costs.</p>
+<p><strong>vaughn</strong>: My kids were on that beach…</p>
+<p><strong>brody</strong>: Just sign it, Larry.</p>
+<p><strong>brody</strong>: This has got to be one big violation…</p>
+<p><strong>hooper</strong>: This is quite a place.</p>
+<p><strong>quint’s voice</strong>: Keep your hands off my stuff.</p>
+<p><strong>quint</strong>: Did you bring a check?</p>
+<p><strong>brody</strong>: What?</p>
+<p><strong>quint</strong>: Cash? Or do we do this on a handshake and a
+promise?</p>
+<p><strong>brody</strong>: I’m authorized by the township of Amity to
+hire you as an independent contractor. We’ll meet your price.
+$10,000.</p>
+<p><strong>quint</strong>: And my regular daily rate – $200, whether we
+catch him or not.</p>
+<p><strong>brody</strong>: You got it.</p>
+<p><strong>quint</strong>: And incidental damages, if any…</p>
+<p><strong>brody</strong>: You got it.</p>
+<p><strong>quint</strong>: And you get the Mayor off my back with this
+zoning crap. Nobody tells me how to run my property.</p>
+<p><strong>brody</strong>: You got it.</p>
+<p><strong>quint</strong>: And, uh, a case of apricot brandy and you buy
+the lunch.</p>
+<p><strong>brody</strong>: Two cases. And dinner when you land.</p>
+<p><strong>quint</strong>: Try some of this. I made it myself.</p>
+<p><strong>quint</strong>: Here’s to swimmin’ with bowlegged women.</p>
+<p><strong>herschel</strong>: Mr. Quint…</p>
+<p><strong>herschel</strong>: I’m not goin’. No sir.</p>
+<p><strong>quint</strong>: You want to get paid, you go.</p>
+<p><strong>herschel</strong>: Forget the money. You can’t pay me enough.
+I ain’t crazy. I worked some big mean fish with you, but I ain’t goin’
+on this one.</p>
+<p><strong>quint</strong>: This is the last time I hear from you. I
+don’t want anyone with piss for blood on my vessel. Put that blackfish
+on board, pump the bilges, and top off the fuel tanks, and finish up in
+the morning. Then you’re on the beach.</p>
+<p><strong>hooper</strong>: You’re going to need an extra hand…</p>
+<p><strong>brody</strong>: This is Matt Hooper…</p>
+<p><strong>quint</strong>: I know who he is…</p>
+<p><strong>brody</strong>: He’s from the Oceanographic Institute.</p>
+<p><strong>hooper</strong>: I’ve been to sea since I was 12. I’ve crewed
+three Trans-pacs –</p>
+<p><strong>quint</strong>: Transplants?</p>
+<p><strong>hooper</strong>: – and an America’s Cup Trials…</p>
+<p><strong>quint</strong>: I’m not talking about day sailing or pleasure
+boating. I’m talking about working for a living. Sharking.</p>
+<p><strong>hooper</strong>: And I’m not talking about hooking some poor
+dogfish or sand shark. I’m talking about a Great White.</p>
+<p><strong>quint</strong>: Are you now. I know about porkers in the
+water – Here. Tie me a sheepshank.</p>
+<p><strong>hooper</strong>: I don’t need to pass basic seamanship.</p>
+<p><strong>quint</strong>: Let me see your hands…</p>
+<p><strong>quint</strong>: Ha. City hands. You been counting money. If
+you had a $5000 net and $2000 worth of fish in it, and along comes
+Mr. White, and makes it look like a kiddy scissors class has gone to
+work on it and made paper dolls. If you’d ever worked for a living,
+you’d know what that means.</p>
+<p><strong>hooper</strong>: Look, I don’t need to hear any of this
+working class hero crap. Some party boat skipper who’s killed a few
+sharks…</p>
+<p><strong>brody</strong>: Hey. Knock it off. I don’t want to have to
+listen to this while we’re out there…</p>
+<p><strong>quint</strong>: What do you mean ‘We…?’</p>
+<p><strong>brody</strong>: It’s my charter. My party.</p>
+<p><strong>quint</strong>: All right, Commissioner. But when we’re on my
+ship, I am Master, Mate and Pilot. And I want him… …along for
+ballast.</p>
+<p><strong>brody</strong>: You got it.</p>
+<p><strong>quint</strong>: 5 lengths of 1/2-inch, 20 number 14’s,
+straight gaff, flying gaffs, tail rope, eye splice, M-1, 20 clips,
+pliers, irons…</p>
+<p><strong>hooper</strong>: Powerhead, CO2 darts, hypo, regulator,
+tanks, depth gauge, camera, extra magazines, cage…</p>
+<p><strong>assistant</strong>: You got everything you asked for?</p>
+<p><strong>hooper</strong>: All of it. And thank Dr. Miro for me. And
+tell Borack I’ll catch up with them in New Zealand.</p>
+<p><strong>assistant</strong>: This is actually a killing
+expedition?</p>
+<p><strong>hooper</strong>: An eye for an eye, you know.</p>
+<p><strong>quint</strong>: Hey, Squirt! You want to stow this gear or
+you want me to use it for ballast? It ain’t good for much but bait.</p>
+<p><strong>hooper</strong>: I’ll see ya. Tell Dorothy hello.</p>
+<p><strong>quint</strong>: Hello, Junior. What are you? Some kind of
+half-assed astronaut? Jesus Christ, when I was a kid, every little
+squirt wanted to be a harpooner or a sword fisherman. What d’ya have
+there – a portable shower?</p>
+<p><strong>hooper</strong>: Anti-Shark cage.</p>
+<p><strong>quint</strong>: Who’s inside, you or the shark?</p>
+<p><strong>quint</strong>: You’re in the cage? The cage is in the water?
+The shark is in the water too? You’re in the water with the shark.</p>
+<p><strong>hooper</strong>: Comin’ aboard…</p>
+<p><strong>ellen</strong>: Did you take your dramamine? Here.</p>
+<p><strong>quint</strong>: Hurry up, Chief, daylight’s a wastin’.</p>
+<p><strong>ellen</strong>: Is that him?</p>
+<p><strong>brody</strong>: Colorful, isn’t he?</p>
+<p><strong>ellen</strong>: You going to be all right?</p>
+<p><strong>brody</strong>: Nothing to worry about – I’ll survive
+this.</p>
+<p><strong>ellen</strong>: I’ll see you back soon. There’s an extra pair
+of glasses in your black socks, and there’s some suntan lotion and
+blistex in your kit.</p>
+<p><strong>quint</strong>: ‘Here is the body of Mary Lee. For 15 years
+she kept her virginity. Not a bad record for this vicinity.’</p>
+<p><strong>brody</strong>: Yo-ho-ho and a bottle of rum.</p>
+<p><strong>ellen</strong>: What’ll I tell the kids?</p>
+<p><strong>brody</strong>: Tell ‘em I went fishin’!</p>
+<p><strong>quint</strong>: Cast off the bow line! Now your stern!</p>
+<p><strong>quint</strong>: Front-Bow, Back-Stern, Port, Starboard.
+Aloft, Below. It’s not a staircase, it’s a ladder, it’s not a rope, it’s
+a line, and if you don’t get it right… I’ll throw your ass through that
+little round window.</p>
+<p><strong>quint</strong>: Now hear this. You’re aboard the fishing
+vessel ‘Orca,’ and I’m her Captain, Master, Mate, and Owner. You’ll jump
+when I holler. We’re doin’ a job here, and Christ, I ain’t got time to
+watch you birds get hooks in your ass and fall overboard. Ship with me,
+and you’ll do all right. Cross me, and I’ll slap you upside your heads.
+Now – if you boys are ready – let’s go fishin’.</p>
+<p><strong>quint</strong>: Here’s something for you…</p>
+<p><strong>quint</strong>: These greedy sons-a-bitches will eat their
+own guts.</p>
+<p><strong>quint</strong>: Go ahead, you cannibals. Tell ’em where you
+got it!</p>
+<p><strong>hooper</strong>: What’s that supposed to prove?</p>
+<p><strong>quint</strong>: Just a little appetizer. I want our porker to
+know we’re serving. I want to put some iron into that big yap…</p>
+<p><strong>quint</strong>: Keep that chum line going – we’ve got five
+good miles. Don’t break it.</p>
+<p><strong>brody</strong>: Who’s driving the boat?</p>
+<p><strong>quint</strong>: Nobody. We’re drifting with the current.</p>
+<p><strong>hooper</strong>: Nothing. Nothing, nothing, nothing.</p>
+<p><strong>quint</strong>: Hell, in the old days we went out with good
+charts, good sounding lead, and a damn good compass. Nowadays, these
+kids are afraid to go out without depth finders, radar, radio, electric
+toothbrush, every stupid thing…</p>
+<p><strong>quint</strong>: Get a fresh barrel.</p>
+<p><strong>hooper</strong>: Watch it! Compressed air – you screw around
+with one of those and Boom! Careful, huh?</p>
+<p><strong>quint</strong>: Real fine stuff but it won’t mean a thing to
+Mr. Whitey, of course… he didn’t go to schools in electronics. He was
+born with what he does best. Eat. He’s a swimming appetite. ’Course he
+might eat this stuff, but then I’ve seen him eat a rocking chair, too.
+Next time, ask me.</p>
+<p><strong>hooper</strong>: That’s pilot whale, isn’t it?</p>
+<p><strong>quint</strong>: It ain’t a Big Mac. The expert don’t approve.
+What do you thing? You’re closer to the situation.</p>
+<p><strong>brody</strong>: Why are we way out here, when the shark’s
+back there?</p>
+<p><strong>quint</strong>: …’cause this is where he lives. You gotta
+think like they do.</p>
+<p><strong>hooper</strong>: Easy for you – they got a brain the size of
+a radish.</p>
+<p><strong>quint</strong>: Now if he weren’t around, we’d of hooked
+something else by now, wouldn’t we? But he scared ’em all away. Big
+lonesome son of a bitch…</p>
+<p><strong>quint</strong>: – he’ll gulp it down now… Hooooooo!</p>
+<p><strong>brody</strong>: You got it?</p>
+<p><strong>quint</strong>: Get behind me, dummy! Reverse her and turn –
+he’s taking too much line! Wet my reel, quick!</p>
+<p><strong>quint</strong>: Starboard, for Chris’sake –</p>
+<p><strong>quint</strong>: Hey, you! Farmer! Half-speed there…</p>
+<p><strong>hooper</strong>: Aye, Aye SIR. Stand by to repel boarders.
+Poop the mainsail. Argh, Jim Boy.</p>
+<p><strong>quint</strong>: Neutral! Where the hell is he going?</p>
+<p><strong>quint</strong>: Oh, this ain’t foolin’ me – Sure – try
+it!</p>
+<p><strong>quint</strong>: Makin’ believe it’s easy now.</p>
+<p><strong>quint</strong>: Gettin’ ready to run again – no? No? What’s
+he playin’ here? Put the gloves on! Let’s see who’s gonna tease who
+now!</p>
+<p><strong>hooper</strong>: Let it go, don’t waste your time.</p>
+<p><strong>quint</strong>: Down here, Hooper!</p>
+<p><strong>hooper</strong>: I don’t know what it is, but it’s not a
+shark.</p>
+<p><strong>quint</strong>: Look – you may be a big Yahoo in the lab, but
+out here you’re just supercargo, and you’ll do as I say, or you can take
+your gear and backstroke home. Now get down here!</p>
+<p><strong>brody</strong>: The wire’s showing!</p>
+<p><strong>quint</strong>: Unbuckle me – fast! Grab the leader. He ain’t
+normal, this one… they never –</p>
+<p><strong>hooper</strong>: It’s too wild, too erratic. It’s a marlin or
+a stingray. It’s a gamefish.</p>
+<p><strong>quint</strong>: Watch your hands – Grab onto this!</p>
+<p><strong>quint</strong>: A marlin, or a stingray. Huh. Don’t ever tell
+me my business again. Get back up on the bridge.</p>
+<p><strong>hooper</strong>: I’m okay…</p>
+<p><strong>quint</strong>: Fasten the pole.</p>
+<p><strong>brody</strong>: What’s the point with hooks and Lines? –</p>
+<p><strong>quint</strong>: Don’t tell me my business! Quarter-mile, that
+way. Full throttle.</p>
+<p><strong>brody</strong>: gesturing at rod and</p>
+<p><strong>quint</strong>: What I do is trick him to the surface, got
+that? Then I can jab him, understand? Think I’m gonna haul it in as if
+he’s a catfish, like everyone else does?</p>
+<p><strong>quint</strong>: Over there!</p>
+<p><strong>hooper</strong>: What do you see?</p>
+<p><strong>quint</strong>: At least you handle the boat all right. Stop.
+Here… Cut the engine.</p>
+<p><strong>hooper</strong>: 20 feet, if it’s an inch…</p>
+<p><strong>quint</strong>: 25 feet. And three tons of him there.</p>
+<p><strong>quint</strong>: I never saw one that big.</p>
+<p><strong>brody</strong>: What do we do? Get some help? Radio in?</p>
+<p><strong>brody</strong>: How’re we gonna handle this?</p>
+<p><strong>hooper</strong>: There’s a formula! Girth, about 150 inches,
+squared, divide by 800 – son of a bitch, they are not going to believe
+this! – divide by 2000… three tons! You’re right, you old fart! Three
+tons!</p>
+<p><strong>radio voice</strong>: Amity Point Light Station to Orca. This
+is Amity Point Light Station, to Orca…</p>
+<p><strong>quint</strong>: Orca here.</p>
+<p><strong>radio voice</strong>: I have Mrs. Martin Brody here…</p>
+<p><strong>quint</strong>: Put her on.</p>
+<p><strong>ellen’s voice</strong>: …push this? Oh. It’s working. Hello,
+Martin?</p>
+<p><strong>quint</strong>: This is Quint, Missus.</p>
+<p><strong>ellen’s voice</strong>: I just wanted to know if you were all
+right… the Coast Guard let me use their radio. Is Chief Brody there?</p>
+<p><strong>quint</strong>: He’s busy.</p>
+<p><strong>ellen’s voice</strong>: Well… is everything all right?</p>
+<p><strong>quint</strong>: Just fine, Missus. We’ll be back soon.
+Everything’s fine. We haven’t seen anything yet. Orca out.</p>
+<p><strong>hooper</strong>: Damn it! I need something in the foreground
+to give it some scale. Martin! Stand here! No, to your left!</p>
+<p><strong>quint</strong>: Here. Rig this to the forward keg up
+there.</p>
+<p><strong>quint</strong>: Get up there and steer her. Follow my hand,
+and hold ’er steady. I’ve got to get a clean shot at that porker’s
+head.</p>
+<p><strong>quint</strong>: Hurry up, rig the line!</p>
+<p><strong>quint</strong>: Come to port. Watch my hand. Steady now…</p>
+<p><strong>quint</strong>: The line, man, the line!</p>
+<p><strong>quint</strong>: Get clear, damn you!</p>
+<p><strong>hooper</strong>: Clear!</p>
+<p><strong>quint</strong>: Jesus H. Christ On a Crutch!</p>
+<p><strong>quint</strong>: Now you’ve done it, you piss-ant. Stop and
+rig a goddam tinker toy to my gear. Let the bastard fight the keg for a
+while. He can’t stay down with that on.</p>
+<p><strong>hooper</strong>: Rig another keg! I’m bringing her
+around!</p>
+<p><strong>hooper</strong>: God damn it! We had him! I’m coming
+about!</p>
+<p><strong>brody</strong>: Why don’t we go in? Get another crack at him
+tomorrow.</p>
+<p><strong>quint</strong>: We got a barrel on him. We can’t lose him. We
+stay out here until we find him.</p>
+<p><strong>brody</strong>: Let’s call in – we can radio and have a big
+boat here in an hour…</p>
+<p><strong>quint</strong>: You hired me, remember? It’s my $10,000. It’s
+my shark…</p>
+<p><strong>quint</strong>: He’s up again.</p>
+<p><strong>quint</strong>: That’s not so bad. Look at this: …St. Paddy’s
+Day in Knocko Nolans, in Boston, where some sunovabitch winged me upside
+the head with a spittoon.</p>
+<p><strong>hooper</strong>: Look here. Steve Kaplan bit me during
+recess.</p>
+<p><strong>quint</strong>: Wire burn. Trying to stop a backstay from
+taking my head off.</p>
+<p><strong>hooper</strong>: Moray Eel. Bit right through a wet suit.</p>
+<p><strong>quint</strong>: Face and head scars come from amateur
+amusements in the bar room. This love line here… …that’s from some crazy
+Frenchie come after me with a knife. I caught him with a good right hand
+right in the snot locker and laid him amongst the sweetpeas.</p>
+<p><strong>hooper</strong>: Ever see one like this?</p>
+<p><strong>hooper</strong>: Bull shark scraped me while I was taking
+samples…</p>
+<p><strong>quint</strong>: Nothing! A pleasure scar. Look here –</p>
+<p><strong>quint</strong>: Slammed with a thresher’s tail. Look just
+like somebody caressed me with a nutmeg grater…</p>
+<p><strong>hooper</strong>: I’ll drink to your leg.</p>
+<p><strong>quint</strong>: And I’ll drink to yours.</p>
+<p><strong>quint</strong>: Wait a minute, young fella. Look. Just look.
+Don’t touch…</p>
+<p><strong>quint</strong>: …Mako. Fell out of the tail rope and onto the
+deck. You don’t get bitten by one of those bastards but twice – your
+first and your last.</p>
+<p><strong>hooper</strong>: I think I can top that, Mister…</p>
+<p><strong>hooper</strong>: Gimme a hand, here. I got something to show
+you –</p>
+<p><strong>hooper</strong>: There. Right there. Mary Ellen Moffit broke
+my heart. Let’s drink to Mary Ellen.</p>
+<p><strong>quint</strong>: And here’s to the ladies. And here’s to their
+sisters; I’d rather one Miss than a shipload of Misters.</p>
+<p><strong>quint</strong>: Look a’ that – Bayonet Iwo Jima.</p>
+<p><strong>brody</strong>: C’mon. Middle appendix –</p>
+<p><strong>quint</strong>: I almost had ’im.</p>
+<p><strong>brody</strong>: What’s that one, there?</p>
+<p><strong>quint</strong>: Tattoo. Had it taken off.</p>
+<p><strong>hooper</strong>: Don’t tell me – ‘Death Before Dishonor.’
+‘Mother.’ ‘Semper Fi.’ Uhhh… ‘Don’t Tread on Me.’ C’mon – what?</p>
+<p><strong>quint</strong>: ‘U.S.S Indianapolis.’ 1944.</p>
+<p><strong>brody</strong>: What’s that, a ship?</p>
+<p><strong>hooper</strong>: You were on the Indianapolis? In ’45?
+Jesus…</p>
+<p><strong>quint</strong>: Yeah. The U.S.S. Indianapolis. June 29th,
+1945, three and a half minutes past midnight, two torpedoes from a
+Japanese submarine slammed into our side. Two or three. We was still
+under sealed orders after deliverin’ the bomb…the Hiroshima bomb…we was
+goin’ back across the Pacific from Tinian to Leyte. Damn near eleven
+hundred men went over the side. The life boats was lashed down so tight
+to make the bomb run we couldn’t cut a single one adrift. Not one. And
+there was no rafts. None. That vessel sank in twelve minutes. Yes,
+that’s all she took. We didn’t see the first shark till we’d been in the
+water about an hour. A thirteen-footer near enough. A blue. You measure
+that by judgin’ the dorsal to the tail. What we didn’t know… of course
+the Captain knew…I guess some officers knew… was the bomb mission had
+been so secret, no distress signals was sent. What the men didn’t know
+was that they wouldn’t even list us as overdue for a week. Well, I
+didn’t know that – I wasn’t an officer – just as well perhaps. So some
+of us were dead already – in the water – just hangin’ limp in our
+lifejackets. And several already bleedin’. And the three hundred or so
+laying on the bottom of the ocean. As the light went, the sharks came
+crusin’. We formed tight groups – somewhat like squares in an old battle
+– You know what I mean – so that when one come close, the man nearest
+would yell and shout and pound the water and sometimes it worked and the
+fish turned away, but other times that shark would seem to look right at
+a man – right into his eyes – and in spite of all shoutin’ and poundin’
+you’d hear that terrible high screamin’ and the ocean would go red, then
+churn up as they ripped him. Then we’d reform our little squares. By the
+first dawn the sharks had taken more than a hundred. Hard for me to
+count but more than a hundred. I don’t know how many sharks. Maybe a
+thousand. I do know they averaged six men an hour. All kinds – blues,
+makos, tigers. All kinds. In the middle of the second day, some of us
+started to go crazy from the thirst. One fella cried out he saw a river,
+another claimed he saw a waterfall, some started to drink the ocean and
+choked on it, and some left our little groups – our little squares – and
+swam off alone lookin’ for islands and the sharks always took them right
+away. It was mainly the young fellas that did that – the older ones
+stayed where they was. That second day – my life jacket rubbed me raw
+and that was more blood in the water. Oh my. On Thursday morning I
+bumped up against a friend of mine – Herbie Robinson from Cleveland – a
+bosun’s mate – it seemed he was asleep but when I reached over to waken
+him, he bobbed in the water and I saw his body upend because he’d been
+bitten in half beneath the waist. Well Chief, so it went on – bombers
+high overhead but nobody noticin’ us. Yes – suicides, sharks, and all
+this goin’ crazy and dyin’ of thirst. Noon the fifth day, Mr. Hooper, a
+Lockheed Ventura swung around and came in low. Yes. He did that. Yes,
+that pilot saw us. And early evenin’, a big fat PBY come down out of the
+sky and began the pickup. That was when I was most frightened of all –
+while I was waitin’ for my turn. Just two and a half hours short of five
+days and five nights when they got to me and took me up. Eleven hundred
+of us went into that ocean – three hundred and sixteen got out. Yeah.
+Nineteen hundred and forty five. June the 29th. Anyway, we delivered the
+bomb.</p>
+<p><strong>brody</strong>: What the hell?</p>
+<p><strong>hooper</strong>: It’s a whale out there.</p>
+<p><strong>quint</strong>: Show me the way to go home… I’m tired and I
+want to go to bed. I had a little drink about an hour ago, and it went
+right to my head.</p>
+<p><strong>quint</strong>: Start the engines.</p>
+<p><strong>quint</strong>: He’s busting the shaft! Start the pump!</p>
+<p><strong>brody</strong>: Where…?</p>
+<p><strong>quint</strong>: The bilge pumps. There –</p>
+<p><strong>quint</strong>: Cut the engines!</p>
+<p><strong>hooper</strong>: Rudder bearings?</p>
+<p><strong>quint</strong>: Get up forward! Watch for him!</p>
+<p><strong>quint</strong>: Keep your eyes open, Mr. Hooper!</p>
+<p><strong>quint</strong>: Nobody sleeps! Nobody.</p>
+<p><strong>quint</strong>: Show me the way to go home… I’m tired and I
+want to go to bed.</p>
+<p><strong>quint</strong>: More left rudder! More! Left hand down now,
+Chief.</p>
+<p><strong>hooper</strong>: Lemme get a better angle on it. Now.</p>
+<p><strong>quint</strong>: He’s bent the housing. You can hear it.</p>
+<p><strong>brody</strong>: The barrel!</p>
+<p><strong>quint</strong>: It’s him.</p>
+<p><strong>quint</strong>: He’s under the keg. Careful –</p>
+<p><strong>quint</strong>: Easy – just want to goose him up. The minute
+he runs, drop it or you’ll lose your hands.</p>
+<p><strong>quint</strong>: Here – gimme. I don’t see what he’s been
+doin’.</p>
+<p><strong>brody</strong>: Shark! Starboard!</p>
+<p><strong>quint</strong>: Haul in that rope – it’ll foul us! Start the
+engine!</p>
+<p><strong>quint</strong>: Easy! It’ll tear right out!</p>
+<p><strong>hooper</strong>: The shaft is giving.</p>
+<p><strong>brody</strong>: That’s it! Radio in for help!</p>
+<p><strong>quint</strong>: Shut up! Just pump her out!</p>
+<p><strong>brody</strong>: Yeah, Captain, as soon as I make a call.</p>
+<p><strong>quint</strong>: Beg your pardon –</p>
+<p><strong>quint</strong>: Duty first and pleasure after –</p>
+<p><strong>quint</strong>: Excuse me!</p>
+<p><strong>brody</strong>: Some great idea! Now where are we? Some
+goddamn skipper you are. You’re certifiable, y’know that? You’re a real
+treat! Certifiable! Bananas!</p>
+<p><strong>hooper</strong>: Coming right to us!</p>
+<p><strong>quint</strong>: No – comin’ right at us! Slow ahead, he’ll
+hit us head on – Slower! Throttle back —</p>
+<p><strong>quint</strong>: Hard to port!</p>
+<p><strong>quint</strong>: Try shakin’ that out!</p>
+<p><strong>brody</strong>: Did you get him in the head?</p>
+<p><strong>quint</strong>: No! No! No! Swing around! After him!</p>
+<p><strong>quint</strong>: More gas… go to half! Get me right alongside
+him –</p>
+<p><strong>hooper</strong>: We can’t rev it up this high –</p>
+<p><strong>quint</strong>: Watch it!</p>
+<p><strong>quint</strong>: Atta boy!</p>
+<p><strong>quint</strong>: Take two, they’re small!</p>
+<p><strong>hooper</strong>: Don’t shoot him any more! He’s crazy on his
+own blood already!</p>
+<p><strong>brody</strong>: I can’t stand here doing nothing!</p>
+<p><strong>quint</strong>: Order in the court!</p>
+<p><strong>quint</strong>: Three’ll do it! He’s havin’ trouble with
+two!</p>
+<p><strong>quint</strong>: Grab yourselves a couple of poles!</p>
+<p><strong>quint</strong>: Get ready! Now snag ’em!</p>
+<p><strong>quint</strong>: Pull in the ropes and tie ’em onto the
+transom – free ride.</p>
+<p><strong>quint</strong>: Get tired! That’s the idea! Here’s a little
+reverse for you!</p>
+<p><strong>quint</strong>: Haul in – watch the prop!</p>
+<p><strong>quint</strong>: Now! Untie ’em! Quick! He’ll tear us to
+pieces.</p>
+<p><strong>quint</strong>: Damn head is too far away. He’s too big.</p>
+<p><strong>quint</strong>: He can’t go so deep. Not with all those on
+him.</p>
+<p><strong>brody</strong>: What about us?</p>
+<p><strong>quint</strong>: Have to pump her steady, s’all.</p>
+<p><strong>quint</strong>: Follow him – You start pumpin’ out here.</p>
+<p><strong>hooper</strong>: He’s heading under – !</p>
+<p><strong>quint</strong>: No way! He can’t!</p>
+<p><strong>brody</strong>: Where’d he go?</p>
+<p><strong>quint</strong>: He can’t stay down with three barrels on him!
+Where is he?!</p>
+<p><strong>brody</strong>: Have you ever had one do this?</p>
+<p><strong>quint</strong>: No!</p>
+<p><strong>quint</strong>: Follow him!</p>
+<p><strong>hooper</strong>: He’s under!</p>
+<p><strong>brody</strong>: There!</p>
+<p><strong>brody</strong>: He’s trying to sink us!</p>
+<p><strong>quint</strong>: Dead astern! Zig-zag!</p>
+<p><strong>brody</strong>: He’s chasing us! I don’t believe it.</p>
+<p><strong>quint</strong>: Full throttle! To port!</p>
+<p><strong>hooper</strong>: Hold her.</p>
+<p><strong>hooper</strong>: Keep him there! Keep him!</p>
+<p><strong>quint</strong>: Throttling back!</p>
+<p><strong>quint</strong>: What can that gun of yours do?</p>
+<p><strong>hooper</strong>: Power head with 20 ccs of strychnine
+nitrate. If I can hit him. I can kill him. But I gotta be close. Very
+close.</p>
+<p><strong>brody</strong>: You gotta go in the water…</p>
+<p><strong>hooper</strong>: Rig the cable to the roof eyebolts.</p>
+<p><strong>hooper</strong>: Take me up.</p>
+<p><strong>hooper</strong>: Lower away, Chief. Try and keep him off me
+till I’m under.</p>
+<p><strong>quint</strong>: Let go of it!</p>
+<p><strong>quint</strong>: He’s comin’ up – !</p>
+<p><strong>brody</strong>: He’s taken him!</p>
+<p><strong>hooper</strong>: Quint…?</p>
+<p><strong>brody</strong>: No…</p>
+<p>****: You think we can get back with those?</p>
+<p><strong>brody</strong>: What day is this?</p>
+<p><strong>hooper</strong>: Wednesday… No, it’s Tuesday, I think.</p>
+<p><strong>brody</strong>: Think the tide’s with us?</p>
+<p><strong>hooper</strong>: Just keep kicking.</p>
+<p><strong>brody</strong>: Y’know, I used to hate the water…</p>
+<p><strong>hooper</strong>: I can’t imagine why.</p>
+</body>
+</html>

@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>the-hudsucker-proxy</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="the-hudsucker-proxy">the-hudsucker-proxy</h1>
+<p><strong>narrator</strong>: The’s right… New York.</p>
+<p><strong>narrator</strong>: It’s 1958 – anyway, for a few mo’ minutes
+it is. Come midnight it’s gonna be 1959. A whole ‘nother feelin’. The
+New Year. The future…</p>
+<p><strong>narrator</strong>: …Yeah ole daddy Earth fixin’ to start one
+mo’ trip ‘round the sun, an’ evvybody hopin’ this ride ‘round be a
+little mo’ giddy, a little mo’ gay…</p>
+<p><strong>narrator</strong>: Yep…</p>
+<p><strong>narrator</strong>: …All over town champagne corks is
+a-poppin’.</p>
+<p><strong>narrator</strong>: …Over in the Waldorf the big shots is
+dancin’ to the strains of Guy Lombardo… Down in Times Square the little
+folks is a-watchin’ and a- waitin’ fo’ that big ball to drop…</p>
+<p><strong>crowd</strong>: “Sixty! Fifty-nine! Fifty-eight!”</p>
+<p><strong>narrator</strong>: …They all tryin’ to catch holt a one
+moment of time…</p>
+<p><strong>narrator</strong>: …to be able to say – ‘Right now! This is
+it! I got it!’ ‘Course by then it’ll be past. But they all happy,
+evvybody havin’ a good time.</p>
+<p><strong>narrator</strong>: …Well, almost evvybody. They’s a few lost
+souls floatin’ ’round out there…</p>
+<p><strong>narrator</strong>: …This one’s Norville Barnes.</p>
+<p><strong>narrator</strong>: …Let’s move in for a closer look.</p>
+<p><strong>narrator</strong>: …That office he jes stepped out of is the
+office of the president of Hudsucker Industries. It’s his office…</p>
+<p><strong>narrator</strong>: …How’d he get so high? An’ why is he
+feelin’ so low? Is he really gonna do it – is Norville really gonna
+jelly up the sidewalk?</p>
+<p><strong>narrator</strong>: …Well the future, that’s something you
+can’t never tell about…</p>
+<p><strong>up</strong>: “Nine! Eight! Seven!”</p>
+<p><strong>narrator</strong>: …But the past… That’s another story…</p>
+<p><strong>executive</strong>: – So in the third quarter we saw no signs
+of weakening. We’re up 18 percent over last year’s third quarter gross
+and, needless to say, that’s a new record…</p>
+<p><strong>executive</strong>: …The competition continues to flag and we
+continue to take up the slack. Market share in most divisions is
+increasing and we’ve opened seven new regional offices…</p>
+<p><strong>executive</strong>: …Our international division has also
+shown vigorous upward movement in the past six months and we’re looking
+at some exciting things in</p>
+<p><strong>executive</strong>: Sub-franchising. Don’t talk to me about
+sub-franchising; we’re making so much money in sub-franchising it isn’t
+even funny.</p>
+<p><strong>the future is now.</strong>: Start building yours at
+Hudsucker Industries.</p>
+<p><strong>no experience necessary.</strong>: Apply Personnel, 285
+Madison Avenue.</p>
+<p><strong>executive</strong>: …Our owned-and-operateds are performing
+far above expectations both here and abroad, and the Federal Tax Act of
+1958 is giving us a swell writeoff on our plant and heavies…</p>
+<p><strong>executive</strong>: …The news in the money market isn’t good
+– it’s excellent…</p>
+<p><strong>executive</strong>: …Our nominees and assigns continue to
+multiply and expand extending our influence regionally, nationally and
+globally. So, third quarter and year- to-date, we’ve set a new record
+for sales…</p>
+<p><strong>executive</strong>: …new record in gross…</p>
+<p><strong>executive</strong>: …new record in pre-tax earnings…</p>
+<p><strong>executive</strong>: …new record in after-tax profit…</p>
+<p><strong>executive</strong>: …and our stock has split twice this
+year…</p>
+<p><strong>executive</strong>: …In short…</p>
+<p><strong>executive</strong>: …we’re loaded.</p>
+<p><strong>hudsucker</strong>: Ahem…</p>
+<p><strong>executive</strong>: …Mr. Hudsucker?</p>
+<p><strong>the future is now.</strong>: Start building yours at
+Hudsucker Industries.</p>
+<p><strong>no experienced necessary.</strong>: Apply Personnel, 285
+Madison Avenue.</p>
+<p><strong>hudsucker</strong>: Aaaaaaaaahhhhhhhhh…</p>
+<p><strong>hudsucker</strong>: …aaaaaaaaaaaaaaaaaaahhh…</p>
+<p><strong>mussburger</strong>: Pity to waste a whole Monte Cristo.</p>
+<p><strong>an executive</strong>: He could’ve opened the window.</p>
+<p><strong>elderly executive</strong>: Waring Hudsucker never did
+anything the easy way.</p>
+<p><strong>addison</strong>: My God, why?! Why did he do it?! Things
+were going so well!</p>
+<p><strong>mussburger</strong>: What am I a headshrinker? Maybe the man
+was unhappy.</p>
+<p><strong>addison</strong>: He didn’t look unhappy!</p>
+<p><strong>executive</strong>: Yeah, well, he didn’t look rich.</p>
+<p><strong>eldery executive</strong>: Waring Hudsucker was never an easy
+man to figure out. He built this company with his bare hands. Every step
+he took was a step up. Except of course this last one.</p>
+<p><strong>mussburger</strong>: Sure, sure, he was a swell guy, but when
+the president, chairman of the board and holder of eighty-seven percent
+of the company’s stock drops forty-four floors –</p>
+<p><strong>precise executive</strong>: Forty-five –</p>
+<p><strong>eldery executive</strong>: Counting the mezzanine –</p>
+<p><strong>mussburger</strong>: – Then the company has a problem.
+Stillson, what exactly is the disposition of Waring’s stock?</p>
+<p><strong>stillson</strong>: Well, as you know, Hud left no will and
+had no family. The company bylaws are quite clear in that event. His
+entire portfolio will be converted to common stock and will be sold over
+the counter as of the first of the fiscal year following his demise.</p>
+<p><strong>mussburger</strong>: Meaning?</p>
+<p><strong>stillson</strong>: Meaning simply that Waring’s stock, and
+control of the company, will be available to the public on January
+first.</p>
+<p><strong>mussburger</strong>: You mean to tell me that any slob in a
+smelly T-shirt will be able to buy Hudsucker stock?</p>
+<p><strong>stillson</strong>: The company bylaws are quite clear.</p>
+<p><strong>addison</strong>: My God! You’re animals! How can you discuss
+his stock when the man has just leapt forty-five floors –</p>
+<p><strong>precise executive</strong>: Forty-four –</p>
+<p><strong>elderly executive</strong>: – Not counting the mezzanine.</p>
+<p><strong>mussburger</strong>: Quit showboating, Addison, the man is
+gone. The question now is whether we’re going to let John Q. Public
+waltz in and buy 87 percent of our company.</p>
+<p><strong>pipe-smoking executive</strong>: What’re you suggesting,
+Sidney? Certainly we can’t afford to buy a controlling interest.</p>
+<p><strong>mussburger</strong>: Not while the stock is this strong. How
+long before Hud’s paper hits the market?</p>
+<p><strong>stillson</strong>: January first.</p>
+<p><strong>an executive</strong>: Thirty days.</p>
+<p><strong>another executive</strong>: Four weeks.</p>
+<p><strong>addison</strong>: A month at the most.</p>
+<p><strong>mussburger</strong>: One month to make the blue-chip
+investment of the century look like a round-trip ticket on the
+Titanic.</p>
+<p><strong>an executive</strong>: We play up the fact that Hud is
+dead.</p>
+<p><strong>all</strong>: Long live the Hud!!</p>
+<p><strong>another executive</strong>: We depress the stock –</p>
+<p><strong>yet another executive</strong>: – to the point where we can
+buy fifty-percent.</p>
+<p><strong>precise executive</strong>: Fifty-one.</p>
+<p><strong>elderly executive</strong>: Not counting the mezzanine.</p>
+<p><strong>cautious executive</strong>: It could work.</p>
+<p><strong>optimistic executive</strong>: It should work.</p>
+<p><strong>practical executive</strong>: It would work.</p>
+<p><strong>mussburger</strong>: It’s working already. Waring Hudsucker
+is abstract art on Madison Avenue. All we need now is a new president
+who will inspire real panic in our stockholders.</p>
+<p><strong>enthusiastic executive</strong>: Yeah, a puppet!</p>
+<p><strong>another executive</strong>: A proxy!</p>
+<p><strong>yet another executive</strong>: A pawn!</p>
+<p><strong>mussburger</strong>: Sure, sure. Some jerk we can really push
+around.</p>
+<p><strong>agent</strong>: You punch in at 8:30 every morning except you
+punch in at 7:30 following a business holiday unless it’s a Monday and
+then you punch in at eight o’clock! You punch in at 7:45 whenever we
+work extended day and you punch out at the regular time unless you’ve
+worked through lunch!</p>
+<p><strong>norville</strong>: What’s exte –</p>
+<p><strong>agent</strong>: Punch in late and they dock ya!</p>
+<p><strong>first screamer</strong>: This goes to seven! Mr. Mutuszak!
+Urgent!</p>
+<p><strong>agent</strong>: Incoming articles, get a voucher! Outgoing
+articles, provide a voucher! Move any article without a voucher and they
+dock ya!</p>
+<p><strong>second screamer</strong>: Take this up to the secretarial
+pool on three! Right away! Don’t break it!</p>
+<p><strong>agent</strong>: Letter size a green voucher! Folder size a
+yellow voucher! Parcel size a maroon voucher!</p>
+<p><strong>third screamer</strong>: This one’s for Morgatross! Chop
+chop!</p>
+<p><strong>agent</strong>: Wrong color voucher and they dock ya!
+Six-seven-eight-seven-zero-four- niner-alpha-slash-six! That is your
+employee number! It will not be repeated! Without your employee number
+you cannot cash your paycheck!</p>
+<p><strong>fourth screamer</strong>: This goes up to twenty-seven! If
+there’s no one there bring it down to eighteen! Have ’em sign the
+waiver!</p>
+<p><strong>agent</strong>: Inter-office mail is code 37! INTRA- office
+mail is 37-dash-3! Outside mail is 3-dash 37! Code it wrong and they
+dock ya!</p>
+<p><strong>fifth screamer</strong>: I was supposed to have this on
+twenty- eight ten minutes ago! Cover for me!</p>
+<p><strong>agent</strong>: This has been your orientation! Is there
+anything you do not understand? Is there anything you understand only
+partially? If you have not been fully oriented – if there is something
+you do not understand in all of its particulars you must file a
+complaint with personnel! File a faulty complaint… and they dock ya!</p>
+<p><strong>norville</strong>: …Bring it down to fif… fifteen… sign the
+voucher, uh, waiver… cover for Mr. Anatole… he’s a swell guy…
+Morgatross… He was on, uh…</p>
+<p><strong>norville</strong>: Say, what do you do when the envelope is
+too big for the slot?</p>
+<p><strong>ancient sorter</strong>: Well… if ya fold ’em, they fire
+ya…</p>
+<p><strong>ancient sorter</strong>: …I usually throw ’em out.</p>
+<p><strong>norville</strong>: Just got hired today!</p>
+<p><strong>ancient sorter</strong>: Terrific.</p>
+<p><strong>norville</strong>: Ya know, entry level!</p>
+<p><strong>ancient sorter</strong>: Tell me about it.</p>
+<p><strong>norville</strong>: I got big ideas, though!</p>
+<p><strong>ancient sorter</strong>: I’m sure you do.</p>
+<p><strong>norville</strong>: For instance, take a look at this sweet
+baby…</p>
+<p><strong>norville</strong>: …you look like you can keep a secret…</p>
+<p><strong>norville</strong>: …Something I developed myself. Yessir,
+this is my ticket upstairs.</p>
+<p><strong>norville</strong>: …You know, for kids!</p>
+<p><strong>ancient sorter</strong>: Terrific.</p>
+<p><strong>norville</strong>: So ya see, I won’t be in the mailroom
+long.</p>
+<p><strong>ancient sorter</strong>: Nooo, I don’t guess you will be.</p>
+<p><strong>norville</strong>: How long’ve you been down here?</p>
+<p><strong>ancient sorter</strong>: Forty-eight years…</p>
+<p><strong>ancient sorter</strong>: …Next year they move me up to
+parcels…</p>
+<p><strong>ancient sorter</strong>: …If I’m lucky.</p>
+<p><strong>public address system</strong>: Attention Hudsucker
+employees. We regretfully announce that at 12:01 this afternoon,
+Hudsucker time, Waring Hudsucker, Founder, President, and Chairman of
+the Board of Hudsucker Industries, merged with the infinite. To mark
+this occasion of corporate loss, we ask that all employees observe a
+moment of silent contemplation.</p>
+<p><strong>public address system</strong>: …Thank you for your kind
+attention. This moment has been duly-noted on your time cards and will
+be deducted from your pay. That is all.</p>
+<p><strong>public address system</strong>: ‘Blue letter! Blue
+letter!’</p>
+<p><strong>various voices</strong>: Blue letter…! It’s a blue letter…!
+They’re bringing down a blue letter!</p>
+<p><strong>man</strong>: Blue letter!!</p>
+<p><strong>ancient sorter</strong>: Jumpin’ Jehosephat, a blue
+letter!</p>
+<p><strong>ancient sorter</strong>: It’s a blue letter… top, top level…
+confidential communication between the brass… usually bad news… they
+hate blue letters upstairs… Hate ’em!</p>
+<p><strong>hutchinson</strong>: You!</p>
+<p><strong>hutchinson</strong>: …Yeah, you! Barnes!</p>
+<p><strong>hutchinson</strong>: …You don’t look busy! Think you can
+handle a blue letter? …This letter was sent down this morning by the big
+guy himself! ’At’s right, Waring Hudsucker! It’s addressed to Sid
+Mussburger! Hudsucker’s right-hand man! It’s a blue letter! That means
+you put it right in Mussburger’s hand. No secretaries! No receptionists!
+No colleagues! No excuses!</p>
+<p><strong>hutchinson</strong>: Mussburger!!</p>
+<p><strong>buzz</strong>: Hiya, buddy! The name is Buzz, I got the
+fuzz…</p>
+<p><strong>buzz</strong>: …I make the elevator do what she duzz!</p>
+<p><strong>buzz</strong>: …Hang it up to dry.</p>
+<p><strong>buzz</strong>: …What’s your pleasure, buddy?</p>
+<p><strong>norville</strong>: Forty-fourth floor, and it’s very –</p>
+<p><strong>buzz</strong>: Forty-four, the top brass floor say, buddy!
+What takes fifty years to get up to the top floor and thirty seconds to
+get down?</p>
+<p><strong>buzz</strong>: Waring Hudsucker! Na-ha-ha-ha-ha! Say,
+buddy!</p>
+<p><strong>buzz</strong>: Mr. Kline, up to nine. Mrs. Dell, personnel.
+Mr. Levin, thirty-seven.</p>
+<p><strong>mr. levin</strong>: Thirty-six.</p>
+<p><strong>buzz</strong>: Walk down. Ladies and gentlemen, step to the
+rear; here comes gargantuan Mr. Grier.</p>
+<p><strong>fat man</strong>: Buzz.</p>
+<p><strong>buzz</strong>: Say, buddy! Who’s the most liquid businessman
+on the street?</p>
+<p><strong>norville</strong>: Well, I –</p>
+<p><strong>buzz</strong>: Waring Hudsucker! Na-ha-ha-ha-ha! Say, buddy!
+When is the sidewalk fully dressed? When it’s ‘wearing’ Hudsucker!
+Na-ha-ha-ha!</p>
+<p><strong>buzz</strong>: …Ya get it, buddy, it’s a pun, it’s a
+knee-slapper, it’s a play on Jesus, Joseph and Mary, is that a blue
+letter?!</p>
+<p><strong>buzz</strong>: …Cripes a’mighty, whyn’t ya tell a guy?! Hold
+on, folks, we’re express to the top floor!</p>
+<p><strong>buzz</strong>: Good luck, buddy!</p>
+<p><strong>buzz</strong>: – You’ll need it!</p>
+<p><strong>norville</strong>: …Mr. Mussburger’s office?</p>
+<p><strong>receptionist</strong>: Do you have an appointment?</p>
+<p><strong>norville</strong>: Uhh, no, I –</p>
+<p><strong>receptionist</strong>: Shall we look in the book,
+hmmmmmmmmm?</p>
+<p><strong>norville</strong>: No, ma’am, ya see, I wouldn’t be in the
+–</p>
+<p><strong>receptionist</strong>: We don’t seem to be in the
+boooook.</p>
+<p><strong>norville</strong>: No, ma’am, ya see I don’t have an –</p>
+<p><strong>receptionist</strong>: If we had an appointment we’d be in
+the booook.</p>
+<p><strong>norville</strong>: I know but ya see I have this – here it
+is, this letter –</p>
+<p><strong>mussburger</strong>: – Sure sure, Parkinson’s stupid but he’s
+ambitious, too hard to control…</p>
+<p><strong>mussburger</strong>: …No! Not McClanahan; sure he bungled the
+Teleyard merger, but that means he’s got something to prove…</p>
+<p><strong>mussburger</strong>: …Who let you in?</p>
+<p><strong>mussburger</strong>: Atwater? Tremendous. Except I fired him
+last week –</p>
+<p><strong>voice</strong>: Mr. Bumstead is waiting downstairs.</p>
+<p><strong>mussburger</strong>: Tell him I’ll be right there… Well, what
+is it?</p>
+<p><strong>mussburger</strong>: You, maybe you’re the company’s biggest
+moron. We can’t use Morris, he’s been with us too long, he’s a nice guy,
+too many friends. Matter of fact, why don’t you fire him. No – scratch
+that; I’ll fire him. …Make it fast, make it fast.</p>
+<p><strong>norville</strong>: You –</p>
+<p><strong>voice</strong>: Mr. Bumstead is getting very –</p>
+<p><strong>mussburger</strong>: I’ll be right there. Give him a
+magazine. …What’re you, a mute?</p>
+<p><strong>mussburger</strong>: …Yeah, how’s the stock doing? …Bad, huh?
+Well it’s not bad enough. …Look, chump, either you find me a grade A
+ding-dong or you can tender your key to the executive washroom. And that
+goes double for you. Ear-clay? Ood-gay! This better be good. I’m in a
+bad mood.</p>
+<p><strong>norville</strong>: Well, sir. I’ve got something for you from
+the mailroom, but first if I could just take a minute or so from your
+very busy time…</p>
+<p><strong>norville</strong>: …to show you a, uh…</p>
+<p><strong>norville</strong>: …a little something I’ve been working on
+for the last two or three years…</p>
+<p><strong>norville</strong>: …You know, for kids! Which is perfect for
+Hudsucker – not that I claim to be any great genius; like they say,
+inspiration is 99 percent perspiration, and in my case I’d say it’s at
+least twice that, but I gotta tell ya, Mr. Mussburger, sir, this sweet
+baby –</p>
+<p><strong>mussburger</strong>: Wait a minute!</p>
+<p><strong>mussburger</strong>: Hmmm…</p>
+<p><strong>mussburger</strong>: Umm-hmm…</p>
+<p><strong>mussburger</strong>: Siddown.</p>
+<p><strong>mussburger</strong>: …Go ahead. Try it on.</p>
+<p><strong>mussburger</strong>: …Put your feet up.</p>
+<p><strong>mussburger</strong>: …Go ahead.</p>
+<p><strong>mussburger</strong>: Hmmmm… Let’s get to know one another,
+shall we?</p>
+<p><strong>mussburger</strong>: …Let’s chat! …Man to man!</p>
+<p><strong>mussburger</strong>: …You weren’t blessed with much…</p>
+<p><strong>mussburger</strong>: …education, were you?</p>
+<p><strong>norville</strong>: Well, I’m a college graduate –</p>
+<p><strong>mussburger</strong>: All right, but you didn’t excel in your
+studies…?</p>
+<p><strong>norville</strong>: Well, I made the dean’s list.</p>
+<p><strong>mussburger</strong>: Hmmm.</p>
+<p><strong>norville</strong>: At the Muncie College of Business
+Administration.</p>
+<p><strong>mussburger</strong>: Sure, sure. And did your classmates
+there call you ‘jerk’ or… …‘schmoe’?</p>
+<p><strong>mussburger</strong>: …‘Shnook’? ‘Dope’? ‘Dipstick’?
+‘Lamebrain’?</p>
+<p><strong>norville</strong>: No, sir.</p>
+<p><strong>mussburger</strong>: Not even behind your back?</p>
+<p><strong>norville</strong>: Sir! They voted me most likely to
+succeed!</p>
+<p><strong>mussburger</strong>: You’re fired.</p>
+<p><strong>norville</strong>: But, sir! –</p>
+<p><strong>mussburger</strong>: Get your feet off that desk.</p>
+<p><strong>norville</strong>: But –</p>
+<p><strong>mussburger</strong>: Get out of my sight.</p>
+<p><strong>mussburger</strong>: My God! The Bumstead contracts!!</p>
+<p><strong>norville</strong>: Oh my God, sir!</p>
+<p><strong>mussburger</strong>: You nitwit! I worked for three years on
+this deal!</p>
+<p><strong>norville</strong>: Oh my God, sir!</p>
+<p><strong>mussburger</strong>: I’ll take care of it. Just get out!</p>
+<p><strong>mussburger</strong>: Why you nitwit. You almost destroyed the
+most sensitive deal of my career!</p>
+<p><strong>norville</strong>: Oh my God, sir!</p>
+<p><strong>mussburger</strong>: Now out of here! Out!</p>
+<p><strong>mussburger</strong>: Not that way! Through the door!</p>
+<p><strong>norville</strong>: But, sir!</p>
+<p><strong>mussburger</strong>: Right away, buster! Out of my
+office!</p>
+<p><strong>mussburger</strong>: Up on your feet! We don’t crawl at
+Hudsucker Industries!</p>
+<p><strong>norville</strong>: Sir, my leg is on fire!</p>
+<p><strong>mussburger</strong>: Get out of this office, you dithering
+nincompoop!</p>
+<p><strong>norville</strong>: Oh my God, sir!</p>
+<p><strong>mussburger</strong>: My God! The Bumstead contracts!</p>
+<p><strong>norville</strong>: Oh my God, sir!</p>
+<p><strong>mussburger</strong>: Eeeeeeaaaahhhhh!</p>
+<p><strong>bumstead</strong>: No magazine. No coffee. Mussburger! I
+wanna see Mussburger! Or did he jump out a window too?!</p>
+<p><strong>norville</strong>: Don’t worry, Mr. Mussburger! I gotcha. I
+gotcha by your pants!</p>
+<p><strong>luigi</strong>: Meester Moosaburger, I give-a you pants a
+nice-a dooble stitch. Make ’em strong, and they look-a real sharp.</p>
+<p><strong>mussburger</strong>: No! Single stitch is fine.</p>
+<p><strong>luigi</strong>: But please-a, Meester Moosaburger, the dooble
+stitch she last-a forever –</p>
+<p><strong>mussburger</strong>: Why on earth would I need a double
+stitch? To pad your bill? Single stitch is fine!</p>
+<p><strong>mussburger</strong>: Damn!</p>
+<p><strong>luigi</strong>: What the heck. Meester Moosaburger such a
+nice-a guy, I give him dooble steech-a anyway. Assa some-a strong- a
+steech-a, you bet!</p>
+<p><strong>mussburger</strong>: Hmmm…</p>
+<p><strong>editor</strong>: ‘The Einstein of Enterprise.’ ‘The Edison of
+Industry.’ ‘The Billion- Dollar Cranium’… ‘Idea Man’! And not one of you
+mugs has given me a story on him!!</p>
+<p><strong>editor</strong>: Facts, figures, charts! They never sold a
+newspaper! I read this morning’s edition of the Argus and let me tell
+you something: I’d wrap a fish in it! I’d use it as kindling! Hell, I’d
+even train my poodle with it if he wasn’t a French poodle and more
+partial to the pages of Paree Soir! But I sure wouldn’t shell out a
+hard-earned nickel to read the dadblamed thing!</p>
+<p><strong>reporter</strong>: Come on, chief, give us a break.</p>
+<p><strong>editor</strong>: Suuuure, Tibbs, take a break! Go to Florida!
+Lie in the sun! Wait for a coconut to drop, file a story on it – it’ll
+be more of a grabber than your piece on the commie grain surplus! The
+human angle! That’s what sells papers! We need a front page with heart
+and the whole idea of the ‘Idea Man’ idea can put it there!</p>
+<p><strong>reporter #2</strong>: Chief, if we had more access –</p>
+<p><strong>editor</strong>: Yeah, and if a frog had wings he wouldn’t
+bump his ass a-hoppin’! I don’t want excuses, I want results!</p>
+<p><strong>editor</strong>: I wanna know what makes the Idea Man tick!
+Where is he from? Where is he going? I wanna know everything about this
+guy! Has he got a girl? Has he got parents?</p>
+<p><strong>reporter #3</strong>: Everybody has parents.</p>
+<p><strong>editor</strong>: All right, how many? How ’bout it,
+Parkinson, you’ve been awful quiet over there.</p>
+<p><strong>parkinson</strong>: Uhhh…</p>
+<p><strong>reporter next to him</strong>: Still waters run deep,
+chief.</p>
+<p><strong>editor</strong>: The only thing that runs deep with Parkinson
+is the holes in his ears. Yes, the Idea Man! What’re his hopes and
+dreams, his desires and aspirations? Does he think all the time or does
+he set aside a certain portion of the day? How tall is he and what’s his
+shoe size? Where does he sleep and what does he eat for breakfast? Does
+he put jam on his toast or doesn’t he put jam on his toast, and if not
+why not and since when?</p>
+<p><strong>editor</strong>: …Well?!!</p>
+<p><strong>editor</strong>: …Ahh, you’re useless. Yes, Idea Man!
+Creator! Innovator! Cerebrator! Tycoon!–</p>
+<p><strong>woman</strong>: Fake.</p>
+<p><strong>editor</strong>: Huhh!!</p>
+<p><strong>amy</strong>: I tell ya the guy’s a phony.</p>
+<p><strong>editor</strong>: Phony, huh?</p>
+<p><strong>amy</strong>: As a three-dollar bill.</p>
+<p><strong>editor</strong>: Sez who?</p>
+<p><strong>amy</strong>: Sez me! Amy Archer. Why is he an Idea Man –
+because Hudsucker says he is? What’re his ideas? Why won’t they let
+anyone interview him?…</p>
+<p><strong>reporter</strong>: Five bucks says she mentions her
+Pulitzer.</p>
+<p><strong>other reporter</strong>: Again? You’re on.</p>
+<p><strong>amy</strong>: …And just take a look at the mug on this guy –
+the jutting eyebrows, the simian forehead, the idiotic grin. Why he has
+a face only a mother could love –</p>
+<p><strong>amy</strong>: …On payday! The only story here is how this guy
+made a monkey out of you, Al.</p>
+<p><strong>editor</strong>: Yeah, well, monkey or not I’m still editor
+of this rag. Amy, I thought you were doing that piece on the F.B.I. – J.
+Edgar Hoover: When Will He Marry?</p>
+<p><strong>amy</strong>: I filed it yesterday.</p>
+<p><strong>editor</strong>: Well, do a follow-up: Hoover: Hero or Mama’s
+Boy? The rest of you bums get up off your brains and get me that Idea
+Man story!</p>
+<p><strong>reporters</strong>: All right, chief… We’ll do our best,
+chief… I’ll give it a shot, chief…</p>
+<p><strong>amy</strong>: Al, he’s the bunk.</p>
+<p><strong>amy</strong>: I’ll stake my Pulitzer on it!</p>
+<p><strong>buzz</strong>: Say, buddy! Where’d ya get the new duds?</p>
+<p><strong>buzz</strong>: …and say, buddy! How’d old bucketbutt like his
+blue letter? Na-ha-ha-ha-ha! Did he bust a gut? Did he die? Did he –
+Well, hello, Mr. Mussburger, sir…</p>
+<p><strong>buzz</strong>: …How’re you this fine morning, sir?</p>
+<p><strong>norville</strong>: That reminds me, Mr. Mu… uh, Sid. I never
+did give you that–</p>
+<p><strong>mussburger</strong>: Lobby. We haven’t got all day.</p>
+<p><strong>buzz</strong>: Right away, Mr. Mussburger sir.</p>
+<p><strong>mussburger</strong>: Well I’m starved. I understand it’ll be
+quite an affair this afternoon, and the executive roast tom turkey at
+the Bohemian Grove redefines the word superb.</p>
+<p><strong>buzz</strong>: My pleasure, sir.</p>
+<p><strong>norville</strong>: Roast tom turkey. Gee, I’m hungry too
+–</p>
+<p><strong>mussburger</strong>: Sure, sure…</p>
+<p><strong>buzz</strong>: It’s been a pleasure serving you,
+Mr. Mussburger.</p>
+<p><strong>buzz</strong>: …and it’s been a pleasure serving you too, uh…
+buddy.</p>
+<p><strong>norville</strong>: Say, Mr. Muss – uh, Sid! Shouldn’t we be a
+little bit concerned with the downward spiral of our stock these last
+few days? I mean, you’re the expert, but at the Muncie College of
+Business Administration they told us –</p>
+<p><strong>mussburger</strong>: Relax, Norville. It’s only natural in a
+period of transition for the more nervous element to run for cover.</p>
+<p><strong>norville</strong>: Okay, Sid. Like I said, you’re the expert,
+but –</p>
+<p><strong>norville</strong>: …You don’t happen to remember the plan I
+outlined to you the day I set fire to your off – uh, the day I was
+promoted?</p>
+<p><strong>mussburger</strong>: I do remember and I was impressed.
+Anyway, that’s all forgotten now. Driver!</p>
+<p><strong>norville</strong>: Thank you, Sid, but the reason I mention
+it is, it would require such a small capital investment – again, you’re
+the expert here –</p>
+<p><strong>mussburger</strong>: Damnit, where’s my car!</p>
+<p><strong>norville</strong>: – But there’s such an enormous potential
+profit-wise given the demographics – baby boom – discretionary income in
+the burgeoning middle class –</p>
+<p><strong>mussburger</strong>: Finally.</p>
+<p><strong>norville</strong>: – So if you think it’s appropriate, I’d
+like to bounce the idea off a few people at lunch –</p>
+<p><strong>mussburger</strong>: Sure, sure, tell whoever you want…</p>
+<p><strong>mussburger</strong>: …And I’d like to hear more about it at
+some point, too.</p>
+<p><strong>norville</strong>: But, Sid, I thought you and I were…</p>
+<p><strong>doorman</strong>: Say, bud, could you keep the sidewalk clear
+here?</p>
+<p><strong>norville</strong>: But I’m the president of this – aww,
+forget it.</p>
+<p><strong>veteran #1</strong>: I got gas, Bennie.</p>
+<p><strong>veteran #2</strong>: Yeah, tell me about it.</p>
+<p><strong>veteran #1</strong>: No kiddin’, Bennie. I got gas.</p>
+<p><strong>veteran #2</strong>: Ya get the special?</p>
+<p><strong>veteran #1</strong>: Fah from it…</p>
+<p><strong>veteran #1</strong>: …Enter the dame.</p>
+<p><strong>veteran #2</strong>: There’s one in every story.</p>
+<p><strong>veteran #1</strong>: Ten bucks says she’s looking for a
+handout.</p>
+<p><strong>veteran #2</strong>: Twenty bucks says not here she don’t
+find one.</p>
+<p><strong>veteran #1</strong>: She’s looking for her mark.</p>
+<p><strong>veteran #2</strong>: She finds him.</p>
+<p><strong>veteran #1</strong>: She sits down.</p>
+<p><strong>veteran #2</strong>: …and awduhs a light lunch.</p>
+<p><strong>veteran #1</strong>: She looks in her purse…</p>
+<p><strong>veteran #2</strong>: …No money.</p>
+<p><strong>veteran #1</strong>: The mark notices.</p>
+<p><strong>veteran #2</strong>: …He’s not noticing, Benny.</p>
+<p><strong>veteran #1</strong>: Maybe he’s wise.</p>
+<p><strong>veteran #2</strong>: He don’t look wise.</p>
+<p><strong>veteran #1</strong>: Plan two: Here come the waterworks.</p>
+<p><strong>veteran #2</strong>: Yellowstone.</p>
+<p><strong>veteran #1</strong>: Old Faithful.</p>
+<p><strong>veteran #2</strong>: Hello, Niagara.</p>
+<p><strong>veteran #1</strong>: He notices.</p>
+<p><strong>veteran #2</strong>: He’s concerned.</p>
+<p><strong>veteran #1</strong>: She explains her perdicament, and…</p>
+<p><strong>veteran #1 &amp; #2</strong>: …entuh the light lunch.</p>
+<p><strong>veteran #2</strong>: She’s got other problems, of course…</p>
+<p><strong>veteran #1</strong>: …Her mother needs an operation…</p>
+<p><strong>veteran #2</strong>: …adenoids.</p>
+<p><strong>veteran #1</strong>: No, Bennie: Lumbago.</p>
+<p><strong>veteran #1</strong>: She’s losing him, Bennie.</p>
+<p><strong>veteran #2</strong>: Maybe he’s wise.</p>
+<p><strong>veteran #1</strong>: He don’t look wise.</p>
+<p><strong>veteran #2</strong>: How does she pull this out?</p>
+<p><strong>veteran #1</strong>: She isn’t!</p>
+<p><strong>veteran #2</strong>: She is!</p>
+<p><strong>veteran #1</strong>: She’s good, Bennie.</p>
+<p><strong>veteran #2</strong>: She’s damn good, Lou.</p>
+<p><strong>waitress</strong>: Can I get you boys anything else?</p>
+<p><strong>veteran #1</strong>: Bromo.</p>
+<p><strong>veteran #2</strong>: …Bromo.</p>
+<p><strong>amy</strong>: I’m sorry we had to take the stairs. It was
+just that horrible little elevator boy…</p>
+<p><strong>norville</strong>: Not at all. You’re light as a feather.</p>
+<p><strong>amy</strong>: The couch, please.</p>
+<p><strong>norville</strong>: Just a minute.</p>
+<p><strong>amy</strong>: I don’t know what came over me. I suppose it
+was the shock of eating after so long without; the enzymes kicking in
+after so long, or whatever. But then you couldn’t possibly know what it
+is to be tired and hungry…</p>
+<p><strong>norville</strong>: Hungry, anyway.</p>
+<p><strong>amy</strong>: I don’t want to bore you with all the sordid
+details of my life; it’s not a happy story…</p>
+<p><strong>amy</strong>: …Suffice it to say that I’m jobless – though
+not for want of trying, that I’m friendless, with no one to – thank you
+– take care of me; and that had you not come along at just exactly the
+moment that you did –</p>
+<p><strong>amy</strong>: Norville, I didn’t know you were president
+here!</p>
+<p><strong>norville</strong>: Oh, it’s nothing really. Just
+determination and hard work…</p>
+<p><strong>norville</strong>: …Of course, when I started in the mailroom
+last Tuesday I thought it might take more time –</p>
+<p><strong>buzz</strong>: Say, buddy, here’s the whiskey you asked f
+–</p>
+<p><strong>norville</strong>: Thank you, Buzz, just leave it on the
+desk.</p>
+<p><strong>buzz</strong>: Happy days, buddy…</p>
+<p><strong>buzz</strong>: …and I’ll tell your secretary you’re not to be
+disturbed. Yowzuh!!</p>
+<p><strong>amy</strong>: What a horrible little person.</p>
+<p><strong>norville</strong>: Oh, Buzz is pretty harmless, really –</p>
+<p><strong>amy</strong>: At any rate I arrived in town not ten days ago,
+full of dreams and aspirations, anxious to make my way in the world
+–</p>
+<p><strong>amy</strong>: A little naive perhaps but – thank you – armed
+with determination, a solid work ethic, and an indomitable belief in the
+future –</p>
+<p><strong>norville</strong>: I myself –</p>
+<p><strong>amy</strong>: Only to have that belief, that unsullied
+optimism, dashed against the marble and mortar of the modern work place
+–</p>
+<p><strong>norville</strong>: Cigarette?</p>
+<p><strong>amy</strong>: No thank you. Seek and ye shall find, work and
+ye shall prosper – these were the watch words of my education, the
+ethics of my tender years –</p>
+<p><strong>amy</strong>: – these were the values that were instilled in
+me while I was growing up in a little town you’ve probably never heard
+of –</p>
+<p><strong>norville</strong>: Mind if I join you?</p>
+<p><strong>amy</strong>: Be my guest. A little town you’ve probably
+–</p>
+<p><strong>norville</strong>: He waves his arms and talks with a thick
+rasp as he staggers to his feet.</p>
+<p><strong>norville</strong>: Excuse me – I – executive washroom…</p>
+<p><strong>amy</strong>: Are you all right?…</p>
+<p><strong>amy</strong>: …Is it your lunch? The chicken a la king?</p>
+<p><strong>norville</strong>: No, I –</p>
+<p><strong>amy</strong>: Is the a la king repeating on you?</p>
+<p><strong>norville</strong>: …I’m fine, I… You were saying?</p>
+<p><strong>amy</strong>: Values… watchwords… uh, tender years… – A
+little town you’ve probably never heard of…</p>
+<p><strong>amy</strong>: …Muncie, Indiana.</p>
+<p><strong>turned off</strong>: she re-strikes her languid pose on the
+couch just as the washroom door opens.</p>
+<p><strong>norville</strong>: You’re from Muncie?!</p>
+<p><strong>amy</strong>: Why yes, do you know it?</p>
+<p><strong>norville</strong>: ‘Fight on fight on dear old Muncie Fight
+on – Hoist the gold and blue You’ll be tattered, torn and hurtin’ Once
+‘The Munce’ is done with you!’</p>
+<p><strong>norville</strong>: …Goooooooo Eagles!</p>
+<p><strong>norville</strong>: …A Muncie girl! Talk about the cat’s
+pyjamas! Tell you what, Amy. I’m gonna cancel the rest of my
+appointments this afternoon and get you a job here at the Hud.</p>
+<p><strong>amy</strong>: Oh, no, really, I –</p>
+<p><strong>norville</strong>: Don’t bother to thank me, it’s the easiest
+thing in the world. Matter of fact, I know where a vacancy just came
+up.</p>
+<p><strong>norville</strong>: …Mail room.</p>
+<p><strong>norville</strong>: …This’ll only take a moment.</p>
+<p><strong>intercom</strong>: Yeah?</p>
+<p><strong>norville</strong>: Good afternoon to ya, this is Norville
+Barnes –</p>
+<p><strong>intercom</strong>: Barnes! Where the hell have you been! And
+where’s my voucher?!</p>
+<p><strong>norville</strong>: …Well, I’m not sure where I –</p>
+<p><strong>intercom</strong>: I need that voucher! I told you a week ago
+it was important!</p>
+<p><strong>norville</strong>: But look, I’m president of the company now
+and I –</p>
+<p><strong>intercom</strong>: I don’t care if you’re president of the
+company! I need that voucher! Now!</p>
+<p><strong>norville</strong>: Oh, of all the foolish… Listen, do you
+take shorthand? Are you familiar with the mimeograph machine?</p>
+<p><strong>amy</strong>: Of course – I went to the Muncie, uh,
+Secretarial Polytechnic!</p>
+<p><strong>norville</strong>: – A Muncie girl! Can you beat that!</p>
+<p><strong>amy</strong>: Well, I just don’t know how to thank you,
+Mr. Barnes –</p>
+<p><strong>norville</strong>: Please! Norville!</p>
+<p><strong>norville</strong>: …It’s my pleasure!</p>
+<p><strong>norville</strong>: …Gooooooo Eagles!</p>
+<p><strong>amy</strong>: Gooooooooo Eagles!</p>
+<p><strong>smitty</strong>: …Once ‘The Munce’… Holy…</p>
+<p><strong>amy</strong>: And is this guy from chumpsville?! I pulled the
+old mother routine –</p>
+<p><strong>smitty</strong>: Adenoids?</p>
+<p><strong>amy</strong>: Lumbago.</p>
+<p><strong>smitty</strong>: That gag’s got whiskers on it!</p>
+<p><strong>amy</strong>: I’m telling you, Smitty, the board of Hudsucker
+is up to something –</p>
+<p><strong>smitty</strong>: Yeah.</p>
+<p><strong>ancient puzzler</strong>: Say, Amy, what’s a six-letter word
+for an affliction of the hypothalmus?</p>
+<p><strong>amy</strong>: – And it’s a cinch – Goiter – it’s a cinch this
+guy isn’t in on it. How much time to make the Late Final?</p>
+<p><strong>smitty</strong>: Chief.</p>
+<p><strong>amy</strong>: Hiya, Chief, just the person I wanted to
+apologize to…</p>
+<p><strong>smitty</strong>: About seven minutes.</p>
+<p><strong>amy</strong>: Yeah, I was all wet about your idea man… Well,
+thanks for being so generous… It is human, and you are divine… No, he’s
+no faker. He’s the 100% real McCoy beware-of- imitations genuine
+article: the guy is a real moron –</p>
+<p><strong>amy</strong>: – as in a five-letter word for imbecile –</p>
+<p><strong>amy</strong>: – as pure a specimen as I’ve ever run across…
+Am I sure he’s a nitwit? Heck, if working at the Argus doesn’t make me
+an expert then my name isn’t Amy Archer and I’ve never won the Pulitzer
+Prize…</p>
+<p><strong>amy</strong>: …In 1957… My series on the reunited triplets –
+come on down here, hammerhead, and I’ll show it to ya…</p>
+<p><strong>ancient puzzler</strong>: Amy, what’s a three-letter word for
+a flightless bird?</p>
+<p><strong>amy</strong>: Not now, Morris, I’m busy – That’s right, I
+said hammerhead, as in a ten-letter word for a smug bullying
+self-important newspaperman –</p>
+<p><strong>amy</strong>: – Gnu –</p>
+<p><strong>amy</strong>: – who couldn’t find –</p>
+<p><strong>amy</strong>: – That’s G-N-U –</p>
+<p><strong>amy</strong>: – couldn’t find the Empire State Building with
+a compass, a road map and a native guide.</p>
+<p><strong>amy</strong>: – or emu.</p>
+<p><strong>amy</strong>: …And that’s just the potatoes, Smitty, here
+comes the gravy: The chump really likes me. A Muncie girl!</p>
+<p><strong>smitty</strong>: Better off falling for a rattlesnake.</p>
+<p><strong>amy</strong>: I’m tellin’ ya, this guy’s just the patsy and
+I’m gonna find out what for. There’s a real story, Smitty, some kind of
+plot, a setup, a cabal, a – oh, and say, did I tell ya?!</p>
+<p><strong>smitty</strong>: He didn’t offer you money.</p>
+<p><strong>amy</strong>: A sawbuck!</p>
+<p><strong>smitty</strong>: Ten dollars? Let’s grab a highball!</p>
+<p><strong>amy</strong>: On Norville Barnes!</p>
+<p><strong>amy</strong>: …Copy!</p>
+<p><strong>norville</strong>: Miss Smith, can you come in please to take
+a letter…</p>
+<p><strong>norville</strong>: …of all the cockamamie…</p>
+<p><strong>norville</strong>: …Did you happen to see the front page of
+today’s Manhattan Argus?</p>
+<p><strong>amy</strong>: Well, I… didn’t bother to read the article. I
+didn’t think the picture did you justice.</p>
+<p><strong>norville</strong>: The picture was fine! It’s what that
+knuckle-headed dame wrote underneath! Of all the irresponsible… Amy,
+take this down: Dear Miss Archer. I call you ‘Miss’ because you seem to
+have ‘missed’ the boat completely on this one! How on earth would you
+know whether I’m an imbecile when you don’t even have the guts to come
+in here and interview me man to man! No, change ‘guts’ to ‘courage.’ No,
+make it ‘common decency.’ These wild speculations about my intelligence
+–</p>
+<p><strong>amy</strong>: – or lack thereof?</p>
+<p><strong>norville</strong>: – these preposterous inventions, would be
+better suited to the pages of Amazing Tales Magazine. If the editors of
+the Manhattan Argus see fit to publish the rantings of a disordered
+mind, perhaps they will see fit to publish this letter! But I doubt it.
+I most seriously doubt it. As I doubt also that you could find a home at
+Amazing Tales, a periodical which I have enjoyed for many years. Yours
+sincerely, et cetera.</p>
+<p><strong>amy</strong>: Is that all, Mr. Barnes?</p>
+<p><strong>norville</strong>: …Well, you know me, Amy, at least better
+than that that dame does. Do you think I’m an imbecile?</p>
+<p><strong>amy</strong>: I’m sure I –</p>
+<p><strong>norville</strong>: Go on, tell the truth; I trust you and I
+put a lot of stock in your opinion.</p>
+<p><strong>amy</strong>: Well, I –</p>
+<p><strong>norville</strong>: Oh sure, you’re biased – you’re a fellow
+Muncian. But would an imbecile come up with this?</p>
+<p><strong>norville</strong>: …I designed it myself and this is just the
+sweet baby that can put Hudsucker right back on top.</p>
+<p><strong>norville</strong>: …You know! For kids!</p>
+<p><strong>amy</strong>: …Why don’t I just type this up…</p>
+<p><strong>norville</strong>: Aww, naw, Amy, that won’t be necessary. I
+shouldn’t send it; she’s just doing her job, I guess.</p>
+<p><strong>amy</strong>: Well, I don’t know; maybe she does deserve it.
+Maybe she should’ve come in to face you man to man.</p>
+<p><strong>norville</strong>: Well, she probably had a deadline…</p>
+<p><strong>amy</strong>: Sure, but – she could still have gotten your
+side for the record!</p>
+<p><strong>norville</strong>: Well, it’s done now – what’s the use of
+grousing about it. Forget the letter, Amy, I just had to blow off some
+steam…</p>
+<p><strong>norville</strong>: …She’s probably just a little
+confused.</p>
+<p><strong>amy</strong>: Confused?</p>
+<p><strong>norville</strong>: Yeah, you know, probably one of these
+fast-talking career gals, thinks she’s one of the boys. Probably is one
+of the boys, if you know what I mean.</p>
+<p><strong>amy</strong>: I’m quite sure I don’t know what you mean.</p>
+<p><strong>norville</strong>: Yeah, you know. Suffers from one of these
+complexes they have nowadays. Seems pretty obvious, doesn’t it? She’s
+probably very unattractive and bitter about it.</p>
+<p><strong>amy</strong>: Oh, is that it!</p>
+<p><strong>norville</strong>: Yeah, you know. Probably dresses in men’s
+clothing, swaps drinks with the guys at the local watering hole, and
+hobnobs with some smooth talking heel in the newsroom named Biff or
+Smoocher or…</p>
+<p><strong>amy</strong>: Smitty.</p>
+<p><strong>norville</strong>: Exactly. And I bet she’s ugly. Real ugly.
+Otherwise, why wouldn’t they print her picture next to her byline?</p>
+<p><strong>amy</strong>: Maybe she puts her work ahead of her personal
+appearance.</p>
+<p><strong>norville</strong>: I bet that’s exactly what she tells
+herself! But you and I both know she’s just a dried-up bitter old maid.
+Say, how about you and I grab a little dinner and a show after work? I
+was thinking maybe The King and I –</p>
+<p><strong>norville</strong>: …How about Oklahoma?</p>
+<p><strong>amy</strong>: Norville Barnes, you don’t know a thing about
+that woman! You don’t know who she really is! And only a numbskull
+thinks he knows things about things he knows nothing about!</p>
+<p><strong>norville</strong>: Say, what gives?</p>
+<p><strong>mussburger</strong>: Memo. From the desk of Sidney J.
+Mussburger. Executive order number 530 slash A49. To: Director of the
+Jacksonville Facility. Copies to: Legal Affairs, Business Affairs,
+Central Files. Re: Movement of Raw Materials from the Huron Facility.
+Due to unfavorable news in the slag markets, Jacksonville inventory must
+be reduced by 15 percent with overflow diverted to the Waukegan Stamping
+Facility. Memo. From the desk of Sidney J. Mussburger. Executive order
+number 530 slash A50. To: Director of –</p>
+<p><strong>voice</strong>: Watchoo doin’ down they, Miss Archuh?</p>
+<p><strong>amy</strong>: Huh?!</p>
+<p><strong>amy</strong>: Who are you? How did you know who I am?</p>
+<p><strong>moses</strong>: Ah guess ole Moses knows jes about
+ever’thing, leastways if it concerns Hudsuckuh.</p>
+<p><strong>amy</strong>: But – who are you – what d’you do here?</p>
+<p><strong>moses</strong>: Ah keeps the ol’ circle turning – this ol’
+clock needs plenty o’ care. Time is money, Miss Archuh, and money – it
+drives that ol’ global economy and keeps big Daddy Earth a-spinnin’ on
+‘roun’. Ya see, without that capital fo’mation –</p>
+<p><strong>amy</strong>: Yeah, yeah. Say, you won’t tell anyone about
+me, will you?</p>
+<p><strong>moses</strong>: I don’t tell no one nothin’ lessen they ask.
+Thatches ain’t ole Moses’ way.</p>
+<p><strong>amy</strong>: So if you know everything about Hudsucker, tell
+me why the Board decided to make Norville Barnes president.</p>
+<p><strong>moses</strong>: Well, that even surprised ole Moses at fust.
+I didn’t think the Board was that smart.</p>
+<p><strong>amy</strong>: That smart?!</p>
+<p><strong>moses</strong>: But then I figured it out: they did it ’cause
+they figured young Norville for an imbecile. Like some othuh people ah
+know.</p>
+<p><strong>amy</strong>: Why on earth would they want a nitwit to be
+president?</p>
+<p><strong>moses</strong>: ‘Cause they’s little pigglies! They’s tryin’
+to inspire panic, make that stock git cheap so’s they can snitch it all
+up fo’ themselves! But Norville, he’s got some tricks up his sleeve, he
+does…</p>
+<p><strong>moses</strong>: …you know, fo’ kids? Yeah, he’s a smart one,
+that Norville, heh-heh, he’s a caution. Wal, some folks is square, an’
+some is hip –</p>
+<p><strong>moses</strong>: …But I guess you don’t really know him any
+better than that board does, do ya, Miss Archuh?</p>
+<p><strong>amy</strong>: Well, maybe I –</p>
+<p><strong>moses</strong>: An’ only some kind a knucklehead thinks she
+knows things ’bout things she, uh – when she don’t, uh – How’d that
+go?</p>
+<p><strong>amy</strong>: It’s hardly the same –</p>
+<p><strong>moses</strong>: Why you don’t even know y’own self – you
+ain’t exactly the genuine article are you, Miss Archuh?</p>
+<p><strong>amy</strong>: Well, in connection with my job, sometimes I
+have to go undercover as it were –</p>
+<p><strong>moses</strong>: I don’t mean that! Why you pretendin’ to be
+such a hard ol’ sourpuss! Ain’t never gonna make you happy! Never made
+Warin’ happy.</p>
+<p><strong>amy</strong>: I’m happy enough.</p>
+<p><strong>moses</strong>: Okay, Miss Archuh. …I got gears to see
+to.</p>
+<p><strong>amy</strong>: I’m plenty happy!</p>
+<p><strong>amy</strong>: …Hello?</p>
+<p><strong>moses</strong>: Them po’ young folks. Looks like Norville’s
+in fo’ the same kind o’ heartache ol’ Warin’ had. But then, she never
+axed me ’bout dat…</p>
+<p><strong>chief</strong>: I can’t print this!</p>
+<p><strong>amy</strong>: Why not, it’s all true! The board is using this
+poor guy! They’re depressing the stock so they can buy it cheap!</p>
+<p><strong>chief</strong>: It’s pure speculation! Why, they’d have my
+butt in a satchel!</p>
+<p><strong>smitty</strong>: Ol’ satchel-butt…</p>
+<p><strong>amy</strong>: I know they’re gonna buy that stock –</p>
+<p><strong>chief</strong>: You don’t know anything! Fact is they haven’t
+bought it! The stock is cheap, Archer! What’re they waiting for?</p>
+<p><strong>amy</strong>: I don’t know…</p>
+<p><strong>smitty</strong>: Amy’s hunches are usually pretty good,
+Chief.</p>
+<p><strong>chief</strong>: You don’t accuse someone of stock
+manipulation on a hunch, Ignatz! The readers of the Manhattan Argus
+aren’t interested in sensationalism, gossip and unsupported speculation.
+Facts, figures – those are the tools of the newspaper trade! Why it’s
+almost as if you’re trying to take the heat off this Barnes numbskull –
+like you’ve gone all soft on him!</p>
+<p><strong>smitty</strong>: Come on, Chief, that’s a low blow. Archer’s
+not gonna go goey for a corn-fed idiot.</p>
+<p><strong>chief</strong>: All right, I was out of line. But you’re out
+of line with this stock swindle story. Gimme some more of that
+Moron-from-Sheboygan stuff –</p>
+<p><strong>amy</strong>: Muncie.</p>
+<p><strong>chief</strong>: Whatever. That’s what sells newspapers.</p>
+<p><strong>amy</strong>: I’ve got an even hotter story – The Sap from
+the City Desk.</p>
+<p><strong>chief</strong>: Watch it, Archer –</p>
+<p><strong>amy</strong>: It’s about a dimwitted editor who –</p>
+<p><strong>smitty</strong>: Easy, Amy…</p>
+<p><strong>smitty</strong>: …Let’s grab a highball and calm down.</p>
+<p><strong>amy</strong>: Back off – smoocher!</p>
+<p><strong>smitty</strong>: Say, what gives?</p>
+<p><strong>mrs. mussburger</strong>: – So we’d gone out to the Hamptons
+and the garden was in positive ruins!</p>
+<p><strong>norville</strong>: That must have been quite a
+disappointment, Mrs. Mussburger.</p>
+<p><strong>mrs. mussburger</strong>: Disappointment? J’etais destroyee!
+I was in bed for a week! Positively sick with fury! I called in the
+gardener and said, ’Monsieur Gonzalez, either those azaleas come up next
+spring or you are terminee!</p>
+<p><strong>mrs. mussburger</strong>: I’m brushing up on my French with
+the most charming man, Pierre of Fifth Avenue. Do you know him?</p>
+<p><strong>norville</strong>: I haven’t had –</p>
+<p><strong>mrs. mussburger</strong>: Sidney and I are planning a trip to
+Paris and points continental – Aren’t we, dear?</p>
+<p><strong>mussburger</strong>: Sure, sure. I’m going to borrow Norville
+for a while, if you don’t mind, dear.</p>
+<p><strong>mrs. mussburger</strong>: Well, frankly, I…</p>
+<p><strong>norville</strong>: You have a charming wife, Mr. Muss – uh,
+Sid.</p>
+<p><strong>mussburger</strong>: So they tell me. Norville, let me
+shepherd you through some of the introductions here. Try not to talk too
+much; some of our biggest stockholders are, uh – scratch that: Say
+whatever you want.</p>
+<p><strong>mussburger</strong>: Norville Barnes, allow me to introduce
+Mr. Zebulon Cardozo, one of Hudsucker Industries largest and most loyal
+stockholders.</p>
+<p><strong>cardozo</strong>: Dammit boy, what’s this I hear about you
+bein’ an embecile? What the hell is ailin’ ya?! A week ago my stock was
+worth twice what it is now! I’m considering dumping the whole shootin’
+match, unless I see some vast improvement! Dammit, boy, It’s a range
+war! Either you pull our wagons into a circle or I’m pullin’ out of the
+wagon train!</p>
+<p><strong>norville</strong>: No need for concern, sir; it’s only
+natural in a period of transition for the more timid element to run for
+cover –</p>
+<p><strong>cardozo</strong>: So I’m yella, am I?!!</p>
+<p><strong>cardozo</strong>: …We’ll see who’s yella!!</p>
+<p><strong>mrs. cardozo</strong>: Zebulon, you mind now and quit bein’
+sech an ole grizzly.</p>
+<p><strong>cardozo</strong>: Aww, I wasn’t gonna hurt the boy,
+Lorelei…</p>
+<p><strong>norville</strong>: I’m sorry, Sid, I thought maybe if I
+showed him the long view we might –</p>
+<p><strong>mussburger</strong>: Norville, this is Thorstensen
+Finlandsen, who heads a radical splinter group of disgruntled
+investors.</p>
+<p><strong>norville</strong>: Hello, Mr. Finlandsen, so sorry to meet
+you – uh, happy to walk into y – uh, pleased to make your –</p>
+<p><strong>norville</strong>: Thank you, sir…</p>
+<p><strong>norville</strong>: …I understand your concern about the
+down-ward, you know, but I think you’ll find under our strong new
+leadership…</p>
+<p><strong>norville</strong>: We anticipate, in short order, an
+upward…</p>
+<p><strong>mrs. findlandsen</strong>: Ahhh!</p>
+<p><strong>emcee</strong>: Ladies and gentlemen, distinguished members
+of the Hudsucker board. I give you the king of swing, the rajah of
+romance, the incredible, the unforgettable Mister Vic… Tenetta!</p>
+<p><strong>executive #1</strong>: How’s it going, Mr. Mussburger?</p>
+<p><strong>mussburger</strong>: Bad.</p>
+<p><strong>executive #2</strong>: Good.</p>
+<p><strong>mussburger</strong>: But not bad enough.</p>
+<p><strong>executive #3</strong>: Too bad.</p>
+<p><strong>mussburger</strong>: It could be better, it could be
+worse.</p>
+<p><strong>all three executives</strong>: Hmmmmmm.</p>
+<p><strong>mussburger</strong>: The stock’s got to drop another five
+points if we expect to get controlling interest. Norville tells me he’s
+got some hot idea. Can’t be good.</p>
+<p><strong>executive #1</strong>: Then it can’t be bad!</p>
+<p><strong>executive #2</strong>: Couldn’t be better if it couldn’t be
+worse.</p>
+<p><strong>all</strong>: Hmmmmmm.</p>
+<p><strong>amy</strong>: …Norville?</p>
+<p><strong>amy</strong>: …What happened?</p>
+<p><strong>norville</strong>: Oh. Nothing, really, just… the more timid
+investors are no longer running for cover.</p>
+<p><strong>amy</strong>: Let me look.</p>
+<p><strong>norville</strong>: Sid found me the icepack.</p>
+<p><strong>amy</strong>: Let me hold it, or you’ll have a real
+shiner.</p>
+<p><strong>norville</strong>: Thanks. People seem to be pretty hot over
+this imbecile story.</p>
+<p><strong>amy</strong>: …I’m sorry.</p>
+<p><strong>norville</strong>: Oh, it isn’t your fault, Amy. You’re the
+one person who’s been standing by me through all this.</p>
+<p><strong>amy</strong>: Norville… there’s something I have to tell you.
+You see, I’m not really a secretary.</p>
+<p><strong>norville</strong>: I know that, Amy.</p>
+<p><strong>amy</strong>: …You do?</p>
+<p><strong>norville</strong>: I understand that you’re not very skilled
+yet in the secretarial arts. I’m not that skilled as president. Oh sure,
+I put up a big front – – not that everyone’s buying it.</p>
+<p><strong>amy</strong>: I believe in you, Norville – At least I believe
+in your… intentions –</p>
+<p><strong>norville</strong>: Oh, I don’t blame them, really. I guess I
+have sort of made a mess of things. These folks have to protect their
+investment. Most of them are very nice people –</p>
+<p><strong>amy</strong>: Norville, you can’t trust people here like you
+did in Muncie…</p>
+<p><strong>amy</strong>: …Certain people are –</p>
+<p><strong>norville</strong>: Didja ever go to the top of old man
+Larson’s feed tower and look out over the town?</p>
+<p><strong>amy</strong>: …Huh?</p>
+<p><strong>norville</strong>: You know, on farm route 17.</p>
+<p><strong>amy</strong>: Oh yes! In Muncie!</p>
+<p><strong>norville</strong>: No! In Vidalia! Farm Route 17!</p>
+<p><strong>amy</strong>: Uh – Yes. Seventeen. Yes, I – well no, I – I
+never really… There’s a place I go now, the cutest little place near my
+apartment in Greenwich Village. It’s called Ann’s 440. It’s a beatnik
+bar.</p>
+<p><strong>norville</strong>: You don’t say.</p>
+<p><strong>amy</strong>: Yes, you can get carrot juice or Italian
+coffee, and the people there – well, none of them quite fit in. You’d
+love it – why don’t you come there with me – they’re having a marathon
+poetry reading on New Year’s Eve. I go every year.</p>
+<p><strong>norville</strong>: Every year?</p>
+<p><strong>amy</strong>: Well – this year – if it’s good I plan to make
+it a tradition. Uh, my it certainly is beautiful –</p>
+<p><strong>amy</strong>: …The people look like ants.</p>
+<p><strong>norville</strong>: Well, the Hindus say – and the beatniks
+also – that in the next life some of us will come back as ants. Some
+will be butterflies. Others will be elephants or creatures of the
+sea.</p>
+<p><strong>amy</strong>: What a beautiful thought.</p>
+<p><strong>norville</strong>: What do you think you were in your
+previous life, Amy?</p>
+<p><strong>amy</strong>: Oh, I don’t know. Maybe I was just a
+fast-talking career gal who thought she was one of the boys –</p>
+<p><strong>norville</strong>: Oh no, Amy, pardon me for saying so but I
+find that very farfetched.</p>
+<p><strong>amy</strong>: Norville, there really is something I have to
+tell you –</p>
+<p><strong>norville</strong>: That kind of person would come back as a
+wildebeest, or a warthog. No, I think it more likely that you were a
+gazelle, with long, graceful legs, gamboling through the underbrush.
+Perhaps we met once, a chance encounter in a forest glade. I must have
+been an antelope or an ibex. What times we must have had – foraging
+together for sustenance, picking the grubs and burrs from one another’s
+coats. Or perhaps we simply touched our horns briefly and went our
+separate ways…</p>
+<p><strong>amy</strong>: I wish it were that simple, Norville. I wish I
+was still a gazelle, and you were an antelope or an ibex.</p>
+<p><strong>norville</strong>: Well, can I at least call you deer?
+Ha-ha-ha-ha-ha! Seriously, Amy, the whole thing is what your beatnik
+friends call ‘karma’ – the great circle of life, death and rebirth.</p>
+<p><strong>amy</strong>: Yeah, I think I’ve heard of that. What goes
+around comes around.</p>
+<p><strong>norville</strong>: That’s it. A great wheel that gives us
+each what we deserve…</p>
+<p><strong>norville</strong>: …Tomorrow’s my big presentation to the
+board. I’ve gotta show Sidney and the guys that I deserve all their
+confidence!</p>
+<p><strong>amy</strong>: Oh, Norville –</p>
+<p><strong>norville</strong>: Kiss me once, Amy! Kiss me once for
+luck!</p>
+<p><strong>amy</strong>: Sure, Norville, sure…</p>
+<p><strong>amy</strong>: …Oh, Norville!</p>
+<p><strong>norville</strong>: – So we have economy, simplicity, low
+production cost and the potential for mass appeal, and all that spells
+out great profitability…</p>
+<p><strong>norville</strong>: …I had the boys down at R &amp; D throw
+together this prototype so that our discussion here could have some
+focus…</p>
+<p><strong>norville</strong>: …and to give you gentlemen of the Board a
+first-hand look at just how exciting this gizmo is…</p>
+<p><strong>norville</strong>: …It’s fun, it’s healthy, it’s good
+exercise; kids’ll just love it, and we put a little sand inside to make
+the whole experience more pleasant. And the great part is we won’t have
+to charge an arm and a leg!</p>
+<p><strong>elderly executive</strong>: Yeah but… What is it?</p>
+<p><strong>executive #2</strong>: Does it have rules?</p>
+<p><strong>executive #3</strong>: Can more than one play?</p>
+<p><strong>executive #4</strong>: What makes you think it’s a game?</p>
+<p><strong>executive #3</strong>: Is it a game?</p>
+<p><strong>executive #5</strong>: Will it break?</p>
+<p><strong>executive #6</strong>: It better break eventually!</p>
+<p><strong>executive #2</strong>: Is there an object?</p>
+<p><strong>executive #3</strong>: Are you supposed to make it fly
+off?</p>
+<p><strong>executive #5</strong>: Does it come with batteries?</p>
+<p><strong>executive #4</strong>: Could we charge extra for them?</p>
+<p><strong>executive #7</strong>: Is it safe for toddlers?</p>
+<p><strong>executive #3</strong>: How can you tell when you’re done?</p>
+<p><strong>executive #2</strong>: How do you make it stop?</p>
+<p><strong>executive #1</strong>: Is that a girl’s model or a boy’s?</p>
+<p><strong>executive #3</strong>: Can a parent assemble it??</p>
+<p><strong>executive #7</strong>: What if you get tired before it’s
+done?</p>
+<p><strong>executive #6</strong>: Is there a larger model for the
+obese?</p>
+<p><strong>executive #4</strong>: Can you do it around your neck?</p>
+<p><strong>elderly executive</strong>: And finally… what is it?</p>
+<p><strong>norville</strong>: You know, for kids! It’s… it’s … well,
+it’s…</p>
+<p><strong>mussburger</strong>: It’s brilliant.</p>
+<p><strong>mussburger</strong>: …It’s genius. It’s just exactly what
+Hudsucker needs at this juncture. Sure, sure, a blind man could tell you
+that there’s an enormous demand for this, uh…</p>
+<p><strong>mussburger</strong>: …Congratulations, kid, you’ve really
+outdone yourself. Reinvented the wheel. I’m going to recommend to the
+Board that we proceed immediately with this, uh… with the, uh… that the
+dingus be mass-produced with all deliberate speed. Of course, as
+president of the company the ultimate decision is yours.</p>
+<p><strong>norville</strong>: Well… I’m for it…</p>
+<p><strong>ad man #1</strong>: We’ll call it the Flying Donut!</p>
+<p><strong>ad man #2</strong>: The Dancing Dingus!</p>
+<p><strong>ad man #1</strong>: The Jerky Circle!</p>
+<p><strong>ad man #1</strong>: Something short.</p>
+<p><strong>ad man #2</strong>: Sharp.</p>
+<p><strong>ad man #1</strong>: Snappy.</p>
+<p><strong>ad man #2</strong>: With a little jazz.</p>
+<p><strong>ad man #1</strong>: The Shazzammeter!</p>
+<p><strong>ad man #2</strong>: The Hipster!</p>
+<p><strong>ad man #1</strong>: The Daddy-Oh!</p>
+<p><strong>ad man #2</strong>: The Circle-o’-Gaiety!</p>
+<p><strong>ad man #1</strong>: The Hoopsucker!</p>
+<p><strong>ad man #2</strong>: The Hudswinger!</p>
+<p><strong>ad man #1</strong>: The Hoop-dee-doo!</p>
+<p><strong>ad man #2</strong>: The Hudsucker Hoop!</p>
+<p><strong>ad man #3</strong>: Fellas. Fellas!</p>
+<p><strong>ad man #1</strong>: Ya got somethin’?</p>
+<p><strong>ad man #2</strong>: Ya got somethin’?!</p>
+<p><strong>ad man #3</strong>: Fellas! I got somethin’!</p>
+<p><strong>amy</strong>: …Norville!</p>
+<p><strong>announcer</strong>: Rockwell News presents… ‘Tidbits of
+Time!’ World news in pictures, we kid you not.</p>
+<p><strong>announcer</strong>: …What began as the brainchild of this
+Madison Avenue whiz kid is now a craze sweeping the nation. The ‘hula
+hoop,’ product of Hudsucker Industries, is a recreational device that
+some experts predict may eclipse the television as a means of
+entertainment…</p>
+<p><strong>announcer</strong>: …This dancing dingus of delight, this
+jerky circle of gaiety, is proving to be the toy of choice of most
+American youngsters. – Whoa- ho! Did I say youngsters?! Here’s mom,
+taking a break from her household chores…</p>
+<p><strong>announcer</strong>: …and even dad is ‘swinging’ into the
+act!</p>
+<p><strong>announcer</strong>: …and so the congratulations pour in for
+up-and-comer Norville Barnes, inventor of the hoop – including one very
+special call!</p>
+<p><strong>woman</strong>: He’s on! He’s on the line!</p>
+<p><strong>norville</strong>: …Hello?</p>
+<p><strong>crackling voice</strong>: Hello, Norville. This is the
+President…</p>
+<p><strong>norville</strong>: Oh my God, sir!</p>
+<p><strong>ike</strong>: …I just wanted to congratulate you. I’m very
+proud of you, Norville…</p>
+<p><strong>norville</strong>: Oh my God, sir!</p>
+<p><strong>ike</strong>: …Mrs. Eisenhower is very proud of you. The
+American people are very proud of you.</p>
+<p><strong>reporter #1</strong>: Mr. Barnes, how’d ya come up with the
+idea for the hula hoop?</p>
+<p><strong>norville</strong>: Well, it was no great idea, really. A
+thing like this, it takes a whole company to put it together, and I’m
+just grateful for the opportunity –</p>
+<p><strong>reporter #2</strong>: Mr. Barnes, did you have any idea
+there’d be such a huge response?</p>
+<p><strong>norville</strong>: Well, frankly, I don’t think anybody
+expected this much hoopla –</p>
+<p><strong>reporter #3</strong>: ‘Hoopla on the hula hoop’ – can we
+quote you on that, Mr. Barnes?</p>
+<p><strong>norville</strong>: Well sure, I guess –</p>
+<p><strong>reporter #4</strong>: Mr. Barnes, are you thinking of giving
+yourself a nice fat raise?</p>
+<p><strong>norville</strong>: Ha-ha-ha-ha. Come on, guys…</p>
+<p><strong>newsreel announcer</strong>: What scientific principle
+explains the mind-bending motion of this whipping wheel of wonder?</p>
+<p><strong>scientist</strong>: Ze dinkus is kvite zimple, really. It
+operates on ze same principle zat keeps ze earth spinning ’round ze sun,
+and zat keeps you from flying off ze earth into ze coldest reaches of
+outer space vere you vood die like a miserable shvine! Yes, ze principle
+is ze same, except for ze piece of grrrit zey put in to make ze whole
+experience more pleasant –</p>
+<p><strong>reporter #1</strong>: Mr. Barnes, did the board consider you
+an ‘idea man’ when they promoted you from the mail room?</p>
+<p><strong>norville</strong>: Well, I guess so – I don’t think they
+promoted me because they thought I was a jerk.</p>
+<p><strong>reporter #2</strong>: Mr. Barnes, what’s the next big idea
+for you and Hudsucker Industries?</p>
+<p><strong>norville</strong>: Jeez, I don’t know. An idea like this
+sweet baby doesn’t just come overnight…</p>
+<p><strong>reporter</strong>: Mr. Barnes, are you –</p>
+<p><strong>norville</strong>: – Although I’ll tell you one thing: I
+certainly didn’t expect all this ‘hoopla’!</p>
+<p><strong>norville</strong>: …And you can quote me on that!</p>
+<p><strong>announcer</strong>: Yes, it’s hula hula everywhere! From the
+cocktail parties of the Park Avenue smart set…</p>
+<p><strong>announcer</strong>: …to sweethearts who want to be married in
+the ‘swing’ of things…</p>
+<p><strong>announcer</strong>: …To our friend the Negro, in the heart of
+the dark continent.</p>
+<p><strong>reporter #1</strong>: Mr. Barnes, Mr. Barnes, Rumpus magazine
+has called you the most eligible bachelor of the year, and the society
+pages have been linking you with high-fashion model Za-Za. Would you
+care to comment?</p>
+<p><strong>norville</strong>: There’s no truth to the rumors; we’re just
+dear friends…</p>
+<p><strong>norville</strong>: …Isn’t that right, Za-Za?</p>
+<p><strong>za-za</strong>: Gr-r-r-r-r-r-r-oww!</p>
+<p><strong>reporter #2</strong>: Ho-leeee!</p>
+<p><strong>reporter #3</strong>: Mr. Barnes, whither Hudsucker? Whither
+Norville Barnes?</p>
+<p><strong>reporter #4</strong>: How do you respond to the charges that
+you’re out of ideas? Has Norville Barnes run dry?</p>
+<p><strong>norville</strong>: Not at all. Why, just this week I came up
+with several new sweet ideas. A larger model hula hoop for the portly. A
+battery option for the lazy and handicapped. A model with more sand for
+hard-of-hearing. I’m earning my keep.</p>
+<p><strong>reporter #5</strong>: Speaking of that, Mr. Barnes, do you
+expect to get a raise?</p>
+<p><strong>norville</strong>: Well, by anyone’s account I’ve saved
+Hudsucker Industries; our stock is worth more than it’s ever been. So,
+yes, I expect to be compensated for that.</p>
+<p><strong>norville</strong>: – ha-ha-ha-ha-ha!</p>
+<p><strong>mussburger</strong>: Pull yourself together, Addison.</p>
+<p><strong>addison</strong>: Nobody told me! Nobody told me! You sold
+all of our stock?</p>
+<p><strong>mussburger</strong>: We dumped the whole load. Now quit
+showboating, Addison –</p>
+<p><strong>addison</strong>: I had twenty thousand shares! I’d be a
+millionaire now!</p>
+<p><strong>mussburger</strong>: Sure, sure, we’d all be millionaires.
+There’s no point in looking back. At the time, Stilson thought dumping
+our position would panic the market, further depress the stock – then
+we’d buy it all back, and more of course, once it got cheap –</p>
+<p><strong>addison</strong>: Cheap! Cheap! It’s never been more
+valuable! And I’m ruined! Ruined!</p>
+<p><strong>addison</strong>: I’m getting off this merry-go-round!</p>
+<p><strong>executive</strong>: Addison!</p>
+<p><strong>another executive</strong>: Myron!</p>
+<p><strong>addison</strong>: Aaaaahhh!</p>
+<p><strong>mussburger</strong>: Plexiglas. Had it installed last
+week.</p>
+<p><strong>executive</strong>: …Myron?</p>
+<p><strong>mussburger</strong>: All right, so the kid caught a wave. So
+right now he and his dingus are on top. Well, this too shall pass.
+Myrtle J. Mussburger didn’t raise her boy to go knockkneed at the first
+sign of adversity. I say, we made this kid and we can break him. I say,
+the higher he climbs, the harder he drops. I say, yes, the kid has a
+future, and in it I see shame, dishonor, ignominy and disgrace.</p>
+<p><strong>norville</strong>: Hold it!…</p>
+<p><strong>norville</strong>: …Nobody move, nobody breathe…</p>
+<p><strong>norville</strong>: …An idea… is coming…</p>
+<p><strong>norville</strong>: Deflates. He glares at the tailor.</p>
+<p><strong>norville</strong>: It’s gone now.</p>
+<p><strong>female</strong>: Miss Amy here to see you.</p>
+<p><strong>norville</strong>: Is she in the book? –</p>
+<p><strong>amy</strong>: For Pete’s sake, Norville!</p>
+<p><strong>norville</strong>: Oh! Hello, Amy – was it – I thought she
+said, Mamie –</p>
+<p><strong>amy</strong>: Never mind about that…</p>
+<p><strong>amy</strong>: …You know what those nincompoops in the
+boardroom are doing?</p>
+<p><strong>norville</strong>: Well, I wouldn’t call them nincom –</p>
+<p><strong>amy</strong>: They’re going to discharge eight percent of the
+work force here at Hudsucker. Why, in New York alone that means eighteen
+hundred people out of work, people with wives and children and families
+–</p>
+<p><strong>norville</strong>: Well yes, we’re pruning away some of the
+dead wood, but if –</p>
+<p><strong>amy</strong>: You mean you know about this?</p>
+<p><strong>norville</strong>: Know about it? You think the Board would
+do anything like this without my authorization? No, this was my idea
+from the start.</p>
+<p><strong>amy</strong>: Your i –</p>
+<p><strong>norville</strong>: We have to be realistic, Amy. You know
+things have slowed down a little here at Hudsucker –</p>
+<p><strong>amy</strong>: You’re awful kind to yourself, Norville Barnes
+– the fact is you’ve slowed down, sitting up here like a sultan, not
+doing a lick of work! Why you know it’s ideas that are the lifeblood of
+industry and you haven’t come up with one since the hoop and the
+reason’s plain to see! You’ve forgotten what made your ideas exciting
+for you in the first place – it wasn’t for the fame and the wealth and
+the mindless adulation of – would you get out of here?!</p>
+<p><strong>amy</strong>: …I’ve been watching you, Norville Barnes, even
+though you’ve been trying to avoid me –</p>
+<p><strong>norville</strong>: Now, Aim –</p>
+<p><strong>amy</strong>: Shutup! – and don’t think I haven’t noticed how
+you’ve changed. I used to think you were a swell guy – well, to be
+honest I thought you were an imbecile –</p>
+<p><strong>norville</strong>: Now, Aim –</p>
+<p><strong>amy</strong>: Shutup! – but then I figured out you were a
+swell guy, a little slow maybe, but a swell guy! Well, maybe you’re not
+so slow, but you’re not so swell either and it looks like you’re an
+imbecile after –</p>
+<p><strong>norville</strong>: Now, Aim –</p>
+<p><strong>amy</strong>: Shutup! – after all! You haven’t talked to me
+for a week and now I’m going to say my piece. I’ve got a prediction for
+you, Norville Barnes: I predict that since you’ve decided to dedicate
+yourself to greed and sloth and everything bad, you’re going to lose all
+the good things that your good ideas brought you. You’re going to throw
+them all away chasing after money and ease and the respect of a Board
+that wouldn’t give you the time of day if you… if you…</p>
+<p><strong>norville</strong>: Worked in a watch factory?</p>
+<p><strong>goon</strong>: Huh-huh-huh!</p>
+<p><strong>amy</strong>: Shutup! Exactly! Don’t you remember how you
+used to feel about the hoop? You told me you were gonna bring a smile to
+the hips of everyone in America, regardless of race, creed or color.
+Finally there’d be a thingamajig that would bring everyone together –
+even if it kept ’em apart, spacially – you know, for kids? Your words,
+Norville, not mine. I used to love Norville Barnes – yes, love him! –
+when he was just a swell kid with hot ideas who was in over his head,
+but now your head is too big to be in over!</p>
+<p><strong>norville</strong>: Now, Amy –</p>
+<p><strong>amy</strong>: Consider this my resignation –</p>
+<p><strong>goon</strong>: Hey!!</p>
+<p><strong>goon</strong>: …Awooooo!</p>
+<p><strong>amy</strong>: – Effective immediately!!</p>
+<p><strong>mussburger</strong>: Hmmm… Thank you, Aloysius. This may be
+useful.</p>
+<p><strong>voice</strong>: Buddy… Say, buddy…</p>
+<p><strong>voice</strong>: Buddy… Ya busy?</p>
+<p><strong>norville</strong>: Huh-whuh?</p>
+<p><strong>buzz</strong>: Looks like ya nodded off there, buddy! Say, ya
+got a minute?</p>
+<p><strong>norville</strong>: Oh, uh… Buzz… Is it important?</p>
+<p><strong>buzz</strong>: I like to think so! It’s this little idea I
+been working on!</p>
+<p><strong>buzz</strong>: …Ya see, I don’t intend to be an elevator boy
+forever! Take a look at this sweet baby!</p>
+<p><strong>buzz</strong>: …Ya get it, buddy? Incredibly convenient,
+isn’t it? Ya see –</p>
+<p><strong>buzz</strong>: – this is how it works, it’s these little
+ridges on the side that give it its whammy! See, ya don’t have to drink
+like this anymore –</p>
+<p><strong>buzz</strong>: – Now you can drink like this –</p>
+<p><strong>buzz</strong>: …I call it the Buzz-Sucker, get it, buddy? –
+After me! Buzz! Why, people are just dyin’ for a product like this, and
+the great thing is we won’t have to charge an arm and a –</p>
+<p><strong>norville</strong>: Wait a minute!</p>
+<p><strong>norville</strong>: …Why, this is worthless.</p>
+<p><strong>buzz</strong>: Huh?! But, buddy –</p>
+<p><strong>norville</strong>: This is the most idiotic thing I’ve ever
+seen in my life!</p>
+<p><strong>buzz</strong>: Yeah, but, buddy –</p>
+<p><strong>norville</strong>: Nobody wants a hare-brained product like
+this! Ya see, Buzz, it lacks the creative spark, the unalloyed genius
+that made, uh…</p>
+<p><strong>norville</strong>: …say, the hula hoop such a success.</p>
+<p><strong>buzz</strong>: But, buddy –</p>
+<p><strong>norville</strong>: And what do you mean barging in here and
+taking up my valuable time! I’ve got a company to run here –</p>
+<p><strong>buzz</strong>: But, buddy, you were –</p>
+<p><strong>norville</strong>: – I can’t have every deadbeat on the
+Hudsucker payroll pestering me with their idiotic brainwaves!</p>
+<p><strong>buzz</strong>: Geez, I’m sorry, buddy –</p>
+<p><strong>norville</strong>: An example must be made!</p>
+<p><strong>buzz</strong>: Wuddya mean, buddy?</p>
+<p><strong>norville</strong>: Fired! You’re fired! Is that plain enough
+for you, buster!</p>
+<p><strong>buzz</strong>: Awwww, buddy –</p>
+<p><strong>norville</strong>: And don’t call me buddy! Out of here!
+Out!</p>
+<p><strong>buzz</strong>: Aw, please, sir – this job, it’s all I
+got!</p>
+<p><strong>norville</strong>: Get up!</p>
+<p><strong>buzz</strong>: I understand if ya don’t like the Buzz-Sucker!
+Just lemme keep my job, I’m prayin’ to ya!</p>
+<p><strong>norville</strong>: We don’t crawl at Hudsucker Industries!
+Get out of my office! Leave your uniform in the locker room!</p>
+<p><strong>buzz</strong>: I’m sorry, buddy… I’m sorry…</p>
+<p><strong>norville</strong>: Buzz… off! Ha-ha-ha-ha!</p>
+<p><strong>norville</strong>: Sorry I’m late, Sid. That back nine at
+Riverdale is really murder.</p>
+<p><strong>mussburger</strong>: Sure, sure, it’s a tough course. Well
+thanks for coming, kid. I thought the board room would be a swell place
+to chat undisturbed – it seems we’re having some security problems here
+at the Hud.</p>
+<p><strong>norville</strong>: Ya don’t say.</p>
+<p><strong>mussburger</strong>: Mm. Ordinarily I wouldn’t bother you
+with it, but – this is embarrassing, kid – it seems to concern you
+directly.</p>
+<p><strong>norville</strong>: How’s that, Sid?</p>
+<p><strong>mussburger</strong>: It’s not important in itself – some
+elevator boy you fired came to me claiming you’d stolen the idea for
+the, uh, the hoop dingus from him –</p>
+<p><strong>norville</strong>: Huh?! He – no, I – he’s just – maybe I was
+a little rough on the boy, ya see I –</p>
+<p><strong>mussburger</strong>: Ah forget it, kid, ya don’t have to
+explain to me. He’s a little person. He’s nothing. Like I say,
+ordinarily it would just be a nuisance. But it seems – well, there was a
+spy in the company…</p>
+<p><strong>mussburger</strong>: …Sure, sure, we tried to kill the story.
+But her newspaper won’t play ball… Looks like her story’s coming
+out…</p>
+<p><strong>mussburger</strong>: …See, kid, the problem the Board’ll
+have… you hired this woman. Kept her on, while she made a chump out of
+you. Serious error of judgment… I mean, business is war, kid – ya take
+no prisoners, ya get no second chances. And a boner like this… I’m
+afraid when the Board meets, after New Year’s, your position… well, it
+looks like you’re finished… stick a fork in ya, you’re done… washed
+up…</p>
+<p><strong>mussburger</strong>: …I’m sorry, kid. I understand this dolly
+who betrayed you, she used to be a friend of yours…</p>
+<p><strong>mussburger</strong>: …And this elevator dope used to be a
+friend, too…</p>
+<p><strong>mussburger</strong>: …Well, they’ve got your throat pretty
+well slit. And when you’re dead, ya stay dead. Ya don’t believe me, ask
+Waring Hudsucker… Yeah, looks like curtains. Well, condolences, kid…</p>
+<p><strong>amy</strong>: You can’t print that!</p>
+<p><strong>chief</strong>: He grins wolfishly.</p>
+<p><strong>chief</strong>: We are printing it! She’s hittin’ the streets
+this evening –</p>
+<p><strong>smitty</strong>: – and she’s dynamite!</p>
+<p><strong>amy</strong>: But, Al, it’s the bunk! Norville showed me his
+design for the whatsit the day I met him! Why Buzz couldn’t have
+invented it – look at the man – he’s an imbecile!</p>
+<p><strong>chief</strong>: Archer, you’re a broken record. Fact is
+Gunderson did design it – apparently he’s some kind of prodigy –</p>
+<p><strong>amy</strong>: Says who?!</p>
+<p><strong>smitty</strong>: You’re not the only one with sources, Amy
+–</p>
+<p><strong>chief</strong>: Smith has a source on the Hud board – very
+senior, very hushhush –</p>
+<p><strong>amy</strong>: Yeah, and I’ll bet his initials are Sidney J.
+Mussburger!</p>
+<p><strong>smitty</strong>: You’ve lost it, Aim. You’ve gone soft by the
+looks of it – soft on the dummy from Dubuque –</p>
+<p><strong>amy</strong>: Muncie!</p>
+<p><strong>chief</strong>: Whatever! It’s no dig on you, Archer, but
+this story is hot and you’re no longer on top of it. Why, it’s the scoop
+of the century – the other papers won’t have the Gunderson dope ‘til
+tomorrow – The Allemeinischer Zeitung, Le Figaro, they’ll be choking on
+our dust come mornin’ –</p>
+<p><strong>amy</strong>: You’re fools, both of you! It’s obvious they’re
+out to crucify Norville! They’re trying to destroy him!</p>
+<p><strong>chief</strong>: Amy – take a break. You’ve worked hard on
+this story – heck, you broke it for us! But it’s passed you by and Smith
+here has taken up the slack.</p>
+<p><strong>amy</strong>: You want slack, I’ll give you slack. You’re not
+putting me out to pasture, Al, I quit! Consider this my resignation
+–</p>
+<p><strong>amy</strong>: – effective immediately!</p>
+<p><strong>smitty</strong>: …Soft.</p>
+<p><strong>german voice</strong>: Dell me vat is first zing droppensie
+head ven I menzhon ze vord… Zex?</p>
+<p><strong>norville</strong>: Aww, what’s the difference.</p>
+<p><strong>german voice</strong>: Und ven I zpeak of authority?</p>
+<p><strong>norville</strong>: Awww, I dunno.</p>
+<p><strong>german voice</strong>: Eggzplain please ze zignifikanz of ze
+straw.</p>
+<p><strong>norville</strong>: Nuthin’, really.</p>
+<p><strong>analyst</strong>: Van Dyke beard, pince-nez with chain
+trailing down to his vest, one thumb hooked into the vest, the other
+hand holding a cigar wreathing smoke, which he waves for emphasis.</p>
+<p><strong>analyst</strong>: Patient dizplayed liztlessness, apathy,
+gloomy indifference und vas blue und mopey.</p>
+<p><strong>analyst</strong>: …Ven asked vut four Rhorschach stains
+reprezented, patient replied, ‘Nussink much,’ ‘I don’t know,’ ‘Chust a
+blotch,’ und ‘Sure beats me.’</p>
+<p><strong>analyst</strong>: …Patient shows no ambition, no get-
+up-und-go, no vim. He is riding ze grand loopen-ze-loop –</p>
+<p><strong>analyst</strong>: – zat goes from ze peak of delusional
+gaiety to ze trrrroff of dezbair. Patient is now near – but not yet at!
+– ze lowest point; ven he reachensies bottom he may errrrrupt und pose
+danger to himself und uzzers.</p>
+<p><strong>mussburger</strong>: Diagnosis, Dr. Bromfenbrenner?</p>
+<p><strong>bromfenbrenner</strong>: Patient is eine manic-depressive
+paranoid type B, mit acute schizoid tendencies.</p>
+<p><strong>mussburger</strong>: So patient is…?</p>
+<p><strong>bromfenbrenner</strong>: Prezizely. Knots.</p>
+<p><strong>mussburger</strong>: Prescription?</p>
+<p><strong>bromfenbrenner</strong>: Sree sinks! Kommitment.
+Electroconfulsif therapy. Maintenance in eine zecure wazility.</p>
+<p><strong>barman</strong>: Yeah, just get down here – he says he’s a
+friend of yours… He won’t say, but man, is he from squaresville.</p>
+<p><strong>norville</strong>: I want a martini! It’s New Year’s Eve and
+I want a Martini!</p>
+<p><strong>barman</strong>: Daddy, it’s like I been tellin’ ya –</p>
+<p><strong>norville</strong>: I thought you served misfits here!</p>
+<p><strong>barman</strong>: Yeah, daddy, that’s a roger, but we don’t
+sell alcohol.</p>
+<p><strong>norville</strong>: What kind of bar is it if ya can’t get a
+martini?!</p>
+<p><strong>barman</strong>: It’s a juice and coffee bar, man, like I
+been tellin’ ya –</p>
+<p><strong>norville</strong>: I want a martini! On this bar, right now!
+I’ve had a martini in every bar on the way down here, and I’m not about
+to –</p>
+<p><strong>barman</strong>: Martinis are for squares, man.</p>
+<p><strong>norville</strong>: What’d you call me?!</p>
+<p><strong>norville</strong>: …You son of a –</p>
+<p><strong>amy</strong>: Norville!</p>
+<p><strong>norville</strong>: Huh?!</p>
+<p><strong>norville</strong>: …Oh, it’s you! Lookin’ for a nitwit to buy
+your lunch?!</p>
+<p><strong>amy</strong>: Oh Norville, I –</p>
+<p><strong>norville</strong>: Barman! Set’m up, fella!</p>
+<p><strong>amy</strong>: Norville, I’m sorry, I… I tried to tell you… so
+many times… It’s hard to admit when you’ve been wrong. If you could
+just… find it in your heart to – to give me another chance –</p>
+<p><strong>norville</strong>: Hey! Where’s that martini?!</p>
+<p><strong>amy</strong>: Just give me another chance, Norville – I can
+help you fight this thing. I know this last story was a lie! We can
+prove it! We can –</p>
+<p><strong>norville</strong>: Aww, what’s the difference. I’m all washed
+up… When you’re dead, ya stay dead… Hey, fella!</p>
+<p><strong>amy</strong>: Well that just about does it! I’ve seen
+Norville Barnes, the young man in a big hurry, and I’ve seen Norville
+Barnes the self-important heel, but I’ve never seen Norville Barnes the
+quitter, and I don’t like it!</p>
+<p><strong>amy</strong>: …Fight on, fight on, dear old Muncie.</p>
+<p><strong>amy</strong>: …Fight on, hoist the gold and blue; You’ll be
+tattered, torn and hurtin’ Once ‘The Munce’ is done with you! Goooooo
+Eagles!</p>
+<p><strong>norville</strong>: You lied to me! I can’t believe you lied
+to me! a Muncie girl!</p>
+<p><strong>amy</strong>: But Norville… I…</p>
+<p><strong>amy</strong>: … Oh, Norville!</p>
+<p><strong>reveler #1</strong>: Happy Newby-Newby-New!</p>
+<p><strong>reveler #2</strong>: 1959 we dig you the most!</p>
+<p><strong>newsie</strong>: Extra! Extra! New Year’s Eve Edition!</p>
+<p><strong>newsie</strong>: …Ring out the old! Ring in the new!</p>
+<p><strong>voices</strong>: …You’re not so slow but you’re not so swell
+either and it looks like you’re an imbecile after all!… Noooo, I don’t
+guess you will be here long… Sure, sure, but even there they called you
+dipstick… lamebrain… dope… schmoe… And is this sap from chumpsville?!…
+imbecile after all… Norville, you let me down… You let Mrs. Eisenhower
+down… You let the American people down… imbecile after all… imbecile… I
+predict you’re going to lose all the good things your ideas brought you…
+Please, buddy…! When you’re dead, ya stay dead… Sure, sure, the kid’s
+screwy – it’s official…</p>
+<p><strong>mussburger</strong>: …The barred-window boys are out looking
+for him now, and we’ll see how Wall Street likes the news that the
+President of Hudsucker Industries is headed for the booby-hatch. Why,
+when the doc gets through with him he’ll need diapers and a dribble
+cup…</p>
+<p><strong>mussburger</strong>: …Let me remind you that our secret
+post-New Year’s party will be held in the office of the President
+shortly after midnight tonight. Remember, it’s strictly stag, so leave
+the wives at home; we’ll be showing some films and, yes, gentlemen,
+there will be exotic dancers.</p>
+<p><strong>mussburger</strong>: Well, if that’s all…</p>
+<p><strong>all</strong>: Long live the Hud!</p>
+<p><strong>voice</strong>: Ring out the old! Ring in the new…!</p>
+<p><strong>voice</strong>: …Ring out the old! Ring in the new! Ring out
+the –</p>
+<p><strong>voice</strong>: Hey, watch where you’re – Say, buddy!</p>
+<p><strong>norville</strong>: – Uh… Buzz, I’m sorry, I – Buzz, you gotta
+forgive me! I shouldn’t a fired you, I didn’t know what I was doing! I
+was a little funny in the head, I –</p>
+<p><strong>buzz</strong>: Aw, buddy, I don’t care about that.</p>
+<p><strong>norville</strong>: …You don’t?</p>
+<p><strong>buzz</strong>: Nah, that’s all forgotten.</p>
+<p><strong>norville</strong>: …It is?</p>
+<p><strong>buzz</strong>: Sure, Mr. Muss – uh, Sid said I could have the
+job back.</p>
+<p><strong>norville</strong>: Absolutely, Buzz, I’m glad he –</p>
+<p><strong>buzz</strong>: But he told me you stole that swell hoop idea
+from me. What gives!</p>
+<p><strong>norville</strong>: But, Buzz –</p>
+<p><strong>buzz</strong>: Say, that was a swell idea!</p>
+<p><strong>norville</strong>: But, Buzz, you know I never –</p>
+<p><strong>buzz</strong>: And Sid says you stole it!</p>
+<p><strong>norville</strong>: But Buzz –</p>
+<p><strong>za-za</strong>: Well wuddya waiting for, Clarence – ? Pop him
+one!</p>
+<p><strong>buzz</strong>: Think about that, idea man!!</p>
+<p><strong>passerby</strong>: Say, isn’t he that lunatic?</p>
+<p><strong>voices</strong>: …that big-shot faker… the Wall Street fraud
+guy… nuttier than a fruitcake… they say he’s a menace… wuddya waitin’
+for, call a cop!…</p>
+<p><strong>voices</strong>: …He’s on his feet… We can take him!</p>
+<p><strong>voices</strong>: …Down here! He went down here!</p>
+<p><strong>drunk</strong>: Ring out the old! Ring in the new!</p>
+<p><strong>distant voices</strong>: Ring out the old! Ring in the
+new!</p>
+<p><strong>voices</strong>: Ten… nine… eight… seven…</p>
+<p><strong>voices</strong>: Six… five… four…</p>
+<p><strong>voices</strong>: Three… two…</p>
+<p><strong>voices</strong>: …One…</p>
+<p><strong>voices</strong>: Happy New Year!</p>
+<p><strong>norville</strong>: No –</p>
+<p><strong>norville</strong>: – No, please!</p>
+<p><strong>moses</strong>: Strictly speakin’, I’m never spozed to do
+this but… have you got a better idea?</p>
+<p><strong>voice</strong>: She’ll be comin’ around the mountain when she
+comes, She’ll be comin’ around the mountain when she comes…</p>
+<p><strong>angel</strong>: Love that tune. How ya doin’, kid?</p>
+<p><strong>norville</strong>: Mr… Mr. Hudsucker?</p>
+<p><strong>hudsucker</strong>: Ta-daaaa!</p>
+<p><strong>hudsucker</strong>: …Wooooo!</p>
+<p><strong>hudsucker</strong>: …How d’ya like this thing? They’re all
+wearin’ em upstairs now.</p>
+<p><strong>hudsucker</strong>: …It’s a fad.</p>
+<p><strong>hudsucker</strong>: …Anyway. I hear you’ve been having,
+uh…</p>
+<p><strong>hudsucker</strong>: …Been having some problems with the
+board. The more things change, know what Iyayayeeeeee…</p>
+<p><strong>hudsucker</strong>: …Jesus Christopher – That smarts… Where
+was I? Oh yeah, the board. I guess Sidney’s been puttin’ the screws to
+ya, huh, Norman?</p>
+<p><strong>norville</strong>: Norville.</p>
+<p><strong>hudsucker</strong>: Mm. Well, say what you like about the
+man’s ethics, he’s a balls-to- the-wall businessman. Beat ya any way he
+can. Straight for the jugular. Very effective.</p>
+<p><strong>norville</strong>: Yes sir…</p>
+<p><strong>hudsucker</strong>: Anyway. Any particular reason you didn’t
+give him my Blue Letter? I mean, Jesus, Norman, just a dying man’s last
+words and wishes, no big deal.</p>
+<p><strong>norville</strong>: Huh? Oh, geez, Mr. Hudsucker, I apologize,
+there was an awful lot of excitement and I guess I must’ve mislaid –</p>
+<p><strong>hudsucker</strong>: It’s sittin’ in your apron pocket, right
+where you left it. Imbecile.</p>
+<p><strong>norville</strong>: Oh, geez.</p>
+<p><strong>hudsucker</strong>: Failure to deliver a Blue Letter is
+grounds for dismissal.</p>
+<p><strong>norville</strong>: Geez, I –</p>
+<p><strong>hudsucker</strong>: Ah, it’s New Year’s, I’m not gonna add to
+your woes. I’m just saying.</p>
+<p><strong>norville</strong>: Yessir.</p>
+<p><strong>hudsucker</strong>: Well, why don’t ya read it.</p>
+<p><strong>norville</strong>: Sir?</p>
+<p><strong>hudsucker</strong>: Yeah, go ahead. Might learn
+somethin’.</p>
+<p><strong>norville</strong>: Yes sir…</p>
+<p><strong>norville</strong>: ‘From the desk of Waring Hudsucker. To.
+Sidney J. Mussburger. Regarding. My demise. Dear Sid. By the time you
+read this, I will have joined the organization upstairs – an exciting
+new beginning. I will retain fond memories of the many years you and I
+–’</p>
+<p><strong>hudsucker</strong>: Yeah, yeah, it’s the standard resignation
+boilerplate – go down to the second paragraph.</p>
+<p><strong>norville</strong>: ‘Many years, uh… I know that you will be
+wondering why I have decided to move on, ending my tenure at Hudsucker,
+and here on Earth. You will be thinking, Why now, when things are going
+so well? Granted, from the standpoint of our balance sheet and
+financials, sure, sure, we’re doing fine. However, Sid. These things
+have long since ceased to give me pleasure. I look at myself now and no
+longer see the idealistic young man who started this company. Now I see
+only an empty shell whom others call a ’success.’ How has this come to
+pass? When and why did I trade all of my hopes, dreams and aspirations,
+for the emptiness of power and wealth? What the heck have I done?</p>
+<p><strong>norville</strong>: ‘…Looking back now, Sid, I see that I
+allowed time and age to corrupt my dreams. Instead of fiercely guarding
+what was timeless inside of myself, I let the hubbub of earthly commerce
+erode my character, and dissolve my better self. How is it that some
+manage to preserve themselves where I have failed? Sidney, I do not
+know. Perhaps if others love you, you may more securely love yourself –
+but I am alone. I loved a woman once, Sid, as you well know – a
+beautiful, vibrant lady, an angel who in her wisdom saw fit to choose
+you instead of I…’</p>
+<p><strong>hudsucker</strong>: Skip this part…</p>
+<p><strong>hudsucker</strong>: …Last paragraph, last paragraph.</p>
+<p><strong>norville</strong>: ‘…And so, Sid, the future does not belong
+to such as I – nor even you. We have made our compromises with time. The
+future belongs to the young, who may more energetically wage the battle
+against corruption. Accordingly, in the spirit of hope, and the ringing
+in of the new, I hereby bequeath my entire interest in the company, and
+my seat on the board, to whomever is Hudsucker’s most recent employee at
+the time of my demise. I know this will disappoint you – you, Sid, who
+have served so diligently and for so long. But –’</p>
+<p><strong>hudsucker</strong>: – tough titty toenails!</p>
+<p><strong>hudsucker</strong>: …That’ll show the bastard!</p>
+<p><strong>hudsucker</strong>: …Yeah, go ahead.</p>
+<p><strong>norville</strong>: ‘…But Sid, let me urge you to work closely
+with the new president, and to keep giving Hudsucker Industries all your
+energies – but not your soul. For while we must strive for success, we
+must not worship it. Long live the Hud. Waring Hudsucker…’</p>
+<p><strong>hudsucker</strong>: …Geez.</p>
+<p><strong>hudsucker</strong>: Yup. It’s all there. Well, see that it
+gets delivered in the morning.</p>
+<p><strong>hudsucker</strong>: Sheeel beeee…</p>
+<p><strong>hudsucker</strong>: …Ridin’ six white horses, She’ll be
+ridin’ six white horses She’ll be ridin’ six white horses When she
+comes…</p>
+<p><strong>lou</strong>: What the heck’s he doin’, Benny?</p>
+<p><strong>benny</strong>: What the heck’s she doin’, Lou?</p>
+<p><strong>lou</strong>: What the heck they doin’?</p>
+<p><strong>benny</strong>: You know what they’re doin’ now, Lou.</p>
+<p><strong>lou</strong>: This I know, Benny.</p>
+<p><strong>benny</strong>: This you’re familia’ with.</p>
+<p><strong>lou</strong>: …Geez.</p>
+<p><strong>benny</strong>: …Geez.</p>
+<p><strong>lou</strong>: …Y’all right, Benny?</p>
+<p><strong>benny</strong>: …Yeah, I’m… It’s just… It’s beautiful,
+Lou!</p>
+<p><strong>lou</strong>: It is beautiful, Benny.</p>
+<p><strong>benny</strong>: …It’s the most beautiful t’ing I ever
+saw.</p>
+<p><strong>lou</strong>: It’s the most beautiful t’ing I ever saw.</p>
+<p><strong>bartender</strong>: You cats comin’ from a party?</p>
+<p><strong>benny</strong>: Cabbies’ affair.</p>
+<p><strong>lou</strong>: Hacks’ New Year’s gala.</p>
+<p><strong>bartender</strong>: Crazy. Get you anything else? Sangria?
+Carrot juice? Herbal tea?</p>
+<p><strong>lou</strong>: Bromo.</p>
+<p><strong>benny</strong>: …Bromo.</p>
+<p><strong>moses</strong>: And so began 1959. The new year…</p>
+<p><strong>moses</strong>: …And the start of a new business cycle. When
+he learned that Norville owned the comp’ny, ol’ Sidney was upset at
+first.</p>
+<p><strong>moses</strong>: …It’s a good thing Doc Bromfenbrenner was
+there…</p>
+<p><strong>moses</strong>: …‘cause he was able to keep Sidney from
+harmin’ his ol’ self.</p>
+<p><strong>moses</strong>: …Now Norville, he went on an’ ruled with
+wisdom and compassion…</p>
+<p><strong>moses</strong>: …and started dreamin’ up them excitin’ new
+ideas again. You know, for kids!</p>
+<p><strong>moses</strong>: …An’ that’s the story of how Norville Barnes
+climbed away up to the forty-fourth floor of the Hudsucker Buildin’…</p>
+<p><strong>moses</strong>: …an’ then fell all the way down, but didn’t
+quite squish hisself.</p>
+<p><strong>moses</strong>: …Ya know, they say there was a man who jumped
+from the fortyfifth floor… but that’s another story. Heh-heh-heh!
+Ya-heh-heh-heh!</p>
+</body>
+</html>

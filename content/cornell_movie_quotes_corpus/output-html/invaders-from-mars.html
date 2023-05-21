@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>invaders-from-mars</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="invaders-from-mars">invaders-from-mars</h1>
+<p><strong>grove air force base</strong>: AIR DEFENSE COMMAND
+COLORADO</p>
+<p><strong>m.p.</strong>: What’s happening here, Ma’am?</p>
+<p><strong>woman</strong>: We must see Colonel Wilson.</p>
+<p><strong>the boy</strong>: Yes. We have to see him. Call him. He
+talked at my school. He said we could come here any time we wanted. I
+have to tell him what’s happening.</p>
+<p><strong>the woman</strong>: It’s extremely important. I’m the nurse
+for the Tri-School District. It’s a public health problem.</p>
+<p><strong>m.p.</strong>: Go ahead.</p>
+<p><strong>sgt. rinaldi</strong>: Base Commander’s office. Yes. Who?</p>
+<p><strong>col. wilson</strong>: This is Colonel Wilson. Yes, I did
+speak at the Hillcrest School a couple of days ago. Really. Hm. Very
+well. Send them up. No, not in their own car. Have them driven up.</p>
+<p><strong>col. wilson</strong>: Now what?</p>
+<p><strong>rinaldi</strong>: You better not keep them here too damn
+long.</p>
+<p><strong>col. wilson</strong>: I’m Colonel Wilson. This is Sergeant
+Rinaldi.</p>
+<p><strong>the woman</strong>: I’m Linda Magnuson. I’m the nurse for the
+Tri-School District, which includes the Hillcrest School.</p>
+<p><strong>col. wilson</strong>: You mentioned something about a public
+health problem.</p>
+<p><strong>linda</strong>: I’ll get to that. This is Jimmy Gardner, a
+pupil at Hillcrest.</p>
+<p><strong>col. wilson</strong>: Won’t you sit down.</p>
+<p><strong>col. wilson</strong>: Please tell me what’s on your
+minds.</p>
+<p><strong>jimmy</strong>: First I have to look at the back of your
+neck.</p>
+<p><strong>linda</strong>: He’s serious, Colonel.</p>
+<p><strong>jimmy</strong>: All right. I had to be sure.</p>
+<p><strong>col. wilson</strong>: Sure of <u>what</u>?</p>
+<p><strong>linda</strong>: It’s rather difficult to tell this story.
+Yesterday Jimmy came to see me in my office. He was very upset…</p>
+<p><strong>secretary</strong>: She’ll be out in just a second. … I’ve
+had things like that happen. I had a dream, last night, where my little
+sister showed up at my front door. Skinny little thing, we don’t get
+along … anyway I open my front door this morning … and there she is! We
+haven’t spoken in years. Now, you tell me how that happens.</p>
+<p><strong>second woman</strong>: Oh, Ms. Magnuson, he’s here to see
+you.</p>
+<p><strong>linda</strong>: I was just leaving – I’m due over in Riverton
+in 20 minutes. What’s wrong?</p>
+<p><strong>linda</strong>: You look like you’re feeling better. I’m here
+to help you. Is there anything you want to talk about?</p>
+<p><strong>linda</strong>: Nothing I can help with?</p>
+<p><strong>linda</strong>: You’re going to wait me out, are you?</p>
+<p><strong>linda’s voice</strong>: “I couldn’t get a word out of him,
+and I did have to get over to Riverton. But I stopped into the
+Principal’s office on my way out …”</p>
+<p><strong>linda</strong>: What’s the story on Jimmy Gardner?</p>
+<p><strong>principal</strong>: Gardner? Oh, um – he’s a new student.
+Just moved here. Why?</p>
+<p><strong>linda</strong>: His teacher brought him in to see me. Said
+he’d been acting up in class. Creating a disturbance. I couldn’t get a
+thing out of him.</p>
+<p><strong>principal</strong>: Oh?</p>
+<p><strong>linda</strong>: What’s his family background?</p>
+<p><strong>principal</strong>: They’re from out of state. Father’s an
+engineer at the nuclear power plant. I really don’t know much about
+them.</p>
+<p><strong>linda’s voice</strong>: “I had a busy afternoon and evening,
+and I didn’t think any more about it until the following morning, when
+it was brought back to my attention in a forcible manner …”</p>
+<p><strong>linda</strong>: Jimmy, what’s wrong?</p>
+<p><strong>jimmy</strong>: You have to help me! You have to!</p>
+<p><strong>linda</strong>: It’s all right, Mrs. McKeltch. Let me talk to
+him.</p>
+<p><strong>linda</strong>: What did he see you doing?</p>
+<p><strong>linda</strong>: How was he spying on you?</p>
+<p><strong>linda</strong>: All right. Wait outside.</p>
+<p><strong>linda</strong>: It’s okay. I’m here to help. I won’t betray
+you. Whatever you tell me, stays in this room.</p>
+<p><strong>jimmy</strong>: First … can I see the back of your neck?</p>
+<p><strong>jimmy</strong>: All right.</p>
+<p><strong>linda</strong>: Now, have I earned the right to know what
+that was about?</p>
+<p><strong>linda</strong>: Mrs. McKeltch, if you’re going to wait, could
+you please have a seat? It’s very hard to concentrate with your shadow
+on the door.</p>
+<p><strong>linda</strong>: This is a new town for you. Do you like it
+here?</p>
+<p><strong>jimmy</strong>: No.</p>
+<p><strong>linda</strong>: Why not? Moving is hard for anybody. Was it
+hard for you to leave all your friends?</p>
+<p><strong>jimmy</strong>: I don’t have many friends. Dad’s all the time
+moving.</p>
+<p><strong>linda</strong>: Can you tell me about that?</p>
+<p><strong>linda’s voice</strong>: “Finally, he broke down and began to
+talk.”</p>
+<p><strong>linda</strong>: You’d better take over here. Tell it to the
+Colonel the way you told it to me.</p>
+<p><strong>jimmy</strong>: Well, sir, it all started a couple of weeks
+ago …</p>
+<p><strong>dad</strong>: … sounds interesting …</p>
+<p><strong>the man</strong>: … critical … great opportunity, George … up
+the ladder … arranged.</p>
+<p><strong>mom</strong>: … moving again …</p>
+<p><strong>dad</strong>: … all right … you’re right, of course …</p>
+<p><strong>voices</strong>: Good night … night … George. Talk to me from
+there.</p>
+<p><strong>dad’s voice</strong>: … up yet, do you suppose?</p>
+<p><strong>mom’s voice</strong>: … look … maybe.</p>
+<p><strong>dad</strong>: Son … are you awake?</p>
+<p><strong>jimmy</strong>: Yes.</p>
+<p><strong>dad</strong>: We’re going to be moving, son.</p>
+<p><strong>jimmy</strong>: Do we have to?</p>
+<p><strong>dad</strong>: I know, son. But you’ll like it where we’re
+going. I’m getting a good job. It’s a pretty part of the country.</p>
+<p><strong>jimmy</strong>: I’ll have to go to a new school – again.</p>
+<p><strong>dad</strong>: You’ll meet new friends. I know … it’s rough.
+But I have to move, son.</p>
+<p><strong>jimmy’s voice</strong>: “Like I said, we move around a lot.
+Dad’s really good at his job, and when they open a new plant, they
+always ask him to go work at it. So I was used to it. But I was sad
+…”</p>
+<p><strong>jimmy</strong>: What’s that, Dad?</p>
+<p><strong>dad</strong>: That’s the Air Force Base.</p>
+<p><strong>jimmy</strong>: Wow …</p>
+<p><strong>jimmy</strong>: Are you going to sell power to them, Dad?</p>
+<p><strong>dad</strong>: No, son. They have their own.</p>
+<p><strong>jimmy</strong>: What are those, Dad?</p>
+<p><strong>dad</strong>: That’s their radar, Jimmy. It picks up anything
+that moves across the sky.</p>
+<p><strong>dad</strong>: Our new home, Jimmy.</p>
+<p><strong>mom</strong>: This furniture will have to go.</p>
+<p><strong>jimmy</strong>: Wow. Look at the mountains.</p>
+<p><strong>dad</strong>: This can be your room if you want it. What do
+you say?</p>
+<p><strong>jimmy</strong>: Is the hill ours too?</p>
+<p><strong>dad</strong>: If we want it, it is.</p>
+<p><strong>jimmy</strong>: Let’s check it out, Dad.</p>
+<p><strong>jimmy</strong>: Wow. There’s the town. And there’s the air
+base. This is a great hill.</p>
+<p><strong>dad</strong>: It’s got a name. Copper Ridge. There used to be
+a copper mine near here.</p>
+<p><strong>jimmy</strong>: Let’s see what’s on the other side. Maybe
+we’ll find some copper.</p>
+<p><strong>jimmy</strong>: Wow …</p>
+<p><strong>dad</strong>: Well, isn’t this something. Be careful if you
+play here.</p>
+<p><strong>mom’s voice</strong>: George … ! Jimmy … !</p>
+<p><strong>dad</strong>: Let’s go help your mom set up house.</p>
+<p><strong>jimmy</strong>: A meteorite, Dad, look!</p>
+<p><strong>dad</strong>: It’s that time of year again. We should get a
+pretty good show out here.</p>
+<p><strong>jimmy</strong>: Why, Dad?</p>
+<p><strong>dad</strong>: Because the sky is so clear out here.</p>
+<p><strong>dad</strong>: Okay, Jimmy. You’re all set. This man,
+Mr. Cross, is your Principal. He’ll take you to your classroom.</p>
+<p><strong>mr. cross</strong>: Hello, Jimmy. Welcome to Hillcrest
+School. Will you come with me.</p>
+<p><strong>teacher</strong>: Jimmy, I’m Mrs. McKeltch. Your new teacher.
+This is the fifth grade – Class, this is a new pupil, Jimmy Gardner. I
+know you’ll make him feel at home.</p>
+<p><strong>a kid</strong>: Lookit his clothes.</p>
+<p><strong>col. wilson</strong>: Welcome. I’m new here myself.</p>
+<p><strong>col. wilson</strong>: The United States Government maintains
+bases in every state and even in some other countries, by mutual
+agreement between those countries and us. Grove is part of the Air
+Defense Command – which has the responsibility of repelling any aerial
+attack on the United States. You’ve all seen and heard our planes flying
+over. They protect this city and the surrounding area out to a distance
+of approximately 300 miles. In addition we do research involving some of
+the most advanced aircraft in the world.</p>
+<p><strong>col. wilson</strong>: We have two fighter-interceptor wings
+at the base … consisting of four squadrons each of F-15 fighters. Each
+wing has 10 pilots. Some of them are administrators – just like your
+teachers and principals who work in your school. There are maintenance
+and supply buildings. Parts for planes, trucks, cars, food storage,
+refrigeration plants … a power plant for electricity, fuel storage,
+cooking facilities, mess halls … In other words, boys and girls, Grove
+Air Base is just like a self-contained little city and can survive by
+itself for an extended period of time.</p>
+<p><strong>col. wilson</strong>: We are your protection against any
+hostile forces that threaten the peace and security of this school,
+city, or the country. Do you have any questions?</p>
+<p><strong>little girl</strong>: Are there any girl pilots in the Air
+Force?</p>
+<p><strong>col. wilson</strong>: As a matter of fact there are quite a
+few now. Most of them are attached to the Military Airlift Command.</p>
+<p><strong>little boy</strong>: How do you prevent planes from sneaking
+up on you?</p>
+<p><strong>col. wilson</strong>: We have radar that looks at the sky day
+and night. It’s a brand new radar called phased array. So nothing can
+sneak up on us.</p>
+<p><strong>another boy</strong>: Can we come and see the planes
+sometime?</p>
+<p><strong>col. wilson</strong>: I would welcome all of you to visit.
+You can call me personally and arrange a school or group visit almost
+any time. Well – boys and girls, I hope I’ve answered some of your
+questions. I hope you have a better idea of what Grove Air Force Base is
+doing here. I’ve enjoyed talking to you today and I know you’ll look at
+me and the other airmen on the base as your friends.</p>
+<p><strong>boy</strong>: Are you stuck up? Or maybe you’re just
+dumb.</p>
+<p><strong>little girl</strong>: He really looks dumb to me.</p>
+<p><strong>jimmy</strong>: Yeah, the same to ya!</p>
+<p><strong>dad</strong>: There goes another one. That was a bright
+one.</p>
+<p><strong>jimmy</strong>: There Dad – look!</p>
+<p><strong>jimmy</strong>: There are more this year than last.</p>
+<p><strong>dad</strong>: This should be the heaviest shower of the
+year.</p>
+<p><strong>jimmy</strong>: There’s Cassius …</p>
+<p><strong>jimmy</strong>: … and Rigel.</p>
+<p><strong>dad</strong>: And that one – to the right of Rigel?</p>
+<p><strong>jimmy</strong>: Pessius.</p>
+<p><strong>jimmy</strong>: Which one’s that? The dull, red one.</p>
+<p><strong>dad</strong>: That’s Mars. The closest planet to us, now.
+That’s why it’s more than just a point in the sky.</p>
+<p><strong>mom</strong>: Well, come on, you two. Time to go to bed.</p>
+<p><strong>jimmy</strong>: Mom – this is the best show all year.</p>
+<p><strong>mom</strong>: I know. But you have a full day of school
+tomorrow – You, too.</p>
+<p><strong>dad</strong>: Five minutes more.</p>
+<p><strong>dad</strong>: Well, son? Should we call it a night? I for one
+have had a long day.</p>
+<p><strong>jimmy</strong>: Okay.</p>
+<p><strong>dad</strong>: Goodnight – sleep well. Dream a nice one for
+me.</p>
+<p><strong>jimmy</strong>: You too, Dad.</p>
+<p><strong>jimmy</strong>: Dad! Mom!</p>
+<p><strong>dad</strong>: Jim – what’s wrong?!</p>
+<p><strong>jimmy</strong>: You’ve got to come see – a big thing went
+down over the hill!</p>
+<p><strong>jimmy</strong>: It was big – and it glowed – and it went down
+over there – behind the hill.</p>
+<p><strong>dad</strong>: What did it look like?</p>
+<p><strong>jimmy</strong>: It was – it was – it changed shape. First it
+was big and round, then it was flat, then it was long and thin.</p>
+<p><strong>dad</strong>: Are you sure you saw that? In the rain – it may
+have <u>looked</u> like it changed shape –</p>
+<p><strong>jimmy</strong>: I don’t know, Dad. But it was big.</p>
+<p><strong>dad</strong>: I’ll go take a look when the rain lets off.</p>
+<p><strong>mom</strong>: What do you think he saw? Could it have been
+something from the air base?</p>
+<p><strong>jimmy</strong>: No, Mom. It wasn’t a plane.</p>
+<p><strong>dad</strong>: You go back to sleep. I’ll look when it’s
+light.</p>
+<p><strong>jimmy</strong>: Did you see anything, Dad?</p>
+<p><strong>jimmy</strong>: Are you all right, Dad?</p>
+<p><strong>dad</strong>: Sure … fine.</p>
+<p><strong>mom</strong>: George, where have you been?</p>
+<p><strong>jimmy</strong>: What happened to your other slipper?</p>
+<p><strong>dad</strong>: I lost it. It’s kind of muddy out there.</p>
+<p><strong>jimmy</strong>: Was there anything over the hill?</p>
+<p><strong>dad</strong>: Nothing I could see, son. It was a bad dream is
+all.</p>
+<p><strong>jimmy</strong>: What happened to your neck, Dad?</p>
+<p><strong>dad</strong>: A branch must have nicked me.</p>
+<p><strong>dad</strong>: How are you today, son?</p>
+<p><strong>mom</strong>: Your father asked you a question.</p>
+<p><strong>jimmy</strong>: What? – I…</p>
+<p><strong>mom</strong>: Both of you eat this before it gets cold.</p>
+<p><strong>mom</strong>: I have to go over to the town this morning and
+do a lot of shopping. This house needs just <u>everything</u>. I’ll
+probably be gone all day. Jimmy, hurry up and eat or you’ll be late.</p>
+<p><strong>dad</strong>: I’ll take you to school.</p>
+<p><strong>mom</strong>: You don’t have to. The school bus stops right
+outside here, at 7:30. I’ve got to run.</p>
+<p><strong>mom</strong>: George … the car won’t start.</p>
+<p><strong>mom</strong>: That’s strange. I had a dream last night, where
+the car wouldn’t start. Isn’t that funny …</p>
+<p><strong>dad</strong>: Try it again.</p>
+<p><strong>dad</strong>: It’s probably the solenoid. Take it back to
+Gleason’s, they said they’d fix it if we found anything wrong.</p>
+<p><strong>mom</strong>: I will. But isn’t that odd – about my dream …
+?</p>
+<p><strong>dad</strong>: See you later.</p>
+<p><strong>dad</strong>: Let me walk you to the bus stop.</p>
+<p><strong>dad</strong>: You know something, son? You were right. There
+is something over the hill.</p>
+<p><strong>jimmy</strong>: What?</p>
+<p><strong>dad</strong>: Come on. I’ll show you.</p>
+<p><strong>jimmy</strong>: No, Dad.</p>
+<p><strong>jimmy</strong>: No!</p>
+<p><strong>supervisor</strong>: Those are twin reactors. Sodium cooled
+cores. Best damn design in the whole country. Never worry a minute about
+them.</p>
+<p><strong>supervisor</strong>: There it is. We know exactly how much
+extra juice we can throw into the network just by checking the
+reactors.</p>
+<p><strong>supervisor</strong>: Larry – George Gardner. I was just
+showing George around. He’s our new whiz kid – trouble shooter. He’s
+gonna be your new supervisor.</p>
+<p><strong>supervisor</strong>: George tells me he’s programmed a crisis
+into our simulation tape. He wants to see how we do.</p>
+<p><strong>larry</strong>: Flick that switch.</p>
+<p><strong>larry</strong>: You’ve just taken control of all the electric
+power in the western sector of the United States. You’ve run one of
+these before. Go ahead.</p>
+<p><strong>george</strong>: There’s the transient I programmed. … Okay?
+– we’re losing Colorado … Nevada … Utah … It’s going to crash … the
+whole system … There it goes –</p>
+<p><strong>larry</strong>: See? The system’s self-limiting the problem.
+It’s cutting off power in cells to preserve the entire network.</p>
+<p><strong>george</strong>: … And how does it do that?</p>
+<p><strong>larry</strong>: It’s designed to. We just put it in. As long
+as the ADP’s are functioning they’ll always save the total network.
+Faster than any human response.</p>
+<p><strong>george</strong>: What if the ADP’s fail?</p>
+<p><strong>supervisor</strong>: That’s highly unlikely.</p>
+<p><strong>larry</strong>: Unit #2 over there – – isn’t counted on the
+grid. If it’s needed it kicks in and gives us a 12% safety margin.</p>
+<p><strong>george</strong>: And if that doesn’t do it?</p>
+<p><strong>supervisor</strong>: Oh – well – in that case you’d have a
+catastrophic failure. We’d lose the whole thing – “vapor lock” it so to
+speak, and not be able to start it up again for hours.</p>
+<p><strong>jimmy</strong>: Frogs?</p>
+<p><strong>jimmy</strong>: Shut up! Shut up!</p>
+<p><strong>secretary</strong>: She’ll be out in just a second. … I’ve
+had things like that happen. I had a dream, last night, where my little
+sister showed up at my front door. Skinny little thing, we don’t get
+along … anyway I open my front door this morning … and there she is! We
+haven’t spoken in years. Now, you tell me how that happens.</p>
+<p><strong>linda</strong>: You look like you’re feeling better. I’m here
+to help you. Is there anything you want to talk about?</p>
+<p><strong>linda</strong>: Nothing I can help with?</p>
+<p><strong>linda</strong>: You’re going to wait me out, are you?</p>
+<p><strong>jimmy’s voice</strong>: “That was the first time I saw Linda.
+I was too scared to say anything. And I didn’t want to get my Dad in
+trouble. But when I got home that night …”</p>
+<p><strong>mom</strong>: Hi. Sorry I’m late.</p>
+<p><strong>jimmy</strong>: The back door was open.</p>
+<p><strong>mom</strong>: George? George?</p>
+<p><strong>mom</strong>: Hello … is George Gardner there, please. This
+is his wife. How long ago was that? Thank you.</p>
+<p><strong>mom</strong>: He left just after three.</p>
+<p><strong>mom</strong>: Hello, can you tell me the phone number of the
+police?</p>
+<p><strong>cop #1</strong>: Evening Ma’am. I’m Chief Ward, and this is
+Officer Keneny.</p>
+<p><strong>mom</strong>: Thank you for coming, Chief. My husband left
+work hours ago and hasn’t come home. It’s not like him.</p>
+<p><strong>chief</strong>: Is there anywhere you can think of that he
+might be? We’ll be glad to check.</p>
+<p><strong>mom</strong>: We only just moved here. Where would he go?</p>
+<p><strong>jimmy</strong>: Maybe he went back over the hill.</p>
+<p><strong>chief</strong>: What hill?</p>
+<p><strong>mom</strong>: My husband was looking behind that hill this
+morning. We thought we might have seen an aircraft crash there.</p>
+<p><strong>chief</strong>: Oh? When was that?</p>
+<p><strong>mom</strong>: Oh, it was early – just before dawn. But it was
+nothing, he already looked.</p>
+<p><strong>chief</strong>: We’ll have a look.</p>
+<p><strong>officer keneny</strong>: I didn’t hear anything about any air
+crash …</p>
+<p><strong>mom</strong>: Oh, my God, George, you scared the life out of
+me.</p>
+<p><strong>dad</strong>: This is Ed. Ed, this is my wife. This is my
+son.</p>
+<p><strong>mom</strong>: How do you do.</p>
+<p><strong>man</strong>: Couldn’t hardly do much better. And
+yourself?</p>
+<p><strong>mom</strong>: Yes … I’m … fine. George, where were you? You
+scared us to death.</p>
+<p><strong>man</strong>: Well, guess I better be going.</p>
+<p><strong>dad</strong>: See you later, Ed.</p>
+<p><strong>mom</strong>: What happened to you? Who was that?</p>
+<p><strong>dad</strong>: That’s Ed. Ed works with the Bell Telephone
+switching division.</p>
+<p><strong>mom</strong>: Where’s your car?</p>
+<p><strong>dad</strong>: I left it at work.</p>
+<p><strong>mom</strong>: You did? Why? Where were you? They said you
+left hours ago. We were worried.</p>
+<p><strong>dad</strong>: Yes, I see.</p>
+<p><strong>dad</strong>: I’m home now.</p>
+<p><strong>mom</strong>: Yes – but …</p>
+<p><strong>chief</strong>: I see that you’re back.</p>
+<p><strong>dad</strong>: You know, it really is beautiful up there. Let
+me show you. We’ll take a walk after dinner.</p>
+<p><strong>mom</strong>: George, you’re acting very strangely.</p>
+<p><strong>jimmy</strong>: Mom. I gotta talk to you.</p>
+<p><strong>mom</strong>: What?</p>
+<p><strong>jimmy</strong>: Don’t go over the hill, Mom. Please.</p>
+<p><strong>mom</strong>: Why not, Jimmy? What’s wrong?</p>
+<p><strong>jimmy</strong>: Mom, something happened up there to Dad – He
+got a scratch on his neck – Promise, Mom. Don’t go.</p>
+<p><strong>dad</strong>: What’s wrong, Ellen?</p>
+<p><strong>mom</strong>: It’s his nightmare. He still hasn’t gotten over
+it … about the other side of the hill.</p>
+<p><strong>dad</strong>: I’m afraid you’re still upset by our moving,
+son. You’ll get over it. Let’s finish the dishes.</p>
+<p><strong>dad</strong>: How about tomorrow, we’ll take a walk up there
+when it’s light. Okay? Go to bed now, son.</p>
+<p><strong>a door slams.</strong>: Jimmy awakes with a jerk. He’s fallen
+asleep at the window sill. He looks at the clock. 12:20. His eyes fly to
+the ridge.</p>
+<p><strong>mom’s voice</strong>: … it’s late … he’s probably asleep.</p>
+<p><strong>dad’s voice</strong>: … tomorrow … midnight …</p>
+<p><strong>mom’s voice</strong>: … yes.</p>
+<p><strong>mom</strong>: Not hungry? Jimmy, are you all right?</p>
+<p><strong>mom</strong>: I have a wonderful idea. Why don’t we all go on
+a picnic up in the hills.</p>
+<p><strong>jimmy</strong>: When?</p>
+<p><strong>mom</strong>: This afternoon. It’s wonderful up there – you
+still haven’t seen the best part.</p>
+<p><strong>jimmy</strong>: I have school.</p>
+<p><strong>mom</strong>: I’ll pack us a lunch. Hamburgers. You always
+like that, don’t you.</p>
+<p><strong>mom</strong>: Your bus is here.</p>
+<p><strong>chief</strong>: … Midnight.</p>
+<p><strong>linda</strong>: Jimmy, what’s wrong?</p>
+<p><strong>jimmy</strong>: You have to help me. You have to!</p>
+<p><strong>linda</strong>: It’s all right, Mrs. McKeltch. Let me talk to
+him.</p>
+<p><strong>linda</strong>: It’s okay. I’m here to help. I won’t betray
+you. Whatever you tell me, stays in this room.</p>
+<p><strong>jimmy</strong>: First … can I see the back of your neck?</p>
+<p><strong>linda’s voice</strong>: “You can imagine my skepticism,
+Colonel, when I heard Jimmy’s story.”</p>
+<p><strong>linda</strong>: Eating a frog?</p>
+<p><strong>linda</strong>: That’s quite a story. You know that, don’t
+you?</p>
+<p><strong>jimmy</strong>: Yes.</p>
+<p><strong>linda</strong>: A UFO lands in back of your house and puts
+something in your Dad and Mom’s necks. Then it gets the police, and your
+teacher too.</p>
+<p><strong>linda</strong>: How did it get Mrs. McKeltch?</p>
+<p><strong>jimmy</strong>: She said the frog came from around the Copper
+Ridge. She must’ve been behind the hill.</p>
+<p><strong>linda</strong>: What would you think if somebody told you a
+story like this?</p>
+<p><strong>jimmy</strong>: I’d believe him.</p>
+<p><strong>linda</strong>: Why?</p>
+<p><strong>jimmy</strong>: ’Cause he wouldn’t lie.</p>
+<p><strong>linda</strong>: Stay here a minute.</p>
+<p><strong>linda</strong>: Mrs. McKeltch … Jimmy seems troubled by an
+injury to your neck.</p>
+<p><strong>linda</strong>: He says you have a bandage on it.</p>
+<p><strong>linda</strong>: Why don’t you let me have a look at it? I
+might be able to help you clear it up.</p>
+<p><strong>principal</strong>: Ms. Magnuson, is Jimmy Gardner with
+you?</p>
+<p><strong>linda</strong>: Why, yes.</p>
+<p><strong>principal</strong>: Jimmy’s father is on the phone. I wonder
+if you’d take the call.</p>
+<p><strong>linda</strong>: All right. I’ll be right back.</p>
+<p><strong>linda</strong>: Hello, this is Ms. Magnuson speaking.</p>
+<p><strong>dad’s voice</strong>: I understand, Miss, that you have my
+son in your office.</p>
+<p><strong>linda</strong>: Yes, I do, Mr. Gardner.</p>
+<p><strong>dad’s voice</strong>: May I ask why?</p>
+<p><strong>linda</strong>: We were having a little talk.</p>
+<p><strong>dad’s voice</strong>: About what?</p>
+<p><strong>linda</strong>: Children often have trouble adjusting to a
+new school.</p>
+<p><strong>dad’s voice</strong>: I don’t know what he’s told you – What
+<u>has</u> he told you? Would you like to tell <u>me</u> – ?</p>
+<p><strong>linda</strong>: Mr. Gardner, I –</p>
+<p><strong>dad’s voice</strong>: You people have a lot of nerve, taking
+it on yourselves to encourage young children to speak out of turn. I’m
+of a mind to pull him out of school if this is your idea of how to
+handle … What sort of training do you have anyway?</p>
+<p><strong>linda</strong>: Mr. Gardner, I don’t think this is the place
+to discuss this matter.</p>
+<p><strong>dad’s voice</strong>: I’m not particularly interested,
+<u>Ms.</u> Magnuson, in what you think is correct. My wife and I are
+going away on a business trip this afternoon and we want Jimmy with us.
+Keep him in your office until we arrive.</p>
+<p><strong>linda</strong>: Of course.</p>
+<p><strong>dad</strong>: We’ll be by to pick him up in ten minutes.</p>
+<p><strong>linda</strong>: Yes, Mr. Gardner.</p>
+<p><strong>linda</strong>: That was your father. They’re coming to pick
+you up in ten minutes.</p>
+<p><strong>linda</strong>: You can go out that window – it leaves you
+off at the back of the school building.</p>
+<p><strong>linda</strong>: Do you know how to follow a map?</p>
+<p><strong>jimmy</strong>: Yes. I can even read star maps.</p>
+<p><strong>linda</strong>: This shows how to get to my home. I’m giving
+you back roads and footpaths, so there’s less chance of you being
+seen.</p>
+<p><strong>linda</strong>: This is the key to my back door. I’ll meet
+you there when school lets out.</p>
+<p><strong>linda</strong>: I’ll go out and occupy the Principal. I never
+saw you leave. Okay?</p>
+<p><strong>mr. cross’s voice</strong>: Good afternoon, Mrs. McKeltch.
+Enjoy your weekend.</p>
+<p><strong>dad</strong>: What do you mean – gone? What the hell kind of
+a nurse are you, anyway?</p>
+<p><strong>linda</strong>: I’m sorry, Mr. Gardner. I was out of my
+office for a minute and when I got back – he was gone.</p>
+<p><strong>dad</strong>: What did he talk to you about?</p>
+<p><strong>linda</strong>: He was upset with moving, I believe.</p>
+<p><strong>dad</strong>: Is that all he said?</p>
+<p><strong>linda</strong>: Why, yes. Why?</p>
+<p><strong>jimmy</strong>: Ms. Magnuson! Ms. Magnuson! I found them –
+they’re down in the tunnels!</p>
+<p><strong>linda</strong>: Jimmy, calm down! What happened? Tell me what
+happened!</p>
+<p><strong>jimmy</strong>: I got trapped in Mrs. McKeltch’s van – and
+she went to the tunnel and went down there with them – behind my house.
+I saw them.</p>
+<p><strong>linda</strong>: Where, Jimmy?</p>
+<p><strong>jimmy</strong>: Behind my house, up on the ridge.</p>
+<p><strong>linda</strong>: If we go and look and there’s nothing there,
+you’ll have to admit to me that this is all in your mind.</p>
+<p><strong>jimmy</strong>: Yes.</p>
+<p><strong>jimmy</strong>: This is the spot.</p>
+<p><strong>jimmy</strong>: This is where it was – the tunnel
+opening.</p>
+<p><strong>linda</strong>: I don’t see anything.</p>
+<p><strong>jimmy</strong>: No, but it was here.</p>
+<p><strong>jimmy</strong>: It isn’t here. It’s gone.</p>
+<p><strong>jimmy</strong>: I swear it was here.</p>
+<p><strong>linda</strong>: But it’s not, Jimmy.</p>
+<p><strong>jimmy</strong>: No.</p>
+<p><strong>linda</strong>: Let’s go look at the sand pit behind your
+house.</p>
+<p><strong>jimmy</strong>: They’ll get us.</p>
+<p><strong>linda</strong>: We’ll be very careful. But we have to see. If
+something landed there, there would be a big scar in the ground.
+Wouldn’t there?</p>
+<p><strong>linda</strong>: Let’s go.</p>
+<p><strong>jimmy</strong>: Be careful. Please be careful.</p>
+<p><strong>linda</strong>: Does it look to you like anything landed
+here?</p>
+<p><strong>jimmy</strong>: Maybe – it landed in the bushes.</p>
+<p><strong>linda</strong>: Jimmy – we’re already in trouble, both of us,
+because of me helping you run away. Now, I can make up a story that will
+smooth things over. Your house is right down there. Why don’t you let me
+take you home, and tell your parents something that will make them not
+be mad at us?</p>
+<p><strong>linda</strong>: … Afterwards the two Air Force men came back
+in their truck. They drove by us like nothing had happened. Now they’re
+on the base. I saw them.</p>
+<p><strong>sgt. rinaldi</strong>: That would be Hollis and Johnson. They
+were assigned to ground search in this area.</p>
+<p><strong>jimmy</strong>: What are we going to do now?</p>
+<p><strong>jimmy</strong>: Where are we going?</p>
+<p><strong>jimmy</strong>: No, no! The cops are with <u>them</u>!</p>
+<p><strong>linda</strong>: Stay here. I’m going to make a phone
+call.</p>
+<p><strong>jimmy</strong>: Who are you calling?</p>
+<p><strong>linda</strong>: The State Police.</p>
+<p><strong>linda</strong>: Yes, I’d like the number of the State Police
+in Denver, please. Yes, thank you.</p>
+<p><strong>linda</strong>: Get in the car.</p>
+<p><strong>jimmy</strong>: Did you call the State Police?</p>
+<p><strong>linda</strong>: All their lines were busy.</p>
+<p><strong>linda</strong>: There’s one place we can hide, while we call
+the FBI.</p>
+<p><strong>linda</strong>: No one comes here after dark.</p>
+<p><strong>jimmy</strong>: Hide the car.</p>
+<p><strong>linda</strong>: Damn.</p>
+<p><strong>jimmy</strong>: I know a way.</p>
+<p><strong>jimmy</strong>: What’s the number?</p>
+<p><strong>voice on phone</strong>: “All circuits are busy at this time.
+Please try again later.”</p>
+<p><strong>linda</strong>: Still busy.</p>
+<p><strong>jimmy</strong>: There was this guy with Dad … who said he
+worked at the telephone switching division.</p>
+<p><strong>linda</strong>: This way.</p>
+<p><strong>jimmy</strong>: What is it?</p>
+<p><strong>linda</strong>: I don’t know. I don’t know what I’m doing
+here –</p>
+<p><strong>jimmy</strong>: But you saw – the men go under the sand …</p>
+<p><strong>linda</strong>: Yes … yes, but I’m not sure what I saw
+anymore.</p>
+<p><strong>jimmy</strong>: What’s that?</p>
+<p><strong>linda</strong>: Don’t go in.</p>
+<p><strong>jimmy</strong>: I’m not. They must be tunneling under the
+whole town.</p>
+<p><strong>linda</strong>: We can’t do this alone. We’ve got to get
+help.</p>
+<p><strong>jimmy</strong>: There was a man named Colonel Wilson, from
+the Air Force Base. He was talking in our class. He said we could visit
+him any time we wanted. I’ll bet he could do something.</p>
+<p><strong>linda</strong>: Let’s try.</p>
+<p><strong>jimmy</strong>: Colonel Wilson – whatever is supposed to
+happen – it’s supposed to happen at midnight.</p>
+<p><strong>linda</strong>: I assure you – it’s true, Colonel.</p>
+<p><strong>col. wilson</strong>: I can see that you’re sincere, but I’m
+sure you can understand how hard it is to believe this story.</p>
+<p><strong>aide’s voice</strong>: Colonel, Lts. Hollis and Johnson are
+here to see you, sir.</p>
+<p><strong>col. wilson’s voice</strong>: – Send them in.</p>
+<p><strong>rinaldi</strong>: You two are under arrest.</p>
+<p><strong>col. wilson</strong>: Now you two are going to tell me what
+this is all about.</p>
+<p><strong>rinaldi</strong>: They’re dead.</p>
+<p><strong>col. wilson</strong>: Close the base. Seal the perimeter.
+Alert base security.</p>
+<p><strong>col. wilson</strong>: I want these two men taken to sick bay
+and autopsied.</p>
+<p><strong>jimmy</strong>: What’s that?</p>
+<p><strong>technician</strong>: What’s going on?</p>
+<p><strong>col. wilson</strong>: We’ve sealed the base. I’m increasing
+security around the launch.</p>
+<p><strong>technician #1</strong>: Is something wrong?</p>
+<p><strong>col. wilson</strong>: I’m not sure …</p>
+<p><strong>col. wilson</strong>: We have a launch scheduled for tonight.
+We thought, by launching it from here, we could minimize publicity.</p>
+<p><strong>col. wilson</strong>: We’re disguising it as a military
+satellite launch. Only it’s not a satellite.</p>
+<p><strong>col. wilson</strong>: Go ahead. Tell them.</p>
+<p><strong>technician #1</strong>: It’s a soft landing mission.</p>
+<p><strong>jimmy</strong>: Where’s it going?</p>
+<p><strong>technician #2</strong>: To Mars.</p>
+<p><strong>jimmy</strong>: Mars!</p>
+<p><strong>linda</strong>: What will the rocket do?</p>
+<p><strong>engineer</strong>: It will explore a 50-mile square of Mars –
+looking for life. It’s designed to retrieve samples from beneath the
+Martian surface, down to 200 feet.</p>
+<p><strong>col. wilson</strong>: Earth and Mars are in this relative
+position only once every 20 years.</p>
+<p><strong>tech #2</strong>: We <u>have</u> to launch tonight.</p>
+<p><strong>linda</strong>: You’re looking for life?</p>
+<p><strong>jimmy</strong>: They didn’t find any signs of life on the
+Viking missions.</p>
+<p><strong>scientist</strong>: That’s why we’re looking beneath the
+surface this time. Something might be able to live down below.</p>
+<p><strong>col. wilson</strong>: And if it does – it might not want to
+be found.</p>
+<p><strong>linda</strong>: The tunnels.</p>
+<p><strong>col. wilson</strong>: There’s something you two should know.
+Two nights ago there was a very large meteor fall on our radar – but no
+reports of a strike. We were on full alert for an hour, and we’ve had
+search teams out, looking for a sign of some kind of impact or landing.
+Hollis and Johnson were the ground team assigned to your area.</p>
+<p><strong>col. wilson</strong>: I want every man on the base checked. I
+want updates every five minutes from launch control.</p>
+<p><strong>fellow worker</strong>: George – you’re here late.</p>
+<p><strong>henry</strong>: Mr. Gardner – I didn’t expect you
+tonight.</p>
+<p><strong>george</strong>: I have some work to do. This is my wife.</p>
+<p><strong>henry</strong>: That’s not necessary, Mr. Gardner. Go right
+in.</p>
+<p><strong>technician</strong>: What’s this, George?</p>
+<p><strong>george</strong>: It’s a simulation tape I have to run.</p>
+<p><strong>karl</strong>: What … ?!</p>
+<p><strong>jimmy’s mom knocks the man out! –</strong>: while Dad grabs
+control of the board. Jimmy’s Dad starts flicking switches – defeating
+the system. SIRENS WHOOPING – people running around in the room.</p>
+<p><strong>technician</strong>: Henry … Guards! … in here!</p>
+<p><strong>technician</strong>: Dammit! Plant #2! The damping rods just
+went in! Both reactors are out!!</p>
+<p><strong>technician</strong>: It’s a shut-down – a complete shut-down
+– Christ Almighty!</p>
+<p><strong>cop</strong>: What’s wrong with our goddamn generators?! Get
+them turned on.</p>
+<p><strong>cop #2</strong>: Chief – the phones just went out.</p>
+<p><strong>chief</strong>: Calm down! And SHUT UP!</p>
+<p><strong>chief</strong>: I want this town sealed tight. No one in or
+out – they’ll be no looting during this crisis.</p>
+<p><strong>officer</strong>: Chief – we’re not going to have any looting
+– and the power will be back in a few minutes, probably.</p>
+<p><strong>chief</strong>: That’s a direct order, Smith. I want everyone
+armed with riot weapons. Set up roadblocks on all the main arteries.</p>
+<p><strong>officer keneny</strong>: You heard the Chief, boys. Let’s get
+to it.</p>
+<p><strong>col. wilson</strong>: Go to base auxiliary power.</p>
+<p><strong>security men</strong>: Halt!</p>
+<p><strong>rinaldi</strong>: Looks like the runways, Colonel.</p>
+<p><strong>curtis</strong>: Launch security reports two men stopped
+trying to damage the rocket.</p>
+<p><strong>tech #1</strong>: Do they have any damage?</p>
+<p><strong>curtis</strong>: They’re running checks now.</p>
+<p><strong>tech #2</strong>: Telemetry and tracking reports radar
+temporarily out.</p>
+<p><strong>col. wilson</strong>: Do we know what caused the power
+blackout?</p>
+<p><strong>curtis</strong>: It looks widespread, sir. A rolling blackout
+that started with the power company.</p>
+<p><strong>col. wilson</strong>: Get me a status report on our aircraft.
+Do we have anything up top right now?</p>
+<p><strong>flight officer</strong>: An F-4 on approach. He’s out of
+fuel, sir. Coming down.</p>
+<p><strong>col. wilson</strong>: Are we in radio contact with him?</p>
+<p><strong>flight officer</strong>: He says it looks like the whole
+state is out.</p>
+<p><strong>communications officer</strong>: Sir, base communications are
+out. It’ll take us an hour to get up. Cheyenne knows we’re not hit.
+Their sensors will tell them that but we’re out of touch.</p>
+<p><strong>col. wilson</strong>: Scramble what we can. We’ll use our
+planes as a radio link.</p>
+<p><strong>rinaldi</strong>: Flight operations reports heavy damage to
+runways 2 and 4, sir. For the time being we’re down across the
+board.</p>
+<p><strong>col. wilson</strong>: Christ –</p>
+<p><strong>col. wilson</strong>: What about our phones?</p>
+<p><strong>curtis</strong>: They’re out. Separate problem with the long
+distance lines.</p>
+<p><strong>col. wilson</strong>: Christ!</p>
+<p><strong>tech #1</strong>: I’m going down to the launch site and check
+firsthand.</p>
+<p><strong>tech #3</strong>: Launch center reports their computer
+updates are suspect because of the power failure.</p>
+<p><strong>engineer</strong>: Telemetry and tracking are tied to
+external power. We can’t launch. It looks like a scrub.</p>
+<p><strong>communications officer</strong>: Sir, operations reports base
+radar back in service.</p>
+<p><strong>col. wilson</strong>: Anything coming in?</p>
+<p><strong>officer</strong>: Negative, sir.</p>
+<p><strong>rinaldi</strong>: They’re already here.</p>
+<p><strong>comm officer</strong>: Also, sir, base security just arrested
+two technicians trying to steal equipment in the middle of the
+blackout.</p>
+<p><strong>col. wilson</strong>: Steal? What?</p>
+<p><strong>comm officer</strong>: Copper wire, sir. A lot of it was
+loaded onto a base truck.</p>
+<p><strong>col. wilson</strong>: Copper wire?</p>
+<p><strong>comm officer</strong>: They just finished the autopsy on
+Hollis and Johnson. They say they’ve removed an “electronic pin” from
+the base of both Hollis and Johnson’s brains. The thing was capable of
+receiving radio signals. It triggered a cerebral hemorrhage in both of
+them – on command.</p>
+<p><strong>jimmy</strong>: Then my Mom and Dad …</p>
+<p><strong>col. wilson</strong>: Jim – can you take us to that place –
+the sand pit?</p>
+<p><strong>col. wilson</strong>: Are the jeeps and half-tracks okay?</p>
+<p><strong>transport officer</strong>: Ready to go when you are,
+sir.</p>
+<p><strong>col. wilson</strong>: A base like this has troops stationed
+on it to ensure its security. We’re not out of options yet.</p>
+<p><strong>col. wilson</strong>: Let’s roll, Rinaldi. Curtis. Everyone
+we can muster, goes.</p>
+<p><strong>rinaldi</strong>: Yes, sir.</p>
+<p><strong>linda</strong>: Colonel – the tunnel under the school.</p>
+<p><strong>col. wilson</strong>: Curtis, you take a platoon of men and
+head for the school. Enter the tunnel and move forward to the extent
+possible.</p>
+<p><strong>curtis</strong>: Yes, sir.</p>
+<p><strong>col. wilson</strong>: Let’s get those masks on.</p>
+<p><strong>col. wilson</strong>: Better put this on. You too.</p>
+<p><strong>jimmy</strong>: He’s one of them.</p>
+<p><strong>the chief</strong>: No one allowed through.</p>
+<p><strong>col. wilson</strong>: This is official government
+business.</p>
+<p><strong>col. wilson</strong>: Get those men to sick bay.</p>
+<p><strong>jimmy</strong>: It’s up there – just ahead.</p>
+<p><strong>curtis</strong>: You have two seconds to move that
+barricade.</p>
+<p><strong>cop #2</strong>: You crazy idiot!</p>
+<p><strong>curtis</strong>: Pick ’em up and move ’em out!</p>
+<p><strong>curtis</strong>: Downstairs – in the furnace room.</p>
+<p><strong>curtis</strong>: All right men. Let’s go.</p>
+<p><strong>lieutenant</strong>: Let’s go! Let’s go!</p>
+<p><strong>corporal</strong>: It’s not going to go – it’s too big.</p>
+<p><strong>lieutenant</strong>: This way! – Through the windows!</p>
+<p><strong>col. wilson</strong>: Nothing?</p>
+<p><strong>captain</strong>: Nothing.</p>
+<p><strong>man with metal detector</strong>: We’re getting nothing
+below.</p>
+<p><strong>technician</strong>: We’re getting a signal from the
+transmitter on Rinaldi. If we get a second receiver we can pinpoint his
+location.</p>
+<p><strong>col. wilson</strong>: Get going.</p>
+<p><strong>col. wilson</strong>: Any word from Curtis?</p>
+<p><strong>aide</strong>: A message 5 minutes ago. They’ve entered the
+tunnel and are coming in this direction as fast as they can.</p>
+<p><strong>col. wilson</strong>: We have your parents, Jimmy.</p>
+<p><strong>jimmy</strong>: Are they –</p>
+<p><strong>col. wilson</strong>: They’re still alive. They’re in a
+hospital, being operated on right now. A neurosurgeon is on his way from
+Denver. He should be there in an hour.</p>
+<p><strong>jimmy</strong>: But in an hour –</p>
+<p><strong>linda</strong>: They’ll be all right, Jimmy. They have
+excellent doctors in Denver.</p>
+<p><strong>jimmy</strong>: Better than the Martians?</p>
+<p><strong>colonel’s aide</strong>: Colonel! Over here!</p>
+<p><strong>colonel’s aide</strong>: The boy and the woman – were sucked
+down! Like Rinaldi!</p>
+<p><strong>technicians</strong>: Colonel – we have a fix on Rinaldi’s
+transmitter.</p>
+<p><strong>colonel</strong>: All right – let’s go in. Set the
+charges.</p>
+<p><strong>demolition man</strong>: Set, Colonel. Whenever you say.</p>
+<p><strong>col. wilson</strong>: Lieutenant, tell our people at the far
+end of the pit to fire their mortars and rockets at ground targets so
+they won’t be able to tell where we’re coming in.</p>
+<p><strong>col. wilson</strong>: All right, men. Let’s go.</p>
+<p><strong>jimmy</strong>: Where’s Linda?</p>
+<p><strong>jimmy</strong>: Please don’t. Please don’t hurt her. I’ll do
+anything you say.</p>
+<p><strong>jimmy</strong>: Linda! Linda … !</p>
+<p><strong>technician</strong>: This has been melted out, then instantly
+re-sealed – amazing …</p>
+<p><strong>col. wilson</strong>: There’s no time. Let’s move.</p>
+<p><strong>rinaldi</strong>: Stop. Go back.</p>
+<p><strong>jimmy</strong>: You know my name.</p>
+<p><strong>jimmy</strong>: I ain’t tellin’ you nothin’. What’s that?</p>
+<p><strong>jimmy</strong>: They’re trying to stop you. Why are you
+invading us? What do you want with my Mom and Dad? Why are you stealing
+copper?</p>
+<p><strong>jimmy</strong>: Let them go! Let my Mom and Dad go! I’ll fix
+you!</p>
+<p><strong>jimmy</strong>: Captain Curtis!</p>
+<p><strong>jimmy’s voice</strong>: Captain Curtis … this way!</p>
+<p><strong>jimmy</strong>: This way … hurry!</p>
+<p><strong>col. wilson</strong>: Set charges.</p>
+<p><strong>linda</strong>: What happened?</p>
+<p><strong>col. wilson</strong>: Everybody out … !</p>
+<p><strong>demolition man</strong>: We’ve placed the charges. Give me a
+time.</p>
+<p><strong>col. wilson</strong>: Give us five minutes to get out of
+here.</p>
+<p><strong>curtis</strong>: They’ve sealed off the entrance.</p>
+<p><strong>col. wilson</strong>: Start digging.</p>
+<p><strong>demolition man</strong>: Three minutes thirty left …</p>
+<p><strong>curtis</strong>: They use these to tunnel. Maybe we can –</p>
+<p><strong>jimmy</strong>: I know how to use it.</p>
+<p><strong>jimmy</strong>: I saw them do it.</p>
+<p><strong>col. wilson</strong>: Everyone get back – get back!</p>
+<p><strong>jimmy</strong>: Mom … Dad!</p>
+<p><strong>mom/dad</strong>: It’s all right … It’s all right …</p>
+<p><strong>jimmy</strong>: I had an awful dream.</p>
+<p><strong>dad</strong>: What, Jim, what?</p>
+<p><strong>jimmy</strong>: First lemme look at your necks.</p>
+<p><strong>dad</strong>: That must have been some dream.</p>
+<p><strong>jimmy</strong>: I dreamed a UFO landed behind the hill and
+put a thing in your neck. First you went out to look at it by yourself,
+and then the cops came …</p>
+<p><strong>jimmy</strong>: … And then everything blew up. And then I
+woke up.</p>
+<p><strong>dad</strong>: That’s a doozy of a dream, son.</p>
+<p><strong>jimmy</strong>: It was so real, Dad.</p>
+<p><strong>dad</strong>: It was all made of stuff that’s happened to you
+in the last few days. The sand pit in back of the house, and the meteor
+shower, and meeting your teacher and the colonel at school, and being
+afraid of the new kids because you don’t know them …</p>
+<p><strong>mom</strong>: It’s all this moving from place to place. We’re
+never settled. I’m having nightmares myself.</p>
+<p><strong>jimmy</strong>: What kind, Mom?</p>
+<p><strong>mom</strong>: Oh, I can’t remember. But people do have bad
+dreams when their routine is disturbed.</p>
+<p><strong>dad</strong>: I know, Ellen. We’ll settle down soon.</p>
+<p><strong>jimmy</strong>: I was so scared.</p>
+<p><strong>dad</strong>: Better now, son?</p>
+<p><strong>dad</strong>: Better get some sleep, son, or you’ll be pretty
+tired at school tomorrow.</p>
+<p><strong>mom</strong>: Good night.</p>
+<p><strong>jimmy</strong>: ’Night.</p>
+</body>
+</html>

@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>gladiator</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="gladiator">gladiator</h1>
+<p><strong>commodus</strong>: Do you think he’s really dying?</p>
+<p><strong>lucilla</strong>: He’s been dying for ten years.</p>
+<p><strong>commodus</strong>: I think he’s really dying this time.</p>
+<p><strong>commodus</strong>: He has to be bled every night now.</p>
+<p><strong>lucilla</strong>: How do you know that?</p>
+<p><strong>commodus</strong>: I’ve been so informed.</p>
+<p><strong>commodus</strong>: If he weren’t really dying he wouldn’t
+have sent for us.</p>
+<p><strong>lucilla</strong>: Maybe he just misses us.</p>
+<p><strong>commodus</strong>: And the Senators. He wouldn’t have
+summoned them if –</p>
+<p><strong>lucilla</strong>: Peace, Commodus. After two weeks on the
+road your incessant scheming is hurting my head.</p>
+<p><strong>commodus</strong>: The first thing I shall do is honor him
+with games worthy of his majesty.</p>
+<p><strong>lucilla</strong>: The first thing I shall do is have a hot
+bath.</p>
+<p><strong>commodus</strong>: Why have we stopped?</p>
+<p><strong>praetorian guard member</strong>: We’re here, sir.</p>
+<p><strong>commodus</strong>: Where is my father?</p>
+<p><strong>soldier #1</strong>: He’s at the front, sir.</p>
+<p><strong>commodus</strong>: Is the battle won?</p>
+<p><strong>soldier #1</strong>: Don’t know, sir. They’ve been gone for
+eight days.</p>
+<p><strong>commodus</strong>: My sister wants a bath, take her to the
+camp. Take me to my father.</p>
+<p><strong>lucilla</strong>: Civilization at last. Gods preserve us.</p>
+<p><strong>titus</strong>: You would do as well to read the mind of a
+rhinoceros.</p>
+<p><strong>quintus</strong>: These barbarians would rather drown in
+blood than yield an inch. If I didn’t hate them so much I would admire
+them.</p>
+<p><strong>titus</strong>: They simply will not surrender.</p>
+<p><strong>maximus</strong>: A people should know when they are
+conquered.</p>
+<p><strong>maximus</strong>: At the first signal release the catapults.
+We’ll use the cavalry to cut off the retreat.</p>
+<p><strong>quintus</strong>: General, I don’t recommend that. Our
+cavalry might be caught in the flames.</p>
+<p><strong>maximus</strong>: I hope not, because I’m going to be leading
+them.</p>
+<p><strong>maximus</strong>: Why don’t they know they’re already
+dead?</p>
+<p><strong>quintus</strong>: Now!</p>
+<p><strong>maximus</strong>: Hold steady… steady…</p>
+<p><strong>maximus</strong>: Steady…</p>
+<p><strong>maximus</strong>: Brothers – I salute you! For Rome!</p>
+<p><strong>maximus</strong>: Caesar.</p>
+<p><strong>marcus</strong>: Maximus, you prove your valor again. Let us
+hope for the final time here.</p>
+<p><strong>maximus</strong>: I don’t think there’s anyone left to
+fight.</p>
+<p><strong>marcus</strong>: There are always people left to fight…</p>
+<p><strong>marcus</strong>: But this night, at least, Germania is at
+last defeated… What will you do now, my friend?</p>
+<p><strong>maximus</strong>: Should Caesar permit, I’ll go home. I’ve
+been away too long. I’ve forgotten my wife’s face and I barely know my
+son.</p>
+<p><strong>marcus</strong>: Stop… … You speak our language?</p>
+<p><strong>german prisoner</strong>: You have been in my homeland for
+twelve years. Of course I speak your language. So did my son, who you
+murdered. So did my daughter, who you raped.</p>
+<p><strong>maximus</strong>: Come, Caesar…</p>
+<p><strong>marcus</strong>: No. Let him speak… … I am Rome, what would
+you say to me?</p>
+<p><strong>german prisoner</strong>: You are that sun, Rome, and your
+time is over… You can slit a thousand throats here, and you can put a
+thousand babies to the sword, but it will always be our home.</p>
+<p><strong>marcus</strong>: Now it is Rome.</p>
+<p><strong>german prisoner</strong>: It will never be Rome. Not as long
+as one German breathes.</p>
+<p><strong>marcus</strong>: No… Release him. Give him safe passage. Let
+him go to his family.</p>
+<p><strong>marcus</strong>: Tell me again, Maximus, why are we here?</p>
+<p><strong>maximus</strong>: For the glory of the empire, sire.</p>
+<p><strong>marcus</strong>: Yes. I remember.</p>
+<p><strong>maximus</strong>: They honor you, Caesar.</p>
+<p><strong>marcus</strong>: I don’t think they’re standing for me,
+Maximus. They honor you.</p>
+<p><strong>commodus</strong>: Have I missed it?</p>
+<p><strong>commodus</strong>: Have I missed the battle?</p>
+<p><strong>marcus</strong>: You’ve missed the war. We’re done here.</p>
+<p><strong>commodus</strong>: Father. Congratulations. I shall sacrifice
+a thousand doves to honor your triumph.</p>
+<p><strong>marcus</strong>: Spare the doves and honor Maximus, he won
+the battle.</p>
+<p><strong>commodus</strong>: General, Rome salutes you and I embrace
+you as a brother.</p>
+<p><strong>maximus</strong>: Highness.</p>
+<p><strong>commodus</strong>: Your Spaniards seem invincible. May the
+Gods favor the Felix Regiment now and always… Here, Father, take my
+arm.</p>
+<p><strong>marcus</strong>: Where’s your sister?</p>
+<p><strong>commodus</strong>: She’s at the camp. She had no desire to
+see the gore of the battlefield.</p>
+<p><strong>marcus</strong>: Lucilla would eat every corpse here if it
+brought her one step closer to the throne.</p>
+<p><strong>maximus</strong>: Caesar, you do the lady injustice.</p>
+<p><strong>marcus</strong>: It’s a foolish old cobra who doesn’t
+recognize his own off-spring… I think… I should ride now.</p>
+<p><strong>marcus</strong>: So much for the glory of Rome.</p>
+<p><strong>commodus</strong>: He’s dying.</p>
+<p><strong>commodus</strong>: Poor old man.</p>
+<p><strong>maximus</strong>: If you’ll excuse me, Highness.</p>
+<p><strong>maximus</strong>: What, Gallus, losing your other hand?</p>
+<p><strong>gallus</strong>: Aye, General, they’re going to make a bronze
+one for it. Long fingers this time.</p>
+<p><strong>maximus</strong>: And the women of your village will crave
+your touch even more.</p>
+<p><strong>gallus</strong>: Ah, then you know the women of my
+village.</p>
+<p><strong>maximus</strong>: What’s your name, son?</p>
+<p><strong>valerius</strong>: Valerius, General.</p>
+<p><strong>maximus</strong>: The name suits you.</p>
+<p><strong>valerius</strong>: Why am I dying?</p>
+<p><strong>maximus</strong>: You’re dying because you love Rome, as I
+do.</p>
+<p><strong>valerius</strong>: I’ve never been to Rome.</p>
+<p><strong>maximus</strong>: Neither have I. Rome for us lives here… …
+it’s a thing inside us that came from our ancestors and that we give to
+our children.</p>
+<p><strong>valerius</strong>: It must be glorious, Rome. I’ve only seen
+pictures. Is it a glorious place?</p>
+<p><strong>maximus</strong>: Yes, it’s a glorious place.</p>
+<p><strong>valerius</strong>: It must be.</p>
+<p><strong>falco</strong>: Hail, Marcus Aurelius.</p>
+<p><strong>marcus</strong>: Stand up, Senators. That unfamiliar posture
+doesn’t suit you.</p>
+<p><strong>gaius</strong>: We live in supplication to your glory.</p>
+<p><strong>marcus</strong>: All the while conspiring with that fat man
+in Rome. How is the old monster?</p>
+<p><strong>gaius</strong>: Senator Gracchus is hale, sire.</p>
+<p><strong>marcus</strong>: Still damning me to the four winds?</p>
+<p><strong>gaius</strong>: Still eager for your triumphant return to
+Rome, Caesar.</p>
+<p><strong>marcus</strong>: I would have silenced him decades ago – but
+I just like him too much.</p>
+<p><strong>maximus</strong>: If you want to stay on, I support you. So
+do the men. I’ll ask the Emperor to appoint you in my place.</p>
+<p><strong>titus</strong>: It won’t be the Felix Regiment without
+you.</p>
+<p><strong>maximus</strong>: I’ll return after a season at home. Maybe
+two.</p>
+<p><strong>quintus</strong>: That means after three or four more
+babies.</p>
+<p><strong>titus</strong>: And you’ll be too fat from Vibia’s cooking to
+get on your horse by then.</p>
+<p><strong>maximus</strong>: Should the Gods so bless me. I would be
+thankful.</p>
+<p><strong>commodus</strong>: Hail, warriors. My congratulations.</p>
+<p><strong>titus and quintus</strong>: Highness.</p>
+<p><strong>commodus</strong>: My old friend, my father tells me you’re
+returning to Spain?</p>
+<p><strong>maximus</strong>: Yes.</p>
+<p><strong>commodus</strong>: A pity. I’ll need men like you in my
+army…</p>
+<p><strong>commodus</strong>: There are larger division that might
+appeal to you. Even the Praetorian Guard. You’ve never been to Rome.
+Imagine arriving as head of the Praetorians! They have really splendid
+uniforms.</p>
+<p><strong>maximus</strong>: I’m going home.</p>
+<p><strong>gaius</strong>: … And why not apply for entry to the
+Senate?</p>
+<p><strong>falco</strong>: A war hero with a handsome face and a strong
+heart could go far.</p>
+<p><strong>commodus</strong>: General Maximus, may I present Senators
+Gaius and Falco. Beware of this Gaius, he’ll pour a honeyed potion in
+your ear and you’ll wake up one day and all you’ll say is “Republic,
+Republic, Republic…”</p>
+<p><strong>falco</strong>: Have you never considered Rome?</p>
+<p><strong>maximus</strong>: No.</p>
+<p><strong>commodus</strong>: You’ve had my ear since we were children.
+You could be a valuable ally in the Senate.</p>
+<p><strong>gaius</strong>: Are you a believer in Republicanism?</p>
+<p><strong>commodus</strong>: There – I warned you.</p>
+<p><strong>maximus</strong>: I’m a soldier, not a politician.</p>
+<p><strong>gaius</strong>: If your heart lies with the people, I would
+back you for the Senate. I’m sure Gracchus would as well.</p>
+<p><strong>commodus</strong>: Not a word about that sodomite
+bastard.</p>
+<p><strong>gaius</strong>: The august Senator Gracchus has been rather a
+gadfly on the flesh of the imperial family.</p>
+<p><strong>falco</strong>: He’s a damned provocateur.</p>
+<p><strong>gaius</strong>: He lives under the antiquated assumption that
+the Senate should represent the people with vigor.</p>
+<p><strong>commodus</strong>: I won’t tolerate it. His incessant
+criticism exhausts me. The man can speak for five hours without taking a
+breath.</p>
+<p><strong>gaius</strong>: He serves Rome best when he serves it with
+honesty.</p>
+<p><strong>commodus</strong>: Enough… Maximus, I would like to inspect
+the Felix Regiment at dawn. Please arrange it.</p>
+<p><strong>maximus</strong>: I can’t do that.</p>
+<p><strong>commodus</strong>: Excuse me?</p>
+<p><strong>maximus</strong>: My men have been fighting for five solid
+days. They’re too busy dying to go on dress parade.</p>
+<p><strong>commodus</strong>: Of course, how foolish of me. Some other
+time…</p>
+<p><strong>commodus</strong>: Caesar retires early tonight.</p>
+<p><strong>marcus</strong>: If only you had been born a man…</p>
+<p><strong>lucilla</strong>: Father.</p>
+<p><strong>marcus</strong>: What a Caesar you would have made.</p>
+<p><strong>lucilla</strong>: You’re right.</p>
+<p><strong>marcus</strong>: I think you would have been strong. I wonder
+if you would have been just?</p>
+<p><strong>lucilla</strong>: I would have been what you taught me to
+be.</p>
+<p><strong>marcus</strong>: Well, pretend to be my loving daughter
+tonight and walk with me to my chamber.</p>
+<p><strong>marcus</strong>: This is a pleasant fiction, isn’t it?</p>
+<p><strong>maximus</strong>: Caesar.</p>
+<p><strong>marcus</strong>: Read this.</p>
+<p><strong>maximus</strong>: I never acquired the art, sir.</p>
+<p><strong>marcus</strong>: Of course. No matter. In this letter I
+denote my intention to nominate you to stand for the Emperorship after
+my death.</p>
+<p><strong>marcus</strong>: My son is not a moral man. You have known
+this since you were young. He cannot rule.</p>
+<p><strong>maximus</strong>: Caesar, I am honored but –</p>
+<p><strong>marcus</strong>: For twenty years I have been spilling blood.
+For twenty years I have written philosophy and ruminated and conquered.
+Since I became Caesar I have only had four years without war. Four years
+of peace in twenty. So perhaps I can be… forgiven.</p>
+<p><strong>marcus</strong>: While I have been fighting, Rome has grown
+mad and corpulent and diseased. I did this. And now I shall make it
+right.</p>
+<p><strong>maximus</strong>: Sire, you brought the light of the Gods to
+barbarian darkness. You brought civilization and justice to the farthest
+–</p>
+<p><strong>marcus</strong>: I have brought the sword – nothing more!
+Rome is far away and we shouldn’t be here. What matter is it to the Gods
+if we subdue one more tribe of Parthians or Gauls? What matter is it to
+Rome if a thousand more barbarians bend to our lash?</p>
+<p><strong>marcus</strong>: Winter, Maximus. It’s winter now…</p>
+<p><strong>marcus</strong>: There was a dream that was Rome. I can only
+whisper of it now. Anything more than a whisper and the dream vanishes.
+It’s so… fragile. The true glory of Rome is in a very fragile idea.
+Imagine a place devoted to the rights of the citizen. Where every free
+man has a voice. That was the dream… And I fear it will not survive the
+winter.</p>
+<p><strong>marcus</strong>: Let’s just whisper here, you and I.</p>
+<p><strong>maximus</strong>: Yes, Caesar.</p>
+<p><strong>marcus</strong>: If the dream is ever to live again the
+people must have a true voice. The voice I took from them. That all the
+Caesars took from them, bit by bit, conquest by conquest. And now that I
+am dying I am going to give them that voice again.</p>
+<p><strong>maximus</strong>: You’re not dying.</p>
+<p><strong>marcus</strong>: I am, Maximus. It’s strange… I find as I
+near the end I think little of the waning moments around me… instead I
+think much of the past… and of the future. How will the world speak my
+name in years to come? Will I be known as the philosopher? The warrior?
+The tyrant? Or will there be a more golden sounding to my name? Will I
+be the Emperor who gave Rome back her freedom?</p>
+<p><strong>marcus</strong>: Before I die I will give the people this
+final gift. I will give them the Senate reborn. The voice of the people
+empowered again, as it was always meant to be. It is my design that they
+will elect the next Emperor. And I would put forward your name with my
+backing.</p>
+<p><strong>maximus</strong>: Caesar, you do me honor – but your son has
+pride of place for succession.</p>
+<p><strong>marcus</strong>: You are the son I should have had… Although
+I fear in my deepest heart that if you had truly been my son my blood
+would have polluted you as it did Commodus. We’re a cursed bloodline. We
+have lived so long in power and depravity that we no longer remember a
+life without it. We can no longer even imagine a life without it.</p>
+<p><strong>marcus</strong>: Look at me, son.</p>
+<p><strong>marcus</strong>: Son… I know that one grove of your vineyard
+is worth more to you than all the treasures of Rome. I know one loving
+word from your wife is worth more than the accolades of an Empire. But…
+a fond old man, who loves you more than he can say, begs you to at least
+think about what he has said tonight.</p>
+<p><strong>maximus</strong>: I shall, Caesar.</p>
+<p><strong>marcus</strong>: I’ll keep this letter to myself. I hope that
+with the sunrise you will agree. And embrace me as a father.</p>
+<p><strong>maximus</strong>: You have always been my father.</p>
+<p><strong>lucilla’s voice</strong>: He always favored you…</p>
+<p><strong>lucilla</strong>: Even over his son.</p>
+<p><strong>maximus</strong>: That’s not true.</p>
+<p><strong>lucilla</strong>: Maximus, stop… Let me see your face.</p>
+<p><strong>lucilla</strong>: You’ve been crying.</p>
+<p><strong>maximus</strong>: I lost too many men.</p>
+<p><strong>lucilla</strong>: What does my father intend?</p>
+<p><strong>maximus</strong>: I don’t know.</p>
+<p><strong>lucilla</strong>: You’re lying. I could tell when you were
+lying even when we were children. You hate it.</p>
+<p><strong>maximus</strong>: I never acquired your comfort with it.</p>
+<p><strong>lucilla</strong>: True. But then you never had to. Maximus,
+stop… … Is it really so terrible seeing me again?</p>
+<p><strong>maximus</strong>: No. I’m sorry. I’m tired from the
+battle.</p>
+<p><strong>lucilla</strong>: And you are hurt to see my father
+dying.</p>
+<p><strong>lucilla</strong>: He will announce Commodus’ succession.
+That’s why he summoned us. Will you serve my brother as you served his
+father?</p>
+<p><strong>maximus</strong>: I will always serve the ideals of Rome.</p>
+<p><strong>lucilla</strong>: Do you know I still remember you in my
+prayers…? Oh yes, I pray… Ever since that day you saved me from drowning
+off Capri. Do you remember?</p>
+<p><strong>maximus</strong>: Yes.</p>
+<p><strong>lucilla</strong>: Commodus was so angry that a mere peasant –
+a Spaniard no less – touched the royal person, do you remember his
+anger?</p>
+<p><strong>maximus</strong>: Yes.</p>
+<p><strong>lucilla</strong>: Mark this, Maximus: that is the man who
+will be Emperor.</p>
+<p><strong>maximus</strong>: May I be permitted to go, Highness?</p>
+<p><strong>lucilla</strong>: There was a time when you didn’t call me
+“Highness.”</p>
+<p><strong>maximus</strong>: And there was a time when you were just a
+little girl drowning in the sea. All that was a different life.</p>
+<p><strong>lucilla</strong>: Very different… I wonder if it was
+better?</p>
+<p><strong>maximus</strong>: It was more honest.</p>
+<p><strong>maximus</strong>: I thank you for your prayers.</p>
+<p><strong>maximus</strong>: Ancestors, true bloodline, I ask you for
+your guidance. Bring me your solace and your wisdom. Blessed Mother,
+come to me in my dreams with the Gods’ desire for my future. Blessed
+Father, watch over my wife and my son with a ready sword. Keep them safe
+until my return. Whisper to them in their sleep that I live only to hold
+them again and all else is dust and air. Ancestors, true bloodline, I
+honor you and will try to live with the dignity you have taught me.</p>
+<p><strong>commodus</strong>: I search the faces of the Gods for ways to
+please you… to make you proud… and I can never do it. One kind word –
+one full hug where you pressed me to your chest and held me tight –
+would have been like the sun on my heart for a thousand years… What is
+it in me you hate so much? My eyes are your eyes. My hands are your
+hands. All I have ever wanted was to live up to you. Caesar. Father.</p>
+<p><strong>commodus</strong>: Why does Maximus deserve what I could
+never have? – Why do you love his eyes over mine? – I would butcher the
+whole world – if you would only love me…</p>
+<p><strong>quintus</strong>: General – Maximus –</p>
+<p><strong>maximus</strong>: Quintus – ?</p>
+<p><strong>quintus</strong>: The Emperor needs you. It’s urgent.</p>
+<p><strong>maximus</strong>: What is it? Is he ill?</p>
+<p><strong>quintus</strong>: I don’t know…</p>
+<p><strong>commodus</strong>: Lament with me, brother, our great father
+is dead. I want –</p>
+<p><strong>commodus</strong>: General, the Gods’ have taken the great
+man and left me alone. My first desire as Emperor is that you take my
+hand in friendship. I need you at my side, Maximus, at this moment above
+all others. Stand with me.</p>
+<p><strong>maximus</strong>: How did he die?</p>
+<p><strong>maximus</strong>: How did he die?</p>
+<p><strong>commodus</strong>: The surgeons say it was his breath that
+gave out.</p>
+<p><strong>commodus</strong>: Take my hand, Maximus. I only offer it
+once.</p>
+<p><strong>maximus</strong>: How will the world speak your name now, old
+man?</p>
+<p><strong>lucilla</strong>: Hail, Caesar.</p>
+<p><strong>maximus</strong>: What – ?!</p>
+<p><strong>quintus</strong>: Please don’t fight, Maximus –</p>
+<p><strong>maximus</strong>: Quintus –</p>
+<p><strong>quintus</strong>: I’m sorry, General, Caesar has spoken.</p>
+<p><strong>maximus</strong>: Quintus, what – ?</p>
+<p><strong>quintus</strong>: I have no choice –</p>
+<p><strong>maximus</strong>: My family?!</p>
+<p><strong>maximus</strong>: What about my family, Quintus?</p>
+<p><strong>quintus</strong>: They will greet you in the afterlife.</p>
+<p><strong>quintus</strong>: Take him as far as the sunrise and then
+kill him.</p>
+<p><strong>assassin #1</strong>: All right, this is far enough.</p>
+<p><strong>assassin #1</strong>: You two take him down there where no
+one will find him.</p>
+<p><strong>assassin #3</strong>: Come on, General…</p>
+<p><strong>maximus</strong>: Have you ever done this before?</p>
+<p><strong>assassin #3</strong>: What?</p>
+<p><strong>maximus</strong>: Killed a man with a sword?</p>
+<p><strong>assassin #3</strong>: Not like this, exactly… this is good,
+you can stop.</p>
+<p><strong>maximus</strong>: It can be very messy – you could get blood
+all over your armor. You don’t want to hack me up now. You want one
+clean stroke.</p>
+<p><strong>assassin #3</strong>: Would you kneel, General?</p>
+<p><strong>maximus</strong>: One good stroke – you do know where, don’t
+you?</p>
+<p><strong>assassin #4</strong>: Be quiet.</p>
+<p><strong>maximus</strong>: If you miss the spot there’ll be blood
+everywhere. Quite a spray.</p>
+<p><strong>assassins #3</strong>: All right, where?</p>
+<p><strong>maximus</strong>: Here – you don’t want to hit the vein on
+the neck –</p>
+<p><strong>maximus</strong>: Put the point of your sword here… you want
+one, good blow right at this spot –</p>
+<p><strong>commodus</strong>: Even as the Gods curse this dark day with
+clouds, so too does the sun begin to shine forth on a promised tomorrow.
+Even as we mourn the passing of our father, so too do we celebrate the
+coming of a bright, new age for Rome. At my side, brothers, you shall
+pull fresh glories from the heavens. At my side, brothers, you shall
+know the adoration of the Gods. Doubly-dark is this day because my
+friend, your noble commander Maximus Meridas, has been called to Rome to
+deal with urgent matters of state…</p>
+<p><strong>commodus</strong>: Until his promised return I appointed
+Quintus Domitian to serve in his stead. I salute you, Legionnaires!</p>
+<p><strong>quintus</strong>: Hail, Caesar!</p>
+<p><strong>felix regiment</strong>: Hail, Caesar!</p>
+<p><strong>titus</strong>: Quintus, what is – ?</p>
+<p><strong>quintus</strong>: Don’t speak of it. Never speak of it.</p>
+<p><strong>maximus</strong>: Am I in Hades?</p>
+<p><strong>juba</strong>: Yes.</p>
+<p><strong>juba</strong>: For your wound…</p>
+<p><strong>juba</strong>: For your wound.</p>
+<p><strong>juba</strong>: If you die in the wagons they feed you to the
+lions… The lions are worth more than we are. I think we are worth more
+than the zebras though. So they don’t feed us to them.</p>
+<p><strong>juba</strong>: I’m not sure about the giraffe.</p>
+<p><strong>slave trader</strong>: Proximo, my old friend, see what I
+have for you today – !</p>
+<p><strong>proximo</strong>: Those giraffes you sold me won’t mate! All
+they do is run around not mating! YOU SOLD ME EUNUCH</p>
+<p><strong>slave trader</strong>: I will make it up to you, Master. It’s
+bargain day for you! Look, look, look – I have two lions and a panther –
+hear how they roar for you! “Bring me home, Proximo!”</p>
+<p><strong>proximo</strong>: How much for the lot?</p>
+<p><strong>slave trader</strong>: For you – 8,000 sesterces.</p>
+<p><strong>proximo</strong>: For me – 6,000 sesterces and I want to see
+their balls first. And you throw in those two slaves.</p>
+<p><strong>slave trader</strong>: What about this one? Look at the
+arms!</p>
+<p><strong>proximo</strong>: Good teeth –</p>
+<p><strong>proximo</strong>: Where did you get those scars?</p>
+<p><strong>proximo</strong>: Are you a soldier?</p>
+<p><strong>proximo</strong>: Do you speak? –</p>
+<p><strong>keep those damn flies off me!</strong>: He’s dying.</p>
+<p><strong>slave trader</strong>: 1,000 sesterces.</p>
+<p><strong>proximo</strong>: My ass… You throw in this one and we’ll
+make it 7,000 sesterces for the whole lot.</p>
+<p><strong>slave trader</strong>: I have to eat, Master! He’s my finest,
+I couldn’t let him go as part of the lot for less than 9,000 total… I
+tell you this one is prime. He’s a Spaniard and killed fourteen of my
+men before he could be subdued!</p>
+<p><strong>proximo</strong>: All right, let’s see.</p>
+<p><strong>proximo</strong>: That’s enough.</p>
+<p><strong>proximo</strong>: I’ll give you 500 sesterces.</p>
+<p><strong>slave trader</strong>: No – no – 1,000!</p>
+<p><strong>proximo</strong>: Come, don’t quibble with your old friend.
+I’ll take the lions, the panther, the Numidian and this one for 7,000.
+And I’ll buy you the best whore in the town for two nights. She’s an
+enormous mountain of flesh who craves a stern hand.</p>
+<p><strong>slave trader</strong>: How could I say no to my old friend
+Proximo?</p>
+<p><strong>proximo</strong>: Slaves. I am Proximo, trainer of
+gladiators. You live and die at my pleasure. Fight well and you will
+live. Fight poorly and you will die. It is better to live.</p>
+<p><strong>proximo</strong>: Here you will be trained in the art of
+combat. Here you will be given the tools to survive. Please my patrons
+in the arena and all the gifts of the world will be showered upon you.
+Imagine riches beyond your paltry dreams of riches! Imagine fame beyond
+your rude understanding of the word! All this can belong to the select
+few who prove their worth in the arena.</p>
+<p><strong>proximo</strong>: If… on the other hand… you disappoint me…
+you will be dismembered and fed to my jackals limb by limb.</p>
+<p><strong>proximo</strong>: And my jackals are always hungry.</p>
+<p><strong>juba</strong>: Have you killed a man before?</p>
+<p><strong>juba</strong>: You should eat. You’ll need your strength
+tomorrow.</p>
+<p><strong>juba</strong>: I’ve never killed a man. But I think you
+have.</p>
+<p><strong>juba</strong>: I almost killed once. The Romans destroyed my
+village. I was with a hunting party and when we returned… I would have
+killed every Roman in the world.</p>
+<p><strong>juba</strong>: If you don’t eat you will die.</p>
+<p><strong>juba</strong>: In the village I come from there was a man
+once. He went fishing one day and his boat was attacked by crocodiles.
+One of them ate his leg. He pulled himself to the shore and a lion
+attacked him. It ate one of his arms. He dragged himself through the
+desert on the way home and a scorpion stung his eye. So he only had one
+eye. When he reached the village I sat with him. I said, “You have lost
+a leg, an arm and one eye. You must have a mighty will to live.” He
+said, “No, Lord, it’s just better than the alternative.”</p>
+<p><strong>juba</strong>: Life is a gift from our fathers to us. Who are
+you to give it up for lack of lifting a spoon?</p>
+<p><strong>scribe</strong>: I know nothing of armaments and warfare! I’m
+a scribe – I write down words! I can write down seven languages –</p>
+<p><strong>vibius</strong>: Be still.</p>
+<p><strong>scribe</strong>: I don’t – how do you hold the sword?! I’ve
+never held a sword!</p>
+<p><strong>vibius</strong>: You point the sharp end at your opponent and
+you shove it in his guts.</p>
+<p><strong>scribe</strong>: I can’t – I –</p>
+<p><strong>vibius</strong>: Proximo! You insult me with this carrion!
+Chain him to someone else!</p>
+<p><strong>proximo</strong>: Don’t worry, noble Vibius, he won’t be
+bothering you for long.</p>
+<p><strong>children</strong>: Dead guts! Dead guts! Dead guts!</p>
+<p><strong>proximo</strong>: Some of you say you can’t fight, you won’t
+fight… They all say that… But one day you will pick up a sword and
+thrust it into another man. And the crowd will cheer you and love you.
+And you will love them for it. On that day… you will be a gladiator.</p>
+<p><strong>proximo</strong>: In this life, we all die. All we can choose
+is how we die. And how we are remembered. Be remembered proudly.</p>
+<p><strong>proximo</strong>: No… … give the Spaniard to him. Give the
+Scribe to Vibius.</p>
+<p><strong>juba</strong>: Are we going to fight each other?</p>
+<p><strong>proximo</strong>: Make it 600 sesterces for each
+decapitation.</p>
+<p><strong>trainer #1</strong>: How many strokes?</p>
+<p><strong>proximo</strong>: Two.</p>
+<p><strong>trainer #1</strong>: For the great Vibius, one stroke.</p>
+<p><strong>proximo</strong>: Done. 400 sesterces for two strokes.</p>
+<p><strong>trainer #1</strong>: Who’s he with?</p>
+<p><strong>proximo</strong>: A Greek Scribe.</p>
+<p><strong>trainer #1</strong>: I’ll raise the wager.</p>
+<p><strong>proximo</strong>: Give me odds, friend.</p>
+<p><strong>gracchus</strong>: We have plague in the Hebrew Quarter and
+it is spreading… we have looting at the granaries… we have so much filth
+in the Tiber that the water is undrinkable… we have Praetorian Guard
+units that are demanding protection payments from the merchants at the
+exchange –</p>
+<p><strong>marcellus</strong>: My City Guard units have tried to curtail
+these excesses but no constabulary can police the entire city. And the
+Praetorians outnumber us two to one.</p>
+<p><strong>gracchus</strong>: Rome dies as the Emperor plays at
+beneficence. At least Nero gave us music!</p>
+<p><strong>gaius</strong>: Do you think he’ll listen to us?</p>
+<p><strong>gracchus</strong>: It is his duty to hear the will of the
+Senate.</p>
+<p><strong>gracchus</strong>: Not to mention the damn traffic!</p>
+<p><strong>child</strong>: We honor Caesar with the laurel to show our
+love and appreciation for his benevolence.</p>
+<p><strong>commodus</strong>: Caesar is honored to accept your tribute,
+Citizen Scholar.</p>
+<p><strong>commodus</strong>: It is the most sacred duty of the Emperor
+to oversee the education of the young. If I could leave no other legacy
+than the scholarship of all children my life would be blessed. Tutors,
+you hold the future of Rome in your hands. Teach them well so that they
+will bring honor to the Empire. I salute you.</p>
+<p><strong>commodus</strong>: Look at them, Senators… my truest gift to
+Rome.</p>
+<p><strong>gracchus</strong>: Darling children, to be sure, now if I may
+proceed?</p>
+<p><strong>commodus</strong>: Very well…</p>
+<p><strong>gracchus</strong>: Caesar, your presence in Rome is an
+invaluable opportunity to begin correcting some of the ills that have
+beset the city since your father went to the wars. We would like to
+–</p>
+<p><strong>commodus</strong>: Peace, good Gracchus, peace…</p>
+<p><strong>commodus</strong>: My beloved father was a careless shepherd
+to his flock. I shall be a good father to my children. I shall remain in
+Rome and show them how they are loved.</p>
+<p><strong>gracchus</strong>: With respect, sire, the people don’t need
+love – they need law. The Senate has prepared a series of protocols to
+begin addressing the corruption in the city – – starting with basic
+sanitation in the Hebrew Quarter. If Caesar could study this and –</p>
+<p><strong>commodus</strong>: You see that’s the very problem, isn’t it,
+my old, old friend? My father spent all his time at study. At books and
+learning and philosophy…</p>
+<p><strong>commodus</strong>: He spent his twilight hours reading
+scrolls from the Senate. All the while, the people were forgotten.</p>
+<p><strong>gracchus</strong>: The Senate is the people.</p>
+<p><strong>commodus</strong>: I doubt many of the people eat so well as
+you do, Senator Gracchus…</p>
+<p><strong>commodus</strong>: I doubt many of the people have such
+splendid armor, Captain Marcellus. Or such fine mistresses, Senator
+Gaius. No… only their true father knows what the people need. I shall
+show them they are loved. I shall hold them to my bosom and embrace them
+tightly –</p>
+<p><strong>gracchus</strong>: Have you ever embraced someone dying of
+plague, sire?</p>
+<p><strong>commodus</strong>: No. But if you interrupt me one more time
+I assure you that you shall. I will emulate the immortal Caesars of the
+past. I will give the people what they truly want. Starting this day I
+will draw all of Rome to the Colosseum. I will give them bread. And they
+will want nothing more.</p>
+<p><strong>gracchus</strong>: You want to hold games?</p>
+<p><strong>commodus</strong>: Not just any games, Senator! A series of
+games that will make the Gods envious and leave my children happy! I
+will subsidize the arena from this day forth – and I will culminate this
+celebration in a great spectacle the likes of which the world has never
+seen! A great spectacle to honor my father! Magnificent, unending weeks
+of festivity all in the name of Marcus Aurelius!</p>
+<p><strong>gracchus</strong>: If I may, Caesar… how are you going to pay
+for this?</p>
+<p><strong>commodus</strong>: That is not your concern.</p>
+<p><strong>gracchus</strong>: Respectfully, sire, taxation and import
+duties are the exclusive province of the Senate –</p>
+<p><strong>lucilla</strong>: Gentlemen, in the future do not concern my
+brother with these matters. Come to me.</p>
+<p><strong>marcellus</strong>: Games? He wants to hold games?</p>
+<p><strong>gaius</strong>: It’s madness.</p>
+<p><strong>gracchus</strong>: No… it’s not…</p>
+<p><strong>gracchus</strong>: He knows who Rome is. Rome is the mob. He
+will conjure magic for them and they will be distracted. And he will
+takes their lives. And he will take their freedom. And still they will
+roar. The beating heart of Rome isn’t the marble of the Senate. It’s the
+sand of the Colosseum. He will give them death. And they will love him
+for it.</p>
+<p><strong>proximo</strong>: I’ve wagered on you against the Celts –
+ignore the others and go for them – there are two axe-and- net and two
+long spear. Now the Celts aren’t used to the sun so you have the
+advantage there…</p>
+<p><strong>proximo</strong>: And keep them moving, their lungs aren’t
+strong, ground the spears as soon as you can and then go for the ax-men.
+If you get all four there’s an extra bonus so don’t be distracted by the
+Spartans…</p>
+<p><strong>proximo</strong>: Butterfly?</p>
+<p><strong>proximo</strong>: Perhaps you’d like a woman?</p>
+<p><strong>proximo</strong>: Boy?</p>
+<p><strong>proximo</strong>: Gold?</p>
+<p><strong>proximo</strong>: Well, I have nothing left to offer you! A
+man who turns down a butterfly, a woman, a boy and gold confuses me.
+Personally, I’d grab them all and then grab some more because the Gods
+are fanciful and take us at their whim. Does the Spaniard have any
+needs?</p>
+<p><strong>proximo</strong>: You fight like a soldier. You have wounds
+like a soldier who has been on long campaigns. You eye the world around
+you like an enemy. What is your name, Roman soldier?</p>
+<p><strong>maximus</strong>: Gladiator.</p>
+<p><strong>proximo</strong>: And nothing more?</p>
+<p><strong>maximus</strong>: Nothing more.</p>
+<p><strong>proximo</strong>: In two days we leave for Rome.</p>
+<p><strong>proximo</strong>: Ah… so it’s Rome you want. Well you shall
+have her, Gladiator. The new Emperor has ordered a series of matches to
+culminate in a grand spectacle. If you do well I shall become very, very
+rich. If you do well enough I shall set you free. Is it freedom you
+want?</p>
+<p><strong>proximo</strong>: Not even that.</p>
+<p><strong>maximus</strong>: The Emperor – will he be there?</p>
+<p><strong>proximo</strong>: Oh yes. He’s apparently quite mad about the
+games. Spending a fortune, which is, needless to say, good for me again.
+But what is good for you, Gladiator?</p>
+<p><strong>maximus</strong>: Have you – how does one meet the
+Emperor?</p>
+<p><strong>proximo</strong>: As a gladiator?</p>
+<p><strong>maximus</strong>: Yes.</p>
+<p><strong>proximo</strong>: One doesn’t.</p>
+<p><strong>proximo</strong>: Except… If one has proven oneself in
+battle. If at the end of the games you are the final man standing – the
+Emperor will present you with a small wooden sword. The sword is your
+freedom.</p>
+<p><strong>maximus</strong>: He give it personally?</p>
+<p><strong>proximo</strong>: He did to me… Our great father Marcus
+Aurelius looked into my eyes and touched me on the shoulder.</p>
+<p><strong>maximus</strong>: You knew Marcus?</p>
+<p><strong>proximo</strong>: I didn’t know him. He touched me on the
+shoulder. Just once. But that was enough.</p>
+<p><strong>proximo</strong>: All right, Gladiator. We shall go to Rome
+together and have bloody adventures. The Great Whore will suckle us
+until we are fat and happy and can’t suck another drop. That is
+Rome.</p>
+<p><strong>commodus</strong>: All my desires are splitting my head to
+pieces – there’s so much I want to do – but all my efforts to show my
+children they are loved go unappreciated by those dragons in the Senate
+–</p>
+<p><strong>lucilla</strong>: Quiet, brother…</p>
+<p><strong>lucilla</strong>: Leave the Senate to me. Don’t trouble
+yourself.</p>
+<p><strong>commodus</strong>: All I want is to be a good father to my
+people. Why don’t they understand that?</p>
+<p><strong>lucilla</strong>: Shhh. The tonic will help…</p>
+<p><strong>lucilla</strong>: Yes, just drink this down.</p>
+<p><strong>commodus</strong>: I must take a firmer hand with them. They
+must know their father can be firm. As our father was firm with us.</p>
+<p><strong>lucilla</strong>: Our father lost his way. His mistake was
+believing the old songs of the “Republic.” We know better. So let the
+Senate talk. They have no real power.</p>
+<p><strong>commodus</strong>: Yes… yes… you always know the way. You
+were always so wise in these matters… You know if I didn’t have my duty
+to Rome I think I should be an artist. I should go away and paint
+pictures of the sea and leave all the politics to you…</p>
+<p><strong>commodus</strong>: Will you stay with me?</p>
+<p><strong>lucilla</strong>: Still afraid of the dark, brother?</p>
+<p><strong>commodus</strong>: Still. Always.</p>
+<p><strong>commodus</strong>: My dreams would terrify the world.</p>
+<p><strong>lucilla</strong>: I’ll stay with you until you are
+asleep.</p>
+<p><strong>commodus</strong>: And after… just sit with me. Keep me
+safe…</p>
+<p><strong>lucilla</strong>: He’s asleep. Be quick.</p>
+<p><strong>gracchus</strong>: We’ve taking a sounding, the Senate is
+with us.</p>
+<p><strong>lucilla</strong>: Good.</p>
+<p><strong>gracchus</strong>: But we are only words. We are air. We need
+steel.</p>
+<p><strong>marcellus</strong>: The City Guard is faithful to the
+Republic. But we don’t stand a chance against the Praetorians.</p>
+<p><strong>lucilla</strong>: Can they be bought?</p>
+<p><strong>marcellus</strong>: They are zealots – totally committed to
+your brother.</p>
+<p><strong>gracchus</strong>: Well, can they at least be rented for a
+day?</p>
+<p><strong>marcellus</strong>: I doubt it. He pays them exorbitant
+salaries and lets them loot and extort as they see fit. The city belongs
+to them.</p>
+<p><strong>lucilla</strong>: And they’ve started arresting scholars now.
+Anyone who dares speak out – even satirists and chroniclers.</p>
+<p><strong>marcellus</strong>: And mathematicians and Christians. All to
+fill the arena.</p>
+<p><strong>gaius</strong>: And what pays for it? These games are costing
+a fortune and yet we have no new taxes.</p>
+<p><strong>lucilla</strong>: The future. The future pays for it…</p>
+<p><strong>lucilla</strong>: He’s started selling the grain
+reserves.</p>
+<p><strong>gaius</strong>: No.</p>
+<p><strong>marcellus</strong>: That can’t be true…</p>
+<p><strong>lucilla</strong>: He’s selling Rome’s reserves of grain. The
+people will be starving in two years. I hope they are enjoying the
+spectacles because soon enough they will be dead because of them.</p>
+<p><strong>marcellus</strong>: Rome must know this.</p>
+<p><strong>lucilla</strong>: And who will tell them?! You, Marcellus?
+You, Senator Gaius? Will you make a speech on the Senate floor
+denouncing my brother? And then see your family in the Colosseum? What
+town-crier would dare?</p>
+<p><strong>lucilla</strong>: He must die.</p>
+<p><strong>gaius</strong>: The Praetorians would only seize control
+themselves.</p>
+<p><strong>lucilla</strong>: No – cut off the head and the snake cannot
+strike.</p>
+<p><strong>gracchus</strong>: Lucilla, Gaius is right. Until the City
+Guard can neutralize the Praetorians we can accomplish nothing.</p>
+<p><strong>marcellus</strong>: And I haven’t enough men.</p>
+<p><strong>lucilla</strong>: What about the army?</p>
+<p><strong>gaius</strong>: No Roman army has entered the capital in a
+hundred years.</p>
+<p><strong>lucilla</strong>: So we do nothing?!</p>
+<p><strong>lucius’ voice</strong>: Mother…</p>
+<p><strong>lucius</strong>: I heard voices…</p>
+<p><strong>lucilla</strong>: It’s all right, darling, you –</p>
+<p><strong>lucius</strong>: Senator! What did you bring me?!</p>
+<p><strong>gracchus</strong>: For you prince Lucius… a sea monster!</p>
+<p><strong>gracchus</strong>: Off the coast of Achaea they grow twenty
+times this size, with snapping teeth to devour any nasty Praetorians
+they come across… now, where is Achaea?</p>
+<p><strong>lucius</strong>: Below Macedonia!</p>
+<p><strong>gracchus</strong>: Show me on the map.</p>
+<p><strong>lucilla</strong>: Lucius, you go in now, I’ll be in
+shortly.</p>
+<p><strong>lucius</strong>: Thank you, Senator Mountain!</p>
+<p><strong>gracchus</strong>: You’re welcome, Prince Anthill!</p>
+<p><strong>lucilla</strong>: What are you going to do?</p>
+<p><strong>gracchus</strong>: Peace child… One dark night the Gods will
+light our path. They will give us the voice we need. Have faith in that.
+Have faith.</p>
+<p><strong>vibius</strong>: Not what you expected?</p>
+<p><strong>maximus</strong>: No.</p>
+<p><strong>vibius</strong>: Rome is nothing but a slaughter house. And
+we are the meat.</p>
+<p><strong>vibius</strong>: Tradition. He watches over us.</p>
+<p><strong>vibius</strong>: Oh go on, it won’t kill you.</p>
+<p><strong>proximo</strong>: Stop that! You’ll get some monstrous
+disease and then you’ll be worth nothing to me!</p>
+<p><strong>juba</strong>: Do you think it will be much different? Here
+in Rome?</p>
+<p><strong>maximus</strong>: Bigger arena. Same killing.</p>
+<p><strong>juba</strong>: Are you scared for tomorrow?</p>
+<p><strong>maximus</strong>: No.</p>
+<p><strong>juba</strong>: Me too.</p>
+<p><strong>juba</strong>: I never though it would be so easy to
+kill.</p>
+<p><strong>juba</strong>: So you’re finally home.</p>
+<p><strong>maximus</strong>: This isn’t my home.</p>
+<p><strong>juba</strong>: For all Romans… this is home.</p>
+<p><strong>juba</strong>: Among my people we honor the soil of our home.
+Our ancestors are in that soil. All their dreams live there. I will
+never see my home again. The soil is dead and no one honors them, so the
+dreams die.</p>
+<p><strong>maximus</strong>: Perhaps one day you’ll return.</p>
+<p><strong>juba</strong>: How can I go back? I am not what I was. When a
+man kills for no reason, he has lost himself.</p>
+<p><strong>cassius</strong>: … and the Emperor will have no more animal
+battles today –</p>
+<p><strong>trainer #1</strong>: You promised me a bear match,
+Cassius!</p>
+<p><strong>trainer #2</strong>: I have ten damned gorillas! You said
+gorillas yesterday!</p>
+<p><strong>cassius</strong>: Talk to the man in the imperial box. Who
+has the next slot…? – Lentulus, Gideon, Trebonius and Proximo – – Nice
+to have you back, you piratical bastard – now listen, the Emperor wants
+the Carthage spectacle.</p>
+<p><strong>proximo</strong>: No – have pity, Cassius – !</p>
+<p><strong>trainer #3</strong>: My men are too good for – !</p>
+<p><strong>cassius</strong>: You give us the Carthage match or lose your
+spot on the rotation – but don’t worry – gold is flowing from the
+Emperor’s fingers.</p>
+<p><strong>trainer #3</strong>: It’ll cost you –</p>
+<p><strong>proximo</strong>: I won’t do it for less than 100,000
+sesterces – !</p>
+<p><strong>trainer #4</strong>: 120,000! All I have is my best
+Thracians!</p>
+<p><strong>cassius</strong>: And I want to see this famous Spaniard of
+yours – his reputation soars from the provinces. The people are eager
+for him –</p>
+<p><strong>proximo</strong>: I won’t throw my Spaniard into a spectacle!
+Damn you and damn the rotation!</p>
+<p><strong>cassius</strong>: You will and the price will be 90,000
+sesterces each – – which you all know is exorbitant</p>
+<p><strong>trainer #4</strong>: My Thracians are worth – !</p>
+<p><strong>cassius</strong>: Give me your best, brothers. They die
+before Caesar.</p>
+<p><strong>proximo</strong>: I give you 30,000 my Spaniard will kill at
+least one of your Thracians.</p>
+<p><strong>trainer #4</strong>: 30,000?! On a Spaniard?! That provincial
+sun has curdled your brain!</p>
+<p><strong>proximo</strong>: Then make the wager, you smug bastard!</p>
+<p><strong>proximo</strong>: All right – there are three other teams,
+four men each – You know what a Thracian looks like?</p>
+<p><strong>maximus</strong>: Yes, but –</p>
+<p><strong>proximo</strong>: Ignore the others – go for the Thracians.
+The sun is to the east – over the gate – keep your back to the gate and
+you won’t have the sun.</p>
+<p><strong>maximus</strong>: What – ?</p>
+<p><strong>proximo</strong>: Hurry – !</p>
+<p><strong>proximo</strong>: Die well and we’ll sing songs about you for
+a generation.</p>
+<p><strong>cassius</strong>: This day we reach back to hallowed
+antiquity to bring you… THE FALL</p>
+<p><strong>of mighty carthage…!</strong>: … On the barren armies of the
+barbarian Hannibal! Ferocious mercenaries and warriors of all brute
+nations bent on merciless conquest! Your Emperor is pleased to give you…
+THE BARBARIAN HORDE!</p>
+<p><strong>cassius</strong>: But on that illustrious day the Gods sent
+against them Rome’s greatest warriors…! The very life-image of nobility
+and glorious valor… who would on this day, and on these same arid
+Numidian deserts, decide THE FATE OF THE EMPIRE… Your Emperor is pleased
+to give you… THE</p>
+<p><strong>commodus</strong>: Slave! Who are you?</p>
+<p><strong>commodus</strong>: Why is he still alive?</p>
+<p><strong>lucilla</strong>: I don’t know.</p>
+<p><strong>commodus</strong>: He shouldn’t be alive. That vexes me. I am
+terribly vexed…</p>
+<p><strong>commodus</strong>: There, that’s better. Do you like the
+platform here?</p>
+<p><strong>lucilla</strong>: Mmm.</p>
+<p><strong>commodus</strong>: I do too. Simple, elegant…</p>
+<p><strong>commodus</strong>: Father would have wanted something more
+ornate but he’s dead now.</p>
+<p><strong>commodus</strong>: Maximus Meridas haunts me. I see Father
+turning away from me and gazing at him. How many times did I suffer that
+indignity, I wonder?</p>
+<p><strong>lucilla</strong>: What are you going to do?</p>
+<p><strong>commodus</strong>: I’m going to kill him.</p>
+<p><strong>lucilla</strong>: Good.</p>
+<p><strong>commodus</strong>: Oh, you’re too clever, Sister. Don’t tell
+me part of you won’t weep for him.</p>
+<p><strong>lucilla</strong>: When he defies my brother the Emperor, he
+defies me. But you shouldn’t send assassins.</p>
+<p><strong>commodus</strong>: No?</p>
+<p><strong>lucilla</strong>: The people embraced him today. They will be
+expecting his next match… … let him die in the arena like the slave he
+is. Let the people see what comes of defying Caesar.</p>
+<p><strong>commodus</strong>: He wounded you deeply, didn’t he? Long
+ago.</p>
+<p><strong>commodus</strong>: Nonetheless, your political acumen is, as
+always, unerring.</p>
+<p><strong>juba</strong>: I will fight with you.</p>
+<p><strong>maximus</strong>: This isn’t your battle.</p>
+<p><strong>juba</strong>: Better to die for a friend than to die for
+gold.</p>
+<p><strong>proximo</strong>: Enjoy yourself, Madame… General, perform
+well and there will be riches for you.</p>
+<p><strong>lucilla</strong>: Rich matrons pay well to be pleasured by
+the bravest champions.</p>
+<p><strong>maximus</strong>: I knew your brother would send assassins. I
+didn’t think he would send his best.</p>
+<p><strong>lucilla</strong>: Maximus, listen to me –</p>
+<p><strong>maximus</strong>: My family were crucified and burnt while
+they were still alive.</p>
+<p><strong>lucilla</strong>: I knew nothing of that.</p>
+<p><strong>maximus</strong>: Don’t lie to me.</p>
+<p><strong>lucilla</strong>: I wept for them.</p>
+<p><strong>maximus</strong>: Don’t.</p>
+<p><strong>lucilla</strong>: Do you know what it is to be the daughter
+of the Emperor? I learned on the night my father had my husband killed.
+I loved my husband very much. Very… simply. He was a man who believed in
+the Republic. He was a man who thought Marcus should be tending to Rome
+and not conquering the world. One night my father had him strangled for
+conspiring with the Senate. My father never spoke of it. I never spoke
+of it. That is what it is to be the daughter of Rome.</p>
+<p><strong>lucilla</strong>: My son will live. He will survive this
+cursed bloodline. Rome will die and the jackals will pick her clean –
+but my son will survive. Empires come and go. Cities crumble to dust.
+Only family matters.</p>
+<p><strong>maximus</strong>: My son was innocent.</p>
+<p><strong>lucilla</strong>: So is mine.</p>
+<p><strong>maximus</strong>: I want your brother dead.</p>
+<p><strong>lucilla</strong>: So do I.</p>
+<p><strong>lucilla</strong>: My son will never be safe while he
+lives.</p>
+<p><strong>maximus</strong>: How do you plan it?</p>
+<p><strong>lucilla</strong>: The Senate is with us, and the City Guard.
+We have growing power in the streets. But we need a leader. Someone the
+people can –</p>
+<p><strong>maximus</strong>: So the crown passes to your son.</p>
+<p><strong>lucilla</strong>: No. So that my son will be safe. So that we
+may leave this charnel house forever and never look back. Look into my
+eyes, Maximus, and believe what I say to you…</p>
+<p><strong>lucilla</strong>: By all the Gods, and in the name of my
+father who loved you, and in the name of the husband I loved… I swear to
+stand by your side in this now and always.</p>
+<p><strong>maximus</strong>: What is your son’s name?</p>
+<p><strong>lucilla</strong>: Lucius Verus. Like his father.</p>
+<p><strong>maximus</strong>: I weep for him.</p>
+<p><strong>lucilla</strong>: Commodus plans to kill you in your next
+match in the arena. He’s planning something. I will pray for you. As I
+have always done.</p>
+<p><strong>cassius</strong>: … in his majestic charity the Emperor has
+deigned to this day favor the people of Rome with an historical final
+match. Returning to the Colosseum today… after five years in retirement…
+Caesar is pleased to bring you… THE ONLY</p>
+<p><strong>proximo</strong>: Gods! That old Homicide! The Emperor must
+truly hate you.</p>
+<p><strong>maximus</strong>: What can you tell me?</p>
+<p><strong>proximo</strong>: He cheats.</p>
+<p><strong>cassius</strong>: And from the rocky promontories and martial
+bloodlines of Spain… representing the training lyceum of Proximo
+Antoninus… I give you…</p>
+<p><strong>maximus and tiger</strong>: We who are about to die salute
+you.</p>
+<p><strong>lucius’ voice</strong>: Is it true you’re a General…?</p>
+<p><strong>maximus</strong>: I was a General.</p>
+<p><strong>lucius</strong>: I saw you fight. The Carthage battle too.
+I’ve never seen so much courage.</p>
+<p><strong>maximus</strong>: It doesn’t take courage to kill.</p>
+<p><strong>lucius</strong>: My father was killed.</p>
+<p><strong>maximus</strong>: I’m sorry.</p>
+<p><strong>lucius</strong>: He still comes to me in my dreams. Do you
+have a father?</p>
+<p><strong>maximus</strong>: I had a father. He wasn’t really my father
+but I cared for him very much.</p>
+<p><strong>lucius</strong>: I hope he comes to you in your dreams. My
+father and I ride horses in mine.</p>
+<p><strong>lucilla</strong>: Lucius, run along now. I need to talk to
+the General.</p>
+<p><strong>maximus</strong>: Where is my army?</p>
+<p><strong>lucilla</strong>: … Maximus will summon his army from Ostia
+and he will strike from the inside as his army strikes from the outside.
+But he insists that the Senate be present.</p>
+<p><strong>gaius</strong>: We’ve been ordered to attend.</p>
+<p><strong>lucilla</strong>: How many are with us?</p>
+<p><strong>gracchus</strong>: About half. But once the tyrant is dead.
+All.</p>
+<p><strong>gracchus</strong>: I want to meet him.</p>
+<p><strong>lucilla</strong>: I’ll arrange it.</p>
+<p><strong>gaius</strong>: And what of the Emperor?</p>
+<p><strong>lucilla</strong>: He has withdrawn. He’s not eating. He
+doesn’t go out. He won’t even see me… I don’t know what tempests rage
+within him but…</p>
+<p><strong>gracchus</strong>: We should fear for the blackest storm.</p>
+<p><strong>lucilla</strong>: Yes.</p>
+<p><strong>gaius</strong>: One question… who is to be the actual
+Regicide?</p>
+<p><strong>vibius</strong>: You didn’t kill him.</p>
+<p><strong>maximus</strong>: I will not kill another warrior. There is
+no honor to it.</p>
+<p><strong>kids</strong>: Maximus the Merciful! Maximus the
+Merciful!</p>
+<p><strong>maximus</strong>: Tell him we will enter Rome on the first
+day of Commodus’ festival.</p>
+<p><strong>lucilla</strong>: And they will march on Rome for you?</p>
+<p><strong>maximus</strong>: Yes. But this letter must go to the
+lieutenant named Titus, no one else.</p>
+<p><strong>lucilla</strong>: Captain Marcellus will take it. And his
+City Guard will by with you when you get to Rome. Is that enough to face
+the Praetorian Guard?</p>
+<p><strong>maximus</strong>: The Felix Regiment will never be
+defeated.</p>
+<p><strong>gracchus</strong>: I only have one question for you, General…
+Why?</p>
+<p><strong>gracchus</strong>: You will lead an army of your brothers on
+Rome. Many will die. Why?</p>
+<p><strong>maximus</strong>: I want Commodus dead.</p>
+<p><strong>gracchus</strong>: That’s not the reason. Tell me the
+truth.</p>
+<p><strong>maximus</strong>: Because one night an old man whispered to
+me about a dream. I will die for that dream.</p>
+<p><strong>gracchus</strong>: I knew the old man well. And I loved him
+very much. In our youth we would spend hours building that dream
+together. After he went to the wars and lost his way… I was very cruel.
+I tormented him to remember that dream we spoke of.</p>
+<p><strong>maximus</strong>: He did.</p>
+<p><strong>gracchus</strong>: You can have no idea how much that means
+to me.</p>
+<p><strong>gracchus</strong>: Any man who will die for a whispered dream
+deserves my respect. I honor you, General.</p>
+<p><strong>centurion</strong>: Madame, the Emperor would like to see
+you.</p>
+<p><strong>lucilla</strong>: Caesar…</p>
+<p><strong>commodus</strong>: I am sorry to have kept you away… I needed
+this time to think…</p>
+<p><strong>lucilla</strong>: Of course…</p>
+<p><strong>commodus</strong>: I limited my world to these four walls so
+as to let my mind free… again and again my mind settles on but one
+question… What kind of world are we making when the people of Rome
+prefer a slave in the arena to their father?</p>
+<p><strong>commodus</strong>: It is my responsibility to make the world
+as it should be. How is it I have made this world?</p>
+<p><strong>lucilla</strong>: Brother, do not be influenced by the mob.
+They are a great, faceless beast –</p>
+<p><strong>commodus</strong>: They are not “the mob,” Lucilla, they are
+the people. They are my children and all I want to do is love them.</p>
+<p><strong>commodus</strong>: Our father loved Maximus… and I love him
+still… yet he defies me, he tasks me in front of my children. And they
+love him for it. Just as Marcus loved him for it. Tell me why,
+Lucilla.</p>
+<p><strong>lucilla</strong>: They see themselves in him. They throw in
+their own sad dreams alongside his. They think he fights for them.</p>
+<p><strong>commodus</strong>: And what do I do but fight for them?! I
+give them games to please them. I strangle dissent to give them peace. I
+empower the Praetorians to give them order. What more can I do?!</p>
+<p><strong>commodus</strong>: Say I should fight him, in the arena. Let
+my children see who the Gods truly favor.</p>
+<p><strong>lucilla</strong>: And what if he should win?</p>
+<p><strong>commodus</strong>: A God is more powerful than a man…</p>
+<p><strong>lucilla</strong>: Caesar, you let this unduly worry you. At
+best he is a passing fancy – he is a name, an image on a banner,
+ephemeral – he will be forgotten as the next fancy appears –</p>
+<p><strong>commodus</strong>: But I need to know – why do they love
+him?</p>
+<p><strong>lucilla</strong>: Mercy.</p>
+<p><strong>lucilla</strong>: He will not kill in the arena. He is
+merciful. As they all wish they were in their own hearts.</p>
+<p><strong>commodus</strong>: And for that moment in the arena they are
+merciful too. For a moment… they are Gods. Offering life.</p>
+<p><strong>commodus</strong>: But who can be more merciful than the
+Emperor of Rome?</p>
+<p><strong>commodus</strong>: Brother… we’ve taken a sad path since we
+were children at Capri, have we not?</p>
+<p><strong>commodus</strong>: For my own part… I am sorry it came to
+this. And to you alone of all men, I acknowledge my errors. And my
+regret. I shall live with my sin for all my days.</p>
+<p><strong>maximus</strong>: As will I, Commodus. As will I.</p>
+<p><strong>commodus</strong>: As the first act of my contrition I offer
+you the wooden sword of freedom.</p>
+<p><strong>commodus</strong>: Take it, brother. Stand at my side as a
+free man worthy of your ancestors.</p>
+<p><strong>maximus</strong>: I only have ancestors because of you,
+brother. You killed everything that ever lived alongside me.</p>
+<p><strong>commodus</strong>: Take it, Maximus. Let us heal that fatal
+wound together.</p>
+<p><strong>maximus</strong>: This is the new home you cursed me to. And
+I am safer here from your treachery than I could ever be outside.</p>
+<p><strong>commodus</strong>: Will you always mistrust me?</p>
+<p><strong>maximus</strong>: Why don’t you ask your father that?</p>
+<p><strong>maximus</strong>: I have more power as a slave in the arena
+than I could ever have as a free man. As the Colosseum goes, the people
+go. As the people go, the Empire goes.</p>
+<p><strong>commodus</strong>: You think this is power? I could show you
+power, slave –</p>
+<p><strong>maximus</strong>: No, Caesar… I will show you.</p>
+<p><strong>maximus</strong>: The Felix Regiment will come from here.
+We’ll face the body of the Praetorians outside – here. Once inside, my
+archers will take up position to counter opposition inside the
+Colosseum. I’ll enter and join you – we’ll attack here –</p>
+<p><strong>maximus</strong>: – a covert assault from within.</p>
+<p><strong>vibius</strong>: We’ll be killed.</p>
+<p><strong>maximus</strong>: Probably.</p>
+<p><strong>maximus</strong>: But if we aren’t… think of the glory. Do
+you remember glory, Gladiator?</p>
+<p><strong>juba</strong>: And if we die that day – we die free men
+worthy of our ancestors.</p>
+<p><strong>vibius</strong>: You didn’t know my ancestors. A rotten
+bunch.</p>
+<p><strong>maximus</strong>: Then be worthy of him. The old Titan who
+would rather die bravely in a just battle than slink off to grow old and
+fat.</p>
+<p><strong>juba</strong>: And impotent.</p>
+<p><strong>vibius</strong>: If I die, I want a hundred whores at my
+funeral.</p>
+<p><strong>commodus</strong>: Where is my sister?</p>
+<p><strong>handmaiden</strong>: She’s out, sir…</p>
+<p><strong>commodus</strong>: Where?</p>
+<p><strong>handmaiden</strong>: I… don’t know, Caesar.</p>
+<p><strong>commodus</strong>: Where is my sister?</p>
+<p><strong>maximus</strong>: Was it Centurion…? General…?</p>
+<p><strong>proximo</strong>: Captain.</p>
+<p><strong>proximo</strong>: How did you know?</p>
+<p><strong>maximus</strong>: A soldier knows a soldier.</p>
+<p><strong>proximo</strong>: All that was a long time ago. Too much wine
+and too many women. And too much money.</p>
+<p><strong>maximus</strong>: No –</p>
+<p><strong>proximo</strong>: This is who I am… You see? There was a time
+I would stand against ten men and never give an inch, spitting into the
+jaws of Hades all the while. There was a time my heart swelled to strap
+on the armor of Rome. But now…</p>
+<p><strong>proximo</strong>: Now I am just an entertainer.</p>
+<p><strong>maximus</strong>: You said something to me once. You said in
+this life, we all die. All we can choose is how we die. And how we are
+remembered. Do you recall those words?</p>
+<p><strong>proximo</strong>: Yes.</p>
+<p><strong>maximus</strong>: Then be remembered proudly. This is your
+time, Proximo. Stand at my side and be what you were. What you truly
+are. One last time.</p>
+<p><strong>proximo</strong>: You might have spared yourself the speech,
+General. The lady Lucilla bought all my gladiators two hours ago!</p>
+<p><strong>maximus</strong>: You pox-ridden bastard – !</p>
+<p><strong>proximo</strong>: I am the richest trainer in the Empire! And
+I will let my gladiators do anything you like! Conspire away,
+General!</p>
+<p><strong>proximo</strong>: But I tell you – if you survive this
+madness I want you to go into business with me. I’ll give you a quarter
+of my holdings.</p>
+<p><strong>maximus</strong>: A quarter?!</p>
+<p><strong>proximo</strong>: A third. And not a hair more. And you’ll
+have to start in the provinces! Cleaning up the lion shit!</p>
+<p><strong>maximus</strong>: You know, if you were half so awful as you
+pretend, you’d be a terrifying man.</p>
+<p><strong>maximus</strong>: Lucilla –</p>
+<p><strong>lucilla</strong>: Don’t even say it. I know it’s dangerous –
+but I had to see you. Captain Marcellus has gone to the army with your
+message as you instructed.</p>
+<p><strong>maximus</strong>: Good.</p>
+<p><strong>lucilla</strong>: He says the City Guard will be ready at the
+south road at noon. They can only wait for an hour so –</p>
+<p><strong>maximus</strong>: You’ve told me this already.</p>
+<p><strong>lucilla</strong>: Did I? All right then. So everything is
+prepared. The Senate will be in attendance and you have your gladiators
+– the usual cohort of Praetorians will be inside the arena –</p>
+<p><strong>maximus</strong>: Lucilla… why are you here?</p>
+<p><strong>lucilla</strong>: Tell me honestly… please… do you think it
+will work?</p>
+<p><strong>maximus</strong>: No.</p>
+<p><strong>lucilla</strong>: Do you think we’ll all die?</p>
+<p><strong>maximus</strong>: Yes.</p>
+<p><strong>lucilla</strong>: Will you swear something to me?</p>
+<p><strong>maximus</strong>: Yes.</p>
+<p><strong>lucilla</strong>: Will you swear it on the memory of your
+son?</p>
+<p><strong>maximus</strong>: Yes.</p>
+<p><strong>lucilla</strong>: By all that you have ever loved… swear that
+if you survive you will take my son out of Rome. Swear that you will go
+far away and never return.</p>
+<p><strong>maximus</strong>: I will.</p>
+<p><strong>maximus</strong>: And if I should not survive… swear to me
+that you will honor my family in your prayers always.</p>
+<p><strong>lucilla</strong>: I will.</p>
+<p><strong>lucilla</strong>: Had I not been the daughter of Rome…</p>
+<p><strong>maximus</strong>: Shhh… my heart breaks enough.</p>
+<p><strong>commodus</strong>: Sister… join us. I’ve been reading to dear
+Lucius.</p>
+<p><strong>lucius</strong>: I’ve been reading too.</p>
+<p><strong>commodus</strong>: Yes, he’s a very smart little boy. He’ll
+make a grand Emperor one day.</p>
+<p><strong>commodus</strong>: Join us, sister.</p>
+<p><strong>commodus</strong>: We’ve been reading about the great Julius
+and his adventures in Egypt.</p>
+<p><strong>lucius</strong>: She killed herself with a snake!</p>
+<p><strong>commodus</strong>: And just wait until you hear what happened
+to some of our other ancestors! If you’re very good, tomorrow night I’ll
+tell you the story of Emperor Claudius. He was betrayed! By those
+closest to him… … by his own blood… they whispered in dark corners and
+went out late at night and conspired and conspired…</p>
+<p><strong>commodus</strong>: But the Emperor Claudius knew that they
+were up to something dire. He knew they were busy little bees. And one
+night he sat down with one of them and he looked at her and he said:
+“Tell me what you have been doing, busy little bee, or I shall strike
+down those dearest to you. You shall watch as I bathe in their blood.”
+And the bee knew he spoke the truth, for the Emperor always speaks the
+truth. And what do you think happened then, Lucius?</p>
+<p><strong>lucius</strong>: I don’t know, Uncle.</p>
+<p><strong>commodus</strong>: The bee told him everything.</p>
+<p><strong>proximo</strong>: Release them! Release them all!</p>
+<p><strong>proximo</strong>: Come –</p>
+<p><strong>maximus</strong>: But –</p>
+<p><strong>proximo</strong>: If you want to live – follow me –</p>
+<p><strong>vibius</strong>: Go, Spaniard! We’ll show these Roman dogs
+how gladiators fight!</p>
+<p><strong>proximo</strong>: All the old gladiator schools have tunnels
+to the Colosseum – most have long since collapsed –</p>
+<p><strong>juba</strong>: How did they know?</p>
+<p><strong>maximus</strong>: We were betrayed.</p>
+<p><strong>juba</strong>: I’ll stay here. In case they follow.</p>
+<p><strong>juba</strong>: Go! Bring us the army!</p>
+<p><strong>proximo</strong>: Quickly –</p>
+<p><strong>proximo</strong>: Down that corridor is the butchery – the
+blood sloughs lead to the Tiber. Gods watch over you.</p>
+<p><strong>maximus</strong>: You’re not coming?</p>
+<p><strong>proximo</strong>: They are killing my men!</p>
+<p><strong>proximo</strong>: Gods… they’re killing them all.</p>
+<p><strong>gaius’ bedroom</strong>: Gaius and his wife are yanked awake
+and hauled out.</p>
+<p><strong>christian home</strong>: A congregation of Christians is
+chained together, their secret altar smashed.</p>
+<p><strong>cafe</strong>: Greek Scholars are hauled away from their
+scrolls.</p>
+<p><strong>street theater</strong>: Actors are dragged off in the midst
+of a performance.</p>
+<p><strong>gracchus’ steam room</strong>: Gracchus is enjoying grapes
+with his handsome catamite. A unit of Praetorian bursts in. Gracchus
+looks at them. Sighs.</p>
+<p><strong>lucius</strong>: What is that fire?</p>
+<p><strong>commodus</strong>: Why that’s a bonfire, Lucius. I arranged
+it just for you.</p>
+<p><strong>praetorian</strong>: Caesar…</p>
+<p><strong>commodus</strong>: Oh… that’s for my sister.</p>
+<p><strong>titus</strong>: By all the Gods…</p>
+<p><strong>maximus</strong>: Old friend…</p>
+<p><strong>titus</strong>: You’re returned from Hades! By all the
+Gods!</p>
+<p><strong>maximus</strong>: Where is he?</p>
+<p><strong>maximus</strong>: I forgive you.</p>
+<p><strong>commodus</strong>: Rome… This is the day that was foretold.
+This is the day when your father takes away all fear… With these hands I
+shall destroy your enemies so that you may sleep always and forever in
+peace. From this day forth let it be known that I, Lucius Aelius
+Aurelius Commodus, have surmounted mortality. That I, Lucius Aelius
+Aurelius Commodus, assume my destined place… at the side of the
+Gods.</p>
+<p><strong>commodus</strong>: And as a righteous God, I shall ever
+protect you. I shall cradle the world on my benevolent hands and clasp
+it to my heart. So I have spoken! And let the heavens tremble at my
+might!</p>
+<p><strong>commodus</strong>: This day I reclaim Rome for her people. I
+shall give you the rebirth of your Empire! Reborn and cleansed of her
+enemies!</p>
+<p><strong>commodus</strong>: I will make a new Rome! Founded as it was
+at the beginning! Archers –</p>
+<p><strong>maximus</strong>: Throw down your weapons or we will kill
+you.</p>
+<p><strong>commodus</strong>: As it was at the beginning so is it now.
+The great She-Wolf of Rome will again suckle us, again ravage our
+enemies – AND BRING US A WORLD</p>
+<p><strong>commodus</strong>: So it was for Romulus and Remus, sons of
+Mars, so shall it be for us! The great She-Wolf will –</p>
+<p><strong>lucilla</strong>: Remember your mother.</p>
+<p><strong>centurion body guard</strong>: Caesar – we must go – !</p>
+<p><strong>maximus</strong>: Captain?</p>
+<p><strong>maximus</strong>: Where are they going?!</p>
+<p><strong>proximo</strong>: This way!</p>
+<p><strong>maximus</strong>: For my wife!</p>
+<p><strong>maximus</strong>: For my son!</p>
+<p><strong>maximus</strong>: For my father!</p>
+<p><strong>maximus</strong>: We who are about to die salute you.</p>
+<p><strong>gracchus</strong>: General, the purple is yours if you so
+desire. The Senate will support you.</p>
+<p><strong>maximus</strong>: Rome… you are better than this. Look inside
+yourselves. I challenge you to find your true voice. Help the Senate
+speak for you. Make them your champion… And dare to think what could
+be.</p>
+<p><strong>maximus</strong>: I give you back the dream.</p>
+<p><strong>maximus</strong>: When everything has calmed down, lead an
+orderly withdrawal. Take them home.</p>
+<p><strong>maximus</strong>: It doesn’t look it now… but soon we’ll have
+it growing again… Next year there will be vines, and then there will be
+grapes… It will be alive.</p>
+</body>
+</html>

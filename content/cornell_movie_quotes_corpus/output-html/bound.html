@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>bound</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="bound">bound</h1>
+<p><strong>violet</strong>: I had this image of you, inside of me, like
+a part of me.</p>
+<p><strong>corky</strong>: You planned this whole thing, didn’t you?</p>
+<p><strong>caesar</strong>: Where’s the fucking money?</p>
+<p><strong>violet</strong>: We make our own choices, we pay our own
+prices.</p>
+<p><strong>caesar</strong>: All part of the business.</p>
+<p><strong>violet</strong>: All part of the business.</p>
+<p><strong>corky</strong>: What choice?</p>
+<p><strong>violet</strong>: I want out.</p>
+<p><strong>violet</strong>: Like a part of me.</p>
+<p><strong>woman</strong>: Wait! Hold the elevator.</p>
+<p><strong>corky</strong>: Thanks again for this opportunity,
+Mr. Bianchinni. Goodbye.</p>
+<p><strong>violet</strong>: Hi. My name is Violet. We sort of met in the
+elevator –</p>
+<p><strong>corky</strong>: Yeah, sure. I’m Corky.</p>
+<p><strong>violet</strong>: I heard you working in here and I just
+wondered if you’d like a cup of coffee?</p>
+<p><strong>corky</strong>: Sure. Come on in. Give me a minute.</p>
+<p><strong>violet</strong>: What happened to Rajeev?</p>
+<p><strong>corky</strong>: Who?</p>
+<p><strong>violet</strong>: Rajeev, the man who usually works on the
+building.</p>
+<p><strong>corky</strong>: Oh, he went home to India, but as far as I
+know he’ll be back.</p>
+<p><strong>violet</strong>: So this is temporary for you?</p>
+<p><strong>corky</strong>: Pretty much. One day at a time.</p>
+<p><strong>violet</strong>: I guessed you were straight black.</p>
+<p><strong>corky</strong>: Good guess.</p>
+<p><strong>corky</strong>: Mmmm … thanks, I needed this.</p>
+<p><strong>violet</strong>: My pleasure … but to be honest, I did have a
+slightly ulterior motive here. I was wondering if I could ask a small
+favor?</p>
+<p><strong>corky</strong>: A favor?</p>
+<p><strong>violet</strong>: Yeah, see, I’m kind of a night person, so I
+was wondering if it wasn’t a terrible inconvenience if you could wait a
+bit before using power tools.</p>
+<p><strong>corky</strong>: Oh, I’m sorry –</p>
+<p><strong>violet</strong>: No, it isn’t your fault. The walls here are
+just so thin.</p>
+<p><strong>corky</strong>: Are they really?</p>
+<p><strong>violet</strong>: Yes, it really causes problems. Sometimes
+it’s like you’re in the same room. But if it’s too much trouble, I
+understand …</p>
+<p><strong>corky</strong>: No, no trouble. There’s other work to do.</p>
+<p><strong>violet</strong>: You’re doing everything yourself?</p>
+<p><strong>corky</strong>: Yeah.</p>
+<p><strong>violet</strong>: That is so amazing. I’m in awe of people who
+can fix things. My dad was like that. We never had anything new.
+Whenever something broke he would open it up, tinker with it and it
+would work. His hands were magic.</p>
+<p><strong>violet</strong>: Yeah … I bet your car is twenty years
+old.</p>
+<p><strong>corky</strong>: Truck.</p>
+<p><strong>violet</strong>: Truck. Of course.</p>
+<p><strong>corky</strong>: ’63 Chevy.</p>
+<p><strong>violet</strong>: I knew it.</p>
+<p><strong>violet</strong>: So, how do you know the owner,
+Mr. Bianchinni?</p>
+<p><strong>corky</strong>: I don’t, really. I was referred to him.</p>
+<p><strong>violet</strong>: Oh, really.</p>
+<p><strong>corky</strong>: Do you know him?</p>
+<p><strong>violet</strong>: No, but Caesar does. He likes him. Says he’s
+a good Italian.</p>
+<p><strong>corky</strong>: Caesar is your husband?</p>
+<p><strong>violet</strong>: Oh no, no. I’m not the marrying kind.</p>
+<p><strong>violet</strong>: I should be going. You can drop the cup off
+anytime.</p>
+<p><strong>corky</strong>: Thanks.</p>
+<p><strong>violet</strong>: My pleasure.</p>
+<p><strong>bartender</strong>: Well, well …</p>
+<p><strong>bartender</strong>: Been awhile, Cork.</p>
+<p><strong>corky</strong>: Five years, two months, sixteen days. How you
+doing, Sue?</p>
+<p><strong>sue</strong>: Like shit. Now that we’re all caught up, how
+about a drink?</p>
+<p><strong>corky</strong>: Thanks.</p>
+<p><strong>sue</strong>: You got a job yet?</p>
+<p><strong>corky</strong>: Yeah. Some plumbing, painting and shit.</p>
+<p><strong>sue</strong>: I mean a J-O-B. A real job.</p>
+<p><strong>corky</strong>: Not for me, Sue. I’m straight and narrow. I’m
+just here to get laid or drunk and hopefully both.</p>
+<p><strong>corky</strong>: Thanks for the beer.</p>
+<p><strong>corky</strong>: Hi.</p>
+<p><strong>woman</strong>: Hello.</p>
+<p><strong>corky</strong>: You know … that outfit would look great on my
+bedroom floor.</p>
+<p><strong>woman cop</strong>: Hey, Jesse. What’s happening here?</p>
+<p><strong>corky</strong>: Nothing … yet.</p>
+<p><strong>woman cop</strong>: Who’s this?</p>
+<p><strong>woman cop</strong>: Wait, I know you.</p>
+<p><strong>corky</strong>: I don’t think so.</p>
+<p><strong>woman cop</strong>: I didn’t know you were out.</p>
+<p><strong>corky</strong>: When you get tired of Cagney and Lacey, come
+find me.</p>
+<p><strong>corky</strong>: Hello? Oh, hi, Mr. Bianchinni … yes,
+everything is going fine. I got the tub drain all cleaned out.</p>
+<p><strong>corky</strong>: What apartment?</p>
+<p><strong>corky</strong>: All right, all right, I guess I could take a
+look. Yeah, you’re welcome, goodbye.</p>
+<p><strong>violet</strong>: Oh no. Shit. I didn’t know he would call
+you. God, you must think |I’m a total nuisance.</p>
+<p><strong>corky</strong>: Not exactly.</p>
+<p><strong>violet</strong>: I’m sorry, I usually would call Rajeev, but
+I didn’t know what to do so I called Mr. Bianchinni.</p>
+<p><strong>corky</strong>: He said you lost something.</p>
+<p><strong>violet</strong>: Yeah, come on in.</p>
+<p><strong>violet</strong>: I was doing some dishes and just as I pulled
+the stopper my earring fell in.</p>
+<p><strong>violet</strong>: It’s one of my favorites. That’s why I got
+upset. I know it probably seems ridiculous to you.</p>
+<p><strong>violet</strong>: I’m sorry, look, forget it. I shouldn’t have
+called…</p>
+<p><strong>corky</strong>: I told Bianchinni I would take a look. Is it
+that sink?</p>
+<p><strong>corky</strong>: Do you have a pot or a bucket?</p>
+<p><strong>violet</strong>: Sure.</p>
+<p><strong>violet</strong>: Did you find it?</p>
+<p><strong>violet</strong>: I can’t believe it! You did it!</p>
+<p><strong>violet</strong>: Thank you so much. You have to let me pay
+you something –</p>
+<p><strong>corky</strong>: No. Mr. Bianchinni asked me to do it. I did
+it.</p>
+<p><strong>violet</strong>: If you won’t take money, how about a drink?
+It’s getting late. You can’t work all night.</p>
+<p><strong>corky</strong>: Okay, one drink.</p>
+<p><strong>violet</strong>: What do you want?</p>
+<p><strong>corky</strong>: A beer?</p>
+<p><strong>violet</strong>: A beer. Of course.</p>
+<p><strong>violet</strong>: Sit down.</p>
+<p><strong>violet</strong>: Thanks again.</p>
+<p><strong>violet</strong>: You seem uncomfortable. Do I make you
+nervous, Corky?</p>
+<p><strong>corky</strong>: No.</p>
+<p><strong>violet</strong>: Thirsty, maybe.</p>
+<p><strong>corky</strong>: Curious, maybe.</p>
+<p><strong>violet</strong>: Curious? That’s funny, I’m feeling a bit
+curious myself right now.</p>
+<p><strong>violet</strong>: That’s a great tattoo.</p>
+<p><strong>violet</strong>: Beautiful labrys.</p>
+<p><strong>violet</strong>: Are you surprised that I know what it
+is?</p>
+<p><strong>corky</strong>: Maybe.</p>
+<p><strong>violet</strong>: I have a tattoo, would you like to see
+it?</p>
+<p><strong>violet</strong>: A woman in upstate New York did it for
+me.</p>
+<p><strong>violet</strong>: Here. Do you like it?</p>
+<p><strong>violet</strong>: It took her all day to do it. She promised
+me it wouldn’t hurt, but it was sore for a long time after. I couldn’t
+even touch it.</p>
+<p><strong>violet</strong>: But now I love the way it feels.</p>
+<p><strong>violet</strong>: Here, touch it.</p>
+<p><strong>corky</strong>: What are you doing?</p>
+<p><strong>violet</strong>: Isn’t it obvious? I’m trying to seduce
+you.</p>
+<p><strong>corky</strong>: Why?</p>
+<p><strong>violet</strong>: Because I want to. I’ve wanted to since I
+first saw you in the elevator.</p>
+<p><strong>violet</strong>: You don’t believe me. But I can prove it to
+you.</p>
+<p><strong>violet</strong>: You can’t believe me because of what you see
+…</p>
+<p><strong>violet</strong>: But you can believe what you feel.</p>
+<p><strong>violet</strong>: You see … I’ve been thinking about you all
+day.</p>
+<p><strong>corky</strong>: You planned this whole thing?</p>
+<p><strong>corky</strong>: You dropped that earring down the drain on
+purpose, didn’t you?</p>
+<p><strong>violet</strong>: If I say yes, will you take your hand
+away?</p>
+<p><strong>corky</strong>: No.</p>
+<p><strong>violet</strong>: … yes.</p>
+<p><strong>violet</strong>: Please, Corky … please …</p>
+<p><strong>violet</strong>: … kiss me.</p>
+<p><strong>caesar</strong>: Violet?</p>
+<p><strong>caesar</strong>: Violet, you home?</p>
+<p><strong>violet</strong>: Yeah. In here, C.</p>
+<p><strong>caesar</strong>: What’s this?</p>
+<p><strong>caesar</strong>: What the fuck is this?</p>
+<p><strong>violet</strong>: I didn’t expect –</p>
+<p><strong>caesar</strong>: What the fuck is going on?</p>
+<p><strong>caesar</strong>: Oh, shit …</p>
+<p><strong>violet</strong>: Caesar, this is Corky. Corky, Caesar.</p>
+<p><strong>caesar</strong>: I’m sorry, Christ, I thought … it’s fucking
+dark in here.</p>
+<p><strong>violet</strong>: She is working for Bianchinni.</p>
+<p><strong>caesar</strong>: Oh, right, right. Don mentioned that to me.
+Hi, welcome to the family.</p>
+<p><strong>caesar</strong>: You’re helping Rajeev?</p>
+<p><strong>corky</strong>: No. Rajeev’s in India.</p>
+<p><strong>violet</strong>: She’s doing the work herself.</p>
+<p><strong>caesar</strong>: No shit. Bianchinni hired you? You know he’s
+a good friend of mine. |Family, really.</p>
+<p><strong>corky</strong>: That’s what Violet said.</p>
+<p><strong>caesar</strong>: So, you just got out?</p>
+<p><strong>violet</strong>: Jesus, Caesar!</p>
+<p><strong>caesar</strong>: What? It ain’t no big fuckin’ deal. I know
+who Don hires. Did you know he did time himself?</p>
+<p><strong>caesar</strong>: Thirteen fucking years. See, there ain’t no
+secrets here.</p>
+<p><strong>caesar</strong>: How many’d you do?</p>
+<p><strong>corky</strong>: Five.</p>
+<p><strong>caesar</strong>: Not bad. What for?</p>
+<p><strong>violet</strong>: That’s none of your goddamn business,
+Caesar.</p>
+<p><strong>caesar</strong>: You’re right. You don’t have to tell me, if
+you don’t want to. I just hope you understand you’re among good people
+here.</p>
+<p><strong>caesar</strong>: Come on, come on. if you understand what I’m
+talking about you’re going to take the money. if you don’t, I’m going to
+have to worry about you.</p>
+<p><strong>caesar</strong>: Good. I hate to worry. I got ulcers.</p>
+<p><strong>corky</strong>: I should be going.</p>
+<p><strong>caesar</strong>: What? How about a drink?</p>
+<p><strong>corky</strong>: My brushes, I have to clean my brushes.
+Thanks, though.</p>
+<p><strong>caesar</strong>: Another time.</p>
+<p><strong>corky</strong>: Sure.</p>
+<p><strong>corky</strong>: What are you doing?</p>
+<p><strong>corky</strong>: What am I doing? I’m fucking up, that’s what
+I’m doing.</p>
+<p><strong>violet</strong>: I had to see you.</p>
+<p><strong>corky</strong>: Look, I don’t think this is a good idea.</p>
+<p><strong>violet</strong>: I wanted to apologize.</p>
+<p><strong>corky</strong>: Don’t apologize, please. I can’t stand women
+who apologize for wanting sex.</p>
+<p><strong>violet</strong>: I’m not apologizing for what I did –</p>
+<p><strong>violet</strong>: I’m apologizing for what I didn’t do.</p>
+<p><strong>violet</strong>: Do you have a bed somewhere?</p>
+<p><strong>corky</strong>: I can see again.</p>
+<p><strong>violet</strong>: … I needed that.</p>
+<p><strong>corky</strong>: Tell me about it.</p>
+<p><strong>corky</strong>: Caesar’s Mafia, isn’t he?</p>
+<p><strong>violet</strong>: You have to ask?</p>
+<p><strong>corky</strong>: No.</p>
+<p><strong>violet</strong>: Funny, nobody calls it that anymore. Caesar
+calls it “The |Business.”</p>
+<p><strong>corky</strong>: How did you meet him?</p>
+<p><strong>violet</strong>: They took over a club I was working at.
+Caesar started managing it.</p>
+<p><strong>corky</strong>: He’s a launderer?</p>
+<p><strong>violet</strong>: Basically.</p>
+<p><strong>corky</strong>: How long have you been with him?</p>
+<p><strong>violet</strong>: Almost five years.</p>
+<p><strong>corky</strong>: Five years is a long time.</p>
+<p><strong>violet</strong>: Yes, it is.</p>
+<p><strong>corky</strong>: The redistribution of wealth.</p>
+<p><strong>violet</strong>: What?</p>
+<p><strong>corky</strong>: Isn’t that what you wanted to know? What I
+did time for?</p>
+<p><strong>violet</strong>: The redistribution of wealth?</p>
+<p><strong>corky</strong>: That’s what I tell someone when I’m trying to
+get them in my bed.</p>
+<p><strong>violet</strong>: I’m already in your bed.</p>
+<p><strong>corky</strong>: My cellmate would say she did her time for
+getting caught. She was always more honest than me.</p>
+<p><strong>corky</strong>: I started stealing when I was little. We were
+piss-poor, which is not an excuse, just a fact.</p>
+<p><strong>corky</strong>: The first time I remember so vividly. A bunch
+of us kids were at Waxman’s Drugstore, when Mr. Waxman, who was a mean
+old prick, always worrying about us robbing him, dropped a roll of
+quarters.</p>
+<p><strong>corky</strong>: I can still hear that sound, those quarters,
+because right then something clicked inside of me. Some instinct took
+over and as everyone, including Waxman, dove down, I reached up and
+emptied the cash register.</p>
+<p><strong>corky</strong>: I gave most of the money to my mom. I told
+her I found it at the trainyard. She was so happy she cried, calling me
+her lucky charm. Fifteen years later, I guess my luck ran out.</p>
+<p><strong>corky</strong>: Sometimes I tell myself that I didn’t have a
+choice, that stealing was surviving. Usually I can admit that’s
+bullshit. I did it because it was a way out. It was easy and I was good
+at it, real good.</p>
+<p><strong>corky</strong>: I don’t usually talk this much. I guess I
+have been rehabilitated.</p>
+<p><strong>violet</strong>: You didn’t have to tell me if you didn’t
+want to.</p>
+<p><strong>corky</strong>: I guess I wanted to.</p>
+<p><strong>violet</strong>: I’m glad you did.</p>
+<p><strong>corky</strong>: So am I.</p>
+<p><strong>shelly</strong>: I know he’s gone. Please. I have to talk to
+you.</p>
+<p><strong>violet</strong>: What do you want, Shelly?</p>
+<p><strong>violet</strong>: I had this image of you, inside of me …</p>
+<p><strong>violet</strong>: Like a part of me …</p>
+<p><strong>violet</strong>: You are so beautiful.</p>
+<p><strong>violet</strong>: What’s wrong?</p>
+<p><strong>corky</strong>: Nothing.</p>
+<p><strong>violet</strong>: Yes there is. I felt it this morning when I
+brought you the coffee.</p>
+<p><strong>corky</strong>: Shit, here we go.</p>
+<p><strong>violet</strong>: You didn’t want to see me, did you?</p>
+<p><strong>corky</strong>: If there is one thing I can’t stand about
+sleeping with women, it’s all the fucking mind reading.</p>
+<p><strong>violet</strong>: What are you afraid of?</p>
+<p><strong>corky</strong>: I’m not afraid of anything.</p>
+<p><strong>violet</strong>: I don’t understand - ?</p>
+<p><strong>corky</strong>: I know! You can’t understand, because we’re
+different, Violet. We’re different.</p>
+<p><strong>violet</strong>: We’re not that different, Corky.</p>
+<p><strong>corky</strong>: How can you sit in that bed and say that?</p>
+<p><strong>violet</strong>: Because it’s the truth.</p>
+<p><strong>corky</strong>: Let me guess. This is where you tell me that
+what matters is on the inside. That inside you, there is a little dyke
+just like me?</p>
+<p><strong>violet</strong>: Oh no, she’s nothing like you. She’s a lot
+smarter than you.</p>
+<p><strong>corky</strong>: Is that what her daddy tells her?</p>
+<p><strong>violet</strong>: I know what I am. I don’t need to have it
+tattooed on my shoulder.</p>
+<p><strong>corky</strong>: What are you saying? That you don’t have sex
+with men?</p>
+<p><strong>violet</strong>: I don’t.</p>
+<p><strong>corky</strong>: For Christ’s sake, Violet! I heard you! Thin
+walls, remember?</p>
+<p><strong>violet</strong>: What you heard wasn’t sex.</p>
+<p><strong>corky</strong>: What the fuck was it?</p>
+<p><strong>violet</strong>: All my life, everyone has been telling me
+that when I have sex, I’m not really having sex. Not real sex. But
+they’re wrong. I know what is and isn’t sex and what you heard was
+definitely not sex.</p>
+<p><strong>corky</strong>: What was it then?</p>
+<p><strong>violet</strong>: Work.</p>
+<p><strong>violet</strong>: You made certain choices in your life that
+you paid for. You said you made them because you were good at something
+and it was easy. Do you think you’re the only one that’s good at
+something?</p>
+<p><strong>violet</strong>: We make our own choices and we pay our own
+prices. I think we’re more alike than you want to admit.</p>
+<p><strong>corky</strong>: What about that guy this morning?</p>
+<p><strong>violet</strong>: You mean Shelly?</p>
+<p><strong>corky</strong>: Don’t tell me, you’re a workaholic.</p>
+<p><strong>violet</strong>: No. Shelly knows what I am. He saw me in a
+bar with another woman.</p>
+<p><strong>corky</strong>: I suppose he just wants to watch.</p>
+<p><strong>violet</strong>: Fuck it! I think you better leave.</p>
+<p><strong>corky</strong>: I think so, too.</p>
+<p><strong>violet</strong>: Try not to steal anything on the way
+out.</p>
+<p><strong>corky</strong>: Shit.</p>
+<p><strong>angry voice</strong>: Shut the fuck up! You piece of
+shit!</p>
+<p><strong>angry voice</strong>: You’re going to tell us! You’re going
+to fuckin’ tell us! just a matter of fuckin’ time!</p>
+<p><strong>angry voice</strong>: Where is it? Where the fuck is it?!</p>
+<p><strong>angry voice</strong>: You shit! You piece of shit!</p>
+<p><strong>angry voice</strong>: Did that hurt? News flash, fucko: I’m
+just getting started.</p>
+<p><strong>johnnie</strong>: You got nerve trying to fuck us! Nobody
+fucks me! Nobody fucks my father! Nobody! Nobody!</p>
+<p><strong>caesar</strong>: Whoa, whoa. Come on, he’s making too much
+noise.</p>
+<p><strong>johnnie</strong>: You hear that, bitch? Be quiet!</p>
+<p><strong>caesar</strong>: Here, put this in his mouth.</p>
+<p><strong>johnnie</strong>: Prick! I can go all night! All night!</p>
+<p><strong>violet</strong>: Caesar, I’m leaving.</p>
+<p><strong>caesar</strong>: What? Oh, come on, I didn’t use one of the
+good towels.</p>
+<p><strong>violet</strong>: Caesar, I’m serious. This is too much. I
+have to get out of here.</p>
+<p><strong>caesar</strong>: Why? ’Cause you know him?</p>
+<p><strong>caesar</strong>: You women are so fucking sensitive.</p>
+<p><strong>caesar</strong>: But I don’t want you to go. I like you here.
+You know this isn’t easy for me, either.</p>
+<p><strong>caesar</strong>: Now why don’t you go watch some TV or
+something?</p>
+<p><strong>mickey</strong>: Are you okay, Violet?</p>
+<p><strong>caesar</strong>: Mickey, why is Johnnie here? You know how I
+feel about that fucking psycho.</p>
+<p><strong>mickey</strong>: Caesar, didn’t I tell you to get
+something?</p>
+<p><strong>caesar</strong>: Sure, Mickey. Sure.</p>
+<p><strong>mickey</strong>: You shouldn’t have to see this. Why don’t
+you get out of here? Go for a walk.</p>
+<p><strong>violet</strong>: Caesar wants me to stay.</p>
+<p><strong>mickey</strong>: Don’t worry about Caesar. I’ll handle
+Caesar. You just get out of here, okay?</p>
+<p><strong>violet</strong>: Thanks, Mickey.</p>
+<p><strong>mickey</strong>: Thanks, C. Now let’s end this thing.</p>
+<p><strong>mickey</strong>: Hey, Johnnie, ease up, okay.</p>
+<p><strong>johnnie</strong>: Prick.</p>
+<p><strong>mickey</strong>: Shelly, I’m going to ask you ten times. You
+understand? Ten times.</p>
+<p><strong>mickey</strong>: One. Where is our money?</p>
+<p><strong>caesar</strong>: Aw … Christ.</p>
+<p><strong>corky</strong>: Violet? Are you all right?</p>
+<p><strong>corky</strong>: Come on. Let’s go.</p>
+<p><strong>corky</strong>: Excuse me.</p>
+<p><strong>corky</strong>: Draft beer and a TNT.</p>
+<p><strong>violet</strong>: Shelly was skimming from the business. He
+came to see me yesterday because he was afraid Caesar figured it out. He
+wanted to run but he wanted me to come with him.</p>
+<p><strong>corky</strong>: Even though he knew about you?</p>
+<p><strong>violet</strong>: Yes.</p>
+<p><strong>corky</strong>: He was in love with you, right?</p>
+<p><strong>violet</strong>: That’s what he told himself. But it wasn’t
+even about me, it was about Caesar. He wanted what Caesar had. That’s
+how they are. I understand them.</p>
+<p><strong>violet</strong>: For Shelly, taking the money was a way to
+take from Caesar. He could have run at any time, but he didn’t because
+he didn’t want out.</p>
+<p><strong>corky</strong>: Sounds like he wanted to get caught.</p>
+<p><strong>violet</strong>: Maybe he did. He would brag to me all the
+time. He was never afraid of Caesar because he didn’t know him. Not like
+I do.</p>
+<p><strong>violet</strong>: Caesar lives for these moments. He tells me
+it’s just the business, but I know it’s more than that. He likes it. The
+violence. I’ll catch him in the bathroom mirror touching his scars. He
+says they remind him who he his. They’re all like that. Except maybe
+Mickey.</p>
+<p><strong>corky</strong>: Mickey?</p>
+<p><strong>violet</strong>: He’s the part of the business that the rest
+of them pretend to be. |But Mickey doesn’t like it like they do. I
+suppose that’s why he’s good at it.</p>
+<p><strong>violet</strong>: I used to be able to block it out. I would
+tell myself that I wasn’t really there so nothing really mattered. But I
+can’t do it anymore.</p>
+<p><strong>violet</strong>: I’ve been making the same mistake Shelly
+made. But now I know what |I want.</p>
+<p><strong>violet</strong>: I want out. I want a new life. I see what
+I’ve been waiting for, but I need you, Corky.</p>
+<p><strong>corky</strong>: For what?</p>
+<p><strong>violet</strong>: You made a choice once. Do you think you
+would make that same choice again?</p>
+<p><strong>corky</strong>: What choice?</p>
+<p><strong>violet</strong>: If those quarters fell to the floor, would
+you still reach up to that cash register?</p>
+<p><strong>corky</strong>: Not here.</p>
+<p><strong>violet</strong>: Caesar is going to get the money and bring
+–</p>
+<p><strong>corky</strong>: How much money?</p>
+<p><strong>violet</strong>: Shelly said it was over two million
+dollars.</p>
+<p><strong>violet</strong>: Caesar will bring it to the apartment to
+count and go through |Shelly’s books to figure out how he did it.</p>
+<p><strong>corky</strong>: Wait a minute. Wait a minute. Do you have any
+idea what you are saying? You are asking me to help you fuck the
+mob.</p>
+<p><strong>corky</strong>: These people are serious, Violet. If you want
+to know how serious, ask Shelly. They’re worse than any cop because they
+have lots of money and no rules. You fuck them, you’ve got to do it
+right.</p>
+<p><strong>violet</strong>: That’s why I need your help. You said you
+were good.</p>
+<p><strong>corky</strong>: I am, but …</p>
+<p><strong>corky</strong>: All right, let’s say for the moment that I
+believe everything you are saying.</p>
+<p><strong>violet</strong>: You think I’m lying?</p>
+<p><strong>corky</strong>: I didn’t say that, but since you did, let’s
+say that you are. It would have been easy to set Shelly up. You could
+have got him killed knowing that Caesar would bring the money to the
+apartment.</p>
+<p><strong>corky</strong>: All you would need to keep yourself clean
+would be someone unconnected, someone like me.</p>
+<p><strong>violet</strong>: Is that what you think?</p>
+<p><strong>corky</strong>: I’m just making a point. You have no idea
+what you’re asking. How much trust two people need to do something like
+this.</p>
+<p><strong>corky</strong>: For me, stealing is a lot like sex. Two
+people that want the same thing sit in a room and they talk, they start
+to plan and it’s like flirting, a kind of foreplay, because the more
+they talk about it, the wetter they get.</p>
+<p><strong>corky</strong>: The difference is, I can have sex with
+someone I just met, someone I hardly know, but to steal I need to know
+someone like I know myself.</p>
+<p><strong>violet</strong>: Do you think you know me like that?</p>
+<p><strong>corky</strong>: I think …</p>
+<p><strong>corky</strong>: We’re going to find out.</p>
+<p><strong>corky</strong>: But first, I want to see this money.</p>
+<p><strong>violet</strong>: Oh my God …</p>
+<p><strong>caesar</strong>: Don’t worry. It ain’t mine.</p>
+<p><strong>violet</strong>: Caesar, what happened?</p>
+<p><strong>caesar</strong>: It was unbelievable! Un-fucking-
+believable!</p>
+<p><strong>caesar</strong>: Goddammit, look at this shirt! It’s
+ruined!</p>
+<p><strong>caesar</strong>: It started when Shelly took us to the money.
+I tell you, Mickey Malnato knows his shit, he does. Shelly takes us
+right there.</p>
+<p><strong>caesar</strong>: So Shelly’s down on his knees and he’s
+pulling out this bag of money from a safe in the floor and I’m staring
+at it like “holy fuck!” I mean, look at it –</p>
+<p><strong>caesar</strong>: And all I can think is how the fuck did he
+do this when - Bang! Johnnie caps him. Blood sprays everywhere, all over
+the money. We’ve no idea if this is even all of it.</p>
+<p><strong>caesar</strong>: And right then I go through the roof and -
+Boom! I belt the dumb fuck as hard as I can. I didn’t care whose son he
+was, I just wanted to hit him again. Knock some sense into that dumb son
+of a bitch.</p>
+<p><strong>caesar</strong>: Just look at this mess I got to deal
+with.</p>
+<p><strong>violet</strong>: What are you going to do with it?</p>
+<p><strong>caesar</strong>: I told them to run it through the cycles.
+But I guess Gino has plans for it because he’s coming here tomorrow
+night to pick this shit up.</p>
+<p><strong>caesar</strong>: Where the hell’s the laundry detergent?</p>
+<p><strong>violet</strong>: Ummm … in the linen closet.</p>
+<p><strong>corky</strong>: Come to my place in the morning. Early,
+okay?</p>
+<p><strong>violet</strong>: You’re having second thoughts.</p>
+<p><strong>corky</strong>: … no.</p>
+<p><strong>corky</strong>: You said he washed the money?</p>
+<p><strong>violet</strong>: Yeah.</p>
+<p><strong>corky</strong>: Then what? Exactly.</p>
+<p><strong>violet</strong>: He hung it up.</p>
+<p><strong>corky</strong>: What?</p>
+<p><strong>violet</strong>: To let it dry.</p>
+<p><strong>violet</strong>: It was unreal …</p>
+<p><strong>violet</strong>: Hundreds, paper-clipped everywhere like
+leaves.</p>
+<p><strong>violet</strong>: Then one by one, he ironed all of it.</p>
+<p><strong>corky</strong>: Did he sleep?</p>
+<p><strong>violet</strong>: No. But neither did I.</p>
+<p><strong>violet</strong>: All night long I listened to that sound.</p>
+<p><strong>corky</strong>: What sound?</p>
+<p><strong>violet</strong>: The sound of money.</p>
+<p><strong>corky</strong>: And where is it now?</p>
+<p><strong>violet</strong>: In his office. I saw it this morning.</p>
+<p><strong>violet</strong>: I need to go to the store.</p>
+<p><strong>violet</strong>: It’s in a case, on his desk.</p>
+<p><strong>corky</strong>: Does the case lock?</p>
+<p><strong>violet</strong>: Yes.</p>
+<p><strong>corky</strong>: Good.</p>
+<p><strong>corky</strong>: All right, now, tell me about Johnnie.</p>
+<p><strong>violet</strong>: Johnnie?</p>
+<p><strong>corky</strong>: It sounded like he and Caesar don’t like each
+other.</p>
+<p><strong>violet</strong>: Like each other? They hate each other.</p>
+<p><strong>corky</strong>: Why?</p>
+<p><strong>violet</strong>: It started way before I was around. I think
+basically it’s because he thinks Johnnie is a complete idiot. But
+Johnnie runs Chicago because Gino is his father.</p>
+<p><strong>corky</strong>: Who is Gino?</p>
+<p><strong>violet</strong>: Gino Marzzone.</p>
+<p><strong>corky</strong>: Marzzone? As in Angelo Marzzone, head of the
+Marzzone family?</p>
+<p><strong>violet</strong>: That’s his brother.</p>
+<p><strong>corky</strong>: … shit.</p>
+<p><strong>corky</strong>: Gino Marzzone is coming tonight to pick up
+the money?</p>
+<p><strong>violet</strong>: Yeah.</p>
+<p><strong>corky</strong>: And Johnnie is his son, that’s Johnnie
+Marzzone?</p>
+<p><strong>violet</strong>: Yeah.</p>
+<p><strong>corky</strong>: Sweet Jesus.</p>
+<p><strong>corky</strong>: It’s perfect.</p>
+<p><strong>corky</strong>: Gino Marzzone is coming to your apartment.
+It’s a big deal, isn’t it? That means Caesar will be ready. He doesn’t
+want to look like an idiot. Gino has been there before?</p>
+<p><strong>violet</strong>: Yeah, twice.</p>
+<p><strong>corky</strong>: What happened?</p>
+<p><strong>violet</strong>: Not much, really. Caesar was nervous, kept
+cleaning the apartment. |The first time, he picked out the dress he
+wanted me to wear.</p>
+<p><strong>corky</strong>: Does Johnnie hit on you?</p>
+<p><strong>violet</strong>: Johnnie hits on anything in high heels.</p>
+<p><strong>corky</strong>: Has Caesar ever seen him?</p>
+<p><strong>violet</strong>: He does it right in front of him.</p>
+<p><strong>corky</strong>: It’s getting better and better. Keep
+going.</p>
+<p><strong>violet</strong>: Gino doesn’t know English, or at least he
+pretends he doesn’t, so he doesn’t talk much. He gets right to the
+point. Both times they talked for about five minutes, had one drink and
+then they left.</p>
+<p><strong>corky</strong>: What did Gino drink?</p>
+<p><strong>violet</strong>: Scotch, Glenlivet. I remember that Caesar
+made a huge deal about it.</p>
+<p><strong>corky</strong>: All right …</p>
+<p><strong>corky</strong>: I have an idea to make this work.</p>
+<p><strong>corky</strong>: You’ll go back and get ready, take your time,
+make it real.</p>
+<p><strong>corky</strong>: The more attractive you are, the more
+believable it will be.</p>
+<p><strong>corky</strong>: What time did you say they would be
+there?</p>
+<p><strong>violet</strong>: The plane is in at seven, so I’d say about
+eight.</p>
+<p><strong>corky</strong>: Any bodyguards?</p>
+<p><strong>violet</strong>: Gino travels with a big man named Roy.
+Caesar calls him the driver.</p>
+<p><strong>corky</strong>: Fine.</p>
+<p><strong>corky</strong>: At some point Caesar is going to quit. I’d
+guess sometime around six, making sure he’s got time to get ready.</p>
+<p><strong>caesar</strong>: Un-fucking-believable, what this guy did.
+Shelly is one smart-ass mothefucker, I mean, he was one smart- ass
+motherfucker.</p>
+<p><strong>corky</strong>: As soon as he is done, you’ll be right there
+to put a big drink in his hand.</p>
+<p><strong>corky</strong>: We want him to come down, to relax, feel in
+control again.</p>
+<p><strong>violet</strong>: Poor boy, has to work so hard.</p>
+<p><strong>caesar</strong>: You look good enough to eat.</p>
+<p><strong>violet</strong>: Where will you be?</p>
+<p><strong>corky</strong>: Waiting in the apartment next door.</p>
+<p><strong>violet</strong>: Waiting for what?</p>
+<p><strong>corky</strong>: For the shower. That will be our signal.</p>
+<p><strong>corky</strong>: When he’s done with his shower, you will go
+to the bar.</p>
+<p><strong>corky</strong>: You’ll get out the Scotch that Gino
+drinks.</p>
+<p><strong>corky</strong>: And as you do, the bottle will slip from your
+hands. – and shatter against the hardwood floor.</p>
+<p><strong>corky</strong>: An accident.</p>
+<p><strong>violet</strong>: Shit! Oh shit!</p>
+<p><strong>caesar</strong>: What happened?!</p>
+<p><strong>caesar</strong>: V! What the fuck was it?! Violet?</p>
+<p><strong>caesar</strong>: V, what? You can’t hear me?</p>
+<p><strong>violet</strong>: Caesar, it slipped … I was trying to get
+ready …</p>
+<p><strong>caesar</strong>: Oh, fucking Christ … You gotta be kidding
+me!</p>
+<p><strong>caesar</strong>: Fuck! Fuck! How did you … Awwww
+goddammit!</p>
+<p><strong>violet</strong>: I’m sorry. It was an accident.</p>
+<p><strong>violet</strong>: Don’t worry, I’ll get some more.</p>
+<p><strong>caesar</strong>: There’s no time.</p>
+<p><strong>violet</strong>: Don’t be silly, Caesar. It’ll take five
+minutes.</p>
+<p><strong>violet</strong>: I’ll clean this up and be back before you’re
+even dressed.</p>
+<p><strong>corky</strong>: When you open the door, I’ll be there.</p>
+<p><strong>violet</strong>: What if he sees you?</p>
+<p><strong>corky</strong>: He won’t.</p>
+<p><strong>violet</strong>: You can’t know for certain that he won’t see
+you.</p>
+<p><strong>corky</strong>: Trust me, Violet.</p>
+<p><strong>violet</strong>: I’m just asking, what if?</p>
+<p><strong>corky</strong>: If he does …</p>
+<p><strong>corky</strong>: Then I won’t have a choice, will I?</p>
+<p><strong>corky</strong>: When I’m inside, I will get the money.</p>
+<p><strong>corky</strong>: I’m going to need something …</p>
+<p><strong>corky</strong>: … to fill the case.</p>
+<p><strong>corky</strong>: Yeah, you should hide it near the desk before
+you leave.</p>
+<p><strong>corky</strong>: At that point –</p>
+<p><strong>corky</strong>: There is no going back.</p>
+<p><strong>violet</strong>: When I get the Scotch, how do I know you
+won’t take off?</p>
+<p><strong>corky</strong>: The same way I’ll know that you went to
+Scotch. Trust.</p>
+<p><strong>violet</strong>: I still don’t see how I’m going to get clean
+with the money in the apartment. Everyone will think I did it.</p>
+<p><strong>corky</strong>: Not Caesar.</p>
+<p><strong>violet</strong>: Why?</p>
+<p><strong>corky</strong>: Because of what you are going to tell him.
+You have to make it as real as you can. The moment you open the door
+with the Scotch in your hand, you will be covered, and that moment is
+the most important moment in the plan.</p>
+<p><strong>corky</strong>: If it’s real enough, he’ll believe it,
+because deep down he’ll want to.</p>
+<p><strong>violet</strong>: C! Shit, I’m sorry!</p>
+<p><strong>violet</strong>: They were early.</p>
+<p><strong>caesar</strong>: What are you talking about?</p>
+<p><strong>violet</strong>: They just left, didn’t they?</p>
+<p><strong>caesar</strong>: What are you, drunk?</p>
+<p><strong>violet</strong>: You mean they weren’t up here?</p>
+<p><strong>caesar</strong>: No! They’re still on their way.</p>
+<p><strong>violet</strong>: That doesn’t make any sense.</p>
+<p><strong>caesar</strong>: Why?</p>
+<p><strong>violet</strong>: Because I just saw Johnnie downstairs.</p>
+<p><strong>caesar</strong>: What?</p>
+<p><strong>violet</strong>: I was getting out of the car when I saw him
+in the Mercedes.</p>
+<p><strong>caesar</strong>: It couldn’t have been.</p>
+<p><strong>violet</strong>: It was him. I’m positive.</p>
+<p><strong>caesar</strong>: It’s impossible!</p>
+<p><strong>violet</strong>: Caesar, I know Johnnie. It was him. I
+screamed when I saw him. I couldn’t believe I missed them. I knew you
+were going to be upset so I thought I’d apologize and give Gino the
+Scotch. I honked a couple of times but he didn’t stop.</p>
+<p><strong>caesar</strong>: But Gino’s plane doesn’t get in for another
+half-hour.</p>
+<p><strong>violet</strong>: Actually, I didn’t see Gino in the car.</p>
+<p><strong>corky</strong>: If Caesar hates Johnnie like you say, then
+the second he opens the case he’ll know, in his gut, that Johnnie just
+fucked him. He’ll realize that he has no choice. He can’t touch Gino or
+Johnnie. There’s only one way out.</p>
+<p><strong>corky</strong>: He’ll have to run.</p>
+<p><strong>violet</strong>: If he runs, everyone will assume he took the
+money.</p>
+<p><strong>corky</strong>: You’ll be clean and we’ll be rich.</p>
+<p><strong>violet</strong>: Jesus, that’s beautiful.</p>
+<p><strong>corky</strong>: Thank you.</p>
+<p><strong>violet</strong>: If you’re this goddamn smart, how did you
+ever get caught?</p>
+<p><strong>corky</strong>: Every job like this has moments where things
+don’t go so well and everyone starts thinking about their own ass. It’s
+in those moments that everything comes together or falls apart.</p>
+<p><strong>corky</strong>: I had a partner and she fucked me.</p>
+<p><strong>violet</strong>: I won’t.</p>
+<p><strong>corky</strong>: I think we’re going to find out.</p>
+<p><strong>violet</strong>: Caesar?</p>
+<p><strong>caesar</strong>: No no no no …</p>
+<p><strong>violet</strong>: Oh God …</p>
+<p><strong>caesar</strong>: … I’ve been set up.</p>
+<p><strong>violet</strong>: Johnnie?</p>
+<p><strong>caesar</strong>: That fuck! That rat-fuck! Little shit
+rat-fuck!</p>
+<p><strong>violet</strong>: Why? Why would Johnnie do this?</p>
+<p><strong>caesar</strong>: Jesus Christ, Violet! Open your fucking
+eyes! Johnnie hates me like I hate him!</p>
+<p><strong>caesar</strong>: I hate that little fuck! I hate him! I hate
+him! I should’ve done him!</p>
+<p><strong>violet</strong>: But you know he did it.</p>
+<p><strong>caesar</strong>: So what?! So fucking what? Use your head,
+Violet. The money is gone. Gino is coming here to get it. You think he’s
+going to believe me if I tell him his piss-hole son stole it! Is that
+what you think? I don’t. You know what I think? I think I’m a dead man.
+I’m one in the brain. That’s what I think!</p>
+<p><strong>violet</strong>: Caesar, what are we going to do?</p>
+<p><strong>caesar</strong>: I know what he wants me to do. He wants me
+out of here. He wants me to run.</p>
+<p><strong>caesar</strong>: If I run, then everyone will think I took
+the money and he walks away with two million clean.</p>
+<p><strong>caesar</strong>: God, I can see him right now driving to get
+Gino. I can hear him laughing, fucking laughing, laughing at me.</p>
+<p><strong>caesar</strong>: Laughing at me! Laughing at me!</p>
+<p><strong>caesar</strong>: Don’t touch me!</p>
+<p><strong>caesar</strong>: Just leave me alone! I got to think!</p>
+<p><strong>caesar</strong>: Got to think this through …</p>
+<p><strong>violet</strong>: Caesar, maybe we should run –</p>
+<p><strong>caesar</strong>: Violet, please!</p>
+<p><strong>violet</strong>: I mean it, Caesar, forget Johnnie, forget
+the money, let’s just go now, before it’s too late –</p>
+<p><strong>caesar</strong>: Goddammit, Violet! Would you just leave me
+the fuck alone! Please! Leave! Now!</p>
+<p><strong>violet</strong>: All right, Caesar.</p>
+<p><strong>violet</strong>: It’s me.</p>
+<p><strong>corky</strong>: What happened?</p>
+<p><strong>violet</strong>: He totally freaked. I’ve never seen him like
+this. He’s out of his fucking mind.</p>
+<p><strong>corky</strong>: That’s okay, as long as he believes it was
+Johnnie.</p>
+<p><strong>violet</strong>: Believes it! Jesus, it’s driving him crazy.
+He wants to kill him. I don’t know, Corky, I don’t know what he is going
+to do. I’m getting nervous, really nervous.</p>
+<p><strong>corky</strong>: It’s all right, Violet. It’s working. All we
+got to do is wait him out and see what he does.</p>
+<p><strong>violet</strong>: What if he doesn’t run?</p>
+<p><strong>corky</strong>: That means he probably will kill Johnnie.</p>
+<p><strong>violet</strong>: Oh, Christ, I got to get out of here!</p>
+<p><strong>corky</strong>: Listen, if he doesn’t run, all you have to do
+is break down, go to your bedroom and pack some things, start crying,
+saying you love him but you can’t do it. You’re sorry but you have to
+leave and just walk out.</p>
+<p><strong>violet</strong>: okay, all right.</p>
+<p><strong>corky</strong>: We’re almost there, Violet. just hang on.</p>
+<p><strong>violet</strong>: He’s coming …</p>
+<p><strong>caesar</strong>: I got it! I know what I got to do! I got to
+get the money.</p>
+<p><strong>violet</strong>: The money? The money’s gone.</p>
+<p><strong>caesar</strong>: No. Johnnie’s got it. All I got to do is get
+it back.</p>
+<p><strong>violet</strong>: But it could be anywhere.</p>
+<p><strong>caesar</strong>: He didn’t have that much time. He had to
+pick up Gino. I bet you he’s got it with him. I bet it’s in the car.</p>
+<p><strong>caesar</strong>: He didn’t see you, did he?</p>
+<p><strong>violet</strong>: No.</p>
+<p><strong>caesar</strong>: See, right now he doesn’t know that I know,
+that’s why he put the paper in the case. He wants me to hand the case to
+Gino. Then there is no doubt it was me. Gino will put a bullet in me
+himself. But it ain’t going to happen. I won’t let it! Johnnie ain’t
+going to fuck me! Not like this! No way!</p>
+<p><strong>violet</strong>: This is insane!</p>
+<p><strong>caesar</strong>: What are you doing?</p>
+<p><strong>violet</strong>: I’m leaving! This is crazy! I don’t want to
+be involved. I don’t want anything to do with this shit!</p>
+<p><strong>caesar</strong>: You can’t leave.</p>
+<p><strong>violet</strong>: The hell I can’t!</p>
+<p><strong>caesar</strong>: I need you …</p>
+<p><strong>violet</strong>: Bullshit! You don’t need me! You’ve never
+needed me! I can’t help you! Understand?! I have to get out.</p>
+<p><strong>caesar</strong>: Violet, I won’t let you leave.</p>
+<p><strong>caesar</strong>: If you’re not with me, Violet, then I have
+to assume you’re against me.</p>
+<p><strong>violet</strong>: Caesar, this is crazy.</p>
+<p><strong>caesar</strong>: Maybe it is, maybe it isn’t. Maybe you
+dropped the Scotch by accident. Maybe you didn’t.</p>
+<p><strong>caesar</strong>: It would have been so easy to let him in as
+you went out.</p>
+<p><strong>violet</strong>: You don’t, you can’t believe that …</p>
+<p><strong>caesar</strong>: I’ve seen the way he looks at you. He’s
+always wanted you. Maybe two million dollars finally bought you.</p>
+<p><strong>caesar</strong>: I’m sorry, Violet, but it has to be this
+way.</p>
+<p><strong>caesar</strong>: I hope you understand. I want to trust you,
+I want to believe you, but I don’t have any other choice.</p>
+<p><strong>caesar</strong>: You sure you don’t want a drink?</p>
+<p><strong>johnnie</strong>: You shouldn’t have hit me.</p>
+<p><strong>caesar</strong>: You want to get into this now?</p>
+<p><strong>johnnie</strong>: No, no, Caesar. Not now.</p>
+<p><strong>gino</strong>: Hey, Caesar! You take care of this girl, or I
+find out!</p>
+<p><strong>johnnie</strong>: You are as radiant as ever, Violet.</p>
+<p><strong>caesar</strong>: Glenlivet, right, Gino?</p>
+<p><strong>johnnie</strong>: I’ll have whatever Violet’s drinking.</p>
+<p><strong>violet</strong>: I’m not drinking.</p>
+<p><strong>johnnie</strong>: Then neither will I.</p>
+<p><strong>violet</strong>: No, I’ll have a Tanqueray and tonic.</p>
+<p><strong>johnnie</strong>: Caesar, make that two TNTs.</p>
+<p><strong>johnnie</strong>: Salud, eh. Roy, Violet, Pop, Caesar.</p>
+<p><strong>gino</strong>: No, Johnnie. No goddamned phones. Not now.</p>
+<p><strong>johnnie</strong>: Pop?</p>
+<p><strong>gino</strong>: Caesar, come here. Sit. We talk now. You too,
+Johnnie.</p>
+<p><strong>gino</strong>: Caesar, look at me. Johnnie tell me what
+happened. Caesar, you gotta do me a favor, a personal favor. For me, eh?
+You gotta start respecting Johnnie the way you respect me. You
+understand? Good.</p>
+<p><strong>gino</strong>: And you, Johnnie. You gonna stop acting
+stupid. You gotta earn this respect that Caesar’s gonna give. You
+understand? Good. Done. Now, where’s my money?</p>
+<p><strong>gino</strong>: We know how this was done, eh?</p>
+<p><strong>caesar</strong>: Yeah, I know.</p>
+<p><strong>gino</strong>: It won’t happen again, eh?</p>
+<p><strong>gino</strong>: Good.</p>
+<p><strong>gino</strong>: Done. We go now.</p>
+<p><strong>johnnie</strong>: Jesus Christ, Pop. You got two hours until
+your plane leaves.</p>
+<p><strong>gino</strong>: Caesar!</p>
+<p><strong>johnnie</strong>: So Caesar, what did it total out at?</p>
+<p><strong>caesar</strong>: Two point one seventy-six.</p>
+<p><strong>johnnie</strong>: Unbelievable. Can you believe that,
+Violet?</p>
+<p><strong>gino</strong>: Hey, Johnnie …</p>
+<p><strong>johnnie</strong>: Come on, Pop, all I want to know is one
+thing. Just one thing after he made such a big deal out of it. I bet it
+wasn’t a big deal. Was it, Caesar?</p>
+<p><strong>caesar</strong>: What’s that, Johnnie?</p>
+<p><strong>johnnie</strong>: The money I bet it was nothing to get it
+clean, after you made such a fucking big deal …</p>
+<p><strong>gino</strong>: Johnnie, what did I say?</p>
+<p><strong>johnnie</strong>: Pop, this is important to me. It’s a simple
+question. if he would just answer the question, that’s the end of
+it.</p>
+<p><strong>caesar</strong>: Where is this going, Johnnie?</p>
+<p><strong>johnnie</strong>: Just admit it, Caesar.</p>
+<p><strong>caesar</strong>: Admit what?</p>
+<p><strong>johnnie</strong>: That you overreacted. That you lost it. Not
+me. It was your mistake.</p>
+<p><strong>caesar</strong>: All right, Johnnie, you want to play it this
+way, I can play it this way. You want to know who made a mistake, why
+don’t you open the case.</p>
+<p><strong>violet</strong>: Caesar …</p>
+<p><strong>caesar</strong>: Shut up, Violet! This is between me and
+Johnnie.</p>
+<p><strong>caesar</strong>: You want to do this now, let’s do it. Open
+the case. Open the fucking case.</p>
+<p><strong>caesar</strong>: That’s right, I know. I fucking know.</p>
+<p><strong>johnnie</strong>: Know what?</p>
+<p><strong>caesar</strong>: Open the case!</p>
+<p><strong>johnnie</strong>: All right! Where’s the key?</p>
+<p><strong>caesar</strong>: You don’t need a key.</p>
+<p><strong>johnnie</strong>: How the fuck can I open it?</p>
+<p><strong>caesar</strong>: The same way you did before.</p>
+<p><strong>johnnie</strong>: What are you talking about?</p>
+<p><strong>caesar</strong>: There you go, Johnnie.</p>
+<p><strong>caesar</strong>: Get me another.</p>
+<p><strong>johnnie</strong>: What the …</p>
+<p><strong>caesar</strong>: Don’t! Don’t fucking move!</p>
+<p><strong>gino</strong>: Caesar? What is this?</p>
+<p><strong>caesar</strong>: Ask Johnnie! Ask your rat-fuck son!</p>
+<p><strong>johnnie</strong>: What the fuck?</p>
+<p><strong>caesar</strong>: You don’t think I’ll do it, do you?</p>
+<p><strong>johnnie</strong>: I think you’re fucking crazy!</p>
+<p><strong>caesar</strong>: Where is it?</p>
+<p><strong>johnnie</strong>: Where’s what?</p>
+<p><strong>caesar</strong>: The money!</p>
+<p><strong>johnnie</strong>: Caesar, I don’t know what you’re thinking
+here, but if you don’t put down that gun –</p>
+<p><strong>caesar</strong>: Sit down!</p>
+<p><strong>gino</strong>: Caesar!</p>
+<p><strong>caesar</strong>: Gino, your son stole this money to set me up
+and I can prove it. Violet!</p>
+<p><strong>caesar</strong>: Tell them! Tell them!</p>
+<p><strong>violet</strong>: For Christ’s sake, Johnnie, do what he
+says.</p>
+<p><strong>johnnie</strong>: This isn’t happening …</p>
+<p><strong>caesar</strong>: The next one blows off your dick.</p>
+<p><strong>johnnie</strong>: You’re a dead man! A fucking dead man!</p>
+<p><strong>caesar</strong>: Where is it?</p>
+<p><strong>gino</strong>: Enough!</p>
+<p><strong>caesar</strong>: No, Gino!</p>
+<p><strong>gino</strong>: You aim a gun at me?! Do you know who I am?! I
+am Gino Marzzone. You understand?</p>
+<p><strong>caesar</strong>: Sit down, Gino!</p>
+<p><strong>gino</strong>: No, Caesar, gimme the gun.</p>
+<p><strong>caesar</strong>: Stay away!</p>
+<p><strong>gino</strong>: We’re family, Caesar.</p>
+<p><strong>caesar</strong>: No!</p>
+<p><strong>gino</strong>: Gimme the gun.</p>
+<p><strong>caesar</strong>: I can’t. I can’t.</p>
+<p><strong>gino</strong>: Give it to me.</p>
+<p><strong>gino</strong>: Good man.</p>
+<p><strong>corky</strong>: This is an emergency!</p>
+<p><strong>caesar</strong>: I had to do it, Violet. You saw it. I had no
+choice. It was Johnnie. That lying fuck. He made me do it.</p>
+<p><strong>caesar</strong>: You lying rat-fuck. You think you can set me
+up? Is that what you think? You stupid fuck.</p>
+<p><strong>caesar</strong>: I’m a dead man? I’m a dead man? Guess again,
+fuck-face. Who’s dead? Who’s the dead lying rat-fuck? Take another
+guess, take another fucking guess!</p>
+<p><strong>violet</strong>: What are you doing?</p>
+<p><strong>caesar</strong>: … maybe three hours.</p>
+<p><strong>violet</strong>: Caesar, what are you going to do?</p>
+<p><strong>caesar</strong>: What do you think we’re going to do? We have
+to find the money.</p>
+<p><strong>violet</strong>: What?</p>
+<p><strong>caesar</strong>: Once we have the money, then none of this
+ever happened.</p>
+<p><strong>violet</strong>: Caesar, you just killed Gino Marzzone.</p>
+<p><strong>caesar</strong>: No I didn’t. Not if his body disappears and
+not if the money is still here. Then they never showed up.</p>
+<p><strong>violet</strong>: What happened to them?</p>
+<p><strong>caesar</strong>: I don’t know. We may never know, but I’m
+going to guess it was a job, maybe the Karpoli family.</p>
+<p><strong>caesar</strong>: All part of the business.</p>
+<p><strong>caesar</strong>: We just got to find the money. Once we do,
+everything is going to be all right.</p>
+<p><strong>violet</strong>: Oh, no.</p>
+<p><strong>caesar</strong>: Fuck.</p>
+<p><strong>violet</strong>: Caesar, what are we going to do?</p>
+<p><strong>caesar</strong>: They’re just cops. Stall them as long as you
+can.</p>
+<p><strong>caesar</strong>: Answer it!</p>
+<p><strong>violet</strong>: Hello?</p>
+<p><strong>cop #1</strong>: This is the police, ma’am.</p>
+<p><strong>violet</strong>: The police?</p>
+<p><strong>cop #1</strong>: We had a report of gunfire, so if you could
+–</p>
+<p><strong>violet</strong>: Gunfire? Is this a joke?</p>
+<p><strong>cop #1</strong>: No joke, ma’am. Please open the door.</p>
+<p><strong>violet</strong>: How do I know you are cops?</p>
+<p><strong>cop #1</strong>: Ma’am, you have to open the door.</p>
+<p><strong>violet</strong>: All right.</p>
+<p><strong>caesar</strong>: Get me a wet towel.</p>
+<p><strong>caesar</strong>: If you’re thinking about doing something
+stupid, remember I just killed Gino Marzzone. You understand what that
+means?</p>
+<p><strong>violet</strong>: They’re just cops.</p>
+<p><strong>cop #1</strong>: See? We’re for real.</p>
+<p><strong>violet</strong>: I’m sorry, it’s just you hear stories.</p>
+<p><strong>cop #1</strong>: You did the right thing.</p>
+<p><strong>caesar</strong>: Hey, hey, Chicago’s finest.</p>
+<p><strong>caesar</strong>: How’s it going tonight, fellas?</p>
+<p><strong>cop #1</strong>: Pretty good, sir.</p>
+<p><strong>caesar</strong>: Huh? I’m sorry, I can only hear in this
+ear.</p>
+<p><strong>caesar</strong>: I’m Caesar and this here is my Violet.</p>
+<p><strong>caesar</strong>: Violet said something about gunshots?</p>
+<p><strong>cop #2</strong>: Yes, sir, a neighbor in the building called
+in.</p>
+<p><strong>cop #1</strong>: I think we know what happened.</p>
+<p><strong>cop #2</strong>: It was probably just the television.</p>
+<p><strong>caesar</strong>: The television?</p>
+<p><strong>caesar</strong>: Honey, why didn’t you say something? Turn it
+off.</p>
+<p><strong>caesar</strong>: Fuck, this happened before. It’s this shitty
+ear. Born with it. The batteries wore out in my aid. I’m sorry.</p>
+<p><strong>cop #1</strong>: It’s all right, sir.</p>
+<p><strong>cop #2</strong>: No big deal.</p>
+<p><strong>caesar</strong>: Hey, can I get you guys a beer?</p>
+<p><strong>cop #1</strong>: Not on duty, sorry.</p>
+<p><strong>caesar</strong>: Oh, right.</p>
+<p><strong>cop #2</strong>: But, uh, would you mind if I used your
+bathroom?</p>
+<p><strong>caesar</strong>: Yeah, why not? It’s right there.</p>
+<p><strong>cop #2</strong>: Thanks.</p>
+<p><strong>caesar</strong>: I’m going to make myself a drink, if that’s
+okay?</p>
+<p><strong>cop #1</strong>: Go right ahead, sir.</p>
+<p><strong>cop #1</strong>: This is a beautiful place.</p>
+<p><strong>violet</strong>: … thank you.</p>
+<p><strong>cop #1</strong>: Is this a condo?</p>
+<p><strong>cop #2</strong>: Okay, let’s roll.</p>
+<p><strong>cop #1</strong>: Try to keep the extra batteries for your aid
+around.</p>
+<p><strong>caesar</strong>: Good idea.</p>
+<p><strong>caesar</strong>: Let’s go.</p>
+<p><strong>corky</strong>: … shit.</p>
+<p><strong>caesar</strong>: Fuck! Fuck! Fuck!</p>
+<p><strong>violet</strong>: Caesar, someone could see us out here.</p>
+<p><strong>caesar</strong>: Get in.</p>
+<p><strong>caesar</strong>: Get in! It’s got to be at his house. That’s
+the only other place it could be.</p>
+<p><strong>caesar</strong>: Violet! Now!</p>
+<p><strong>corky</strong>: Two million dollars, Cork … Two million
+dollars …</p>
+<p><strong>caesar</strong>: Okay, I come in …</p>
+<p><strong>caesar</strong>: I’ve got the money …</p>
+<p><strong>caesar</strong>: I can’t wait to see the look on Caesar’s
+face when he finds out.</p>
+<p><strong>caesar</strong>: Now I don’t have much time …</p>
+<p><strong>caesar</strong>: Got to put it someplace safe …</p>
+<p><strong>caesar</strong>: … put it …</p>
+<p><strong>caesar</strong>: … got it …</p>
+<p><strong>caesar</strong>: Where did I put it?</p>
+<p><strong>caesar</strong>: Where’s my fucking money?! Fucking
+cocksuckers! Where the fuck is it?!</p>
+<p><strong>caesar</strong>: Ow.</p>
+<p><strong>violet</strong>: It’s not here, Caesar.</p>
+<p><strong>caesar</strong>: Where, then?</p>
+<p><strong>violet</strong>: I don’t know. it could be anywhere. We don’t
+even know if he was alone. Please, Caesar, we don’t have much time.
+Let’s get out of here.</p>
+<p><strong>violet</strong>: What are you doing?</p>
+<p><strong>caesar</strong>: We’re going to need some time.</p>
+<p><strong>violet</strong>: Who are you going to call?</p>
+<p><strong>violet</strong>: Caesar?</p>
+<p><strong>mickey</strong>: Yeah?</p>
+<p><strong>caesar</strong>: Hey, Mickey.</p>
+<p><strong>violet</strong>: Oh, God.</p>
+<p><strong>mickey</strong>: Caesar? What the fuck time is it?</p>
+<p><strong>caesar</strong>: Mick, I know it’s late, but there is a
+problem. They haven’t shown up yet.</p>
+<p><strong>mickey</strong>: What? They ain’t there?</p>
+<p><strong>caesar</strong>: No. I don’t know where they are. I even
+called over at Johnnie’s, but no answer.</p>
+<p><strong>mickey</strong>: Okay. Let me call around. I’ll see what I
+can do. Don’t go anywhere, okay?</p>
+<p><strong>caesar</strong>: Okay, sure, Mick.</p>
+<p><strong>mickey</strong>: Caesar, you still got the money?</p>
+<p><strong>caesar</strong>: Yeah, Mick. I’ve got the money. I’m staring
+right at it.</p>
+<p><strong>mickey</strong>: Good. Sit tight. I’ll call you.</p>
+<p><strong>violet</strong>: I’ll start packing. You know what you have
+to do.</p>
+<p><strong>caesar</strong>: I can use Johnnie’s car, dump it in Lake
+Michigan … I need plastic bags … tape and rope …</p>
+<p><strong>violet</strong>: Just hurry.</p>
+<p><strong>violet</strong>: Please, Corky …</p>
+<p><strong>violet</strong>: Oh, thank God.</p>
+<p><strong>corky</strong>: I’m still here.</p>
+<p><strong>violet</strong>: I was so afraid you …</p>
+<p><strong>corky</strong>: You don’t quit on me, Violet, and I won’t
+quit on you.</p>
+<p><strong>violet</strong>: Corky, it worked! He’s going to run. He
+needs to take care of the bodies to buy himself time, but as soon as he
+leaves, it’s over.</p>
+<p><strong>violet</strong>: just a little longer and it’s ours.</p>
+<p><strong>violet</strong>: Corky, I have to tell you something …</p>
+<p><strong>corky</strong>: I know, Violet. I know.</p>
+<p><strong>corky</strong>: It’s why I’m still here.</p>
+<p><strong>caesar</strong>: Violet?</p>
+<p><strong>caesar</strong>: Who was that?</p>
+<p><strong>caesar</strong>: Who the fuck was that?</p>
+<p><strong>caesar</strong>: Was that Mickey? Did you call Mickey? Did
+you?!</p>
+<p><strong>caesar</strong>: Mickey? Is that you?</p>
+<p><strong>caesar</strong>: Who is that? Who is over there?! Tell
+me!</p>
+<p><strong>violet</strong>: Run! Just run!</p>
+<p><strong>caesar</strong>: Drop the fucking gun or die!</p>
+<p><strong>caesar</strong>: Drop it!</p>
+<p><strong>caesar</strong>: Turn around.</p>
+<p><strong>caesar</strong>: You!? Holy fucking Christ! You gotta be
+kidding me!</p>
+<p><strong>cesar</strong>: Wake up! Come on, you fucking dyke!</p>
+<p><strong>caesar</strong>: Wake up!</p>
+<p><strong>caesar</strong>: Good.</p>
+<p><strong>caesar</strong>: I know everything now so I don’t want to
+hear any “I don’t know” bullshit, you understand?</p>
+<p><strong>caesar</strong>: God, I should have seen this coming! The
+second I met you, I knew it. Everyone knows your kind can’t be trusted!
+Fucking queers make me sick.</p>
+<p><strong>caesar</strong>: But you tried to fuck the wrong guy. And I
+swear to you that I’m going to kill you for it.</p>
+<p><strong>caesar</strong>: Where is the money?</p>
+<p><strong>violet</strong>: Don’t tell him –</p>
+<p><strong>caesar</strong>: Shut up, Violet!</p>
+<p><strong>violet</strong>: He can’t kill you –</p>
+<p><strong>caesar</strong>: Violet!</p>
+<p><strong>violet</strong>: Not until he has the money!</p>
+<p><strong>caesar</strong>: Now, where the fuck is my money?</p>
+<p><strong>corky</strong>: Lick me.</p>
+<p><strong>caesar</strong>: Where is it?</p>
+<p><strong>corky</strong>: Either pull the trigger or get that thing out
+of my face.</p>
+<p><strong>caesar</strong>: Stupid cunt!</p>
+<p><strong>violet</strong>: Caesar, stop acting like an asshole and
+think –</p>
+<p><strong>caesar</strong>: Don’t try to tell me what to do.</p>
+<p><strong>violet</strong>: You need the money just like we do.</p>
+<p><strong>caesar</strong>: Shut up, Violet.</p>
+<p><strong>violet</strong>: Let us go and we’ll make a deal.</p>
+<p><strong>caesar</strong>: Shut the fuck up!</p>
+<p><strong>caesar</strong>: What did you do to her?! This isn’t my
+Violet!</p>
+<p><strong>caesar</strong>: What did she do to you?</p>
+<p><strong>violet</strong>: Everything you couldn’t.</p>
+<p><strong>caesar</strong>: You ungrateful bitch! You had nothing before
+I met you. You were nothing!</p>
+<p><strong>caesar</strong>: Who gave you this place? This apartment?</p>
+<p><strong>caesar</strong>: Who gave us all of this? I did! I gave you
+everything! I gave you this life! I made you, Violet. I saved you.</p>
+<p><strong>caesar</strong>: I saved you.</p>
+<p><strong>violet</strong>: Ha! What a load of crap. Look at yourself,
+Caesar. You’re a thug. |You launder money for the mob. You rent women
+like you rented this apartment.</p>
+<p><strong>violet</strong>: Saved me? You don’t even know me. You used
+me, Caesar, just like I used you. All part of the business.</p>
+<p><strong>caesar</strong>: You betrayed me!</p>
+<p><strong>violet</strong>: You murdered Gino!</p>
+<p><strong>caesar</strong>: I had to. You made me.</p>
+<p><strong>violet</strong>: Bullshit, you killed him. Not me. You did it
+because you couldn’t stand the thought of Johnnie fucking you.</p>
+<p><strong>caesar</strong>: Shut up!</p>
+<p><strong>caesar</strong>: Okay, you want business, I’ll give you the
+fucking business.</p>
+<p><strong>caesar</strong>: I’m going to make you beg just like Shelly
+did. Just like Shelly!</p>
+<p><strong>violet</strong>: I’m sorry, Corky …</p>
+<p><strong>corky</strong>: Don’t be sorry. Help me.</p>
+<p><strong>caesar</strong>: Oh, no no no.</p>
+<p><strong>caesar</strong>: Hey, Violet, you remember these?</p>
+<p><strong>caesar</strong>: I’m going to start with her so you’ll get a
+good idea what’s coming.</p>
+<p><strong>caesar</strong>: I’m going to ask you where the money is.
+Every time you don’t give me an answer, I’m going to cut off one
+finger.</p>
+<p><strong>corky</strong>: No.</p>
+<p><strong>caesar</strong>: When I reach ten, then I’ll start with
+you.</p>
+<p><strong>caesar</strong>: Where is the money?</p>
+<p><strong>caesar</strong>: … Mickey.</p>
+<p><strong>caesar</strong>: I said where –</p>
+<p><strong>corky</strong>: No! I’ll tell you!</p>
+<p><strong>corky</strong>: It’s over there in the empty apartment.</p>
+<p><strong>corky</strong>: I put it inside one of the paint drums.</p>
+<p><strong>caesar</strong>: I promised I would kill you.</p>
+<p><strong>corky</strong>: You can’t kill me yet.</p>
+<p><strong>caesar</strong>: Why?</p>
+<p><strong>corky</strong>: I could be lying.</p>
+<p><strong>caesar</strong>: You’re going to wish to God you hadn’t done
+that.</p>
+<p><strong>caesar</strong>: Fuck.</p>
+<p><strong>caesar</strong>: Son of a bitch …</p>
+<p><strong>caesar</strong>: Mickey will get in. I know he will.</p>
+<p><strong>caesar</strong>: Violet. I can kill you right now if that’s
+what you want. If you want to live, then you have to help me. I need you
+to make Mickey believe that everything is normal.</p>
+<p><strong>caesar</strong>: Tell me, do you want to live?</p>
+<p><strong>caesar</strong>: Good girl.</p>
+<p><strong>caesar</strong>: Jesus Christ!</p>
+<p><strong>caesar</strong>: Holy fuck, Mickey! You scared the shit outta
+me.</p>
+<p><strong>caesar</strong>: What is this? what are you two doing,
+sneaking in here with your peckers in your hands? You gonna do me, Mick?
+Is that it?</p>
+<p><strong>mickey</strong>: No, Cease. There was no answer.</p>
+<p><strong>caesar</strong>: I thought I heard someone knocking.</p>
+<p><strong>mickey</strong>: I was buzzing, I was knocking, but I guess
+you couldn’t hear me on account of being in the shower.</p>
+<p><strong>caesar</strong>: Yeah, it was Violet’s idea. I was so wound
+up about Gino, she was trying to help me relax.</p>
+<p><strong>mickey</strong>: That Violet is one nice lady. Wish someone
+would help me relax.</p>
+<p><strong>caesar</strong>: Shit, Mick, come on in, let me get you a
+drink. Sit down, Lou.</p>
+<p><strong>mickey</strong>: We was worried about you, Cease.</p>
+<p><strong>caesar</strong>: Me? Why?</p>
+<p><strong>mickey</strong>: We went over to Johnnie’s place just to
+check it out and it was busted up, Bad.</p>
+<p><strong>mickey</strong>: I started thinking maybe it’s about the
+money so I call you, but all I get is the busy signal. I figure the
+phone is off the hook, that’s why I come rushing over here.</p>
+<p><strong>caesar</strong>: Oh Christ, the phone … That was a fucking
+stupid thing to do, wasn’t it?</p>
+<p><strong>mickey</strong>: Hey, if Violet was helping me relax, I’d
+probably do the same thing.</p>
+<p><strong>mickey</strong>: Cease, can I ask you something?</p>
+<p><strong>caesar</strong>: Yeah.</p>
+<p><strong>mickey</strong>: Why’d you move all the furniture around?</p>
+<p><strong>mickey</strong>: Let me guess. That was Violet’s idea,
+too.</p>
+<p><strong>caesar</strong>: Actually, yeah, she was nervous about Gino
+coming, wanted everything to look right. You know women, Mick.</p>
+<p><strong>mickey</strong>: Sure, Cease. They make us do stupid things,
+don’t they.</p>
+<p><strong>mickey</strong>: Is that the money?</p>
+<p><strong>caesar</strong>: Yeah, that’s it.</p>
+<p><strong>mickey</strong>: That fucking Shelly. I gotta hand it to the
+guy, but Jesus, if I were him I would have bailed a long time ago. I
+mean, how much money does a man need?</p>
+<p><strong>mickey</strong>: I remember I was just staring at all this
+goddamn money, Shelly down on his knees, and the next thing I know,
+Johnnie just blows his head off.</p>
+<p><strong>mickey</strong>: What a fucking mess. Johnnie’s laughing his
+ass off and that’s when Caesar lost it and - Boom. He coldcocked him.
+Fucking coldcocks Johnnie Marzzone.</p>
+<p><strong>mickey</strong>: Hey, Caesar, where’s the key?</p>
+<p><strong>caesar</strong>: The key, yeah, the key’s in my pants in the
+bathroom.</p>
+<p><strong>mickey</strong>: Fuck it, I don’t need the key.</p>
+<p><strong>mickey</strong>: I didn’t need a key to get in here, did
+I?</p>
+<p><strong>mickey</strong>: Who the hell could that be?</p>
+<p><strong>mickey</strong>: You gonna answer it?</p>
+<p><strong>cesar</strong>: Hello?</p>
+<p><strong>violet</strong>: Hello, Caesar. This is Gino.</p>
+<p><strong>caesar</strong>: What?</p>
+<p><strong>violet</strong>: You’re blowing your only chance. Act like
+I’m Gino.</p>
+<p><strong>caesar</strong>: Holy shit, I don’t believe it! We’ve been
+going crazy over here, Gino!</p>
+<p><strong>violet</strong>: Good boy.</p>
+<p><strong>caesar</strong>: It’s Gino! It’s Gino!</p>
+<p><strong>mickey</strong>: Where in the hell is he?</p>
+<p><strong>violet</strong>: We were in a car accident –</p>
+<p><strong>caesar</strong>: They were in a car accident.</p>
+<p><strong>violet</strong>: But everybody is all right.</p>
+<p><strong>caesar</strong>: They’re all fine. Just bruises and shit.</p>
+<p><strong>violet</strong>: Now you listen to me, asshole, I know your
+gun is behind the bar …</p>
+<p><strong>mickey</strong>: Un-fucking-believable. I called those
+highway patrol dumb fucks.</p>
+<p><strong>caesar</strong>: Ssh! I can’t hear Gino!</p>
+<p><strong>violet</strong>: We make a deal or I come out and hand this
+phone to Mickey.</p>
+<p><strong>caesar</strong>: I’m listening.</p>
+<p><strong>violet</strong>: I want what’s mine, half the money. We get
+rid of Mickey, no one else dies. No one. Say yes, I understand.</p>
+<p><strong>caesar</strong>: Yes, I understand.</p>
+<p><strong>violet</strong>: Tell them I’m at St. Mary’s off the Kennedy,
+in the waiting room, but stay on the phone until I come out.</p>
+<p><strong>caesar</strong>: Sure, Gino, sure.</p>
+<p><strong>caesar</strong>: St. Mary’s off the Kennedy, sure. Okay,
+Gino.</p>
+<p><strong>violet</strong>: Mickey? What are you doing here?</p>
+<p><strong>mickey</strong>: Violet, it’s Gino and Johnnie. They were in
+a car accident.</p>
+<p><strong>violet</strong>: Oh my God. Was anyone hurt?</p>
+<p><strong>mickey</strong>: I think everything is okay.</p>
+<p><strong>caesar</strong>: They’re at St. Mary’s in the waiting
+room.</p>
+<p><strong>mickey</strong>: I can’t fit them all in my car so give me
+your keys. You drive my car, Lou.</p>
+<p><strong>caesar</strong>: Sure, Mickey, sure. Violet!</p>
+<p><strong>caesar</strong>: Go grab my car keys from my pants in the
+bathroom.</p>
+<p><strong>caesar</strong>: Please, help us out, Mickey wants to get
+going.</p>
+<p><strong>mickey</strong>: They might want to go straight to the
+airport and back to Miami, so I better take this.</p>
+<p><strong>mickey</strong>: You got the key?</p>
+<p><strong>caesar</strong>: Oh yeah. Violet!</p>
+<p><strong>caesar</strong>: Violet!</p>
+<p><strong>caesar</strong>: Violet!</p>
+<p><strong>mickey</strong>: Thanks, V.</p>
+<p><strong>caesar</strong>: Call me as soon as you get him.</p>
+<p><strong>mickey</strong>: Leave your phone on the hook.</p>
+<p><strong>caesar</strong>: Now that’s teamwork.</p>
+<p><strong>violet</strong>: I should have let him kill you.</p>
+<p><strong>caesar</strong>: You know he would have done you, too.</p>
+<p><strong>violet</strong>: I knew I couldn’t trust you.</p>
+<p><strong>caesar</strong>: I said I’d let you live and I will.</p>
+<p><strong>caesar</strong>: Maybe.</p>
+<p><strong>caesar</strong>: Time to find out if the dyke was stupid
+enough to lie.</p>
+<p><strong>caesar</strong>: Yes!</p>
+<p><strong>caesar</strong>: No!</p>
+<p><strong>caesar</strong>: Violet!</p>
+<p><strong>caesar</strong>: Fuck!</p>
+<p><strong>caesar</strong>: Goddammit, Violet! Stop! Now!</p>
+<p><strong>violet</strong>: Come on. Come on, please.</p>
+<p><strong>caesar</strong>: Oh, you bitch. You fucking bitch.</p>
+<p><strong>violet</strong>: Mickey! Oh God, Mickey!</p>
+<p><strong>mickey</strong>: Violet?</p>
+<p><strong>violet</strong>: He made me help him, Mickey, God, I was so
+afraid. It was Caesar, all Caesar. You have to help me. He’s coming - Oh
+God!</p>
+<p><strong>violet</strong>: Corky?</p>
+<p><strong>violet</strong>: Corky!</p>
+<p><strong>violet</strong>: Stop!</p>
+<p><strong>violet</strong>: It’s over, Caesar. I called Mickey. He’s on
+his way.</p>
+<p><strong>violet</strong>: Get out of here, Caesar. If you want to live
+you had better start running.</p>
+<p><strong>caesar</strong>: All these years and you still don’t know me,
+Violet.</p>
+<p><strong>caesar</strong>: But I know you.</p>
+<p><strong>violet</strong>: Caesar, don’t.</p>
+<p><strong>caesar</strong>: What are you going to do, V? Shoot me? Kill
+me in cold blood? I don’t think so. I’ll tell you why. If you had it in
+you to pull that trigger, you would have done it a long time ago. If I
+was you, I would have killed me the minute I brought the money home. But
+you didn’t and I know why, because you don’t want to kill me. Do you, V?
+Do you? No, I know you don’t.</p>
+<p><strong>violet</strong>: Caesar, you don’t know shit.</p>
+<p><strong>violet</strong>: I will never understand it, Mickey. You
+didn’t even call the police.</p>
+<p><strong>mickey</strong>: I told you, the family doesn’t want the
+police around. We want to take care of it ourselves and we will. I’ll
+find him. I swear I will.</p>
+<p><strong>violet</strong>: I know you will.</p>
+<p><strong>mickey</strong>: Sure you’re going to be okay? I mean, if
+you’re having second thoughts, my offer still stands.</p>
+<p><strong>violet</strong>: Thanks, Mickey, but I need to get out, you
+know? Get away from all of this.</p>
+<p><strong>violet</strong>: But thanks. Thanks for everything.</p>
+<p><strong>corky</strong>: Hey.</p>
+<p><strong>violet</strong>: Hey.</p>
+<p><strong>corky</strong>: How’d it go?</p>
+<p><strong>violet</strong>: I’m here, aren’t I?</p>
+<p><strong>corky</strong>: I guess we should get out of here.</p>
+<p><strong>corky</strong>: Thought we might need a getaway car.</p>
+<p><strong>corky</strong>: You know what the difference is between us,
+Violet?</p>
+<p><strong>violet</strong>: No.</p>
+<p><strong>corky</strong>: … Me neither.</p>
+</body>
+</html>

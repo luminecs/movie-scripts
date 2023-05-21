@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>light-sleeper</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="light-sleeper">light-sleeper</h1>
+<p><strong>credit sequence</strong>: New York by night. JOHN LETOUR
+nestles in back of a blue car service sedan, face reflected in the
+window. Neon mixes with steam, street people with tourists, young dates:
+each with a different agenda, a hidden purpose.</p>
+<p><strong>letour</strong>: Labor Day weekend. Some time for a
+sanitation strike. Everybody crazy to stock up. They decide to score at
+the last minute and want it now. Never fails. The faces look alike. You
+gotta use memory tricks: each has some peculiarity – it keeps you sharp.
+A D.D. told me when a drug dealer starts writing a diary it’s time to
+quit. I started writing after that. Not every night – now and then. Just
+to burn off the night. Fill up one book, throw it out, start
+another.</p>
+<p><strong>ann</strong>: Darling.</p>
+<p><strong>letour</strong>: Ann.</p>
+<p><strong>ann</strong>: Have we made New York safe for another
+weekend?</p>
+<p><strong>letour</strong>: Robert.</p>
+<p><strong>robert</strong>: Get a job.</p>
+<p><strong>letour</strong>: Sad what ten years without sex can do.</p>
+<p><strong>ann</strong>: Any hundreds?</p>
+<p><strong>letour</strong>: Twenties – and tens.</p>
+<p><strong>robert</strong>: Tens!</p>
+<p><strong>ann</strong>: Goddamn cash machines.</p>
+<p><strong>robert</strong>: Did what’s-his-name give you a hard
+time?</p>
+<p><strong>letour</strong>: You mean –?</p>
+<p><strong>robert</strong>: Yeah.</p>
+<p><strong>letour</strong>: Cash Before Delivery.</p>
+<p><strong>robert</strong>: Fucking investment bankers.</p>
+<p><strong>ann</strong>: These Wall Street kids deal with fake money all
+day, they think cash is a theoretical concept – like it doesn’t apply. I
+see ’em at two, shudder to think at nine they’re buying and selling –
+turned me off the stock market.</p>
+<p><strong>letour</strong>: It’s late. You staying?</p>
+<p><strong>robert</strong>: It’s over.</p>
+<p><strong>letour</strong>: I’m gonna crash – try, at least.</p>
+<p><strong>ann</strong>: Tomorrow will be easier. Maybe we can all eat
+together. Go on. You look tired. Here, take a couple of C’s. I’ll pick
+up anything that comes in.</p>
+<p><strong>ann</strong>: Sleep tight.</p>
+<p><strong>robert</strong>: Pick up the trash.</p>
+<p><strong>letour</strong>: Yeah – big kiss.</p>
+<p><strong>letour</strong>: “Labor Day.” “Union Movement” – there’s a
+contradiction in terms. I know about long hours. It’s worse when I’m off
+– I just walk and walk. Where am I going? There’s an element of
+providence to it all. Like rolling numbers. Luck. You’re walking down
+the street, some guy that looks maybe a little like you does a stick-up
+four hours ago, there’s an APB description out and a cop pulls you in
+cause he’s cold and wants to go inside – they grab your stash. Your
+number’s up. You’re busted for nothing. For bad luck.</p>
+<p><strong>jealous</strong>: Are they “faced”?</p>
+<p><strong>letour</strong>: Don’t bore me.</p>
+<p><strong>jealous</strong>: Is it so much work to face them the same
+direction? You don’t do it, I got to. It’s time – my time –</p>
+<p><strong>letour</strong>: Jees –</p>
+<p><strong>jealous</strong>: We’ve been through all this. This
+nineteen-gram shit is a drag.</p>
+<p><strong>letour</strong>: We pay you more, you put up with more. White
+drugs for white people. Twice the price, twice the safety.</p>
+<p><strong>jealous</strong>: I can’t believe Ann’s been working as long
+as she has – never busted. She’s something.</p>
+<p><strong>letour</strong>: Never made any big money either.</p>
+<p><strong>jealous</strong>: Sure.</p>
+<p><strong>letour</strong>: She blows it.</p>
+<p><strong>jealous</strong>: You believe that? What you gonna do after
+she quits? How long you been with her?</p>
+<p><strong>letour</strong>: She always says that. We’ll see,
+Jealous.</p>
+<p><strong>jealous</strong>: She’s out. You should pick up her trade.
+You’re too old to be a go- fer. They know you, they trust you.</p>
+<p><strong>letour</strong>: No way. I’m not the management type. I get
+in charge, I’ll start using again – not for me. I know music people. I’m
+gonna get in recording.</p>
+<p><strong>jealous</strong>: Yeah.</p>
+<p><strong>jealous</strong>: Tour.</p>
+<p><strong>letour</strong>: What?</p>
+<p><strong>jealous</strong>: Normally this wouldn’t matter to you, but
+you may get hassled.</p>
+<p><strong>letour</strong>: Why?</p>
+<p><strong>jealous</strong>: You read the papers? The Park murder. All
+over the Post. Mariah Rangel – nineteen-year-old Barnard co-ed bitch
+dead in Turtle Pond coked to the fucking gills. All of a sudden they’re
+hot after mid-level dealers. They’re buzzin’. You know her?</p>
+<p><strong>letour</strong>: I look like an encyclopedia? Who knows?
+Thanks for the warning.</p>
+<p><strong>robert</strong>: Jack.</p>
+<p><strong>robert</strong>: You pick up from Jealous?</p>
+<p><strong>letour</strong>: Yeah, nineteen grams after four times last
+night. We’re certainly not his favorite people.</p>
+<p><strong>robert</strong>: We don’t make the laws. Nineteen is
+carrying, twenty is dealing. Let him be stupid.</p>
+<p><strong>letour</strong>: He took my hundreds.</p>
+<p><strong>robert</strong>: Take over for a while. I’m getting contact
+high.</p>
+<p><strong>letour</strong>: Who’s Her Majesty talking to?</p>
+<p><strong>robert</strong>: The Ecstasy connection. From Arizona. She’s
+trying to get them to come here – or, better, Europe.</p>
+<p><strong>letour</strong>: That’s where the money is.</p>
+<p><strong>robert</strong>: All mark-up – the “Big One.”</p>
+<p><strong>letour</strong>: Don’t dress. You really think she means
+it?</p>
+<p><strong>robert</strong>: That’s what she says. New Year’s Eve and out
+– no Acid House, no product, no deliveries.</p>
+<p><strong>letour</strong>: That’s just her mouth talking.</p>
+<p><strong>robert</strong>: Next year – strictly Akasha.</p>
+<p><strong>letour</strong>: “Akasha”?</p>
+<p><strong>robert</strong>: Cosmetics. That’s what Ann’s calling the
+company now –</p>
+<p><strong>letour</strong>: – this week. I don’t get it – marigolds,
+violets, sage – why’d anyone pay to put weeds on their face?</p>
+<p><strong>robert</strong>: Why’d anyone pay to put them up their nose?
+I like cosmetics. I need cosmetics. You should come in with us.</p>
+<p><strong>letour</strong>: You forget: she hasn’t asked me.</p>
+<p><strong>ann</strong>: Johnny! Robert! Come here!</p>
+<p><strong>ann</strong>: Plant me two kisses, boys, fifteen hundred Ex
+at thirty each and the delivery’s here.</p>
+<p><strong>ann</strong>: Whatja think?</p>
+<p><strong>letour</strong>: Of what?</p>
+<p><strong>ann</strong>: The face cream. Almond, marigold, chamomile,
+egg, aloe – the “Almilk” formula. I remixed it.</p>
+<p><strong>letour</strong>: Very nice.</p>
+<p><strong>ann</strong>: Reminds me, if you get downtown stop at
+Enhancements and pick up some almond oil – not the California. What
+should we order?</p>
+<p><strong>letour</strong>: How about Indian?</p>
+<p><strong>ann</strong>: Darling, it’s Saturday.</p>
+<p><strong>robert</strong>: Thai. We haven’t had Thai in a while.</p>
+<p><strong>ann’s voice</strong>: “Hello. This is Ann. If you leave a
+message, we’ll get back to you – sooner than you think.”</p>
+<p><strong>ann</strong>: Answer that. He’ll call back every five
+minutes.</p>
+<p><strong>robert</strong>: The night begins.</p>
+<p><strong>ann</strong>: “Ped Srilom”? – it’s Northeastern. Duck.</p>
+<p><strong>letour</strong>: I’m going veggie. Get me the “Puk Ob.”</p>
+<p><strong>robert</strong>: Me too.</p>
+<p><strong>letour</strong>: Use it for facial cream.</p>
+<p><strong>robert</strong>: Remove unsightly hair!</p>
+<p><strong>ann</strong>: Laugh, one day you’ll be watching me on “Oprah”
+from a welfare hotel.</p>
+<p><strong>letour</strong>: Forgive us.</p>
+<p><strong>robert</strong>: Eddie wants now. Now. His place. Top Lady.
+God knows what happened to his shit yesterday.</p>
+<p><strong>ann</strong>: You take it – call in.</p>
+<p><strong>letour</strong>: It was supposed to be light tonight.</p>
+<p><strong>robert</strong>: Don’t you watch TV?</p>
+<p><strong>letour</strong>: Don’t have one.</p>
+<p><strong>robert</strong>: Well if you were the normal stupid fuck you
+should be so lucky to be and had one, you’d know it’s supposed to rain
+–</p>
+<p><strong>ann</strong>: Good for the trees –</p>
+<p><strong>robert</strong>: Some farmer whacked his numerology on
+us.</p>
+<p><strong>ann</strong>: It’s started.</p>
+<p><strong>robert</strong>: The Farmer’s Almanac is based on
+numerology.</p>
+<p><strong>letour</strong>: Raining?</p>
+<p><strong>ann</strong>: Take a coat. And you, clean up the product
+before the food delivery comes.</p>
+<p><strong>eddie</strong>: Le Tour! – finally. What took so long?</p>
+<p><strong>letour</strong>: Traffic. It’s raining.</p>
+<p><strong>eddie</strong>: How’s things?</p>
+<p><strong>letour</strong>: Okay.</p>
+<p><strong>eddie</strong>: I need a quarter – you got it?</p>
+<p><strong>letour</strong>: Robert said he sold you a quarter
+yesterday.</p>
+<p><strong>eddie</strong>: Some friends came over. How much is that?
+Fourteen-hundred?</p>
+<p><strong>letour</strong>: Eddie. Look at yourself. Sit down. I’ve
+known you, what, like eight years?</p>
+<p><strong>eddie</strong>: Yeah…</p>
+<p><strong>letour</strong>: Knew you from the other job, the one before
+the last one you fucked up. I knew your wife – remember her? We used to
+sit and talk and talk –</p>
+<p><strong>eddie</strong>: You don’t know what she was like –</p>
+<p><strong>letour</strong>: This is no good. I’ll sell you a gram and
+some downs, but I ain’t gonna put you in the emergency room. Cool it. Go
+to bed. Sleep it off.</p>
+<p><strong>eddie</strong>: You charge $200 for what goes for ninety on
+the street – and you’re not gonna sell?</p>
+<p><strong>letour</strong>: So go to the street.</p>
+<p><strong>eddie</strong>: I’ll call Ann.</p>
+<p><strong>letour</strong>: Go ahead. You know what she’ll say. Phone’s
+over there.</p>
+<p><strong>eddie</strong>: I’ll tell the fucking cops.</p>
+<p><strong>letour</strong>: Fuck you. That’s it. You’re out. Don’t call
+again. Catch you next lifetime.</p>
+<p><strong>eddie</strong>: Please, Tour, I’m sorry. You’re right. I
+didn’t mean that. I’m quitting anyway. I’ll take the gram. Sorry.</p>
+<p><strong>letour</strong>: Okay.</p>
+<p><strong>eddie</strong>: Two hundred?</p>
+<p><strong>letour</strong>: You got downs? One more thing. I gotta use
+the phone.</p>
+<p><strong>mid-twentiesh man</strong>: …but – if there’s no God, how can
+man conceive of him? The idea of God presupposes the existence of God.
+That’s the Ontological Argument. Anselm. Twelve hundred. Fourteen
+hundred – I’m not sure –</p>
+<p><strong>letour</strong>: I’ve got to go.</p>
+<p><strong>mid-twentiesh man</strong>: Let me finish. Okay, if the idea
+of God is implanted by God – the sensus divinitatus, the sense of the
+divine – what is the role of human thought? Not faith, thought…</p>
+<p><strong>letour</strong>: Everybody wants to talk. It’s like a
+compulsion. My philosophy is: you got nothing to say, don’t say it. They
+figure you can tell a D.D. anything, things they would never tell anyone
+else. He understands. Of course they’re stoned to start. If I could tie
+together all the hours of coke talk I’ve heard, that would be a lot of
+string. It was Robert’s idea to add twenty-five dollars to home
+deliveries cause it’s such a hassle. Fifty is more like it.</p>
+<p><strong>first student</strong>: C’mon, Tour, stick around.</p>
+<p><strong>second student</strong>: Yeah.</p>
+<p><strong>first student</strong>: There’s only four of us and like
+seven of them – and we’re paying for the dope. See her, over there, the
+blonde, long hair, yellow skirt? – she’s gonna model for Elite.</p>
+<p><strong>letour</strong>: Me? I’m an old man. She’d break me like an
+old horse.</p>
+<p><strong>second student</strong>: Shit, dude –</p>
+<p><strong>letour</strong>: Nah. Thanks anyway. I gotta go. Have
+fun.</p>
+<p><strong>letour</strong>: Carlos. Wait a second.</p>
+<p><strong>letour</strong>: Marianne! Marianne! Hop in! I’ll give you a
+ride.</p>
+<p><strong>letour</strong>: John. John LeTour.</p>
+<p><strong>marianne</strong>: John?</p>
+<p><strong>letour</strong>: Get in. You’re getting soaked.</p>
+<p><strong>marianne</strong>: Hi…</p>
+<p><strong>letour</strong>: Where are you going?</p>
+<p><strong>letour</strong>: I didn’t know you still lived here.</p>
+<p><strong>marianne</strong>: Maybe this wasn’t such a good idea. I
+should get out.</p>
+<p><strong>letour</strong>: Don’t be crazy. It’s pouring.</p>
+<p><strong>marianne</strong>: I’m not supposed to be around –</p>
+<p><strong>letour</strong>: – former drug associates.</p>
+<p><strong>marianne</strong>: It’s four years I’m clean. No alcohol, no
+cigarettes, no nothing.</p>
+<p><strong>letour</strong>: I heard. I’m happy for you.</p>
+<p><strong>marianne</strong>: It’s still not easy.</p>
+<p><strong>letour</strong>: I know. Mar, you don’t need to avoid me. I’m
+straight – two years. It came that time. I tried to tell you. I wrote. I
+called.</p>
+<p><strong>marianne</strong>: I should get out.</p>
+<p><strong>letour</strong>: Honest.</p>
+<p><strong>marianne</strong>: But you’re dealing.</p>
+<p><strong>letour</strong>: No. I stopped.</p>
+<p><strong>marianne</strong>: What’s in the bag?</p>
+<p><strong>letour</strong>: Almond oil. You can check. Look.</p>
+<p><strong>letour</strong>: Shit.</p>
+<p><strong>marianne</strong>: What’s that for? In case someone needs
+almond oil in the middle of the night?</p>
+<p><strong>letour</strong>: I still deal a little, but I’m straight –
+that part’s true. Believe me.</p>
+<p><strong>marianne</strong>: Stop here. Now. Stop!</p>
+<p><strong>letour</strong>: I won’t say anything. I promise. I’ll just
+sit here. I’ll just give you a ride.</p>
+<p><strong>marianne</strong>: Goodbye, John.</p>
+<p><strong>letour</strong>: Where do you live? Mari…</p>
+<p><strong>driver</strong>: Sir?</p>
+<p><strong>letour</strong>: Eighty-third Street.</p>
+<p><strong>teresa</strong>: Coffee?</p>
+<p><strong>letour</strong>: Thanks.</p>
+<p><strong>teresa</strong>: Black?</p>
+<p><strong>letour</strong>: Yeah.</p>
+<p><strong>teresa</strong>: Here.</p>
+<p><strong>letour</strong>: I’m not sure how this works.</p>
+<p><strong>teresa</strong>: Have you ever been to a psychic before?</p>
+<p><strong>letour</strong>: No, but I’ve, well, I’ve heard about it.</p>
+<p><strong>teresa</strong>: Do you need advice? John?</p>
+<p><strong>letour</strong>: No… it’s not that… I don’t know – I just
+decided to come. I thought…</p>
+<p><strong>teresa</strong>: Be comfortable. How did you hear about
+me?</p>
+<p><strong>letour</strong>: A recommendation. Somebody from work. Two
+hundred dollars, right?</p>
+<p><strong>teresa</strong>: It’s a lot of money?</p>
+<p><strong>letour</strong>: I don’t care.</p>
+<p><strong>teresa</strong>: I look at you. I give you my impressions. I
+feel your “vibrations” – I don’t like that word, it sounds phony, but I
+can’t think of anything better. You’re anxious. More than usual. Your
+aura is very strong. I feel a very strong vibration from you. A change
+is coming. You’re worried about money. You say you don’t care about
+money but that’s not true.</p>
+<p><strong>letour</strong>: Yeah.</p>
+<p><strong>teresa</strong>: Your livelihood is endangered. You’re
+worried about the future. You don’t have much money saved. What will you
+do?</p>
+<p><strong>letour</strong>: I don’t know.</p>
+<p><strong>teresa</strong>: I see a woman who has betrayed you.</p>
+<p><strong>letour</strong>: My mother?</p>
+<p><strong>teresa</strong>: Who will betray you.</p>
+<p><strong>letour</strong>: Not… I…</p>
+<p><strong>teresa</strong>: Keep it in mind. I have a strong feeling
+about this woman, a woman close to you, she will betray you. You’re in
+the entertainment business, aren’t you?</p>
+<p><strong>letour</strong>: Yes.</p>
+<p><strong>teresa</strong>: But you’re not happy. You want to do
+something else. Is it music?</p>
+<p><strong>letour</strong>: Yes…</p>
+<p><strong>teresa</strong>: You have a talent for music.</p>
+<p><strong>letour</strong>: As a child.</p>
+<p><strong>teresa</strong>: You still have it. It’s strong. I see music
+in your future. A career opportunity will come in the music field. Take
+it. It won’t seem promising. Take it anyway. You’re full of stress. Are
+you exercising?</p>
+<p><strong>letour</strong>: No. I –</p>
+<p><strong>teresa</strong>: You should exercise more. You must let go of
+this stress. It’s not good for your health. I’m not saying you’re going
+over to the other side, but it’s not good for you. You’re still
+drinking, aren’t you? You have a drinking problem? It’s interfering with
+your health and your life too. You’ve had other problems. Drug
+addiction.</p>
+<p><strong>letour</strong>: Yes.</p>
+<p><strong>teresa</strong>: This was very important in your life.</p>
+<p><strong>letour</strong>: Yes.</p>
+<p><strong>teresa</strong>: You are in the balance. Everything you do –
+positive or negative – in this life is a drop that will carry over in
+the next. Every act, every decision matters.</p>
+<p><strong>letour</strong>: Teresa?</p>
+<p><strong>teresa</strong>: What is it?</p>
+<p><strong>letour</strong>: I’m thirty-eight years old. Forty.</p>
+<p><strong>teresa</strong>: You’re young.</p>
+<p><strong>letour</strong>: I have trouble sleeping. Look. What do you
+see around me? Is there anything? Is it dark? Have I run out of luck? Is
+there luck?</p>
+<p><strong>teresa</strong>: I see a glow. Everything you need is around
+you. The only danger is inside you.</p>
+<p><strong>ann</strong>: Your pay’s on the table.</p>
+<p><strong>young hasid</strong>: One hundred thirty-one, let’s make it
+130-$13,000, hundreds for small bills. One percent commission, $130 to
+you – add tens or whatever if you want.</p>
+<p><strong>young hasid</strong>: Same time?</p>
+<p><strong>ann</strong>: Two weeks – don’t run. Stay a while. We’ll
+order kosher. We’ll tell you dirty stories. We’ll talk Zionism.</p>
+<p><strong>young hasid</strong>: I’m late already. I only come ’cause I
+like you. Sure you’re not Jewish? I don’t want to see you hurt. Find a
+man. You should do something else.</p>
+<p><strong>ann</strong>: Invest in my cosmetics line.</p>
+<p><strong>young hasid</strong>: Don’t mix business with friendship.</p>
+<p><strong>young hasid</strong>: Shalom.</p>
+<p><strong>ann</strong>: Shalom. See you next week. Don’t eat any hot
+dogs!</p>
+<p><strong>letour</strong>: Jealous said something about a yuppie murder
+in the Park. You know anything about it?</p>
+<p><strong>ann</strong>: It’s all over the news.</p>
+<p><strong>letour</strong>: Jealous said to be careful.</p>
+<p><strong>ann</strong>: We are careful.</p>
+<p><strong>robert</strong>: We’re too small time. Besides, she wasn’t
+one of ours – not directly. Tis is at St. Luke’s. He wants somebody over
+right away. Second floor waiting room.</p>
+<p><strong>letour</strong>: A hospital? What’s he doing there?</p>
+<p><strong>robert</strong>: He says he needs you to come to St. Luke’s.
+I’d go but I got the other thing.</p>
+<p><strong>letour</strong>: The –?</p>
+<p><strong>robert</strong>: Yeah.</p>
+<p><strong>ann</strong>: Go. Keep on his good side. He set up
+Arizona.</p>
+<p><strong>ann</strong>: Let’s have lunch. Tomorrow.</p>
+<p><strong>letour</strong>: Me?</p>
+<p><strong>ann</strong>: One o’clock. C�te Basque. Is that too
+early?</p>
+<p><strong>letour</strong>: No. Yeah – sure.</p>
+<p><strong>robert</strong>: Tonight?</p>
+<p><strong>letour</strong>: I vote Japanese.</p>
+<p><strong>ann</strong>: Fine.</p>
+<p><strong>robert</strong>: Okay.</p>
+<p><strong>letour</strong>: Mixed sushi. Oshitashi.</p>
+<p><strong>letour</strong>: What’s going on?</p>
+<p><strong>tis</strong>: You got some valiums?</p>
+<p><strong>letour</strong>: – ’n ’ludes.</p>
+<p><strong>tis</strong>: Just a valium – a ten.</p>
+<p><strong>letour</strong>: What is it?</p>
+<p><strong>tis</strong>: You won’t believe it. What a nightmare. I
+brought in this chick. She O.D.ed – man, I didn’t even know her. I
+didn’t have to bring her in. The cops are coming back to talk to me. I’m
+hyper. I gotta come down.</p>
+<p><strong>letour</strong>: Here.</p>
+<p><strong>tis</strong>: Make it two.</p>
+<p><strong>tis</strong>: Thanks.</p>
+<p><strong>letour</strong>: She okay?</p>
+<p><strong>tis</strong>: Who?</p>
+<p><strong>letour</strong>: The girl.</p>
+<p><strong>tis</strong>: Yeah, yeah. Met her last night. A walking
+vacuum cleaner. What a nightmare. Underage.</p>
+<p><strong>letour</strong>: You need a lawyer?</p>
+<p><strong>tis</strong>: He’s here. Thanks.</p>
+<p><strong>letour</strong>: Any time.</p>
+<p><strong>randi</strong>: John!</p>
+<p><strong>letour</strong>: Randi?</p>
+<p><strong>randi</strong>: I can’t believe it. Marianne’s here too. She
+flew in. It’s been so long. You look great.</p>
+<p><strong>letour</strong>: You too. Randi, what’s wrong? Why are you
+here?</p>
+<p><strong>randi</strong>: Mom. She’s back in. Didn’t Marianne tell
+you?</p>
+<p><strong>letour</strong>: Serious?</p>
+<p><strong>randi</strong>: More chemo.</p>
+<p><strong>letour</strong>: Can I see her?</p>
+<p><strong>randi</strong>: She’s sleeping. She sleeps most of the time.
+She’d like it, though. She still talks about you.</p>
+<p><strong>letour</strong>: I’m so sorry. She’s a terrific woman. I was
+crazy about her. God.</p>
+<p><strong>randi</strong>: It’s John. What a coincidence.</p>
+<p><strong>marianne</strong>: Yes. Hi.</p>
+<p><strong>letour</strong>: Randi told me about your mom. I’m sorry.</p>
+<p><strong>marianne</strong>: Thanks.</p>
+<p><strong>letour</strong>: She’s sedated?</p>
+<p><strong>marianne</strong>: Yeah.</p>
+<p><strong>randi</strong>: She would be so happy to see John.</p>
+<p><strong>marianne</strong>: I don’t think that would be a good
+idea.</p>
+<p><strong>letour</strong>: You both look so tired.</p>
+<p><strong>marianne</strong>: One of us has to be here.</p>
+<p><strong>randi</strong>: The hospital lets us stay in her room.</p>
+<p><strong>letour</strong>: Let me buy you some coffee or something –
+the cafeteria’s downstairs. It helps to talk.</p>
+<p><strong>randi</strong>: You go, Marianne, it’s my turn with mom.</p>
+<p><strong>marianne</strong>: I shouldn’t.</p>
+<p><strong>randi</strong>: Go. You haven’t eaten. Go on. Go on.</p>
+<p><strong>randi</strong>: Bring me a coffee.</p>
+<p><strong>letour</strong>: This way. Kiss your mother for me.</p>
+<p><strong>letour</strong>: I like your mom.</p>
+<p><strong>marianne</strong>: She liked you. You know this will happen
+someday, but when it does… Your mother – that was a shock.</p>
+<p><strong>letour</strong>: She’s been sick a while?</p>
+<p><strong>marianne</strong>: A year.</p>
+<p><strong>letour</strong>: Your father?</p>
+<p><strong>marianne</strong>: Not this time. His new wife – he’ll make
+it to the funeral.</p>
+<p><strong>letour</strong>: What have you been doing? Where do you
+live?</p>
+<p><strong>marianne</strong>: It’s… I don’t want you to know about my
+life.</p>
+<p><strong>letour</strong>: Anything? You married? Have children? A dog?
+House plants?</p>
+<p><strong>marianne</strong>: Details just open the door.</p>
+<p><strong>letour</strong>: The door to what? It’s not like we’re
+strangers. We were married.</p>
+<p><strong>marianne</strong>: We were not.</p>
+<p><strong>letour</strong>: There was a ceremony.</p>
+<p><strong>marianne</strong>: He wasn’t even a minister. He was an
+astrologer.</p>
+<p><strong>letour</strong>: He was also a minister. “Universal
+Harmony.”</p>
+<p><strong>marianne</strong>: He was a Pisces.</p>
+<p><strong>letour</strong>: You’re a Pisces.</p>
+<p><strong>marianne</strong>: It was not legal.</p>
+<p><strong>letour</strong>: In the eyes of Jeanne Dixon we’re still
+–</p>
+<p><strong>marianne</strong>: I was on the cusp.</p>
+<p><strong>letour</strong>: We were happy.</p>
+<p><strong>marianne</strong>: We were miserable. We were either scoring
+or coming down – mostly coming down.</p>
+<p><strong>letour</strong>: There were good times. Area, out on the
+street, laughing, dancing with friends – we were magical.</p>
+<p><strong>marianne</strong>: You took off for three months without
+telling me and called once. That’s how magical we were. You were an
+encyclopedia of suicidal fantasies – I heard them all. Nobody could
+clear a room like you, John. And the friends, you may have noticed,
+turned out to be mine, not yours. I envy you. A convenient memory is a
+gift from God.</p>
+<p><strong>letour</strong>: You exaggerate.</p>
+<p><strong>marianne</strong>: In rehab they call this “euphoric recall.”
+You only remember the highs, never the lows.</p>
+<p><strong>letour</strong>: We were happy.</p>
+<p><strong>marianne</strong>: I was drowning.</p>
+<p><strong>letour</strong>: It wasn’t me –</p>
+<p><strong>marianne</strong>: You watched –</p>
+<p><strong>letour</strong>: You jumped –</p>
+<p><strong>marianne</strong>: You did nothing – “It wasn’t your
+business, you weren’t responsible” – you still think like that. Actions
+have consequences; so do –</p>
+<p><strong>marianne</strong>: – inactions.</p>
+<p><strong>letour</strong>: I didn’t – I meant well.</p>
+<p><strong>marianne</strong>: You always meant well.</p>
+<p><strong>letour</strong>: We were in love?</p>
+<p><strong>marianne</strong>: Yes.</p>
+<p><strong>letour</strong>: We were happy?</p>
+<p><strong>letour</strong>: You bought it for me. It’s inscribed
+inside.</p>
+<p><strong>letour</strong>: Ann’s quitting. I’ve got to find something
+else to do.</p>
+<p><strong>marianne</strong>: Ann? I’ll believe it when I see it.</p>
+<p><strong>letour</strong>: It’s true.</p>
+<p><strong>marianne</strong>: Are you really straight?</p>
+<p><strong>letour</strong>: Yeah.</p>
+<p><strong>marianne</strong>: Let me see your eyes.</p>
+<p><strong>marianne</strong>: Eyes are deceiving. Congratulations.</p>
+<p><strong>letour</strong>: If I could do that, I could do anything.</p>
+<p><strong>marianne</strong>: What do you mean?</p>
+<p><strong>letour</strong>: We could do anything. We could start
+over.</p>
+<p><strong>marianne</strong>: What was that? I think I heard
+something.</p>
+<p><strong>letour</strong>: I’m serious.</p>
+<p><strong>marianne</strong>: You’re crazy.</p>
+<p><strong>letour</strong>: This is crazy.</p>
+<p><strong>marianne</strong>: I have to get back.</p>
+<p><strong>letour</strong>: I’ll walk you.</p>
+<p><strong>letour</strong>: I can always find another way to make a
+living. I never planned this in the first place – not like Ann. She came
+up to sell, have parties, make contacts. She was so glamorous. I just
+wanted to be around her. She’d sit up listening to coke stories. Now
+it’s me and Robert. The whole crowd was the same age. Everybody’s
+younger now. She made me.</p>
+<p><strong>ann</strong>: You have any money saved?</p>
+<p><strong>letour</strong>: There’s some. Not much. A thousand or two.
+Maybe more – I’m not sure.</p>
+<p><strong>ann</strong>: What do you do with your money?</p>
+<p><strong>letour</strong>: I don’t know. It’s not that much in the
+first place – as you know.</p>
+<p><strong>ann</strong>: It’s tax free –</p>
+<p><strong>letour</strong>: Rent, utilities, phone, tips, CDs – what
+about your money?</p>
+<p><strong>ann</strong>: Kitty Ford once told me, “Ann, the only person
+I know that lives as well as you is my grandmother.” All the money I’ve
+made, all the money I’ve spent – it never adds up. This last two years
+cosmetics’ been taking everything.</p>
+<p><strong>letour</strong>: I wish I could help.</p>
+<p><strong>ann</strong>: You still go to meetings?</p>
+<p><strong>letour</strong>: No, but I’m okay. What are the odds of
+meeting someone you haven’t seen in years twice in two days?</p>
+<p><strong>ann</strong>: Ask Robert to make up a chart for you; the
+other person – who is it?</p>
+<p><strong>letour</strong>: Just a contact – you don’t know him.</p>
+<p><strong>ann</strong>: What’s the plan?</p>
+<p><strong>letour</strong>: The plan?</p>
+<p><strong>ann</strong>: What you gonna do?</p>
+<p><strong>letour</strong>: My future?</p>
+<p><strong>ann</strong>: Too conceptual?</p>
+<p><strong>letour</strong>: We had this conversation two years ago.
+We’ll have it two years from now.</p>
+<p><strong>ann</strong>: This time it’s for real.</p>
+<p><strong>letour</strong>: I’m thinking of some music courses. Mixing,
+sound editing –</p>
+<p><strong>ann</strong>: You took that before.</p>
+<p><strong>letour</strong>: That was acting.</p>
+<p><strong>ann</strong>: Modeling.</p>
+<p><strong>letour</strong>: Why all this concern? Suddenly you care?</p>
+<p><strong>ann</strong>: I have feelings too – you may have noticed. I
+guess I’m worried. I’m tough, you gotta to be tough, especially in this
+business, it’s one thing to act tough – I’ve seen Zipporah twice this
+week.</p>
+<p><strong>letour</strong>: She helps you?</p>
+<p><strong>ann</strong>: – harmonizes, she’s encouraging me to get out
+of this into the cosmetics thing –</p>
+<p><strong>ann</strong>: Nomination for Best Picture. I knew every girl
+he fucked – how, why. I knew when he had trouble shitting. Like this.
+His wife says he gets straight or she cuts him off. Old money. I
+remember the last thing he said to me: “See you soon.” Yeah, sure. That
+was five years ago.</p>
+<p><strong>ann</strong>: You’ll still talk to me, won’t you?</p>
+<p><strong>letour</strong>: You –? Of course I will.</p>
+<p><strong>ann</strong>: It’ll be strange without you around. I hadn’t
+thought of it – it hit me.</p>
+<p><strong>letour</strong>: We’ll always have Paris.</p>
+<p><strong>ann</strong>: John.</p>
+<p><strong>letour</strong>: Ann, you want me, call, write a letter, tell
+a wino – I’ll be there.</p>
+<p><strong>letour</strong>: I’m sorry. I…</p>
+<p><strong>letour</strong>: I always thought my father would die first.
+He would die, then my mother and I would reconcile. Just her and me. I
+hated him for living.</p>
+<p><strong>marianne</strong>: It’s like a joke. It’s not a real feeling.
+It’s like a feeling of a feeling.</p>
+<p><strong>letour</strong>: My old man bawling in the hospital, me
+popping in and out of the john getting loaded. I miss you.</p>
+<p><strong>marianne</strong>: You tried to kill me. You took ten years
+of my life one way or another. I couldn’t hate my mom – I was too busy
+hating you.</p>
+<p><strong>letour</strong>: I thought I was just killing myself.</p>
+<p><strong>letour</strong>: Selfish.</p>
+<p><strong>marianne</strong>: I remember.</p>
+<p><strong>letour</strong>: What?</p>
+<p><strong>marianne</strong>: What it felt like. What this tasted
+like.</p>
+<p><strong>letour</strong>: I see you and my heart starts thumping.</p>
+<p><strong>marianne</strong>: John.</p>
+<p><strong>letour</strong>: Excuse us. Let’s go.</p>
+<p><strong>marianne</strong>: Come. Come with me.</p>
+<p><strong>letour</strong>: Have you ever had sex totally straight?</p>
+<p><strong>marianne</strong>: Not with you.</p>
+<p><strong>letour</strong>: Neither have I.</p>
+<p><strong>marianne</strong>: Such an erection.</p>
+<p><strong>letour</strong>: Never had anything like it stoned. Feel
+it.</p>
+<p><strong>marianne</strong>: Weird.</p>
+<p><strong>letour</strong>: Wow.</p>
+<p><strong>marianne</strong>: I’m dripping.</p>
+<p><strong>letour</strong>: Let’s disappear.</p>
+<p><strong>letour</strong>: Kiss, kiss, kiss.</p>
+<p><strong>marianne</strong>: Kiss, kiss, kiss.</p>
+<p><strong>letour</strong>: Together.</p>
+<p><strong>letour</strong>: You need to go back?</p>
+<p><strong>marianne</strong>: This is the end. It was wonderful. I’m
+glad it happened this way. It will never happen again. You will not see
+me, you will not call me again. I’m happy for you. I wish you the best.
+I’m leaving. I’m going back to the hospital. I shouldn’t have left – but
+I don’t regret it. Please dress and leave as soon as possible. I have a
+key. Goodbye.</p>
+<p><strong>letour</strong>: Marianne…</p>
+<p><strong>marianne</strong>: It’s my fault.</p>
+<p><strong>letour</strong>: I love you.</p>
+<p><strong>ann</strong>: Johnny, what is this? Your beeper broke,
+gettin’ some shiatsu? Two hours: where have you bee?</p>
+<p><strong>letour</strong>: There was a mix-up –</p>
+<p><strong>ann</strong>: How you gonna survive on your own? The U.N.’s
+got some conference in two days. The holiday’s over – ragheads
+everywhere trying to score. U.N. security at every hotel – little creeps
+with lapel pins. Even I’ve been out. This is where our money is: Europe,
+Asia, not the streets – you wouldn’t know crack from crackerjacks.</p>
+<p><strong>letour</strong>: Where’s Robert?</p>
+<p><strong>ann</strong>: Busting his ass. He’s out doing your job.</p>
+<p><strong>letour</strong>: It was a confusion.</p>
+<p><strong>ann</strong>: Get confused on your day off.</p>
+<p><strong>letour</strong>: When is that?</p>
+<p><strong>ann</strong>: Don’t get wise. What do you want me to do? Suck
+your dick? – okay. A raise? No way. Get out there. There’s a list on the
+TV. I love you. Get your ass outta here before I kiss it.</p>
+<p><strong>letour</strong>: I’m on my way. Love you. Forgive me.</p>
+<p><strong>tis</strong>: Tour, sit. Take a rest. LeTour, this is Gabri,
+Tasha – you know Thomas. They’re here for a show.</p>
+<p><strong>letour</strong>: Enchant�. How’d it turn out?</p>
+<p><strong>tis</strong>: Questo � un vero Americano. What?</p>
+<p><strong>letour</strong>: St. Luke’s.</p>
+<p><strong>tis</strong>: No problem, but – can you believe this? – she’s
+out of the hospital in one day, calls me up, wants to “get together.”
+Some people are just born for losing. Want to go in back?</p>
+<p><strong>letour</strong>: Not now.</p>
+<p><strong>tis</strong>: Huh?</p>
+<p><strong>letour</strong>: Look at the bar. Black-haired guy, late
+twenties, brown suit, drinking tonic? He’s casing you. Not me, you.
+Undercover, whatever – he’s on you.</p>
+<p><strong>tis</strong>: You know him?</p>
+<p><strong>letour</strong>: Just a feeling. You holding?</p>
+<p><strong>tis</strong>: No. Need help?</p>
+<p><strong>letour</strong>: Leave a message. Robert or I will come by
+later.</p>
+<p><strong>tis</strong>: Forget it. It wasn’t for me anyway. Who am I
+trying to impress? Make it tomorrow. A half – no, three- quarters.</p>
+<p><strong>letour</strong>: Nineteen is the top. I’ll make two
+trips.</p>
+<p><strong>tis</strong>: Nineteen is fine.</p>
+<p><strong>letour</strong>: A domani. Take care, girls.</p>
+<p><strong>letour</strong>: I feel my life turning. All it needed was a
+direction. You drift from day to day, years go by. Suddenly there is a
+direction. What a strange thing to happen halfway through your life.</p>
+<p><strong>hotel switchboard</strong>: Paramount Hotel.</p>
+<p><strong>letour</strong>: Marianne Jost, please.</p>
+<p><strong>hotel switchboard</strong>: Just a moment.</p>
+<p><strong>hotel message</strong>: “Welcome to the Paramount. Your party
+is out. If you would like to leave a message for –</p>
+<p><strong>‘marianne jost’</strong>: – please do so after the beep.”</p>
+<p><strong>hotel switchboard</strong>: Paramount Hotel.</p>
+<p><strong>letour</strong>: Marianne Jost.</p>
+<p><strong>hotel switchboard</strong>: Just a moment.</p>
+<p><strong>hotel switchboard</strong>: I’m sorry. Ms. Jost checked out
+this morning.</p>
+<p><strong>letour</strong>: She was there yesterday.</p>
+<p><strong>hotel switchboard</strong>: She checked out this morning.</p>
+<p><strong>letour</strong>: Did she leave a forwarding number?</p>
+<p><strong>hotel switchboard</strong>: No.</p>
+<p><strong>letour</strong>: Thank you.</p>
+<p><strong>st. luke’s switchboard</strong>: St. Luke’s – Roosevelt
+Hospital.</p>
+<p><strong>letour</strong>: Mrs. Jost. JoAnn Jost. She’s a patient.</p>
+<p><strong>st. luke’s switchboard</strong>: Just a moment.</p>
+<p><strong>medical voice</strong>: Who is this calling?</p>
+<p><strong>letour</strong>: Skyline Floral. We’re trying to confirm a
+delivery.</p>
+<p><strong>medical voice</strong>: Mrs. Jost passed away last night.</p>
+<p><strong>letour</strong>: Are the funeral arrangements local?</p>
+<p><strong>medical voice</strong>: Just a sec – yes, Plaza Memorial.</p>
+<p><strong>letour</strong>: Thank you.</p>
+<p><strong>medical voice</strong>: You’re welcome.</p>
+<p><strong>letour</strong>: Can I help you, officer?</p>
+<p><strong>guidone</strong>: What?</p>
+<p><strong>letour</strong>: I hope I haven’t made a mistake. You are a
+cop, aren’t you?</p>
+<p><strong>guidone</strong>: Yes.</p>
+<p><strong>letour</strong>: Could I see a badge?</p>
+<p><strong>guidone</strong>: Bill Guidone.</p>
+<p><strong>letour</strong>: What is it?</p>
+<p><strong>guidone</strong>: You think you’re invisible, don’t you? You
+think we don’t know you, LeTour – that’s the name you use, right?</p>
+<p><strong>letour</strong>: My father’s a partner in a powerful law
+firm. If you have anything in mind, do it by the book.</p>
+<p><strong>guidone</strong>: You? Who the fuck cares about you? I could
+grind you right here! – maybe I will! – and nobody would give a fuck!
+You’re not worth the paperwork. I look like Narcotics? I’m Homicide –
+I’m investigating the Park murder.</p>
+<p><strong>letour</strong>: I don’t follow the news.</p>
+<p><strong>guidone</strong>: Downtown’s interested how a Barnard honors
+student with fancy parents got a quarter of uncut coke on her when she
+was murdered. I mean, we just don’t see this girl cruising Alphabet City
+trying to score. Somebody sold her, somebody upscale and classy – you’re
+classy, I hear – and that somebody knows something we need to know.
+Delivery boy!</p>
+<p><strong>letour</strong>: I wish I could help. I don’t even know who’s
+president.</p>
+<p><strong>guidone</strong>: Let me put it this way. Here’s my card Ask
+around, take a week or so. Call me. Tell me something I don’t know.
+Either that, leave town, or get your ass busted day in, day out.</p>
+<p><strong>marianne</strong>: Get out.</p>
+<p><strong>letour</strong>: Marianne…</p>
+<p><strong>marianne</strong>: Every time you come into my life something
+terrible happens. I thought I was rid of you. How’d you get here? I
+don’t want you here! I don’t want you around me, I don’t want you around
+my mother! Damn you!</p>
+<p><strong>letour</strong>: Marianne…</p>
+<p><strong>marianne</strong>: Get out!</p>
+<p><strong>letour</strong>: I didn’t…</p>
+<p><strong>randi</strong>: I’m sorry. That’s the way it is. You
+shouldn’t have come. Marianne has been up all night, crying and crying.
+She wasn’t there when Mother passed – died – she blames herself. It
+wouldn’t have made any difference. She just slipped away. Marianne’s –
+I’m worried –</p>
+<p><strong>letour</strong>: It’s…</p>
+<p><strong>randi</strong>: Don’t try.</p>
+<p><strong>letour</strong>: How are you?</p>
+<p><strong>randi</strong>: Me?</p>
+<p><strong>letour</strong>: Yes, you. I can’t think of anything, but if
+there was anything I could do…</p>
+<p><strong>randi</strong>: Thanks. I’m okay – I guess. I mean, we’ve
+been expecting it. It’ll hit me later.</p>
+<p><strong>letour</strong>: I saw her.</p>
+<p><strong>randi</strong>: Who?</p>
+<p><strong>letour</strong>: Your mother. I came in the room. You were
+sleeping. I just watched.</p>
+<p><strong>randi</strong>: Oh. I’d better get back. Marianne’s probably
+flipping out.</p>
+<p><strong>ann</strong>: Have some shu mai. Just delivered.</p>
+<p><strong>letour</strong>: No.</p>
+<p><strong>robert</strong>: I told Ann you’d be on time. Tis called. He
+said before ten. He said you were right.</p>
+<p><strong>ann</strong>: About what?</p>
+<p><strong>letour</strong>: An undercover cop. Not a narc. The Park
+murder. Jealous was straight on that – you hear anything?</p>
+<p><strong>robert</strong>: Remember the time that cop called here?
+Wanted to know if we had “nose candy”? Ann says, “John Candy?” “John
+Candy?”</p>
+<p><strong>ann</strong>: What’s wrong baby? You like like shit.
+Something wrong?</p>
+<p><strong>letour</strong>: No.</p>
+<p><strong>ann</strong>: You can’t fool me. I can read you.</p>
+<p><strong>letour</strong>: What do you care? You’re leaving me. A few
+more months – sayonara. You too. John who? What was his name again? Le
+–? I mean it’s not exactly like I got a pension plan.</p>
+<p><strong>robert</strong>: Jack.</p>
+<p><strong>ann</strong>: Johnny, it’s not that at all. Is that what you
+think? You hate cosmetics. You don’t care about it. You told me
+that.</p>
+<p><strong>letour</strong>: I know.</p>
+<p><strong>ann</strong>: Who knows what will happen?</p>
+<p><strong>robert</strong>: I got a friend – a D.D. – got into lapidary.
+I’ll introduce you. You have to pass a test.</p>
+<p><strong>letour</strong>: Lapi –?</p>
+<p><strong>robert</strong>: Gems, you know, crystals, diamonds.</p>
+<p><strong>letour</strong>: Any more about the Park murder?</p>
+<p><strong>ann</strong>: What’s with this thing?</p>
+<p><strong>robert</strong>: Stay away.</p>
+<p><strong>ann</strong>: You want in? We’ll make a place for you.</p>
+<p><strong>letour</strong>: No.</p>
+<p><strong>ann</strong>: It’s –</p>
+<p><strong>eddie</strong>: “Ann, this is Ed. You gotta come. The other
+thing is over. I’ll be home all night. 749-2876.”</p>
+<p><strong>robert</strong>: Shit.</p>
+<p><strong>ann</strong>: Don’t answer it. Let him call all night. He’s
+trouble. I don’t want to deal with him.</p>
+<p><strong>letour</strong>: It’s alright, I’ll go. Let me handle it.</p>
+<p><strong>robert</strong>: I’m sorry if –</p>
+<p><strong>ann</strong>: He gives you shit – fuck him.</p>
+<p><strong>letour</strong>: Forget it.</p>
+<p><strong>robert</strong>: We’re going Chinese tonight, okay? I mean
+we’re on a roll –</p>
+<p><strong>ann</strong>: Spring roll.</p>
+<p><strong>letour</strong>: Sure, whatever. Surprise me.</p>
+<p><strong>eddie</strong>: You gotta get permission? Check with
+Mama?</p>
+<p><strong>letour</strong>: I’m calling your brother.</p>
+<p><strong>eddie</strong>: Huh?</p>
+<p><strong>letour</strong>: Yeah, the lawyer in Bronxville. I’m gonna
+ask him to come over. You’ve told me so much about him.</p>
+<p><strong>eddie</strong>: No, don’t. Please, I’ll give you money,
+anything. He doesn’t understand. Whose side are you on?</p>
+<p><strong>letour</strong>: Is this Martin Jeer? Thank you.</p>
+<p><strong>eddie</strong>: I shoulda never called.</p>
+<p><strong>letour</strong>: I recommend Hazelden. It has the best
+all-around program. Martin Jeer? I’m here with your brother Ed. Yeah, in
+the city. I’m afraid there’s a medical emergency. You’re going to have
+to come.</p>
+<p><strong>letour</strong>: He’ll be here.</p>
+<p><strong>tis</strong>: Tour, just in time. We were out. Nineteen,
+right?</p>
+<p><strong>letour</strong>: Thirty-eight hundred – got any hundreds?</p>
+<p><strong>tis</strong>: Some, not the whole thing. You got
+hundreds?</p>
+<p><strong>thomas</strong>: No.</p>
+<p><strong>tis</strong>: I like that about Ann. Always takes the time to
+grind it. If you do it, do it right.</p>
+<p><strong>tis</strong>: Looks like you could use some help. Mari, this
+is Tour. You got any hundreds?</p>
+<p><strong>tis</strong>: Not the talkative type. Haven’t seen her in
+years. You know her, don’t you? Why they call me? What a nightmare. You
+want it or not?</p>
+<p><strong>letour</strong>: Yeah.</p>
+<p><strong>tis</strong>: See you later.</p>
+<p><strong>female cop</strong>: Get back!</p>
+<p><strong>male cop</strong>: Who saw it? What happened? EMS is on the
+way.</p>
+<p><strong>female cop</strong>: Too late –</p>
+<p><strong>carlos</strong>: Where to?</p>
+<p><strong>letour</strong>: What?</p>
+<p><strong>carlos</strong>: Where to, sir? Where are we going?</p>
+<p><strong>letour</strong>: Nowhere just now. Wait.</p>
+<p><strong>carlos</strong>: You want me to wait here?</p>
+<p><strong>letour</strong>: Yes.</p>
+<p><strong>letour</strong>: Downtown.</p>
+<p><strong>carlos</strong>: Yes.</p>
+<p><strong>newscaster</strong>: This story is just in. A woman has
+fallen thirty stories to her death from a posh Grace Towers apartment on
+Lexington Avenue. Police are withholding identification pending the
+notification of the next of kin. The incident happened about ten p.m.
+According to the sources on the scene there was no one else in the posh
+Grace Towers apartment when the fall occurred. We will bring you more
+details as we get them. An end to the sanitation strike seems imminent.
+Negotiations at the Helmsley Palace are continuing to this hour…</p>
+<p><strong>teresa</strong>: Who is it?</p>
+<p><strong>letour</strong>: John. John LeTour. Can I see you?</p>
+<p><strong>teresa</strong>: What time is it?</p>
+<p><strong>letour</strong>: It’s important, Teresa.</p>
+<p><strong>teresa</strong>: Call. Make an appointment.</p>
+<p><strong>letour</strong>: Open the door. You’re awake anyway.
+Teresa.</p>
+<p><strong>letour</strong>: Read me. What do you see?</p>
+<p><strong>teresa</strong>: Do I know you?</p>
+<p><strong>letour</strong>: We had a session last week. What do you
+see?</p>
+<p><strong>teresa</strong>: John?</p>
+<p><strong>letour</strong>: Yes. Look at me.</p>
+<p><strong>teresa</strong>: Step back. Again. Death.</p>
+<p><strong>letour</strong>: Someone I knew died tonight.</p>
+<p><strong>teresa</strong>: This was not an accident. This person was
+murdered.</p>
+<p><strong>letour</strong>: Am I in danger?</p>
+<p><strong>teresa</strong>: There is danger around you. It’s very close.
+I’m sleepy.</p>
+<p><strong>letour</strong>: What should I do?</p>
+<p><strong>teresa</strong>: I can’t see it.</p>
+<p><strong>letour</strong>: Please. Am I lucky?</p>
+<p><strong>teresa</strong>: Yes. Don’t be afraid. Go home.</p>
+<p><strong>letour</strong>: What do I owe you?</p>
+<p><strong>teresa</strong>: Nothing. Forget it. Let me sleep.</p>
+<p><strong>police switchboard</strong>: Ninth Precinct.</p>
+<p><strong>letour</strong>: Bill Guidone, please. Homicide.</p>
+<p><strong>police switchboard</strong>: Hold on.</p>
+<p><strong>guidone</strong>: Guidone.</p>
+<p><strong>letour</strong>: This is John LeTour. Remember me?</p>
+<p><strong>guidone</strong>: Laundromat. Your father’s got
+connections.</p>
+<p><strong>letour</strong>: You said I should ask around, tell you
+something you didn’t know.</p>
+<p><strong>guidone</strong>: I thought you’d call.</p>
+<p><strong>letour</strong>: It ain’t much, but it’s something.</p>
+<p><strong>guidone</strong>: Go on.</p>
+<p><strong>letour</strong>: A girl died last night. Lexington Ave.</p>
+<p><strong>guidone</strong>: The jumper. Druggie.</p>
+<p><strong>letour</strong>: The news said she was alone in the apartment
+when she went out – she wasn’t. It’s a cover-up. There was someone
+else.</p>
+<p><strong>guidone</strong>: Who?</p>
+<p><strong>letour</strong>: Who lives in the apartment?</p>
+<p><strong>guidone</strong>: You there?</p>
+<p><strong>letour</strong>: That’s all I know. You asked me to tell you
+something. I told you something.</p>
+<p><strong>robert</strong>: Who is it?</p>
+<p><strong>letour</strong>: Jack. Let me in.</p>
+<p><strong>robert</strong>: Where have you been? We were worried.</p>
+<p><strong>letour</strong>: I need some sleep – not much. I don’t want
+to go home just yet. A little sleep first. Can I crash here? Nice
+place.</p>
+<p><strong>robert</strong>: It’s hideous. I did it years ago. I’ve got
+to throw everything out. You haven’t been here? Oh, Jack, this is Tony.
+I told you about him. You should talk. He’s the lapidopterist –
+gems.</p>
+<p><strong>tony</strong>: Lapidarian.</p>
+<p><strong>robert</strong>: Same thing.</p>
+<p><strong>letour</strong>: Can I?</p>
+<p><strong>robert</strong>: Sure.</p>
+<p><strong>letour</strong>: What do you know about Tis? What’s his
+relationship to Ann?</p>
+<p><strong>robert</strong>: They go way back – before me. Did you cross
+him?</p>
+<p><strong>letour</strong>: No.</p>
+<p><strong>robert</strong>: Don’t. He’s Ann’s Ecstasy connection. She
+needs that score. What happened?</p>
+<p><strong>letour</strong>: Nothing.</p>
+<p><strong>robert</strong>: Don’t mess with him.</p>
+<p><strong>letour</strong>: Is he dangerous?</p>
+<p><strong>robert</strong>: Everybody’s dangerous. We heard what you did
+to Eddie. Ann thought it was great. She was afraid that was why you
+didn’t come back.</p>
+<p><strong>letour</strong>: It was something else. Tell me if you hear
+anything.</p>
+<p><strong>robert</strong>: About what?</p>
+<p><strong>letour</strong>: Tis.</p>
+<p><strong>robert</strong>: Tis who? Ann says you want a chart done.
+What’s wrong?</p>
+<p><strong>letour</strong>: Ah…</p>
+<p><strong>robert</strong>: You down?</p>
+<p><strong>letour</strong>: Yeah… You ever think about it?</p>
+<p><strong>robert</strong>: What?</p>
+<p><strong>letour</strong>: That it’d be like this – like, your life,
+you… that it would turn out this way? –</p>
+<p><strong>robert</strong>: Compared to what? My thinking this or that
+is going to make any difference? There’s a plan unfolding. “Will my
+plane crash?” “Does life have meaning?” – why ask me? Thinking’s a fear
+of living, negative living; living’s something else. You’re afraid. Let
+the plan unfold. Stop. Stop, live one day – one day –</p>
+<p><strong>letour</strong>: – Robert –</p>
+<p><strong>robert</strong>: – day at a time.</p>
+<p><strong>letour</strong>: You’ve lost your fucking brain.</p>
+<p><strong>robert</strong>: I’m a drug dealer.</p>
+<p><strong>letour</strong>: Got a tub?</p>
+<p><strong>robert</strong>: Yeah.</p>
+<p><strong>letour</strong>: Great.</p>
+<p><strong>robert</strong>: There’s a plastic bottle of bath oil in the
+cabinet. Yellow. Use it – tell me what you think. It’s a new
+formula.</p>
+<p><strong>letour</strong>: Manny. LeTour. Jealous. “Jell.” SOB’s.</p>
+<p><strong>manuel</strong>: Reggae night.</p>
+<p><strong>letour</strong>: Burning Spear.</p>
+<p><strong>manuel</strong>: How’d you get in?</p>
+<p><strong>manuel</strong>: You buying?</p>
+<p><strong>letour</strong>: How’s product?</p>
+<p><strong>manuel</strong>: How much?</p>
+<p><strong>letour</strong>: I got a problem. I need a piece.</p>
+<p><strong>manuel</strong>: Piece? Piece of what? Piece of candy?</p>
+<p><strong>letour</strong>: A gun.</p>
+<p><strong>manuel</strong>: When?</p>
+<p><strong>letour</strong>: Now. Anything. Am I speaking too fast?</p>
+<p><strong>manuel</strong>: How much you spend?</p>
+<p><strong>letour</strong>: The rate. What you got?</p>
+<p><strong>manuel</strong>: He’s got a 64 Smith-son. Detective Special.
+Nobody wants ’em. Fresh from a cop.</p>
+<p><strong>letour</strong>: How much?</p>
+<p><strong>manuel</strong>: Four – including me.</p>
+<p><strong>letour</strong>: You’re fucking me.</p>
+<p><strong>manuel</strong>: Street price.</p>
+<p><strong>letour</strong>: Where is it?</p>
+<p><strong>manuel</strong>: Sigame.</p>
+<p><strong>manuel</strong>: The hundreds – Franklins.</p>
+<p><strong>letour</strong>: How do you use this?</p>
+<p><strong>manuel</strong>: Automatic.</p>
+<p><strong>letour</strong>: I don’t have much use for a gun. Never used
+one like this.</p>
+<p>****: Cono!</p>
+<p><strong>letour</strong>: What do you do?</p>
+<p><strong>manuel</strong>: Simple. You put the bullets in – you point
+it at the bad guys, pull the trigger and they fall down!</p>
+<p><strong>manuel</strong>: Vaya con Dios.</p>
+<p><strong>letour</strong>: – Dios.</p>
+<p><strong>letour</strong>: Have you been to the police station?</p>
+<p><strong>randi</strong>: She was back on drugs. Really back. They’re
+gonna bring her here too. My God. I thought she was playing for
+attention.</p>
+<p><strong>letour</strong>: I didn’t know.</p>
+<p><strong>randi</strong>: You’re not to blame. Don’t blame yourself.
+You weren’t responsible. She was always – she loved you.</p>
+<p><strong>letour</strong>: She loved you. You were what she wanted to
+be.</p>
+<p><strong>randi</strong>: She scared me.</p>
+<p><strong>letour</strong>: Look. Do you recognize anyone?</p>
+<p><strong>randi</strong>: Tis.</p>
+<p><strong>letour</strong>: You know him?</p>
+<p><strong>randi</strong>: His father’s a lawyer. Did some tax things
+for Mom. He was at the hospital. What’s that smell?</p>
+<p><strong>letour</strong>: It’s me. Cologne. I’m a sucker for that
+cheap airplane stuff. Did Marianne mention him yesterday?</p>
+<p><strong>randi</strong>: It was his apartment. What are you
+thinking?</p>
+<p><strong>letour</strong>: I don’t know.</p>
+<p><strong>randi</strong>: She jumped. You loved her, but she – this
+sounds terrible but it’s true – she was… she ruined everything… bad
+luck.</p>
+<p><strong>letour</strong>: When’s the funeral – your mother’s?</p>
+<p><strong>randi</strong>: Tomorrow. Will you come?</p>
+<p><strong>letour</strong>: Well, I got this thing to do. It’s – I don’t
+know if I can get away.</p>
+<p><strong>randi</strong>: Try? For me.</p>
+<p><strong>letour</strong>: I’ll try.</p>
+<p><strong>ann</strong>: The Prodigal Son.</p>
+<p><strong>letour</strong>: Sorry about last night. Something came
+up.</p>
+<p><strong>ann</strong>: Where were you?</p>
+<p><strong>robert</strong>: “Too Complicated To Explain.”</p>
+<p><strong>letour</strong>: I’m $500 short from last night. I’ll get it,
+you can take it from my salary.</p>
+<p><strong>ann</strong>: This is family. Are you saying that to hurt me?
+It’s not money.</p>
+<p><strong>letour</strong>: Sorry.</p>
+<p><strong>robert</strong>: Look at this. We had a graphic artist make
+it up – you know, Billy, Five Towns.</p>
+<p><strong>ann</strong>: The label for the cosmetics line.</p>
+<p><strong>letour</strong>: Classy. Sorta – Katmandu…</p>
+<p><strong>ann</strong>: Kathmandu.</p>
+<p><strong>letour</strong>: I love it.</p>
+<p><strong>robert</strong>: Tis called twice. He wants you to come
+by.</p>
+<p><strong>letour</strong>: Me?</p>
+<p><strong>ann</strong>: Yeah. Says you were supposed to show up again
+yesterday, but didn’t.</p>
+<p><strong>letour</strong>: A lie. I don’t want to go. The suicide and
+all. Let’s stay away.</p>
+<p><strong>ann</strong>: Can’t. He’s the Ecstasy connect. No way I can
+fuck this.</p>
+<p><strong>letour</strong>: C’mon…</p>
+<p><strong>ann</strong>: This is business.</p>
+<p><strong>letour</strong>: Let Robert go.</p>
+<p><strong>ann</strong>: Tis won’t deal with fags.</p>
+<p><strong>letour</strong>: Since when?</p>
+<p><strong>ann</strong>: Just is – so he’s a bigot? What’s new? So’s
+everybody else.</p>
+<p><strong>letour</strong>: I don’t want to go. I got a bad vibe.</p>
+<p><strong>robert</strong>: He said you.</p>
+<p><strong>ann</strong>: Why?</p>
+<p><strong>letour</strong>: Why don’t you go? He’s your contact.</p>
+<p><strong>robert</strong>: He is –</p>
+<p><strong>ann</strong>: You giving orders?</p>
+<p><strong>robert</strong>: No, Missy.</p>
+<p><strong>letour</strong>: Come with me – the two of us.</p>
+<p><strong>ann</strong>: Okay. You got it. Like old times – Ann and
+Johnny.</p>
+<p><strong>letour</strong>: Okay.</p>
+<p><strong>robert</strong>: Stop it. You’re breaking my heart.</p>
+<p><strong>ann</strong>: It’s going to be strange, not doing this. I
+mean I’ve had it, but sometimes…</p>
+<p><strong>letour</strong>: You’re gonna do it, aren’t you? You’re gonna
+quit.</p>
+<p><strong>ann</strong>: I think so. Seal this thing with Tis, turn it –
+go with the cosmetics. You gotta take a chance in life. No risk, no
+gain. I’ve already got retail connections here, London. It was great at
+the beginning, though.</p>
+<p><strong>letour</strong>: When?</p>
+<p><strong>ann</strong>: You know, when we first started out of the
+place on Greene Street. Before deliveries, when you were still using. It
+was open house every night but Sunday. We had everything: uppers,
+downers, meth, six kinds of hash, all in that trousseau, remember? You
+could get in for a gram, stay all night – everybody, music people,
+movies, Wall Street, fashion – even politics. I think like five
+marriages came out of those parties, babies – really. God. You stayed,
+you then Robert – but he… I’da never thought you’d, what is it, twelve
+years? Others, lucky a year max, eight months, in, out, start using,
+unreliable – nice kids. Remember when you first came: long hair, dirty
+fingers –</p>
+<p><strong>letour</strong>: You made me –</p>
+<p><strong>ann</strong>: – never washed –</p>
+<p><strong>letour</strong>: – khaki pants.</p>
+<p><strong>ann</strong>: I should write a book someday. Did you know
+somebody wanted to do my story? Ghostwrite. It was impossible, of course
+– my lawyer freaked I even had the meeting. People envy me. They think
+my life is so glamorous, but they don’t know. I know. Glamorous. It was
+for a while. Then came crack and fucked everything.</p>
+<p><strong>letour</strong>: I gotta stop home a second.</p>
+<p><strong>ann</strong>: Why? It’s out of the way. They’re expecting
+you.</p>
+<p><strong>letour</strong>: You know I got a bad vibe about Tis.</p>
+<p><strong>ann</strong>: Chill. This is routine.</p>
+<p><strong>letour</strong>: I want to get my lucky jacket.</p>
+<p><strong>ann</strong>: Oh. Okay.</p>
+<p><strong>ann</strong>: That took long enough. What did you do, douche
+while you were at it?</p>
+<p><strong>letour</strong>: Ann, you got some mouth on you.</p>
+<p><strong>ann</strong>: You don’t want to know where it’s been.
+Cologne?</p>
+<p><strong>letour</strong>: For you.</p>
+<p><strong>ann</strong>: Phew. It smells like that stuff they give you
+on airplanes. It’s no good for your skin. All chemicals.</p>
+<p><strong>ann</strong>: What’s that?</p>
+<p><strong>letour</strong>: Do me a favor.</p>
+<p><strong>ann</strong>: What?</p>
+<p><strong>letour</strong>: Don’t ask why, just promise.</p>
+<p><strong>ann</strong>: What is it?</p>
+<p><strong>letour</strong>: If anything happens to me – if I should
+like, you know, fucking die – write and tell her.</p>
+<p><strong>letour</strong>: It’s my sister. Her husband’s in San
+Quentin. She worries, you know.</p>
+<p><strong>ann</strong>: Okay.</p>
+<p><strong>letour</strong>: I thought we were going to Tis’?</p>
+<p><strong>ann</strong>: We are. He’s here. He can’t very well work out
+of his apartment after what happened yesterday, can he?</p>
+<p><strong>ann</strong>: Mathis Bruge, please. Tis? Ann. I’m here with
+Tour. Okay.</p>
+<p><strong>letour</strong>: Tis there?</p>
+<p><strong>ann</strong>: Twelve-oh-four.</p>
+<p><strong>letour</strong>: Ann.</p>
+<p><strong>ann</strong>: I told you greasy fucks I don’t deal with guns!
+I see guns, I walk! How dare you?</p>
+<p><strong>ann</strong>: And you, beaner, whoever the fuck you are, kiss
+my fat ass!</p>
+<p>****: That’s it! TIS! Shitball! I know you’re fucking there! Let this
+be a lesson! You wanna deal, you gonna apologize for this! Let’s go.</p>
+<p><strong>thomas</strong>: Hold it! Stop right there.</p>
+<p><strong>tis</strong>: No! Sorry about the guns. My fuck-up. I was
+just trying to make a point – I apologize.</p>
+<p>****: Assholes. What a nightmare. We’ll make the deal tomorrow – same
+terms. Ann. Sorry. Go on, leave, you’re upset. I just need to talk to
+Tour a second. About a police matter. Right?</p>
+<p><strong>letour</strong>: Go on.</p>
+<p><strong>tis</strong>: Tour and I need to get our stories straight.
+Somebody’s talking to the police. The guns were for emphasis, to make a
+point, dumb –</p>
+<p><strong>ann</strong>: We came together, we’re leaving together.
+Johnny, come with me.</p>
+<p><strong>tis</strong>: Thomas.</p>
+<p><strong>tis</strong>: Don’t be stupid. Get out. Leave. I had nothing
+to do with Marianne – she jumped: she was there, then she was gone.
+Nothing will happen to Tour.</p>
+<p><strong>ann</strong>: Fire! Fire! Fire!</p>
+<p><strong>tis</strong>: I didn’t –</p>
+<p><strong>letour</strong>: she sits quietly. A CORRECTIONS OFFICER
+instructs the visitors to proceed.</p>
+<p><strong>letour</strong>: Hello.</p>
+<p><strong>ann</strong>: Hi.</p>
+<p><strong>letour</strong>: Twenty minutes. You look terrific.</p>
+<p><strong>ann</strong>: I look respectable. Any news?</p>
+<p><strong>letour</strong>: Sentencing’s in ten days – supposed to be.
+Because of the extenuating circumstances – our cooperation – they say it
+won’t be more than five years – maybe seven. With time served, good
+behavior, parole, I could be out in two years – maybe. I hope.</p>
+<p><strong>ann</strong>: It feels like forever.</p>
+<p><strong>letour</strong>: It’s not so bad. It’s a relief in a way – at
+least so far. I’ve been writing, reading.</p>
+<p><strong>ann</strong>: I love your letters.</p>
+<p><strong>letour</strong>: How’s business?</p>
+<p><strong>ann</strong>: Robert quit. He went back to dealing. I think
+he thought it would be less work, more money. It’s lucky in a way I got
+mixed up in it – now I have to see this thing through. So it’s cosmetics
+after all.</p>
+<p><strong>letour</strong>: I miss you.</p>
+<p><strong>ann</strong>: Me too.</p>
+<p><strong>letour</strong>: Did we ever fuck?</p>
+<p><strong>ann</strong>: What do you mean?</p>
+<p><strong>letour</strong>: You know, make love.</p>
+<p><strong>ann</strong>: There was that party when everybody was so
+stoned, but – oh yeah, that night you came over and crashed and we slept
+together.</p>
+<p><strong>letour</strong>: We were naked, but did we –?</p>
+<p><strong>ann</strong>: You had a hard-on…</p>
+<p><strong>letour</strong>: I didn’t –</p>
+<p><strong>ann</strong>: You tried…</p>
+<p><strong>letour</strong>: I was thinking about it and I realized we
+never really did. It’s one of the things I think about. It’s one of the
+things I look forward to. I’ve been looking forward.</p>
+<p><strong>ann</strong>: Me too.</p>
+<p><strong>letour</strong>: Something can be right in front of you and
+you can’t see it.</p>
+<p><strong>ann</strong>: Strange how things work.</p>
+</body>
+</html>

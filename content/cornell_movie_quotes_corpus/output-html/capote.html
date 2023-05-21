@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>capote</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="capote">capote</h1>
+<p><strong>title up</strong>: “Western Kansas, 1959”</p>
+<p><strong>truman</strong>: So Jimmy Baldwin tells me the plot of his
+book, and he says to me: the writing’s going well, but I just want to
+make sure it’s not one of those problem novels. I said: Jimmy, your
+novel’s about a Negro homosexual who’s in love with a Jew – wouldn’t you
+call that a problem?</p>
+<p><strong>christopher</strong>: Susan’s father had a minor heart
+attack, so she’s writing more erotic poems about death and sex.</p>
+<p><strong>barbara</strong>: It’s so tiresome.</p>
+<p><strong>williams</strong>: Hmm. What rhymes with angina?</p>
+<p><strong>grayson</strong>: How’s your writing?</p>
+<p><strong>truman</strong>: Oh, I’ve got a million ideas of what to
+write next – I just have to choose one.</p>
+<p><strong>grayson</strong>: Really?</p>
+<p><strong>truman</strong>: No.</p>
+<p><strong>barbara</strong>: Who would I want to play me? Natalie
+Wood.</p>
+<p><strong>rose</strong>: Too fat.</p>
+<p><strong>barbara</strong>: Audrey Hepburn?</p>
+<p><strong>rose</strong>: Not bad. Sort of middle-class.</p>
+<p><strong>truman</strong>: When a movie is made of my life I know
+exactly who I want as me… Marilyn Monroe.</p>
+<p><strong>female voice over the phone</strong>: New Yorker
+magazine.</p>
+<p><strong>truman</strong>: William Shawn, please. Adorable one? All of
+a sudden I know what article I’m going to write for you next.</p>
+<p><strong>truman</strong>: …never had anything like this happen to them
+before. They’re used to sleeping at night with the doors unlatched….
+Yes, we should buy stock in Master Locks – all of Kansas will be in the
+hardware store tomorrow.</p>
+<p><strong>truman</strong>: They have no idea who the killer is. But it
+doesn’t matter who the killer is – what matters is who the townspeople
+imagine the killer is. That’s what I want to write about.</p>
+<p><strong>truman</strong>: I’m gonna need some help… I’m thinking about
+Nelle – she can protect me…</p>
+<p><strong>truman</strong>: I want to leave tonight…</p>
+<p><strong>nelle</strong>: I figured you’d missed it.</p>
+<p><strong>truman</strong>: God I’m glad you agreed to come. You’re the
+only one I know with the qualifications to be both a research assistant
+and personal bodyguard. Oh, Nelle, you poor thing.</p>
+<p><strong>nelle</strong>: Off. Truman. Off. I’m happy to see you too,
+but I can still whip your behind.</p>
+<p><strong>porter #1</strong>: Mr. Truman Capote, Miss Nelle Harper Lee.
+Where would you like these, sir?</p>
+<p><strong>truman</strong>: That one up there and that one on the
+floor.</p>
+<p><strong>nelle</strong>: What all did you bring?</p>
+<p><strong>porter #2</strong>: Thank you greatly, sir. It’s an honor to
+have you with us. If you don’t mind my saying, your last book was even
+better than the first –</p>
+<p><strong>truman</strong>: You’re sweet.</p>
+<p><strong>porter #2</strong>: Just when you think they’ve gotten as
+good as they can get.</p>
+<p><strong>truman</strong>: Thank you. You’re very kind.</p>
+<p><strong>porter #1</strong>: Ma’am.</p>
+<p><strong>nelle</strong>: You’re pathetic.</p>
+<p><strong>nelle</strong>: You’re pathetic.</p>
+<p><strong>truman</strong>: What?</p>
+<p><strong>nelle</strong>: You paid them to say that.</p>
+<p><strong>nelle</strong>: You paid them to say that!</p>
+<p><strong>truman</strong>: How’d you know? How did you know?!</p>
+<p><strong>nelle</strong>: “Just when you think they’ve gotten as good
+as they can get.”</p>
+<p><strong>truman</strong>: You think that was too much? I thought that
+was a good line.</p>
+<p><strong>nelle</strong>: Pathetic.</p>
+<p><strong>truman</strong>: Alvin Dewey, Kansas Bureau of Investigation.
+KBI.</p>
+<p><strong>truman</strong>: Mr. Alvin Dewey, please.</p>
+<p><strong>guard</strong>: Third floor. In what used to be the Sheriff’s
+Office.</p>
+<p><strong>church</strong>: The wife said no more smoking in the house.
+I told her, “Fine. Walter’s got a couch upstairs in his apartment. I’ll
+stay with him and Dorothy till we’re done here.” I’ve got my bag and a
+carton of cigarettes in the car.</p>
+<p><strong>dewey</strong>: Roy.</p>
+<p><strong>truman</strong>: Mr. Dewey. Truman Capote from the New
+Yorker.</p>
+<p><strong>truman</strong>: Hello.</p>
+<p><strong>truman</strong>: Bergdorf’s.</p>
+<p><strong>nye</strong>: Sorry?</p>
+<p><strong>truman</strong>: The scarf.</p>
+<p><strong>nye</strong>: Oh. Nice.</p>
+<p><strong>truman</strong>: Thank you. I wonder when we could arrange an
+interview? Some time to talk.</p>
+<p><strong>dewey</strong>: About what?</p>
+<p><strong>truman</strong>: We’re not looking for any inside information
+– I don’t care one way or another if you catch whoever did this – I’m
+writing an article not about the Clutter killings, but how they’re
+affecting the town, how you all are bearing up –</p>
+<p><strong>dewey</strong>: I care.</p>
+<p><strong>truman</strong>: Excuse me?</p>
+<p><strong>dewey</strong>: I care. I care a great deal if we catch
+whoever did this.</p>
+<p><strong>truman</strong>: Yes –</p>
+<p><strong>dewey</strong>: As do a lot of folks around here.</p>
+<p><strong>truman</strong>: Of course.</p>
+<p><strong>nye</strong>: New Yorker?</p>
+<p><strong>church</strong>: You have press credentials?</p>
+<p><strong>nye</strong>: What’s the New Yorker?</p>
+<p><strong>church</strong>: Magazine.</p>
+<p><strong>truman</strong>: Magazines don’t give out –</p>
+<p><strong>church</strong>: You can come to the news conference with the
+rest of them. Sears and Roebuck.</p>
+<p><strong>dewey</strong>: I’ll talk facts but I won’t speculate. The
+main fact here we need to be clear on is not one, but four people were
+killed. A lot of folks say Herb Clutter had to be the main target
+because he was dealt with the most brutally –</p>
+<p><strong>journalist #1</strong>: Had his throat cut.</p>
+<p><strong>dewey</strong>: Yes. We’d all like to know why. But it
+could’ve been any one of the family they were after. We just don’t know
+–</p>
+<p><strong>journalist #2</strong>: You’ve identified the murder
+weapon?</p>
+<p><strong>dewey</strong>: Wounds indicate a shotgun, close- range, but
+no casings were found.</p>
+<p><strong>journalist #1</strong>: Twelve-gauge, hunting –</p>
+<p><strong>dewey</strong>: Right.</p>
+<p><strong>journalist #1</strong>: They were all shot in the face?</p>
+<p><strong>dewey</strong>: No. Nancy in the back of the head.</p>
+<p><strong>journalist #2</strong>: Is there any evidence of, I’m sorry,
+sexual molestation of the women?</p>
+<p><strong>dewey</strong>: No.</p>
+<p><strong>journalist #2</strong>: Anything else stolen?</p>
+<p><strong>dewey</strong>: Kenyon’s radio seems to be the only…</p>
+<p><strong>journalist #3</strong>: The boy was sixteen?</p>
+<p><strong>dewey</strong>: Fifteen. Nancy was sixteen.</p>
+<p><strong>journalist #2</strong>: It’s her friend that found them?</p>
+<p><strong>dewey</strong>: Laura Kinney.</p>
+<p><strong>journalist #2</strong>: Spell that?</p>
+<p><strong>dewey</strong>: I assume you’re okay with the Laura part.
+K-I-N-N-E-Y. But, please, leave her be.</p>
+<p><strong>old man</strong>: There’s talk of a bunch of Mexicans, a
+whole bunch of Mexicans…</p>
+<p><strong>dewey</strong>: George, it’s good to see you again. I do have
+an opinion whether this was the work of one man or a whole bunch, as you
+said, but it doesn’t matter a whole lot whether it was Mexicans or
+Methodists or Eskimos. We’re going to find whoever did this. Four good
+people from our community are dead. Let’s remember that. Okay with you?
+The West Kansas Farm Committee’s offering a thousand dollar reward for
+information leading to an arrest. Please print that. Thank you all for
+coming.</p>
+<p><strong>truman</strong>: Mr. Dewey’s protective of the Clutters. I
+wonder how well he knew them…</p>
+<p><strong>truman</strong>: He was foxy with that old man. Are you ever
+gonna let me drive?</p>
+<p><strong>nelle</strong>: Truman, you’re a menace. You can barely see
+over the wheel.</p>
+<p><strong>nelle</strong>: This make you miss Alabama?</p>
+<p><strong>truman</strong>: Not even a little bit.</p>
+<p><strong>truman</strong>: Hello.</p>
+<p><strong>nelle</strong>: Morning.</p>
+<p><strong>girl #1</strong>: Hi.</p>
+<p><strong>nelle</strong>: Can any of you tell me where I’d find Laura
+Kinney?</p>
+<p><strong>girl #1</strong>: Oh, um…</p>
+<p><strong>nelle</strong>: Is that her? With the tall boy?</p>
+<p><strong>girl #2</strong>: Yeah. With Danny Burke.</p>
+<p><strong>nelle</strong>: Danny Burke? Thank you.</p>
+<p><strong>girl #2</strong>: Oh, quiet yourself, Janice.</p>
+<p><strong>nelle</strong>: Truman. Truman –</p>
+<p><strong>nelle</strong>: These folks live their lives in a particular
+way. You need to consider adapting yourself to that fact.</p>
+<p><strong>truman</strong>: What –</p>
+<p><strong>nelle</strong>: – I’m gonna find out where those two kids
+live. Maybe you’ll let me do that alone?</p>
+<p><strong>jack</strong>: I think I scared a friend of yours this
+morning. He came looking for you while I was writing.</p>
+<p><strong>truman</strong>: You hate my friends.</p>
+<p><strong>jack</strong>: I wouldn’t say hate. So long as they don’t
+knock on my door.</p>
+<p><strong>truman</strong>: I saw the bodies today.</p>
+<p><strong>jack</strong>: Which?</p>
+<p><strong>truman</strong>: The Clutters. I looked inside the
+coffins.</p>
+<p><strong>jack</strong>: That’s horrifying.</p>
+<p><strong>truman</strong>: It comforts me – something so horrifying
+it’s freeing. It’s a relief. Normal life falls away. But, then, I was
+never much for normal life –</p>
+<p><strong>jack</strong>: No, you weren’t.</p>
+<p><strong>truman</strong>: People here won’t talk to me. They want
+someone like you, like Nelle. Me they hate.</p>
+<p><strong>jack</strong>: I can’t think of a single quality I share with
+Nelle.</p>
+<p><strong>truman</strong>: Well –</p>
+<p><strong>jack</strong>: Maybe manliness.</p>
+<p><strong>truman</strong>: My point exactly.</p>
+<p><strong>jack</strong>: It’s why I left the Midwest in the first
+place. I knew I could only find someone like you in New York City.</p>
+<p><strong>nelle</strong>: Let’s go.</p>
+<p><strong>nelle</strong>: Danny? Would you mind terribly if I walked
+with you for a bit?</p>
+<p><strong>laura</strong>: I thought you were from the FBI with your
+long coat.</p>
+<p><strong>truman</strong>: Is that so?</p>
+<p><strong>laura</strong>: That’s why I ran off.</p>
+<p><strong>truman</strong>: I’ve been getting a lot of that lately.</p>
+<p><strong>laura</strong>: It’s fine talking to you all. Practically
+nobody around here wants to talk since what happened.</p>
+<p><strong>nelle</strong>: Folks have been through a rough patch.
+Including you. Nancy was your best friend.</p>
+<p><strong>laura</strong>: She was my best friend.</p>
+<p><strong>nelle</strong>: How has Danny been?</p>
+<p><strong>laura</strong>: Pretty shattered. Nothing terrible ever
+happened to him before. Nancy just started wearing his ring again after
+this huge fight – Mr. Clutter was trying to get her to end it ’cause
+Danny’s Catholic.</p>
+<p><strong>nelle</strong>: What were the Clutters?</p>
+<p><strong>laura</strong>: Methodist. Danny was the last person at the
+house that night. That’s why Mr. Dewey’s keeps interviewing him – they
+don’t think he had anything to do with it – just to see if he remembers
+anything unusual and all.</p>
+<p><strong>nelle</strong>: People in town seem to wonder if he was
+involved.</p>
+<p><strong>laura</strong>: That’s been real hard for Danny.</p>
+<p><strong>truman</strong>: Oh, it’s the hardest – when people have a
+notion about you and it’s impossible to convince them otherwise. Since I
+was a child folks have thought they had me pegged because of the way I
+look and the way I talk. They’re always wrong. Do you know what I
+mean?</p>
+<p><strong>laura</strong>: I want to show you something.</p>
+<p><strong>truman</strong>: Not one person here understands her.</p>
+<p><strong>laura</strong>: Maybe you’ll get a better picture of Nancy.
+And the family.</p>
+<p><strong>nelle</strong>: What is this?</p>
+<p><strong>laura</strong>: It’s her diary.</p>
+<p><strong>nelle</strong>: “Danny here tonight and we watched TV. So
+nice just having him sit with us. Left at eleven. P.S. – He’s the only
+one I really love.”</p>
+<p><strong>nelle</strong>: And that was that.</p>
+<p><strong>truman</strong>: The end of a life.</p>
+<p><strong>nelle</strong>: “Shattered.”</p>
+<p><strong>truman</strong>: “Pretty shattered. Nothing terrible ever
+happened to him before.”</p>
+<p><strong>truman</strong>: I have 94 percent recall of all
+conversations.</p>
+<p><strong>nelle</strong>: 94 percent.</p>
+<p><strong>truman</strong>: I’ve tested myself.</p>
+<p><strong>nelle</strong>: I hate that you’re better than me at
+this.</p>
+<p><strong>nelle</strong>: Don’t you dare close your eyes on my bed.</p>
+<p><strong>nelle</strong>: Stand up and walk out that door. Go to your
+room if you’re gonna sleep. Truman. Truman.</p>
+<p><strong>nelle</strong>: Crap.</p>
+<p><strong>nelle</strong>: What right do you have being tired? You were
+snoring blissfully –</p>
+<p><strong>truman</strong>: I don’t snore –</p>
+<p><strong>nelle</strong>: – while I lay there, hating you –</p>
+<p><strong>truman</strong>: You don’t hate me.</p>
+<p><strong>nelle</strong>: Not much. What? Marie Dewey?… We’ve got
+somewhere to go for Thanksgiving supper.</p>
+<p><strong>truman</strong>: Apparently Detective Foxy’s wife has a
+better opinion of me than Detective Foxy.</p>
+<p><strong>marie</strong>: You came.</p>
+<p><strong>nelle</strong>: Hi.</p>
+<p><strong>truman</strong>: Thank you for having us.</p>
+<p><strong>marie</strong>: Thank you. Get yourselves in here. Alvin! Get
+your pants on. They’re here.</p>
+<p><strong>truman</strong>: More. More.</p>
+<p><strong>marie</strong>: Alvin will hate this.</p>
+<p><strong>truman</strong>: Yes, but we who know the truth will love
+it.</p>
+<p><strong>marie</strong>: I have to stop. I cannot believe you’re from
+New Orleans. I miss it so much.</p>
+<p><strong>truman</strong>: I only lived there for a short while but my
+Mama was born and bred.</p>
+<p><strong>marie</strong>: You know something – Alvin pretends he
+doesn’t know who you are, but the minute you came to town he read your
+books. He had one of his men pick up “Breakfast at Tiffany’s” in Kansas
+City ’cause it’s banned from the library here.</p>
+<p><strong>truman</strong>: What did Mr. Dewey think?</p>
+<p><strong>marie</strong>: He liked it more than he’s willing to
+admit.</p>
+<p><strong>truman</strong>: How very foxy.</p>
+<p><strong>truman</strong>: Mama would’ve put in half the bottle by
+now.</p>
+<p><strong>marie</strong>: Alright, one more shake.</p>
+<p><strong>truman</strong>: Hello.</p>
+<p><strong>nelle</strong>: Hi.</p>
+<p><strong>marie</strong>: How you doing, foxy?</p>
+<p><strong>truman</strong>: I was writing the script as they were
+filming, all that time in Italy. I’d work like mad all day long and then
+dash down to the bar around midnight to hand in the next day’s scenes.
+Humphrey had just about moved into the hotel bar –</p>
+<p><strong>marie</strong>: Humphrey Bogart.</p>
+<p><strong>truman</strong>: – where he and John drank every night –</p>
+<p><strong>marie</strong>: John Huston.</p>
+<p><strong>truman</strong>: – and I mean drank, like famished water
+buffaloes. Well – I’d only just handed them the final scene when the
+bellhop told me I had a phone call. It was my stepfather, Joe Capote,
+calling to say that my mother had died. I flew home to New York –
+terribly distraught – but when I got to the apartment I could see that
+Joe was in even worse shape than I was. He grabbed my hands and sat me
+down at the kitchen table, and he said to me, “Talk. Talk about
+anything, any subject in the world. Don’t worry whether it will interest
+me or not. Just talk so I won’t break down.” And I did. He couldn’t bear
+to be alone with his thoughts. It was too painful.</p>
+<p><strong>marie</strong>: It’s been a hard couple weeks for Alvin. He
+and Herb Clutter were good friends. From church.</p>
+<p><strong>dewey</strong>: Marie –</p>
+<p><strong>marie</strong>: Oh come on, Alvin. These are good people.</p>
+<p><strong>truman</strong>: Who would put a pillow under the boy’s head
+just to shoot him? Why would they tuck Nancy in?</p>
+<p><strong>dewey</strong>: I want to know the same thing.</p>
+<p><strong>nelle</strong>: Twisted notion of tenderness.</p>
+<p><strong>nelle</strong>: Thank you.</p>
+<p><strong>marie</strong>: So many of my friends would love to meet
+you.</p>
+<p><strong>nelle</strong>: That’d be fine –</p>
+<p><strong>truman</strong>: You don’t have to worry. I’m not going to
+write about this until everything’s over.</p>
+<p><strong>dewey</strong>: I’m not worried. I know what room you’re in
+at the hotel. And I know where you live in Brooklyn.</p>
+<p><strong>music</strong>: “Have yourself a Merry Little Christmas…”
+Main Street, CHRISTMAS LIGHTS in the TREES.</p>
+<p><strong>holt</strong>: I’d of picked them up but I haven’t been
+myself. Mind you, I make the walk out here every day, check the house,
+make sure the pipes don’t freeze – that sort of item. The least I can do
+for Mr. Clutter.</p>
+<p><strong>nelle</strong>: How long have you worked here?</p>
+<p><strong>holt</strong>: 1940 – a lotta years. The wife too, cleaning
+the house. Cooking.</p>
+<p><strong>nelle</strong>: Well, she’s marvelous. Lunch was
+wonderful.</p>
+<p><strong>holt</strong>: She had a hard job after what all happened.
+Cleaning. I burned most of the rest – mattresses – too far of a mess.
+I’ve asked around some – if anyone’s looking for a strong hand.</p>
+<p><strong>holt</strong>: I don’t think they’ll be able to sell the
+place till they catch the ones that did it. That’s what I hear
+anyhow.</p>
+<p><strong>jack</strong>: You’re celebrating.</p>
+<p><strong>truman</strong>: Remember Nelle’s manuscript she sent me in
+New York?</p>
+<p><strong>jack</strong>: Mockingbird. Killing a Mockingbird. You said
+it was good.</p>
+<p><strong>truman</strong>: And I was right. She just heard Lipincott
+wants to publish it.</p>
+<p><strong>jack</strong>: Well. Jesus. That’s terrific. Tell her
+congratulations.</p>
+<p><strong>truman</strong>: Congratulations. Jealous.</p>
+<p><strong>jack</strong>: Just promise you’ll be home by Christmas.</p>
+<p><strong>truman</strong>: I can’t leave now Jack – I mean it was hard
+at first, but now I’m practically the mayor.</p>
+<p><strong>jack</strong>: Alright.</p>
+<p><strong>truman</strong>: I want to come home – I do. Though if they
+catch whoever did this, who knows what – I’ll probably be here til next
+Christmas.</p>
+<p><strong>jack</strong>: Right. I’ll let you go.</p>
+<p><strong>truman</strong>: Jack, we’ll go away this spring to write.
+Maybe Spain…</p>
+<p><strong>jack</strong>: Alright, Truman.</p>
+<p><strong>truman</strong>: Bye. The poor boy misses me.</p>
+<p><strong>nelle</strong>: Truman.</p>
+<p><strong>truman</strong>: Nelle.</p>
+<p><strong>nelle</strong>: You remember when we were kids?</p>
+<p><strong>truman</strong>: I was never a kid. I was born fully
+formed.</p>
+<p><strong>nelle</strong>: I had no idea what a homosexual was. But I
+knew whatever they were, you were one of ’em.</p>
+<p><strong>man in hall</strong>: Oh. Uh. Oh. Excuse us.</p>
+<p><strong>truman</strong>: – girdle up – no extra bulges – if you’re
+dressed right for him when he gets home, the evening should be smooth
+sailing. Bon voyage, gals.</p>
+<p><strong>marie</strong>: I can’t believe you got this whole page – I
+only read it to you once!</p>
+<p><strong>truman</strong>: I’ve trained myself.</p>
+<p><strong>nelle</strong>: …trained myself.</p>
+<p><strong>truman</strong>: I have 94 percent recall.</p>
+<p><strong>nelle</strong>: …94 percent recall.</p>
+<p><strong>truman</strong>: You cut that out.</p>
+<p><strong>marie</strong>: You believe that Alvin?</p>
+<p><strong>alvin</strong>: Impressive.</p>
+<p><strong>marie</strong>: I’m sorry. He’s upset. – smoking three packs
+a day. Two men did it. They know who. One of them used to have a
+cellmate who gave him up for the thousand dollar reward. They passed
+through Kansas City last week writing bad checks – by the time Alvin’s
+boys got up there they’d skipped out again.</p>
+<p><strong>nelle</strong>: Where to?</p>
+<p><strong>marie</strong>: They have no idea.</p>
+<p><strong>dewey</strong>: Alvin. Paul. Now.</p>
+<p><strong>dewey</strong>: Damnit. Come here.</p>
+<p><strong>marie</strong>: Alvin …</p>
+<p><strong>dewey</strong>: Alvin Jr. Get over here.</p>
+<p><strong>alvin jr.</strong>: Dad, the phone.</p>
+<p><strong>dewey</strong>: Paul. Back to the table.</p>
+<p><strong>dewey</strong>: Sit.</p>
+<p><strong>alvin jr.</strong>: Dad?</p>
+<p><strong>marie</strong>: Tell them we’re at dinner, Alvin.</p>
+<p><strong>alvin jr.</strong>: Dad?</p>
+<p><strong>dewey</strong>: Not now, Alvin.</p>
+<p><strong>alvin jr.</strong>: You need to call the Chief of Police in
+Las Vegas when you have a minute.</p>
+<p><strong>radio announcer</strong>: …This is KERG radio, Garden City. A
+friendly broadcast from a friendly place. Our lead story:</p>
+<p><strong>fade up on</strong>: HIGH SCHOOL kids sitting on the hood and
+front seat of a CHEW parked at the edge of a CROWD of 200 people. Truman
+watches. It is COLD. A fat, shivering CO-ED reads the headline in the
+Kansas City Star: “Police Fear Lynch Mob.” The CAR RADIO is on.</p>
+<p><strong>radio announcer</strong>: …newsmen from six states have
+joined scores of Kansans as they await the arrival of confessed killers
+Perry Smith and Richard Hickock. KBI officers have been driving the
+Clutter family’s brutal killers nonstop from…</p>
+<p><strong>nelle</strong>: Hey.</p>
+<p><strong>marie</strong>: Motorcycle accident. He broke them and they
+never healed right. Alvin told me.</p>
+<p><strong>fade in</strong>: Truman knocks on the door, a NEWSPAPER, a
+BOOK, and a PAPER BAG in his hand. On the door it says “SHERIFF’S
+RESIDENCE - PRIVATE”. Dorothy Sanderson opens the door.</p>
+<p><strong>dorothy</strong>: Truman Capote.</p>
+<p><strong>truman</strong>: Dorothy Sanderson. I figured you’d be left
+alone this morning by that hard-working husband of yours. So I have
+breakfast. I have news. And I have literature. My friend Jack mailed me
+the book you wanted.</p>
+<p><strong>dorothy</strong>: “For the maiden of the Midwest, the
+priestess of the plains, the queen of the kitchen: my first novel.
+Truman.”</p>
+<p><strong>dorothy</strong>: You’re too much. Go on into the living
+room, lemme grab that – it’s been ringing all morning.</p>
+<p><strong>dorothy</strong>: Oh. Truman. I meant in there. I… um…</p>
+<p><strong>dorothy</strong>: It’s the women’s cell. It’s hardly ever
+used. But they wanted to, um, separate… Please. Let’s sit in the living
+room. I’ll set up in the living room.</p>
+<p><strong>dorothy</strong>: Come.</p>
+<p><strong>truman</strong>: They put you in the women’s cell.</p>
+<p><strong>perry</strong>: Among other indignities.</p>
+<p><strong>truman</strong>: Well… she’s a good cook.</p>
+<p><strong>perry</strong>: She’s scared of me.</p>
+<p><strong>truman</strong>: I think so am I. A little bit.</p>
+<p><strong>perry</strong>: Are you? You have any aspirin? My legs –</p>
+<p><strong>dorothy</strong>: Um. Truman? All set.</p>
+<p><strong>truman</strong>: I’m sorry.</p>
+<p><strong>truman</strong>: His feet don’t touch the floor.</p>
+<p><strong>judge tate</strong>: In the matter of the State of Kansas v.
+Richard Eugene Hickock and Perry Edward Smith this Court has been
+informed by counsel – Mr. Weeks – that defendants wish to waive their
+right to Preliminary Hearing. Mr. Hickock, is that your wish?</p>
+<p><strong>hickock</strong>: Yessir. Yes.</p>
+<p><strong>truman</strong>: Why are they doing that?</p>
+<p><strong>judge tate</strong>: Mr. Smith.</p>
+<p><strong>perry</strong>: I ask that the waiver be effectuated.</p>
+<p><strong>judge tate</strong>: So noted. We’re adjourned.</p>
+<p><strong>dorothy</strong>: Mr. Capote.</p>
+<p><strong>truman</strong>: Madame Sanderson.</p>
+<p><strong>dorothy</strong>: Is that for the two of us to share? Or for
+me to eat alone while you talk to our guest?</p>
+<p><strong>truman</strong>: Was it your choice to waive the hearing?</p>
+<p><strong>truman</strong>: You still need some? Give me your hand.</p>
+<p><strong>perry</strong>: I could kill you if you got too close.</p>
+<p><strong>truman</strong>: Would you like some water?</p>
+<p><strong>truman</strong>: Mrs. Sanderson lent you my book –</p>
+<p><strong>perry</strong>: He said we’d curry favor with the Judge if we
+waived our rights.</p>
+<p><strong>truman</strong>: Who did?</p>
+<p><strong>perry</strong>: The lawyer.</p>
+<p><strong>truman</strong>: Okay.</p>
+<p><strong>perry</strong>: Your picture’s undignified. People recall
+first impressions.</p>
+<p><strong>truman</strong>: What’s been your first impression?</p>
+<p><strong>perry</strong>: You want something.</p>
+<p><strong>truman</strong>: From you?</p>
+<p><strong>dorothy</strong>: Truman. Walter’s gonna be home soon.</p>
+<p><strong>truman</strong>: I just want permission to talk. Has anyone
+else visited?</p>
+<p><strong>dorothy</strong>: Truman –</p>
+<p><strong>truman</strong>: Will you tell me if you need anything? I can
+have whatever you want sent from New York. Will you do that?</p>
+<p><strong>shawn</strong>: William Shawn.</p>
+<p><strong>truman</strong>: Gorgeous?</p>
+<p><strong>shawn</strong>: Truman.</p>
+<p><strong>truman</strong>: I’m writing a book. It’s too much for a
+single article – this town, the killers most of all – you will be
+stunned by Perry Smith –</p>
+<p><strong>shawn</strong>: Why? What has he –</p>
+<p><strong>truman</strong>: Not much yet, but I know. I can sense him.
+He’s desperately lonely, frightened… I have questions – are you
+ready?</p>
+<p><strong>shawn</strong>: Would it matter –</p>
+<p><strong>truman</strong>: How much more money can you send me? How
+quickly can you get Dick Avedon out here to take some pictures?</p>
+<p><strong>hickock</strong>: Perry, honey. You look terrific…</p>
+<p><strong>hickock</strong>: Calm yourself down, sweetheart.</p>
+<p><strong>hickock</strong>: Be patient, Capote. Maybe later they’ll
+send you my skin.</p>
+<p><strong>truman</strong>: I have the perfect place for it, over the
+hearth.</p>
+<p><strong>title up</strong>: “One month later”</p>
+<p><strong>nelle</strong>: Where’d Perry get the art set?</p>
+<p><strong>judge tate</strong>: Members of the jury. Have you reached a
+verdict?</p>
+<p><strong>foreman</strong>: Yes sir.</p>
+<p><strong>judge tate</strong>: Defendants rise.</p>
+<p><strong>judge tate</strong>: Perry Edward Smith and Richard Eugene
+Hickock stand accused of four counts of the crime of murder in the first
+degree. Have you reached a unanimous verdict?</p>
+<p><strong>foreman</strong>: We have, your honor.</p>
+<p><strong>judge tate</strong>: What is your verdict?</p>
+<p><strong>foreman</strong>: Guilty. On all counts.</p>
+<p><strong>judge tate</strong>: Have you unanimously reached a
+sentence.</p>
+<p><strong>foreman</strong>: We have, your honor.</p>
+<p><strong>judge tate</strong>: What is the sentence?</p>
+<p><strong>foreman</strong>: Death.</p>
+<p><strong>judge tate</strong>: Perry Edward Smith and Richard Eugene
+Hickock. You’ve been found guilty of four counts of murder in the first
+degree. You will be taken to the state penitentiary at Lansing. No later
+than midnight, May 13 of this year, nineteen hundred and sixty, each of
+you will be hanged by the neck until dead. So ordered.</p>
+<p><strong>hickock</strong>: Alright, partner. Least now we’re not the
+only killers in Kansas.</p>
+<p><strong>truman</strong>: You think he slept at all?</p>
+<p><strong>truman</strong>: I need to see him before we go.</p>
+<p><strong>truman</strong>: They’re going to transfer you up to Lansing
+today. You’ll have to make sure to put me on the visitor’s list.
+Otherwise I can’t see you.</p>
+<p><strong>truman</strong>: Will you do that? I’m going to help find you
+a proper lawyer. You need a serious lawyer for an appeal. They took Dick
+last night. I need you to get him to do the same thing – put me on the
+visitor’s list. Will you do that, Perry?</p>
+<p><strong>truman</strong>: Perry.</p>
+<p><strong>ben baron</strong>: Nelle. Kudos on “Kill the Bird.” Is that
+it?</p>
+<p><strong>nelle</strong>: Close enough. Thanks.</p>
+<p><strong>shawn</strong>: He hasn’t written a word yet, though he says
+it’s the nonfiction book of the decade…</p>
+<p><strong>truman</strong>: He’s little, but terrifying –</p>
+<p><strong>truman</strong>: He’s as short as I am. And almost as pretty.
+I’d be with him right now but he’s being given new accommodations –</p>
+<p><strong>truman</strong>: Most people assume he’s a monster. I don’t
+see him that way. The book I’m writing will return him to the realm of
+humanity – it’s the book I was always meant to write…</p>
+<p><strong>jack</strong>: Watch out. This is the start of a great love
+affair.</p>
+<p><strong>nelle</strong>: Oh yes. Truman in love with Truman.</p>
+<p><strong>truman</strong>: …I was in Marilyn’s apartment just last
+week. I had to break it to her that, of the four Matisses hanging on her
+wall, two were upside down.</p>
+<p><strong>truman</strong>: Another. To answer your question, I’m
+following “Breakfast at Tiffany’s” by blazing a different path – by
+inventing an entirely new kind of writing: the non-fiction novel.</p>
+<p><strong>reporter</strong>: You have a subject?</p>
+<p><strong>truman</strong>: On the night of November 14, two men broke
+into a quite farmhouse in Kansas and murdered an entire family. Why did
+they do that? It’s been suggested that this subject is tawdry – it’s not
+worthy of literature. I disagree. Two worlds exist in this country – the
+quiet conservative life, and the life of those two men – the underbelly,
+the criminally violent. Those worlds converged that bloody night. I
+spent the past three months interviewing everyone in Kansas touched by
+that violence. I spent hours talking to the killers – and I’ll spend
+more. Researching this work has changed my life, altered my point of
+view about almost everything. I think those who read it will be
+similarly affected. Such a book can only be written by a journalist who
+has mastered the techniques of fiction –</p>
+<p><strong>reporter</strong>: You’re speaking of yourself.</p>
+<p><strong>truman</strong>: You’re really very clever.</p>
+<p><strong>truman</strong>: Perry’s decided to appeal. He claims their
+attorney was incompetent – that he never raised the issue of temporary
+insanity.</p>
+<p><strong>jack</strong>: So you find them a new lawyer.</p>
+<p><strong>truman</strong>: They’re facing execution in six weeks, Jack.
+They need someone to argue whether or not that’s right.</p>
+<p><strong>jack</strong>: Okay.</p>
+<p><strong>truman</strong>: I’d also like to see them alive, yes, thank
+you very much. I need to hear their story.</p>
+<p><strong>truman</strong>: If you met him you’d understand. It’s as if
+no-one’s ever asked him a single question about himself. He’s so…
+damaged – and strange – unexplored… I don’t trust this Hickock fellow.
+Perry’s the only person who can describe to me what happened that night.
+I need to hear him say it.</p>
+<p><strong>jack</strong>: Just be careful what you do to get what you
+want.</p>
+<p><strong>truman</strong>: I’m finding them a lawyer.</p>
+<p><strong>jack</strong>: Truman. You’re finding yourself a lawyer.</p>
+<p><strong>young prison guard</strong>: Warden Krutch will see you
+now.</p>
+<p><strong>krutch</strong>: We do well by our boys. Showers once a week.
+Feed em good. We’ll be feeding Perry Smith in the infirmary soon if he
+don’t eat. Get the food in through his arm.</p>
+<p><strong>truman</strong>: What are you talking about?</p>
+<p><strong>krutch</strong>: Hasn’t eaten in a month. But it’s not his
+right to kill himself. It’s the People’s right. The People of this
+State. And that’s who I work for, the People. You can write any of this
+down.</p>
+<p><strong>truman</strong>: No one told me.</p>
+<p><strong>krutch</strong>: Yah. Won’t eat.</p>
+<p><strong>truman</strong>: When can I see him?</p>
+<p><strong>krutch</strong>: How about you come back Thursday?</p>
+<p><strong>truman</strong>: No. That’s no good. I need to see them now,
+then whenever I want for as long as I want.</p>
+<p><strong>krutch</strong>: Not how we do things here.</p>
+<p><strong>truman</strong>: I see.</p>
+<p><strong>truman</strong>: I understand what a burden unlimited
+visitation might be – on this institution, and on the People who pay for
+it. I want to be clear that I don’t expect the citizens of Leavenworth
+County to have to shoulder that burden.</p>
+<p><strong>truman</strong>: To be dispensed as you see fit.</p>
+<p><strong>krutch</strong>: I didn’t know where to count your boy –
+being half-Indian. I did him a favor though. Counted him White.</p>
+<p><strong>truman</strong>: You’re a kind and generous man.</p>
+<p><strong>hickock</strong>: My hero.</p>
+<p><strong>truman</strong>: Hello.</p>
+<p><strong>hickock</strong>: Thanks for your help with the lawyer.</p>
+<p><strong>truman</strong>: That’s fine.</p>
+<p><strong>hickock</strong>: You must be desperate for a story to come
+all the way out here.</p>
+<p><strong>young prison guard</strong>: Mr. Capote. You’re entitled to
+go in. You may, um, go in. If you wish.</p>
+<p><strong>hickock</strong>: You want to see Perry. Go ahead.</p>
+<p><strong>truman</strong>: Thank you.</p>
+<p><strong>hickock</strong>: Ask me, he’s just trying to prove the
+insanity defense.</p>
+<p><strong>truman</strong>: I don’t care what your plans are for
+yourself…</p>
+<p><strong>truman</strong>: But you’re gonna wake up enough to tell me
+what you did with my tie.</p>
+<p><strong>truman</strong>: It’s okay. It’s Truman. It’s your
+friend.</p>
+<p><strong>truman</strong>: How’d you learn to draw like that?</p>
+<p><strong>perry</strong>: Before she had us. Before she started
+drinking.</p>
+<p><strong>truman</strong>: Who took care of you as a child?</p>
+<p><strong>perry</strong>: Orphanage. Me and Linda.</p>
+<p><strong>truman</strong>: That’s your sister?</p>
+<p><strong>truman</strong>: We’re not so different as you might think. I
+was abandoned repeatedly as a child. My mama’d drag me along to some new
+town so she could take up with another man she’d met. Night after night
+she’d lock me in the hotel room – Mama’d turn the latch and tell the
+staff not to let me out no matter what. I was terrified – I’d scream my
+head off – till finally I’d collapse on the carpet next to the door and
+fall asleep. After years of this she just left me with relatives in
+Alabama.</p>
+<p><strong>perry</strong>: Who raised you up?</p>
+<p><strong>truman</strong>: My Aunts. That’s when I met Nelle – she
+lived next door. Your mother was Indian?</p>
+<p><strong>perry</strong>: Cherokee.</p>
+<p><strong>truman</strong>: Drinking was not a good thing for her.</p>
+<p><strong>perry</strong>: No tolerance for it.</p>
+<p><strong>truman</strong>: And your father?</p>
+<p><strong>perry</strong>: No tolerance for him either.</p>
+<p><strong>truman</strong>: What I can’t decide is if you understand how
+fascinating you are.</p>
+<p><strong>perry</strong>: I’m sorry about your tie. They took it away
+from me because we’re all on suicide watch. It’s why the lights stay on
+at night.</p>
+<p><strong>truman</strong>: I hope we’re past that now. You had me
+worried.</p>
+<p><strong>perry</strong>: Okay.</p>
+<p><strong>truman</strong>: I don’t care about the tie. It’s just a pity
+because it looked so good on you.</p>
+<p><strong>perry</strong>: Be careful of Ricardo. I think he wants you
+all to himself.</p>
+<p><strong>truman</strong>: Alright –</p>
+<p><strong>perry</strong>: But he’s naturally mendacious – not to be
+trusted – if he had a hundred dollars he’d steal a stick of chewing
+gum.</p>
+<p><strong>truman</strong>: You wouldn’t.</p>
+<p><strong>truman</strong>: I want to take your notebooks with me – I
+want to read them.</p>
+<p><strong>truman</strong>: If I leave here without understanding you,
+the world will always see you as a monster. I don’t want that – I don’t
+see you that way.</p>
+<p><strong>perry</strong>: I tracked my father down in Alaska. I was 14.
+One day I said to him, “Mom’s dead.” I could see it. A week later we got
+the news. She finally drunk herself to death.</p>
+<p><strong>truman</strong>: This is remarkable.</p>
+<p><strong>perry</strong>: Sometimes you see a thing – how it really
+is.</p>
+<p><strong>truman</strong>: He trusts me – that’s why he gave it to me.
+He’s given me absolutely everything. You should see his drawings, Nelle,
+how good he is. He wants so badly to be taken seriously, to be held in
+some esteem.</p>
+<p><strong>nelle</strong>: Do you?</p>
+<p><strong>truman</strong>: Do I what?</p>
+<p><strong>nelle</strong>: Hold him in esteem?</p>
+<p><strong>truman</strong>: Well… he’s a gold mine. I mean he’s told me
+his entire life, and now it’s all here for me to write down – All of the
+history I need. His entire life in this Diary. His dead mother. A
+brother and sister killed themselves.</p>
+<p><strong>nelle</strong>: You tell him your mama did the same
+thing?</p>
+<p><strong>truman</strong>: I tell him everything. We’ve been talking
+our heads off the past month. Sometimes, when I think how good my book
+can be, I can hardly breathe.</p>
+<p><strong>nelle</strong>: Huh.</p>
+<p><strong>truman</strong>: Here’s what I wanted to read to you: “If
+Called Upon to Make a Speech:” – this is exactly what I was talking
+about – a speech just in case he’s ever recognized for an achievement:
+“If Called Upon to Make a Speech: I can’t remember what I was going to
+say for the life of me. I don’t think ever before have so many people
+been so directly responsible for my being so very, very glad. It’s a
+wonderful moment and a rare one. Thank you!” There’s an exclamation
+point on the end of that thank you, in case you didn’t catch it… Where’d
+you go?</p>
+<p><strong>nelle</strong>: Christ. I guess it stopped being funny.</p>
+<p><strong>truman</strong>: I never said it was. Listen to this…</p>
+<p><strong>dewey</strong>: Thanks.</p>
+<p><strong>dewey</strong>: You’re nothing if not hard-working.</p>
+<p><strong>truman</strong>: You look good, healthy again.</p>
+<p><strong>dewey</strong>: Not a chance.</p>
+<p><strong>truman</strong>: I’ve decided on a title for my book. I think
+you’ll like it – very masculine. “In Cold Blood.”</p>
+<p><strong>dewey</strong>: That refers to the crime or the fact that
+you’re still talking to the criminals?</p>
+<p><strong>truman</strong>: The former, among other things.</p>
+<p><strong>dewey</strong>: I see.</p>
+<p><strong>truman</strong>: I’ve been wanting to ask if you’ll let me
+look at your investigation notes.</p>
+<p><strong>dewey</strong>: That lawyer you helped find for your friends
+got them a hearing at the Kansas Supreme Court –</p>
+<p><strong>truman</strong>: I heard this morning.</p>
+<p><strong>dewey</strong>: – on the issue of inadequate counsel.</p>
+<p><strong>truman</strong>: Alvin. Do you not want me to look at your
+notes? You are permitted to say no.</p>
+<p><strong>dewey</strong>: I’ll tell you what: if those boys get off,
+I’m coming to Brooklyn to hunt you down.</p>
+<p><strong>dewey</strong>: I have to be in court at nine o’clock.</p>
+<p><strong>dewey</strong>: Call Roy Church. He’ll show you what you want
+to see.</p>
+<p><strong>hickock</strong>: Hey, hey…</p>
+<p><strong>perry</strong>: Thank you.</p>
+<p><strong>truman</strong>: It was as much for me as for anyone. I
+couldn’t bear the thought of losing you so soon.</p>
+<p><strong>perry</strong>: We’re going to be able to use your book for
+our case. You’ll write we never got to raise our insanity plea. You
+wrote how terrible the lawyer was?</p>
+<p><strong>truman</strong>: I haven’t written a word yet.</p>
+<p><strong>perry</strong>: What have you been doing?</p>
+<p><strong>truman</strong>: Research. Waiting to talk to you.</p>
+<p><strong>perry</strong>: All right.</p>
+<p><strong>truman</strong>: I had hoped –</p>
+<p><strong>perry</strong>: What are you calling it?</p>
+<p><strong>truman</strong>: The book? I have no idea.</p>
+<p><strong>truman</strong>: If I’m going to write about you – if I’m
+going to determine how to write about you – you need to tell me about
+that night at the Clutter house.</p>
+<p><strong>truman</strong>: Perry.</p>
+<p><strong>truman</strong>: Why? Do you worry what I’ll think?</p>
+<p><strong>truman</strong>: Is that it?</p>
+<p><strong>perry</strong>: Dick says you know Elizabeth Taylor.</p>
+<p><strong>truman</strong>: I know a lot of people.</p>
+<p><strong>truman</strong>: What is that you keep drawing?</p>
+<p><strong>perry</strong>: You must hate having to come to this place
+–</p>
+<p><strong>truman</strong>: Perry, I have invitations to be in Morocco,
+Greece… I choose to be here. Those people have everything, all their
+prayers have been answered, yet they’re more desperate than ever. I
+prefer to be here with you.</p>
+<p><strong>perry</strong>: I was ten, I wet the bed, the nuns at the
+orphanage hated the smell. First month one of them found me shivering –
+just trying to get through the night. The Sister pulled back the covers
+and shined her flashlight to see what I’d did. The sheets were wet. She
+hit me so many times with that flashlight she broke it. That night I
+dreamed about the yellow bird. Tall. Yellow like the sun. It picked me
+up and it clawed the Nun’s eyes and it lifted me into the sky.</p>
+<p><strong>truman</strong>: I’m just missing this one piece, Jack. Be
+patient with me.</p>
+<p><strong>jack</strong>: How long is that gonna take? Why don’t you try
+leaving him alone for a while? Come to Spain. You can always visit him
+later.</p>
+<p><strong>truman</strong>: I don’t know.</p>
+<p><strong>jack</strong>: Well, I’m off. I’ve got my own writing to
+do.</p>
+<p><strong>truman</strong>: Do it in Brooklyn. Wait for me.</p>
+<p><strong>jack</strong>: Too many people around. I’ll leave the address
+on the kitchen table. Truman, what do you do there when you’re not with
+him? – It must be awful.</p>
+<p><strong>jack</strong>: Think about what I said. Join me when you
+can.</p>
+<p><strong>truman</strong>: I will. I will. Bye.</p>
+<p><strong>perry</strong>: I didn’t see you. Jesus, you… Come in.
+Where’s the guard?</p>
+<p><strong>truman</strong>: I can’t. I brought you some things, but I
+have to fly back East.</p>
+<p><strong>perry</strong>: When?</p>
+<p><strong>truman</strong>: An hour. I’m sorry.</p>
+<p><strong>perry</strong>: You can’t.</p>
+<p><strong>truman</strong>: I’m sorry.</p>
+<p><strong>perry</strong>: Who are you going there to see –</p>
+<p><strong>hickock</strong>: Capote, get it straight in your book – we
+never intended on killing that family –</p>
+<p><strong>perry</strong>: I told him that.</p>
+<p><strong>hickock</strong>: No premeditation –</p>
+<p><strong>perry</strong>: I told him!</p>
+<p><strong>truman</strong>: Your writings are magnificent. I hope these
+help you do more.</p>
+<p><strong>truman</strong>: I have so much material – from the trial,
+from our visits, your journals. I have to organize it all, and I have to
+start the process of writing. I’ll visit soon. Perhaps this fall. I miss
+you already. Write me every five minutes.</p>
+<p><strong>hickock</strong>: Be good now.</p>
+<p><strong>fade in</strong>: BRIGHT WHITE SKY. Sounds of seagulls.
+Ocean, sand, cottage houses in greenery set back from the beach.</p>
+<p><strong>truman</strong>: What.</p>
+<p><strong>shawn</strong>: Truman. I was supposed to be home for dinner
+with my wife three hours ago – I have not been able to tear myself away
+from your book. It’s that good. It’s not good, it’s astonishing. This
+first half is astonishing. If the second half lives up to this it, – it
+– how much is left to do?</p>
+<p><strong>truman</strong>: I’m already well into the third part, but I
+– I can’t finish that till I convince Perry to describe the night of the
+killings to me. I was planning to visit this fall, see –</p>
+<p><strong>shawn</strong>: I think you need to talk to him now.</p>
+<p><strong>truman</strong>: And we all need to see how this ends for the
+final part. I can’t finish the book till I know what happens. If Perry
+and Dick are executed it’s one thing – and if not, well –</p>
+<p><strong>shawn</strong>: Truman. You got your ending –</p>
+<p><strong>truman</strong>: I really don’t know –</p>
+<p><strong>shawn</strong>: The Kansas court denied their appeal. It came
+over the wire on Friday. You need to talk to Perry now. He’ll be dead by
+September. I’m sorry, I know how much you’ve come to care about him.</p>
+<p><strong>shawn</strong>: Truman?</p>
+<p><strong>truman</strong>: Right. Yes. Right.</p>
+<p><strong>shawn</strong>: I want to set up a reading for you in the
+fall, in New York. We’ll build some interest, and we’ll publish in the
+fall.</p>
+<p><strong>truman</strong>: Plums. Thank god. We have nothing in the
+house.</p>
+<p><strong>truman</strong>: Why aren’t you working?</p>
+<p><strong>jack</strong>: I knew you couldn’t be depended on to stock
+the kitchen.</p>
+<p><strong>jack</strong>: What would we feed our famous guest?</p>
+<p><strong>truman</strong>: Oh, Jesus. I completely forgot.</p>
+<p><strong>jack</strong>: Plus – I finished my novel yesterday.</p>
+<p><strong>truman</strong>: My man, my hero, my talented… My man…</p>
+<p><strong>jack</strong>: You said that.</p>
+<p><strong>truman</strong>: You are the hardest worker, the most unsung
+talent I know. As Nelle passes by on her way to London to sell her book
+which needs no selling, may a little of her success rub off on both of
+us.</p>
+<p><strong>jack</strong>: Here, here!</p>
+<p><strong>nelle</strong>: When was the last time you wrote back to
+him?</p>
+<p><strong>truman</strong>: I don’t know.</p>
+<p><strong>jack</strong>: What’s this?</p>
+<p><strong>nelle</strong>: A letter for your boyfriend I was asked to
+deliver.</p>
+<p><strong>truman</strong>: From Perry.</p>
+<p><strong>jack</strong>: Let’s have it.</p>
+<p><strong>nelle</strong>: “Dear Friend Truman. Where are you? Read this
+item in a medical dictionary:”Death by hanging is caused by asphyxia, by
+fracture of the cervical vertebrae, by laceration of the trachea.” Not
+too comforting as we lost our appeal. Missing you – alone and desirous
+of your presence. Your amigo, Perry.”</p>
+<p><strong>truman</strong>: Mr. Shawn told me about the court decision
+yesterday.</p>
+<p><strong>jack</strong>: I was wondering why you were in such a good
+mood. Surely, I thought, it’s not because I finished my little book.</p>
+<p><strong>truman</strong>: That’s a terrible thing to say.</p>
+<p><strong>truman</strong>: I used to write him all the time. I’ve been
+so focused lately on the book.</p>
+<p><strong>truman</strong>: Jack says I’m using Perry, but he also
+thinks I fell in love with him when I was in Kansas. How both of those
+things can be true is beyond me.</p>
+<p><strong>nelle</strong>: Did you? Fall in love with him.</p>
+<p><strong>nelle</strong>: Truman? –</p>
+<p><strong>truman</strong>: I don’t know how to answer that… It’s as if
+Perry and I started life in the same house. One day he stood up and
+walked out the back door while I walked out the front. With some
+different choices, he’s the man I might have become.</p>
+<p><strong>nelle</strong>: Are you kidding me?</p>
+<p><strong>nelle</strong>: Be nice to Jack. Sometimes I think he’s what
+I like about you best.</p>
+<p><strong>truman</strong>: I’ll see you at the reading in New York.</p>
+<p><strong>nelle</strong>: The sixteenth.</p>
+<p><strong>nelle</strong>: Truman. Honestly. Are you going back to
+Kansas because you care about Perry or because you need information
+before he’s killed?</p>
+<p><strong>truman</strong>: Can’t it be both?</p>
+<p><strong>nelle</strong>: No. I don’t think it can be.</p>
+<p><strong>hickock</strong>: Hey, buddy. Thanks.</p>
+<p><strong>perry</strong>: What was he in jail for?</p>
+<p><strong>truman</strong>: They said it was not paying his taxes. But
+really for being an outsider – refusing to go along.</p>
+<p><strong>truman</strong>: You don’t have to read any of these if you
+don’t want to. But I thought you’d like something decent. You’re much
+too smart for adventure magazines.</p>
+<p><strong>row guard</strong>: Lock-down while Lowell goes to solitary.
+Nobody in or out. You want in or out?</p>
+<p><strong>truman</strong>: In.</p>
+<p><strong>perry</strong>: Everyone says he’s a genius. I don’t think
+he’s a genius. He’s rich and he went to college – like any of us
+would’ve if we got the chance. He came home for Christmas and shot his
+parents –</p>
+<p><strong>truman</strong>: – in front of the television.</p>
+<p><strong>perry</strong>: You remember the story –</p>
+<p><strong>truman</strong>: They were watching Father Knows Best.</p>
+<p><strong>perry</strong>: I won’t be sorry to see him go. Always
+correcting my grammar.</p>
+<p><strong>perry</strong>: Now – Dick and me – we’re next in line.</p>
+<p><strong>truman</strong>: I’m so sorry I’ve been away.</p>
+<p><strong>perry</strong>: It was a long time.</p>
+<p><strong>truman</strong>: I know.</p>
+<p><strong>perry</strong>: I wish you could come next week, when they
+take him out to the Corner, but the whole prison shuts down.</p>
+<p><strong>truman</strong>: I have to be in New York anyway.</p>
+<p><strong>perry</strong>: How’s the book going?</p>
+<p><strong>truman</strong>: Very slowly.</p>
+<p><strong>perry</strong>: Will you show it to me?</p>
+<p><strong>truman</strong>: I’ve hardly written anything.</p>
+<p><strong>guard #1</strong>: Ready.</p>
+<p><strong>hickock</strong>: Keep your head high, buddy.</p>
+<p><strong>andrews</strong>: Alright now.</p>
+<p><strong>hickock</strong>: …or they won’t be able to rope you under
+your fat fucking chin.</p>
+<p><strong>andrews</strong>: Next!</p>
+<p><strong>ben baron</strong>: Hello Hollywood. That’s quite a bundle
+you sold your book for.</p>
+<p><strong>nelle</strong>: Well…</p>
+<p><strong>nelle</strong>: What a gentleman.</p>
+<p><strong>most stylish literary outfit</strong>: a gorgeous dark green
+Knize SUIT over a black cashmere turtleneck sweater, and horn-rimmed
+GLASSES .</p>
+<p><strong>young assistant</strong>: Mr. Capote. Can I get you
+anything?</p>
+<p><strong>truman</strong>: No. Thank you.</p>
+<p><strong>shawn</strong>: Welcome New Yorkers…</p>
+<p><strong>shawn</strong>: Thank you for coming to the first public
+reading, the first offering of any kind, of Truman Capote’s new work “In
+Cold Blood.” Our magazine –</p>
+<p><strong>truman</strong>: Hello. My name is Truman Capote.</p>
+<p><strong>truman</strong>: Perry Smith’s voice was both gentle and prim
+– a voice that, though soft, manufactured each sound exactly – ejected
+it like a smoke ring issuing from a parson’s mouth.</p>
+<p><strong>truman</strong>: The village of Holcomb stands on the high
+wheat plains of western Kansas, a lonesome area that other Kansans call
+“out there.” Until one morning in mid-November 1959, few Americans – in
+fact, few Kansans – had ever heard of Holcomb. Like the waters of the
+river, like the motorists on the highway… exceptional happenings had
+never stopped there.</p>
+<p><strong>truman</strong>: The four coffins, which quite filled the
+small, flower-crowded parlor, were to be sealed at the funeral services
+– very understandably, for the effect… was disquieting. Nancy wore her
+dress of cherry-red velvet, her brother a bright plaid shirt; the
+parents were more sedately attired, Mr. Clutter in navy-blue flannel,
+his wife in navy-blue crepe; and – and it was this especially that lent
+the scene an awful aura – the head of each was completely encased in
+cotton, a swollen cocoon twice the size of an ordinary blown- up
+balloon, and the cotton, because it had been sprayed with a glossy
+substance, twinkled like Christmas- tree snow.</p>
+<p><strong>truman</strong>: Imagination, of course, can open any door –
+turn the key and let terror walk right in. Tuesday, at dawn, a carload
+of… strangers, ignorant of the local disaster – were startled by what
+they saw as they crossed the prairies and passed through Holcomb:
+windows ablaze, almost every window in almost every house, and, in the
+brightly lit rooms, fully clothed people, even entire families, who had
+sat the whole night wide awake, watchful, listening. Of what were they
+frightened? “It might happen again.”</p>
+<p><strong>literary enthusiast</strong>: Your portrait of those men was
+terrifying. Terrifying.</p>
+<p><strong>truman</strong>: Thank you.</p>
+<p><strong>isherwood</strong>: Your hairpiece is terrifying.</p>
+<p><strong>truman</strong>: I was going to say the same thing!</p>
+<p><strong>shawn</strong>: Everyone was there.</p>
+<p><strong>truman</strong>: Tennessee loved it.</p>
+<p><strong>shawn</strong>: Of course he did.</p>
+<p><strong>truman</strong>: Should we do more? I was terrified, but
+–</p>
+<p><strong>shawn</strong>: No, Now we get to withhold while everyone
+else talks. Let them do the work.</p>
+<p><strong>shawn</strong>: This book is going to change everything.
+It’ll change how people see you as a writer. It’ll change how people
+write. You’ll finish by October?</p>
+<p><strong>truman</strong>: I think so. You know they’re scheduled for
+next month?</p>
+<p><strong>shawn</strong>: Hanging. Yes. I’ll commit as many issues as
+it takes to publish. Three. As many as it takes.</p>
+<p><strong>truman</strong>: I’m flying to Kansas tomorrow. I’ll get
+Perry to talk –</p>
+<p><strong>shawn</strong>: Honestly, what’s he got to lose?</p>
+<p><strong>truman</strong>: It really is too awful. Institutionalized
+sadism.</p>
+<p><strong>shawn</strong>: You’ll be able to finish now.</p>
+<p><strong>truman</strong>: As strange as it may sound to you, I’m going
+to miss him.</p>
+<p><strong>truman</strong>: When did you hear?</p>
+<p><strong>perry</strong>: Two days ago.</p>
+<p><strong>perry</strong>: It’s what we’ve been waiting for. A stay of
+execution to make a federal appeal.</p>
+<p><strong>perry</strong>: All thanks to you.</p>
+<p><strong>perry</strong>: Kansas’s had it in for me for ten years – in
+prison the first time, at that trial, here. They can’t corner me now.
+Not till the U.S. Government says so –</p>
+<p><strong>truman</strong>: Perry, sit down. For a minute. I need you to
+talk to me…</p>
+<p><strong>perry</strong>: We’ve got all the time in the world to talk.
+About everything. I’ve been thinking about Ricardo. You need to stop
+sending him those trashy books. I won’t even mention the pornography. I
+realize he might have trouble grasping the literature you gave me, but
+those books only exacerbate the problem – only ‘heighten’ or ‘intensify’
+it. Maybe we should start him on a program…</p>
+<p><strong>truman</strong>: Perry.</p>
+<p><strong>perry</strong>: Give him the simple novels first –</p>
+<p><strong>truman</strong>: Perry.</p>
+<p><strong>truman</strong>: I know what exacerbate means.</p>
+<p><strong>perry</strong>: Okay. I thought in case…</p>
+<p><strong>truman</strong>: There is not a word, or a sentence, or a
+concept, that you can illuminate for me. There is one singular reason
+that I keep coming here –</p>
+<p><strong>perry</strong>: Truman –</p>
+<p><strong>truman</strong>: …November 14th, 1959. Three years ago. Three
+years. That’s all I want to hear from you.</p>
+<p><strong>perry</strong>: I’ve asked you not to –</p>
+<p><strong>truman</strong>: This is ridiculous. I’m ready. I have a
+plane to catch. I found your sister in Tacoma. Maybe she’ll talk to me
+about something useful.</p>
+<p><strong>perry</strong>: Don’t go out there.</p>
+<p><strong>perry</strong>: Please don’t go out there.</p>
+<p><strong>truman</strong>: This is my work, Perry. I’m working. When
+you want to tell me what I need to hear, you let me know.</p>
+<p><strong>mrs. murchak</strong>: They’ll play outside a while
+longer.</p>
+<p><strong>mrs. murchak</strong>: I don’t want them to see that.</p>
+<p><strong>truman</strong>: They’ve never seen these pictures?</p>
+<p><strong>mrs. murchak</strong>: Too many questions.</p>
+<p><strong>mrs. murchak</strong>: June’s dead. Frank shot himself. Now
+Perry’s did what he did. I suppose I’m next. Some ruination will visit
+me.</p>
+<p><strong>truman</strong>: I don’t think life works that way.</p>
+<p><strong>mrs. murchak</strong>: It does in this family.</p>
+<p><strong>mrs. murchak</strong>: I used to love him. He was my little
+doll.</p>
+<p><strong>mrs. murchak</strong>: He scares me now.</p>
+<p><strong>truman</strong>: When was the last time you saw him?</p>
+<p><strong>mrs. murchak</strong>: Ten years.</p>
+<p><strong>truman</strong>: Do you think I could borrow one of those
+pictures?</p>
+<p><strong>mrs. murchak</strong>: Take the whole thing. I don’t want’em
+anymore. Just… Perry doesn’t know where I live. He thinks we’re still in
+Portland. Please don’t tell him we’re not.</p>
+<p><strong>truman</strong>: Alright.</p>
+<p><strong>mrs. murchak</strong>: Don’t be taken in by my brother. He’s
+got this sensitive side he’ll show. You believe he’s gentle, so easily
+hurt. But he’d just as soon kill you as shake your hand. I believe
+that.</p>
+<p><strong>truman</strong>: Hello handsome.</p>
+<p><strong>row guard</strong>: You want to go in?</p>
+<p><strong>truman</strong>: Yes</p>
+<p><strong>perry</strong>: What’s the name of your book?</p>
+<p><strong>perry</strong>: What’s the name of your book?</p>
+<p><strong>truman</strong>: I don’t…</p>
+<p><strong>perry</strong>: What’s the name of your book?</p>
+<p><strong>truman</strong>: I don’t know what you’re talking about.</p>
+<p><strong>perry</strong>: “Truman Capote read last night before a
+packed audience from his non-fiction book IN COLD BLOOD.”</p>
+<p><strong>perry</strong>: More? “The true-crime novel tells of killers
+Richard Hickock and Perry Smith, who brutally murdered a Kansas family
+three years ago.”</p>
+<p><strong>truman</strong>: Who sent that to you?</p>
+<p><strong>truman</strong>: Who sent that to you?</p>
+<p><strong>perry</strong>: That’s not your goddamn business.</p>
+<p><strong>truman</strong>: It is my business, because it’s not true.
+The organizers of the reading needed a title. They picked one – a
+sensational one, I admit – to attract a crowd.</p>
+<p><strong>perry</strong>: They picked it.</p>
+<p><strong>truman</strong>: Yes.</p>
+<p><strong>perry</strong>: That’s not your title.</p>
+<p><strong>truman</strong>: I haven’t chosen one yet.</p>
+<p><strong>truman</strong>: How could I choose –</p>
+<p><strong>perry</strong>: You pretend to be my friend…</p>
+<p><strong>truman</strong>: How could I choose a title when you still
+haven’t told me what happened that night? How could I? I couldn’t
+possibly.</p>
+<p><strong>truman</strong>: I have something from your sister.</p>
+<p><strong>truman</strong>: She misses you.</p>
+<p><strong>truman</strong>: It’s alright. I’ll go in.</p>
+<p><strong>truman</strong>: I’m sorry. I should have told you what they
+made me call the book. I couldn’t pretend to be your friend. The truth
+is, I can’t help wanting to be. You don’t have to tell me anything if
+you don’t want to.</p>
+<p><strong>perry</strong>: Look at my belly.</p>
+<p><strong>perry</strong>: There must be something wrong with us. To do
+what we did.</p>
+<p><strong>perry</strong>: We heard there was ten thousand dollars in
+that house. Once we’d tied up everybody and searched all over, I knew
+the guy who told us about it was wrong. There wasn’t any money. But Dick
+wouldn’t believe it. He went tearing through the house again, banging on
+the walls, looking for a safe. He said when he was done, he was going to
+come up to Nancy’s room and have his way with her. I wouldn’t allow it.
+I told him that. I sat with Nancy.</p>
+<p><strong>perry</strong>: It was nice in there.</p>
+<p><strong>perry</strong>: Dick came to get me and we turned out the
+lights and went down to the basement, where we had Mr. Clutter and the
+boy. Dick kept saying “No witnesses.” I figured if I just waited him out
+he’d give up and leave them tied up there. We’d drive all night, they’d
+never find us. Mr. Clutter’s wrists were tied to a pipe over his head.
+He looked like he was hurt, so I cut him down.</p>
+<p><strong>perry</strong>: We put a box there on the floor so he’d be
+more comfortable. He asked if his wife and daughter were alright and I
+said they were fine, they were ready to go to sleep. I told him it
+wasn’t long till morning when somebody would find them. He was looking
+at me. Just… looking at me. Looking at my eyes. Like he expects me to
+kill him – expects me to be the kind of person who would kill him. I was
+thinking – this nice man, he’s scared of me. I was ashamed. I mean, I
+thought he was a kind man, a good… a gentleman. I thought so right up to
+the moment I cut his throat. I didn’t realize what I’d did till I heard
+the sound.</p>
+<p><strong>perry</strong>: Like some one drowning under water.</p>
+<p><strong>perry</strong>: I was staring at him, bleeding on the floor.
+I told Dick to finish him off, but he wouldn’t do it. We couldn’t leave
+Mr. Clutter like that, so I got the shotgun.</p>
+<p><strong>perry</strong>: We went to Mrs. Clutter’s room.</p>
+<p><strong>perry</strong>: Then we drove off.</p>
+<p><strong>perry</strong>: What do you think of me now?</p>
+<p><strong>truman</strong>: Added up, how much money did you get from
+the Clutters?</p>
+<p><strong>perry</strong>: Between forty and fifty dollars.</p>
+<p><strong>fade in</strong>: Hands typing on a MANUAL TYPEWRITER.</p>
+<p><strong>truman</strong>: Jack.</p>
+<p><strong>truman</strong>: Jack.</p>
+<p><strong>title up</strong>: “One Year Later”</p>
+<p><strong>truman</strong>: …I want to give it to you. The truth is, I’m
+desperate to be done with it…</p>
+<p><strong>truman</strong>: Mr. Shawn, I… I’ve spent four years of my
+life on this book… They got a stay of execution yesterday… Another,
+yes….</p>
+<p><strong>truman</strong>: Supreme Court….</p>
+<p><strong>truman</strong>: …It’s harrowing – all I want is to write the
+ending and there’s no fucking end in sight… No. No, I haven’t been
+drinking again…</p>
+<p><strong>jack</strong>: I don’t know how you can eat that. Perhaps if
+you weren’t drinking so much you wouldn’t have to.</p>
+<p><strong>jack</strong>: “Dear friend Truman. Haven’t heard from you in
+such a long while. Please help find new lawyer. If not, Dick will have
+to write Supreme Court brief himself. Our last appeal. What a pair of
+wretched creatures. Please help. Your amigo? Perry.”</p>
+<p><strong>jack</strong>: Your amigo.</p>
+<p><strong>truman</strong>: Put it with the others.</p>
+<p><strong>jack</strong>: You tried?</p>
+<p><strong>jack</strong>: You need to get ready.</p>
+<p><strong>jack</strong>: At least pretend for Nelle that you’re having
+a good time tonight.</p>
+<p><strong>truman</strong>: Nelle.</p>
+<p><strong>nelle</strong>: I thought I’d find you here.</p>
+<p><strong>truman</strong>: Please, another.</p>
+<p><strong>nelle</strong>: How are you?</p>
+<p><strong>truman</strong>: Terrible.</p>
+<p><strong>nelle</strong>: I’m sorry to hear that.</p>
+<p><strong>truman</strong>: Well. It’s torture. Torture… …what they’re
+doing to me.</p>
+<p><strong>nelle</strong>: Uh-huh.</p>
+<p><strong>truman</strong>: Now the Supreme Court. Can you believe it?
+If they win this appeal I will have a complete nervous breakdown. I may
+never recover. Just pray things turn my way.</p>
+<p><strong>nelle</strong>: It must be hard.</p>
+<p><strong>truman</strong>: It’s torture. They’re torturing me.</p>
+<p><strong>nelle</strong>: I see.</p>
+<p><strong>nelle</strong>: And how’d you like the movie, Truman.</p>
+<p><strong>truman</strong>: I frankly don’t know what the fuss is
+about.</p>
+<p><strong>truman</strong>: Hello.</p>
+<p><strong>operator</strong>: Mr. Capote?</p>
+<p><strong>truman</strong>: Yes?</p>
+<p><strong>operator</strong>: I have a call from Mr. Perry Smith in the
+Kansas Correctional System. Will you accept charges?</p>
+<p><strong>operator</strong>: Mr. Truman Capote?</p>
+<p><strong>truman</strong>: Yes.</p>
+<p><strong>operator</strong>: Will you accept charges?</p>
+<p><strong>truman</strong>: Oh. Uh… Yes.</p>
+<p><strong>operator</strong>: You’ll accept charges?</p>
+<p><strong>truman</strong>: Yes.</p>
+<p><strong>operator</strong>: Mr. Smith, you’re on the line.</p>
+<p><strong>perry</strong>: Hello.</p>
+<p><strong>perry</strong>: Hello? I can’t – This doesn’t seem –
+Operator, I don’t think you put me –</p>
+<p><strong>truman</strong>: I’m here.</p>
+<p><strong>perry</strong>: Truman.</p>
+<p><strong>truman</strong>: Hello, Perry.</p>
+<p><strong>perry</strong>: They let me make a couple phone calls before
+I go down to Holding… You heard the Supreme Court rejected the
+appeal.</p>
+<p><strong>truman</strong>: I didn’t… I hadn’t heard that.</p>
+<p><strong>perry</strong>: Yeah.</p>
+<p><strong>truman</strong>: I’m sorry.</p>
+<p><strong>perry</strong>: Yeah. They let me make two phone calls.</p>
+<p><strong>perry</strong>: We’ve got a date set for the Warehouse, Dick
+and me. Two weeks and… Finito. April 14.</p>
+<p><strong>perry</strong>: Will you visit me? Truman. Will you come
+visit?</p>
+<p><strong>truman</strong>: I don’t know if I can. I’ll try. I don’t
+know if I can.</p>
+<p><strong>guard in background</strong>: Time, Smith. Hang it up.</p>
+<p><strong>perry</strong>: Please visit me, Truman. Just…</p>
+<p><strong>guard in background</strong>: Time. Smith.</p>
+<p><strong>guard</strong>: Ready.</p>
+<p><strong>krutch</strong>: Perry.</p>
+<p><strong>krutch</strong>: You’re allowed three names of people you’d
+like to witness tomorrow. If there’s anybody you want, tell me now.</p>
+<p><strong>perry</strong>: Truman Capote.</p>
+<p><strong>krutch</strong>: Anybody else?</p>
+<p><strong>shawn</strong>: You want anything?</p>
+<p><strong>last meal</strong>: three hot dogs, french fries, an ice
+cream sundae, a strawberry soda. The Guard sets it down on the
+chair.</p>
+<p><strong>perry</strong>: Thank you. You sent the telegram to his
+hotel?</p>
+<p><strong>guard</strong>: Hours ago.</p>
+<p><strong>perry</strong>: May I make a phone call?</p>
+<p><strong>shawn</strong>: That’s him again.</p>
+<p><strong>shawn</strong>: We’ve never even met. It is utterly
+inappropriate for me to be talking to him.</p>
+<p><strong>shawn</strong>: Yes… I’m sorry, he’s out, gone out… I’m not
+sure when…</p>
+<p><strong>krutch</strong>: You got a telex.</p>
+<p><strong>krutch</strong>: “Perry. Unable to visit today because not
+permitted. Always your friend, Truman.” That’s it.</p>
+<p><strong>perry</strong>: It’s not true, is it?</p>
+<p><strong>nelle</strong>: Mr. Shawn? It’s Nelle… I just got this
+telegram, has he seen it?</p>
+<p><strong>shawn</strong>: He won’t look at it.</p>
+<p><strong>nelle</strong>: Would you put him on please?</p>
+<p><strong>shawn</strong>: He won’t talk.</p>
+<p><strong>nelle</strong>: Mr. Shawn, if you have to hold him down and
+put the phone on his ear, I need to speak to him.</p>
+<p><strong>shawn</strong>: It’s Nelle.</p>
+<p><strong>nelle</strong>: Truman.</p>
+<p><strong>perry</strong>: “Miss Nelle Harper Lee and Truman Capote:
+Sorry that Truman was unable to make it here at the prison for a brief
+word prior to necktie party…</p>
+<p><strong>perry</strong>: …Whatever his reason for not showing up, I
+want him to know that I cannot condemn him for it and understand…</p>
+<p><strong>perry</strong>: …Not much time left but want you both to know
+that I’ve been sincerely grateful for your friendship through the years
+and everything else…</p>
+<p><strong>perry</strong>: …I’m not very good at these things….</p>
+<p><strong>perry</strong>: I have become extremely affectionate toward
+you both. But, harness time. Adios amigos. Your friend, Perry.”</p>
+<p><strong>krutch</strong>: I didn’t think I’d be seeing you again. You
+can visit for a few minutes.</p>
+<p><strong>shawn</strong>: No.</p>
+<p><strong>truman</strong>: Come with me.</p>
+<p><strong>shawn</strong>: Truman. No.</p>
+<p><strong>krutch</strong>: Five minutes.</p>
+<p><strong>hickock</strong>: He returns. Long time.</p>
+<p><strong>truman</strong>: I don’t know what you must think of me.</p>
+<p><strong>hickock</strong>: You haven’t been foremost on my mind
+lately. As you can imagine.</p>
+<p><strong>perry</strong>: You got the letter?</p>
+<p><strong>truman</strong>: Yes.</p>
+<p><strong>perry</strong>: It’s true. I mean I understand why you didn’t
+want to come. I wouldn’t be here either if I didn’t have to.</p>
+<p><strong>hickock</strong>: You got that right.</p>
+<p><strong>perry</strong>: You know Ricardo donated his eyes to science?
+Next week, some blind man will be seeing what Dick used to see.</p>
+<p><strong>hickock</strong>: He’d be better off the way he was. What
+I’ve seen hasn’t been so nice to look at – but I guess it’s better than
+nothing. They came around with a form. Hey. You’ll be walking down the
+street one day in Denver, wherever – and suddenly these eyes will be
+staring at you. Wouldn’t that be something?</p>
+<p><strong>truman</strong>: It would be.</p>
+<p><strong>krutch</strong>: Time.</p>
+<p><strong>perry</strong>: You’ll be watching?</p>
+<p><strong>truman</strong>: I don’t know. Do you want me to?</p>
+<p><strong>perry</strong>: I’d like to have a friend there.</p>
+<p><strong>truman</strong>: Okay. Then I will.</p>
+<p><strong>perry</strong>: It’s alright.</p>
+<p><strong>truman</strong>: I did everything I could.</p>
+<p><strong>perry</strong>: Okay.</p>
+<p><strong>truman</strong>: I truly did.</p>
+<p><strong>perry</strong>: I know.</p>
+<p><strong>truman</strong>: Goodbye, Perry.</p>
+<p><strong>perry</strong>: You’re not rid of me yet. I’ll see you in a
+few minutes.</p>
+<p><strong>perry</strong>: Nice to see you.</p>
+<p><strong>krutch</strong>: Perry Edward Smith. “For the crime of murder
+in the first degree, by order of the Court of Finney County and the
+Supreme Court of the sovereign State of Kansas, you are sentenced to
+hang until you die.” You can say something if you want.</p>
+<p><strong>perry</strong>: Is there anybody from the family here?</p>
+<p><strong>krutch</strong>: No.</p>
+<p><strong>perry</strong>: Well. Tell them… I can’t remember what I was
+going to say for the life of me…</p>
+<p><strong>chaplain</strong>: Though I walk through the valley of the
+shadow of death, I will fear no evil, for thou art with me.</p>
+<p><strong>chaplain</strong>: Thy rod and thy staff, they comfort
+me.</p>
+<p><strong>chaplain</strong>: Thou preparest a table before me in the
+presence of mine enemies. Thou annointest my head with oil.</p>
+<p><strong>chaplain</strong>: My cup runneth over.</p>
+<p><strong>nelle</strong>: Hello.</p>
+<p><strong>truman</strong>: Someday I’ll tell you about it. For the
+moment, I’m too shattered.</p>
+<p><strong>nelle</strong>: They’re dead, Truman. You’re alive.</p>
+<p><strong>truman</strong>: It was a terrible experience and I will
+never get over it. There wasn’t anything I could have done to save
+them.</p>
+<p><strong>nelle</strong>: Maybe not.</p>
+<p><strong>nelle</strong>: But the fact is, you didn’t want to.</p>
+<p><strong>shawn</strong>: It came to the hotel this morning. I told
+them I’d give it to you.</p>
+<p><strong>perry</strong>: Did we not know we were to die, we would be
+children. By knowing it, we are given the opportunity to mature in
+spirit…</p>
+<p><strong>perry</strong>: Some take that opportunity. I hope I
+have…</p>
+<p><strong>perry</strong>: Life is only the father of wisdom. Death is
+the mother.</p>
+</body>
+</html>

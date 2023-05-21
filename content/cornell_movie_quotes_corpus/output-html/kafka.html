@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>kafka</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="kafka">kafka</h1>
+<p><strong>burgel</strong>: Kafka.</p>
+<p><strong>burgel</strong>: The keeper of the files is still waiting for
+your final summation of the Erlanger claim.</p>
+<p><strong>kafka</strong>: I gave it to him yesterday.</p>
+<p><strong>burgel</strong>: You didn’t give it to me.</p>
+<p><strong>kafka</strong>: No, I left it in his office.</p>
+<p><strong>burgel</strong>: Did you see him?</p>
+<p><strong>kafka</strong>: I’ve never seen him. I don’t believe there is
+a keeper of the files.</p>
+<p><strong>burgel</strong>: He’s usually in the storage room sorting
+things out. He can’t close the file on a case until he has the
+concluding report.</p>
+<p><strong>kafka</strong>: He has it, he just hasn’t noticed it yet, all
+right?</p>
+<p><strong>burgel</strong>: Who’s to say he ever will? He’s a timid old
+man and quite careful not to tread on anyone’s toes – In fact, I’m the
+only one he trusts and he wouldn’t even look at a document if it didn’t
+first come through me.</p>
+<p><strong>burgel</strong>: In an organization as efficient as ours, if
+a document once in a great while gets lost it might never be found at
+all.</p>
+<p><strong>kafka</strong>: Burgel, I thought it would be easier, as long
+as I was passing –</p>
+<p><strong>burgel</strong>: But I’m the messenger. An error like this
+damages my credibility.</p>
+<p><strong>kafka</strong>: Your credibility – yes, it’s well known.</p>
+<p><strong>burgel</strong>: When I deliver a message the very act of
+delivering it, you might say, gives it an official stamp, and only in
+this way are both the sender and the receiver satisfied that it was
+delivered at all.</p>
+<p><strong>kafka</strong>: I’ll commit that to memory.</p>
+<p><strong>burgel</strong>: Your position in this firm is not
+unassailable.</p>
+<p><strong>bizarre voice</strong>: Yes?</p>
+<p><strong>kafka</strong>: I’m sorry to disturb you – I wonder if you
+know where my friend Eduard is?</p>
+<p><strong>bizarre voice</strong>: I can’t hear you! – You’d better come
+in.</p>
+<p><strong>kafka</strong>: – I didn’t want to bother you.</p>
+<p><strong>concierge</strong>: Well, you have. What do you want?</p>
+<p><strong>kafka</strong>: My friend Eduard, I wonder if you’ve seen
+him? He hasn’t been in to work, I thought he might be ill.</p>
+<p><strong>kafka</strong>: You didn’t have to get out of bed – I could
+have taken the key.</p>
+<p><strong>concierge</strong>: Yes, I’m sure you could.</p>
+<p><strong>kafka</strong>: Well, he’s not here.</p>
+<p><strong>kafka</strong>: Do you think you ought to do that?</p>
+<p><strong>concierge</strong>: The manners of a tramp! It’s my house,
+isn’t it?</p>
+<p><strong>kafka</strong>: Miss Rossmann?</p>
+<p><strong>kafka</strong>: I’m Kafka – I work upstairs in Accident –</p>
+<p><strong>gabriela</strong>: I know.</p>
+<p><strong>kafka</strong>: You’re a friend of Eduard Raban’s.</p>
+<p><strong>gabriela</strong>: Why would you suppose so?</p>
+<p><strong>kafka</strong>: Oh – well, I thought he once mentioned –</p>
+<p><strong>gabriela</strong>: One of you must be mistaken.</p>
+<p><strong>kafka</strong>: I’m sorry, but I just wondered –</p>
+<p><strong>gabriela</strong>: Excuse me, I have to copy this for Central
+Docketing by 2:30.</p>
+<p><strong>burgel</strong>: You’re late – I knew it would happen one
+day.</p>
+<p><strong>margarete</strong>: – This is our friend Anna who works with
+us on the magazine.</p>
+<p><strong>kafka</strong>: Hello.</p>
+<p><strong>anna</strong>: I’ve been hearing all about you.</p>
+<p><strong>ernst</strong>: Don’t worry, Kafka – I championed your
+virtues.</p>
+<p><strong>kafka</strong>: I’d like to hear them.</p>
+<p><strong>julius</strong>: Anna’s new to the city – we wouldn’t
+frighten her needlessly.</p>
+<p><strong>kafka</strong>: I’ve lived all my life in this city – it
+frightens me. As it draws me closer into its web.</p>
+<p><strong>stella</strong>: – This is an ancient lament.</p>
+<p><strong>kafka</strong>: No, but do you realize why? – it has no
+present.</p>
+<p><strong>anna</strong>: – I’m hoping to live in the Old Quarter.</p>
+<p><strong>kafka</strong>: Even the so-called New Town isn’t so new.
+Only the people. People of the future living in buildings of the past.
+Has anyone seen Eduard?</p>
+<p><strong>margarete</strong>: Who?</p>
+<p><strong>julius</strong>: Oh, him.</p>
+<p><strong>kafka</strong>: What d’you mean, oh him? He’s a perfectly
+nice person, he’s never missed a day before.</p>
+<p><strong>ernst</strong>: Perhaps he’s taken up with those traveling
+players you two were so fond of.</p>
+<p><strong>kafka</strong>: No, it’s me who always wanted to run away
+with them – except that that life would be far too hectic for me. I’m
+worried about him, no one’s seen him.</p>
+<p><strong>stella</strong>: Haven’t you ever called in sick and gone
+roaming about, free of responsibility to anyone, if only for a day?</p>
+<p><strong>kafka</strong>: When you work for a medical firm you can’t
+call in sick. They know malingerers like a dog knows fleas.</p>
+<p><strong>anna</strong>: You work in the insurance department?</p>
+<p><strong>kafka</strong>: You have been hearing the sordid side
+then.</p>
+<p><strong>margarete</strong>: Be pleased – you constantly inspire
+people to take an interest in your life.</p>
+<p><strong>anna</strong>: I should think it’s very interesting work.</p>
+<p><strong>kafka</strong>: My father always said I had no ambition.</p>
+<p><strong>stella</strong>: The cabaret will be packed this time of
+night – we’ll never get in.</p>
+<p><strong>julius</strong>: Well, it has to be the cabaret because
+there’s nowhere else to go.</p>
+<p><strong>margaret</strong>: Home, I think.</p>
+<p><strong>julius</strong>: Home?</p>
+<p><strong>margaret</strong>: You know I can’t stay up late.</p>
+<p><strong>voice</strong>: Home is the last resort –</p>
+<p><strong>ernst</strong>: – Do you know Bizzlebek – the
+gravedigger?</p>
+<p><strong>bizzlebek</strong>: Stonecutter, if you please.</p>
+<p><strong>margarete</strong>: Sculptor, if only he’d admit it.</p>
+<p><strong>bizzlebek</strong>: No one should admit being an artist
+unless they’re paid for it. If you go to the cabaret mention my name –
+they’ll find a table for you.</p>
+<p><strong>ernst</strong>: Bizzlebek has ways and means denied lesser
+mortals. It comes from working in the cemetery all day – he’s able to
+transcent the physical world.</p>
+<p><strong>bizzlebek</strong>: No – it only makes me view people
+dispassionately as so many … slabs.</p>
+<p><strong>bizzlebek</strong>: Quartz … slate … gravel … granite … flint
+… Marble.</p>
+<p><strong>julius</strong>: My God, look, he’s marching forward
+willingly to make human contact.</p>
+<p><strong>gabriela</strong>: Hello again.</p>
+<p><strong>kafka</strong>: I’ve never seen you here before.</p>
+<p><strong>gabriela</strong>: Have you looked?</p>
+<p><strong>kafka</strong>: Well – nice to know life exists outside the
+office.</p>
+<p><strong>gabriela</strong>: Yes.</p>
+<p><strong>kafka</strong>: No, really, I have to go home too.</p>
+<p><strong>margarete</strong>: We’re keeping him from his true
+vocation.</p>
+<p><strong>julius</strong>: I know, he consists of writing. We wouldn’t
+be his friends if we didn’t threaten his solitude!</p>
+<p><strong>anna</strong>: Where do you live?</p>
+<p><strong>kafka</strong>: Up there.</p>
+<p><strong>anna</strong>: I tried finding a place on Castle Hill when I
+arrived. I wanted to share the majesty.</p>
+<p><strong>kafka</strong>: It’s only majestic from here. When you get
+closer you see it for what it really is.</p>
+<p><strong>anna</strong>: What is it really?</p>
+<p><strong>kafka</strong>: A glorified office block. They keep all the
+old records there – the final resting place for facts and figures that
+have ceased to matter in the world of the living.</p>
+<p><strong>anna</strong>: Well, as long as I admire it from afar it
+shouldn’t worry me if it’s hollow.</p>
+<p><strong>kafka</strong>: It’s more than hollow. It’s stillborn. For
+all its size it serves no purpose. It’s just there – like death –
+hovering over a breathing city.</p>
+<p><strong>margarete</strong>: Don’t worry about your friend – I’m sure
+he’ll turn up.</p>
+<p><strong>ernst</strong>: What are you working on, Kafka?</p>
+<p><strong>kafka</strong>: I’m writing a story about a man who wakes up
+one morning to find himself transformed into a giant insect.</p>
+<p><strong>bizzlebek</strong>: I’ve read your stories. They’re
+fantastic.</p>
+<p><strong>kafka</strong>: I don’t know what you could have read.</p>
+<p><strong>bizzlebek</strong>: Just what you’ve published.</p>
+<p><strong>kafka</strong>: – In magazines nobody reads.</p>
+<p><strong>bizzlebek</strong>: I read the one about the penal
+colony.</p>
+<p><strong>kafka</strong>: Did you?</p>
+<p><strong>bizzlebek</strong>: The needles inscribing the judgement into
+the flesh of the man. Very good.</p>
+<p><strong>bizzlebek</strong>: If I could sculpt as well as that, I’d be
+quite proud of myself.</p>
+<p><strong>kafka</strong>: “As Gregor Samsa awoke one morning from
+disturbing dreams he … from unsettling dreams … uneasy dreams … Gregor
+Samsa … Gregor …?” Carl. George. Rudolf …</p>
+<p><strong>second man</strong>: You know him?</p>
+<p><strong>kafka</strong>: … Yes.</p>
+<p><strong>first man</strong>: His name is Eduard Raban?</p>
+<p><strong>kafka</strong>: … Yes.</p>
+<p><strong>man</strong>: Inspector Grubach.</p>
+<p><strong>inspector</strong>: Kafka – is that your real name?</p>
+<p><strong>kafka</strong>: Yes. Yes, of course – why wouldn’t it be?</p>
+<p><strong>inspector</strong>: When was the last time you saw
+Mr. Raban?</p>
+<p><strong>kafka</strong>: Wednesday. We left the office together.</p>
+<p><strong>inspector</strong>: Did you go anywhere afterwards – to have
+a drink perhaps?</p>
+<p><strong>kafka</strong>: No, we said goodbye outside the building. He
+went off, as usual, toward his house.</p>
+<p><strong>inspector</strong>: Your office is the Workmen’s –</p>
+<p><strong>kafka</strong>: – Accident and Compensation Association.</p>
+<p><strong>inspector</strong>: Where you’ve been employed for seven
+years.</p>
+<p><strong>kafka</strong>: Eight – and seven months.</p>
+<p><strong>inspector</strong>: Engaged in the manufacture and
+distribution of … pills and so forth.</p>
+<p><strong>kafka</strong>: Well – other departments are, yes.</p>
+<p><strong>inspector</strong>: Would you describe your relationship with
+the dead man as close?</p>
+<p><strong>kafka</strong>: Yes. Since he came to the office, almost
+three years ago, we’ve been quite good friends. How was Eduard …</p>
+<p><strong>inspector</strong>: He was found in the River. Could he
+swim?</p>
+<p><strong>kafka</strong>: I don’t know.</p>
+<p><strong>inspector</strong>: Was he depressed?</p>
+<p><strong>kafka</strong>: No. He didn’t seem to be. Do you think he
+drowned himself?</p>
+<p><strong>inspector</strong>: Grown men don’t normally fall into the
+river, do they?</p>
+<p><strong>kafka</strong>: No, I suppose not.</p>
+<p><strong>inspector</strong>: He might have had a drink or two, despite
+what you think.</p>
+<p><strong>kafka</strong>: Can I ask – how you found me?</p>
+<p><strong>inspector</strong>: His landlady knew of no other friends to
+refer us to.</p>
+<p><strong>kafka</strong>: I don’t think he really had any. He had no
+family either.</p>
+<p><strong>inspector</strong>: We know that.</p>
+<p><strong>kafka</strong>: He wasn’t a lonely man, though.</p>
+<p><strong>inspector</strong>: What makes you think so?</p>
+<p><strong>kafka</strong>: … Just a perception.</p>
+<p><strong>inspector</strong>: I don’t usually involve myself with you
+people in the Old Quarter – but the River runs its own course. It won’t
+be the last time it deposits its unwanted debris on my doorstep.</p>
+<p><strong>kafka</strong>: Probably not.</p>
+<p><strong>inspector</strong>: Anyway, I’d like you to reflect that in
+me you have – I won’t say a friend, because we’re complete fencers, of
+course – from distinctly incompatible social classes – but to some
+extent, shall we say, an interested third party.</p>
+<p><strong>kafka</strong>: I’ll bear that in mind.</p>
+<p><strong>inspector</strong>: – Should you happen upon anything that
+might be relevant.</p>
+<p><strong>kafka</strong>: You wanted to see me, sir.</p>
+<p><strong>chief clerk</strong>: Sit down, Kafka.</p>
+<p><strong>chief clerk</strong>: You’ve been with the firm for nearly
+nine years. You’ve done your work diligently, there are no complaints on
+that score. But there’s more to the job than the work – there are other
+people to consider – and frankly, Kafka, we eel your social situation
+could bear improving.</p>
+<p><strong>kafka</strong>: … My … social situation?</p>
+<p><strong>chief clerk</strong>: You keep too much to yourself – you’re
+a lone wolf. It makes me uneasy, and if it makes me uneasy I can’t
+imagine the impression you make on lesser employees.</p>
+<p><strong>kafka</strong>: To do my work well, I have little time for
+–</p>
+<p><strong>chief clerk</strong>: You must make the time. Where do you go
+off to in the lunch hour?</p>
+<p><strong>kafka</strong>: I usually take lunch by the River.</p>
+<p><strong>chief clerk</strong>: It’s not healthy, Kafka – not for you
+and not for your workmates. At the annual dinner this month you again
+failed to make an appearance.</p>
+<p><strong>kafka</strong>: I did not realize it was obligatory.</p>
+<p><strong>chief clerk</strong>: Have you never wondered – and I mention
+this only in passing – why other clerks have advanced to more
+responsible positions while you, who have been here longer, have
+not?</p>
+<p><strong>kafka</strong>: No, sir.</p>
+<p><strong>chief clerk</strong>: Attitude, Kafka. It doesn’t matter how
+well you do your work – you still see it as something to be gotten on
+with rather than something to take an active interest in.</p>
+<p><strong>kafka</strong>: Well, I –</p>
+<p><strong>chief clerk</strong>: Oh, I know you got along with that poor
+fellow – what was his name?</p>
+<p><strong>kafka</strong>: – Eduard –</p>
+<p><strong>chief clerk</strong>: – Yes – Raban – but he was too much
+like you – even more so perhaps. He wasn’t here as long as you, so I
+didn’t know him as well – but I could see the influence he was having. I
+simply want you to be aware of this because you’ll be happier for
+it.</p>
+<p><strong>chief clerk</strong>: In any case – don’t ask me why – the
+word has come down you’re to be promoted.</p>
+<p><strong>chief clerk</strong>: Your colleague’s death has helped
+precipitate the need, though I can tell you it’s been under
+consideration for some time. You’re to be given two assistants and a
+commensurate rise in salary. That’s all.</p>
+<p><strong>chief clerk</strong>: Kafka.</p>
+<p><strong>chief clerk</strong>: I understand you fancy yourself an
+author.</p>
+<p><strong>kafka</strong>: In a small way.</p>
+<p><strong>chief clerk</strong>: You might find a more athletic hobby –
+put some color in your cheeks.</p>
+<p><strong>burgel</strong>: Good morning – Or should I say good
+afternoon?</p>
+<p><strong>gabriela</strong>: Say what you like – no one pays the least
+attention.</p>
+<p><strong>burgel</strong>: Oh, don’t they? I think you underestimate my
+station in this office and overrate your own.</p>
+<p><strong>gabriela</strong>: Not today, Burgel. Send one of your memos,
+write up one of your communiques, but for God’s sake don’t bother me
+today.</p>
+<p><strong>burgel</strong>: It’s my place to offer advice, not yours –
+and by advising the Chief Clerk of your unpunctuality it’s certainly not
+my situation that’s compromised, if that’s what you’re implying.</p>
+<p><strong>gabriela</strong>: You’re just doing your job.</p>
+<p><strong>burgel</strong>: It’s what I’m paid to do.</p>
+<p><strong>gabriela</strong>: You’re detestable.</p>
+<p><strong>burgel</strong>: And you’re late!</p>
+<p><strong>kafka</strong>: My assistants, I presume.</p>
+<p><strong>assistants</strong>: Yes – that’s us.</p>
+<p><strong>kafka</strong>: I’m Kafka.</p>
+<p><strong>ludwig</strong>: Ludwig.</p>
+<p><strong>oskar</strong>: Oskar.</p>
+<p><strong>kafka</strong>: You look like brothers.</p>
+<p><strong>assistants</strong>: Yes – we do.</p>
+<p><strong>kafka</strong>: Have you worked here long?</p>
+<p><strong>assistants</strong>: No, no, no – quite a long time, yes.</p>
+<p><strong>kafka</strong>: Well, we’d better move things from my old
+desk.</p>
+<p><strong>gabriela</strong>: Eduard and I had lunch together one day …
+and you saw us.</p>
+<p><strong>kafka</strong>: On the Embankment.</p>
+<p><strong>gabriela</strong>: I was having an affair with Eduard. He
+didn’t tell you?</p>
+<p><strong>kafka</strong>: No.</p>
+<p><strong>gabriela</strong>: He would have. You were his best friend. A
+better friend than me.</p>
+<p><strong>kafka</strong>: I suspected that he – well.</p>
+<p><strong>gabriela</strong>: What?</p>
+<p><strong>kafka</strong>: That he was – satisfied in that regard. I
+didn’t want to pry.</p>
+<p><strong>gabriela</strong>: It’s not that we wanted to deceive anyone
+– but you know how these things are looked upon at the office.</p>
+<p><strong>gabriela</strong>: What’s funny?</p>
+<p><strong>kafka</strong>: This morning it was suggested to me that my
+own sense of office fellowship could bear improving.</p>
+<p><strong>gabriela</strong>: As long as it’s on their terms. If your
+work and your private life don’t correspond to their specifications
+you’re labelled a dangerous agitator – with no recourse whatsoever.</p>
+<p><strong>kafka</strong>: How long were you and Eduard –</p>
+<p><strong>gabriela</strong>: Two or three months, that’s all. – I
+seduced him.</p>
+<p><strong>gabriela</strong>: You know as well as I do that he didn’t
+commit suicide.</p>
+<p><strong>kafka</strong>: No, I don’t. I’m amazed that anyone is able
+to bear life with any assurance at all.</p>
+<p><strong>gabriela</strong>: Eduard didn’t see it as something that
+needed bearing.</p>
+<p><strong>kafka</strong>: The police would know the difference,
+wouldn’t they?</p>
+<p><strong>gabriela</strong>: Do you think people in the New Town care
+what happens over here? This will always be the ghetto.</p>
+<p><strong>kafka</strong>: He wasn’t robbed. He was identified by his
+wallet.</p>
+<p><strong>gabriela</strong>: And you believe everything the authorities
+tell you.</p>
+<p><strong>kafka</strong>: When I have no reason to doubt.</p>
+<p><strong>gabriela</strong>: The very fact that they’re authorities
+should give you reason. People will do anything to protect their own
+interests. For all you know he was killed at the hands of the
+police.</p>
+<p><strong>kafka</strong>: – What could he have done to warrant
+that?</p>
+<p><strong>gabriela</strong>: Are you free tonight?</p>
+<p><strong>kafka</strong>: Tonight?</p>
+<p><strong>gabriela</strong>: There are some people I’d like you to
+meet. Can you come to the Musil district at eight o’clock?</p>
+<p><strong>kafka</strong>: … All right.</p>
+<p><strong>gabriela</strong>: You almost married recently, didn’t
+you?</p>
+<p><strong>kafka</strong>: Last year. I – it was broken off.</p>
+<p><strong>gabriela</strong>: Eduard wanted to marry me.</p>
+<p><strong>kafka</strong>: And you …?</p>
+<p><strong>gabriela</strong>: I’m suspicious of men who want to marry. I
+believe they think it’s the only thing that will make them equal to
+their fathers.</p>
+<p><strong>kafka</strong>: – I don’t know the Musil district.</p>
+<p><strong>gabriela</strong>: You won’t have any trouble finding it.</p>
+<p><strong>man in black</strong>: Long live anarchy!</p>
+<p><strong>voice from behind</strong>: Please sit down.</p>
+<p><strong>bearded anarchist</strong>: We’ll save the introductions. We
+don’t know yet if you’re friend or foe.</p>
+<p><strong>kafka</strong>: Strangers make better foes than friends. Will
+you tell me who you are altogether, if not individually?</p>
+<p><strong>pockmarked anarchist</strong>: Heralds of a new age – does
+that sound immodest?</p>
+<p><strong>bearded anarchist</strong>: You could say we represent the
+unofficial view of a well-ordered society.</p>
+<p><strong>kafka</strong>: Ah – we’re back to the “authorities” you
+spoke of.</p>
+<p><strong>gabriela</strong>: They’re ubiquitous. What we try to do … is
+make them a little less so.</p>
+<p><strong>bearded anarchist</strong>: Quite a disturbance tonight, yes?
+And perhaps you recall last month – the explosion at the Municipal
+Courthouse that sent one of the examining magistrates to join the
+heavenly choir.</p>
+<p><strong>kafka</strong>: … Was Eduard one of you?</p>
+<p><strong>youthful anarchist</strong>: The last to join us, the first
+to leave us.</p>
+<p><strong>kafka</strong>: … Why take me into your confidence?</p>
+<p><strong>pockmarked anarchist</strong>: That’s obvious, isn’t it? We
+have an opening for a new member.</p>
+<p><strong>gabriela</strong>: I nominated you as a possible candidate.
+You were Eduard’s good friend. He read me some of your work.</p>
+<p><strong>kafka</strong>: I’ve hardly published enough for anyone to
+draw conclusions from.</p>
+<p><strong>gabriela</strong>: You strike me as a man with a defined
+notion of injustice – a high concern for the lot of your fellow men. And
+yet you’re able to remain an outsider. With the concomitant air of …
+superiority?</p>
+<p><strong>bearded anarchist</strong>: In short, a higher man. It’s what
+we want. It’s what we need.</p>
+<p><strong>kafka</strong>: The distance to my fellow man is for me quite
+a journey. As for being an outsider, it’s never been a matter of
+choice.</p>
+<p><strong>youthful anarchist</strong>: – They may have instituted
+proceedings against you.</p>
+<p><strong>kafka</strong>: What proceedings?</p>
+<p><strong>pockmarked anarchist</strong>: Preliminary investigations may
+already be underway.</p>
+<p><strong>bearded anarchist</strong>: You were his friend. One link is
+all they need.</p>
+<p><strong>gabriela</strong>: The day he died, Eduard was called up to
+the Castle. Did you know that?</p>
+<p><strong>kafka</strong>: What of it?</p>
+<p><strong>gabriela</strong>: He was summoned to help correct a minor
+discrepancy of some sort in the Medical Records Division. Apparently one
+of his claims was relevant.</p>
+<p><strong>pockmarked anarchist</strong>: – Merely in the interests of
+order, you understand. The officials at the Castle like to cover their
+tracks.</p>
+<p><strong>gabriela</strong>: He was never seen alive again.</p>
+<p><strong>kafka</strong>: And you still maintain – what? That he was
+murdered.</p>
+<p><strong>gabriela</strong>: He was murdered.</p>
+<p><strong>bearded anarchist</strong>: As you can imagine, a pass into
+the Castle – hardly ever granted – was an opportunity we couldn’t
+ignore.</p>
+<p><strong>youthful anarchist</strong>: The Castle represents every
+anachronism that needs to be destroyed if progress is to be made.</p>
+<p><strong>bearded anarchist</strong>: As you know, it’s not the most
+accessible location. Far from being depressed, Eduard was particularly
+excited when he brought us the news of this chance invitation. He set
+off that evening carrying one of our custom-made briefcases instead of
+his own.</p>
+<p><strong>gabriela</strong>: You’re shocked at the thought of Eduard
+tossing a bomb through a window.</p>
+<p><strong>kafka</strong>: I have no right to be, I know. My experience
+with real life is practically nil.</p>
+<p><strong>gabriela</strong>: When you only see someone sitting at a
+desk all day, it’s liable to create a false impression.</p>
+<p><strong>kafka</strong>: People must think the same of me – a quiet,
+dependable person.</p>
+<p><strong>bearded anarchist</strong>: You don’t have to accept
+everything as true, my friend. You need only accept it as necessary.</p>
+<p><strong>gabriela</strong>: As the bomb never went off, we can only
+assume he was caught with it – and summarily executed.</p>
+<p><strong>pockmarked anarchist</strong>: – Merely in the interests of
+order.</p>
+<p><strong>bearded anarchist</strong>: The formality of a trial would be
+too costly for them. They’re beginning to understand that it’s the
+ensuing news of our actions that incites support.</p>
+<p><strong>kafka</strong>: Propaganda of the dead?</p>
+<p><strong>youthful anarchist</strong>: The Castle will deny he was
+there any longer than his business required. They’re just file clerks up
+there. No doubt he was handed over to the police with the utmost
+discretion.</p>
+<p><strong>bearded anarchist</strong>: In any event, we’ve felt no
+repercussions as yet. Eduard must not have talked. You’re the one they
+contacted.</p>
+<p><strong>kafka</strong>: So that’s who my foes are – policemen and
+file clerks. Law and order, you might say.</p>
+<p><strong>gabriela</strong>: You think what we’re doing is so wrong?
+And what are you doing? Pursuing goodness? For what? To answer to some
+supreme tribunal?</p>
+<p><strong>kafka</strong>: My only concern is the human tribunal. Isn’t
+it yours?</p>
+<p><strong>gabriela</strong>: Yes – which is why “quiet, dependable
+people” have to take charge of their own lives.</p>
+<p><strong>kafka</strong>: At the cost of others? You accuse people of
+murder without trial – apparently without irony. Did you go to the
+Castle with Eduard? Then you have no idea what really might have
+happened that night at all – even before or after he got there.</p>
+<p><strong>gabriela</strong>: Your human tribunal will betray you. Just
+as its members will be betrayed when they find no supreme one</p>
+<p><strong>gabriela</strong>: Join us, Kafka.</p>
+<p><strong>gabriela</strong>: It’s sheer folly for anyone to try to pull
+through alone.</p>
+<p><strong>kafka</strong>: How was your evening?</p>
+<p><strong>assistants</strong>: Fine – terrible.</p>
+<p><strong>kafka</strong>: What was the matter with it?</p>
+<p><strong>oskar</strong>: He can’t sit still. Just when we arrive at a
+nightclub he wants to go to another one.</p>
+<p><strong>ludwig</strong>: You look tired.</p>
+<p><strong>oskar</strong>: Gabriela Rossman was here looking for you. Do
+you know her?</p>
+<p><strong>kafka</strong>: Do you?</p>
+<p><strong>oskar</strong>: We saw her naked once – didn’t we.</p>
+<p><strong>ludwig</strong>: Women are all you have on your mind!</p>
+<p><strong>oskar</strong>: She went to the roof to sunbathe one lunch
+hour – we watched her changing.</p>
+<p><strong>kafka</strong>: I didn’t realize you’d been here that
+long.</p>
+<p><strong>oskar</strong>: You mean because it’s been a while since
+there was a sunny day? What a good detective you are.</p>
+<p><strong>ludwig</strong>: They keep switching us from department to
+department. He doesn’t mind because he can’t sit still.</p>
+<p><strong>oskar</strong>: We used to be in the supply section, carrying
+boxes of medicine about but we dropped too many of them.</p>
+<p><strong>ludwig</strong>: It’s not too bad working here.</p>
+<p><strong>kafka</strong>: You don’t think it’s a horrible double life
+from which there is probably no escape but insanity?</p>
+<p><strong>ludwig</strong>: No.</p>
+<p><strong>kafka</strong>: I’m glad for you.</p>
+<p><strong>oskar</strong>: You should be content, you know!</p>
+<p><strong>burgel</strong>: Are you looking for Gabriela Rossmann?</p>
+<p><strong>kafka</strong>: Yes.</p>
+<p><strong>gabriela</strong>: I’m collecting Eduard’s things. If there’s
+anything you want, take it or I’ll give it to charity.</p>
+<p><strong>kafka</strong>: Burgel gave me this – what does it mean?</p>
+<p><strong>gabriela</strong>: Burgel! – I didn’t leave it with him.</p>
+<p><strong>kafka</strong>: Why were you given notice?</p>
+<p><strong>gabriela</strong>: They’re not obliged to tell.</p>
+<p><strong>kafka</strong>: It couldn’t be for that incident with Burgel
+the other day.</p>
+<p><strong>gabriela</strong>: Of course it could – Burgel’s been trying
+to get me thrown out as long as I can remember. He could’ve killed
+Eduard.</p>
+<p><strong>kafka</strong>: You don’t believe that.</p>
+<p><strong>gabriela</strong>: I wouldn’t put it past him.</p>
+<p><strong>kafka</strong>: It seems I knew Eduard a little bit, after
+all.</p>
+<p><strong>concierge</strong>: Lodgers! Not one of them thinks to spare
+me such spectacles!</p>
+<p><strong>gabriela</strong>: You might think – I thought so myself at
+first – that Burgel’s too insignificant to be dangerous. But that’s the
+very reason to beware! It’s the small men to watch out for – the ones
+who substitute method for character.</p>
+<p><strong>kafka</strong>: Now you’ve fallen into his trap. When he goes
+to bed at night Burgel dreams of inspiring as much fear in others as
+they inspire in him.</p>
+<p><strong>gabriela</strong>: It’s still easier for you to understand
+suicide, isn’t it.</p>
+<p><strong>kafka</strong>: That street down there – I always used to
+call it the approach road for suicides. It leads straight down to the
+bridge and the River.</p>
+<p><strong>gabriela</strong>: Burgel hated Eduard. And me. I’m sure he
+knew about us – and I’m sure it drove him mad.</p>
+<p><strong>kafka</strong>: Burgel doesn’t like anybody!</p>
+<p><strong>gabriela</strong>: He used to like me – very much more than I
+liked him.</p>
+<p><strong>kafka</strong>: He’s jealous, yes, but that jealous? He’s too
+cautious.</p>
+<p><strong>gabriela</strong>: Of course he is – the Castle precincts are
+not the safest part of the city after dark. People disappear up there
+regularly. If you want to lie in wait for someone, that’s the place to
+do it.</p>
+<p><strong>kafka</strong>: Now you’re saying Eduard was lured there?</p>
+<p><strong>gabriela</strong>: How often does one of our clerks have
+business in the house of records?</p>
+<p><strong>kafka</strong>: I’ve heard of it happening.</p>
+<p><strong>gabriela</strong>: And Burgel is the bringer of messages,
+isn’t he?</p>
+<p><strong>kafka</strong>: Usually.</p>
+<p><strong>gabriela</strong>: Or what if there really was an error? – I
+don’t know what kind – any kind that needed correcting – and what if
+Burgel was responsible for it? One mistake – even a small one in a firm
+like ours – it could cost him a promotion.</p>
+<p><strong>kafka</strong>: First these nameless authorities were the
+root of all evil, now it’s insignificant Burgel. If indeed there was a
+mistake – and a minor one at that – you’re suggesting someone went to a
+lot of trouble over something so trivial as to not matter at all.</p>
+<p><strong>gabriela</strong>: What seems important to these people is
+not determined by the amount of work it entails – you’re far from
+understanding the authorities if you believe that.</p>
+<p><strong>kafka</strong>: Now Burgel’s one of the authorities?</p>
+<p><strong>gabriela</strong>: For all his big talk he is. Does he really
+have access to the Directors of the firm as he always claims? – or only
+the Deputy Managers – people of no importance whatsoever. Someone ought
+to follow him for a change.</p>
+<p><strong>kafka</strong>: You won’t make any sense of it while you’re
+upset.</p>
+<p><strong>gabriela</strong>: Burgel is only there for one purpose – to
+spy on the employees and report any and all indiscretions, real or
+imagined. If he didn’t send Eduard to the Castle, you can be damn sure
+he’s in league with whoever greeted him there. All those bastards are in
+league with each other – why can’t you see that!</p>
+<p><strong>kafka</strong>: … I don’t see anything. I see a message on
+its way to me – with all the right answers. Only it never arrives – it’s
+always just on its way.</p>
+<p><strong>gabriela</strong>: Eduard …</p>
+<p><strong>gabriela</strong>: Your ignorance of the way things are here
+is so appalling that it makes my head spin to listen to you and compare
+what you say and have in mind with the real situation!</p>
+<p><strong>inspector</strong>: You said she was extremely upset. People
+who are extremely upset – Kafka – are given to disappearing in a hurry.
+They go and calm down for a day or so and then they come back.</p>
+<p><strong>kafka</strong>: But that’s just my point – she was more than
+upset, she was livid. She slammed every door on her way downstairs –
+except that one. I was just behind her and I didn’t even hear that one
+shut – not at all.</p>
+<p><strong>inspector</strong>: That’s not what I call conclusive
+evidence of an abduction.</p>
+<p><strong>kafka</strong>: If someone was waiting here in the hallway to
+spirit her away, wouldn’t they have shut the door as quietly as
+possible?</p>
+<p><strong>inspector</strong>: Why would someone want to kidnap this
+woman – the name is Rossmann?</p>
+<p><strong>kafka</strong>: You told me to contact you if anything
+relevant came up – Gabriela is relevant. When I spoke to you before I
+didn’t know she’d been seeing Eduard.</p>
+<p><strong>inspector</strong>: That’s been noted. But where does it lead
+us? Unless you have something more to add.</p>
+<p><strong>kafka</strong>: She’s missing. I went to her house and she
+hadn’t returned there.</p>
+<p><strong>inspector</strong>: She lost her job today. Just between you
+and me, I’d probably go away and brood a bit myself.</p>
+<p><strong>kafka</strong>: Maybe it’s true then what she said.</p>
+<p><strong>inspector</strong>: What did she say?</p>
+<p><strong>kafka</strong>: That the police may have allegiance to
+something other than truth.</p>
+<p><strong>kafka</strong>: – She didn’t think Eduard committed suicide.
+Any more than I do. She was convinced of it.</p>
+<p><strong>inspector</strong>: I’m going to say something, and I hope
+it’s quite clear because I won’t be repeating it.</p>
+<p><strong>inspector</strong>: We don’t have to hunt for criminals.
+We’re drawn towards them. The guilty show us the way.</p>
+<p><strong>bizzlebek</strong>: Where are your friends?</p>
+<p><strong>kafka</strong>: Good question. Who are my friends … would
+also be of interest.</p>
+<p><strong>kafka</strong>: Gabriela was right – it’s easier for me to
+understand suicide. I’m a practicing suicide.</p>
+<p><strong>bizzlebek</strong>: – In what sense?</p>
+<p><strong>kafka</strong>: Bachelorhood is just the slow form. The
+bachelor doesn’t sew seeds. Only the moment matters. The space he
+occupies grows smaller and smaller – until the only space right for him
+is his coffin.</p>
+<p><strong>bizzlebek</strong>: These strange stories you write – they
+come naturally, do they?</p>
+<p><strong>kafka</strong>: Naturally? – that’s not the word I would have
+chosen.</p>
+<p><strong>bizzlebek</strong>: Where do you get your ideas? Only joking
+– I’m just joking. Let’s go to a brothel then, Kafka, come on.</p>
+<p><strong>kafka</strong>: I haven’t got the energy. I mean, I have to
+conserve my energy.</p>
+<p><strong>bizzlebek</strong>: Why do you work in that hideous insurance
+office? – dealing with people who fall off ladders. Now take me – I make
+my living as a stone mason. It’s not my art – but it’s the tools of my
+art. You could be – a journalist.</p>
+<p><strong>kafka</strong>: That would be even worse – it would be a
+compromise.</p>
+<p><strong>bizzlebek</strong>: Success or nothing?</p>
+<p><strong>kafka</strong>: No – not even success. My writing is not for
+making a living – it’s for living. Not for other people, it’s for
+me.</p>
+<p><strong>kafka</strong>: … I’m the exile. Gabriela was right about
+that too.</p>
+<p><strong>bearded anarchist</strong>: We have another theory.</p>
+<p><strong>pockmarked anarchist</strong>: We may have attached too
+little importance to the reason Eduard was summoned to the Castle to
+begin with.</p>
+<p><strong>youthful anarchist</strong>: – To correct a small
+discrepancy, you may recall.</p>
+<p><strong>pockmarked anarchist</strong>: – Ah, but what if it
+wasn’t?</p>
+<p><strong>bearded anarchist</strong>: – Small.</p>
+<p><strong>youthful anarchist</strong>: – What if it was a large
+discrepancy?</p>
+<p><strong>pockmarked anarchist</strong>: Yours is a very powerful and
+important firm – it has a lot at stake.</p>
+<p><strong>bearded anarchist</strong>: Perhaps Eduard was closer than he
+knew to discovering it and so had to be silenced.</p>
+<p><strong>youthful anarchist</strong>: – Or he was even more an
+innocent victim than that – he was chosen to bear the blame if the crime
+was uncovered by anyone else.</p>
+<p><strong>pockmarked anarchist</strong>: – The crime so scandalous that
+the poor young clerk committed suicide rather than own up to it.</p>
+<p><strong>kafka</strong>: That’s mad.</p>
+<p><strong>pockmarked anarchist</strong>: – Oh, yes, it’s mad.</p>
+<p><strong>kafka</strong>: – You said so yourself the firm is large and
+powerful. If the discrepancy really was something big, Eduard’s
+responsibility would still have to be small. No poor young clerk could
+find himself in such a fix.</p>
+<p><strong>pockmarked anarchist</strong>: When a scapegoat is needed, my
+friend …</p>
+<p><strong>bearded anarchist</strong>: We have to know what he was
+working on at the time of his death.</p>
+<p><strong>kafka</strong>: He worked on routine claims. His visit to the
+Castle was probably as minor a mission as he said it was.</p>
+<p><strong>pockmarked anarchist</strong>: Why are you so aggressively
+unimaginative? Eduard is no longer the only casualty.</p>
+<p><strong>kafka</strong>: Then why haven’t I been –</p>
+<p><strong>youthful anarchist</strong>: – Kidnapped or murdered? Because
+your connection with Eduard was obvious and above board – not as easily
+misconstrued.</p>
+<p><strong>bearded anarchist</strong>: – Not secretive, therefore not
+suspicious.</p>
+<p><strong>pockmarked anarchist</strong>: – Gabriela, on the other hand,
+had made an enemy of this man Burgel.</p>
+<p><strong>kafka</strong>: Oh, Burgel! Gabriela was having an affair
+with Eduard. They were both members of this group. If any crime’s been
+discovered and people are paying for it, I’d look to yourselves!</p>
+<p><strong>pockmarked anarchist</strong>: The loyal civil servant. I
+suppose you’ll deny that shortchanging the workers to whom compensation
+is due is standard company policy.</p>
+<p><strong>bearded anarchist</strong>: It wouldn’t surprise us if the
+discrepancy was between medicines sent and medicines received.</p>
+<p><strong>youthful anarchist</strong>: – People die for such
+discrepancies.</p>
+<p><strong>solemn anarchist</strong>: We must have a look at Eduard’s
+file.</p>
+<p><strong>keeper</strong>: “Raban” – that’ll be nearly at the back of
+the alphabet.</p>
+<p><strong>kafka</strong>: It usually is.</p>
+<p><strong>keeper</strong>: I’m not obliged to give you access, you know
+– not without authorization – but I’ll make an exception this one
+time.</p>
+<p><strong>keeper</strong>: I’m overworked as it is. “Raban” did you
+say?</p>
+<p><strong>kafka</strong>: Yes. Isn’t it there?</p>
+<p><strong>keeper</strong>: Wait a minute. “Raban?” Where have I heard
+that name?</p>
+<p><strong>kafka</strong>: He’s the clerk who died last week. From the
+insurance department</p>
+<p><strong>kafka</strong>: What’s the matter?</p>
+<p><strong>keeper</strong>: Why would we keep files on dead employees?
+All old files are sent up to the Castle. Do you think we have room for
+two hundred years worth personnel records?</p>
+<p><strong>kafka</strong>: It’s gone out so quickly?</p>
+<p><strong>keeper</strong>: Whenever an employee departs, shall we say,
+it’s up to the head of his department to requisition his file, reassign
+any outstanding claims, and send it off.</p>
+<p><strong>kafka</strong>: – You mean my Chief has it.</p>
+<p><strong>kafka</strong>: Excuse me, sir – I understand you have Eduard
+Raban’s file.</p>
+<p><strong>chief clerk</strong>: I do.</p>
+<p><strong>kafka</strong>: I wonder if I might look to see if there’s an
+address for family – I thought I’d like to write to them.</p>
+<p><strong>chief clerk</strong>: No – just as I thought – no entry for
+family.</p>
+<p><strong>chief clerk</strong>: Was there something else?</p>
+<p><strong>kafka</strong>: No – I just – I feel a sense of obligation.
+He was my friend – if I can be of any help – closing his affairs.</p>
+<p><strong>chief clerk</strong>: No, there’s only one report to
+complete. I’ll be doing it myself and submitting it to the Castle today
+or tomorrow.</p>
+<p><strong>kafka</strong>: I see – it’s just the Erlanger claim
+then.</p>
+<p><strong>chief clerk</strong>: The Orlac claim.</p>
+<p><strong>kafka</strong>: Sorry, yes – well – thank you, sir.</p>
+<p><strong>chief clerk</strong>: Kafka.</p>
+<p><strong>chief clerk</strong>: You’re too sensitive. Let your friend
+rest in peace. I’ve known suicides. Such a song- and-dance about
+nothing.</p>
+<p><strong>kafka</strong>: Yes, sir.</p>
+<p><strong>chief clerk</strong>: Give it up.</p>
+<p><strong>keeper</strong>: If it was Accounts you wanted why did you
+ask for Employees?</p>
+<p><strong>kafka</strong>: Orlac is an account?</p>
+<p><strong>keeper</strong>: It’s a factory in the northern mountains.
+One of our best customers. Without a proper request I’m not obliged to
+do this, you understand – but I’ll make an exception on this one
+occasion.</p>
+<p><strong>keeper</strong>: At least the account is current even if the
+employee isn’t.</p>
+<p><strong>keeper</strong>: That place has so many accidents, it’s a
+good thing the type of peasants who live up there don’t seem to have any
+trouble propagating their race.</p>
+<p><strong>kafka</strong>: All these in the last year?</p>
+<p><strong>keeper</strong>: You must have read about it in the papers –
+there was a terrible cave-in. It wouldn’t have been so bad, but even the
+Medical Officer for the district was killed!</p>
+<p><strong>kafka</strong>: I did read that. They gave him a posthumous
+medal.</p>
+<p><strong>keeper</strong>: Dr. Murnau was the bravest of men. He spent
+an entire career in those backwaters with no regard for personal gain. A
+great loss.</p>
+<p><strong>kafka</strong>: This is the cross-reference of clerks who’ve
+worked on Orlac claims?</p>
+<p><strong>keeper</strong>: Is your friend’s name among them? Then he
+only worked on the one case. Your Chief will send me the final summation
+when he’s finished with it.</p>
+<p><strong>kafka</strong>: Once a file’s been sent to the Caste, is it
+possible to recall it for review?</p>
+<p><strong>keeper</strong>: Of course not. Only by a Director of the
+firm. Who’d want to let in all kinds of riff-raff off the streets?</p>
+<p><strong>kafka</strong>: What good are records if they’re not open for
+public inspection?</p>
+<p><strong>keeper</strong>: These laws have been with us for centuries –
+how can you doubt them?</p>
+<p><strong>kafka</strong>: What if I petitioned one of the
+Directors?</p>
+<p><strong>keeper</strong>: You do not summon them – they summon you –
+and this, of course, hardly ever happens, if at all. The Directors are
+an eccentric lot and by nature cautious.</p>
+<p><strong>kafka</strong>: Where do our records go to in the Castle?</p>
+<p><strong>keeper</strong>: We’re a medical firm, aren’t we? They go to
+the Medical Records Section.</p>
+<p><strong>kafka</strong>: I could always apply there.</p>
+<p><strong>keeper</strong>: It so happens, my dear simple sir, that the
+Head of Medical Records at the Castle is one of the Directors of this
+firm.</p>
+<p><strong>kafka</strong>: Do you mind!</p>
+<p><strong>oskar</strong>: – I was just trying to finish some work!</p>
+<p><strong>kafka</strong>: You mean you’ve actually begun some?</p>
+<p><strong>ludwig</strong>: – Just because he’s done nothing today, he
+doesn’t want me to show him up!</p>
+<p><strong>kafka</strong>: My assistants! You might as well have fallen
+from the sky for all the thought that was spent in choosing you!</p>
+<p><strong>oskar</strong>: It’s not our fault. We’re naturally
+nervous.</p>
+<p><strong>ludwig</strong>: And we’re upset too.</p>
+<p><strong>kafka</strong>: What’s the matter with you?</p>
+<p><strong>oskar</strong>: I can’t make a simple statement without him
+taking issue with it</p>
+<p><strong>kafka</strong>: – You should meet my father.</p>
+<p><strong>ludwig</strong>: We’ve been together too long. His
+personality is overflowing into mine and vice versa.</p>
+<p><strong>oskar</strong>: – How would you like to be in a horrible
+situation like that?</p>
+<p><strong>kafka</strong>: All right, you might as well go home – go
+on.</p>
+<p><strong>woman</strong>: Well, what’re you waiting for?</p>
+<p><strong>mr. pick’s voice</strong>: – Come on – there’s no one up
+there. We’re going now.</p>
+<p><strong>mr. pick</strong>: That’s it – it’s all right – you’ve done
+very well.</p>
+<p><strong>mr. pick</strong>: Never mind them – they’ll be attended
+to.</p>
+<p><strong>kafka’s voice</strong>: “– oh, and thank you for the suit
+from Father, although I don’t know why he didn’t simply return it. If
+it’s too small for him why do you immediately suppose it will fit me? …
+Your son … Your loving son … Your somewhat loving son … Your
+occasionally loving son … Your incapable-of-loving son … Your
+absolutely-bored-to-death-with-any- kind-of-family-life son …”</p>
+<p><strong>burgel</strong>: The Chief Clerk would like this ready for
+tomorrow morning. He says it should only take you an extra hour or
+two.</p>
+<p><strong>kafka</strong>: – Help! HELP!</p>
+<p><strong>voice</strong>: Did you think you’d be safe back in your
+little burrow?</p>
+<p><strong>other voice</strong>: No matter how deep a hole you dig for
+yourself, the beast will always find you.</p>
+<p><strong>oskar</strong>: We’re to take you to the Castle.</p>
+<p><strong>kafka</strong>: So. You’re the guides up there. And we
+thought it was Burgel.</p>
+<p><strong>ludwig</strong>: They wouldn’t let Burgel into the Castle.
+You should look upon this as a great favor.</p>
+<p><strong>kafka</strong>: I don’t want any favors from the Castle –
+just my rights.</p>
+<p><strong>ludwig</strong>: We answer directly to Ekman, the Senior
+Partner – he practically runs the Castle. In a case like this you’re
+better off dealing with the highest authority – even though it’s equally
+futile.</p>
+<p><strong>oskar</strong>: When you speak to him you have to lean quite
+near his right ear because the left doesn’t work so well.</p>
+<p><strong>kafka</strong>: For all your incompetence I was beginning to
+think you were at least loyal to me. You’re very good ham actors.</p>
+<p><strong>oskar</strong>: – Just doing our job.</p>
+<p><strong>kafka</strong>: It’s a farce.</p>
+<p><strong>ludwig</strong>: We think you’d better accept your position
+instead of pointlessly annoying us.</p>
+<p><strong>kafka</strong>: What position? Being prosecuted in a case
+like this means having already lost it.</p>
+<p><strong>oskar</strong>: Still, we’re probably closer to you at the
+moment than any of your fellow human beings.</p>
+<p><strong>kafka</strong>: Close only by virtue of antithesis.</p>
+<p><strong>kafka</strong>: My assistants. I should have known. Nothing
+is given to me. I have to acquire everything.</p>
+<p><strong>oskar</strong>: It’s all right to be sarcastic in private to
+us – because we have a sense of humor – but when we’re up at the Castle
+we suggest you don’t make a fuss. It would spoil the not unfavorable
+impression you make in other respects.</p>
+<p><strong>ludwig</strong>: Frankly, we don’t understand why you’ve even
+bothered pursuing this business.</p>
+<p><strong>kafka</strong>: It would be more accurate to say that it has
+pursued me.</p>
+<p><strong>oskar</strong>: But your goal is so hard to reach. Do you
+think the official network would surrender to one man? We would never
+think of attempting anything remotely as difficult.</p>
+<p><strong>ludwig</strong>: My mother used to tell us of the young man
+who decided to ride to the next village and how she was afraid that –
+not even mentioning accidents – the span of a normal happy life might
+fall far short of the time needed for such a trip.</p>
+<p><strong>kafka</strong>: You’ve dropped some money.</p>
+<p><strong>kafka</strong>: You work in the cemetery.</p>
+<p><strong>bizzlebek</strong>: A man must eat – And drink.</p>
+<p><strong>kafka</strong>: The Castle cemetery.</p>
+<p><strong>bizzlebek</strong>: Are you sure you wouldn’t prefer going
+through official channels?</p>
+<p><strong>kafka</strong>: Official channels – a lot of good they’ve
+done me. My only hope is to approach the officials personally.</p>
+<p><strong>bizzlebek</strong>: – I’m flattered, of course, to be
+considered a friend – even without knowing all the details. – To see
+such determination is reward enough for me.</p>
+<p><strong>kafka</strong>: The Kafka men are famous for it, you know.
+Delivering meat barefoot in the depths of winter, picking up sacks of
+flour with their teeth –</p>
+<p><strong>kafka</strong>: – Oh, yes, determination runs in the
+family.</p>
+<p><strong>bizzlebek</strong>: There is one thing I’d like you to tell
+me.</p>
+<p><strong>kafka</strong>: I’m trying to find things out myself – that’s
+the whole point.</p>
+<p><strong>bizzlebek</strong>: What made you think I’d be able to get
+you into the Castle?</p>
+<p><strong>kafka</strong>: The cemetery is nearer the Castle than
+anywhere else – wasn’t it part of the Castle originally? – I always
+assumed there’d be a gate or something. Isn’t there?</p>
+<p><strong>bizzlebek</strong>: In a manner of speaking.</p>
+<p><strong>bizzlebek</strong>: I was restoring some stones here in the
+upper section one day – and I found this.</p>
+<p><strong>kafka</strong>: An empty tomb?</p>
+<p><strong>bizzlebek</strong>: A cenotaph – a monument to someone whose
+remains ended up elsewhere. But look –</p>
+<p><strong>bizzlebek</strong>: The Castle gates were blockaded in the
+time of the great plague – it’s an escape route. Don’t get stuck.</p>
+<p><strong>kafka</strong>: Not a chance. I’m the thinnest person I
+know.</p>
+<p><strong>kafka</strong>: – You appreciate my writing.</p>
+<p><strong>bizzlebek</strong>: Yes.</p>
+<p><strong>kafka</strong>: Will you do me a favor then?</p>
+<p><strong>bizzlebek</strong>: Another one?</p>
+<p><strong>kafka</strong>: If I don’t see you later – go to my house and
+find my notebooks – and destroy them. All my manuscripts – just burn
+them. Please.</p>
+<p><strong>bizzlebek</strong>: What an extraordinary request!</p>
+<p><strong>kafka</strong>: It’s my last and final one.</p>
+<p><strong>bizzlebek</strong>: Then its authority is in doubt.</p>
+<p><strong>kafka</strong>: A true friend would do it.</p>
+<p><strong>bizzlebek</strong>: Not necessarily. A wife would.</p>
+<p><strong>hears</strong>: the quick cry of a man’s agony, a scuffle of
+shoes on hard stone floor, a dull thud, a wave of peculiar shouts,
+running footsteps, more mumbled mingled voices – which soon die out,
+leaving silence.</p>
+<p><strong>gaunt man</strong>: You’ve killed him! Like a dog!</p>
+<p><strong>gaunt man</strong>: – They won’t like that. Not a bit!</p>
+<p><strong>kafka</strong>: I didn’t –</p>
+<p><strong>gaunt man</strong>: You’ll incriminate the rest of us! Let me
+out too!</p>
+<p><strong>horrible voices</strong>: Help us! – release us!</p>
+<p><strong>gaunt man</strong>: You’re in the bowels now, my friend!
+You’ve thrown yourself in it now!</p>
+<p><strong>gaunt man</strong>: Let me out – I’m all right – they haven’t
+treated me yet! We can go together!</p>
+<p><strong>mr. pick</strong>: You!</p>
+<p><strong>friendly clerk</strong>: Are you lost?</p>
+<p><strong>kafka</strong>: I’m, uh, looking for the Medical Records
+Section.</p>
+<p><strong>friendly clerk</strong>: Oh, you’re miles away. From here
+you’ll want to go left, left again, right, right again, left then right,
+right then left, and take the Blue Staircase.</p>
+<p><strong>kafka</strong>: Thank you.</p>
+<p><strong>friendly clerk</strong>: – I haven’t seen you here
+before.</p>
+<p><strong>kafka</strong>: No …</p>
+<p><strong>kafka</strong>: … I’m new.</p>
+<p><strong>murnau</strong>: I assume you’re wondering … what all this
+has been about.</p>
+<p><strong>kafka</strong>: Are you the Head of Medical Records?</p>
+<p><strong>murnau</strong>: He’s come on his own initiative. – Not
+something we encourage, mind you, but we like to know it exists.</p>
+<p><strong>murnau</strong>: What it amounts to is simply this …</p>
+<p><strong>murnau</strong>: A piece of paper was delivered to the wrong
+clerk. It was essential he bring it back to us. These complications have
+arisen because he had friends – like you, among others – friends
+unlikely to let a sleeping dog lie.</p>
+<p><strong>kafka</strong>: … A piece of paper …</p>
+<p><strong>murnau</strong>: A mere slip. Your friend Mr. Raban dealt
+only with claims that came in, another department being responsible for
+compensation that goes out – this is correct?</p>
+<p><strong>murnau</strong>: Through a very unfortunate – and I might add
+extremely rare – mishap, a document intended for the one department was
+sent to the other. And for the first time – though your friend wasn’t
+aware of it – two and two could have been put together to make one.</p>
+<p><strong>kafka</strong>: … A piece of paper …</p>
+<p><strong>murnau</strong>: You see, Kafka, in all cases relating to the
+factory at Orlac – which is what this paper referred to – the authority
+that puts in a request and the authority that grants it is, to all
+intents and purposes, the same authority.</p>
+<p><strong>murnau</strong>: – You seem amused.</p>
+<p><strong>kafka</strong>: It only amuses me in that it gives me an
+insight into the ludicrous bungling that in some circumstances may
+decide the life of a human being.</p>
+<p><strong>murnau</strong>: It’s merely a matter of expediency. It’s
+imperative that my room to maneuver not be hindered by … bureaucratic
+ramifications.</p>
+<p><strong>murnau</strong>: – If an obscure official up there in the
+distant mountains so far away from civilizing influences happens to meet
+with an unfortunate accident – and should he tragically die in spite of
+the District Medical Officer’s strenuous efforts to save him – the firm
+wants to see the next of kin pacified and the disposition of the remains
+handled with the greatest possible … efficiency.</p>
+<p><strong>kafka</strong>: “Accident and Compensation” – no one can
+accuse the firm of not supplying exactly what it promises.</p>
+<p><strong>murnau</strong>: I believe we’ve exceeded his
+expectations.</p>
+<p><strong>kafka</strong>: I had the grandest of financial plots in
+mind, the most malevolent of personal motives, conspiracy theories
+extending to every … authority I could see. And I find you. A body
+snatcher.</p>
+<p><strong>murnau</strong>: Life is more than a Chinese puzzle, my
+friend.</p>
+<p><strong>kafka</strong>: And I suppose Dr. Murnau didn’t die in a
+cave-in. You killed him to free the Position of Orlac Medical Officer
+for your own ends.</p>
+<p><strong>murnau</strong>: Yes, well – we’re looking for a new village
+now. If we stay too long at one source … people become suspicious.</p>
+<p><strong>murnau</strong>: But you’re quite right that he didn’t die in
+that cave-in. In fact, he didn’t die at all. He was simply recalled – by
+himself. As well as being Head of Medical Records here and a Director of
+your firm – I’m Dr. Murnau, of course.</p>
+<p><strong>murnau</strong>: May I ask where your two warders are?</p>
+<p><strong>kafka</strong>: Lying in the gutter where they belong.</p>
+<p><strong>murnau</strong>: Pity. They’re an amusing pair, didn’t you
+find? Absolute innocents.</p>
+<p><strong>murnau</strong>: I so rarely get the chance of showing my
+work to anybody – anybody capable of appreciating it, that is. You might
+say I’m a student of human reaction.</p>
+<p><strong>kafka</strong>: The fact that it’s live bodies you practice
+your trade on doesn’t seem to matter to you.</p>
+<p><strong>murnau</strong>: On the contrary, it matters a great deal.
+We’re engaged in immensely important research here. I’m a revolutionary
+too, you know – but a much more pragmatic one.</p>
+<p><strong>murnau</strong>: – I can’t very well administer experimental
+treatments to corpses – and if they become corpses, why, they have their
+uses too – that’s why speed is essential. Living tissue, even if its
+owner has passed on, is our most valuable acquisition.</p>
+<p><strong>murnau</strong>: We’ve tried transfusions on our …
+volunteers. Unfortunately, far from infusing superior characteristics
+it’s tended to make them insane – murderous even – a condition we’ve had
+occasion to make use of.</p>
+<p><strong>murnau</strong>: – And the new patients they bring me aren’t
+usually as dexterous as you’ve been in evading us. Not perfect specimens
+by any means, but not the type of person who’ll be missed either.</p>
+<p><strong>kafka</strong>: What have you done with Gabriela
+Rossmann?</p>
+<p><strong>murnau</strong>: As a matter of fact you’ve caught us in a
+state of considerable excitement. Our latest preparation we believe – we
+pray – is perfected. It should take years off her.</p>
+<p><strong>murnau</strong>: And if not – well, there are always what I
+call my caprices of vivisection.</p>
+<p><strong>murnau</strong>: Actually, if it weren’t for the aberrant
+dilemma posed by someone like yourself – continually asking for
+out-of-date files – I’d probably give up my revisionist policies
+altogether. I’m sure what we have to do is start instead at the very
+inception – with the embryo – from a single cell even. The lure of the
+Golem – the man-made man. You appreciate that, I know.</p>
+<p><strong>murnau</strong>: To corrupt the image of man and then offer
+redemption … This is the dawn, Kafka. A new man is being born here. A
+more resilient man … A superman.</p>
+<p><strong>murnau</strong>: To a new world – of Gods and monsters.</p>
+<p><strong>ludwig</strong>: Oskar!</p>
+<p><strong>oskar</strong>: Ludwig?</p>
+<p><strong>ludwig</strong>: This is filed incorrectly!</p>
+<p><strong>oskar</strong>: Here too! They’re all in a dreadful
+muddle!</p>
+<p><strong>kafka</strong>: Gabriela! – you did get away.</p>
+<p><strong>gabriela</strong>: I knew you walked this way to work. I
+wanted to find you before they did.</p>
+<p><strong>kafka</strong>: – I’ve just come from the Castle. It’s
+over.</p>
+<p><strong>gabriela</strong>: Over? It’s only over when you can crawl to
+a clean little spot on earth where the sun sometimes shines and you can
+warm yourself a bit.</p>
+<p><strong>kafka</strong>: Gabriela …?</p>
+<p><strong>gabriela</strong>: Should I tell you why I joined our late
+lamented nihilists? Why I became a murderer? Because murder … is bliss.
+It’s easier than you might think to absorb and assimilate Evil – once
+you’ve adopted its procedure.</p>
+<p><strong>gabriela</strong>: Have you ever watched a person
+deteriorate? Day by day. I don’t mean in a spiritual sense.</p>
+<p><strong>gabriela</strong>: Only two steps back? Even the man they
+left to guard me retreated further than that.</p>
+<p><strong>kafka</strong>: I – I found your jailer.</p>
+<p><strong>gabriela</strong>: This is the result of their elixir of
+youth. They were to come and check on it during the night. I contrived
+to miss the appointment.</p>
+<p><strong>kafka</strong>: They’re dead now. We can get help.</p>
+<p><strong>gabriela</strong>: I know how they reward failure. If they
+saw this I’d be rotting in the quarries by the afternoon – with all the
+others.</p>
+<p><strong>kafka</strong>: There’s a new potion – he said it was
+perfected.</p>
+<p><strong>gabriela</strong>: I know there is. And you’re what I have to
+bargain with. For now you’re the last one in their way.</p>
+<p><strong>kafka</strong>: I told you, they’re dead. It’s finished.</p>
+<p><strong>gabriela</strong>: Why should I believe a man who never
+believed me? They’re absolutely right, you know – guilt should never be
+doubted. It’s easier that way.</p>
+<p><strong>gabriela</strong>: I think you’ve just escaped for the
+moment. Just as I did. As Eduard did. As they let us do. But only for
+the moment.</p>
+<p><strong>kafka</strong>: No – not this time.</p>
+<p><strong>gabriela</strong>: I know better than you what people will
+say when they have to. When they brought me in for questioning I
+informed on my friends the very first day.</p>
+<p><strong>kafka</strong>: – Listen to me –</p>
+<p><strong>gabriela</strong>: I do. Always. You understand the world
+better than any of us, Kafka. And what it’s becoming. I’ve always held
+you in the highest regard.</p>
+<p><strong>kafka</strong>: – Gabriela!</p>
+<p><strong>kafka’s voice</strong>: Dearest Father …</p>
+<p><strong>kafka’s voice</strong>: You asked me recently why I maintain
+that I am afraid of you …</p>
+<p><strong>kafka’s voice</strong>: Naturally things cannot in reality
+fit together the way the evidence does in my letter – life is more than
+a Chinese puzzle. But in my opinion something has been achieved which so
+closely approximates the truth that it might reassure us both a little
+and make our living and our dying easier.</p>
+<p><strong>ludwig</strong>: We could go back to the office. Explain
+ourselves to the Chief Clerk.</p>
+<p><strong>oskar</strong>: They’d drive us away. That Kafka’s made
+things very hot for us.</p>
+<p><strong>ludwig</strong>: I understand he was wounded in the lung.</p>
+<p><strong>oskar</strong>: It doesn’t matter. It’s too late for all of
+us.</p>
+<p><strong>ludwig</strong>: What’s to become of us now?</p>
+<p><strong>oskar</strong>: Amerika. That’s the place to go.</p>
+<p><strong>ludwig</strong>: Everyone in Amerika has a toaster in their
+building!</p>
+<p><strong>oskar</strong>: Then that’s the place for us!</p>
+<p><strong>ludwig</strong>: Amerika for us!</p>
+<p><strong>oskar</strong>: Amerika!</p>
+</body>
+</html>

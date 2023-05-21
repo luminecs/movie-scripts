@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>terminator</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="terminator">terminator</h1>
+<p><strong>leader</strong>: Hey, hey…what’s wrong with this picture?</p>
+<p><strong>leader</strong>: Nice night for a walk, eh?</p>
+<p><strong>terminator</strong>: Nice night for a walk.</p>
+<p><strong>second punk</strong>: Washday tomorrow, huh? Nothing clean,
+right?</p>
+<p><strong>terminator</strong>: Nothing clean. Right.</p>
+<p><strong>leader</strong>: This guy’s a couple bricks short.</p>
+<p><strong>terminator</strong>: Your clothes. Give them to me.</p>
+<p><strong>terminator</strong>: Now.</p>
+<p><strong>second punk</strong>: Fuck you, asshole.</p>
+<p><strong>derelict</strong>: Say, buddy…did you see a real bright
+light?</p>
+<p><strong>first cop</strong>: Hold it, right there!</p>
+<p><strong>reese</strong>: What day is it? The date…</p>
+<p><strong>cop</strong>: Thursday…uh…May twelfth.</p>
+<p><strong>reese</strong>: What year?</p>
+<p><strong>sarah</strong>: Watch this for me, big buns.</p>
+<p><strong>breen</strong>: Sarah?</p>
+<p><strong>sarah</strong>: Yes, Chuck?</p>
+<p><strong>breen</strong>: Come to the office, please.</p>
+<p><strong>sarah</strong>: Mission control to Chuck, come in…</p>
+<p><strong>breen</strong>: You’re late.</p>
+<p><strong>sarah</strong>: Aren’t I worth waiting for?</p>
+<p><strong>breen</strong>: Not really. Do you think you can get here on
+time if I put you on the floor as a waitress?</p>
+<p><strong>sarah</strong>: I don’t know. I kinda had my heart set on
+being a cashier the rest of my life.</p>
+<p><strong>breen</strong>: The pay’s the same but you’ll make more in
+tips.</p>
+<p><strong>sarah</strong>: Thanks, Chuck. I need the</p>
+<p><strong>breen</strong>: Mmm. Same schedule’s okay.</p>
+<p><strong>sarah</strong>: Alright!</p>
+<p><strong>breen</strong>: Can you handle it?</p>
+<p><strong>sarah</strong>: It’s not brain surgery, Chuck.</p>
+<p><strong>breen</strong>: Here you go. You’re a Bob’s Girl now. Nancy
+will check you out.</p>
+<p><strong>sarah</strong>: I won’t let the fat kid down.</p>
+<p><strong>sarah</strong>: Hi, I’m Sarah and I’ll be you waitress. I’m
+so wholesome, I could puke.</p>
+<p><strong>terminator</strong>: …the Remington 1100 Autoloader…</p>
+<p><strong>clerk</strong>: Anything else?</p>
+<p><strong>terminator</strong>: A phased plasma pulse-laser in the forty
+watt range…</p>
+<p><strong>clerk</strong>: Just what you see, pal.</p>
+<p><strong>terminator</strong>: The Uzi 9 millimeter.</p>
+<p><strong>clerk</strong>: You know your weapons, buddy.</p>
+<p><strong>clerk</strong>: Any one of them’s ideal for home defense.
+Which’ll it be?</p>
+<p><strong>terminator</strong>: All.</p>
+<p><strong>clerk</strong>: Maybe I’ll close early. Cash or charge?</p>
+<p><strong>clerk</strong>: Sorry, I can’t sell the ammo with the guns.
+You’ll have to—Hey!</p>
+<p><strong>clerk</strong>: You can’t to that…</p>
+<p><strong>terminator</strong>: Wrong.</p>
+<p><strong>man</strong>: Hey, man…</p>
+<p><strong>customer</strong>: Honey, can I get that coffee now?</p>
+<p><strong>sarah</strong>: Yes sir, just a second.</p>
+<p><strong>sarah</strong>: Who gets the Burly Burger?</p>
+<p><strong>customer two</strong>: I ordered Barbecue Beef.</p>
+<p><strong>customer three</strong>: Does mine come with fires?</p>
+<p><strong>customer four</strong>: He’s got the Barbecue Beef, I’ve got
+a Chili-Beef Deluxe.</p>
+<p><strong>sarah</strong>: Okay, who gets the Burly Beef?</p>
+<p><strong>customer at next table</strong>: Miss, we’re ready to
+order.</p>
+<p><strong>sarah</strong>: Oh, sorry. That’s not real leather, is
+it?</p>
+<p><strong>nancy</strong>: Look at it this way: in a hundred years,
+who’s gonna care?</p>
+<p><strong>terminator</strong>: Sarah Connor?</p>
+<p><strong>woman</strong>: No, she’s upstairs. Who shall I say is–</p>
+<p><strong>woman</strong>: What do you think you’re– My God!</p>
+<p><strong>woman</strong>: Oh my God…Sarah!</p>
+<p><strong>wrong sarah connor</strong>: What is it, Mom?</p>
+<p><strong>take-out customer</strong>: Gimme a falafel with yogurt
+dressing and, uh, Baco-bits.</p>
+<p><strong>reese</strong>: Gimme a falafel with, uh, yogurt and
+Baco-bits.</p>
+<p><strong>counterman</strong>: That’ll be one-sixty.</p>
+<p><strong>counterman</strong>: Hey! Son-of-a-bitch.</p>
+<p><strong>sarah</strong>: I haven’t seen you in here lately,
+Mr. Miller.</p>
+<p><strong>mr. miller</strong>: What’s it to ya?</p>
+<p><strong>sarah</strong>: You must have a girlfriend.</p>
+<p><strong>mr. miller</strong>: That’s none of your business.</p>
+<p><strong>sarah</strong>: Aha! Is she young?</p>
+<p><strong>mr. miller</strong>: Compared to me she is. How</p>
+<p><strong>sarah</strong>: What’s it to ya?</p>
+<p><strong>sarah</strong>: I’m on break, Chuck. Carla’s got my
+station.</p>
+<p><strong>nancy</strong>: Hurry up. It’s about you… I mean sort of…Come
+on!</p>
+<p><strong>waitress</strong>: Hey, Sarah. This is weird.</p>
+<p><strong>tv anchorwoman</strong>: …and a police spokesman at the scene
+refused to speculate on a motive for the execution- style slaying of the
+Encino housewife. He did however say that an accurate description of the
+suspect has been compiled from several witnesses. Once again, Sarah
+Connor, thirty-five, mother of two, brutally shot to death in her home
+this afternoon.</p>
+<p><strong>nancy</strong>: You’re dead, honey.</p>
+<p><strong>marco</strong>: Hi. I’ve seen you around. You’re cute. Cute I
+remember.</p>
+<p><strong>sarah</strong>: I’m Sarah. Ginger’s roommate.</p>
+<p><strong>marco</strong>: Yeah, right. I’m Marco.</p>
+<p><strong>ginger</strong>: …and three aaand four! And that’s it ladies!
+Now, didn’t that feel good?</p>
+<p><strong>ginger</strong>: Let’s think positive or next time I’ll play
+the FM version.</p>
+<p><strong>sarah</strong>: …yeah, really? Say some- thing in
+Italian.</p>
+<p><strong>ginger</strong>: You’re wasting your time, kiddo. Let’s
+go.</p>
+<p><strong>sarah</strong>: I don’t believe you did that.</p>
+<p><strong>sarah</strong>: I had him hooked. He was just about to ask me
+out. I could tell.</p>
+<p><strong>ginger</strong>: That guy’s a jerk. I did you a favor.</p>
+<p><strong>sarah</strong>: I’ll do the same for you sometime.</p>
+<p><strong>ginger</strong>: What’s this? Sleep therapy?</p>
+<p><strong>ginger</strong>: You think somebody’s gonna do this for you?
+Look at those shriveled bi’s. And you haven’t worked lat’s or ab’s since
+Wednesday.</p>
+<p><strong>matt</strong>: Hello, sweetheart. Had a rough day?</p>
+<p><strong>ginger</strong>: Come here, wimp.</p>
+<p><strong>sarah</strong>: Hi, Matt.</p>
+<p><strong>matt</strong>: Heeey! It’s my favorite Sarah. Hi, babe.</p>
+<p><strong>ginger</strong>: Alright, warm-ups are over. Back to work,
+Bunky.</p>
+<p><strong>matt</strong>: ’Bye beautiful. You too, Ginger.</p>
+<p><strong>weightlifter</strong>: Bunky?</p>
+<p><strong>cut fast. impressions only.</strong>: Running. Explosions
+light the ruins like flashbulbs. ENERGY WEAPONS criss-cross the night
+like tracers. LOW ANGLE, up past the burning H-K as its flying counter-
+part, an AERIAL H-K, arcs into view with a TURBOJET WHINE.</p>
+<p><strong>boy</strong>: Hey, mister…?</p>
+<p><strong>sister</strong>: See, I told you he wasn’t dead. You owe me
+Baskin Robbins.</p>
+<p><strong>boy</strong>: Come on. Just come on.</p>
+<p><strong>sarah</strong>: Hello?</p>
+<p><strong>voice</strong>: First I’m going to rip the buttons off your
+blouse, one by one…then run my tongue along your neck, down to your
+bare, gleaming breasts…</p>
+<p><strong>sarah</strong>: Ginger! It’s Matt.</p>
+<p><strong>matt</strong>: …and then slowly pull your jeans off inch by
+inch and lick your belly in circles, further and further down… then I’ll
+pull off your panties with my teeth…</p>
+<p><strong>sarah</strong>: Who is this?</p>
+<p><strong>matt</strong>: Oh my God! Sarah! Oh, shit. Jesus, I’m sorry.
+I thought you were…Can I talk to Ginger?</p>
+<p><strong>sarah</strong>: Sure, Bunky.</p>
+<p><strong>ginger</strong>: Hello?</p>
+<p><strong>matt</strong>: First I’m gonna rip the buttons off your
+blouse…</p>
+<p><strong>sarah</strong>: What do you think?</p>
+<p><strong>ginger</strong>: Great.</p>
+<p><strong>sarah</strong>: How about this?</p>
+<p><strong>ginger</strong>: Great.</p>
+<p><strong>sarah</strong>: You’re a big help.</p>
+<p><strong>ginger</strong>: Alright, the beige one.</p>
+<p><strong>sarah</strong>: I hate the beige one.</p>
+<p><strong>ginger</strong>: Don’t wear the beige one.</p>
+<p><strong>sarah</strong>: This guy’s probably a schmuck and I don’t
+care what I wear.</p>
+<p><strong>sarah</strong>: You think the beige?</p>
+<p><strong>vukovich</strong>: Give me the short version.</p>
+<p><strong>traxler</strong>: Six shots at less than ten feet. Weapon was
+a large caliber–</p>
+<p><strong>vukovich</strong>: No shit.</p>
+<p><strong>traxler</strong>: Come on. man. Don’t track it all over. It’s
+un- professional.</p>
+<p><strong>traxler</strong>: Okay, let’s see…Got a pos- itive on her.
+She’s Sarah Connor, works as a legal–</p>
+<p><strong>vukovich</strong>: That can’t be right. That’s the name of
+the one Valley Division mopped up this after- noon.</p>
+<p><strong>traxler</strong>: Here’s her driver’s license.</p>
+<p><strong>vukovich</strong>: You gotta be kidding me. The new guys’ll
+be short-stroking it over this one. A one-day pattern killer.</p>
+<p><strong>traxler</strong>: I hate the weird ones.</p>
+<p><strong>ginger</strong>: Better than mortal man deserves.</p>
+<p><strong>sarah</strong>: Ginger, have you seen Pugsley?</p>
+<p><strong>ginger</strong>: Not lately. Did you check messages?</p>
+<p><strong>sarah</strong>: I thought you did.</p>
+<p><strong>sarah</strong>: Come here young man. Mind your mother.</p>
+<p><strong>ginger</strong>: Totally nauseating.</p>
+<p><strong>ginger</strong>: That bum. So what if he has a Porsche, he
+can’t treat you like that…it’s Friday night for crissakes.</p>
+<p><strong>ginger</strong>: I’ll break his kneecaps.</p>
+<p><strong>sarah</strong>: You still love me, don’t you, Pugsley?</p>
+<p><strong>sarah</strong>: I’m going to a movie, kiddo. See ya’. You and
+Matt have a good time.</p>
+<p><strong>ginger</strong>: We will, kiddo.</p>
+<p><strong>reporter</strong>: …Lieutenant, are you aware that these two
+killings occurred in the same order as their listings in the phone
+book?</p>
+<p><strong>vukovich</strong>: No comment.</p>
+<p><strong>traxler</strong>: That stuff’s two hours cold.</p>
+<p><strong>vukovich</strong>: I know.</p>
+<p><strong>traxler</strong>: I put a cigarette out in it.</p>
+<p><strong>vukovich</strong>: Did you reach the next girl yet?</p>
+<p><strong>traxler</strong>: No. Keep getting an answer- ing
+machine.</p>
+<p><strong>vukovich</strong>: Send a unit.</p>
+<p><strong>traxler</strong>: I already did. No answer at the door and
+the apartment manager’s out. I’m keeping them there.</p>
+<p><strong>vukovich</strong>: Call her.</p>
+<p><strong>traxler</strong>: I just called.</p>
+<p><strong>vukovich</strong>: Call her again.</p>
+<p><strong>vukovich</strong>: Got a cigarette?</p>
+<p><strong>ginger’s voice</strong>: Hi there. Ha ha ha, fooled you.
+You’re talking to a machine, but don’t by shy, it’s okay. Machines need
+love too, so talk to it and Ginger, that’s me, or Sarah will get back to
+you. Wait for the beep.</p>
+<p><strong>traxler</strong>: Same shit.</p>
+<p><strong>vukovich</strong>: I can hear it now, it’s gonna be the
+goddamned ‘Phone Book Killer’.</p>
+<p><strong>traxler</strong>: I hate the press cases. Especially the
+weird press cases. Where you going?</p>
+<p><strong>vukovich</strong>: To make a statement. I’m gonna give them
+the name. Maybe the jackals can help us out for once.</p>
+<p><strong>vukovich</strong>: If they can get this on the tube by
+eleven, she may just call us. How do I look?</p>
+<p><strong>traxler</strong>: Like shit, boss.</p>
+<p><strong>anchorman</strong>: …police had no further comment on the
+apparent similarity between the shooting death of an Encino woman
+earlier today…</p>
+<p><strong>anchorman</strong>: …and this almost identical killing two
+hours ago of a Venice resident with virtually the same name. Sarah Ann
+Connor, a 24 year old legal secretary, was pronounced dead at the scene
+in her beachfront apartment…</p>
+<p><strong>customer</strong>: Hey, can we change this and catch the ball
+scores.</p>
+<p><strong>bartender</strong>: Sure.</p>
+<p><strong>sarah</strong>: Leave it where it is!</p>
+<p><strong>anchorman</strong>: …no other connections between the two
+victims has been estab- lished. On a lighter note, these was cause for
+celebration at the L.A. Zoo today, as…</p>
+<p><strong>voice</strong>: You have reached the Los Angeles Police
+Department Emergency Number. All lines are busy. If you need a police
+car sent out to you, please stay on the line…</p>
+<p><strong>dispatcher</strong>: …two eleven in progress at Seven-Eleven
+market, Third and Tamarac. One suspect believed to be armed…</p>
+<p><strong>ginger</strong>: Shoo. Go on. I’ll make a belt out of
+you.</p>
+<p><strong>matt</strong>: Whoah!</p>
+<p><strong>ginger’s voice</strong>: Hi there. Ha ha ha, fooled you.
+You’re talking to a machine…</p>
+<p><strong>ginger’s voice</strong>: …but don’t be shy, it’s okay.
+Machines need love too…</p>
+<p><strong>ginger’s voice</strong>: …so talk to it and Ginger, that’s
+me, or Sarah will get back to you. Wait for the beep.</p>
+<p><strong>sarah’s voice</strong>: Ginger, this is Sarah…</p>
+<p><strong>sarah’s voice</strong>: …I’m in this sleazy bar called
+Stoker’s on Pico but I’m too scared to leave. I’m really scared,
+kiddo…</p>
+<p><strong>sarah</strong>: …I think somebody’s after me and I sure hope
+you play this soon ’cause I need you and Matt to come pick me up. The
+police keep transferring me around, but I’m going to try them again.</p>
+<p><strong>sarah</strong>: The number here is 468-9175. Call me, kiddo.
+I need you. It’s Stoker’s on Pico. Bye.</p>
+<p><strong>sarah</strong>: …look, Lieutenant…uh, Vukovich, don’t put me
+on hold and don’t transfer me to another department…</p>
+<p><strong>vukovich</strong>: I won’t. Now just relax. Where are you?
+Yeah, I know it…on Pico. Are you alright?</p>
+<p><strong>sarah</strong>: Yes, but I don’t want to leave. I think this
+guy’s following me.</p>
+<p><strong>vukovich</strong>: Alright, Ms. Connor. Listen carefully.
+You’re in a public place, you’ll be safe ’til we get there. Stay
+visible. Don’t go outside or in the restroom. I’ll be there in a few
+minutes.</p>
+<p><strong>vukovich</strong>: Let’s roll.</p>
+<p><strong>vukovich</strong>: Let’s see how this guy likes playing
+hard-ball.</p>
+<p><strong>waitress</strong>: Anything else?</p>
+<p><strong>sarah</strong>: Lieutenant Vukovich?</p>
+<p><strong>reese</strong>: Come with me if you want to live.</p>
+<p><strong>sarah</strong>: Oh my God…</p>
+<p><strong>vukovich</strong>: What the fuck is going on?</p>
+<p><strong>vukovich</strong>: Cover the alley in back.</p>
+<p><strong>vukovich</strong>: Go! Go! He’s got her.</p>
+<p><strong>traxler</strong>: Suspect westbound on Olympic. Grey sedan.
+Has hostage, repeat…</p>
+<p><strong>reese</strong>: Hold on.</p>
+<p><strong>reese</strong>: Are you injured? Are you shot?</p>
+<p><strong>reese</strong>: Do exactly what I say. Exactly. Don’t move
+un- less I say. Don’t make a sound unless I say. Do you understand?</p>
+<p><strong>reese</strong>: Do you understand?</p>
+<p><strong>sarah</strong>: Yes. Don’t hurt me.</p>
+<p><strong>reese</strong>: I’m here to help you. Reese,
+Sergeant/Tech-Com, DN38416…</p>
+<p><strong>reese</strong>: Assigned to protect you. You’ve been
+targetted for termination.</p>
+<p><strong>cop</strong>: …I don’t know, it looks like it might spread to
+this furniture warehouse across the alley, the paint on the wall’s
+starting to blister up…</p>
+<p><strong>cop</strong>: Better get another truck round to this
+side.</p>
+<p><strong>sarah</strong>: This is a mistake. I haven’t done
+anything.</p>
+<p><strong>reese</strong>: No. But you will. It’s very important that
+you live.</p>
+<p><strong>sarah</strong>: I can’t believe this is happen- ing. How
+could than man get up after you…</p>
+<p><strong>reese</strong>: Not a man. A Terminator. Cyber Dynamics Model
+101.</p>
+<p><strong>dispatcher</strong>: …Suspect vehicle sighted on Motor at
+Pico, southbound. Units Two-Zero-Six and Five- Seven, attempt intercept.
+Unit One-Four-Three, come in.</p>
+<p><strong>terminator</strong>: This is One-Four-Three. West- bound on
+Olympic, approaching Overland.</p>
+<p><strong>pilot</strong>: Air-unit Two. We’re on him. Westbound Santa
+Monica at 405.</p>
+<p><strong>sarah</strong>: A machine? You mean, like a robot?</p>
+<p><strong>reese</strong>: Not a robot. Cyborg. Cybernetic Organism.</p>
+<p><strong>sarah</strong>: But…he was bleeding.</p>
+<p><strong>reese</strong>: Just a second. Keep your head down.</p>
+<p><strong>pilot</strong>: Lost him.</p>
+<p><strong>reese</strong>: Good cover. Alright. Listen. The Terminator’s
+an infil- tration unit. Part man, part machine. Underneath, it’s a
+hyperalloy combat chassis, mircoprocessor-controlled, fully armored.
+Very tough…</p>
+<p><strong>reese</strong>: But outside, it’s living human tissue. Flesh,
+skin, hair…blood. Grown for the cyborgs.</p>
+<p><strong>sarah</strong>: Look, Reese, I know you want to help,
+but…</p>
+<p><strong>reese</strong>: Pay attention. The 600 series had rubber
+skin. We spotted them easy. But these are new. They look human. Sweat,
+bad breath, everything. Very hard to spot. I had to wait ’til he moved
+on you before I could zero him.</p>
+<p><strong>sarah</strong>: Hey, I’m not stupid, y’know. They can’t build
+anything like that yet.</p>
+<p><strong>reese</strong>: No. Not yet. Not for about forty years.</p>
+<p><strong>sarah</strong>: So, it’s from the future, is that right?</p>
+<p><strong>reese</strong>: One possible future. Four your point of view.
+I don’t know the tech stuff.</p>
+<p><strong>sarah</strong>: And you’re from the future too?</p>
+<p><strong>reese</strong>: Right.</p>
+<p><strong>sarah</strong>: Right…</p>
+<p><strong>reese</strong>: Cyborgs don’t feel pain. I do. Don’t…do
+that…again.</p>
+<p><strong>sarah</strong>: Just let me go.</p>
+<p><strong>reese</strong>: Listen. Understand. That Terminator is out
+there. It can’t be reasoned with, it can’t be bargained with…it doesn’t
+feel pity of remorse or fear… and it absolutely will not stop. Ever.
+Until you are dead.</p>
+<p><strong>sarah</strong>: Can you stop it?</p>
+<p><strong>reese</strong>: Maybe. With these weapons… I don’t know.</p>
+<p><strong>dispatcher</strong>: Suspect vehicle located at parking lot,
+Cedar and Glen- haven…</p>
+<p><strong>sarah</strong>: Reese…why me? Why does it want me?</p>
+<p><strong>reese</strong>: There’s so much…</p>
+<p><strong>sarah</strong>: Tell me. Just start at the beginning.</p>
+<p><strong>reese</strong>: There was a war. A few years from now.
+Nuclear war. The whole thing. All this–</p>
+<p><strong>reese</strong>: –everythingis gone. Just gone. There were
+survivors. Here. There. Nobody knew who started it. It was the
+machines.</p>
+<p><strong>sarah</strong>: I don’t understand…</p>
+<p><strong>reese</strong>: Defense network computer. New. Powerful.
+Hooked into everything. Trusted to run it all. They say it got smart…a
+new order of intelli- gence. Then it saw all people as a threat, not
+just the ones on the other side. Decided out fate in a
+microsecond…extermination.</p>
+<p><strong>reese</strong>: Didn’t see the war. I was born after, in the
+ruins. Grew up there. Starving. Hiding from the H-K’s.</p>
+<p><strong>sarah</strong>: The what?</p>
+<p><strong>reese</strong>: Hunter Killers. Patrol machines. Build in
+automated factories. Most of us were rounded up, put in camps…for
+orderly disposal.</p>
+<p><strong>reese</strong>: Burned in by laser scan. Some of us were kept
+alive… to work. Loading bodies. The disposal units ran night and day. We
+were that close to going out forever…</p>
+<p><strong>reese</strong>: …but there was one man…who taught us to
+fight. To storm the wire of the camps. To smash those metal mother-
+fuckers into junk. He turned it around…he brought us back from the
+brink. His name is Connor. John Connor… your son, Sarah. Your unborn
+son.</p>
+<p><strong>reese</strong>: Steer!</p>
+<p><strong>sarah</strong>: Reese!</p>
+<p><strong>vukovich</strong>: Here, drink some of this…</p>
+<p><strong>sarah</strong>: Lieutenant, are you sure it’s them? Maybe I
+should see the …bodies.</p>
+<p><strong>vukovich</strong>: They’ve already been identi- fied. There’s
+no doubt.</p>
+<p><strong>sarah</strong>: Of, God…Ginger…kiddo, I’m so sorry.</p>
+<p><strong>vukovich</strong>: Sarah. Sarah, this is Dr. Silber- man. I’d
+like you to tell him everything Reese said to you. Do you feel up to
+it?</p>
+<p><strong>sarah</strong>: I guess so. You’re a doctor?</p>
+<p><strong>silberman</strong>: A criminal psychologist.</p>
+<p><strong>sarah</strong>: Is Reese crazy?</p>
+<p><strong>silberman</strong>: That’s what we’re going to find out.</p>
+<p><strong>silberman</strong>: So. You’re a soldier. Fighting for
+whom?</p>
+<p><strong>reese</strong>: With the One Thirty Second under Perry, from
+’21 to ’27–</p>
+<p><strong>silberman</strong>: The year 2027?</p>
+<p><strong>reese</strong>: That’s right.</p>
+<p><strong>traxler</strong>: This is fucking great.</p>
+<p><strong>reese</strong>: Then I was assigned Recon/ Security, last two
+years, under John Connor.</p>
+<p><strong>silberman</strong>: And who was the enemy?</p>
+<p><strong>reese</strong>: SKYNET. A computer defense system built for
+SAC-NORAD by Cyber Dynamics. A modified Series 4800.</p>
+<p><strong>silberman</strong>: I see. And this…computer, thinks it can
+win by killing the mother of its enemy, kill- ing him, in effect, before
+he is even conceived? A sort of retroactive abortion?</p>
+<p><strong>reese</strong>: Yes.</p>
+<p><strong>traxler</strong>: That Silberman just crack me up. He had
+this guy in here last week who set his Afghan on fire. Screwed it first,
+then set it on–</p>
+<p><strong>vukovich</strong>: Shut up.</p>
+<p><strong>reese</strong>: …it had no choice. The defensive grid was
+smashed. We’d taken the mainframes… We’d won. Taking out Connor then
+would make no difference. Skynet had to wipe out his entire exist- ence.
+We captured the lab complex. Found the…what- ever it was called…the
+time-displacement equipment. The Terminator had already gone through.
+They sent two of us to intercept, then zeroed the whole place. Sumner
+didn’t make it.</p>
+<p><strong>silberman</strong>: Then how are you supposed to get
+back?</p>
+<p><strong>reese</strong>: Can’t. Nobody goes home. Nobody else comes
+through. It’s just him and me.</p>
+<p><strong>reese</strong>: …It’s just him and me.</p>
+<p><strong>silberman</strong>: Why didn’t you bring any weapons?
+Something more advanced. Don’t you have ray guns?</p>
+<p><strong>silberman</strong>: Show me a piece of future technology.</p>
+<p><strong>reese</strong>: trolling his</p>
+<p><strong>silberman</strong>: Why?</p>
+<p><strong>reese</strong>: I didn’t build the fucking thing.</p>
+<p><strong>silberman</strong>: Okay. Okay. But this… cyborg…if it’s
+metal…</p>
+<p><strong>reese</strong>: Surrounded by living tissue.</p>
+<p><strong>silberman</strong>: Of course.</p>
+<p><strong>silberman</strong>: This is great stuff. I could make a
+career out of this guy. You see how clever this part is…how it doesn’t
+require a shred of proof. Most paranoid delusions are intricate…but this
+is brilliant.</p>
+<p><strong>silberman</strong>: Why were the other two women killed?</p>
+<p><strong>reese</strong>: Most official records were lost in the war.
+The computer knew almost nothing about Connor’s mother. Her name. Where
+she lived, just the city. No scanner pictures. The Terminator was just
+being systematic.</p>
+<p><strong>reese</strong>: You’ve heard enough. Decide. Are you going to
+release me?</p>
+<p><strong>silberman</strong>: I’m afraid that’s not up to me.</p>
+<p><strong>reese</strong>: Then why am I talking to you? Get out.</p>
+<p><strong>silberman</strong>: I can help you…</p>
+<p><strong>reese</strong>: Who is in authority here?</p>
+<p><strong>reese</strong>: You still don’t get it. He’ll find her.
+That’s what he does. All he does…</p>
+<p><strong>reese</strong>: You can’t stop him. He’ll wade through
+you…</p>
+<p><strong>reese</strong>: …reach down her throat, and pull her fucking
+heart out…</p>
+<p><strong>silberman</strong>: Sorry.</p>
+<p><strong>sarah</strong>: So Reese is crazy.</p>
+<p><strong>silberman</strong>: In technical terminology, he’s a
+loon.</p>
+<p><strong>sarah</strong>: But…</p>
+<p><strong>vukovich</strong>: Sarah, this is body armor. Out TAC guys
+wear it. It’ll stop a 12 gauge round. This other individual must’ve had
+one under his coat.</p>
+<p><strong>sarah</strong>: But what about him punching through the
+windshield?</p>
+<p><strong>traxler</strong>: Probably on PCP, broke every bone in his
+hand and won’t feel it for hours. There was this guy once that…</p>
+<p><strong>vukovich</strong>: Why don’t you just stretch out here and
+get some sleep. It’ll take your mom a good hour to get here from
+Redlands.</p>
+<p><strong>sarah</strong>: I can’t sleep.</p>
+<p><strong>vukovich</strong>: Go ahead. You’re safe. There’re thirty
+cops in this building.</p>
+<p><strong>sarah</strong>: Okay.</p>
+<p><strong>traxler</strong>: What? Ed, come on…the guy’s a wacko.</p>
+<p><strong>vukovich</strong>: He’d better be.</p>
+<p><strong>terminator</strong>: I’m a friend of Sarah Connor. I was told
+she is here. Can I see her, please?</p>
+<p><strong>sergeant</strong>: You can’t see here. She’s making a
+statement.</p>
+<p><strong>terminator</strong>: Where is she?</p>
+<p><strong>sergeant</strong>: Look. It’s gonna be a while. You wanna
+wait. There’s a bench.</p>
+<p><strong>terminator</strong>: I’ll come back.</p>
+<p><strong>vukovich</strong>: Stay here.</p>
+<p><strong>traxler</strong>: Watch him.</p>
+<p><strong>traxler</strong>: Ed! Ed…?</p>
+<p><strong>reese</strong>: Sarah?</p>
+<p><strong>vukovich</strong>: Reese!</p>
+<p><strong>vukovich</strong>: You just keep her alive. Do what you have
+to.</p>
+<p><strong>reese</strong>: Let’s get off the road.</p>
+<p><strong>reese</strong>: You cold?</p>
+<p><strong>sarah</strong>: Freezing.</p>
+<p><strong>reese</strong>: Come here.</p>
+<p><strong>sarah</strong>: Reese…you got a first name?</p>
+<p><strong>reese</strong>: Kyle.</p>
+<p><strong>sarah</strong>: Kyle, what’s it like when you go through
+time?</p>
+<p><strong>reese</strong>: White light. Pain. Like being ripped inside
+out… slowly. Like being born, maybe.</p>
+<p><strong>sarah</strong>: You’re wet. Oh my god.</p>
+<p><strong>reese</strong>: I caught one, back there.</p>
+<p><strong>sarah</strong>: Caught one? You mean you got shot?</p>
+<p><strong>reese</strong>: It’s not bad.</p>
+<p><strong>sarah</strong>: We gotta get you to a doctor.</p>
+<p><strong>reese</strong>: It’s okay. Forget it.</p>
+<p><strong>sarah</strong>: Forget it? Are you crazy? Let me see it.</p>
+<p><strong>sarah</strong>: Jeez. You idiot. Take this off.</p>
+<p><strong>reese</strong>: See. Missed everything. Passed through the
+meat.</p>
+<p><strong>sarah</strong>: This is gonna make me puke. Talk about
+something.</p>
+<p><strong>reese</strong>: What?</p>
+<p><strong>sarah</strong>: Just talk. Tell me about my son. Is he
+tall?</p>
+<p><strong>reese</strong>: About my height. He has your– …damn…he has
+your eyes.</p>
+<p><strong>sarah</strong>: What’s he like?</p>
+<p><strong>reese</strong>: You trust him. He’s got that strength. You’d
+die in a second for John.</p>
+<p><strong>sarah</strong>: Well, at least I know what to name him. I
+don’t suppose you’d know who the father is? So I don’t tell him to get
+lost when I meet him.</p>
+<p><strong>reese</strong>: John never said much about him. He dies. Even
+before the war…</p>
+<p><strong>sarah</strong>: Stop! I don’t want to know. Hold still. So…it
+was John that ordered you here?</p>
+<p><strong>reese</strong>: I volunteered.</p>
+<p><strong>sarah</strong>: You volunteered?</p>
+<p><strong>reese</strong>: It was an honor. A chance to meet the legend.
+Sarah Connor. Who taught her son to fight…organize, prepare. From when
+he was a kid. When you were in hiding, before the war.</p>
+<p><strong>sarah</strong>: You talk about things I haven’t done yet in
+the past tense. It’s making me crazy. I can’t think. Are you sure you’ve
+got the right person?</p>
+<p><strong>reese</strong>: I’m sure.</p>
+<p><strong>sarah</strong>: Come on, me? The mother of the future? Am I
+tough? Organized? I can’t even balance my checkbook. I cry when I see a
+cat that’s been run over… and I don’t even like cats.</p>
+<p><strong>reese</strong>: Ow! No, it’s okay. It’s better tight.</p>
+<p><strong>sarah</strong>: And anyway, what do I know about guerrilla
+warfare?</p>
+<p><strong>reese</strong>: You’ll learn.</p>
+<p><strong>sarah</strong>: Look, Reese, I didn’t ask for this honor and
+I don’t want it. Any of it.</p>
+<p><strong>reese</strong>: John gave me a message for you. Made me
+memorize it. ‘Sarah”…this is the message… ’Sarah, thank you. For your
+courage through the dark years. I can’t help you with what you must soon
+face, except to tell you that the future is not set… there is no such
+thing as Fate, but what we make for ourselves by our own will. You must
+be stronger than you imagine you can be. You must survive, or I will
+never exist.’ That’s all.</p>
+<p><strong>reese</strong>: Good field-dressing.</p>
+<p><strong>sarah</strong>: You like it? It’s my first.</p>
+<p><strong>reese</strong>: Sleep. It’ll be light soon.</p>
+<p><strong>sarah</strong>: Okay. Talk some more.</p>
+<p><strong>reese</strong>: About what?</p>
+<p><strong>sarah</strong>: About where you’re from.</p>
+<p><strong>reese</strong>: Alright. You stay down by day, but at night
+you can move around. The H-K’s use infra-red so you still have to watch
+out. But they’re not too bright. John taught us ways to dust them them.
+That’s when the infiltra- tors started to appear. The Terminators were
+the newest, the worst…</p>
+<p><strong>sentry</strong>: Terminator!</p>
+<p><strong>sarah</strong>: I was dreaming about dogs.</p>
+<p><strong>reese</strong>: We used them to spot Terminators.</p>
+<p><strong>sarah</strong>: Your world…it’s pretty terrifying.</p>
+<p><strong>sarah</strong>: Put that away. I’ll get one.</p>
+<p><strong>sarah</strong>: This works…really.</p>
+<p><strong>driver</strong>: …and when it breaks right off the point they
+get some pretty rad tubes up there. Not awesome, but I mean, worth the
+drive, if you’re hardcore like me.</p>
+<p><strong>reese</strong>: Rad tubes?</p>
+<p><strong>sarah</strong>: He’s a surfer.</p>
+<p><strong>driver</strong>: You from back East of something?</p>
+<p><strong>sarah</strong>: No, he’s from the future.</p>
+<p><strong>driver</strong>: Whoah. I hear that. Listen, I had a rough
+night. I gotta stop and bag some Z’s.</p>
+<p><strong>driver</strong>: You can still ride if you wanna hang out for
+a couple hours.</p>
+<p><strong>sarah</strong>: Thanks.</p>
+<p><strong>reese</strong>: Bag some Z’s?</p>
+<p><strong>sarah</strong>: Let’s get cleaned up, Kyle.</p>
+<p><strong>reese</strong>: Yours is over there.</p>
+<p><strong>little girl</strong>: Can you get my balloon?</p>
+<p><strong>reese</strong>: Aren’t you afraid to be out in the open like
+this?</p>
+<p><strong>little girl</strong>: Huh?</p>
+<p><strong>sarah</strong>: …I know, Mom. This is the soonest I could…I
+know. Mom…Mom, I can’t talk long. No, I’m okay. I was on TV? Really? Oh
+no, I hate that picture… why didn’t you give them my graduation picture?
+I’m okay, really. Listen, I want you to pack some stuff and go up to the
+cabin for a few days. Just don’t…no, don’t ask any questions. Just do
+it. I gotta get going…gotta go. Bye, bye.</p>
+<p><strong>sarah</strong>: Thanks a lot.</p>
+<p><strong>reese</strong>: What’s that?</p>
+<p><strong>sarah</strong>: That’s where we’re going.</p>
+<p><strong>reese</strong>: Why?</p>
+<p><strong>cyber dynamics corporation</strong>: 18144 El Camino Real,
+S’Vale</p>
+<p><strong>sarah</strong>: Look. I found it. Isn’t that it? Cyber
+Dynamics Corporation?</p>
+<p><strong>reese</strong>: What about it?</p>
+<p><strong>sarah</strong>: Didn’t you say that they’re going to develop
+this revolutionary new thing…</p>
+<p><strong>reese</strong>: Molecular-memory.</p>
+<p><strong>sarah</strong>: Whatever…they become the hotshot computer
+guys so they get the job to build El Computer Grande…Skynet…for the
+government. Right?</p>
+<p><strong>reese</strong>: That’s the way it was told to me.</p>
+<p><strong>sarah</strong>: Well, we’re gonna uninvent the bastard.
+Eighty-six it. We’ll blow up the place…burn it down. Something.</p>
+<p><strong>reese</strong>: Tactically dangerous. We lay low.</p>
+<p><strong>sarah</strong>: Reese. Think it through. We can prevent the
+war. Nobody else is gonna do it. If we go to anybody official we wind up
+back in jail and then that walking cuisinart has got us again. We have
+to so it ourselves.</p>
+<p><strong>reese</strong>: That’s not my mission.</p>
+<p><strong>sarah</strong>: Listen. Understand. I’m not a military
+objective, Reese. I’m a person… You don’t own me.</p>
+<p><strong>reese</strong>: Let’s go. Time to move out.</p>
+<p><strong>sarah</strong>: Fuck you! Let go of me!</p>
+<p><strong>reese</strong>: Sarah!</p>
+<p><strong>sarah</strong>: Let…go…bastard…</p>
+<p><strong>sarah</strong>: scared, but</p>
+<p><strong>sarah</strong>: Jesus Christ, Reese. Can’t you see I’m
+scared?</p>
+<p><strong>sarah</strong>: I can’t spend my life waiting for that thing
+to catch up with me…always looking over my shoulder, wondering if I left
+some tiny clue behind…</p>
+<p><strong>sarah</strong>: Reese?</p>
+<p><strong>sarah</strong>: Kyle?</p>
+<p><strong>reese</strong>: I’m wrong here. I wasn’t meant to see
+this…</p>
+<p><strong>reese</strong>: It’s…like some dream. This…this…</p>
+<p><strong>reese</strong>: …and you…all so…beauti- ful. It hurts, Sarah.
+More than death.</p>
+<p><strong>reese</strong>: Don’t you understand…it’s all gone!</p>
+<p><strong>sarah</strong>: We can change it, Kyle. We have to try.</p>
+<p><strong>sarah</strong>: There’s no fate but what we make for
+ourselves. Right? Come on. Let’s go, kiddo. Whaddya say?</p>
+<p><strong>man</strong>: Hey, buddy, you got a dead cat in there of
+what?</p>
+<p><strong>terminator</strong>: Fuck you, asshole.</p>
+<p><strong>reese</strong>: Is this enough?</p>
+<p><strong>sarah</strong>: Yes. And I don’t want to know where you got
+it.</p>
+<p><strong>sarah</strong>: We need a room…with a kitchen.</p>
+<p><strong>sarah</strong>: I’m dying for a shower. You could use one
+too. And we’d better check that bandage.</p>
+<p><strong>reese</strong>: Later. I’m going out for materiel. Keep
+this.</p>
+<p><strong>sarah</strong>: …No, Mom, I can’t tell you where I am. I was
+told not to say.</p>
+<p><strong>sarah’s mom</strong>: But honey, I need to know where I can
+reach you or I’ll be worried sick. It turns out I can’t stay up here…the
+electricity’s off…and I don’t know just where I’ll be.</p>
+<p><strong>sarah</strong>: Okay, here’s the number. Are you ready?</p>
+<p><strong>sarah’s mom</strong>: Go ahead.</p>
+<p><strong>sarah</strong>: It’s 408-972-1439. Room 14.</p>
+<p><strong>sarah’s mom</strong>: I got it.</p>
+<p><strong>sarah</strong>: Okay, I’ve gotta go. I’m sorry I can’t tell
+you very much now, Mom. I love you.</p>
+<p><strong>terminator</strong>: I love you too, sweetheart.</p>
+<p><strong>terminator</strong>: Hello. Tell me your address there.</p>
+<p><strong>sarah</strong>: Let’s see. Corn syrup. Ammonia. Moth balls…
+Mmm. What’s for dinner?</p>
+<p><strong>reese</strong>: Plastique.</p>
+<p><strong>sarah</strong>: What’s that?</p>
+<p><strong>reese</strong>: Nitroglycerin, basically. Bit more stable. I
+learned howto make it when I was a kid.</p>
+<p><strong>reese</strong>: Make sure there’s none on the threads, like
+this. Now screw the end-cap on…very gently.</p>
+<p><strong>sarah</strong>: You must have had a fun child- hood.</p>
+<p><strong>reese</strong>: That’s good. Now, seven more like that while
+I make fuses.</p>
+<p><strong>sarah</strong>: I was thinking, there’s so much I’ve got to
+show you when we get through this. It’s mind boggling, the pos-
+sibilities…Disneyland, the beach, movies…matinees with popcorn and
+foot-long hot dogs…</p>
+<p><strong>reese</strong>: Hot dogs?</p>
+<p><strong>sarah</strong>: I want to buy you a hot dog so bad,Kyle…all
+the things you’ve never seen and done. You’re here, but wherever you go,
+and whatever you touch, you bring the war with you.</p>
+<p><strong>reese</strong>: My whole life has been combat.</p>
+<p><strong>sarah</strong>: I want it to be over for you.</p>
+<p><strong>reese</strong>: Not possible.</p>
+<p><strong>sarah</strong>: I want it to be over for me too. I feel like
+I slipped over some invisible line, that I’m in your world now.
+Everything’s the same, but I see it differently. It’s like, there’s you
+and me, and him…but nobody else can understand or help or even touch
+us.</p>
+<p><strong>reese</strong>: We’ll head out at 0200. That gives you four
+hours to sleep if you want. I’ll finish.</p>
+<p><strong>sarah</strong>: He’ll find us, won’t he?</p>
+<p><strong>reese</strong>: Probably. Sarah, if I get zeroed…</p>
+<p><strong>sarah</strong>: Don’t say that.</p>
+<p><strong>reese</strong>: If I do, you have to get away, disappear
+without a trace. Different country, different name, everything. In case
+they send another one.</p>
+<p><strong>sarah</strong>: It’ll never be over, will it? Look at me, I’m
+shaking. Some legend, huh? You must be pretty disappointed.</p>
+<p><strong>reese</strong>: No. I’m not.</p>
+<p><strong>sarah</strong>: Kyle, the women in your time…what were they
+like?</p>
+<p><strong>reese</strong>: Good fighters.</p>
+<p><strong>sarah</strong>: That’s not what I meant. Was there someone
+special?</p>
+<p><strong>reese</strong>: Someone?</p>
+<p><strong>sarah</strong>: A girl. You know.</p>
+<p><strong>reese</strong>: No. Never.</p>
+<p><strong>sarah</strong>: I’m sorry.</p>
+<p><strong>sarah</strong>: So much pain.</p>
+<p><strong>reese</strong>: Pain can be controlled. You disconnect
+it.</p>
+<p><strong>sarah</strong>: And so you feel nothing.</p>
+<p><strong>reese</strong>: It’s better that way.</p>
+<p><strong>sarah</strong>: Oh, Kyle.</p>
+<p><strong>reese</strong>: John Connor gave me a picture of you once. I
+never knew why. It was very old. Torn. Faded. You were young, like you
+are now. You weren’t smiling…just a little sad… I always wondered what
+you were thinking at that second.</p>
+<p><strong>reese</strong>: I memorized every line, every curve…</p>
+<p><strong>reese</strong>: Sarah, I came across time for you. I love
+you. I always have.</p>
+<p><strong>reese</strong>: I’m sorry. I shouldn’t have said…</p>
+<p><strong>sarah</strong>: Kyle…</p>
+<p><strong>sarah</strong>: I bet you’re ticklish.</p>
+<p><strong>reese</strong>: Ticklish?</p>
+<p><strong>reese</strong>: What are you doing?</p>
+<p><strong>sarah</strong>: You’ll beg for mercy in a second.</p>
+<p><strong>reese</strong>: I don’t think I like this.</p>
+<p><strong>sarah</strong>: You’re not supposed to.</p>
+<p><strong>reese</strong>: Listen to the dogs.</p>
+<p><strong>reese</strong>: Light it now.</p>
+<p><strong>rider</strong>: Don’t try to move, buddy.</p>
+<p><strong>reese</strong>: Switch places with me.</p>
+<p><strong>sarah</strong>: Kyle…oh God…</p>
+<p><strong>sarah</strong>: Alriiight!</p>
+<p><strong>partner</strong>: Don’t stop.</p>
+<p><strong>driver.</strong>: I have to, man.</p>
+<p><strong>tears through the dividing fence.</strong>: Heads back toward
+her on the wrong side of the freeway.</p>
+<p><strong>sarah</strong>: Come on, come on, come on …run, you…</p>
+<p><strong>sarah</strong>: Hold on real tight, okay?</p>
+<p><strong>sarah</strong>: Hold on, goddamnit!</p>
+<p><strong>reese</strong>: Sarah.</p>
+<p><strong>sarah</strong>: We did it, Kyle. We got it.</p>
+<p><strong>sarah</strong>: What are you doing?</p>
+<p><strong>reese</strong>: Cover…our footsteps…</p>
+<p><strong>reese</strong>: Leave me here.</p>
+<p><strong>sarah</strong>: I’m not leaving you anywhere you jerk.
+Haven’t you figured it out? Kyle, John is our son.</p>
+<p><strong>sarah</strong>: There isn’t going to be anybody else…I don’t
+want anybody else. Listen to me!</p>
+<p><strong>sarah</strong>: Move! Reese! Let’s go. Move you ass!</p>
+<p><strong>sarah</strong>: Come on!</p>
+<p><strong>reese</strong>: Run!</p>
+<p><strong>reese</strong>: Run, damn it!</p>
+<p><strong>steel clangs on steel.</strong>: Kyle strikes and parries but
+is sledgehammered back.</p>
+<p><strong>sarah</strong>: You’re…terminated…fucker!</p>
+<p><strong>the stamping plate thunders down!</strong>: Tons of
+mechanical pressure flatten the Terminator’s head and body like
+tin-foil. The PRESS SCREAMS, jamming solid. Lightning snaps out in one
+brief blaze, leaping to surround- ing machinery, arcing to Sarah’s
+wristwatch. All the Terminator’s energy is released in one second.</p>
+<p><strong>two factory employees, f.g.</strong>: One, the PLANT MANAGER,
+bends to examine a piece of the cyborg lying at the base of the
+hydraulic press. A COP, B.G., notices this.</p>
+<p><strong>cop</strong>: Look, I told you not to touch anything until
+we’re done. You got that?</p>
+<p><strong>manager</strong>: Sure thing, officer.</p>
+<p><strong>assistant</strong>: What is it?</p>
+<p><strong>manager</strong>: Microcomputer chassis. But I’ve never seen
+stuff like this anywhere.</p>
+<p><strong>assistant</strong>: Weird. Jap stuff, maybe?</p>
+<p><strong>manager</strong>: Keep it out of sight and get it down to R
+and D Monday, first thing.</p>
+<p><strong>assistant</strong>: Good idea.</p>
+<p><strong>sarah</strong>: …and the hardest thing is deciding what I
+should tell you and what not to. Well, anyway, I’ve got a while yet
+before you’re old enough to understand the tapes. They’re more for me at
+this point… to help get it all straight.</p>
+<p><strong>sarah</strong>: Should I tell you about your father? That’s a
+tough one. Will it change your decision to send him here…knowing? But if
+you don’t send Kyle, you could never be. God, you can go crazy thinking
+about all this…I suppose I’ll tell you…I owe him that. And maybe it’ll
+be enough if you know that in the few hours we had together we loved a
+lifetime’s worth…</p>
+<p><strong>attendant</strong>: He says you are very beautiful, Senora,
+and he is ashamed to ask five American dollars for this picture, but if
+he does not, his father will beat him.</p>
+<p><strong>sarah</strong>: That’s a pretty good hustle, kid. Four.
+Quatro.</p>
+<p><strong>attendant</strong>: Mil trescientos…fifteen dollars
+American.</p>
+<p><strong>sarah</strong>: What did he say?</p>
+<p><strong>attendant</strong>: There is a storm coming in.</p>
+<p><strong>sarah</strong>: I know.</p>
+</body>
+</html>

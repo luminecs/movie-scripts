@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>the-time-machine</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="the-time-machine">the-time-machine</h1>
+<p><strong>dr. hillyer</strong>: I say, this is outright rude of the
+man!</p>
+<p><strong>filbey</strong>: He’s undoubtedly been detained. That’s
+all.</p>
+<p><strong>dr. hillyer</strong>: Speak up – what is it, woman?</p>
+<p><strong>bridewell</strong>: Well…are we or are we not invited to
+dinner?</p>
+<p><strong>filby</strong>: Thank you, Mrs. Watchett.</p>
+<p><strong>filby</strong>: Nothing really. - George merely says that if
+he is not here by eight we’re to begin without him.</p>
+<p><strong>mrs. watchett</strong>: Dinner is served, gentlemen!</p>
+<p><strong>filby</strong>: This is peculiar. He is usually very prompt,
+precise and punctual.</p>
+<p><strong>dr. hillyer</strong>: He’s making fools of us by inviting us
+here and then not showing up. It’s not the behavior of a gentleman.</p>
+<p><strong>kemp</strong>: To say nothing of the waste of time.</p>
+<p><strong>filby</strong>: Good lord! - What’s happened?</p>
+<p><strong>time traveller</strong>: I’m all right…just some food…a
+drink…</p>
+<p><strong>time traveller</strong>: Are you all right?</p>
+<p><strong>time traveller</strong>: Meat…I’m hungry for meat!</p>
+<p><strong>dr. hillyer</strong>: Well, can’t you speak, man? What
+happened to you? Aren’t you going to tell us…</p>
+<p><strong>bridewell</strong>: Leave him alone, can’t you?</p>
+<p><strong>filby</strong>: It will keep, George. Eat, rest a little.</p>
+<p><strong>time traveller</strong>: No! I must tell it now… while I
+still remember.</p>
+<p><strong>filby</strong>: Relax, try to relax a bit. You’ve all the
+time in the world.</p>
+<p><strong>time traveller</strong>: You’re right, David. That’s exactly
+what I have. - All the time in the world!… ever since we were all
+together five days ago, the last day of Eighteen Hundred Ninety
+Nine.</p>
+<p>****: The Slow Dissolve from the previous shot</p>
+<p><strong>time traveller’s voice</strong>: There in that box rests the
+result of two years’ labor.</p>
+<p><strong>time traveller</strong>: I wanted to finish the job before
+the new century began. - I barely made it.</p>
+<p><strong>bridewell</strong>: Marvelous.</p>
+<p><strong>time traveller</strong>: Well, it has to do with time.</p>
+<p><strong>dr. hillyer</strong>: I’ve always maintained what this nation
+needs is a reliable timepiece. The Navy needs one. The Army needs one. -
+For the artillery you know.</p>
+<p><strong>time traveller</strong>: When I speak of time, I’m referring
+to the fourth dimension.</p>
+<p><strong>filby</strong>: Go on, George.</p>
+<p><strong>time traveller</strong>: Now, as you know, the difficulty in
+explaining the fourth dimension is that it cannot be seen or felt - it
+must be thought of.</p>
+<p><strong>filby</strong>: If you don’t mind, George, would you refresh
+me on the first three dimensions.</p>
+<p><strong>dr. hillyer</strong>: Really, Filby, they must have taught
+you something at school!</p>
+<p><strong>dr. hillyer</strong>: Certainly! When I move in a straight
+line, forward or backward, that’s one dimension. - When I move to the
+left or right, two dimensions. - When I move up and down, three
+dimensions. For instance, this box has three dimensions: length,
+breadth, and height.</p>
+<p><strong>dr. hillyer</strong>: Well, that’s…that’s mere theory! No one
+can really say what the fourth dimension is or even that it exists.</p>
+<p><strong>time traveller</strong>: On the contrary, Doctor! The fourth
+dimension is as true and as real a dimension as any of the other three.
+In fact, they couldn’t exist without it.</p>
+<p><strong>time traveller</strong>: Well, take that box. It has the
+first three dimensions, as you said. But what if it didn’t exist in
+Time? It wouldn’t exist at all, would it?</p>
+<p><strong>dr. hillyer</strong>: No.</p>
+<p><strong>time traveller</strong>: So - for an object to exist at all,
+it must exist in the fourth dimen- sion….and that fourth dimension is
+duration….Time!</p>
+<p><strong>time traveller</strong>: I’m coming to that. But first,
+consider! Why is it that we usually ignore the fourth dimension? Because
+we have no freedom to move in it. We can move in the other three – up,
+down, forward, backward, sideways. But when it comes to Time, we are
+prisoners. Do you follow me, Anthony?</p>
+<p><strong>kemp</strong>: George! You’ve given a most lucid explanation
+and all that! But I don’t think I entirely understand.</p>
+<p><strong>time traveller</strong>: Look! There are a lot of things in
+the world you don’t understand, aren’t there?</p>
+<p><strong>kemp</strong>: Of course! Quite a number.</p>
+<p><strong>time traveller</strong>: But you don’t refuse to believe in
+them because of that?</p>
+<p><strong>kemp</strong>: Not if I can see the proof with my own
+eyes.</p>
+<p><strong>time traveller</strong>: Good! All I’m asking you to do now
+is to witness a demonstration of the possibility of movement in the
+fourth dimension. Philip, will you please hand me that box?</p>
+<p><strong>time traveller</strong>: I’ve told you. The larger model can
+carry a passenger on a journey through Time. - Not through Space, mind
+you, but through Time.</p>
+<p><strong>bridewell</strong>: Oh, I say George! If you start floating
+around in the future, aren’t you likely to mess things up for the rest
+of us?</p>
+<p><strong>dr. hillyer</strong>: The future is already there. It’s
+irrevocable and cannot be changed.</p>
+<p><strong>time traveller</strong>: That’s the most important question
+to which I hope to find an answer. Can Man control his destiny? Can he
+change the shape of things to come?</p>
+<p><strong>time traveller’s voice</strong>: Imagine that this cigar is
+the Time Traveller. Now, this lever in front of him controls movement.
+Forward pressure sends the Machine into the future, backward pressure
+into the past. And the harder the pressure the faster the Machine
+travels.</p>
+<p><strong>time traveller</strong>: This experiment can be performed
+only once. If it succeeds, I lose my model forever. That is why I need
+witnesses.</p>
+<p><strong>kemp</strong>: Go ahead.</p>
+<p><strong>time traveller</strong>: You’re ready then?</p>
+<p><strong>time traveller</strong>: Doctor Hillyer, would you care to
+lend me your hand?</p>
+<p><strong>dr. hillyer</strong>: Where did it go?</p>
+<p><strong>dr. hillyer</strong>: Do you seriously expect us to believe
+that?</p>
+<p><strong>time traveller</strong>: Certainly.</p>
+<p><strong>dr. hillyer</strong>: But you just said it hasn’t really
+moved.</p>
+<p><strong>time traveller</strong>: That’s correct.</p>
+<p><strong>dr. hillyer</strong>: Then why can’t we see it?</p>
+<p><strong>time traveller</strong>: Because we’re in this room on
+December 31st, 1899, while the model you saw is perhaps a hundred years
+away. This room, or even this house, may no longer exist a hundred years
+from now. But the Time Machine is occupying the same space it did a
+moment before it went off on its journey.</p>
+<p><strong>time traveller</strong>: You must remember that the space
+you’ve just put your hand through is today’s space. You can’t put your
+hand into the space of tomorrow.</p>
+<p><strong>time traveller</strong>: No! Time changes space. This flat
+ground we’re standing on now could have been at the bottom of the sea a
+million years ago. And a million years from now it could be the interior
+of a huge mountain.</p>
+<p><strong>kemp</strong>: Suppose what you say is true. Exactly what do
+you suggest we do with such a contraption?</p>
+<p><strong>time traveller</strong>: For my part, I intend to take a
+journey into the future. - Unless someone else prefers to volunteer.</p>
+<p><strong>dr. hillyer</strong>: Now listen, George! I don’t know what
+you take us for, but we’re not fools. There are a number of ways of
+doing a disappearing trick! But a man of your ability should not bother
+with such nonsense.</p>
+<p><strong>dr. hillyer</strong>: Now you’re being sensible. I’ll take
+care of it first thing in the New Year.</p>
+<p><strong>dr. hillyer</strong>: Well, time to go.</p>
+<p><strong>kemp</strong>: Yes, we all have our plans for tonight.</p>
+<p><strong>time traveller</strong>: Of course, I am.</p>
+<p><strong>dr. hillyer’s voice</strong>: Coming, Bridewell?</p>
+<p><strong>time traveller</strong>: Thanks for coming.</p>
+<p><strong>ad libs</strong>: Happy New Year. - Goodbye, George - Happy
+Twentieth Century. - Etc.</p>
+<p><strong>dr. hillyer</strong>: Come on, Bridewell.</p>
+<p><strong>filby</strong>: I thought I’d better stay.</p>
+<p><strong>time traveller’s voice</strong>: You needn’t have troubled
+yourself. I’m all right.</p>
+<p><strong>filby</strong>: No you’re not. - You’ve been behaving oddly
+for over a month now. I’m not leaving until you tell me what’s on your
+mind.</p>
+<p><strong>time traveller</strong>: I appreciate your gesture, David,
+but if you don’t mind I’d rather you left me alone.</p>
+<p><strong>filby</strong>: You have changed, George. Enormously.</p>
+<p><strong>time traveller</strong>: I’m sorry.</p>
+<p><strong>time traveller</strong>: I’ll try.</p>
+<p><strong>filby</strong>: Why this preoccupation with Time?</p>
+<p><strong>filby</strong>: Don’t go simple on me, George!</p>
+<p><strong>filby</strong>: I quite agree with you. But here we are and
+we have to make the best of it.</p>
+<p><strong>time traveller</strong>: You may have to. I don’t.</p>
+<p><strong>time traveller</strong>: I prefer the future.</p>
+<p><strong>filby</strong>: You’re not seriously saying you can do
+it?</p>
+<p><strong>time traveller</strong>: You saw the experiment this
+afternoon, didn’t you?</p>
+<p><strong>filby</strong>: I saw a toy machine vanish. But I’m certain
+there are a number of ways of doing that trick. Any magician at the
+Hippodrome could probably do it.</p>
+<p><strong>filby</strong>: No, I would not! I have no desire to tempt
+the laws of Providence and I don’t think you should. It’s not for man to
+trifle with.</p>
+<p><strong>time traveller</strong>: Now you sound like Hillyer and
+Kemp.</p>
+<p><strong>filby</strong>: There is something in their common sense
+attitude to life. George, I speak to you as a friend. More, as a
+brother. If that machine can do what you say it can…destroy it. Destroy
+it, George, before it destroys you.</p>
+<p><strong>time traveller</strong>: You must have plans for New Year’s
+Eve. Don’t let me keep you.</p>
+<p><strong>filby</strong>: Mary isn’t well. We decided to stay home with
+the baby. But why don’t you come home with me. You haven’t seen little
+Jaime for a long time.</p>
+<p><strong>time traveller</strong>: I can’t.</p>
+<p><strong>filby</strong>: What’s stopping you?</p>
+<p><strong>time traveller</strong>: I just want to see the old century
+out by myself.</p>
+<p><strong>filby</strong>: Will you promise me that you won’t leave the
+house tonight?</p>
+<p><strong>time traveller</strong>: I promise you, I won’t walk out of
+the door.</p>
+<p><strong>time traveller</strong>: David! Please don’t think me un-
+friendly! - Come over to dinner - next Friday. Won’t you?</p>
+<p><strong>filby</strong>: Very well.</p>
+<p><strong>time traveller</strong>: Fine…and will you bring the others
+with you?</p>
+<p><strong>mrs. watchett</strong>: Will you be having supper in this
+evening, sir?</p>
+<p><strong>mrs. watchett</strong>: Thank you, sir, but if you won’t be
+needing me I think I’ll turn in early and get some sleep… …it I can. -
+Goodnight, sir.</p>
+<p><strong>time traveller</strong>: Goodnight.</p>
+<p><strong>time traveller</strong>: Oh, Mrs. Watchett! I’ve invited
+Mr. Filby and the others to dinner next Friday. Happy New Year,
+Mrs. Watchett.</p>
+<p><strong>mrs. watchett</strong>: Happy New Year, sir.</p>
+<p><strong>time traveller’s voice</strong>: I started…and the laboratory
+grew faint around me…</p>
+<p><strong>time traveller’s voice</strong>: …I stopped.</p>
+<p><strong>time traveller’s voice</strong>: No change; everything
+exactly as it bad been before. - But no!</p>
+<p><strong>time traveller’s voice</strong>: And yet by my watch which
+was in the machine with me, only a few seconds had passed.</p>
+<p><strong>time traveller’s voice</strong>: It was disconcerting to see
+the sun…</p>
+<p><strong>time traveller’s voice</strong>: …arc in less than a
+minute…</p>
+<p><strong>time traveller’s voice</strong>: ….to see flowers closing
+their eyes for the night, changes that normally took hours, occuring in
+seconds, was beautiful.</p>
+<p><strong>time traveller’s voice</strong>: And as yet I was travelling
+very slowly! What if I went faster?!</p>
+<p><strong>time traveller’s voice</strong>: It became intoxicating. To
+see an entire storm in a few seconds. - So I pushed the lever on toward
+even greater speed.</p>
+<p><strong>time traveller’s voice</strong>: Thirteen years had
+passed…fourteen… fifteen…sixteen…and then…</p>
+<p><strong>time traveller’s voice</strong>: In the year nineteen hundred
+seventeen… I stopped.</p>
+<p>****: The house is situated upon a site with</p>
+<p><strong>time traveller</strong>: Filby! I expected more of an
+enthusiastic greeting from…</p>
+<p><strong>time traveller</strong>: Was?</p>
+<p><strong>james filby</strong>: Were you a friend of father’s?</p>
+<p><strong>time traveller</strong>: Yes…yes…I’ve been away.</p>
+<p><strong>james filby</strong>: He was killed in the war…a year
+ago.</p>
+<p><strong>james filby</strong>: Oh, him. Some inventor who disappeared
+around the turn of the century. - If you’re interested in that house,
+forget it. You can’t buy it or even go inside.</p>
+<p><strong>time traveller</strong>: Why is that?</p>
+<p><strong>james filby</strong>: My father was executor of the
+inventor’s estate and he refused to liquidate it. I often chided him on
+that account, but he felt positive that the owner would return some day.
+- Some people hereabouts think it’s haunted. Who are you, sir?</p>
+<p><strong>time traveller</strong>: Just a stranger who once knew your
+father.</p>
+<p><strong>james filby</strong>: I see. Have you been at the front,
+sir?</p>
+<p><strong>time traveller</strong>: Front? What front?</p>
+<p><strong>james filby</strong>: Why the war, of course.</p>
+<p><strong>time traveller</strong>: What war?</p>
+<p><strong>james filby</strong>: Great heavens, man, don’t you know
+we’ve been at war with Germany since nineteen fourteen? I thought
+perhaps you had seen action in France…or maybe… Perhaps a cup of tea
+would make you feel better. Won’t you come in?</p>
+<p><strong>time traveller</strong>: No…no, thank you.</p>
+<p><strong>james filby</strong>: You’re sure you’re alright, sir?</p>
+<p><strong>time traveller</strong>: Yes, I’m quite alright.</p>
+<p><strong>time traveller</strong>: Goodbye, Jaime.</p>
+<p><strong>time traveller’s voice</strong>: As I went along, I gained
+experience in handling the Machine. I found that I could stop for a day,
+an hour, or even for a second to observe, then go ahead for a year or
+two. - Thus I was able to see the changing world in a series of
+glimpses.</p>
+<p><strong>time traveller</strong>: Good heavens, that’s a dress?</p>
+<p><strong>time traveller’s voice</strong>: This was intriguing. I
+wondered just how far women would permit this to go.</p>
+<p><strong>time traveller’s voice</strong>: I began to grow fond of that
+mannequin. Maybe because, like me, she didn’t age.</p>
+<p><strong>time traveller’s voice</strong>: Suddenly, in nineteen forty
+I began to be buffeted from side to side. My first thought was that the
+Machine had a mechanical defect or a part had worn out.</p>
+<p><strong>time traveller’s voice</strong>: The last time I had stopped
+was in nineteen seventeen, twenty three years ago. And the war with
+Germany was still waging - now in the air with flying machines. It
+didn’t seem possible they could go on fighting all these years and still
+have the means of fighting. Then I realized the truth of the matter.
+This was a new war. There must have been an interval of peace in between
+these wars. Yet they had learned nothing but to prepare even more
+effective means of destroying one another. I decided to push on into
+time and see the outcome.</p>
+<p><strong>time traveller’s voice</strong>: The fighting in the sky
+lasted only a few moments. By nineteen forty five it was over, but I
+continued on a few more years before pausing for another glimpse of my
+silent, never aging friend.</p>
+<p><strong>time traveller’s voice</strong>: It vas reassuring to find
+that she hadn’t changed. Only her costume. Provocative to say the least.
+I wondered what she would look like ten years hence.</p>
+<p><strong>time traveller’s voice</strong>: At first I wondered if my
+Machine and I were the cause of the panic. I was to soon find out we
+weren’t.</p>
+<p><strong>time traveller</strong>: I can’t understand you.</p>
+<p><strong>warden</strong>: Confounded radio in this thing. Makes more
+noise than it does sense.</p>
+<p><strong>time traveller</strong>: Filby!</p>
+<p><strong>warden</strong>: My name is Mister Filby. - Didn’t you hear
+the air raid siren?</p>
+<p><strong>time traveller</strong>: You mean that horrible
+screeching?</p>
+<p><strong>warden</strong>: It wasn’t constructed for its aesthetic
+values, you know, but to warn silly young fools like yourself to get
+down into the shelter. Now go on.</p>
+<p><strong>time traveller</strong>: But I’m perfectly comfortable and I
+find your store magnificent. What splendid achievements, what gigantic
+strides mankind has taken, what…</p>
+<p><strong>warden</strong>: Come on, young man. We’d better be going
+before the mushrooms start sprouting. You do look familiar. Haven’t we
+met somewhere before?</p>
+<p><strong>time traveller</strong>: Indeed we have. Right here. Many
+years ago.</p>
+<p><strong>warden</strong>: I was sure of that, but the exact time
+escapes me.</p>
+<p><strong>time traveller</strong>: It was two wars ago, I believe.
+Nineteen seventeen.</p>
+<p><strong>time traveller</strong>: I’m afraid it’s going to take me a
+little time to explain… You see…</p>
+<p><strong>warden</strong>: The last alert…hurry!</p>
+<p><strong>time traveller</strong>: Listen to me! It’s important.</p>
+<p><strong>warden</strong>: Hurry! Hide ’til the All Clear!</p>
+<p><strong>time traveller</strong>: All clear? I’ve got to talk to
+you.</p>
+<p><strong>time traveller’s voice</strong>: The labor of centuries gone
+in an instant.</p>
+<p><strong>time traveller’s voice</strong>: But then Mother Earth,
+aroused by man’s violence, responded with volcanic violence or her
+own!</p>
+<p><strong>time traveller’s voice</strong>: Then I saw my own danger. I
+too was to be engulfed!</p>
+<p><strong>time traveller’s voice</strong>: But to go back was
+unthinkable.</p>
+<p><strong>time traveller’s voice</strong>: Only my speed through time
+saved me from being roasted alive and encased in stone forever.</p>
+<p><strong>time traveller’s voice</strong>: The molten rock cooled. I
+prayed…wondering how many centuries, how many eons must pass before the
+wind and rain could wear away the mountain that enclosed me.</p>
+<p><strong>time traveller’s voice</strong>: Darkness…darkness for
+centuries.</p>
+<p><strong>time traveller’s voice</strong>: I wondered if there was
+still war being waged on the ground above me… if man would still exist
+on earth, when I saw the sun again.</p>
+<p><strong>time traveller’s voice</strong>: The centuries rolled by. - I
+put my trust in time and waited for the rock to wear down around me.</p>
+<p><strong>time traveller’s voice</strong>: I was free again!</p>
+<p><strong>time traveller’s voice</strong>: Thousands of centuries
+passed, but the earth stayed green! There was no winter! No wars! - Had
+man finally learned to control both the elements and themselves? - I had
+to stop and find out.</p>
+<p><strong>time traveller’s voice</strong>: Nature tamed completely and
+more bountiful than ever before.</p>
+<p><strong>time traveller’s voice</strong>: Flowers everywhere…the whole
+landscape one vast garden with no sign of weeds or briars.</p>
+<p><strong>time traveller’s voice</strong>: Unrepaired for centuries!
+Maybe unlived in for as long. It would be no Paradise if it belonged to
+me alone.</p>
+<p><strong>time traveller</strong>: Well, and why not?</p>
+<p><strong>time traveller</strong>: Help her!…</p>
+<p><strong>time traveller</strong>: Are you all right?</p>
+<p><strong>the girl</strong>: Why did you?</p>
+<p><strong>time traveller</strong>: Why did I what?</p>
+<p><strong>the girl</strong>: Come after me.</p>
+<p><strong>time traveller</strong>: Must have been fifty of your friends
+watching you drown. Not one of them so much as lifted a finger. - A
+curious attitude - in a curious world. Aren’t you the least bit
+interested in what I am…where I come from?</p>
+<p><strong>the girl</strong>: There is no one older.</p>
+<p><strong>time traveller</strong>: Doesn’t anyone age in this land of
+yours?</p>
+<p><strong>time traveller</strong>: What’s your name?</p>
+<p><strong>the girl</strong>: Weena.</p>
+<p><strong>time traveller</strong>: How do you spell that?</p>
+<p><strong>weena</strong>: Spell?</p>
+<p><strong>time traveller</strong>: Write! - Can’t you write? Look!</p>
+<p><strong>time traveller</strong>: And what are your people called?</p>
+<p><strong>weena</strong>: Come. We must go in.</p>
+<p><strong>time traveller</strong>: In my time a berry this size would
+have made news in every civilized country.</p>
+<p><strong>time traveller</strong>: Sir, perhaps curiosity has died.
+Perhaps even courtesy has died, but I have come a long way and there are
+things I would like to know.</p>
+<p><strong>time traveller</strong>: Because I shall return to my time
+and they will ask questions such as what kind of government rules your
+world.</p>
+<p><strong>man in white</strong>: We have no government.</p>
+<p><strong>man in white</strong>: There are no laws.</p>
+<p><strong>time traveller</strong>: Doesn’t anyone work?</p>
+<p><strong>man in white</strong>: No.</p>
+<p><strong>man in white</strong>: It grows. It always grows.</p>
+<p><strong>time traveller</strong>: But it must be planted, cultivated,
+nurtured…unless… Unless you have an economy so well organized that you
+can devote all your time to study and experimentation. Am I right?</p>
+<p><strong>man in white</strong>: You ask many questions.</p>
+<p><strong>time traveller</strong>: Books will tell me what I want to
+know. Books will tell me all about you.</p>
+<p><strong>time traveller</strong>: Yes…they do tell me all about
+you!</p>
+<p><strong>time traveller</strong>: What have you done? Thousands of
+years of building and rebuilding creating and re-creating so that you
+can let it crumble to dust.</p>
+<p><strong>time traveller</strong>: A million yesterdays of sensitive
+men dying for their dreams. For what? So you can swim and dance and
+play.</p>
+<p><strong>time traveller</strong>: I am returning to my time! Not to
+tell of the uselessness of the struggle - not to tell of the hopeless
+future - but only so that I can die among men!</p>
+<p>****: The surrounding is suggestive of the spot</p>
+<p><strong>weena</strong>: I heard you pounding…I came to tell you…</p>
+<p><strong>time traveller</strong>: How do you open that panel?</p>
+<p><strong>weena</strong>: No one opens it. Only the Morlocks.</p>
+<p><strong>time traveller</strong>: Morlocks? - Who are the
+Morlocks?</p>
+<p><strong>time traveller</strong>: Why are you afraid of the
+Morlocks?</p>
+<p><strong>time traveller</strong>: Tell me.</p>
+<p><strong>weena</strong>: When they call, we must go below.</p>
+<p><strong>time traveller</strong>: Do the Morlocks live beneath the
+earth? Why must you obey their command?</p>
+<p><strong>weena</strong>: They give us the food we eat, the clothes we
+wear. We must do as they command.</p>
+<p><strong>time traveller</strong>: What happens to your people when
+they go below?</p>
+<p><strong>weena</strong>: It is night.</p>
+<p><strong>time traveller</strong>: Only children are frightened by the
+dark. - But then you are a child, aren’t you? I’ll build a fire.</p>
+<p><strong>weena</strong>: Where are you from?</p>
+<p><strong>time traveller’s voice</strong>: I hoped to learn a great
+deal. I hoped to take back the knowledge, the advancement, mankind made…
+instead what do I find? Vegetables!</p>
+<p><strong>time traveller</strong>: Get me a few more twigs.</p>
+<p><strong>time traveller</strong>: What was it?</p>
+<p><strong>weena</strong>: I never saw it before.</p>
+<p><strong>time traveller</strong>: Do you know that the first thing
+which separated man from the rest of the mammals was his knowledge of
+fire? No, I suppose you don’t. The next great stride came with the
+discovery of the wheel. Do you know what that is? I’m sorry I was angry
+with your people. I had no right to be. No more than if I had visited
+the Island of Bali in my own time. You were safe inside your great
+house, yet you came out into the night to warn me. The one
+characteristic which distinguished man from the animal kingdom was the
+spirit of self sacrifice. You have that quality, Girl. I’m sure all of
+your people have it. All it requires is someone to reawaken it. I shall
+try if you’ll let me. Will you?</p>
+<p><strong>weena</strong>: I do not understand you, but I believe
+you.</p>
+<p><strong>time traveller</strong>: That’s a good start. - Now try to
+tell me…who or what are the Morlocks? Are they people or animals? What
+do you know about yourself? The past? Don’t your people ever speak of
+the past?</p>
+<p><strong>weena</strong>: There is no past.</p>
+<p><strong>time traveller</strong>: Don’t you ever wonder about the
+future?</p>
+<p><strong>weena</strong>: There is no future.</p>
+<p><strong>time traveller</strong>: Man’s past is mainly a grim struggle
+for survival, but there have been moments when a few voices have spoken
+up. These rare moments have made the history of man a glorious thing. I
+refuse to believe it is dead and gone. We’ve had our dark ages before
+and this is only another of them. All you need is for someone to show
+you the way out. - I’m only a tinkering mechanic, but there must be this
+hidden spark in one of your people. If I can only kindle that spark, my
+coming here will have some meaning.</p>
+<p><strong>time traveller’s voice</strong>: My efforts next morning to
+open the panel were fruitless. I had to find another way to retrieve my
+Machine.</p>
+<p><strong>time traveller</strong>: Listen! Do you hear?</p>
+<p><strong>time traveller</strong>: Machines!</p>
+<p><strong>weena</strong>: No…Morlocks.</p>
+<p><strong>time traveller</strong>: You mean those animals run
+machines?</p>
+<p><strong>weena</strong>: They are Morlocks.</p>
+<p><strong>time traveller</strong>: I know, but have you seen the
+machines?</p>
+<p><strong>weena</strong>: No, only heard of them.</p>
+<p><strong>time traveller</strong>: Who told you?</p>
+<p><strong>weena</strong>: The talking rings.</p>
+<p><strong>time traveller</strong>: What sort of rings?</p>
+<p><strong>weena</strong>: Rings that talk.</p>
+<p><strong>time traveller</strong>: Can you show me these rings?</p>
+<p><strong>time traveller</strong>: Are these the talking rings?</p>
+<p><strong>weena</strong>: Yes.</p>
+<p><strong>time traveller</strong>: They speak?</p>
+<p><strong>weena</strong>: Yes.</p>
+<p><strong>time traveller</strong>: Of what?</p>
+<p><strong>weena</strong>: Things no one here understands.</p>
+<p><strong>time traveller</strong>: How do you get it to talk?</p>
+<p><strong>voice from ring</strong>: Whomsoever chances upon these rings
+will probably hear the last recorded voice of civilized man. This is the
+year four thousand eight hundred and twenty-nine.</p>
+<p><strong>another voice from ring</strong>: This is the last day. We,
+the last to survive, have had our final meeting. We have decided to
+split into two groups. Each man and woman has made his own decision.
+Some have chosen to take refuge in the great caverns and find a new way
+of life far down below the earth’s surface. The rest of us have decided
+to take our chances in the sunlight, small as those chances may be.</p>
+<p><strong>time traveller’s voice</strong>: From the talking rings I
+learned how the human race divided itself and how the world of the Eloi
+and Morlocks began.</p>
+<p><strong>time traveller’s voice</strong>: By some quirk of fate the
+Morlocks had become the masters and the Eloi their servants. The
+Morlocks main- tained them and bred them like cattle only to take them
+below when they reached maturity, which explained why there were no
+older people along them.</p>
+<p><strong>time traveller’s voice</strong>: Now I knew I must go below.
+It was the only means of finding a way up into the sphinx to reach my
+Machine and to find out what happened to the little people when they
+went below.</p>
+<p><strong>weena</strong>: No…don’t go…please.</p>
+<p><strong>weena</strong>: You will not come back.</p>
+<p><strong>time traveller</strong>: I’ll be back.</p>
+<p>****: During the above and throughout the follow-</p>
+<p><strong>time traveller</strong>: Weena! Where are you, Girl?</p>
+<p><strong>time traveller</strong>: What’s happening? Tell me!</p>
+<p><strong>time traveller</strong>: Stop!</p>
+<p><strong>time traveller</strong>: What do you mean, all clear?</p>
+<p><strong>man in white</strong>: Yes, the rings have told us that
+story.</p>
+<p><strong>time traveller</strong>: But you didn’t listen. You didn’t
+learn anything. All that is left is fear…a blind animal fear. Ages ago
+men were taught to hide in the ground when the sirens blew… taught to
+run from a raining death… but those men are dead! And so are the men who
+slaughtered them. Don’t you understand? You are slaves of a dead past…
+You don’t even own your souls. You’re led to slaughter like sheep!</p>
+<p><strong>time traveller</strong>: What about those who went below? How
+are they to come back?</p>
+<p><strong>man in white</strong>: They never come back. Nobody can bring
+them back.</p>
+<p><strong>time traveller</strong>: You can try. Won’t any of you even
+try?</p>
+<p>****: DRIPPING WATER from the walls and THROBBING OF</p>
+<p><strong>t.t.’s voice</strong>: So, this was the destiny of the
+Eloi.</p>
+<p><strong>t.t.’s voice</strong>: They were being bred like cattle by
+the Morlocks who had degenerated into the lowest form of human
+life…cannibalism.</p>
+<p><strong>t.t.</strong>: Weena!</p>
+<p><strong>t.t.</strong>: Girl! Come to your senses! All of you!</p>
+<p><strong>time traveller</strong>: Quick, something to burn! It’s my
+last match!</p>
+<p><strong>time traveller</strong>: Weena! Weena, get the torch!</p>
+<p><strong>time traveller</strong>: Weena! Go on! Go on the steps!</p>
+<p><strong>time traveller’s voice</strong>: The underworld of the
+Morlocks was gone…and so was the life of leisure for the Eloi.</p>
+<p><strong>time traveller’s voice</strong>: From now on they would have
+to work to survive. And looking at their faces, I somehow knew that they
+could start over again.</p>
+<p><strong>time traveller’s voice</strong>: Another night was coming,
+but this night no Eloi needed to fear.</p>
+<p><strong>time traveller’s voice</strong>: But what of me? - I was
+imprisoned in a world in which I did not belong.</p>
+<p><strong>weena</strong>: Are you sorry?</p>
+<p><strong>time traveller</strong>: Sorry? - Sorry for what?</p>
+<p><strong>weena</strong>: That you have to stay.</p>
+<p><strong>time traveller</strong>: Yes. - I am sorry because I could
+tell so much to the people of my own time… I could tell them about the
+happiness and sorrow the future has in store for them. They could learn
+from it…or would they?</p>
+<p><strong>weena</strong>: You don’t want to stay, do you?</p>
+<p><strong>time traveller</strong>: It isn’t that, but I don’t fit here
+anymore than you would in my time.</p>
+<p><strong>weena</strong>: I would like to see your time.</p>
+<p><strong>time traveller</strong>: No, Girl, you wouldn’t be very happy
+there.</p>
+<p><strong>weena</strong>: Do you have someone like me - there?</p>
+<p><strong>time traveller</strong>: No. No one like you. But there are
+friends who will miss me. - As a matter of fact, I’m probably late
+already.</p>
+<p><strong>weena</strong>: Women?</p>
+<p><strong>time traveller</strong>: No, men. There is a woman too, of
+course! She looks after my house for me. She is sixty-two years old. -
+Much older than you are.</p>
+<p><strong>weena</strong>: How do they wear their hair?</p>
+<p><strong>time traveller</strong>: Who?</p>
+<p><strong>weena</strong>: The women in your time.</p>
+<p><strong>time traveller</strong>: Up!</p>
+<p><strong>weena</strong>: Up? - How?</p>
+<p><strong>time traveller</strong>: Like this.</p>
+<p><strong>weena</strong>: Show me.</p>
+<p><strong>weena</strong>: Would I be pretty?</p>
+<p><strong>time traveller</strong>: Yes…you would be. More than pretty.
+I wish we could go back together, Weena, back to my own time…or to times
+before that when the world was young. We could…</p>
+<p>****: These shots seen previously are now printed</p>
+<p><strong>explosions, rumbling etc. in reverse</strong>: AND SPEEDED UP
+join the HUMMING of the Time Machine.</p>
+<p><strong>dr. hillyer</strong>: It is ridiculous! Simply
+preposterous!</p>
+<p><strong>bridewell</strong>: Well, there’s one thing I’ll say for you,
+George. You always could tell a good story. Best adventure yarn I’ve
+heard for years. You’re a truly fine inventor, George!</p>
+<p><strong>mrs. watchett</strong>: I’ll turn down your bed for you!</p>
+<p><strong>kemp</strong>: Truthfully, where have you been for the past
+week?</p>
+<p><strong>bridewell</strong>: Now, we shouldn’t ask such questions,
+Walter. It’s not hard for a man to lose a week now and then.</p>
+<p><strong>filby</strong>: I don’t think I can.</p>
+<p><strong>dr. hillyer</strong>: Are you coming, Kemp.</p>
+<p><strong>kemp</strong>: It’s getting late and you look exhausted. You
+had better get some rest.</p>
+<p><strong>filby</strong>: Goodnight, George.</p>
+<p><strong>time traveller</strong>: Thank you, David, for being such a
+good friend - always.</p>
+<p><strong>kemp</strong>: What do you think, Filby?</p>
+<p><strong>filby</strong>: Look, you chaps go on. It’s just a short walk
+home for me.</p>
+<p><strong>filby</strong>: George!…</p>
+<p><strong>filby</strong>: I think I understand. - Look!</p>
+<p><strong>the theme</strong>: “The Land Of The Leal”.</p>
+<p><strong>filby</strong>: But it isn’t like George. - To return empty
+handed. To try to rebuild a civilization without a plan. He must have
+taken something with him.</p>
+<p><strong>mrs. watchett</strong>: Nothing.</p>
+<p><strong>mrs. watchett</strong>: Nothing except three books.</p>
+<p><strong>filby</strong>: Which three books?</p>
+<p><strong>mrs. watchett</strong>: I don’t know. – Is it important?</p>
+<p><strong>mrs. watchett</strong>: Mr. Filby, do you think he will ever
+return?</p>
+</body>
+</html>

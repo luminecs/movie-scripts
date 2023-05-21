@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>v-for-vendetta</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="v-for-vendetta">v-for-vendetta</h1>
+<p><strong>evey</strong>: “Remember, remember, the fifth of November,
+the gunpowder treason and plot. I know of now reason why the gunpowder
+treason should ever be forgot.”</p>
+<p><strong>evey</strong>: Those were almost the very first words he
+spoke to me and, in a way, that is where this story began, four hundred
+years ago, in a cellar beneath the Houses of Parliament.</p>
+<p><strong>evey</strong>: In 1605, Guy Fawkes attempted to blow up the
+Houses of Parliament.</p>
+<p><strong>evey</strong>: He was caught in the cellars with enough
+gunpowder to level most of London.</p>
+<p><strong>evey</strong>: Sometimes I wonder where we would be if he
+hadn’t failed. I wonder if it would have mattered.</p>
+<p><strong>evey</strong>: I suppose the answer is in the rhyme. More
+than the man, what we must remember is the plot itself.</p>
+<p><strong>evey</strong>: For in the plot we find more than just a man,
+we find the idea of that man, the spirit of that man, and that is what
+we must never forget.</p>
+<p><strong>evey</strong>: This, then, is the story of that idea, of that
+spirit that began with an anarchist’s plot four hundred years ago.</p>
+<p><strong>evey</strong>: I was born near the end of the millennium, the
+year 1997. My father used to say that people were so afraid that the
+world was going to end that they were willing it to happen.</p>
+<p><strong>evey</strong>: I don’t remember much of the century’s turn. I
+don’t remember the market crash or the plague or any of the Trafalgar
+riots.</p>
+<p><strong>evey</strong>: I’ve read about them since but I don’t recall
+how any of them impacted my life except for the fear. They would hide it
+from me, like a secret between them.</p>
+<p><strong>evey</strong>: But I could feel it.</p>
+<p><strong>evey</strong>: Of the chaos that seemed to swallow the
+beginning of the 21st century, there is one thing I do remember.</p>
+<p><strong>evey</strong>: Very clearly, I can remember that sound.</p>
+<p><strong>evey</strong>: And I remember those boots, black leather that
+gleamed bright in the morning sun. I had never seen such boots. All
+moving in perfect unison.</p>
+<p><strong>dascombe</strong>: The time has come, London, to return to a
+bygone age, an age of tradition, an age of values that have been
+disparaged and all but forgotten. What this country needs is a leader! A
+true leader to remind us of that age. A righteous leader with the
+strength of his moral convictions to do what must be done. I give you
+that man! I give you our leader! Adam Susan!</p>
+<p><strong>evey</strong>: It must have seemed so easy to them. They
+offered such a simple deal; give up control and we will restore
+order.</p>
+<p><strong>evey</strong>: At first, the arrests were political.
+Dissidents. Radicals. Liberals.</p>
+<p><strong>evey</strong>: When my parents were younger, they had been
+activists. They had marched with Labor in the great train strike.</p>
+<p><strong>little evey</strong>: Mommy?</p>
+<p><strong>mother</strong>: My daughter! Don’t take my daughter!</p>
+<p><strong>father</strong>: Evey! Evey!</p>
+<p><strong>little evey</strong>: Mommy! Daddy!</p>
+<p><strong>evey</strong>: I never saw them again. Overnight, my life, my
+entire world was erased.</p>
+<p><strong>evey</strong>: It was done so quickly and violently, so
+completely, that it began to seem that it had never even existed.</p>
+<p><strong>evey</strong>: The homosexuals were next. What God had
+started with AIDS had to be finished by man. It was God’s work. That’s
+what we were told.</p>
+<p><strong>evey</strong>: But once they were gone, there was someone
+else. Someone different.</p>
+<p><strong>evey</strong>: Someone dangerous.</p>
+<p><strong>evey</strong>: There were those who understood what was
+happening, who knew it was wrong but who kept silent.</p>
+<p><strong>evey</strong>: And in the vacuum of that silence, order was
+imposed.</p>
+<p><strong>evey</strong>: Order that was like those boots, order that
+required rigorous discipline. Order that is exactly the same, where each
+single step falls with every step. The order of the many shaped into
+one.</p>
+<p><strong>evey</strong>: Somehow in my heart, I knew it wouldn’t
+last.</p>
+<p><strong>evey</strong>: What they thought they had crushed, the spirit
+they believed trampled and ground beneath the marching of their boots,
+rose up, rose as if from a four hundred year old grave, rose to remind
+us all that day.</p>
+<p><strong>fate</strong>: Good evening, London. It’s nine o’clock, the
+fourth of November in the year 2019 and this is the voice of Fate
+broadcasting on 275 and 285 of the medium wave.</p>
+<p><strong>fate</strong>: People of London, be advised –</p>
+<p><strong>fate</strong>: – that Braxton and Streathon are quarantine
+zones as of today.</p>
+<p><strong>fate</strong>: It is suggested that these area be avoided for
+reasons of health and safety.</p>
+<p><strong>fate</strong>: Good news following the productivity reports
+from Herefordshire indicating a possible end to meat rationing starting
+mid February.</p>
+<p><strong>fate</strong>: Police raided seventeen homes in the
+Birmingham area, uncovering what is believed to be a major terrorist
+ring.</p>
+<p><strong>fate</strong>: Twenty eight people, eight of them women, are
+currently in detention awaiting trial.</p>
+<p><strong>fate</strong>: And that is the face of London tonight.</p>
+<p><strong>fate</strong>: And this is the voice of Fate signing off and
+bidding you a pleasant evening.</p>
+<p><strong>evey</strong>: I don’t know what brought us together that
+night. I had never been to that part of Westminster but ever since I’ve
+known him, I’ve stopped believing in coincidence.</p>
+<p><strong>evey</strong>: Excuse me? Uh… excuse me, Mister?</p>
+<p><strong>evey</strong>: Would you like… uh, would you like to sleep
+with me?</p>
+<p><strong>evey</strong>: I mean, for money.</p>
+<p><strong>man</strong>: That is the clumsiest bit of propositioning
+I’ve ever heard.</p>
+<p><strong>evey</strong>: Oh god, I’m sorry.</p>
+<p><strong>man</strong>: Is this your first time, darling?</p>
+<p><strong>evey</strong>: Yes, no, I mean for money. But I know what you
+want and I’ll do it.</p>
+<p><strong>evey</strong>: Anything you want, mister. Please, I need the
+money. I know I’m young but I promise I know what I’m doing.</p>
+<p><strong>man</strong>: No. You don’t know what you’re doing.</p>
+<p><strong>evey</strong>: Christ, you’re a Fingerman.</p>
+<p><strong>fingerman 1</strong>: Give the little lady a prize.</p>
+<p><strong>fingerman 2</strong>: I’ve got something to give her.</p>
+<p><strong>fingerman 1</strong>: Prostitution is a class H offense. Know
+what that means? It means that we get to exercise our own judicial
+discretion –</p>
+<p><strong>fingerman 2</strong>: And you get to swallow it.</p>
+<p><strong>evey</strong>: Oh god, please. It’s my first time. Please
+don’t hurt me.</p>
+<p><strong>fingerman 1</strong>: Gosh, fellas, look at those big
+innocent eyes. What do you think?</p>
+<p><strong>fingerman 3</strong>: Spare the rod, spoil the child.</p>
+<p><strong>evey</strong>: Oh no!</p>
+<p><strong>evey</strong>: Please, don’t!</p>
+<p><strong>fingerman 3</strong>: You heard the man, sweetie. This rod’s
+for your own good.</p>
+<p><strong>v</strong>: “The multiplying villainies of nature do swarm
+upon him.”</p>
+<p><strong>fingerman 3</strong>: What the hell –</p>
+<p><strong>v</strong>: “And fortune, on his damned quarrel, smiling,
+showed like a rebel’s whore.”</p>
+<p><strong>fingerman 1</strong>: We’re police officers, pal.</p>
+<p><strong>fingerman 4</strong>: We’re with the Finger.</p>
+<p><strong>fingerman 3</strong>: So bugger off!</p>
+<p><strong>v</strong>: “Disdaining fortune with his brandished steel,
+which smoked with bloody execution.”</p>
+<p><strong>fingerman 1</strong>: He’s got a knife!</p>
+<p><strong>fingerman 3</strong>: Jesus Christ! Don’t hurt me!</p>
+<p><strong>v</strong>: Good evening.</p>
+<p><strong>evey</strong>: Who – Who are you?</p>
+<p><strong>v</strong>: Me? I imagine all manner of names shall be heaped
+upon my humble visage but, for now, let us simply say I am the
+villain.</p>
+<p><strong>v</strong>: And you would be?</p>
+<p><strong>evey</strong>: Evey.</p>
+<p><strong>v</strong>: Of course.</p>
+<p><strong>evey</strong>: Why did you do that? Why did you… help me?</p>
+<p><strong>v</strong>: Why indeed?</p>
+<p><strong>v</strong>: Almost time.</p>
+<p><strong>evey</strong>: For what?</p>
+<p><strong>v</strong>: For the music.</p>
+<p><strong>evey</strong>: Music?</p>
+<p><strong>v</strong>: Yes, music. My music. You see. Evey, I am a
+performer.</p>
+<p><strong>evey</strong>: Is that why you’re wearing a mask?</p>
+<p><strong>v</strong>: We all wear masks. Life creates them and forces
+us to find the one that fits. Do you know what day it is?</p>
+<p><strong>evey</strong>: Uh… November fourth.</p>
+<p><strong>v</strong>: Not for long.</p>
+<p><strong>v</strong>: “Remember, remember, the fifth of November, the
+gunpowder treason and plot. I know of no reason why the gunpowder
+treason should ever be forgot.”</p>
+<p><strong>v</strong>: Tell me, Evey, what good is an actor that plays
+his part to an empty theatre?</p>
+<p><strong>evey</strong>: I don’t know.</p>
+<p><strong>v</strong>: Nor do I. That’s why you are here. I need you,
+Evey. I need someone to listen.</p>
+<p><strong>evey</strong>: To your music?</p>
+<p><strong>v</strong>: Yes. Yes, to my music.</p>
+<p><strong>v</strong>: Can you hear it? It’s already begun.</p>
+<p><strong>evey</strong>: I can’t hear anything.</p>
+<p><strong>v</strong>: At first, you have to listen very carefully…</p>
+<p><strong>v</strong>: Ahh, yes. There it is. Beautiful, is it not?</p>
+<p><strong>evey</strong>: Oh my…</p>
+<p><strong>evey</strong>: It’s beautiful…</p>
+<p><strong>v</strong>: Thank you.</p>
+<p><strong>leader</strong>: Gentlemen, I will hear your reports now.
+Mr. Heyer, speak for the Eye.</p>
+<p><strong>conrad</strong>: We have less than two minutes of usable
+footage, Leader. It took the suspect less than a minute to dispatch the
+Finger’s vice patrol.</p>
+<p><strong>conrad</strong>: As you can see, the suspect’s reflex speed
+is extraordinary. As is his strength.</p>
+<p><strong>leader</strong>: Freeze it!</p>
+<p><strong>conrad</strong>: I’m afraid the mask makes retinal
+identification impossible.</p>
+<p><strong>leader</strong>: Mr. Etheridge, report for the Ear!</p>
+<p><strong>etheridge</strong>: We were able to triangulate the origin of
+the fireworks. We also are currently monitoring a lot of phone
+surveillance indicating a high percentage of conversation concerned with
+the explosions. All suspect or significant transcripts are being
+forwarded to Mr. Almond.</p>
+<p><strong>leader</strong>: Very good. Mr. Finch, speak for the
+Nose.</p>
+<p><strong>finch</strong>: Thanks to Etheridge, we found the launch for
+the fireworks. These appear to be individually weighted flares and we
+have found traces of the same chemicals at both of the detonation sites
+which leads us to conclude that, despite a level of sophistication,
+these devices are all home-made with over the counter chemicals, making
+them impossible to trace. Whoever he is, Leader, he’s good.</p>
+<p><strong>leader</strong>: Thank you for that professional
+annotation.</p>
+<p><strong>lieutenant</strong>: Leader, Mr. Almond has arrived.</p>
+<p><strong>leader</strong>: Very good. Gentlemen, keep me informed of
+any further developments. England prevails.</p>
+<p><strong>leader</strong>: Mr. Almond, do you know what this is behind
+me?</p>
+<p><strong>almond</strong>: Uh… the Fate computer system, sir?</p>
+<p><strong>leader</strong>: No. No sir. It’s more than that. This, this
+computer is a symbol, Mr. Almond. A symbol of the highest attainable
+goal of mankind. Do you know what that goal is, Mr. Almond?</p>
+<p><strong>leader</strong>: Control, Mr. Almond! Control! The world
+around us is a changing, directionless, amoral morass and it is up to
+man and man alone to set things right!</p>
+<p><strong>leader</strong>: Without control, man is nothing more than
+any other stinking, sweating, brute animal. Control, Mr. Almond. The
+control that we have painstakingly built up over the last ten years.
+Now, do you understand what happened last night?</p>
+<p><strong>almond</strong>: We… lost control.</p>
+<p><strong>leader</strong>: Yes, Mr. Almond. Last night someone did the
+unthinkable. Someone hurt us. It is imperative that we act swiftly and
+precisely. I want that man found, Mr. Almond. I want his head or, by
+god, I’ll have yours.</p>
+<p><strong>evey</strong>: Wait. I’ve lost you.</p>
+<p><strong>v</strong>: No, you haven’t.</p>
+<p><strong>evey</strong>: Oh…</p>
+<p><strong>evey</strong>: A jukebox? Where did you get it?</p>
+<p><strong>v</strong>: I saved it. Like everything here.</p>
+<p><strong>evey</strong>: Oh, it’s beautiful. I’ve never heard anything
+like it.</p>
+<p><strong>v</strong>: Of course not. You grew up in their world. Art is
+created by individuals and there are no individuals in a world where you
+are told what to think.</p>
+<p><strong>evey</strong>: This place is amazing.</p>
+<p><strong>v</strong>: You’re welcome to stay.</p>
+<p><strong>evey</strong>: Stay here… with you?</p>
+<p><strong>v</strong>: Yes. If you like.</p>
+<p><strong>evey</strong>: I… I don’t even know your name.</p>
+<p><strong>v</strong>: I don’t have a name. But you can call me V.</p>
+<p><strong>evey</strong>: V? V… I like that.</p>
+<p><strong>prothero</strong>: Good morning, London. This is the voice of
+Fate – Damn.</p>
+<p><strong>prothero</strong>: Good morning – ack. Good morning Lond–
+Goddammit! Where is my bloody tea?!</p>
+<p><strong>dascombe</strong>: Would someone get his lordship his bloody
+tea?</p>
+<p><strong>dascombe</strong>: Lewis, they want this report on the first
+hour –</p>
+<p><strong>prothero</strong>: I know. I know. Damned inconvenient this
+entire affair. Fine. Let’s try again.</p>
+<p><strong>prothero</strong>: Good morning, London. It is 6 am, the
+fifth of November 2019 and this is the voice of Fate. The new day brings
+good news and bright prospects from overseas, where negotiations with
+New China are moving in a positive direction. Last night’s scheduled
+demolition of two deteriorating landmarks went off without a hitch.</p>
+<p><strong>prothero</strong>: Spokesman for the Interior ministry said
+both structures were severely damaged and judged to be a danger to the
+unsuspecting public. Plans for new landmarks are well underway.</p>
+<p><strong>prothero</strong>: Do you believe this crap, Dascombe?</p>
+<p><strong>dascombe</strong>: It’s not our job to believe it, Lewis. Our
+job is to tell the people –</p>
+<p><strong>prothero</strong>: “Exactly what they tell us.” I Know but do
+you think that people will believe it?</p>
+<p><strong>dascombe</strong>: They will if it’s you that’s telling it to
+them. Now let’s try it again.</p>
+<p><strong>prothero</strong>: … plans for new landmarks are already well
+underway.</p>
+<p><strong>prothero</strong>: “Remember, remember, the fifth of
+November…”</p>
+<p><strong>prothero</strong>: Do you suppose that’s why he did it?</p>
+<p><strong>bodyguard 1</strong>: Sir, who did what, sir?</p>
+<p><strong>prothero</strong>: Guy Fawkes. He tried to blow up
+Parliament.</p>
+<p><strong>prothero</strong>: Don’t they teach history in school
+anymore?</p>
+<p><strong>bodyguard 1</strong>: Sir, we’re both straight military,
+sir.</p>
+<p><strong>bodyguard 2</strong>: Sir, yes, sir. I was fighting in
+Ireland by the time I was sixteen.</p>
+<p><strong>prothero</strong>: Yes, of course. My mistake.</p>
+<p><strong>prothero</strong>: I love trains. I remember riding the
+underground with my father. Shame they shut them all down.</p>
+<p><strong>bodyguard 1</strong>: What the hell’s that!</p>
+<p><strong>bodyguard 1</strong>: I thought I saw a man jumping onto the
+train.</p>
+<p><strong>bodyguard 2</strong>: The train’s doing almost seventy. It
+would break his legs.</p>
+<p><strong>bodyguard 1</strong>: You’re right, I… It must have been
+rags.</p>
+<p><strong>prothero</strong>: Get off of me!</p>
+<p><strong>bodyguard 2</strong>: What the fuck is going on?</p>
+<p><strong>bodyguard 1</strong>: Lock the car doors.</p>
+<p><strong>prothero</strong>: I have a lighter… somewhere…</p>
+<p><strong>bodyguard 2</strong>: I can’t find the lock – wait. Hey
+wha–</p>
+<p><strong>bodyguard 1</strong>: What’s happening –</p>
+<p><strong>prothero</strong>: I found it!</p>
+<p><strong>prothero</strong>: Oh god.</p>
+<p><strong>prothero</strong>: Who are you? What do you want? Money? Is
+that it?</p>
+<p><strong>prothero</strong>: Wait, wait. You’re, you’re the one that
+blew the Bailey.</p>
+<p><strong>prothero</strong>: You’re making a mistake. I’m nobody –</p>
+<p><strong>prothero</strong>: Oh god, what do you want?</p>
+<p><strong>v</strong>: I’ve come to offer you a choice. Commander
+Prothero.</p>
+<p><strong>prothero</strong>: What – What did you call me?</p>
+<p><strong>v</strong>: Commander Prothero.</p>
+<p><strong>v</strong>: That was your title at Larkhill. You remember
+Larkhill, don’t you, Commander?</p>
+<p><strong>v</strong>: Where they sent the undesirables.</p>
+<p><strong>prothero</strong>: I don’t know what you’re talking
+about.</p>
+<p><strong>v</strong>: Maybe I can help your memory. Let’s see. Larkhill
+opened in the summer of 2009. You were appointed it commander. You wore
+a uniform in those days. You looked very good in it.</p>
+<p><strong>v</strong>: You were a man of many responsibilities. You made
+sure Larkhill made all its quotas, especially the oven quotas even
+though they required an excessive amount of maintenance.</p>
+<p><strong>v</strong>: But there was one task you took to with
+exceptional relish. Remember the medical block, Commander? I believe you
+called it the funny farm. You were the one that selected the prisoners.
+You hand picked each one.</p>
+<p><strong>prothero</strong>: Her.</p>
+<p><strong>prothero</strong>: You.</p>
+<p><strong>prothero</strong>: You! You’re him, aren’t you?</p>
+<p><strong>prothero</strong>: Oh my god! What are you going to do?</p>
+<p><strong>v</strong>: You gave us a choice, remember, Commander? You
+said we could cooperate with the doctors or…</p>
+<p><strong>v</strong>: Hold out your hand.</p>
+<p><strong>prothero</strong>: Oh no, no! Please I was just doing what I
+was told!</p>
+<p><strong>v</strong>: Of course you were. Now I’m telling you to make a
+choice. Either you stick that syringe into your neck or –</p>
+<p><strong>v</strong>: I can kill you right now.</p>
+<p><strong>v</strong>: Crying doesn’t help, Commander. I remember there
+was a woman who had been screaming for two days. You winked at the
+doctor and laughed, “All in the name of science.”</p>
+<p><strong>prothero</strong>: Please, don’t make me do this…</p>
+<p><strong>v</strong>: It’s a difficult choice, isn’t it? Certain death
+versus something that might be… worse. But you never know. There is
+still a chance. You could survive. Look at me. Now, time’s up,
+Commander. Choose.</p>
+<p><strong>prothero</strong>: I’ll see you in hell.</p>
+<p><strong>v</strong>: Yes. I’m quite sure you will.</p>
+<p><strong>train man</strong>: This door’s locked!</p>
+<p><strong>train man</strong>: Holy Christ!</p>
+<p><strong>train man</strong>: What happened here?</p>
+<p><strong>train man</strong>: Good lord! I need a medic here.</p>
+<p><strong>prothero</strong>: Fi… Fi… Fi…</p>
+<p><strong>train man 2</strong>: He’s trying to say something.</p>
+<p><strong>prothero</strong>: Five.</p>
+<p><strong>train man 1</strong>: Five? Where’s the goddamn medic?</p>
+<p><strong>prothero</strong>: Room five.</p>
+<p><strong>train man 2</strong>: I think he needs a priest.</p>
+<p><strong>dominic</strong>: What do you make of this, Mr. Finch?</p>
+<p><strong>finch</strong>: Hmm. It’s a rose. A violet carson, I believe.
+Strange.</p>
+<p><strong>dominic</strong>: Strange?</p>
+<p><strong>finch</strong>: I didn’t think they still existed.</p>
+<p><strong>soldier</strong>: Mr. Finch! Sir!</p>
+<p><strong>soldier</strong>: Sir, they want you at headquarters,
+sir.</p>
+<p><strong>finch</strong>: Now?</p>
+<p><strong>soldier</strong>: Yes, sir. I’m to transport you
+immediately.</p>
+<p><strong>finch</strong>: Send the rose to the lab. Also, scrape a
+sample of this paint and have it analyzed as well. I’ll be back as soon
+as I can.</p>
+<p><strong>leader</strong>: Ah, Mr. Finch. I sent for you because what I
+have to say cannot be said over a phone or a radio. What I have to say
+cannot leave these four walls. Do I make myself clear?</p>
+<p><strong>finch</strong>: Yes, sir.</p>
+<p><strong>leader</strong>: I believe in a few things, Mr. Finch. I
+believe in god. I believe in the destiny of the Nordic race. And I
+believe in fascism. The romans invented fascism. They had a symbol for
+it; a bundle of twigs bound together. One twig could be broken but a
+bundle would prevail. That is the heart and soul of fascism. Strength in
+unity. I tell you these things knowing full well that they make you
+uncomfortable.</p>
+<p><strong>finch</strong>: Well, I…</p>
+<p><strong>leader</strong>: You have in fact expressed your discomfort
+in several arrest reports, arrests that were, in your opinion,
+“unnecessary.” The fact that you are here, that you are not rotting in a
+prison cell, is a mark of my respect and admiration for you, for your
+craft, and for what you have done for this country.</p>
+<p><strong>leader</strong>: It is also because I know you, Finch. I know
+what you are. You’re a man like me. A man who understands when they are
+given a job what must be done. I understand you, Finch, and that is why
+I can trust you.</p>
+<p><strong>leader</strong>: This terrorist knows us, Finch. These
+attacks are perfectly calculated and they are divisive. He knows what
+he’s doing, Finch. He knows us all too well.</p>
+<p><strong>finch</strong>: You think he’s an insider?</p>
+<p><strong>leader</strong>: What I think is that this man must be
+stopped. Stopped at all costs and no one, I repeat, no one is to be
+placed above suspicion. Do I make myself clear?</p>
+<p><strong>finch</strong>: Perfectly.</p>
+<p><strong>leader</strong>: England prevails, Mr. Finch.</p>
+<p><strong>finch</strong>: England prevails.</p>
+<p><strong>evey</strong>: V, v, v, v, v.</p>
+<p><strong>v</strong>: I hear your summons, my lady. And obey.</p>
+<p><strong>evey</strong>: Oh, V, you scared me.</p>
+<p><strong>evey</strong>: I was reading the inscription. What is it?</p>
+<p><strong>v</strong>: A Latin quotation. A motto. “Vi veri veniversum
+vivus vici.” “By the power of truth, I, while living, have conquered the
+universe.”</p>
+<p><strong>evey</strong>: Yes, I suppose you have. This place is the
+only universe I have right now.</p>
+<p><strong>v</strong>: Does that bother you?</p>
+<p><strong>evey</strong>: I don’t know. I’m so grateful to you – I just
+feel I should help you, you know, the way you’re helping me. I mean,
+that’s the deal, isn’t it?</p>
+<p><strong>v</strong>: No deals, Evey. Not unless you want them.</p>
+<p><strong>evey</strong>: I think I do. Part of me wants to stay here
+forever and never have to face what’s going on outside. But that’s not
+right. Is it? That’s not taking responsibility. Not conquering my
+universe.</p>
+<p><strong>evey</strong>: I want to help you, V. I want to do something.
+Can we make a deal?</p>
+<p><strong>v</strong>: Yes. I think we can make a deal if you like. I
+think I know a way you could help me very soon indeed.</p>
+<p><strong>evey</strong>: Good. That’s that, then.</p>
+<p><strong>evey</strong>: V, you said that Latin thing was a quote. Who
+said it?</p>
+<p><strong>v</strong>: Nobody you’d have heard of. A German gentleman
+named Dr. John Faust.</p>
+<p><strong>v</strong>: He made a deal too.</p>
+<p><strong>conrad</strong>: Hello, Rosemary. Derek, how –</p>
+<p><strong>helen</strong>: Derek!</p>
+<p><strong>helen</strong>: Darling, how are you? Hello, Rosemary.</p>
+<p><strong>rosemary</strong>: Hello.</p>
+<p><strong>derek</strong>: It’s so good to see you. Since this bloody
+terrorist business, the old man has me literally chained to the
+office.</p>
+<p><strong>helen</strong>: Oh, you poor dear.</p>
+<p><strong>derek</strong>: It comes with the job. How are things in the
+Eye, Conrad?</p>
+<p><strong>conrad</strong>: Well, we’ve been working some bugs out of
+the new Mark IX fiber optic network, actually –</p>
+<p><strong>helen</strong>: Oh, Conrad, don’t be such a bloody bore. Do
+tell us about the terrorist, Derek. Is it true he blew up Big Ben and
+the old Bailey?</p>
+<p><strong>derek</strong>: I’m afraid so. We’re dealing with a
+pathological psychotic in the most extreme case. We’ll catch him though.
+I promise.</p>
+<p><strong>helen</strong>: Oh, it sounds dreadfully exciting. Aren’t you
+glad you’ve got such a ruthless, implacable brute for a husband,
+Rosemary?</p>
+<p><strong>rosemary</strong>: Yes, well –</p>
+<p><strong>helen</strong>: Believe me, you’re lucky. You could be struck
+with a professional peeping tom like Conrad. England’s highest paid
+voyeur, aren’t you darling?</p>
+<p><strong>conrad</strong>: Helen, I think we’d better –</p>
+<p><strong>helen</strong>: Oh yes, of course. We have to get back so the
+little pervert can watch what the neighbors do after Sunday lunch. He’s
+so exciting.</p>
+<p><strong>helen</strong>: Ciao!</p>
+<p><strong>derek</strong>: Goodbye, Helen. Conrad.</p>
+<p><strong>rosemary</strong>: She’s a bit hard on him, isn’t she?</p>
+<p><strong>derek</strong>: Until you’re half the woman of Helen’s
+sophistication, I’d keep your little mouth shut.</p>
+<p><strong>derek</strong>: Really, just look at the way you dress.</p>
+<p><strong>lilliman</strong>: Ah, there they go. My happy and contented
+flock. Spiritually refreshed and ready to face the world again.</p>
+<p><strong>lilliman</strong>: Did you enjoy the sermon today,
+Dennis?</p>
+<p><strong>dennis</strong>: Very inspiring, your grace. Though the segue
+of the forces of Satan among us did strike me as a bit of a curious
+digression.</p>
+<p><strong>lilliman</strong>: Hmm, yes. A trifle purple, I thought.
+Still, Fate wanted it included and who are we to question the will of
+the almighty, miserable sinners that we are?</p>
+<p><strong>lilliman</strong>: And speaking of sin, I wonder which of the
+seven deadlies the good lord will see fit to tempt me with today.</p>
+<p><strong>dennis</strong>: Perhaps pride, your grace.</p>
+<p><strong>lilliman</strong>: I was thinking of something a little less
+ethereal. Has the young lady arrived?</p>
+<p><strong>dennis</strong>: The agency informed me she’ll be here
+directly. However, there was a mixup. It’s not one of the usual girls.
+She’s a little older.</p>
+<p><strong>lilliman</strong>: Oh dear. Oh dear. Not too old, I
+trust?</p>
+<p><strong>dennis</strong>: They promise me she’s no more than
+fifteen.</p>
+<p><strong>lilliman</strong>: Fifteen, hmm.</p>
+<p><strong>lilliman</strong>: Ah well, if Job could bear his
+disappointments, I suppose I must have the good grace to bear mine. Show
+her in when she arrives.</p>
+<p><strong>dennis</strong>: Yes, your grace.</p>
+<p><strong>dennis</strong>: The young lady, your grace.</p>
+<p><strong>lilliman</strong>: Oh my!</p>
+<p><strong>lilliman</strong>: And to think I doubted your loveliness for
+even an instant. Mea culpa, my child, mea culpa. You are a vision. An
+angel.</p>
+<p><strong>evey</strong>: Uh… thank you.</p>
+<p><strong>lilliman</strong>: Of course, “hate the sin, love the
+sinner.” I always say. Take your dress off, please.</p>
+<p><strong>evey</strong>: Listen – I was kind of hoping –</p>
+<p><strong>evey</strong>: No –</p>
+<p><strong>lilliman</strong>: You – You filthy whore!</p>
+<p><strong>lilliman</strong>: I’ll kill you, you fucking sow.</p>
+<p><strong>lilliman</strong>: What’s this? Who –</p>
+<p><strong>v</strong>: Please allow me to introduce myself…</p>
+<p><strong>v</strong>: I’m a man of wealth and taste.</p>
+<p><strong>lilliman</strong>: Dennis?</p>
+<p><strong>v</strong>: Shh. It isn’t polite to disturb the dead on their
+journey.</p>
+<p><strong>v</strong>: A courtesy I’ll most respectfully extend to his
+grace.</p>
+<p><strong>evey</strong>: V, what are you doing?</p>
+<p><strong>v</strong>: Vi veri veniversum vivus vici, Evey.</p>
+<p><strong>evey</strong>: Oh no.</p>
+<p><strong>evey</strong>: You can’t kill him!</p>
+<p><strong>v</strong>: Death has followed his grace the whole of his
+career. Is it any coincidence it has finally followed him here?</p>
+<p><strong>evey</strong>: Oh god, V. I can’t – I can’t –</p>
+<p><strong>v</strong>: Let us pray.</p>
+<p><strong>operator 1</strong>: Bloody hell. Doesn’t anybody fuck with
+feeling anymore?</p>
+<p><strong>operator 2</strong>: Hey, it’s Sunday. Children’s hour over
+at the Abbey.</p>
+<p><strong>operator 1</strong>: Let’s see what that filthy old pervert
+is up to.</p>
+<p><strong>operator 1</strong>: What the –</p>
+<p><strong>voice 1</strong>: … And I saw a black shape against the
+flames. Oh god. It’s you. The man from room five. You’ve come –</p>
+<p><strong>voice 2</strong>: To collect what’s mine.</p>
+<p><strong>voice 1</strong>: I beg you! I don’t want to die! Please have
+mercy!</p>
+<p><strong>operator 1</strong>: Get me the Finger. This is an
+emergency!</p>
+<p><strong>dominic</strong>: No prints yet, sir. Just like Prothero.</p>
+<p><strong>finch</strong>: I want those tapes from the Ear in my office
+tonight, Dominic.</p>
+<p><strong>dominic</strong>: Yes, sir. They’re on top of it.</p>
+<p><strong>finch</strong>: Any word from your superior, Mr. Creedy?</p>
+<p><strong>creedy</strong>: Mr. Almond doesn’t seem to be answering his
+page, sir. I’m sure he’s in the field.</p>
+<p><strong>finch</strong>: Quite.</p>
+<p><strong>helen</strong>: There you go, baby. Now my baby boy can think
+so much clearer. Can’t he?</p>
+<p><strong>helen</strong>: You have been thinking, haven’t you?</p>
+<p><strong>helen</strong>: I know you have. Ever since this terrorist
+appeared.</p>
+<p><strong>helen</strong>: Oh jesus, that smile. That smile turns me on
+like nothing else.</p>
+<p><strong>helen</strong>: Tell me. Tell me what’s going on in that
+ruthless sadistic brain of yours.</p>
+<p><strong>derek</strong>: Everyone is so worried about the terrorist.
+Especially Susan. You know why? Because nobody knows what he’s going to
+do.</p>
+<p><strong>derek</strong>: If I were him, I know what I’d do.</p>
+<p><strong>derek</strong>: I’d blow that fat bastard to kingdom
+come.</p>
+<p><strong>helen</strong>: No. You’re kidding.</p>
+<p><strong>derek</strong>: Am I?</p>
+<p><strong>derek</strong>: There’s an old train line under the New
+Government Building. It collapsed when they poured the foundation. You
+could haul in enough TNT to launch our Leader’s ass all the way to the
+moon.</p>
+<p><strong>helen</strong>: You’re serious, aren’t you?</p>
+<p><strong>derek</strong>: You need to be careful, Helen. Your mouth is
+going to get you into trouble one day.</p>
+<p><strong>helen</strong>: Is that the same trouble you love putting in
+my mouth?</p>
+<p><strong>derek</strong>: You never know who might be listening.</p>
+<p><strong>helen</strong>: I know, Derek. You love your country and you
+love your party, just like you love your wife.</p>
+<p><strong>helen</strong>: Derek. I’m sorry. I know I can be a bitch.
+But that’s why you’re here, isn’t it?</p>
+<p><strong>helen</strong>: This is it, isn’t it, Derek? What we’ve been
+waiting for. At last, you’ll be rid of Susan. I’ll be rid of Conrad. And
+we’ll be free. Free, won’t we?</p>
+<p><strong>dominic</strong>: Sorry it took so long. The boys had a devil
+of a time trying to filter out the background noise.</p>
+<p><strong>finch</strong>: Background noise?</p>
+<p><strong>dominic</strong>: The perpetrator apparently turned on the
+Bishop’s stereo. Subsequently, a great deal of the tape is useless.</p>
+<p><strong>finch</strong>: What music did he play?</p>
+<p><strong>dominic</strong>: Beethoven. The fifth, I believe.</p>
+<p><strong>finch</strong>: Da, da, da, dum. That’s code. Morse code.</p>
+<p><strong>dominic</strong>: Sir?</p>
+<p><strong>finch</strong>: For the letter “V”.</p>
+<p><strong>finch</strong>: Anything on the girl yet?</p>
+<p><strong>dominic</strong>: No. The agency said somebody claiming to be
+Lilliman’s valet canceled his Sunday appointment.</p>
+<p><strong>finch</strong>: What is it?</p>
+<p><strong>dominic</strong>: 23rd Psalm.</p>
+<p><strong>tape</strong>: Though I walk through the valley of the shadow
+of death…</p>
+<p><strong>dominic</strong>: It goes on like that for a while. Fairly
+incoherent except we could make out a few words in this part.
+Transubstantiation.</p>
+<p><strong>dominic</strong>: That miracle business when the wafer
+transform into the body of Christ.</p>
+<p><strong>finch</strong>: He made him eat a host.</p>
+<p><strong>dominic</strong>: Yes, listen to this part.</p>
+<p><strong>tape</strong>: … And at the moment this enters your mouth it
+becomes the flesh of the savior? Yes… please… And whatever it is made of
+now it will become the body of Christ? Yes… yes…</p>
+<p><strong>tape</strong>: I want you to swallow it.</p>
+<p><strong>dominic</strong>: There’s a couple of funny human noises…</p>
+<p><strong>finch</strong>: And then just Beethoven’s fifth.</p>
+<p><strong>finch</strong>: We have got the initial path report back. The
+host was full of cyanide.</p>
+<p><strong>finch</strong>: And do you know what?</p>
+<p><strong>finch</strong>: When it reached his abdomen, it was still
+cyanide.</p>
+<p><strong>delia</strong>: Do you have a motive?</p>
+<p><strong>delia</strong>: I mean, was anything taken?</p>
+<p><strong>finch</strong>: Just lives.</p>
+<p><strong>finch</strong>: I know it’s too early for your profile but do
+you have any initial impressions?</p>
+<p><strong>delia</strong>: Well…</p>
+<p><strong>delia</strong>: He’s incredibly powerful. This man’s sternum
+was split like dry wood from the base all the way up to the
+manubrium.</p>
+<p><strong>delia</strong>: And he’s resourceful. On that table behind
+you is a breakdown of all the chemicals found in Prothero’s blood
+stream.</p>
+<p><strong>finch</strong>: Bloody hell.</p>
+<p><strong>delia</strong>: There were hundreds of different chemicals in
+him. From trinitrotoluene to estrogen to motor oil.</p>
+<p><strong>finch</strong>: Perhaps Fate will make something more of all
+this. I certainly can’t.</p>
+<p><strong>delia</strong>: The Leader finally authorized an uplink for
+you? He must be getting nervous.</p>
+<p><strong>finch</strong>: Quite. Government directed terrorism never
+sews healthy ideas into the public. Oh, that reminds me.</p>
+<p><strong>finch</strong>: Can you tell us anything about this?</p>
+<p><strong>finch</strong>: We found one in the carriage with Prothero
+and this one in the Bishop’s quarters. A violet carson.</p>
+<p><strong>finch</strong>: I heard that strain had died off. Thought a
+botanist might shed some light on it. Delia?</p>
+<p><strong>delia</strong>: Yes – Yes, of course.</p>
+<p><strong>finch</strong>: Magic. I’ll drop by tomorrow then.</p>
+<p><strong>v</strong>: “There is more behind and inside of V than any of
+us had suspected. Not who, but what: what is she?”</p>
+<p><strong>creedy</strong>: What’s all this, then, Harper? I get a radio
+that a man’s down and in need of assistance?</p>
+<p><strong>harper</strong>: I ain’t gone down yet but I sure do need
+some assistance.</p>
+<p><strong>creedy</strong>: Are you flat broke already?</p>
+<p><strong>lout</strong>: How’d you sneak away, Creedy? Almond off
+buggering that blonde chippy?</p>
+<p><strong>harper</strong>: The one with the tits?</p>
+<p><strong>creedy</strong>: What I wouldn’t give for a piece of
+that.</p>
+<p><strong>lout</strong>: She could serve a tray of drinks on those
+thingies.</p>
+<p><strong>harper</strong>: I bet you get your chance with her sooner
+than later, Creedy, with the way Almond’s crackin’ up.</p>
+<p><strong>lout</strong>: Bloody bugger’s losing his marbles.</p>
+<p><strong>harper</strong>: Terrorist or no, if that bastard gives me
+another double shift, I’ll stomp his fucking head.</p>
+<p><strong>creedy</strong>: Aye. This nonsense has put a serious strain
+on my drinking. I think I was actually sober today.</p>
+<p><strong>lout</strong>: I’ll drink to that.</p>
+<p><strong>harper</strong>: We need to get a real man of the people in
+that director’s position. Like Creedy here.</p>
+<p><strong>creedy</strong>: Well, it’s good to know when the shit hits
+the fan who your real friends are.</p>
+<p><strong>rosemary</strong>: Derek –</p>
+<p><strong>derek</strong>: I don’t want to hear it, Rosemary.</p>
+<p><strong>rosemary</strong>: Derek, please! We can’t carry on like
+this.</p>
+<p><strong>rosemary</strong>: You don’t talk to me. You don’t eat with
+me. You don’t have sex –</p>
+<p><strong>derek</strong>: I don’t have to take any crap from you! I
+have that fat bastard riding me all day. I don’t want to listen to you,
+so shut your fat gob!</p>
+<p><strong>derek</strong>: And me not wanting to fuck you is obvious.
+Take a look at yourself.</p>
+<p><strong>derek</strong>: Get out of my sight. I’m cleaning my gun.</p>
+<p><strong>dominic</strong>: I got it!</p>
+<p><strong>finch</strong>: A connection?</p>
+<p><strong>dominic</strong>: Larkhill Resettlement Camp. Prothero’s and
+Lilliman’s employment records show they both help positions there at
+similar times.</p>
+<p><strong>finch</strong>: What about codename V?</p>
+<p><strong>dominic</strong>: Most of Larkhill’s records were destroyed
+for security reasons but I did uncover an old standard procedures and
+operations manual.</p>
+<p><strong>dominic</strong>: In special case studies, medical research
+groups used roman numerals to identify test inmates.</p>
+<p><strong>finch</strong>: Five is the letter V. Brilliant, Dominic.</p>
+<p><strong>finch</strong>: All we need is Larkhill’s employment
+records.</p>
+<p><strong>delia</strong>: Roses.</p>
+<p><strong>delia</strong>: It’s you, isn’t it? You’ve come to kill
+me.</p>
+<p><strong>v</strong>: Yes.</p>
+<p><strong>delia</strong>: Oh thank god. Thank god.</p>
+<p><strong>finch</strong>: Oh my god.</p>
+<p><strong>finch</strong>: Oh bloody hell.</p>
+<p><strong>dominic</strong>: He’s killed them all? It’s not
+possible.</p>
+<p><strong>finch</strong>: Oh no.</p>
+<p><strong>v</strong>: Are you afraid?</p>
+<p><strong>delia</strong>: No, no. I thought I would be, but I’m not.
+I’m –</p>
+<p><strong>delia</strong>: Relieved.</p>
+<p><strong>delia</strong>: Oh god, all these years. All this waiting.
+And somehow I always knew you’d come back.</p>
+<p><strong>delia</strong>: When I saw you that night – the night you
+escaped, you were standing against the flames and you looked straight at
+me.</p>
+<p><strong>delia</strong>: I knew then that one day you’d come looking
+for me, that you’d find me.</p>
+<p><strong>delia</strong>: What – what happened at Larkhill. What we did
+– What I did. That terrible knowledge, it’s been with me so long. That I
+could do things like that.</p>
+<p><strong>delia</strong>: For years, I blamed it on the government, on
+the authority I could never stand up to. But living so long with the
+knowledge of what I did has made me understand otherwise. I alone was
+accountable.</p>
+<p><strong>delia</strong>: There is something wrong with us. With all of
+mankind. With me. Something evil that made me enjoy what I did. Some
+hideous flaw.</p>
+<p><strong>delia</strong>: We deserve to be culled. We deserve it.</p>
+<p><strong>rosemary</strong>: Derek? What?</p>
+<p><strong>derek</strong>: Bang.</p>
+<p><strong>derek</strong>: Don’t worry, Rose. I didn’t load it.</p>
+<p><strong>derek</strong>: Not tonight.</p>
+<p><strong>derek</strong>: Almond. What?! Where?</p>
+<p><strong>derek</strong>: Oh god, yes! God, thank you!</p>
+<p><strong>creedy</strong>: You look lost.</p>
+<p><strong>creedy</strong>: Can I buy you a drink?</p>
+<p><strong>evey</strong>: No… I made a mistake.</p>
+<p><strong>evey</strong>: I have to find someone.</p>
+<p><strong>creedy</strong>: Well I didn’t like the looks of you anyway
+–</p>
+<p><strong>radio</strong>: All units, all units. Code red. Converge in
+Plaistow to apprehend codename V.</p>
+<p><strong>creedy</strong>: Bloody hell!</p>
+<p><strong>creedy</strong>: It’s him! We got him!</p>
+<p><strong>delia</strong>: It’s funny, I was given one of your roses
+today. I wasn’t sure you were the terrorist until I saw it.</p>
+<p><strong>delia</strong>: What a strange coincidence. That I should be
+given it today.</p>
+<p><strong>v</strong>: There are no coincidences, Delia. Only the
+illusion of coincidence.</p>
+<p><strong>v</strong>: I have another rose. This one is for you.</p>
+<p><strong>delia</strong>: Then you are going to kill me now?</p>
+<p><strong>v</strong>: I killed you ten minutes ago. While you
+slept.</p>
+<p><strong>delia</strong>: Is there any pain?</p>
+<p><strong>v</strong>: No. No pain.</p>
+<p><strong>delia</strong>: Thank you.</p>
+<p><strong>delia</strong>: Can I – Can I see your face again?</p>
+<p><strong>delia</strong>: It’s beautiful…</p>
+<p><strong>derek</strong>: Don’t move an inch, you bloody bastard.</p>
+<p><strong>derek</strong>: You didn’t hear me arrive, did you? Didn’t
+know we’d rumbled you?</p>
+<p><strong>derek</strong>: It’s all finished, chummy. All of it. The old
+man told me it was my head or yours and what do you know. It’s
+yours.</p>
+<p><strong>derek</strong>: Because you’re standing over there with your
+bloody stupid knives and your fancy karate gimmicks –</p>
+<p><strong>derek</strong>: And I’ve got a gun.</p>
+<p><strong>derek</strong>: Bang.</p>
+<p><strong>derek</strong>: Who – Who are you?</p>
+<p><strong>v</strong>: Yes, look. Look and tell me what you see.</p>
+<p><strong>derek</strong>: Horrible! God, it’s horrible!</p>
+<p><strong>finch</strong>: Delia?</p>
+<p><strong>finch</strong>: Get an ambulance.</p>
+<p><strong>evey</strong>: Oh no… V?</p>
+<p><strong>dominic</strong>: I’m sorry, sir. You knew the doctor pretty
+well?</p>
+<p><strong>dominic</strong>: We found this on her bureau, sir. It’s
+Dr. Surridge’s journal. It covers her years at Larkhill. It might
+contain the whole story.</p>
+<p><strong>delia</strong>: May 23rd…</p>
+<p><strong>delia</strong>: Prothero has hand picked my subjects. Four
+dozen of them, none of which will be any use to me if I don’t get to
+work soon.</p>
+<p><strong>delia</strong>: They’re so weak and pathetic I find myself
+hating them.</p>
+<p><strong>delia</strong>: They don’t fight or struggle. Just stare at
+you with weak eyes.</p>
+<p><strong>prothero</strong>: Next.</p>
+<p><strong>delia</strong>: June 9th: Of the original four dozen, over
+75% are now deceased. Strangely, no clear patterns have emerged as of
+yet.</p>
+<p><strong>delia</strong>: Batch 5 seems to have no common discernible
+effect on any specific group though the men seem slightly more resilient
+than the women.</p>
+<p><strong>delia</strong>: I’m hoping the survivors will provide more
+answers or my time here will have gone to waste.</p>
+<p><strong>delia</strong>: June 18: And only five left now. Two men and
+three women. Which tends to contradict my entry on the 9th.</p>
+<p><strong>delia</strong>: The man in room five is a fascinating
+case.</p>
+<p><strong>delia</strong>: Physically, there doesn’t seem to be anything
+wrong with him. No cellular anomalies, nothing.</p>
+<p><strong>delia</strong>: Batch five, however, seems to have brought on
+some kind of psychotic breakdown. He’s quite insane.</p>
+<p><strong>delia</strong>: He has this way of looking through you.
+Reverend Lilliman won’t go near him. He claims that it is the devil in
+room five. I see him cross himself whenever he passes his door. Still,
+there’s something about him…</p>
+<p><strong>delia</strong>: I’m glad Prothero let room five have a go at
+the gardening project. He is quite proficient. Prothero was reluctant to
+allow an inmate access to the tool and chemical supply at first but now
+the fat toad is delighted. The crop has almost doubled.</p>
+<p><strong>delia</strong>: He also grows roses. Beautiful roses.</p>
+<p><strong>delia</strong>: December 24th: I was in the mess. It was
+about half past ten when we heard the first explosion.</p>
+<p><strong>delia</strong>: The ones at the front ran straight into the
+gas. It was horrible.</p>
+<p><strong>delia</strong>: A few of us made it out through the rear
+door. You could hear men screaming everywhere. I hate the sound of men
+screaming.</p>
+<p><strong>delia</strong>: In the center of the camp, everything was on
+fire. Everyone running in all directions. We had hardly enough time to
+get our bearings when the ovens exploded.</p>
+<p><strong>delia</strong>: It was the man in room rive. I couldn’t have
+known. The chemical supplies, grease solvents, ammonia, fertilizer. He’d
+been making things with them.</p>
+<p><strong>delia</strong>: Mustard gas…</p>
+<p><strong>delia</strong>: And napalm.</p>
+<p><strong>delia</strong>: And in the yard, I saw him. He had the flames
+behind him. He was naked.</p>
+<p><strong>delia</strong>: He looked at me…</p>
+<p><strong>delia</strong>: As if I were an insect. Oh god. As if I were
+something mounted on a slide.</p>
+<p><strong>delia</strong>: He looked at me.</p>
+<p><strong>finch</strong>: That’s the last entry until six months later
+when Dr. Surridge is back in London. There is no mention of the man in
+room five again. End of story.</p>
+<p><strong>finch</strong>: Except that it wasn’t the end of the
+story.</p>
+<p><strong>finch</strong>: Between 2009 and 2012, over forty men and
+women who were previously stationed at Larkhill met with what were
+believed to be accidental deaths. Eventually, only three remained.</p>
+<p><strong>finch</strong>: The three he’d been saving until last.</p>
+<p><strong>finch</strong>: Everyone who worked at Larkhill. Everyone who
+could have identified him. You see there are two possible motives here.
+Not one.</p>
+<p><strong>finch</strong>: The first is revenge. He escapes from
+Larkhill and vows to get even with his tormentors. The whole exercise an
+elaborate, chilling vendetta.</p>
+<p><strong>finch</strong>: That’s the explanation that I find most
+reassuring, funnily enough. Because that means he’s finished. It’s over
+now.</p>
+<p><strong>finch</strong>: The second motive is more sinister. Like I
+said, everyone who could have identified him is dead.</p>
+<p><strong>finch</strong>: What if he’s just been clearing the
+ground?</p>
+<p><strong>finch</strong>: What if he’s planning something else?</p>
+<p><strong>finch</strong>: You see, the diary we found was in full view.
+We didn’t have to search for it. He left it there. He wanted us to find
+it. He wanted us to know the story. Or…</p>
+<p><strong>finch</strong>: For all we know, the diary could be a
+complete and utter fake. Codename V could have written it himself.</p>
+<p><strong>finch</strong>: He’s playing games with us. He might never
+have been at Larkhill at all. Do you see? It could all be another smoke
+screen, a false trail, another cover story –</p>
+<p><strong>leader</strong>: Enough!</p>
+<p><strong>leader</strong>: Mr. Finch, would you please explain to me
+the nature of this meeting?! Because I was under the impression that you
+had some information about the terrorist, codename V!</p>
+<p><strong>leader</strong>: No more questions, understand! I want
+answers! I am not interested in where he grew up, what kind of flowers
+he likes or his favorite color!</p>
+<p><strong>leader</strong>: Do I make myself clear?</p>
+<p><strong>finch</strong>: Yes, Leader.</p>
+<p><strong>leader</strong>: Dismissed. England prevails, Mr. Finch.</p>
+<p><strong>leader</strong>: Mr. Finch, the girl. Do you have anything on
+the girl?</p>
+<p><strong>finch</strong>: No, Leader. Not yet.</p>
+<p><strong>man</strong>: Wake up, cow.</p>
+<p><strong>guard 1</strong>: Tsk. This pathetic whore is the famous Miss
+Hammond?</p>
+<p><strong>evey</strong>: You’ve made a mistake.</p>
+<p><strong>rossiter</strong>: Shut up.</p>
+<p><strong>evey</strong>: Please. I haven’t done anything –</p>
+<p><strong>rossiter</strong>: I said shut your hole!</p>
+<p><strong>interrogator</strong>: Do you know why you’re here. Evey
+Hammond?</p>
+<p><strong>evey</strong>: No, please, I didn’t do anything.</p>
+<p><strong>interrogator</strong>: Allow me to be more precise. Did you
+participate in the murder of Dr. Delia Surridge?</p>
+<p><strong>evey</strong>: No.</p>
+<p><strong>interrogator</strong>: Did you participate in the murder of
+Derek Almond, director of the Finger?</p>
+<p><strong>evey</strong>: No, I –</p>
+<p><strong>interrogator</strong>: Did you participate in the murder of
+Bishop Anthony Lilliman?</p>
+<p><strong>evey</strong>: Oh god, I don’t –</p>
+<p><strong>interrogator</strong>: Have you ever participated in a
+terrorist act against your country?</p>
+<p><strong>evey</strong>: No –</p>
+<p><strong>interrogator</strong>: What is the identity of codename
+V?</p>
+<p><strong>evey</strong>: I don’t know.</p>
+<p><strong>interrogator</strong>: You are a lying cunt.</p>
+<p><strong>evey</strong>: They were going to rape me, kill me –</p>
+<p><strong>rossiter</strong>: Shut up.</p>
+<p><strong>interrogator</strong>: This board will not tolerate any more
+of your lies, Miss Hammond. We have over 120 minutes of audio and
+videotape and 75 pages of testimonials from eye witness that identify
+you as an accomplice to the terrorist, codename V.</p>
+<p><strong>interrogator</strong>: Do you want to know why you’re here?
+You are formally being brought up on charges of murder on fourteen
+counts and sedition against your Leader and country which brings an
+automatic sentence of death.</p>
+<p><strong>evey</strong>: Please. I didn’t do anything.</p>
+<p><strong>interrogator</strong>: Process the prisoner and return her to
+her cell until she is more cooperative.</p>
+<p><strong>evey</strong>: I read her letter. Hid it. Slept. Woke. They
+questioned me. And I read her letter again.</p>
+<p><strong>evey</strong>: Over and over…</p>
+<p><strong>evey</strong>: Her name was Valerie.</p>
+<p><strong>valerie</strong>: I was born in a rainy burg in Nottingham in
+1975. I passed my eleven plus and went to girl’s grammar.</p>
+<p><strong>valerie</strong>: I met my first girlfriend at school. Her
+name was Sara. Her wrists. Her wrists were beautiful.</p>
+<p><strong>valerie</strong>: I sat in biology class staring at the
+pickled rabbit fetus while Mr. Herd said it was an adolescent phase that
+people outgrew.</p>
+<p><strong>valerie</strong>: Sara did. I didn’t.</p>
+<p><strong>valerie</strong>: In 1994, I stopped pretending and took a
+girl called Christine home to meet my parents.</p>
+<p><strong>valerie</strong>: A week later I moved to London to go to
+college and study drama. My mother said I broke her heart.</p>
+<p><strong>valerie</strong>: But it was my integrity that was important.
+Is that so selfish? It sells for so little but it’s all we have left in
+this place…</p>
+<p><strong>valerie</strong>: It is the very last inch of us…</p>
+<p><strong>valerie</strong>: But within that inch we are free.</p>
+<p><strong>interrogator</strong>: Enough.</p>
+<p><strong>interrogator</strong>: Now Miss Hammond, let us review the
+facts.</p>
+<p><strong>interrogator</strong>: You work for codename V. Codename V
+killed Delia Surridge and then Derek Almond with your help and that is
+why you were found outside her home.</p>
+<p><strong>interrogator</strong>: Isn’t that what happened, Miss
+Hammond?</p>
+<p><strong>evey</strong>: No. No, that isn’t true –</p>
+<p><strong>interrogator</strong>: Oh dear, Rossiter?</p>
+<p><strong>evey</strong>: No, wait!</p>
+<p><strong>valerie</strong>: London. I was happy in London.</p>
+<p><strong>valerie</strong>: I played Dandini in Cinderella.</p>
+<p><strong>valerie</strong>: The world was strange and rustling with
+invisible crowds behind the hot lights and all that breathless
+glamour.</p>
+<p><strong>valerie</strong>: Work improved. I got small film roles, then
+bigger ones.</p>
+<p><strong>valerie</strong>: In 2006, I starred in “The Salt Flats.”
+That’s where I met Ruth. We fell in love.</p>
+<p><strong>valerie</strong>: Every Valentine’s Day she sent me roses
+and, oh god, we had so much. Those were the best three years of my
+life.</p>
+<p><strong>valerie</strong>: In 2010, they came.</p>
+<p><strong>valerie</strong>: And after that there were no more
+roses…</p>
+<p><strong>valerie</strong>: Not for anybody.</p>
+<p><strong>valerie</strong>: After the takeover, they started rounding
+up the gays. They took Ruth while she was out looking for food.</p>
+<p><strong>valerie</strong>: Why are they so frightened of us?</p>
+<p><strong>valerie</strong>: They burned her face with cigarettes and
+made her give them my name. She signed a statement saying I’d seduced
+her.</p>
+<p><strong>valerie</strong>: I didn’t blame her. God, I loved her but I
+didn’t blame her.</p>
+<p><strong>valerie</strong>: But she did.</p>
+<p><strong>valerie</strong>: She killed herself in her cell. She
+couldn’t live with betraying me, with giving up that last inch. Oh,
+Ruth.</p>
+<p><strong>valerie</strong>: They came for me. They shaved off my hair.
+They held my head down a toilet and told lesbian jokes. They brought me
+here and pumped me full of chemicals.</p>
+<p><strong>valerie</strong>: I can’t feel my tongue. I can’t speak.</p>
+<p><strong>valerie</strong>: It is strange that my life should end in
+such a terrible place but for three years I had roses and apologized to
+nobody.</p>
+<p><strong>valerie</strong>: I shall die here. Every inch of me shall
+perish…</p>
+<p><strong>valerie</strong>: Except one.</p>
+<p><strong>valerie</strong>: An inch. It is small and fragile and it’s
+the only thing in the world that’s worth having.</p>
+<p><strong>valerie</strong>: We must never lose it or sell it or give it
+away. We must never let them take it from us.</p>
+<p><strong>valerie</strong>: I don’t know who you are but I hope you
+escape this place. I hope that the world turns and things get better and
+that one day people have roses again.</p>
+<p><strong>valerie</strong>: I don’t know who you are but I love you. I
+love you. Valerie.</p>
+<p><strong>evey</strong>: I had come to know every inch of those four
+walls in that dark hell and they knew every inch of me. Every inch…</p>
+<p><strong>evey</strong>: Except one.</p>
+<p><strong>interrogator</strong>: “My name is Evey Hammond. On the 5th
+of November 2019, I was abducted by the terrorist known as codename V
+and then taken against my will to an unknown location.”</p>
+<p><strong>interrogator</strong>: “Once there, I was systematically
+brainwashed by means physical and psychological. I was frequently
+subjected to sexual abuse during this period.”</p>
+<p><strong>interrogator</strong>: “Eventually I was terrorized into
+helping him commit the murders of Derek Almond, Dr. Delia Surridge, and
+Anthony Lilliman, Bishop of Westminster.”</p>
+<p><strong>interrogator</strong>: “I, the undersigned, swear that the
+above statement is genuine and that it was not signed by means of
+intimidation.”</p>
+<p><strong>interrogator</strong>: We’d like you to sign that for us,
+Miss Hammond. Where we’ve put the little cross.</p>
+<p><strong>evey</strong>: No.</p>
+<p><strong>interrogator</strong>: As you wish.</p>
+<p><strong>interrogator</strong>: Escort Miss Hammond back to her cell,
+Rossiter, where she will wait while you arrange a wet detail of six
+men.</p>
+<p><strong>interrogator</strong>: Then take her out behind the chemical
+sheds and shoot her.</p>
+<p><strong>rossiter</strong>: It’s time, unless you want to change your
+mind.</p>
+<p><strong>rossiter</strong>: Sign that statement. You could be out
+inside three years. Perhaps they’d find you a job with the Finger.</p>
+<p><strong>evey</strong>: Thank you but I’d rather die behind the
+chemical sheds.</p>
+<p><strong>rossiter</strong>: Then there’s nothing left to threaten you
+with, is there? You are free.</p>
+<p><strong>evey</strong>: What?</p>
+<p><strong>v</strong>: Welcome home, Evey.</p>
+<p><strong>evey</strong>: You…</p>
+<p><strong>evey</strong>: You did this… to me.</p>
+<p><strong>evey</strong>: You did this to me!</p>
+<p><strong>evey</strong>: You – You hit me and – and cut my hair. It was
+you. It was just you all this time.</p>
+<p><strong>evey</strong>: You tortured me. You tortured me –</p>
+<p><strong>evey</strong>: Oh god, why?</p>
+<p><strong>v</strong>: Because I love you, Evey. Because I wanted to set
+you free.</p>
+<p><strong>evey</strong>: Love?</p>
+<p><strong>evey</strong>: Set me free? Don’t you realize?</p>
+<p><strong>evey</strong>: Don’t you realize what you did to me? You
+nearly drove me mad!</p>
+<p><strong>evey</strong>: I hate you.</p>
+<p><strong>evey</strong>: I hate you! Set me free? You put me in a
+prison to set me free?!</p>
+<p><strong>v</strong>: You were already in a prison. You’ve been in a
+prison all your life.</p>
+<p><strong>evey</strong>: Shut up! I don’t want to hear it. I wasn’t in
+a prison. I was happy! I was happy here –</p>
+<p><strong>v</strong>: Happiness is the most insidious prison of all,
+Evey.</p>
+<p><strong>evey</strong>: That’s warped! That’s evil and it’s wrong!
+What gives you the right to judge? Who are you to say what’s not good
+enough?!</p>
+<p><strong>v</strong>: You were born in a prison, Evey. I didn’t put you
+there. I just showed you the bars. You’ve been in a prison so long, you
+no longer believe there’s an outside world.</p>
+<p><strong>evey</strong>: Shut up! You’re mad! I don’t want to hear
+it!</p>
+<p><strong>v</strong>: That’s because you’re afraid, Evey. You’re afraid
+because you can feel freedom closing in on you. You’re afraid because
+freedom is terrifying.</p>
+<p><strong>evey</strong>: I can’t feel anything! There’s nothing left to
+feel! Don’t you understand?</p>
+<p><strong>v</strong>: Don’t back away from it, Evey. Part of you
+understands the truth even as part pretends not to.</p>
+<p><strong>v</strong>: Woman, this is the most important moment in your
+life. Don’t run from it.</p>
+<p><strong>evey</strong>: I don’t know what – Oh god – I can’t breathe
+–</p>
+<p><strong>v</strong>: Good. You’re almost there. Go closer. Feel the
+shape of it.</p>
+<p><strong>evey</strong>: What are you doing to me? I can’t breathe
+–</p>
+<p><strong>v</strong>: You were in a cell. They offered you a choice
+between the death of your principles and the death of your body.</p>
+<p><strong>evey</strong>: I feel – I feel like I’m going to burst.</p>
+<p><strong>v</strong>: You said you’d rather die. You faced the fear of
+your own death and you were calm. Try to feel now what you felt
+then.</p>
+<p><strong>evey</strong>: Oh god – I felt –</p>
+<p><strong>evey</strong>: Like an angel –</p>
+<p><strong>evey</strong>: Oh god, V, I’m so scared. What’s happening to
+me?</p>
+<p><strong>v</strong>: The door of the cage is open, Evey. All that you
+feel is the wind from outside. Don’t be afraid.</p>
+<p><strong>v</strong>: Try to walk. The lift will take us to the
+roof.</p>
+<p><strong>evey</strong>: The roof? Outside?</p>
+<p><strong>evey</strong>: I – I don’t want to be blindfolded.</p>
+<p><strong>v</strong>: No, Evey. No more blindfolds.</p>
+<p><strong>v</strong>: Do you feel it?</p>
+<p><strong>evey</strong>: Everything’s so – different.</p>
+<p><strong>v</strong>: I know. Five years ago, I too stared beneath a
+night like this. Naked under a roaring sky.</p>
+<p><strong>v</strong>: The night is yours, Evey. Seize it. Encircle it
+within your arms.</p>
+<p><strong>v</strong>: Bury it in your heart up to the hilt.</p>
+<p><strong>v</strong>: Become transfixed and transfigured –</p>
+<p><strong>v</strong>: Forever.</p>
+<p><strong>dascombe</strong>: Finch!</p>
+<p><strong>dascombe</strong>: Do you know what this is all about?</p>
+<p><strong>finch</strong>: No, but I can guess.</p>
+<p><strong>dascombe</strong>: What?</p>
+<p><strong>finch</strong>: “Remember, remember, the fifth of
+November.”</p>
+<p><strong>dascombe</strong>: Oh come on. He’s long gone. He has to be.
+He did what he came to do and it’s over.</p>
+<p><strong>dascombe</strong>: Isn’t it?</p>
+<p><strong>finch</strong>: Not for us.</p>
+<p><strong>leader</strong>: A year, gentlemen.</p>
+<p><strong>leader</strong>: I have given you almost a year and you have
+given me nothing. Nothing!</p>
+<p><strong>dascombe</strong>: Now Adam, there is no one better than
+Finch and you know it.</p>
+<p><strong>leader</strong>: Yes, Mr. Dascombe, I do know it. It is that
+very fact that keeps me awake at night, wondering if perhaps there is a
+reason that Mr. Finch has failed.</p>
+<p><strong>finch</strong>: What are you saying?</p>
+<p><strong>leader</strong>: I’m saying that perhaps I don’t know you as
+well as I thought I did.</p>
+<p><strong>finch</strong>: Are you asking for my resignation?</p>
+<p><strong>leader</strong>: No, I am asking for some goddamn
+results!</p>
+<p><strong>dascombe</strong>: It’s not Finch’s fault, Adam.</p>
+<p><strong>conrad</strong>: We’ve all been looking. The man simply
+disappeared.</p>
+<p><strong>etheridge</strong>: Vanished.</p>
+<p><strong>dascombe</strong>: He’s gone, Adam. It’s over.</p>
+<p><strong>leader</strong>: It’s over, is it? He’s gone. Vanished, you
+say?</p>
+<p><strong>leader</strong>: Transcripts recorded over the last thirty
+days in which the terrorist was talked about or mentioned in a positive
+context. This is only thirty days!</p>
+<p><strong>leader</strong>: Is this what you consider,
+“disappeared?”</p>
+<p><strong>dascombe</strong>: For god’s sake, Adam, it’s a stupid
+variety show.</p>
+<p><strong>leader</strong>: Mr. Creedy, I want the producers, writers,
+and actors of that “stupid variety show” arrested and charged with
+sedition.</p>
+<p><strong>creedy</strong>: Yes, sir.</p>
+<p><strong>dascombe</strong>: You can’t be serious –</p>
+<p><strong>leader</strong>: Push me, Roger, push me and you’ll find out
+how serious I am.</p>
+<p><strong>leader</strong>: This, this V is still out there. I can feel
+him like a sickness worming its way into the hearts and minds of the
+public. Something must be done, and done quickly, to exorcise this demon
+for the very soul of this country is at stake.</p>
+<p><strong>leader</strong>: That is why I am compelled to give each and
+every one of you notice that if by the fifth of November you are still
+giving me nothing more than excuses, I will have to revoke your party
+status and terminate your positions.</p>
+<p><strong>leader</strong>: Mr. Creedy, I will speak with you in
+private. The rest of you are dismissed. England prevails.</p>
+<p><strong>leader</strong>: Mr. Creedy, as the new head of the Finger,
+you are the most important member of my cabinet.</p>
+<p><strong>creedy</strong>: I, uh, appreciate your faith in me.</p>
+<p><strong>leader</strong>: Your predecessor, Mr. Almond, was a good
+man, a man who understood what strength in unity meant, a man who, above
+all, loved his country. I need to know if you are such a man.</p>
+<p><strong>leader</strong>: Do you love your country, Mr. Creedy?</p>
+<p><strong>creedy</strong>: Oh god, yes!</p>
+<p><strong>helen</strong>: “The most important member of my cabinet.”
+Yes it is, isn’t it, dear?</p>
+<p><strong>creedy</strong>: Oh, don’t stop.</p>
+<p><strong>helen</strong>: I stop when you stop. What did he say
+next?</p>
+<p><strong>creedy</strong>: I can’t –</p>
+<p><strong>helen</strong>: Come on, Peter, what are you afraid of?
+Almond used to tell me everything and you’re twice the man he was.</p>
+<p><strong>creedy</strong>: He asked me… if I loved my country.</p>
+<p><strong>helen</strong>: Oh yes, I can tell you do love your country,
+almost as much as you love this…</p>
+<p><strong>creedy</strong>: Oh god…</p>
+<p><strong>helen</strong>: Go on.</p>
+<p><strong>creedy</strong>: Then he asked me to do something… oh,
+oh…</p>
+<p><strong>helen</strong>: What?</p>
+<p><strong>creedy</strong>: Helen, I can’t. I can’t tell you.</p>
+<p><strong>helen</strong>: He told you to frame someone as the
+terrorist.</p>
+<p><strong>creedy</strong>: My god?! How did you know that?</p>
+<p><strong>helen</strong>: I know Adam Susan. Now who was it?</p>
+<p><strong>creedy</strong>: No way. I can’t tell you that.</p>
+<p><strong>helen</strong>: Yes you can, honey. You can and you will. You
+have to trust me, love. We’re going to help each other.</p>
+<p><strong>creedy</strong>: Helen, please.</p>
+<p><strong>helen</strong>: Look at that face. You see? You’re just
+bursting to tell me.</p>
+<p><strong>helen</strong>: Now who was it?</p>
+<p><strong>creedy</strong>: It was… Fi… Fi… FINCH!</p>
+<p><strong>evey</strong>: That was beautiful.</p>
+<p><strong>evey</strong>: I’ve wanted to do this for a long time.</p>
+<p><strong>evey</strong>: Thank you, V. Thank you for everything you’ve
+done for me.</p>
+<p><strong>v</strong>: You did it all yourself, Evey. I just provided
+the backdrop but the drama was all your own.</p>
+<p><strong>evey</strong>: It was a good backdrop. I believed it. I
+really did. It’s still a bit hard for me to accept that it wasn’t real.
+That it was just you. Especially the letter.</p>
+<p><strong>evey</strong>: It is a beautiful letter, V. Every time I read
+it I could feel Valerie, almost like she was holding me. I believed in
+her most of all. I believed that she loved me and I loved her back.</p>
+<p><strong>evey</strong>: I feel a bit foolish telling you this. I know
+that you must have written it and thought you should have it back.</p>
+<p><strong>v</strong>: But I didn’t write that letter, Evey.</p>
+<p><strong>evey</strong>: What?</p>
+<p><strong>v</strong>: Come with me.</p>
+<p><strong>evey</strong>: Valerie?</p>
+<p><strong>v</strong>: Yes. Valerie Page. She was the woman in room
+four.</p>
+<p><strong>evey</strong>: She’s beautiful.</p>
+<p><strong>v</strong>: She wrote the letter just before she died. I
+delivered it to you as it was delivered to me. The words you wept over
+were the same words that transformed me.</p>
+<p><strong>evey</strong>: Roses. You grew them for her.</p>
+<p><strong>v</strong>: Yes.</p>
+<p><strong>evey</strong>: They’re beautiful.</p>
+<p><strong>v</strong>: Evey, do you know what day it is?</p>
+<p><strong>evey</strong>: Two days before the first day we met.</p>
+<p><strong>v</strong>: You remembered.</p>
+<p><strong>evey</strong>: You’re planning something, aren’t you, V?</p>
+<p><strong>v</strong>: You know me too well now.</p>
+<p><strong>evey</strong>: What are you going to do?</p>
+<p><strong>v</strong>: I’m going to fulfill an old promise.</p>
+<p><strong>v</strong>: I’ll show you.</p>
+<p><strong>evey</strong>: I’ve never been here before.</p>
+<p><strong>v</strong>: Yes. It is the deepest part of my home. Once you
+know it, I should think you’ll know everything.</p>
+<p><strong>evey</strong>: Oh, V, it’s lovely. Where on earth did you
+find it?</p>
+<p><strong>v</strong>: In a way, I suppose it really found me.</p>
+<p><strong>evey</strong>: What’s in these packages?</p>
+<p><strong>v</strong>: Gelignite.</p>
+<p><strong>v</strong>: Careful.</p>
+<p><strong>evey</strong>: What are you going to do with all of it?</p>
+<p><strong>v</strong>: I told you. I’m going to finish what was started
+four hundred years ago.</p>
+<p><strong>evey</strong>: Where does this train go?</p>
+<p><strong>v</strong>: This is the old Victoria line but it is blocked,
+blocked somewhere between Whitehall and St. James.</p>
+<p><strong>evey</strong>: Whitehall… V, that’s the New Government
+Building.</p>
+<p><strong>evey</strong>: But the underground has been shut down for
+years. How are you going to make it run without any power?</p>
+<p><strong>v</strong>: I just thought I might ask them to turn it on for
+me.</p>
+<p><strong>leader</strong>: Yes, Mr. Creedy?</p>
+<p><strong>creedy</strong>: Everything’s set, sir. No worries.</p>
+<p><strong>leader</strong>: When?</p>
+<p><strong>creedy</strong>: Tonight.</p>
+<p><strong>announcer</strong>: Tonight on Tales from the Bible, a story
+of treachery and betrayal from the Book of Daniel.</p>
+<p><strong>dascombe</strong>: All of London’s waiting. Ready, two. And
+here we go –</p>
+<p><strong>announcer</strong>: Tonight, England’s greatest hero repels
+the forces of darkness in a brand new episode.</p>
+<p><strong>heidi</strong>: Oh, Storm. Save me! Save me!</p>
+<p><strong>storm</strong>: You mongrel trash, if you harm her!</p>
+<p><strong>mongrel trash</strong>: Look out, de white debil has a laser
+lugar!</p>
+<p><strong>guard</strong>: Hey, what the – ?</p>
+<p><strong>heidi</strong>: Oh Storm, hold me. Hold me tight.</p>
+<p><strong>finch</strong>: I don’t know how you stand that tripe.</p>
+<p><strong>dominic</strong>: Es gooh.</p>
+<p><strong>dominic</strong>: Finch? Finch, what’s wrong?</p>
+<p><strong>dominic</strong>: What the hell?</p>
+<p><strong>finch</strong>: Don’t you see, Dominic?</p>
+<p><strong>finch</strong>: I’m V.</p>
+<p><strong>guard</strong>: Bloody hell!</p>
+<p><strong>guard</strong>: Freeze!</p>
+<p><strong>guard</strong>: Fuck all.</p>
+<p><strong>dominic</strong>: Creedy? What the hell’s going on?</p>
+<p><strong>creedy</strong>: I’m here to arrest Mr. Finch for acts of
+treason and terrorism.</p>
+<p><strong>dominic</strong>: You can’t be serious.</p>
+<p><strong>creedy</strong>: If I were you, boy, I’d shut my hole unless
+you want to start explaining why you didn’t say nothing about
+Mr. Finch’s secret identity.</p>
+<p><strong>finch</strong>: Why don’t you just shoot me, Creedy? Wouldn’t
+that make everything a lot simpler?</p>
+<p><strong>creedy</strong>: Yeah, I suppose it would.</p>
+<p><strong>dominic</strong>: Holy Christ! Creedy, you stupid ape! If
+Finch is V then tell me who is that?</p>
+<p><strong>v</strong>: Good evening, London.</p>
+<p><strong>creedy</strong>: Bloody fuckin’ hell.</p>
+<p><strong>v</strong>: I thought it was time we had a little talk.</p>
+<p><strong>finch</strong>: He has to be at Jordan tower. Come on!</p>
+<p><strong>creedy</strong>: Don’t just stand there! Follow them!</p>
+<p><strong>v</strong>: Are you sitting comfortably? Good. Then I’ll
+begin.</p>
+<p><strong>leader</strong>: Damn you! Damn you!</p>
+<p><strong>leader</strong>: Lieutenant, ready my transport. I want every
+armed man within a hundred miles at Jordan tower. Now!</p>
+<p><strong>v</strong>: Right now, I imagine there are hundreds of
+soldiers rushing here to kill me because someone does not want us to
+talk.</p>
+<p><strong>mother</strong>: Hush. Turn it up.</p>
+<p><strong>v</strong>: They are afraid that I am going to say the things
+that are not supposed to be said. They are afraid that I am going to say
+the truth.</p>
+<p><strong>v</strong>: The truth is that there is something terribly
+wrong with this country, isn’t there? If you look about, you witness
+cruelty, injustice and despotism. But what do you do about it? What can
+you do?</p>
+<p><strong>v</strong>: You are but a single individual. How can you
+possible make any difference? Individuals have no power in this modern
+world. That is what you’ve been taught because that is what they need
+you to believe. But it is not true.</p>
+<p><strong>v</strong>: This is why they are afraid and the reason that I
+am here; to remind you that it is individuals who always hold the power.
+The real power. Individuals like me. And individuals like you.</p>
+<p><strong>v</strong>: I have come to offer you a deal. If you accept, I
+will give you a different world. A world without curfews, without
+soldiers and surveillance systems. A world that is not run by other men
+but that is run by you. I am offering you a second chance.</p>
+<p><strong>v</strong>: Four hundred years ago, a great citizen made a
+most significant contribution to our common culture. It was a
+contribution forged in secrecy and stealth although it is best
+remembered in noise and bright light.</p>
+<p><strong>v</strong>: To commemorate that glorious night at precisely
+the stroke of midnight, the edifice of their world will erupt with
+enough sound and fury to shake the earth. All I ask is that you join me
+at the gates to watch as the past is erased, the pathway cleared so that
+together we can start toward a new day.</p>
+<p><strong>leader</strong>: I want this man dead! I want him shot on
+sight!</p>
+<p><strong>captain</strong>: Yes, sir.</p>
+<p><strong>v</strong>: But, you ask, who am I to make such promises? A
+fair question but hardly necessary as you know me already. To know me
+any more you need only look to a mirror.</p>
+<p><strong>v</strong>: Truth be told, this wasn’t even my idea, was it?
+If you think back, you’ll remember that night, whispering in your
+lover’s arms. I became a part of your plan just as you have now become
+part of mine. Give me the line of the queen and I’ll give you your
+secret dream.</p>
+<p><strong>v</strong>: On the twelfth stroke of the fifth day of the
+eleventh month, I hope we shall all meet again.</p>
+<p><strong>v</strong>: Until then, I bid you goodnight.</p>
+<p><strong>leader</strong>: Who was it? Who was he?</p>
+<p><strong>leader</strong>: Roger Dascombe! Of course. Of course! It
+makes such perfect sense.</p>
+<p><strong>captain</strong>: Sir, I think there has been a mistake.</p>
+<p><strong>leader</strong>: No! There is no mistake!</p>
+<p><strong>captain</strong>: But sir, there are people that say they saw
+both the terrorist and Dascombe together –</p>
+<p><strong>leader</strong>: Who? Who are these people? They must be
+detained immediately. Whatever they saw or whatever they think they saw
+is subordinate to the truth and that truth is that Roger Dascombe is the
+terrorist and the terrorist is dead!</p>
+<p><strong>finch</strong>: But I thought I was the terrorist.</p>
+<p><strong>leader</strong>: Finch, what are you doing here?</p>
+<p><strong>finch</strong>: Since I’m not in jail and since you have
+another, even more convenient suspect. I’m guessing the charges have
+been dropped.</p>
+<p><strong>leader</strong>: Be careful, Finch.</p>
+<p><strong>finch</strong>: I am careful, sir. Always. That is why I
+suggest that a search of this building begin immediately.</p>
+<p><strong>leader</strong>: The terrorist is dead!</p>
+<p><strong>finch</strong>: With all due respect, I disagree and I
+believe that he is presently trying to get out of this building
+disguised as one of us.</p>
+<p><strong>leader</strong>: Are you challenging my authority?</p>
+<p><strong>finch</strong>: No sir, I’m trying to run an investigation
+–</p>
+<p><strong>leader</strong>: I am trying to run a country! When I tell
+you, Mr. Finch, the terrorist is dead, then the terrorist is dead! If
+you continue to suggest otherwise then you will leave me no choice but
+to have you arrested on charges of sedition. Do I make myself clear?</p>
+<p><strong>leader</strong>: Now, it is imperative for the people of
+London to know that they are safe, that the terrorist is dead and
+everything is under control.</p>
+<p><strong>speakers</strong>: The terrorist is dead. No further threat
+exists. Everything is under control.</p>
+<p><strong>little girl</strong>: Bollocks.</p>
+<p><strong>little girl</strong>: Bollocks!</p>
+<p><strong>little girl</strong>: He’s not dead! It’s all bollocks!</p>
+<p><strong>v</strong>: … if you give me the line of the queen, I’ll give
+you your secret dream.</p>
+<p><strong>finch</strong>: Play it again.</p>
+<p><strong>dominic</strong>: Come on, Finch. We’ve seen it fifty times.
+I mean, after what they done to you, I don’t know why we’re even trying
+to stop him.</p>
+<p><strong>finch</strong>: I don’t know. For twenty seven years, I’ve
+been at this job. Twenty seven years, I’ve done what I’ve been told to
+do. Maybe that’s all there is to it. I’m just a dumb old dog. A dumb old
+dog that only knows one trick.</p>
+<p><strong>dominic</strong>: That ain’t it, Finch. It’s more than that.
+I know you. It’s something personal with this one.</p>
+<p><strong>finch</strong>: Maybe. And maybe I’m not ready for a
+revolution.</p>
+<p><strong>dominic</strong>: Well, we got less than thirty hours to stop
+it.</p>
+<p><strong>finch</strong>: We will.</p>
+<p><strong>dominic</strong>: How?</p>
+<p><strong>finch</strong>: It’s on the tape. I know it. I can feel it.
+He did this for a reason. He needs something.</p>
+<p><strong>dominic</strong>: What?</p>
+<p><strong>finch</strong>: The line of the Queen?</p>
+<p><strong>dominic</strong>: But what does that mean?</p>
+<p><strong>finch</strong>: Maybe it’s a line from Shakespeare. Or a
+book. I don’t know.</p>
+<p><strong>v</strong>: … This wasn’t even my idea, was it?</p>
+<p><strong>finch</strong>: But right here. He’s talking to someone.
+Someone specific. Someone who knows what he wants.</p>
+<p><strong>v</strong>: If you think back, you’ll –</p>
+<p><strong>v</strong>: Remember that night, whispering in your lover’s
+arms.</p>
+<p><strong>conrad</strong>: Helen? Helen, why did you want that
+tape?</p>
+<p><strong>helen</strong>: Shut up, Conrad. I’m thinking.</p>
+<p><strong>v</strong>: … now you’ve become a part of mine.</p>
+<p><strong>helen</strong>: How? How did you know that?</p>
+<p><strong>conrad</strong>: Know what, my love?</p>
+<p><strong>v</strong>: Give me the line of the Queen and I’ll give you
+your secret dream.</p>
+<p><strong>helen</strong>: All right. You have a deal.</p>
+<p><strong>helen</strong>: Oh no! Not you. Conrad. Not yet. Here you can
+have a chocolate. Open up. Open!</p>
+<p><strong>helen</strong>: Good boy. As for the rest of the box, perhaps
+when you’re Leader.</p>
+<p><strong>helen</strong>: Right now I need something else Conrad. I
+need you to use that pretty little brain for me. You know all about the
+old underground, don’t you?</p>
+<p><strong>helen</strong>: I need to know everything, understand?
+Everything.</p>
+<p><strong>assistant director</strong>: Ready in five, Leader.</p>
+<p><strong>assistant director</strong>: In four, three…</p>
+<p><strong>leader</strong>: Good evening London. As Leader of this great
+country, I felt it imperative to speak with you and to assure you once
+and for all that the shadow that recently fell across our land has
+indeed passed.</p>
+<p><strong>woman</strong>: Oh, for fuck’s sake.</p>
+<p><strong>leader</strong>: What we have endured this long year was no
+accident, no mere coincidence. This was not a simple act of terror
+conducted by a singular madman. No, this was a test.</p>
+<p><strong>leader</strong>: It was not me, nor the Party, nor the
+government that was threatened this year. It was our beliefs. Our faith.
+I believe that God himself bore witness to our struggle and like Job I
+believe that we have been vindicated.</p>
+<p><strong>drunk</strong>: Remember fifth of November!</p>
+<p><strong>leader</strong>: How do I know this? Let me read to you where
+I found the answer, where I so often find the answer. In the Scripture.
+Revelations.</p>
+<p><strong>leader</strong>: “If any man have an ear, let him hear.”</p>
+<p><strong>leader</strong>: “He that leadeth into captivity shall go
+into captivity; he that killeth with the sword shall be killed with the
+sword. Here is the patience and faith of the Saints.”</p>
+<p><strong>leader</strong>: “And I beheld another beast coming out of
+the Earth; and he had two horns like a lamb and he spake as a
+dragon.”</p>
+<p><strong>leader</strong>: “And he doeth great wonders, so that he
+maketh fire come down from Heaven on the Earth in the sight of men.”</p>
+<p><strong>leader</strong>: “And he deceiveth them that dwell on the
+Earth by the means of those miracles which he had the power to do –”</p>
+<p><strong>evey</strong>: Oh, V, turn it off, please.</p>
+<p><strong>v</strong>: Of course, my dear.</p>
+<p><strong>creedy</strong>: But how does he know?</p>
+<p><strong>helen</strong>: I don’t know. All I know is he does… And I
+know what he wants.</p>
+<p><strong>evey</strong>: What is that, V?</p>
+<p><strong>v</strong>: That, Evey, is what I have been waiting for.</p>
+<p><strong>creedy</strong>: Do you know what I want? I want you just
+like this… Bent over that black leather chair…</p>
+<p><strong>creedy</strong>: What about Conrad?</p>
+<p><strong>helen</strong>: I told you, I’ll handle Conrad and V will
+take care of Susan. The mob will take care of the guard and then… You
+can use the Finger to take over.</p>
+<p><strong>creedy</strong>: Use the Finger? You mean like this?</p>
+<p><strong>helen</strong>: Oh… oh… that is vulgar…</p>
+<p><strong>creedy</strong>: But you like it?</p>
+<p><strong>helen</strong>: Yes, oh yes, oh you’re a pig, Peter…</p>
+<p><strong>creedy</strong>: That I am, misses. But I’m the pig that’s
+gonna be running this country.</p>
+<p><strong>helen</strong>: Yes and I’m… I’m going to be Eva… Oh Eva…</p>
+<p><strong>helen</strong>: “Don’t cry for me Argen… oh Argen… Argen…
+tina!</p>
+<p><strong>finch</strong>: Eighteen hours.</p>
+<p><strong>finch</strong>: Dominic!</p>
+<p><strong>finch</strong>: Dominic, go home.</p>
+<p><strong>dominic</strong>: But I’ve still got over three hundred lines
+from The Fairy Queen.</p>
+<p><strong>finch</strong>: Forget it. There’s no more time. You go home
+and get some rest. You’re going to need it tonight.</p>
+<p><strong>dominic</strong>: He’s got us, doesn’t he, Finch?</p>
+<p><strong>finch</strong>: Yes, he does.</p>
+<p><strong>helen</strong>: Now listen to me, Conrad. This is the most
+important moment of our lives. Everything I’ve worked and hoped for
+comes to this. Susan is a very dangerous man, especially now, that’s why
+I need you, Conrad. I need you to be stronger than him. I need you to be
+the better man. Understand?</p>
+<p><strong>helen</strong>: If you do this Conrad, and you do it right,
+I’m going to turn you from the little man I married into the man of my
+dreams.</p>
+<p><strong>conrad</strong>: Oh, Helen.</p>
+<p><strong>helen</strong>: Not on the lips.</p>
+<p><strong>finch</strong>: Give it up, old man. You’re not even sure you
+want to stop him.</p>
+<p><strong>finch</strong>: Christ! That’s it! It’s got to be it!</p>
+<p><strong>lieutenant</strong>: Sir, Mr. Heyer is here to see you. Says
+it’s urgent. And he’s here with his wife, sir.</p>
+<p><strong>leader</strong>: His wife?</p>
+<p><strong>lieutenant</strong>: Sir, yes, sir – Wait, you can’t go –</p>
+<p><strong>helen</strong>: Leader, I’m terribly sorry but I absolutely
+must speak with you.</p>
+<p><strong>helen</strong>: I have something to tell you, something
+important but –</p>
+<p><strong>helen</strong>: I can tell you and only you. In private.</p>
+<p><strong>helen</strong>: It is a matter of national security.</p>
+<p><strong>leader</strong>: Now what’s this all about, Mrs. Heyer?</p>
+<p><strong>helen</strong>: Please, forgive me. I’ve been so afraid,
+afraid to come here to talk to you. I thought he must know. I was
+terrified he knew but I had to come because I knew you were the only one
+that can protect me.</p>
+<p><strong>leader</strong>: Protect you from what?</p>
+<p><strong>leader</strong>: Come now, Mrs. Heyer.</p>
+<p><strong>helen</strong>: You won’t let him hurt me, will you?</p>
+<p><strong>leader</strong>: Let who hurt you?</p>
+<p><strong>helen</strong>: The terrorist.</p>
+<p><strong>leader</strong>: The terrorist is dead.</p>
+<p><strong>helen</strong>: Oh, how I wanted to believe it, Leader, but I
+know it’s not true.</p>
+<p><strong>leader</strong>: How?</p>
+<p><strong>helen</strong>: Because I know who the terrorist is.</p>
+<p><strong>leader</strong>: Who? Who is it, woman?</p>
+<p><strong>helen</strong>: It’s Conrad, Leader. Conrad. My husband is
+the terrorist.</p>
+<p><strong>leader</strong>: What?!</p>
+<p><strong>leader</strong>: How do you know?</p>
+<p><strong>helen</strong>: I saw him, Leader. In the middle of the
+night. I heard something. I went to the landing and that’s when I saw
+it.</p>
+<p><strong>helen</strong>: That mask. That hideous smiling mask.</p>
+<p><strong>leader</strong>: But how did you know it was Heyer?</p>
+<p><strong>helen</strong>: I know, Leader. I know the way a woman
+knows.</p>
+<p><strong>leader</strong>: But you have no proof?</p>
+<p><strong>helen</strong>: Proof?</p>
+<p><strong>leader</strong>: Yes, proof? This is an extremely delicate
+situation, Mrs. Heyer. It has been reported that the terrorist is dead.
+It would be a catastrophe to arrest a man now without concrete,
+conclusive proof. Do you have any evidence at all?</p>
+<p><strong>leader</strong>: But if you’re right, if Heyer is indeed the
+terrorist…</p>
+<p><strong>helen</strong>: Leader! Wait!</p>
+<p><strong>conrad</strong>: Is everything all right? Helen?</p>
+<p><strong>leader</strong>: Yes, Mr. Heyer, your wife has done her duty
+to her country.</p>
+<p><strong>leader</strong>: Don’t worry, Mrs. Heyer. You will be taken
+care of. I will launch an immediate investigation and I promise, you
+will be the first to know when an arrest will be made.</p>
+<p><strong>conrad</strong>: Investigation of what?</p>
+<p><strong>leader</strong>: Subversion, Mr. Heyer. Your wife was privy
+to the dialogue of subversives. That’s all you need to know at this
+time. Lieutenant!</p>
+<p><strong>leader</strong>: The Heyers are leaving. I need to see
+Mr. Creedy at once.</p>
+<p><strong>helen</strong>: Thank you, sir.</p>
+<p><strong>helen</strong>: I want you to go straight to your office and
+wait for me to call. When I do, I want you to come immediately home.
+Understood?</p>
+<p><strong>conrad</strong>: Yes, Helen.</p>
+<p><strong>helen</strong>: Oh, Conrad, I’m so proud of you.</p>
+<p><strong>conrad</strong>: I did it, Helen. I did it, didn’t</p>
+<p><strong>helen</strong>: Tonight, Conrad.</p>
+<p><strong>conrad</strong>: Tonight.</p>
+<p><strong>helen</strong>: I promise you will never forget tonight.</p>
+<p><strong>helen</strong>: Goodbye, Conrad.</p>
+<p><strong>guard</strong>: Mr. Heyer! Mr. Heyer!</p>
+<p><strong>conrad</strong>: Yes?</p>
+<p><strong>guard</strong>: Sir, this package arrived for you, sir.</p>
+<p><strong>conrad</strong>: Thank you.</p>
+<p><strong>tape</strong>: Do you know what I want? I want you just like
+this… bent over that black leather chair.</p>
+<p><strong>finch</strong>: Oh my god.</p>
+<p><strong>tape</strong>: Use the Finger?… You mean like this?… Oh…
+That’s vulgar… But you like it?… Yes… oh yes.</p>
+<p><strong>finch</strong>: Is the Leader in?</p>
+<p><strong>lieutenant</strong>: Yes, but he’s meeting with the Captain
+of the Guard.</p>
+<p><strong>finch</strong>: Perfect.</p>
+<p><strong>lieutenant</strong>: Mr. Finch, you can’t go in –</p>
+<p><strong>leader</strong>: Mr. Finch?</p>
+<p><strong>finch</strong>: Leader, I need as many men the Captain can
+spare and I need them right now.</p>
+<p><strong>captain</strong>: What for?</p>
+<p><strong>finch</strong>: To capture codename V.</p>
+<p><strong>finch</strong>: He’s underground. The old subway. I know
+exactly what he’s going to do. If we move quickly, we can be there,
+waiting for him.</p>
+<p><strong>finch</strong>: Leader, every second we delay…</p>
+<p><strong>leader</strong>: I’m coming with you.</p>
+<p><strong>guard</strong>: Sir –</p>
+<p><strong>leader</strong>: There will be no discussion –</p>
+<p><strong>guard</strong>: But if Mr. Finch is right –</p>
+<p><strong>leader</strong>: I am sick to death of this terrorist being
+everywhere and nowhere! I will judge whether Mr. Finch is right and I
+will judge it with my own eyes! Do I make myself clear, Captain?</p>
+<p><strong>captain</strong>: Sir, yes, sir!</p>
+<p><strong>leader</strong>: Is there a problem, Mr. Finch?</p>
+<p><strong>finch</strong>: No… no sir.</p>
+<p><strong>leader</strong>: Good. Captain, mobilize your men.</p>
+<p><strong>captain</strong>: Sir, yes, sir.</p>
+<p><strong>leader</strong>: We’ll find this bloody bastard and we will
+finish him.</p>
+<p><strong>v</strong>: Yes.</p>
+<p><strong>evey</strong>: V, what’s going to happen?</p>
+<p><strong>v</strong>: Change, Evey. That’s all. Just change.</p>
+<p><strong>evey</strong>: Is it going to be violent?</p>
+<p><strong>v</strong>: Yes, I suppose it will.</p>
+<p><strong>evey</strong>: But why? Why must is be violent?</p>
+<p><strong>v</strong>: Because, Evey, that is the nature of change. She
+is a temperamental creature that appears in earnest rarely but, when she
+does, she will wear one of two faces. The first face is the destroyer.
+It is lamentable but all true change begins with death.</p>
+<p><strong>evey</strong>: What is the other face, V?</p>
+<p><strong>v</strong>: The other face? She is the true face of change.
+The face of the creator. She is the one that remakes the world.
+Evey?</p>
+<p><strong>evey</strong>: Yes, V?</p>
+<p><strong>v</strong>: May I ask you for a favor?</p>
+<p><strong>evey</strong>: Of course.</p>
+<p><strong>v</strong>: It is a small thing but it would mean a great
+deal to me.</p>
+<p><strong>evey</strong>: Tell me.</p>
+<p><strong>v</strong>: I’ve never danced before. I’ve thought about it
+many times, here in this room, listening to the music. But I’ve always
+been alone.</p>
+<p><strong>evey</strong>: It would be my pleasure.</p>
+<p><strong>v</strong>: Thank you, Evey. You are an excellent dancer.</p>
+<p><strong>evey</strong>: All it takes is a little practice.</p>
+<p><strong>v</strong>: Alas, I have run out of time.</p>
+<p><strong>evey</strong>: V? What are you going to do?</p>
+<p><strong>v</strong>: Don’t you remember? I have a date tonight,
+Evey.</p>
+<p><strong>evey</strong>: You’re coming back though, aren’t you?</p>
+<p><strong>evey</strong>: V, I won’t let you leave unless you promise me
+that you will come back.</p>
+<p><strong>v</strong>: Of course, I’ll be back. You don’t think you can
+be rid of me now, do you?</p>
+<p><strong>evey</strong>: Just promise.</p>
+<p><strong>v</strong>: I promise.</p>
+<p><strong>leader</strong>: Mark my words, Mr. Finch, this man is going
+to become an example so that every man, woman, and child in this country
+will remember what happens to those who would ever think to stand
+against the state.</p>
+<p><strong>leader</strong>: Captain, I need a gas unit down here with
+enough nerve gas to fill every rat-hole in these tunnels.</p>
+<p><strong>finch</strong>: I don’t think that will be necessary.</p>
+<p><strong>leader</strong>: There are over one hundred of the best
+trained soldiers in this country down here. Let him come.</p>
+<p><strong>leader</strong>: Captain, what’s happening?</p>
+<p><strong>radio</strong>: No sign sir. Repeat, no sign of him.</p>
+<p><strong>captain</strong>: They lost him.</p>
+<p><strong>finch</strong>: This… this is a mistake.</p>
+<p><strong>leader</strong>: Don’t tell me you’re a coward,
+Mr. Finch.</p>
+<p><strong>finch</strong>: Leader, we have to get out of here!</p>
+<p><strong>leader</strong>: This was your idea.</p>
+<p><strong>finch</strong>: It was a mistake. This is what he wants. He
+knows us, Leader. He knows us too well. We have to get out of here
+before it’s too late –</p>
+<p><strong>v</strong>: Good evening citizens of London. This is the
+voice of Fate. Your fate…</p>
+<p><strong>leader</strong>: What trick is this?</p>
+<p><strong>v</strong>: Tonight, the face of London is going to change
+and I am going to offer you the chance to change with her. Your Leader
+is finished. He will not leave these tunnels alive.</p>
+<p><strong>leader</strong>: This is an outrage! I order you not to
+listen to this!</p>
+<p><strong>v</strong>: At midnight tonight, the Head will be destroyed
+and a new era will begin. You must now decide if you are going to be a
+part of that era.</p>
+<p><strong>v</strong>: You can choose to stay here and die with your
+Leader or you can choose to be free. The decision is yours and yours
+alone.</p>
+<p><strong>leader</strong>: Captain, order all your men to fall back and
+secure this position!</p>
+<p><strong>v</strong>: Some of you have wives. Some of you have
+families. All of you have lives. Consider each of them as you ask
+yourself, are they a part of the past, or are they a part of the
+future?</p>
+<p><strong>captain</strong>: Fall back. Fall back and secure the central
+platform.</p>
+<p><strong>leader</strong>: Any man that disobeys this order will be
+court marshaled!</p>
+<p><strong>leader</strong>: Captain! Captain, where are your men?</p>
+<p><strong>leader</strong>: Goddammit, I will not tolerate this
+insubordination! I want those deserters shot, Captain.</p>
+<p><strong>leader</strong>: Shot on sight!</p>
+<p><strong>captain</strong>: You! You! Point position. We’re getting out
+of here! Now!</p>
+<p><strong>leader</strong>: Traitors! You cowards!</p>
+<p><strong>leader</strong>: I know who you are! I’ll see you hang! Every
+last one of you!</p>
+<p><strong>leader</strong>: Finch? Finch! Finch, goddammit, you can’t
+leave me! Don’t leave me!</p>
+<p><strong>v</strong>: You are going to die as you ruled –</p>
+<p><strong>v</strong>: Alone.</p>
+<p><strong>leader</strong>: Damn you! Damn you!</p>
+<p><strong>leader</strong>: Conrad? Is that you? You’re working with
+Finch, aren’t you? And Creedy! You’re all in this together!</p>
+<p><strong>leader</strong>: Who are you?</p>
+<p><strong>v</strong>: You, most of all, should know, Leader. You
+created me. Without you, I would never be. More than life, Leader, you
+gave me purpose.</p>
+<p><strong>v</strong>: “He that killeth with the sword, shall be killed
+with the sword.”</p>
+<p><strong>leader</strong>: Noooo!</p>
+<p><strong>finch</strong>: Don’t move!</p>
+<p><strong>leader</strong>: Mr. Finch! Oh god, Mr. Finch!</p>
+<p><strong>finch</strong>: Drop the knife.</p>
+<p><strong>leader</strong>: Oh, I knew it, Mr. Finch. I knew you
+wouldn’t desert me. You’re a good man, Finch. A damn good man.</p>
+<p><strong>finch</strong>: No, Mr. Susan. No, I’m not. I’m a man who
+does his job and does what he’s told. For twenty seven years, that’s all
+I’ve been.</p>
+<p><strong>leader</strong>: Careful, Mr. Finch. He’s quick as the
+devil.</p>
+<p><strong>finch</strong>: I’ve read Delia’s diary over and over all
+year. It sickens me but I am unable to judge her. I am as guilty as
+she.</p>
+<p><strong>leader</strong>: Mr. Finch, what are you doing? Shoot him.
+Kill the bastard, Finch.</p>
+<p><strong>finch</strong>: I have no excuse. I did what I was told to
+do.</p>
+<p><strong>leader</strong>: Finch, I order you to shoot him! Finch!</p>
+<p><strong>finch</strong>: My job was to find you and catch you. I’ve
+done my job. I’ve done it for the last time. I’m tired of it. I’m tired
+of it all.</p>
+<p><strong>finch</strong>: Kill him yourself if you can.</p>
+<p><strong>finch</strong>: Thank you, V. And goodbye.</p>
+<p><strong>v</strong>: Goodbye, Mr. Finch.</p>
+<p><strong>leader</strong>: I warned you, Finch, the penalty for treason
+is death.</p>
+<p><strong>leader</strong>: Are you ready to die?</p>
+<p><strong>v</strong>: The real question is, are you?</p>
+<p><strong>leader</strong>: Do you really believe you can pick up that
+knife before I pull this trigger?</p>
+<p><strong>v</strong>: No. But I don’t have to.</p>
+<p><strong>v</strong>: You see? You cannot kill me. There is no flesh
+and blood within this cloak to kill. There is only an idea.</p>
+<p><strong>v</strong>: And ideas are bulletproof.</p>
+<p><strong>helen</strong>: Creedy? Creedy, you dumb bastard, you left
+your car parked in front.</p>
+<p><strong>helen</strong>: What did I tell you? Creedy.</p>
+<p><strong>helen</strong>: Oh my god.</p>
+<p><strong>conrad</strong>: Helen…</p>
+<p><strong>helen</strong>: Conrad! What have you done?</p>
+<p><strong>conrad</strong>: I won, Helen. I did it. I won. I’m the
+better man.</p>
+<p><strong>conrad</strong>: We’ve been through a bad patch, Helen. But
+now, he’s gone… There’s nothing to come between us…</p>
+<p><strong>helen</strong>: Don’t touch me! You stupid piece of shit!
+You’ve ruined it! I had it all planned perfectly and you’ve ruined
+it!</p>
+<p><strong>helen</strong>: I have to get out of here! I have to get
+away!</p>
+<p><strong>conrad</strong>: Helen –</p>
+<p><strong>helen</strong>: No! Let go! Now!</p>
+<p><strong>helen</strong>: Conrad, damn you! Let me go!</p>
+<p><strong>conrad</strong>: No, Helen, you’re not leaving me… not this
+time… not ever.</p>
+<p><strong>helen</strong>: No, please! Oh god, no! Oh god, please help
+me!</p>
+<p><strong>conrad</strong>: No one can help us, Helen. God is dead.</p>
+<p><strong>evey</strong>: You came back.</p>
+<p><strong>evey</strong>: Oh god, what happened?</p>
+<p><strong>v</strong>: Evey…</p>
+<p><strong>evey</strong>: You need a doctor.</p>
+<p><strong>v</strong>: It’s too late for that…</p>
+<p><strong>evey</strong>: No, don’t say that!</p>
+<p><strong>v</strong>: Evey, listen to me. I’ve not long and there are
+things that must be said.</p>
+<p><strong>v</strong>: I have done that which I came to do. Now, it is
+time for me to rest and with me the past will, at last, find peace.</p>
+<p><strong>v</strong>: But the world, the world is not saved… Do not
+think that, when the fires die and the smoke clears, there is no
+miracle… there is only a path… upon which they must learn to rule
+themselves.</p>
+<p><strong>evey</strong>: Yes, they need you, V.</p>
+<p><strong>v</strong>: Not me, Evey, not me. I told you I am the
+villain. The destroyer… But yes, they will need help…</p>
+<p><strong>v</strong>: I kept my promise to you, Evey… Now you must
+promise me.</p>
+<p><strong>evey</strong>: What?</p>
+<p><strong>v</strong>: Promise me… you will discover the face under this
+mask… but you will never look beneath it.</p>
+<p><strong>evey</strong>: I don’t understand.</p>
+<p><strong>v</strong>: Promise me. Please…</p>
+<p><strong>evey</strong>: I promise.</p>
+<p><strong>v</strong>: Sweet Eve. Wherever I shall go, I shall always
+love you.</p>
+<p><strong>evey</strong>: V, you are not going anywhere!</p>
+<p><strong>v</strong>: Midnight… Midnight. Eve… Make them remember…</p>
+<p><strong>evey</strong>: You’re not going to die, V!</p>
+<p><strong>v</strong>: Let me be there, Evey, when it begins… Please,
+let me hear the music, one last time… my music…</p>
+<p><strong>evey</strong>: I won’t let you die!</p>
+<p><strong>v</strong>: I know you won’t… I know…</p>
+<p><strong>v</strong>: My love… Ave Atque vale…</p>
+<p><strong>sergeant</strong>: Return to your homes! There is nothing to
+see! The terrorist is dead!</p>
+<p><strong>rabble rouser 1</strong>: He ain’t dead!</p>
+<p><strong>rabble rouser 2</strong>: He’ll be here, just like he
+said!</p>
+<p><strong>evey</strong>: I remember… I remember staring at the mask, at
+that smile.</p>
+<p><strong>evey</strong>: Part of me couldn’t believe he was dead and
+maybe that was why. The smile was still the same. It made me want to
+tear it off so I could see the face, so I could see that he was
+dead.</p>
+<p><strong>evey</strong>: But I had promised.</p>
+<p><strong>v</strong>: You will discover the face under this mask but
+you will never look beneath it.</p>
+<p><strong>evey</strong>: I began to try to imagine his face. Of course,
+I had long pictured my father behind that smile but I knew in my heart
+that V was not my father.</p>
+<p><strong>evey</strong>: Yet every time I pictured another face, any
+face, something was lost, something important was somehow diminished. V
+was more than a face. V was V.</p>
+<p><strong>evey</strong>: And then, quite suddenly, quite naturally, I
+realized whose face must be beneath that mask. It was the only face that
+mattered.</p>
+<p><strong>evey</strong>: I won’t let you die.</p>
+<p><strong>v</strong>: I know you won’t… I know.</p>
+<p><strong>evey</strong>: Goodbye, my love.</p>
+<p><strong>evey</strong>: “Ave Atque vale.”</p>
+<p><strong>evey</strong>: I looked it up the next morning.</p>
+<p><strong>evey</strong>: “Hail and farewell.”</p>
+<p><strong>v</strong>: “Make them remember…”</p>
+<p><strong>evey</strong>: They will, my love. They will.</p>
+<p><strong>evey</strong>: “Remember, remember, the fifth of
+November!”</p>
+<p><strong>evey</strong>: I have come here tonight to keep a promise. A
+promise that is over four hundred years old. Tonight I am here to give
+you your freedom!</p>
+<p><strong>evey</strong>: Since mankind’s dawn a handful of oppressors
+have accepted the responsibility over our lives, responsibility that we
+should have accepted ourselves. By doing so, they took our power. By
+doing nothing, we gave it away.</p>
+<p><strong>evey</strong>: Tonight, our world will change. Our leaders
+will be gone and we must choose what comes next. A return to the chains
+of others or lives of our own. A world of the past or one of the
+future.</p>
+<p><strong>evey</strong>: Let us choose carefully, London, and when we
+do, let us mark well and remember, remember this fifth of November!</p>
+<p><strong>v</strong>: Let me be there, Evey, when it begins…</p>
+<p><strong>v</strong>: Please let me hear the music… one last time… my
+music.</p>
+<p><strong>v</strong>: At first, you have to listen carefully.</p>
+<p><strong>v</strong>: Ah, yes. There it is. Beautiful, is it not?</p>
+<p><strong>evey</strong>: Yes, my love. Yes it is.</p>
+<p><strong>evey</strong>: I know that there is only one way to repay him
+for what he did.</p>
+<p><strong>evey</strong>: And I know that that way is going to take a
+lot of hard work.</p>
+<p><strong>evey</strong>: I know this like I know the sun will rise
+tomorrow and beneath that new sun, our work will begin.</p>
+</body>
+</html>

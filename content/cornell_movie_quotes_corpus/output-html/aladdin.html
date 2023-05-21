@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>aladdin</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="aladdin">aladdin</h1>
+<p><strong>peddler</strong>: Oh I come from a land</p>
+<p><strong>jafar</strong>: You…are late.</p>
+<p><strong>gazeem</strong>: A thousand apologies, O patient one.</p>
+<p><strong>jafar</strong>: You have it, then?</p>
+<p><strong>gazeem</strong>: I had to slit a few throats to get it.</p>
+<p><strong>jafar</strong>: Trust me, my pungent friend. You’ll get
+what’s</p>
+<p><strong>iago</strong>: What’s coming to you! Awk!</p>
+<p><strong>jafar</strong>: Quickly, follow the trail!</p>
+<p><strong>jafar</strong>: At last, after all my years of searching, the
+cave</p>
+<p><strong>iago</strong>: Awk! Cave of wonders!</p>
+<p><strong>gazeem</strong>: By Allah!</p>
+<p><strong>jafar</strong>: Now, remember! Bring me the lamp. The rest of
+the</p>
+<p><strong>iago</strong>: Awk, the lamp! Awk, the lamp!</p>
+<p><strong>cave</strong>: Who disturbs my slumber?</p>
+<p><strong>gazeem</strong>: It is I, Gazeem, a humble thief.</p>
+<p><strong>cave</strong>: Know this. Only one may enter here. One
+whose</p>
+<p><strong>jafar</strong>: What are you waiting for? Go on!</p>
+<p><strong>cave</strong>: Seek thee out, the diamond in the rough.</p>
+<p><strong>iago</strong>: I can’t believe it. I just don’t believe it.
+We’re</p>
+<p><strong>jafar</strong>: Patience, Iago. Patience. Gazeem was
+obviously</p>
+<p><strong>iago</strong>: Oh, there’s a big</p>
+<p><strong>jafar</strong>: Yes, we do. Only one may enter. I must find
+this</p>
+<p><strong>guard</strong>: Stop, thief! I’ll have your hands for a
+trophy,</p>
+<p><strong>aladdin</strong>: All</p>
+<p><strong>guard 1</strong>: There he is!</p>
+<p><strong>guard 2</strong>: You won’t get away so easy!</p>
+<p><strong>aladdin</strong>: You think that was easy?</p>
+<p><strong>guard 1</strong>: You two, over that way, and you, with me.
+We’ll</p>
+<p><strong>aladdin</strong>: Morning, ladies.</p>
+<p><strong>woman 1</strong>: Getting into trouble a little early today,
+aren’t</p>
+<p><strong>aladdin</strong>: Trouble? No way. You’re only in trouble if
+you</p>
+<p><strong>aladdin</strong>: I’m in trouble!</p>
+<p><strong>guard</strong>: …and this time–</p>
+<p><strong>aladdin</strong>: Perfect timing, Abu!</p>
+<p><strong>abu</strong>: Hello!</p>
+<p><strong>aladdin</strong>: Come on, let’s get outta here!</p>
+<p><strong>guards</strong>: Riffraff! Street rat!</p>
+<p><strong>aladdin</strong>: Just a little snack, guys!</p>
+<p><strong>guards</strong>: Rip him open, take it back guys!</p>
+<p><strong>aladdin</strong>: I can take a hint, gotta face the facts</p>
+<p><strong>women</strong>: Who?!?</p>
+<p><strong>woman</strong>: I’d blame parents, except he hasn’t got
+’em!</p>
+<p><strong>aladdin</strong>: Gotta eat to live, gotta steal to eat</p>
+<p><strong>crowd</strong>: Stop, thief! Vandal!</p>
+<p><strong>aladdin</strong>: Let’s not be too hasty</p>
+<p><strong>lady</strong>: Still I think he’s rather tasty</p>
+<p><strong>aladdin</strong>: Gotta eat to live, gotta steal to eat</p>
+<p><strong>guard 1</strong>: He’s got a sword!</p>
+<p><strong>guard 2</strong>: You idiot–we’ve ALL got swords!!</p>
+<p><strong>aladdin</strong>: One jump ahead of the hoofbeats!</p>
+<p><strong>crowd</strong>: Vandal!</p>
+<p><strong>aladdin</strong>: One hop ahead of the hump!</p>
+<p><strong>crowd</strong>: Street rat!</p>
+<p><strong>aladdin</strong>: One trick ahead of disaster</p>
+<p><strong>crowd</strong>: Scoundrel!</p>
+<p><strong>aladdin</strong>: They’re quick–but I’m much faster</p>
+<p><strong>crowd</strong>: Take that!</p>
+<p><strong>aladdin</strong>: Here goes, better throw my hand in</p>
+<p><strong>aladdin</strong>: And now, esteemed effendi, we feast! All
+right!</p>
+<p><strong>abu</strong>: Uh-oh!</p>
+<p><strong>aladdin</strong>: Here, go on–take it.</p>
+<p><strong>abu</strong>: Ah, don’t. Huh?</p>
+<p><strong>bystander 1</strong>: On his way to the palace, I
+suppose.</p>
+<p><strong>bystander 2</strong>: Another suitor for the princess.</p>
+<p><strong>prince</strong>: Out of my way, you filthy brat!</p>
+<p><strong>aladdin</strong>: Hey, if I were as rich as you, I could
+afford some manners</p>
+<p><strong>prince</strong>: Oh–I teach you some manners!</p>
+<p><strong>aladdin</strong>: Look at that, Abu. It’s not every day you
+see a</p>
+<p><strong>prince</strong>: You are a worthless street rat. You were
+born a</p>
+<p><strong>aladdin</strong>: I’m not worthless. And I don’t have fleas.
+Come</p>
+<p><strong>aladdin</strong>: Riffraff, street rat.</p>
+<p><strong>prince</strong>: I’ve never been so insulted!</p>
+<p><strong>sultan</strong>: Oh, Prince Achmed. You’re not leaving so
+soon, are</p>
+<p><strong>prince</strong>: Good luck marrying her off!</p>
+<p><strong>sultan</strong>: Oh, Jasmine! Jasmine! Jasmine!</p>
+<p><strong>jasmine</strong>: Oh, father. Rajah was just playing with
+him,</p>
+<p><strong>sultan</strong>: Dearest, you’ve got to stop rejecting every
+suitor</p>
+<p><strong>both</strong>: …must be married to a prince.</p>
+<p><strong>sultan</strong>: By your next birthday.</p>
+<p><strong>jasmine</strong>: The law is wrong.</p>
+<p><strong>sultan</strong>: You’ve only got three more days!</p>
+<p><strong>jasmine</strong>: Father, I hate being forced into this.</p>
+<p><strong>sultan</strong>: Jasmine, it’s not only this law.</p>
+<p><strong>jasmine</strong>: Try to understand. I’ve never done a thing
+on my</p>
+<p><strong>sultan</strong>: But Jasmine, you’re a princess.</p>
+<p><strong>jasmine</strong>: Then maybe I don’t want to be a
+princess.</p>
+<p><strong>sultan</strong>: Oooohhh! Allah forbid you should have
+any</p>
+<p><strong>sultan</strong>: I don’t know where she gets it from. Her
+mother</p>
+<p><strong>jafar</strong>: My life is but to serve you, my lord.</p>
+<p><strong>sultan</strong>: It’s this suitor business. Jasmine refuses
+to</p>
+<p><strong>iago</strong>: Awk! Wit’s-end.</p>
+<p><strong>sultan</strong>: Oh, ha ha. Have a cracker, pretty polly!</p>
+<p><strong>jafar</strong>: Your majesty certainly has a way with dumb
+animals.</p>
+<p><strong>sultan</strong>: If anyone can help, it’s you.</p>
+<p><strong>jafar</strong>: Ah, but it would require the use of the
+mystic blue</p>
+<p><strong>sultan</strong>: Uh, my ring? But it’s been in the family
+for</p>
+<p><strong>jafar</strong>: It is necessary to find the princess a
+suitor.</p>
+<p><strong>sultan</strong>: Everything…will be…fine.</p>
+<p><strong>jafar</strong>: The diamond.</p>
+<p><strong>sultan</strong>: Here, Jafar. Whatever you need will be
+fine.</p>
+<p><strong>jafar</strong>: You are most gracious, my liege. Now run
+along and</p>
+<p><strong>sultan</strong>: Yes…that’ll be…pretty good.</p>
+<p><strong>iago</strong>: I can’t take it anymore! If I gotta choke down
+on</p>
+<p><strong>jafar</strong>: Calm yourself, Iago.</p>
+<p><strong>iago</strong>: Then I’d grab him around the head. Whack!
+Whack!</p>
+<p><strong>jafar</strong>: Soon, I will be sultan, not</p>
+<p><strong>iago</strong>: And then I stuff the crackers down his throat!
+Ha</p>
+<p><strong>jasmine</strong>: Oh, I’m sorry, Rajah. But I can’t stay here
+and</p>
+<p><strong>aladdin</strong>: Okay, Abu. Go!</p>
+<p><strong>proprietor</strong>: Try this, your taste buds</p>
+<p><strong>abu</strong>: Blah blah blah!</p>
+<p><strong>proprietor</strong>: Why, you! Get away from here, you filthy
+ape!</p>
+<p><strong>abu</strong>: Bye bye!</p>
+<p><strong>aladdin</strong>: Nice goin’ Abu. Breakfast is served.</p>
+<p><strong>shopkeeper 1</strong>: Pretty lady, buy a pot. No finer pot
+in brass</p>
+<p><strong>shopkeeper 2</strong>: Sugar dates, sugar dates and figs!
+Sugar</p>
+<p><strong>shopkeeper 3</strong>: Would the lady like a necklace. A
+pretty</p>
+<p><strong>shopkeeper 4</strong>: Fresh fish! We catch ’em, you buy
+’em!</p>
+<p><strong>jasmine</strong>: I don’t think so.</p>
+<p><strong>aladdin</strong>: Wow!</p>
+<p><strong>abu</strong>: Uh oh. Hello? Hello?</p>
+<p><strong>jasmine</strong>: Oh, you must be hungry. Here you go.</p>
+<p><strong>proprietor</strong>: You’d better be able to pay for
+that.</p>
+<p><strong>jasmine</strong>: Pay?</p>
+<p><strong>proprietor</strong>: No one steals from my cart!</p>
+<p><strong>jasmine</strong>: Oh, I’m sorry sir. I don’t have any
+money.</p>
+<p><strong>proprietor</strong>: Thief!</p>
+<p><strong>jasmine</strong>: Please, if you let me go to the palace, I
+can</p>
+<p><strong>proprietor</strong>: Do you know what the penalty is for
+stealing?</p>
+<p><strong>jasmine</strong>: No, no please!</p>
+<p><strong>aladdin</strong>: Thank you kind sir. I’m so glad you’ve
+found</p>
+<p><strong>jasmine</strong>: What are you doing?</p>
+<p><strong>aladdin</strong>: Just play along.</p>
+<p><strong>proprietor</strong>: You know this girl?</p>
+<p><strong>jasmine</strong>: Sadly, yes. She is my sister. She’s a
+little</p>
+<p><strong>proprietor</strong>: She said she knows the Sultan!</p>
+<p><strong>aladdin</strong>: She thinks the monkey is the Sultan.</p>
+<p><strong>jasmine</strong>: Oh, wise Sultan. How may I serve you?</p>
+<p><strong>abu</strong>: Well, blah blah blah blah.</p>
+<p><strong>aladdin</strong>: Tragic, isn’t it?</p>
+<p><strong>jasmine</strong>: Oh, hello doctor.</p>
+<p><strong>aladdin</strong>: No, no, no. Not that one.</p>
+<p><strong>proprietor</strong>: Huh? What is it?</p>
+<p><strong>iago</strong>: With all due respect, your</p>
+<p><strong>jafar</strong>: Save your breath, Iago. Faster!</p>
+<p><strong>iago</strong>: Yes, o mighty evil one.</p>
+<p><strong>jafar</strong>: Ah, sands of time–reveal to me the one who
+can</p>
+<p><strong>iago</strong>: That’s him?!?! That’s the clown we’ve been</p>
+<p><strong>jafar</strong>: Let’s have the guards extend him an
+invitation to</p>
+<p><strong>iago</strong>: Swell.</p>
+<p><strong>aladdin</strong>: Almost there.</p>
+<p><strong>jasmine</strong>: I want to thank you for stopping that
+man.</p>
+<p><strong>aladdin</strong>: Uh, forget it. So, uh, this is</p>
+<p><strong>jasmine</strong>: Is it that obvious?</p>
+<p><strong>aladdin</strong>: Well, you do kinda stand out.</p>
+<p><strong>jasmine</strong>: I’m a fast learner.</p>
+<p><strong>aladdin</strong>: Right. C’mon, this way.</p>
+<p><strong>jasmine</strong>: Is this where you live?</p>
+<p><strong>aladdin</strong>: Yep. Just me and Abu. Come and go as we
+please.</p>
+<p><strong>jasmine</strong>: Fabulous.</p>
+<p><strong>aladdin</strong>: Well, it’s not much,</p>
+<p><strong>jasmine</strong>: Oh, it’s wonderful.</p>
+<p><strong>aladdin</strong>: I wonder what it would be like to live
+there, to</p>
+<p><strong>jasmine</strong>: Oh, sure. People who tell you where to go
+and how</p>
+<p><strong>aladdin</strong>: It’s better than here. Always scraping for
+food</p>
+<p><strong>jasmine</strong>: You’re not free to make your own
+choices.</p>
+<p><strong>aladdin</strong>: Sometimes you feel so–</p>
+<p><strong>jasmine</strong>: You’re just–</p>
+<p><strong>both</strong>: –trapped.</p>
+<p><strong>aladdin</strong>: So, where’re you from?</p>
+<p><strong>jasmine</strong>: What does it matter? I ran away, and I am
+not</p>
+<p><strong>aladdin</strong>: Really?</p>
+<p><strong>abu</strong>: Why you!</p>
+<p><strong>jasmine</strong>: My father’s forcing me to get married.</p>
+<p><strong>aladdin</strong>: That’s–that’s awful.</p>
+<p><strong>jasmine</strong>: What?</p>
+<p><strong>aladdin</strong>: Abu says that–uh–that’s not fair.</p>
+<p><strong>abu</strong>: What?</p>
+<p><strong>jasmine</strong>: Oh did he?</p>
+<p><strong>aladdin</strong>: Yeah, of course.</p>
+<p><strong>jasmine</strong>: And does Abu have anything else to say?</p>
+<p><strong>aladdin</strong>: Well, uh, he wishes there was something he
+could do</p>
+<p><strong>abu</strong>: Oh, boy!</p>
+<p><strong>jasmine</strong>: Hmm, tell him that’s very sweet.</p>
+<p><strong>guard</strong>: Here you are! ALADDIN and JASMINE: They’ve
+found me! They’re</p>
+<p><strong>jasmine</strong>: My father must have sent them–</p>
+<p><strong>aladdin</strong>: Do you trust me?</p>
+<p><strong>jasmine</strong>: What?</p>
+<p><strong>aladdin</strong>: Do you trust me?</p>
+<p><strong>jasmine</strong>: Yes.</p>
+<p><strong>aladdin</strong>: Then jump!</p>
+<p><strong>guard</strong>: We just keep running into each other, don’t
+we,</p>
+<p><strong>guard</strong>: It’s the dungeon for you, boy.</p>
+<p><strong>aladdin</strong>: Hey, get off of me!</p>
+<p><strong>jasmine</strong>: Let go of him.</p>
+<p><strong>guard</strong>: Look what we</p>
+<p><strong>guard</strong>: Princess Jasmine.</p>
+<p><strong>aladdin</strong>: The princess?</p>
+<p><strong>abu</strong>: The princess?</p>
+<p><strong>guard</strong>: What are you doing outside the palace? And
+with</p>
+<p><strong>jasmine</strong>: That’s not your concern. Do as I command.
+Release</p>
+<p><strong>guard</strong>: Well, I would, princess, but my orders come
+from</p>
+<p><strong>jasmine</strong>: Believe me, I</p>
+<p><strong>jasmine</strong>: Jafar?</p>
+<p><strong>jafar</strong>: Oh, uh, princess.</p>
+<p><strong>iago</strong>: Awk! Jafar, I’m stuck!</p>
+<p><strong>jafar</strong>: How may I be of service to you?</p>
+<p><strong>jasmine</strong>: The guards just took a boy from the market,
+on your</p>
+<p><strong>jafar</strong>: Your father’s charged me with keeping peace
+in</p>
+<p><strong>jasmine</strong>: What was the crime?</p>
+<p><strong>iago</strong>: I can’t breathe, Jafar!</p>
+<p><strong>jafar</strong>: Why, kidnapping the princess, of course.</p>
+<p><strong>iago</strong>: If you could just–</p>
+<p><strong>jasmine</strong>: He didn’t kidnap me! I ran away!</p>
+<p><strong>jafar</strong>: Oh, dear! Oh, why</p>
+<p><strong>jasmine</strong>: What do you mean?</p>
+<p><strong>jafar</strong>: Sadly, the boy’s sentence has already been
+carried</p>
+<p><strong>jasmine</strong>: What sentence?</p>
+<p><strong>jafar</strong>: Death.</p>
+<p><strong>jasmine</strong>: No!</p>
+<p><strong>jafar</strong>: I am exceedingly sorry, princess.</p>
+<p><strong>jasmine</strong>: How could you?</p>
+<p><strong>iago</strong>: So, how did it go?</p>
+<p><strong>jafar</strong>: I think she took it rather well.</p>
+<p><strong>jasmine</strong>: It’s all my fault, Rajah. I didn’t even
+know his</p>
+<p><strong>aladdin</strong>: She was the princess. I don’t believe</p>
+<p><strong>abu</strong>: Yoo-hoo! Aladdin? Hello!</p>
+<p><strong>aladdin</strong>: Abu! Down here! Hey, c’mon–help me outta
+these.</p>
+<p><strong>aladdin</strong>: Hey, she was in trouble. Ah, she was worth
+it.</p>
+<p><strong>abu</strong>: Yeah, yeah, yeah.</p>
+<p><strong>aladdin</strong>: Don’t worry, Abu. I’ll never see her again.
+I’m a</p>
+<p><strong>abu</strong>: Ta da!</p>
+<p><strong>aladdin</strong>: I’m a–I’m a fool</p>
+<p><strong>old man</strong>: You’re only a fool if you give up, boy.</p>
+<p><strong>aladdin</strong>: Who are you?</p>
+<p><strong>old man</strong>: A lowly prisoner, like yourself. But
+together,</p>
+<p><strong>aladdin</strong>: I’m listening.</p>
+<p><strong>old man</strong>: There is a cave, boy. A cave of wonders.
+Filled</p>
+<p><strong>iago</strong>: Jafar, can ya hurry it up? I’m dyin’ in
+here!</p>
+<p><strong>aladdin</strong>: But the law says that only a prince can
+marry–</p>
+<p><strong>old man</strong>: You’ve heard of the golden rule, haven’t
+you boy?</p>
+<p><strong>aladdin</strong>: So why would you share all of this
+wonderful</p>
+<p><strong>old man</strong>: I need a young man with strong legs and a
+strong</p>
+<p><strong>aladdin</strong>: Ah, one problem. It’s out there, we’re in
+here?</p>
+<p><strong>old man</strong>: Mmm, mmm, mmm., Things aren’t always what
+they</p>
+<p><strong>abu</strong>: Oh, hmm.</p>
+<p><strong>cave</strong>: Who disturbs my slumber?</p>
+<p><strong>aladdin</strong>: It is I, Aladdin.</p>
+<p><strong>cave</strong>: Proceed. Touch nothing but the lamp.</p>
+<p><strong>old man</strong>: Remember, boy–first fetch me the lamp, and
+then</p>
+<p><strong>aladdin</strong>: C’mon, Abu.</p>
+<p><strong>aladdin</strong>: Would ya look at that!</p>
+<p><strong>abu</strong>: Uh oh!</p>
+<p><strong>aladdin</strong>: Just a handful of this stuff would make me
+richer</p>
+<p><strong>aladdin</strong>: Abu!</p>
+<p><strong>aladdin</strong>: Don’t…touch…anything! We gotta find that
+lamp.</p>
+<p><strong>abu</strong>: Huh?</p>
+<p><strong>abu</strong>: Aladdin! Aladdin!</p>
+<p><strong>aladdin</strong>: Abu, will ya knock it off?</p>
+<p><strong>aladdin</strong>: Abu, what are you–crazy?</p>
+<p><strong>aladdin</strong>: A magic carpet! C’mon. C’mon out. I’m not
+gonna</p>
+<p><strong>aladdin</strong>: Take it easy, Abu. He’s not gonna bite.</p>
+<p><strong>aladdin</strong>: Hey, wait a minute. Don’t go. Maybe you can
+help</p>
+<p><strong>aladdin</strong>: Wait here!</p>
+<p><strong>abu</strong>: Oh. Huh?</p>
+<p><strong>aladdin</strong>: This is it? This is what we came all the
+way down</p>
+<p><strong>cave voice</strong>: Infidels!</p>
+<p><strong>abu</strong>: Uh oh!</p>
+<p><strong>cave voice</strong>: You have touched the forbidden
+treasure.</p>
+<p><strong>aladdin</strong>: Whoa! Carpet, let’s move!</p>
+<p><strong>aladdin</strong>: Abu, this is no time to panic!</p>
+<p><strong>aladdin</strong>: Help me out!</p>
+<p><strong>old man</strong>: Throw me the lamp!</p>
+<p><strong>aladdin</strong>: I can’t hold on. Give me your hand.</p>
+<p><strong>old man</strong>: First give me the lamp!</p>
+<p><strong>old man</strong>: Ha ha ha ha! Yes! At last! Ha ha ha ha!</p>
+<p><strong>aladdin</strong>: What are you doing?</p>
+<p><strong>old man</strong>: Giving you your reward.</p>
+<p><strong>jafar</strong>: Heh heh heh! It’s mine. It’s all mine! I</p>
+<p><strong>sultan</strong>: Jasmine? Oh, dearest. What’s wrong?</p>
+<p><strong>jasmine</strong>: Jafar…has…done something… terrible.</p>
+<p><strong>sultan</strong>: There, there, there, my child–we’ll set it
+right.</p>
+<p><strong>abu</strong>: Oh, oh. Aladdin? Wake up. Aladdin.</p>
+<p><strong>aladdin</strong>: Oh, my head.</p>
+<p><strong>abu</strong>: Aha!</p>
+<p><strong>aladdin</strong>: Why, you hairy little thief! Looks like
+such a</p>
+<p><strong>genie</strong>: Aaaaahhhhh! OY! Ten-thousand years will give
+ya</p>
+<p><strong>aladdin</strong>: Uh, Al–uh–Aladdin.</p>
+<p><strong>aladdin</strong>: I must have hit my head harder</p>
+<p><strong>genie</strong>: Do you smoke? Mind if I do?</p>
+<p><strong>aladdin</strong>: Wait a minute! I’m–your master?</p>
+<p><strong>dup. genies</strong>: Duplicated, duplicated, duplicated,</p>
+<p><strong>aladdin</strong>: Whoa! Wish fulfillment?</p>
+<p><strong>genie</strong>: Three wishes to be exact. And ix-nay on
+the</p>
+<p><strong>aladdin</strong>: Now I know I’m dreaming.</p>
+<p><strong>genie</strong>: Master, I don’t</p>
+<p><strong>genie</strong>: So what’ll it be, master?</p>
+<p><strong>aladdin</strong>: You’re gonna grant me any three wishes I
+want?</p>
+<p><strong>genie</strong>: Ah, almost. There are a</p>
+<p><strong>aladdin</strong>: Like?</p>
+<p><strong>genie</strong>: Ah, rule number one: I can’t kill
+anybody.</p>
+<p><strong>aladdin</strong>: Ah, provisos? You</p>
+<p><strong>genie</strong>: Excuse me? Are you lookin’ at</p>
+<p><strong>sultan</strong>: Jafar, this is an outrage. If it weren’t for
+all</p>
+<p><strong>jafar</strong>: I assure you, your highness, it won’t happen
+again.</p>
+<p><strong>sultan</strong>: Jasmine, Jafar, now let’s put this whole
+messy</p>
+<p><strong>jafar</strong>: My most abject and humblest apologies to you
+as</p>
+<p><strong>jasmine</strong>: At least some good will come of my being
+forced to</p>
+<p><strong>sultan</strong>: That’s nice. All settled, then. Now,
+Jasmine,</p>
+<p><strong>jafar</strong>: If only I had gotten that lamp!</p>
+<p><strong>iago</strong>: I will have the power to get rid of</p>
+<p><strong>jafar</strong>: No, Iago. Only until she finds a chump
+husband.</p>
+<p><strong>both</strong>: Eeewww!</p>
+<p><strong>iago</strong>: Oh! Wait a minute! Wait a minute!</p>
+<p><strong>jafar</strong>: What?</p>
+<p><strong>iago</strong>: Okay, you marry the princess,all right? Then,
+uh,</p>
+<p><strong>jafar</strong>: Oh!Marry the shrew? I become sultan. The idea
+has</p>
+<p><strong>iago</strong>: Yes, merit! Yes! And then we drop papa-in-law
+and</p>
+<p><strong>jafar</strong>: Iago, I love the way your foul little mind
+works!</p>
+<p><strong>genie</strong>: Thank you for choosing Magic</p>
+<p><strong>aladdin</strong>: Oh, you sure showed me. Now about my three
+wishes-</p>
+<p><strong>genie</strong>: Dost mine ears deceive me? Three? You are
+down by</p>
+<p><strong>aladdin</strong>: Ah, no–I never actually wished to get out
+of the</p>
+<p><strong>genie</strong>: Well, don’t I feel just sheepish? All right,
+you</p>
+<p><strong>aladdin</strong>: Fair deal. So, three wishes. I want them to
+be</p>
+<p><strong>genie</strong>: Me? No one’s ever asked me that before. Well,
+in</p>
+<p><strong>aladdin</strong>: What? No, tell me.</p>
+<p><strong>genie</strong>: Freedom.</p>
+<p><strong>aladdin</strong>: You’re a prisoner?</p>
+<p><strong>genie</strong>: It’s all part-and-parcel, the whole genie
+gig.</p>
+<p><strong>aladdin</strong>: Genie, that’s terrible.</p>
+<p><strong>genie</strong>: But, oh–to be free. Not</p>
+<p><strong>aladdin</strong>: Why not?</p>
+<p><strong>genie</strong>: The only way I get outta this is if my
+master</p>
+<p><strong>aladdin</strong>: I’ll do it. I’ll set you free.</p>
+<p><strong>genie</strong>: Uh</p>
+<p><strong>aladdin</strong>: No, really, I promise.</p>
+<p><strong>genie</strong>: Well, here’s hopin’.</p>
+<p><strong>aladdin</strong>: Well, there’s this girl–</p>
+<p><strong>genie</strong>: Eehhh!</p>
+<p><strong>aladdin</strong>: Oh, but Genie. She’s smart and fun and…</p>
+<p><strong>genie</strong>: Pretty?</p>
+<p><strong>aladdin</strong>: Beautiful. She’s got these eyes that
+just…and</p>
+<p><strong>aladdin</strong>: But she’s the princess. To even have a
+chance, I’d</p>
+<p><strong>genie</strong>: Let’s see here. Uh,</p>
+<p><strong>aladdin</strong>: Genie, I wish for you to make me a
+prince!</p>
+<p><strong>genie</strong>: All right! Woof woof woof woof!</p>
+<p><strong>abu</strong>: Uh oh!</p>
+<p><strong>genie</strong>: Here he comes,</p>
+<p><strong>aladdin</strong>: Abu, you look good.</p>
+<p><strong>genie</strong>: He’s got the outfit, he’s got the elephant,
+but</p>
+<p><strong>jafar</strong>: Sire, I have found a solution to the problem
+with</p>
+<p><strong>iago</strong>: Awk! The problem with your daughter!</p>
+<p><strong>sultan</strong>: Oh, really?</p>
+<p><strong>jafar</strong>: Right here. “If the princess</p>
+<p><strong>sultan</strong>: But Jasmine hated all those suitors!</p>
+<p><strong>jafar</strong>: Not to worry, my liege. There is more. If, in
+the</p>
+<p><strong>sultan</strong>: What? Who?</p>
+<p><strong>jafar</strong>: The royal vizier! Why, that would be…me!</p>
+<p><strong>sultan</strong>: Why, I thought the law says that only a
+prince can</p>
+<p><strong>jafar</strong>: Desperate times call for desperate measures,
+my</p>
+<p><strong>sultan</strong>: Yes…desperate measures…</p>
+<p><strong>jafar</strong>: You will order the princess to marry me.</p>
+<p><strong>sultan</strong>: I…will order…the princess…to…</p>
+<p><strong>jafar</strong>: The princess will marry</p>
+<p><strong>sultan</strong>: The princess will marry…</p>
+<p><strong>marchers</strong>: Make way for Prince Ali!</p>
+<p><strong>swordsmen</strong>: Say hey! It’s Prince Ali!</p>
+<p><strong>major</strong>: Hey, clear the way in the old bazaar,</p>
+<p><strong>chorus of men</strong>: He’s got seventy-five golden
+camels!</p>
+<p><strong>harry</strong>: Don’t they look lovely, June?</p>
+<p><strong>chorus of women</strong>: Purple peacocks, he’s got
+fifty-three!</p>
+<p><strong>june</strong>: Fabulous, Harry, I love the feathers!</p>
+<p><strong>genie:</strong>: GIRLS: There’s no question this Ali’s
+alluring Never ordinary, never boring Everything about the man just
+plain impresses He’s a wonder, he’s a whiz, a wonder He’s about to pull
+my heart asunder And I absolutely love the way he dresses!</p>
+<p><strong>chorus</strong>: He’s got ninety-five white Persian
+monkeys!</p>
+<p><strong>genie</strong>: Prince Ali!</p>
+<p><strong>sultan</strong>: Splendid, absolutely marvelous.</p>
+<p><strong>aladdin</strong>: Ahem. Your majesty, I have</p>
+<p><strong>sultan</strong>: Prince Ali Ababwa! Of course. I’m delighted
+to</p>
+<p><strong>jafar</strong>: Ecstatic. I’m afraid, Prince</p>
+<p><strong>aladdin</strong>: –Ababwa!</p>
+<p><strong>jafar</strong>: Whatever. You cannot just parade in here
+uninvited</p>
+<p><strong>sultan</strong>: …by Allah, this is quite a remarkable
+device.</p>
+<p><strong>aladdin</strong>: Why certainly, your majesty. Allow me.</p>
+<p><strong>jafar</strong>: Sire, I must advise against this–</p>
+<p><strong>sultan</strong>: –Oh, button up, Jafar. Learn to have a
+little fun.</p>
+<p><strong>jafar</strong>: Just where did you say you were from?</p>
+<p><strong>aladdin</strong>: Oh, much farther than you’ve traveled, I’m
+sure.</p>
+<p><strong>jafar</strong>: Try me.</p>
+<p><strong>sultan</strong>: Look out, Polly!</p>
+<p><strong>iago</strong>: Hey, watch it. Watch it with the dumb rug!</p>
+<p><strong>sultan</strong>: Out of the way, I’m coming in to land.
+Jafar,</p>
+<p><strong>jafar</strong>: Spectacular, your highness.</p>
+<p><strong>sultan</strong>: Ooh, lovely. Yes, I do seem to have a knack
+for</p>
+<p><strong>jafar</strong>: I don’t trust him, sire.</p>
+<p><strong>sultan</strong>: Nonsense. One thing I pride myself on Jafar,
+I’m</p>
+<p><strong>iago</strong>: Oh, excellent judge, yeah, sure…not!!!</p>
+<p><strong>sultan</strong>: Jasmine will like this one!</p>
+<p><strong>aladdin</strong>: And I’m pretty sure I’ll like Princess
+Jasmine!</p>
+<p><strong>jafar</strong>: Your highness, no. I must intercede on
+Jasmine’s</p>
+<p><strong>aladdin</strong>: Your majesty, I am Prince Ali Ababwa!</p>
+<p><strong>jasmine</strong>: How dare you!</p>
+<p><strong>sultan</strong>: Oh, dear. Don’t worry, Prince Ali. Just
+give</p>
+<p><strong>jafar</strong>: I think it’s time to say good bye to
+Prince</p>
+<p><strong>aladdin</strong>: What am I going to do? Jasmine won’t even
+let me</p>
+<p><strong>genie</strong>: So move!</p>
+<p><strong>aladdin</strong>: Genie, I need help.</p>
+<p><strong>genie</strong>: All right, sparky, here’s the</p>
+<p><strong>aladdin</strong>: What?</p>
+<p><strong>aladdin</strong>: No way! If Jasmine found out I was really
+some</p>
+<p><strong>genie</strong>: A woman appreciates a man who can make her
+laugh!</p>
+<p><strong>aladdin</strong>: Hey, that’s the last thing I want to be.
+Okay,</p>
+<p><strong>genie</strong>: Like a prince.</p>
+<p><strong>aladdin</strong>: Princess Jasmine?</p>
+<p><strong>jasmine</strong>: Who’s there?</p>
+<p><strong>aladdin</strong>: It’s me–Prince Ali. Ahem–</p>
+<p><strong>jasmine</strong>: I do not want to see you.</p>
+<p><strong>aladdin</strong>: No, no, please princess. Give me a
+chance.</p>
+<p><strong>jafar</strong>: Just leave me alone.</p>
+<p><strong>aladdin</strong>: Down kitty!</p>
+<p><strong>genie</strong>: How’s our beau doing?</p>
+<p><strong>aladdin</strong>: Good kitty, take off. Down kitty.</p>
+<p><strong>aladdin</strong>: Uh, no, no.</p>
+<p><strong>jasmine</strong>: You remind me of someone I met in the
+marketplace.</p>
+<p><strong>aladdin</strong>: The marketplace?</p>
+<p><strong>jasmine</strong>: No, I guess not.</p>
+<p><strong>bee</strong>: Enough about you, Casanova. Talk</p>
+<p><strong>aladdin</strong>: Um, Princess Jasmine? You’re very…</p>
+<p><strong>bee</strong>: Wonderful, glorious, magnificent, punctual!</p>
+<p><strong>aladdin</strong>: Punctual!</p>
+<p><strong>jasmine</strong>: Punctual?</p>
+<p><strong>bee</strong>: Sorry.</p>
+<p><strong>aladdin</strong>: Beautiful.</p>
+<p><strong>bee</strong>: Nice recovery.</p>
+<p><strong>jasmine</strong>: Hmm. I’m rich too, you know.</p>
+<p><strong>aladdin</strong>: Yeah!</p>
+<p><strong>jasmine</strong>: The daughter of a sultan</p>
+<p><strong>aladdin</strong>: I know.</p>
+<p><strong>jasmine</strong>: A fine prize for any prince to marry.</p>
+<p><strong>aladdin</strong>: Uh, right. Right. A prince like me.</p>
+<p><strong>bee</strong>: Warning! Warning!</p>
+<p><strong>jasmine</strong>: Right, a prince like you. And every other
+stuffed shirt,</p>
+<p><strong>bee</strong>: Mayday!</p>
+<p><strong>jasmine</strong>: Just go jump off a balcony!</p>
+<p><strong>aladdin</strong>: What?</p>
+<p><strong>bee</strong>: Stop her! Stop her! Do you want me to sting
+her?</p>
+<p><strong>aladdin</strong>: Buzz off!</p>
+<p><strong>bee</strong>: Okay, fine. But remember–bee yourself!</p>
+<p><strong>aladdin</strong>: Yeah, right!</p>
+<p><strong>jasmine</strong>: What!?!</p>
+<p><strong>aladdin</strong>: Uh, you’re right. You aren’t just some
+prize to be</p>
+<p><strong>jasmine</strong>: No!</p>
+<p><strong>aladdin</strong>: What? What?</p>
+<p><strong>jasmine</strong>: How–how are you doing that?</p>
+<p><strong>aladdin</strong>: It’s a magic carpet.</p>
+<p><strong>jasmine</strong>: It’s lovely.</p>
+<p><strong>aladdin</strong>: You, uh, you don’t want to go for a ride,
+do you?</p>
+<p><strong>jasmine</strong>: Is it safe?</p>
+<p><strong>aladdin</strong>: Sure. Do you trust me?</p>
+<p><strong>aladdin</strong>: Do you trust</p>
+<p><strong>jasmine</strong>: Yes.</p>
+<p><strong>aladdin</strong>: I can show you the world</p>
+<p><strong>jasmine</strong>: A whole new world</p>
+<p><strong>aladdin</strong>: Now I’m in a whole new world with you!</p>
+<p><strong>jasmine</strong>: Unbelievable sights</p>
+<p><strong>jasmine</strong>: A whole new world!</p>
+<p><strong>aladdin</strong>: Don’t you dare close your eyes</p>
+<p><strong>jasmine</strong>: An hundred thousand things to see</p>
+<p><strong>aladdin</strong>: Hold your breath–it gets better!</p>
+<p><strong>jasmine</strong>: I’m like a shooting star,</p>
+<p><strong>aladdin</strong>: A whole new world!</p>
+<p><strong>jasmine</strong>: Every turn a surprise</p>
+<p><strong>aladdin</strong>: With new horizons to pursue</p>
+<p><strong>jasmine</strong>: Every moment, red-letter</p>
+<p><strong>both</strong>: I’ll chase them anywhere</p>
+<p><strong>aladdin</strong>: A thrilling chase</p>
+<p><strong>jasmine</strong>: A wondrous place</p>
+<p><strong>both</strong>: For you and me!</p>
+<p><strong>jasmine</strong>: It’s all so magical.</p>
+<p><strong>aladdin</strong>: Yeah.</p>
+<p><strong>aladdin</strong>: Nah. He hates fireworks.</p>
+<p><strong>jasmine</strong>: You are the boy from the</p>
+<p><strong>aladdin</strong>: Jasmine, I’m sorry.</p>
+<p><strong>jasmine</strong>: Did you think I was stupid?</p>
+<p><strong>aladdin</strong>: No!</p>
+<p><strong>jasmine</strong>: That I wouldn’t figure it out?</p>
+<p><strong>aladdin</strong>: No. I mean, I hoped you wouldn’t. No,
+that’s not</p>
+<p><strong>jasmine</strong>: Who are you? Tell me the truth!</p>
+<p><strong>aladdin</strong>: The truth?</p>
+<p><strong>jasmine</strong>: Why didn’t you just tell me?</p>
+<p><strong>aladdin</strong>: Well, you know, um…royalty going out into
+the</p>
+<p><strong>jasmine</strong>: Not that strange.</p>
+<p><strong>jasmine</strong>: Good night, my handsome prince.</p>
+<p><strong>aladdin</strong>: Sleep well, princess.</p>
+<p><strong>aladdin</strong>: Yes!</p>
+<p><strong>aladdin</strong>: Hey! What?</p>
+<p><strong>guard</strong>: Hold him!</p>
+<p><strong>jafar</strong>: I’m afraid you’ve worn out your welcome,
+Prince</p>
+<p><strong>genie</strong>: Never fails. Get in the bath and there’s a
+rub at</p>
+<p><strong>aladdin</strong>: Genie, I–uh, I-uh…</p>
+<p><strong>genie</strong>: Oh, Al. I’m gettin’ kind of fond of you, kid.
+Not</p>
+<p><strong>sultan</strong>: Jasmine!</p>
+<p><strong>jasmine</strong>: Oh, father–I just had the most wonderful
+time.</p>
+<p><strong>sultan</strong>: You should be,</p>
+<p><strong>jasmine</strong>: What?</p>
+<p><strong>sultan</strong>: You will</p>
+<p><strong>jafar</strong>: You’re speechless, I see. A fine quality in
+a</p>
+<p><strong>jasmine</strong>: I will never marry you.</p>
+<p><strong>jafar</strong>: Prince Ali left!</p>
+<p><strong>aladdin</strong>: Better check your crystal ball again,
+Jafar!</p>
+<p><strong>jasmine</strong>: Prince Ali!</p>
+<p><strong>iago</strong>: How in the he—-uh, awk!</p>
+<p><strong>aladdin</strong>: Tell them the truth, Jafar! You tried to
+have me</p>
+<p><strong>jafar</strong>: What? Ridiculous</p>
+<p><strong>sultan</strong>: Obviously…lying.</p>
+<p><strong>jasmine</strong>: Father, what’s wrong with you?</p>
+<p><strong>aladdin</strong>: I know!</p>
+<p><strong>sultan</strong>: Oh, oh, oh my!</p>
+<p><strong>aladdin</strong>: Your highness, Jafar’s been controlling you
+with</p>
+<p><strong>sultan</strong>: What? Jafar? You, you traitor!</p>
+<p><strong>jafar</strong>: Your majesty, all of this can be
+explained.</p>
+<p><strong>sultan</strong>: Guards! Guards!</p>
+<p><strong>iago</strong>: Well, that’s it–we’re dead, forget about it.
+Just</p>
+<p><strong>sultan</strong>: Arrest Jafar at once.</p>
+<p><strong>jafar</strong>: This is not done yet, boy!</p>
+<p><strong>sultan</strong>: Find him, search everywhere!</p>
+<p><strong>aladdin</strong>: Jasmine, are you all right?</p>
+<p><strong>jasmine</strong>: Yes.</p>
+<p><strong>sultan</strong>: Jafar, my most trusted counselor, plotting
+against</p>
+<p><strong>aladdin</strong>: Sultan?</p>
+<p><strong>sultan</strong>: Yes, a fine upstanding youth like yourself,
+a</p>
+<p><strong>iago</strong>: We gotta get outta here! We gotta get– I
+gotta</p>
+<p><strong>jafar</strong>: Prince Ali is nothing more than that ragged
+urchin</p>
+<p><strong>iago</strong>: Why that miserable–</p>
+<p><strong>jafar</strong>: But you are going to relieve him of it!</p>
+<p><strong>iago</strong>: Me?</p>
+<p><strong>aladdin</strong>: Sultan? They want me to be sultan?</p>
+<p><strong>genie</strong>: Huzzah! Hail the conquering hero!</p>
+<p><strong>aladdin</strong>: Genie…I can’t.</p>
+<p><strong>genie</strong>: Sure you can. You just go “Genie, I wish
+you</p>
+<p><strong>aladdin</strong>: I’m serious. Look, I’m sorry–I really am.
+But</p>
+<p><strong>genie</strong>: Al, you won!</p>
+<p><strong>aladdin</strong>: Because of you! The only reason anyone
+thinks I’m</p>
+<p><strong>genie</strong>: Hey, I understand. After all,</p>
+<p><strong>abu</strong>: Ohhh.</p>
+<p><strong>aladdin</strong>: Genie, I’m really sorry.</p>
+<p><strong>jasmine</strong>: Ali, oh Ali–will you come here?</p>
+<p><strong>aladdin</strong>: Well, here goes.</p>
+<p><strong>iago</strong>: Ahem–In the menagerie, hurry.</p>
+<p><strong>aladdin</strong>: I’m coming.</p>
+<p><strong>flamingo</strong>: D’uh!</p>
+<p><strong>iago</strong>: Ya got a problem, pinky?</p>
+<p><strong>sultan</strong>: People of Agrabah, My daughter has finally
+chosen a</p>
+<p><strong>aladdin</strong>: Jasmine?</p>
+<p><strong>jasmine</strong>: Ali, where have you been?</p>
+<p><strong>aladdin</strong>: There’s something I’ve got to tell you.</p>
+<p><strong>jasmine</strong>: The whole kingdom has turned out for
+father’s</p>
+<p><strong>aladdin</strong>: No! But Jasmine, listen to me, please!</p>
+<p><strong>jasmine</strong>: Good luck!</p>
+<p><strong>sultan</strong>: …Ali Ababwa!</p>
+<p><strong>aladdin</strong>: Oh, boy!</p>
+<p><strong>iago</strong>: Look at them, cheering that little
+pipsqueak.</p>
+<p><strong>jafar</strong>: Let them cheer.</p>
+<p><strong>genie</strong>: You know Al, I’m getting</p>
+<p><strong>jafar</strong>: I am your master now.</p>
+<p><strong>genie</strong>: I was afraid of that.</p>
+<p><strong>jafar</strong>: Genie, grant me my first wish. I wish to rule
+on</p>
+<p><strong>aladdin</strong>: Whoa!</p>
+<p><strong>sultan</strong>: Bless my soul. What is this? What is going
+on?</p>
+<p><strong>jafar</strong>: Heh heh heh!</p>
+<p><strong>sultan</strong>: Jafar, you vile betrayer.</p>
+<p><strong>iago</strong>: That’s Sultan Vile Betrayer to you.</p>
+<p><strong>aladdin</strong>: Oh, yeah? Well, we’ll just see about
+that!</p>
+<p><strong>jafar</strong>: Finders-keepers, Abooboo.</p>
+<p><strong>aladdin</strong>: Genie! No!</p>
+<p><strong>genie</strong>: Sorry, kid–I got a new master now.</p>
+<p><strong>sultan</strong>: Jafar, I order you to stop!</p>
+<p><strong>jafar</strong>: There’s a new order now–my order! Finally,
+you</p>
+<p><strong>jafar</strong>: We’ll never bow to you!</p>
+<p><strong>iago</strong>: Why am I not surprised?</p>
+<p><strong>jafar</strong>: If you will not bow before a sultan, then you
+will</p>
+<p><strong>iago</strong>: Ladies and gentlemen, a warm Agrabah welcome
+for</p>
+<p><strong>jafar</strong>: Now where were we? Ah, yes–abject
+humiliation!</p>
+<p><strong>aladdin</strong>: Jafar! Get your hands off her!</p>
+<p><strong>jafar</strong>: Prince Ali</p>
+<p><strong>iago</strong>: Or should we say Aladdin?</p>
+<p><strong>aladdin</strong>: Jasmine, I tried to tell you.</p>
+<p><strong>jafar</strong>: So Ali turns out to be merely Aladdin</p>
+<p><strong>iago</strong>: Good bye, see ya!</p>
+<p><strong>jafar</strong>: Ex-Prince Ali!</p>
+<p><strong>aladdin</strong>: Abu? Abu!</p>
+<p><strong>iago</strong>: Puppet ruler want a cracker? Here’s your
+cracker.</p>
+<p><strong>jafar</strong>: Leave him alone!</p>
+<p><strong>jafar</strong>: It pains me to see you reduced to this,
+Jasmine.</p>
+<p><strong>jasmine</strong>: Never!</p>
+<p><strong>jafar</strong>: I’ll teach you some respect!</p>
+<p><strong>genie</strong>: Ah, master– there are a few</p>
+<p><strong>jafar</strong>: Don’t talk back to me, you stupid blue lout!
+You</p>
+<p><strong>jafar</strong>: That’s better.</p>
+<p><strong>jasmine</strong>: You’re tall, well dressed…</p>
+<p><strong>genie</strong>: Al! Al, little buddy!</p>
+<p><strong>aladdin</strong>: Shh!</p>
+<p><strong>aladdin</strong>: Hey–I’m a street rat, remember?</p>
+<p><strong>jafar</strong>: Go on.</p>
+<p><strong>jasmine</strong>: And your beard…is so…twisted!</p>
+<p><strong>iago</strong>: Jaf–mmmmmm!</p>
+<p><strong>jafar</strong>: And the street rat?</p>
+<p><strong>jasmine</strong>: What street rat?</p>
+<p><strong>abu</strong>: Yuck!</p>
+<p><strong>jafar</strong>: That was–</p>
+<p><strong>aladdin</strong>: Get the lamp!</p>
+<p><strong>jafar</strong>: Ah, ah, ah, princess–Your time is up!</p>
+<p><strong>aladdin</strong>: Jasmine!</p>
+<p><strong>iago</strong>: Oh, nice shot, Jaf–</p>
+<p><strong>jafar</strong>: Don’t toy with me!</p>
+<p><strong>aladdin</strong>: Abu!</p>
+<p><strong>jafar</strong>: Things are unraveling fast, now boy.</p>
+<p><strong>aladdin</strong>: Are you afraid to fight me yourself, you
+cowardly</p>
+<p><strong>jafar</strong>: A snake, am I? Perhaps you’d like to see
+how</p>
+<p><strong>genie</strong>: Rickem, rockem, rackem, rake–stick that sword
+into</p>
+<p><strong>jafar</strong>: You stay out of thissss!</p>
+<p><strong>genie</strong>: Jafar, Jafar, he’s our man–if he can’t do
+it,</p>
+<p><strong>jasmine</strong>: Aladdin!</p>
+<p><strong>aladdin</strong>: Hang on, Jasmine!</p>
+<p><strong>jafar</strong>: You little fool! You thought</p>
+<p><strong>iago</strong>: Squeeze him,</p>
+<p><strong>jafar</strong>: Without the genie, boy, you’re nothing!</p>
+<p><strong>aladdin</strong>: The genie! The genie! The genie</p>
+<p><strong>jafar</strong>: What!!</p>
+<p><strong>aladdin</strong>: He gave you your power, he can take it
+away!</p>
+<p><strong>genie</strong>: Al, what are you doing? Why are you bringing
+me</p>
+<p><strong>aladdin</strong>: Face it, Jafar–you’re still just second
+best!</p>
+<p><strong>jafar</strong>: You’re right! His power does exceed my own!
+But</p>
+<p><strong>genie</strong>: The boy is crazy. He’s a little punch drunk.
+One</p>
+<p><strong>jafar</strong>: Slave, I make my third wish! I wish to be an
+all</p>
+<p><strong>genie</strong>: All right, your wish is my command.</p>
+<p><strong>jafar</strong>: Yes! Yes! The power! The absolute power!</p>
+<p><strong>jasmine</strong>: What have you done?</p>
+<p><strong>aladdin</strong>: Trust me!</p>
+<p><strong>jafar</strong>: The universe is mine to command, to
+control!</p>
+<p><strong>aladdin</strong>: Not so fast, Jafar! Aren’t you forgetting
+something?</p>
+<p><strong>jafar</strong>: No! No!</p>
+<p><strong>iago</strong>: I’m gettin’ out of here! Come on, you’re
+the</p>
+<p><strong>aladdin</strong>: Phenomenal cosmic powers! Itty bitty living
+space.</p>
+<p><strong>genie</strong>: Al, you little genius, you!</p>
+<p><strong>jafar</strong>: Get your blasted beak</p>
+<p><strong>iago</strong>: Oh, shut up, you moron!</p>
+<p><strong>jafar</strong>: Don’t tell me to shut up!</p>
+<p><strong>genie</strong>: Allow me.</p>
+<p><strong>aladdin</strong>: Jasmine, I’m sorry I lied to you about
+being a</p>
+<p><strong>jasmine</strong>: I know why you did.</p>
+<p><strong>aladdin</strong>: Well, I guess…this… is goodbye?</p>
+<p><strong>jasmine</strong>: Oh, that stupid law. This isn’t fair–I love
+you.</p>
+<p><strong>genie</strong>: Al, no problem. You’ve still</p>
+<p><strong>aladdin</strong>: But Genie, what about your freedom?</p>
+<p><strong>genie</strong>: Hey, it’s only an eternity of servitude. This
+is</p>
+<p><strong>aladdin</strong>: Jasmine, I do love you, but I’ve got to
+stop</p>
+<p><strong>jasmine</strong>: I understand.</p>
+<p><strong>aladdin</strong>: Genie, I wish for your freedom.</p>
+<p><strong>genie</strong>: One bona fide prince pedigree coming up.
+I–what?</p>
+<p><strong>aladdin</strong>: Genie, you’re</p>
+<p><strong>genie</strong>: Heh, heh! I’m free. I’m</p>
+<p><strong>aladdin</strong>: I wish for the Nile.</p>
+<p><strong>genie</strong>: No way!!</p>
+<p><strong>aladdin</strong>: Genie, I’m–I’m gonna miss you.</p>
+<p><strong>genie</strong>: Me too, Al. No matter what anybody says,
+you’ll</p>
+<p><strong>sultan</strong>: That’s right. You’ve certainly proven your
+worth</p>
+<p><strong>jasmine</strong>: Father?</p>
+<p><strong>sultan</strong>: Well, am I sultan or am I sultan? From this
+day</p>
+<p><strong>aladdin</strong>: Ha, ha. Call me Al.</p>
+<p><strong>genie</strong>: Oh, all of ya. Come over here. Big group
+hug!</p>
+<p><strong>aladdin</strong>: A whole new world</p>
+<p><strong>jasmine</strong>: A whole new life</p>
+<p><strong>both</strong>: For you and me!</p>
+<p><strong>men’s chorus</strong>: A whole new world!</p>
+<p><strong>genie</strong>: Made ya look!</p>
+</body>
+</html>

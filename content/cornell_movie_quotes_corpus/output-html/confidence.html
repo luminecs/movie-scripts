@@ -1,0 +1,2358 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>confidence</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="confidence">confidence</h1>
+<p><strong>jake</strong>: So I’m dead…</p>
+<p><strong>ext. - back alley- night</strong>: Dumpsters overflow with
+the day’s garbage. A pillar of steam rises from an underground grate.
+It’s the dark place between buildings that a reasonable person avoids.
+We see JAKE VIG, a guy in his late 20’s whose fashionable suit and good
+looks are in obvious contrast to the surroundings– At first glance,
+you’d think he could run for Congress some day. At first glance. Jake
+faces a garbage dumpster on his knees, execution style. His face gives
+away nothing– He could be kneeling in a strawberry field.</p>
+<p><strong>jake</strong>: And I think it’s because of this redhead…</p>
+<p><strong>butch</strong>: Know who I am, Jake?</p>
+<p><strong>jake</strong>: The Anti-Christ?</p>
+<p><strong>butch</strong>: No. I’m not the Anti-Christ. Or the Prince of
+Darkness. I’m just a guy looking for some answers. Things are probably
+going to end badly for you, Jake.</p>
+<p><strong>jake</strong>: Gee… What makes you say that?</p>
+<p><strong>butch</strong>: Your life flashing before your eyes?</p>
+<p><strong>jake</strong>: Just the last three weeks.</p>
+<p><strong>butch</strong>: That’s not a bad place to start.</p>
+<p><strong>ext . - back alley- night</strong>: Title: Three Weeks Ago…
+The same alley… The door of a building bursts open as LIONEL DOLBY ,
+dressed in a cheap suit, stumbles out breathing heavy. The dim light of
+a bare bulb glares off the sweat on his forehead. A moment later, Jake
+emerges from the same door carrying a large black revolver.</p>
+<p><strong>jake</strong>: I lost my head. I’m… Sorry. I don’t know what
+happened.</p>
+<p><strong>lionel</strong>: Y-y-you fucking shot him! That’s what
+happened!</p>
+<p><strong>jake</strong>: I had to! That motherfucker was about to
+welch! You saw what he was doing, right? You heard him!</p>
+<p><strong>lionel</strong>: I can’t be here! You understand? I can’
+t–</p>
+<p><strong>jake</strong>: Listen to me! It went to shit. It happens
+sometimes.</p>
+<p><strong>lionel</strong>: Oh Jesus!</p>
+<p><strong>jake</strong>: LISTEN to me! We don’t have much time. We can
+still get through this but you have to keep your head and trust me!</p>
+<p><strong>lionel</strong>: What– What do we do?</p>
+<p><strong>jake</strong>: Help me.</p>
+<p><strong>int. - the euclid bar</strong>: A dive furnished with a few
+mismatched chairs and a bar. A single overweight PATRON sits at a corner
+table with face buried in his hands as he WHIMPERS. Jake and, Lionel
+Dolby pass him as they emerge from a back hallway. MILES, late 20’s,
+wipes blood off the bar. Placed at the edge of the bar are two
+briefcases, both open, both filled with neat stacks of blood splattered
+money. A DEAD GUY lies face down on the floor in a pool of blood. Jake
+grabs the Dead Guy’s legs as Lionel watches in disbelief.</p>
+<p><strong>jake</strong>: Come on. Grab his arms.</p>
+<p><strong>jake</strong>: Lionel… He’s dead. Yeah, maybe you didn’t pull
+the trigger, but you were standing right there and watched me do it.
+Help me. Grab his arms.</p>
+<p><strong>miles</strong>: Tick-tock…</p>
+<p><strong>jake</strong>: If you wanna help, then help. If not, shut
+up.</p>
+<p><strong>miles</strong>: Your mess.</p>
+<p><strong>jake</strong>: Then shut up.</p>
+<p><strong>miles</strong>: My place.</p>
+<p><strong>continued:</strong>: Miles lets out a little chuckle; it’s
+just enough to set Jake off again. Jake pulls the gun and points it at
+Miles.</p>
+<p><strong>miles</strong>: Oh please… You think this kinda shit hasn’t
+happened here before? Given it’s usually on Thursdays. And usually, I
+gotta tell the cops, “No, Officer… I didn’t really get a good look at
+the shooters.” Usually anyway.</p>
+<p><strong>patron</strong>: I didn’t see nothing. And I swear if you let
+me go now, I won’t say-</p>
+<p><strong>jake</strong>: Relax, porkchop.</p>
+<p><strong>lionel</strong>: I can’t be here!</p>
+<p><strong>jake</strong>: Then go.</p>
+<p><strong>lionel</strong>: What about… The money?</p>
+<p><strong>jake</strong>: What about this situation makes you think I
+can answer that question right now?</p>
+<p><strong>ext.- the euclid/city sidewalk- night</strong>: Lionel
+emerges up the stairs from the basement level bar to street-level just
+as a POLICE CAR SCREECHES to a halt in front of the bar, lights
+flashing, SIREN WAILING. On the door is the emblem for the NEW YORK
+POLICE</p>
+<p><strong>department.</strong>: Lionel does his best to look casual as
+TWO UNIFORMED OFFICERS jump out of the car and rush the Euclid. One of
+the Officers catches Lionel looking over his shoulder. The last thing
+Lionel hears before he turns a corner–</p>
+<p><strong>officer</strong>: Everybody FREEZE!</p>
+<p><strong>int.- the euclid</strong>: OFFICER WALTER SOBOZINSKI, a
+middle aged cop with a couple of spare tires, stands by the front door
+with his gun drawn, in a dramatic stance.</p>
+<p><strong>sobozinski</strong>: I said, freeze you motherfucking,
+cocksucking, scumbags!</p>
+<p><strong>rottovich</strong>: We’re clear.</p>
+<p><strong>sobozinski</strong>: Or I’ll blow off every one of your
+fucking heads!</p>
+<p><strong>jake</strong>: Stop waving that thing around.</p>
+<p><strong>miles</strong>: You sure we’re clear?</p>
+<p><strong>rottovich</strong>: Guy looked like he was trying not to shit
+himself. Nice.</p>
+<p><strong>dead guy</strong>: What took so fucking long?</p>
+<p><strong>dead guy/gordo</strong>: I’ve been lying in this shit like
+half the night.</p>
+<p><strong>miles</strong>: You guys were late. We had to go to a Mexican
+stand-off.</p>
+<p><strong>jake</strong>: And you know I hate guns.</p>
+<p><strong>sobozinski</strong>: We were fighting crime.</p>
+<p><strong>miles</strong>: Keeping the city streets safe for drug
+dealers and pedophiles everywhere.</p>
+<p><strong>gordo</strong>: Shit.</p>
+<p><strong>jake</strong>: I told you, use less powder.</p>
+<p><strong>gordo</strong>: But you won’t get that splatter effect.</p>
+<p><strong>jake</strong>: Then these go into your cut.</p>
+<p><strong>big al</strong>: Hey, Jake… When am I gonna get to play the
+Inside?</p>
+<p><strong>jake</strong>: Gordo plays the inside. You’re the Shill.</p>
+<p><strong>big al</strong>: Yeah, but come on… All I get to do is cry
+and get insulted.</p>
+<p><strong>jake</strong>: What are you talking about? You should get a
+fucking Academy Award for the Shill work you do. We got it down cold,
+Al. You don’t want to jinx it by changing something up, do you?</p>
+<p><strong>big al</strong>: I’ m gonna go get eggrolls. Anyone want
+eggrolls?</p>
+<p><strong>jake</strong>: What? I can feel you looking at me.</p>
+<p><strong>gordo</strong>: That’s a lot of cash. He came up with it
+pretty quick.</p>
+<p><strong>jake</strong>: Probably some investment banker or
+convertible-bonds-broker-dickhead. Did you see how fast he ran out of
+here? It’s done. He’s not coming back.</p>
+<p><strong>gordo</strong>: I guess. I gotta drop a dime. Did anybody
+mess up the hoop?</p>
+<p><strong>miles</strong>: It’s clean.</p>
+<p><strong>continued:</strong>: Jake rubber bands two small wads of cash
+and hands them to Rottovich and Sobozinski.</p>
+<p><strong>jake</strong>: Ten percent.</p>
+<p><strong>sobozinski</strong>: You guys got sack, I’ll give you that
+much.</p>
+<p><strong>jake</strong>: Confidence. It’s just confidence.</p>
+<p><strong>rottovich</strong>: Feels a little light, Jake. Next time
+we’re in for twenty.</p>
+<p><strong>miles</strong>: Twenty? My ass!</p>
+<p><strong>jake</strong>: What are you talking about? Ten’s
+standard.</p>
+<p><strong>rottovich</strong>: Yeah Well, Sobo’s kid needs braces.</p>
+<p><strong>sobozinski</strong>: Do you have any idea what those monks
+charge for that medieval torture?</p>
+<p><strong>jake</strong>: We got a good thing going here. You want to
+blow it over an overbite?</p>
+<p><strong>rottovich</strong>: Don’t get me wrong, Jake. I like you
+boys. You guys are the steadiest business in town. But what can I say?
+Twenty percent’s still better than what we give to any of the other
+criminals.</p>
+<p><strong>jake</strong>: All the shit we pulled with you and you’re
+trying to shake us down? You guys got sack.</p>
+<p><strong>rottovich</strong>: Was that a threat? Did I hear a
+threat?</p>
+<p><strong>continued:</strong>: ROTTOVICH</p>
+<p><strong>miles</strong>: Cops…</p>
+<p><strong>ext. back alley- night</strong>: Butch shaking his head,
+still holding the gun.</p>
+<p><strong>butch</strong>: Grifters…</p>
+<p><strong>jake</strong>: We can’t all be model citizens such as
+yourself.</p>
+<p><strong>butch</strong>: It’s all about the money, isn’t it?</p>
+<p><strong>jake</strong>: Isn’t it always?</p>
+<p><strong>int.- four seasons hotel- night</strong>: A suite in the
+upscale hotel. Miles answers a KNOCK on the door– An expensive CALL GIRL
+stands at the door in an overcoat.</p>
+<p><strong>jake</strong>: It’s what makes us run. And despite what they
+say, it can buy you love.</p>
+<p><strong>call girl</strong>: Are you ready for me, Ralph?</p>
+<p><strong>int.- prada store- night</strong>: Gordo stands in front of a
+mirror trying on a new suit. The sales people fawn over him.</p>
+<p><strong>jake</strong>: It can buy you a new and better you.</p>
+<p><strong>gordo</strong>: I just don’t know if this says, “me”. What’s
+the fabric?</p>
+<p><strong>int.- big al’s apartment- night</strong>: Big Al has a
+cordless phone to his ear…</p>
+<p><strong>jake</strong>: It can erase all those things about you that
+you wish didn’t exist.</p>
+<p><strong>big al</strong>: It’s Alfonse. I want to settle up. I haven’t
+been ducking you. I told you I’d get it.</p>
+<p><strong>ext.- soho street- night</strong>: Jake walks down the
+crowded street, passing the bars and restaurants of SoHo. His jacket’s
+buttoned up to hide the blood stains.</p>
+<p><strong>jake</strong>: It can make you think you’re on top of the
+world.</p>
+<p><strong>lily</strong>: Oops.</p>
+<p><strong>continued:</strong>: Jake’s smile fades as he watches her
+saunter into the bar, but not before she throws him another glance over
+her shoulder. Jake continues on into…</p>
+<p><strong>int.- neighborhood bar- continuous</strong>: A semi-crowded
+bar. Not hip and trendy like “Wax.” Jake finds an empty stool at the end
+of the bar and orders a drink. He takes a second to look around at the
+cliques of people talking, laughing, having a good time before he pulls
+a newspaper out his coat pocket. Jake takes a pen from the bar and opens
+to the crossword section.</p>
+<p><strong>jake</strong>: And if you believe that money can do all that
+for you, you’re the perfect mark. Jack Kerouac said that if you own a
+rug, you own too much. I don’t necessarily like Kerouac and driving
+cross country isn’t exactly my idea of a good time, but the guy’s got a
+point…</p>
+<p><strong>int.- jake’s apartment- later</strong>: Jake enters a
+sparsely furnished loft. The skyline of Brooklyn twinkles through dirty,
+picturesque windows. Jake drops his keys on a table and hits a button on
+an answering machine.</p>
+<p><strong>answering machine</strong>: You have no new messages.</p>
+<p><strong>jake</strong>: If you’ve got nothing, you’ve got nothing to
+lose. And when it comes to money, finding it and losing it, you always
+gotta remember how much of it’s just luck…</p>
+<p><strong>lily</strong>: Oops.</p>
+<p><strong>continued:</strong>: The realization makes Jake smile. Then a
+FLAPPING SOUND spins him around to see a PIGEON, flapping up against the
+inside of a partially opened window. Visibly upset by the bird, Jake
+moves towards the window and pushes it wide, allowing the bird to
+escape.</p>
+<p><strong>jake</strong>: Dumb fucking luck.</p>
+<p><strong>int.- dolby’s apartment- night</strong>: A nicer apartment
+than Jake’s. Lionel Dolby, the Mark from the Euclid rushes around,
+haphazardly throwing things into a suitcase. There’s a KNOCK on the door
+that stops Lionel dead in his tracks. Another KNOCK. Lionel still
+frozen. The door flies open with a BOOM. In the doorway, we see HARLIN,
+an older mountain of a man dressed in a plain black suit. Behind him is
+LUPUS , dressed in a sweatsuit a pilot could spot from 20,000ft.</p>
+<p><strong>lupus</strong>: Mr. Dolby. King would like a word with
+you.</p>
+<p><strong>lionel</strong>: R-r-right now?</p>
+<p><strong>lupus</strong>: Please. We have a car waiting. I apologize
+for the door.</p>
+<p><strong>int . - jake’s apartment- morning</strong>: A RINGING PHONE…
+Jake stirs on the futon oddly placed on the floor in the middle of the
+room and picks up the phone.</p>
+<p><strong>jake</strong>: Yeah.</p>
+<p><strong>miles</strong>: You better get over to Al’s. Now.</p>
+<p><strong>continued:</strong>: Miles hangs up before Jake can
+answer.</p>
+<p><strong>int.- big al’s- day</strong>: Jake stand’s with Miles in the
+sparse living room. Big AI’s body sits reclining on a Lazy Boy chair,
+eyes bulging open. An open carton of food rests in his lap. A feast of
+take-out Chinese surrounds him. The TV blares an old episode of “The
+Little Rascals.” There’s a singed, neat bullet hole in his forehead.</p>
+<p><strong>miles</strong>: I was supposed to meet him for breakfast. He
+likes that new IHOP they just opened, you know… He likes to order that
+thing. The Rutti-Tutti-Fresh and Fruity thing they got.</p>
+<p><strong>jake</strong>: Miles…</p>
+<p><strong>miles</strong>: Sorry. I’m just… Look what they did to him.
+Right in the middle of his egg- foo-young.</p>
+<p><strong>jake</strong>: Big Al used to send money to his Father, some
+Vietnam Vet slowly losing his mind in a VA hospital in Cleveland. Al was
+like that. That’s why Al never played the Inside.</p>
+<p><strong>int.- diner- day</strong>: Gordo enters and takes a seat in
+the back booth with Jake and Miles.</p>
+<p><strong>gordo</strong>: Seems Lionel Dolby came down with a sudden
+case of drowning last night.</p>
+<p><strong>jake</strong>: Well, this is just fucking great…</p>
+<p><strong>gordo</strong>: It gets worse. Now I know why he was such a
+good rope. X mean, cash…. That much and we never had to put him on the
+“Send?” Turns out this ducking Moe was an accountant for the King
+Pin.</p>
+<p><strong>miles</strong>: Who’s that?</p>
+<p><strong>gordo</strong>: The cash we fleeced off of him was collection
+money. He was supposed to take that money and give it to the King
+earlier yesterday like he does every Thursday. `Cept this time, he
+figured he could make a little something for himself off us and still
+get the King’s money back before any body says “boo.”</p>
+<p><strong>miles</strong>: What’s a King Pin?</p>
+<p><strong>gordo</strong>: Currently, the King Pin is a very large- type
+pole stuck up our asses.</p>
+<p><strong>mtles</strong>: Mob?</p>
+<p><strong>gordo</strong>: Independant. Same shit, just independant.
+They call him the King Pin because he looks like that guy from the comic
+book… Big. Fat. Bald.</p>
+<p><strong>miles</strong>: So what? We hide, right?</p>
+<p><strong>gordo</strong>: What are you? New? Let me tell you how good
+this guy is. Last night, Al calls this bookie to settle up. Apparently
+he’s been ducking him for like a month. So the guy asks him where he’s
+got all this money all of a sudden, right? What does Al do?</p>
+<p><strong>continued:</strong>: GORDO</p>
+<p><strong>miles</strong>: You’re pissed we didn’t get credit?</p>
+<p><strong>gordo</strong>: No, that was the only semi-fucking smart
+thing he said! Except anybody that’s ever met Big A1 knows that the only
+thing he’s comfortable doing alone is eating. This guys tells this guy,
+that guy tells some other guy, eventually it works it’s way back to
+someone who works for the King and–</p>
+<p><strong>int- big al’s apartment- night</strong>: Big Al sits on the
+Lazy Boy, about to take a big bite of egg foo young. He stops as the
+front door is kicked open with a CRASH.</p>
+<p><strong>gordo</strong>: Shazaam.</p>
+<p><strong>back to the diner</strong>: GORDO</p>
+<p><strong>miles</strong>: We sure Big Al threw him to us?</p>
+<p><strong>gordo</strong>: Come on…</p>
+<p><strong>jake</strong>: A bird flew into my house last night.</p>
+<p><strong>continued:</strong>: JAKE</p>
+<p><strong>miles</strong>: Just an idea, but let’s just fucking split.
+We’ll meet up anywhere. Akron or Austin or Atlanta. Anywhere…</p>
+<p><strong>jake</strong>: He’ll find us. We go talk to him.</p>
+<p><strong>gordo</strong>: Whoa. What?</p>
+<p><strong>miles</strong>: We’re going to give him the money back?</p>
+<p><strong>jake</strong>: You know what we’re doing with the money.</p>
+<p><strong>gordo</strong>: And what about Big Al?</p>
+<p><strong>jake</strong>: Leave him. Someone’s going to find him
+eventually. Then they’ll start looking for us, too.</p>
+<p><strong>waitress</strong>: What can I get you guys?</p>
+<p><strong>miles</strong>: Coffee. And a valium.</p>
+<p><strong>ext. - the euclid– day</strong>: A basement bar in a crummy
+neighborhood. There’s no sign, but everything about it says,
+“Condemned.”</p>
+<p><strong>jake</strong>: The Euclid was our place.</p>
+<p><strong>int.- the euclid- day</strong>: Jake, Miles and Gordo sit at
+the bar of the run down watering hole. Jake stands placing neat stacks
+of money into a Fed-Ex box.</p>
+<p><strong>jake</strong>: Gordo fleeced the deed off some idiot in a
+card game. We used it every now and then for a rag, but mostly it was
+our office. Our Power Point.</p>
+<p><strong>jake</strong>: That’s it?</p>
+<p><strong>miles/gordo</strong>: Bills…/Had that thing… Do we want
+insurance? I’m just asking…</p>
+<p><strong>jake</strong>: Just mail it to the hospital. Mr. King,
+please. It’s regarding an accounting problem. Yes… Correct… I know where
+it is. That will be fine. Thank you.</p>
+<p><strong>gordo</strong>: When?</p>
+<p><strong>jake</strong>: Tonight. Just me.</p>
+<p><strong>miles</strong>: Fuck that. We’re going too.</p>
+<p><strong>gordo</strong>: Alright, let’s all put our dicks back in our
+pants for a second. Is this the best thing to do?</p>
+<p><strong>jake</strong>: Meet me at my place later.</p>
+<p><strong>miles</strong>: How do you know the King’s going to let you
+walk?</p>
+<p><strong>jake</strong>: I’m getting a ride.</p>
+<p><strong>ext.- the bulldog gym- night</strong>: A neon sign in the
+shape of a boxing glove tells you what kind of gym it is. A police car
+comes to a stop in front. Rottovich and Sobozinski in the front seats.
+Jake gets out of the back.</p>
+<p><strong>sobozinski</strong>: The King, huh? Nice going.</p>
+<p><strong>jake</strong>: I try.</p>
+<p><strong>rottovich</strong>: Don’t dick around too long. And if he
+stabs you or shoots you or causes any other form of profuse bleeding,
+call a cab because you are not getting back in this car!</p>
+<p><strong>harlin</strong>: We appreciate your punctuality. Mr. King is
+expecting you.</p>
+<p><strong>harlin</strong>: Lupus!</p>
+<p><strong>lupus</strong>: What? You said pat him down, I’m pattin’ him
+down.</p>
+<p><strong>harlin</strong>: It only takes a moment to be polite. My
+apologies, Mr. Vig. If you wouldn’t mind?</p>
+<p><strong>jake</strong>: You the one that did it? You the one that got
+Al?</p>
+<p><strong>harlin</strong>: Mr. King prefers to farm out for that kind
+of work. Please, after you.</p>
+<p><strong>int.- bulldog gym- continuous</strong>: Harlin and Lupus lead
+Jake through the cavernous gym. All around them, huge, sweaty, boxers
+work the speed bag, jump rope, spar, etc… There’s not one that doesn’t
+look like he’s spent some time in the State Penal Boxing League.</p>
+<p><strong>jake</strong>: Uh… Which one’s the King Pin?</p>
+<p><strong>harlin</strong>: He’s in the back taking a steam.</p>
+<p><strong>int.- steam bath- continuous</strong>: A huge room filled
+with steam. Harlin and Lupus stand by the door as Jake cautiously steps
+in. NEW AGE MUSIC is being played– Could be Yanni. Sitting in a lounge
+chair, wearing a white terry cloth robe is THE KING PIN. His large body
+is less fat than just big, constructed of circles and topped off with
+the baldest head you’ve ever seen. A MANICURIST sits next to the King
+Pin working on his nails.</p>
+<p><strong>king pin</strong>: Ow! Watch the pinkie! Every time, you get
+the pinkie and I get a hang nail. You Jake?</p>
+<p><strong>king pin</strong>: Grifter huh? Where have you been on the
+grift? Couldn’t been here long ’cause I would have heard of you,
+Skippy.</p>
+<p><strong>jake</strong>: Jake. You can call me Jake. Here and
+there.</p>
+<p><strong>king pin</strong>: Here and there, Scooter? Here and there
+like Boston, Chicago, Houston? The bay area? Some action in London, `til
+it turned nickel and dime. Or how about that little stint down in Miami?
+Heard you actually got into some trouble with the Feds down there. You
+guy’s pretty good?</p>
+<p><strong>jake</strong>: I have a good crew.</p>
+<p><strong>king pin</strong>: Minus one.</p>
+<p><strong>jake</strong>: Minus one.</p>
+<p><strong>king pin</strong>: You know, back in the day, grafting was
+considered a gentleman’s racket. Good suits, good food… The Underworld
+of the Underworld. A grifter had to survive on his wits, his instincts…
+I like that. I like the idea of that. These days, things being what they
+are, guys like me gotta stay low.</p>
+<p><strong>continued:</strong>: KING PIN</p>
+<p><strong>jake</strong>: I guess it lacks a certain style.</p>
+<p><strong>king pin</strong>: Of course, your line of work’s only as
+good as the people you find.</p>
+<p><strong>jake</strong>: You can’t cheat an honest man.</p>
+<p><strong>king pin</strong>: You can’t cheat an honest man. But a man
+like Lionel Dolby…</p>
+<p><strong>jake</strong>: I apologize for the inconvenience.</p>
+<p><strong>king pin</strong>: Honest mistake. Just give me the money
+back and all will be forgiven.</p>
+<p><strong>jake</strong>: I can’t do that.</p>
+<p><strong>king pin</strong>: Why not?</p>
+<p><strong>jake</strong>: Let me rephrase– I won`t do that.</p>
+<p><strong>king pin</strong>: Let me repeat– Why not?</p>
+<p><strong>jake</strong>: Because you killed one of my crew.</p>
+<p><strong>king pin</strong>: Buddy, that was business. Besides, you
+have more crew. Then there’s you…</p>
+<p><strong>jake</strong>: I’ll get the money back, plus interest. I go
+on the grift for you. You get a cat, I get a cut. And we get square.</p>
+<p><strong>king pin</strong>: Fucking grifters! I love it! You got
+balls, I’ll give you that much.</p>
+<p><strong>jake</strong>: No. Just confidence.</p>
+<p><strong>king pin</strong>: I’ ll be honest with you, Kid. A grifter
+comes in here with a fifteen hundred dollar D-K-fucking-N-Y suit, cooler
+than an Eskimo in winter and tells me he wants to grift for me? First
+thing I have to ask myself is, is he playing for me or is he just plain
+playing me? You tried it once.</p>
+<p><strong>jake</strong>: We got caught. So you know it won’t happen
+again.</p>
+<p><strong>king pin</strong>: I know it won’t happen because you’re
+going to feel like a Prom Queen who just got gang fucked by the
+wrestling team!</p>
+<p><strong>harlin</strong>: Mr. Vig arrived with an escort. NYPD.</p>
+<p><strong>king pin</strong>: Grifters… Always working an angle.
+Alright. I can see you got some vision. But I give you the Mark. I tell
+you the who and you give me the how. Lupus go with him.</p>
+<p><strong>lupus</strong>: What?</p>
+<p><strong>king pin</strong>: Consider him part of your crew. Consider
+him a part of me.</p>
+<p><strong>king pin</strong>: He goes. Now let me see your hands.</p>
+<p><strong>continued:</strong>: The King picks up the nail file
+again.</p>
+<p><strong>jake</strong>: Why?</p>
+<p><strong>king pin</strong>: You ask a lot of questions. Come on. Let
+me see `em. I don’t like to ask things more than once, Junior. I want
+you to know how much that irks me.</p>
+<p><strong>king pin</strong>: You have incredibly soft hands. Good
+cuticles . They’ re like a baby’s hands. Grifters with rough hands… You
+know that they’re probably not that good. Means they’ve had to do some
+hard labor to make ends meet. But you… Smooth… Supple.</p>
+<p><strong>butch</strong>: Are you insinuating that the King Pin is of
+an alternative lifestyle?</p>
+<p><strong>ext. back alley- night</strong>: Jake shakes his head
+slowly.</p>
+<p><strong>jake</strong>: I’m not saying anything. Besides, you’re one
+to talk. You’re the one who’s got me on my knees in a dark alley.</p>
+<p><strong>butch</strong>: And these cops? What do they get?</p>
+<p><strong>int. - squad car- night</strong>: Rottovich and Sobozinski
+sit staked out in front of a small cigar/magazine store.</p>
+<p><strong>jake</strong>: Just a tip.</p>
+<p><strong>sobozinski</strong>: What are we gonna do with this stuff
+anyway? Heroin? What the hell do you do with heroin?</p>
+<p><strong>rottovich</strong>: You sell it.</p>
+<p><strong>sobozinski</strong>: To who?</p>
+<p><strong>rottovich</strong>: Don’t be an idiot. How hard do you think
+it is to sell one drug dealer’s drugs to another drug dealer? If Vig’s
+right, we might be looking at a hundred, maybe a hundred fifty
+grand…</p>
+<p><strong>sobozinski</strong>: You think this is a good idea? We never
+did this kinda shit before.</p>
+<p><strong>rottovich</strong>: What’s he going to do? File a missing
+drugs report? If it works out, this guy might be good for a few more
+turns.</p>
+<p><strong>sobozinski</strong>: Hope so. Those fucking orthodontist
+bills are killing me. One fifty every time they tighten those bitches
+up. One fifty! It’s not even covered.</p>
+<p><strong>rottovich</strong>: It’s cosmetic. They don’t cover
+cosmetic.</p>
+<p><strong>continued:</strong>: ROTTOVICH</p>
+<p><strong>int.- another car- same</strong>: Parked across the street
+and well hidden among the other parked cars… SPECIAL AGENT GUNTHER
+MOONAN, a guy in his early 40’s in the kind of suit you’d find on a
+“2–for-1” rack. He sits pointing a TELESCOPE MICROPHONE out the window,
+wearing headphones. He chews on gum loudly.</p>
+<p><strong>rottovich</strong>: Bullshit it’s cosmetic! My fucking tooth
+was cracked in half. I made the son of a bitch write it in as a cavity.
+The department’s dental is for shit.</p>
+<p><strong>sobozinski</strong>: Whoa, whoa… There he is.</p>
+<p><strong>shut.</strong>: Moonan puts down the mic and hits “STOP” on a
+microcassette recorder.</p>
+<p><strong>moonan</strong>: Confessions of a poor brusher.</p>
+<p><strong>ext.- street/brooklyn- same</strong>: Rottovich and
+Sobozinski walk quickly down the street. Ahead of them, the hooded
+figure approaches, his hands buried in his pockets, a knapsack slung
+over his shoulder. As he gets closer, we see that he’s just a KID of
+about ten or eleven. Rottovich reaches over and pulls off the Kid’s
+hood.</p>
+<p><strong>sobozinski</strong>: You know who we are?</p>
+<p><strong>kid</strong>: The heat.</p>
+<p><strong>continued:</strong>: Rottovich can’t help smiling.</p>
+<p><strong>rottovich</strong>: That’s right. We’re the heat.</p>
+<p><strong>stick `em up!</strong>: The Kid jumps back startled and
+throws his hands up. The cops share a laugh.</p>
+<p><strong>rottovich</strong>: Alright. Put your hands dawn. What do you
+got in the bag?</p>
+<p><strong>kid</strong>: Something for my Pops.</p>
+<p><strong>rottovich</strong>: I see. Well, your Pops has been making
+you carry around drugs for him. We’re going to have to take them.</p>
+<p><strong>kid</strong>: My Pops is going to be mad.</p>
+<p><strong>rottovich</strong>: Give the kid a twenty.</p>
+<p><strong>sobozinski</strong>: What’s the world coming to? Everybody’s
+on the friggin’ take…</p>
+<p><strong>ext. - back-night</strong>: Butch and Jake…</p>
+<p><strong>butch</strong>: Keeping the Fix happy.</p>
+<p><strong>jake</strong>: You never know when you can use a crooked
+cop.</p>
+<p><strong>butch</strong>: Keep going. I want to know how you got Lionel
+Dolby.</p>
+<p><strong>jake</strong>: So you want to know how to play the Big
+Con.</p>
+<p><strong>butch</strong>: In this case, you might say I want to know
+how not to play the Big Con.</p>
+<p><strong>int.- bar- night</strong>: A trendy bar, dimly lit and
+packed. We PAN along the hip crowd and STOP on Jake speaking with a
+SLICK GUY dressed in black Armani.</p>
+<p><strong>jake</strong>: First thing about being on the grift…. You’re
+only as good as your Mark. The Roper’s the guy who finds them.</p>
+<p><strong>jake</strong>: They all have money one way or another. Some
+of them come from money.</p>
+<p><strong>jake</strong>: There’s that saying– Show me an honest man and
+I’ll show you a natural born liar. There’s always that little bit of bad
+no matter how much good. It’s that little itch on the back of you neck.
+You may not even know it’s there, but it is.</p>
+<p><strong>jake</strong>: A good Roper knows how to scratch it– You the
+outdoorsy-type? “I was just fly fishing out in Montana”. You play the
+market? “I just got a tip on a tech start-up IPO.” You saw “the
+’Riverdance” twice? “I had a roommate in college who was gay.”
+Whatever…</p>
+<p><strong>jake</strong>: It means that in fifteen minutes we’re on good
+terms. Thirty, I’m your buddy.</p>
+<p><strong>jake</strong>: In an hour, I’m your best friend.</p>
+<p><strong>jake</strong>: Give me a day and you’ll let me do your wife
+and daughter at the same time. It’s too late for you…</p>
+<p><strong>jake</strong>: I have your confidence.</p>
+<p><strong>close-up</strong>: Dolby’s lips loosen in a wide SMILE. Jake
+smiles back. He puts his drink down, then takes the drink from Dolby.
+They remain talking as THE BACKGROUND–</p>
+<p><strong>ext. - sidewalk-night</strong>: Under the light of a
+streetlamp, the two continue to talk.</p>
+<p><strong>jake</strong>: I tell you the “Tale”– It’s the story of how
+we’re going to make easy money. No one gets hurt. And here’s the guy
+who’s going to help. That’s when you meet the Insideman.</p>
+<p><strong>continued:</strong>: Gordo approaches, dressed in a suit and
+looking slightly anxious. Introductions are made.</p>
+<p><strong>jake</strong>: The Insideman’s the one with the know- How,
+the scoop, the angle. But maybe ‘you’ re the suspicious type . So I give
+you the “Convincer.” We both put up a little and we get a little back.
+Just a taste.</p>
+<p><strong>jake</strong>: Just enough that when I tell you we can make
+more off of it, you agree.</p>
+<p><strong>jake</strong>: That`s when I put you on the “Send.” You put
+in -a little, you got a little. Put in a lot… I “send” you out for mare.
+As much as you can get.</p>
+<p><strong>int. - jake’s apartment- night</strong>: Jake stands TALKING
+DIRECTLY TO CAMERA, loading a big, black revolver with bullets.</p>
+<p><strong>jake</strong>: Doesn’t matter what the con is. Insider
+trading, a line we got on a bookie club, insurance scam, whatever… You
+saw the money and you want it. More of it. Who cares if you have to bend
+the rules a little? As long as no one gets hurt. Then someone does…</p>
+<p><strong>int. - the euglid bar- night</strong>: A flash of Gordo’s
+stunned face before his chest EXPLODES</p>
+<p><strong>in red.</strong>: Jake stands holding the smoking gun. Dolby
+looks around in shock.</p>
+<p><strong>jake</strong>: Frankie Suits always said, that what you have
+to understand about any confidence game, is that it’s like putting on a
+play where everyone knows their part… The Roper, the Insideman, the
+Shills… Everyone except for the Mark.</p>
+<p><strong>gordo</strong>: I’ve been shot. Oh. The humanity.</p>
+<p><strong>big al</strong>: God. No. Please. Don’t kill me.</p>
+<p><strong>miles</strong>: You better hurry. The police will be here any
+second. I don’t really understand my motivation with this. Why am I
+washing glasses?</p>
+<p><strong>jake</strong>: Now you’re an accomplice in a homicide.
+Everything you thought you were in control of just flew out the window
+or is dripping down your leg.</p>
+<p><strong>jake</strong>: You should be running out the door, desperate
+to forget this ever happened, ready to repent your greedy ways!</p>
+<p><strong>continued:</strong>: Dolby eyes the briefcases of money.</p>
+<p><strong>dolby</strong>: What about… The money?</p>
+<p><strong>jake</strong>: Then there it is again… That little itch.
+There’s a guy holding a smoking gun, a guy bleeding all over the floor
+and still, all you can think about is the money. You twisted fuck. So we
+gotta give you the “Blow-off”. We make sure that you never, ever want to
+look for us again. We get you off our backs. Forever.</p>
+<p><strong>jake</strong>: And that’s why you need the “Fix”…</p>
+<p><strong>ext.- sidewalk- continuous</strong>: Dolby tries to act
+casual as he walks away.</p>
+<p><strong>int. - the euclid bar- continuous</strong>: Rottovich and
+Sabozinski enter the front door.</p>
+<p><strong>jake</strong>: The New York Police Department’s finest. Half
+as smart and twice as crooked as the guy they just chased away.</p>
+<p><strong>ext - back alley- night</strong>: Butch eases the gun off
+Jake’s head.</p>
+<p><strong>butch</strong>: So how’d you get caught?</p>
+<p><strong>jake</strong>: Suits used to say that in any con, sooner or
+later someone’s going to start asking the right questions. Usually, it
+takes a little longer.</p>
+<p><strong>int.- jake’s aparpment–night</strong>: Empty except for
+Gordo, Miles, Jake and Lupus, dressed in another of his trademark loud
+sweatsuits.</p>
+<p><strong>jake</strong>: We’re working for the King.</p>
+<p><strong>miles</strong>: Wait a second… Who’s the mope?</p>
+<p><strong>lupus</strong>: I’m the King’s eyes and ears. Just in case
+you decide to get cute.</p>
+<p><strong>miles</strong>: So we gotta short con our way out of a
+hundred and fifty grand? That could only take like, a year.</p>
+<p><strong>jake</strong>: No. Big con. One rag. One rag and we get out
+from under all this. But we need another Shill.</p>
+<p><strong>miles</strong>: What do we need another Shill for?</p>
+<p><strong>jake</strong>: Breasts.</p>
+<p><strong>int . - wax–night</strong>: A crowded night… LILY, the
+attractive blonde from earlier, flirts with a well dressed, OLDER MAN
+who has his hand firmly planted on her ass. She squeezes his hand and
+gives him a quick peck on the cheek before walking away. She takes a
+look at the man’s wallet she just lifted before putting it in her bag.
+From out of nowhere, Jake bumps into her.</p>
+<p><strong>jake</strong>: Oops.</p>
+<p><strong>ext.- alley/outside bar- night</strong>: Jake pushes Lily
+through the back door where she finds Gordo, Miles and Lupus waiting.
+Her once flirtatious demeanor is replaced by something harder.</p>
+<p><strong>lily</strong>: What is this? You guys cops or something?</p>
+<p><strong>jake</strong>: We’re not cops.</p>
+<p><strong>gordo</strong>: You gotta be kidding me. Her?</p>
+<p><strong>jake</strong>: Yes, her. Where’s my wallet?</p>
+<p><strong>lily</strong>: Your what? That’s not–</p>
+<p><strong>jake</strong>: You interested in a little work?</p>
+<p><strong>lily</strong>: Sorry about your wallet, but if you think I’m
+going to suck dick over thirty seven dollars, a waxed out Visa and a bad
+fake I.D., you’re fucking crazy. Jake.</p>
+<p><strong>jake</strong>: Take a deep breath and count to ten. It’s not
+that kind of work. You’re Lily, right?</p>
+<p><strong>lily</strong>: Says who?</p>
+<p><strong>jake</strong>: You’re working Daffy’s block. He was going to
+break your kneecaps. Pick- pockets can be so bitchy sometimes. I told
+him you were with us, so that’s two you owe me.</p>
+<p><strong>jake</strong>: We have work. It pays a lot. Unless you figure
+on getting rich lifting wallets while old guys feel you up.</p>
+<p><strong>lily</strong>: Oooh. Sassy. What do you care who feels me up,
+Jake? Unless it kinda gotcha going. Did it, Jake? Getcha going? Keep the
+wallet. We’re even. Take a deep breath… Count to ten… And go fuck
+yourself.</p>
+<p><strong>miles</strong>: Is it just me or is there something really
+hot about a girl telling you to go fuck yourself?</p>
+<p><strong>ext.- city sidewalk- night</strong>: Lily down the street,
+Jake giving chase.</p>
+<p><strong>jake</strong>: Alright! Hold up. You win. You got the
+job.</p>
+<p><strong>lily</strong>: Gee thanks. Now I don’t have to find that
+bridge to jump off.</p>
+<p><strong>jake</strong>: We had to see what your deal was. I’m just a
+little superstitious.</p>
+<p><strong>lily</strong>: Here’s my deal– Don’t waste my time. What do
+you want me for anyway? You don’t even know me.</p>
+<p><strong>jake</strong>: I just have a good feeling about you. Haven’t
+you ever had someone say they had a good feeling about you before?</p>
+<p><strong>lily</strong>: No. What’s my cut?</p>
+<p><strong>jake</strong>: You get an equal cut.</p>
+<p><strong>lily</strong>: What do I have to do?</p>
+<p><strong>jake</strong>: Just play a part. A little acting.</p>
+<p><strong>lily</strong>: Make a wish.</p>
+<p><strong>lily</strong>: Eleven-eleven. If you’re superstitious, make a
+wish.</p>
+<p><strong>ext. - back alley- night</strong>: Butch smiles…</p>
+<p><strong>butch</strong>: I can see why you liked her.</p>
+<p><strong>jake</strong>: That was it. We had our crew. Now we needed
+the Mark.</p>
+<p><strong>int.- the euclid- day</strong>: Jake stands in front of the
+crew: Miles, Gordo, Lily and Lupus.</p>
+<p><strong>jake</strong>: Morgan Gillette.</p>
+<p><strong>miles</strong>: Why?</p>
+<p><strong>jake</strong>: Because that’s who the King Fin wants us to
+fleece. And Gillette’s perfect…</p>
+<p><strong>int.- city bank of manhattan/boardroom–day</strong>: A circle
+of BUSINESS MEN sitting at a conference table.</p>
+<p><strong>jake</strong>: His grandfather used to run liquor during
+prohibition and his father made a bundle in illegal importing and
+exporting. That makes him a third generation crook.</p>
+<p><strong>continued:</strong>: JAKE</p>
+<p><strong>int. - city bank of manhattan/hallway-day</strong>: Gillette
+is greeted by a handful of SUITS. Butch is with them, staying in the
+periphery.</p>
+<p><strong>jake</strong>: There’s a story going around that he helped
+fund the Contras back in the eighties.</p>
+<p><strong>ext.- city bank of manhattan- day</strong>: A busy mid-day
+New York sidewalk. Gillette heads towards a waiting Town Car.</p>
+<p><strong>jake</strong>: Most of his money’s clean. A lot of it isn’t.
+The best part is that we know exactly where it is.</p>
+<p><strong>int.- the euclid– resuming</strong>: Jake looks over the
+crew, who are less than convinced.</p>
+<p><strong>gordo</strong>: How much we going after?</p>
+<p><strong>jake</strong>: Two million.</p>
+<p><strong>gordo</strong>: We only owe the King a hundred and fifty.</p>
+<p><strong>jake</strong>: We get fifty percent. And we get clear of the
+King.</p>
+<p><strong>lupus</strong>: That’s worth it right there. You ask me, I
+don’t think you can do it.</p>
+<p><strong>miles</strong>: I’m with Jack LaLane. That guy’s
+untouchable.</p>
+<p><strong>jake</strong>: That’s why we don’t go after him directly.</p>
+<p><strong>int.- city bank of manhattan/lobby</strong>: Empty. The
+marble floor spotless, the dark oak teller windows vacant, a row of
+desks.</p>
+<p><strong>jake</strong>: We find a doable guy in Gillette’s bank…
+Someone about mid-level. Not too high, not too low.</p>
+<p><strong>jake</strong>: We meet him with corporate papers, inquiring
+about a corporate loan for start up capital. The corporate papers are in
+order, but we need things to happen fast. Our guy fudges numbers in the
+right places, moves our papers to the top of the pile or to the bottom,
+depending upon what we need.</p>
+<p><strong>gordo</strong>: How’s that? He works for Gillette.</p>
+<p><strong>jake</strong>: We pay better.</p>
+<p><strong>continued:</strong>: An envelope stuffed with cash
+MATERIALIZES on the desk next to Ashby.</p>
+<p><strong>ext . – caymen islands–day</strong>: Crystal clear water
+gently rolls onto a white beach.</p>
+<p><strong>jake</strong>: Our guy gets us approved for the start up
+capital. But, the money can’t be transferred to any one person. On the
+given day, the money’s wired into a corporate account in an off-shore
+bank.</p>
+<p><strong>int.- grand caymen’s bank- day</strong>: Another empty bank…
+A lone TELLER MATERIALIZES behind the counter.</p>
+<p><strong>jake</strong>: That same day, I show up in the Caymens with
+the proper I.D. and corporate papers to make a withdrawal.</p>
+<p><strong>mile5</strong>: Uh…</p>
+<p><strong>jake</strong>: What?</p>
+<p><strong>mile5</strong>: I’m just thinking out loud here, but… Two
+million in a briefcase?</p>
+<p><strong>jake</strong>: Good point.</p>
+<p><strong>jake</strong>: It’s bank policy not to release this money in
+cash because it’s under a corporate account.</p>
+<p><strong>continued:</strong>: The Teller turns to a computer printer
+and removes a check. Jake signs a few documents and places the check
+into his pocket.</p>
+<p><strong>ext.- caymen islands/street–day</strong>: Lined with shops
+and stores, but it’s as empty as the bank. Not even a car: Jake strides
+out of the Grand Caymen’s Bank and walks across the street to another
+building with a sign reading “BANK OF THE GRAND CAYMENS.”</p>
+<p><strong>int.- bank of the grand caymens- day</strong>: Again, empty…
+Jake strides in and approaches the deserted teller counter. ANOTHER
+TELLER MATERIALIZES and greets him with a smile.</p>
+<p><strong>jake</strong>: So we cash the check at another bank. Jake
+slides the suitcase and the check over to the Teller.</p>
+<p><strong>int.- jfk airport/terminal hallway- day</strong>: Like the
+banks, empty. Jake walks with the suitcase down the flourescent lit hall
+towards a series of tables under a sign marked “Customs.”</p>
+<p><strong>jake</strong>: Now, this is the most important part– You
+can’t just walk into the United States with a suitcase full of cash
+without evoking the words “cavity search”.</p>
+<p><strong>jake</strong>: That’s why you need someone on the inside at
+Customs.</p>
+<p><strong>continued:</strong>: The Officer literally looks the other
+way as he pockets the envelope and waves Jake through the gate.</p>
+<p><strong>ext.- jfk airport- day</strong>: Jake exits the terminal.
+Outside, the street is empty, not a traveler, an airlines rep, a luggage
+handler or a cab. Jake waits at an empty cross walk until the “walk”
+signal is given.</p>
+<p><strong>jake</strong>: Then we disappear.</p>
+<p><strong>int.- the euclid- resuming</strong>: Jake stops and gauges
+the crew for their reactions, which are the same all the way around–
+Slack jawed disbelief.</p>
+<p><strong>miles</strong>: This might just be me, but that is hands
+down, the dumbest fucking idea I’ve ever heard.</p>
+<p><strong>gordo</strong>: People have tried this before, Jake. It’s
+never worked. Teddy Fraiser and his crew went on vacation in Chicago for
+it. Last year, Mumps got pinched in L.A.</p>
+<p><strong>jake</strong>: It never worked before because A, they didn’t
+flush the bank enough; B, their corporate papers were for shit; C, they
+didn’t have someone on the inside with Customs.</p>
+<p><strong>miles</strong>: Yeah, or D, it’s a dumb fucking idea…</p>
+<p><strong>jake</strong>: Then what do you want to do, Miles? Run?</p>
+<p><strong>miles</strong>: We never had a problem with that before.</p>
+<p><strong>jake</strong>: Yeah, well we never had this kind of problem
+before.</p>
+<p><strong>miles</strong>: What are you talking about? Yes we have. And
+we would have been beautiful about it. We would’ve had a bucket of
+chicken delivered to the King with a nice kiss my ass card attached to
+it. Then we woulda moved on `til the next local putz caught on.</p>
+<p><strong>jake</strong>: We’re getting a little old for running.</p>
+<p><strong>miles</strong>: Yeah, well we’re still a little young for
+Albany State Prison. Are you pissed about Al? I’m pissed too, but I’ m
+not like “twenty-five to life” pissed.</p>
+<p><strong>jake</strong>: I’m getting clear of this. If you’re not going
+to do it for the fucking principle, do it for the money. Gordo?</p>
+<p><strong>gordo</strong>: Yeah… Whatever, Jake.</p>
+<p><strong>jake</strong>: No, not “whatever.” You’re either in or you’
+re out.</p>
+<p><strong>lily</strong>: I’m in.</p>
+<p><strong>ext.- pay phone- day</strong>: Jake dials a number…</p>
+<p><strong>jake</strong>: I agreed with Miles. It was, hands down, a
+dumb fucking idea.</p>
+<p><strong>jake</strong>: But they bought it. Now I had to deliver and I
+needed help. Yeah, it’s Jake. How’d that tip work out?</p>
+<p><strong>ext. back alley- night</strong>: Butch takes out a
+cigarette.</p>
+<p><strong>butch</strong>: But there were other factors.</p>
+<p><strong>jake</strong>: Factors that weren’t clear to me until
+now.</p>
+<p><strong>int. - 16th precint/office- day</strong>: An office of empty
+chairs and desks. Through the windows we can see the hustle and bustle
+of the precinct. SPECIAL AGENT GUNTHER MOONAN, still dressed in the same
+shitty suit, sits behind a desk as Rottovich and Sobozinski enter.</p>
+<p><strong>moonan</strong>: Gentlemen? Special Agent Gunther Moonan.</p>
+<p><strong>rottovich</strong>: Special Agent?</p>
+<p><strong>moonan</strong>: You are Officer Richard Rottovich. And this
+would be Officer Walter Sobozinski. I’m looking for Jake Vig.</p>
+<p><strong>sobozinski</strong>: Who?</p>
+<p><strong>moonan</strong>: I’ve been looking for this Jake Vig for some
+time now. Problem is, the guy’s the invisible man. A spook, a spectre, a
+ghost. Then, like a gift, Jake’s good buddy and member of his crew,
+Alfonse Moorely, is found the other day with a hole in his head.</p>
+<p><strong>continued:</strong>: Moonan holds up crime scene photos of
+Big Al’s body.</p>
+<p><strong>rottovich</strong>: Look Special Agent Moonan… We don’t know
+what you’re talking about.</p>
+<p><strong>rottovich</strong>: Don’t be an idiot. How hard do you think
+it is to sell one drug dealer’s drugs to another drug dealer? If Vig’s
+right, we might be looking at a hundred, maybe a hundred fifty
+grand.</p>
+<p><strong>moonan</strong>: Oh yeah, I almost forgot. The two serious
+looking gentlemen outside? Internal Affairs.</p>
+<p><strong>moonan</strong>: Do you want to know the first time I had a
+line on Vig? He sent me a birthday card. Belated, but it’s the thought,
+right? Oh, this prick’s got a sense of humor. But, then again you guys
+probably know him better than I do. In fact, I’ve only met the guy once.
+But now, now I have you. The next best thing. His partners. His
+“Fix.”</p>
+<p><strong>sobozinski</strong>: What do you want?</p>
+<p><strong>moonan</strong>: You help me catch him. Whatever he’s into
+next, I want you to be into. And what you’re into, I’m into. If it all
+goes well, those two guys from IAD will never have to hear this tape.
+I’ll clear you guys of anything you’ve ever done with Vig under the
+guise of some cross-departmental investigation. This prick’s been on the
+wish list for so long, you’ll probably get gold shields out of it.</p>
+<p><strong>sobozinski</strong>: What do you get out of it?</p>
+<p><strong>moonan</strong>: Peace of mind.</p>
+<p><strong>sobozinski</strong>: That’s it?</p>
+<p><strong>moonan</strong>: Not everyone’s on the take, Walter.</p>
+<p><strong>rottovich</strong>: If you Feds are so hot for him, why don’t
+we just bring him in right now?</p>
+<p><strong>moonan</strong>: I want him for something big and to do that,
+we have to catch him in the act.</p>
+<p><strong>sobozinski</strong>: This guy must have been a real pain in
+your dick.</p>
+<p><strong>moonan</strong>: Literally. It’s not a bad deal, gentleman. I
+get peace of mind. You get Detective Sheilds. But this is the best part,
+Walter… Walter, your daughter will get to keep her braces and have that
+winning smile. Capice?</p>
+<p><strong>moonan</strong>: Good. One more thing… You gotta give up the
+booty. I can’t have you guys running around with heroin.</p>
+<p><strong>jake</strong>: Let me tell you something about Moonan…</p>
+<p><strong>ext. - back alley- night</strong>: A serious look comes
+across Jake’s face– Hate. Butch eases back with the gun for a
+second.</p>
+<p><strong>jake</strong>: He’s just as crooked as the next guy. You’d
+think he’d have more important things to do with tax payer dollars.</p>
+<p><strong>butch</strong>: Cue the fucking violins. Come on… It’s
+getting cold.</p>
+<p><strong>int. - the kiev diner- day</strong>: Gordo, Miles, Jake and
+Lily next to him, all crammed into a booth.</p>
+<p><strong>miles</strong>: Am I the only one who feels like we can’t
+make a move with this guy on us?</p>
+<p><strong>lily</strong>: We should ditch him.</p>
+<p><strong>jake</strong>: Just watch every thing you say around him.
+Every word, every move… It all goes back to the King Pin.</p>
+<p><strong>gordo</strong>: How’s the hoop, superstar? Clean?</p>
+<p><strong>lupus</strong>: What is it with you and bathrooms?</p>
+<p><strong>miles</strong>: He doesn’t like using a bathroom unless he
+knows it’s clean.</p>
+<p><strong>lily</strong>: Manly.</p>
+<p><strong>gordo</strong>: You laugh now, but wait until you need a
+clean place to powder. This is New York city, Sister. Public sanitation
+does not run very high on the city hall agenda. You know what you can
+get off a toilet or doorknob? Let’s do the list… Hepatitis, influenza,
+the flesh eating disease-</p>
+<p><strong>jake</strong>: Here’s what’s going to happen. Gordo, we need
+to find a guy in Gillette’s bank. Miles, we need papers, corporate,
+insurance…</p>
+<p><strong>miles</strong>: Is it all fugasi?</p>
+<p><strong>jake</strong>: No, the corporate papers have to be legit. But
+you gotta score an I.D. A clean one. Talk to Suits. I gotta get us a
+Banker.</p>
+<p><strong>lily</strong>: What about Customs?</p>
+<p><strong>jake</strong>: I’ll worry about Customs.</p>
+<p><strong>lily</strong>: Hey, I’ m not just along for the ride, so I
+don’t want to hear any bullshit later about a smaller cut.</p>
+<p><strong>jake</strong>: Take a deep breath. You sound like you just
+broke up with your boyfriend or something.</p>
+<p><strong>int.- bulldog gym- day</strong>: Boxers at the bags, a
+jumping rope, etc… Jake and Lily stand in front of the King Pin, who’s
+dressed in shorts and a t-shirt. He wears boxing gloves and headgear.
+Lupus and Harlin stand vigil by the sparring ring.</p>
+<p><strong>king pin</strong>: How much?</p>
+<p><strong>jake</strong>: I think two million.</p>
+<p><strong>king pin</strong>: What do you need from me? Permission? Go!
+If you can fleece him for two million, then do it, Kid.</p>
+<p><strong>jake</strong>: I need you to stake me.</p>
+<p><strong>king pin</strong>: Stake you?</p>
+<p><strong>jake</strong>: I need you to stake me. I can’t do it without
+it. It’s just a couple hundred grand. Taken out of our cut when we’re
+done.</p>
+<p><strong>king pin</strong>: That’s more than you already owe me. What
+happens if you fuck this up?</p>
+<p><strong>jake</strong>: Nothing ventured, nothing gained.</p>
+<p><strong>king pin</strong>: Hey Skippy? Do I have the word “chump”
+tattooed on my forehead?</p>
+<p><strong>lily</strong>: Mr . King, I think—</p>
+<p><strong>jake</strong>: Hey, I got it! Take some mental notes. You
+just might learn something here.</p>
+<p><strong>king pin</strong>: Listen, Scooter—</p>
+<p><strong>jake</strong>: No, you listen. We’re partners now and even
+though I’m running the show for you, I’m still running the show. That
+means I get a little respect. So I don’t want to hear anymore of this
+Scooter, Buddy, Junior, Skippy, Tiger, bullshit. It’s Jake.</p>
+<p><strong>jake</strong>: And I gotta tell you, for a guy who spends all
+his time in a gym, you could be in better shape.</p>
+<p><strong>king pin</strong>: Take off your shirt.</p>
+<p><strong>jake</strong>: Excuse me?</p>
+<p><strong>king pin</strong>: I said take off your fucking shirt.</p>
+<p><strong>jake</strong>: Fine. You want me to take it off, I’ll take it
+off.</p>
+<p><strong>king pin</strong>: Look at you, you skinny prick.</p>
+<p><strong>jake</strong>: You’re not going to bust out baby oil and
+start rubbing me down or anything, are you?</p>
+<p><strong>king pin</strong>: Come here. Feel this.</p>
+<p><strong>jake</strong>: No thanks. I’m good.</p>
+<p><strong>king pin</strong>: Come here!</p>
+<p><strong>lily</strong>: You guys are freaking me out.</p>
+<p><strong>king pin</strong>: Shut up. Feel that? That’s solid muscle.
+Not an ounce of fat. Go ahead. Punch it.</p>
+<p><strong>jake</strong>: I am not going–</p>
+<p><strong>king pin</strong>: Come on. Harder.</p>
+<p><strong>jake</strong>: I think I just broke my hand.</p>
+<p><strong>king pin</strong>: Harder. Remember, I killed your buddy. All
+muscle.</p>
+<p><strong>king pin</strong>: Maybe it’s true. Maybe you can’t cheat an
+honest man. Me? I’m about as dishonest as they come and that’s the
+truth. But if you even think about trying to con me they’ll find fucking
+pieces of you in each of the five boroughs. Pieces of you, pieces of
+her, pieces of your whole crew. Can’t be any mare honest than that. I’ll
+stake you, but that’s three hundred fifty you’re in the hole and
+consider the juice running. Now go make me proud.</p>
+<p><strong>jake</strong>: You get all that?</p>
+<p><strong>ext. - back alley</strong>: Butch lets out an easy laugh.</p>
+<p><strong>butch</strong>: Nice.</p>
+<p><strong>jake</strong>: We got our stake. Now we need to find our guy
+in Gillett’s bank.</p>
+<p><strong>ext. - city bank of new york day</strong>: A flood of people
+exit the bank at the end of the day. Jake, Lupus, Lily, Miles and Gordo
+wait by the side of the building. Miles reads off a piece of paper.</p>
+<p><strong>jake</strong>: What you’re looking for in a mark is someone
+who’s weakness you can exploit.</p>
+<p><strong>miles</strong>: Michelle Strigo. Loan officer.</p>
+<p><strong>jake</strong>: Guy like me, with people like that… I’ll tell
+you what you’re looking for without even meeting you. It’s like a
+personal ad you wear over your head.</p>
+<p><strong>jake</strong>: No.</p>
+<p><strong>ext. - city bank of new york-next day</strong>: A flood of
+people exit the bank at the end of the day. Jake, Lupus, Lily, Miles and
+Gordo wait by the side of the building.</p>
+<p><strong>miles</strong>: Jay Houlser. VP International finance.</p>
+<p><strong>int.- trendy restaurant- night</strong>: Jake and the others
+watch Jay standing around the bar silently scoping the place with a
+group of young tucks. FREEZE, FRAME ON GROUP– A CGI SIGN appears over
+their heads: “YOUNG WALL STREETERS seek acknowledgement of monetary
+earning potential from Supermodel-types ages 20- 25.”</p>
+<p><strong>jake</strong>: No.</p>
+<p><strong>ext. - city bank of new york- next day</strong>: The same
+flood of people exit the bank… Jake, Lupus, Lily, Miles and Gordo wait
+by the side of the building.</p>
+<p><strong>miles</strong>: Alice Tanner. Finance Director.</p>
+<p><strong>jake</strong>: No.</p>
+<p><strong>ext. - city bank of new york- next day</strong>: Again the
+flood of people. Again Jake, Lupus, Lily, Miles and Gordo wait.</p>
+<p><strong>miles</strong>: Grant Ashby. VP of Corporate Loans.</p>
+<p><strong>int.- the bull and the bear pub- night</strong>: Dark oak and
+brass, the bar plays host to legions of Suited Urban Professionals
+gathered in cliques. Jake and the others watch as Ashby makes his way
+through the crowd, taking a seat alone at the bar. FREEZE FRAME ON
+ASHBY– A CGI SIGN appears over his head: “SINGLE MALE seeks end to
+safety of tedious and solitary lifestyle. Moral and ethical constitution
+flexible.”</p>
+<p><strong>jake</strong>: What you’re looking for in a mark is someone
+who’s got nothing to lose. No friends, no family, no life. You’re
+looking for a guy who doesn’t own a rug.</p>
+<p><strong>jake</strong>: Him.</p>
+<p><strong>miles</strong>: You sure?</p>
+<p><strong>jake</strong>: I’ m sure.</p>
+<p><strong>int.- garment district/warehouse- day</strong>: Jake, Miles,
+Gordo, Lily and Lupus enter a warehouse housing racks of clothes.</p>
+<p><strong>jake</strong>: Now we had the con and the mark. We needed to
+look the part…</p>
+<p><strong>jake</strong>: Frankie Suits was a legend in certain circles.
+He. Was on the grift since he was ten.</p>
+<p><strong>frankie</strong>: Last of the red hot grifters.</p>
+<p><strong>jake</strong>: Back in the day, Suits made money running
+fight stores and the wire with a Fix so tight it was like a legit
+business. I never understood what the point was if grifting became like
+a regular job.</p>
+<p><strong>jake</strong>: We need wardrobe. So I see. In from Long
+Island? You fellas take a look around.</p>
+<p><strong>gordo</strong>: Hey Suits? You got anything in like a eleven
+or twelve ounce Super 100 worsted?</p>
+<p><strong>int.- suits’ office- day</strong>: A spare little office
+piled high with clothes. Suits reaches into a desk drawer and pulls out
+a large envelope and slides it to Jake.</p>
+<p><strong>suits</strong>: Corporate papers with the New York State
+seal, insurance documents with a proof of bonding and some fugasi
+financial records. There’s also the I.D. you asked for. Corporate papers
+with the New York State seal, insurance documents with a proof of
+bonding and some fugasi financial records. There’s also the I.D. you
+asked for.</p>
+<p><strong>jake</strong>: Aces, Suits.</p>
+<p><strong>suits</strong>: Not easy pickin’s. Papers like these speak to
+larger issues. Sorry about Alfonse. You into something big?</p>
+<p><strong>jake</strong>: Pretty much.</p>
+<p><strong>suits</strong>: In over your head?</p>
+<p><strong>jake</strong>: Pretty much. Suits eyes Lily.</p>
+<p><strong>suits</strong>: Can I speak to you in confidence?</p>
+<p><strong>jake</strong>: Huh? Oh. She’s alright.</p>
+<p><strong>suits</strong>: Try and keep up… You ask for the Advantage
+Goods, then you guys come in looking to be Bean Traps. So I gotta think
+you’re either working the mace or playing the Jug Mob.</p>
+<p><strong>jake</strong>: A little bit of both.</p>
+<p><strong>suits</strong>: Hey, I been on the ramp all my life, so I got
+no problem with the way you help yourself, Jake.</p>
+<p><strong>continued:</strong>: SUITS</p>
+<p><strong>jake</strong>: Can’t say.</p>
+<p><strong>suits</strong>: Then who’s the Banker?</p>
+<p><strong>jake</strong>: The King.</p>
+<p><strong>suits</strong>: The King? Jake, you play the heavy rackets
+like that… They put the lug on for nothing at all.</p>
+<p><strong>jake</strong>: I can handle it.</p>
+<p><strong>suits</strong>: I don’t doubt your talent. You looking for
+that place in the hall of fame?</p>
+<p><strong>jake</strong>: It’s not history.</p>
+<p><strong>suits</strong>: So what do you want?</p>
+<p><strong>jake</strong>: I want to get out from under all this for
+good. And I want to fuck them all doing it.</p>
+<p><strong>suits</strong>: Then I gotta say, in my opinion, you can’t
+get what you want.</p>
+<p><strong>jake</strong>: Yes I can.</p>
+<p><strong>suits</strong>: Still time.</p>
+<p><strong>jake</strong>: Can’t do it Suits. I can’t lay down for this
+one.</p>
+<p><strong>suits</strong>: Okay. Here’s the thing… You fall flat, you
+might not get anything short of stiffed. Then it’s Blue River Land for
+everybody. Papers like these are dangerous because papers tend to
+multiply, then they start to take shape. Usually it’s the shape of an
+arrow. I hate to do it, but after this, I gotta give you the blowoff. We
+Jake, Jake?</p>
+<p><strong>jake</strong>: We’re Jake.</p>
+<p><strong>int.- garment district/warehouse- continuous</strong>: We
+follow Lily and Jake out of Suit’s office. Lily can see that it’s thrown
+Jake a bit.</p>
+<p><strong>lily</strong>: What the hell’s his problem?</p>
+<p><strong>jake</strong>: Don’t worry about it.</p>
+<p><strong>lily</strong>: It’s just that I left my asshole decoder ring
+at home, so how do I know not to worry?</p>
+<p><strong>jake</strong>: You need to get a haircut.</p>
+<p><strong>lily</strong>: What?</p>
+<p><strong>jake</strong>: And some new clothes.</p>
+<p><strong>lily</strong>: Why?</p>
+<p><strong>jake</strong>: We’re going to rope this banker tomorrow and
+you gotta at least look classy, if not be classy. You gotta do this
+thing and I don’t even know if you can.</p>
+<p><strong>lily</strong>: You’re just going to have to trust me.</p>
+<p><strong>jake</strong>: I don’t trust anyone.</p>
+<p><strong>lily</strong>: Then show me how.</p>
+<p><strong>int. - tiffany’s - night</strong>: Jake and Lily enter the
+store. Jake takes a quick moment to case the place– A few scattered
+CUSTOMERS, some being helped by SALESPEOPLE. All the Customers look like
+the uppercrust crowd you’d expect at Tiffany’s.</p>
+<p><strong>jake</strong>: Oh yeah. This is good. This will do nicely.
+This is about confidence. Your confidence and their confidence. You get
+their confidence by giving them yours.</p>
+<p><strong>salesgirl</strong>: Let me read this back. One silver Cattier
+watch, engraved– “To Carolyn, the Attorney at Law. Happy Graduation,
+Counselor. Love Mom and Dad.”</p>
+<p><strong>mr. lewis</strong>: Right.</p>
+<p><strong>salesgirl</strong>: One bracelet, engraved “To Abby. Happy
+25th Anniversary, Love Tom.”</p>
+<p><strong>mr. lewis</strong>: Perfect.</p>
+<p><strong>salesgirl</strong>: I’ ll just go put this in, Mr. Lewis.</p>
+<p><strong>jake</strong>: Mr. Lewis?</p>
+<p><strong>jake</strong>: It is you. Hello!</p>
+<p><strong>mr. lewis</strong>: Sorry, I–</p>
+<p><strong>jake</strong>: Jake. Jake Pearson. I go to lawschool with
+your daughter. Carolyn. We met once or twice.</p>
+<p><strong>mr. lewis</strong>: Of course. Jake. Nice to see you.</p>
+<p><strong>jake</strong>: Well, it certainly is a coincidence. Here of
+all places! How is Mrs. Lewis?</p>
+<p><strong>mr. lewis</strong>: Great. Thank you.</p>
+<p><strong>jake</strong>: Excuse me? I believe you’re holding something
+far me under Pearson.</p>
+<p><strong>salesgirl</strong>: Do you have a ticket?</p>
+<p><strong>jake</strong>: You know, this is kind of embarassing, but my
+wallet was stolen yesterday and I’m afraid the ticket was in it. But the
+name’s Pearson.</p>
+<p><strong>mr. lewis</strong>: While you’re back there, could you make
+sure that Carolyn is spelled with a “y”? What brings you down from
+Boston, Jake? Taking advantage of the long weekend?</p>
+<p><strong>jake</strong>: My wife and I are just taking a little
+vacation.</p>
+<p><strong>mr. lewts</strong>: Carolyn’s down this weekend too.</p>
+<p><strong>lily</strong>: Uh… Everything okay?</p>
+<p><strong>jake</strong>: Honey, this is Mr. Lewis. Carolyn Lewis’s
+father. Mr. Lewis, this is my wife, Lily.</p>
+<p><strong>jake</strong>: I’m sorry, honey. I’m almost done.</p>
+<p><strong>lily</strong>: It’s okay. I’ll be looking for earrings.</p>
+<p><strong>mr. lewis</strong>: Attractive girl.</p>
+<p><strong>jake</strong>: Thank you. Actually, it’s our first
+anniversary this weekend. She thinks I’m here to pick up something for
+my mother, but it’s actually a gift for her. Think I’ve fooled her?</p>
+<p><strong>mr. lewis</strong>: Take it from me, you never do. But
+congratulations. Nice to be married, isn’t it?</p>
+<p><strong>jake</strong>: Very much so.</p>
+<p><strong>salesgirl</strong>: We have Carolyn with a “y”. I’m sorry,
+there’s nothing under Pearson. If we had an invoice number–</p>
+<p><strong>jake</strong>: I told you. My wallet was stolen. Please…
+Check again.</p>
+<p><strong>mr. lewis</strong>: Good luck. Congratulations again.</p>
+<p><strong>jake</strong>: Thank you, sir. You know, I hope this isn’t
+too much of an inconvenience, but if Carolyn is coming down for the
+weekend, perhaps I could give you something for her? It’s a check. We
+split the cost on a few books and I haven’t had the chance to pay her
+back yet. Could you..?</p>
+<p><strong>mr. lewis</strong>: Sure.</p>
+<p><strong>jake</strong>: That’d be a great help.</p>
+<p><strong>continued:</strong>: The Salesgirl returns.</p>
+<p><strong>salesgirl</strong>: I’m sorry. Nothing under Pearson.</p>
+<p><strong>jake</strong>: You’re sure? This is… Just a complete
+disaster.</p>
+<p><strong>salesgirl</strong>: What was it?</p>
+<p><strong>jake</strong>: A ring for my wife. Alot like that one. In
+fact, it was that one.</p>
+<p><strong>salesgirl</strong>: That’s no problem. We have those in
+stock.</p>
+<p><strong>jake</strong>: Thank you. Sorry, I’m just a little anxious to
+give it to her. You take out of state checks?</p>
+<p><strong>salesgirl</strong>: With identification.</p>
+<p><strong>jake</strong>: I understand that, but I had my wallet stolen
+last night. Is there any way..?</p>
+<p><strong>salesgirl</strong>: I’m sorry.</p>
+<p><strong>jake</strong>: I know it’s policy, but… The thing is… It’s
+our first anniversary and we’re only in town for the weekend. It’s a
+very, very special night for my wife and I. This ring is my gift to her
+and I think she’s going to really love it. I can give you phone numbers
+to call for people who’ll vouch. I can send you I.D. later…</p>
+<p><strong>salesgirl</strong>: I’m sorry.</p>
+<p><strong>jake</strong>: This is embarrassing.</p>
+<p><strong>mr. lewis</strong>: Jake?</p>
+<p><strong>jake</strong>: I’m sorry, sir. Thank you very much for doing
+this. And please tell Carolyn hello for me.</p>
+<p><strong>mr. lewis</strong>: Why don’t you let me put the ring on the
+card and you can write me a check in return?</p>
+<p><strong>ext.- tiffany’s/sidewalk–night</strong>: Jake and Lily exit
+the store. Jake hands Lily the trademark colored box.</p>
+<p><strong>jake</strong>: Happy anniversary.</p>
+<p><strong>jake</strong>: Smile. You just got a present from the man of
+your dreams.</p>
+<p><strong>jake</strong>: Now we gotta give him a strong finish.</p>
+<p><strong>continued:</strong>: Jake pulls Lily closer and looks into
+her eyes. She leans in and they kiss– A deep, slow kiss that makes
+people have to walk around them. Mr. Lewis sees them and smiles to
+himself as he gets into a cab. Jake and Lily are still kissing as the
+cab pulls away. Lily finally breaks the kiss— Slowly.</p>
+<p><strong>lily</strong>: He’s gone.</p>
+<p><strong>jake</strong>: Uh-huh.</p>
+<p><strong>lily</strong>: I gotta go get a haircut.</p>
+<p><strong>jake</strong>: Uh-huh.</p>
+<p><strong>int.- sixteenth precint- day</strong>: Moonan sits on a desk,
+ear to a phone.</p>
+<p><strong>jake</strong>: It was all in play. Everything…</p>
+<p><strong>moonan</strong>: It’s Moonan… I’m in New York. Listen, I got
+Vig. He’s here and I’m this close… Look, I understand that, but I’m
+telling you this time… Obsessive is a big word to use… Goddamn it, Lou!
+I’m telling you, this is it. Yeah… I figured you’d feel that way. So
+here’s the deal… Call Kylie over at the Bureau. Tell him I got something
+that might interest him. A guy they call the King Pin. I think there may
+be a corruption case brewing here, too… That’s right. So even if I don’t
+get Vig, you’ll still have something to show.</p>
+<p><strong>continued:</strong>: MOONAN</p>
+<p><strong>sobozinski</strong>: Whaddya mean? We got dick.</p>
+<p><strong>moonan</strong>: You guy’s are not working with me here. I
+just got off the phone with my boss. After he got done ripping me a new
+Lincoln Tunnel size asshole, he let me know exactly how little I’m
+welcome back if we come up short. And now here you guys are, WASTING MY
+FUCKING TIME!</p>
+<p><strong>rottovich</strong>: Like we told you before, we think he’s
+into something with the King Pin—</p>
+<p><strong>moonan</strong>: Look, I’m not a confrontational person by
+nature.</p>
+<p><strong>moonan</strong>: I need answers and the only two things
+you’ve given me are jack and shit. You gotta do better. You gotta do
+better or I swear on my sweet dead grandmother’s grave, I’m gonna make
+you guys an I-A-fucking-D cautionary tale.</p>
+<p><strong>ext. - back alley-night</strong>: Butch takes out two
+cigarettes and lights both, sticking one in Jake’s mouth.</p>
+<p><strong>jake</strong>: Thanks. Did you know you shouldn’t light three
+cigarettes with a match?</p>
+<p><strong>continued:</strong>: JAKE</p>
+<p><strong>butch</strong>: You’re a superstitious fucker.</p>
+<p><strong>jake</strong>: Luck’s a funny thing. Especially the bad.</p>
+<p><strong>butch</strong>: Like what?</p>
+<p><strong>jake</strong>: Having a gun pointed at you for one. It’s not
+like breaking a mirror bad luck, but it’s bad. Three on a match, black
+cats… Believe it. Believe it all.</p>
+<p><strong>int.- jake’s apartment- night</strong>: Miles, Jake, Lupus
+and Gordo sit around in silence. They’re all dressed in new suits.</p>
+<p><strong>jake</strong>: But if you wanna talk about bad luck…</p>
+<p><strong>miles</strong>: Where the hell is she?</p>
+<p><strong>jake</strong>: Redheads.</p>
+<p><strong>fuck!</strong>: Gordo, Lupus and Miles look up at Lily.</p>
+<p><strong>gordo</strong>: Oh shit.</p>
+<p><strong>continued:</strong>: Lily stands at the door watching Jake
+freak out in disbelief. FREEZE FRAME ON LILY and her new red hair.</p>
+<p><strong>jake</strong>: Top three all-time worst red-heads…</p>
+<p><strong>jake</strong>: Lizzie Borden… Axe murder.</p>
+<p><strong>jake</strong>: Judas… Betrayer.</p>
+<p><strong>jake</strong>: Shirley Vig… Abandoner.</p>
+<p><strong>back to freeze frame of lily</strong>: The action
+resumes…</p>
+<p><strong>lily</strong>: Nice to see you too. Why are you getting so
+bent?</p>
+<p><strong>jake</strong>: You just put a mother of a jinx on us.</p>
+<p><strong>lily</strong>: Lighten up.</p>
+<p><strong>jake</strong>: But the fucking Grand Poo-Bah of all jinxes? A
+bird in your house…</p>
+<p><strong>int.- jake’s apartment- night</strong>: It’s the scene
+earlier, when Jake finds a BIRD rapping at his window to get out.</p>
+<p><strong>jake</strong>: A bird enters your house…</p>
+<p><strong>int.- big al’s apartment</strong>: Big Al’s bulging, vacant
+eyes stare straight at us, his mouth hanging open.</p>
+<p><strong>jake</strong>: It means death.</p>
+<p><strong>back to freeze frame on lily’s bird blouse.</strong>: The
+action resumes…</p>
+<p><strong>jake</strong>: You have no idea what you’ve done do you? No
+idea! What is this?</p>
+<p><strong>lily</strong>: You told me to change my hair!</p>
+<p><strong>jake</strong>: What about this? Do you have any idea what
+this means? You’ve killed us. We’re dead!</p>
+<p><strong>lily</strong>: Did I miss something?</p>
+<p><strong>gordo</strong>: The red hair… It’s bad luck.</p>
+<p><strong>miles</strong>: It’s not like she’s a real redhead, Jake…</p>
+<p><strong>jake</strong>: Like that matters! You can’t fool bad luck!
+You can’t get by on a technicality! You can’t trick karma!</p>
+<p><strong>lily</strong>: So much for that good feeling, huh?</p>
+<p><strong>jake</strong>: Anybody says a word I swear to God…</p>
+<p><strong>ext. - back alley- night</strong>: Butch cracks a big
+smile.</p>
+<p><strong>butch</strong>: She had you tempting fate.</p>
+<p><strong>jake</strong>: My father used to play the same fucking lotto
+numbers with these other guys in the pharmacy. The same numbers everyday
+for sixteen years. One day he gets pissed off, tells them he’s out and
+plays his own numbers. They hit the Lucky Seven for one point two
+million.</p>
+<p><strong>lily</strong>: Guess he passed on that unlucky- asshole
+gene.</p>
+<p><strong>lily</strong>: You should have trusted me Jake.</p>
+<p><strong>int.- the bull and the bear pub- night</strong>: Jake turns
+and looks at the crew, Miles, Gordo, Lupus and Lily behind him. Grant
+Ashby sits alone at the crowded bar, doing his crossword puzzle. Jake a
+smile and saunters over to the bar.</p>
+<p><strong>gordo</strong>: She up for this?</p>
+<p><strong>jake</strong>: She’s up for it.</p>
+<p><strong>angle on ashby at the bar</strong>: Ashby sits finishing a
+drink. Snippets of CONVERSATION and LAUGHTER from the cliques around him
+catch his attention, but he remains alone.</p>
+<p><strong>blonde</strong>: Is this seat taken?</p>
+<p><strong>ashby</strong>: Uh, no. Please.</p>
+<p><strong>blonde</strong>: Thanks.</p>
+<p><strong>lily</strong>: Sorry I’m late.</p>
+<p><strong>lily</strong>: But I’m not that late. You didn’t have to give
+away my seat.</p>
+<p><strong>ashby</strong>: I wasn’t sure if you’d make it.</p>
+<p><strong>blonde</strong>: Oh, I didn’t know you… Here. Sorry.</p>
+<p><strong>lily</strong>: No problem.</p>
+<p><strong>lily</strong>: Thanks for playing along. I just have to sit
+for a while.</p>
+<p><strong>ashby</strong>: Tough day?</p>
+<p><strong>lily</strong>: Brutal day. They say the streets are lined
+with money down here, but I guess you have to know the secret handshake.
+What are you drinking?</p>
+<p><strong>ashby</strong>: Uh, Maker’s Mark. Rocks.</p>
+<p><strong>ashby</strong>: My name’s Grant. Grant Ashby.</p>
+<p><strong>lily</strong>: Oh god. I’m overbearing and rude. Lily. Lily
+Finn.</p>
+<p><strong>ashby</strong>: So, what do you do?</p>
+<p><strong>lily</strong>: It’s more like what aren’t I doing. My
+partners and I are trying to secure start up capital for a small tech
+company. We tried the venture capitalist route in the Valley, but then
+again who hasn’t up there.</p>
+<p><strong>ashby</strong>: Silicon Valley?</p>
+<p><strong>lily</strong>: That’s right. So, brainiacs that we are, we
+thought we’d be innovative and relocate east. Try our luck with a
+straight corporate loan out here.</p>
+<p><strong>ashby</strong>: I can—</p>
+<p><strong>lily</strong>: On me. For the seat. Cheers.</p>
+<p><strong>lily</strong>: So we’ve been meeting with banks all day. It’s
+amazing how many ways they can say “no” without ever using the word.</p>
+<p><strong>ashby</strong>: Well, typically, corporate loans are
+relatively simple matters, but you do need to demonstrate a capacity for
+gross fund recovery.</p>
+<p><strong>lily</strong>: Don’t tell me you started a tech firm here
+before us.</p>
+<p><strong>ashby</strong>: No, no. Nothing like that. I work in a
+bank.</p>
+<p><strong>lily</strong>: Really? Wish we had met eight hours ago.</p>
+<p><strong>lily</strong>: My partners are here.</p>
+<p><strong>ashby</strong>: Oh. Well, thanks for the drink.</p>
+<p><strong>lily</strong>: You’re welcome. I was just going to ask you if
+you’d like to join us. Ashby brightens again.</p>
+<p><strong>int.- the bull and the bear pub/table- later</strong>: Ashby
+sits with the crew, a few empty glasses in front of him. He looks
+remarkably relaxed, just another guy hanging around with a group of
+friends.</p>
+<p><strong>jake</strong>: She got one leg out from under him. Now we had
+to lean.</p>
+<p><strong>gordo</strong>: So then Miles walks straight into the
+Creative Director’s office and says “The code’s fine, the program’s for
+shit” and throws down like a thousand pages of code on the guy’s
+desk!</p>
+<p><strong>jake</strong>: So this is our boss, right? He chases me and
+Miles out of his office and he’s yelling and screaming, “You’re fired!
+Your whole team’s fired!” He starts looking for Lily, Lupus, Gordo–</p>
+<p><strong>miles</strong>: But the best part was that he couldn’t find
+Gordo! He was in the bathroom. So he finally goes in there, kicks in a
+stall door and starts yelling! And there’s Gordo, pants at the ankles,
+holding a PC World Magazine!</p>
+<p><strong>gordo</strong>: I haven’t been able to use a public bathroom
+since.</p>
+<p><strong>lupus</strong>: Especially with the thing!</p>
+<p><strong>jake</strong>: Uh, right… And that was it. That’s when we
+decided to start our own business. No more shithead bosses.</p>
+<p><strong>ashsy</strong>: I envy you guys. Taking a chance like
+that.</p>
+<p><strong>gordo</strong>: Masters of our own destiny.</p>
+<p><strong>lily</strong>: So far, masters of our own demise. What bank
+are you with?</p>
+<p><strong>ashby</strong>: City Bank of Manhattan.</p>
+<p><strong>gordo</strong>: That’s that Gillette guy, right? You Like
+him? As a boss, I mean.</p>
+<p><strong>ashby</strong>: He’s . . . He’s okay.</p>
+<p><strong>gordo</strong>: Come on…</p>
+<p><strong>ashby</strong>: No.</p>
+<p><strong>jake</strong>: What do you do over at your bank, Grant?</p>
+<p><strong>ashby</strong>: What do I do? I’m the VP of Finance.</p>
+<p><strong>miles</strong>: Wow. We haven’t met with anyone your level
+yet. VP? So that means there’s you, then the P.</p>
+<p><strong>jake</strong>: Here’s where a little research comes in handy.
+Corporate banks give out VP titles like calendars. It’s a small lie, but
+now we’re sure he’s playing.</p>
+<p><strong>jake</strong>: Maybe you can help us understand what’s so
+hard about getting a corporate loan.</p>
+<p><strong>ashby</strong>: Well, typically speaking, they’re not. As
+long as you can demonstrate–</p>
+<p><strong>jake</strong>: A capacity for gross fund recovery. Yeah, we
+got that part.</p>
+<p><strong>ashby</strong>: That’s right. And tech firms… They ’tend to
+scare people off.</p>
+<p><strong>jake</strong>: They scare people off because most people lack
+vision. Vision and balls. Present company excluded of course.</p>
+<p><strong>ashby</strong>: Banks need to know how they’re going to get
+their money back.</p>
+<p><strong>jake</strong>: We know exactly how we’re going to make The
+money back. There in lies the Catch-22</p>
+<p><strong>ashby</strong>: I don’t follow.</p>
+<p><strong>gordo</strong>: Jake…</p>
+<p><strong>lily</strong>: It’s alright. Grant’s one of the good
+guys.</p>
+<p><strong>lupus</strong>: Yeah. He’s our boy.</p>
+<p><strong>jake</strong>: Listen, what I’m about to tell you, I’m
+telling you in confidence, okay? Have you ever heard of a company called
+Big.Com?</p>
+<p><strong>ashby</strong>: Big.Com. That Internet thing.</p>
+<p><strong>jake</strong>: Right. The guys who started that did what a
+lot of companies in the Valley do. They get a good idea, shop it around,
+raise some capital, then sell it off to a bigger company. Microsoft,
+Intel, Oracle, whatever. The beauty of it is, they’ve pretty much sold
+the company before they’re even real. The bigger company is already set
+to buy it, all they want to do is make sure that the idea actually
+works. So they get some start up capital, make it work, then sell it for
+like five times the initial loan.</p>
+<p><strong>ashy</strong>: Sort of like a letter of intent.</p>
+<p><strong>jake</strong>: Exactly. But the Catch-22 is that you can’t
+tell anyone about the offer, because if it’s public, you could start a
+bidding war and that’s considered a breach of etiquette. It could kill a
+deal. But, wait too long and you’re not considered hot anymore.</p>
+<p><strong>ashby</strong>: And you have this letter of intent?</p>
+<p><strong>jake</strong>: Yes. That’s why I wish there were guys willing
+to take a chance and live a little.</p>
+<p><strong>lily</strong>: We’re getting down to the wire. Apparently
+another company has a similar product in R&amp;D right now. If they beat
+us to it…</p>
+<p><strong>jake</strong>: Off the record, I’m this close to cutting
+someone in on the action if it’d help.</p>
+<p><strong>ashby</strong>: Should we get another round?</p>
+<p><strong>tnt.- city street- night</strong>: Jake, Lupus, Miles, Gordo
+and Lily walking, still on a celebratory high.</p>
+<p><strong>gordo</strong>: Poor bastard never knew what hit him. Jesus,
+I almost felt sorry for the guy.</p>
+<p><strong>miles</strong>: I gotta work off some of this adrenaline. I
+got a line on this Pawn Shop guy over in Brooklyn. Anybody want in?</p>
+<p><strong>lily</strong>: I’ m going home</p>
+<p><strong>gordo</strong>: Let’s go, Jake?</p>
+<p><strong>jake</strong>: Uh… No thanks. I’m not going all the way to
+Brooklyn for a hundred dollar pay-off.</p>
+<p><strong>gordo</strong>: You sure?</p>
+<p><strong>jake</strong>: Lupus! When this is all over, you’re going to
+tell me who the King put on Al.</p>
+<p><strong>lupus</strong>: You going to have the time?</p>
+<p><strong>jake</strong>: I’11 find the time.</p>
+<p><strong>lily</strong>: Look at you… You want to go.</p>
+<p><strong>jake</strong>: For what? A couple hundred bucks?</p>
+<p><strong>lily</strong>: I think you’d do it for free. You’ re almost
+drooling. You like the rush.</p>
+<p><strong>jake</strong>: It’s what I do. It’s my job.</p>
+<p><strong>lily</strong>: Why? Your mother not breast feed you or
+something?</p>
+<p><strong>jake</strong>: Are you asking me if I have something to
+prove?</p>
+<p><strong>lily</strong>: Do you have something to prove?</p>
+<p><strong>jake</strong>: Not in that repressed anger sort of way.</p>
+<p><strong>lily</strong>: I’m your basic underachiever. Can’t stand
+working and porn doesn’t seem like a good option.</p>
+<p><strong>jake</strong>: Good quality porn has it’s place in the
+world.</p>
+<p><strong>lily</strong>: Whatever. But you… I get the feeling you could
+have bullshitted your way into anything. So why this?</p>
+<p><strong>jake</strong>: I’m good at it. Lying, cheating. Manipulating…
+I’m good at it.</p>
+<p><strong>lily</strong>: It’s more than that.</p>
+<p><strong>jake</strong>: Intuition. It doesn’t make you Yoda. Like
+tonight. You killed that guy tonight. But I knew you would.</p>
+<p><strong>lily</strong>: So that was my part? Smile and shake my
+ass?</p>
+<p><strong>jake</strong>: No. You have another part? You’ll know what to
+do.</p>
+<p><strong>lily</strong>: How do you know I will?</p>
+<p><strong>jake</strong>: Intuition.</p>
+<p><strong>int.- lily’s apartment- night</strong>: Illuminated only by
+the light coming from the windows… Jake runs a hand down the length of
+Lily’s bare back. She falls onto him, both of them hitting the bed
+locked in a deep kiss. Lily’s hand moves down Jake’s arm until it finds
+his hand.</p>
+<p><strong>lily</strong>: You have really soft hands. Like a baby’s.</p>
+<p><strong>jake</strong>: Don’t ruin this for me.</p>
+<p><strong>ext. - back alley night</strong>: Jake takes a deep breath,
+Butch and Lily behind him.</p>
+<p><strong>butch</strong>: Is that what it was, Jake? Was it love?</p>
+<p><strong>jake</strong>: You know when the first con was ever played?
+It was when Adam fell for Eve in the Garden of Eden.</p>
+<p><strong>jake</strong>: Then she fucked him over with an apple.
+Redheads…</p>
+<p><strong>int . - lily’s apartment–day</strong>: Not even the soft
+morning light can diffuse the reality of this slum-pit studio apartment.
+Jake lies next to Lily, kissing her neck. A spoon RATTLES in a glass
+from the growing RUMBLE of a passing subway train. The RUMBLE rises to
+an almost deafening volume. Jake’s a little alarmed. Lily,
+oblivious.</p>
+<p><strong>jake</strong>: How do you deal with—</p>
+<p><strong>said, how do–</strong>: Deal with that?</p>
+<p><strong>lily</strong>: Do you think we can do it?</p>
+<p><strong>jake</strong>: Maybe. Even if we don’t, you’ll be alright.
+You’re not in the hole with the King.</p>
+<p><strong>lily</strong>: Who says you have to know the King to be in a
+whole? I actually did have a real job once. When I was in high school, I
+worked as a candy striper.</p>
+<p><strong>jake</strong>: Sounds respectable.</p>
+<p><strong>lily</strong>: Not the way I did it. I was loaded half the
+time. I don’t know how you could change bedpans sober.</p>
+<p><strong>lily</strong>: I used to hang out with this guy, Glenn. He
+was an x-ray technician or something.</p>
+<p><strong>jake</strong>: You want to talk about an old boyfriend right
+now?</p>
+<p><strong>lily</strong>: He wasn’t my boyfriend. I had a boyfriend at
+the time… What was his name? Anyway, Glenn was like thirty. I was only
+fifteen. But he was a nice guy. Real sweet. Liked to talk. We used to
+get loaded on pills from the nurses station and then listen to Morrisey
+or some stupid shit like that.</p>
+<p><strong>jake</strong>: Yeah, the sensitive guy-thing never worked for
+me.</p>
+<p><strong>lily</strong>: We were friends. I trusted him. I should have
+known it was weird. But, then again I was weird.</p>
+<p><strong>jake</strong>: You guys got busted. This is a great neck.</p>
+<p><strong>lily</strong>: No, we never got busted. We were done with a
+shift one night, both a couple of Percocets down and I was telling Glenn
+about my boyfriend, about how we were thinking about doing it, you know?
+I was thinking about letting him be my first because I loved him. What
+the hell was his name?</p>
+<p><strong>jake</strong>: Glenn talked you out of it.</p>
+<p><strong>lily</strong>: Sort of. I was telling him about this great
+love of my life who’s name I don’t remember, and I could see… He was
+getting pissed. I thought it was just because he was worried about me,
+but…</p>
+<p><strong>continued:</strong>: LILY</p>
+<p><strong>jake</strong>: He was looking out for you.</p>
+<p><strong>lily</strong>: Then he grabbed me and threw me down on the
+floor, that really cold linoleum tiled hospital floor and started
+ripping my uniform off. He said he was going to “fuck some sense into
+me.”</p>
+<p><strong>lily</strong>: Shit, what was that guy’s name? I really liked
+him.</p>
+<p><strong>jake</strong>: Lily… Jesus Christ…</p>
+<p><strong>lily</strong>: After Glenn was finished, he gave me a couple
+of valiums and I went home. The next day, I finished my shift and met
+him around back, like we always did. I stuck a number eight scalpel into
+his chest. Three or four times.</p>
+<p><strong>jake</strong>: Did, uh… Did you kill him?</p>
+<p><strong>lily</strong>: I don’t know. I packed up my shit and ran
+away. To this… So unlike you, I guess I do have something to prove, in a
+repressed anger sort of way.</p>
+<p><strong>jake</strong>: No. You trusted him… You were just getting
+square.</p>
+<p><strong>lily</strong>: You know why I told you that, Jake? Because I
+trust you too.</p>
+<p><strong>continued:</strong>: Jake tries a reassuring smile even
+though he’s not sure it’s something he should be smiling about. The
+spoon starts to RATTLE again as another subway train RUMBLES in the
+distance.</p>
+<p><strong>ext. - back alley-night</strong>: Lily shakes her head in
+disbelief that Jake would tell the story.</p>
+<p><strong>jake</strong>: Sorry, honey. But I figure if we can’t all
+share at a time like this…</p>
+<p><strong>butch</strong>: You got some issues, huh?</p>
+<p><strong>lily</strong>: I can take care of myself.</p>
+<p><strong>butch</strong>: Hurry up.</p>
+<p><strong>int.- ashby’s office- day</strong>: Ashby sits behind a desk
+in front of the crew. In front of him are the corporate papers.</p>
+<p><strong>jake</strong>: We had to finalize the deal.</p>
+<p><strong>ashby</strong>: Everything looks in order.</p>
+<p><strong>jake</strong>: This has to happen fast.</p>
+<p><strong>ashby</strong>: I know. It won’t go unnoticed.</p>
+<p><strong>jake</strong>: There’ll be red flags.</p>
+<p><strong>ashby</strong>: What’s this?</p>
+<p><strong>jake</strong>: You need some convincing. Consider it a
+convincer.</p>
+<p><strong>ashby</strong>: Let’s just slow down for a second…</p>
+<p><strong>jake</strong>: You’re worried about recouping the loan. I
+already told you.</p>
+<p><strong>ashby</strong>: No, I understand that. What I mean… What I’m
+trying to say… I was actually wondering about… Well, my cut.</p>
+<p><strong>jake</strong>: Then there it is. Ashby gets the itch.</p>
+<p><strong>jake</strong>: The standard ten.</p>
+<p><strong>ashby</strong>: Ten percent. Of how much?</p>
+<p><strong>jake</strong>: Two million.</p>
+<p><strong>gordo</strong>: We’re going to make it back, Grant.</p>
+<p><strong>jake</strong>: And all you need to do for your ten percent is
+put some paperwork through and push a button tomorrow.</p>
+<p><strong>int.- city bank of manhattan/hallway- day</strong>: Jake
+exits Ashby’s office with Lupus, Gordo, Miles and Lily. They all follow
+Jake down the hallway.</p>
+<p><strong>gordo</strong>: You’ll be there?</p>
+<p><strong>jake</strong>: Eight A.M. flight.</p>
+<p><strong>gordo</strong>: Calls?</p>
+<p><strong>jake</strong>: We’ll use the Euc.</p>
+<p><strong>ext.- street- day</strong>: Jake, Lily, Miles, Gordo and
+Lupus… As they move through the crowded sidewalk, Rottovich and
+Sobozinski appear behind them.</p>
+<p><strong>rottovich</strong>: Hey Jake.</p>
+<p><strong>jake</strong>: That tip not work-out for you fellas?</p>
+<p><strong>rottovich</strong>: Tip was fine, Jake. We were a little more
+curious about the Fed.</p>
+<p><strong>jake</strong>: Hey, listen… If you guys don’t pay your taxes,
+that’s your business.</p>
+<p><strong>sobozinski</strong>: Back up.</p>
+<p><strong>lupus</strong>: You want I should hold him down?</p>
+<p><strong>continued:</strong>: Gordo throws Lupus a look.</p>
+<p><strong>rottovich</strong>: Special Agent Gunther Moonan. Ring a
+bell?</p>
+<p><strong>jake</strong>: Gunther? I think I’d remember a Gunther.</p>
+<p><strong>rottovich</strong>: Ring it for him, Sobo.</p>
+<p><strong>jake</strong>: Oh yeah. Moonan. I remember now. Thanks.</p>
+<p><strong>rottovich</strong>: Well he’s in town and he sure as shit
+remembers you. What are we going to do about this Jake? We can’t afford
+to have a Fed onto us.</p>
+<p><strong>jake</strong>: Wouldn’t dream of it.</p>
+<p><strong>rottovich</strong>: I don’t know what you’re into with the
+King Pin, but whatever it is we get a piece, understand? We get a big
+piece. If we find out you’re keeping us out, I may suddenly develope a
+conscious and give you up to Moonan myself. Say something stupid if we
+got a deal, Jake.</p>
+<p><strong>jake</strong>: Something stupid.</p>
+<p><strong>rottovich</strong>: Good boy.</p>
+<p><strong>sobozinski</strong>: And don’t leave town! I always wanted to
+say that…</p>
+<p><strong>lily</strong>: People don’t like you much, do they?</p>
+<p><strong>int.- car- day</strong>: Rottovich and Sobozinski get in the
+front of a squad car. In the back, Moonan sits reading the Travel
+section of the NY Times.</p>
+<p><strong>moonan</strong>: Did he buy it?</p>
+<p><strong>rottovich</strong>: I think so. What’d he ever do to you
+anyway?</p>
+<p><strong>moonan</strong>: Let’s just say he burned me once.</p>
+<p><strong>lupus</strong>: Why’s this guy so hard up for you? You’re not
+exactly a threat to national security.</p>
+<p><strong>int.- the euclid- day</strong>: Jake sits at a barstool,
+battered and bruised. Lily tends to him with a towel. Miles and Gordo
+pour drinks. Lupus sits at a table, watching.</p>
+<p><strong>jake</strong>: We go way back…</p>
+<p><strong>ext.- dog racetrack- day</strong>: A BELL… A mechanical
+rabbit springs forward. Greyhounds bolt out of the gate.</p>
+<p><strong>jake</strong>: About four years ago, we were working in
+Miami, turf fixing for some local goon.</p>
+<p><strong>int.– racetrack- day</strong>: Gordo, Miles, Big A1 and Jake
+watch the race with indifference, surrounded by excited SPECTATORS.</p>
+<p><strong>jake</strong>: Turns out this local goon was being watched by
+the Feds, which means we were being watched by the Feds. One in
+particular.</p>
+<p><strong>jake</strong>: Special Agent Gunther Moonan.</p>
+<p><strong>ext.- racetrack/parking lot- day</strong>: Moonan walks over
+to a car.</p>
+<p><strong>jake</strong>: He didn’t really have anything on us, but I
+figure, maybe this guy’s good for a Fix. So I ask him out to dinner.</p>
+<p><strong>int.- la scala- night</strong>: An elegant restaurant. Jake
+sits confidently in an expensive suit speaking to the shabbily dressed
+Moonan across from him.</p>
+<p><strong>jake</strong>: These guys we have now, sure, give them twenty
+bucks and they’ll look the other way on a parking ticket. But a Fed… You
+get a guy like that as your Fix…</p>
+<p><strong>jake</strong>: It was probably a stupid idea. There I am,
+Armani and Rolex. There he is, JC Penny and Timex…</p>
+<p><strong>continued:</strong>: Moonan smiles and slides the envelope
+back over to Jake with a disappointed shake of his head.</p>
+<p><strong>jake</strong>: So I took a shot. But now he had me on
+attempted bribery of a Federal Agent.</p>
+<p><strong>jake</strong>: That’s when Gordo comes in with the Hazelnut
+French Roast.</p>
+<p><strong>ext.- la scala/parking lot- night</strong>: Miles pulls up in
+an old Cadillac, picking up Jake at the entrance. They pick up Gordo and
+Big Al from a side door and drive off as Moonan limps out of the
+restaurant, still holding his crotch.</p>
+<p><strong>int.- the euclid- day</strong>: Jake finishes the story to
+Lupus.</p>
+<p><strong>jake</strong>: And that’s how Special Agent Gunther Moonan
+and I became friends.</p>
+<p><strong>gordo</strong>: Moonan. Here. Shit…</p>
+<p><strong>lily</strong>: So what? We just stay clear of him.</p>
+<p><strong>lily</strong>: Jesus… Take it easy.</p>
+<p><strong>jake</strong>: No, I’m not going to take it easy. You can’t
+stay clear of this guy. He will be on this until the end of time.</p>
+<p><strong>miles</strong>: What do we do? We change the scam?</p>
+<p><strong>jake</strong>: There is no scam! I’ve got a fucking sign on
+my back! I can’t leave town now and come back with a suitcase full of
+money. You get it? It’s over. We walk.</p>
+<p><strong>gordo</strong>: Jake–</p>
+<p><strong>jake</strong>: What do I always tell you guys? Don’t spend it
+all. Sooner or later we’re going to run into some bad luck. Save some.
+Put it away, so when shit like this happens, you’re not desperate.
+That’s it. The gig’s up.</p>
+<p><strong>lily</strong>: That’s it? What are you talking about? We can
+still do this!</p>
+<p><strong>gordo</strong>: Jake, I mean, come on–</p>
+<p><strong>jake</strong>: No, no, no! Not this time. I am doing this for
+your own good! You guys have got to learn when to stop. You with the
+Armani! You with the hookers!</p>
+<p><strong>miles</strong>: Escorts!</p>
+<p><strong>jake</strong>: Do you even remember Al? Do you remember what
+he looked like sitting there?</p>
+<p><strong>lily</strong>: You are such a raving pussy sometimes.</p>
+<p><strong>jake</strong>: Hey, we fucked once, honey. That hardly makes
+you a good judge of character. And don’t think I didn’t know you were
+working some angle with that either.</p>
+<p><strong>lily</strong>: Everyone’s working an angle, right?</p>
+<p><strong>jake</strong>: There are three people I trust– him, him and a
+guy who got killed. I don’t know who you are! You’re like some stray doq
+that wandered into the house. So I’m telling you to cut loose of this.
+No one’s looking for you, Not the King, not Moonan and not Gillette.
+Just go wherever it is you would go. It’s over.</p>
+<p><strong>lily</strong>: What about…</p>
+<p><strong>jake</strong>: What about what?</p>
+<p><strong>lily</strong>: What about the money?</p>
+<p><strong>jake</strong>: So there it is. You got that big itch you need
+to scratch. It’s all about the fucking money. What do you want, an
+apology?</p>
+<p><strong>lily</strong>: No, I want my cut!</p>
+<p><strong>jake</strong>: I’m going to say this one last time for You,
+so take a deep breath and count to ten. There is no cut.</p>
+<p><strong>lily</strong>: You’re an asshole.</p>
+<p><strong>gordo</strong>: So that’s it…</p>
+<p><strong>jake</strong>: That’s it.</p>
+<p><strong>lupus</strong>: King ain’t gonna like this.</p>
+<p><strong>jake</strong>: Don’t worry, I’ll settle up with your boss. We
+haven’t skipped town yet.</p>
+<p><strong>lupus</strong>: What I’m saying is, is that the King ain’t
+gonna care. See he had a real thing with getting this Gillette guy, If
+you ask me I think he’s jealous.</p>
+<p><strong>jake</strong>: Of what? They’re both crooks.</p>
+<p><strong>lupus</strong>: Exactly. `Cept this Gillette guy. He gets to
+walk around in three piece suits, hob knob with the Mayor, own a bank,
+that kinda shit. Meanwhile, the King sits holed up in the steam, afraid
+to even take a leak without me or Harlin watching the door.</p>
+<p><strong>jake</strong>: My fucking heart bleeds.</p>
+<p><strong>lupus</strong>: Your buddy. That fat guy. The King couldn’t
+wait to have that guy whacked. He didn’t even know who the guy was, but
+he was so pissed off at him, he gets him drilled. It ain’t personal.
+It’s business.</p>
+<p><strong>jake</strong>: Point, Lupus. Give us a point.</p>
+<p><strong>lupus</strong>: Point is, you don’t go through with this,
+he’s going to go after you next. And he don’t even like you, Jake.</p>
+<p><strong>ext. - back alley</strong>: Butch hovering over Jake…</p>
+<p><strong>butch</strong>: So much for honor among thieves. You would
+have cut loose your friends, your girl…</p>
+<p><strong>jake</strong>: I was doing it for them.</p>
+<p><strong>butch</strong>: BULLSHIT! You were scared, Jake! You - Lost
+your nerve! You lost your confidence! You weren’t being noble. You
+weren’t trying to save anybody but yourself! Admit it.</p>
+<p><strong>jake</strong>: It’s not true.</p>
+<p><strong>butch</strong>: Yes it is Jake! Yes it is! They were right
+there for you. She was right there for you! Look at her! She trusted you
+and you sold her out! Be honest! Be a man! Tell her, Jake! Tell her that
+you loved her but the money meant more to you! Grifters… Gentleman’s
+racket… My ass. You’re just any other lowlife stammer– Looking out for
+number one.</p>
+<p><strong>int . - jake’s apartment– night</strong>: Lupus and Jake sit
+at the table. Lupus on the phone.</p>
+<p><strong>lupus</strong>: Hey, boss. It’s me. The bank’s in. It’s
+happening tomorrow… Jake? He got a little shaky there for a minute, but
+we got him back in the batter’s box.</p>
+<p><strong>int. -bulldog gym - same</strong>: The King Pin on a cell
+phone. Harlin stands in front of him, punching the King’s stomach hard
+enough that he’s sweating. The King seems to hardly notice.</p>
+<p><strong>lupus</strong>: Coupla things. They got this Fed , loo king
+around and the girl just split.</p>
+<p><strong>king pin</strong>: A Fed? Is he close?</p>
+<p><strong>lupus</strong>: I don’t think so. Their Fix gave us the heads
+up and Jake’s got a plan that’ll probably keep him off.</p>
+<p><strong>lupus</strong>: But this girl, the redhead. She knows a lot.
+She could be a pain in the ass.</p>
+<p><strong>jake</strong>: No. She won’t. She’s not going to be a
+problem.</p>
+<p><strong>lupu</strong>: He wants to talk to you. Don’t tell him I said
+he was jealous of Gillette, okay?</p>
+<p><strong>jake</strong>: Uh huh… Uh huh… Okay… I understand.</p>
+<p><strong>lupus</strong>: What’d he say?</p>
+<p><strong>jake</strong>: Oh, you know… Don’t fuck this up. I’ll kill
+you. I’ll kill your family. I’ll shoot your dog… All the usual. Then he
+said good luck.</p>
+<p><strong>continued:</strong>: A FLAPPING SOUND catches Jake and
+Lupus’s attention. A WHITE PIGEON sits on the frame of an open
+window.</p>
+<p><strong>jake</strong>: Aww, shit!</p>
+<p><strong>ext. back alley- night</strong>: With a shrug, Jake
+continues…</p>
+<p><strong>jake</strong>: We were back on.</p>
+<p><strong>butch</strong>: After you cut her loose.</p>
+<p><strong>jake</strong>: She walked.</p>
+<p><strong>lily</strong>: I walked? Let me tell you a story,
+asshole…</p>
+<p><strong>int.- lily’s apartment- night</strong>: Lily stands at a hot
+plate in her “kitchen” frying an egg. HEAVY FOOTSTEPS from the hall
+catch her attention, growing louder, then stopping at her door. A
+KNOCK.</p>
+<p><strong>harlin</strong>: Lily?</p>
+<p><strong>harlin</strong>: .Jake sent me.</p>
+<p><strong>lily</strong>: Jake? Hold on. I just got out of the
+shower.</p>
+<p><strong>continued:</strong>: Lily rumages in the closet and a
+baseball bat. She hefts the bat and takes a stance in front of the door.
+More KNOCKING.</p>
+<p><strong>hold on!</strong>: Another KNOCK. Lily slowly reaches for the
+doorknob. Then the door flies open with a CRASH. Harlin fills the
+doorway.</p>
+<p><strong>harlin</strong>: The King would like to have a word with
+you.</p>
+<p><strong>lily</strong>: Uh, right now?</p>
+<p><strong>harli</strong>: Please. I have a car waiting.</p>
+<p><strong>harlin</strong>: I apologize for the–</p>
+<p><strong>continued:</strong>: Lily shakes her head and points to her
+ear and mouths, “Can’t hear you.” Harlin moves closer and they lean into
+each other.</p>
+<p><strong>i said, i apologize for–</strong>: –The door.</p>
+<p><strong>lily</strong>: No problem.</p>
+<p><strong>ext. - back alley- night</strong>: Jake, Butch and Lily…</p>
+<p><strong>jake</strong>: Sorry. I didn’t know…</p>
+<p><strong>lily</strong>: Your friend, Big Al? It should have been
+you.</p>
+<p><strong>butch</strong>: Alrlght, alrlght. What happened today?</p>
+<p><strong>jake</strong>: Today? Started off great…</p>
+<p><strong>ext.– caymen islands/beach- day</strong>: Crystal blue water
+gently rolls onto virgin white sand. A jet cuts a line across the
+cloudless sky…</p>
+<p><strong>jake</strong>: Ashby was going to call us with the exact time
+of the transfer. The King was waiting on us. Just to be safe…</p>
+<p><strong>int.- jet- same</strong>: Gordo sits in first class,
+impeccably dressed in a Brooks Brothers suit.</p>
+<p><strong>jake</strong>: Gordo went down to the Caymens instead of me.
+I needed Rottovich and Sobozinski to keep Moonan off our backs and the
+only way I could do that was to stay in town and cut them in on the
+deal.</p>
+<p><strong>int.- 16th precint- same</strong>: Rottovich and Sobozinski
+sit around the desks, as Moonan reads the newpaper behind them.</p>
+<p><strong>jake</strong>: So they waited for my call while Miles and I
+waited for Ashby’s call.</p>
+<p><strong>int.- the euclid- same</strong>: Jake sits with Miles and
+Lupus at a table in the otherwise empty bar.</p>
+<p><strong>miles</strong>: He should be landing in the Caymens about
+now. The Custom’s guy is ready right?</p>
+<p><strong>jake</strong>: Feeling lucky today, Miles. Found a penny–
+Heads up. There was an empty cab right outside my building. We hit every
+green light.</p>
+<p><strong>miles</strong>: And we got rid of the red head.</p>
+<p><strong>jake</strong>: And we got rid of the red head.</p>
+<p><strong>miles</strong>: Jake? Customs?</p>
+<p>****: They say a good chess player can. See up to twenty moves deep.
+That means that in some games, you’ve calculated every possible move in
+your head… The game’s over before it’s even ” really started.</p>
+<p><strong>int.- city bank of manhattan/ashby’s office- same</strong>:
+Ashby sits at a desk, computer terminal in front of him. He speaks in
+hushed tones on the phone.</p>
+<p><strong>jake</strong>: Same thing with playing a con. You have to be
+able to see that deep.</p>
+<p><strong>ashby</strong>: Jake? Right. Uh-huh… Uh-huh… Yeah, it’s going
+through– Now.</p>
+<p><strong>int. - the euclid bar- same</strong>: Jake hangs up and
+immediately dials another number.</p>
+<p><strong>jake</strong>: In order to ensure that we weren’t going to
+welch, Ashby’s pay-off was to be directly deposited into his own
+offshore account which he could confirm electronically. In this age of
+ecommerce, paper currency has become ” more of a liability than a
+commodity. Especially to us.</p>
+<p><strong>jake</strong>: Go.</p>
+<p><strong>ext.- caymen islands/cafe- same</strong>: Gordo listens into
+a cell phone: Without saying a word, he gets up, wheeling a nondescript
+BLACK SUITCASE. Across the street sits the Grand Caymen’s Bank in all
+it’s pastel and brass glory.</p>
+<p><strong>int.– grand laymen’s bank- day</strong>: Gordo moves across
+the lobby of the bank to the back of a line at the Teller windows
+wheeling the black suitcase.</p>
+<p><strong>jake</strong>: Gordo was making the withdrawal from the Grand
+Laymen’s Bank.</p>
+<p><strong>jake</strong>: They check the papers…</p>
+<p><strong>officious loan officer.</strong>: ANGLE ON the teller window–
+A check is pushed to Gordo.</p>
+<p><strong>jake</strong>: …They stick.</p>
+<p><strong>ext.- laymen islands/street day</strong>: Gordo walks across
+the street with the suitcase and pulls a cell phone from his pocket.</p>
+<p><strong>gordo</strong>: First and ten.</p>
+<p><strong>continued:</strong>: Gordo hangs up without another word. He
+approaches a building with the words “BANK OF THE CAYMENS” engraved over
+the brass handled doors.</p>
+<p><strong>int.- bank of the caymens- day</strong>: Gordo approaches the
+teller window with the check in hand.</p>
+<p><strong>jake</strong>: Then he had to bang it out across the street
+at the Bank of the Caymens…</p>
+<p><strong>gordo</strong>: I’d like this cashed, please. I also need to
+deduct a certain amount and deposit it into this account number.</p>
+<p><strong>int.- city bank of manhattan/ashby’s office- day</strong>:
+Ashby sits, nervously tapping his computer monitor with a pen. MARIE, a
+secretary, pokes her head in.</p>
+<p><strong>mar i e</strong>: Mr. Ashby? Mr. Thompson from International
+with a 34R on a corporate account.</p>
+<p><strong>ashby</strong>: Probably just a new account marker. Tell him
+I already left for lunch and that I’ll call him later.</p>
+<p><strong>int.- bank of the caymens/vault room- continuous</strong>: A
+SECURITY GUARD stands in the small, windowless room. Gordo is escorted
+into the room by a BANK OFFICIAL.</p>
+<p><strong>bank official</strong>: We’ll let you have a moment.</p>
+<p><strong>jake</strong>: We called them Green Twinkies.</p>
+<p><strong>ext.- caymen islands/street- day</strong>: The Security Guard
+holds open the door as Gordo exits, suitcase in tow. Gordo takes his
+cell phone out as he moves across the street.</p>
+<p><strong>gordo</strong>: We got Twinkies.</p>
+<p><strong>int.– the euclid- same</strong>: Jake hangs up the phone and
+dials another number. He nods at Lupus.</p>
+<p><strong>jake</strong>: Miles was on his way to the airport to wait
+for Gordo to land. I made the call.</p>
+<p><strong>jake</strong>: Yeah, it’s me. I need an escort. Not a ride,
+just an escort. You wanted in, this is in.</p>
+<p><strong>int.- 16th precinct/detectives’ office- day</strong>:
+Sobozinski behind a desk. Sitting in a chair leafing through a magazine
+is Moonan. Rottovich on the phone…</p>
+<p><strong>jake</strong>: Kennedy. International terminal. Gordo with a
+black suitcase. You got Moonan under control?</p>
+<p><strong>rottovich</strong>: Don’t worry about Moonan. We got him
+covered. When..? It was him. There’s a shipment coming through tonight.
+Kennedy.</p>
+<p><strong>moonan</strong>: Shipment of what? Find two cars. And change
+into plain clothes.</p>
+<p><strong>moonan</strong>: It’s Moonan. Tonight. JFK. International
+terminal. Come heavy.</p>
+<p><strong>int.- the euclid- night</strong>: Jake sits at the bar,
+looking at his watch. He notices his hand is shaking.</p>
+<p><strong>lupus</strong>: So that’s it, huh? You get the cops to give
+you a safe ride.</p>
+<p><strong>jake</strong>: Let me ask you something… You really think I’m
+going to come this close, this fucking close and let my guard down? I’ll
+get square with your boss. I’ll get square with whoever did Al. I’ll get
+square with everybody. Then I’m going going to cash in my chips and be
+on my way to a new and better me far away from here.</p>
+<p><strong>lupus</strong>: You’re a weasal.</p>
+<p><strong>int.- the euclid/bathroom- continuous</strong>: Lupus enters
+the small. Bathroom and pulls a cellphone.</p>
+<p><strong>lupus</strong>: Yeah… He’s landing with the money at Kennedy
+in a few hours. International Terminal. You were right. He’s trying to
+fuck you. You want it, you gotta get it at the airport…</p>
+<p><strong>int.- bulldog gym/locker room- same</strong>: The King Pin
+closes the cell phone and looks over at Harlin, who’s hair is singed and
+matted down on one side.</p>
+<p><strong>king pin</strong>: He’s got pigs for an escort. You believe
+this guy?</p>
+<p><strong>harlin</strong>: I’ll get the car.</p>
+<p><strong>king pin</strong>: Always something. My ass look big in
+this?</p>
+<p><strong>harlin</strong>: Looks fine, Boss.</p>
+<p><strong>ext.– jfk airport/parking lot- night</strong>: A black
+Lincoln Town Car rolls through the parking lot. Behind the wheel we see
+Harlin with the King Pin riding in the back. The Town Car passes…</p>
+<p><strong>terminal.</strong>: We follow the Town Car as it passes…</p>
+<p><strong>continued:</strong>: The Town Car finally parks in the same
+row, each car, separated only by a few spaces.</p>
+<p><strong>int.- unmarked police car- same</strong>: Sobozinski and
+Rottovich overlook the terminal.</p>
+<p><strong>sosozinski</strong>: You trust this Moonan guy?</p>
+<p><strong>rottovich</strong>: I don’t trust anybody. You see how bad
+this guy wants Vig? It’s like a sickness. I say we collar Vig ourselves.
+We got Vig, then we got leverage. And we trade; Vig for that tape. I
+want to see it right in front of my face.</p>
+<p><strong>sobozinski</strong>: It’s just insurance.</p>
+<p><strong>rottovich</strong>: That’s what I’m talking about.</p>
+<p><strong>sobozinski</strong>: I’m down!</p>
+<p><strong>rottovich</strong>: What are you doing?</p>
+<p><strong>sobozinski</strong>: High five.</p>
+<p><strong>rottovich</strong>: Put your hand down. I don’t high
+five.</p>
+<p><strong>moonan</strong>: You guys awake?</p>
+<p><strong>rottovich</strong>: We’re here.</p>
+<p><strong>int.- jfk airport/terminal- same</strong>: Moonan sits a safe
+distance away from an area marked “Customs”. Behind a large table, a few
+CUSTOMS OFFICERS in white shirts mill around. Moonan speaks into a mic
+hidden in his sleeve.</p>
+<p><strong>moonan</strong>: Stay sharp.</p>
+<p><strong>int . - jet- night</strong>: Gordo sits squashed in the
+window seat, next to a VERY</p>
+<p><strong>mr. heavyset</strong>: Oh jeez.</p>
+<p><strong>int.- the euclid- same</strong>: Jake sits at the bar, the
+phone a few inches away. Lupus pours himself a drink from the bar. The
+phone RINGS.</p>
+<p><strong>jake</strong>: Gordo.</p>
+<p><strong>int.- jet- same</strong>: Gordo on the Air-Phone next to MRS.
+HEAVYSET…</p>
+<p><strong>gordo</strong>: I’m landing in about fifteen minutes.</p>
+<p><strong>mr. heavyset</strong>: Jeez… I tell ya, this airline food
+goes right through me every time.</p>
+<p><strong>gordo</strong>: You ever use the bathroom in Kennedy?</p>
+<p><strong>jake</strong>: What? No. Use the bathroom on the plane!</p>
+<p><strong>gordo</strong>: Let me just say that there is no way I’m
+using the bathroom on this plane.</p>
+<p><strong>int.- the euclid- same</strong>: Jake hangs up…</p>
+<p><strong>jake</strong>: He’s wheeling around two million dollars in
+cash and he wants to stop to use the bathroom. You believe this?</p>
+<p><strong>lupus</strong>: Maybe he’s got it right. Maybe we’re all just
+looking for a safe place to shit.</p>
+<p><strong>jake</strong>: That was fucking deep.</p>
+<p><strong>int.- town car- same</strong>: A CELL PHONE RINGS with a
+digitized version of “Ode to Joy”. The King answers it.</p>
+<p><strong>king pin</strong>: Speak.</p>
+<p><strong>lupus</strong>: He’s landing. He’s got a suitcase on
+wheels.</p>
+<p><strong>king pin</strong>: So do half the other people in this place.
+How do I know which one?</p>
+<p><strong>lupus</strong>: I got it figured out… He’s got this thing
+with bathrooms. If he makes it through Customs, he’ll be heading for the
+john.</p>
+<p><strong>king pin</strong>: Good. Good. Do not let Vig out of your
+sight.</p>
+<p><strong>int. – the euclid bar- same</strong>: Jake looks up at a
+small digital clock sitting behind the bar. It reads “11:11PM.” Lupus
+emerges from the back hallway to find Jake dialing a number.</p>
+<p><strong>jake</strong>: What’s up with you? Bladder infection?</p>
+<p><strong>lupus</strong>: Keep it up.</p>
+<p><strong>lily</strong>: You got my cell. Leave a message.</p>
+<p><strong>jake</strong>: It’s me. It’s Jake. Listen… It’s happening.
+Gordo’s landing right now. Meet me at the Euclid… For your cut, I mean.
+It’s… I want you to have it.</p>
+<p><strong>lupus</strong>: You really like that bitch don’t you? I gotta
+tell you, I was pretty convinced that the whole thing before was blowing
+her off for her cut. You know how it is, get her to do some shit for
+you, throw her a bang to keep her happy. But, if you’re into her… That’s
+cool.</p>
+<p><strong>jake</strong>: That’s what I like about you, Lupus. You’re a
+free thinker. Don’t let the King tell you different.</p>
+<p><strong>lionel</strong>: Not for nothing, Jake, but the guy who
+whacked your buddy? It was me. The King usually farms out for that kind
+of stuff, but I tell ya, he was so pissed off he couldn’t wait for the
+regular guy. Fucker didn’t even put down his Kung Pao Chicken.</p>
+<p><strong>continued:</strong>: Jake seems to be reeling with the
+information.</p>
+<p><strong>jake</strong>: Egg Foo Young. Stand up.</p>
+<p><strong>lupus</strong>: What?</p>
+<p><strong>jake</strong>: Stand up.</p>
+<p><strong>lupus</strong>: No offense, but I’ve seen you fight. You
+gotta be kidding m-</p>
+<p><strong>jake</strong>: I said stand up.</p>
+<p><strong>int.- morgan gillette’s office- night</strong>: MORGAN
+GILLETTE sits behind a desk in an ultra modern office, his reptilian
+like face fixed straight ahead. Butch leans against the wall behind
+him.</p>
+<p><strong>jake</strong>: This is probably about where you came in.</p>
+<p><strong>gillette</strong>: Wow. Now that’s an exciting story. Butch,
+has anyone ever tried something like this before?</p>
+<p><strong>butch</strong>: Not that I recall. What do you want us to do
+about it?</p>
+<p><strong>gillette</strong>: Let’s see… Let’s suppose he gets to
+Customs and he gets caught. We get our money back, but then we have to
+deal with a criminal investigation. I don’t much like that idea. Then
+again, let’s suppose he actually gets through Customs. Now, that’ll be
+something. We recover the money in cash and let the insurance cover the
+corporate fraud. We double our money.</p>
+<p><strong>butch</strong>: So we go to the bar.</p>
+<p><strong>gillette</strong>: I think so. The airport’s going to be
+crawling with police. Traffic will be a nightmare. Go down to the bar.
+If they pull it off, great. Have someone deal with Ashby.</p>
+<p><strong>butch</strong>: We’ll take care of it.</p>
+<p><strong>gillette</strong>: And how much did you say you wanted for
+this… What did you call it? A finder’s fee?</p>
+<p><strong>lil</strong>: Ten percent.</p>
+<p><strong>gillette</strong>: Ten? That seems a little high.</p>
+<p><strong>butch</strong>: Ten is standard, sir.</p>
+<p><strong>gillette</strong>: Fine. But only if we recover the cash.</p>
+<p><strong>lily</strong>: Only if–? No way. I want something for
+this.</p>
+<p><strong>gillette</strong>: Have a little faith in him, honey. Butch,
+see if you can get him to tell you how he did it. Or almost did it.
+Sounds like a good story.</p>
+<p><strong>butch</strong>: I’ ll ask.</p>
+<p><strong>gillette</strong>: Apple?</p>
+<p><strong>int.- airport/terminal hallway- night</strong>: We follow
+Gordo as he wheels the black suitcase down the long corridor towards the
+Customs Desk. Moonan spots Gordo and speaks into his wrist.</p>
+<p><strong>moonan</strong>: I got him.</p>
+<p><strong>angle on the customs desk</strong>: A few TRAVELERS quickly
+move past the desk. Gordo approaches a CUSTOMS OFFICER. Gordo lays the
+suitcase on the desk: The Customs Officer looks nervously in both
+directions before waving Gordo through. Moonan follows at a safe
+distance as Gordo clears Customs.</p>
+<p><strong>int.- car- same</strong>: Rottovich and Sobozinski check
+their guns.</p>
+<p><strong>moonan</strong>: He’s headed towards the eastern most exit.
+Do not, under any circumstances approach. I want to follow this all the
+way down to Vig.</p>
+<p><strong>sobozinsk</strong>: Roger that.</p>
+<p><strong>rottovich</strong>: Oh yeah, we’ll wait, jerk-off.</p>
+<p><strong>int.- jfk airport/terminal- same</strong>: Gordo wheels the
+suitcase towards the exit when he spots the MEN’S ROOM. He stops and
+considers for a moment before he turns and enters. Moonan watches a few
+yards back. He pulls his badge out from under his shirt, hanging from a
+chain.</p>
+<p><strong>moonan</strong>: He just went into the crapper. Hold your
+positions.</p>
+<p><strong>int.- men’s room- same</strong>: Gordo pads the toilet with
+half the roll before gingerly setting his ass down. Suddenly the STALL
+DOOR FLIES OPEN. Harlin steps in, Gordo defenseless with his pants at
+his ankles. Harlin picks him up off the toilet and throws him into the
+wall repeatedly before letting him fall face first onto the dirty
+floor.</p>
+<p><strong>int.- jfk airport/terminal- continuous</strong>: Moonan
+watches the door to the Men’s Room as Harlin comes out, wheeling the
+black suitcase behind him.</p>
+<p><strong>moonan</strong>: They pulled a switch. Big guy. Blue suit.
+Keep on him.</p>
+<p><strong>ext.- jfk airport/parking lot- continuous</strong>: Rottovich
+turns the walkie talkie off as he and Sobozinski fall in behind Harlin.
+ANGLE ON MILES– Who steps out of his car, watching the little parade go
+by with a look of confusion.</p>
+<p><strong>int.- the euclid- same</strong>: A LOUD THUMPING NOISE… Jake
+has Lupus by the hair as he rams his head repeatedly into the bar. Jake
+then gets him into a headlock. Lupus snaps his head back and butts Jake
+in the nose, sending him staggering back.</p>
+<p><strong>tnt.- jfk airport/terminal- same</strong>: Moonan taps the
+mic hidden in his sleeve, then checks the walkie.</p>
+<p><strong>moonan</strong>: Hello? Can you hear me?</p>
+<p><strong>ext.- jfk airport/parking lot- same</strong>: Harlin gets to
+the King Pin’s car and opens the back door. As he crams the suitcase in,
+Rottovich and Sobozinski come up behind him, guns drawn.</p>
+<p><strong>rottovich</strong>: Hey asshole.</p>
+<p><strong>int.- the euclid- same</strong>: Jake goes flying into the
+bar. Lupus pushed Jake back up against the bar and lands a series of
+body blows. Jake manages to grab the phone and whips it across Lupus’
+head, sending him to the ground. Jake straddles Lupus and raises the
+phone for the last whack. We HEAR A LOUD CLICK. Jake stops and the two
+slowly get up. As they stand, we can see that Lupus has the barrel of a
+small gun in Jake’s mouth. Jake shuts his eyes tight, still holding the
+phone. Which just then, RINGS. Jake opens his eyes and looks at the
+phone. Then to Lupus, who nods. Jake picks up the receiver and speaks,
+the gun still in his mouth.</p>
+<p><strong>jake</strong>: Eww-Whoa?</p>
+<p><strong>ext.- jfk airport/parking lot- same</strong>: Miles on a cell
+phone…</p>
+<p><strong>miles</strong>: Jake! I don’t know what’s going on! The King
+Pin… He’s here and he just got pinched. I think with the twinkies! It
+looks like half the police department’s down here!</p>
+<p><strong>int. - the euclid bar- same</strong>: Jake drops the phone
+and looks at Lupus.</p>
+<p><strong>lupus</strong>: What happened?</p>
+<p><strong>jake</strong>: Eee Oott Auught!</p>
+<p><strong>lupus</strong>: Sorry. What?</p>
+<p><strong>jake</strong>: HE GOT CAUGHT! Your boss tried to pull a
+switch and he got us all fucking pinched!</p>
+<p><strong>lupus</strong>: Shit.</p>
+<p><strong>jake</strong>: Aaaaiiit!!! Ooopusss!!</p>
+<p><strong>continued:</strong>: Jake lets the gun fall and Looks up to
+see Butch, standing at the door, gun in hand. Lily steps out from behind
+him.</p>
+<p><strong>jake</strong>: I never thanked you for that.</p>
+<p><strong>ext. back alley- night</strong>: Jake runs his tongue across
+the front of his teeth.</p>
+<p><strong>butch</strong>: You’re welcome.</p>
+<p><strong>lily</strong>: Can we please all stop being so
+goddamnfucking-polite and get to the point?</p>
+<p><strong>butch</strong>: Right. Where’s the money, Jake?</p>
+<p><strong>jake</strong>: What do you get, Lily? Finder’s Fee? Because
+it is all about the money, right?</p>
+<p><strong>lily</strong>: You sold me out. You should have trusted me
+like I trusted you. You fucked up. You fucked up HUGE.</p>
+<p><strong>butch</strong>: Alright… Turn around. She doesn’t get shit,
+unless I get that money. Where is it?</p>
+<p><strong>jake</strong>: Probably safe in the hands of the Federal
+Government.</p>
+<p><strong>butch</strong>: Oh, Jake. You disappoint me. And you just let
+Lily here down again.</p>
+<p><strong>continued:</strong>: BUTCH</p>
+<p><strong>jake</strong>: It’s like putting on a play, where everyone
+knows their part except for the mark.</p>
+<p><strong>butch</strong>: Like putting on a play… Guess some people
+forgot their lines.</p>
+<p><strong>jake</strong>: Guess so.</p>
+<p><strong>butch</strong>: So why don’t you take a deep breath, Jake,
+and I’ll count to ten. One. Two. Three…</p>
+<p><strong>jake</strong>: I do trust you, Lily.</p>
+<p><strong>butch</strong>: Wha-</p>
+<p><strong>int.- jfk airport/bathroom- same</strong>: Gordo stirs on the
+floor of the stall, slowly getting up. Pieces of toilet paper are stuck
+to his face.</p>
+<p><strong>jake</strong>: Trust…</p>
+<p><strong>int.- car- same</strong>: Miles gets back in the car and
+SCREECHES out of his parking space.</p>
+<p><strong>jake</strong>: It should be a four letter word.</p>
+<p><strong>ext. - back alley- night</strong>: Lily drops the gun and
+breaks down in tears</p>
+<p><strong>butch</strong>: Jesus Christ! Tell me before you do something
+like that!</p>
+<p><strong>butch</strong>: You should leave.</p>
+<p><strong>jake</strong>: So I’m dead…</p>
+<p><strong>ext.- jfk airport/parking lot- night</strong>: POLICE
+OFFICERS and FEDERAL AGENTS in windbreakers swarm all over the parking
+lot. The King and Harlin are bent over the hood of the car, cuffed. One
+Federal Agent pulls the black suitcase out of the car.</p>
+<p><strong>jake</strong>: But maybe I can’t blame Lily. Maybe I just
+should have just trusted her to play her part. Because playing the big
+con is like putting on a play. A play where everyone knows their part
+except for the Mark…</p>
+<p><strong>int.- diner</strong>: Jake sits with Lily, Miles and Gordo
+crammed into a booth.</p>
+<p><strong>jake</strong>: Just watch everything you say around him.
+Every word, every move… It all goes back to the King Pin. Get it?</p>
+<p><strong>int.- jake’s apartment</strong>: Lily with her new red hair
+and the bird blouse. The crew watches Jake slowly flip out.</p>
+<p><strong>jake</strong>: You have no idea what you’ve done do you? No
+idea! What is this?</p>
+<p><strong>int.– the euclid- day</strong>: Jake and Lily squaring
+off…</p>
+<p><strong>jake</strong>: You tell them the “Tale”.</p>
+<p><strong>jake</strong>: What do you want? An apology?</p>
+<p><strong>lily</strong>: No, I want my cut!</p>
+<p><strong>int.- the euclid/bathroom</strong>: Lupus on the cellphone to
+the King…</p>
+<p><strong>jake</strong>: And like in a game of chess, you’ve played
+every possible move in your head…</p>
+<p><strong>lupus</strong>: You were right. He’s trying to fuck you. You
+want it, you gotta get it at the airport…</p>
+<p><strong>ext.- jfk airport/parking lot- night</strong>: POLICE
+OFFICERS and FEDERAL AGENTS in windbreakers swarm around the King Pin’s
+car.</p>
+<p><strong>jake</strong>: Then you give them the “Blow-off”. You get
+them off your back. Forever.</p>
+<p><strong>rottovich</strong>: We’re on the job! We’re active in the
+one-six.</p>
+<p><strong>ia officer#1</strong>: Officers Rottovich and Sobozinski?</p>
+<p><strong>sobozinski</strong>: Fuck me…</p>
+<p><strong>int.- la scala</strong>: Jake slides a thick envelope of
+money to Moonan, seated across from him.</p>
+<p><strong>jake</strong>: But most of all, you need the “Fix”.</p>
+<p><strong>int.- the euclid</strong>: Jake finishing the Moonan
+story…</p>
+<p><strong>jake</strong>: That’s how Special Agent Gunther Moonan and I
+became friends.</p>
+<p><strong>continued:</strong>: Lupus nods, satisfied.</p>
+<p><strong>int.- customs desk</strong>: Gordo hoists the suitcase onto
+the desk. The Customs Officer looks around nervously. We see he’s
+looking at Moonan in the B.G., who gives him a nod.</p>
+<p><strong>jake</strong>: Like Suits said, sooner or later someone’s
+going to start asking the right questions.</p>
+<p><strong>jake</strong>: Rottovich and Sobozinski would ask how the
+drugs got in that suitcase. The King and Gillette would ask where the
+money really went.</p>
+<p><strong>jake</strong>: And all of them would ask what agency Special
+Agent Gunther Moonan worked for.</p>
+<p><strong>jake</strong>: But what do I care? I’m dead…</p>
+<p><strong>jake</strong>: No one’s going to ask me:</p>
+<p><strong>jake</strong>: Drop something?</p>
+<p><strong>lily</strong>: Oops.</p>
+<p><strong>jake</strong>: Redheads…</p>
+</body>
+</html>

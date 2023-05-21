@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>valkyrie</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="valkyrie">valkyrie</h1>
+<p><strong>hitler</strong>: My comrades. Once again - I don’t know how
+many times it has been now - an attempt has been made on my life. I
+speak to you tonight for two reasons. First, so that you can hear my
+voice and know that I am unhurt. And second, so that you may know the
+details of a crime without parallel in German history…</p>
+<p><strong>voice</strong>: It’s not so much your car he doesn’t trust…
+It’s your driver.</p>
+<p><strong>angle on</strong>: Seated further down the table are Tresckow
+and his Aide. Between them, once again, is Brandt, eating like a pig,
+still making notes in his book. Tresckow stares.</p>
+<p><strong>tresckow</strong>: Managing the F�hrer’s security must be
+quite an undertaking.</p>
+<p><strong>brandt</strong>: Irregularity is the F�hrer’s precaution of
+choice.</p>
+<p><strong>tresckow</strong>: I can assure you he’s safe here. Relax,
+Brandt. Enjoy your meal.</p>
+<p><strong>tresckow</strong>: I understand you’re returning to Berlin
+this afternoon…</p>
+<p><strong>tresckow</strong>: Could I trouble you to deliver a package
+to Colonel Stieff?</p>
+<p><strong>close on</strong>: Tresckow presses a key against the side of
+the package, crushing the glass capsule inside. The explosive armed now,
+he hands it to Brandt.</p>
+<p><strong>tresckow</strong>: With my regards to Colonel Stieff.</p>
+<p><strong>brandt</strong>: Cointreau? You better hope I don’t get
+thirsty on the flight.</p>
+<p><strong>tresckow</strong>: He’s… landed.</p>
+<p><strong>aide</strong>: What about the…</p>
+<p><strong>tresckow</strong>: Get me Colonel Brandt… Colonel? Tresckow…
+I trust you landed safely… I hate to trouble you but there’s been a bit
+of a mix up. It seems you have the wrong bottles for Colonel Stieff.
+You… do still have the package?</p>
+<p><strong>tresckow</strong>: I can be at your office first thing
+tomorrow morning to pick it up. Terribly sorry for the inconvenience…
+Thank you.</p>
+<p><strong>aide</strong>: Do you think he knows?</p>
+<p><strong>tresckow</strong>: There’s only one way to be sure…</p>
+<p><strong>officer</strong>: What happened?</p>
+<p><strong>tresckow</strong>: I can only guess the altitude caused the
+fuse to malfunction. First the beer hall, Memorial Day - now this.
+Someone is watching over that sonofabitch, I swear it.</p>
+<p><strong>olbricht</strong>: We’ve been discovered.</p>
+<p><strong>tresckow</strong>: What makes you think-</p>
+<p><strong>olbricht</strong>: Oster’s been arrested. The Gestapo came
+for him last night.</p>
+<p><strong>olbricht</strong>: Did you hear what I said?</p>
+<p><strong>tresckow</strong>: The Gestapo could have arrested him for
+anything. Find a replacement.</p>
+<p><strong>olbricht</strong>: There’s no one we can trust. Not in
+Berlin.</p>
+<p><strong>tresckow</strong>: Then stop looking in Berlin.</p>
+<p><strong>sentry</strong>: Your pistol please.</p>
+<p><strong>brandt</strong>: You’ll forgive me, General. This little
+round-up has had me writing reports all day.</p>
+<p><strong>treskow</strong>: Round-up?</p>
+<p><strong>brandt</strong>: Dissenters. A plot against the F�hrer.</p>
+<p><strong>treskow</strong>: Who would even have the balls?</p>
+<p><strong>brandt</strong>: You’d be surprised, the number of cowards in
+this army that would be willing to stand against the Reich.</p>
+<p><strong>treskow</strong>: Only if the F�hrer were dead, of
+course.</p>
+<p><strong>brandt</strong>: Of course. It’s one thing to think you know
+what’s right. What matters is having the strength to do it.</p>
+<p><strong>brandt</strong>: Is this what you’ve come for?</p>
+<p><strong>brandt</strong>: Perhaps we should open it.</p>
+<p><strong>tresckow</strong>: I beg your pardon.</p>
+<p><strong>brandt</strong>: You’ve come a long way. You must be
+thirsty.</p>
+<p><strong>tresckow</strong>: I wonder how the F�hrer, who does not
+partake, would feel about an officer who did so on duty… Colonel
+Brandt.</p>
+<p><strong>brandt</strong>: I took you for another sort, General.</p>
+<p><strong>tresckow</strong>: And I you.</p>
+<p><strong>young lieutenant</strong>: Colonel Stauffenberg, sir. A new
+headquarters has been established at Mezzouna. I’m to take you
+there.</p>
+<p><strong>stauffenberg</strong>: Now they tell us to disengage - a day
+late. No matter how many times we tell Command the reality, they always
+manage to leave us-</p>
+<p><strong>young lieutenant</strong>: Colonel, the enemy is less than
+five kilometers from here. You’ve done all you can.</p>
+<p><strong>stauffenberg</strong>: I wonder… Was there even a point in
+our coming to Tunis?</p>
+<p><strong>young lieutenant</strong>: To get taken prisoner, it
+seems.</p>
+<p><strong>doctor</strong>: Mrs. Stauffenberg?</p>
+<p><strong>nina</strong>: The Colonel’s brother, Berthold.</p>
+<p><strong>doctor</strong>: Perhaps before you see the Colonel we should
+go to my office and-</p>
+<p><strong>nina</strong>: I will see my husband now.</p>
+<p><strong>doctor</strong>: He’s been constant with fever but he refuses
+any pain killers. The right hand has been amputated above the wrist.
+He’s lost the fourth and fifth fingers on the left. We… couldn’t save
+the left eye.</p>
+<p><strong>nina</strong>: His ring.</p>
+<p><strong>doctor</strong>: I don’t-</p>
+<p><strong>nina</strong>: He had a ring on his right hand. Where is
+it?</p>
+<p><strong>doctor</strong>: I’m sorry… His hand was amputated in the
+field… I’m afraid-</p>
+<p><strong>nina</strong>: Thank you.</p>
+<p><strong>close on</strong>: The engraving inside the band - finis-
+initium . Nina places the ring and chain on her husband’s chest, her
+hand lingering. She cannot hold the tears back any longer. She stands
+and turns away, not wanting her husband to see.</p>
+<p><strong>berthold</strong>: We’ve lost North Africa.</p>
+<p><strong>close on</strong>: That one eye staring at us closes.</p>
+<p><strong>stauffenberg</strong>: I don’t know what I ever did with
+ten.</p>
+<p><strong>stauffenberg</strong>: I’m wanted in Berlin.</p>
+<p><strong>stauffenberg</strong>: Are you asking as a member of the High
+Command?</p>
+<p><strong>stauffenberg</strong>: You can speak openly, General. He died
+just before you came in.</p>
+<p><strong>olbricht</strong>: We could use your help.</p>
+<p><strong>stauffenberg</strong>: I’m a field officer.</p>
+<p><strong>olbricht</strong>: This war can’t be won in the field.</p>
+<p><strong>stauffenberg</strong>: That’s unfortunate for me.</p>
+<p><strong>olbricht</strong>: You can’t honestly believe you’ll make a
+difference on the front-</p>
+<p><strong>stauffenberg</strong>: I’m a soldier, General. I serve my
+country.</p>
+<p><strong>olbricht</strong>: It makes no sense. You opposed Hitler, you
+opposed the war.</p>
+<p><strong>stauffenberg</strong>: The people chose otherwise and here we
+are. Now we have to win. You know what will happen if we don’t.</p>
+<p><strong>olbricht</strong>: If we win, it will still be Hitler’s
+Germany.</p>
+<p><strong>stauffenberg</strong>: We all took an oath, General.</p>
+<p><strong>olbricht</strong>: On behalf of the F�hrer.</p>
+<p><strong>stauffenberg</strong>: I’m a twin, you know.</p>
+<p><strong>olbricht</strong>: I… I didn’t.</p>
+<p><strong>stauffenberg</strong>: My brother died the day after we were
+born.</p>
+<p><strong>olbricht</strong>: I’m sorry.</p>
+<p><strong>stauffenberg</strong>: I was lying in the desert, covered in
+blood, sure I was going to die. I tried to think about my wife, my
+children… But my mind kept drifting to my dead brother. How I would
+finally be with him. How I would finally be whole again…</p>
+<p><strong>stauffenberg</strong>: This is my reward for what happened to
+my men. It’s all I deserve.</p>
+<p><strong>close on</strong>: A field of white. A three fingered hand
+enters the frame, gently placing a medal identical to the one just
+saw.</p>
+<p><strong>pull back to reveal</strong>: Stauffenberg, done up in his
+finest dress uniform, placing said medal on an unconscious WOUNDED
+SOLDIER.</p>
+<p><strong>pull back further to reveal</strong>: Stauffenberg stands
+between two long rows of beds, each with A WOUNDED SOLDIER. Those that
+can respond to Stauffenberg do so with reverence. The ward is eerily
+silent.</p>
+<p><strong>close on</strong>: Stauffenberg’s face - the reality of
+Africa taking the wind out of him. Over this we hear a familiar clicking
+of heels and:</p>
+<p><strong>voice</strong>: Colonel… COLONEL.</p>
+<p><strong>stauffenberg</strong>: I don’t want the damn th-</p>
+<p><strong>doctor</strong>: When will you be going back to the
+front?</p>
+<p><strong>stauffenberg</strong>: I’m not going to the front. I’m needed
+in Berlin.</p>
+<p><strong>witzleben</strong>: …He is not a man, he’s a lunatic. He
+doesn’t drink, he doesn’t fuck. He has no weakness to exploit, no vice
+to manipulate. His only passion is complete control. How can you expect
+to reason with him?</p>
+<p><strong>goerdeler</strong>: After this most recent failure I’d say
+we’ve no other choice.</p>
+<p><strong>witzleben</strong>: Confront Hitler now and you’ll end up
+with piano wire for a neck-tie. Our only option is the central
+solution.</p>
+<p><strong>goerdeler</strong>: He’s a man like any other. Flesh and
+blood. Take him head on and-</p>
+<p><strong>tresckow</strong>: I’ll say this for you, Doctor… You’re
+certainly delusional enough to take Hitler’s place.</p>
+<p><strong>goerdeler</strong>: When that day comes, I’ll be sure to
+remember you.</p>
+<p><strong>tresckow</strong>: I doubt you’ll remember much of
+anything.</p>
+<p><strong>goerdeler</strong>: Dammit, Tresckow-</p>
+<p><strong>olbricht</strong>: Gentlemen, may I present Colonel
+Stauffenberg. He’s been reassigned to my office at the War Ministry.
+Colonel, may I introduce-</p>
+<p><strong>stauffenberg</strong>: These men need no introduction.</p>
+<p><strong>beck</strong>: I apologize for this unfortunate… spectacle.
+On behalf of everyone, welc-</p>
+<p><strong>goerdeler</strong>: I haven’t welcomed him. Not yet. Where
+does he stand?</p>
+<p><strong>tresckow</strong>: For God’s sake-</p>
+<p><strong>goerdeler</strong>: He’s a field officer. He knows the army
+better than any of us. I want to hear his opinion.</p>
+<p><strong>tresckow</strong>: All right. What do you think, Colonel?
+Confront Hitler, force him to resign? Or the central solution?</p>
+<p><strong>goerdeler</strong>: “Central Solution.” You soldiers are all
+the same. Say what you mean.</p>
+<p><strong>witzleben</strong>: That’s a laugh coming from a
+politician.</p>
+<p><strong>goerdeler</strong>: The army will follow diplomats before
+they follow assassins.</p>
+<p><strong>tresckow</strong>: They follow a butcher now. What difference
+does it-</p>
+<p><strong>stauffenberg</strong>: What makes you think the army will
+follow you at all?</p>
+<p><strong>stauffenberg</strong>: Oust him, kill him. That isn’t what
+matters. How do you plan to take control of the government when Hitler
+is gone?</p>
+<p><strong>goerdeler</strong>: I beg your pardon, Colonel, but you are
+in the presence of men who would have been Hitler’s inner circle.
+Instead we resigned. We put our principles above personal gain.</p>
+<p><strong>witzleben</strong>: We have the have the respect of the
+people. And the army.</p>
+<p><strong>stauffenberg</strong>: With all respect, sir, you put too
+much faith in your popularity. All of you do.</p>
+<p><strong>goerdeler</strong>: Now see here, Colonel-</p>
+<p><strong>stauffenberg</strong>: You said yourself, I’m a field
+officer. You all may understand government, but I know the men. A great
+many of them may hate Hitler, but they all fear him - they fear Himmler,
+Goebbels, the whole of the Reich. That kind of fear won’t just die with
+Hitler. And as for respect: the army, and the people, respect only one
+thing. Authority. And if just one man questions that authority, you can
+lose them all. They were fooled into following Hitler… How will you fool
+them - force them - into following you?</p>
+<p><strong>stauffenberg</strong>: What are you doing here? I thought I
+left you in Bamberg. It’s a wonderful surprise. Thank you, brother.</p>
+<p><strong>mama, come down. papa is here. papa</strong>: IS HERE.</p>
+<p><strong>berthold</strong>: What do you mean you quit?</p>
+<p><strong>stauffenberg</strong>: I came to join the Resistance, not
+some sewing circle of discarded generals and politicians.</p>
+<p><strong>berthold</strong>: Beck is a just and capable man. As for
+Goerdeler, well, he’s popular. He’ll make a good Chancellor.</p>
+<p><strong>stauffenberg</strong>: Like Hitler before him, yes? Lately I
+have to wonder if Germany is even fit to choose her own destiny.</p>
+<p><strong>berthold</strong>: You can’t blame the people for this. You
+have to see the beginning of something to know how it’ll end. It’s no
+different than a farmer watching the corn grow. One day it’s over his
+head.</p>
+<p><strong>stauffenberg</strong>: Plenty of people thought-</p>
+<p><strong>berthold</strong>: The greatest offenders are not the ones
+who thought better but the ones who sensed better.</p>
+<p><strong>stauffenberg</strong>: What are you trying to say?</p>
+<p><strong>berthold</strong>: I seem to remember you telling me about
+reports from the Ukraine - the SS forcing Jews to dig their own graves.
+You said then that Hitler should be removed. An officer’s duty, you
+said. What’s changed?</p>
+<p><strong>stauffenberg</strong>: I said senior officers. The only men
+that can get to him.</p>
+<p><strong>berthold</strong>: Perhaps it doesn’t matter that you
+succeed.</p>
+<p><strong>berthold</strong>: Perhaps it only matters that you try.
+Don’t you see? Someone has to stand up and show the world that not all
+of us were like him.</p>
+<p><strong>stauffenberg</strong>: Even if they could remove Hitler, they
+can’t hope to seize power. For God’s sake, they have no plan.</p>
+<p><strong>berthold</strong>: Then give them one. Find a way.</p>
+<p><strong>berthold</strong>: Evil happens when good men do nothing.</p>
+<p><strong>stauffenberg</strong>: Children, that is far too-</p>
+<p><strong>stauffenberg</strong>: Air-raid.</p>
+<p><strong>stauffenberg</strong>: Valkyrie.</p>
+<p><strong>olbricht</strong>: We’ve already considered Valkyrie. It
+isn’t suitable.</p>
+<p><strong>stauffenberg</strong>: Not as it’s currently written.</p>
+<p><strong>goerdeler</strong>: Excuse me. What is Valkyrie?</p>
+<p><strong>tresckow</strong>: Operation Valkyrie.</p>
+<p><strong>tresckow</strong>: The Reserve Army has thousands of men all
+over the city - most of them not even in uniform. Valkyrie is top secret
+plan to mobilize those men in a national emergency.</p>
+<p><strong>stauffenberg</strong>: Hitler designed it himself to crush
+any internal unrest if he’s cut off or killed.</p>
+<p><strong>goerdeler</strong>: And what use is that to us?</p>
+<p><strong>stauffenberg</strong>: The orders could be rewritten. A few
+subtle changes would put those reserve units completely under our
+command.</p>
+<p><strong>olbricht</strong>: Yes, of course, but-</p>
+<p><strong>stauffenberg</strong>: Now what would the High Command do if
+they thought, say, the SS was staging a coup?</p>
+<p><strong>olbricht</strong>: They would declare a military state of
+emergency.</p>
+<p><strong>tresckow</strong>: And initiate Operation Valkyrie.</p>
+<p><strong>stauffenberg</strong>: Hitler’s own Reserve Army, using
+Hitler’s own plan and under our command, would automatically seize power
+in Berlin…</p>
+<p><strong>goerdeler</strong>: While we put a new government in
+place.</p>
+<p><strong>stauffenberg</strong>: Precisely. It will seem as though
+we’re fighting for Hitler Government, not against it.</p>
+<p><strong>goerdeler</strong>: But only if Hitler’s dead.</p>
+<p><strong>goerdeler</strong>: That is what you’re saying, isn’t it? The
+central solution.</p>
+<p><strong>goerdeler</strong>: How else will you make people believe the
+SS is trying to seize power?</p>
+<p><strong>stauffenberg</strong>: I’m afraid it’s the only way.</p>
+<p><strong>goerdeler</strong>: I’m disappointed in you, Colonel. I
+thought a man of your background would appreciate a more-</p>
+<p><strong>stauffenberg</strong>: I’m a soldier first, an aristocrat
+second.</p>
+<p><strong>goerdeler</strong>: Yes, but-</p>
+<p><strong>stauffenberg</strong>: And you’re neither, Doctor. Now if you
+want to be Chancellor, you’ll do as you’re told.</p>
+<p><strong>beck</strong>: Can this plan be made to work?</p>
+<p><strong>tresckow</strong>: Rewriting the order is one thing -
+distributing it is another. A bomb can be disarmed, recovered if it
+fails. In this case we’d be willfully circulating written evidence of
+high treason. It’s the best idea we’ve heard yet.</p>
+<p><strong>olbricht</strong>: There is one… small problem.</p>
+<p><strong>tresckow</strong>: Fromm…</p>
+<p><strong>goerdeler</strong>: Who is Fromm?</p>
+<p><strong>tresckow</strong>: Commander of the Home Army. Olbricht can
+put the reserve troops on alert, but only Fromm can actually initiate
+Valkyrie.</p>
+<p><strong>beck</strong>: Can we get to him?</p>
+<p><strong>olbricht</strong>: He’s a careerist pig.</p>
+<p><strong>stauffenberg</strong>: But one who’s gone as high as he can
+go in Hitler’s Army. It’s no secret he’s not happy about it.</p>
+<p><strong>tresckow</strong>: Perhaps if we offered him a key position
+in the new regime he could be made to see the light.</p>
+<p><strong>beck</strong>: We don’t seem to have a choice. Without Fromm
+there is no Valkyrie. Get him.</p>
+<p><strong>pull back to reveal</strong>: Stauffenberg and Olbricht
+waiting patiently, sitting across from:</p>
+<p><strong>keitel</strong>: You’re a woman, Fromm. And a fat one at
+that. I’d have you sent to the front if I didn’t think you’d surrender
+just to be Montgomery’s whore.</p>
+<p><strong>herber</strong>: The… General will see you now.</p>
+<p><strong>fromm</strong>: What is it you want?</p>
+<p><strong>fromm</strong>: Well, Olbricht? Speak up.</p>
+<p><strong>olbricht</strong>: I wanted to introduce you to our new man -
+Colonel Stauffenberg.</p>
+<p><strong>fromm</strong>: Ah yes - the hero from Africa. I’d offer my
+hand but you might not give it back.</p>
+<p><strong>stauffenberg</strong>: I’d say the General’s lost more
+important things this morning.</p>
+<p><strong>fromm</strong>: About time they put a man with balls in this
+office. Have a seat. You too, if you must.</p>
+<p><strong>fromm</strong>: They tell me you’re critical of the war,
+Colonel. Not that you don’t seem to have good reason.</p>
+<p><strong>stauffenberg</strong>: I am critical of losing the war,
+General. All wars - as in Africa - are lost through indecision.</p>
+<p><strong>fromm</strong>: In the field, you mean.</p>
+<p><strong>stauffenberg</strong>: In Berlin.</p>
+<p><strong>fromm</strong>: I take it that’s why you’re here. To make
+decisions.</p>
+<p><strong>stauffenberg</strong>: I’ve made my decision, General. I`m
+here to help others make theirs.</p>
+<p><strong>fromm</strong>: They say when there’s no clear option, one
+should do nothing.</p>
+<p><strong>stauffenberg</strong>: We’re at war. We must act. Sometimes…
+rashly.</p>
+<p><strong>fromm</strong>: Just what sort of rash action did you have in
+mind, Colonel?</p>
+<p><strong>stauffenberg</strong>: That would be a decision for the
+Supreme Military Commander.</p>
+<p><strong>fromm</strong>: Supreme Commander, you say.</p>
+<p><strong>stauffenberg</strong>: Second only to the Chancellor.</p>
+<p><strong>fromm</strong>: If only I were that man… This war would be
+going quite differently.</p>
+<p><strong>olbricht</strong>: We were thinking the very same thing.</p>
+<p><strong>fromm</strong>: I don’t need to remind you that we’ve all
+sworn an oath. That said, I’m going to forget we had this conversation
+with the understanding that such speak will never occur under this roof
+again. Am I clear?</p>
+<p><strong>stauffenberg/olbricht</strong>: Yes, sir.</p>
+<p><strong>fromm</strong>: Tell your friends that I always come down on
+the right side. And as long as the F�hrer is alive, you know what side
+that is.</p>
+<p><strong>fromm</strong>: Heil Hitler.</p>
+<p><strong>olbricht</strong>: I think that went rather well.</p>
+<p><strong>stauffenberg</strong>: Yes… Quite.</p>
+<p><strong>voice</strong>: Were you followed?</p>
+<p><strong>tresckow</strong>: Dammit, Stauffenberg. You scared me half
+to death.</p>
+<p><strong>stauffenberg</strong>: We’ll be closer than that before we’re
+finished.</p>
+<p><strong>tresckow</strong>: Looking this over, I’m not satisfied that
+the Reserve Army is enough to shut down Berlin completely.</p>
+<p><strong>stauffenberg</strong>: Yes, I’ve been giving that some
+thought. We should include any field units that are home on leave.</p>
+<p><strong>stauffenberg</strong>: I’ve also drawn up an outline for
+orders to streamline combat groups in order to quietly concentrate
+forces at vital points - state and government buildings, of course, but
+also the radio and newspapers.</p>
+<p><strong>stauffenberg</strong>: Combat groups will be reorganized as
+reinforced grenadier regiments. One or two of them can be quickly
+mobilized, eliminating the usual six hour lag. We blitz the government
+quarter, arrest all Ministers and Party leaders, surround all SS and
+police barracks. Any officers who resist will be arrested… or shot.</p>
+<p><strong>stauffenberg</strong>: If anyone comes to you, play ignorant.
+Just tell them-</p>
+<p><strong>fraulein oven</strong>: I’ll tell that I was serving the
+German people. Then I’ll tell them to go to hell.</p>
+<p><strong>tresckow</strong>: To Operation Valkyrie.</p>
+<p><strong>tresckow</strong>: I’ve been transferred to the front.</p>
+<p><strong>stauffenberg</strong>: Why didn’t you tell me?</p>
+<p><strong>tresckow</strong>: Would you have stayed?</p>
+<p><strong>stauffenberg</strong>: Do you think Fromm reported us?</p>
+<p><strong>tresckow</strong>: It’s more likely just… an unfortunate
+coincidence. Anyway it doesn’t matter. You wrote the orders. You know
+them better than anyone.</p>
+<p><strong>stauffenberg</strong>: You don’t mean to say-</p>
+<p><strong>tresckow</strong>: I’m appointing you military leader of the
+Resistance. Beck agrees.</p>
+<p><strong>stauffenberg</strong>: But Olbricht-</p>
+<p><strong>tresckow</strong>: We both know Olbricht hasn’t the wit or
+the spine. No. It’s you.</p>
+<p><strong>tresckow</strong>: One more thing. You were right what you
+said that first night. It’s not enough to kill Hitler. We need to
+isolate his chain of command. The slightest confusion could crush us. We
+need to be certain that no conflicting orders get out after the
+flash.</p>
+<p><strong>stauffenberg</strong>: That greatly limits our options of
+where and when to make our move, but it’s the only way.</p>
+<p><strong>tresckow</strong>: How will you do it?</p>
+<p><strong>stauffenberg</strong>: Perhaps it’s better I don’t say.</p>
+<p><strong>tresckow</strong>: God promised Abraham that he would not
+destroy Sodom if he could find just ten righteous men.</p>
+<p><strong>tresckow</strong>: I have a feeling that for Germany it may
+come down to one.</p>
+<p><strong>close on</strong>: Fellgiebel’s smile suddenly fades. He
+looks into his glass, his good mood vanishing. He politely excuses
+himself over the noise of the rowdy mob and heads for the bathroom. He
+looks ill.</p>
+<p><strong>close on</strong>: Mingling among the melting chunks of ice
+is a GLASS EYE staring back at him.</p>
+<p><strong>fellgiebel</strong>: You realize how close I am to Hitler.
+With one word I could have the Gestapo make you disappear.</p>
+<p><strong>stauffenberg</strong>: Why haven’t you then?</p>
+<p><strong>stauffenberg</strong>: None of my associates know we’ve been
+talking if that’s what you’re afraid of.</p>
+<p><strong>fellgiebel</strong>: But you know. And when the SS catch you,
+they’ll pull you apart like warm bread. It’ll be a crime just to have
+known you then. I warn you. If it means protecting myself, I will expose
+you. Do not try to contact me again.</p>
+<p><strong>stauffenberg</strong>: You can’t report me. Maybe if you had
+when I first approached you, you’d have been keeping your oath. But now
+you’re just as guilty as-</p>
+<p><strong>fellgiebel</strong>: So you think that makes me a
+sympathizer, eh? You give a man the choice of betraying a fellow officer
+or his F�hrer and assume his actions will show you his heart. It’s not
+that simple.</p>
+<p><strong>stauffenberg</strong>: It is to me.</p>
+<p><strong>fellgiebel</strong>: For the last time, don’t push me to make
+a decision.</p>
+<p><strong>stauffenberg</strong>: I have no choice. It’s clear now that
+without you we have no hope of success.</p>
+<p><strong>stauffenberg</strong>: You want us to succeed. Don’t you?</p>
+<p><strong>fellgiebel</strong>: And what if you do, eh? What then? Will
+you be any different from Hitler? What of his Reich, his people, the
+very momentum of history? Will all of that let you be something he
+isn’t?</p>
+<p><strong>stauffenberg</strong>: No.</p>
+<p><strong>fellgiebel</strong>: There it is.</p>
+<p><strong>stauffenberg</strong>: But my pregnant wife, our four
+children, the Germany I first swore to defend… They demand that I be
+something different. They demand that I fight for their future even if
+it means…</p>
+<p><strong>stauffenberg</strong>: Even if it means that I never see them
+again.</p>
+<p><strong>stauffenberg</strong>: Action is inevitable. As are the
+consequences. When they come for me I’ll do what I can to hide what you
+knew and when you knew it. But don’t delude yourself. You were involved
+in a crime against your country long before you met me. There’s still
+time to redeem yourself. Only God can judge you now.</p>
+<p><strong>drunken officer</strong>: Are you two finished or just
+getting started?</p>
+<p><strong>stauffenberg</strong>: Leave us, please.</p>
+<p><strong>olbricht</strong>: You play the part of bureaucrat
+beautifully.</p>
+<p><strong>stauffenberg</strong>: It’s the only time I can relax.</p>
+<p><strong>olbricht</strong>: There’s a man here to interview as your
+adjutant.</p>
+<p><strong>stauffenberg</strong>: Adjut- What for?</p>
+<p><strong>olbricht</strong>: No one told you? You’ve been promoted
+Chief of Staff for the Reserve Army.</p>
+<p><strong>stauffenberg</strong>: For Christ’s sake. Don’t I have enough
+to do?</p>
+<p><strong>olbricht</strong>: Unfortunately, your nocturnal activities
+don’t count as service to the Reich.</p>
+<p><strong>stauffenberg</strong>: I’ll refuse the promotion.</p>
+<p><strong>olbricht</strong>: You’ll do no such thing.</p>
+<p><strong>stauffenberg</strong>: Dammit, I can’t handle the work I
+already-</p>
+<p><strong>olbricht</strong>: This is an opportunity we could never have
+dreamed of. You’re in the inner circle now - with genuine access to
+Hitler, his advisors, his schedule… We need this.</p>
+<p><strong>stauffenberg</strong>: We’re not ready. We’re moving too
+fast.</p>
+<p><strong>olbricht</strong>: Not half as fast as the Allies. An
+invasion is coming, Colonel. Any day now. We must act and we must act
+soon.</p>
+<p><strong>olbricht</strong>: Tresckow may have left you in charge of
+the “central solution,” but in this world I still outrank you. You will
+accept the appointment. Is that understood?</p>
+<p><strong>olbricht</strong>: Now. The new man is waiting outside. He
+comes highly recommended. He might even be an ideal candidate.</p>
+<p><strong>stauffenberg</strong>: For what?</p>
+<p><strong>olbricht</strong>: We still need an assassin.</p>
+<p><strong>stauffenberg</strong>: Be seated.</p>
+<p><strong>stauffenberg</strong>: Do you know how this war will end,
+Haeften? The portrait will be un- hung… And the man will be hung.</p>
+<p><strong>stauffenberg</strong>: Bottom line. I’m engaged in high
+treason with all means available to me. Can I count you in?</p>
+<p><strong>haeften</strong>: For anything, sir. Anything at all.</p>
+<p><strong>stauffenberg</strong>: Anything is a very dangerous word.</p>
+<p><strong>newscaster</strong>: The Allied Forces have blundered into
+the trap awaiting them on the beaches of Normandy - heroically repelled
+by the combined might of the German Army. It is a glorious day for the
+Reich. At long last the craven enemy has come to Europe to face their
+inevitable defeat at the hands of-</p>
+<p><strong>haeften</strong>: Five thousand ships, one-hundred thousand
+men from the combined Allied forces.</p>
+<p><strong>stauffenberg</strong>: What about the Panzer divisions
+in-</p>
+<p><strong>haeften</strong>: They were never dispatched. Word is Hitler
+took a sleeping pill. His staff was afraid to wake him.</p>
+<p><strong>stauffenberg</strong>: First Africa, now France.</p>
+<p><strong>haeften</strong>: The Russians bearing down from the
+East.</p>
+<p><strong>stauffenberg</strong>: Sometimes I wonder if Hitler’s real
+aim is to leave nothing but scorched earth for all of Europe.</p>
+<p><strong>haeften</strong>: Maybe this is a blessing in disguise. Maybe
+he’ll finally listen to reason - consider a truce while he still
+can.</p>
+<p><strong>stauffenberg</strong>: We’ll see if I can’t convince him.</p>
+<p><strong>voice</strong>: You don’t need to search him.</p>
+<p><strong>angle on</strong>: Fromm’s adjutant, Lt. Herber approaches,
+waving off the SS.</p>
+<p><strong>herber</strong>: Colonel Stauffenberg is an honored guest.
+The hero of Africa.</p>
+<p><strong>fromm</strong>: For God’s sake, Stauffenberg, you’re-</p>
+<p><strong>fromm</strong>: … they’re waiting for you.</p>
+<p><strong>fromm</strong>: Mein F�hrer… I wish to present Colonel Claus
+von Stauffenberg - our new Chief of General Staff for the Replacement
+Army.</p>
+<p><strong>hitler</strong>: May I say, I am honored to meet a hero who
+has sacrificed so much for Germany. If only more of my officers were
+like you.</p>
+<p><strong>hitler</strong>: Let this man stand as an example to all of
+you. He is the ideal German officer.</p>
+<p><strong>fromm</strong>: Mein F�hrer, we have asked Stauffenberg here
+today so that he might brief us on mobilizing troops from the Home Army
+to support those in Normandy.</p>
+<p><strong>hitler</strong>: Hmmm? Oh yes, Normandy. That will no longer
+be necessary. General Goering has assured me that Normandy is under
+control.</p>
+<p><strong>stauffenberg</strong>: Mein F�hrer, if I may… The situation
+in Normandy is-</p>
+<p><strong>keitel</strong>: You’re dismissed, Stauffenberg.</p>
+<p><strong>stauffenberg</strong>: But-</p>
+<p><strong>keitel</strong>: Send your man home, Fromm. Then bring us
+some brandy.</p>
+<p><strong>stauffenberg</strong>: Heil Hitler.</p>
+<p><strong>fromm</strong>: I don’t know what you’ve got brewing and I
+don’t want to know… But when the music stops, I’d be much obliged if
+Keitel should find himself without a chair.</p>
+<p><strong>stauffenberg</strong>: They’re all insane. Every one of them
+except for Speer, and he’s nothing but an architect.</p>
+<p><strong>stauffenberg</strong>: Tell Beck we’ve found our assassin…
+I’ll do it myself.</p>
+<p><strong>beck</strong>: Out of the question. It won’t work. We need
+you here in Berlin.</p>
+<p><strong>stauffenberg</strong>: Who else, then? Who can even get as
+close?</p>
+<p><strong>stauffenberg</strong>: Valkyrie is very clear. Once the order
+is given, the Reserve Army will automatically seize control of the
+government with or without me.</p>
+<p><strong>beck</strong>: Orders are not enough. They need a man to
+follow. The right man.</p>
+<p><strong>stauffenberg</strong>: Olbricht will oversee operations in my
+absence. I can be back in Berlin three hours after Hitler is-</p>
+<p><strong>beck</strong>: Three very crucial hours.</p>
+<p><strong>stauffenberg</strong>: We both know there’s no other way.</p>
+<p><strong>beck</strong>: I’ll tell the others-</p>
+<p><strong>beck</strong>: I’m afraid whatever the outcome, I won’t be
+there to see it.</p>
+<p><strong>stauffenberg</strong>: Nonsense. You’re stronger than you
+think. You might just be the strongest one of all.</p>
+<p><strong>nina</strong>: …After that I thought I’d take the children to
+the country for a few days to see my- Claus?</p>
+<p><strong>nina</strong>: Have you heard a word I said?</p>
+<p><strong>stauffenberg</strong>: The country… Nina. Listen. I want you
+to delay your trip. Just for a while.</p>
+<p><strong>nina</strong>: Does this have something to do with… your
+work?</p>
+<p><strong>stauffenberg</strong>: I would just be more comfortable
+knowing where you are - until I’m back from Berlin. Things will be
+different then. I promise.</p>
+<p><strong>nina</strong>: How long until… until we see you?</p>
+<p><strong>stauffenberg</strong>: A few days. If all goes well. Then we
+can travel as a family.</p>
+<p><strong>nina</strong>: And if things… don’t go well?</p>
+<p><strong>stauffenberg</strong>: I love you, Nina.</p>
+<p><strong>nina</strong>: And I love you… What-</p>
+<p><strong>children</strong>: PAPA, COME AND PLAY WITH US.</p>
+<p><strong>nina</strong>: Go be with your children.</p>
+<p><strong>mertz</strong>: Two 975 gram packs of plastic-W. Enough
+explosive to cripple a panzer. Your detonators. Your fuses. British time
+pencils. This acid capsule is your trigger.</p>
+<p><strong>mertz</strong>: When you’re ready to arm, attach the
+detonator to the bottom of the time pencil, like so… …Insert the entire
+device into either end of the plastic-W, crush the acid capsule and
+you’re live. When the acid eats through the wire holding back the
+trigger spring… Well… You’ll want to be very far away.</p>
+<p><strong>olbricht</strong>: What if they search your bag?</p>
+<p><strong>stauffenberg</strong>: I’m one of the inner circle now.
+They’ll make sure I am who I am. Beyond that, they won’t touch me. How
+much time do I have?</p>
+<p><strong>mertz</strong>: Theoretically there’s a 30-minute delay. But
+with the kind of heat you can expect at the Wolf’s Lair, I’d give you
+10, 15 minutes tops.</p>
+<p><strong>haeften</strong>: That’s… hardly precise.</p>
+<p><strong>mertz</strong>: This is state of the art. You can have small
+or precise. Not both.</p>
+<p><strong>olbricht</strong>: Might this be just a little too small?</p>
+<p><strong>mertz</strong>: The explosion won’t do the killing. The air
+in the room will.</p>
+<p><strong>mertz</strong>: Hitler’s bunker is constructed of reenforced
+concrete. A steel door, no windows. Just one of these explosives in a
+space like that will cause tremendous air pressure.</p>
+<p><strong>mertz</strong>: Enough to instantly kill everyone present.
+The second charge will be entirely redundant.</p>
+<p><strong>olbricht</strong>: Of course, I’m all for redundancy.
+However… If, by some miracle, Hitler does survive, what then?</p>
+<p><strong>stauffenberg</strong>: We have an inside man at the Wolf’s
+Lair in communications. He’ll notify you immediately following the flash
+and then sever all contact with the outside world.</p>
+<p><strong>olbricht</strong>: Just how did you manage that?</p>
+<p><strong>stauffenberg</strong>: It’s my job, isn’t it? While Hitler’s
+inner circle is still regrouping, you will initiate Valkyrie and seize
+control in Paris and Berlin. Even if Hitler survives, we’ll have
+momentum.</p>
+<p><strong>mertz</strong>: But as you said yourself it would take a
+miracle. Anyone in that bunker when just one of these goes off is not
+coming out alive.</p>
+<p><strong>olbricht</strong>: Himmler is expected to be at the meeting
+as well. Don’t proceed unless you can get them both.</p>
+<p><strong>stauffenberg</strong>: That could be difficult.</p>
+<p><strong>olbricht</strong>: Why kill a madman just to have a lunatic
+take his place?</p>
+<p><strong>stauffenberg</strong>: This is Goerdeler’s idea, isn’t
+it?</p>
+<p><strong>olbricht</strong>: The members are in total agreement on
+this.</p>
+<p><strong>stauffenberg</strong>: Fucking politicians. I’ll hold off if
+the decision is unanimous. And I want another man on the committee. A
+soldier.</p>
+<p><strong>olbricht</strong>: And just who this soldier be?</p>
+<p><strong>stauffenberg</strong>: Him.</p>
+<p><strong>olbricht</strong>: Him?</p>
+<p><strong>olbricht</strong>: This is General Olbricht. Order the Guard
+Battalion and all Army Schools near Berlin to take up march readiness.
+Stand by for Operation Valkyrie.</p>
+<p><strong>close on</strong>: One teletype in particular. The words are
+clicking by quickly but we clearly make out:</p>
+<p><strong>helm</strong>: Lieutenant.</p>
+<p><strong>haans</strong>: What about it?</p>
+<p><strong>helm</strong>: This order is calling the Reserve Army for
+some sort of stand-by action… in Berlin.</p>
+<p><strong>haans</strong>: Looks like a drill of some kind.</p>
+<p><strong>helm</strong>: Valkyrie? I’ve never heard of that.</p>
+<p><strong>haans</strong>: Send the order through, Sergeant.</p>
+<p><strong>close on the berlin commandant - general paul von</strong>:
+HASE - issuing the alert signal. AIR SIRENS wail.</p>
+<p><strong>remer</strong>: What do you suppose this is all about?</p>
+<p><strong>hagen</strong>: Probably just a drill.</p>
+<p><strong>stauffenberg</strong>: Drive on.</p>
+<p><strong>haeften</strong>: Your man?</p>
+<p><strong>stauffenberg</strong>: Himmler. Where is Himmler?</p>
+<p><strong>keitel</strong>: …Now for the first order of business. Fromm,
+I believe you will brief us on blocking divisions for the Eastern
+Front…</p>
+<p><strong>mertz</strong>: General Olbricht’s Office. Hold the line.
+Stauffenberg says Himmler’s not at the briefing. He wants to
+proceed.</p>
+<p><strong>olbricht</strong>: Call Beck.</p>
+<p><strong>beck</strong>: Beck.</p>
+<p><strong>beck</strong>: Himmler is not in the briefing.</p>
+<p><strong>mertz</strong>: They say no. Wait.</p>
+<p><strong>stauffenberg</strong>: What do you say?</p>
+<p><strong>mertz</strong>: I say do it.</p>
+<p><strong>close on</strong>: The spot where Stauffenberg left his
+briefcase. Remember? Well it’s gone.</p>
+<p><strong>stauffenberg</strong>: My briefcase.</p>
+<p><strong>keitel</strong>: …Gentleman. You are dismissed.</p>
+<p><strong>fromm</strong>: That call better have been important.</p>
+<p><strong>freyend</strong>: Your bag… Colonel.</p>
+<p><strong>hase</strong>: What the hell is going on? My men have been
+standing here for an hour. I don’t know what to tell them.</p>
+<p><strong>hase</strong>: At ease, gentlemen.</p>
+<p><strong>olbricht</strong>: This has been a drill. You’re all to be
+commended for your quick response. Dismissed.</p>
+<p><strong>hagen</strong>: What did I tell you? A drill.</p>
+<p><strong>close on</strong>: Olbricht sees Remer looking at him, making
+note of the esteemed KNIGHT’S CROSS pinned to Remer’s uniform. Olbricht
+leans toward Hase.</p>
+<p><strong>olbricht</strong>: That man there. Who is he?</p>
+<p><strong>hase</strong>: Major Remer? He commands the Deutschland Guard
+Battalion. What about him?</p>
+<p><strong>olbricht</strong>: Get rid of him.</p>
+<p><strong>hase</strong>: Remer? Don’t worry about him. He’s an order
+taker. To the bone.</p>
+<p><strong>herber</strong>: The General will see you now.</p>
+<p><strong>fromm</strong>: How dare you put the Reserve Army on standby
+without my knowledge. You damn near cost me my commission. What in God’s
+name made you think you even had the authority?</p>
+<p><strong>olbricht</strong>: It was only a drill. An exercise.</p>
+<p><strong>fromm</strong>: DON’T LIE, OLBRICHT. Not to me. We both know
+it was no fucking drill.</p>
+<p><strong>stauffenberg</strong>: General, if I may-</p>
+<p><strong>fromm</strong>: You may not, Colonel. You may not do
+anything. Because now you’ve not only shown me you can’t deliver, you’ve
+painted a target on my back. If I so much as sense you trying to move
+the Reserve Army again, I’ll personally have you both arrested. Do I
+make myself abundantly clear?</p>
+<p><strong>stauffenberg/olbricht</strong>: Yes, sir.</p>
+<p><strong>fromm</strong>: Heil Hitler.</p>
+<p><strong>olbricht</strong>: Heil Hitler.</p>
+<p><strong>fromm</strong>: I’ll hear you say it, Colonel.</p>
+<p><strong>goerdeler</strong>: The point of your central solution is to
+replace Hitler so that we can negotiate a truce with the Allies. The
+Allies, I suspect, would be more amenable to a truce… IF WE</p>
+<p><strong>stauffenberg</strong>: Today was a matter of indecision -
+nothing more. A military operation in the hands of a politician.</p>
+<p><strong>goerdeler</strong>: I don’t think I am alone when I say your
+judgement is in question. I would like to take a vote.</p>
+<p><strong>beck</strong>: Carl.</p>
+<p><strong>beck</strong>: Carl, if I may have a word with you in
+private.</p>
+<p><strong>goerdeler</strong>: If you have something to say, Ludwig, say
+it here. Say it now.</p>
+<p><strong>beck</strong>: Very well. There’s no need to vote.</p>
+<p><strong>beck</strong>: I consider you a friend. And I look forward to
+the day when we can once again live as free men. But you’ve become a
+liability.</p>
+<p><strong>beck</strong>: I’m sorry it has to be this way.</p>
+<p><strong>goerdeler</strong>: Wha… What are you saying?</p>
+<p><strong>beck</strong>: Fellgiebel informed me this evening… Himmler’s
+issued an order for your arrest. You’ll have to leave Germany. Tonight.
+When we’ve succeeded with the central solution you’ll return as
+Chancellor. Until then-</p>
+<p><strong>goerdeler</strong>: This is your doing, isn’t it? ISN’T IT?
+You can’t just get rid of me like this. I am the man Germany will
+follow. I’m… I…</p>
+<p><strong>goerdeler</strong>: Ludwig, I-</p>
+<p><strong>beck</strong>: Disappear, Carl. Avoid contact with
+anyone.</p>
+<p><strong>beck</strong>: No more indecision. From now on, Stauffenberg
+has discretion.</p>
+<p><strong>olbricht</strong>: I can’t issue Valkyrie again unless we
+follow through. If he fails to-</p>
+<p><strong>stauffenberg</strong>: I’ll do my job. You just take
+Berlin.</p>
+<p><strong>close on</strong>: A telephone. Stauffenberg’s three fingered
+hand picks up the receiver and lifts it out of frame.</p>
+<p><strong>stauffenberg</strong>: I’d like to place a call to Bamberg,
+please.</p>
+<p><strong>angle on</strong>: The silent telephone in the foreground. We
+wait for it to ring, but it never does.</p>
+<p><strong>beck</strong>: Have you made your peace with God, then?</p>
+<p><strong>stauffenberg</strong>: As best I can.</p>
+<p><strong>beck</strong>: Then you have nothing to fear.</p>
+<p><strong>stauffenberg</strong>: I know the soldier inside me is a
+traitor. I wonder how I’ll be judged as a man.</p>
+<p><strong>beck</strong>: By history?</p>
+<p><strong>stauffenberg</strong>: By God.</p>
+<p><strong>beck</strong>: In the end, we answer only to ourselves.</p>
+<p><strong>beck</strong>: Did you reach your wife?</p>
+<p><strong>stauffenberg</strong>: Bombing in Ebingen. I can’t get
+through.</p>
+<p><strong>beck</strong>: Ebingen is a long way from Bamberg. They’re
+safe. You’ve seen to that. To think… You came to us a wounded soldier
+from Africa. Now… Now you are both the architect and the assassin. I’m
+still trying to understand how this came to be.</p>
+<p><strong>stauffenberg</strong>: Like a farmer watching the corn grow.
+One day it’s over his head…</p>
+<p><strong>beck</strong>: What’s that?</p>
+<p><strong>stauffenberg</strong>: Nothing…</p>
+<p><strong>close on</strong>: The box that holds his glass eye,
+staring.</p>
+<p><strong>close on</strong>: His crisp white collar, picking up a trace
+of blood from the cut on his throat.</p>
+<p><strong>beck</strong>: Gentlemen, may I introduce Chief Helldorf.
+He’s guaranteed the full support of the Berlin Police.</p>
+<p><strong>beck</strong>: We can begin.</p>
+<p><strong>beck</strong>: Hitler has scheduled a military briefing for
+today at one o’clock. Stauffenberg will strike regardless of who else is
+present.</p>
+<p><strong>beck</strong>: Once in position, he will signal us once to
+alert the troops and again after the flash…</p>
+<p><strong>beck</strong>: Assuming Fromm refuses to join us, Olbricht
+will take Command of the Reserve Army and initiate Operation
+Valkyrie.</p>
+<p><strong>beck</strong>: Then he’ll notify all district commanders
+between Paris and Berlin that the SS is attempting to seize power. The
+Reserve Army will arrest all SS, Gestapo and Nazi officials.</p>
+<p><strong>beck</strong>: When the time is right, Witzleben and I will
+arrive at the War Ministry and assume the roles of Commander of the
+Armed Forces and Head of State, respectively.</p>
+<p><strong>beck</strong>: With Berlin secured, Goerdeler will return and
+address the nation as our new Chancellor. Then, God willing, we can
+negotiate a truce with the Allies and spare Europe from total
+destruction.</p>
+<p><strong>beck</strong>: Gentlemen, this is the most important day of
+your lives. Long live sacred Germany.</p>
+<p><strong>mertz</strong>: Put the Reserve Army on standby alert.</p>
+<p><strong>olbricht</strong>: Not until I hear from Stauffenberg. Not
+until I’m sure.</p>
+<p><strong>mertz</strong>: But that’s not what he-</p>
+<p><strong>olbricht</strong>: Noted, Colonel. Thank you.</p>
+<p><strong>freyend</strong>: Gentlemen, may I present Colonel Claus von
+Stauffenberg - Chief Officer of the Reserve Army.</p>
+<p><strong>officer #1</strong>: Colonel Stauffenberg. This is an honor.
+They say you’re the man that will defend Berlin from the Red Army
+single-hand-</p>
+<p><strong>stauffenberg</strong>: Indeed. I’ve got the whole bag of
+tricks right here.</p>
+<p><strong>freyend</strong>: Let me take that for you.</p>
+<p><strong>voice</strong>: Colonel Stauffenberg?</p>
+<p><strong>fellgiebel</strong>: At east, Gentlemen. General Fellgiebel,
+communications. I just wanted to meet the hero of Africa… And see if
+there’s anything you need.</p>
+<p><strong>stauffenberg</strong>: Yes, sir, there is. I’m expecting a
+call of the utmost importance. Even if it comes when I am in conference
+with the F�hrer I’d appreciate it if you had a man come and get me.</p>
+<p><strong>fellgiebel</strong>: Of course, Colonel.</p>
+<p><strong>keitel</strong>: Gentlemen. The meeting has been pushed
+forward to 12:30. Mussolini is arriving on the afternoon train and
+Hitler wants to have lunch with him.</p>
+<p><strong>stauffenberg</strong>: Will Mussolini be in the briefing?</p>
+<p><strong>keitel</strong>: I only wish he were. Then some ambitious
+officer might take the opportunity to shoot the dago bastard.</p>
+<p><strong>stauffenberg</strong>: I’ll need a place to wash up - change
+my shirt.</p>
+<p><strong>freyend</strong>: Please, do be quick. You heard the
+General.</p>
+<p><strong>haeften</strong>: You’re arming them… now?</p>
+<p><strong>stauffenberg</strong>: No room for error this time. Assume I
+have ten minutes in this heat.</p>
+<p><strong>stauffenberg</strong>: Two minutes for the walk, one for the
+security check and one to the bunker. Three minutes for the walk back.
+That’s seven.</p>
+<p><strong>haeften</strong>: Leaving just three minutes to place the
+bomb.</p>
+<p><strong>stauffenberg</strong>: Plenty of time.</p>
+<p><strong>haeften</strong>: If the bomb goes off in ten.</p>
+<p><strong>freyend</strong>: Major Freyend speaking. Stauffenberg? Yes,
+he’s arrived… They are on their way now.</p>
+<p><strong>stauffenberg</strong>: Dammit man, what is it?</p>
+<p><strong>freyend</strong>: General Keitel insists that the Colonel
+please hurry.</p>
+<p><strong>haeften</strong>: The Colonel is changing, Major. You
+understand this can be difficult.</p>
+<p><strong>stauffenberg</strong>: See that the car is ready.</p>
+<p><strong>haeften</strong>: But sir-</p>
+<p><strong>stauffenberg</strong>: I have everything I need, Lieutenant.
+Thank you.</p>
+<p><strong>freyend</strong>: Please. Let me help you with that.</p>
+<p><strong>stauffenberg</strong>: I can manage, thank you.</p>
+<p><strong>stauffenberg</strong>: Where are they going?</p>
+<p><strong>freyend</strong>: It’s too hot. The briefing has been moved
+to the conference hut.</p>
+<p><strong>angle on</strong>: The conference hut. The door and many
+windows of the flimsy wooden structure are all open. Not ideal for
+generating the deadly air pressure vital to Stauffenberg’s plan. But
+this obstacle only seems to strengthen his resolve. He is a soldier
+after all. And no military operation goes according to plan. Making
+matters worse:</p>
+<p><strong>freyend</strong>: Sir, your briefcase. I insist.</p>
+<p><strong>stauffenberg</strong>: My injuries left me a bit hard of
+hearing. See that you place me as near the F�hrer as possible.</p>
+<p><strong>stauffenberg</strong>: Sergeant. I’m expecting an urgent call
+from Berlin…</p>
+<p><strong>general</strong>: The Eastern Front forces are assured a
+victory… but they need reinforcements.</p>
+<p><strong>keitel</strong>: Please pardon our tardiness… You remember
+Colonel Stauffenberg?</p>
+<p><strong>general</strong>: As you can see, Mein F�hrer, the situation
+in the East Prussian sector is increasingly critical…</p>
+<p><strong>adam</strong>: General Fellgiebel, sir. He says it’s
+urgent.</p>
+<p><strong>adam</strong>: Colonel… Colonel, you forgot your-</p>
+<p><strong>general</strong>: …And now I believe Colonel Stauffenberg
+will present us with his deployment for the Replacement Army should the
+unthinkable occur and the Russians reach-</p>
+<p><strong>freyend</strong>: Where the hell is Stauffenberg?</p>
+<p><strong>stauffenberg</strong>: Contact General Olbricht in Berlin.
+Tell him Hitler is dead. Proceed with Operation Valkyrie. Then sever all
+communications.</p>
+<p><strong>stauffenberg</strong>: Drive.</p>
+<p><strong>fellgiebel</strong>: I said Olbricht. General Olbricht at the
+War Ministry. The call is urgent.</p>
+<p><strong>communications officer</strong>: What the hell just
+happened?</p>
+<p><strong>fellgiebel</strong>: What does it look like? The F�hrer
+is-</p>
+<p><strong>fellgiebel</strong>: Alive…</p>
+<p><strong>stauffenberg</strong>: We have to get to the airfield at
+once. Orders form the F�hrer.</p>
+<p><strong>fellgiebel</strong>: I am calling from The Wolf’s Lair with
+urgent news for the General. Something terrible has happened…</p>
+<p><strong>fellgiebel</strong>: The F�hrer is still alive.</p>
+<p><strong>voice</strong>: I’m sorry. Please come again.</p>
+<p><strong>fellgiebel</strong>: Sever all communications.</p>
+<p><strong>communications officer</strong>: Sir?</p>
+<p><strong>mertz</strong>: I didn’t hear you. Come again. Fellgiebel.
+FELLGIEBEL.</p>
+<p><strong>olbricht</strong>: Well, what did he say?</p>
+<p><strong>mertz</strong>: I… couldn’t be sure. It sounded as though he
+said… Hitler is still alive.</p>
+<p><strong>olbricht</strong>: Get him back on the line.</p>
+<p><strong>mertz</strong>: Sir… The bomb did go off. That much was
+clear. Fellgiebel’s next step will be to sever all communications.</p>
+<p><strong>mertz</strong>: Colonel Stauffenberg was explicit. We
+initiate Valkyrie regardless.</p>
+<p><strong>olbricht</strong>: Only Fromm can initiate. You know
+that.</p>
+<p><strong>mertz</strong>: Then lie. Tell him Hitler’s dead. Or arrest
+him. But do it now.</p>
+<p><strong>mertz</strong>: Sir… Did you hear me? You have to give the
+order to initiate Valkyrie. This is our only-</p>
+<p><strong>olbricht</strong>: I’m not doing anything until I talk to
+Fellgiebel. Get him back on the phone. NOW.</p>
+<p><strong>kolbe</strong>: No one gets in or out.</p>
+<p><strong>stauffenberg</strong>: We’re on orders from the F�hrer. We
+have to get to the airfield immediately. You will step aside.</p>
+<p><strong>kolbe</strong>: I’m sorry, sir, but my orders are-</p>
+<p><strong>stauffenberg</strong>: Get me General Keitel.</p>
+<p><strong>stauffenberg</strong>: Yes… General Keitel. Stauffenberg
+here. I can’t get past the outer gate. A Sergeant…</p>
+<p><strong>kolbe</strong>: Kolbe.</p>
+<p><strong>stauffenberg</strong>: Sergeant Kolbe says no one is getting
+out… Yes. Yes. Maybe you can explain it to him.</p>
+<p><strong>kolbe</strong>: That won’t be necessary, Colonel.</p>
+<p><strong>mertz</strong>: Every second we stand here arguing is a
+second lost.</p>
+<p><strong>olbricht</strong>: I can’t initiate Valkyrie without
+confirmation that Hitler’s dead. It’s too great a risk.</p>
+<p><strong>mertz</strong>: What about Stauffenberg? What about his risk?
+He did his part and now you’re abandoning him.</p>
+<p><strong>olbricht</strong>: Watch yourself, Colonel.</p>
+<p><strong>mertz</strong>: Shouldn’t you be consulting Beck?</p>
+<p><strong>olbricht</strong>: I know just what Beck will say. He’s a
+dying man. What does he have to lose?</p>
+<p><strong>mertz</strong>: At least put the Reserve Army on alert.</p>
+<p><strong>olbricht</strong>: I can’t cover up another false alarm. When
+Stauffenberg returns, when he gives me confirmation. Then we’ll
+proceed.</p>
+<p><strong>mertz</strong>: And where are you going?</p>
+<p><strong>olbricht</strong>: The same place you are. Lunch.</p>
+<p><strong>adam</strong>: The one-eyed Colonel…</p>
+<p><strong>keitel</strong>: Stauffenberg.</p>
+<p><strong>adam</strong>: He left the building very abruptly - just
+before the explosion.</p>
+<p><strong>keitel</strong>: Several men left the building before the
+explosion.</p>
+<p><strong>adam</strong>: Yes, sir. Of course. But…</p>
+<p><strong>keitel</strong>: But what? Spit it out, man.</p>
+<p><strong>adam</strong>: Well. The Colonel left his hat.</p>
+<p><strong>freyend</strong>: Pardon the intrusion, sir, but I think you
+will be most interested to hear what this man has to say.</p>
+<p><strong>mertz</strong>: Orders from General Olbricht.</p>
+<p><strong>helm</strong>: Send it through. But keep me informed.</p>
+<p><strong>hagen</strong>: Here we go again.</p>
+<p><strong>stauffenberg</strong>: Quiet, isn’t it?</p>
+<p><strong>haeften</strong>: I’ll see where our driver is.</p>
+<p><strong>haeften</strong>: You mean to tell me that the alert is only
+just going out-</p>
+<p><strong>stauffenberg</strong>: This is Stauffenberg. Get me General
+Olbricht.</p>
+<p><strong>olbricht</strong>: Explain this.</p>
+<p><strong>mertz</strong>: Someone had to do something while you were
+playing dead.</p>
+<p><strong>olbricht</strong>: We don’t know that the F�hrer is not
+alive. We don’t know any-</p>
+<p><strong>mertz</strong>: General Olbricht’s office.</p>
+<p><strong>mertz</strong>: Stauffenberg for you, sir.</p>
+<p><strong>stauffenberg</strong>: It’s been three hours, Olbricht. What
+the hell have you been doing?</p>
+<p><strong>olbricht</strong>: We’ve had no confirmation that-</p>
+<p><strong>stauffenberg</strong>: Dammit man, I saw the explosion
+myself. Nothing else matters now. We are committed.</p>
+<p><strong>olbricht</strong>: Dear God.</p>
+<p><strong>stauffenberg</strong>: Now where is Fromm? Is he with us or
+did you-</p>
+<p><strong>olbricht</strong>: I- No one has spoken to him yet.</p>
+<p><strong>stauffenberg</strong>: Listen to me, Olbricht. Never mind
+Germany. Never mind Europe. Your life is at stake now, do you
+understand? If you want to live through the night you’ll do exactly as I
+say.</p>
+<p><strong>olbricht</strong>: I understand.</p>
+<p><strong>stauffenberg</strong>: The second you hang up the phone,
+initiate Operation Valkyrie in Fromm’s name. Then go over to his office
+in force, give him the choice to join us or place him under immediate
+arrest. Do I make myself perfectly clear?</p>
+<p><strong>olbricht</strong>: I understand.</p>
+<p><strong>stauffenberg</strong>: I am at the airfield now. I will be in
+Fromm’s office in fifteen minutes. Be there when I arrive.</p>
+<p><strong>olbricht</strong>: Get Beck and the others. Tell them it’s
+time.</p>
+<p><strong>olbricht</strong>: This is General Olbricht calling on behalf
+of General Fromm - Commander of the Home Army. Adolf Hitler, is dead. A
+group of radicals from the SS are attempting to seize control of the
+government. Operation Valkyrie is in effect. All military districts,
+training schools and replacement troops are to take control of essential
+government offices at once…</p>
+<p><strong>helm</strong>: The F�hrer is dead.</p>
+<p><strong>haans</strong>: You all know your jobs. Get to work.</p>
+<p><strong>operator</strong>: Sergeant. This order is signed by
+Witzleben.</p>
+<p><strong>helm</strong>: That’s ridiculous. He`s not even in the army
+anymore.</p>
+<p><strong>helm</strong>: Pass the order along.</p>
+<p><strong>fromm</strong>: Who told you the F�hrer was dead?</p>
+<p><strong>olbricht</strong>: General Fellgiebel. At the Wolf’s
+Lair.</p>
+<p><strong>fromm</strong>: This is Fromm. Put me through to The Wolf’s
+Lair.</p>
+<p><strong>olbricht</strong>: There’s no use calling, all communication
+lines are-</p>
+<p><strong>fromm</strong>: Yes. General Fromm for Field Marshal Keitel.
+Urgent.</p>
+<p><strong>fromm</strong>: What’s going on up there? The most incredible
+rumors are circulating in Berlin.</p>
+<p><strong>keitel</strong>: I don’t know what you mean. Everything’s in
+order here.</p>
+<p><strong>fromm</strong>: There’s talk the F�hrer’s been
+assassinated.</p>
+<p><strong>keitel</strong>: Another failed attempt. The F�hrer was never
+in danger. By the way, where is your man Colonel Stauffenberg?</p>
+<p><strong>fromm</strong>: Stauffenberg? On his way back to Berlin, I
+should think.</p>
+<p><strong>keitel</strong>: Let me know when he arrives. I’d like a word
+with him.</p>
+<p><strong>fromm</strong>: Certainly.</p>
+<p><strong>fromm</strong>: A false alarm. The F�hrer is fine.</p>
+<p><strong>voice</strong>: That’s a lie.</p>
+<p><strong>stauffenberg</strong>: Hitler is dead. Operation Valkyrie is
+in effect.</p>
+<p><strong>stauffenberg</strong>: You did.</p>
+<p><strong>stauffenberg</strong>: Be that as it may, the Reserve Army is
+assuming control here in Berlin. We trust you’ll join us.</p>
+<p><strong>fromm</strong>: Dammit, man. Do you realize what you’ve done?
+The F�hrer is a-</p>
+<p><strong>stauffenberg</strong>: I delivered the bomb myself. I saw the
+blast. He is dead.</p>
+<p><strong>close on</strong>: Lt. Herber, who sees Stauffenberg as the
+model Nazi, is more shocked by this than the news of Hitler’s death.</p>
+<p><strong>fromm</strong>: This can’t be happening. It’s some kind of
+joke.</p>
+<p><strong>stauffenberg</strong>: Are you with us or not?</p>
+<p><strong>fromm</strong>: Colonel, if what you say is true you should
+shoot yourself at once. The rest of you are under arrest.</p>
+<p><strong>stauffenberg</strong>: No, General. You are.</p>
+<p><strong>fromm</strong>: I don’t know where you think this is going,
+but I suggest you men change into civilian clothes and find a place to
+hide.</p>
+<p><strong>stauffenberg</strong>: Lock him upstairs in his private
+quarters. Make sure his phone lines are cut.</p>
+<p><strong>stauffenberg</strong>: You’re not in uniform.</p>
+<p><strong>beck</strong>: This has to be seen as a movement of the
+people.</p>
+<p><strong>beck</strong>: You’re certain he’s dead.</p>
+<p><strong>young officer</strong>: Colonel Stauffenberg, sir. We’re
+reporting for duty.</p>
+<p><strong>stauffenberg</strong>: Helldorf, I’m… glad to see you. We’re
+getting a late start and we need all of the manpower we can muster. Can
+we count on the police?</p>
+<p><strong>helldorf</strong>: There’s a lot of talk that Hitler isn’t
+really dead. Is this true?</p>
+<p><strong>stauffenberg</strong>: I can’t offer you any guarantees. The
+decision is yours and yours alone. Can we count on you?</p>
+<p><strong>helldorf</strong>: I’m with you.</p>
+<p><strong>stauffenberg</strong>: Have your men surround the building.
+No one gets in or out of here without my permission. I want every
+available soldier on task - we need simultaneous control of every
+government building in the city. Dismissed.</p>
+<p><strong>beck</strong>: Acts of vengeance will not be tolerated. We
+represent a different form of government. We represent what is good and
+just in Germany.</p>
+<p><strong>stauffenberg</strong>: …Deploy troops to seize and protect
+all Reich agencies. Of most importance are communication centers -
+newspapers, radio stations, telephone and telegraph offices. All Nazi
+officials and government leaders are to be arrested at once…</p>
+<p><strong>hase</strong>: … Completely blockade the government quarters.
+Everything from the Brandenburg Gate to Potsdamer Platz. Nobody, not
+even generals or ministers, should be allowed to pass. You have your
+orders, gentlemen.</p>
+<p><strong>hase</strong>: Is there a problem, Major?</p>
+<p><strong>remer</strong>: It just all seems very… vague, sir. Protocol
+dictates we should receive orders in writing-</p>
+<p><strong>hase</strong>: These are the orders as they were presented to
+me, Major. Now move.</p>
+<p><strong>angle on</strong>: A staff car - Major Remer in the back,
+watching the entire scene with cold eyes. Lt. Hagen emerges from the
+chaos on the streets.</p>
+<p><strong>hagen</strong>: Major Remer. We’ve just had orders from the
+War Ministry. The battalion is to blockade the government quarter and
+place Minister Goebbels under arrest.</p>
+<p><strong>hagen</strong>: What is it, Major?</p>
+<p><strong>remer</strong>: Something just doesn’t feel right about this.
+I would hate to find out I’m being taken advantage of.</p>
+<p><strong>hagen</strong>: A coup you think?</p>
+<p><strong>remer</strong>: Of that I am certain. What I can’t say is
+which side we’re on. Get in.</p>
+<p><strong>remer</strong>: Take us to the Reichministry. Be quick about
+it.</p>
+<p><strong>stauffenberg</strong>: Send him in. It’s all right. Send him
+in.</p>
+<p><strong>fat general</strong>: Begging your pardon, but I have orders
+to report to General Fromm.</p>
+<p><strong>olbricht</strong>: General Fromm is no longer in command. I
+am.</p>
+<p><strong>i…</strong>: Beck? What are you- What is going on here?</p>
+<p><strong>stauffenberg</strong>: The F�hrer is dead. The SS is staging
+a coup. We’ve initiated Operation Valkyrie to crush the uprising and
+save Hitler’s Germany.</p>
+<p><strong>fat general</strong>: I’d say there is a coup all right, but
+it’s not the SS.</p>
+<p><strong>olbricht</strong>: You will present these orders to your
+troops.</p>
+<p><strong>fat general</strong>: I will do no such thing without
+speaking to General Fromm. I swore an oath-</p>
+<p><strong>stauffenberg</strong>: You have your orders. Join us or face
+the consequences.</p>
+<p><strong>fat general</strong>: This is treason. I won’t take part. The
+F�hrer is not dead. THE F�HRER</p>
+<p><strong>stauffenberg</strong>: Lt. Herber. Come here.</p>
+<p><strong>angle on</strong>: Lt. Herber. “Who, me?” He reluctantly
+steps forward.</p>
+<p><strong>stauffenberg</strong>: Lock him up with Fromm.</p>
+<p><strong>goebbels</strong>: I am ready to be connected.</p>
+<p><strong>goebbels</strong>: What can I do for you, Major?</p>
+<p><strong>remer</strong>: Minister Goebbels, my battalion has an order
+to blockade the government quarter and place you under arrest.</p>
+<p><strong>goebbels</strong>: Are you a dedicated Nazi, Major?</p>
+<p><strong>remer</strong>: Yes, sir.</p>
+<p><strong>remer</strong>: Hello?</p>
+<p><strong>voice</strong>: Do you recognize my voice?</p>
+<p><strong>remer</strong>: Of course, Mein F�hrer.</p>
+<p><strong>hitler</strong>: Then listen to me very carefully…</p>
+<p><strong>haans</strong>: What is it now, Sergeant?</p>
+<p><strong>helm</strong>: It’s just that now we’re getting conflicting
+orders, sir. The Wolf’s Lair says one thing, Stauffenberg another.</p>
+<p><strong>haans</strong>: Our job is not to interpret the orders. Our
+job is to pass them along. Regardless.</p>
+<p><strong>helm</strong>: Yes, but sir-</p>
+<p><strong>haans</strong>: Is that perfectly clear, Sergeant?</p>
+<p><strong>remer</strong>: Release these men at once.</p>
+<p><strong>hagen</strong>: But these men are part of a coup.</p>
+<p><strong>remer</strong>: I’ve just been on the phone with Hitler
+himself. We are the coup, you idiot. We’ve been duped.</p>
+<p><strong>fromm</strong>: Well, Lieutenant. What do you make of all of
+this?</p>
+<p><strong>herber</strong>: I… I don’t know…</p>
+<p><strong>fromm</strong>: I won’t ask you to make a choice. That’s for
+you and you alone. All I ask is that you observe and think for yourself.
+In time you’ll see things for what they truly are. You know where to
+find me when you do.</p>
+<p><strong>fromm</strong>: Lieutenant. Heil Hitler.</p>
+<p><strong>herber</strong>: Heil Hitler.</p>
+<p><strong>goebbels</strong>: Have you seen the F�hrer? Is he-</p>
+<p><strong>himmler</strong>: It seems the conference table shielded him
+from the blast. He’s lucky to be alive. Do you want to tell me what’s
+going on?</p>
+<p><strong>goebbels</strong>: Everything is under control. I’ve taken
+charge of the Guard Battalion and given them new orders. We’re turning
+the tables on these cowards.</p>
+<p><strong>himmler</strong>: I’ve been sent here personally by the
+F�hrer to collect the conspirators. He insists they be taken alive.</p>
+<p><strong>goebbels</strong>: Take this down. By order of Adolf
+Hitler…</p>
+<p><strong>helm</strong>: It’s a coup all right… And when it’s over,
+we’d better wind up on the right side. Now we can’t afford to remain
+neutral any longer. We have to make a decision.</p>
+<p><strong>close on</strong>: Haans. All eyes watch him weigh the
+decision of his life, of many lives. Millions in fact. Finally he
+relents, handing one paper to Helm.</p>
+<p><strong>haans</strong>: Very well. Send all communications from the
+Wolf’s Lair. Stop all communications from Stauffenberg.</p>
+<p><strong>radio announcer</strong>: Today an attempt was made on the
+F�hrer’s life…</p>
+<p><strong>radio announcer</strong>: …The F�hrer himself suffered no
+major injuries and resumed his work immediately…</p>
+<p><strong>stauffenberg</strong>: Send the following teleprint to all
+Army Commanders… `Broadcast communique not correct. The F�hrer is dead.
+Orders to be carried out with utmost dispatch.’</p>
+<p><strong>stauffenberg</strong>: I saw the blast…</p>
+<p><strong>voice</strong>: What the hell kind of coup is this?</p>
+<p><strong>witzleben</strong>: The military districts are receiving
+contradictory reports. I’ve got men sitting around joking about whose
+turn it is to arrest whom. Neither the capital nor the radio network are
+under our control. And where are the troops? You’d think there would be
+some activity going on in this city. The word is all over the street
+that Hitler is still alive. We trusted you and you failed us. You should
+have stayed. To be sure.</p>
+<p><strong>olbricht</strong>: And who would have led the men here in
+Berlin? You?</p>
+<p><strong>olbricht</strong>: The Colonel did more than any man could
+have hoped. If anyone is to blame it’s-</p>
+<p><strong>stauffenberg</strong>: Field Marshal Witzleben is right. I am
+the officer in charge. I am the man responsible. No one else.</p>
+<p><strong>witzleben</strong>: I’m going home to await my inevitable
+arrest.</p>
+<p><strong>olbricht</strong>: I’m sorry, Colonel.</p>
+<p><strong>herber</strong>: Arm yourselves.</p>
+<p><strong>haeften</strong>: Thank you, Colonel.</p>
+<p><strong>haeften</strong>: Better I die for Germany than for
+Hitler.</p>
+<p><strong>voice</strong>: Colonel Stauffenberg.</p>
+<p><strong>remer</strong>: You’re under arrest.</p>
+<p><strong>fromm</strong>: If you have any last messages, you’d better
+write them now.</p>
+<p><strong>stauffenberg</strong>: My actions speak for me. I’d rather my
+wife and children remember our last time together.</p>
+<p><strong>beck</strong>: I’d like a pistol, please.</p>
+<p><strong>beck</strong>: For personal reasons.</p>
+<p><strong>remer</strong>: General, my orders are to deliver the
+prisoners alive.</p>
+<p><strong>fromm</strong>: Noted, Major. Get on with it then.</p>
+<p><strong>remer</strong>: But, sir-</p>
+<p><strong>fromm</strong>: Continue.</p>
+<p><strong>beck</strong>: I’m thinking of earlier times…</p>
+<p><strong>close on</strong>: The conspirators turn away, unable to
+watch. Except Stauffenberg.</p>
+<p><strong>fromm</strong>: Very well then… A court martial, convened by
+me in the F�hrer’s absence, has pronounced sentence: Colonel Mertz von
+Quernheim, General Olbricht, Lieutenant Haeften… And the Colonel, whose
+name I will not mention, are condemned to death. Take them outside.</p>
+<p><strong>stauffenberg</strong>: The F�hrer will want to put us on
+trial, make an example of us. This won’t win you any favor. And it won’t
+hide you’re involvement.</p>
+<p><strong>fromm</strong>: Involvement. I don’t know what you-</p>
+<p><strong>stauffenberg</strong>: You knew and you did nothing. You’re
+just as guilty as we are. Even more so.</p>
+<p><strong>fromm</strong>: Spare me, Stauffenberg.</p>
+<p><strong>stauffenberg</strong>: No one will be spared.</p>
+<p><strong>hitler</strong>: My comrades. Once again - I don’t know how
+many times it has been now - an attempt has been made on my life.</p>
+<p><strong>hitler</strong>: I speak to you tonight for two reasons.
+First, so that you can hear my voice and know that I am unhurt. And
+second, so that you may know the details of a crime without parallel in
+German history…</p>
+<p><strong>hitler</strong>: A small clique of ambitious, dishonorable,
+stupid officers have conspired to eliminate me. Except for a few bruises
+and burns, I was completely untouched.</p>
+<p><strong>hitler</strong>: I see in this the hand of Providence…
+directing me to complete my work.</p>
+</body>
+</html>

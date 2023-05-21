@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>mash</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="mash">mash</h1>
+<p><strong>henry</strong>: O’Reilly!</p>
+<p><strong>radar</strong>: Yes, sir?</p>
+<p><strong>henry</strong>: Dammit, Radar, wait till I call you! Tell
+Major Burns…</p>
+<p><strong>radar</strong>: One of the surgeons from the day shift will
+have to stay on duty tonight?</p>
+<p><strong>henry</strong>: Yes, dammit, and…</p>
+<p><strong>henry</strong>: O’Reilly, what is it? There aren’t more
+choppers coming?</p>
+<p><strong>radar</strong>: I’m afraid so, Colonel.</p>
+<p><strong>henry</strong>: We’ve got too many wounded for us to handle
+now! Get on the phone right away and…</p>
+<p><strong>radar</strong>: Yes, sir, I’ll see if I can reach General
+Hammond in Seoul for you. You think he’ll finally break down and give us
+two more surgeons?</p>
+<p><strong>ext. motor pool and railroad depot � 325th
+evacuation</strong>: HOSPITAL � YONG-DONG-PA � DAY</p>
+<p><strong>motor pool driver</strong>: You the guys going to the
+4077th?</p>
+<p><strong>duke</strong>: I’m one of ’em.</p>
+<p><strong>hawkeye</strong>: Ayuh. I’m the other then.</p>
+<p><strong>motor pool sargeant</strong>: Lots of luck.</p>
+<p><strong>hawkeye</strong>: My name’s Hawkeye Pierce.</p>
+<p><strong>duke</strong>: Duke Forrest.</p>
+<p><strong>duke</strong>: You got directions?</p>
+<p><strong>hawkeye</strong>: Ayuh, only it’s early, I need a drink to
+wake me up.</p>
+<p><strong>duke</strong>: I got some.</p>
+<p><strong>hawkeye</strong>: Make it yourself, or is it real?</p>
+<p><strong>duke</strong>: Georgia, where I come from, it’s real if you
+make it yourself. But I been buying from the Yankee Government since
+they put me in this soldier suit and give me a rate.</p>
+<p><strong>hawkeye</strong>: Tax-free booze. It’s about all you can say
+for army life.</p>
+<p><strong>duke</strong>: Where you from with that crazy way of
+talking?</p>
+<p><strong>hawkeye</strong>: Crabapple Cove. Maine.</p>
+<p><strong>duke</strong>: Damn! That must be about as far north as you
+can get.</p>
+<p><strong>hawkeye</strong>: Pretty near. What do you know about the
+outfit we’re going to?</p>
+<p><strong>duke</strong>: C.O. is Colonel Blake. Lieutenant Colonel
+Henry Braymore Blake. One of them regular army clowns. Push you around
+so it’s hard to get any decent work done.</p>
+<p><strong>hawkeye</strong>: We got to head them off, right at the
+start. Push them around first.</p>
+<p><strong>hawkeye</strong>: I think we already caught their eye.</p>
+<p><strong>duke</strong>: What’s the initials ‘MP’ stand for,
+Hawkeye?</p>
+<p><strong>hawkeye</strong>: Shore Patrol, Duke. Let’s go!</p>
+<p><strong>hawkeye</strong>: Must be the Famous Curb Service Whore �
+House. You in the market Duke?</p>
+<p><strong>duke</strong>: I done my shopping in Seoul last night.</p>
+<p><strong>duke</strong>: Curb service is right.</p>
+<p><strong>hawkeye</strong>: Well, there it is. Jesus!</p>
+<p><strong>duke</strong>: The spot we picked to spend the winter. Maybe
+we ought to look a little harder.</p>
+<p><strong>duke</strong>: What do you think of that piece of scenery,
+Yankee boy?</p>
+<p><strong>hawkeye</strong>: Finest kind. We’ll sit where we can get the
+best view.</p>
+<p><strong>henry</strong>: I’m Colonel Blake. You fellows just passing
+through?</p>
+<p><strong>hawkeye</strong>: Nope, we’re assigned heah.</p>
+<p><strong>duke</strong>: Y’all were short a couple cutters and we’re
+what the Army sent.</p>
+<p><strong>henry</strong>: Don’t you know the first thing you’re
+supposed to do at a new post is present yourself to the commanding
+officer with your orders?</p>
+<p><strong>duke</strong>: Reckon so, but we been boozing all day and you
+work up an appetite.</p>
+<p><strong>henry</strong>: You’re welcome to one of these, whatever they
+are.</p>
+<p><strong>duke</strong>: They give you copies to burn.</p>
+<p><strong>henry</strong>: Good. You’ve both been working close to the
+front.</p>
+<p><strong>duke</strong>: Never this close.</p>
+<p><strong>henry</strong>: They’ve hit us on Cherry Hill. I just got
+word. We have our slack periods but when the action starts, you’ll have
+more work in twelve hours than a civilian surgeon does in a week.</p>
+<p><strong>hawkeye</strong>: Colonel Blake, have no fear. Hawkeye and
+Duke are here.</p>
+<p><strong>duke</strong>: That’s right, pal. You just sit up front and
+sign the mail, and leave the cutting to us.</p>
+<p><strong>henry</strong>: I may need you to go to work practically
+immediately. But meanwhile perhaps you’d like to meet some of your
+fellow officers.</p>
+<p><strong>duke</strong>: Just one for a start.</p>
+<p><strong>hawkeye</strong>: The blonde dish.</p>
+<p><strong>henry</strong>: If you mean… She is a lieutenant in the Army
+Nursing Corps, Captain.</p>
+<p><strong>hawkeye</strong>: Okay, Lieutenant Dish. I guess she’s
+already… involved with somebody here.</p>
+<p><strong>henry</strong>: They’ve all tried. Nobody’s got to first
+base.</p>
+<p><strong>hawkeye</strong>: Why bother with first base? I’d go right
+for the home run.</p>
+<p><strong>dago red</strong>: This the new talent, Henry?</p>
+<p><strong>henry</strong>: Captain Pierce, Captain Forrest… Father
+Mulcahy, the Catholic Chaplain of the area, and Captain Waldowski, our
+Dental Officer.</p>
+<p><strong>painless</strong>: Better known as Painless Pole.</p>
+<p><strong>bandini</strong>: We all call him Dago Red.</p>
+<p><strong>duke</strong>: I’m Duke and he’s Hawkeye.</p>
+<p><strong>painless</strong>: Glad to know you. Drop in at my clinic
+anytime you feel like playing a little poker, or even if a tooth is
+bothering you.</p>
+<p><strong>hawkeye</strong>: Poker sounds great. When do you play?</p>
+<p><strong>murrhardt</strong>: He said anytime. Day and night, seven
+days a week. The players change but the game never stops.</p>
+<p><strong>henry</strong>: You’ll be living with Major Burns.
+O’Reilly!</p>
+<p><strong>radar</strong>: Sir?</p>
+<p><strong>henry</strong>: Don’t do that, Radar! You make me
+nervous.</p>
+<p><strong>radar</strong>: Sir?</p>
+<p><strong>henry</strong>: Don’t come so quickly when I call. I want you
+to take these officers…</p>
+<p><strong>radar</strong>: To Major Burns’ tent. Yes, sir.</p>
+<p><strong>henry</strong>: Stop that, O’Rielly!</p>
+<p><strong>radar</strong>: Sir?</p>
+<p><strong>henry</strong>: Oh, get out of here!</p>
+<p><strong>radar</strong>: Yes, Colonel.</p>
+<p><strong>ho-jon’s voice</strong>: ‘Yea, though I walk through the
+valley of the shadow of death…’</p>
+<p><strong>duke</strong>: Jesus Christ!</p>
+<p><strong>hawkeye</strong>: One of his ancestors, I think.</p>
+<p><strong>ho-jon’s voice</strong>: ‘I shall fear no evil for Thou art
+with me…’</p>
+<p><strong>frank</strong>: Thou. For Thou art with me. Welcome, welcome,
+welcome!</p>
+<p><strong>duke</strong>: What the hell’s going on here?</p>
+<p><strong>frank</strong>: This is Ho-Jon, my houseboy. Our houseboy.
+I’m teaching him English.</p>
+<p><strong>duke</strong>: Where’s he gonna use that kind of talk? ‘The
+valley of the shadow of death.’ Wait a minute, Ho-Jon… I got something
+for you.</p>
+<p><strong>duke</strong>: Little light reading matter. Just right for
+his age.</p>
+<p><strong>hawkeye</strong>: Well, southern boy, I suppose you want the
+sack that’s convenient to the door.</p>
+<p><strong>duke</strong>: And gets the wind every time it opens. No,
+thanks. I’ll take that one.</p>
+<p><strong>hawkeye</strong>: Let’s choose for it. You toss.</p>
+<p><strong>hawkeye</strong>: Part of your education. Always use your own
+bat.</p>
+<p><strong>hawkeye</strong>: Two-man job. How much blood has he had?</p>
+<p><strong>lieutenant scorch</strong>: Second pint.</p>
+<p><strong>hawkeye</strong>: Duke…</p>
+<p><strong>hawkeye</strong>: This kid’s ready but we won’t know all the
+damage till we get in and see what’s happened. What have you got?</p>
+<p><strong>duke</strong>: Nothing can’t wait. Shall we check it out with
+the Major?</p>
+<p><strong>hawkeye</strong>: Naw, I already found out. The only thing he
+doesn’t like about being in charge is making decisions.</p>
+<p><strong>hawkeye</strong>: Hot pack.</p>
+<p><strong>lieutenant dish</strong>: Isn’t this ridiculous, Doctor? Six
+months I’ve been here and there are still times when I can’t stand it. I
+just go to pieces.</p>
+<p><strong>hawkeye</strong>: There’s nothing ridiculous about it. A kid
+like you…</p>
+<p><strong>lieutenant dish</strong>: Thank you, Captain Pierce. It’s
+been so long.</p>
+<p><strong>hawkeye</strong>: No trouble at all. Hawkeye.</p>
+<p><strong>lieutenant dish</strong>: How did you get called that?</p>
+<p><strong>hawkeye</strong>: ‘The Last of the Mohicans.’ Only book my
+father ever read.</p>
+<p><strong>lieutenant dish</strong>: You’re getting a workout, you and
+Captain Forrest, your first night.</p>
+<p><strong>hawkeye</strong>: It isn’t always this rough?</p>
+<p><strong>lieutenant dish</strong>: Oh, no. We have dull stretches
+every week or so, thank God, when there’s nothing to do after
+midnight.</p>
+<p><strong>hawkeye</strong>: They don’t have to be dull. I mean if you
+and me put our minds together…</p>
+<p><strong>lieutenant dish</strong>: Our minds?</p>
+<p><strong>hawkeye</strong>: For a start. I just have a hunch… well, it
+isn’t entirely a hunch…</p>
+<p><strong>lieutenant dish</strong>: You’re an attractive man.</p>
+<p><strong>hawkeye</strong>: You have a certain modest charm
+yourself.</p>
+<p><strong>lieutenant dish</strong>: But I’m married.</p>
+<p><strong>hawkeye</strong>: Something else we have in common.</p>
+<p><strong>lieutenant dish</strong>: Very happily married.</p>
+<p><strong>hawkeye</strong>: Same here.</p>
+<p><strong>lieutenant dish</strong>: And absolutely determined to be
+faithful to my husband. Do we have that in common, Captain?</p>
+<p><strong>hawkeye</strong>: It’s a matter of definition. Faithful in
+spirit, yes.</p>
+<p><strong>lieutenant dish</strong>: I don’t make the distinction. But
+the sex urge is a powerful force. In women just as much as men.</p>
+<p><strong>hawkeye</strong>: Ayuh.</p>
+<p><strong>lieutenant dish</strong>: You’d think now, with only six
+weeks before they ship me back home, it would be easier. But it
+isn’t.</p>
+<p><strong>hawkeye</strong>: Of course not.</p>
+<p><strong>lieutenant dish</strong>: It’s terribly hard. Sometimes the
+temptation is just too much.</p>
+<p><strong>hawkeye</strong>: Then why not, as long as it wouldn’t hurt
+anybody…?</p>
+<p><strong>lieutenant dish</strong>: But you’ve made me feel strong
+again, Captain. Hawkeye. You helped me pull together when I needed
+it.</p>
+<p><strong>duke</strong>: Now that’s what I call real pretty. We can
+close up here and go into his belly.</p>
+<p><strong>hawkeye</strong>: He can’t take much more time on the
+table.</p>
+<p><strong>duke</strong>: So we got to cut him fast. I figure from the
+X-ray it ain’t just the spleen. We also got to snatch his right
+kidney.</p>
+<p><strong>sargeant vollmer’s voice</strong>: Captain Murrhardt, please
+report to the Colonel’s office at the earliest opportunity. Captain
+Murrhardt.</p>
+<p><strong>ho-jon</strong>: Good morning, Captain Pierce and Captain
+Forrest.</p>
+<p><strong>hawkeye</strong>: You can cut the bow.</p>
+<p><strong>ho-jon</strong>: I have not understood what you means.</p>
+<p><strong>hawkeye</strong>: That. It’s out of the act.</p>
+<p><strong>ho-jon</strong>: Because is not democrash? All peoples
+created equal?</p>
+<p><strong>duke</strong>: Hey, you been sneaking some reading outside
+the frigging Bible!</p>
+<p><strong>ho-jon</strong>: I have great interest for America, his
+peoples and his custom.</p>
+<p><strong>duke</strong>: Good, because we got a fine old American
+custom we want to teach you. You know what these are?</p>
+<p><strong>ho-jon</strong>: Gin. I know, yes. Dry… …vermouth.</p>
+<p><strong>frank</strong>: Is that liquor?</p>
+<p><strong>hawkeye</strong>: Finest kind. We’re training Ho-Jon to be a
+bartender. Join us?</p>
+<p><strong>duke</strong>: But first will you please kindly shut the
+goddam door?</p>
+<p><strong>frank</strong>: I don’t drink intoxicants.</p>
+<p><strong>hawkeye</strong>: Christ Almighty, I think he means it!</p>
+<p><strong>duke</strong>: We been had.</p>
+<p><strong>frank</strong>: I don’t believe it’s right for you to involve
+a boy who’s not seventeen years old yet…</p>
+<p><strong>duke</strong>: The door, Frank, the door! Where you from
+anyhow, Alaska?</p>
+<p><strong>frank</strong>: Wisconsin.</p>
+<p><strong>duke</strong>: Same general idea.</p>
+<p><strong>ho-jon</strong>: Officer all sleep now, yes? And I go wash
+clothes.</p>
+<p><strong>hawkeye</strong>: Right, Ho-Jon. See you later.</p>
+<p><strong>frank</strong>: So long, Ho-Jon.</p>
+<p><strong>duke</strong>: You make a mean martini, kid.</p>
+<p><strong>frank</strong>: Our Father who art in Heaven Hallow’d be Thy
+name. Thy kingdom come, Thy will be done, On earth as it is in
+Heaven…</p>
+<p><strong>frank</strong>: Give us this day our daily…</p>
+<p><strong>hawkeye</strong>: You ever caught this bread, and forgive our
+syndrome before, Duke?</p>
+<p><strong>frank</strong>: …trespasses as we forgive those who trespass
+against…</p>
+<p><strong>duke</strong>: Us. Lead us not into…</p>
+<p><strong>frank</strong>: …No cases over the age of temptation but
+deliver us eight. from evil. For Thine is the kingdom, the power
+and…</p>
+<p><strong>hawkeye &amp; duke</strong>: …the glory forever. Amen.
+Amen!</p>
+<p><strong>duke</strong>: Onward Christian soldiers…</p>
+<p><strong>duke &amp; hawkeye</strong>: Marching as to war. With the
+cross of Jesus going on before. Christ our Royal Master, leads against
+the foe. Forward into battle…</p>
+<p><strong>duke</strong>: He ain’t finished!</p>
+<p><strong>frank</strong>: …And for our young men on the field of
+battle, that they may return home to their dear ones…</p>
+<p><strong>hawkeye</strong>: Come clean with us, Frank. Were you on this
+religious kick back home, or did you start to crack up here on the
+post?</p>
+<p><strong>frank</strong>: …And for our Supreme Commander over here and
+our Commander-in-Chief in Washington.</p>
+<p><strong>duke</strong>: How long does the show go on, Frank?</p>
+<p><strong>frank</strong>: It gets longer all the time. Now I have your
+soul to pray for, and Captain Pierce’s.</p>
+<p><strong>vollmer</strong>: Hey! That’s a Colonel’s office!</p>
+<p><strong>hawkeye</strong>: Ayuh. Just who we’re looking for. Henry,
+you got to do something!</p>
+<p><strong>hawkeye</strong>: We’ve stuck it out for a whole week now…
+Pretty girl.</p>
+<p><strong>duke</strong>: We sure don’t aim to cause any trouble… Yeah,
+she seems to grow on you.</p>
+<p><strong>henry</strong>: You don’t aim to cause any trouble � But?</p>
+<p><strong>hawkeye</strong>: But we strongly suspect something will
+happen to screw up this splendid organization of yours if you don’t get
+that sky pilot out of our tent.</p>
+<p><strong>henry</strong>: Your tent?</p>
+<p><strong>duke</strong>: Yeah, maybe move that nurse in. She don’t seem
+the type to keep you awake praying.</p>
+<p><strong>henry</strong>: I have been in this Army a long time. I know
+just what you guys are up to. But there are limits…</p>
+<p><strong>hawkeye</strong>: We’ll find out what they are when you throw
+us out.</p>
+<p><strong>henry</strong>: That’s all the commitment you’re offering me?
+Or do you have some more extravagant gesture of cooperation?</p>
+<p><strong>duke</strong>: No, Hawkeye just said it all.</p>
+<p><strong>hawkeye</strong>: Except we forgot one other small thing.</p>
+<p><strong>duke</strong>: What’s that?</p>
+<p><strong>hawkeye</strong>: The chest-cutter.</p>
+<p><strong>duke</strong>: Yeah, that’s right. You better get us a
+chest-cutter before there’s trouble.</p>
+<p><strong>hawkeye</strong>: This outfit needs somebody who can find his
+way around the pulmonary anatomy when the bases are loaded.</p>
+<p><strong>duke</strong>: And it’s the ninth inning.</p>
+<p><strong>henry</strong>: Forget it. No Mash unit has a chest surgeon
+and we aren’t about to get one. Your housing problem I’ll give some
+thought to in the next couple of weeks.</p>
+<p><strong>henry</strong>: Yes, O’Reilly?</p>
+<p><strong>duke</strong>: How you, Radar?</p>
+<p><strong>radar</strong>: They’re running behind in the OR, sir, and
+the Preop Ward is all jammed up. Two choppers and three ambulances
+full.</p>
+<p><strong>henry</strong>: You boys’ll have to go to work early.</p>
+<p><strong>duke</strong>: You fixing to add overtime to a twelve- hour
+day? The union ain’t gonna like it.</p>
+<p><strong>hawkeye</strong>: You work those kind of hours, you got to
+have rest. Which you can’t get with somebody jabbering away on a direct
+line to heaven.</p>
+<p><strong>henry</strong>: Major Burns will be out of your tent in
+twenty-four hours. Tell them Captain Pierce and Captain Forrest are on
+their way.</p>
+<p><strong>hawkeye</strong>: About that chest-cutter…</p>
+<p><strong>henry</strong>: I’ll try, d-d-dammit! You can’t ask any more
+than that!</p>
+<p><strong>hawkeye</strong>: We don’t want any more than that. Right
+now.</p>
+<p><strong>hawkeye</strong>: Cold?</p>
+<p><strong>lieutenant dish</strong>: Even if I weren’t.</p>
+<p><strong>hawkeye</strong>: Maria…</p>
+<p><strong>lieutenant dish</strong>: Oh, Hawkeye, I don’t think I could
+stick it out these next few weeks without you.</p>
+<p><strong>hawkeye</strong>: Nobody here.</p>
+<p><strong>lieutenant dish</strong>: You understand why I still
+can’t…</p>
+<p><strong>ho-jon</strong>: Captain Pierces…</p>
+<p><strong>hawkeye</strong>: Hi, Ho-Jon. How they goin’?</p>
+<p><strong>ho-jon</strong>: Finest kind. Captain Forrests say you better
+haul ass home quick. We got new chest-cutter in our tent.</p>
+<p><strong>duke</strong>: Now I got you for a witness, I’m going to try
+again. So far all I dragged out of him is he’s from Bahston and he’s
+only been in the Army two months. Where were you when they drafted
+you?</p>
+<p><strong>trapper</strong>: Home.</p>
+<p><strong>duke</strong>: I mean, what were you doing? Were you a
+resident or on a staff someplace?</p>
+<p><strong>trapper</strong>: That’s right.</p>
+<p><strong>duke</strong>: Where?</p>
+<p><strong>trapper</strong>: Hospital.</p>
+<p><strong>duke</strong>: Which hospital?</p>
+<p><strong>trapper</strong>: Back home.</p>
+<p><strong>duke</strong>: Is there any reason why we shouldn’t know the
+name of it?</p>
+<p><strong>trapper</strong>: No. Or why you should.</p>
+<p><strong>hawkeye</strong>: I think I’ve seen this nut somewhere.
+Haven’t I?</p>
+<p><strong>trapper</strong>: If you don’t know what you’ve seen, why
+should I?</p>
+<p><strong>duke</strong>: You ready to switch to a little tonic we
+generally take us about this time? Ho-Jon…</p>
+<p><strong>trapper</strong>: Don’t you use olives?</p>
+<p><strong>duke</strong>: Where you think you are, boy? They probably
+never seen a olive in this country.</p>
+<p><strong>hawkeye</strong>: That’s the front up the road a few miles.
+We have to get by without some of the comforts of home.</p>
+<p><strong>trapper</strong>: I like an olive.</p>
+<p><strong>hawkeye</strong>: Jesus to Jesus and eight hands around!
+Duke, did I ever tell you how I beat Dartmouth by intercepting a
+pass?</p>
+<p><strong>duke</strong>: Sixteen times.</p>
+<p><strong>hawkeye</strong>: We didn’t have a chance, little
+Androscoggin College against the Big Green, but there was this blizzard
+and we held then nothing nothing till the last twenty seconds. Then this
+great passer of theirs let one go, snow and all…</p>
+<p><strong>trapper</strong>: Lucky you didn’t have your mouth open or it
+would have gone down your throat.</p>
+<p><strong>hawkeye</strong>: He’s Trapper John! Only man in history who
+ever found fulfillment in the ladies’ can of a Boston and Maine Railroad
+car! When the Conductor caught him in there with his Winter Carnival
+date, she screamed: ‘He trapped me!’ What have you been doing since
+those days, Trapper?</p>
+<p><strong>duke</strong>: What does he have to do? A score like that, a
+man could just live on his reputation.</p>
+<p><strong>trapper</strong>: Ball.</p>
+<p><strong>trapper</strong>: What gives over there?</p>
+<p><strong>duke</strong>: Must be Painlees Pole Day in the Shower
+Tent.</p>
+<p><strong>hawkeye</strong>: You met him. Walt Waldowski, the Dental
+Officer.</p>
+<p><strong>duke</strong>: Nice guy, for an enamel surgeon.</p>
+<p><strong>trapper</strong>: What are they peeking at? Captain Waldowski
+in the shower?</p>
+<p><strong>hawkeye</strong>: Part of him. Painless is the owner and
+operator of the Pride of Hamtrack. That’s where he comes from… Hamtrack,
+Michigan.</p>
+<p><strong>duke</strong>: Best equipped dentist in the whole goddam
+Army. Care to have a look, a man with your background?</p>
+<p><strong>hawkeye</strong>: Way we hear it, the Pride is supposed to
+have run up the highest lifetime batting average ever recorded in Wayne
+County.</p>
+<p><strong>judson</strong>: Ah’d purely love to see it angry.</p>
+<p><strong>hawkeye</strong>: This kid looks like a loser. Maybe we
+better get the bead-jiggler to put in a fix.</p>
+<p><strong>duke</strong>: Call Dago Red.</p>
+<p><strong>dago red</strong>: …May God remit unto thee the pains of the
+present and future life, open to thee the gates of heaven, and bring
+thee to everlasting life. May Almighty God bless thee, Father, Son and
+Holy Ghost.</p>
+<p><strong>leslie</strong>: Duke…</p>
+<p><strong>duke</strong>: Slowing down!</p>
+<p><strong>hawkeye</strong>: Going up. Nice work, Red.</p>
+<p><strong>dago red</strong>: There’s sort of a built-in prayer for the
+sick man to get well, but of course that’s not the basic intention.</p>
+<p><strong>hawkeye</strong>: I don’t care about the intention. I just
+know your Cross Action is a plus on our side. I’ve seen it come through
+four times.</p>
+<p><strong>duke</strong>: And you’ve had a natural four times in a row
+in a crap game. Right? Does that mean…?</p>
+<p><strong>hawkeye</strong>: Not without lots of praying and kissing the
+dice. It’s a different ritual but it works the same.</p>
+<p><strong>duke</strong>: What do you think, Trapper?</p>
+<p><strong>trapper</strong>: Me? I was raised a mackerel-snapper…</p>
+<p><strong>trapper</strong>: …But I turned in my knee pads.</p>
+<p><strong>hawkeye</strong>: Ho-Jon, give the Father some more
+martini.</p>
+<p><strong>dago red</strong>: Just a taste, Ho-Jon. I’d better get to
+the point… what I came here for today.</p>
+<p><strong>duke</strong>: You came because we asked you, for a
+drink.</p>
+<p><strong>hawkeye</strong>: We wanted to tell you how you were helping
+us with your fixes.</p>
+<p><strong>dago red</strong>: Well, sure, but I’m also worried about
+Walt Waldowski � Painless. His poker players got in an argument and
+asked him for a ruling, and he said what difference did it make, it was
+just a card game.</p>
+<p><strong>hawkeye</strong>: I guess I’m getting a toothache I better
+have looked at.</p>
+<p><strong>ugly john</strong>: Take a seat, Hawk. We can use a fresh
+pigeon.</p>
+<p><strong>hawkeye</strong>: Got to see the man about a tooth. Where is
+he?</p>
+<p><strong>radar</strong>: Call. With a pair of kings. Inside.</p>
+<p><strong>vollmer</strong>: How can you call with one lousy pair? Ought
+to be a house rule against mind reading.</p>
+<p><strong>painless</strong>: If a man isn’t a man anymore, what’s he
+got left to live for?</p>
+<p><strong>hawkeye</strong>: Tell me the whole story, Walt.</p>
+<p><strong>painless</strong>: There’s this native broad works in the
+laundry. I don’t know if you’ve noticed.</p>
+<p><strong>hawkeye</strong>: There’s only one worth noticing.</p>
+<p><strong>painless</strong>: You noticed. I wasn’t going to fool around
+over here. I’ve got these three girls I’m engaged to back home…</p>
+<p><strong>painless</strong>: But I had this feeling I ought to make the
+effort. To test myself. And I flunked.</p>
+<p><strong>hawkeye</strong>: What did you have to test, for God’s sake…
+the dental Don Juan of Detroit?</p>
+<p><strong>painless</strong>: Don Juanism is just a cover… I’ve been
+reading up on it. I’m a fake, I’m a fraud, I’ve been living a lie!</p>
+<p><strong>hawkeye</strong>: Painless, you mustn’t talk that way. It’s a
+lot of crap. Cover for what?</p>
+<p><strong>painless</strong>: Homosexuality.</p>
+<p><strong>painless</strong>: Now I know that’s been my problem since I
+was a kid. But it only caught up to me last night.</p>
+<p><strong>hawkeye</strong>: You’ve been drawn to other males? Since you
+were a kid?</p>
+<p><strong>painless</strong>: No, never in the slightest.</p>
+<p><strong>hawkeye</strong>: Just in dreams?</p>
+<p><strong>painless</strong>: Or in dreams either. I repressed it
+completely. Classic pattern of inhibition.</p>
+<p><strong>hawkeye</strong>: That’s what you’ve been doing all these
+years with every dame you could lay your hands on? Repressing your real
+self?</p>
+<p><strong>painless</strong>: But it’s all over now, and I can’t face
+it. Imagine if you found out you were one, you wouldn’t like breaking
+the news to your wife. Well, I got the same problem multiplied.</p>
+<p><strong>hawkeye</strong>: You don’t have any problem. You’ve got
+thirty good years ahead of you, easy. Maybe you’ll have to cut down as
+you grow older, get along with just two fiancees, but…</p>
+<p><strong>painless</strong>: No, one thing I finally know for sure,
+I’ll never function with a woman again.</p>
+<p><strong>hawkeye</strong>: There ought to be a law against dentists
+reading. Matter of fact, I thought there was. Anyway, this is an
+obsession. He can’t be persuaded out of it.</p>
+<p><strong>ho-jon</strong>: He’s comin’ this-a-way! The jaw-
+breaker!</p>
+<p><strong>duke</strong>: Y’all just act natural.</p>
+<p><strong>hawkeye</strong>: Get out the scotch, Ho-Jon. Don’t mention
+the sex thing unless he brings it up.</p>
+<p><strong>duke</strong>: How you, Walt? We was just fixing to have a
+nightcap.</p>
+<p><strong>trapper</strong>: Pour one for Painless.</p>
+<p><strong>painless</strong>: I thought you guys ought to know. I’m
+going to commit suicide.</p>
+<p><strong>trapper</strong>: Miss you, Walt.</p>
+<p><strong>duke</strong>: He said it for us all, Walt.</p>
+<p><strong>bandidi</strong>: How about leaving me your record
+player?</p>
+<p><strong>hawkeye</strong>: How do you figure to go? Forty-five between
+the eyes?</p>
+<p><strong>duke</strong>: Powerful sloppy.</p>
+<p><strong>murrhardt</strong>: Reliable though.</p>
+<p><strong>painless</strong>: That’s really what I came here for. See
+what you guys recommend.</p>
+<p><strong>hawkeye</strong>: Well, I’m sure my colleagues will agree
+there are a number of dependable measures for extinguishing the vital
+forces.</p>
+<p><strong>trapper</strong>: Black capsule.</p>
+<p><strong>hawkeye</strong>: The black capsule. Finest kind. Thank you,
+Dr. McIntyre.</p>
+<p><strong>painless</strong>: What is it?</p>
+<p><strong>trapper</strong>: Easy, pleasant, never-miss ride.</p>
+<p><strong>hawkeye</strong>: In the direction you want to go.</p>
+<p><strong>painless</strong>: You guys got any black capsules?</p>
+<p><strong>duke</strong>: For a buddy we got whatever it takes to stamp
+out the last spark of life.</p>
+<p><strong>hawkeye</strong>: How they goin’, Losing Preacher? What do
+you hear from the Pope?</p>
+<p><strong>dago red</strong>: You talked to Walt?</p>
+<p><strong>hawkeye</strong>: He’s parted his moorings.</p>
+<p><strong>trapper</strong>: We’re throwing him a Last Supper. We came
+to invite you.</p>
+<p><strong>hawkeye</strong>: The Painless Pole plans to cross the Great
+Divide tonight and we need your help to straighten him out.</p>
+<p><strong>dago red</strong>: What do you want me to do?</p>
+<p><strong>hawkeye</strong>: Put in one of your fixes. Walt knows he’s
+loused himself with the Church, but it’s part of our plan to make him
+think he has the keys to the kingdom. Which he will think if you grease
+the skids for him.</p>
+<p><strong>dago red</strong>: I don’t think I can give absolution to a
+man who’s about to commit suicide. It’s a mortal sin.</p>
+<p><strong>hawkeye</strong>: What is, Red, the intention or the act?</p>
+<p><strong>dago red</strong>: I believe it takes both. I’d have to look
+it up.</p>
+<p><strong>hawkeye</strong>: Just use common sense. Your job is
+preventing sin, and the way to do that is give him your best Cross
+Action.</p>
+<p><strong>trapper</strong>: Or you can let him knock himself out. You
+personally’d be sending him to his grave.</p>
+<p><strong>hawkeye</strong>: An eternal damnation.</p>
+<p><strong>dago red</strong>: I don’t know. I’m not sure what the
+Military Vicar’s office would think…</p>
+<p><strong>trapper</strong>: They sure as hell won’t hear about it from
+us.</p>
+<p><strong>duke</strong>: Y’all come here to say a final goodbye to our
+old friend Walt. But maybe it ain’t so final. Maybe he’s just going on
+ahead into the Unknown to do a little recon job for us all.</p>
+<p><strong>hawkeye</strong>: I just got this one thing to say. Nobody
+ordered Walt to take on this mission. He volunteered, for certain death.
+That’s what we award our highest medal for. That’s what being a soldier
+is all about.</p>
+<p><strong>trapper</strong>: Only one man here can add anything to
+that.</p>
+<p><strong>dago red</strong>: Receive, my brother, this food for your
+journey…</p>
+<p><strong>dago red</strong>: …The body of our Lord Jesus Christ, that
+He may guard you from the wicked enemy and lead you into everlasting
+life. Amen.</p>
+<p><strong>painless</strong>: What the hell’s that?</p>
+<p><strong>trapper</strong>: Coffin. Yours.</p>
+<p><strong>painless</strong>: I’m not even dead yet.</p>
+<p><strong>hawkeye</strong>: You’re a pretty heavy guy to lug around. Be
+a hell of a lot more convenient for everybody if you got into the box as
+soon as you’ve taken the capsule.</p>
+<p><strong>painless</strong>: How do you take it?</p>
+<p><strong>duke</strong>: With whiskey. A good swallow first and a big
+one afterwards. Speeds it into the bloodstream.</p>
+<p><strong>painless</strong>: You guys sure this’ll do the job?</p>
+<p><strong>duke</strong>: We wouldn’t give you nothing but the best.</p>
+<p><strong>trapper</strong>: We stand behind all our work.</p>
+<p><strong>hawkeye</strong>: You want it straight? Medical history
+records no instance of anyone taking this particular prescription and
+surviving.</p>
+<p><strong>painless</strong>: Here goes nothing.</p>
+<p><strong>painless</strong>: How much time do I have?</p>
+<p><strong>hawkeye</strong>: Just about enough to say goodbye to
+everybody. Line up over here, men, if you want to pay your last
+respects. Keep moving and file on out when you’re through.</p>
+<p><strong>painless</strong>: I wonder, if Red’s fix swings it for me,
+what’s heaven really like?</p>
+<p><strong>trapper</strong>: It’s a bedroom where a man is always at his
+peak and doesn’t have to take any time outs.</p>
+<p><strong>hawkeye</strong>: And all the angels are built like
+Lieutenant Dish.</p>
+<p><strong>duke</strong>: Drink up, Walt. One for the glory road.</p>
+<p><strong>hawkeye</strong>: Thanks for coming, Maria. Sorry it had to
+be so late.</p>
+<p><strong>lieutenant dish</strong>: I couldn’t have slept tonight
+anyhow.</p>
+<p><strong>hawkeye</strong>: You’re leaving tomorrow?</p>
+<p><strong>lieutenant dish</strong>: In less than twelve hours I’ll be
+on my way.</p>
+<p><strong>hawkeye</strong>: That’s when the real strain starts. Three
+weeks on a troopship. Poor baby.</p>
+<p><strong>lieutenant dish</strong>: Dear, sweet Hawkeye.</p>
+<p><strong>hawkeye</strong>: Though I guess who it’ll really be rough on
+is your husband.</p>
+<p><strong>lieutenant dish</strong>: You’re on his side all of the
+sudden?</p>
+<p><strong>hawkeye</strong>: A man would be more considerate. He
+wouldn’t come home to his wife a nervous wreck.</p>
+<p><strong>lieutenant dish</strong>: How would he avoid it… as if I
+needed to ask?</p>
+<p><strong>hawkeye</strong>: It could be a purely impersonal thing. What
+matters is the therapeutic value of relieving your tensions.</p>
+<p><strong>lieutenant dish</strong>: You should have been a marriage
+counselor. But I’ll show you what’s wrong with your theory.</p>
+<p><strong>lieutenant dish</strong>: Do you think anything between us
+could be impersonal? Or pure? You better forget logic, because you’re
+proving why I shouldn’t go to bed with you.</p>
+<p><strong>hawkeye</strong>: I didn’t mean with me.</p>
+<p><strong>lieutenant dish</strong>: You’re asking for somebody
+else?</p>
+<p><strong>hawkeye</strong>: It happens to be a matter of life and
+death.</p>
+<p><strong>lieutenant dish</strong>: A man is going to die if he doesn’t
+have my fair young body?</p>
+<p><strong>hawkeye</strong>: Precisely, Maria. Tonight you have the same
+privilege that comes on rare occasions to the chief executive of some
+state or nation… the privilege of restoring life, by one tender act of
+mercy, to a doomed fellow creature.</p>
+<p><strong>hawkeye</strong>: He should come to now for a while, but he’s
+got so much dope in him by tomorrow he won’t know fact from fantasy.</p>
+<p><strong>lieutenant dish</strong>: You think he won’t.</p>
+<p><strong>hawkeye</strong>: What do you care? You’ll be on your way to
+Japan.</p>
+<p><strong>lieutenant dish</strong>: I’m fond of Painless, and I’d feel
+terrible if anything happened to him…</p>
+<p><strong>hawkeye</strong>: It’s your decision, Maria. I don’t want to
+high-pressure you.</p>
+<p><strong>lieutenant dish</strong>: I’d be crazy to think my virtue,
+such as it is, was more important than his life…</p>
+<p><strong>hawkeye</strong>: In fact I’d rather not try to influence you
+at all. Let’s just go in and take a look, and then you think it through
+for yourself.</p>
+<p><strong>hawkeye</strong>: One last look at him… …still alive… …the
+whole man.</p>
+<p><strong>lieutenant dish</strong>: My God, Hawkeye, I never realized…
+I never even dreamed… Hawkeye! Hawk…</p>
+<p><strong>hawkeye</strong>: Morning Painless. How they goin’?</p>
+<p><strong>painless</strong>: Big day. Two jaws to rebuild.</p>
+<p><strong>frank</strong>: Get me one c.c. of adrenaline and a cardiac
+needle.</p>
+<p><strong>boone</strong>: What’s a…?</p>
+<p><strong>frank</strong>: Never mind questions. Get them!</p>
+<p><strong>henry</strong>: Captain Williams, Major. Major Houlihan is
+our new Chief Nurse.</p>
+<p><strong>boone</strong>: This what you wanted, Major?</p>
+<p><strong>frank</strong>: No, you idiot. I said adrenaline. And a
+cardiac needle.</p>
+<p><strong>boone</strong>: I’ll ask a nurse!</p>
+<p><strong>frank</strong>: It’s too late. You killed him, Boone.</p>
+<p><strong>trapper</strong>: You got a moment, Frank?</p>
+<p><strong>trapper</strong>: You all through work for the day?</p>
+<p><strong>frank</strong>: Yes, I am. Why do you want to know?</p>
+<p><strong>trapper</strong>: Make sure you got time to sleep this
+off.</p>
+<p><strong>henry</strong>: This is the…</p>
+<p><strong>henry</strong>: T-Trapper!… C-C-Captain McIntyre… what the
+hell… ?</p>
+<p><strong>hot lips</strong>: That’s a captain?</p>
+<p><strong>henry</strong>: What’s going on? Who started this?</p>
+<p><strong>trapper</strong>: You mean who hit who?</p>
+<p><strong>henry</strong>: Yes, that’s what I mean.</p>
+<p><strong>trapper</strong>: I did. First and only blow. So far.</p>
+<p><strong>frank</strong>: He wouldn’t have touched me if I’d had my
+guard up. Let us settle this between ourselves, Colonel. Alone.</p>
+<p><strong>henry</strong>: What do you think I’m running, an English
+boarding school? McIntyre, you’re under arrest. Confine yourself to
+quarters, pending an investigation.</p>
+<p><strong>trapper</strong>: If you say so, Henry. But remember my
+claustrophobia.</p>
+<p><strong>henry</strong>: I deeply regret this unfortunate incident. We
+try to remember we’re a military organization.</p>
+<p><strong>hot lips</strong>: I certainly would have thought so.</p>
+<p><strong>henry</strong>: What’s wrong with you?</p>
+<p><strong>trapper</strong>: I don’t know. I must have lost my punch. I
+didn’t think the son-of-a- bitch would get up.</p>
+<p><strong>hawkeye</strong>: Stop acting like a colonel, Henry. You know
+Trapper wouldn’t sock him without a good reason.</p>
+<p><strong>henry</strong>: There’s no reason good enough for one medical
+officer to strike another.</p>
+<p><strong>duke</strong>: That there Frank Burns is a menace. Whenever a
+patient croaks on him it’s either God’s will or somebody else’s
+fault.</p>
+<p><strong>hawkeye</strong>: This time he did it to a kid who’s simple
+enough to believe him. Why don’t you dump the mother, Henry? He creates
+more work than he gets done.</p>
+<p><strong>henry</strong>: I should fire him because he got in the way
+of Trapper’s fist? No. I’ve put up with a lot from you guys, but now I
+finally have to take disciplinary action.</p>
+<p><strong>hawkeye</strong>: Christ. All of a sudden it’s West
+Point.</p>
+<p><strong>duke</strong>: What are you going to do with him?</p>
+<p><strong>henry</strong>: Well… I was going to name you Chief Surgeon…
+To consult on both shifts, yours and Frank’s.</p>
+<p><strong>duke</strong>: Hey, that’s great, Henry! Good thinking!</p>
+<p><strong>hawkeye</strong>: First decent idea you’ve had in a
+month.</p>
+<p><strong>henry</strong>: Now I’ll have to wait at least a week. If I
+announced it tomorrow, after what our new Chief Nurse saw this
+afternoon, they’d hear her yelling from Seoul to Washington.</p>
+<p><strong>hot lips</strong>: Captain Pierce, would I be imposing…?</p>
+<p><strong>hawkeye</strong>: Honey, nobody as pretty as you could ever
+impose… please sit down. Coffee?</p>
+<p><strong>hot lips</strong>: Captain, I’ve been observing the nurses on
+your shift. But naturally your own opinion is more informed than
+mine.</p>
+<p><strong>hawkeye</strong>: I’m glad you feel that way, Major, because
+you see it’s a team effort… doctors, nurses, enlisted men… and I feel
+responsible for my whole team, and I want you to know I’m satisfied with
+them.</p>
+<p><strong>hot lips</strong>: All of them?</p>
+<p><strong>hawkeye</strong>: That’s right. We work well together.</p>
+<p><strong>hot lips</strong>: Major Burns is far from satisfied.</p>
+<p><strong>hawkeye</strong>: That don’t surprise me. If you’re a good
+observer, you must have observed by now that Frank Burns is a jerk.</p>
+<p><strong>hot lips</strong>: On the contrary, I’ve observed he’s not
+only a good technical surgeon, he’s a good military surgeon. And that
+includes how a man dresses and how he bears himself and his sense of
+what it means to be an officer in the United States Army.</p>
+<p><strong>hawkeye</strong>: And his track record, that don’t count?
+Look, honey, when you watch the two shifts try to notice which one does
+the most work with the least fuss.</p>
+<p><strong>hot lips</strong>: I’ve noticed that both nurses and enlisted
+men address you as ‘Hawkeye.’</p>
+<p><strong>hawkeye</strong>: It’s my name. Maybe that sounds silly to
+you but…</p>
+<p><strong>hot lips</strong>: That kind of familiarity is inconsistent
+with maximum efficiency in a military organization.</p>
+<p><strong>hawkeye</strong>: Okay, Major, honey. I’m going to have a
+couple shots scotch and go to bed. I’d normally ask you to join me but
+obviously you’re a female version of the routine Regular Army clown. And
+that turns me off, so just leave my outfit alone and we’ll get along
+fine. See you around the campus.</p>
+<p><strong>hot lips</strong>: I wonder how a degenerated person like you
+could have reached a position of responsibility in the Army Medical
+Corps.</p>
+<p><strong>hawkeye</strong>: Sister, if I knew the answer to that I sure
+as hell wouldn’t be here.</p>
+<p><strong>vollmer’s voice</strong>: Attention, everybody. I have an
+announcement. ‘Effective today, Thirteen April, Captain John S.
+McIntyre, U.S. Army Reserve, is appointed Chief Surgeon at 4077th Mobile
+Army Surgical Hospital. Henry B. Blake, Commanding Officer.’ Nice going,
+Trapper.</p>
+<p><strong>hot lips</strong>: There’s no point appealing to Colonel
+Blake. They’ve got him bewitched.</p>
+<p><strong>frank</strong>: No. The only thing to do is write General
+Hammond. But it’s hard to find a place around here for a private
+discussion.</p>
+<p><strong>hot lips</strong>: I have a tent to myself.</p>
+<p><strong>frank</strong>: People will talk.</p>
+<p><strong>hot lips</strong>: I don’t mind. If we give them something to
+talk about.</p>
+<p><strong>hot lips</strong>: I think it’s a marvelous letter.</p>
+<p><strong>frank</strong>: We’re a good team.</p>
+<p><strong>hot lips</strong>: We think the same way.</p>
+<p><strong>frank</strong>: It’s supper time. But you’re not hungry are
+you?</p>
+<p><strong>hot lips</strong>: Ravenous. What about you?</p>
+<p><strong>frank</strong>: Well, sure, if you are, Margaret…</p>
+<p><strong>hot lips</strong>: Anyway, we want to get this letter
+off.</p>
+<p><strong>hot lips</strong>: The sooner it reaches him, the sooner we
+can turn this into a tight military outfit.</p>
+<p><strong>duke</strong>: Hail to the chief! We-all got a
+responsibility, men. He’s crowned like a king ought to be, but he can’t
+just walk to the Mess Hall by himself. He has to be carried by native
+bearers.</p>
+<p><strong>hawkeye</strong>: Good thinking, Duke. How about it, Ho-Jon?
+Can you round up a few of the boys?</p>
+<p><strong>ho-jon</strong>: I don’t get what you mean, native
+bearers.</p>
+<p><strong>murrhardt</strong>: Bear is the same thing as carry.</p>
+<p><strong>ho-jon</strong>: It’s the other word I’m not sure.</p>
+<p><strong>hawkeye</strong>: Never mind. Forget it.</p>
+<p><strong>duke</strong>: A native is someone who is born in a
+particular place.</p>
+<p><strong>ho-jon</strong>: And if I go to New York, the natives there
+will carry me? I don’t think so.</p>
+<p><strong>hawkeye</strong>: I don’t think so either.</p>
+<p><strong>duke</strong>: I don’t think I should have opened my big
+mouth. Sorry, Ho-Jon.</p>
+<p><strong>ho-jon</strong>: That’s okay. Live a little, learn a
+little.</p>
+<p><strong>duke, hawkeye, painless and ugly john</strong>: Hail to the
+Chief And King of all the surgeons He needs a queen To satisfy his
+urgin’s.</p>
+<p><strong>trapper</strong>: I’d like to try out that one over
+there.</p>
+<p><strong>hawkeye</strong>: Very well, Your Majesty. Congratulations,
+Frank. He picked you.</p>
+<p><strong>trapper</strong>: No, no, that one.</p>
+<p><strong>hawkeye</strong>: Oh, you want to play it straight? I guess I
+owe you an apology.</p>
+<p><strong>frank</strong>: Godless buffoons, all of them.</p>
+<p><strong>hot lips</strong>: It’s that disrespect for you, that’s what
+I can’t forgive them.</p>
+<p><strong>frank</strong>: Oh, I’m used to it. What makes me sore is how
+they behave towards you. They ought to be grateful to have you. I
+certainly am.</p>
+<p><strong>hot lips</strong>: And I’m grateful for you, Frank,
+especially with those boors around. We’ve grown very close in a short
+time.</p>
+<p><strong>frank</strong>: It isn’t just chance, I’m sure of that. God
+meant us to find each other.</p>
+<p><strong>hot lips</strong>: His will be done. Da-a-arling!</p>
+<p><strong>hot lips’ voice</strong>: Frank… Frank… Frank… Frank…
+Frank…</p>
+<p><strong>duke</strong>: What’d’y’all reckon he’s doing to her?</p>
+<p><strong>trapper</strong>: Casting her horoscope.</p>
+<p><strong>frank’s voice</strong>: Give me your lips, love. Set me on
+fire.</p>
+<p><strong>duke</strong>: Plug it in, boy. We got no call to be selfish
+with a show like this.</p>
+<p><strong>hot lips’ voice</strong>: I want you to make love to me all
+night. I don’t want anything to take you away from me.</p>
+<p><strong>frank’s voice</strong>: Nothing can, with the Colonel gone.
+I’m in charge tonight.</p>
+<p><strong>hot lips</strong>: I like a man who is in charge.</p>
+<p><strong>hot lips</strong>: Frank…</p>
+<p><strong>frank</strong>: Don’t stop now! Please…</p>
+<p><strong>hot lips</strong>: Wait a second…</p>
+<p><strong>frank</strong>: I can’t… couldn’t.</p>
+<p><strong>radar</strong>: Good morning, Colonel.</p>
+<p><strong>henry</strong>: Morning, Radar. How were things?</p>
+<p><strong>radar</strong>: Splendid, sir. No problems.</p>
+<p><strong>henry</strong>: Morning, Captain.</p>
+<p><strong>leslie</strong>: Morning, Colonel.</p>
+<p><strong>trapper</strong>: Morning, girls. Good morning Major.</p>
+<p><strong>hot lips</strong>: Good morning.</p>
+<p><strong>duke</strong>: Hiya, Frank. Hiya, Hot Lips.</p>
+<p><strong>hot lips</strong>: No, leave all the rowdiness to them. Calm
+down, drink your coffee.</p>
+<p><strong>hawkeye</strong>: Tell me, Frank, is that stuff you’re
+tapping any good?</p>
+<p><strong>henry</strong>: Hawkeye and Frank Burns. That’s
+encouraging.</p>
+<p><strong>hawkeye</strong>: I was just asking…</p>
+<p><strong>frank</strong>: Shut up or I’ll tear you apart.</p>
+<p><strong>henry</strong>: Can you make out what they’re talking
+about?</p>
+<p><strong>radar</strong>: I can try, sir.</p>
+<p><strong>hawkeye</strong>: I only wanted to know what she’s like in
+the sack. Do those big boobs hold up or are they kind of droopy?</p>
+<p><strong>radar</strong>: Hawkeye’s asking the Major’s opinion on a
+point of anatomy.</p>
+<p><strong>hawkeye</strong>: Also I’m curious whether she’s a moaner
+or…</p>
+<p><strong>frank</strong>: Say that again and I’ll kill you.</p>
+<p><strong>radar</strong>: The Major wishes to have the question
+repeated.</p>
+<p><strong>hawkeye</strong>: You know, does she go in for sound
+effects…?</p>
+<p><strong>hawkeye</strong>: Help! He’s gone mad! Help, somebody!</p>
+<p><strong>duke</strong>: Fair’s fair, Henry. If I get into Hot Lips and
+jump Hawkeye Pierce, do I get to go home, too?</p>
+<p><strong>lieutenant scorch</strong>: It was really nice of you to take
+me along.</p>
+<p><strong>hawkeye</strong>: I didn’t have much choice.</p>
+<p><strong>lieutenant scorch</strong>: You really say the cutest
+things.</p>
+<p><strong>hawkeye</strong>: Yeah!</p>
+<p><strong>korean doctor</strong>: We can’t take this one. His heartbeat
+is much too fast, and his blood pressure is dangerously high. Have you
+ever seen a doctor before? Wait a minute! What does it say there about
+where he’s been working? Get the check on his urine sample right away.
+You’ll have to wait around for a while, young man. I need some more
+information before I talk to you again.</p>
+<p><strong>korean doctor</strong>: You please excuse… I have been making
+examination of this young man to find if he will be soldier in our
+army.</p>
+<p><strong>hawkeye</strong>: Yes, I know. Hi, Ho-Jon. How did it go?</p>
+<p><strong>korean doctor</strong>: I don’t liking it at all, what I hear
+when I listen to the heart. And such a blood pressure for so young a
+boys. Is frightening.</p>
+<p><strong>hawkeye</strong>: I’m sorry to hear that. You think he’s
+unfit for military service?</p>
+<p><strong>korean doctor</strong>: At first is no doubt. But then I am
+seeing on his paper he work in American hospital. And I think there are
+so many drugs in such a places, he could take some by mistake.</p>
+<p><strong>hawkeye</strong>: Why would he do that?</p>
+<p><strong>korean doctor</strong>: Who is knowing? But the drug I have
+find in his urine is solving all mysteries. By tomorrow will be gone his
+fast heart and high blood pressure. So I think maybe you will like to
+tell him goodbye. Okay?</p>
+<p><strong>hawkeye</strong>: Sorry, Ho-Jon. I didn’t think they’d be
+that sharp. But I’m still going to start the ball rolling for you to go
+to college in America when you get out. My old school, Androscoggin.</p>
+<p><strong>hawkeye</strong>: I came within about ten yards of you. You
+know something, Trapper, the way we been going, if we ever got to see a
+real golf course again, I bet we could burn it up.</p>
+<p><strong>trapper</strong>: As far as the greens maybe. I don’t know if
+my putting would come back or not, without some practice.</p>
+<p><strong>vollmer</strong>: That’s him on the right.</p>
+<p><strong>pilot</strong>: That’s Captain McIntyre?</p>
+<p><strong>vollmer</strong>: The Lieutenant’s flown up from Seoul just
+to find you.</p>
+<p><strong>pilot</strong>: You’re Captain McIntyre?</p>
+<p><strong>trapper</strong>: That’s what the Army calls me. Stick out
+your tongue, take off your shirt and tell me where it hurts you.</p>
+<p><strong>trapper</strong>: ‘…Proceed immediately to Kokura, Japan…’ Do
+you know what this is about?</p>
+<p><strong>pilot</strong>: There’s a GI there whose father’s a
+Congressman. A grenade went off in training and they think there’s a
+piece of it in his heart.</p>
+<p><strong>trapper</strong>: These his X-rays?</p>
+<p><strong>pilot</strong>: Yes, sir. Apparently some big chest surgeon
+in Boston told the Congressman the only man to take care of his son was
+Captain John McIntyre. I suppose there could be more than one doctor
+with that name…</p>
+<p><strong>trapper</strong>: General Hammond says I can take anyone
+along I need to assist me. Want to come?</p>
+<p><strong>hawkeye</strong>: I’m not so sure the goddam thing’s in his
+heart.</p>
+<p><strong>trapper</strong>: ’Course it isn’t, but how many chances do
+we get to go to Japan? With our golf clubs.</p>
+<p><strong>gorman</strong>: Garrada there!</p>
+<p><strong>trapper</strong>: What?</p>
+<p><strong>hawkeye</strong>: Let me translate. I’ve had some exposure to
+the language. The young man is from Brooklyn and he wants us to vacate
+this vehicle.</p>
+<p><strong>trapper</strong>: But weren’t you supposed to meet the
+surgeons who are going to slice up the Congressman’s son?</p>
+<p><strong>gorman</strong>: You guys are the quacks?</p>
+<p><strong>hawkeye</strong>: You betcher ever-loving A, buddy- boy.</p>
+<p><strong>gorman</strong>: Poor kid. Goddam Army.</p>
+<p><strong>trapper</strong>: But besides the operation, we’ve got to get
+in at least eighteen holes of golf.</p>
+<p><strong>hawkeye</strong>: So let’s haul ass, Sergeant.</p>
+<p><strong>gorman</strong>: Goddam Army.</p>
+<p><strong>trapper</strong>: Look.</p>
+<p><strong>hawkeye</strong>: Beautiful. What do you think? Should we
+stop and play nine holes now and operate on the kid later? If he’s still
+alive.</p>
+<p><strong>gorman</strong>: Goddam Army.</p>
+<p><strong>trapper</strong>: I think we ought to operate first, no
+frills, get through it on the double. Then we’ll be nice and relaxed on
+the course.</p>
+<p><strong>hawkeye</strong>: Good thinking.</p>
+<p><strong>gorman</strong>: Goddam, goddam Army.</p>
+<p><strong>hawkeye</strong>: Where’s the Congressman’s son at,
+honey?</p>
+<p><strong>pretty wac</strong>: Ward Six.</p>
+<p><strong>pretty wac</strong>: Hey you can’t go in there! Who are
+you?</p>
+<p><strong>hawkeye</strong>: I’m the pro from Dover and this is my
+favorite caddie.</p>
+<p><strong>pretty wac</strong>: Well, you can’t go in. No till you tell
+me your business and I check with Colonel Merrill’s office.</p>
+<p><strong>hawkeye</strong>: Well, if you must know…</p>
+<p><strong>trapper</strong>: Hold it. If this soldier enforces her own
+orders. I’m ready to take her on. Anxious. Single combat.</p>
+<p><strong>pretty wac</strong>: Colonel Marril’s office.</p>
+<p><strong>hawkeye</strong>: Don’t worry, son. That’s Captain McIntyre,
+and he’s the best chest surgeon in the Far East and maybe in the whole
+U.S. Army. He’ll fix you up fine. Your daddy saw to that.</p>
+<p><strong>trapper</strong>: Just like we thought, it’s a routine
+problem. Nurse, who’s in charge of operating room preparations?</p>
+<p><strong>ward nurse</strong>: Sh-sh-she is.</p>
+<p><strong>nurse corps captain</strong>: What are you hoodlums doing in
+this hospital?</p>
+<p><strong>hawkeye</strong>: We’re surgeons, ma’am, we’re here to work.
+All we want is our starting time.</p>
+<p><strong>nurse corps captain</strong>: You can’t even look at a
+patient here till Colonel Merrill says it’s okay. And he’s still out for
+lunch.</p>
+<p><strong>trapper</strong>: Look, Mother. I want to go to work in one
+hour. We’re the pros from Dover and we figure to crack that kid’s chest
+and get out to the golf course before it’s dark. So find the gas-passer
+and tell him to premedicate the patient. Then bring me the latest
+pictures on him; the ones we saw must be forty-eight hours old by now.
+And tell the kitchen to rustle up some lunch. Ham and eggs’ll do; steak
+would be even better. And give me at least one nurse who knows how to
+work in close without getting her tits in my way. You’re going to have
+to move quicker than that. I said an hour.</p>
+<p><strong>trapper</strong>: Got it.</p>
+<p><strong>colonel merrill</strong>: I demand an explanation!</p>
+<p><strong>hawkeye</strong>: Get that dirty old man out of the operating
+room!</p>
+<p><strong>colonel merrill</strong>: I’m Colonel Merrill!</p>
+<p><strong>hawkeye</strong>: Beat it, Pop. If this chest gets infected,
+I’ll tell the Congressman who did it.</p>
+<p><strong>trapper</strong>: Okay, I’m closing up. Everybody relax.</p>
+<p><strong>me lay</strong>: May I have the surgeon’s name, please?</p>
+<p><strong>hawkeye</strong>: He’s the pro from Dover and I’m the Ghost
+of Smokey Joe.</p>
+<p><strong>me lay</strong>: Save that crap for the rest of the
+clamdiggers back home.</p>
+<p><strong>hawkeye</strong>: Did I ever tell you about Me Lay
+Marston?</p>
+<p><strong>trapper</strong>: Your high school friend who went around
+saying ‘Me lay, you lay?’ to all the young females in the community. As
+I remember, you said it was quite a successful approach.</p>
+<p><strong>hawkeye</strong>: Well, he wouldn’t score more than once in
+seven or eight tries, but the important thing was he didn’t waste time
+socializing. Anyway, Trapper John, this is Me Lay.</p>
+<p><strong>me lay</strong>: The real Trapper John? The one who threw you
+the famous pass and went to greater glory on the Boston and Maine
+Railroad?</p>
+<p><strong>hawkeye</strong>: The one and only.</p>
+<p><strong>me lay</strong>: Proud to know you, Trapper. Like to shake
+your hand if you’ll hurry up and get that chest closed. You still
+working the trains?</p>
+<p><strong>trapper</strong>: Planes mostly. May take a crack at
+rickshaws. How does the direct approach work over here?</p>
+<p><strong>me lay</strong>: I been out of action since I got over here
+five months ago.</p>
+<p><strong>hawkeye</strong>: You don’t go after the local scrunch?</p>
+<p><strong>me lay</strong>: I’m too busy, actually. Not for the Army, of
+course, but where I live. Dr. Yamachi’s New Era Pediatric Hospital and
+Whorehouse. I’m serious. The guy has this crude hospital for kids and a
+whorehouse on the side to finance it, all in the same building.</p>
+<p><strong>hawkeye</strong>: What do you do in the joint besides
+pimp?</p>
+<p><strong>me lay</strong>: That’s about the only thing I don’t do �
+that I’m built for. I inspect the girls and take care of some of the
+kids in the hospital. Sometimes I tend bar and act as bouncer.</p>
+<p><strong>corporal</strong>: Captain Pierce? Captain McIntyre? Colonel
+Merrill wishes you to report to his office immediately.</p>
+<p><strong>hawkeye</strong>: Tell him we’ll think about it. I suppose we
+do have to reach some sort of understanding with the old boy.</p>
+<p><strong>trapper</strong>: What’s the bastard really like?</p>
+<p><strong>me lay</strong>: Colonel Merrill is a veteran of twenty- five
+years in the Regular Army, a soldier first and a doctor second. A member
+of several patriotic organizations, he believes it’s America’s God-given
+mission to maintain a foothold for freedom on the Asian mainland.</p>
+<p><strong>trapper</strong>: That bad? But I guess you’re right. We
+might as well see him. Got any caddie carts?</p>
+<p><strong>corporal</strong>: What?</p>
+<p><strong>trapper</strong>: Never mind.</p>
+<p><strong>me lay</strong>: The address of the N.E.P.H. and W. Why don’t
+you meet me there when you’re through golf for drinks and dinner and
+whatever strikes the fancy?</p>
+<p><strong>trapper</strong>: Mine’s already been struck, and it doesn’t
+have to be very fancy.</p>
+<p><strong>hawkeye</strong>: Lead the way.</p>
+<p><strong>second lieutenant</strong>: These the prisoners?</p>
+<p><strong>corporal</strong>: Yes, sir.</p>
+<p><strong>second lieutenant</strong>: They can wait in the Colonel’s
+office. He’ll be back in a few minutes.</p>
+<p><strong>colonel merrill</strong>: You men are under arrest!</p>
+<p><strong>trapper</strong>: Quiet! Can’t you see I’m putting?</p>
+<p><strong>colonel merrill</strong>: I’ll have you…!</p>
+<p><strong>hawkeye</strong>: Please! Face it, Colonel, you don’t have
+us, we have you. Your boys blew this case, we bailed you out. We figure
+we ought to hang around a day to check the Congressman’s kid, and we
+also figure to play some golf. So if that’s okay with you, we got a
+deal.</p>
+<p><strong>trapper</strong>: And if it isn’t, why don’t we call
+Washington on your telephone? You tell your story, we’ll tell ours.</p>
+<p><strong>hawkeye</strong>: When you make up your mind, get in touch.
+The golf club is probably the best place to leave a message.</p>
+<p><strong>trapper</strong>: These the longest you’ve got?</p>
+<p><strong>golf pro</strong>: Wonderful. They are looking like they are
+made for you.</p>
+<p><strong>hawkeye</strong>: We got to have these to wear with them. You
+know, by the time we get all this stuff on, it’ll be practically
+dark.</p>
+<p><strong>trapper</strong>: Yeah, maybe we ought to… Hey, who are
+they?</p>
+<p><strong>golf pro</strong>: Your caddies. But perhaps it is becoming
+too late to start.</p>
+<p><strong>trapper</strong>: Not at all. What’s your name, honey?</p>
+<p><strong>hawkeye</strong>: Come on, Trapper. We got to forget golf for
+today.</p>
+<p><strong>trapper</strong>: I don’t know why. As long as it’s light
+enough to see your caddie.</p>
+<p><strong>hawkeye</strong>: What’s the age of consent in this
+country?</p>
+<p><strong>golf pro</strong>: Which? I do not know what you mean.</p>
+<p><strong>hawkeye</strong>: Never mind. Let’s take one sport at a time.
+The place for tonight’s is the New Era Pediatric Hospital Et Cetera.</p>
+<p><strong>trapper</strong>: Soup? Rice? What are we doing, beginning
+all over again?</p>
+<p><strong>me lay</strong>: No, we had a clear soup to start. This is a
+thick one and you ought to taste it. There’s nothing like it back
+home.</p>
+<p><strong>trapper</strong>: How can I taste it now? We’ve already had
+like twelve courses.</p>
+<p><strong>michiko</strong>: You are not wishing to eat more? I bring
+you most special plum brandy.</p>
+<p><strong>trapper</strong>: I don’t want it. I don’t want to eat, I
+don’t want to drink. All I want…</p>
+<p><strong>me lay</strong>: Can you guys take one minute to look at a
+kid for me?</p>
+<p><strong>trapper</strong>: Now?</p>
+<p><strong>hawkeye</strong>: Why can’t you look at him?</p>
+<p><strong>me lay</strong>: I have but well, you know, I’ve been mainly
+an anesthetist a long time now and… well, I’d like you guys to take a
+look at him.</p>
+<p><strong>hawkeye</strong>: What’s the story?</p>
+<p><strong>me lay</strong>: Well, one of the girls got careless and two
+days ago she gave birth to an eight-pound American-Japanese male.</p>
+<p><strong>hawkeye</strong>: What’s wrong with him?</p>
+<p><strong>me lay</strong>: Every time we feed him, it either comes
+right back up or he coughs and turns blue and has a hell of a time.</p>
+<p><strong>trapper</strong>: We don’t have to see him. Call that
+halfassed Army hospital and tell them to be ready to put some lipiodol
+in this kid’s esophagus and take X- rays.</p>
+<p><strong>me lay</strong>: But it’s ten-thirty at night. We can’t get
+military personnel out for a civilian. A foreign civilian.</p>
+<p><strong>hawkeye</strong>: Don’t give them any unnecessary details.
+Just say the pros from Dover are on their way with an emergency. And
+you’d better get the OR cranked up because I got a feeling you’re going
+to pass some gas while I help Trapper close a little bastard’s
+tracheo-esophageal fistula.</p>
+<p><strong>first or nurse</strong>: Where did that baby come from? Is
+that what you got us up for?</p>
+<p><strong>hawkeye</strong>: Yes, ladies, that’s why we got you up. Me
+Lay, put him down there… …and get ready to start giving him the
+anesthetic. We stumbled on this deal. We didn’t want it but we don’t see
+how we can walk away from it, no matter whose rules are broken. This
+baby has no legal right to be taken care of in an Army hospital, though
+his father was probably an American soldier. But he’s going to die if we
+don’t fix him now, tonight. So what about it?</p>
+<p><strong>first or nurse</strong>: Let’s get going.</p>
+<p><strong>colonel merrill</strong>: This time I will not be
+intimidated!</p>
+<p><strong>colonel merrill</strong>: I command that this improper and
+illegal use of Army facilities cease immediately. Twice you men have
+forced me into appeasing your aggression by threatening me with what
+you’ll say to a certain Congressman. Well, I don’t care what you tell
+him or anyone else! I don’t care if it costs me my command and my whole
+career in the Army. On this point I stand as a matter of principle, as
+unshakable as the Rock of Gibraltar.</p>
+<p><strong>hawkeye</strong>: Me Lay? Trapper?</p>
+<p><strong>hawkeye</strong>: Is he out?</p>
+<p><strong>trapper</strong>: Like the Rock of Gibraltar.</p>
+<p><strong>me lay</strong>: He’s coming to.</p>
+<p><strong>hawkeye</strong>: Let’s get his clothes off quick.</p>
+<p><strong>me lay</strong>: Okay, Michiko.</p>
+<p><strong>colonel merrill</strong>: What the hell’s going on?</p>
+<p><strong>michiko</strong>: Please, you no worry, sweetheart. Just
+keeping close.</p>
+<p><strong>hawkeye</strong>: All right, that’s plenty. You can put your
+clothes on, Colonel.</p>
+<p><strong>colonel merill</strong>: I’ve been framed!</p>
+<p><strong>hawkeye</strong>: That’s what they all say. But I have
+photographic evidence here that you’re a lecherous old man and a
+disgrace to the uniform. However, I won’t even develop the film if your
+people watch that baby we operated on like he was the Congressman’s
+grandson. Which for all we know he may be.</p>
+<p><strong>michiko</strong>: Where is Captain McIntyre? I am waiting so
+long for him.</p>
+<p><strong>me lay</strong>: Give him a few hours, Michiko. Right now he
+couldn’t get up a flight of stairs.</p>
+<p><strong>voice</strong>: Captain Pierce and Captain McIntyre! Please
+contact the message center. Captain Pierce and Captain McIntyre!</p>
+<p><strong>hawkeye</strong>: It couldn’t be good news.</p>
+<p><strong>trapper</strong>: Where’s the goddam message center?</p>
+<p><strong>henry</strong>: What’s the lineup, Major?</p>
+<p><strong>leslie</strong>: Six cases ready for surgery, sir, and four
+more that just need a little more blood or a little more time for the
+antibiotics to take hold.</p>
+<p><strong>henry</strong>: I guess we can handle them, if there aren’t
+any six o’clock choppers. Every time they fly while it’s still daylight,
+they’ve got wounded that can’t wait.</p>
+<p><strong>radar</strong>: Chopper coming in, Colonel. Two of them, I’m
+afraid.</p>
+<p><strong>henry</strong>: Damn.</p>
+<p><strong>radar</strong>: And another one, but it’s from the south.
+There.</p>
+<p><strong>trapper</strong>: This one goes right to the OR. Tell Duke to
+do him ahead of the busted spleen. And this kid can’t wait. I’ll take
+him myself, before I get to that ruptured diaphragm.</p>
+<p><strong>hot lips</strong>: Captain… ‘This kid’ is a prisoner of
+war.</p>
+<p><strong>trapper</strong>: Yeah?</p>
+<p><strong>hot lips</strong>: It’s an American boy’s rupture you’re
+supposed to close.</p>
+<p><strong>trapper</strong>: Listen, we get a deluge like this, just
+deciding priorities on a medical basis is hard enough. So never mind the
+side issues.</p>
+<p><strong>lapham</strong>: Duke…</p>
+<p><strong>dago red</strong>: Nice looking kid. Going to be okay?</p>
+<p><strong>hawkeye</strong>: He’ll live if that’s what you mean. But
+somebody better be around when he comes to and finds out there’s nothing
+left between his legs.</p>
+<p><strong>duke</strong>: Pulse, slow, very little pressure.</p>
+<p><strong>trapper</strong>: Look at that right eye.</p>
+<p><strong>duke</strong>: Epidural hematoma?</p>
+<p><strong>trapper</strong>: I don’t know what else. You’ve been that
+route a little, haven’t you?</p>
+<p><strong>duke</strong>: Not enough to be a pro.</p>
+<p><strong>duke</strong>: Into the OR! Right now.</p>
+<p><strong>duke</strong>: Quick, Knocko, get me gloves, knife, hammer,
+chisel, Gelfoam and a drain.</p>
+<p><strong>duke</strong>: Okay, give me the hammer and chisel. There are
+drills you can make nice, neat holes in the skull with, but we ain’t got
+none. So here goes.</p>
+<p><strong>knocko</strong>: What happens now?</p>
+<p><strong>duke</strong>: We sew him up.</p>
+<p><strong>knocko</strong>: Pulse is way back. Nearly sixty.</p>
+<p><strong>duke</strong>: We took the pressure off his brain. You know,
+Knocko, this boy might just make it, and if he does you and me ought to
+be ready with a story.</p>
+<p><strong>knocko</strong>: What do you mean?</p>
+<p><strong>duke</strong>: One thing everybody knows for sure that don’t
+know hardly anything else, is how delicate any kind of brain surgery is.
+So I certainly wouldn’t like it if there was somebody going around
+saying all I did was crack him on the head with a hammer and chisel.</p>
+<p><strong>hawkeye</strong>: Get that bandage off so I can see what the
+hell’s underneath.</p>
+<p><strong>private first class</strong>: Mama, Mama! Oh, Mama, I’m
+dying!</p>
+<p><strong>hawkeye</strong>: Bring him to the OR right on this
+stretcher. I can’t take my finger out. Somebody find Ugly John and get
+his ass in there.</p>
+<p><strong>hawkeye</strong>: This one is urgent, Les. Start somebody
+cutting off his clothes. Tell the lab to come in with a couple of pints
+of low titre O, and type and cross-match him for five or six more. Get
+somebody to do two countdowns and start the blood. Come to think of it,
+get somebody to start rounding up donors, and send some cowboys to Seoul
+for all the goddam blood they can get. And get that miserable gas-passer
+in here!</p>
+<p><strong>ugly john</strong>: I’m here.</p>
+<p><strong>hawkeye</strong>: Good. Get him asleep and a tube in him if
+you can. His common carotid is cut and I can’t do anything with the
+son-of-a-bitch jumping all over the place. Find somebody to help me. I
+got to keep a finger on this or we lose him, and I can’t get it clamped
+with my left hand.</p>
+<p><strong>hawkeye</strong>: Grab this Kelly, ride it down my fingers
+and we’ll have this mother under control.</p>
+<p><strong>dago red</strong>: What do I do with it Hawk? This is a
+little out of my line.</p>
+<p><strong>hawkeye</strong>: Didn’t recognize you, Red. When you get the
+clamp all the way down, open it as wide as you can and see if you can
+close it on the artery.</p>
+<p><strong>dago red</strong>: I got it! I got it!</p>
+<p><strong>hawkeye</strong>: You got my finger for Christ’s sake. But
+maybe I can do better with my right hand. Pull it toward you. More.
+Good. There. That does it for now. We’ll keep him right where he is till
+Trapper John can give me a hand sewing that artery back together.</p>
+<p><strong>henry</strong>: Fifteenth straight day there’ve been six
+o’clock choppers. How long can a battle go on?</p>
+<p><strong>hawkeye</strong>: You got to relax, Henry. Since the deluge
+started, you been working in the OR and running the outfit, too.</p>
+<p><strong>trapper</strong>: Best thing you could do for all of us is
+grab some sack time.</p>
+<p><strong>hawkeye</strong>: Radar!</p>
+<p><strong>radar</strong>: Yes, sir? I’ve been trying to persuade the
+Colonel to take some rest.</p>
+<p><strong>duke</strong>: Well, stop persuading, just make him.</p>
+<p><strong>radar</strong>: Yes, sir. Come along, sir.</p>
+<p><strong>hawkeye</strong>: Believe me, Henry, outside of us, no one’ll
+even know you’re gone.</p>
+<p><strong>corpsman</strong>: This kid is pretty bad.</p>
+<p><strong>hawkeye</strong>: For you, Trapper.</p>
+<p><strong>trapper</strong>: Okay, but I’ll need you to help. Duke, will
+you take that belly back there? The Australian?</p>
+<p><strong>hawkeye</strong>: It’s in pretty deep.</p>
+<p><strong>trapper</strong>: Yeah, and he’s lost a lot of blood. I’m
+afraid it’s hit more that just the lung.</p>
+<p><strong>corpsman</strong>: You’ll be okay, boy.</p>
+<p><strong>ho-jon</strong>: I know. I got the best there is. Captain
+Pierce and Captain…</p>
+<p><strong>hawkeye</strong>: Christ, it’s Ho-Jon!</p>
+<p><strong>trapper</strong>: Hiya, Ho-Jon. You got a piece of a shell in
+your chest, but we’ll take it out as soon as you’ve had more blood. Hey,
+Radar!</p>
+<p><strong>trapper</strong>: Has that A-negative come from Seoul? We’ll
+need some in the OR.</p>
+<p><strong>radar</strong>: There isn’t any. We keep ordering and they
+don’t deliver.</p>
+<p><strong>hawkeye</strong>: We got to have at least one pint. It’s for
+Ho-Jon.</p>
+<p><strong>hawkeye</strong>: If we squeeze him through, I’m going to get
+him into Androscoggin College.</p>
+<p><strong>trapper</strong>: How about squeezing him through into
+Dartmouth? If all he wants to do is catch lobsters, he can learn that
+here.</p>
+<p><strong>hawkeye</strong>: Dartmouth’s too big and too expensive. If
+he’s as good as I think he is, he can move into the big league later.
+But Androscoggin first.</p>
+<p><strong>trapper</strong>: We’ll need room. The sixth rib goes.</p>
+<p><strong>hawkeye</strong>: Never mind the conversation. Do it,
+Dad.</p>
+<p><strong>trapper</strong>: You aspirate the blood from the chest
+cavity. Damn, there’s more of it than I thought.</p>
+<p><strong>hawkeye</strong>: If we don’t get that pint, he’s in
+trouble.</p>
+<p><strong>henry</strong>: Not now, honey. Gobacksleep.</p>
+<p><strong>trapper</strong>: I got it. Here, feel. In the cava.</p>
+<p><strong>hawkeye</strong>: I don’t feel anything.</p>
+<p><strong>trapper</strong>: Oh, Jesus.</p>
+<p><strong>trapper</strong>: I can’t feel it now either. The mother must
+have gone in.</p>
+<p><strong>hawkeye</strong>: I don’t get it.</p>
+<p><strong>trapper</strong>: It was in the cava and the hole sealed
+itself off. I must have jiggled it just enough to turn it loose. I can’t
+feel it in the heart or the right pulmonary artery. So it’s in the left
+pulmonary artery.</p>
+<p><strong>hawkeye</strong>: What do we do?</p>
+<p><strong>trapper</strong>: We’ll have to close this hole and make one
+on the other side.</p>
+<p><strong>hawkeye</strong>: Be kind of rough on him if there’s no
+blood. Why don’t we close up and sit on him a couple of days?</p>
+<p><strong>trapper</strong>: Sure, that’s the right way… at John Hopkins
+or someplace. But how do we know there won’t be even more of a jam-up a
+few days from now? Maybe we won’t be able to get to him when we want to.
+Maybe the goddam thing’ll erode the artery when nobody’s looking. Our
+best shot is now.</p>
+<p><strong>radar</strong>: A-negative. I’ve cross-matched it.</p>
+<p><strong>hawkeye</strong>: I though you said we didn’t have a
+drop.</p>
+<p><strong>radar</strong>: I found a doner.</p>
+<p><strong>trapper</strong>: How is he?</p>
+<p><strong>ugly john</strong>: Nice.</p>
+<p><strong>trapper</strong>: Arterial silk.</p>
+<p><strong>trapper</strong>: Ease off on those tapes, and let’s see how
+much it bleeds. How is he?</p>
+<p><strong>ugly john</strong>: Nice.</p>
+<p><strong>trapper</strong>: Boys, we’re home free.</p>
+<p><strong>hawkeye</strong>: When will he be able to write?</p>
+<p><strong>duke</strong>: What’s he got to write, for God’s sake?</p>
+<p><strong>hawkeye</strong>: An application to Androscoggin College.</p>
+<p><strong>henry</strong>: Colonel Blake here.</p>
+<p><strong>general hammond</strong>: I got news for you, Henry. You’ve
+been so concerned about that battle for Old Baldy. It’s all over.</p>
+<p><strong>henry</strong>: Thanks, General. Thanks for calling.</p>
+<p><strong>general hammond</strong>: He didn’t wait to hear who won.</p>
+<p><strong>trapper</strong>: She had this shiny black hair piled up on
+her head, but later on she let it hang loose and I’ll be damned if it
+didn’t come all the way down to her ass.</p>
+<p><strong>duke</strong>: I’ve always had a hankering for blonde pussy
+myself. My wife’s hair is a wonderful golden yellow, and this time of
+year it gets even lighter.</p>
+<p><strong>hawkeye</strong>: I guess that’s why you go for Hot Lips
+Houlihan.</p>
+<p><strong>duke</strong>: You know damn well I nearly puke when I look
+at her. I don’t even think she’s a real blonde.</p>
+<p><strong>hawkeye</strong>: How can you say a thing like that about an
+officer in the United States Army?</p>
+<p><strong>duke</strong>: I not only say it, I’ll back it up twenty
+buck’s worth.</p>
+<p><strong>hawkeye</strong>: You got yourself a bet, Georgia boy. You’re
+a witness.</p>
+<p><strong>trapper</strong>: Okay, I’m a witness, but how do you prove
+who’s right?</p>
+<p><strong>duke</strong>: There’s only one way.</p>
+<p><strong>trapper</strong>: It’s five minutes into nurses’ shower hour.
+Where are they?</p>
+<p><strong>hawkeye</strong>: They’re coming.</p>
+<p><strong>hawkeye</strong>: Hey, Knocko, I got those pictures you
+promised to look at of my kids. You too, Wilma. It won’t take a minute.
+You can see them too, if you want.</p>
+<p><strong>hot lips</strong>: No, thank you. I’m not the slightest bit
+interested.</p>
+<p><strong>duke</strong>: Okay, Yankee know-it-all! Pay up!</p>
+<p><strong>hot lips</strong>: This isn’t a hospital, it’s an insane
+asylum! And it’s your fault because you don’t do anything to discourage
+them!</p>
+<p><strong>henry</strong>: What do you expect me to do?</p>
+<p><strong>hot lips</strong>: Put them under arrest! See what a
+courtmartial thinks of their drunken hooliganism. It started with their
+calling me Hot Lips and your letting them get away with it. You let them
+get away with everything! And if you don’t turn them over to the MPs
+now, I’m going to resign my commission and…!</p>
+<p><strong>henry</strong>: Oh, g-g-goddamit, Hot Lips, resign your
+ggodam c-commission!</p>
+<p><strong>general hammond</strong>: Tell them I want to talk to all the
+officers on the post except those on emergency duty.</p>
+<p><strong>general hammond</strong>: …These are very serious
+accusations, and without prejudging the charges against him, I am
+suspending Colonel Blake from all his duties during the investigation,
+which I will conduct myself. I will also serve as your Commanding
+Officer during that time. I shall be calling on a number of you for your
+individual testimony on the points at issue.</p>
+<p><strong>hawkeye</strong>: Gimme three.</p>
+<p><strong>general hammond</strong>: At ease. Captain Pierce, you have a
+seriously wounded patient for whom you are responsible. Yet I find you
+in a poker game.</p>
+<p><strong>hawkeye</strong>: You betcher ass, Dad.</p>
+<p><strong>general hammond</strong>: What?</p>
+<p><strong>british officer</strong>: One to the dealer. You’re the
+opener.</p>
+<p><strong>hawkeye</strong>: Check.</p>
+<p><strong>general hammond</strong>: Pierce! That soldier requires
+immediate attention. I’m a surgeon and I know.</p>
+<p><strong>hawkeye</strong>: You betcher ass, General.</p>
+<p><strong>british officer</strong>: I’ll wager a dollar.</p>
+<p><strong>duke</strong>: I fold.</p>
+<p><strong>painless</strong>: See the bet.</p>
+<p><strong>norwegian officer</strong>: Me likewise.</p>
+<p><strong>general hammond</strong>: Are you going to take care of your
+patient or are you going to play poker?</p>
+<p><strong>british officer</strong>: King-high flush.</p>
+<p><strong>hawkeye</strong>: I’m going to play poker until three a.m. or
+until the patient is ready for surgery. However, if you’d like to
+operate on him yourself right now, be my guest. I get the same dough
+whether I work or not.</p>
+<p><strong>general hammond</strong>: I want to talk to you, Pierce.</p>
+<p><strong>hawkeye</strong>: There’s nothing to talk about, General. You
+take the case yourself or join me at three o’clock. Either way you’re
+liable to learn something.</p>
+<p><strong>ugly john</strong>: He’s practically there.</p>
+<p><strong>hawkeye</strong>: Please ask General Hammond to join us.</p>
+<p><strong>hawkeye</strong>: General, at one-thirty when I checked him
+last, this guy had had less than a pint of blood, and he’d lost two or
+three. His pulse then was 120 and his blood pressure was about 90. Now,
+at three o’clock, he’s had three pints of blood. His pulse is 80 and his
+pressure 120. His collapsed lung has been expanded and he’s had a gram
+of terramycin intravenously. We can operate on him safely and we should
+do it quickly, but we don’t have to do it frantically or carelessly.</p>
+<p><strong>hawkeye</strong>: Now, General, I’m going to sandbag you. Do
+you think we’re ready to get out of this belly?</p>
+<p><strong>general hammond</strong>: Obviously you don’t think so, and I
+don’t know why.</p>
+<p><strong>hawkeye</strong>: Well, Dad, we haven’t found any holes in
+the large bowel. They’ve all been in the small bowel, but the smell is
+different. I caught a whiff of large bowel, but it ain’t staring us in
+the face, right?</p>
+<p><strong>general hammond</strong>: Right.</p>
+<p><strong>hawkeye</strong>: So if it ain’t staring us in the face, it’s
+got to be retroperitoneal. And that, along with the look of the wounds,
+makes me figure he’s got a hole in his sigmoid colon that we won’t find
+unless we look for it.</p>
+<p><strong>hawkeye</strong>: And there it is.</p>
+<p><strong>general hammond</strong>: I’m impressed, Pierce. Naturally,
+the kind of job I have, I don’t get much chance to keep up with what
+goes on in the OR.</p>
+<p><strong>hawkeye</strong>: Neither does Henry Blake. But I’ll tell you
+what makes him the best C.O. you’ve got in any of your hospitals. He
+leaves all the medical decisions to the men who do the day- to-day work
+and understand what meatball surgery is.</p>
+<p><strong>trapper</strong>: It certainly isn’t Henry’s fault Hot Lips
+Houlihan doesn’t like her name.</p>
+<p><strong>duke</strong>: Or her figger.</p>
+<p><strong>hawkeye</strong>: She’s so square she’s even against our
+having a football team.</p>
+<p><strong>duke</strong>: You don’t think we’d be speaking up for a
+goddam Regular Army colonel, do you, if it wasn’t important? Begging
+your pardon, General. I forgot.</p>
+<p><strong>general hammond</strong>: Football?</p>
+<p><strong>trapper</strong>: Anybody you replaced Henry with couldn’t
+last. We guarantee that.</p>
+<p><strong>general hammond</strong>: I didn’t know you had a football
+team.</p>
+<p><strong>hawkeye</strong>: Well, it’s still pretty much in the talk
+stage.</p>
+<p><strong>general hammond</strong>: We had a team at the 325th Evac
+last fall. I coached the boys myself.</p>
+<p><strong>hawkeye</strong>: I think I heard about that.</p>
+<p><strong>general hammond</strong>: Now we’re working out a schedule of
+the outfits we’re going to play this year. We all chip into a pool and
+make bets.</p>
+<p><strong>hawkeye</strong>: Must be fun. But the point we want to make
+about Henry…</p>
+<p><strong>general hammond</strong>: I’m sure we could find a date for
+your team. Why don’t I take it up with Henry? Thanks for the drink,
+boys.</p>
+<p><strong>duke</strong>: Where the hell we going to get us a football
+team?</p>
+<p><strong>hawkeye</strong>: All three of us played for our schools. And
+there are at least four other guys…</p>
+<p><strong>trapper</strong>: But he’s got five times the man-power to
+draw on.</p>
+<p><strong>hawkeye</strong>: We can balance that by getting ourselves a
+ringer. Henry has to say he needs a neurosurgeon and put in a specific
+request for Dr. Oliver Harmon Jones.</p>
+<p><strong>duke</strong>: Never heard of him.</p>
+<p><strong>hawkeye</strong>: Sure you have, only as ‘Spearchucker’
+Jones.</p>
+<p><strong>duke</strong>: The nigra boy with the Philadelphia
+Eagles?</p>
+<p><strong>trapper</strong>: He only lasted one season.</p>
+<p><strong>hawkeye</strong>: On account he got caught in the doctor
+draft. He was a surgical resident playing semi-pro ball weekends when
+the Eagles signed him.</p>
+<p><strong>duke</strong>: How come nobody knows about him? And you
+do?</p>
+<p><strong>hawkeye</strong>: I worked with Spearchucker my first month
+over here, at the 72nd Evac in Taegu. Most of the colored guys know who
+he is but they’re not talking because he asked them not to.</p>
+<p><strong>trapper</strong>: So what makes you think he’ll play for
+us?</p>
+<p><strong>hawkeye</strong>: We’ll cut him in on the bets we make. And
+still have enough profit to send Ho-Jon to college.</p>
+<p><strong>trapper</strong>: Might make kind of a social issue, not
+having any other Negro officer.</p>
+<p><strong>hawkeye</strong>: He can move in here with us.</p>
+<p><strong>duke</strong>: Now wait a minute, Hawkeye. I come a long way,
+learning to put up with a couple of crazy Yankees, but…</p>
+<p><strong>hawkeye</strong>: Don’t tell me about your problems, boy.
+Explain them to Ho-Jon.</p>
+<p><strong>general hammond</strong>: If we had closer relations, there
+wouldn’t be any misunderstandings. That’s where a football game would
+help. Between your outfit and mine.</p>
+<p><strong>henry</strong>: A football game?</p>
+<p><strong>general hammond</strong>: Special Services in Tokyo are all
+for it. They say it’s one of the main gimmicks we have to keep the
+American way of life going here in Asia.</p>
+<p><strong>henry</strong>: But what about Major Houlihan?</p>
+<p><strong>general hammond</strong>: You mean Hot Lips? Screw her.</p>
+<p><strong>henry</strong>: N-n-no thanks, G-General.</p>
+<p><strong>spearchucker</strong>: If I can make a suggestion, Coach.</p>
+<p><strong>henry</strong>: The way I run an organization, any man in it
+has the right to speak his mind.</p>
+<p><strong>spearchucker</strong>: In that case, here are ten basic
+plays. I think that’s about all this bunch can handle.</p>
+<p><strong>henry</strong>: Thank you, Spearchucker. I’ll certainly take
+a look at these. Where the hell did you ever get that name?</p>
+<p><strong>spearchucker</strong>: I used to throw the javelin.</p>
+<p><strong>hawkeye</strong>: Listen, we look pretty lousy out there,
+right?</p>
+<p><strong>spearchucker</strong>: Well, for college players that have
+been out of training seven or eight years…</p>
+<p><strong>hawkeye</strong>: I’m thinking about how we can make more
+money. Suppose we bet only part of our dough and keep this big animal
+out of the game the whole first half and let them roll up some points.
+Then you could bet the rest of our bundle between the halves and get the
+General and his friends to give us some real odds.</p>
+<p><strong>henry</strong>: It’s a nice idea. I mean it has style.</p>
+<p><strong>hawkeye</strong>: It’s the only way we can make enough to put
+Ho-Jon through Androscoggin.</p>
+<p><strong>spearchucker</strong>: Those two big guys were tackles on the
+Cleveland Browns, and the redhead played halfback with the Rams.</p>
+<p><strong>henry</strong>: They can’t do that to me!</p>
+<p><strong>hawkeye</strong>: The bastards outconned us.</p>
+<p><strong>spearchucker</strong>: I think we could still have a
+chance.</p>
+<p><strong>hawkeye</strong>: If you start the game instead of waiting,
+you mean?</p>
+<p><strong>spearchucker</strong>: No, let’s stick to that strategy till
+we see whether you boys can do two things. The first is get that
+halfback out of the game. He had one year with the Rams before the Army
+got him, but he didn’t play too often because he’s one of those hot
+dogs.</p>
+<p><strong>duke</strong>: What?</p>
+<p><strong>spearchucker</strong>: When he sees a little running room, he
+likes to make a show… you know, stutter steps and cross-overs and all
+that jazz. Also he never learned to button up when he gets hit, so if
+you two can get a good shot at him once, you can hurt him.</p>
+<p><strong>hawkeye</strong>: But we’d have to break his leg or something
+to keep him out of the game for good.</p>
+<p><strong>trapper</strong>: Not necessarily.</p>
+<p><strong>ugly john</strong>: As long as there’s a pile-up, we can do
+our bit to encourage his permanent withdrawal from the contest.</p>
+<p><strong>trapper</strong>: It’s a technique Ugly John and I worked out
+in case something like this came up.</p>
+<p><strong>duke</strong>: Look at the size of those two beasts.</p>
+<p><strong>hawkeye</strong>: I don’t think I could hurt one of them with
+a sledgehammer.</p>
+<p><strong>spearchucker</strong>: You can make them run. They’ve got the
+occupational disease of oversized ex-athletes. They’re carrying thirty
+pounds extra apiece. So we run everything wide, wide, wide… make them
+move more then they want to on every play.</p>
+<p><strong>hawkeye</strong>: The pro halback is playing safety. Kick it
+to anybody else.</p>
+<p><strong>henry</strong>: Stop him! Stop that man!</p>
+<p><strong>duke</strong>: Sure, you just blindfold him first and tie him
+to a stake.</p>
+<p><strong>duke</strong>: Hawkeye!</p>
+<p><strong>spearchucker</strong>: That’s the stuff! Run the hams off
+those big hogs!</p>
+<p><strong>trapper</strong>: Okay, don’t give them a chance to get their
+breath. Hawkeye wide to the right.</p>
+<p><strong>spearchucker</strong>: Throw it! Throw it!</p>
+<p><strong>trapper</strong>: Wide to the left. Duke, you’re the
+pacesetter this time.</p>
+<p><strong>hawkeye</strong>: Don’t try to get it far down. Kick it up
+high so we can get there and surround that son-ofa-bitch.</p>
+<p><strong>duke</strong>: Yeah, if I can.</p>
+<p><strong>hawkeye</strong>: Let’s get him this time. I don’t think
+they’ve got anyone else who can carry the ball.</p>
+<p><strong>referee</strong>: Get off the guy! He’s tackled. You don’t
+all need to jump on.</p>
+<p><strong>325th captain</strong>: Time! Time!</p>
+<p><strong>trapper</strong>: Well, he’s taken care of. Scratch one hot
+dog.</p>
+<p><strong>duke</strong>: You really think we hurt him that bad?</p>
+<p><strong>trapper</strong>: Hell, no, all you did was knock the wind
+out of him. But he won’t be playing any more football today.</p>
+<p><strong>trainer</strong>: The Trainer has to assist the man, and the
+moment he lets go of him, the halfback crumples to the floor.</p>
+<p><strong>henry</strong>: Sorry. You obviously won’t be wanting any
+more bets.</p>
+<p><strong>general hammond</strong>: The hell we won’t! You bastards
+pulled something, I don’t know what, but we’ve been beating you without
+him. Ane we’ll go on beating you!</p>
+<p><strong>henry</strong>: You willing to b-back that up with odds?</p>
+<p><strong>general hammond</strong>: Damn right. Three to one, as much
+as you want to put up.</p>
+<p><strong>radar</strong>: General Hammond, sir, has just been informed
+about the identity of Captain Jones. His ringers recognized our
+ringer.</p>
+<p><strong>hawkeye</strong>: What’s the matter?</p>
+<p><strong>spearchucker</strong>: We may be in trouble, I can’t catch my
+breath. I’ve got the occupational disease of oversized ex-athletes.</p>
+<p><strong>spearchucker</strong>: Timeout! How much left?</p>
+<p><strong>referee</strong>: Minute and twenty-five seconds. And that’s
+a first down.</p>
+<p><strong>spearchucker</strong>: We got to stop them right here.</p>
+<p><strong>duke</strong>: And get ourselves another touchdown to win. I
+wish to hell we knew what they were plotting.</p>
+<p><strong>hawkeye</strong>: Radar!</p>
+<p><strong>radar</strong>: All you have to do is ask. The quarterback is
+saying they’ll run the old Statue of Liberty. Their left end will come
+across and take the ball out of his hand and try to get around our left
+end.</p>
+<p><strong>spearchucker</strong>: What else?</p>
+<p><strong>radar</strong>: Everyone’s talking at once, but now the
+captain is telling them to shut up. The quarterback says, if the Statue
+of Liberty doesn’t work, they’ll go into the double wing with the left
+halfback taking the handoff first and then slipping it to the right
+halfback heading to the left.</p>
+<p><strong>spearchucker</strong>: Time!</p>
+<p><strong>trapper</strong>: You got to be the one. We’re all agreed on
+that.</p>
+<p><strong>spearchucker</strong>: No, it’s too far and we’re all too
+bushed. I just told the referee we’re going to try something different.
+We make the center eligible by…</p>
+<p><strong>vollmer</strong>: Me? I can’t catch a pass.</p>
+<p><strong>spearchucker</strong>: You don’t have to. We line up with
+everybody to the right of center except Hawkeye, who drops back a yard
+just before the snap. At the same time Duke moves to the right side of
+the line. That makes you eligible but all you have to do is take the
+ball right back from Trapper between your legs and hide it under your
+belly. Trapper, you make like you got the ball, fake to me and keep
+going. One of the big guys will hit you, maybe both…</p>
+<p><strong>trapper</strong>: No! I only got my GI insurance.</p>
+<p><strong>spearchucker</strong>: As soon as that happens, Sergeant, you
+start walking, not running to their goal line. Remember that, don’t run!
+Come on, we just got time!</p>
+<p><strong>henry</strong>: What’s going on? What the hell are you
+doing?</p>
+<p><strong>henry</strong>: Then run for God’s sake! Run!</p>
+<p><strong>general hammond</strong>: Illegal! Illegal!</p>
+<p><strong>henry</strong>: We got it, men… Ho-Jon’s keep as
+Androscoggin… if there is such a place. And the big news is, the General
+wants a rematch.</p>
+<p><strong>trapper</strong>: I’ll tell you my news. I’m retiring from
+football.</p>
+<p><strong>duke</strong>: Me, too. Y’all just seen me play my last
+game.</p>
+<p><strong>hawkeye</strong>: Same here. You can retire my number.</p>
+<p><strong>henry</strong>: Well, there’s one big satisfaction.</p>
+<p><strong>spearchucker</strong>: What’s that, Henry?</p>
+<p><strong>henry</strong>: I out-coached that General Hammond.</p>
+<p><strong>trapper</strong>: It’s a massive one.</p>
+<p><strong>spearchucker</strong>: Isn’t he awful young…?</p>
+<p><strong>trapper</strong>: That’s the artery we sewed up last summer.
+Had to end up smaller, that much easier for the thrombosis to occur.</p>
+<p><strong>hawkeye</strong>: Pain bad, Ho-Jon?</p>
+<p><strong>ho-jon</strong>: I � wouldn’t � wish � it � on � a �
+maneating � shark.</p>
+<p><strong>trapper</strong>: More demerol.</p>
+<p><strong>ho-jon</strong>: You � must � open � me � up � again?</p>
+<p><strong>duke</strong>: No, Ho-Jon, we’re not going to open you
+up.</p>
+<p><strong>vollmer</strong>: Pair of sevens’ll say a buck.</p>
+<p><strong>painless</strong>: Make it two.</p>
+<p><strong>radar</strong>: Two dollars to you, Trapper.</p>
+<p><strong>trapper</strong>: Sorry. I’m out.</p>
+<p><strong>hawkeye</strong>: Henry’s got our orders! We’re going
+home!</p>
+<p><strong>duke</strong>: When?</p>
+<p><strong>hawkeye</strong>: Any time. Whenever we want.</p>
+<p><strong>duke</strong>: Be right with you.</p>
+<p><strong>spearchucker</strong>: You mind if we get out of this guy’s
+brain first?</p>
+<p><strong>duke</strong>: What’s there to do? You found the sliver.</p>
+<p><strong>spearchucker</strong>: There might be another tiny piece we
+missed. I want to look around before we close up.</p>
+<p><strong>duke</strong>: Perfectionist.</p>
+<p><strong>hawkeye</strong>: There’s no transportation anyway this time
+of night.</p>
+<p><strong>duke</strong>: We could steal one of the choppers.</p>
+<p><strong>hawkeye</strong>: I looked. Suspicious bastards got them all
+locked up.</p>
+<p><strong>duke</strong>: Y’all mind the store.</p>
+<p><strong>trapper</strong>: Four goddam months. And they don’t even
+give you time off for good behavior.</p>
+<p><strong>hawkeye</strong>: See you.</p>
+<p><strong>spearchucker</strong>: It’s possible</p>
+<p><strong>hawkeye</strong>: Hang in there.</p>
+<p><strong>trapper</strong>: Why don’t you for Christ’s sake get the
+hell out of here?</p>
+<p><strong>medical corps sergeant</strong>: Excuse me, gentlemen, but
+are you sailing on the troopship tomorrow?</p>
+<p><strong>duke</strong>: That’s right.</p>
+<p><strong>medical corps sergeant</strong>: May I have your names,
+please?</p>
+<p><strong>duke</strong>: Sure, my…</p>
+<p><strong>hawkeye</strong>: What for?</p>
+<p><strong>medical corps sergeant</strong>: We need medical officers for
+short- arm inspection starting the first afternoon out.</p>
+<p><strong>hawkeye</strong>: Oh, certainly, Sergeant. My name is Captain
+George Limburger, and this is Captain Walter Camembert.</p>
+<p><strong>medical corps sergeant</strong>: C-A-M-E-M…?</p>
+<p><strong>hawkeye</strong>: B-E-R-T, right. See you tomorrow.</p>
+<p><strong>medical corps sergeant</strong>: Oh, I’m not sailing with
+you. I work out of the hospital here.</p>
+<p><strong>duke</strong>: I thought we were heading for trouble putting
+on all these trinkets.</p>
+<p><strong>hawkeye</strong>: We got to start rehabilitating, Duke, if we
+want to be halfway human by the time we get back to our wives.</p>
+<p><strong>duke</strong>: But no short-arm inspection. I’m with you
+there.</p>
+<p><strong>hawkeye</strong>: Screw it. We been earning our keep as
+respectable knife artists. Why should we do work any pill-rolling punk
+could handle?</p>
+<p><strong>second medical corps sergeant</strong>: Captain Limburger!
+Captain Camembert!</p>
+<p><strong>second medical corps sergeant</strong>: Captain Camembert!
+Captain Camembert!</p>
+<p><strong>hawkeye</strong>: Excuse me, Sergeant.</p>
+<p><strong>second medical corps sergeant</strong>: Yes, Reverend?</p>
+<p><strong>hawkeye</strong>: What do you want with those two medical
+officers?</p>
+<p><strong>second medical corps sergeant</strong>: They’re supposed to
+hold short-arm inspection.</p>
+<p><strong>duke</strong>: You can’t be serious, man.</p>
+<p><strong>second medical corps sergeant</strong>: Why not?</p>
+<p><strong>duke</strong>: The reason they’re being shipped home is
+they’re the two biggest fairies in the Far East Command.</p>
+<p><strong>hawkeye</strong>: Be the longest short-arm inspection you
+ever held!</p>
+<p><strong>second medical corps sergeant</strong>: Thanks, Reverend.
+Thank you both for tipping me off. You don’t know a Captain Forrest or a
+Captain Pierce, do you?</p>
+<p><strong>hawkeye</strong>: They missed the boat.</p>
+<p><strong>second medical corps sergeant</strong>: Thanks.</p>
+<p><strong>hawkeye</strong>: Glad to help.</p>
+<p><strong>duke</strong>: This a closed game or you take anybody’s
+dough?</p>
+<p><strong>first dice player</strong>: Well, almost anybody’s.</p>
+<p><strong>second dice player</strong>: Kind of a rough game,
+Reverend.</p>
+<p><strong>duke</strong>: Hell, man, that don’t matter. We’re loaded. We
+were big wheels in the black market in Seoul.</p>
+<p><strong>hawkeye</strong>: Plus running the opium concession for the
+whole Eighth Army.</p>
+<p><strong>signal corps captain</strong>: They’re not chaplains at all.
+They’re doctors from the 4077th Mash. I had a piece of steel dug out of
+my back there.</p>
+<p><strong>second dice player</strong>: Pleasure to have you. Lot of my
+men went through your outfit.</p>
+<p><strong>hawkeye</strong>: Glad to know you. Listen, we’re ducking
+short-arm inspection but our cover isn’t going to last long. How would
+you two boys like to do us a favor? Be Forrest and Pierce of the Medical
+Corps between here and Seattle.</p>
+<p><strong>signal corps captain</strong>: We wouldn’t know how to go
+about it.</p>
+<p><strong>hawkeye</strong>: Nothing to it. You just turn a chair around
+backwards and rest your chin on the top. You sit there with a big cigar
+in your mouth and and every now and then, just to show you’re looking,
+you say, ‘Don’t wave it so close to my cigar, soldier.’ That’s all you
+do. You can’t go wrong.</p>
+<p><strong>stewardess</strong>: I’ve told you twice to put away that
+bottle. Now I’ll have to ask the captain to come back and speak to
+you.</p>
+<p><strong>hawkeye</strong>: Never mind your captain, honey. I’ll take
+care of mine. Till we land in Chicago.</p>
+<p><strong>announcer’s voice</strong>: Flight 616 for Cincinnati,
+Knoxville and Atlanta, now boarding at Gate Five.</p>
+<p><strong>duke</strong>: Let’s hear from you, you goddam Yankee. Be
+nice to see you some time.</p>
+<p><strong>hawkeye</strong>: Like the Spearchucker said, that’s
+possible. Anyway, it’s been an interesting association.</p>
+<p><strong>five-year-old</strong>: How they goin’, Hawkeye?</p>
+<p><strong>hawkeye</strong>: Finest kind.</p>
+</body>
+</html>

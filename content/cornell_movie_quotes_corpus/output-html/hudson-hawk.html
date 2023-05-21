@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>hudson-hawk</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="hudson-hawk">hudson-hawk</h1>
+<p><strong>unforgettable juggler</strong>: Leonardo, che pazzo.</p>
+<p><strong>da vinci</strong>: Basta vapore.</p>
+<p><strong>apprentice two</strong>: Maestro, che meraviglia!</p>
+<p><strong>apprentice three</strong>: Lei e’ proprio fantastico!</p>
+<p><strong>da vinci</strong>: Lasciatemi, solo. Solo!</p>
+<p><strong>da vinci</strong>: L’ho fatto.</p>
+<p><strong>wise guard</strong>: We’re losing our biggest celebrity
+today.</p>
+<p><strong>young guard</strong>: You’re kidding, Petey the Paint Thinner
+Killer is getting paroled?</p>
+<p><strong>wise guard</strong>: Not that slime, you Fizzhead. Hudson
+Hawk. The last of the great cat burglars.</p>
+<p><strong>wise guard</strong>: As a thief, Hawk was a poem. Iambic
+fucking pentameter. You know, Crime used to have a little class. A
+hundred reporters were here when he came in, now they’re probably out
+covering some tired crack gang war…</p>
+<p><strong>hawk</strong>: Remind me to fire my publicist.</p>
+<p><strong>young guard</strong>: Darn, these are for L-block…</p>
+<p><strong>young guard</strong>: - go back down to security and-</p>
+<p><strong>wise guard</strong>: Guess this means, Hawk, you’ll be able
+to let yourself back in…</p>
+<p><strong>hawk</strong>: Never happen. Bet. Ten bucks.</p>
+<p><strong>hawk</strong>: Oh, give this back to Petey in A block. Tell
+him it was a sweet gift, but I think he got some wrong ideas about our
+friendship.</p>
+<p><strong>young guard</strong>: The Paint Thinner Killer did this? I
+think you picked a good day to get out…</p>
+<p><strong>wise guard</strong>: Hope I lose the bet. Have that
+cappuccino on me.</p>
+<p><strong>hawk</strong>: You got it. A double.</p>
+<p><strong>antony</strong>: Welcome back, buddy ol’ pal. We’ve got a
+proposition…</p>
+<p><strong>hawk</strong>: Answer’s no, not even if you bathe. Cesar
+Mario, Antony Mario, how’s the “Family?” Kill any monkeys lately?</p>
+<p><strong>cesar</strong>: How many times do I have to say it? I didn’t
+put the hit on Little Eddie… Never had anything against that kooky
+chimp. I actually found him, “endearing.”</p>
+<p><strong>hawk</strong>: Sure. Face down. Two endearing shots to the
+back of the head. That’s your mark, man. What did Little Eddie ever do
+to…</p>
+<p><strong>cesar</strong>: You’re hitting Rutherford’s Auction House.
+Easy as my brother’s wife. Directions are in the bag. Just open the
+seventh floor safe and take out the thingie…</p>
+<p><strong>hawk</strong>: Or you cut off my thingie. Directions even
+your brother would understand.</p>
+<p><strong>antony</strong>: Yeah, directions even I could
+understand.</p>
+<p><strong>cesar</strong>: Hawk, you’re a great thief. Got set up, did
+some time, nothing to be ashamed of. Don’t give me a sonata about you
+always just really wanted to settle down, open a hardware Store and sell
+spatulas…</p>
+<p><strong>hawk</strong>: If the Mario brothers weren’t Jersey’s third
+largest family, I’d say kiss my ass. But considering your status, I’ll
+say slurp my butt.</p>
+<p><strong>cesar</strong>: What’s your favorite sport, Hawk?</p>
+<p><strong>hawk</strong>: Baseball, why?</p>
+<p><strong>hawk</strong>: I meant, ping pong. Listen, I’d rather go back
+in than whore for you… Oh, I need to borrow ten dollars.</p>
+<p><strong>hawk</strong>: Help? Police?</p>
+<p><strong>cesar</strong>: You need some time to think. That’s cool, but
+next time, I’m not going to say “Please.”</p>
+<p><strong>hawk</strong>: I don’t believe this. I’ve been out forty
+seconds…</p>
+<p><strong>alex</strong>: That’s the first thing I did. Smooch the
+ground and taste the freedom. Sorry I was late. Miss anything?</p>
+<p><strong>hawk</strong>: Your timing, and your shoes, are impeccable…
+Good to see you, Alex, been having a lousy day.</p>
+<p><strong>alex</strong>: Lousy day? The man’s getting out of prison and
+he’s having a lousy day. What, you missing out on the Cell Block Water
+Ballet pageant? Believe me, it’s overrated.</p>
+<p><strong>alex</strong>: Where’s the kiss? No tongue this time, I
+promise.</p>
+<p><strong>hawk</strong>: Looks like you’ve been expanding your…</p>
+<p><strong>alex</strong>: Don’t say it, Hawkins. I’m incredibly
+sensitive about my fucking figure.</p>
+<p><strong>hawk</strong>: My next word was gonna be “consciousness.”
+Swear to God… tubby.</p>
+<p><strong>hawk</strong>: That’s your definition of “Hard?”</p>
+<p><strong>alex</strong>: Show off. Hey, boss tune. “Come Fly with
+Me.”</p>
+<p><strong>hawk</strong>: Three minutes, 51 seconds.</p>
+<p><strong>alex</strong>: Still do the puzzles, still know the running
+times of songs, and I’ll bet you’re still the best damn cat burg–</p>
+<p><strong>hawk</strong>: Not anymore. Now I’m the laziest damn cat
+burg–I’m going to take it so straight that I won’t tape a Mets game
+without the expressed written consent of the National Baseball
+League.</p>
+<p><strong>alex</strong>: Now that you’re born again,what do you wanna
+do? Statue of Liberty? Entertain some ladies? Miss Saigon tix? Seduce
+some women? Play Nintendo? Bone some chicks?</p>
+<p><strong>hawk</strong>: Come on, Alex, let’s just get to Alex’s. Your
+bar’s the only place that’s going to cheer me. God, I’d kill for a damn
+cappuccino. What the hell’s a Nintendo?</p>
+<p><strong>alex</strong>: Oh man, you still got a thing for those
+unmasculine European coffees? Who’s your buddy?</p>
+<p><strong>hawk</strong>: The man knows, the man knows!</p>
+<p><strong>alex</strong>: So Mr. Coffee, what went down outside the
+prison?</p>
+<p><strong>hawk</strong>: Oh, not much. Mario Brothers want me to do a
+job.</p>
+<p><strong>alex</strong>: Those dago-guinea-I can say this shit I’m
+Italian-wop motherfu–</p>
+<p><strong>hawk</strong>: Ah, had the perfect amount of foam. Just get
+me to the bar… It’s the one good thing in my life that’ll never
+change….</p>
+<p><strong>alex</strong>: I didn’t know how to tell you. A couple
+brokers stopped in for Stoley Spritzers one night. Next thing I know
+Fast Track Digest votes us “Watering Hole of the Month.” Now, I’m
+shopping for Aqua Salmon wallpaper.</p>
+<p><strong>hawk</strong>: I read about these people in Newsweek. Where’s
+all the regulars, Crazy Jeff Cava, the Todd sisters, Indian Joe? Where’s
+Ed Kranepool’s autograph? Captain Bob’s steering wheel?</p>
+<p><strong>alex</strong>: Hey, get this irritable guy a cappuccino. I
+gotta go be a boss.</p>
+<p><strong>hawk</strong>: This is Pizza? Reindeer Goat cheese? I admit,
+I’ve been known to go wild and order a Canadian Bacon in my time,
+but..</p>
+<p><strong>tortoise shell non-smoker</strong>: Can you read….
+smoker?</p>
+<p><strong>hawk</strong>: Can you take a sunrise and sprinkle it with
+dew?</p>
+<p><strong>tortoise shell non-smoker</strong>: No.</p>
+<p><strong>hawk</strong>: The Candy Man can, Felix. You know, I thought
+this was a country where you could do any stupid thing you wanted; drive
+to work naked, make love to a V.C.R. Guess I’m wrong. Maybe that’s why I
+became a serial arsonist.</p>
+<p><strong>tortoise shell non-smoker</strong>: Hey, it’s okay, big guy.
+Smoke all you want. Have mine….</p>
+<p><strong>gates</strong>: You’re under arrest…</p>
+<p><strong>gates</strong>: Have a seat. Good to see you, buddy ol’
+pal…</p>
+<p><strong>hawk</strong>: The pleasure’s all yours, Officer Gates.</p>
+<p><strong>gates</strong>: Why do you show your parole officer such
+disrespect? Especially after I got you such a nice job.</p>
+<p><strong>hawk</strong>: What job?</p>
+<p><strong>gates</strong>: The auction house, asshole. One night’s work
+and you’re free like no ex-con’s ever been. No checking in with a
+shrink, no community service teaching retards how to play air hockey.
+It’s a great deal, I can’t lie.</p>
+<p><strong>hawk</strong>: The only thing you can’t do is get sex for
+free. I know I was in prison for like basically the 80’s, but, call me
+daffy, aren’t you supposed to stop me from committing crimes. You know,
+Book-em-Dano, Call-for-backup, Give-a-Hoot-Don’t-Pollute.</p>
+<p><strong>gates</strong>: You wouldn’t be out if it wasn’t for me! I
+did dog and pony for you! You think they would have let you out after
+what you did, you told the board members they looked like the Three
+Stooges…</p>
+<p><strong>hawk</strong>: How was I supposed to know they were women?
+Besides one of them was bald and kept saying “Soitinly.”</p>
+<p><strong>gates</strong>: Remember that guy in the cell next to you who
+hung himself?</p>
+<p><strong>hawk</strong>: Yes.</p>
+<p><strong>gates</strong>: Remember that shoe you lost…</p>
+<p><strong>hawk</strong>: Uh, yeah. Cut to the chase.</p>
+<p><strong>gates</strong>: One phone call and your shoe will become a
+piece of evidence and that suicide’ll become a murder.</p>
+<p><strong>hawk</strong>: What else do you got under there … I don’t
+want to be rude, but this is all pretty lame.</p>
+<p><strong>gates</strong>: That’s the beauty. It’s bullshit, but I can
+make it stick because I’m a good guy parole officer and you re a bad guy
+who’s about to find out that there’s a thin line between ex-con and
+escape con.</p>
+<p><strong>alex</strong>: How is everything tonight, sir?</p>
+<p><strong>gates</strong>: Beat it, Alex. You’re a dinosaur.</p>
+<p><strong>hawk</strong>: Alex, did you know this ape was going to be
+here…</p>
+<p><strong>alex</strong>: Sure. That’s why his meatballs are made out of
+marinated Chuck Wagon.</p>
+<p><strong>gates</strong>: You’re full of shit.</p>
+<p><strong>alex</strong>: No, man, actually you are. Just add water and
+it makes its own gravy. Keeps your teeth healthy and your coat
+shiny.</p>
+<p><strong>alex</strong>: Hmmmm…..</p>
+<p><strong>hawk</strong>: Yo Pandora, quit hummm-ing… look at this.</p>
+<p><strong>hawk</strong>: It’s Captain Bob’s steering wheel! Remember
+when the Captain…..</p>
+<p><strong>alex</strong>: Hmmm, nasty little safe on the 7th.</p>
+<p><strong>hawk</strong>: The safe’s a Simpson 71. Last time I played
+the game, Simpson only had a 40.</p>
+<p><strong>alex</strong>: Just means it’ll take you an extra 31 seconds
+to seduce. You re still the best, I know it.</p>
+<p><strong>hawk</strong>: But you got three guards who… Shit, what am I
+doing? Where’s the want ads? Gonna sell some spatulas.</p>
+<p><strong>alex</strong>: Hey, I’m sorry, man. I’m putting out a fire
+with kerosene.</p>
+<p><strong>hawk</strong>: This isn’t funny. I’m not into this. I…</p>
+<p><strong>alex</strong>: There goes five seconds…My record’s
+eighteen.</p>
+<p><strong>hawk</strong>: You’re not…LISTENING!</p>
+<p><strong>hawk</strong>: I’m sorr–Goddamn Mario Brothers. Goddamn
+Gates. Goddamn Rutherford Auction House. By the way, how many
+seconds?</p>
+<p><strong>alex</strong>: Rutherford Auction… that name…</p>
+<p><strong>hawk</strong>: Alex!</p>
+<p><strong>alex</strong>: Don’t wet your diapers. I’ll have to change
+them. “Witchcraft.” What’s the running time?</p>
+<p><strong>hawk</strong>: 3:48. I can’t get you involved, man. This is
+my sewage and… God, you love all this, don’t you, you bastard. Haven’t
+you ever heard of stamp collecting, or curling?</p>
+<p><strong>alex</strong>: I’m in. Have you seen the public service
+announcements for Diabetes. We can ride horses, play LaCrosse, and knock
+off auction houses. I got a plan. You won’t have to hail Cesar or
+Gates.</p>
+<p><strong>hawk</strong>: I’m a bum.</p>
+<p><strong>hawk</strong>: Whoa, you better cut a bigger hole than
+that.</p>
+<p><strong>alex</strong>: Hey, you promised……Don’t worry, I’m wearing my
+girdle.</p>
+<p><strong>hawk</strong>: Cameras?</p>
+<p><strong>alex</strong>: No need. Guards’ station’s right there.</p>
+<p><strong>alex</strong>: They record everything their video
+surveillance takes in…</p>
+<p><strong>hawk</strong>: Yes, master-thief, I can see that. You said
+something about a plan…</p>
+<p><strong>alex</strong>: Am I boring you, smartass? Watch. A little
+rewind and re-wire action and the Guards are going to be watching a
+rerun and miss out on our exciting episode.</p>
+<p><strong>security guard one</strong>: Check out Big Stan… Big
+Stan!</p>
+<p><strong>alex</strong>: You got about five minutes and change.</p>
+<p><strong>hawk</strong>: 5:32. “Swinging on a Star.”</p>
+<p><strong>alex</strong>: You know they invented something while you
+were inside. Called a watch.</p>
+<p><strong>hawk</strong>: “A mule is an animal with long funny
+ears.”</p>
+<p><strong>alex</strong>: “He kicks up at anything he hears.</p>
+<p><strong>hawk</strong>: “Or would you rather swing on a star, carry
+moonbeams home in a jar.”</p>
+<p><strong>security guard two</strong>: Hell-o. Check the Power room,
+bud…</p>
+<p><strong>alex</strong>: swing on a star, carry moonbeams…</p>
+<p><strong>hawk</strong>: “Or would you rather be a fish?”</p>
+<p><strong>big stan</strong>: Very funny.</p>
+<p><strong>hawk</strong>: “A fish is annuh nan na nan na brook.</p>
+<p><strong>alex</strong>: “He can’t write his name or read a book. To
+fool people is his only thought.”</p>
+<p><strong>hawk</strong>: “And though he’s slippery, he still gets
+caught.”</p>
+<p><strong>security guard two</strong>: Uh, Jerry. I’m looking at the
+seventh floor and I don’t know how to say this, I see the Blue
+Chair.</p>
+<p><strong>security guard one</strong>: What the… You think that’s
+weird, check out screen two…..</p>
+<p><strong>security guard two</strong>: Somebody rewired the
+recorders!</p>
+<p><strong>hawk</strong>: “And all the monkeys aren’t in the zoo.”</p>
+<p><strong>alex</strong>: “Every day you meet quite a few.”</p>
+<p><strong>hawk and alex</strong>: “So you see it’s all up to you. You
+can be better than you are. You could be swinging on a star.”</p>
+<p><strong>security guard one</strong>: Shit, let’s roll!</p>
+<p><strong>alex</strong>: The song’s over! Come on! “You could be
+swinging on a star.”</p>
+<p><strong>hawk</strong>: What am I doing here? There are so many things
+I wanna do that aren’t this. Paint a lighthouse. Kiss a woman in
+Italy.</p>
+<p><strong>alex</strong>: “You could be swinging on a star.”</p>
+<p><strong>hawk</strong>: Paint a woman in a lighthou–I don’t want to
+steal a horse. Life is…</p>
+<p>****: “You could be swinging on a star.” You couldn’t have waited to
+see a psychiatrist. No, you had…</p>
+<p><strong>hawk</strong>: Let’s go down the freight elevator.</p>
+<p><strong>alex</strong>: Keep those ideas coming.</p>
+<p><strong>alex</strong>: I’m not as unpleasantly plump as that Guard am
+I.</p>
+<p><strong>hawk and alex</strong>: I got a bad feeling….</p>
+<p><strong>hawk</strong>: I can’t even swim.</p>
+<p><strong>alex</strong>: Hell, the fall’ll probably kill ya…</p>
+<p><strong>gates</strong>: Hudson Hawkins gets the chair of honor. How
+about a Gates-arita? I used real hot dogs.</p>
+<p><strong>hawk</strong>: Weren’t you the bartender at Jonestown?</p>
+<p><strong>cesar</strong>: Good job, not pretty, but good.</p>
+<p><strong>hawk</strong>: Ah, the mafia, the cops; do I know how to
+party or what?</p>
+<p><strong>gates</strong>: All this trouble for a horsey. I may not know
+art, but I know what I like.</p>
+<p><strong>hawk</strong>: You certainly do.</p>
+<p><strong>gates</strong>: So when’s that Sebastian-Cabot-
+Buckingham-Palace-looking- Butlerhead getting here?</p>
+<p><strong>alfred</strong>: Any minute now, dear Mr. Gates.</p>
+<p><strong>gates</strong>: Oh, sorry Jeeves. Gates-arita?</p>
+<p><strong>alfred</strong>: I’ll pass. May I?</p>
+<p><strong>alfred</strong>: Ah, such craftsmanship. Leonardo Da Vinci’s
+last commission for the Duke of Milan. Irreplaceable.</p>
+<p><strong>gates</strong>: Hey, Mr. French, I’m delirious for you. Now
+where’s my cut?</p>
+<p><strong>gates</strong>: You son-of-a……I don’t believe this! You come
+into my house!</p>
+<p><strong>gates</strong>: I ought to take Big Ben and shove it up your
+limey blimey bunghole!</p>
+<p><strong>gates</strong>: Like I said. Where’s my cu-u-…</p>
+<p><strong>alfred</strong>: So much for his “cut.” Excuse my dry British
+humor.</p>
+<p><strong>cesar</strong>: Lovely work, Alfred, taking the Concorde
+back?</p>
+<p><strong>alfred</strong>: Indeed I am, Mr. Mario. I’m really racking
+up those frequent flyer points…</p>
+<p><strong>hawk</strong>: I hate to interrrupt you two lovebirds…</p>
+<p><strong>antony</strong>: You know, I think Gates promised Hawk a cut,
+too….</p>
+<p><strong>alfred</strong>: Ta ta, Hudson Hawk.</p>
+<p><strong>hawk</strong>: Too-do-loo, babe.</p>
+<p><strong>alex</strong>: Did I miss anything?</p>
+<p><strong>hawk</strong>: Oh, not much. Gates just had his tonsils taken
+out. The hard way.</p>
+<p><strong>alex</strong>: Geez, Gates was killed. Who do we send the
+thank you note to?</p>
+<p><strong>hawk</strong>: The Butler did it. Guy was a cross between
+Alistair Cook and a Cuisinart. Dude took Mr. Ed and humptied dumptied it
+over Gates’s head. He said it was made by, get this, Leonardo..</p>
+<p><strong>alex</strong>: Ah yes, a rare Renaissance piece. Da Vinci’s
+“Sforza,” an equestrian model of a never executed statue. I consider it
+to be the prize of tonight’s auction of objets d’equestrian. Horse
+things.</p>
+<p><strong>hawk</strong>: Okay, you got me, Mr. PBS.</p>
+<p><strong>alex</strong>: Morning edition. Seems two thieves “attempted”
+to steal it last night, but thanks to three “courageous” guards, it will
+be ready for tonight.</p>
+<p><strong>hawk</strong>: “Attempted.” At-tempt-ted! I’m not happy about
+having to steal that horse, but I do have my pride. Face it, when it
+comes to burglary, and sex, I….</p>
+<p><strong>hawk</strong>: Boing. Uh, this I don t understand…</p>
+<p><strong>alex</strong>: Why try?</p>
+<p><strong>hawk</strong>: Because I’m tired of not understanding things.
+Cops, Mafia, and butlers forcing me to bust my ass to steal something,
+which it turns out I really didn’t steal–it’s fucked up.</p>
+<p><strong>alex</strong>: You re not thinking of going to…</p>
+<p><strong>hawk</strong>: Alex, my man, it’s time to play a little
+offense. Where’s your tux?</p>
+<p><strong>eccentric bald auctioneer</strong>: …fan-taas-tic example of
+Florentine marble… Who will start at 160,000…160,000……180,000.</p>
+<p><strong>hawk</strong>: All these years of attending auctions, I still
+get goosebumps. The paintings, the sculptures….the things that aren’t
+really paintings or sculptures…</p>
+<p><strong>the woman</strong>: …. the pretentious vultures who don’t
+even look up from their calculators to see what they’re buying. Now that
+gives me goosebumps. Auctions are disgusting.</p>
+<p><strong>hawk</strong>: I couldn’t agree more. Savages.</p>
+<p><strong>eccentric bald auctioneer</strong>: Lot Fifteen, an
+equestrian sconce attributed to the Cellini school..</p>
+<p><strong>eccentric bald auctioneer</strong>: Sold! To the caller from
+Newfoundland.</p>
+<p><strong>eccentric bald autioneer</strong>: And finally, Lot number
+17, thought to be lost in the war, and again last night, the Da Vinci
+“Sforza,” the jewel of the sale. Fan-taas-tic…</p>
+<p><strong>hawk</strong>: Is looking like a constipated warthog a
+prerequisite to getting a job in the art world?</p>
+<p><strong>eccentric bald auctioneer</strong>: There have naturally been
+questions of its authenticity, so to verify we have Doctor Anna Baragli
+of the Vatican. Doc?</p>
+<p><strong>anna</strong>: Some of us warthogs are more constipated than
+others.</p>
+<p><strong>hawk</strong>: Oh, the shit is going to hit the fa–</p>
+<p><strong>anna</strong>: Fantastic. Perfection. The Vatican extends its
+jealousy to the lucky bidder.</p>
+<p><strong>eccentric bald auctioneer</strong>: We’ll begin the bidding
+at 82.5 million dollars. To you, sir. Eighty-three, Ninety–your bid,
+madame–Ninety point five…..</p>
+<p><strong>darwin mayflower</strong>: lOO million clams, Francesco!</p>
+<p><strong>eccentric bald auctioneer</strong>: 100 million dollars to
+Mr. Darwin Mayflower.</p>
+<p><strong>minerva</strong>: Francesco, 100 million and one.</p>
+<p><strong>darwin</strong>: Outbid by my own wench, quelle bummere.</p>
+<p><strong>minerva</strong>: Poor baby….. Here, Bunny.</p>
+<p><strong>eccentric bald auctioneer</strong>: Fan-taas-tic, the bid is
+at 100 million and one dollars.</p>
+<p><strong>eccentric bald auctioneer</strong>: Go-ing!</p>
+<p><strong>eccentric bald auctioneer</strong>: Go-ing!</p>
+<p><strong>eccentric bald auctioneer</strong>: Gone!</p>
+<p><strong>anna</strong>: My God, that was bold of you, you didn’t have
+to do that…</p>
+<p><strong>hawk</strong>: Forget about it–it was nothing– anybody would
+have done the same thing–It’s an impulse…</p>
+<p><strong>anna</strong>: No, I meant you didn’t have to tackle me and
+rip my dress. A polite push, perhaps? A clear shout of “watch out, Anna”
+would have done nicely…</p>
+<p><strong>hawk</strong>: Excuse me, Milady. I would have flown over and
+carried you up to a pink cloud, but I left my cape at the cleaners.</p>
+<p><strong>anna</strong>: Thanks tough guy, thanks a lot. Why was the
+guard chasing you?</p>
+<p><strong>hawk</strong>: Because Danger, Doc, is my middle…</p>
+<p><strong>hawk</strong>: Saint Pete, hey I know, the whole cat burglar
+thing, it sounds bad, but I’ll take the worst cloud you got…</p>
+<p><strong>cesar</strong>: News flash. You’re not in heaven. Yet. 30
+seconds and counting, if you know what I’m saying. Couldn’t just play
+along, could you…</p>
+<p><strong>hawk</strong>: Pretty class way of covering your tracks. I
+think that auctioneer landed at La Guardia.</p>
+<p><strong>antony</strong>: Subtlety was never one of our strong
+points.</p>
+<p><strong>hawk</strong>: Neither’s flossing.</p>
+<p><strong>hawk</strong>: Life don’t get much better than this.</p>
+<p><strong>cesar</strong>: Make him into Roadkill!</p>
+<p><strong>antony</strong>: Yeah, run him down!</p>
+<p><strong>hawk</strong>: This is the worst night…</p>
+<p><strong>snickers</strong>: When it rains, it pours. Name’s Snickers.
+The plane leaves in 40.</p>
+<p><strong>almond joy</strong>: Almond Joy. I know, pretty silly. But
+it’s better than when we first started out, our code names were
+Diseases. You don’t know what it’s like being called Clymidia for a
+year. Whoops, forgot….</p>
+<p><strong>butterfinger</strong>: My name’s Butterfinger.</p>
+<p><strong>hawk</strong>: No shit.</p>
+<p><strong>kaplan</strong>: Don’t you just hate kids…</p>
+<p><strong>almond joy</strong>: George, you promised. No Old CIA/ New
+CIA jokes…</p>
+<p><strong>kaplan</strong>: I call them the MTV.I.A. Punks think Bay of
+Pigs is an herbal tea. They think the Cold War involves penguins
+and…</p>
+<p><strong>hawk</strong>: Don’t I know you…</p>
+<p><strong>kaplan</strong>: You just might. I’m the guy who tricked you
+into robbing a government installation and then had you sent to prison
+for it. At the time, I was bald with a beard, no moustache, and I had a
+different nose, so if you don’t recognize me, I won’t be offended.</p>
+<p><strong>hawk</strong>: Bastard, you’re going to need another
+nose!</p>
+<p><strong>hawk</strong>: But I’m not the type of guy to hold a
+grudge.</p>
+<p><strong>kaplan</strong>: I used you as a diversion. while you were
+getting captured upstairs, I was shredding documents in the basement.
+Deep down, I guess I was just jealous. You were one incredible
+thief…</p>
+<p><strong>hawk</strong>: To what do I owe the dishonor of a reunion,
+you centrally intelligent scumsicle.</p>
+<p><strong>kaplan</strong>: I Want to make things up to you. That’s why
+I got you this gig, doll. Hawk, my name’s George Kaplan and to quote the
+late, great Karen Carpenter, “We’ve only just begun.”</p>
+<p><strong>hawk</strong>: Three minutes, twenty-three seconds. If you
+think I’m doing another…</p>
+<p><strong>kaplan</strong>: Hush. My employer wants a meeting.</p>
+<p><strong>hawk</strong>: Employer? The president?</p>
+<p><strong>kaplan</strong>: No, somebody powerful. Oh. Look. what’s that
+up there?</p>
+<p><strong>hawk</strong>: I’m supposed to fall for that?</p>
+<p><strong>kaplan</strong>: Shucks. Guess not.</p>
+<p><strong>hawk</strong>: No. Way.</p>
+<p><strong>alfred</strong>: Welcome to Rome, sir.</p>
+<p><strong>hawk</strong>: Yes way.</p>
+<p><strong>darwin</strong>: For those kind of wages, I could have built
+the factory in America! They’re Vietnamese, can’t we just give them more
+Bart Simpson shirts? I hear depressing news like this and I want to
+commit genocide! Alfred, hold my calls. So, Hawk! The Hawkster! What do
+you think of the vehicle?</p>
+<p><strong>hawk</strong>: You could host American Bandstand in here. Why
+did you duck at the auction, asshole?</p>
+<p><strong>darwin</strong>: Because I didn’t want to get hurt,
+taterhead.</p>
+<p><strong>darwin</strong>: What can I tell you, I’m the villain.
+Initially it was a priority to keep a lot of buffers between you and me,
+but since most of them are dead now, I thought what the heck. Hawk, you
+come highly recommended. I would have done some things differently at
+the auction house, but hey, I want to be in business with you.</p>
+<p><strong>hawk</strong>: My life is not some deal. I…</p>
+<p><strong>alfred</strong>: It’s Boston, Mr. Mayflower.</p>
+<p><strong>darwin</strong>: I’m sorry, I have to take this. Those are
+valid points though…</p>
+<p><strong>darwin</strong>: You better have a good excuse… You better
+have a better excuse! You are so weak! I’m only thankful your ancestors
+didn’t settle America or else my name would be Running Brave or Vomiting
+Antelope…Really. Well, listen close, babe.</p>
+<p><strong>darwin</strong>: Shall we?</p>
+<p><strong>darwin</strong>: So Hawkasaurus, I won’t mince words…</p>
+<p><strong>hawk</strong>: Whatever. You own Boardwalk, you own Park
+Place, you own the four railroads. You think you’re God. For all I know,
+you’re probably right. I just wanted to have a damn cappuccino, maybe
+play some Nintendo after I find out what it is. Man, why didn’t you just
+buy the horse? What am I saying, you did buy it…</p>
+<p><strong>darwin</strong>: Oh… Let’s see. There are organizations that
+think we wanted the “Sforza” for reasons other than putting it in the Da
+Vinci museum we’re building in Vinci. Hopefully, these organizations
+think our plan has been ruined with the explosion of our replica. If I
+seem vague, grand. We want a low profile on this, that’s why I got
+Kaplan and the Candy bars involved. I helped George help the Mario
+Brothers and Gates help get you out….</p>
+<p><strong>hawk</strong>: If you’re pausing for a “thank you,” give it
+up. So boss, you going to tell me what the crystal piece inside the pony
+means?</p>
+<p><strong>darwin</strong>: Way to go, Alfie! How many people did you
+break that thing in front of. Good help’s hard to find.</p>
+<p><strong>hawk</strong>: I guess that’s a no.</p>
+<p><strong>darwin</strong>: Ladies and gentlemen of the board…</p>
+<p><strong>darwin</strong>: And Min-er-va. Let’s give it up for Hudson
+Hawk.</p>
+<p><strong>minerva</strong>: Hello……Bunny, Ball-Ball!</p>
+<p><strong>darwin</strong>: Hawkmeister, we got you clothes, great
+hotel, and a 250,000 lira per diem.</p>
+<p><strong>minerva</strong>: That’s two hundred dollars a day? So he can
+get a hooker and some tequila. Veto, Darwin.</p>
+<p><strong>hawk</strong>: Guess I know who wears the penis in this
+family.</p>
+<p><strong>minerva</strong>: For God’s sake, chain this convict.</p>
+<p><strong>hawk</strong>: Alfred, you’re a very polite psychopath, but
+if you…</p>
+<p><strong>minerva</strong>: We want Da Vinci’s sketchbook, what do they
+call it, the Codex.</p>
+<p><strong>darwin</strong>: Listen Hawk, this might be hard to believe,
+but I’m a regular joe. I just want to be happy and happiness comes from
+the achieving of goals. It’s just when you make your first billion by
+the age of 19, it’s hard to keep coming up with new ones. But now
+finally I got my new goal. World domination. With your help…Bunny….quit
+that!</p>
+<p><strong>minerva</strong>: Bunny, ball-ball! Bad bunny!</p>
+<p><strong>hawk</strong>: Think he’s already got today’s ball-balls.
+Five more minutes please, it’s been so long…</p>
+<p><strong>hawk</strong>: Anybody have a cigarette? But seriously, do me
+a favor and Concorde me back to prison. I don’t care anymore. I hope you
+have the receipts for the threads.</p>
+<p><strong>minerva</strong>: You go back, you won’t be alone. You’ll
+have a diabetic barkeep cellmate. You’re still young enough to have fun
+shanking child molesters for a pack of smokes, but “Alex” will go in
+knowing that the next time he gets out it’ll be to attend his own
+funeral. Depressing.</p>
+<p><strong>hawk</strong>: You wouldn’t risk the dime to call the police.
+You have no proof.</p>
+<p><strong>darwin</strong>: Ah, the magic word…</p>
+<p><strong>darwin</strong>: It’s veja du, Hawkhead. Something you wish
+never happened. We shot the entire operation with hidden cameras behind
+the hidden cameras. Hired the guy who did the last Sports Illustrated
+Swimsuit issue. Excellent work… whoops, damn Fotomat assholes…</p>
+<p><strong>minerva</strong>: Tomorrow, you’re going to hit a church.</p>
+<p><strong>hawk</strong>: I’m robbing the Vatican. The nuns at St. Agnes
+predicted that I’d end up doing this…</p>
+<p><strong>hawk</strong>: Excuse me, I’m being blackmailed into robbing
+the Vatican by a psychotic American corporation along with a CIA…</p>
+<p><strong>vatican guard</strong>: “You’re being”…..uh, I don’t, uh…</p>
+<p><strong>hawk</strong>: Forget it, man. Go tackle a jaywalker.</p>
+<p><strong>hawk</strong>: Operator, I want to make a collect call to
+Alex Messina, New York….</p>
+<p><strong>anna</strong>: But it is his gift as an inventor who drew
+together science and art that is most incredible.</p>
+<p><strong>anna</strong>: Tough guy. What are you–How’s your head.</p>
+<p><strong>hawk</strong>: Yes, and my giraffe loves it, too…</p>
+<p><strong>anna</strong>: As you know, the Da Vinci Codex, has lived in
+the Vatican for centuries and will continue to live here for centuries
+more.</p>
+<p><strong>hawk</strong>: That’s what you theenk.</p>
+<p><strong>anna</strong>: Question, sir? His untiring pen predicted the
+airplane, the submarine, the bicycle, the helicopter, and even the
+tank.</p>
+<p><strong>little brat</strong>: This is so bor-ing! Do you hate Italy
+as much as I do, Pokey? Si, senor! Italy sucks the big one! why can’t we
+go to the Epcot Center!</p>
+<p><strong>anna</strong>: These more dangerous designs inspired him to
+develop a secret code that ….</p>
+<p><strong>little brat</strong>: Pokey, come back!</p>
+<p><strong>anna</strong>: Come on, this stuff will knock you out. Have
+you ever had the feeling you were being followed, Mr. Bond.</p>
+<p><strong>hawk</strong>: Never, why do you ask?</p>
+<p><strong>hawk</strong>: Whoa. Name’s Hawkins, Eddie Hawkins. My
+nickname’s Hudson Hawk, but don’t call me Hudson, not even as a joke.
+The Nuns at St. Agnes called me that and they’re the ones who helped
+make me what I am today. Not a compliment…</p>
+<p><strong>anna</strong>: Sure Hudson. Are you going to tell me why you
+did that back there or are you going to blame it on Dumbo?</p>
+<p><strong>hawk</strong>: Could you believe that crazy elephant?</p>
+<p><strong>hawk</strong>: Whoa, part 2. Does it go to Times Square?</p>
+<p><strong>anna</strong>: Delivers up to ten at night. The Pope has an
+obsession with his Easter Seals. It’s actually not that an unusual
+set-up. The secret passageway on the other hand….</p>
+<p><strong>hawk</strong>: The Vatican is made of constant mysteries
+meant to be enjoyed, not explained.</p>
+<p><strong>anna</strong>: Nice. But right out of our brochure.</p>
+<p><strong>hawk</strong>: Oh, you read that.</p>
+<p><strong>anna</strong>: Actually I wrote it. It’s a good sentence. It
+can apply to people.</p>
+<p><strong>hawk</strong>: You’re not an unmysterious thang yourself.</p>
+<p><strong>anna</strong>: I don’t steal stuffed elephants from little
+girls. And I buy my own clothes. My life’s a little boring…</p>
+<p><strong>hawk</strong>: God, I wish I could say the same thing. What
+about having a nice, dull dinner with me tonight. Scrabble, Knock-knock
+jokes, Anecdotes about famous dead Italians….</p>
+<p><strong>anna</strong>: I’ll bring my entire repertoire…</p>
+<p><strong>hawk</strong>: And I’ll bring my entourage…</p>
+<p><strong>anna</strong>: Secret passageways don’t mean as much as they
+used to. There’s a place two blocks east of here. Enzo’s. Say 10:30.</p>
+<p><strong>hawk</strong>: Said.</p>
+<p><strong>anna</strong>: Father, it’s obvious. He’s up to
+something.</p>
+<p><strong>anna</strong>: Yes, sir.</p>
+<p><strong>cardinal</strong>: Did he mention the Mayflowers?</p>
+<p><strong>anna</strong>: No, your Eminence. I think he’s going to steal
+the Codex, as early as next week.</p>
+<p><strong>cardinal</strong>: Attempt, you mean. The vanity of this man,
+Hudson Hawk. The Vatican has foiled the advances of Pirates and
+Terrorists. We will not lie down for some schmuck from New Jersey. Must
+you flirt with him so realistically?</p>
+<p><strong>anna</strong>: That’s the best kind. A wise woman once said
+“Polite conversation is rarely either.”</p>
+<p><strong>cardinal</strong>: Let me be the one to quote Scripture. ….As
+an agent of our organization, you are put in awkward situations. Just
+remember, Hudson Hawk is an evil, evil man.</p>
+<p><strong>anna</strong>: Yeah. The big E.</p>
+<p><strong>hawk</strong>: Hello, operator. I’d like to make a collect
+call to New York number…</p>
+<p><strong>hawk</strong>: Thank you, operator, thank you.</p>
+<p><strong>hawk</strong>: Come on, Alex, pick up, you Reindeer goat
+cheese-eating motherfucker.</p>
+<p><strong>hawk</strong>: A-lex, A-lex, come on Alex.</p>
+<p><strong>kaplan</strong>: Hawk, Hawk, Hawk. Enjoying Italy? I always
+had a soft spot for Rome. Did my first barehanded strangulation here.
+Communist politician.</p>
+<p><strong>hawk</strong>: Why George, you big softie…</p>
+<p><strong>kaplan</strong>: God, I miss communism. The Red Threat.
+People were scared, the Agency was respected, and I got laid every
+night.</p>
+<p><strong>butterfinger</strong>: Sorry, coach…</p>
+<p><strong>kaplan</strong>: If his father wasn’t the head of Shit, I
+hate this, the government’s got me farmed out, working for the Mayflower
+corporation now, money beats politics. War isn’t Hell anymore, it’s
+Dull. Don’t slaughter their men and rape their women, just steal their
+microchips.</p>
+<p><strong>hawk</strong>: You know Kaplan, if you weren’t the slimiest
+pinata of shit that ever lived, I’d feel sorry for you.</p>
+<p><strong>snickers</strong>: Good news, bud, the Mayflowers have moved
+up the time-table. You’re hitting the Vatican to-night.</p>
+<p><strong>hawk</strong>: Tonight? You’re whacked. The timing’s off, I’m
+underequipped Damnit, I have a date!</p>
+<p><strong>almond joy</strong>: Grapple, Biker’s bottle, hairspray,
+black turtleneck, Pocket Fisherman, acid, collapsible yardstick,
+softball, and 72 stamps. Gee Stud, this is going to be some date. No
+Harvey’s Bristol Cream?</p>
+<p><strong>kaplan</strong>: Snickers, make the list happen. Oh and it’s
+one thing to play hide and seek with the Mayflower’s pathetic staff, but
+we’re sore losers. I’ve put jumper cables on the nipples of children and
+not always in the line of duty.</p>
+<p><strong>hawk</strong>: Thanks for sharing.</p>
+<p><strong>kaplan</strong>: We blow up space shuttles for breakfast. You
+and your friend Alex would be a late afternoon Triscuit.</p>
+<p><strong>hawk</strong>: If you do anything to my friend…</p>
+<p><strong>kaplan</strong>: Yeah, right. By the way, as long as I’m
+getting things off my chest, I’m the one who killed your little monkey.
+Made it look like a Mafia hit. Did it for fun. Ciao.</p>
+<p><strong>hawk</strong>: What did you have against Little Eddie,
+motherfucker? He was just a monkey who liked to laugh. Come back without
+your yuppie army. I’ll triscuit you, you space shuttle eating…Shit.!</p>
+<p><strong>butterfinger</strong>: Hey, Mr. Hawk, I got those 72
+stamps!</p>
+<p><strong>hawk</strong>: “Beware the Odd Steps.”</p>
+<p><strong>hawk</strong>: Why Kit Kat, aren’t you a gentleman…</p>
+<p><strong>hawk</strong>: Please God, Please God…….let the guard shoot
+me.</p>
+<p><strong>vatican guard</strong>: The worm’s on the other foot, yankee
+noodle candy.</p>
+<p><strong>anna</strong>: Oh Hudson, I was worried you weren’t going to
+drop by….</p>
+<p><strong>hawk</strong>: I never break a date. Scout’s honor.</p>
+<p><strong>hawk</strong>: Fettucini con Funghi Porcini.</p>
+<p><strong>waiter</strong>: Bellissimo, signor.</p>
+<p><strong>hawk</strong>: Oh, and could I have some ketchup with
+that.</p>
+<p><strong>snickers</strong>: Come on, Pierre, Steak-bur-ger, Fren-n-ch
+Fries. This is France, you gotta have French…..</p>
+<p><strong>almond joy</strong>: Actually we’re in Italy, Snickers, she
+said as if it made a difference.</p>
+<p><strong>snickers</strong>: Italy, France, Moscow. They all just wanna
+be Nebraska. Old Man Kaplan thinks since Communism is dead, we got
+nothing to do. Man, Democracy isn’t free elections. We gotta teach the
+world that Democracy is Big Tits, College Football on Saturdays, Eddie
+Murphy saying the word “Fuck” and Kids putting their hands down garbage
+disposals on “America’s Funniest Home Videos.”</p>
+<p><strong>almond joy</strong>: Damn baby, when’s the last time you had
+a vacation…Jesus, I gotta get out of this job. If my Mom knew her
+daughter assassinated the leader of the anti-Apartheid movement….</p>
+<p><strong>snickers</strong>: Quit bitching, you got the employee of the
+month plaque for that shit…Ah to be in Pari-is and in love.</p>
+<p><strong>hawk</strong>: This is bueno. They had the worst ketchup in
+prison…..uh…</p>
+<p><strong>anna</strong>: Prison?</p>
+<p><strong>hawk</strong>: I was the Warden?</p>
+<p><strong>anna</strong>: How long were you in?</p>
+<p><strong>hawk</strong>: Let’s just say, I never saw E.T.</p>
+<p><strong>anna</strong>: Wow, you were “in the joint.” “Doing hard
+time.” It’s funny, but that excites me. I seem to have a thing for
+sinners.</p>
+<p><strong>hawk</strong>: I seem to have a thing for sinning. sinning.
+Check please….</p>
+<p><strong>waiter</strong>: Ah, anything for dessert?</p>
+<p><strong>anna</strong>: Yes. Something to go.</p>
+<p><strong>hawk</strong>: I’ll bring the ketchup.</p>
+<p><strong>anna</strong>: What have you been doing?</p>
+<p><strong>hawk</strong>: Uh….old badminton injury.</p>
+<p><strong>hawk</strong>: tickles, ticKleS, TICKLES.</p>
+<p><strong>anna</strong>: Oh, I’m so sorry…</p>
+<p><strong>anna</strong>: I’m sorry. I can’t. I….</p>
+<p><strong>hawk</strong>: Hey now, outside of a very friendly dog this
+morning, it’s been a slow decade. I don’t make love every ten years, I
+get a little cranky.</p>
+<p><strong>anna</strong>: It’s also been a long time for me. I–</p>
+<p><strong>hawk</strong>: Catholic girls are scary…</p>
+<p><strong>anna</strong>: Somebody robbed the Vatican.</p>
+<p><strong>hawk</strong>: Oh. No.</p>
+<p><strong>hawk</strong>: It’s not what you think. Okay, maybe it
+is….</p>
+<p><strong>anna</strong>: You really went and did it. With one day, not
+even a day, of planning, you did it. Nobody does it better, Hudson. You
+started the week stealing the Sforza and you ended it swiping the
+Codex.</p>
+<p><strong>hawk</strong>: Wha–</p>
+<p><strong>anna</strong>: What are your plans for the weekend? Hoisting
+away the Colosseum? Tell me, did the devil make you do it or did Darwin
+and Minerva Mayflower?</p>
+<p><strong>snickers</strong>: What’s going on in there?</p>
+<p><strong>butterfinger</strong>: Do you want me to rape them? Dunkin
+does it better.</p>
+<p><strong>snickers</strong>: Just read, Butterfinger.</p>
+<p><strong>butterfinger</strong>: “Da Vinci had fears about his more
+dangerous designs, so he created a shorthand code in reverse
+script…”</p>
+<p><strong>almond joy</strong>: To yourself!…..What are they doing? In
+twenty seconds, we go in.</p>
+<p><strong>anna</strong>: For two years, I’ve been tracking the
+Mayflowers’ peculiar interest in three Da Vinci pieces. Their Sforza
+replica was as fake as the “gas leak” that supposedly destroyed it.</p>
+<p><strong>hawk</strong>: Does everyone in the world know more than me?
+Jesus, I’m just some guy who happens to be good at swiping
+stuff…..Lifted a piece of licorice when I was one and a half. Who knew
+it would lead… They even got the CIA involved!</p>
+<p><strong>anna</strong>: The C.I. what? God, no…</p>
+<p><strong>hawk</strong>: Ooh, I guess I do know something Here’s
+looking at you, kid…</p>
+<p><strong>almond joy</strong>: Now.</p>
+<p><strong>hawk</strong>: This doesn’t taste like cappuccino.</p>
+<p><strong>anna</strong>: Oh, I must have put too much ethyl-chloride in
+it.</p>
+<p><strong>anna</strong>: Why didn’t you tell me at the restaurant that
+he had hit the Vatican tonight. My people will not be happy. I want to
+see Kaplan.</p>
+<p><strong>almond joy</strong>: That’s not overly possible. He…</p>
+<p><strong>butterfinger</strong>: But guys, remember, he’s in the castle
+at Vinci….</p>
+<p><strong>kaplan</strong>: Way to go, Anna.</p>
+<p><strong>anna</strong>: When the Mayflowers find out we have the
+Codex, they’re going to want to make a deal…</p>
+<p><strong>kaplan</strong>: And then we’ll arrest those greedy pigs… Is
+that it?</p>
+<p><strong>anna</strong>: Actually George, it’s not it. What are we
+doing in this castle? I happen to know the Mayflowers bought this castle
+last year when they found out Da Vinci used to do…</p>
+<p><strong>kaplan</strong>: It’s the site of their new museum and we’re
+taking it over. Operation Deflower Mayflower is going full speed
+ahead.</p>
+<p><strong>anna</strong>: Oh Lord…. the only reason I ask is that
+Hudson, uh, Mr. Hawk, Hawkins, had some “neat” things to say about
+Darwin, Minerva, and you. Basically that you’re part of the same car
+pool.</p>
+<p><strong>kaplan</strong>: Anna. Anna. Anna. If that were true, Almond
+Joy would have handed you your heart right after you handed me the
+Codex. Now, get some sleep. Kit Kat…</p>
+<p><strong>anna</strong>: Cat got his tongue?</p>
+<p><strong>kaplan</strong>: Actually he never told us what it was.</p>
+<p><strong>anna</strong>: How sweet. I trust you will see Hudson Hawk is
+given to the proper authorities. I recommend leniency…</p>
+<p><strong>snickers</strong>: Oh, I think we all do.</p>
+<p><strong>snickers</strong>: Do you think she has any idea that
+Operation Deflower Mayflower is as bogus as Kit Kat’s tits?</p>
+<p><strong>kaplan</strong>: I don’t think so, although bringing her to
+the castle gave her a big, juicy hint.</p>
+<p><strong>almond joy</strong>: With all due respect to that great
+blouse, why didn’t I cut out her heart?</p>
+<p><strong>kaplan</strong>: Close call, but she’s our only way of
+keeping tabs on that damn mysterious Vatican organization. Hawk, it’s
+time to go to the principal’s office….</p>
+<p><strong>darwin</strong>: Seven!</p>
+<p><strong>alfred</strong>: Jolly. Good. Shot. Sir.</p>
+<p><strong>minerva</strong>: Ooh, it’s Hudson Hawk, you cease to amaze
+me, convict. You are a terrible cat burglar!</p>
+<p><strong>darwin</strong>: Haven’t you ever seen, like David Niven? You
+know tiptoe in, tiptoe out.</p>
+<p><strong>minerva</strong>: Like a “cat”, one could say.</p>
+<p><strong>hawk</strong>: Shucks, I’ll just take it back.</p>
+<p><strong>minerva</strong>: No, let me!</p>
+<p><strong>darwin</strong>: I don’t care.</p>
+<p><strong>hawk</strong>: Another piece of the puzzle for the Da Vinci
+Alchemy project.</p>
+<p><strong>darwin</strong>: Oh, you. There’s nothing more I hate than
+failure. All you had to do was follow the Hawk, it’s not like I said
+“Teach our nation’s children how to read.”</p>
+<p><strong>darwin</strong>: I guess we’re just going to have to kill
+’em…</p>
+<p><strong>darwin</strong>: God Minerva, I was kidding.</p>
+<p><strong>minerva</strong>: Get away from there, convict!</p>
+<p><strong>hawk</strong>: Just browsing. Don’t touch me….</p>
+<p><strong>darwin</strong>: Don’t hurt him! We need him for the final
+job!</p>
+<p><strong>hawk</strong>: Oh weeeeelly, don’t hurt me? Even if I do
+this….</p>
+<p><strong>hawk</strong>: And this….</p>
+<p><strong>hawk</strong>: Surely this must offend….</p>
+<p><strong>kaplan</strong>: That’s it!</p>
+<p><strong>hawk</strong>: Things are getting a little loose at the Da
+Vinci workshop tonight. “Put your left leg in, take your right foot
+out.” May I call you Minnie….</p>
+<p><strong>darwin</strong>: Come to think of it there is a part of your
+body that you won’t need for your next job…</p>
+<p><strong>hawk</strong>: Hey, guys, I’ve always wanted to sing like
+Franki Valli and the other seasons, but come on….</p>
+<p><strong>minerva</strong>: Big girls don’t cry-I-eye.</p>
+<p><strong>hawk</strong>: Two minutes, 35 seconds. Damnit, I’m involved
+in this thing, so I just wanna know what this thing is. I wanna be
+treated as an adult.</p>
+<p><strong>darwin</strong>: That’s fair. Tomorrow. Back in Rome. Now go
+to your room.</p>
+<p><strong>anna</strong>: Forgive me Father for I have sinned. It’s been
+1200 hours since my last confession.</p>
+<p><strong>cardinal</strong>: Hit me with your best shot.</p>
+<p><strong>anna</strong>: I betrayed a man. A good man. An innocent man.
+A thief.</p>
+<p><strong>cardinal</strong>: Anna, what are you trying to say…</p>
+<p><strong>anna</strong>: He came into a world where crime is a
+legitimate business tactic and a legitimate government procedure. But he
+knew Right and Wrong. Oh, and we kind of messed around…</p>
+<p><strong>cardinal</strong>: “Messed around” messed around? I know– I
+don’t want to know. First base? Second Base? Stop me when I’m getting
+warm…</p>
+<p><strong>anna</strong>: A little petting is not the issue!</p>
+<p><strong>cardinal</strong>: Sorry. Seventeen Hail Marys and five
+minutes outside.</p>
+<p><strong>cardinal</strong>: So let me get this straight, sister,
+you’re saying Hudson Hawk is not willingly working for the Mayflowers
+but Kaplan and the Candy Bars are?</p>
+<p><strong>anna</strong>: You got it. Operation Deflower Mayflower is a
+bad joke and I’m the punchline. I thought we were using the CIA to help
+us to get Mayflower, but really the CIA was using me to keep us away
+from Mayflower.</p>
+<p><strong>cardinal</strong>: Oh, why couldn’t I be the Cardinal in
+charge of catering…. If the Mayflowers get the three sections of Da
+Vinci’s crystal and his instructions for the gold machine– Aie-yi–Do we
+got anything? What of Alex, Hawk’s friend, where is his loyalty?</p>
+<p><strong>anna</strong>: I’m going to find out.</p>
+<p><strong>cardinal</strong>: I’m sorry for losing it back there, but
+you must remember, sister, you have vows to God as well as a mission to
+the world.</p>
+<p><strong>anna</strong>: I know, I know, your Eminence, just say “God
+go with me.”</p>
+<p><strong>cardinal</strong>: God go with you, sister.</p>
+<p><strong>darwin</strong>: So, Captain Hawk, in one of your paws you
+got a gold bar worth about 8 thou. In the autre, you got lead that won’t
+get you gelato.</p>
+<p><strong>minerva</strong>: Surely a master-thief like you can tell the
+difference.</p>
+<p><strong>hawk</strong>: That’s two down to Kitty Carlisle…</p>
+<p><strong>minerva</strong>: Cool, isn’t it? Weight, feel, mal1eability,
+they’re all but identical. On the periodic chart of elements, they’re
+but one proton apart. Great minds worked for centuries to turn worthless
+into priceless.</p>
+<p><strong>hawk</strong>: Alchemy.</p>
+<p><strong>darwin</strong>: Alchemy! Is the business term of the 90’s,
+my man! Minerva read about it in an airline magazine about four years
+ago. I dumped some lira into research… Shazam, we come across a diary by
+one of Da Vinci’s apprentices detailing La Machine de Oro, the gold
+machine for those at home, and the rest is about to become history.
+Money isn’t everything, gold is. Fuck blue chip stocks! Fuck T-bills!
+Fuck Junk Bonds! I got the real deal! Money will always be paper but
+gold will always be gold!</p>
+<p><strong>minerva</strong>: Market crashes. Bomb drops. Greenhouse
+effect affects. We’ll still be the richest, most powerful people in the
+world. In 1992, Europe is coming together to become one business
+superpower. It’s one party we’d love to poop.</p>
+<p><strong>darwin</strong>: Well, that said, the last ingredient in the
+recipe is in, get this, you’re gonna die, the Kremlin.</p>
+<p><strong>hawk</strong>: Sure. The Kremlin. Makes sense. The Kremlin.
+Why not? Listen, this is all too Indiana Jones and the Lost City of King
+Tut for me, man. Throw me in jail and go ahead, just try and throw
+Alex…</p>
+<p><strong>minerva</strong>: Jail, you asshole! Our foot soldiers will
+blow your brains out! Bunny, Ball-Ball!</p>
+<p><strong>darwin</strong>: I’ll torture you so slowly you’ll think it’s
+a career! I’ll kill your family, your friends, and the bitch you took to
+the Prom!</p>
+<p><strong>hawk</strong>: You want an address on that last one?</p>
+<p><strong>hawk</strong>: Bunny, not you too?</p>
+<p><strong>minerva</strong>: You’ve got a dilemma, tiger. I think I know
+what’s going to help you solve it.</p>
+<p><strong>hawk</strong>: I’ll kill all you. Even the old lady.</p>
+<p><strong>alex</strong>: I hated cigarettes until I saw my first No
+Smoking sign. Keep off the Grass? Let’s play Soccer. Only law I cared
+about was friendship. Broke that one too, didn’t I? This Gates-Mario
+Brothers-CIA-Mayflower-Da Vinci thing seemed like a sweet deal. Visit
+foreign lands, take their treasures. I don’t know, I thought you’d get
+into it. It’s better than playing darts with M.B.A.’s at the bar. I
+didn’t know it was going to be like this. Them using me to use you… I’m
+sorry, there’s only one way out of this and it’s gonna hurt me more than
+it’s gonna hurt you.</p>
+<p><strong>kaplan</strong>: I just don’t think it was a smoking hot idea
+to leave them up there alone.</p>
+<p><strong>minerva</strong>: Don’t worry George, this is the reason we
+put the old diabetic guinea on the payroll to begin with. To keep Hawk
+in line. They’ll talk about “being buddies” and “chugging brewskis.”</p>
+<p><strong>darwin</strong>: You gotta love male bonding.</p>
+<p><strong>kaplan</strong>: You were saying…</p>
+<p><strong>hawk</strong>: You bastard! You fucked my freedom for a lousy
+job!</p>
+<p><strong>alex</strong>: Hawk… I’m so sorry…</p>
+<p><strong>hawk</strong>: No…..Alex! Wake up, you can’t go out like
+this.</p>
+<p><strong>minerva</strong>: Plan B, anyone…</p>
+<p><strong>anna</strong>: Oh thank God, you’re dead…</p>
+<p><strong>alex</strong>: It was so beautiful! When the blanks went off,
+they…</p>
+<p><strong>hawk</strong>: You bastard. You fucked my freedom for a lousy
+job.</p>
+<p><strong>alex</strong>: But I said I was sorry….</p>
+<p><strong>hawk</strong>: No sweat, Alex, you only made the biggest
+mistake of my life. What was your per-diem?</p>
+<p><strong>alex</strong>: Don’t act like you’ve never committed a crime
+before, Hawkins? I know, I made call, when Anna tracked me down I…</p>
+<p><strong>anna</strong>: Hudson, don’t you understand…</p>
+<p><strong>hawk</strong>: And you, Dr. Cappucino, you’re lucky I don’t
+hit women, assuming you are a woman. I’m not taking anything for granted
+anymore.</p>
+<p><strong>anna</strong>: I-work-for-a-covert-Vatican-humanitarian-
+organization. The-CIA-made-a-fool-of-me. I-care-for-you…</p>
+<p><strong>hawk</strong>: Oh. Well, what’s this?</p>
+<p><strong>anna</strong>: Where did you get this?</p>
+<p><strong>hawk</strong>: You know, the place where you gave the bad
+guys the Codex…. the Mayflower Museum.</p>
+<p><strong>anna</strong>: It’s from the machine. All they need is the
+crystal to run it and they have 2/3 of it already. We can’t let that
+happen.</p>
+<p><strong>alex</strong>: You’re saying you want us to beat them to the
+crystal and save the world from financial disarray.</p>
+<p><strong>anna</strong>: Something like that.</p>
+<p><strong>alex</strong>: Well, forget about it. Hawk and I are going to
+Rio. We’re hurt, we’re tired, and a hero ain’t nothing but a sandwich.
+Right, buddy?…</p>
+<p><strong>anna</strong>: Hudson, God’s given you a gift for cat
+burglary, you can t just…</p>
+<p><strong>hawk</strong>: You better believe I can. I’m sick of people
+telling me what I have to do.</p>
+<p><strong>anna</strong>: It’s that kind of selfish attitude that…</p>
+<p><strong>hawk</strong>: Selfish attitude? I’m just some guy who wants
+a little nap and a cappuccino for when he wakes up, not too much
+foam…</p>
+<p><strong>anna</strong>: You re not “some guy” anymore, Hudson. Right
+now, you’re the only guy. Without your help, I….</p>
+<p><strong>hawk</strong>: The world is beautiful. Every day in prison I
+made sure to remember that. It’s only when I actually got out that I
+forgot. If I was sane, I’d be on that plane to Rio. But being beaten and
+abused to fulfill some corporation’s perverted vision does something to
+your mental health. The world is beautiful and I’m tired of being
+fucked. It’s Darwin and Minerva’s turn to bite the pillow…</p>
+<p><strong>anna</strong>: That was beautiful.</p>
+<p><strong>alex</strong>: I laughed, I cried.</p>
+<p><strong>hawk</strong>: Rio, Alex? After all they’ve done to…Hey,
+these tickets are for Moscow!</p>
+<p><strong>alex</strong>: Damn travel agency. That Kremlin thing is in
+Moscow, isn’t it?</p>
+<p><strong>anna</strong>: Ketchup. Stupido Americani…</p>
+<p><strong>kaplan</strong>: We’re all family now. My team has done a lot
+of rougher things than steal the model of a helicopter.</p>
+<p><strong>snickers</strong>: We’re going to whack this place so fast
+we’ll have time to shop for American imports.</p>
+<p><strong>almond joy</strong>: Lucky for us, the Da Vinci is located in
+a wing of the Kremlin that they used to throw the Miss Ukraine pageant
+and stuff. It’ll have the least number of guards….</p>
+<p><strong>kaplan</strong>: As for our plan of action, anybody’d be
+insane to go in from the ground floor…</p>
+<p><strong>alex</strong>: We’re going in from the ground floor.</p>
+<p><strong>hawk</strong>: Geez, this Art Treasures Room looks like a
+burnt diaphragm.</p>
+<p><strong>hawk</strong>: Hey, don’t take your disguise so
+seriously.</p>
+<p><strong>anna</strong>: Uh, yeah. Guess I’m a wee bit nervous. I’m
+sorry I could only score clergy passports.</p>
+<p><strong>hawk</strong>: Fits my new image. A thief for the masses.
+This is one job I’m not going to feel guilty about enjoying. Gum.</p>
+<p><strong>alex</strong>: The security’s actually not that severe.</p>
+<p><strong>anna</strong>: It doesn’t have to be. Everybody knows that if
+you mess with the Kremlin, you’ll end up in a Siberian gulag eating your
+own fingernails.</p>
+<p><strong>hawk</strong>: Shwoof, that makes me feel better. I can’t
+believe this is the Iron Curtain. All the guy at Airport customs wanted
+to know was “Who Shot J.R.?”</p>
+<p><strong>alex</strong>: You sound disappointed.</p>
+<p><strong>hawk</strong>: Yeah, I mean, come on, going through the Iron
+Curtain is supposed to be crawling underneath barbed wire, it’s supposed
+to be strangling a guard…</p>
+<p><strong>hawk</strong>: It’s supposed to be parachuting in the
+moonlight….</p>
+<p><strong>snickers</strong>: We are the blue light. The green light is
+where the Art Treasures room is.</p>
+<p><strong>kaplan</strong>: Let’s go make a purple light. Where’s Kit
+Kat?</p>
+<p><strong>alex</strong>: Delivery Entrance. Low Security.</p>
+<p><strong>anna</strong>: Gum.</p>
+<p><strong>hawk</strong>: Count of three?</p>
+<p><strong>alex</strong>: Why not just go now?</p>
+<p><strong>hawk</strong>: Okay.</p>
+<p><strong>kaplan</strong>: Everything’s going fine, Minerva, thanks for
+asking…</p>
+<p><strong>minerva</strong>: I say who needs this Hudson Hawk
+anyway….</p>
+<p><strong>hawk</strong>: Oh-Eee-Oh-A-Whoa-Oh.</p>
+<p><strong>minerva</strong>: Everybody here, in Rome, wishes you tinsel
+boxes of love…</p>
+<p><strong>kaplan</strong>: Lazy, rich, condescending bitch.</p>
+<p><strong>alex</strong>: Eighth room down, babe…</p>
+<p><strong>anna</strong>: Guards come exactly every three minutes….</p>
+<p><strong>hawk</strong>: Three. Oh. Oh. “Side by Side.”</p>
+<p><strong>hawk</strong>: “Oh, we ain’t got a barrel of money.</p>
+<p><strong>alex</strong>: “Maybe we’re ragged and funny.”</p>
+<p><strong>hawk and alex</strong>: “But we’ll travel along, singing a
+song. Side by Side…”</p>
+<p><strong>kaplan</strong>: Create a diversion.</p>
+<p><strong>alex</strong>: Now that’s a lock.</p>
+<p><strong>hawk</strong>: Don’t worry, we’ll get it…</p>
+<p><strong>anna</strong>: Can I sing this time, too? Please?</p>
+<p><strong>hawk</strong>: Uh, I guess so.</p>
+<p><strong>darwin</strong>: I look at you Soviet people and I feel…
+pity… superiority. Most of your life, your government has told you that
+Capitalism turns people into robots who’d rather eat microwave sushi,
+naked in the back of a Cadillac than hear the laughter of children.</p>
+<p><strong>minerva</strong>: We’re here to say, your government was
+right.</p>
+<p><strong>darwin</strong>: So let’s get busy. Have some fun and make
+some deals.</p>
+<p><strong>hawk</strong>: “Oh this lock is a pain in the bu-utt”</p>
+<p><strong>alex</strong>: “How’d we ever get such in a ru-utt”</p>
+<p><strong>anna</strong>: “But we’ll travel the road, Sharing the load.
+Side by Side!”</p>
+<p><strong>snickers</strong>: This is the room above the Art Treasures
+room. The lock is a Natalya Z-Z, first created…</p>
+<p><strong>almond joy</strong>: Snickers, baby, I love you like a
+brother, but really, who cares? Silencer bomb…</p>
+<p><strong>hawk</strong>: That was close….</p>
+<p><strong>alex</strong>: Anna, I think you better stay….</p>
+<p><strong>hawk</strong>: You can be lookout!….. Take Alex’s gun.</p>
+<p><strong>anna</strong>: “You can be the lookout.”</p>
+<p><strong>soviet leader</strong>: Before we serve you “the main
+course,” hee, hee, we need to know specifics about what you can do for
+us. We–</p>
+<p><strong>darwin</strong>: Bluntness. How amusingly Hungarian. Listen
+up, for reasons I don’t want to get into, I recently had to close down a
+petroleum factory, but I’m going to re-build it here and Madonna’s going
+to cut the ribbon! Frozen burritos in Leningrad. 1982 fantasy. 1992
+reality.</p>
+<p><strong>hawk</strong>: “We all had our quarrels and parted…”</p>
+<p><strong>alex</strong>: “But we’ll be the same as we started…</p>
+<p><strong>hawk and alex</strong>: “Just traveling along, singing a
+song. Side–”</p>
+<p><strong>hawk</strong>: Geez, this place is a mess…</p>
+<p><strong>alex</strong>: Voila…</p>
+<p><strong>alex</strong>: Side by side, man…</p>
+<p><strong>almond joy</strong>: What the hell….</p>
+<p><strong>snickers</strong>: You’re supposed to be dead!</p>
+<p><strong>alex</strong>: I’m a ghost. Boo.</p>
+<p><strong>hawk</strong>: I don’t want to sound immature, but we were
+here first…</p>
+<p><strong>kaplan</strong>: I wish I could think of those cute quips the
+way you can, Hawk, but I can’t, so I’ll just shoot Alex.</p>
+<p><strong>hawk</strong>: No….</p>
+<p><strong>almond joy</strong>: That was pretty uncool, George…</p>
+<p><strong>kaplan</strong>: Sorry, you know he kind of reminds me of
+Little Eddie. But I digress. Ah, victory is so sweet….</p>
+<p><strong>minerva</strong>: Yum. This is the best meal I ever had…</p>
+<p><strong>kaplan</strong>: Damnit, this isn’t the plan! Blue light,
+green light, shit! Snickers, Kit Kat, A.J., scramble, see if you can
+find out anything.</p>
+<p><strong>hawk</strong>: Can’t you see the Mayflowers double-crossed
+you…</p>
+<p><strong>kaplan</strong>: They may be scum, but if I get the Da Vinci
+model back, then we’ll be roasting weenies on the beach.</p>
+<p><strong>hawk</strong>: I don’t think you’ll appreciate their choice
+of weenie.</p>
+<p><strong>darwin</strong>: You’re helping us achieve a goal and in
+return, I’m giving you a key to the world’s executive washroom. Don’t
+piss it away…. Skoal, amigos…</p>
+<p><strong>anna</strong>: Stop or I’ll shoot.</p>
+<p><strong>anna</strong>: You people are immoral and narcissitic and I
+won’t let you…</p>
+<p><strong>kaplan</strong>: I can’t believe this. I’m in fucking Russia,
+or do I have to say, the fucking Soviet Union and I’m shooting a
+non-Bolshevick. I never thought I’d say “I’m just in this job for the
+money.” Sad. Any last immature quips?</p>
+<p><strong>hawk</strong>: No. But why do you let Butterfinger keep those
+blood stains on his shirt?</p>
+<p><strong>butterfinger</strong>: What blood stains….</p>
+<p><strong>hawk</strong>: You want immature, how ’bout an egg fight…</p>
+<p><strong>hawk</strong>: Alex, are you….</p>
+<p><strong>alex</strong>: I can’t believe you didn’t notice. My weight.
+I lost ten pounds in Rome</p>
+<p><strong>hawk</strong>: You’re a reed, man. I gotta get Anna. Hang in
+there…</p>
+<p><strong>almond joy</strong>: Anna-bannana-fo-fanna, I guess I have to
+cut out your heart for real now. It’s not personal.</p>
+<p><strong>almond joy</strong>: You won’t shoot. I read your dossier…
+Sister.</p>
+<p><strong>almond joy</strong>: I gotta get a new job…</p>
+<p><strong>anna</strong>: The Mayflowers got…</p>
+<p><strong>darwin</strong>: What a pleasant surprise. You’re probably
+wondering…</p>
+<p><strong>hawk</strong>: But you’re going to tell us anyway…</p>
+<p><strong>minerva</strong>: I hate a man with a sense of humor. While
+you corn dogs were comparing the lengths of your masculinity, we
+obtained the helicopter the new fashioned way: a thoroughly corrupt
+business deal.</p>
+<p><strong>hawk</strong>: If you think you’re getting past me…</p>
+<p><strong>hawk</strong>: Don’t be stupid…they…</p>
+<p><strong>snickers</strong>: Bastard! If you were a true American.</p>
+<p><strong>hawk</strong>: Just shut up and hit me!</p>
+<p><strong>darwin</strong>: Alfred, the getaway car…</p>
+<p><strong>hawk</strong>: Damnit, I hate this! I’m a cat burglar! Nobody
+said anything about this fight-to-the-death shit.</p>
+<p><strong>snickers</strong>: Too bad.</p>
+<p><strong>minerva</strong>: I knew it! I told you it was a fake.</p>
+<p><strong>darwin</strong>: That New-York-Italian-Father-
+made-twenty-bucks-a-week-son- of-a-bitch. What was our bet? A
+million?</p>
+<p><strong>minerva</strong>: Million five, lover…</p>
+<p><strong>snickers</strong>: Help me you Democratic Reform lovers! Get
+a screwdriver, you Stupid Eskimoes! Screw-dri-ver! Oh God, I always
+wanted to know how to play the harp, there just was so little time!
+Rosebud!</p>
+<p><strong>snickers</strong>: Maybe it was just a….</p>
+<p><strong>alex</strong>: Get ’em. They went down the hallway.</p>
+<p><strong>hawk</strong>: Let’s just forget it, I mean…</p>
+<p><strong>alex</strong>: Get em….</p>
+<p><strong>minerva</strong>: Alex. How’s it going?</p>
+<p><strong>alex</strong>: Go, go to Hell, to Hell.</p>
+<p><strong>minerva</strong>: Where’s your insulin….No? Well, Bon
+Appetite.</p>
+<p><strong>hawk</strong>: Oh, come on….</p>
+<p><strong>minerva</strong>: Very good, Alex, but you re still
+alive….</p>
+<p><strong>minerva</strong>: That’s fair.</p>
+<p><strong>hawk</strong>: Why does this have to be so hard…</p>
+<p><strong>kaplan</strong>: Tell me about it…</p>
+<p><strong>hawk</strong>: Take this to Hell with you…</p>
+<p><strong>kaplan</strong>: My pension…..</p>
+<p><strong>darwin</strong>: God-damnit, I only wanted to destroy the
+world in my own image. I’m a regular Joe…</p>
+<p><strong>darwin</strong>: Not Lenin, anybody but Lenin. God, let’s
+talk abut this.</p>
+<p><strong>hawk</strong>: Wow, this is really gonna hurt the resale
+value…</p>
+<p><strong>hawk</strong>: Oh, honey….</p>
+<p><strong>hawk</strong>: We did it man, we…</p>
+<p><strong>anna</strong>: Oh Hudson…</p>
+<p><strong>hawk</strong>: I told you not to call me Hudson. The only
+people who called me that were the nuns at…</p>
+<p><strong>anna</strong>: Oh Hudson, I’m a sister of the Catholic church
+as well as an agent.</p>
+<p><strong>hawk</strong>: This is too bad to be false.</p>
+<p><strong>alfred</strong>: Welcome back to Vinci.</p>
+<p><strong>hawk</strong>: Last rites, sister?</p>
+<p><strong>anna</strong>: Please, no nun jokes…They’re a bad habit to
+get into….get it?</p>
+<p><strong>hawk</strong>: She killed Alex.</p>
+<p><strong>minerva</strong>: Sorry, I couldn’t resist. You’re probably
+wondering why you’re still alive. Anna…..</p>
+<p><strong>minerva</strong>: I want you to monitor the Da Vinci’s
+directions from the apprentice diary. And Hawk, I didn’t want you to go
+to hell without knowing that Darwin and I’s dream came true. Beside
+that, none of us can seem to put that damn crystal together. Alfie and I
+were up all night with the thing.</p>
+<p><strong>hawk</strong>: You killed a friend. Why should I help you go
+for the gold?</p>
+<p><strong>minerva</strong>: It’ll take a couple of years of steady
+production, but I’ll flood the market with so much gold that gold
+itself, the foundation of all finance, will lose its meaning. Brokers,
+economists, and fellow entrepreneurs will drown in the saliva of their
+own nervous breakdowns. Markets will crash- crash. Financial Empires
+will crumble-crumble.</p>
+<p><strong>hawk</strong>: Except yours-yours. The goal of world
+domination. Well, if you put it that way, Minnie. How can I resist?</p>
+<p><strong>minerva</strong>: You can’t, convict! You’re just a shmoe!
+Every shmoe has the fantasy the planet revolves around them. It rains,
+car crash stops traffic, you say “How could this happen to me?” It’s a
+natural inclination. But for I, this isn’t a fantasy, it is reality! You
+are on my planet! You walk around the corner for coffee, out of my
+sight, you do not fucking exist! The lives of shmoes like you have
+meaning only in relation to the rich, to the powerful, to ME!</p>
+<p><strong>anna</strong>: Do it. There’s no reason to fight anymore.
+She’s a force of nature.</p>
+<p><strong>minerva</strong>: If you pull this off, I can’t promise I
+won’t kill you. I mean, who we trying to kid? But I will spare the
+Flying Nun here….</p>
+<p><strong>hawk</strong>: And to think I thought you were Evil Incarnate
+in pumps.</p>
+<p><strong>minerva</strong>: I killed some lovable working class
+Italian-diabetic, but you killed the most significant male figure of the
+decade and a kind, gentle lover. So don’t play with me.</p>
+<p><strong>hawk</strong>: Okay, fine!</p>
+<p><strong>minerva</strong>: Oh Hawk, don’t ever change. Go, team,
+go!</p>
+<p><strong>hawk</strong>: I hope you know what….</p>
+<p><strong>anna</strong>: Trust Leonardo….</p>
+<p><strong>hawk</strong>: Wha…..</p>
+<p><strong>minerva</strong>: We’re for real.</p>
+<p><strong>anna</strong>: Da Vinci made the real directions in a secret
+script that I decoded. The way the machine is running now, the gold will
+produce too quickly, clog, and the machine will shut itself down. Isn’t
+it wonderful?</p>
+<p><strong>hawk</strong>: Yeah, but what would happen if that little
+mirror came out of the crystal.</p>
+<p><strong>anna</strong>: Wha – you don’t want to know…</p>
+<p><strong>hawk</strong>: I wanna know…</p>
+<p><strong>anna</strong>: Holy sh-h–things are going to get very
+interesting, very fast. Da Vinci would be proud of you.</p>
+<p><strong>minerva</strong>: Eureka, motherfuckers!</p>
+<p><strong>hawk</strong>: Me, Anna, and Leonardo just wanna say you got
+the Midas touch, baby…</p>
+<p><strong>alfred</strong>: How.</p>
+<p><strong>hawk</strong>: You’re unemployed, Alfie. Boss is dead. Her
+plan is over.</p>
+<p><strong>alfred</strong>: My plan is just beginning. I’ll forgive you
+for denying me the pleasure of slaughtering my boorish employers, but
+I’m afraid the birth of the new British Empire can have no
+witnesses!</p>
+<p><strong>hawk</strong>: Ooh-kay…</p>
+<p><strong>anna</strong>: Sorry!</p>
+<p><strong>hawk</strong>: Stop helping me! Thou shalt not kill!</p>
+<p><strong>hawk</strong>: Don’t lose your head over this.</p>
+<p><strong>hawk</strong>: Excuse my crass American humor.</p>
+<p><strong>anna</strong>: Allow me.</p>
+<p><strong>hawk</strong>: Oh Bunny, Ball-Ball.</p>
+<p><strong>juggler</strong>: Che pazzo….</p>
+<p><strong>hawk</strong>: Have I ever told you the world is beautiful…
+I’d really like to play Nintendo with you, or something…</p>
+<p><strong>anna</strong>: Hudson, I’m afraid I’m sticking with God. But
+you’re a close second, tough guy. What is that smile?</p>
+<p><strong>hawk</strong>: I got my planet back.</p>
+<p><strong>hawk</strong>: The first one’s for Alex. Cheers.</p>
+</body>
+</html>

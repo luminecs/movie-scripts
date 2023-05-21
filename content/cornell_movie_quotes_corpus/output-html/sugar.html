@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sugar</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="sugar">sugar</h1>
+<p><strong>umpire</strong>: Strike three!</p>
+<p><strong>marcos</strong>: Check out Sugar… Puts on twenty pounds in
+two months; now he’s going for twenty more.</p>
+<p><strong>miguel</strong>: All muscle, baby. Rock solid.</p>
+<p><strong>pedro</strong>: Slow down, kid, it ain’t going nowhere.</p>
+<p><strong>miguel</strong>: If you hustled half as much as him, maybe
+you’d be hungry too.</p>
+<p><strong>sanchez</strong>: Fly ball.</p>
+<p><strong>class</strong>: Fly ball.</p>
+<p><strong>sanchez</strong>: Line drive.</p>
+<p><strong>class</strong>: Line drive.</p>
+<p><strong>sanchez</strong>: Ground ball.</p>
+<p><strong>class</strong>: Ground ball.</p>
+<p><strong>sanchez</strong>: Home run!</p>
+<p><strong>class</strong>: Hone rone!</p>
+<p><strong>rudy</strong>: What’d you tell him?</p>
+<p><strong>alvarez</strong>: I told him to grip the ball more gently.
+Like a tit.</p>
+<p><strong>alvarez</strong>: Pedro Berroa. Third year. Hasn’t developed
+like we hoped.</p>
+<p><strong>rudy</strong>: How much he sign for?</p>
+<p><strong>alvarez</strong>: Forty-five.</p>
+<p><strong>rudy</strong>: Jesus. These kids keep getting more expensive.
+How much did you sign for back in the day?</p>
+<p><strong>alvarez</strong>: 3000. When I was fifteen.</p>
+<p><strong>alvarez</strong>: Salvador Torres. Been practicing with the
+team for almost a week. Still raw, but he’s got a lot of potential.</p>
+<p><strong>rudy</strong>: We gonna sign him?</p>
+<p><strong>alvarez</strong>: Soon. Soon. We want to play it low- key,
+see what his agent says.</p>
+<p><strong>rudy</strong>: How much you think?</p>
+<p><strong>alvarez</strong>: They’ve gotten two offers from other clubs.
+Agent says they were around a hundred.</p>
+<p><strong>alvarez</strong>: He’s good.</p>
+<p><strong>rudy</strong>: What about him?</p>
+<p><strong>alvarez</strong>: Miguel Santos. Great arm. We signed him two
+years ago for fifteen.</p>
+<p><strong>rudy</strong>: Good deal. He throw any junk?</p>
+<p><strong>alvarez</strong>: Sugar!</p>
+<p><strong>alvarez</strong>: Show us your curve.</p>
+<p><strong>rudy</strong>: Not bad. Mind if I try something?</p>
+<p><strong>rudy</strong>: Hey, kid, do you mind? May I?</p>
+<p><strong>alvarez</strong>: Give him the ball.</p>
+<p><strong>rudy</strong>: Spike curve. Gives you more rotation, more
+movement. You try.</p>
+<p><strong>alvarez</strong>: Vamos! Let’s go! Pitch it!</p>
+<p><strong>rudy</strong>: It’s okay, son, these things take time. You’ll
+figure it out.</p>
+<p><strong>sanchez</strong>: I want to talk to you.</p>
+<p><strong>class</strong>: I want talk to you.</p>
+<p><strong>sanchez</strong>: Your performance in the mound is not as
+good as last year. What is the problem?</p>
+<p><strong>class</strong>: Your performance in the mound is not good as
+last year. What is problem?</p>
+<p><strong>sanchez</strong>: I don’t know. Maybe my mechanic.</p>
+<p><strong>class</strong>: I don’t know. Maybe mechanic.</p>
+<p><strong>sanchez</strong>: I want to give you a chance. It is up to
+you…</p>
+<p><strong>class</strong>: I want to give you a chance. Is up to
+you…</p>
+<p><strong>miguel</strong>: How are you, sis?</p>
+<p><strong>erica</strong>: Any news about the States?</p>
+<p><strong>miguel</strong>: Is that all you have to say?</p>
+<p><strong>miguel</strong>: Hello, Abuela. You’re looking beautiful.</p>
+<p><strong>miguel</strong>: What’s up my people? How’s the TV?</p>
+<p><strong>luis</strong>: Erica won’t let me watch baseball.</p>
+<p><strong>erica</strong>: Not during American Idol, anyway.</p>
+<p><strong>carmen</strong>: Buenas, Miguelito! Do you have any good news
+for your mother?</p>
+<p><strong>miguel</strong>: As a matter of fact, yes.</p>
+<p><strong>carmen</strong>: You’re going to the United States?!</p>
+<p><strong>miguel</strong>: Not yet, ma… But I learned how to throw a
+knuckle curve.</p>
+<p><strong>carmen</strong>: A knuckle curve? What’s that?</p>
+<p><strong>kids</strong>: Sugar, come out and play!</p>
+<p><strong>sofia</strong>: When will you finish this?</p>
+<p><strong>miguel</strong>: Soon. It’s just hard to find the time.</p>
+<p><strong>sofia</strong>: It’s pretty.</p>
+<p><strong>miguel</strong>: I’m trying to match the chairs my dad made,
+but I can’t get it right.</p>
+<p><strong>sofia</strong>: Well, I think it’s perfect.</p>
+<p><strong>miguel</strong>: I’ll make you another when I’m done.</p>
+<p><strong>sofia</strong>: And the rest of the house? How long till it’s
+done?</p>
+<p><strong>miguel</strong>: Um, another month, maybe two… You know we
+just did it where Abuela’s room is going to be…</p>
+<p><strong>sofia</strong>: Don’t tell me that!</p>
+<p><strong>miguel</strong>: Why not? We can do it in mom’s kitchen next.
+Right over there.</p>
+<p><strong>sofia</strong>: I hope you make it to the States this
+year.</p>
+<p><strong>miguel</strong>: You hope? C’mon, there’s nobody better,
+baby.</p>
+<p><strong>sofia</strong>: Okay, how about: I KNOW you’ll make it.</p>
+<p><strong>miguel</strong>: Now you’re talkin’. And when I do, I’ll buy
+a Cadillac, drive it through the ocean, and bring you back with me.</p>
+<p><strong>sofia</strong>: You can’t drive a Cadillac on water.</p>
+<p><strong>miguel</strong>: Yes! In the States they make cars that drive
+on water.</p>
+<p><strong>sofia</strong>: You’re crazy.</p>
+<p><strong>miguel</strong>: You’ll see who’s crazy. Just watch.</p>
+<p><strong>sofia</strong>: I want to see the snow. Does it snow in
+Kansas City?</p>
+<p><strong>miguel</strong>: I don’t know. But I’ll take you to New York
+City. Yankee Stadium. It snows there. You wanta see me play in Yankee
+Stadium?</p>
+<p><strong>sofia</strong>: It doesn’t snow during baseball season,
+silly.</p>
+<p><strong>miguel</strong>: So we’ll go for Christmas.</p>
+<p><strong>sofia</strong>: Promise?</p>
+<p><strong>miguel</strong>: Next Christmas, we’ll sail into Yankee
+Stadium in my Cadillac car-boat. Deal?</p>
+<p><strong>sofia</strong>: You are crazy!</p>
+<p><strong>javier</strong>: I liked her, but she asked me to cut my
+hair. I thought about it. She was cute, but… I liked my hair more.</p>
+<p><strong>sofia</strong>: I liked it too, Javi.</p>
+<p><strong>miguel</strong>: Then why’d you cut it last week?</p>
+<p><strong>javier</strong>: I thought it was time for a new look.</p>
+<p><strong>miguel</strong>: Or a new girl.</p>
+<p><strong>miguel</strong>: Watch it, baby, that’s a million-dollar arm
+you’re messing with.</p>
+<p><strong>javier</strong>: He’s right! All hail the golden arm.</p>
+<p><strong>jaime</strong>: You call that flabby rubberband an arm?</p>
+<p><strong>javier</strong>: Oooh…</p>
+<p><strong>miguel</strong>: This flabby rubberband can throw 95. What
+can yours do?</p>
+<p><strong>jaime</strong>: I threw 98 in double-A Portland.</p>
+<p><strong>miguel</strong>: 98? Then why you washing windshields now? I
+saw you try and bumrush Javy at the stoplight last week.</p>
+<p><strong>ext. san pedro town - morning</strong>: 20 20</p>
+<p><strong>heckler #1</strong>: You’re supposed to aim for the head!</p>
+<p><strong>frank</strong>: I like this one. Good bat speed. Only twelve
+years old, out here four, five hours everyday. His mom tells me he’s
+missing school. I say, yeah, but… have you seen his swing?</p>
+<p><strong>frank</strong>: I’m showing his older brother to the Yankees
+on Monday.</p>
+<p><strong>frank</strong>: They don’t know what they missed with you.
+It’s cool though. They’ll be knocking on your door, offering millions
+when you turn into a superstar. You’ll see…</p>
+<p><strong>miguel</strong>: Have you been to New York?</p>
+<p><strong>frank</strong>: Nothing like playing for a crowd of New
+Yorkers. They’re even louder than Dominicans.</p>
+<p><strong>miguel</strong>: What’s the city like?</p>
+<p><strong>frank</strong>: It’s great. But you need to get to Kansas
+City before you start thinking about New York. Know what I mean?</p>
+<p><strong>miguel</strong>: You hear anything about spring training
+yet?</p>
+<p><strong>frank</strong>: Yep.</p>
+<p><strong>miguel</strong>: And?</p>
+<p><strong>erica</strong>: Miguel, Luis! Dinner is ready!</p>
+<p><strong>miguel</strong>: You’d tell me if you knew.</p>
+<p><strong>frank</strong>: Maybe.</p>
+<p><strong>miguel</strong>: Wanna join us for dinner?</p>
+<p><strong>frank</strong>: Not tonight. But give your mom a kiss for me,
+okay?</p>
+<p><strong>frank</strong>: C’mon, Nelson! Fire it in, baby!</p>
+<p><strong>reyes</strong>: A lot of you are thinking about your families
+right now. Your girlfriends, sisters and brothers, grandparents. You’re
+feeling the pressure. But, I’m going to tell you something very
+important, gentlemen… forget it. You’ve got to think about yourselves.
+Put all your energy into your game, into your development as a player.
+Forget about everything else in your life… and just play ball. You wanna
+succeed, you gotta be like a racehorse, focused on your goal. It’s up to
+you.</p>
+<p><strong>reyes</strong>: Next up, Miguel! Here we go!</p>
+<p><strong>reyes</strong>: Berroa, see Alvarez when you’re dressed.</p>
+<p><strong>marcos</strong>: So the Dominican’s like,
+<code>Fuck, what am I gonna do?' He stays there, points up to the sky and says.</code>Look!
+There’s a plane… Right THERE!’</p>
+<p><strong>salvador</strong>: Hey, Sugar! They made me an offer.</p>
+<p><strong>miguel</strong>: Good for you. Congratulations. How much they
+offer you?</p>
+<p><strong>salvador</strong>: 115,000. But, you know, my manager’s
+taking, like, forty of it… What’d you sign for?</p>
+<p><strong>miguel</strong>: Oh, you know, more or less the same. Did you
+get any other offers?</p>
+<p><strong>salvador</strong>: Yankees and Seattle, but not as much.</p>
+<p><strong>miguel</strong>: Just don’t get cocky. No one likes a
+dickhead… Welcome to the team.</p>
+<p><strong>salvador</strong>: So, why do they call you Sugar?</p>
+<p><strong>miguel</strong>: Well it’s like this… it started cause I’m
+sweet with the ladies. But mostly it’s cause I got the sweetest knuckle
+curve in the whole Republic.</p>
+<p><strong>alfonso</strong>: Bullshit! You just learned that shit on
+Friday! It’s cause he eats so much junk food!</p>
+<p><strong>miguel</strong>: He’s just jealous.</p>
+<p><strong>miguel</strong>: We got you a going away present.</p>
+<p><strong>marcos</strong>: You should try Los Campos. I heard the
+Dodgers could use a new first baseman.</p>
+<p><strong>pedro</strong>: Fuck that. The coaches are even tougher over
+there. I’m done, man.</p>
+<p><strong>miguel</strong>: No caps indoors, son!</p>
+<p><strong>alfonso</strong>: Cut the meat with your knife; eat the meat
+with your fork. NEVER eat the meat with your knife.</p>
+<p><strong>marcos</strong>: Or you’ll chop off your tongue.</p>
+<p><strong>miguel</strong>: Ten p.m. lights out!</p>
+<p><strong>pedro</strong>: “Tay me outta the ball game, tay me outta the
+crowd…”</p>
+<p><strong>alfonso/miguel/marcos/pedro</strong>: “…buys me so peanut and
+crackay- yacks. I doe-care if I never get back. Roo, roo, roo for home
+teams, we doe- win is a shame…”</p>
+<p><strong>reyes</strong>: Santos, what the hell’s wrong with you?</p>
+<p><strong>miguel</strong>: I think I have the flu, coach. I can’t pitch
+today.</p>
+<p><strong>reyes</strong>: You’ve got five minutes to get out on that
+mound, Santos.</p>
+<p><strong>reyes</strong>: Feel better now? Let’s go!</p>
+<p><strong>umpire</strong>: Strike!</p>
+<p><strong>reyes</strong>: Wipe that smile off your face.</p>
+<p><strong>alvarez</strong>: I am very disappointed. Just when I was
+starting to like you guys, you go and do something stupid. What do you
+have to say for yourselves?</p>
+<p><strong>marcos</strong>: But Alfonso was there too–</p>
+<p><strong>alvarez</strong>: –No excuses. This is unacceptable behavior.
+You guys need to learn discipline.</p>
+<p><strong>reyes</strong>: You need to remember that you still have a
+long way to go, a lot of hard work ahead of you before you make it.
+First, there’s getting your shot in the American Minor Leagues: rookie
+ball, single, double, triple A - all that before you even set foot in a
+major league ballpark. So, you better pull it together quick…</p>
+<p><strong>alvarez</strong>: Because nobody’s gonna take this shit from
+a couple Dominican rookies when you go to the U.S. for Spring Training
+this season.</p>
+<p><strong>reyes</strong>: You’ve been invited to Spring Training.</p>
+<p><strong>floor manager</strong>: Phone call. He said it’s
+important.</p>
+<p><strong>carmen</strong>: Hello?</p>
+<p><strong>erica</strong>: Don’t forget to call everyday. I want to know
+everything!</p>
+<p><strong>miguel</strong>: Everything?</p>
+<p><strong>erica</strong>: You know what I mean, dummy.</p>
+<p><strong>miguel</strong>: Of course I’ll be calling to keep you in
+check, make sure your grades don’t slip.</p>
+<p><strong>erica</strong>: Look who’s talking.</p>
+<p><strong>carmen</strong>: You are my hero!</p>
+<p><strong>carmen</strong>: It was your father’s. I want you to take it
+with you…</p>
+<p><strong>carmen</strong>: You’ve been given a wonderful gift,
+Miguelito. And God willing, you will continue to do great things with
+it. I love you so much.</p>
+<p><strong>uncle angel</strong>: Miguelito! You gonna remember your
+uncle Angel when you’re all big and famous? Don’t forget your family,
+kid. Never forget where you came from.</p>
+<p><strong>cousin lupe</strong>: Lupe! Cousin Lupe! Remember that time
+we went skinny-dipping at the Malec�n?</p>
+<p><strong>miguel</strong>: When?</p>
+<p><strong>cousing felipe</strong>: You were eight years old! Hated the
+goats so much. You would cry and cry and cry and cry. What a baby you
+were. Do you remember?</p>
+<p><strong>miguel</strong>: What’s your name?</p>
+<p><strong>aunt lola</strong>: Lola! Your aunt Lola!</p>
+<p><strong>uncle jeffe</strong>: Uncle Jeffe!</p>
+<p><strong>neighbor ana</strong>: Your neighbor Ana. I grew up around
+the corner from here.</p>
+<p><strong>frank</strong>: Don’t give me any shit, kid. I taught you
+everything you know.</p>
+<p><strong>frank</strong>: I’m damn proud of you, kid. Your father would
+be, too.</p>
+<p><strong>miguel</strong>: Thanks. I owe it all to you.</p>
+<p><strong>frank</strong>: Not all. Just forty percent.</p>
+<p><strong>frank</strong>: I spent the best years of my life playing in
+the States. Life gives you a lot of opportunities, but baseball only
+gives you one. Enjoy every minute of it.</p>
+<p><strong>frank</strong>: How’s your new curve?</p>
+<p><strong>miguel</strong>: It’s pretty sweet.</p>
+<p><strong>frank</strong>: Good. Here…</p>
+<p><strong>miguel</strong>: What’s this for?</p>
+<p><strong>frank</strong>: Your autograph.</p>
+<p><strong>frank</strong>: I’m kidding, you arrogant prick. It’s so you
+can write your family… and me, too… if you feel like it.</p>
+<p><strong>miguel</strong>: Where’s your boyfriend?</p>
+<p><strong>erica</strong>: Which one?</p>
+<p><strong>miguel</strong>: I don’t know; the ugly one.</p>
+<p><strong>erica</strong>: Hector?</p>
+<p><strong>miguel</strong>: Okay, where’s Hector?</p>
+<p><strong>erica</strong>: Some other party.</p>
+<p><strong>miguel</strong>: So what about the good-looking one?</p>
+<p><strong>erica</strong>: Mmm, Fernando… I think he’s out there dancing
+with Sofia.</p>
+<p><strong>miguel</strong>: I’m proud of you, sis. You’re going to do
+great things too. We all know it.</p>
+<p><strong>erica</strong>: I’m gonna miss you…</p>
+<p><strong>erica</strong>: C’mon, let’s dance.</p>
+<p><strong>miguel</strong>: Go on, I’ll be out in a minute. And tell
+Fernando to keep his dirty hands off my girl.</p>
+<p><strong>antonio</strong>: Check this out.</p>
+<p><strong>miguel/marcos/antonio/julio</strong>: To America!</p>
+<p><strong>marcos</strong>: To America!</p>
+<p><strong>jorge</strong>: What’s up fellas!?</p>
+<p><strong>marcos</strong>: Jorge!</p>
+<p><strong>jorge</strong>: Never, never, never, drink from the hotel
+mini bar. That shit is expensive. You want beer, buy it at the store.
+You wanta see titties? They got magazines for that. Don’t pay in the
+hotel.</p>
+<p><strong>waitress</strong>: You boys ready?</p>
+<p><strong>jorge</strong>: The greatest thing about the States? You can
+order breakfast 24/7. French toast is the best. It’s nothing like
+Dominican toast. French toast please.</p>
+<p><strong>waitress</strong>: Who’s next?</p>
+<p><strong>miguel/marcos/antonio/julio</strong>: French toast.</p>
+<p><strong>jorge</strong>: Brad Johnson. He just signed for a million
+dollars out of college.</p>
+<p><strong>jorge</strong>: There’s a lot of guys like that. But you
+can’t let that intimidate you. Everyone knows Dominicans rule the
+game.</p>
+<p><strong>orlando</strong>: What’s this about Dominicans ruling the
+game?</p>
+<p><strong>ed</strong>: No, he must’ve said Venezuelans.</p>
+<p><strong>jorge</strong>: Sammy, Manny, Pedro…</p>
+<p><strong>ed</strong>: Santana, Zambrano, the Guillens!</p>
+<p><strong>jorge</strong>: Are you guys all from the same family?</p>
+<p><strong>orlando</strong>: Look who’s talking… Are these your
+brothers?</p>
+<p><strong>jorge</strong>: What, all Dominicans look the same, now?</p>
+<p><strong>jorge</strong>: This is Miguel and Marcos. Up from Boca
+Chica.</p>
+<p><strong>orlando</strong>: But you couldn’t hang in Wichita.</p>
+<p><strong>jorge</strong>: I injured my knee, asshole. But I’m healthy
+now. You’ll see.</p>
+<p><strong>orlando</strong>: Fifty bucks you’re back in Iowa next
+month.</p>
+<p><strong>jorge</strong>: Fifty bucks you’re still an asshole next
+month.</p>
+<p><strong>stu</strong>: You’ve gotta show us your best game here.
+Remember that, until you reach the top, there’s always guys above you,
+hustling to keep you here. And guys below you pushing to take your job.
+We have 75 pitchers in this camp competing for less than 50 positions
+come April 3rd. So you gotta work hard…</p>
+<p><strong>stu</strong>: Bring over Leonard.</p>
+<p><strong>coach</strong>: Bring over Leonard!</p>
+<p><strong>stu</strong>: Welcome to America, kid.</p>
+<p><strong>antonio</strong>: I have to admit… I’m getting a little sick
+of the french toast.</p>
+<p><strong>miguel</strong>: I pitched against Rob Leonard today.</p>
+<p><strong>sofia</strong>: No shit! You strike him out?</p>
+<p><strong>miguel</strong>: Yeah.</p>
+<p><strong>sofia</strong>: Liar!</p>
+<p><strong>miguel</strong>: You don’t believe me?</p>
+<p><strong>sofia</strong>: No.</p>
+<p><strong>miguel</strong>: Well, I got one strike at least.</p>
+<p><strong>sofia</strong>: So, do you like it there?</p>
+<p><strong>miguel</strong>: Mmmm… It’s different.</p>
+<p><strong>sofia</strong>: Different how?</p>
+<p><strong>miguel</strong>: I don’t know. Just different. Like the food
+is really sweet.</p>
+<p><strong>sofia</strong>: I thought you liked sweet things.</p>
+<p><strong>miguel</strong>: All the players are really good.</p>
+<p><strong>sofia</strong>: But not like you.</p>
+<p><strong>miguel</strong>: No, not like me. Of course not… But they’re
+pretty good.</p>
+<p><strong>sofia</strong>: I miss you.</p>
+<p><strong>miguel</strong>: I miss you, too.</p>
+<p><strong>marcos</strong>: Turn it off.</p>
+<p><strong>stu</strong>: Just relax. Know your pitches. And take it
+easy. Ground ball. Okay?</p>
+<p><strong>orlando</strong>: Just relax. Ground ball.</p>
+<p><strong>umpire</strong>: Strike!</p>
+<p><strong>umpire</strong>: Two!</p>
+<p><strong>miguel</strong>: Where did you learn English so good?</p>
+<p><strong>orlando</strong>: Back home in Caracas.</p>
+<p><strong>miguel</strong>: Like in high school, or something?</p>
+<p><strong>orlando</strong>: Yeah, but it’s still hard though. People
+talk fast.</p>
+<p><strong>insert</strong>: a check for $502.18.</p>
+<p><strong>marcos</strong>: C’mon. Let’s grab some dinner.</p>
+<p><strong>miguel</strong>: Nah, I’m gonna stay and work out a little.
+I’ll catch up later.</p>
+<p><strong>miguel</strong>: Good catch.</p>
+<p><strong>brad</strong>: Thanks… I got lucky.</p>
+<p><strong>waitress</strong>: French toast, right?</p>
+<p><strong>miguel</strong>: No… Egg. Egg, please.</p>
+<p><strong>waitress</strong>: Eggs. No problem. How would you
+like’m?</p>
+<p><strong>miguel</strong>: Yes.</p>
+<p><strong>waitress</strong>: Um, okay, uh… Scrambled? Over easy? Sunny
+side up?</p>
+<p><strong>miguel</strong>: French toast.</p>
+<p><strong>waitress</strong>: No eggs? You sure?</p>
+<p><strong>miguel</strong>: French toast.</p>
+<p><strong>waitress</strong>: Alright, honey. French toast it is.</p>
+<p><strong>waitress</strong>: Okay… This is scrambled. Scrambled.</p>
+<p><strong>miguel</strong>: Scrambled.</p>
+<p><strong>waitress</strong>: Over easy.</p>
+<p><strong>miguel</strong>: Over easy.</p>
+<p><strong>waitress</strong>: This one’s tricky… Sunny-side-up.
+Sunny…</p>
+<p><strong>miguel</strong>: Sunny…</p>
+<p><strong>waitress</strong>: Side…</p>
+<p><strong>miguel</strong>: Side…</p>
+<p><strong>waitress</strong>: Up…</p>
+<p><strong>miguel</strong>: Up.</p>
+<p><strong>waitress</strong>: Sunny side up… On the house.</p>
+<p><strong>miguel</strong>: Thank you.</p>
+<p><strong>waitress</strong>: You’re welcome.</p>
+<p><strong>marcos</strong>: They’re sending Antonio back.</p>
+<p><strong>miguel</strong>: Shit. What about you guys?</p>
+<p><strong>julio</strong>: We’re staying here. Rookie ball.</p>
+<p><strong>marcos</strong>: Go take a look.</p>
+<p><strong>insert</strong>: We PAN from his name to ” Bridgetown,
+Iowa”</p>
+<p><strong>miguel</strong>: I’m not with you guys?</p>
+<p><strong>marcos</strong>: Straight to Single A, bro. With Jorge.
+Congratulations.</p>
+<p><strong>miguel</strong>: Where is Iowa?</p>
+<p><strong>miguel</strong>: Can’t I stay with you guys?</p>
+<p><strong>jorge</strong>: Don’t worry, Sugar. The Higgins are good
+people. I stayed with them last time I played here.</p>
+<p><strong>miguel</strong>: Then why don’t you stay with them again?</p>
+<p><strong>jorge</strong>: They have a no girls policy.</p>
+<p><strong>helen</strong>: Jorge! Good to see you back in
+Bridgetown!</p>
+<p><strong>jorge</strong>: Thank you. This is Miguel.</p>
+<p><strong>jorge</strong>: I go now. Take care of my friend.</p>
+<p><strong>helen</strong>: We’ve had Dominicans, Venezuelan boys, a
+Colombian, one from Panama, blacks and some Americans. Mostly Spanish
+boys, though. Johan Santana, Mendy Lopez and Ramon Martinez all stayed
+with us. Years ago.</p>
+<p><strong>earl</strong>: Last year we had this boy, Junior Sanchez.
+Nice boy. Decent with the glove, but couldn’t bunt to save his life.</p>
+<p><strong>helen</strong>: Two-for-twelve in sacrifice situations.</p>
+<p><strong>earl</strong>: Cost the team at least two victories.</p>
+<p><strong>helen</strong>: Oh, that’s being generous! I’d say four or
+five.</p>
+<p><strong>helen</strong>: Put your things down. I’ll show you
+around.</p>
+<p><strong>helen</strong>: This is the kitchen. Help yourself to
+whatever you’d like. You can make a list of special foods you like to
+eat and put it here.</p>
+<p><strong>helen</strong>: Oh, and over here, this drawer is a little
+funny.</p>
+<p><strong>helen</strong>: You have to be careful or…</p>
+<p><strong>helen</strong>: This is the washer and the dryer. For your
+clothes. You put the soap in this one. Sopa.</p>
+<p><strong>helen</strong>: The other one’s just hot air. Caliente.</p>
+<p><strong>helen</strong>: Your room is up here.</p>
+<p><strong>helen</strong>: El banyo.</p>
+<p><strong>helen</strong>: Your new cuarto. Bedroom. Do with it as you
+please. Just no girls. Chicas? No chicas.</p>
+<p><strong>earl</strong>: No drinking. No cervezas in the casa. No
+chicas in the bedroom.</p>
+<p><strong>helen</strong>: I already told him that one.</p>
+<p><strong>earl</strong>: Okay. What about quiet time?</p>
+<p><strong>helen</strong>: Right. There’s no real curfew, but you must
+be quiet after ten.</p>
+<p><strong>earl</strong>: Diez. Shhhh… after diez.</p>
+<p><strong>miguel</strong>: Ten. Okay.</p>
+<p><strong>helen</strong>: Si! That’s all we ask. It’s our job to keep
+you healthy and focused on baseball.</p>
+<p><strong>earl</strong>: And we take pride in that.</p>
+<p><strong>miguel</strong>: Thank you.</p>
+<p><strong>carmen</strong>: Everyone is so proud, Miguelito. It’s all we
+can talk about.</p>
+<p><strong>miguel</strong>: Did you get the money?</p>
+<p><strong>carmen</strong>: Of course.</p>
+<p><strong>miguel</strong>: Good. And Victor? Can he start construction
+on the house again? I’ll be sending money every two weeks now.</p>
+<p><strong>carmen</strong>: We just paid him. He’s coming next week.</p>
+<p><strong>miguel</strong>: What about you? You get something for
+yourself like I said?</p>
+<p><strong>carmen</strong>: Me? What do I need?</p>
+<p><strong>miguel</strong>: C’mon, mom…</p>
+<p><strong>carmen</strong>: What?</p>
+<p><strong>miguel</strong>: You didn’t get anything?</p>
+<p><strong>carmen</strong>: Well, maybe I got some new shoes, but I’m
+not telling.</p>
+<p><strong>erica</strong>: Three pairs, Miguel! But who’s counting?</p>
+<p><strong>miguel</strong>: Good for you, mom.</p>
+<p><strong>helen</strong>: Miguel! Time for dinner!</p>
+<p><strong>miguel</strong>: I have to go, mom. The lady is calling me.
+Smells like dinner.</p>
+<p><strong>carmen</strong>: Dinner? Don’t forget who your real mother
+is, Miguelito. Are you going to prefer her cooking to mine now?</p>
+<p><strong>miguel</strong>: Impossible… I love you, mom.</p>
+<p><strong>carmen</strong>: Everyone loves and misses you. Strike one
+out for me, okay?</p>
+<p><strong>helen</strong>: Dear Lord… Thank you for the meal we are
+about to eat. And for blessing us with our new guest. And guiding him
+safely on his journey from the Dominican Republic to Bridgetown…</p>
+<p><strong>helen</strong>: …And finally, Lord… Please look kindly over
+the Swing this season. May all the players stay healthy and… well, why
+not?… if there’s anything you can do to help us win another
+championship, we’ll take that too… Amen.</p>
+<p><strong>michael</strong>: So, Miguel… Do - you - eat - meatloaf -
+back home?</p>
+<p><strong>helen</strong>: I already told you, Michael, he doesn’t speak
+any English.</p>
+<p><strong>michael</strong>: I know but… I’m curious to know what he
+thinks of the meatloaf.</p>
+<p><strong>earl</strong>: What do you care? You didn’t cook it.</p>
+<p><strong>hilary</strong>: I doubt they have meatloaf in the Dominican
+Republic, dear.</p>
+<p><strong>anne</strong>: I bet they have something similar. They
+probably just have another name for it.</p>
+<p><strong>michael</strong>: This is good old-fashioned American home
+cooking, Miguel. Welcome to America.</p>
+<p><strong>miguel</strong>: I like. Thank you.</p>
+<p><strong>earl</strong>: Well, very good, Miguel. De nada to you, mi
+amigo. De nada to you.</p>
+<p><strong>clubby</strong>: If you guys ever need tickets for family or
+friends, just let me know two days ahead of time. Thursday’s opener is
+already sold out, but I saved one row, so you need to speak up now…</p>
+<p><strong>clubby</strong>: Santos - you’re over there.</p>
+<p><strong>brad</strong>: Que pasa, hermano?</p>
+<p><strong>miguel</strong>: What up, Flaco?</p>
+<p><strong>brad</strong>: Dude, I was totally psyched when I saw your
+name on the squad. Good times.</p>
+<p><strong>miguel</strong>: Yeah, okay.</p>
+<p><strong>insert</strong>: in a little corner of the package Miguel
+reads, “MADE IN</p>
+<p><strong>jorge</strong>: C’mon, bro, let’s find you a suit.</p>
+<p><strong>miguel</strong>: I can’t afford a suit.</p>
+<p><strong>jorge</strong>: I didn’t say buy a suit. I said find a suit.
+So when you make it big, you’ll already know what looks good.</p>
+<p><strong>jorge</strong>: Hot damn! That’s what’s up!</p>
+<p><strong>miguel</strong>: You like it?</p>
+<p><strong>jorge</strong>: I love it! You look like an all-star,
+bro.</p>
+<p><strong>jorge</strong>: “Starting pitcher for American League… from
+Kansas City… Miguel… ‘Sugar’… Santos.”</p>
+<p><strong>miguel</strong>: What about you, man? You try one.</p>
+<p><strong>jorge</strong>: Me? Nah… I’m all washed up.</p>
+<p><strong>miguel</strong>: C’mon…</p>
+<p><strong>miguel</strong>: Very nice.</p>
+<p><strong>jorge</strong>: Dude. You have no idea. Just wait till we go
+to Big Muddy’s.</p>
+<p><strong>miguel</strong>: Big Muddy’s?</p>
+<p><strong>jorge</strong>: You gotta be 21 to drink there. This is my
+old license. They won’t know the difference.</p>
+<p><strong>miguel</strong>: Are you kidding me? Nobody’s gonna believe
+I’m this ugly fool.</p>
+<p><strong>jorge</strong>: Believe me; they won’t know the
+difference.</p>
+<p><strong>jack jefferies</strong>: Hey there, Swing fans, welcome to
+another exciting season of Swing baseball. As always we’ve got some new
+faces who we’ll get to know this year– like Brad Johnson, the highly
+touted 2nd baseman out of Stanford. He’ll make his professional debut
+tonight. Great night for Swing baseball… And also a great night to grab
+a bite and a brew at Harlow’s after the game - your local pub and proud
+sponsor…</p>
+<p><strong>play 1</strong>: he casually spits sunflower seed shells,
+then CLAPS the final out of the inning, high-fiving players returning to
+the dugout.</p>
+<p><strong>play 2</strong>: chats to Jorge, when they react to the CRACK
+of the bat, leap to their feet, eagerly anticipate an umpire’s call, and
+CHEER when the call goes their team’s way.</p>
+<p><strong>play 3</strong>: grimaces at the sight of a hit-by-pitch.</p>
+<p><strong>play 4</strong>: leaps to his feet, CLAPS.</p>
+<p><strong>play 5</strong>: leaps to his feet, doesn’t clap. Sits back
+down.</p>
+<p><strong>play 6</strong>: Miguel and Jorge sway to the seventh inning
+stretch classic “Take Me Out to the Ball Game.”</p>
+<p><strong>play 7</strong>: sitting with Brad, they both point to
+something on the field and crack up laughing. Of course, we don’t see
+what they’re laughing at.</p>
+<p><strong>play 8</strong>: standing with Jorge and the rest of the
+players, the mood is tense. The players react to a hit ball, as their
+heads jerk toward the outfield, waiting, waiting, waiting, and…</p>
+<p><strong>miguel</strong>: You think they know how to salsa?</p>
+<p><strong>jorge</strong>: Go for it, bro. But remember, just cause they
+dance with you, doesn’t mean they want anything else.</p>
+<p><strong>orlando</strong>: Not from you, anyway.</p>
+<p><strong>miguel</strong>: Yo flaco!</p>
+<p><strong>brad</strong>: What’s up fellas? Good game.</p>
+<p><strong>brad</strong>: What’s with the flaco? I mean… You call this
+flaco?</p>
+<p><strong>jorge</strong>: You ready?</p>
+<p><strong>miguel</strong>: Let’s do it.</p>
+<p><strong>jackass</strong>: Careful, Paco. This ain’t the jungle.</p>
+<p><strong>anne</strong>: How’d you like the service? Our church? Hope
+it wasn’t too boring for you. Did you go to church in the Dominican
+Republic?</p>
+<p><strong>miguel</strong>: I am sorry. I do not understand.</p>
+<p><strong>anne</strong>: S’okay. You understand more than a lot of
+folks around here I bet.</p>
+<p><strong>anne</strong>: So listen, me and some friends are hanging out
+later. You should stop by my house after the game. It’s gonna be super
+chill. Grandma can take you there, but here…</p>
+<p><strong>anne</strong>: Can I borrow a pen real quick?</p>
+<p><strong>anne</strong>: After the game. My house… Good luck,
+tonight.</p>
+<p><strong>jack jefferies</strong>: Santos, apparently feeling the
+butterflies on his first professional outing. Hailing all the way from
+the Dominican Republic, Santos wowed the club with his power during
+Spring Training. But he’s off to a rocky start tonight.</p>
+<p><strong>jorge</strong>: Relax, Sugar. It’s the same game we played
+back home. That’s all it is. Just a game, man. So relax. Let’s have some
+fun. Okay?</p>
+<p><strong>jorge</strong>: See? Just like home.</p>
+<p><strong>umpire</strong>: Strike!</p>
+<p><strong>jorge</strong>: That’s it! There it is!</p>
+<p><strong>jack jefferies</strong>: Nearly unhittable for the first 6
+innings, that was only the second hit allowed by Santos tonight.</p>
+<p><strong>stu</strong>: Good game, kid. Enjoy this…</p>
+<p><strong>orlando</strong>: Nice work, Sugar.</p>
+<p><strong>miguel</strong>: But that wasn’t my fault. I can go
+longer.</p>
+<p><strong>orlando</strong>: Take it easy; it’s your first game.</p>
+<p><strong>stu</strong>: You hear that? It’s for you, kid.</p>
+<p><strong>anne</strong>: Hey Miguel. C’mon inside.</p>
+<p><strong>miguel</strong>: My first… strike-out.</p>
+<p><strong>anne</strong>: Oh, Miguel… you’re so sweet. Congratulations,
+I heard you pitched awesome.</p>
+<p><strong>anne</strong>: Hey everybody, this is Miguel. He’s from the
+Dominican Republic, and now he pitches for the Swing.</p>
+<p><strong>randy</strong>: What’s up, man?</p>
+<p><strong>travis</strong>: Wanna play?</p>
+<p><strong>miguel</strong>: No. Thank you.</p>
+<p><strong>travis</strong>: It’s like soccer. You play soccer?</p>
+<p><strong>miguel</strong>: Soccer? No. Baseball.</p>
+<p><strong>travis</strong>: Well this is called fooze-ball. Fooze-
+ball.</p>
+<p><strong>miguel</strong>: Foos-ball?</p>
+<p><strong>travis</strong>: Yeah, you got it.</p>
+<p><strong>randy</strong>: I used to be a pitcher. In little league. I
+wasn’t very good though.</p>
+<p><strong>wendy</strong>: I heard that the beaches in the Dominican
+Republic are really beautiful.</p>
+<p><strong>anne</strong>: Hey guys, let’s get started. Everyone grab a
+seat.</p>
+<p><strong>anne</strong>: I’m so glad you all came. Last year, we didn’t
+have half as many people in our group. So, I think this just goes to
+show the great work we’ve been doing in spreading the word. But this
+year, I want us to work harder. Now, I know a lot of you are studying
+for SATs or working on college applications. And all of that is
+important, but we need to remember that our spiritual accomplishments
+are more important. What we do in school or for a job… that’s just a
+small part of who we are. We’re only here by the grace of God, so let’s
+get out there and share that grace.</p>
+<p><strong>the group</strong>: One there is above all others, Oh, how He
+loves! His is love beyond a brother’s, Oh, how He loves! Earthly friends
+may fail or leave us, One day soothe, the next day grieve us; But this
+Friend will ne’er deceive us: Oh, how He loves!</p>
+<p><strong>miguel</strong>: Mama�ema. Very bad. Very bad word.</p>
+<p><strong>brad</strong>: Mama-�ema? What’s it mean?</p>
+<p><strong>miguel</strong>: Mmm… Like–</p>
+<p><strong>brad</strong>: Cocksucker?</p>
+<p><strong>miguel</strong>: Cock-sucker?</p>
+<p><strong>brad</strong>: Yeah, we say cocksucker.</p>
+<p><strong>miguel</strong>: Okay, cocksucker.</p>
+<p><strong>brad</strong>: Mama�ema.</p>
+<p><strong>brad</strong>: Who is your favorite player?</p>
+<p><strong>miguel</strong>: Robinson Cano for the Yankees. I know him
+brother. And you?</p>
+<p><strong>brad</strong>: Roberto Clemente.</p>
+<p><strong>miguel</strong>: Who is that?</p>
+<p><strong>brad</strong>: What? You don’t know about Clemente?</p>
+<p><strong>miguel</strong>: Is Dominican?</p>
+<p><strong>brad</strong>: Puerto Rican. I can’t believe it. This is
+tragic. Do you know who Babe Ruth is?</p>
+<p><strong>miguel</strong>: Baby Ruth? El chocolate?</p>
+<p><strong>brad</strong>: Hey, how’d it go with that girl the other
+night?</p>
+<p><strong>miguel</strong>: Girl?</p>
+<p><strong>brad</strong>: Yeah, didn’t you have a date, or
+something?</p>
+<p><strong>miguel</strong>: Oh, she no es my girl.</p>
+<p><strong>brad</strong>: No sweat, bro. We’ll find you a little honey
+on the road.</p>
+<p><strong>brad</strong>: You like The White Stripes?</p>
+<p><strong>miguel</strong>: I don’t know.</p>
+<p><strong>brad</strong>: Check it out.</p>
+<p><strong>brad</strong>: “Santos stings Owls with 8 Ks.” What kind of
+shoddy journalism is this? There’s nothing’ about me in here.</p>
+<p><strong>jack jefferies</strong>: At what point in the game did you
+realize you had your best stuff?</p>
+<p><strong>orlando</strong>: When did you know you were going to be a
+good pitcher in this game?</p>
+<p><strong>miguel</strong>: I knew from the time I was very young I
+would be a good pitcher. Ten, eleven years old. Thanks to God, I have
+had the opportunity to develop my talents.</p>
+<p><strong>orlando</strong>: He knew very early that he was going to
+pitch good. Eleven years.</p>
+<p><strong>jorge</strong>: It’s not good. Because I haven’t been playing
+good… No. I’m working hard, but, I don’t know… I think they might…
+Listen, I can’t talk now.</p>
+<p><strong>brad</strong>: Did you ever see “Y Tu Mama Tambien”?</p>
+<p><strong>miguel</strong>: Y tu mama what?</p>
+<p><strong>brad</strong>: Y Tu Mama Tambien… It’s Mexican.</p>
+<p><strong>miguel</strong>: No, I don’t know this.</p>
+<p><strong>brad</strong>: What are your favorite movies?</p>
+<p><strong>jorge</strong>: Terminator.</p>
+<p><strong>miguel</strong>: I like Matrisse.</p>
+<p><strong>jorge</strong>: Oh, Matrisse. Very strong.</p>
+<p><strong>brad</strong>: Matrisse? What’s that?</p>
+<p><strong>miguel</strong>: He doesn’t know Matrisse?</p>
+<p><strong>jorge</strong>: You don’t know The Matrisse?</p>
+<p><strong>brad</strong>: The Mattress? I don’t know. Dude, do you know
+a movie called The Mattress?</p>
+<p><strong>jeff</strong>: The Mattress?</p>
+<p><strong>jorge</strong>: With Keanu…?</p>
+<p><strong>jeff</strong>: Keanu Reeves?</p>
+<p><strong>brad</strong>: Oh, shit! The MATRIX!!</p>
+<p><strong>miguel</strong>: Matrisse!</p>
+<p><strong>brad</strong>: Yeah, yeah, the Matrix is badass. I was like,
+Mattress? What?</p>
+<p><strong>stu</strong>: Nice play, kid. How’s your foot?</p>
+<p><strong>jorge</strong>: You okay?</p>
+<p><strong>stu</strong>: Take it easy. Don’t force it. How’s it
+feel?</p>
+<p><strong>orlando</strong>: Don’t push it. Does it hurt?</p>
+<p><strong>miguel</strong>: I’m okay.</p>
+<p><strong>stu</strong>: Let him toss a few warm-ups.</p>
+<p><strong>stu</strong>: All right, kid. Give it a rest.</p>
+<p><strong>miguel</strong>: I am okay. Please.</p>
+<p><strong>stu</strong>: You’re okay, I know, but let’s just be sure…
+Give me the ball, son.</p>
+<p><strong>helen</strong>: You’ve been pitching so well… it’s a real
+shame.</p>
+<p><strong>earl</strong>: Don’t worry, Miguel, you’ll bounce right
+back.</p>
+<p><strong>hilary</strong>: Where’d you say you were from, Brad?</p>
+<p><strong>brad</strong>: Berkeley.</p>
+<p><strong>michael</strong>: Oh, different world out there, huh? You
+like to surf?</p>
+<p><strong>brad</strong>: Uh, no, I’ve never tried it. But maybe
+someday.</p>
+<p><strong>jorge</strong>: Your parents visit here?</p>
+<p><strong>brad</strong>: Yeah, I hope so. Maybe when they get some time
+off this summer.</p>
+<p><strong>anne</strong>: How about you, Miguel? What’s your family
+like?</p>
+<p><strong>miguel</strong>: My family?</p>
+<p><strong>anne</strong>: Yeah. Like, who do you live with back
+home?</p>
+<p><strong>miguel</strong>: I live with my mother, sister, brother… and
+Abuela?</p>
+<p><strong>jorge</strong>: Grandmother.</p>
+<p><strong>miguel</strong>: And grandmother.</p>
+<p><strong>michael</strong>: How about your father, Miguel?</p>
+<p><strong>miguel</strong>: My father, uh… He die.</p>
+<p><strong>helen</strong>: Oh, Miguel, honey. I’m so sorry.</p>
+<p><strong>miguel</strong>: You have other child…?</p>
+<p><strong>hilary</strong>: Yes, we have a son. Anne’s older
+brother.</p>
+<p><strong>anne</strong>: He’s in Iraq.</p>
+<p><strong>anne</strong>: You like it here in Iowa?</p>
+<p><strong>miguel</strong>: Yes. I like… Many new things. Very
+different.</p>
+<p><strong>anne</strong>: I bet. You’ve traveled a long way, huh? God
+must have something special in mind for you…</p>
+<p><strong>anne</strong>: What happened there?</p>
+<p><strong>miguel</strong>: Uh… When I boy… Um… I don’t know–</p>
+<p><strong>anne</strong>: Tell me in Spanish.</p>
+<p><strong>miguel</strong>: Okay… When I was little, I wanted to eat
+some cherries from a tree. It wasn’t our tree, and there was a fence to
+keep us kids away.</p>
+<p><strong>miguel</strong>: So I climbed up the fence to knock down some
+cherries with a stick, but I when I took my first swing– whoosh. I fell.
+There was a lot of blood.</p>
+<p><strong>anne</strong>: Sorry, I just… Sorry.</p>
+<p><strong>anne</strong>: I should help clean up…</p>
+<p><strong>anne</strong>: We have another meeting Thursday… If you can
+come.</p>
+<p><strong>jorge</strong>: I had a good run.</p>
+<p><strong>miguel</strong>: What happened?</p>
+<p><strong>jorge</strong>: It’s over.</p>
+<p><strong>miguel</strong>: Why?</p>
+<p><strong>jorge</strong>: You know the drill. I’m not playing well, so
+they’ll bring up somebody who is.</p>
+<p><strong>miguel</strong>: What about your knee? You just need some
+more time… You’re recovering.</p>
+<p><strong>jorge</strong>: Sugar…</p>
+<p><strong>miguel</strong>: When do you leave?</p>
+<p><strong>jorge</strong>: They want me to fly back tonight.</p>
+<p><strong>miguel</strong>: Tonight?!</p>
+<p><strong>jorge</strong>: But I’m not going back…</p>
+<p><strong>jorge</strong>: I gotta cousin in New York.</p>
+<p><strong>miguel</strong>: You’re going to New York?</p>
+<p><strong>jorge</strong>: Where else? There’s no work back home. My
+bonus won’t last forever…</p>
+<p><strong>jorge</strong>: Relax Sugar, I’ll see you at Yankee Stadium
+someday… when the Knights come to town. I’ll be in the front row,
+getting drunk, and cheering the loudest.</p>
+<p><strong>jorge</strong>: Not for you though. Yankee fans are crazy. I
+can’t take the risk… I’ll call you.</p>
+<p><strong>jorge</strong>: You worry too much, Sugar. I’ll be okay. I
+mean, it’s just a game, right?</p>
+<p><strong>sofia</strong>: How’d you play tonight?</p>
+<p><strong>miguel</strong>: Good, good.</p>
+<p><strong>sofia</strong>: I bet you have lots of groupies waiting for
+you after your games.</p>
+<p><strong>miguel</strong>: I have a few.</p>
+<p><strong>sofia</strong>: A few?</p>
+<p><strong>miguel</strong>: Just kidding. I mean I would, but none of
+these white girls speak Spanish. Marcos plays in Arizona. Lots of
+Mexicans; everyone speaks Spanish. He has like fifteen girlfriends.</p>
+<p><strong>sofia</strong>: Shut up!</p>
+<p><strong>miguel</strong>: He’s probably lying though.</p>
+<p><strong>sofia</strong>: I bet he’s lying.</p>
+<p><strong>miguel</strong>: Jorge went to New York.</p>
+<p><strong>sofia</strong>: To the Yankees?</p>
+<p><strong>miguel</strong>: No. Our team cut him loose. He’s got a
+cousin there… I don’t know what he’s going to do…</p>
+<p><strong>sofia</strong>: Shit… What about his family?</p>
+<p><strong>miguel</strong>: It’s not right. He got injured playing for
+them. They owe him another chance. He’s worked too hard for too long… I
+mean he’s not a horse.</p>
+<p><strong>sofia</strong>: But you can’t let it get to you. You’ve got
+nothing to worry about. Just keep playing well, and things will be
+okay.</p>
+<p><strong>miguel</strong>: Yeah… I know. Things will be okay.</p>
+<p><strong>miguel</strong>: What is your book?</p>
+<p><strong>brad</strong>: Welcome to the Terrordome. It’s about sports
+and politics.</p>
+<p><strong>miguel</strong>: You study at, um, university?</p>
+<p><strong>brad</strong>: Yeah, I went to Stanford. Studied history and
+baseball. Did you go to school back in the DR?</p>
+<p><strong>miguel</strong>: Yes. Little. Secondaria?</p>
+<p><strong>brad</strong>: High school?</p>
+<p><strong>miguel</strong>: Yes. A little of… high school. But I sign
+when I have sixteen years.</p>
+<p><strong>brad</strong>: You signed at sixteen? Wow. So you didn’t
+finish school?</p>
+<p><strong>miguel</strong>: If you no play baseball… what you do?</p>
+<p><strong>brad</strong>: Um… it’s hard to say for sure, but I like
+history, so I’d probably go to grad school… maybe teach someday.</p>
+<p><strong>voice</strong>: Brad! We’re up for B.P. Let’s go.</p>
+<p><strong>anne</strong>: These are grandma’s from the other night.</p>
+<p><strong>anne</strong>: We missed you at our meeting, Thursday.</p>
+<p><strong>miguel</strong>: Sorry. I forget.</p>
+<p><strong>anne</strong>: It’s okay, maybe next time.</p>
+<p><strong>miguel</strong>: You want sit?</p>
+<p><strong>anne</strong>: I gotta go actually, so–</p>
+<p><strong>miguel</strong>: Okay, go.</p>
+<p><strong>stu</strong>: There was an injury to the Wichita
+right-fielder. They called up Brad this morning… He left you this…</p>
+<p><strong>insert</strong>: a Spanish-language version of Roberto
+Clemente’s biography. Miguel opens to the first page, where Brad has
+inscribed a note, “See you in Kansas City, Mama�ema!”</p>
+<p><strong>salvador</strong>: Yo! Sugar!</p>
+<p><strong>miguel</strong>: Holy shit! How’d you get here?</p>
+<p><strong>salvador</strong>: On a airplane, motherfucker.</p>
+<p><strong>stu</strong>: Great, you guys know each other. Sal’s our new
+middle-relief man. Throws a nasty cutter. You could learn a thing or two
+from him, Santos…</p>
+<p><strong>miguel</strong>: Okay.</p>
+<p><strong>salvador</strong>: What he say?</p>
+<p><strong>miguel</strong>: Don’t worry about it… Good to see you.</p>
+<p><strong>salvador</strong>: Good to see you, too, Sugar. I’m a little
+nervous.</p>
+<p><strong>miguel</strong>: Look, just remember… it’s the same game we
+played back home. Same rules, different place. Just have fun. It’s only
+a game.</p>
+<p><strong>jack jefferies</strong>: Santos allows his second homerun of
+the game. First night off the DL, and not looking so sharp.</p>
+<p><strong>jack jefferies</strong>: Sutton makes the call to pull Santos
+here in the 4th, bringing in rookie reliever, Salvador Torres for his
+Bridgetown debut.</p>
+<p><strong>umpire</strong>: Strike!</p>
+<p><strong>umpire</strong>: Strike two!</p>
+<p><strong>umpire</strong>: Strike THREE!</p>
+<p><strong>jack jefferies</strong>: A stellar debut for Torres, who
+records the final out, baffling Josh Lansford with a nasty side-armed
+cutter.</p>
+<p><strong>stu</strong>: Welcome to America, kid.</p>
+<p><strong>miguel</strong>: Just do me a favor… don’t give it away to
+the first white girl you meet.</p>
+<p><strong>helen</strong>: You started dropping your arm in the third. I
+think that was your problem.</p>
+<p><strong>earl</strong>: He lost control of his breaking pitches and
+they just zeroed in on the fastball, which isn’t as fast as it used to
+be.</p>
+<p><strong>helen</strong>: Earl…</p>
+<p><strong>earl</strong>: Don’t matter, he can’t understand anyway.</p>
+<p><strong>stu</strong>: I know it’s hard when you don’t perform up to
+your own expectations for yourself. But you need to learn self- control.
+Can you understand what I’m saying? You need to learn that your actions
+have consequences. So we’re gonna take the cost of the water unit you
+broke out of your next check… That’s not something your family back
+home’s gonna be too proud of… Is it?</p>
+<p><strong>stu</strong>: So you should think real hard next time. Think
+about channeling that frustration you’re feeling onto the field. Into
+practice. Channel it into working harder–</p>
+<p><strong>miguel</strong>: –I am work hard! Everyday I work hard.</p>
+<p><strong>stu</strong>: So work harder, goddamnit! You think you’re the
+only one on this team works hard?</p>
+<p><strong>miguel</strong>: I don’t understand you. You speak too fast.
+I just don’t understand!</p>
+<p><strong>stu</strong>: Look, you may think I don’t know what you’re
+going through, but I do. I’ve been on the mound; I’ve played through
+pain. I’ve been in your exact situation before. I’ve struggled too…
+I’ve…</p>
+<p><strong>jeff</strong>: Listen, your first time, take a half. Okay? No
+more. You gotta ease into it. Half.</p>
+<p><strong>jeff</strong>: And anyone finds these, you didn’t get them
+from me, okay?</p>
+<p><strong>salvador</strong>: What’s up?</p>
+<p><strong>jeff</strong>: What’s up, Sal?</p>
+<p><strong>salvador</strong>: Did you hear I made player of the
+week?</p>
+<p><strong>miguel</strong>: You told me last night.</p>
+<p><strong>salvador</strong>: Which one do you use?</p>
+<p><strong>miguel</strong>: That one.</p>
+<p><strong>salvador</strong>: Thanks.</p>
+<p><strong>jack jefferies</strong>: Miguel Santos appears to be in top
+form tonight, striking out two of three in the first. I don’t want to
+jinx it, but this sure looks like the Santos we knew earlier this
+season.</p>
+<p><strong>jack jefferies</strong>: Top of the fifth and Santos is
+showing some control issues. Not sure what’s going on down there, but he
+seems to be talking to himself.</p>
+<p><strong>orlando</strong>: Don’t worry about it. You’re all good. Just
+relax. Throw strikes. They can’t touch you. Just throw strikes.</p>
+<p><strong>umpire</strong>: Strike!</p>
+<p><strong>umpire</strong>: You’re outta here!</p>
+<p><strong>batter</strong>: Fucking Puerto Rican piece of shit!</p>
+<p><strong>miguel</strong>: Fuck you, cocksucker!</p>
+<p><strong>miguel</strong>: I’m sorry.</p>
+<p><strong>stu</strong>: You played with your emotions, and your
+emotions got the best of you. Happens to everyone. It’s just a nasty
+part of the game. Nobody likes to admit it, but it is. The true test of
+our character as athletes… is how we come back. It’s up to you.</p>
+<p><strong>stu</strong>: Hardy! Don’t wander off; I gotta talk to you
+about that accountant…</p>
+<p><strong>stu</strong>: So, um, anyway, I’m bumping Sal into your slot
+in the rotation. I’d like to see how you handle a relief spot.</p>
+<p><strong>jack jefferies</strong>: Moving up from relief, Torres makes
+his third start for the Swing. I tell ya, this lanky kid from the
+Dominican Republic has surprised us all with his unique delivery and
+precision. Reminds me of a young Pedro Martinez… Hey there Bees fans,
+don’t forget, closing night is approaching fast and tickets are selling
+out. So pick yours up at the box office today…</p>
+<p><strong>note</strong>: the frame for the following images contains
+the first 3-4 rows of FANS seated behind the bullpen, so we can also use
+them to gauge what might be happening on the field.</p>
+<p><strong>play 1</strong>: Miguel, the FOUR RELIEVERS, and the fans
+clap for a nice play.</p>
+<p><strong>play 2</strong>: The fans jump to their feet as a ground ball
+passes through frame, followed by an outfielder in hot pursuit.</p>
+<p><strong>play 3</strong>: A reliever warms up in the foreground.
+Miguel stares ahead, deadpan, while the others chat and spit chewing
+tobacco.</p>
+<p><strong>play 4</strong>: A new reliever warms up, then runs out onto
+the field, leaving only two others with Miguel.</p>
+<p><strong>play 5</strong>: Miguel stares ahead, while the crowd does
+the “Chicken Dance” behind him.</p>
+<p><strong>play 6</strong>: The fans leap to their feet in applause. The
+two relievers high-five. Miguel CLAPS, going through the motions.</p>
+<p><strong>play 7</strong>: Miguel chews and spits sunflower seed shells
+as the fans sing along to “Take Me Out to the Ball Game.”</p>
+<p><strong>play 8</strong>: Another reliever runs out onto the field,
+leaving only Miguel and one other guy.</p>
+<p><strong>play 9</strong>: Miguel is finally warming up, ready to enter
+the game, but…</p>
+<p><strong>helen</strong>: Oh, honey, you don’t have to do that.</p>
+<p><strong>miguel</strong>: No problem. I want to help.</p>
+<p><strong>helen</strong>: Well, thank you, Miguel.</p>
+<p><strong>miguel</strong>: Thank you, Helen.</p>
+<p><strong>miguel</strong>: I forgot something in the clubhouse. I’ll be
+right back.</p>
+<p><strong>salvador</strong>: Here, I’ll load your bag.</p>
+<p><strong>ed</strong>: Where’s he going?</p>
+<p><strong>salvador</strong>: Bathroom.</p>
+<p><strong>reyna</strong>: Talk to me.</p>
+<p><strong>miguel</strong>: Is Jorge working today?</p>
+<p><strong>reyna</strong>: Jorge?</p>
+<p><strong>miguel</strong>: Jorge Ramirez.</p>
+<p><strong>rafael</strong>: Jorge, the ball player!</p>
+<p><strong>miguel</strong>: Yeah!</p>
+<p><strong>reyna</strong>: Oh. The ballpayer… He left about two weeks
+ago.</p>
+<p><strong>rafael</strong>: I think he drives a car now.</p>
+<p><strong>miguel</strong>: Do you have a phone number for him? His old
+one isn’t working.</p>
+<p><strong>rafael</strong>: Sorry… But I think he was staying down at
+concourse village on 156th.</p>
+<p><strong>reyna</strong>: He still comes in to eat sometimes.</p>
+<p><strong>security guard</strong>: You wanta see the inside, you gotta
+buy a ticket, pal.</p>
+<p><strong>miguel</strong>: Sorry.</p>
+<p><strong>miguel</strong>: One room.</p>
+<p><strong>nikolai</strong>: For how long?</p>
+<p><strong>miguel</strong>: I don’t know.</p>
+<p><strong>nikolai</strong>: Two hundred a week. First week in
+advance.</p>
+<p><strong>nikolai</strong>: Two hundred now.</p>
+<p><strong>miguel</strong>: This also please.</p>
+<p><strong>miguel</strong>: You speak Spanish?</p>
+<p><strong>osvaldo</strong>: Of course.</p>
+<p><strong>miguel</strong>: Is this your place?</p>
+<p><strong>osvaldo</strong>: Yeah. Can I help you?</p>
+<p><strong>miguel</strong>: I like your work.</p>
+<p><strong>osvaldo</strong>: Thanks. What are you looking for?</p>
+<p><strong>miguel</strong>: Oh, no, I mean… I don’t know. I was passing
+by and thought maybe you might need some help. I know how to make
+furniture, and–</p>
+<p><strong>osvaldo</strong>: –I don’t have any work right now.
+Sorry.</p>
+<p><strong>miguel</strong>: Right. Okay, thanks for your time.</p>
+<p><strong>miguel</strong>: Do you know any other places like this where
+I might find work?</p>
+<p><strong>osvaldo</strong>: Have you checked the classifieds?</p>
+<p><strong>insert</strong>: Various employment ads, requiring
+experience, fluency in English, working papers, etc.</p>
+<p><strong>rafael</strong>: If you leave a number, I’ll give it to him
+next time he comes through.</p>
+<p><strong>miguel</strong>: Erica?</p>
+<p><strong>erica</strong>: Miguel! My God, where are you?</p>
+<p><strong>carmen</strong>: Miguelito, what is going on? Frank called
+last night. Where are you?</p>
+<p><strong>miguel</strong>: New York.</p>
+<p><strong>carmen</strong>: Oh, my God! What are you doing in New York?
+I don’t understand. Your team is looking for you.</p>
+<p><strong>miguel</strong>: I can’t play anymore.</p>
+<p><strong>carmen</strong>: Are you hurt? What does that mean, you can’t
+play?</p>
+<p><strong>miguel</strong>: No. I’m fine. It just–</p>
+<p><strong>carmen</strong>: We’ve been working for this your whole life,
+Miguelito. Oh, my God! You’re so close. I don’t understand…</p>
+<p><strong>miguel</strong>: Don’t worry, mom. I have some money. We’re
+going to be okay.</p>
+<p><strong>carmen</strong>: You have to go back. Listen, Miguel, my
+sweet sugar, call Frank. They’ll take you back.</p>
+<p><strong>miguel</strong>: I can’t go back–</p>
+<p><strong>carmen</strong>: Did I raise you like this? Did I raise you
+to give up?</p>
+<p><strong>miguel</strong>: I didn’t give up. I’m starting something new
+here.</p>
+<p><strong>carmen</strong>: What? What are you starting?</p>
+<p><strong>miguel</strong>: I have to go mom. The card’s almost out of
+minutes.</p>
+<p><strong>carmen</strong>: Where are you even staying? Miguel–</p>
+<p><strong>miguel</strong>: Don’t worry. I’m staying with a friend. I
+have a new job. It’s all good. I’m sending money tomorrow.</p>
+<p><strong>carmen</strong>: Miguel–</p>
+<p><strong>miguel</strong>: I love you. I’m sorry.</p>
+<p><strong>miguel</strong>: Hey, um, I was in here the other day.</p>
+<p><strong>reyna</strong>: Yeah, sure, did you find your guy?</p>
+<p><strong>miguel</strong>: No. I’m actually looking for a job
+today.</p>
+<p><strong>reyna</strong>: Fernando! Tell him you like his shirt.</p>
+<p><strong>rafael</strong>: And then put it in here with the others.</p>
+<p><strong>rafael</strong>: When it’s full, set to scrub, and there it
+is.</p>
+<p><strong>miguel</strong>: Do you know anybody with a room for
+rent?</p>
+<p><strong>rafael</strong>: But I’ll ask around, let you know if I hear
+of anything.</p>
+<p><strong>rafael</strong>: You and Jorge used to play baseball
+together?</p>
+<p><strong>miguel</strong>: Yeah, you like baseball?</p>
+<p><strong>rafael</strong>: It’s okay. I’d rather watch soccer though…
+Have you found him yet?</p>
+<p><strong>miguel</strong>: Not yet.</p>
+<p><strong>rafael</strong>: He’ll be through sooner or later.</p>
+<p><strong>miguel</strong>: How long have you worked here?</p>
+<p><strong>rafael</strong>: Two years.</p>
+<p><strong>miguel</strong>: Do you have family here?</p>
+<p><strong>rafael</strong>: No. My wife and kids are still in
+Mexico.</p>
+<p><strong>miguel</strong>: My family’s in the Dominican.</p>
+<p><strong>miguel</strong>: Hi, um, do you remember me?</p>
+<p><strong>osvaldo</strong>: Yeah, but, sorry, I still don’t have a job
+for you.</p>
+<p><strong>miguel</strong>: That’s okay. I already found one. I’m
+actually just trying to make a coffee table, and I’d like to buy some
+wood and supplies.</p>
+<p><strong>osvaldo</strong>: I don’t really sell raw materials…</p>
+<p><strong>miguel</strong>: I just moved here, you know, and I don’t
+have a space to work. Do you think I could do some work for you, help
+you clean up or whatever you need, in exchange for using your shop? You
+don’t have to pay me.</p>
+<p><strong>osvaldo</strong>: Somebody paying you for the table?</p>
+<p><strong>miguel</strong>: No. It’s a gift for my mom. Something I like
+to do.</p>
+<p><strong>osvaldo</strong>: How old are you?</p>
+<p><strong>miguel</strong>: Twenty.</p>
+<p><strong>osvaldo</strong>: Who taught you to make tables?</p>
+<p><strong>miguel</strong>: My dad. He was a carpenter in San Pedro.</p>
+<p><strong>osvaldo</strong>: Is that where you’re from?</p>
+<p><strong>miguel</strong>: Yeah.</p>
+<p><strong>osvaldo</strong>: I grew up in Santiago. What are you doing
+in New York?</p>
+<p><strong>miguel</strong>: I came to work. I used to play baseball.</p>
+<p><strong>osvaldo</strong>: The whole world plays baseball. My son’s
+sixteen. Won’t touch a piece of wood that’s not a bat. I never cared for
+the game, myself. Too slow.</p>
+<p><strong>osvaldo</strong>: Your mom still in San Pedro?</p>
+<p><strong>miguel</strong>: Yeah. With my sister and brother.</p>
+<p><strong>osvaldo</strong>: So, you’re telling me that you want to make
+a table for your mom, then mail it back to her in the Dominican?</p>
+<p><strong>osvaldo</strong>: What’s your name?</p>
+<p><strong>miguel</strong>: Miguel.</p>
+<p><strong>osvaldo</strong>: Osvaldo.</p>
+<p><strong>miguel</strong>: Hello… Is Sofia at home?… Yeah, it’s Miguel
+again… Can you tell her… Just tell her I called…</p>
+<p><strong>raquel</strong>: You just going to watch or you going to help
+me out?</p>
+<p><strong>miguel</strong>: Where you from?</p>
+<p><strong>raquel</strong>: Ukraine.</p>
+<p><strong>miguel</strong>: So you never liked baseball? Not even as a
+kid?</p>
+<p><strong>osvaldo</strong>: It’s okay. Sometimes during the playoffs
+I’ll watch a game or two.</p>
+<p><strong>miguel</strong>: Who’s your favorite player?</p>
+<p><strong>osvaldo</strong>: I don’t know enough to have a favorite.</p>
+<p><strong>miguel</strong>: C’mon, everybody has a favorite player: Juan
+Marichal, Pedro Martinez?</p>
+<p><strong>osvaldo</strong>: Fine. Jose Canseco.</p>
+<p><strong>miguel</strong>: Jose Canseco!? That’s the best you can
+do?</p>
+<p><strong>osvaldo</strong>: Okay, what about you?</p>
+<p><strong>miguel</strong>: Roberto Clemente.</p>
+<p><strong>osvaldo</strong>: Never heard of him.</p>
+<p><strong>miguel</strong>: Shut up.</p>
+<p><strong>osvaldo</strong>: What’s so special about Clemente?</p>
+<p><strong>miguel</strong>: I read this book where he said something
+like, “If you have the opportunity to help someone and don’t, then
+you’re wasting your life.” And he was a carpenter too.</p>
+<p><strong>osvaldo</strong>: Get out of here.</p>
+<p><strong>miguel</strong>: For real. He used to make furniture during
+the off season.</p>
+<p><strong>osvaldo</strong>: Are you fucking with me? Cause you know I
+can google this fool right now.</p>
+<p><strong>miguel</strong>: Google?</p>
+<p><strong>osvaldo</strong>: The internet. Don’t worry, I’ll teach you
+someday.</p>
+<p><strong>osvaldo</strong>: When did you get released?</p>
+<p><strong>miguel</strong>: They didn’t release me. I left a few days
+before the season ended.</p>
+<p><strong>osvaldo</strong>: You left? When was this?</p>
+<p><strong>miguel</strong>: About two weeks ago.</p>
+<p><strong>osvaldo</strong>: Holy shit. Where are you staying?</p>
+<p><strong>miguel</strong>: Oh, you know, with a friend. But if you know
+somebody who needs a roommate…</p>
+<p><strong>osvaldo</strong>: Why’d you leave?</p>
+<p><strong>osvaldo</strong>: Do you have any family here?</p>
+<p><strong>miguel</strong>: But I’m okay… I have some money saved, a
+couple friends. I’ll go home to visit soon.</p>
+<p><strong>miguel</strong>: Do you know a place called Ukraine?</p>
+<p><strong>nikolai</strong>: Hey! You owe money. Full week!</p>
+<p><strong>miguel</strong>: I know. I have tomorrow. No problem.</p>
+<p><strong>nikolai</strong>: Yes, problem. You pay tomorrow or you have
+big problem.</p>
+<p><strong>raquel</strong>: Love, keep this in your room for me. Just a
+few hours. Til morning. I’ll be back.</p>
+<p><strong>miguel</strong>: Frank… It’s Miguel.</p>
+<p><strong>frank</strong>: Jesus, Miguel, what the hell happened?</p>
+<p><strong>miguel</strong>: Sorry for calling late. I’m in New York.</p>
+<p><strong>frank</strong>: I heard. You’re making me look bad. What are
+you doing there?</p>
+<p><strong>miguel</strong>: I got a job, but I don’t know if I’m going
+to stay…</p>
+<p><strong>frank</strong>: Where you gonna go? The season’s over… Your
+visa’s expired.</p>
+<p><strong>miguel</strong>: I know, but I thought maybe I could…</p>
+<p><strong>frank</strong>: I can talk to Alvarez… But I don’t know.
+Nobody’s happy about this.</p>
+<p><strong>miguel</strong>: I know. Sorry.</p>
+<p><strong>frank</strong>: Look, Miguel–</p>
+<p><strong>osvaldo</strong>: Hey, Miguel.</p>
+<p><strong>miguel</strong>: I don’t know where to go.</p>
+<p><strong>miguel</strong>: Fuck you, man!</p>
+<p><strong>jorge</strong>: Fuck you too, bro!</p>
+<p><strong>miguel</strong>: What happened to you?</p>
+<p><strong>jorge</strong>: Me? What happened to you?</p>
+<p><strong>miguel</strong>: I been looking for you for weeks.</p>
+<p><strong>jorge</strong>: I know. Rafi said you took my old job.
+Welcome to New York!</p>
+<p><strong>jorge</strong>: I called the Higgins to give my new number,
+but they said you split. I couldn’t believe it, man, I had no idea.</p>
+<p><strong>miguel</strong>: Things got a little ugly after you left.</p>
+<p><strong>jorge</strong>: We all go through slumps you know.</p>
+<p><strong>miguel</strong>: It wasn’t a slump.</p>
+<p><strong>jorge</strong>: What was it then?</p>
+<p><strong>miguel</strong>: I don’t know, but I wasn’t gonna wait around
+for them to throw me out.</p>
+<p><strong>miguel</strong>: I’m just saying…</p>
+<p><strong>jorge</strong>: Whatever, man, you wouldn’t be saying that
+shit if you made it.</p>
+<p><strong>reyna</strong>: Sugar! Rafi needs you in the kitchen!</p>
+<p><strong>jorge</strong>: They call you Sugar?</p>
+<p><strong>miguel</strong>: What can I say? The name sticks.</p>
+<p><strong>jorge</strong>: They got all kinds in this league, bro. Like
+fat cats in their forties, kids like you and me, Dominicans, Puerto
+Ricans, even some white boys. I got this fifty year old catcher on my
+team, used to play for the Dodgers. Can’t run for shit, but he’s out
+there every week. Belly out to here. My man can still go deep though…
+You ever hear from that kid, Brad?</p>
+<p><strong>osvaldo</strong>: I did some research and I got a new
+favorite player now.</p>
+<p><strong>miguel</strong>: Okay, good.</p>
+<p><strong>osvaldo</strong>: Vic Power. You know him?</p>
+<p><strong>osvaldo</strong>: You ought to. Greatest Puerto Rican first
+baseman ever. But that’s not why he’s my favorite player… Back when he
+first arrived, 1951, 52, he was playing in the minors. Little Rock,
+Arkansas. So the story goes, one day before a game, Vic stops into this
+diner for lunch. Hadn’t been here long, so he knew very little English.
+Didn’t even notice the “whites only” sign hanging in the window. And Vic
+was Black. I looked him up on Google. I mean Black like you. So he sits
+down at the counter and the little waitress comes up to big Vic and
+says, “I’m sorry, we don’t serve colored people.”</p>
+<p><strong>osvaldo</strong>: So he leans close to the waitress, tells
+her in his best English, “That’s okay, I don’t eat colored people.”</p>
+<p><strong>a</strong>: She sits at her table in the same old house.
+.</p>
+<p><strong>carmen</strong>: I got the photos you sent, but you’ll have
+to send more.</p>
+<p><strong>miguel</strong>: Okay, mom, but you know it would be a lot
+easier if you opened an email account.</p>
+<p><strong>carmen</strong>: Email? I don’t even know how to use the
+TV!</p>
+<p><strong>miguel</strong>: I’m making a new table for you. It’s going
+to be real nice.</p>
+<p><strong>carmen</strong>: I’m sure I’ll love it. Thank you.</p>
+<p><strong>miguel</strong>: How’s Erica?</p>
+<p><strong>carmen</strong>: She’s good. Got a job at the factory. Just
+part-time, though, so she can keep up with school.</p>
+<p><strong>miguel</strong>: And Luis?</p>
+<p><strong>carmen</strong>: He’s pitching now. You should see him,
+Miguel, got an arm like his brother.</p>
+<p><strong>miguel</strong>: Yeah, but can he throw a knuckle curve?</p>
+<p><strong>miguel</strong>: I miss you, mom. But, I’m working hard. I’ll
+be home soon. Give everyone a hug for me.</p>
+<p><strong>carmen</strong>: I will, Sugar. I love you.</p>
+<p><strong>miguel</strong>: I love you, too.</p>
+<p><strong>jorge</strong>: Caballo! This is Miguel from San Pedro.</p>
+<p><strong>caballo</strong>: The new guy. You ready to pitch?</p>
+<p><strong>miguel</strong>: I think so.</p>
+<p><strong>caballo</strong>: It’s been a while, no?</p>
+<p><strong>jorge</strong>: Don’t worry; he’s ready.</p>
+<p><strong>jorge</strong>: Felipe! Meet Miguel. They call him Sugar.</p>
+<p><strong>felipe</strong>: What’s up, Sugar?</p>
+<p><strong>jorge</strong>: Felipe played for the Dodgers Triple-A team.
+Hit a dinger off Pedro once.</p>
+<p><strong>felipe</strong>: Twice.</p>
+<p><strong>jorge</strong>: Twice.</p>
+<p><strong>diego</strong>: I played for the Yankees.</p>
+<p><strong>jose</strong>: Cubs.</p>
+<p><strong>adrian</strong>: Padres.</p>
+<p><strong>geronimo</strong>: Kansas City.</p>
+<p><strong>miguel</strong>: Me too! Bridgetown.</p>
+<p><strong>geronimo</strong>: I was there in 96. I lived on a farm.</p>
+<p><strong>miguel</strong>: With the Higgins!</p>
+<p><strong>geronimo</strong>: Yeah!</p>
+<p><strong>umpire</strong>: Vamos! Let’s play ball!</p>
+<p><strong>old man heckler</strong>: This ain’t soccer! You can use your
+hands!</p>
+<p><strong>miguel</strong>: Just like old times.</p>
+<p><strong>umpire</strong>: Strike!</p>
+<p><strong>umpire</strong>: Strike two!</p>
+<p><strong>umpire</strong>: Strike three!</p>
+</body>
+</html>

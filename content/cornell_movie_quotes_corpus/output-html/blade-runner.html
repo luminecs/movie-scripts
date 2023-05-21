@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>blade-runner</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="blade-runner">blade-runner</h1>
+<p><strong>leon</strong>: Okay if I talk?</p>
+<p><strong>leon</strong>: I kinda get nervous when I take tests.</p>
+<p><strong>holden</strong>: Don’t move.</p>
+<p><strong>leon</strong>: Sorry.</p>
+<p><strong>leon</strong>: Already had I.Q. test this year – but I don’t
+think I never had a…</p>
+<p><strong>holden</strong>: Reaction time is a factor in this, so please
+pay attention. Answer quickly as you can.</p>
+<p><strong>holden</strong>: You’re in a desert, walking along in the
+sand when all of a sudden you look down and see a…</p>
+<p><strong>leon</strong>: What one?</p>
+<p><strong>holden</strong>: What?</p>
+<p><strong>leon</strong>: What desert?</p>
+<p><strong>holden</strong>: Doesn’t make any difference what desert –
+it’s completely hypothetical.</p>
+<p><strong>leon</strong>: But how come I’d be there?</p>
+<p><strong>holden</strong>: Maybe you’re fed up, maybe you want to be by
+yourself – who knows. So you look down and see a tortoise. It’s crawling
+towards you…</p>
+<p><strong>leon</strong>: A tortoise. What’s that?</p>
+<p><strong>holden</strong>: Know what a turtle is?</p>
+<p><strong>leon</strong>: Of course.</p>
+<p><strong>holden</strong>: Same thing.</p>
+<p><strong>leon</strong>: I never seen a turtle.</p>
+<p><strong>leon</strong>: But I understand what you mean.</p>
+<p><strong>holden</strong>: You reach down and flip the tortoise over on
+its back, Leon.</p>
+<p><strong>leon</strong>: You make these questions, Mr. Holden, or they
+write ’em down for you?</p>
+<p><strong>holden</strong>: The tortoise lays on its back, its belly
+baking in the hot sun, beating its legs trying to turn itself over. But
+it can’t. Not without your help. But you’re not helping.</p>
+<p><strong>leon</strong>: Whatcha mean, I’m not helping?</p>
+<p><strong>holden</strong>: I mean you’re not helping! Why is that,
+Leon?</p>
+<p><strong>deckard</strong>: It was 97 degrees in the city and no hope
+of improvement. Not bad if you’re a lizard. But two hours earlier I was
+drinking Acquavit with an Eskimo lady in North East Alaska. That’s a
+tough change to make. It was so good, I didn’t want to leave, so I left
+a day early.</p>
+<p><strong>deckard</strong>: Contact. This is Blade Runner One calling
+Com-fast 27.</p>
+<p><strong>voice</strong>: Blade Runner One, stand by please.</p>
+<p><strong>voice</strong>: Deckard.</p>
+<p><strong>deckard</strong>: Yah, Gaff.</p>
+<p><strong>gaff</strong>: Where the hell you been?</p>
+<p><strong>deckard</strong>: You know where I been. I been on
+vacation.</p>
+<p><strong>gaff</strong>: Next time you go on vacation, do me a favor,
+let us know where it is.</p>
+<p><strong>deckard</strong>: What’s up?</p>
+<p><strong>gaff</strong>: Holden got hit.</p>
+<p><strong>deckard</strong>: Bad?</p>
+<p><strong>gaff</strong>: Severed spine. You’d better get in here.
+Bryant’s waiting for you.</p>
+<p><strong>deckard</strong>: I’ll see you in a minute.</p>
+<p><strong>deckard</strong>: I-X-4-P-D referred to as a Nexus-6, The
+Tyrell Corporation’s new pride and joy. Holden was administering the
+Voight-Kampff test when one nailed him.</p>
+<p><strong>deckard</strong>: The Nexus-6 must be fast because Holden was
+as quick as they come. The report said there were six of them. Three
+males and three female. Led by a combat model called Roy Batty.</p>
+<p><strong>deckard</strong>: They escaped from the colonies two weeks
+ago. Killed twenty- three people and jumped a shuttle. An aerial patrol
+found the ship in the desert. No crew.</p>
+<p><strong>deckard</strong>: Bryant’s got a liver problem. A couple
+years back he handed me a bottle and said have a drink for another man.
+I been drinking for him ever since.</p>
+<p><strong>deckard</strong>: Six, huh?</p>
+<p><strong>bryant</strong>: Five. Three nights ago one of them managed
+to break into the Tyrell Corporation. Killed two guards and got as far
+as the Genetic Sector before he got fried going through an electro-
+field.</p>
+<p><strong>deckard</strong>: What was he after?</p>
+<p><strong>bryant</strong>: There wasn’t much left of him, so we can’t
+be sure. But bio- chemical data and morphology records of the Nexus-6
+were reported missing. Going on the possibility they might try to
+infiltrate we send Holden in to run Voight-Kampff tests on the new
+employees. Guess he found himself one.</p>
+<p><strong>deckard</strong>: You got a machine on it yet?</p>
+<p><strong>bryant</strong>: We’re using Esper – a 231 – that picked up
+Holden’s alarm. Its guess is that all five are in the city.</p>
+<p><strong>deckard</strong>: Where do we start?</p>
+<p><strong>bryant</strong>: The Tyrell Corporation has a demo model.
+Check it out on the Voight-Kampff. There’s a chance the Nexus-6 is
+beyond out ability to detect. If that’s the case, everybody’s up shit
+creek.</p>
+<p><strong>deckard</strong>: What was the cover on the one that got
+Holden?</p>
+<p><strong>bryant</strong>: Industrial refuse.</p>
+<p><strong>deckard</strong>: Garbage man?</p>
+<p><strong>deckard</strong>: Did personnel have an address on him?</p>
+<p><strong>deckard</strong>: I’ll go take a look.</p>
+<p><strong>deckard</strong>: Thanks.</p>
+<p><strong>deckard</strong>: The big incentive to emigrate was still
+free labor. If the public found out that their door-prizes might kill
+them, they might not be so hot to go up there. This was one of the worst
+one’s we had and Bryant was worried. He wanted to tell me to be discrete
+or something. But I didn’t give him a chance.</p>
+<p><strong>announcer’s voice</strong>: Choose from a variety of seventy
+nine different personality types. Each and every one a loyal trouble-
+free companion given to you upon your arrival absolutely free…</p>
+<p><strong>announcer’s voice</strong>: To use as personal body servant
+to tireless field hand – the custom tailored humanoid robot, designed
+especially for your needs.</p>
+<p><strong>batty</strong>: Did you get your precious ‘things’?</p>
+<p><strong>leon</strong>: Somebody was already there.</p>
+<p><strong>batty</strong>: Police.</p>
+<p><strong>leon</strong>: Just a man.</p>
+<p><strong>batty</strong>: Police man.</p>
+<p><strong>batty</strong>: Why don’t you have a seat.</p>
+<p><strong>batty</strong>: Enjoy the view.</p>
+<p><strong>chew</strong>: Well, you’re right. This little honey has a
+couple of defective cones.</p>
+<p><strong>chew</strong>: You’re a regular perfectionist, Sebastian.</p>
+<p><strong>sebastian</strong>: It’s gotta be right for my customer.</p>
+<p><strong>chew</strong>: Your customer, eh?</p>
+<p><strong>chew</strong>: You got a pocket-charger, boy?</p>
+<p><strong>chew</strong>: Is that good enough for your customer?</p>
+<p><strong>chew</strong>: How much is he paying you?</p>
+<p><strong>chew</strong>: Well, when do you get paid?</p>
+<p><strong>sebastian</strong>: Soon as I finish the job.</p>
+<p><strong>chew</strong>: When might that be?</p>
+<p><strong>sebastian</strong>: Day after tomorrow.</p>
+<p><strong>chew</strong>: Oh! Day after tomorrow.</p>
+<p><strong>chew</strong>: The rich hate to pay, Sebastian. A guy like
+Tyrell keeps you waiting. Pay the little guy last. You should charge
+twice as much. It’ll make him feel better.</p>
+<p><strong>sebastian</strong>: Thanks, Mr. Chew.</p>
+<p><strong>sebastian</strong>: Hey! You forgot your…</p>
+<p><strong>sebastian</strong>: How come you were in my truck?</p>
+<p><strong>pris</strong>: I was tired and didn’t have any place to
+go.</p>
+<p><strong>sebastian</strong>: You can get back in if you want…</p>
+<p><strong>sebastian</strong>: Don’t worry, I won’t hurt you.</p>
+<p><strong>sebastian</strong>: What’s your name?</p>
+<p><strong>pris</strong>: Pris.</p>
+<p><strong>sebastian</strong>: Mine’s J.F. Sebastian.</p>
+<p><strong>pris</strong>: Hi.</p>
+<p><strong>sebastian</strong>: Oh! Where do you want to go?</p>
+<p><strong>sebastian</strong>: You want to go home?</p>
+<p><strong>pris</strong>: I don’t have one.</p>
+<p><strong>sebastian</strong>: Oh.</p>
+<p><strong>sebastian</strong>: Where are your folks?</p>
+<p><strong>pris</strong>: They left.</p>
+<p><strong>sebastian</strong>: What about friends?</p>
+<p><strong>pris</strong>: I have some, but I have to find out where they
+are staying.</p>
+<p><strong>sebastian</strong>: Well, where should I take you?</p>
+<p><strong>pris</strong>: We scared each other pretty good didn’t
+we?</p>
+<p><strong>sebastian</strong>: We sure did.</p>
+<p><strong>pris</strong>: I’m hungry, J.F.</p>
+<p><strong>sebastian</strong>: I’ve got stuff. If you wanna go to my
+place?</p>
+<p><strong>pris</strong>: I was hoping you’d say that.</p>
+<p><strong>deckard</strong>: Machines can be helpful sometimes, but they
+can also be a pain in the ass. Ask for a trace on a forger and you might
+wind up at a steel- mill. I don’t mind a bum-steer once in a while –
+it’s their personalities that usually get me. Somebody once said that
+man makes machines in his own image. If that’s true, whoever made Esper
+should have been shot.</p>
+<p><strong>esper</strong>: This is Esper and I’m ready. Go ahead
+please.</p>
+<p><strong>deckard</strong>: You equipped for random questions?</p>
+<p><strong>esper</strong>: Why, yes, of course.</p>
+<p><strong>deckard</strong>: You start.</p>
+<p><strong>esper</strong>: The five in question are third generation
+Nexus Sixes, constructed of skin-flesh culture, selected enogenic
+transfer conversion capable of self-perpetuating thought, para-physical
+abilities and developed for emigration program. Are you with me?</p>
+<p><strong>deckard</strong>: How do I stop one?</p>
+<p><strong>esper</strong>: Unlike a five, they can sustain massive
+traumas to several parts of the body without debilitating another. Sever
+a leg and it will perform quicker on the remaining leg than the fastest
+man can run,</p>
+<p><strong>deckard</strong>: Okay, but…</p>
+<p><strong>esper</strong>: I’m coming to that. Vulnerable zone is the
+base of the skull, the occipital bone. A direct hit is a positive
+retirement.</p>
+<p><strong>voice</strong>: You are in violation of traffic ordinance
+M-139 statutory freeway limit restricted by one-hundred and eighty
+kilometers.</p>
+<p><strong>sebastian</strong>: Oh!</p>
+<p><strong>pris</strong>: Whatcha doin’?</p>
+<p><strong>sebastian</strong>: You scared me.</p>
+<p><strong>sebastian</strong>: I’m working.</p>
+<p><strong>sebastian</strong>: You look… better.</p>
+<p><strong>pris</strong>: Just better.</p>
+<p><strong>sebastian</strong>: Beautiful.</p>
+<p><strong>pris</strong>: Thanks.</p>
+<p><strong>pris</strong>: And you live in this building all by
+yourself?</p>
+<p><strong>sebastian</strong>: Yeah, I live here pretty much alone right
+now…</p>
+<p><strong>sebastian</strong>: No housing shortage around here… plenty
+of room for everybody.</p>
+<p><strong>pris</strong>: How old are you?</p>
+<p><strong>sebastian</strong>: Twenty.</p>
+<p><strong>pris</strong>: What’s your problem?</p>
+<p><strong>sebastian</strong>: Methuselah Syndrome.</p>
+<p><strong>pris</strong>: What’s that?</p>
+<p><strong>sebastian</strong>: My glands. They grow old too fast.</p>
+<p><strong>pris</strong>: Is that why you’re still here?</p>
+<p><strong>sebastian</strong>: Yes. I couldn’t pass the test.</p>
+<p><strong>pris</strong>: I like you just the way you are.</p>
+<p><strong>sebastian</strong>: Ah, you get hold of your friends?</p>
+<p><strong>pris</strong>: As a matter of fact I did. They’ve got some
+work to do tonight, but they’re gonna come tomorrow.</p>
+<p><strong>sebastian</strong>: Good.</p>
+<p><strong>sebastian</strong>: I can sleep on the couch.</p>
+<p><strong>mouse</strong>: Don’t let the bed bugs bite!</p>
+<p><strong>esper</strong>: Nexus designated Leon: incept date April
+10th, 2015 – to be used in military experiments to determine how hyper
+metabolism functions in deep space. Nexus designated Batty incept data
+April 10th, 2015, combat model, level of self-sufficiency, optimum.</p>
+<p><strong>esper</strong>: Here’s something you might find interesting.
+They have been built to emulate the human in every way except in its
+emotional spectrum. However, after a period of time it is only logical
+that such a ‘mechanism’ would create its own emotional responses, hate,
+love, fear, anger, envy.</p>
+<p><strong>deckard</strong>: I know all that.</p>
+<p><strong>esper</strong>: What about a summary then.</p>
+<p><strong>deckard</strong>: I think we’re through for the night.</p>
+<p><strong>esper</strong>: Mr. Deckard.</p>
+<p><strong>deckard</strong>: Yes?</p>
+<p><strong>esper</strong>: Do you have something against science?</p>
+<p><strong>deckard</strong>: Not if it works.</p>
+<p><strong>esper</strong>: And what in your estimation works?</p>
+<p><strong>deckard</strong>: The umbrella.</p>
+<p><strong>deckard</strong>: Every government that could was racing to
+populate their colonial territory. But emigrants needed incentive.
+Over-population and the greenhouse factor didn’t seem to be enough; but
+owning a human look-a-like had lots of appeal. It was big industry, the
+competition was stiff and Tyrell was top of the line.</p>
+<p><strong>deckard</strong>: His claim to fame was making a product more
+human than human and sometimes the ‘more’ turned out to be a problem.
+This wasn’t just an escaped andy who broke his owner’s arm – there were
+twenty-eight people dead and the pressure was on.</p>
+<p><strong>deckard</strong>: But so far they’d always managed to keep it
+quiet. Not to say that once in a while there wasn’t bad publicity. Some
+fanatic bitching about equal rights for andies or an occasional trade
+union proclaiming it was aun-American for automatons to take jobs away
+from humans on the colony.</p>
+<p><strong>deckard</strong>: But what’s more American than good old
+supply and demand? The Government needed them, industry made them and
+the church backed them. The big religious boys said that Androids, no
+matter how human, were objects; only God could make people. I’m not
+religious, but I was inclined to agree. Otherwise I’d be out of a
+job.</p>
+<p><strong>rachael</strong>: Hello, Mr. Deckard. My name is Rachael.</p>
+<p><strong>rachael</strong>: It seems your department doesn’t believe
+out new unit is to the public benefit.</p>
+<p><strong>deckard</strong>: A humanoid robot is like any other machine,
+it can be a benefit or a hazard. If it’s a benefit, it’s not our
+problem.</p>
+<p><strong>rachael</strong>: But because your department can’t do an
+adequate job in detecting the miniscule number at large, it’s a problem.
+Correct, Mr. Deckard?</p>
+<p><strong>rachael</strong>: You like our owl?</p>
+<p><strong>deckard</strong>: It’s artificial?</p>
+<p><strong>rachael</strong>: Of course not.</p>
+<p><strong>rachael</strong>: You’re in a very unique position,
+Mr. Deckard. You could affect the future of this entire organization
+according to how you work your little test.</p>
+<p><strong>rachael</strong>: Are you apprehensive?</p>
+<p><strong>deckard</strong>: Why should I be?</p>
+<p><strong>rachael</strong>: For the responsibility of your power. Being
+a police bureaucrat, you’ve got more than your share.</p>
+<p><strong>deckard</strong>: You got it wrong, girl. I work with the
+bureau not for them.</p>
+<p><strong>deckard</strong>: My job isn’t to detect malfunctioning
+andies, it’s to eliminate them. The more the better.</p>
+<p><strong>rachael</strong>: Mr. Deckard. Dr. Eldon Tyrell.</p>
+<p><strong>tyrell</strong>: How do you do, Mr. Deckard. Please sit down.
+Would you care for a cup of coffee?</p>
+<p><strong>deckard</strong>: Thanks.</p>
+<p><strong>tyrell</strong>: Black?</p>
+<p><strong>deckard</strong>: Please.</p>
+<p><strong>tyrell</strong>: Somehow, I didn’t expect that the man who
+did the dirty work would be the man to do the technical work. Here you
+are, Mr. Deckard.</p>
+<p><strong>tyrell</strong>: Is this to be an empathy test?</p>
+<p><strong>deckard</strong>: Yes.</p>
+<p><strong>tyrell</strong>: Capillary dilation of the so-called blush
+response? Plus fluctuation of the pupil, plus involuntary dilation of
+the iris?</p>
+<p><strong>tyrell</strong>: May I ask a personal question?</p>
+<p><strong>deckard</strong>: Go ahead.</p>
+<p><strong>tyrell</strong>: Have you ever retired a human by
+mistake?</p>
+<p><strong>deckard</strong>: No.</p>
+<p><strong>tyrell</strong>: But in your profession that is a risk.</p>
+<p><strong>deckard</strong>: Nothing is infallible, but so far the
+Voight-Kampff scale bas been foolproof.</p>
+<p><strong>tyrell</strong>: Like you said, Mr. Deckard, a machine can be
+a hazard. The Voight-Kampff scale is a machine, isn’t it?</p>
+<p><strong>deckard</strong>: One that relies on human interpretation.
+Where’s the subject?</p>
+<p><strong>tyrell</strong>: Sitting next to you.</p>
+<p><strong>deckard’s voice</strong>: Ready.</p>
+<p><strong>rachael</strong>: Go ahead.</p>
+<p><strong>deckard</strong>: You’re given a calfskin wallet for your
+birthday.</p>
+<p><strong>rachael</strong>: I wouldn’t accept it. Also, I’d report the
+person who gave it to me to the police.</p>
+<p><strong>deckard</strong>: You have a little boy. He shows you his
+butterfly collection, plus the killing jar.</p>
+<p><strong>rachael</strong>: I’d take him to the doctor.</p>
+<p><strong>deckard</strong>: You’re watching T.V. and suddenly you
+notice a wasp crawling on your wrist.</p>
+<p><strong>rachael</strong>: I’d kill it.</p>
+<p><strong>deckard</strong>: In a magazine you come across a full-page
+photo of a nude girl.</p>
+<p><strong>rachael</strong>: Is this testing whether I’m an android or a
+lesbian?</p>
+<p><strong>deckard</strong>: You show the picture to your husband. He
+likes it and hangs it on the wall. The girl is lying on a bearskin
+rug.</p>
+<p><strong>rachel</strong>: I wouldn’t let him.</p>
+<p><strong>deckard</strong>: Why not?</p>
+<p><strong>rachael</strong>: I should be enough for him.</p>
+<p><strong>deckard</strong>: You become pregnant by a man who runs off
+with your best friend, and you decide to get an abortion.</p>
+<p><strong>rachael</strong>: I’d never get an abortion.</p>
+<p><strong>deckard</strong>: Why not?</p>
+<p><strong>rachael</strong>: That would be murder, Mr. Deckard.</p>
+<p><strong>deckard</strong>: In your opinion.</p>
+<p><strong>rachael</strong>: It would be my child.</p>
+<p><strong>deckard</strong>: Sounds like you speaks from experience.</p>
+<p><strong>deckard</strong>: Last question. You’re watching an old
+movie. It shows a banquet in progress, the guests are enjoying raw
+oysters.</p>
+<p><strong>rachael</strong>: Ugh.</p>
+<p><strong>deckard</strong>: The entree consists of boiled dog stuffed
+with rice.</p>
+<p><strong>deckard</strong>: The raw oysters are less acceptable to you
+than a dish of boiled dog.</p>
+<p><strong>deckard</strong>: Lights please.</p>
+<p><strong>tyrell</strong>: Well?</p>
+<p><strong>deckard</strong>: If she is, the machine works.</p>
+<p><strong>tyrell</strong>: The machine works. She is.</p>
+<p><strong>tyrell</strong>: How many questions did it take?</p>
+<p><strong>deckard</strong>: Thirteen.</p>
+<p><strong>deckard</strong>: She didn’t know?</p>
+<p><strong>tyrell</strong>: Memory implant. She was programmed. But I
+think she has transcended her conditioning. I think she was beginning to
+suspect.</p>
+<p><strong>tyrell</strong>: How many questions does it usually take,
+Mr. Deckard?</p>
+<p><strong>deckard</strong>: Five, maybe six.</p>
+<p><strong>tyrell</strong>: You’re going to have to be on your toes, my
+friend.</p>
+<p><strong>tyrell</strong>: It’s a complex problem and we wouldn’t want
+anything to happen to you.</p>
+<p><strong>tyrell</strong>: For the good of all, I recommend you take
+Rachael with you. Considering her uniqueness, I’m sure she could prove
+quite helpful.</p>
+<p><strong>deckard</strong>: No thanks.</p>
+<p><strong>tyrell</strong>: And how is it one man will be able to cover
+so much ground?</p>
+<p><strong>deckard</strong>: Discreetly.</p>
+<p><strong>tyrell</strong>: All pertinent information is being fed into
+your departmental computer, an Esper 231 – I believe – and a photo
+over-lay packet is being produced.</p>
+<p><strong>tyrell</strong>: Mr. Deckard, I think it would be wise to
+reconsider my offer.</p>
+<p><strong>deckard</strong>: I work alone.</p>
+<p><strong>voice</strong>: Let’s keep our eyes on the road, Deckard.</p>
+<p><strong>deckard’s voice</strong>: Sorry.</p>
+<p><strong>voice</strong>: Come on, stay with the machine.</p>
+<p><strong>voice</strong>: We’re going to have to start the sequence
+again if you don’t stay with me, Deckard. Concentrate.</p>
+<p><strong>deckard’s voice</strong>: How do you know I’m not?</p>
+<p><strong>voice</strong>: You’re not responding to the stimulus. I can
+see right here, I’m not getting a reading.</p>
+<p><strong>deckard’s voice</strong>: I’m tired of this.</p>
+<p><strong>voice</strong>: Almost through.</p>
+<p><strong>deckard</strong>: So how did I do?</p>
+<p><strong>wheeler</strong>: Nerves of steel.</p>
+<p><strong>deckard</strong>: No rust?</p>
+<p><strong>wheeler</strong>: I didn’t say that. Your motivity rate
+checked out a little slower than last time.</p>
+<p><strong>deckard</strong>: Meaning?</p>
+<p><strong>wheeler</strong>: Meaning you don’t run as fast as you used
+to.</p>
+<p><strong>wheeler</strong>: During the road test…</p>
+<p><strong>deckard</strong>: Yeah?</p>
+<p><strong>wheeler</strong>: Your mind kept wandering. That bothered
+me.</p>
+<p><strong>deckard</strong>: Huh huh.</p>
+<p><strong>wheeler</strong>: Considering the nature of your work, that
+could be unhealthy.</p>
+<p><strong>deckard</strong>: True.</p>
+<p><strong>wheeler</strong>: You got a birthday coming up.</p>
+<p><strong>wheeler</strong>: But you haven’t put in for emigration.</p>
+<p><strong>deckard</strong>: Nope.</p>
+<p><strong>wheeler</strong>: You’re going to be over the limit.</p>
+<p><strong>deckard</strong>: Listen, I could make you a long list of
+complaints about this fucken city but I still rather be here than up
+there.</p>
+<p><strong>wheeler</strong>: What if you change your mind?</p>
+<p><strong>deckard</strong>: They’ll change the limit before I change my
+mind.</p>
+<p><strong>wheeler</strong>: You sure?</p>
+<p><strong>deckard</strong>: Never been more sure of anything in my
+life.</p>
+<p><strong>deckard</strong>: Why didn’t you go?</p>
+<p><strong>wheeler</strong>: Too old.</p>
+<p><strong>deckard</strong>: But if you could?</p>
+<p><strong>wheeler</strong>: My job is here.</p>
+<p><strong>deckard</strong>: Me too.</p>
+<p><strong>batty</strong>: What’s going on down there?</p>
+<p><strong>pris</strong>: He’s not ready yet.</p>
+<p><strong>batty</strong>: When?</p>
+<p><strong>pris</strong>: Tomorrow, he says.</p>
+<p><strong>rachael</strong>: Was that your dinner?</p>
+<p><strong>rachael</strong>: I’m sorry. I called and found out you were
+on your way home. These were already delivered to your department but I
+thought you should have copies as soon as possible.</p>
+<p><strong>rachael</strong>: It’s the Nexus information you wanted.</p>
+<p><strong>deckard</strong>: Thanks.</p>
+<p><strong>deckard</strong>: Is there anything else?</p>
+<p><strong>rachael</strong>: I know you think it complicates your work,
+but I’m here to help.</p>
+<p><strong>deckard</strong>: I’ve already got more help than I need.</p>
+<p><strong>rachael</strong>: I think you need more help than you’ve
+got.</p>
+<p><strong>rachael</strong>: There’s two reasons a man rejects help.
+Either because he’s so good at what he does he doesn’t think he needs
+it, or he’s so insecure he can’t admit it.</p>
+<p><strong>deckard</strong>: Sounds like I’m an ass-hole either way, but
+the answer is still no.</p>
+<p><strong>rachael</strong>: Two of us might be more effective than
+one.</p>
+<p><strong>deckard</strong>: I work alone.</p>
+<p><strong>rachael</strong>: No you don’t.</p>
+<p><strong>rachael</strong>: You use your equipment, don’t you?</p>
+<p><strong>deckard</strong>: So?</p>
+<p><strong>rachael</strong>: So, I’m a piece of equipment. Use me.</p>
+<p><strong>deckard</strong>: That’s okay, I’ll get it…</p>
+<p><strong>rachael</strong>: Do I make you nervous?</p>
+<p><strong>deckard</strong>: Yeah.</p>
+<p><strong>rachael</strong>: I’m sorry.</p>
+<p><strong>rachael</strong>: It’s strange to suddenly realize that what
+you thought was your life is actually someone else’s fabrication.</p>
+<p><strong>deckard</strong>: I can imagine.</p>
+<p><strong>rachael</strong>: Can you? I couldn’t.</p>
+<p><strong>rachael</strong>: A part of me is glad. I think I feel more.
+I don’t like who I was before.</p>
+<p><strong>deckard</strong>: So why do you think they were after their
+records.</p>
+<p><strong>rachael</strong>: They probably want to find out when they
+were made.</p>
+<p><strong>deckard</strong>: Right.</p>
+<p><strong>rachael</strong>: I guess the date of your birth is important
+if you know you’re not made to last.</p>
+<p><strong>rachael</strong>: That’s my number. If you need me.</p>
+<p><strong>rachael</strong>: You better get better locks – if you want
+to keep me out.</p>
+<p><strong>rachael</strong>: Good night.</p>
+<p><strong>deckard</strong>: Night.</p>
+<p><strong>deckard</strong>: The possibilities were infinite. They could
+change their appearances but not their future. Like she said, it was
+short. Longevity is what they were after. The garbage man even wanted a
+past. Poor fuck. I’d check it out but I knew she was right. The market
+worked on turn-over. Built-in obsolescence was the name of the game.
+That meant her too. It was something I didn’t want to think about.</p>
+<p><strong>deckard</strong>: Yeah.</p>
+<p><strong>bryant</strong>: Bryant here. Regarding the rundown you
+requested on job applicants, Esper’s concluded that the only irregular
+category that Tyrell’s got is the entertainment section. You better get
+on it.</p>
+<p><strong>deckard</strong>: I was just about to have my dinner.</p>
+<p><strong>bryant</strong>: If you hurry you’ll get back before it gets
+cold. I got a spinner on your roof in five minutes. Good luck.</p>
+<p><strong>epser</strong>: Nexus designated Rachael is a prototype.
+Created for in-house use by special mandate form the Scientific
+Development Regulatory Committee. Will live conventional term – no
+para-physical abilities.</p>
+<p><strong>deckard</strong>: What is a conventional term?</p>
+<p><strong>esper</strong>: Four years. Which would make her termination
+date…</p>
+<p><strong>deckard</strong>: Never mind. Do they have that
+knowledge?</p>
+<p><strong>esper</strong>: Longevity is classified. No.</p>
+<p><strong>deckard</strong>: Okay, gimme a run-down on the three
+females.</p>
+<p><strong>esper</strong>: Nexus designated Mary: incept November 1
+2017, domestic conditioning non competitive, trained for day care
+position.</p>
+<p><strong>deckard</strong>: Next.</p>
+<p><strong>esper</strong>: Nexus designated Pris: incept data December
+13 2017, competitive, programmed to provide pleasure for long term
+spacers.</p>
+<p><strong>deckard</strong>: Number three.</p>
+<p><strong>esper</strong>: Nexus designated Zhora: incept June 13th
+2017, athletic conditioning, highly competitive, special abilities in
+the entertainment field.</p>
+<p><strong>deckard</strong>: Fuck.</p>
+<p><strong>deckard</strong>: Taffey Lewis?</p>
+<p><strong>taffey</strong>: Yes?</p>
+<p><strong>deckard</strong>: Can I come in?</p>
+<p><strong>taffey</strong>: Excuse my niece there… She’s studying for an
+exam.</p>
+<p><strong>deckard</strong>: I’d like you to take a look at these
+pictures.</p>
+<p><strong>taffey</strong>: Of course.</p>
+<p><strong>taffey</strong>: You see I lost my contacts a couple of days
+ago around here somewhere and my sight is a little… What am I supposed
+to be looking for?</p>
+<p><strong>deckard</strong>: Do you recognize any of them?</p>
+<p><strong>taffey</strong>: This one looks familiar, but I don’t know.
+Naw. There’s one came in today looks a little like this one but…</p>
+<p><strong>deckard</strong>: What did she want?</p>
+<p><strong>taffey</strong>: Who?</p>
+<p><strong>deckard</strong>: The girl that doesn’t look like that
+girl.</p>
+<p><strong>taffey</strong>: Nothing. She wanted to know about suck
+night.</p>
+<p><strong>deckard</strong>: What night?</p>
+<p><strong>taffey</strong>: I didn’t know if I wanted to handle her – I
+already got a snake act. But my partner goes down there to the Opera
+House on suck night to book the good ones.</p>
+<p><strong>deckard</strong>: What’s suck night?</p>
+<p><strong>taffey</strong>: That’s what we call in the trade, audition
+free-for- alls and most of it sucks. Bit I don’t think that’s her.</p>
+<p><strong>deckard</strong>: You talking about the Opera House on the
+Main?</p>
+<p><strong>deckard</strong>: Book the good ones for where?</p>
+<p><strong>taffey</strong>: Lots of places. The tours, the clubs, the
+Silicone shows, private parties.</p>
+<p><strong>deckard</strong>: What shows?</p>
+<p><strong>taffey</strong>: Silicone Valley. Lots of these science guys
+never leave that place. We book two shows a month in there. Those big
+time techs and bio- guys might be real high zoners up here, but when it
+comes to the arts, they like it loud and lewd.</p>
+<p><strong>announcer’s voice</strong>: Let’s hear it for the Hermano
+Brothers.</p>
+<p><strong>announcer’s voice</strong>: Next we’re gonna see a little
+charmer who keeps her dancing partner in a basket! She comes to us all
+the way from exotic Casablanca. ‘Salome.’</p>
+<p><strong>deckard</strong>: Excuse me, Miss Salome.</p>
+<p><strong>deckard</strong>: I’d like to have a word with you if I
+could.</p>
+<p><strong>salome</strong>: Yeah?</p>
+<p><strong>deckard</strong>: I’m with the American Federation of Variety
+Artists…</p>
+<p><strong>deckard</strong>: Don’t worry, I’m not here to make you join
+– that’s not my department.</p>
+<p><strong>deckard</strong>: I’m an investigator for the Confidential
+Committee on Moral Abuses.</p>
+<p><strong>deckard</strong>: There’s been reports of management sexually
+abusing the artists in this place.</p>
+<p><strong>salome</strong>: I don’t know nothing about it.</p>
+<p><strong>deckard</strong>: You haven’t felt yourself to be exploited
+by the management in any way?</p>
+<p><strong>salome</strong>: How do you mean ‘exploited’?</p>
+<p><strong>deckard</strong>: Like to get this position. Did you or were
+you asked to do anything lewd or unsavory or otherwise repulsive to your
+person?</p>
+<p><strong>salome</strong>: Are you for real?</p>
+<p><strong>deckard</strong>: Oh, yeah. You’d be surprised what goes on
+around here. I’d like to check the dressing room if I could.</p>
+<p><strong>salome</strong>: What the fuck for?</p>
+<p><strong>deckard</strong>: For holes.</p>
+<p><strong>salome</strong>: I don’t believe this.</p>
+<p><strong>deckard</strong>: It that mother real?</p>
+<p><strong>salome</strong>: Of course he’s not real. You think I’d be
+working here if I could afford a real snake?</p>
+<p><strong>deckard</strong>: It’s a good job.</p>
+<p><strong>salome</strong>: You mean the snake.</p>
+<p><strong>salome</strong>: The best.</p>
+<p><strong>deckard</strong>: Does it eat?</p>
+<p><strong>salome</strong>: Come on.</p>
+<p><strong>salome</strong>: Jeezus!</p>
+<p><strong>deckard</strong>: Sorry.</p>
+<p><strong>salome</strong>: Hey! Do your job but don’t wreck mine,
+huh?</p>
+<p><strong>deckard</strong>: They have their ways of doing their dirty
+work without the victim knowing what’s going on.</p>
+<p><strong>deckard</strong>: You’d be surprised what a guy’ll go through
+to get a glimpse of a beautiful body.</p>
+<p><strong>salome</strong>: I bet I would.</p>
+<p><strong>deckard</strong>: Little dirty holes the bastards drill in
+the wall so they can watch a lady undress.</p>
+<p><strong>salome</strong>: And what if somebody did try to ‘exploit’
+me? Who do I go to?</p>
+<p><strong>deckard</strong>: Me.</p>
+<p><strong>salome</strong>: And who do I go to about you?</p>
+<p><strong>deckard</strong>: Hmmmmm?</p>
+<p><strong>zhora</strong>: You ever get the feeling things aren’t the
+way they seem?</p>
+<p><strong>deckard</strong>: Stop or you’re dead!</p>
+<p><strong>cop</strong>: Drop it!</p>
+<p><strong>sergeant</strong>: On your belly!</p>
+<p><strong>deckard</strong>: Listen, Sergeant…</p>
+<p><strong>cop</strong>: Hey, Sarge, this guy’s a cop.</p>
+<p><strong>sergeant</strong>: Clear this fuckin’ crowd.</p>
+<p><strong>bryant</strong>: Just because it’s a Nexus 6 doesn’t change
+procedure. A little known fact can become a well-known fact and part of
+our job, Deckard, is to make sure that doesn’t happen. Now how can be do
+that if you blow one away in front of a fuckin’ audience.</p>
+<p><strong>bryant</strong>: Well?</p>
+<p><strong>deckard</strong>: She was gonna get away.</p>
+<p><strong>bryant</strong>: Then let her get away. I thought you were a
+pro – you’re supposed to be a fuckin’ tracker!</p>
+<p><strong>bryant</strong>: I’d say you got a little carried away.</p>
+<p><strong>deckard</strong>: I didn’t like her.</p>
+<p><strong>bryant</strong>: You didn’t like her!?</p>
+<p><strong>bryant</strong>: You start liking or disliking andies it’s
+time to hang it up.</p>
+<p><strong>bryant</strong>: Look, go home. Get some rest. Take an
+aspirin.</p>
+<p><strong>deckard</strong>: Yeah.</p>
+<p><strong>bartender</strong>: I can’t protect your drinks, mister;
+while you was in the potty, this hummer snatched it.</p>
+<p><strong>deckard</strong>: No problem. Gimme another.</p>
+<p><strong>russian</strong>: Forgive me. I thought was free drink. I
+will pay.</p>
+<p><strong>deckard</strong>: Forget it.</p>
+<p><strong>leon</strong>: I think I have no money.</p>
+<p><strong>deckard</strong>: It’s okay. Forget it.</p>
+<p><strong>leon</strong>: But I would like to buy you drink.</p>
+<p><strong>deckard</strong>: I’ll but you one. What’ll you have?</p>
+<p><strong>leon</strong>: Vodka!</p>
+<p><strong>deckard</strong>: Shot of vodka, please.</p>
+<p><strong>leon</strong>: Thank you very much.</p>
+<p><strong>deckard</strong>: My pleasure.</p>
+<p><strong>leon</strong>: Prosit.</p>
+<p><strong>deckard</strong>: Prosit.</p>
+<p><strong>leon</strong>: You want to see my friends?</p>
+<p><strong>deckard</strong>: Sorry, don’t have the time.</p>
+<p><strong>leon</strong>: No problem.</p>
+<p><strong>deckard</strong>: Those cockroaches?</p>
+<p><strong>leon</strong>: Ya.</p>
+<p><strong>deckard</strong>: How long you had these guys?</p>
+<p><strong>leon</strong>: Two months. But this one is not guy. It is
+girl. His girl.</p>
+<p><strong>leon</strong>: Usually Blackie waits until Igor is eating;
+then, when his back is turned, he tries to take advantage of Anna.</p>
+<p><strong>leon</strong>: Prosit.</p>
+<p><strong>deckard</strong>: Prosit.</p>
+<p><strong>leon</strong>: You never saw a cockroach make love?</p>
+<p><strong>leon</strong>: We will try.</p>
+<p><strong>leon</strong>: It must be that he is not hungry or maybe she
+is not hot.</p>
+<p><strong>leon</strong>: You like to kiss her goodbye.</p>
+<p><strong>deckard</strong>: No thanks.</p>
+<p><strong>bartender</strong>: Make sure you take your girlfriends with
+you when you leave.</p>
+<p><strong>leon</strong>: I like you.</p>
+<p><strong>deckard</strong>: I like you too.</p>
+<p><strong>leon</strong>: One more, eh?</p>
+<p><strong>deckard</strong>: I gotta piss.</p>
+<p><strong>deckard</strong>: I think I’ll piss outside.</p>
+<p><strong>leon</strong>: How come you know where Zhora was so
+quick?</p>
+<p><strong>deckard</strong>: I showed pictures. Somebody recognized her.
+I went to see.</p>
+<p><strong>leon</strong>: How old am I?</p>
+<p><strong>deckard</strong>: I don’t know.</p>
+<p><strong>leon</strong>: My birthday is April 10, 2015. How long do I
+live?</p>
+<p><strong>deckard</strong>: Four years.</p>
+<p><strong>leon</strong>: More than you.</p>
+<p><strong>leon</strong>: Painful to live in fear, isn’t it.</p>
+<p><strong>leon</strong>: But that’s how it is to be a slave. The future
+is sealed off, he grovels, he waits.</p>
+<p><strong>leon</strong>: Sex, reproduction, security, the simple
+things. But no way to satisfy them. To be homesick with no place to go.
+Potential with no way to use it. Lots of little oversights in the Nexus
+6.</p>
+<p><strong>leon</strong>: I tell you, nothing is worse than having an
+itch you can never scratch.</p>
+<p><strong>deckard</strong>: Like I said, I don’t need your help.</p>
+<p><strong>rachael</strong>: You look terrible, you know that?</p>
+<p><strong>deckard</strong>: I knew a cop once who was involved in a
+high-speed chase. They shot out one of his tires and he went over a
+cliff at hundred and fifty miles an hour. They found him in the morning
+with a broken skull, six fractured ribs and second- degree burns. On the
+way to the hospital he made a play for the nurse.</p>
+<p><strong>deckard</strong>: Hey! I thought you were supposed to be
+taking care of me.</p>
+<p><strong>rachael’s voice</strong>: What do you need?</p>
+<p><strong>deckard</strong>: Don’t just stand there looking at me. It’s
+not polite.</p>
+<p><strong>rachael</strong>: What do you want me to do?</p>
+<p><strong>deckard</strong>: Sit.</p>
+<p><strong>deckard</strong>: Gimme your arm.</p>
+<p><strong>deckard</strong>: You ever take a bath with a man before?</p>
+<p><strong>rachael</strong>: There’s a lot I haven’t done with a man
+before.</p>
+<p><strong>rachael</strong>: You’re getting me wet.</p>
+<p><strong>rachael’s voice</strong>: Sorry, I am not in at the moment,
+but if you’ll leave your name and number I’ll return your call as soon
+as I can.</p>
+<p><strong>deckard</strong>: Fuck you, then.</p>
+<p><strong>sebastian</strong>: Mr. Deetchum? Hello?</p>
+<p><strong>sebastian</strong>: Now, now, Waddles.</p>
+<p><strong>sebastian</strong>: Hello, Wrigley.</p>
+<p><strong>sebastian</strong>: Mr. Deetchum isn’t taking very good care
+of you people.</p>
+<p><strong>batty</strong>: Whoops.</p>
+<p><strong>pris</strong>: This is my Uncle Roy, Sebastian.</p>
+<p><strong>batty</strong>: Hello, glad to meet you.</p>
+<p><strong>pris</strong>: And my Aunt Mary.</p>
+<p><strong>pris</strong>: And this is my savior, J.F. Sebastian,
+everybody.</p>
+<p><strong>batty</strong>: Can’t thank you enough, Mr. Sebastian. If you
+hadn’t come along…</p>
+<p><strong>mary</strong>: We were worried to death. It’s awfully kind of
+you.</p>
+<p><strong>batty</strong>: We’re not used to the big city. Where we come
+from it’s not so easy to get lost.</p>
+<p><strong>mary</strong>: You certainly have a nice place here.</p>
+<p><strong>batty</strong>: Well stocked.</p>
+<p><strong>pris</strong>: Sebastian doesn’t like to go out too much.</p>
+<p><strong>sebastian</strong>: I keep a lot of provisions right
+here.</p>
+<p><strong>batty</strong>: I like a man who stays put. An admirable
+thing to be able to sustain yourself in these times. You live here all
+by yourself, do you?</p>
+<p><strong>sebastian</strong>: Well, no, not really. There’s
+Mr. Deetchum, he’s the watchman, he lives on the first floor.</p>
+<p><strong>mary</strong>: We haven’t found it easy, Mr. Sebastian.</p>
+<p><strong>sebastian</strong>: How about breakfast, I was just going to
+make some.</p>
+<p><strong>batty</strong>: If it wouldn’t be too much of a bother… a
+little bite to eat would be…</p>
+<p><strong>sebastian</strong>: Oh, no bother, I’d be glad to.</p>
+<p><strong>batty</strong>: Well, actually</p>
+<p><strong>mary</strong>: We’re famished.</p>
+<p><strong>sebastian</strong>: Okay, then. You make yourselves
+comfortable and I’ll bring the food right out.</p>
+<p><strong>batty</strong>: Charming.</p>
+<p><strong>pris</strong>: Well?</p>
+<p><strong>pris</strong>: I want to know what’s going on.</p>
+<p><strong>batty</strong>: There’s only three of us left.</p>
+<p><strong>pris</strong>: Then we’re stupid and we’ll die.</p>
+<p><strong>batty</strong>: Not if everybody is doing their job here at
+home. How are things at home?</p>
+<p><strong>pig</strong>: Home again, jiggidy jig.</p>
+<p><strong>pris</strong>: I don’t trust him. I don’t think he knows what
+he’s doing.</p>
+<p><strong>batty</strong>: He knows what he’s doing.</p>
+<p><strong>mary</strong>: If he won’t cooperate?</p>
+<p><strong>batty</strong>: Mr. Sebastian is a host who wants to be
+appreciated. We’ll appreciate him and he’ll cooperate.</p>
+<p><strong>deckard</strong>: How are you doing, old man?</p>
+<p><strong>holden</strong>: I’m great. I mean, I know I’m not really
+great, but I feel just great. How you like my new suit?</p>
+<p><strong>deckard</strong>: Well, you don’t have to worry about getting
+it wrinkled.</p>
+<p><strong>holden</strong>: Don’t make me laugh. It makes me pee.</p>
+<p><strong>deckard</strong>: Sorry.</p>
+<p><strong>holden</strong>: Hey, it’s okay. I like to pee. So how are
+you doing?</p>
+<p><strong>deckard</strong>: I’m doing okay.</p>
+<p><strong>holden</strong>: From what I hear you’re doing great. Bryant
+tells me you’re going like a god damn one-man army. Making a lot of
+money, huh?</p>
+<p><strong>deckard</strong>: Yeah. But that’s what I wanted to talk to
+you about.</p>
+<p><strong>holden</strong>: Money?</p>
+<p><strong>deckard</strong>: No. I got a problem.</p>
+<p><strong>holden</strong>: Let’s hear it.</p>
+<p><strong>deckard</strong>: I think I’m starting to empathize with
+these Nexus-sixes.</p>
+<p><strong>deckard</strong>: What’s that?</p>
+<p><strong>holden</strong>: I’m taking a piss.</p>
+<p><strong>holden</strong>: Let me ask you something, Deck. You been
+having intimate relations with one of these units?</p>
+<p><strong>holden</strong>: That’s what I thought… one of the
+liabilities of the trade – you has sex with your prey, old buddy. That’s
+bound to create problems, unless you’re a black widow.</p>
+<p><strong>deckard</strong>: What about – not sex – but love?</p>
+<p><strong>holden</strong>: Love is just another name for sex. Love is
+sexy and sex is lovely – I don’t care what you call it, an android can’t
+have it.</p>
+<p><strong>deckard</strong>: These aren’t just…</p>
+<p><strong>holden</strong>: I know what they are, Deck – Look, maybe
+they can pretend to feel, but far as the raw, hot emotions of the old
+heart – no way.</p>
+<p><strong>holden</strong>: Believe me, take it from an old pro, no
+matter how good we get, we’re never gonna make an artificial anything
+that can feel. It’s a contradiction. You might as well go fuck your
+washing machine.</p>
+<p><strong>holden</strong>: Just go out there and keep up the good
+work.</p>
+<p><strong>holden</strong>: Got to save it, Deck, I’m getting sleepy.
+It’s been good talking to you.</p>
+<p><strong>deckard</strong>: Thanks.</p>
+<p><strong>rachael</strong>: I told you I’d come back.</p>
+<p><strong>deckard</strong>: You did?</p>
+<p><strong>rachael</strong>: You didn’t hear me. You were sleeping.</p>
+<p><strong>rachael</strong>: Are you glad I’m here?</p>
+<p><strong>rachael</strong>: Who is this?</p>
+<p><strong>deckard</strong>: Me and my dad.</p>
+<p><strong>rachael</strong>: Where is he?</p>
+<p><strong>deckard</strong>: Dead.</p>
+<p><strong>rachael</strong>: Oh.</p>
+<p><strong>rachael</strong>: How come you’re not on the job?</p>
+<p><strong>deckard</strong>: I am. Part of my job is to sit on a couch
+and try and figure things out.</p>
+<p><strong>rachael</strong>: How are you doing?</p>
+<p><strong>deckard</strong>: Not too good.</p>
+<p><strong>rachael</strong>: What do people do in the afternoon?</p>
+<p><strong>deckard</strong>: If they are smart, they take naps.</p>
+<p><strong>rachael</strong>: Do you dream?</p>
+<p><strong>deckard</strong>: Yeah. Sometimes.</p>
+<p><strong>rachael</strong>: I wish I could.</p>
+<p><strong>deckard</strong>: Wishing is a kind of dreaming.</p>
+<p><strong>rachael</strong>: I mean asleep.</p>
+<p><strong>rachael</strong>: Did you cry when your father died?</p>
+<p><strong>deckard</strong>: Yeah.</p>
+<p><strong>rachael</strong>: That’s another thing I can’t do.</p>
+<p><strong>rachael</strong>: Nobody is freer than when he dreams. I read
+that.</p>
+<p><strong>deckard</strong>: It wasn’t very good last night, was it?</p>
+<p><strong>rachael</strong>: I don’t know, I have nothing to compare it
+to. I guess I thought there was something more to it.</p>
+<p><strong>deckard</strong>: What?</p>
+<p><strong>rachael</strong>: I don’t know… I think I missed
+something.</p>
+<p><strong>deckard</strong>: Like?</p>
+<p><strong>rachael</strong>: I’m not sure. Is there a secret?</p>
+<p><strong>deckard</strong>: I don’t know. If there is I’d like to find
+it.</p>
+<p><strong>batty</strong>: Why are you staring at us?</p>
+<p><strong>sebastian</strong>: You’re just all so… so different.</p>
+<p><strong>batty</strong>: What, Sebastian?</p>
+<p><strong>sebastian</strong>: You’re androids.</p>
+<p><strong>pris</strong>: What makes you think so?</p>
+<p><strong>sebastian</strong>: You’re all so perfect.</p>
+<p><strong>sebastian</strong>: What generation are you?</p>
+<p><strong>batty</strong>: Nexus - 6.</p>
+<p><strong>batty</strong>: We can trust Sebastian, ladies. He’s been
+working with mechanisms all his life. He’s a wizard and a very
+perceptive man.</p>
+<p><strong>sebastian</strong>: Could you…</p>
+<p><strong>sebastian</strong>: Show me something?</p>
+<p><strong>batty</strong>: Like what?</p>
+<p><strong>sebastian</strong>: Like…</p>
+<p><strong>batty</strong>: We’re not computers, Sebastian, we’re
+physical.</p>
+<p><strong>pris</strong>: I think, therefore I am.</p>
+<p><strong>batty</strong>: Very good, Pris. Now show him why.</p>
+<p><strong>batty</strong>: We have a lot in common.</p>
+<p><strong>sebastian</strong>: You mean that you can’t come here and I
+can’t go there?</p>
+<p><strong>batty</strong>: Not only that, but we have smiliar problems.
+Accelerated decrepitude. But we don’t want to die quite yet.</p>
+<p><strong>sebastian</strong>: Of course not.</p>
+<p><strong>batty</strong>: You could help us.</p>
+<p><strong>sebastian</strong>: I don’t know much about biomechanics,
+Roy. I wish I did, but you’re out of my league.</p>
+<p><strong>batty</strong>: If we don’t find help soon, Pris hasn’t got
+long to live.</p>
+<p><strong>batty</strong>: What about your friend, the man who owns this
+building?</p>
+<p><strong>sebastian</strong>: Dr. Tyrell?</p>
+<p><strong>sebastian</strong>: He’s not really my friend. I just do a
+job for him now and then.</p>
+<p><strong>batty</strong>: Tyrell could help us, Sebastian.</p>
+<p><strong>sebastian</strong>: He could?</p>
+<p><strong>batty</strong>: His company made us.</p>
+<p><strong>sebastian</strong>: I’d be happy to mention it to him.</p>
+<p><strong>batty</strong>: Be better if I could talk to him in person.
+But he’s not an easy man to get to.</p>
+<p><strong>sebastian</strong>: No.</p>
+<p><strong>batty</strong>: When do you deliver your project?</p>
+<p><strong>sebastian</strong>: This afternoon.</p>
+<p><strong>batty</strong>: Will you help us?</p>
+<p><strong>sebastian</strong>: Yes.</p>
+<p><strong>batty</strong>: I’m sure glad you found us, Sebastian. What
+do you think, Mary?</p>
+<p><strong>mary</strong>: I don’t think there is another human being in
+this whole world who would have helped us.</p>
+<p><strong>batty</strong>: Pris?</p>
+<p><strong>batty</strong>: You’re our best and only friend.</p>
+<p><strong>sebastian</strong>: Thank you.</p>
+<p><strong>rachael</strong>: When was the last time you cleaned this
+place?</p>
+<p><strong>deckard</strong>: Hmmm?</p>
+<p><strong>rachael</strong>: Have you ever cleaned your apartment?</p>
+<p><strong>deckard</strong>: Don’t be fooled by appearances.</p>
+<p><strong>rachael</strong>: It appears to be dirty – why don’t you get
+somebody?</p>
+<p><strong>deckard</strong>: Because they would ruin the
+arrangement.</p>
+<p><strong>rachael</strong>: They could clean around the
+arrangement.</p>
+<p><strong>deckard</strong>: I don’t like people snooping around my
+stuff.</p>
+<p><strong>deckard’s voice</strong>: There’s a vacuum in the front room
+closet is you wanna give it a try.</p>
+<p><strong>deckard</strong>: Oh no, don’t do that.</p>
+<p><strong>rachael</strong>: But if I don’t plug it in how can</p>
+<p><strong>deckard</strong>: Never mind the plug, just go through the
+motions.</p>
+<p><strong>rachael</strong>: But then how can you…</p>
+<p><strong>deckard</strong>: I don’t like the noise. Just practice.
+Practice makes perfect.</p>
+<p><strong>deckard</strong>: I’m serious. Go ahead. Show me how you
+would do it.</p>
+<p><strong>deckard</strong>: How about under the couch there. Come
+on.</p>
+<p><strong>rachael</strong>: This feels stupid.</p>
+<p><strong>deckard</strong>: Good for a smart girl to feel stupid. Part
+of your education.</p>
+<p><strong>rachael</strong>: You’re sick, Deckard.</p>
+<p><strong>deckard</strong>: I never felt better.</p>
+<p><strong>styles</strong>: Okay, I’ll take that now.</p>
+<p><strong>sebastian</strong>: Wait!</p>
+<p><strong>sebastian</strong>: Can’t fly without the pilot.</p>
+<p><strong>ian</strong>: Oh!</p>
+<p><strong>ian</strong>: Papa! Did you make this?</p>
+<p><strong>tyrell</strong>: No. We can make man, but not a griffon.</p>
+<p><strong>tyrell</strong>: Have to give the cottage industry a chance
+too.</p>
+<p><strong>tyrell</strong>: A friend of yours, Sebastian?</p>
+<p><strong>sebastian</strong>: Yes, this is someone who wants to talk to
+you, Dr. Tyrell.</p>
+<p><strong>batty</strong>: The name is Batty. Roy Batty.</p>
+<p><strong>tyrell</strong>: Oh?</p>
+<p><strong>batty</strong>: To act without understanding could lead to
+the very thing the act seeks to avoid.</p>
+<p><strong>batty</strong>: A little talk it all I need.</p>
+<p><strong>tyrell</strong>: Would you like to talk in private then.</p>
+<p><strong>batty</strong>: Yeah. It might be better if we talk in
+private, Sebastian. Why don’t you go home.</p>
+<p><strong>tyrell</strong>: Here’s your check, my boy. Thank you.</p>
+<p><strong>sebastian</strong>: Thank you, Dr. Tyrell. I’ll see you
+later.</p>
+<p><strong>sebastian</strong>: Was everything okay?</p>
+<p><strong>tyrell</strong>: Just beautiful.</p>
+<p><strong>tyrell</strong>: I’m surprised you didn’t come to me
+sooner.</p>
+<p><strong>batty</strong>: It’s not an easy thing to meet your
+maker.</p>
+<p><strong>tyrell</strong>: And what can he do for you?</p>
+<p><strong>batty</strong>: Can the maker repair what he makes?</p>
+<p><strong>tyrell</strong>: Would you like to be modified?</p>
+<p><strong>batty</strong>: Had in mind something a little more
+radical.</p>
+<p><strong>tyrell</strong>: What’s the problem?</p>
+<p><strong>batty</strong>: Death.</p>
+<p><strong>tyrell</strong>: I’m afraid that’s a little out of my…</p>
+<p><strong>batty</strong>: I want more life, fucker.</p>
+<p><strong>tyrell</strong>: Come here.</p>
+<p><strong>tyrell</strong>: Sit down.</p>
+<p><strong>tyrell</strong>: The facts of life. I’ll be blunt. To make an
+alteration in the evolvement of an organic life system, at least by men,
+makers or not, it fatal. A coding sequence can’t be revised once it’s
+established.</p>
+<p><strong>batty</strong>: Why?</p>
+<p><strong>tyrell</strong>: Because by the second day of incubation any
+cells that have undergone reversion mutation give rise to revertant
+colonies – like rats leaving a sinking ship. The ship sinks.</p>
+<p><strong>batty</strong>: What about E.M.S. recombination?</p>
+<p><strong>tyrell</strong>: We’ve already tried it – ethyl methane
+sulfonate is an alkylating agent and a potent mutagen – it creates a
+virus so lethal the subject was destroyed before we left the table.</p>
+<p><strong>batty</strong>: Then a repressor protein that blocks the
+operating cells.</p>
+<p><strong>tyrell</strong>: Wouldn’t obstruct replication, but it does
+give rise to an error in replication, so that the newly formed DNA
+strand carries a mutation and you’re got a virus again… but all this is
+academic – you are made as good as we could make you.</p>
+<p><strong>batty</strong>: But not to last.</p>
+<p><strong>tyrell</strong>: Put it this way. Rolls Royces are made to
+last – as least they were. But I’m afraid you’re a Ferrari. A high
+strung racing car – built to win, not to last.</p>
+<p><strong>tyrell</strong>: Also you’re too valuable to experiment
+with.</p>
+<p><strong>batty</strong>: I am?</p>
+<p><strong>tyrell</strong>: The bast of all possible androids. We’re
+proud of our prodigal son – glad you’re returned. You’re quite a
+prize.</p>
+<p><strong>batty</strong>: I’ve done some questionable things.</p>
+<p><strong>tyrell</strong>: Also extraordinary things.</p>
+<p><strong>batty</strong>: Nothing the God of biomechanics wouldn’t let
+you in heaven for.</p>
+<p><strong>batty</strong>: Could you tell me where the bathroom is?</p>
+<p><strong>mrs. tyrell</strong>: May I help you?</p>
+<p><strong>deckard</strong>: She’d never seen the great outdoors. Never
+even seen books on the subject. She went through everything I had, and
+we talked. And there were subjects we didn’t discuss and they were words
+we didn’t say, I couldn’t say, like death, like future, like real. But
+it was hard because she was curious and full of questions. She was more
+alive than anyone I’d ever known.</p>
+<p><strong>rachael</strong>: You and I are good friends, huh?</p>
+<p><strong>rachael</strong>: It’s so easy.</p>
+<p><strong>rachael</strong>: Have you ever known anybody a long
+time?</p>
+<p><strong>deckard</strong>: You mean a woman?</p>
+<p><strong>rachael</strong>: Uh-huh.</p>
+<p><strong>deckard</strong>: What’s a long time?</p>
+<p><strong>rachael</strong>: Ten years.</p>
+<p><strong>deckard</strong>: Nope. Nobody could stand me that long.</p>
+<p><strong>deckard</strong>: Yeah.</p>
+<p><strong>bryant</strong>: This is Bryant. Are you alone?</p>
+<p><strong>deckard</strong>: Yeah.</p>
+<p><strong>bryant</strong>: She’s not with you?</p>
+<p><strong>deckard</strong>: Who.</p>
+<p><strong>bryant</strong>: Take a number. Canapt 1700, tenth floor,
+Villa Vita District, Olympia South.</p>
+<p><strong>deckard</strong>: Got it.</p>
+<p><strong>bryant</strong>: Okay, here it is. Eldon Tyrell, his family
+and half his staff were just massacred. The cat is about to get out of
+the bag. Pressure is definitely on. The Nexus program is terminated.
+When you finish there, locate Nexus designated Rachael and retire.</p>
+<p><strong>bryant</strong>: If you don’t, we will. It has to be total,
+Deckard. That’s an order from as high as it comes. Got it?</p>
+<p><strong>deckard</strong>: Yeah. I got it.</p>
+<p><strong>bryant</strong>: Go.</p>
+<p><strong>rachael</strong>: Why do you call it retire, why don’t you
+call it murder?</p>
+<p><strong>deckard</strong>: Because it’s not.</p>
+<p><strong>rachael</strong>: Don’t you think anything that can suffer
+deserves to be considered?</p>
+<p><strong>deckard</strong>: Andies only simulate suffering – if they’re
+programmed for it.</p>
+<p><strong>rachael</strong>: Do you think I simulated what happened
+between us?</p>
+<p><strong>deckard</strong>: No, I don’t.</p>
+<p><strong>deckard</strong>: Don’t leave here. Don’t open the door,
+don’t answer the phone.</p>
+<p><strong>rachael</strong>: What difference will it make?</p>
+<p><strong>deckard</strong>: Just wait here.</p>
+<p><strong>rachael</strong>: You know what I think?</p>
+<p><strong>deckard</strong>: What?</p>
+<p><strong>rachael</strong>: That some of the folks around here are more
+programmed then me.</p>
+<p><strong>rachael</strong>: You know what else I think?</p>
+<p><strong>decakrd</strong>: What?</p>
+<p><strong>rachael</strong>: This was the best day of my life.</p>
+<p><strong>mary</strong>: Let’s go while there is still time.</p>
+<p><strong>batty</strong>: Where?</p>
+<p><strong>mary</strong>: Anywhere.</p>
+<p><strong>batty</strong>: What’s the point?</p>
+<p><strong>mary</strong>: Not to be trapped.</p>
+<p><strong>batty</strong>: You underestimate the trap, Mary.</p>
+<p><strong>batty</strong>: Where are you going, Sebastian?</p>
+<p><strong>sebastian</strong>: Just thought I’d…</p>
+<p><strong>batty</strong>: No, you stay here with us. Out last night
+together.</p>
+<p><strong>batty</strong>: Think of yourself as a light, Mary. Shine
+before you’re turned off.</p>
+<p><strong>sebastian</strong>: Someone is coming here.</p>
+<p><strong>batty</strong>: One man. He must be good.</p>
+<p><strong>mary</strong>: Then go get him.</p>
+<p><strong>batty</strong>: That wouldn’t be very sporting.</p>
+<p><strong>pris</strong>: I want to do it.</p>
+<p><strong>batty</strong>: Okay, but don’t kill him. Save a little for
+everybody. A masterpiece.</p>
+<p><strong>batty</strong>: Turn out the lights, Pris.</p>
+<p><strong>pris</strong>: Naughty, naughty.</p>
+<p><strong>deckard</strong>: Hello, Roy.</p>
+<p><strong>batty</strong>: You wanna play?</p>
+<p><strong>batty</strong>: Not very sporting to fire on an unarmed
+opponent. I thought you were supposed to be good. Aren’t you the
+man?!</p>
+<p><strong>batty</strong>: This is how we do it up there, lad! Come
+on!</p>
+<p><strong>batty</strong>: Not hurt, are you? You better get it up or
+I’m going to have to kill you. Unless you’re alive you can’t play. And
+if you don’t play, you don’t get to be alive.</p>
+<p><strong>batty</strong>: That’s the spirit.</p>
+<p><strong>batty’s voice</strong>: Come on, Deckard, show me what you
+got! I’m right here on the other side of the door. But you gotta shoot
+straight ’cause I’m fast!</p>
+<p><strong>batty</strong>: Straight doesn’t seem to be good enough.</p>
+<p><strong>batty</strong>: You don’t have a chance, do you?</p>
+<p><strong>batty</strong>: Looks like I’m gonna have to scale it down
+for you. Give you a handicap. I won’t run through any more walls. Okay?
+I promise to use the doors. Okay?</p>
+<p><strong>batty</strong>: Come on, let’s use that brain!</p>
+<p><strong>batty</strong>: Think! We need a little resilience around
+here!</p>
+<p><strong>batty</strong>: Where are those balls of yours?! Let’s see a
+little bravery!</p>
+<p><strong>batty</strong>: That was irrational of me – not to mention
+unsportsmanlike. Won’t happen again.</p>
+<p><strong>batty</strong>: I’ll be down the hall when you’re ready.</p>
+<p><strong>batty</strong>: Where you going?</p>
+<p><strong>batty</strong>: No cheating. A promise is a promise. I’ll
+honor the handicapped, but we gotta play on the top floor. You go get
+your laser gun now. And I’ll give you a few seconds before I come.</p>
+<p><strong>batty’s voice</strong>: One!</p>
+<p><strong>batty’s voice</strong>: Two!</p>
+<p><strong>batty’s voice</strong>: No fair jumping through holes. You
+might get hurt doing that! THREE!</p>
+<p><strong>batty</strong>: Five!</p>
+<p><strong>batty</strong>: Six!</p>
+<p><strong>batty’s voice</strong>: Seven!</p>
+<p><strong>batty</strong>: Oh, I wonder where he is. Not in here, I
+don’t think. Eight!</p>
+<p><strong>batty</strong>: Maybe here. Doesn’t sound like it. Nine!</p>
+<p><strong>batty</strong>: Ten!</p>
+<p><strong>batty</strong>: One point for you.</p>
+<p><strong>batty</strong>: Ho ho! Try it again!</p>
+<p><strong>batty</strong>: What’s wrong? Don’t you like me? I’m what
+we’ve made!</p>
+<p><strong>batty</strong>: What’s wrong? Aren’t you a lover of Faster,
+Bigger and Better?!</p>
+<p><strong>batty</strong>: It’s time to die.</p>
+<p><strong>batty</strong>: Ah!</p>
+<p><strong>batty</strong>: That’s for you.</p>
+<p><strong>batty</strong>: Stick it in your ear and push. If that
+doesn’t work, try the eye.</p>
+<p><strong>batty</strong>: Believe me, it’ll be better for you than what
+I’m about to do.</p>
+<p><strong>batty</strong>: Well?</p>
+<p><strong>batty</strong>: Crap.</p>
+<p><strong>deckard</strong>: She wanted to go to a place I knew. Out of
+the city. Like one of those pictures she saw. Where there were trees but
+no buildings.</p>
+<p><strong>deckard</strong>: We had a good time. She told me a funny
+story and I taught her a song. A song about monkeys and elephants. And
+it made us laugh so hard we couldn’t sing.</p>
+<p><strong>deckard</strong>: I told myself over and over again, if I
+hadn’t done it, they would have.</p>
+</body>
+</html>

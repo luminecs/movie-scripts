@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>miller-s-crossing</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="miller-s-crossing">miller-s-crossing</h1>
+<p><strong>close shot a whiskey tumbler</strong>: That sits on an oak
+side bar under a glowing green bankers lamp, as two ice cubes are
+dropped in. From elsewhere in the room:</p>
+<p><strong>the speaker</strong>: A balding middle-aged man with a round,
+open face. He still wears his overcoat and sits in a leather chair in
+the dark room, illuminated by the offscreen glow of a desk lamp. This is
+Johnny Caspar.</p>
+<p><strong>reverse</strong>: Another well dressed, middle aged man,
+behind a large polished oak desk, listening intently. This is Leo. He is
+short but powerfully built, with the face of a man who has seen
+things.</p>
+<p><strong>the woods credit sequence</strong>: Although it is day, the
+tree cover gives an effect of almost cathedral-like darkness. The sun
+filters down through the leaves in gently shifting patterns.</p>
+<p><strong>close shot tom</strong>: Unshaven, eyes closed,
+motionless.</p>
+<p><strong>a hallway</strong>: A loose shot looking over Tom’s shoulder
+as he knocks on an partment door. Head credits continue.</p>
+<p><strong>close shot a fedora</strong>: Lying on a marble bureau top in
+a dark room. A gently rippling cookie plays over it–light from a
+streetlamp thrown through a curtained window. Reflected in the bureau
+mirror behind the fedora we see the soft glow of a burning
+cigarette.</p>
+<p><strong>reverse</strong>: Tracking in on Tom, sitting in bed,
+smoking, staring at the bureau. The rippling street light plays over him
+from the window. We hear a distant knocking.</p>
+<p><strong>wider</strong>: The bedroom, as Tom swings his legs around
+and gets out of bed.</p>
+<p><strong>6. living room</strong>: Also dark, lit only by streetlight
+filtering in.</p>
+<p><strong>7. int bedroom</strong>: As Tom opens the double oak doors
+and enters, leaving them open.</p>
+<p><strong>7. ext alleyway early morning</strong>: We are on an extreme
+close shot of a small dog. Behind him, in the distance, we can see the
+mouth of the alley.</p>
+<p><strong>a man</strong>: is slouched, half-sitting, against the wall
+of the alley. He is motionless. His mouth is agape. His eyes are rolled
+up in a lifeless stare.</p>
+<p><strong>close shot a little boy</strong>: Perhaps five years old. He
+stares down at the dead man in front of him.</p>
+<p><strong>close shot the man</strong>: Staring vacantly.</p>
+<p><strong>the boy</strong>: After a moment, he reaches forward.</p>
+<p><strong>the man</strong>: As the boy’s hand enters frame. The boy
+pokes once at the man’s shoulder.</p>
+<p><strong>the boy</strong>: Staring.</p>
+<p><strong>the man</strong>: Also staring, his skewed hairpiece ill
+becoming his stunned expression.</p>
+<p><strong>wide shot the alley</strong>: The dead man and the little bov
+face each other in profile in the middle foreground. In the background,
+between them, the little boy’s dog faces us, still on point, still
+whining.</p>
+<p><strong>int diner evening</strong>: A man sits facing us at the
+counter in the foreground. His face is hidden by the newspaper he is
+reading.</p>
+<p><strong>reverse</strong>: Looking down at the newspaper an the
+counter, next to a steaming cup of coffee. Tom’s hand enters to put some
+change on the counter, leaves, and we hear his receding footsteps.</p>
+<p><strong>tracking in to close shot plaque</strong>: Set into the brick
+of a building’s exterior, it reads: SHENANDOAH CLUB. In script
+underneath: Members Only.</p>
+<p><strong>11. int the club night</strong>: Tracking towards the front
+door as Tom enters. He puts his coat and hat on the check counter.</p>
+<p><strong>on beryl</strong>: A diminutive woman in a french maid’s
+uniform with a pill box hat. She rocks her weight on one leg with her
+hands proceed defiantly on her hips.</p>
+<p><strong>tracking shot</strong>: Pulling Tom as he walks across the
+gambling floor. He is joined bv a nervous young man in a tuxedo.</p>
+<p><strong>13. int leo’s office</strong>: Pulling Tom as he enters the
+office.</p>
+<p><strong>reverse</strong>: Leo faces us from behind his desk.</p>
+<p><strong>fat tony</strong>: Tending the downstairs bar as Tom stalks
+over.</p>
+<p><strong>15. int ladies’ lounge</strong>: As Tom bangs through the
+door, still carelessly holding his tumbler of whiskey. A rogue lock of
+hair hangs down over his forehead.</p>
+<p><strong>reverse</strong>: The hubbub of female voices evaporates as
+all turn to look at the male intruder.</p>
+<p><strong>int tom’s apartment</strong>: A wide shot, facing the
+semi-circular windows, the door of the apartment behind us. A large easy
+chair in the middle foreground faces away from us: a smaller chair is at
+the window end of the room, facing us.</p>
+<p><strong>reverse</strong>: Slouched in a chair, in the corner of the
+room, facing Tom, is Bernie Bernheim. He is about thirty and wears his
+overcoat and hat and a good-natured smile. He holds an apple in one hand
+and a paring knife in the other. The long peel of the apple corkscrews
+down off the knife.</p>
+<p><strong>17. street day</strong>: Pulling Tom along the sidewalk.</p>
+<p><strong>18. int room</strong>: It is a large room with a couple of
+card tables, straight- backed chairs, a ratty sofa–a sparsely furnished
+card room off the main floor of a club.</p>
+<p><strong>black</strong>: Over black we hear the sound of running
+water.</p>
+<p><strong>tom</strong>: Gasping for air as his head is pulled out from
+under a running faucet.</p>
+<p><strong>22. ext the building</strong>: We see that the building’s
+facade claims to be SABBATINI’S</p>
+<p><strong>antiques and collectibles.</strong>: Tom weaves across the
+street with his battle and glass towards O’Gar, the police chief,
+leaning against a squad car, chewing a toothpick. He is watching
+morosely as his men load other men into paddywagons; the street is
+clogged with police vehicles.</p>
+<p><strong>23. hallway</strong>: We are shooting over Tom’s shoulder as
+he knocks at the door to Verna’s apartment.</p>
+<p><strong>24. int apartment</strong>: As Verna gives up and Tom
+enters.</p>
+<p><strong>another window night</strong>: A living room window, open,
+its white sheers billowing lazily in the draft.</p>
+<p><strong>over his shoulder</strong>: Waiting in the darkness just
+outside is another man in a topcoat and fedora. He is holding two tommy
+guns.</p>
+<p><strong>26. a victrola</strong>: The song is louder at the cut. We
+are in an upstairs bedroom.</p>
+<p><strong>leo</strong>: Stretched out an his bed, wearing a robe over
+his pyjamas, smoking a cigar, listening–but only to the phonograph. Its
+sound covers any other noise in the house.</p>
+<p><strong>27. stairway</strong>: A close track on the two pairs of feet
+climbing the stairs. We see only the feet, the swaying hems of the
+topcoats and, occasionally dipping into frame, the muzzles of the two
+tommy guns.</p>
+<p><strong>26. bedroom</strong>: Leo, is motionless, looking down, a
+puzzled expression.</p>
+<p><strong>his pov</strong>: The floor.</p>
+<p><strong>28. stairway</strong>: Tracking on the approaching feet. The
+song grows louder.</p>
+<p><strong>26. bedroom</strong>: Leo, looking, slowly taking the cigar
+from his mouth.</p>
+<p><strong>bedroom door</strong>: From inside as–CRASH–it is kicked
+in.</p>
+<p><strong>leo</strong>: Hitting the floor and rolling under the
+bed.</p>
+<p><strong>the two gunmen</strong>: Striding into the room.</p>
+<p><strong>leo</strong>: On his belly under the bed, facing the door,
+swinging a handgun in front of him.</p>
+<p><strong>his pov</strong>: From floor level, the bottom of the
+mattress above us, the floorboards stretching away.</p>
+<p><strong>leo</strong>: Jaw clamped on his cigar, he starts firing.</p>
+<p><strong>his pov</strong>: Blood spurts as one gunman takes a hit in
+the ankle.</p>
+<p><strong>leo</strong>: Still firing.</p>
+<p><strong>his pov</strong>: The other gunman is ducking out the
+door.</p>
+<p><strong>leo</strong>: Firing.</p>
+<p><strong>his pov</strong>: A bullet hit in the top of the fallen man’s
+head.</p>
+<p><strong>leo</strong>: Rolling out from under the bed.</p>
+<p><strong>28. hallway</strong>: Facing down the length of the dark
+hallway, towards the mouth of the stairs.</p>
+<p><strong>29. second room</strong>: Leo throws open a window.</p>
+<p><strong>30. ext</strong>: As Leo rolls out onto the long sloping eave
+of a front porch.</p>
+<p><strong>leo’s pov</strong>: The second floor window that he just
+emerged from. Staccato gunfire erupts in the dark room.</p>
+<p><strong>leo</strong>: Firing, the gun jumping and bucking in his
+hands.</p>
+<p><strong>29. inside the room</strong>: The gunman, riddled with
+bullets and showered with broken glass, spins around, his thompson still
+firing uncontrol- lably.</p>
+<p><strong>back to leo</strong>: As we hear the screech of skidding
+tires. A black coupe takes a curve on the street behind him, machine gun
+fire spitting out of the back window.</p>
+<p><strong>on the car</strong>: Growing smaller, still snitting fire and
+lead.</p>
+<p><strong>pulling leo</strong>: Still walking calmly up the street, the
+gun still bucking in his hands. Bullets whistle by and claw up the
+pavement around him.</p>
+<p><strong>behind leo</strong>: His robe whips back in the breeze. He
+fires again and we hear the distant sound of shattering glass. The car
+weaves, runs up off the road, hits a tree and bursts into flame.</p>
+<p><strong>close on leo</strong>: As he stops, squinting, raising the
+gun.</p>
+<p><strong>his pov</strong>: The burning gunman zig-zagging into the
+darkness.</p>
+<p><strong>back to leo</strong>: A faint smile curls around the cigar.
+He drops the muzzle of the gun.</p>
+<p><strong>upstairs hallway shenandoah club</strong>: The explosion
+echoes over the cut as we track up the hallway behind Tom and a tall
+cadaverous man with pre- maturely white hair. This is Dead Terry
+McGill.</p>
+<p><strong>32. int leo’s office</strong>: As Tom enters.</p>
+<p><strong>33. hallway</strong>: Pulling Tom up the hall.</p>
+<p><strong>tom’s apartment</strong>: Wide shot of his living room,
+facing the windows. It is night.</p>
+<p><strong>the door</strong>: As Tom swings it open. Verna stands in the
+hallway outside. After a wordless beat she moves past him into the
+apartment. Tom turns and follows her.</p>
+<p><strong>the bedroom</strong>: Tom sits perched on the edge of the
+bed, smoking a ciga- rette. Verna is in bed behind him. The lamp on the
+nightstand is burning a faint yellow.</p>
+<p><strong>37. pulling tom</strong>: Into a dark office. Behind him,
+Frankie, his nose swathed with bandages, is closing the door from the
+outside.</p>
+<p><strong>tom’s pov</strong>: Caspar sits behind his desk. Bluenoint
+sits slouched on a couch to one side, wearing his hat, his hands jammed
+into the pockets of his overcoat.</p>
+<p><strong>int car</strong>: Tom sits behind the wheel of the parked
+car; we are an his profile.</p>
+<p><strong>39. miller’s crossing wide</strong>: Day. A wooded area
+outside of town. The wind blows.</p>
+<p><strong>int car</strong>: Tom gazes forward, jaw set, eyes off the
+doings outside.</p>
+<p><strong>wide ext</strong>: Bernie is still on the ground, sobbing,
+not responding to Frankie who prods him with his foot.</p>
+<p><strong>40. track</strong>: Through the woods, pulling the two men,
+Bernie in the foreground. Tree limbs groan in the wind.</p>
+<p><strong>close bernie</strong>: Still kneeling, in shock, staring
+wide-eyed at Tom.</p>
+<p><strong>close on tom</strong>: Watching Bernie go.</p>
+<p><strong>tracking</strong>: Pulling Bernie as he runs. Foreground
+trees flash by. In the background we see Tom standing, his gun dangling
+at his side.</p>
+<p><strong>41. wide the road</strong>: Tic-Tac and Frankie are leaning
+against the car, trading the flask back and forth.</p>
+<p><strong>42. fade in</strong>: Looking down a deserted street towards
+a glowing phone booth on a dark corner. Tom stands inside the booth
+waiting, the receiver to his ear.</p>
+<p><strong>close on tom</strong>: Inside the phone booth.</p>
+<p><strong>43. fade in</strong>: On Tom, sitting into frame in Caspar’s
+office.</p>
+<p><strong>close shot a man’s face</strong>: Crunch!–being hit by a
+gloved hand.</p>
+<p><strong>close on a newspaper</strong>: As the noise of fists against
+flesh continues, echoing, in the background.</p>
+<p><strong>on tom</strong>: Leaning against a pillar in a large bare
+room with a hardwood floor. He is reading the newspaper.</p>
+<p><strong>45. ext the gym</strong>: Peeling paint on its blackened-out
+window reads: Gleason’s Gym. Training in The Sweet Science.</p>
+<p><strong>int speakeasy</strong>: A hand swings through frame holding
+the barrel of a gun, smashing the butt into a surprised face.</p>
+<p><strong>47. ext speakeasy</strong>: As the three men emerge into the
+afternoon sun.</p>
+<p><strong>facing rooftop</strong>: A man with a distinctive shock of
+white hair–Dead Terry McGill. He puts up his gun and starts running
+along the roof.</p>
+<p><strong>bert</strong>: Starts running along the street to keep pace,
+firing up at the facing roof.</p>
+<p><strong>a police car</strong>: Siren wailing, up on two wheels,
+taking a speeding turn onto the street.</p>
+<p><strong>pulling bert</strong>: Running, he is pointing, and bellowing
+at the car:</p>
+<p><strong>police car</strong>: Cops with guns hang out every window.
+They start firing.</p>
+<p><strong>tracking towards bert</strong>: Bert</p>
+<p><strong>his pov</strong>: About a block away, a man with white hair
+is crossing the street, from the side where the sniper’s shot came
+from.</p>
+<p><strong>back to tom</strong>: As he starts to leave.</p>
+<p><strong>48. int diner</strong>: Dead Terry McGill sits at a stool
+looking angrily down at a cup of coffee. Tom enters to sit next to
+him.</p>
+<p><strong>doorknob</strong>: As–CRASH–a foot enters to kick it and the
+door in.</p>
+<p><strong>int verna’s apartment</strong>: Verna is backing away from
+the door–behind us–into the apartment. Bluepoint strides into frame.</p>
+<p><strong>reverse</strong>: Facing the door, from behind Bluepoint and
+Verna.</p>
+<p><strong>bang.</strong>: Bluepoint straightens up from the body and
+turns.</p>
+<p><strong>low and wide on bluepoint</strong>: One corpse an the floor
+beside him, the other corpse in the doorway behind him.</p>
+<p><strong>his pov the window</strong>: The main zoom is now empty.
+Sheers billow at the window, now open, that let’s out on the fire
+escape. Off:</p>
+<p><strong>window night</strong>: Sheers billow in the breeze.</p>
+<p><strong>tom</strong>: Sitting up in bed, smoking a cigarette,
+thinking. The bedroom is dark.</p>
+<p><strong>51. his pov</strong>: The windows throw moonlit squares onto
+the floor. We can see only the legs of someone sitting in the
+armchair.</p>
+<p><strong>52. hallway</strong>: Empty.</p>
+<p><strong>his pov</strong>: A flight down, a hand slides down along the
+railing. Bernie’s trotting footsteps echo in the stairwell.</p>
+<p><strong>tom</strong>: He runs back to his apartment.</p>
+<p><strong>53. apartment</strong>: Tom runs across to the open window
+and clambers out.</p>
+<p><strong>54. fire escape</strong>: Tom trots down. His bare feet ring
+dully against the steel of the fire escape.</p>
+<p><strong>the alley</strong>: As his bare feet hit the pavement. Tom is
+a silhouette in the lamplight from the end of the alley.</p>
+<p><strong>back door</strong>: Of his apartment building–over Tom’s
+shoulder as he enters frame. The empty, brightly lit hall inside runs
+straight the length of the building to the front door, which is just
+closing.</p>
+<p><strong>55. hallway</strong>: As Tom runs through toward the
+front.</p>
+<p><strong>long shot the hall</strong>: Clucking sympathetically, the
+old woman is leaning down to help Tom up. As he drapes an arm over her
+shoulder:</p>
+<p><strong>close shot plaque</strong>: Set into an exterior wall,
+identifying the SHENANDOAH CLUB.</p>
+<p><strong>57. int club</strong>: Tom, in his overcoat and hat, is
+walking up to the bar.</p>
+<p><strong>58. ext the club</strong>: It is just cracking dawn.</p>
+<p><strong>59. pulling tom</strong>: As he walks along a nearby street;
+we can still faintly hear the sirens and police activity back at the
+club.</p>
+<p><strong>60. int car</strong>: As Tom sits into the back, next to
+Bluepoint. Frankie slides in after him.</p>
+<p><strong>61. ext woods</strong>: It is morning; the sun is now fully
+up. Bluepoint and Tom walk side-by-side through the woods. Frankie and
+Tic-Tac walk several steps ahead of them, each off to one side,
+searching. Frankie is singing an old Neapolitan song.</p>
+<p><strong>his pov</strong>: Tracking. A canopy of leaves, sprinkled by
+sunlight. The boughs of the trees sough quietly in the wind.</p>
+<p><strong>tom</strong>: Looks forward.</p>
+<p><strong>his pov</strong>: The backs of Frankie and Tic-Tac as they
+walk on ahead.</p>
+<p><strong>tom</strong>: He looks stupidly at Bluepoint. He looks
+ahead.</p>
+<p><strong>close on tom</strong>: As his face hits the ground.</p>
+<p><strong>tom’s pov</strong>: Skewed angle, from the ground.</p>
+<p><strong>bluepoint</strong>: Checking the open chamber of his gun. He
+snaps it shut.</p>
+<p><strong>tom</strong>: Closing his eyes.</p>
+<p><strong>frankie</strong>: He stops singing and turns to look.</p>
+<p><strong>tom</strong>: The foot comes off his neck.</p>
+<p><strong>bluepoint</strong>: Looking towards Tic-Tac.</p>
+<p><strong>tic-tac</strong>: Taking a handkerchief out of his breast
+pocket and bringing it to his face as he looks at something on the
+ground in front of him.</p>
+<p><strong>bluepoint</strong>: He hauls Tom to his feet and pushes him
+towards Tic-Tac.</p>
+<p><strong>extreme long shot</strong>: Four very small men in overcoats
+and fedoras, looking down at the ground; they are dwarfed by the
+surrounding trees.</p>
+<p><strong>apartment building door buzzer</strong>: A beat-up panel in
+the building’s entryway, listing tenants’ names and apartments opposite
+a row of buttons.</p>
+<p><strong>63. fourth-floor hallway</strong>: Tom walks up to 4C,
+unpocketing a gun. He gently tries the knob, which turns, and
+enters.</p>
+<p><strong>64. drop’s apartment</strong>: As Tom enters.</p>
+<p><strong>a large window</strong>: We are looking at the ground-floor
+window from the street. Letters stencilled on the glass identify the
+SONS OF ERIN</p>
+<p><strong>social club.</strong>: A topcoated man scurries into frame,
+knocks out a pane with the grip of a gun, and tosses a small pipelike
+device inside. He scurries away and we pan with him across the street to
+reveal a line of cars, police and civilian, parked along the far curb.
+No men are visible except the scurrying man, who takes cover behind one
+of the parked cars.</p>
+<p><strong>social club</strong>: A beat. From inside we hear a pair of
+trotting footsteps–</p>
+<p><strong>the street</strong>: Glass showers the pavement and a charred
+rag-doll of a body hits hard, face down, and skids a couple feet. Smoke
+wisps from it.</p>
+<p><strong>the club</strong>: A lick of flame from the bomb is already
+dying and heavy grey smoke is billowing out.</p>
+<p><strong>the street</strong>: Men start cautiously rising from behind
+the cars. A lot of men. Some wear police uniforms; some are civilians.
+All are armed.</p>
+<p><strong>the club</strong>: Billowing smoke.</p>
+<p><strong>the street</strong>: The men have straightened up. A
+policeman calls through a bullhorn:</p>
+<p><strong>the club</strong>: After a beat, the front door swings open.
+A man emerges, one hand in the air, one holding a handkerchief over his
+mouth.</p>
+<p><strong>the club window</strong>: Smoke still pouring out.</p>
+<p><strong>the street</strong>: Bullet hits chew up the cars and a few
+of the men; the others drop back down behind the cars and start
+returning fire.</p>
+<p><strong>the window</strong>: A forbidding black hole in the exterior
+wall. A second tommy has joined the first to pour lead out into the
+street.</p>
+<p><strong>reception area</strong>: Tracking in an a youngish secretary
+in a severe dress, sitting behind a desk.</p>
+<p><strong>reverse</strong>: On Tom.</p>
+<p><strong>67. int mayor’s office</strong>: A grand, high-ceilinged
+place. Mayor Levander sits behind his desk sputtering, his face turning
+purple. Caspar, sitting across from him, is also turning purple. Sitting
+to one side are two identical thirty-year-old men, appar- ently twins,
+mustachiced, silent, respectful, mournful, their hands clasped over the
+hats in their laps, wearing stiff new-looking suits with old-fashioned
+collars.</p>
+<p><strong>tom’s apartment</strong>: The phone is ringing at the
+cut.</p>
+<p><strong>hallway</strong>: We are close on Tom as, in overcoat and
+hat, he emerges from his apartment and looks down at the keys in his
+hand.</p>
+<p><strong>doorway: night</strong>: We are looking over Tom’s shoulder
+as he waits in the rain in front of a large oak doorway with
+wrought-iron fretwork. At the cut we hear chimes dying, and the door
+swings open.</p>
+<p><strong>int foyer</strong>: As Tom starts to shrug out of his coat,
+Caspar is crossing towards him.</p>
+<p><strong>reverse</strong>: On Tom. In the background, Bluepoint is
+walking over to the door to the room to close it.</p>
+<p><strong>72. a clock</strong>: A large wall clock. It is 3:30.</p>
+<p><strong>73. ext diner</strong>: As Tom pushes the door open and
+exits. He tucks his overcoat collar up as he walks; it is pouring
+rain.</p>
+<p><strong>tree limbs</strong>: Night, but sometime later–it has stopped
+raining. The branches groan in the wind. As they sway, streetlight
+glitters off the leaves, still wet with rain..</p>
+<p><strong>reverse</strong>: Wider, from the other side of the car, as
+the car pulls away.</p>
+<p><strong>75. over tom’s shoulder</strong>: We follow him as he walks
+into the building and slowly down the first-floor hall.</p>
+<p><strong>pulling tom</strong>: As he starts slowly towards the
+staircase.</p>
+<p><strong>tom’s pov tracking forward</strong>: A small black object on
+the staircase–an upside-down fedora. Blood drips with a hollow rattle
+down onto a step, a couple steps above the hat.</p>
+<p><strong>pulling tom</strong>: He looks up.</p>
+<p><strong>pov</strong>: A head sticks through the balusters of the
+second story landing return. The body is on its back; the head lolls
+back over the tip of the landing down towards the stair- case.</p>
+<p><strong>pulling tom</strong>: Still climbing, looking at the
+body.</p>
+<p><strong>his pov</strong>: Climbing and panning as we draw even with
+the head.</p>
+<p><strong>pulling tom</strong>: As he reaches the top of the stairs and
+swings around to face along the landing. We hear a chuckle, close by.
+Wind is groaning through the hallway.</p>
+<p><strong>pov</strong>: In the middle foreground Caspar lies an the
+floor; beyond him, Bernie leans against the doorframe in Tom’s open
+doorway, smiling, his arms folded over his chest.</p>
+<p><strong>the hallway</strong>: Of Leo’s club, leading to his
+office.</p>
+<p><strong>77. downstatrs</strong>: Pulling Tom as he walks across the
+gambling floor, drink still in hand.</p>
+<p><strong>78. cemetary</strong>: An small old marble orchard set on a
+hilltop cleared against the woods. Stars of David adorn the headstones;
+in the foreground Bernie’s funeral is ending. Present is a rabbi, just
+finishing the chanting of the liturgy, Verna, and Leo.</p>
+</body>
+</html>

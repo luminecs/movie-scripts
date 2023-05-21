@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tremors</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="tremors">tremors</h1>
+<p><strong>wd6</strong>: 6/21/88</p>
+<p><strong>old fred</strong>: How’s she doing?</p>
+<p><strong>edgar</strong>: She wants to lay down. I’m a little
+worried.</p>
+<p><strong>old fred</strong>: Well, I brung her something I know she
+likes.</p>
+<p><strong>edgar</strong>: Damn, Fred, you can’t give away all
+those.</p>
+<p><strong>old fred</strong>: Forget it. I got vegetables coming out my
+ears. Usually the varmints eat up half my crop, but lately I ain’t so
+much as seen a gopher or a jack-rabbit nowheres.</p>
+<p><strong>edgar</strong>: If that ain’t the truth. And I count on them
+for a little bit of stew meat…Thank you, Fred.</p>
+<p><strong>old fred</strong>: We playing cards tonight?</p>
+<p><strong>edgar</strong>: I think I’m gonna be sitting up with her.</p>
+<p><strong>old fred</strong>: I’d do the same. Well, catch you
+Thursday.</p>
+<p><strong>edgar</strong>: You bet.</p>
+<p><strong>edgar</strong>: What in the name of Jehovah…?</p>
+<p><strong>val</strong>: Good morning, Mr. Bassett, this is your wake-up
+call. Please move your fat ass.</p>
+<p><strong>earl</strong>: You dumb shit.</p>
+<p><strong>earl</strong>: You didn’t cook breakfast?</p>
+<p><strong>val</strong>: Did it yesterday. Franks and beans.</p>
+<p><strong>earl</strong>: No…it was eggs. I did eggs.</p>
+<p><strong>val</strong>: Hell you did. Your turn.</p>
+<p><strong>val</strong>: How many cows does it take to make a stampede?
+Is it like three or more? Is there a minimum speed?</p>
+<p><strong>earl</strong>: I was in one. A bolt of lightning blew up
+cottonwood tree. Three hundred head going hell-bent for the horizon.
+Wasn’t so damn funny, I can tell you.</p>
+<p><strong>val</strong>: If there was one nearby I’d probably ask
+him.</p>
+<p><strong>earl</strong>: I keep thinking, if we were but half serious
+about money, we should quit being hired hands and…</p>
+<p><strong>val</strong>: Handymen, Earl. We’re handymen.</p>
+<p><strong>earl</strong>: Whatever the hell we are, we should quit and
+go get ourselves some real employment.</p>
+<p><strong>val</strong>: What, and give up all this personal
+freedom?</p>
+<p><strong>val</strong>: Goddamn jeep trail gets worse every year.</p>
+<p><strong>earl</strong>: Has a lot of rain.</p>
+<p><strong>earl</strong>: You’re gonna get us hung up.</p>
+<p><strong>val</strong>: Do not talk to the driver.</p>
+<p><strong>val</strong>: What do we have next?</p>
+<p><strong>earl</strong>: Uh…Digging that waterhole for Nestor.</p>
+<p><strong>val</strong>: Burt and Heather’s place is closer. Let’s do
+their kitchen today. Do Nestor tomorrow.</p>
+<p><strong>earl</strong>: Nestor’s out of town tomorrow. We don’t dig
+today. We don’t get paid today. Damn it, Valentine, you never plan
+ahead. You never take the long view. Hell, here it is Monday and I’m
+already working on Wednesday. It is Monday, right?</p>
+<p><strong>val</strong>: Who the hell’s that? That’s not what’s his
+name…the grad student?</p>
+<p><strong>earl</strong>: Nah, it’s September. Must be the new one.</p>
+<p><strong>val</strong>: The new one! That’s supposed to be a girl!</p>
+<p><strong>rhonda</strong>: Hi, I’m Rhonda. Rhonda LeBeck. I’m up here
+for the semester…</p>
+<p><strong>val</strong>: Yeah, geography.</p>
+<p><strong>rhonda</strong>: Right, geology. And you have to be Val and
+Earl. I’ve heard all about you.</p>
+<p><strong>earl</strong>: We deny everything.</p>
+<p><strong>rhonda</strong>: Listen, got a question for you. Do you know
+if anybody is doing any blasting or drilling or anything like that?</p>
+<p><strong>val</strong>: Around here? Why would they?</p>
+<p><strong>rhonda</strong>: Well, I’m supposed monitor these
+seismographs. You know, they measure vibrations…</p>
+<p><strong>val</strong>: Yeah, vibrations in the ground.</p>
+<p><strong>rhonda</strong>: Yeah, well, I’m getting what I refer to
+scientifically as “weird vibes.” every sensor I’ve got is giving me
+strange readings. I mean, the school has had these machines up here
+three years and they’ve never recorded anything like this.</p>
+<p><strong>earl</strong>: Well, we’ll ask around. Let you know if we
+hear of anything.</p>
+<p><strong>rhonda</strong>: Thanks. God, I hope they’re not screwed up.
+I might have to bag the whole semester. Anyway, sorry to bother you.</p>
+<p><strong>earl</strong>: No problem. Nice meeting you. Hope you get it
+sorted out.</p>
+<p><strong>earl</strong>: You know, if you wanted, we could take a look
+at those seismographs for her.</p>
+<p><strong>val</strong>: What the hell do we know about
+seismographs?</p>
+<p><strong>earl</strong>: Nothing. But it sure might be a nice way of
+getting to know her.</p>
+<p><strong>val</strong>: Why?</p>
+<p><strong>earl</strong>: Goddamnit, Valentine, you won’t go for any gal
+unless she fits that damn list of yours A to Z…</p>
+<p><strong>val</strong>: Well, sure.</p>
+<p><strong>earl</strong>: …And is dumber than my hind end. Like that
+Bobby Lynn Dexter…</p>
+<p><strong>val</strong>: Tammy Lynn Baxter.</p>
+<p><strong>earl</strong>: Don’t matter. They’re all the same: dead
+weight. Can’t make a decision, can’t walk because of their shoes, can’t
+work because of their fingernails. Make my skin crawl!</p>
+<p><strong>val</strong>: Well, I’m a victim of circumstance.</p>
+<p><strong>earl</strong>: I thought you called it your pecker. Look,
+don’t make the mistake I made. Twenty years of looking for a woman
+exactly like Miss October 1968, and where’d it get me? Here with
+you.</p>
+<p><strong>earl</strong>: Melvin, touch that truck and die.</p>
+<p><strong>melvin</strong>: Oh, man, I’m really shaking.</p>
+<p><strong>burt</strong>: No, Pham, they’re not hollow points. I ordered
+hollow points and that’s what I want.</p>
+<p><strong>heather</strong>: Hi, guys, what you been up to?</p>
+<p><strong>val</strong>: Ran into the new college student, Rona.</p>
+<p><strong>earl</strong>: Rhonda. Rhonda LeBeck. She’s getting some kind
+of strange readings on her things.</p>
+<p><strong>burt</strong>: Damn, you know, those kids turn up oil or
+uranium or something out there…next thing the Feds will be at our door.
+“Sorry, time to move. Eminent domain.”</p>
+<p><strong>heather</strong>: Down, honey, down.</p>
+<p><strong>val</strong>: Yeah, Burt. The way you worry, you’re gonna
+have a heart attack before you get to survive World War</p>
+<p><strong>pham van</strong>: Hey Val, listen. Bearing going out, you
+think?</p>
+<p><strong>val</strong>: Could be.</p>
+<p><strong>earl</strong>: Catch it later, Pham. Gotta get over to
+Nestor’s.</p>
+<p><strong>val</strong>: Right. We plan ahead. That way we don’t do
+anything right now. Earl explained it to me.</p>
+<p><strong>burt</strong>: A beauty, isn’t it? We bought three of them
+for the rec room.</p>
+<p><strong>val</strong>: We sell ’em to you for three bucks a piece!</p>
+<p><strong>pham van</strong>: And I appreciate it.</p>
+<p><strong>val</strong>: You don’t get it, Pham. The idea was: we were
+ripping you off.</p>
+<p><strong>burt</strong>: Melvin, you little pain-in-the-ass!</p>
+<p><strong>melvin</strong>: It wasn’t me, man! Your truck’s just screwed
+up, that’s all.</p>
+<p><strong>val</strong>: Why don’t his parents ever take him to Vegas
+with them?</p>
+<p><strong>earl</strong>: You gotta ask that?</p>
+<p><strong>nestor</strong>: It came out great, boys. Should fill up just
+fine come the next rain. Lemme have your bill.</p>
+<p><strong>val</strong>: Yeah, Nestor, we know. Don’t worry about it.
+Catch us when you can.</p>
+<p><strong>earl</strong>: No, we’re not too easy-going. This area is
+economically depressed.</p>
+<p><strong>val</strong>: So what if we just did it…today. Pack up. Drive
+straight down to Bixby. Get serious.</p>
+<p><strong>earl</strong>: We could. We could. But we’d have to get
+really serious. It’s gonna cost twice as much to rent a place.</p>
+<p><strong>val</strong>: So? That car wash pays good, and they’re always
+looking.</p>
+<p><strong>earl</strong>: Car wash?! That’s got no future. If we’re
+gonna take the plunge we oughta have a better plan than that.</p>
+<p><strong>val</strong>: Yeah, sure. Go ahead and plan it…for a year or
+two.</p>
+<p><strong>viola</strong>: Stop it! Stop it, you horrid animal! I’m
+going to give her back to my son. I swear it.</p>
+<p><strong>val</strong>: Hey, Viola, you’ve got my permission.</p>
+<p><strong>earl</strong>: God almighty, my mama sure didn’t raise me for
+this.</p>
+<p><strong>val</strong>: Well, you’re the one won’t work in the car
+wash. You’re the one’s gotta have a plan.</p>
+<p><strong>earl</strong>: Damn it, Val! Not having a plan is what keeps
+us doing jobs like this!</p>
+<p><strong>val</strong>: What keeps us doing jobs like this is you
+dragging your feet. I was up for going to Bixby. I was getting
+excited.</p>
+<p><strong>earl</strong>: In the past year I must’ve said a hundred
+times “We gotta get out of Perfection. We gotta better ourselves.” You
+gonna stand there in broad daylight and tell me you think I’m the reason
+we’re still here? You want to know how close I am to going to Bixby
+right now?</p>
+<p><strong>val</strong>: I’ll call that little bluff. How close?</p>
+<p><strong>earl</strong>: Uh oh, it’s Nancy. She wants another load of
+firewood.</p>
+<p><strong>val</strong>: Forget it, man. It’s not worth it.</p>
+<p><strong>earl</strong>: She’s got us. Now, listen, the plan is: we
+have done our last job in Perfection.</p>
+<p><strong>val</strong>: That’s the plan.</p>
+<p><strong>nancy</strong>: Mindy, honey, don’t pogo in the street. Hey,
+guys, I’ve got a job for you…</p>
+<p><strong>earl</strong>: Sorry, Nancy. We ain’t doing odd jobs anymore.
+We’re headed for Bixby permanent.</p>
+<p><strong>nancy</strong>: Oh, sure… …My God, you really are!</p>
+<p><strong>val</strong>: Yep, we’re relocating to an area with a greater
+economic base. Hey, Mindy, what’s the count?</p>
+<p><strong>mindy</strong>: Six hundred three, six hundred four, six
+hundred five…</p>
+<p><strong>val</strong>: Go for it!</p>
+<p><strong>nancy</strong>: Gee, guys. I made the big decision. I’m
+putting in that satellite dish. I was going to offer you five hundred
+dollars.</p>
+<p><strong>earl</strong>: We did it! We faced temptation and we did not
+bend!</p>
+<p><strong>val</strong>: Damn straight! Now there’s nothing between us
+and Bixby but nothing!</p>
+<p><strong>earl</strong>: Last time we hit that goddamn pothole!</p>
+<p><strong>val</strong>: So long, cactus!</p>
+<p><strong>earl</strong>: Adios, bridge!</p>
+<p><strong>val</strong>: Last time down this damn twisty road!</p>
+<p><strong>earl</strong>: Last chance, asshole. Run, run…!</p>
+<p><strong>earl</strong>: Okay, here’s the plan. We bust our tails in
+the car wash six months… well, maybe nine…and we don’t spend a dime, you
+know? And then we go for it…down payment on a tow-truck or a back-hoe or
+something, right? Start a real business. We can start looking for
+something today, tonight!</p>
+<p><strong>val</strong>: Jeez, look at that guy.</p>
+<p><strong>earl</strong>: One job I’d never take is working around
+electricity.</p>
+<p><strong>val</strong>: Especially when it’s two hundred feet off the
+ground.</p>
+<p><strong>earl</strong>: You’re full of shit.</p>
+<p><strong>val</strong>: He’s only got one damn jacket. That’s him, I’m
+telling you.</p>
+<p><strong>earl</strong>: Man, oh, man. He must’ve really been drunk
+this time. Edgar! What the hell you doing? Get on down from there!</p>
+<p><strong>val</strong>: Well, shit, we can’t leave him up there.</p>
+<p><strong>val</strong>: Real sorry to bother you, Megan, but we figured
+since Jim’s a doctor…</p>
+<p><strong>megan</strong>: No, it’s fine. You did the right thing. When
+Jim is done we’ll call the Coroner’s office in Bixby. We’ll take care of
+it. Poor Edgar.</p>
+<p><strong>earl</strong>: Well, I see you got all the wallboard up.</p>
+<p><strong>megan</strong>: That was easy. You two did the hard part.
+Sure sorry you’re leaving.</p>
+<p><strong>earl</strong>: Was is a heart attack?</p>
+<p><strong>jim</strong>: He died of dehydration. Thirst.</p>
+<p><strong>val</strong>: But that doesn’t make sense. That takes a
+couple of days, doesn’t it?</p>
+<p><strong>jim</strong>: Three or four even.</p>
+<p><strong>earl</strong>: You mean he sat up there three or four days?
+Just sat there till he died of thirst?</p>
+<p><strong>earl</strong>: Reckon he hated Perfection more than us? You
+suppose he wanted to kill himself?</p>
+<p><strong>val</strong>: If he did, why didn’t he use his damn
+shotgun?</p>
+<p><strong>earl</strong>: Maybe he just couldn’t pull the trigger…</p>
+<p><strong>val</strong>: Oh sure, he figured it was easier to die of
+thirst? Come on, sombody must’ve chased him up there.</p>
+<p><strong>earl</strong>: Oh, you mean somebody who ain’t scared of a
+twelve gauge shotgun. And then what did they do? Camp out down below and
+just wait for him to die?</p>
+<p><strong>val</strong>: Well, whatever the hell happened it’s just one
+more goddamn good reason to haul ass out of this place.</p>
+<p><strong>earl</strong>: You got that right.</p>
+<p><strong>val</strong>: Probably up a pole starving itself to
+death.</p>
+<p><strong>earl</strong>: Okay, the plan is: pedal to the metal the
+whole way. We don’t stop till we hit the carwash, not even to pee.</p>
+<p><strong>val</strong>: I’ll go with that plan.</p>
+<p><strong>val</strong>: What are you doing?</p>
+<p><strong>val</strong>: What the hell…?</p>
+<p><strong>val</strong>: Hey, Old Fred! Fred! Where are you?!</p>
+<p><strong>earl</strong>: Not here.</p>
+<p><strong>earl</strong>: Oh, Jesus!!</p>
+<p><strong>val</strong>: What the hell is going on? I mean</p>
+<p><strong>earl</strong>: You guys better get the hell outta here! We
+got a killer on the loose!</p>
+<p><strong>howard</strong>: What?</p>
+<p><strong>earl</strong>: A murderer, man! A real psycho. He’s cutting
+people’s heads off! I’m serious! I’d high-tail for town if I was
+you!</p>
+<p><strong>carmine</strong>: They’re drunk.</p>
+<p><strong>howard</strong>: Yeah…</p>
+<p><strong>howard</strong>: Carmine! What the hell is it?! Where are
+you?</p>
+<p><strong>nestor</strong>: His head? You mean just his head?</p>
+<p><strong>val</strong>: Yeah, really sick, man. Sweet Old Fred.</p>
+<p><strong>pham van</strong>: Something happen to Fred?</p>
+<p><strong>melvin</strong>: Are you serious, man? They killed him just
+to take his sheep?</p>
+<p><strong>earl</strong>: He didn’t have nothing else to steal. Neither
+did Edgar.</p>
+<p><strong>miguel</strong>: What happened to Edgar?</p>
+<p><strong>val</strong>: I don’t believe this. The phone is out! Pham,
+your phone is out!</p>
+<p><strong>pham van</strong>: I didn’t do it! What’s going on?</p>
+<p><strong>nestor</strong>: We’ve gotta get the police up here. You guys
+gotta step on it to Bixby.</p>
+<p><strong>val</strong>: Consider it stepped on.</p>
+<p><strong>val</strong>: Brother, we decided to leave this place just
+one day too late, you know?</p>
+<p><strong>earl</strong>: Well, there’s sure as hell nothing to stop us
+now. Everybody we know between here and Bixby is already dead.</p>
+<p><strong>earl</strong>: Is some higher force at work, here? Are we
+asking too much of life?</p>
+<p><strong>val</strong>: Those assholes are supposed to be fixing the
+goddamn road! Hey! Where are you guys? People gotta use this road, you
+know! You on a booze break or what?!</p>
+<p><strong>earl</strong>: Val! Val!</p>
+<p><strong>val</strong>: Jesus! I don’t believe this!</p>
+<p><strong>earl</strong>: You’re hung up again.</p>
+<p><strong>val</strong>: I am not!</p>
+<p><strong>earl</strong>: You’re hung up I tell you. You’re gonna burn
+the clutch.</p>
+<p><strong>val</strong>: Fuck you!</p>
+<p><strong>earl</strong>: Hey, I don’t want spend the night out
+here!</p>
+<p><strong>burt</strong>: What the hell you doing back already?</p>
+<p><strong>val</strong>: You’re never going to believe this, but the
+canyon road…we were on it not two hours ago…well, it’s completely…</p>
+<p><strong>nancy</strong>: My God…!</p>
+<p><strong>melvin</strong>: Unreal! Where’d you get it?</p>
+<p><strong>val</strong>: Uh…didn’t know we had it…</p>
+<p><strong>nancy</strong>: It’s disgusting.</p>
+<p><strong>viola</strong>: Looks like…and eel.</p>
+<p><strong>nestor</strong>: Naw…eels live in water.</p>
+<p><strong>val</strong>: So…it’s some kind of snake?</p>
+<p><strong>earl</strong>: Or a big mother slug maybe?</p>
+<p><strong>burt</strong>: Some kind of mutation…?</p>
+<p><strong>pham van</strong>: Don’t touch, don’t touch.</p>
+<p><strong>burt</strong>: It’s dead all right. Tore the damn thing in
+half.</p>
+<p><strong>earl</strong>: It must’ve grabbed us. That’s why the truck
+stalled-out.</p>
+<p><strong>val</strong>: Yeah! Next time I tell you I’m not hung
+up…!</p>
+<p><strong>burt</strong>: Stalled out your truck? Have to be one strong
+son of a bitch.</p>
+<p><strong>pham van</strong>: I give you boys five dollars for it.</p>
+<p><strong>val</strong>: Twenty.</p>
+<p><strong>pham van</strong>: Okay, ten dollars.</p>
+<p><strong>earl</strong>: Fifteen.</p>
+<p><strong>pham van</strong>: Okay, fifteen.</p>
+<p><strong>val</strong>: Damn right fifteen.</p>
+<p><strong>burt</strong>: Just one of these couldn’t eat up off a whole
+flock of sheep. There’s gotta be more out there, a lot more.</p>
+<p><strong>earl</strong>: Slick as snot and I’m not lying.</p>
+<p><strong>val</strong>: Fifteen lousy bucks.</p>
+<p><strong>earl</strong>: A man who plans ahead.</p>
+<p><strong>burt</strong>: …Look, we organize, we arm ourselves. We go
+out, we find those damn snake things, we make ’em extinct.</p>
+<p><strong>nestor</strong>: Come on, Burt, we don’t even know what they
+are.</p>
+<p><strong>viola</strong>: Might be aliens. Who knows?</p>
+<p><strong>miguel</strong>: Why go looking for trouble?</p>
+<p><strong>burt</strong>: Miguel, the trouble’s come to us. If we’re not
+ready…</p>
+<p><strong>heather</strong>: Phone’s out. Road’s out. We’re on our
+own.</p>
+<p><strong>nancy</strong>: And you two just love it, don’t you?</p>
+<p><strong>heather</strong>: Come on, Nancy, don’t let’s get personal.
+We need to do something.</p>
+<p><strong>burt</strong>: Damn right. You folks gotta analyze the
+situation. With that road out we’re completely cut off. Got the cliffs
+to the north, mountains east and west. That’s why Heather and me settled
+here in the first place, geographic isolation.</p>
+<p><strong>nancy</strong>: Well…there must be dome way to get help.</p>
+<p><strong>viola</strong>: Yes, that’s what I say.</p>
+<p><strong>burt</strong>: How, for chrissake? You gonna walk
+thirty-eight miles to Bixby?</p>
+<p><strong>miguel</strong>: Hey, what about Pham Van’s saddle
+horses?</p>
+<p><strong>pham van</strong>: You’re welcome to them. Does anybody know
+how to ride?</p>
+<p><strong>jim</strong>: I’m dead. Let’s finish in the morning.</p>
+<p><strong>megan</strong>: We have to go into Bixby in the morning. The
+concrete blocks are in.</p>
+<p><strong>jim</strong>: The con…! Oh my God.</p>
+<p><strong>megan</strong>: Just keep looking at that beautiful sky.</p>
+<p><strong>jim</strong>: What?</p>
+<p><strong>megan</strong>: That’s the sky that’s going to be over our
+roof every night, when we’re done.</p>
+<p><strong>jim</strong>: Ah, but consider this, if we don’t finish the
+roof, we can looks at that sky all the time.</p>
+<p><strong>megan</strong>: We could always buy a new generator.</p>
+<p><strong>megan</strong>: Well, what’s wrong with it?</p>
+<p><strong>jim</strong>: It’s…gone…!</p>
+<p><strong>megan</strong>: You sure this is where it was?</p>
+<p><strong>jim</strong>: Am I sure?! It was right there. There’s the
+cord.</p>
+<p><strong>megan</strong>: Well don’t then! You don’t want to fall
+in.</p>
+<p><strong>jim</strong>: What the…?</p>
+<p><strong>megan</strong>: Come on. Get away from it!</p>
+<p><strong>jim</strong>: God, what a stink!</p>
+<p><strong>megan</strong>: Never mind! Let’s go! Let’s just go into town
+or something! Jim, please!</p>
+<p><strong>jim</strong>: You know, I bet it’s geological or something,
+like natural gas, or a geyser. They stink like that. Remember in
+Yellowstone…?</p>
+<p><strong>megan</strong>: Stop it! Stop it! Somebody stop it…!</p>
+<p><strong>val</strong>: Pham, we don’t want to be stuck on a couple of
+canners. They better be fast.</p>
+<p><strong>earl</strong>: Relax. A snake thing like that couldn’t move
+too quick.</p>
+<p><strong>val</strong>: Screw you. For all you know they could fly.</p>
+<p><strong>earl</strong>: You want the rifle or the Smith?</p>
+<p><strong>val</strong>: The rifle.</p>
+<p><strong>burt</strong>: You guys all set?</p>
+<p><strong>earl</strong>: Ready as we’ll ever be.</p>
+<p><strong>burt</strong>: Heather and I are going to drive around a
+little, see if we can find that college girl and tell her to get her ass
+back into town.</p>
+<p><strong>val</strong>: Good idea. And we’ll swing by the doctor’s
+place. They were going to go into Bixby but we don’t know if they left
+before the road was out.</p>
+<p><strong>heather</strong>: Hold on. You guys oughta take something
+that packs more punch than that thirty-thirty. Take one of our Browning
+autos, or even my model seventy… It’s three-seventy-five H and H
+mag.</p>
+<p><strong>earl</strong>: Gee…thanks, Heather. Hope we don’t need
+it.</p>
+<p><strong>melvin</strong>: IT’S GOT ME! IT’s GOT ME! AAAAHGH!</p>
+<p><strong>burt</strong>: You stupid punk! You came that close, that
+close!!</p>
+<p><strong>earl</strong>: One of these days, Melvin, somebody’s gonna
+kick your ass.</p>
+<p><strong>burt</strong>: Well…you fellas watch yourselves.</p>
+<p><strong>nancy</strong>: Come back with the Sheriff.</p>
+<p><strong>nestor</strong>: Sheriff, like hell. Come back with the
+National Guard.</p>
+<p><strong>earl</strong>: You know, we can’t possibly make Bixby by
+nightfall.</p>
+<p><strong>earl</strong>: That means we’re gonna be out here, like, in
+the dark.</p>
+<p><strong>val</strong>: Great. Thank you.</p>
+<p><strong>val</strong>: Hey, doctor, anybody here?</p>
+<p><strong>val</strong>: Oh, man, I hate this shit.</p>
+<p><strong>earl</strong>: Car’s gone. We just missed them, that’s
+all.</p>
+<p><strong>val</strong>: Then where’s the goddamn Conway Twitty coming
+from?</p>
+<p><strong>earl</strong>: Here’s the plan…We don’t even stop. Ride like
+hell. Tonight we keep right on going. We’ll walk the horses.</p>
+<p><strong>val</strong>: That is the plan…I mean, goddamn it! What the
+hell are those things? How could they bury an entire Plymouth station
+wagon?</p>
+<p><strong>earl</strong>: Why would they do it?</p>
+<p><strong>val</strong>: I knew it! Pham Van wouldn’t know a decent
+horse if…!</p>
+<p><strong>earl</strong>: Shut up! They got wind of something they don’t
+like!</p>
+<p><strong>val</strong>: Oh shit!</p>
+<p><strong>earl</strong>: Yeah…yeah. What about the hor…?</p>
+<p><strong>val</strong>: That’s how they get you! They’re under the
+goddamn ground!</p>
+<p><strong>earl</strong>: What the hell are they?</p>
+<p><strong>val</strong>: Sons of bitches!</p>
+<p><strong>earl</strong>: Nope…just one.</p>
+<p><strong>val</strong>: It’s gaining on us!!</p>
+<p><strong>earl</strong>: We can do it, we can do it!</p>
+<p><strong>earl</strong>: Stupid son of a bitch…knocked itself cold.</p>
+<p><strong>val</strong>: Cold, my ass! It’s dead! We killed the
+bastard!</p>
+<p><strong>rhonda</strong>: Hi, guys, how’re you doing? Look, can I ask
+you something? Did you just notice something weird? Vibrations? You
+know, some kind of earth tremor?</p>
+<p><strong>earl</strong>: Jesus Christ…think it smells like that ’cause
+it’s dead?</p>
+<p><strong>rhonda</strong>: I don’t see any eyes…must be totally
+subterranean…and those tentacles…</p>
+<p><strong>earl</strong>: I think they shoot right outta its mouth, hook
+you, and pull you right in. Good thing we stopped it before it killed
+anybody else.</p>
+<p><strong>rhonda</strong>: Yeah, I’m lucky it didn’t find me. This is
+important, you know. This is like, well, let’s say it, it’s probably the
+biggest zoological discovery of the century. The century? Forget it.
+History.</p>
+<p><strong>val</strong>: I got it! Here’s the other end! Just look at
+what we caught here!</p>
+<p><strong>earl</strong>: This is one big mother!</p>
+<p><strong>val</strong>: So this is the guy that had your seismos
+working overtime?</p>
+<p><strong>earl</strong>: Hey, Rhonda, you ever heard of anything like
+this before?</p>
+<p><strong>val</strong>: Sure, Earl, everybody knows about them. We just
+didn’t tell you. Come on, nobody’s ever seen one of these! We’re really
+in on something here!</p>
+<p><strong>earl</strong>: Pham Van don’t get his mitts on this for no
+measly fifteen bucks!</p>
+<p><strong>val</strong>: You got that right!</p>
+<p><strong>earl</strong>: Here’s the plan: we’ll get a…a flatbed, I
+guess, with a big winch, figure a five ton anyway.</p>
+<p><strong>val</strong>: Naw, don’t want to winch it. That’d tear it all
+up. Want to lift it. Some kind of crane with lifting straps.</p>
+<p><strong>rhonda</strong>: Hey, hey, shut up! The way I figure it.
+There are five more of these things!</p>
+<p><strong>earl</strong>: Five more?</p>
+<p><strong>rhonda</strong>: Yeah, darn it, look. I’ve got seismographs
+all over the valley. If you compare the different readings, there have
+to be five. Here’s one at two o’clock yesterday, but here’s another one
+three miles away at the same time. So that’s two. Now, here…</p>
+<p><strong>val</strong>: We’ll take your word for it.</p>
+<p><strong>earl</strong>: Yeah. Where’s your truck?</p>
+<p><strong>rhonda</strong>: The other side of that dome.</p>
+<p><strong>earl</strong>: Prairie dog burrow…</p>
+<p><strong>val</strong>: Little sons of bitches.</p>
+<p><strong>earl</strong>: Well, at least the bastard can’t climb. Pardon
+my French.</p>
+<p><strong>rhonda</strong>: Probably couldn’t move too easily on the
+surface.</p>
+<p><strong>val</strong>: God, the live ones smell worse tan the dead
+ones.</p>
+<p><strong>earl</strong>: Okay, now, how far’s your truck?</p>
+<p><strong>val</strong>: I don’t know. If this one’s any faster than
+that other one…</p>
+<p><strong>earl</strong>: I think we wait right here.</p>
+<p><strong>rhonda</strong>: There’s nothing like them in the fossil
+record, I’m sure…Okay, so they predate the fossil record… That’d make
+them a couple of billion years old…and we’ve just never seen one till
+now. Right.</p>
+<p><strong>earl</strong>: I’d vote for outer space. No way those are
+local boys.</p>
+<p><strong>val</strong>: Atomic testing. Or, no, bio- engineering! The
+government built them, a big surprise in the next war.</p>
+<p><strong>earl</strong>: Well…haven’t seen a sign for hours. Maybe it’s
+long gone.</p>
+<p><strong>val</strong>: Maybe it is. Why don’t you take a little stroll
+and see?</p>
+<p><strong>earl</strong>: Fuck you, too. Pardon my French.</p>
+<p><strong>rhonda</strong>: Well, we’ve got to do something.</p>
+<p><strong>earl</strong>: Watch yourself! It’s got a good six foot
+reach.</p>
+<p><strong>val</strong>: Son of a bitch!</p>
+<p><strong>earl</strong>: Son of a goddamned bitch! Been waiting there
+all this time. How the hell’s it even know we’re still here?</p>
+<p><strong>val</strong>: It’s been listening to us. It’s got no eyes. It
+sure as hell can’t smell anything underground, so I figure…</p>
+<p><strong>rhonda</strong>: Of course! It can sense the slightest
+seismic vibration…hear every move we make. Especially on this rock. It’s
+a perfect conductor.</p>
+<p><strong>earl</strong>: You know, I hate to be crude, but I’m gonna
+have to take care of some business here.</p>
+<p><strong>val</strong>: Me, too.</p>
+<p><strong>rhonda</strong>: Same here.</p>
+<p><strong>rhonda</strong>: Darn it!</p>
+<p><strong>val</strong>: You okay?</p>
+<p><strong>rhonda</strong>: Yeah. But I’ll tell you, if you ever wanted
+proof God is a man, this is it.</p>
+<p><strong>rhonda</strong>: Thanks.</p>
+<p><strong>val</strong>: No problem. Anytime.</p>
+<p><strong>earl</strong>: Well, folks, what’s the plan?</p>
+<p><strong>val</strong>: First let’s see if Stumpy’s still out
+there.</p>
+<p><strong>earl</strong>: Don’t he have a home to go to?</p>
+<p><strong>val</strong>: Well, that’s why Edgar never got down off that
+tower.</p>
+<p><strong>rhonda</strong>: I might have an idea…</p>
+<p><strong>earl</strong>: We’re gonna have to come up with some kind of
+plan or it’s just gonna wait us to death.</p>
+<p><strong>rhonda</strong>: Well, I was wondering if we could…</p>
+<p><strong>val</strong>: Well, let’s just run for it. We outran that one
+yesterday, at least on a sprint.</p>
+<p><strong>earl</strong>: Run for it? Running’s not a plan. Running is
+what you do when the plan fails. You’re not even trying to come up with
+a plan!</p>
+<p><strong>val</strong>: Well, it’s not like we’ve got a hell of a lot
+of options…</p>
+<p><strong>rhonda</strong>: You guys know how to pole vault?</p>
+<p><strong>earl</strong>: Stay on those residual boulders!</p>
+<p><strong>val</strong>: Think it’s still following us?</p>
+<p><strong>rhonda</strong>: Let’s assume that it is.</p>
+<p><strong>earl</strong>: And once we hit that truck we gotta go fast. I
+say we all jump together.</p>
+<p><strong>rhonda</strong>: Ready?</p>
+<p><strong>val</strong>: Yeah. One, two, three…</p>
+<p><strong>earl</strong>: Come on, girl, it ain’t gonna give us much
+time…</p>
+<p><strong>val</strong>: We better get everybody together.</p>
+<p><strong>earl</strong>: You go north, I’ll go south.</p>
+<p><strong>val</strong>: Right.</p>
+<p><strong>earl</strong>: I’ll bet you’re sorry the college ever sent
+you up here.</p>
+<p><strong>rhonda</strong>: Well, I’m scared, but I’m not sorry.</p>
+<p><strong>earl</strong>: You know, Val went to that college, too. For a
+whole year. Couldn’t quite sit still for it, though. Had too much
+vinegar in his system. But once he settles down, forgets this cowboy
+stuff, he’ll be one in a million.</p>
+<p><strong>miguel</strong>: You serious, Val? You think we’re not even
+safe here in town?</p>
+<p><strong>val</strong>: Ask me that after you meet one. I think we
+should all get the hell out while the getting’s good.</p>
+<p><strong>nestor</strong>: Why not just take a Number Ten pick axe and
+give it one good whack…?</p>
+<p><strong>val</strong>: Nestor, damn it, these things are bigger than
+an Airstream trailer!</p>
+<p><strong>nancy</strong>: God, I’ve got to find Mindy.</p>
+<p><strong>earl</strong>: Hey, Pham, where’s Burt and Heather?</p>
+<p><strong>pham van</strong>: Can’t raise them. I guess they’re still
+out there somewhere.</p>
+<p><strong>rhonda</strong>: If you’ve got a radio, why aren’t you
+calling somebody in Bixby? The police or…</p>
+<p><strong>pham van</strong>: Can’t reach outside the valley. You know,
+because of the mountains.</p>
+<p><strong>miguel</strong>: Hey, Rhonda, what’s the name you call those
+things, huh?</p>
+<p><strong>pham van</strong>: Where’d they come from?</p>
+<p><strong>rhonda</strong>: Huh? I don’t know.</p>
+<p><strong>pham van</strong>: You’re a scientist, right?</p>
+<p><strong>viola</strong>: You should have a theory at least.</p>
+<p><strong>rhonda</strong>: Look, these things are absolutely
+unprecedented!</p>
+<p><strong>nestor</strong>: Yeah, but where’d they come from?</p>
+<p><strong>rhonda</strong>: Where’d they come from? Okay, worms,
+probably in the Jurassic period. Cosmic radiation was much higher
+then…so they mutated…and they got so big they just sank right into the
+ground and fell asleep… But now continental drift has brought them to
+the surface, ready to be harvested by the ancient alien meat growers who
+planted them here.</p>
+<p><strong>earl</strong>: You’re right, don’t matter where they come
+from.</p>
+<p><strong>val</strong>: Right. We need to be talking about what we’re
+gonna do.</p>
+<p><strong>viola</strong>: My goodness, Valentine, once they see the
+road is out and the phone lines are down, someone will be along to look
+in on us. Don’t you think?</p>
+<p><strong>rhonda</strong>: No no no, they listen! They can sense the
+slightest vibration through the ground. That’s how they see! That’s how
+they hunt!</p>
+<p><strong>miguel</strong>: So, like we don’t vibrate, right? Maybe they
+won’t even come to here, huh? Maybe they leave us alone.</p>
+<p><strong>val</strong>: They caught up with Edgar here. They grabbed
+Old Fred here. They nailed the asshole dog here. And the doctor’s place
+is here…</p>
+<p><strong>earl</strong>: You little ass wipe! You knock that off or
+you’re gonna be shitting that basketball! Pardon my French.</p>
+<p><strong>nestor</strong>: Now, Val, let’s assume they’re as dangerous
+as you say. Where are we going to go that’s safer than right here?</p>
+<p><strong>val</strong>: Rhonda’s got an idea about that.</p>
+<p><strong>rhonda</strong>: Yes, see, they move very easily through the
+Pleistocene Alluvials… …the dirt…the loose soil that makes up the valley
+floor. But they can’t move through solid rock. I think we should travel
+west to the mountains.</p>
+<p><strong>earl</strong>: You know, up the jeep trail.</p>
+<p><strong>rhonda</strong>: The mountains are solid granite. We’d be
+safe there, and we could hike along them…all the way to Bixby if we have
+to.</p>
+<p><strong>nancy</strong>: Mindy! Mindy!</p>
+<p><strong>viola</strong>: No, Valentine, I’m not leaving my place.</p>
+<p><strong>val</strong>: Well, it’s gonna take us days to get back with
+help.</p>
+<p><strong>earl</strong>: Doggone it, Viola, it’s just plain crazy to
+stay.</p>
+<p><strong>earl</strong>: I’m gonna kick his ass!</p>
+<p><strong>val</strong>: I’m gonna help you.</p>
+<p><strong>miguel</strong>: Jesus Christ! Man, you gut a gun?!</p>
+<p><strong>pham van</strong>: Big as a house! What are we gonna
+do…?!</p>
+<p><strong>rhonda</strong>: Quiet! QUIET!!</p>
+<p><strong>rhonda</strong>: Remember…no noise. No vibration.</p>
+<p><strong>mindy!</strong>: Get off your pogo stick! Get in here, girl!
+Run, Mindy!</p>
+<p><strong>nancy</strong>: Mindy! Mindy!</p>
+<p><strong>mindy</strong>: Oww! Val, you hurt me…!</p>
+<p><strong>val</strong>: Go back, for chrissake!</p>
+<p><strong>earl</strong>: We gotta get him off there. It’ll suck that
+truck down!</p>
+<p><strong>earl</strong>: Oh, Jesus. Rhonda, another one!</p>
+<p><strong>val</strong>: Come on! Outta your pants!</p>
+<p><strong>earl</strong>: Come on! Come on! Don’t look back! Just run!
+Run like screaming fuck!</p>
+<p><strong>earl</strong>: Pardon my French.</p>
+<p><strong>val</strong>: You paying attention? This oughta hurt like
+hell.</p>
+<p><strong>rhonda</strong>: It does.</p>
+<p><strong>val</strong>: First time for me.</p>
+<p><strong>rhonda</strong>: Oh, thank you.</p>
+<p><strong>miguel</strong>: So what are we gonna do, you know? How long
+till they go away?</p>
+<p><strong>earl</strong>: They got the patience of Job. They just sit
+and goddamn wait til they hear something that sounds like lunch. We need
+a plan.</p>
+<p><strong>pham van</strong>: I’ve got a plan. You and Val take your
+truck, get to the mountains. Hike to Bixby. Get us some help.</p>
+<p><strong>val</strong>: Those scumsuckers are my radials, Pham!</p>
+<p><strong>rhonda</strong>: Well, we can take my truck then.</p>
+<p><strong>earl</strong>: No good. You need major four- wheel-drive just
+to get up that jeep trail.</p>
+<p><strong>viola</strong>: Quiet! Quiet you hateful thing…!</p>
+<p><strong>earl</strong>: Shut it up! Shut the little bastard up!</p>
+<p><strong>val</strong>: Chuck him out the door! Like a little hors
+d’oeuvre.</p>
+<p><strong>viola</strong>: Get away! Get away! Oh God in heaven, help
+me!</p>
+<p><strong>rhonda</strong>: Oh my God.</p>
+<p><strong>earl</strong>: Son of a bitchin’ lowlife, putrid, scum…</p>
+<p><strong>val</strong>: Gotta do something. Gotta get the bastards!</p>
+<p><strong>miguel</strong>: Man, what the hell can we do to those
+things?</p>
+<p><strong>earl</strong>: Well, we’re sure as hell not going to sit here
+being quiet for God knows how long. Are we?</p>
+<p><strong>pham van</strong>: Now wait a minute, Earl. I got enough food
+here to last us for weeks. Those damn things can’t wait around forever.
+We can do it. I mean, if we have to, right?</p>
+<p><strong>earl</strong>: Jesus! Shut it off!</p>
+<p><strong>val</strong>: Son of a bitch! Son of a bitch!</p>
+<p><strong>val</strong>: Everybody! This way! The roof!</p>
+<p><strong>val</strong>: Rhonda! Keep moving. Don’t stop!</p>
+<p><strong>melvin</strong>: Hey! What’s going on, man?! What the hell
+you doing up there…?!</p>
+<p><strong>miguel</strong>: Melvin, shut the hell up!</p>
+<p><strong>val</strong>: Nancy! Nestor!</p>
+<p><strong>val</strong>: Get up on your roof! On your roof! They can
+come through the floor!</p>
+<p><strong>earl</strong>: Can’t you shout a little quieter?</p>
+<p><strong>heather</strong>: I can’t believe it. No tracks, no sign, no
+spoor.</p>
+<p><strong>burt</strong>: Yeah, whatever they are, you’d think after
+they ate all those sheep they’d have to take a dump someplace… What the
+hell’s going on in town?</p>
+<p><strong>earl</strong>: Hey, here’s the plan: Nestor’s Cadillac. His
+tires are nine hundred sixteens. We sprint for it, grab the spare, put
+it on our truck with our spare.</p>
+<p><strong>val</strong>: How the hell long it take you to change a
+tire?</p>
+<p><strong>earl</strong>: Just about too damn long. Bolt pattern’s
+probably wrong anyway.</p>
+<p><strong>val</strong>: We need another plan.</p>
+<p><strong>burt</strong>: Yo, P.V., Burt here. Come back.</p>
+<p><strong>burt</strong>: Pham? Anybody copy?</p>
+<p><strong>val</strong>: Burt, now listen. We found out what’s been
+killing people. Over?</p>
+<p><strong>burt</strong>: Negative copy on that, Pham, check your
+frequency. I’m on forty-nine.</p>
+<p><strong>val</strong>: Burt, can you hear me now?</p>
+<p><strong>burt</strong>: Just barely, Pham. What are you all doing up
+on your roofs. What the hell’s going on? Come back.</p>
+<p><strong>miguel</strong>: Oh man, they’re going, man! I think they’re
+going for Burt!</p>
+<p><strong>val</strong>: Burt! This is Val! Get out of your basement!!
+Take your radio! You and Heather get up on your roof! Then we’ll talk,
+okay?!</p>
+<p><strong>burt</strong>: Val? What the hell you doing back already?</p>
+<p><strong>val</strong>: Burt, get out! Get up on your roof or
+someplace! We found out what’s been killing people! They’re under the
+ground!</p>
+<p><strong>burt</strong>: What’s under the ground? We’re not getting up
+on the roof. Earth shelter’s the best. Known that since I was a kid.</p>
+<p><strong>val</strong>: Listen! Listen! We know what they are! They’re
+big things under the ground! Much bigger than we thought! They’re coming
+after you! They’re coming right now!</p>
+<p><strong>burt</strong>: We don’t see anything, Val. Now what the hell
+are you talking about? Over.</p>
+<p><strong>val</strong>: They’re coming underground! They …they can dig
+like a son of a bitch…Big monsters under the ground, Burt! Now get the
+hell out! Hurry!</p>
+<p><strong>burt</strong>: Jesus Chri…!</p>
+<p><strong>burt</strong>: Broke into the wrong goddamn rec room, didn’t
+you, you BASTARD!</p>
+<p><strong>val</strong>: Uh…roger that, Burt. Uh, congratulations. Uh,
+be advised, however, there are four more, repeat, four more
+motherfuckers. Come back.</p>
+<p><strong>val</strong>: They got one! They killed one of the sons of
+bitches!</p>
+<p><strong>melvin</strong>: Way to go, dudes!</p>
+<p><strong>earl</strong>: Well, I guess we don’t get to make fun of
+Burt’s lifestyle anymore, huh?</p>
+<p><strong>val</strong>: Burt, any chance you can get the rest of
+them?</p>
+<p><strong>burt</strong>: One second, Val.</p>
+<p><strong>heather</strong>: You’re not getting any penetration, even
+with the elephant gun.</p>
+<p><strong>burt</strong>: Damn! Val, we can’t get them. Never figured on
+having to shoot through dirt! Best goddamn bullet stop there is. Come
+back.</p>
+<p><strong>earl</strong>: Okay, Burt, listen. Forget shooting them. Tell
+me this: can you get to your truck?</p>
+<p><strong>burt</strong>: No problem.</p>
+<p><strong>earl</strong>: Good. You’ve got the only truck in the valley
+that can make it up that damn jeep trail. So, here’s the plan: You and
+Heather go for help. Get to the mountains…</p>
+<p><strong>rhonda</strong>: Hey, guys! They’re up to something.</p>
+<p><strong>val</strong>: What’s it doing?</p>
+<p><strong>rhonda</strong>: Why do you all keep asking me?</p>
+<p><strong>miguel</strong>: Hey, there’s another one coming!</p>
+<p><strong>earl</strong>: What the hell was that all about?</p>
+<p><strong>miguel</strong>: They weren’t making no noise. Why they
+bothering them for?</p>
+<p><strong>val</strong>: They’re studying the buildings… trying to
+figure them out.</p>
+<p><strong>rhonda</strong>: Yeah, they’re confused. They can feel our
+vibrations, but they can’t find us.</p>
+<p><strong>val</strong>: They’re working together, too.</p>
+<p><strong>earl</strong>: Yeah, like they got a plan…</p>
+<p><strong>burt</strong>: Breaker there, Earl. What do you want us to
+do?</p>
+<p><strong>earl</strong>: Hang on, Burt. The bastards are up to
+something.</p>
+<p><strong>melvin</strong>: Oh, wow, man! No way! No fucking way,
+man…!</p>
+<p><strong>val</strong>: They knocked his place down on purpose, man.
+They’re gonna tear this whole town out from under us!</p>
+<p><strong>val</strong>: Burt! Heather!</p>
+<p><strong>heather</strong>: Yeah, Val.</p>
+<p><strong>val</strong>: We’re in deep shit over here. Let’s change that
+plan.</p>
+<p><strong>heather</strong>: Knock it off, Burt!</p>
+<p><strong>burt</strong>: I think I scared it!</p>
+<p><strong>val</strong>: Forget going for help. We’ll all be dead long
+before you get back.</p>
+<p><strong>heather</strong>: We’re here, Val. Just tell us what you
+need. Come back.</p>
+<p><strong>val</strong>: They’re tearing down the houses here! We all
+gotta get outta here together! Now!</p>
+<p><strong>heather</strong>: We’re with you, Val. We’ll come get
+everybody. Just hang on tight.</p>
+<p><strong>heather</strong>: Val, we’re going to have to forget about
+the truck…</p>
+<p><strong>val</strong>: Yeah, Heather, we got you.</p>
+<p><strong>melvin</strong>: Hey, you better think of something, man! You
+gotta do something!</p>
+<p><strong>earl</strong>: Who?</p>
+<p><strong>melvin</strong>: You and Val, man!</p>
+<p><strong>val</strong>: What?!! Since when the hell’s every goddamn
+thing up to us?!</p>
+<p><strong>rhonda</strong>: You guys do all the odd jobs.</p>
+<p><strong>earl</strong>: We don’t have a hell of a lot of time
+here.</p>
+<p><strong>rhonda</strong>: Look, the situation hasn’t changed. We still
+have to get to solid rock. There must be some way!</p>
+<p><strong>val</strong>: Like what?! There’s nothing left that’ll make
+it to the mountains!</p>
+<p><strong>miguel</strong>: Hey, Val, quiet, man!</p>
+<p><strong>val</strong>: We need a helicopter is what we need, or a
+goddamn tank…</p>
+<p><strong>earl</strong>: Wait a minute…the Cat. Could we take the
+Cat?</p>
+<p><strong>val</strong>: Jesus. It’s slower than hell.</p>
+<p><strong>earl</strong>: Yeah, but it weighs better than thirty tons.
+No way they could stop it.</p>
+<p><strong>miguel</strong>: We can’t all fit on that bulldozer.</p>
+<p><strong>val</strong>: But…we could pull something! We could, I don’t
+know, drag a car behind it!</p>
+<p><strong>earl</strong>: A car, huh? Like a big armored car? Need
+something bigger, tougher…our truck maybe…or, hell, that old semi
+trailer!</p>
+<p><strong>val</strong>: Its tires are flat…</p>
+<p><strong>earl</strong>: Doesn’t matter. The cat can pull anything.</p>
+<p><strong>val</strong>: Well…all right! We just roll on out of
+here!</p>
+<p><strong>earl</strong>: We got a plan!</p>
+<p><strong>rhonda</strong>: Listen, they only respond to vibration,
+right? Couldn’t we… distract them somehow?</p>
+<p><strong>val</strong>: Yeah, good! Something to keep them busy. We
+need a decoy.</p>
+<p><strong>earl</strong>: Hey, Melvin, you wanna make a buck?</p>
+<p><strong>melvin</strong>: Fuck you!</p>
+<p><strong>miguel</strong>: Hey, how about the tractor? Start him up.
+Let him go by itself. Let those things chase it all over is they like
+that noise.</p>
+<p><strong>earl</strong>: Not bad. What do you think?</p>
+<p><strong>val</strong>: I think the ground’s getting closer. I think we
+do it. We’re gonna save our asses here!</p>
+<p><strong>rhonda</strong>: Wait! How are you going to know they’re all
+following it?</p>
+<p><strong>val</strong>: Good point.</p>
+<p><strong>earl</strong>: We got two right here.</p>
+<p><strong>nancy</strong>: There’s one. I think one.</p>
+<p><strong>earl</strong>: Burt, Heather, we got a little sort of a plan
+going here, maybe. Can you tell if you’ve still got any of those things
+out at your place? Come back.</p>
+<p><strong>burt</strong>: Yeah, still got one poking around.</p>
+<p><strong>earl</strong>: That’s four. Let us know if it starts moving,
+Burt.</p>
+<p><strong>burt</strong>: Roger that.</p>
+<p><strong>val</strong>: I’m making the run to the Cat.</p>
+<p><strong>earl</strong>: Like hell you are.</p>
+<p><strong>val</strong>: Get real. I’m faster than you.</p>
+<p><strong>earl</strong>: I’m best at driving the Cat.</p>
+<p><strong>val</strong>: Only if something happens to me.</p>
+<p><strong>val</strong>: Yeah, well, you’re half right.</p>
+<p><strong>earl</strong>: I won. I pick who does it.</p>
+<p><strong>miguel</strong>: There they go! They’re chasing it!</p>
+<p><strong>nancy</strong>: It’s going… There goes this one! It’s
+going!</p>
+<p><strong>burt</strong>: Hey, this guy just took off like a shot.
+What’d you people do?</p>
+<p><strong>val</strong>: Watch your ass, shithead.</p>
+<p><strong>earl</strong>: Don’t worry about me, jerkoff.</p>
+<p><strong>earl</strong>: Oh my God!</p>
+<p><strong>earl</strong>: He’ll never make it! They’re gonna get
+him!</p>
+<p><strong>earl</strong>: It worked! They can’t find him! Okay,
+okay…uh…we gotta make some noise…a lot of noise! HEY,</p>
+<p><strong>earl</strong>: That did it, girl! Goddamn good thinking!</p>
+<p><strong>earl</strong>: Don’t worry. No way they can lift that tower.
+I mean it’s really heavy.</p>
+<p><strong>rhonda</strong>: They’re not trying to lift it!</p>
+<p><strong>melvin</strong>: Way to go! Dumb fucking worms! Now haul ass
+over here, man! Me next! Get me off of here…!</p>
+<p><strong>melvin</strong>: Oh shit! Oh, God! Help!</p>
+<p><strong>val</strong>: We got about three seconds!</p>
+<p><strong>earl</strong>: Well, come on!</p>
+<p><strong>burt</strong>: God damn! Armored transport!</p>
+<p><strong>val</strong>: Let’s go you two. We’re headed for the
+mountains.</p>
+<p><strong>burt</strong>: In a minute.</p>
+<p><strong>val</strong>: Come on, Burt, we can’t hold still long.
+They’re damn smart and getting smarter by the minute.</p>
+<p><strong>burt</strong>: That’s fine. We’ve got some new things to
+teach them.</p>
+<p><strong>val</strong>: Damn it! They’ll sink this rig just like a
+boat!</p>
+<p><strong>earl</strong>: See that? They’re doing it now! They try it
+every time we hold still.</p>
+<p><strong>val</strong>: Jesus Christ, we’re only going nine miles. Be
+there in two hours, tops!</p>
+<p><strong>burt</strong>: Yeah, well those things are gonna be on our
+ass every foot of the way, right?</p>
+<p><strong>burt</strong>: What do you think? Max firepower or…?</p>
+<p><strong>heather</strong>: I’d go for penetration. The 458 shooting
+solids – less ammo to carry anyway.</p>
+<p><strong>townsfolk</strong>: Come on! Who cares! Forget it! Let’s
+go!</p>
+<p><strong>melvin</strong>: Give me a gun! I’ll take one!</p>
+<p><strong>burt</strong>: I wouldn’t give you a gun if it was World War
+Three.</p>
+<p><strong>burt</strong>: Food for five years. A thousand gallons of
+gas. Air filtration. Water filtration. Geiger counter. Bomb shelter…
+…underground goddamn monsters?!</p>
+<p><strong>earl</strong>: Any sign of’em?</p>
+<p><strong>miguel</strong>: Maybe they just gave up, you know.</p>
+<p><strong>melvin</strong>: Yeah, the bulldozer’s too much for them,
+man.</p>
+<p><strong>burt</strong>: There we go, solid rock!</p>
+<p><strong>heather</strong>: What’s that?</p>
+<p><strong>nancy</strong>: Is it them?</p>
+<p><strong>miguel</strong>: What else could it be?</p>
+<p><strong>mindy</strong>: What’re they doing?</p>
+<p><strong>melvin</strong>: Maybe they’re taking a dump.</p>
+<p><strong>rhonda</strong>: We’re not going over there, right?</p>
+<p><strong>earl</strong>: No. We go straight.</p>
+<p><strong>val</strong>: Damn it. What the hell are they doing? They’re
+up to something.</p>
+<p><strong>earl</strong>: I don’t care what they’re doing as long as
+they’re doing it way over there.</p>
+<p><strong>val</strong>: They…they dug a trap! I can’t believe this!</p>
+<p><strong>burt</strong>: Hungry?! Eat this!!</p>
+<p><strong>rhonda</strong>: There they are!</p>
+<p><strong>miguel</strong>: Hey, Burt…did you get one…!</p>
+<p><strong>rhonda</strong>: No, there’s still four of them. See…there’s
+like four different dust trails.</p>
+<p><strong>val</strong>: Sure got their attention, though. Nice going,
+Burt. Earl, what about the Cat?</p>
+<p><strong>earl</strong>: No way. It’s down for the count.</p>
+<p><strong>rhonda</strong>: Here they come! They’re coming back!</p>
+<p><strong>val</strong>: Come on, everybody! We gotta run for those
+rocks over there!</p>
+<p><strong>earl</strong>: Jesus, Val, it’s pretty far.</p>
+<p><strong>melvin</strong>: Yeah, man! They’ll get us!</p>
+<p><strong>val</strong>: There sure as hell get us if we stay here!</p>
+<p><strong>rhonda</strong>: Wait, wait, listen. Burt do you have any
+more of those things?</p>
+<p><strong>burt</strong>: The bombs? Damn right I do.</p>
+<p><strong>rhonda</strong>: Well, what is you throw one that way, the
+way we want to go… Then, when the explosion happens… if it drives them
+away again…we all run like goddamn bastards! Pardon my French.</p>
+<p><strong>melvin</strong>: What if it doesn’t scare them? What if they
+don’t run?</p>
+<p><strong>rhonda</strong>: I don’t think it does scare them! It hurts
+them! They’re so sensitive to sound, they have to run! It hurts too
+much!</p>
+<p><strong>burt</strong>: She’s got my vote.</p>
+<p><strong>val</strong>: Right. We’re gonna run. Get ready.</p>
+<p><strong>melvin</strong>: I don’t know, man. They’re too fast! You
+can’t outrun them, no way!</p>
+<p><strong>burt</strong>: Here, kid. This’ll make’em think twice.</p>
+<p><strong>rhonda</strong>: It worked! There they go!</p>
+<p><strong>melvin</strong>: Burt, you bastard!</p>
+<p><strong>melvin</strong>: You asshole! There’s no bullets in this
+gun!</p>
+<p><strong>burt</strong>: Got you moving, didn’t it?</p>
+<p><strong>earl</strong>: So…now what?</p>
+<p><strong>rhonda</strong>: Could we make it to the mountains?</p>
+<p><strong>val</strong>: No way. We’d need fifty of those things.</p>
+<p><strong>earl</strong>: Well…that’s it. We’re not getting off this
+rock…</p>
+<p><strong>val</strong>: Not going to pole vault anywhere. That’s for
+sure.</p>
+<p><strong>heather</strong>: What’s the matter with you? What are you
+talking about?!</p>
+<p><strong>rhonda</strong>: They’ll just wait out there till we’re dead.
+That’s what they do.</p>
+<p><strong>burt</strong>: What? Well, for chrissake, we could have made
+a stand at our place! We had food, water…</p>
+<p><strong>earl</strong>: You can’t fight’em that way…</p>
+<p><strong>burt</strong>: You two jackasses hauled us way the hell out
+here…!?</p>
+<p><strong>burt</strong>: Well, who put you two in charge?</p>
+<p><strong>nancy</strong>: Burt! Those animals would have killed
+you!</p>
+<p><strong>val</strong>: They’d have dug your place out from under you
+in half an hour!</p>
+<p><strong>burt</strong>: If it comes to starvation, I know what I’m
+doing. Take one of these. Walk right out there with the fuse lit. Stuff
+it down my pants and let ’em take me down. BOOOOM!</p>
+<p><strong>heather</strong>: Jesus, honey!</p>
+<p><strong>earl</strong>: You know, that’s not a bad idea!</p>
+<p><strong>earl</strong>: No, I mean, it gives me an idea… going fishing
+like…</p>
+<p><strong>val</strong>: There! Right straight out in front of you.</p>
+<p><strong>burt</strong>: How much you think?</p>
+<p><strong>earl</strong>: I don’t know… They’re pretty quick…fifteen
+seconds?</p>
+<p><strong>earl</strong>: What the hell is that, anyway?</p>
+<p><strong>burt</strong>: Cannon fuse.</p>
+<p><strong>earl</strong>: What do you use it for?</p>
+<p><strong>burt</strong>: My cannon.</p>
+<p><strong>val</strong>: Come on, you’re not going to do your lasso
+thing…?</p>
+<p><strong>earl</strong>: Hey, just ’cause you’re no good with a
+rope…</p>
+<p><strong>rhonda</strong>: Come on…come on…</p>
+<p><strong>burt</strong>: Take it…take the bait…</p>
+<p><strong>earl</strong>: Where the hell are they? Hope they didn’t wise
+up.</p>
+<p><strong>rhonda</strong>: Nope, there! That’s one.</p>
+<p><strong>heather</strong>: Make noise. Everybody! COME ON!</p>
+<p><strong>earl</strong>: They’re not falling for it!</p>
+<p><strong>heather</strong>: I’ll make’em pay attention goddamnit…</p>
+<p><strong>val</strong>: They’re…they’re trying to make us move!</p>
+<p><strong>earl</strong>: Or just knock us over. Look, use the bomb!</p>
+<p><strong>val</strong>: It’s out last one. We can’t kill them all.</p>
+<p><strong>earl</strong>: Use the fucking bomb!</p>
+<p><strong>val</strong>: So, we get back on that rock and in three days
+we’re dead anyway.</p>
+<p><strong>earl</strong>: I want to live for the three days.</p>
+<p><strong>burt</strong>: What’s wrong? Use the bomb, for Godsake!</p>
+<p><strong>val</strong>: No wait! This way!</p>
+<p><strong>earl</strong>: What the hell are you doing?!!</p>
+<p><strong>earl</strong>: This better be one great plan!</p>
+<p><strong>val</strong>: Get ready!</p>
+<p><strong>earl</strong>: Light it, man! LIGHT IT!!</p>
+<p><strong>val</strong>: Not yet, not yet…</p>
+<p><strong>earl</strong>: Too far! You threw it behind them!</p>
+<p><strong>val</strong>: Well, it just suddenly hit me, you know?
+Stampede?</p>
+<p><strong>mindy</strong>: Look!</p>
+<p><strong>earl</strong>: Road’s in!</p>
+<p><strong>val</strong>: Road’s in! Now, soon as we hit Bixby we start
+making phone calls. We could make some real money off this whole thing,
+get in People magazine…</p>
+<p><strong>earl</strong>: People? Hell, National Geographic.</p>
+<p><strong>val</strong>: Sell the movie rights. We’re going straight
+from blue-collar to white -collar.</p>
+<p><strong>earl</strong>: Yeah…but no ties.</p>
+<p><strong>val</strong>: No ties.</p>
+<p><strong>rhonda</strong>: Hi, guys. Burt loaned me his camera.</p>
+<p><strong>earl</strong>: Howdy, Rhonda.</p>
+<p><strong>rhonda</strong>: You’re really leaving, huh?</p>
+<p><strong>earl</strong>: You bet. You gonna be staying up here?</p>
+<p><strong>rhonda</strong>: Well, yeah! There’s going to be major
+research up here. First thing is to get some pictures of that one we dug
+up.</p>
+<p><strong>val</strong>: Well…you’re welcome.</p>
+<p><strong>rhonda</strong>: Well…see ya.</p>
+<p><strong>earl</strong>: Christ, Val, maybe she’s not your type, but
+you could, at least, be civil.</p>
+<p><strong>val</strong>: Civil? I’m civil.</p>
+<p><strong>earl</strong>: You’re not civil, you’re glum. We got the
+world by the tail with a downhill pull and all of a sudden you go glum
+on me.</p>
+<p><strong>val</strong>: Somebody paying you to do this?</p>
+<p><strong>earl</strong>: She just practically asked you for a date.
+What the hell is wrong?!</p>
+<p><strong>val</strong>: Earl, get real. What does she need with a guy
+like me?</p>
+<p><strong>earl</strong>: What was that? All this time she’s not good
+enough for you. Now, suddenly, you’re not good enough for her? God, my
+work is never done. You don’t decide is you’re worthless, she does. But
+you gotta give her a chance!</p>
+<p><strong>val</strong>: Earl, I’m not gonna make a fool of myself! You
+got that covered.</p>
+<p><strong>earl</strong>: Fine, make the mistakes I did. I think I’ll
+just be playing this hand myself.</p>
+<p><strong>val</strong>: What?</p>
+<p><strong>earl</strong>: She likes both of us. We both helped her
+out.</p>
+<p><strong>val</strong>: You are so full of shit…</p>
+<p><strong>earl</strong>: Oh yeah? Think about this: She ain’t as
+narrow-minded as you. I’ll lay odds she’s looking for character in a
+man. For my part, I’d be proud to have her. I’d goddamn worship her.</p>
+</body>
+</html>

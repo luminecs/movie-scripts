@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>arcade</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="arcade">arcade</h1>
+<p><strong>alex</strong>: Time. That’s all I ever think about anymore.
+It’s like there’s never enough of it, you know?</p>
+<p><strong>alex</strong>: It’s strange. When the future’s in front of
+you, it seems to go on forever. I mean, you never really get there. It’s
+always one step ahead of you. It’s like there’s no present. There’s no
+“now”. As soon as you think, “I’m here”, the moment’s already gone.
+Either everything’s in the future, or it’s in the past. There’s no
+“now”.</p>
+<p><strong>man</strong>: So where are you then?</p>
+<p><strong>alex</strong>: I’m in the past.</p>
+<p><strong>mr. weaver</strong>: We don’t have to stop now…</p>
+<p><strong>alex</strong>: That’s okay. I’ve got a test coming up anyway.
+Gotta study.</p>
+<p><strong>mr. weaver</strong>: I have to tell you, I’m a little
+concerned about you, Alex. It’s been three months now since your mother,
+uh…</p>
+<p><strong>alex</strong>: Killed herself?</p>
+<p><strong>mr. weaver</strong>: Yes. Now your father…</p>
+<p><strong>alex</strong>: He’s a basket case. You’ve talked to him. You
+know that. He might as well be dead too.</p>
+<p><strong>alex</strong>: Look Mr. Weaver, I don’t even know why I came
+here. I fine. Really. It’s like I said. It’s just part of the past now.
+It doesn’t matter anymore.</p>
+<p><strong>nick</strong>: You’re an idiot, you know that? What’re you
+going to do when you get out of here?</p>
+<p><strong>benz</strong>: I was thinking about writing for one of those
+Filipino mail order brides…</p>
+<p><strong>stilts</strong>: I think I saw that on the Home Shopping
+Network. The Girlfriend Hour, right after Auto Accessories.</p>
+<p><strong>benz</strong>: Exactly.</p>
+<p><strong>laurie</strong>: You guys are sick.</p>
+<p><strong>greg</strong>: So how’d it go?</p>
+<p><strong>alex</strong>: He thinks I’m “sublimating”.</p>
+<p><strong>stilts</strong>: What the hell does that mean?</p>
+<p><strong>laurie</strong>: It means she’s screwed up.</p>
+<p><strong>stilts</strong>: Fucked up. That’s what they said I was.</p>
+<p><strong>benz</strong>: You are fucked up.</p>
+<p><strong>stilts</strong>: Yeah, but only because I want to be.</p>
+<p><strong>greg</strong>: Would you guys knock it off?</p>
+<p><strong>greg</strong>: Listen to me, Alex. These counselor’s don’t
+know anything. They’re full of shit. If you don’t fit the pattern of the
+perfect kid, they freak.</p>
+<p><strong>alex</strong>: I know.</p>
+<p><strong>greg</strong>: So tell me you’re okay, then.</p>
+<p><strong>alex</strong>: I’m okay.</p>
+<p><strong>greg</strong>: Good. Cause I’d freak if you weren’t.</p>
+<p><strong>greg</strong>: Hey…watch this…</p>
+<p><strong>nick</strong>: You making another one, Greg?</p>
+<p><strong>greg</strong>: Sure. Practice.</p>
+<p><strong>benz</strong>: Lemme see…</p>
+<p><strong>stilts</strong>: Cool.</p>
+<p><strong>greg</strong>: See, when the emulsion’s still warm you can
+move it around… There.</p>
+<p><strong>greg</strong>: Safe keeping.</p>
+<p><strong>nick</strong>: Shit. I’m out.</p>
+<p><strong>benz</strong>: You guys going to Dante’s after school?</p>
+<p><strong>greg</strong>: I don’t know.</p>
+<p><strong>benz</strong>: Check it out…</p>
+<p><strong>nick</strong>: That’s the new Slip-Stream game. Those guys
+are good. It’s supposed to be interactive. Graphics are
+unbelievable.</p>
+<p><strong>benz</strong>: Yeah? They were handing these out at Dante’s.
+Test marketing it or something. Gonna have a demonstration today.</p>
+<p><strong>stilts</strong>: Cool.</p>
+<p><strong>laurie</strong>: Can you say anything but “cool”?</p>
+<p><strong>stilts</strong>: Of course I can. I can say all sorts of
+things…</p>
+<p><strong>greg</strong>: Guys…</p>
+<p><strong>benz</strong>: So how ’bout it?</p>
+<p><strong>nick</strong>: I’m game… Greg?</p>
+<p><strong>greg</strong>: Come on. We’ll hit Dante’s after school, try
+the game out, maybe get some dinner.</p>
+<p><strong>alex</strong>: And then keep on driving?</p>
+<p><strong>greg</strong>: Sure. Never come back. Disappear forever.</p>
+<p><strong>laurie</strong>: I could go for that.</p>
+<p><strong>benz</strong>: Check it out…</p>
+<p><strong>stilts</strong>: Definitely cool.</p>
+<p><strong>nick</strong>: Super computers, micro-processors… That’s the
+future we’re looking at.</p>
+<p><strong>deloach</strong>: So how come they’re previewing it in this
+shit-hole?</p>
+<p><strong>stilts</strong>: If you weren’t such a dick, you’d know what
+a cool place this was.</p>
+<p><strong>deloach</strong>: Gimme a break, they got fucking Space
+Invaders here. That’s shit’s for retards.</p>
+<p><strong>stilts</strong>: So…are you trying to say I’m retarded? Is
+that what you’re implying?</p>
+<p><strong>deloach</strong>: No, but since I’m standing here, I’m
+noticing that you’re an ugly little fuck and you’re making me sick…</p>
+<p><strong>finster</strong>: Cut it out!!!</p>
+<p><strong>alex</strong>: It’s okay, Mr. Finster…</p>
+<p><strong>finster</strong>: No it’s not. You guys are shits and I’m
+throwing you out.</p>
+<p><strong>deloach</strong>: Your place sucks. Who gives a shit about
+“ARCADE” anyway?</p>
+<p><strong>laurie</strong>: Jesus…</p>
+<p><strong>another voice</strong>: Not bad, huh?</p>
+<p><strong>difford</strong>: Hi, kids. Mr. Finster…</p>
+<p><strong>difford</strong>: We’re glad you people could make it, and
+we’re anxious to have you try out our new product. We think it’s going
+to be a big seller. But you’re the people that make it happen. You’re
+the market share everyone’s tearing each other apart to get at. It’s
+your opinion that’s going to make or break us.</p>
+<p><strong>nick</strong>: So what’s so different about Arcade? You
+guys’ve been talking about it for months.</p>
+<p><strong>difford</strong>: A man after my own heart. Straight to the
+point. What’s different about ARCADE is the way it reacts. It responds
+like a human does. It learns. It adapts. Each time you play, it changes
+its strategy.</p>
+<p><strong>nick</strong>: That’s impossible.</p>
+<p><strong>difford</strong>: Is it? Why don’t you see for your self?</p>
+<p><strong>greg</strong>: Go for it, Nick.</p>
+<p><strong>difford</strong>: The CyberGloves are keyed into the game’s
+response mechanism. You’ll be able to pick things up inside the
+world…tools, weapons … it’ll feel like they’re really in your hands…</p>
+<p><strong>difford</strong>: The goggles heighten the experience. When
+we said “Reality will never be the same”, we weren’t kidding.</p>
+<p><strong>nick</strong>: “Escape”?</p>
+<p><strong>difford</strong>: In case things get too intense. It
+automatically freezes the game, gives you a breather. Things can get
+pretty wild…</p>
+<p><strong>benz</strong>: Nick won’t need it.</p>
+<p><strong>difford</strong>: You’re good, eh?</p>
+<p><strong>nick</strong>: The best.</p>
+<p><strong>nick</strong>: So what’s the scenario? Am I saving a
+princess? Fighting Zombies?</p>
+<p><strong>difford</strong>: It changes. There are eleven levels. Each
+one is a different layer of the ARCADE universe. The concept is, you’re
+entering the video game itself, making your way across the circuit board
+to the logic core … ARCADE’s brain.</p>
+<p><strong>nick</strong>: So how do I start?</p>
+<p><strong>difford</strong>: The game will guide you.</p>
+<p><strong>nick</strong>: Nick.</p>
+<p><strong>laurie</strong>: What’s it doing?!</p>
+<p><strong>difford</strong>: Memorizing Nick’s features. Watch.</p>
+<p><strong>benz</strong>: Check it out!</p>
+<p><strong>greg</strong>: Come on, Nick…</p>
+<p><strong>greg</strong>: Nick…you okay?</p>
+<p><strong>nick</strong>: You gotta try this thing.</p>
+<p><strong>alex</strong>: Go for it.</p>
+<p><strong>greg</strong>: Hold my keys, then.</p>
+<p><strong>greg</strong>: So how do I get back in?</p>
+<p><strong>difford</strong>: Just hit “ESCAPE” again.</p>
+<p><strong>difford</strong>: Here’s what we’re going to do. What I’m
+holding are the home versions of ARCADE, the prototypes…</p>
+<p><strong>difford</strong>: In a month or so we’re planning on
+releasing ARCADE in both versions, but we’re still fine tuning, and
+that’s where you guys luck out. So what we’ll do is have you register
+with us, and then we’re going to loan these out to you for a week or so.
+The only thing you have to do in return is answer some marketing
+questions. Sound fair?</p>
+<p><strong>difford</strong>: So what do you think?</p>
+<p><strong>nick</strong>: Sign me up.</p>
+<p><strong>alex</strong>: Where’s Greg?</p>
+<p><strong>laurie</strong>: He’s still working on the game.</p>
+<p><strong>alex</strong>: Where’s Greg?</p>
+<p><strong>kid</strong>: Don’t know. I think I saw him walk out, but I’m
+not sure…</p>
+<p><strong>alex</strong>: Has anyone seen Greg?</p>
+<p><strong>stilts</strong>: He’s probably outside. You know how he is.
+Gets bored…</p>
+<p><strong>nick</strong>: Yeah, outside.</p>
+<p><strong>alex</strong>: So where is he?</p>
+<p><strong>nick</strong>: Guess he took off… You have his keys,
+right?</p>
+<p><strong>nick</strong>: Hmmm. He said you were going to have
+dinner?</p>
+<p><strong>alex</strong>: Yeah…</p>
+<p><strong>nick</strong>: So take his car home. Wait. I’m sure he’s up
+to something…</p>
+<p><strong>alex</strong>: But he was playing the game. I mean, you saw
+him…</p>
+<p><strong>nick</strong>: It’s nothing, okay? Just take his car home.
+He’ll show up.</p>
+<p><strong>nick</strong>: Don’t worry about it.</p>
+<p><strong>alex</strong>: Fuck-you.</p>
+<p><strong>alex</strong>: Dad…Dad…</p>
+<p><strong>jim</strong>: Yeah?</p>
+<p><strong>alex</strong>: Did Greg call, Dad?</p>
+<p><strong>alex</strong>: You should go to bed, Dad.</p>
+<p><strong>jim</strong>: …am in bed…</p>
+<p><strong>alex</strong>: Yeah.</p>
+<p><strong>alex</strong>: How …</p>
+<p><strong>alex</strong>: Where’s Greg?</p>
+<p><strong>alex</strong>: Screamer.</p>
+<p><strong>alex</strong>: Hello?</p>
+<p><strong>nick</strong>: Hey, kid.</p>
+<p><strong>alex</strong>: Nick…</p>
+<p><strong>nick</strong>: Have you played the game yet? It’s incredible!
+I was just…</p>
+<p><strong>alex</strong>: Listen to me! Greg never came home. I think
+the game has something to do with it.</p>
+<p><strong>nick</strong>: What the hell are you talking about?</p>
+<p><strong>nick</strong>: You there? Hello?</p>
+<p><strong>alex</strong>: I have to talk to you.</p>
+<p><strong>nick</strong>: We are talking…</p>
+<p><strong>alex</strong>: No, in person. Now.</p>
+<p><strong>nick</strong>: It’s twelve-thirty!</p>
+<p><strong>alex</strong>: I’m coming over.</p>
+<p><strong>alex</strong>: Shit…</p>
+<p><strong>alex</strong>: Okay…don’t think about it… Okay.</p>
+<p><strong>greg</strong>: Alex…</p>
+<p><strong>nick</strong>: Alex, you don’t know how long I’ve waited for
+this.</p>
+<p><strong>alex</strong>: Funny.</p>
+<p><strong>alex</strong>: What’s that?</p>
+<p><strong>nick</strong>: Isn’t it amazing? It’s a sort of rest position
+in the game, when you’re between levels.</p>
+<p><strong>nick</strong>: They’re fractals. Visual representations of
+mathematic equations. The game is totally brilliant. I mean, look at it,
+it’s like a DNA molecule or something…</p>
+<p><strong>alex</strong>: Something weird’s happening.</p>
+<p><strong>nick</strong>: What do you mean by “weird”?</p>
+<p><strong>alex</strong>: Greg never came home. A few hours is one
+thing, Nick, but this is different. Something’s happened to him.</p>
+<p><strong>alex</strong>: Can you turn off the game?</p>
+<p><strong>nick</strong>: I’m in the middle of it…</p>
+<p><strong>alex</strong>: Turn if off!</p>
+<p><strong>nick</strong>: Happy?</p>
+<p><strong>alex</strong>: No. Look, I know you’re not going to believe
+me, but listen anyway… I think the game’s alive somehow.</p>
+<p><strong>alex</strong>: No, wait. Just listen. I hooked it up earlier
+tonight, and it said my name. As soon as I turned it on, Nick. It said
+my name. How could it know? And then, I asked it where Greg was, and it
+said, “In here”.</p>
+<p><strong>nick</strong>: Alex, I think you’re freaking out. Greg’s
+gone, I’ll give you that. And maybe he’s in trouble. But it’s not ARCADE
+that’s doing it…</p>
+<p><strong>alex</strong>: It is.</p>
+<p><strong>nick</strong>: How?! It’s a machine, Alex. Machine’s don’t
+think. They’re not alive. It’s a good program, a brilliant program, it
+was designed so it would act as if it were alive, but it’s not
+alive.</p>
+<p><strong>alex</strong>: So how did it know my name, then?</p>
+<p><strong>nick</strong>: You imagined it.</p>
+<p><strong>alex</strong>: See, men always do this. “Quiet down, honey.
+Chill out. Take a Valium”. I’m not a fucking idiot, Nick!</p>
+<p><strong>nick</strong>: Quiet. I do have parents, you know.</p>
+<p><strong>alex</strong>: There!</p>
+<p><strong>alex</strong>: It turned itself back on, Nick.</p>
+<p><strong>nick</strong>: No it didn’t. It’s just a faulty relay or
+something. It happens.</p>
+<p><strong>alex</strong>: It’s alive, Nick. It’s listening to us …</p>
+<p><strong>nick</strong>: Just shut up! Enough already, okay?</p>
+<p><strong>nick</strong>: Sorry. Maybe I need the Valium.</p>
+<p><strong>alex</strong>: Call the others. Laurie, Benz…</p>
+<p><strong>nick</strong>: I’ll try Stilts. He’s got insomnia.</p>
+<p><strong>nick</strong>: Okay…Laurie, then.</p>
+<p><strong>nick</strong>: Benz…</p>
+<p><strong>alex</strong>: Something’s happened to them.</p>
+<p><strong>nick</strong>: It’s the middle of the night. They’re asleep.
+Phone didn’t wake them.</p>
+<p><strong>alex</strong>: All of them?</p>
+<p><strong>nick</strong>: Look, why are you fucking with me like
+this?</p>
+<p><strong>alex</strong>: Because I didn’t know where else to go.</p>
+<p><strong>nick</strong>: It’s two o’clock in the morning. Go home. Go
+to sleep. We’ll figure something out in the morning.</p>
+<p><strong>nick</strong>: It’s not this weird. It’ll make sense.
+Everything gets weird this late anyway, right?</p>
+<p><strong>alex</strong>: Sure.</p>
+<p><strong>alex</strong>: If I were you, I’d think twice about playing
+that game again.</p>
+<p><strong>alex</strong>: Well? Where are the others?</p>
+<p><strong>stilts</strong>: Sick?</p>
+<p><strong>alex</strong>: Everybody’s sick, huh? It’s fifteen after. We
+always meet here, you know that.</p>
+<p><strong>stilts</strong>: What’s her problem?</p>
+<p><strong>alex</strong>: Did you play ARCADE last night?</p>
+<p><strong>stilts</strong>: Actually, no. I was just telling Nick, here,
+that my t.v.’s busted…</p>
+<p><strong>alex</strong>: You want to hear something else, Nick? I tried
+to call them this morning…Greg, Benz, Laurie… Their phones are out of
+order.</p>
+<p><strong>alex</strong>: And then I started thinking…about everyone
+else that was at Dante’s yesterday. I drew up this list. DeLoach, those
+other jerks … their phones are out of order too.</p>
+<p><strong>nick</strong>: So what do you want me to do?</p>
+<p><strong>alex</strong>: We have to find out what’s happened to them. I
+think they’re gone…</p>
+<p><strong>nick</strong>: No way.</p>
+<p><strong>alex</strong>: If they’re sick, great. But let’s make sure.
+Come on, Nick.</p>
+<p><strong>nick</strong>: Okay. We’ll see what’s up. But if things are
+cool, I don’t want to hear anything more about this. Life’s too short,
+know what I mean?</p>
+<p><strong>stilts</strong>: So you guys are cutting school? Lemme go
+with you.</p>
+<p><strong>nick</strong>: Just stay here, Stilts.</p>
+<p><strong>alex</strong>: And don’t watch any television.</p>
+<p><strong>stilts</strong>: Oh, okay. Forget Twilight Zone, now we’re
+talking Outer Limits here. We control your horizontal, your
+vertical…</p>
+<p><strong>nick</strong>: Just do what she says, Stilts. And if we’re
+not back…</p>
+<p><strong>stilts</strong>: I’ll call the National Guard. I got it under
+control. Oh, just one more thing. Is it a supernatural thing you guys
+are going off to fight, or is it aliens, like Pod People and stuff like
+that? Cause there’s a difference, you know. One you need garlic and
+silver bullets for, the other…</p>
+<p><strong>nick</strong>: Look at me, Stilts. Am I laughing?</p>
+<p><strong>nick</strong>: Just do what she said. Don’t watch
+television.</p>
+<p><strong>nick</strong>: Well?</p>
+<p><strong>alex</strong>: She thought Benz was at school.</p>
+<p><strong>nick</strong>: Where to now?</p>
+<p><strong>alex</strong>: Laurie’s.</p>
+<p><strong>alex</strong>: Come on.</p>
+<p><strong>alex</strong>: Laurie…answer…come on…</p>
+<p><strong>alex</strong>: Shit.</p>
+<p><strong>alex</strong>: This is like a movie or something. I mean, am
+I paranoid or what?</p>
+<p><strong>nick</strong>: It doesn’t necessarily mean she’s…</p>
+<p><strong>alex</strong>: Let’s go around back.</p>
+<p><strong>alex</strong>: She’s here!</p>
+<p><strong>alex</strong>: It is the game.</p>
+<p><strong>alex</strong>: Laurie!</p>
+<p><strong>alex</strong>: Nick, what do we do?!</p>
+<p><strong>nick</strong>: No, Alex! Alex, wait a minute…</p>
+<p><strong>nick</strong>: What is it?</p>
+<p><strong>alex</strong>: Laurie…wake up…</p>
+<p><strong>laurie</strong>: I am awake. Don’t you see them?</p>
+<p><strong>nick</strong>: See what?</p>
+<p><strong>laurie</strong>: Angels. There are angels inside.</p>
+<p><strong>alex</strong>: We have to turn it off, Laurie. I’m turning it
+off…</p>
+<p><strong>greg</strong>: Alex. Don’t leave me here.</p>
+<p><strong>nick</strong>: Jesus Christ!</p>
+<p><strong>alex</strong>: Change the channel!</p>
+<p><strong>nick</strong>: What?!</p>
+<p><strong>nick</strong>: Who are you?!</p>
+<p><strong>alex</strong>: Oh God… He’s in the cable system! He’s out of
+the game!</p>
+<p><strong>alex</strong>: Laurie…</p>
+<p><strong>nick</strong>: Is she breathing?</p>
+<p><strong>nick</strong>: Then leave her.</p>
+<p><strong>alex</strong>: We can’t…</p>
+<p><strong>nick</strong>: We’ll call 911. Look around Alex. We broke in,
+smashed the t.v., no one’s going to believe what happened here!</p>
+<p><strong>nick</strong>: I believe you now. I don’t know what the fuck
+just happened, but it did. Now let’s get the hell out of here.</p>
+<p><strong>alex</strong>: Where do we go?</p>
+<p><strong>nick</strong>: My house. I want to try something.</p>
+<p><strong>nick</strong>: Around back.</p>
+<p><strong>nick</strong>: I’m not taking any chances.</p>
+<p><strong>nick</strong>: Okay. I’m going inside. If I’m not back out
+in, say, two minutes, you get the hell out of here.</p>
+<p><strong>alex</strong>: Meet you by the car.</p>
+<p><strong>nick</strong>: We need to find a pay-phone.</p>
+<p><strong>nick</strong>: That’s what I thought.</p>
+<p><strong>alex</strong>: What?</p>
+<p><strong>nick</strong>: It’s not just the cable system. It’s in the
+phone system as well, the electronic net. It’s everywhere.</p>
+<p><strong>alex</strong>: Nick, what is it.</p>
+<p><strong>nick</strong>: Maybe it is alive in a way…some sort of
+electronic intelligence. It’s like a computer virus that developed a
+personality or something. It’s self-replicating…it mimics life.</p>
+<p><strong>alex</strong>: Like the fractals?</p>
+<p><strong>nick</strong>: It’s growing. Getting stronger. Maybe it’s
+only localized now…</p>
+<p><strong>alex</strong>: …but then it hits the relay stations…</p>
+<p><strong>nick</strong>: Right. And then communication satellites, and
+then anywhere.</p>
+<p><strong>alex</strong>: Anywhere. We have to stop it from getting
+out.</p>
+<p><strong>nick</strong>: It’s already out.</p>
+<p><strong>alex</strong>: The Police, then…</p>
+<p><strong>nick</strong>: Give me a break, Alex. What are we going to
+tell them? Excuse me, officer, but there’s some sort of electronic
+monster loose in the phone lines. I’d think twice about calling any of
+those 976 numbers…</p>
+<p><strong>alex</strong>: Then where do we go?!</p>
+<p><strong>nick</strong>: I don’t know.</p>
+<p><strong>nick</strong>: What?</p>
+<p><strong>alex</strong>: They made ARCADE. It’s still a game, right? It
+thinks like a game. Maybe it still has to play by the rules. Someone had
+to program it in the first place, didn’t they?.</p>
+<p><strong>nick</strong>: You mean we learn the rules…</p>
+<p><strong>alex</strong>: And beat it at it’s own game.</p>
+<p><strong>nick</strong>: You realize that in order to do that, we’d
+actually have to play the game.</p>
+<p><strong>alex</strong>: I was afraid you’d say that.</p>
+<p><strong>receptionist</strong>: May I help you?</p>
+<p><strong>alex</strong>: We need to see Mr. Difford.</p>
+<p><strong>receptionist</strong>: I see. And do you have an
+appointment?</p>
+<p><strong>nick</strong>: No, but it’s important and if you’d…</p>
+<p><strong>receptionist</strong>: I’m sorry, but if you don’t have an
+appointment, I won’t be able to help you. If you’d like, you can call
+his office from our courtesy phone outside and schedule one …</p>
+<p><strong>nick</strong>: If Difford’s not out here it one minute we’re
+calling the news and informing them that your fucking games are
+whispering in our ears and telling us to commit suicide. I’m talking
+public relations nightmare here, buddy. Satanism, virgin sacrifices,
+backward messages, the whole bit.</p>
+<p><strong>receptionist</strong>: One moment please… Rachel, would you
+be kind enough to tell Mr. Difford that we have a situation in the lobby
+which requires his immediate attention? Thank-you.</p>
+<p><strong>receptionist</strong>: Mr. Difford will be right with
+you.</p>
+<p><strong>alex</strong>: Why thank-you.</p>
+<p><strong>alex</strong>: Virgin sacrifices?</p>
+<p><strong>nick</strong>: Drives ’em crazy every time.</p>
+<p><strong>difford</strong>: Nick, Alex, how are we today?</p>
+<p><strong>alex</strong>: How’d you know it was us?</p>
+<p><strong>difford</strong>: Security camera. Pulled your files before I
+came down. Be careful what you say, kids … I know where you live.</p>
+<p><strong>difford</strong>: Now what seems to be the problem?</p>
+<p><strong>alex</strong>: It’s the game, ARCADE.</p>
+<p><strong>difford</strong>: You don’t like it?</p>
+<p><strong>nick</strong>: That’s gotta be the understatement of the
+century. It’s killing people.</p>
+<p><strong>difford</strong>: If this is a joke, I’m not laughing.</p>
+<p><strong>alex</strong>: Neither are we. Something’s wrong with the
+game, Mr. Difford.</p>
+<p><strong>difford</strong>: Why don’t we take this into my office.</p>
+<p><strong>difford</strong>: Talk to me.</p>
+<p><strong>alex</strong>: There’s something wrong with ARCADE. The
+game’s alive somehow…</p>
+<p><strong>nick</strong>: What Alex is trying to say is that it “seems”
+like it’s alive.</p>
+<p><strong>alex</strong>: No I’m not…</p>
+<p><strong>nick</strong>: We’re not getting very far into the levels and
+we kind of thought maybe we could talk to a programmer, learn some
+tricks and stuff… I mean, you don’t want us kids running around school
+saying your game’s too hard, right?</p>
+<p><strong>difford</strong>: That’s what this is all about? Tricks?
+Sure, I’d be happy to introduce you to ARCADE’s programmer.</p>
+<p><strong>difford</strong>: Tell you what, I’ll take you down to our
+R&amp;D labs right now.</p>
+<p><strong>difford</strong>: This is one of our newest projects. We’re
+trying to get rid of joy-sticks altogether …</p>
+<p><strong>nick</strong>: The Air-Force is working on the same
+thing.</p>
+<p><strong>man</strong>: Come on, come on…</p>
+<p><strong>man</strong>: Shit.</p>
+<p><strong>difford</strong>: Albert…</p>
+<p><strong>difford</strong>: This is Nick and Alex. They’d like to talk
+to you about ARCADE. Maybe you can give them a few programmer’s
+secrets.</p>
+<p><strong>albert</strong>: Yeah, sure.</p>
+<p><strong>difford</strong>: Then I leave you in capable hands.</p>
+<p><strong>nick</strong>: Does that thing work?</p>
+<p><strong>albert</strong>: Getting there. It’s more sensitive than a
+joy-stick. Your video-character can respond as fast as you can. But what
+can I do for you?</p>
+<p><strong>alex</strong>: We’re having some problems with ARCADE…</p>
+<p><strong>albert</strong>: Yeah, who isn’t.</p>
+<p><strong>nick</strong>: What do you mean?</p>
+<p><strong>albert</strong>: It’s a tough game. Hard to pin that bastard
+down. Keeps on changing the rules.</p>
+<p><strong>alex</strong>: We vere thinking there might be tricks. You
+know, surprises that you’d worked into the game…</p>
+<p><strong>albert</strong>: Sure. Every game’s got ’em. I’ll start with
+the schematics. I can print these up if you want.</p>
+<p><strong>albert</strong>: You’ve got your ten levels, right? Here they
+are… Each level has an exit, only remember, the exits aren’t always what
+they seem. First one’s The Blood Red Sky, then you’ve got The Blue
+Desert, Tower of Ghosts, Kingdom of the Blind… On each world you have to
+find a golden key and you’ve only got so much time to do it in. If
+you’re too late, The Screamer comes.</p>
+<p><strong>nick</strong>: How do you stop The Screamer?</p>
+<p><strong>albert</strong>: You can’t. He gets you and you’re dead. It’s
+like time catching up with you, you know? Like Fate. Each level you get
+progressively less time to complete. First half of the game takes place
+in the Wild Lands. Then you reach Level 6, and that’s the Sea of
+Darkness. There’s a two-headed Boatman that’ll take you across if you
+answer his riddle right. If you don’t…</p>
+<p><strong>nick</strong>: What’s the riddle?</p>
+<p><strong>albert</strong>: If I tell you, then it’s no fun.</p>
+<p><strong>nick</strong>: Just tell me the fucking riddle.</p>
+<p><strong>albert</strong>: Well…it involves a paradox. You have to
+trick The Boatman. Now all the while, you also have to watch your
+strength. You can build that back up by catching FIREFLIES…the little
+glowing guys…</p>
+<p><strong>albert</strong>: The next half of the game takes place in
+ARCADE’s brain, The City of Truth. It’s urban scenarios, lots of metal
+and concrete. Screamer comes faster here. On Level Four you can get a
+free life if you wait until the last possible second before exiting that
+world. Gotta time it right though.</p>
+<p><strong>alex</strong>: What’s the question mark?</p>
+<p><strong>albert</strong>: Level Ten. That’s where you’ve got to unlock
+ARCADE’s heart using the keys you’ve found.</p>
+<p><strong>alex</strong>: How do you do that?</p>
+<p><strong>albert</strong>: Good question. See, that’s where the fun
+comes in. ARCADE changes it every time. He’s a machine without a soul.
+Once you give him a soul, he stops being a threat.</p>
+<p><strong>alex</strong>: But how can it change every time?</p>
+<p><strong>albert</strong>: It’s the game’s logic core. We actually
+patterned it after human brainwaves. I mean, there’s a personality in
+there. That’s what makes it so incredible.</p>
+<p><strong>nick</strong>: How the hell did you do that?</p>
+<p><strong>albert</strong>: Well, we’re veering into classified info
+here, but I’ll tell you that it involved a donor. He was dead of course,
+so it’s not like anything unethical was happening.</p>
+<p><strong>alex</strong>: Dead?</p>
+<p><strong>albert</strong>: Well, brain-dead anyway. Coma patient. It’s
+really not all that important.</p>
+<p><strong>alex</strong>: Maybe he’s not dead.</p>
+<p><strong>albert</strong>: He?</p>
+<p><strong>alex</strong>: The donor. Maybe he’s alive inside the
+game.</p>
+<p><strong>albert</strong>: And maybe you’ve been taking too many
+drugs.</p>
+<p><strong>nick</strong>: Could you play ARCADE with that?</p>
+<p><strong>albert</strong>: Well, technically “yes”, but this is only
+the prototype.</p>
+<p><strong>nick</strong>: Thanks, Albert. Think you could print up those
+schematics?</p>
+<p><strong>albert</strong>: Sure.</p>
+<p><strong>nick</strong>: Go outside, get your car, and meet me out
+front with the engine running. And make it quick, okay?</p>
+<p><strong>alex</strong>: What are you going to do?</p>
+<p><strong>nick</strong>: Get that helmet. If we’re going to play
+ARCADE, I want every advantage possible.</p>
+<p><strong>albert</strong>: Here you go. Happy hunting.</p>
+<p><strong>nick</strong>: Thanks again.</p>
+<p><strong>nick</strong>: Shit…</p>
+<p><strong>guard #1</strong>: That’s him!</p>
+<p><strong>nick</strong>: Jesus Christ!</p>
+<p><strong>alex</strong>: I can’t believe you made it!</p>
+<p><strong>alex</strong>: You got the schematics?</p>
+<p><strong>nick</strong>: Everything.</p>
+<p><strong>alex</strong>: So where do we play the game, Nick?</p>
+<p><strong>nick</strong>: I’ve been thinking about that. ARCADE’s like a
+virus, so it seems like the place to hit him would be where the virus
+started. You know, like his point of origin?</p>
+<p><strong>alex</strong>: Dante’s Inferno.</p>
+<p><strong>nick</strong>: Yeah. The Inferno.</p>
+<p><strong>alex</strong>: The windows are barred… There’s a skylight. We
+can get in through the roof.</p>
+<p><strong>alex</strong>: Nick… Nick!</p>
+<p><strong>nick</strong>: Okay, your turn.</p>
+<p><strong>alex</strong>: Are you there?</p>
+<p><strong>nick</strong>: Alex…</p>
+<p><strong>alex</strong>: You didn’t hear me?</p>
+<p><strong>alex</strong>: Stop looking at it.</p>
+<p><strong>nick</strong>: Shit…it’s like a trance or something… Okay.
+I’m fine. Really.</p>
+<p><strong>voices</strong>: Nick…Alex…save us…</p>
+<p><strong>alex</strong>: Oh God…</p>
+<p><strong>nick</strong>: Put it out of your head, Alex. It’s just
+trying to psyche us out.</p>
+<p><strong>alex</strong>: What are you looking for?</p>
+<p><strong>nick</strong>: A way to hook this helmet into the game. I’m
+sure there are interfaces…</p>
+<p><strong>nick</strong>: There. Now we’re wired in.</p>
+<p><strong>alex</strong>: Is the game plugged in?</p>
+<p><strong>nick</strong>: I don’t understand. It wants us to play the
+game. It’s been taunting us …</p>
+<p><strong>alex</strong>: Put in a quarter.</p>
+<p><strong>nick</strong>: It can turn itself on, Alex! It doesn’t need a
+quarter.</p>
+<p><strong>alex</strong>: Yes it does. Don’t you see? We have to play by
+the rules. That’s what it wants.</p>
+<p><strong>nick</strong>: Change machine.</p>
+<p><strong>nick</strong>: There.</p>
+<p><strong>alex</strong>: Two players, Nick. You need to put in another
+quarter.</p>
+<p><strong>nick</strong>: You’re not coming, Alex.</p>
+<p><strong>alex</strong>: Yes I am…</p>
+<p><strong>nick</strong>: I know how to do this! I’m good at these
+games. You never play, you’d be nailed in an instant.</p>
+<p><strong>alex</strong>: And what if something happens to you? Am I
+suppose to go in after you alone?!</p>
+<p><strong>nick</strong>: No. If you’re smart, you run like hell.</p>
+<p><strong>alex</strong>: I’m going.</p>
+<p><strong>nick</strong>: You don’t get it, do you?</p>
+<p><strong>alex</strong>: What?</p>
+<p><strong>nick</strong>: I don’t want anything to happen to you. I care
+about you.</p>
+<p><strong>alex</strong>: I already have a boyfriend, Nick.</p>
+<p><strong>nick</strong>: I know. It sucks.</p>
+<p><strong>nick</strong>: What can I say? Tough being a hero, isn’t
+it?</p>
+<p><strong>nick</strong>: Here goes nothing.</p>
+<p><strong>alex</strong>: Fuck-you.</p>
+<p><strong>alex</strong>: We know what you are.</p>
+<p><strong>nick</strong>: Hold on!</p>
+<p><strong>alex</strong>: You feel it? It’s different this time.</p>
+<p><strong>nick</strong>: We’re actually inside, aren’t we?</p>
+<p><strong>nick</strong>: Okay. Give us a kiss?</p>
+<p><strong>alex</strong>: One. In case…</p>
+<p><strong>nick</strong>: Don’t even say it.</p>
+<p><strong>nick</strong>: Thanks. Always wanted to do that.</p>
+<p><strong>alex</strong>: Yeah, well I figure these are unusual
+circumstances.</p>
+<p><strong>nick</strong>: That’s what I was hoping you’d say.</p>
+<p><strong>nick</strong>: I’ll take the lead and handle the physical
+threats. You watch the elapsed time and look for exits.</p>
+<p><strong>alex</strong>: Got it.</p>
+<p><strong>nick</strong>: You steer by pivoting your back foot…
+Okay?</p>
+<p><strong>nick</strong>: Which way do you think Level Two is?</p>
+<p><strong>alex</strong>: You’ve got the schematics, check.</p>
+<p><strong>nick</strong>: Oh shit! What if they didn’t come with
+us?!</p>
+<p><strong>nick</strong>: Okay. It’s West.</p>
+<p><strong>alex</strong>: The keys are supposed to be at the end of each
+level. Once we get all the keys, we can unlock ARCADE’s heart. And
+then…</p>
+<p><strong>nick</strong>: …and then we go to the Final Level. Hey, don’t
+worry about it. It’s a game. How bad could it be?</p>
+<p><strong>alex</strong>: The clock’s already ticking.</p>
+<p><strong>nick</strong>: Right, then…</p>
+<p><strong>alex</strong>: There…</p>
+<p><strong>nick</strong>: I don’t get it. This is supposed to be the end
+of the level, but it doesn’t go anywhere.</p>
+<p><strong>alex</strong>: It only looks like it leads to nowhere.</p>
+<p><strong>nick</strong>: And we’ve still got time left. This was a
+piece of cake.</p>
+<p><strong>alex</strong>: Yeah, that’s what worries me.</p>
+<p><strong>nick</strong>: Hey, my strength’s low. Look out for
+Fireflies.</p>
+<p><strong>alex</strong>: There…</p>
+<p><strong>nick</strong>: Shit…</p>
+<p><strong>alex</strong>: Check your read-out.</p>
+<p><strong>nick</strong>: You’re right. It worked.</p>
+<p><strong>alex</strong>: There’s another…</p>
+<p><strong>nick</strong>: According to this, the doorway should be
+somewhere around here…</p>
+<p><strong>alex</strong>: Our time’s up.</p>
+<p><strong>nick</strong>: What?! There’s nothing here!</p>
+<p><strong>alex</strong>: Look around…</p>
+<p><strong>nick</strong>: I don’t see the doorway!</p>
+<p><strong>nick</strong>: What the fuck is that?!</p>
+<p><strong>alex</strong>: Screamer.</p>
+<p><strong>alex</strong>: Nick! It’s beneath the water! We have to
+swim!</p>
+<p><strong>nick</strong>: We can’t reach that!</p>
+<p><strong>alex</strong>: We don’t have a choice!</p>
+<p><strong>nick</strong>: So that’s what we almost died for?</p>
+<p><strong>alex</strong>: One of them, anyway… Did you see it? The
+Screamer?</p>
+<p><strong>nick</strong>: I don’t want to talk about it.</p>
+<p><strong>nick</strong>: Christ…no time…</p>
+<p><strong>alex</strong>: There never is.</p>
+<p><strong>nick</strong>: We can take the dunes down like a ski slope.
+Pretend you’re on a snowboard.</p>
+<p><strong>alex</strong>: Never been on a snowboard.</p>
+<p><strong>alex</strong>: I guess we’re walking from here on out.</p>
+<p><strong>alex</strong>: Time’s up.</p>
+<p><strong>nick</strong>: We’re fucked. That’s it.</p>
+<p><strong>alex</strong>: Get up, Nick…</p>
+<p><strong>voice</strong>: Alex…help me…</p>
+<p><strong>alex</strong>: It’s Benz!!!</p>
+<p><strong>benz</strong>: Get me out of here! Oh God!!!</p>
+<p><strong>alex</strong>: Benz!</p>
+<p><strong>alex</strong>: Run! RUN!!!</p>
+<p><strong>nick’s voice</strong>: I know how to do this. I’m good at
+these games. You never play, you’d get nailed in a second.</p>
+<p><strong>albert’s voice</strong>: You can get a free life on Level
+Four, but you have to wait for the last possible instant…</p>
+<p><strong>alex</strong>: Fuck you.</p>
+<p><strong>alex</strong>: Guys! Oh my God…</p>
+<p><strong>alex</strong>: Laurie? Stilts?</p>
+<p><strong>stilts</strong>: You may ask one of us a question. One tells
+the truth, and the other lies. Who you ask, remains your discretion. But
+if the answer is wrong, the questioner dies.</p>
+<p><strong>laurie</strong>: One of these cities, is the place you seek.
+The Teller of Truths will take you there. But the City of Lies, is dark
+and bleak. And death is certain if you enter, beware.</p>
+<p><strong>stilts</strong>: I am The Liar. Where should I take you?</p>
+<p><strong>laurie</strong>: I am the Truth Teller. Where should I take
+you?</p>
+<p><strong>alex</strong>: What did he do to you?</p>
+<p><strong>laurie</strong>: Is that your question?</p>
+<p><strong>alex</strong>: Wait! No! That’s not it!</p>
+<p><strong>alex</strong>: Think! I want to go to the City of Truth, and
+the Truth Teller is from there…but which one is which? The
+liar…think!</p>
+<p><strong>laurie</strong>: You have no time. What is your question?</p>
+<p><strong>alex</strong>: I’m thinking!</p>
+<p><strong>laurie</strong>: You have no time.</p>
+<p><strong>alex</strong>: The liar…Truth Teller…liar…liar…</p>
+<p><strong>alex</strong>: Liar. Did you come from the city on the left,
+or the city on the right?</p>
+<p><strong>stilts</strong>: I came from the city on the left.</p>
+<p><strong>alex</strong>: But you always lie, so you didn’t come from
+there. That means the city on the left must be the City of Truth.</p>
+<p><strong>alex</strong>: Take me to the city on the left!</p>
+<p><strong>voice</strong>: Help…help me…</p>
+<p><strong>alex</strong>: Grab my hand!</p>
+<p><strong>boy</strong>: Where are we?</p>
+<p><strong>laurie</strong>: The City of Truth.</p>
+<p><strong>alex</strong>: How did you get here? Did you play the
+game?!</p>
+<p><strong>boy</strong>: Yes…</p>
+<p><strong>alex</strong>: Thought so.</p>
+<p><strong>alex</strong>: Can you hang onto my back?</p>
+<p><strong>alex</strong>: There’s a monster here. We have to kill it
+before we can leave. That’s what we have to do. I know it’s scary, but I
+won’t let anything happen to you. Okay?</p>
+<p><strong>boy</strong>: Then we’ll go home?</p>
+<p><strong>alex</strong>: Then we’ll go home.</p>
+<p><strong>alex</strong>: Here goes everything.</p>
+<p><strong>boy</strong>: Dark Riders! If they touch us, we’re dead!</p>
+<p><strong>alex</strong>: Which way?</p>
+<p><strong>boy</strong>: That way.</p>
+<p><strong>alex</strong>: Sorry.</p>
+<p><strong>boy</strong>: It’s the wrong way!</p>
+<p><strong>alex</strong>: In this world, wrong is right!</p>
+<p><strong>boy</strong>: It’s here!!!</p>
+<p><strong>alex</strong>: Oh God…oh god…</p>
+<p><strong>alex</strong>: Shit!!!</p>
+<p><strong>the boy</strong>: Come on!!!</p>
+<p><strong>the boy</strong>: The doorway! It’s here!!!</p>
+<p><strong>boy</strong>: We have to go in there, don’t we?</p>
+<p><strong>alex</strong>: Okay. I’m here, ARCADE. Where are you?</p>
+<p><strong>alex</strong>: Where are you, damnit?!</p>
+<p><strong>alex</strong>: You…you’re ARCADE? But the donor…</p>
+<p><strong>alex</strong>: No! NO!!!!!!!!!!!!!!</p>
+<p><strong>other alex</strong>: Time. That’s all I ever think about
+anymore. It’s like there’s never enough of it, you know?</p>
+<p><strong>man</strong>: So where are you then?</p>
+<p><strong>alex</strong>: I’m in the past.</p>
+<p><strong>alex</strong>: No … oh no …</p>
+<p><strong>alex’s mom</strong>: Hi, honey.</p>
+<p><strong>alex</strong>: Mom? You’re alive…</p>
+<p><strong>alex’s mother</strong>: Of course I am.</p>
+<p><strong>alex</strong>: But I don’t understand…</p>
+<p><strong>alex’s mother</strong>: I miss you so much, Alex. I want so
+much to be with you…</p>
+<p><strong>alex’s mother</strong>: I love you, Alex. I never wanted to
+leave. You know that, don’t you?</p>
+<p><strong>alex</strong>: Yes…but…how did you…</p>
+<p><strong>alex’s mother</strong>: Magic. We’ll be together again. I
+know you don’t believe in an afterlife, but there is one. Heaven is
+real.</p>
+<p><strong>alex</strong>: Is…is that where we are? Did I die?</p>
+<p><strong>alex’s mother</strong>: Not yet, honey…</p>
+<p><strong>alex’s mother</strong>: …but I can fix that.</p>
+<p><strong>alex</strong>: Guess what, ass-hole? You forgot about my free
+life!!!</p>
+<p><strong>alex</strong>: Greg!!!</p>
+<p><strong>greg</strong>: Alex! You did it!</p>
+<p><strong>greg</strong>: You did it…</p>
+<p><strong>greg</strong>: So how did you do it, Alex?</p>
+<p><strong>alex</strong>: Well, it’s a long story…</p>
+<p><strong>nick</strong>: What is it?</p>
+<p><strong>alex</strong>: I just thought of something. If we came back
+from the game… …what if ARCADE did too?</p>
+<p><strong>greg</strong>: Nah. You won, right? You played by the
+rules.</p>
+<p><strong>alex</strong>: Okay. Forget I ever said it.</p>
+<p><strong>stilts</strong>: So start at the beginning…</p>
+<p><strong>laurie</strong>: Give her a chance, will you?</p>
+<p><strong>stilts</strong>: I am giving her a chance. Why don’t you get
+off my back?</p>
+<p><strong>greg</strong>: Guys…</p>
+</body>
+</html>

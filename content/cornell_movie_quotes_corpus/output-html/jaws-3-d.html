@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>jaws-3-d</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="jaws-3-d">jaws-3-d</h1>
+<p><strong>tod</strong>: The space shuttle has landed!</p>
+<p><strong>kelly</strong>: Hold still, damn it!</p>
+<p><strong>tod</strong>: What’re you doing later?</p>
+<p><strong>kelly</strong>: Taking my boyfriend to the airport.</p>
+<p><strong>tod</strong>: I thought I was your boyfriend.</p>
+<p><strong>coach</strong>: Looking good, kids. Real good. That’s the
+way. Keep it nice and tight.</p>
+<p><strong>tod</strong>: Keep it nice and tight, Kelly.</p>
+<p><strong>kelly</strong>: I don’t talk that way.</p>
+<p><strong>tod</strong>: Remember, skiers stay up longer.</p>
+<p><strong>kelly</strong>: Shut up, Tod! Be serious!</p>
+<p><strong>tod</strong>: I am serious.</p>
+<p><strong>calvin</strong>: Two years in the making, at a cost of seven
+million dollars, our new Under the Sea Kingdom is an exploration of
+earth’s inner space, capturing the excitement and adventure of man
+beneath the sea. No other amusement park offer exhibits like… … Monsters
+of the Deep fun tunnel, with giant squids, manta rays, and moray eels.
+We’ve added to the fantasy of lost underwater treasure ships for
+kiddies, sunk in… … a reproduction of incredible coral reefs and caves
+where we’ve imported thousands of rare beautiful tropical fish… And in
+this enclosed exhibit is Shark Encounter, where moving walkways take you
+safely through shark-infested waters.</p>
+<p><strong>reporter</strong>: What kind of sharks, Mister Calvin?</p>
+<p><strong>calvin</strong>: Doctor Allen is our Marine Biologist and
+Mammalogist, formerly in charge of the state’s Conservation Marine
+Laboratory. I think she can answer better than I.</p>
+<p><strong>kathryn</strong>: Domesticated sharks, mostly. Mako. Tiger.
+Nurse. Sand.</p>
+<p><strong>reporter</strong>: Don’t they attack each other?</p>
+<p><strong>kathryn</strong>: Contrary to popular belief, when sharks are
+well fed, they will not hunt.</p>
+<p><strong>calvin</strong>: And we keep them well fed, so be kind what
+you say about us, or…</p>
+<p><strong>reporter</strong>: You don’t have a Great White.</p>
+<p><strong>kathryn</strong>: No… And I really do have to get back to my
+own mammals, so, if you’ll excuse me, please.</p>
+<p><strong>calvin</strong>: Yes, of course. Thank you for stopping by,
+Doctor.</p>
+<p><strong>reporter</strong>: It seems what you’ve created here is a
+combination Art Nouveau and Jules Verne.</p>
+<p><strong>calvin</strong>: Exactly.</p>
+<p><strong>coach</strong>: Great, gang. Beautiful! Making me proud of
+you.</p>
+<p><strong>kelly</strong>: Watch it, I’m gonna fall. I’m gonna go!</p>
+<p><strong>tod</strong>: Balance, Kelly. Bal-lance!</p>
+<p><strong>jill</strong>: No, Kelly. Not now!</p>
+<p><strong>tod</strong>: Lean back!</p>
+<p><strong>kelly</strong>: Ahhhhh!</p>
+<p><strong>bill</strong>: You fall, I’ll kill you. I swear I’ll drown
+you.</p>
+<p><strong>kelly</strong>: Oh, God. I can’t…</p>
+<p><strong>coach</strong>: Now tomorrow, there’s gonna be this great big
+banner that we break through here – so now isn’t the time to fall,
+Kelly.</p>
+<p><strong>kelly</strong>: Ahh… ahhh… ohhhh…</p>
+<p><strong>skiers</strong>: NO!</p>
+<p><strong>tod</strong>: Aw… shit!</p>
+<p><strong>coach</strong>: What the hell was that all about? Kelly!</p>
+<p><strong>kelly</strong>: Sorry, guys.</p>
+<p><strong>steve</strong>: … She did it again.</p>
+<p><strong>coach</strong>: Concentrate out there! We can’t have mistakes
+tomorrow!</p>
+<p><strong>kathryn</strong>: What, Daisy? What do you want? Tell me.</p>
+<p><strong>kathryn</strong>: Come here, Bobby. Come on, give me a
+kiss.</p>
+<p><strong>kathryn</strong>: Thank you.</p>
+<p><strong>mike</strong>: Want another one?</p>
+<p><strong>kathryn</strong>: Sure do. Kiss me again, Bobby.</p>
+<p><strong>kathryn</strong>: Well, not much longer to go.</p>
+<p><strong>mike</strong>: What is it, 97 days?</p>
+<p><strong>kathryn</strong>: Till this opens, not our wedding.</p>
+<p><strong>mike</strong>: Hope I make it through both.</p>
+<p><strong>kathryn</strong>: You will. I’ll see to it.</p>
+<p><strong>mike</strong>: Look, Kathryn. They’re jealous.</p>
+<p><strong>kathryn</strong>: They’re acting very strange suddenly.</p>
+<p><strong>mike</strong>: Pre-opening jitters.</p>
+<p><strong>kathryn</strong>: I guess.</p>
+<p><strong>mike</strong>: Brody here.</p>
+<p><strong>voice</strong>: Mike, we’re having a problem with the
+gate.</p>
+<p><strong>mike</strong>: What kind of trouble?</p>
+<p><strong>operator</strong>: It’s not closing, Mike.</p>
+<p><strong>mike</strong>: That’s impossible.</p>
+<p><strong>operator</strong>: I know. But we show it’s not closing.</p>
+<p><strong>mike</strong>: Okay, okay… We’ll get someone on it.</p>
+<p><strong>mike</strong>: Damn it. I can’t understand! I gotta go,
+hon.</p>
+<p><strong>kathryn</strong>: Don’t forget you have your brother.</p>
+<p><strong>mike</strong>: Yeah.</p>
+<p><strong>kathryn</strong>: See you later.</p>
+<p><strong>philip</strong>: Bring the crane over. Come down. Easy
+down.</p>
+<p><strong>mike</strong>: Hey.</p>
+<p><strong>mike</strong>: Hutton, how the hell did you get my crane?</p>
+<p><strong>philip</strong>: Calvin said it was all right.</p>
+<p><strong>mike</strong>: Yeah, well I didn’t!</p>
+<p><strong>philip</strong>: Well, we’re not going to hurt it, old boy. I
+say, love, is Flipper ready to go?</p>
+<p><strong>kathryn</strong>: Go where?</p>
+<p><strong>philip</strong>: On the telly. We’re to film him for the
+evening news.</p>
+<p><strong>kathryn</strong>: Nobody told me.</p>
+<p><strong>philip</strong>: I just did. Can you make them do tricks?</p>
+<p><strong>kathryn</strong>: They’re not tricks. They’re behavior
+patterns.</p>
+<p><strong>philip</strong>: Fine. Have them do some.</p>
+<p><strong>kathryn</strong>: I don’t know. They’re nervous and skittish
+right now.</p>
+<p><strong>philip</strong>: Yes, aren’t we all.</p>
+<p><strong>kathryn</strong>: That macho pompous English –</p>
+<p><strong>mike</strong>: Don’t let him get you. Just continue your
+patterns and pretend he’s not around.</p>
+<p><strong>kathryn</strong>: My imagination isn’t that good.</p>
+<p><strong>mike</strong>: Honey, I gotta go.</p>
+<p><strong>kathryn</strong>: Okay, bye.</p>
+<p><strong>mike</strong>: Make sure you put this back.</p>
+<p><strong>philip</strong>: Aww, can’t I keep it?</p>
+<p><strong>philip</strong>: Okay now. Have Flipper flip or
+something.</p>
+<p><strong>kathryn</strong>: Make this quick!</p>
+<p><strong>kelly</strong>: Ahhh, ahhh…</p>
+<p><strong>tod</strong>: Now what?</p>
+<p><strong>kelly</strong>: Gotta sneeze.</p>
+<p><strong>tod</strong>: Don’t you dare.</p>
+<p><strong>kelly</strong>: Can’t help it… ahh…</p>
+<p><strong>jill</strong>: No, Kelly! We’re almost in!</p>
+<p><strong>kelly</strong>: Ahhhh…</p>
+<p><strong>calvin</strong>: In addition to the aerobatics that our
+skiers are performing, they’ll be doing the comedy ski show “The
+Hatfields and McCoys,” choreographed by world-famous skier Janet
+Turner.</p>
+<p><strong>coach</strong>: Beautiful. Hold it, hold it…</p>
+<p><strong>coach</strong>: Get ready. Here we go now… Make me proud of
+you.</p>
+<p><strong>skier</strong>: Release.</p>
+<p><strong>tod</strong>: God bless you.</p>
+<p><strong>mike</strong>: What happened?</p>
+<p><strong>singer</strong>: I don’t know. It’s off the track.</p>
+<p><strong>mike</strong>: Give me the walkie.</p>
+<p><strong>mike</strong>: Overman!</p>
+<p><strong>overman’s voice</strong>: We get time and a half for
+this?</p>
+<p><strong>mike</strong>: No, Overman.</p>
+<p><strong>overman’s voice</strong>: Then we’ll be done in a minute.</p>
+<p><strong>singer</strong>: Let’s go, guys. I got a date tonight.</p>
+<p><strong>overman’s voice</strong>: She have a friend?</p>
+<p><strong>mike</strong>: Yeah, but you don’t. Get to work.</p>
+<p><strong>mike</strong>: Stay on top of it.</p>
+<p><strong>singer</strong>: Right.</p>
+<p><strong>kathryn</strong>: It’s no use. They won’t come into the
+lagoon.</p>
+<p><strong>philip</strong>: Well then, can you have them jump to the
+camera over here?</p>
+<p><strong>kathryn</strong>: Wait a minute. These aren’t kangaroos,
+Mr. Hutton. They’re dolphins.</p>
+<p><strong>philip</strong>: I thought they were clever.</p>
+<p><strong>kathryn</strong>: I can have them walk backwards.</p>
+<p><strong>philip</strong>: No, no. That won’t do.</p>
+<p><strong>kathryn</strong>: I told you, something’s upset them.</p>
+<p><strong>philip</strong>: Well, I have to get this into the networks.
+If you can’t do it, you can’t do it, that’s all.</p>
+<p><strong>kathryn</strong>: I’m sorry.</p>
+<p><strong>philip</strong>: Well, we’ll just try again, dear. Keep
+working on it. Maybe you’ll get it one of these years. Pack up, boys.
+Flipper’s a flop.</p>
+<p><strong>kathryn</strong>: No! That is wrong! What is the matter with
+you?</p>
+<p><strong>mike</strong>: You called, Doctor?</p>
+<p><strong>kathryn</strong>: Everything’s going wrong. I’m having more
+trouble with Bobby than I ever have before. I can’t get him to
+respond.</p>
+<p><strong>mike</strong>: How come?</p>
+<p><strong>kathryn</strong>: I don’t know. I can’t understand it.
+Something’s bothering them.</p>
+<p><strong>mike</strong>: And what else is bothering you?</p>
+<p><strong>kathryn</strong>: … Hutton. He really pisses me off.</p>
+<p><strong>mike</strong>: Yeah, you really don’t like him.</p>
+<p><strong>kathryn</strong>: I don’t like what he does.</p>
+<p><strong>mike</strong>: It’s his work.</p>
+<p><strong>kathryn</strong>: He doesn’t need the money. He inherited a
+fortune. He kills for kicks. TV battles between non-predator fish and
+divers. The diver always wins.</p>
+<p><strong>mike</strong>: Okay, forget him now. I’m going to pick up
+Sean. Take a ride?</p>
+<p><strong>kathryn</strong>: I can’t leave now. We taking Sean out?</p>
+<p><strong>mike</strong>: Sure. Want to try that new Italian place?</p>
+<p><strong>kathryn</strong>: No, you don’t need all that starch. You’re
+getting too fat.</p>
+<p><strong>mike</strong>: Not enough loving.</p>
+<p><strong>kathryn</strong>: Get out of here!</p>
+<p><strong>mike</strong>: We’ll have sushi.</p>
+<p><strong>overman</strong>: It’s Miller time!</p>
+<p><strong>harris</strong>: You buying?</p>
+<p><strong>overman</strong>: Sure am.</p>
+<p><strong>harris</strong>: Coming with us? Overman’s buying.</p>
+<p><strong>singer</strong>: No, I’ll take the money instead.</p>
+<p><strong>overman</strong>: You see the three-quarter socket?</p>
+<p><strong>harris</strong>: Yeah. Down there.</p>
+<p><strong>overman</strong>: Shit.</p>
+<p><strong>singer</strong>: … Way to go, guys.</p>
+<p><strong>overman</strong>: You two go ahead. I’ll meet you at Captain
+Kidd’s.</p>
+<p><strong>singer</strong>: Okay.</p>
+<p><strong>mike</strong>: Sean!</p>
+<p><strong>mike</strong>: Hey, what’s goin’ on, little brother!</p>
+<p><strong>sean</strong>: Damn! You sonuvabitch! Look at you!</p>
+<p><strong>mike</strong>: Look great, don’t I?</p>
+<p><strong>sean</strong>: Got a job for me?</p>
+<p><strong>mike</strong>: Yeah, we’ll find something for you. Shoveling
+shark shit or something.</p>
+<p><strong>sean</strong>: Sharks???</p>
+<p><strong>mike</strong>: In a restaurant. You sit there and they swim
+around you.</p>
+<p><strong>sean</strong>: … I’ll go to McDonalds.</p>
+<p><strong>mike</strong>: How’d you do in school?</p>
+<p><strong>sean</strong>: Great. I got one B, two C’s, and eight
+incompletes.</p>
+<p><strong>mike</strong>: Hey, I’m proud of you, kid.</p>
+<p><strong>sean</strong>: So was Dad.</p>
+<p><strong>sean</strong>: Took it this morning.</p>
+<p><strong>mike</strong>: He needs a haircut.</p>
+<p><strong>sean</strong>: Yeah, right.</p>
+<p><strong>mike</strong>: How is he? Still fighting crime?</p>
+<p><strong>sean</strong>: Last week he broke up a major counterfeiting
+ring. Gang of kids were using slugs in the Pac-Man games.</p>
+<p><strong>mike</strong>: Big bust! He confiscate their water
+pistols?</p>
+<p><strong>sean</strong>: Booked them all at Baskin- Robbins.</p>
+<p><strong>mike</strong>: That’s Dad…</p>
+<p><strong>mike</strong>: He taught us good, though, didn’t he, Sean? We
+were lucky to grow up the way we did.</p>
+<p><strong>sean</strong>: Who’s grown up?</p>
+<p><strong>mike</strong>: Gee, it’s good to see you!</p>
+<p><strong>sean</strong>: I want to see Kathryn.</p>
+<p><strong>mike</strong>: Just find your own. Like Dad says, there’s
+plenty of fish in the sea.</p>
+<p><strong>kelly</strong>: Mike!</p>
+<p><strong>kelly</strong>: Give me a ride?</p>
+<p><strong>mike</strong>: Sure.</p>
+<p><strong>kelly</strong>: ’Preciate it.</p>
+<p><strong>mike</strong>: What do they want now…?</p>
+<p><strong>mike</strong>: Kelly, this is my brother Sean. Don’t let him
+get lost.</p>
+<p><strong>kelly</strong>: So, you just get here?</p>
+<p><strong>sean</strong>: Yeah, from Boston.</p>
+<p><strong>kelly</strong>: I was seeing this guy off. He flew in from
+Dallas. Wants to marry me. He’s okay, but Texans are so possessive.</p>
+<p><strong>sean</strong>: Massachussettans aren’t.</p>
+<p><strong>kelly</strong>: ’Course they’re also so rich.</p>
+<p><strong>sean</strong>: … Massachussettans aren’t.</p>
+<p><strong>kelly</strong>: How long you staying?</p>
+<p><strong>sean</strong>: I don’t know, it depends.</p>
+<p><strong>kelly</strong>: You like Florida?</p>
+<p><strong>sean</strong>: I haven’t seen that much, but so far it looks
+great.</p>
+<p><strong>kelly</strong>: Well, wait till you see the rest.</p>
+<p><strong>kelly</strong>: You gonna work at The Kingdom?</p>
+<p><strong>sean</strong>: Depends on big brother.</p>
+<p><strong>kelly</strong>: I’m a water-skier.</p>
+<p><strong>sean</strong>: Are you really?</p>
+<p><strong>kelly</strong>: Sure am.</p>
+<p><strong>sean</strong>: That’s too bad. I don’t like water. I don’t
+like being around in. I never go in it.</p>
+<p><strong>kelly</strong>: How come?</p>
+<p><strong>sean</strong>: Goes back to when I was a kid. Mike’s okay,
+he’s gotten over his fears, but I haven’t. I can’t even drink it.</p>
+<p><strong>mike</strong>: Come on, let’s go.</p>
+<p><strong>sean</strong>: Something wrong?</p>
+<p><strong>mike</strong>: You know Overman?</p>
+<p><strong>kelly</strong>: Musclehead?</p>
+<p><strong>mike</strong>: He’s missing.</p>
+<p><strong>kelly</strong>: Hope with none of my girl friends.</p>
+<p><strong>mike</strong>: Kelly, could you look after Sean for a while?
+Show him around for me?</p>
+<p><strong>kelly</strong>: Sure. No problem.</p>
+<p><strong>mike</strong>: Thanks.</p>
+<p><strong>sean</strong>: Yeah, thanks.</p>
+<p><strong>sean</strong>: Hi-yo-Silver!</p>
+<p><strong>kathryn</strong>: Sean!</p>
+<p><strong>kathryn</strong>: MMMM. It’s good to see you again.</p>
+<p><strong>sean</strong>: You really gonna marry this guy?</p>
+<p><strong>kathryn</strong>: Well, I can’t wait for you forever.</p>
+<p><strong>sean</strong>: Why not? Younger guys are in.</p>
+<p><strong>mike</strong>: Okay, you two, have a good life without me. I
+gotta go.</p>
+<p><strong>sean</strong>: Don’t hurry back.</p>
+<p><strong>kelly</strong>: Doctor Allen, you think I could ride the
+whale sometime?</p>
+<p><strong>kathryn</strong>: Sure, Kelly.</p>
+<p><strong>kelly</strong>: That’d be great. I was a seal once, in
+another life, and whales were always my closest friends.</p>
+<p><strong>mike</strong>: Why didn’t you stay with him? You never let a
+diver go down alone!</p>
+<p><strong>harris</strong>: We were done, Mike. He left a piece of
+equipment down there and went back for it.</p>
+<p><strong>calvin</strong>: And hasn’t been seen since.</p>
+<p><strong>harris</strong>: I waited for him. When he didn’t show, I
+went back. There’s no sign of him. His gear’s still on deck. I went in
+looking for him. All I found was this.</p>
+<p><strong>mike</strong>: I don’t understand. Overman’s too good a diver
+to disappear.</p>
+<p><strong>calvin</strong>: Have you checked the bars? The guy’s
+irresponsible; he’s done this before.</p>
+<p><strong>harris</strong>: Yes, Mr. Calvin. We’ve called all over.
+Nobody’s seen him and his truck’s still here.</p>
+<p><strong>calvin</strong>: I want him found. He could be in the bars,
+he could be shacking up. He could be out to sea</p>
+<p><strong>mike</strong>: I’ll need more men to look.</p>
+<p><strong>calvin</strong>: Can’t help you, Mike. Don’t have the
+manpower.</p>
+<p><strong>mike</strong>: We’re going to have to cover the entire
+lagoon.</p>
+<p><strong>calvin</strong>: I know, but you’re just going to have to
+find another way. So you better start.</p>
+<p><strong>kathryn</strong>: I think they’ll come out now.</p>
+<p><strong>ruth</strong>: They still seem nervous.</p>
+<p><strong>kathryn</strong>: I know.</p>
+<p><strong>mike</strong>: They’re coming with us?</p>
+<p><strong>kathryn</strong>: We play hide and seek all the time. They
+find a lot of things.</p>
+<p><strong>mike</strong>: Where’s the rubber band?</p>
+<p><strong>kathryn</strong>: Look, Michael… you don’t have to come.</p>
+<p><strong>mike</strong>: I don’t have a choice.</p>
+<p><strong>kathryn</strong>: Well, let’s go then.</p>
+<p><strong>mike</strong>: How many coupons is this ride?</p>
+<p><strong>mike</strong>: What do I do now?</p>
+<p><strong>kathryn</strong>: Take a deep breath and hold it.</p>
+<p><strong>mike</strong>: That’s cute, Kathryn. Real cute.</p>
+<p><strong>kathryn</strong>: Just put your mask on.</p>
+<p><strong>kathryn</strong>: Control, we’re preparing to leave the dock
+now with the sub.</p>
+<p><strong>controller</strong>: Roger. We’ll keep an eye out for
+you.</p>
+<p><strong>kathryn</strong>: Honey… you all right?</p>
+<p><strong>mike</strong>: No.</p>
+<p><strong>kathryn</strong>: Are you scared?</p>
+<p><strong>mike</strong>: Yes.</p>
+<p><strong>mike</strong>: Damn it!</p>
+<p><strong>kathryn</strong>: Hi, baby.</p>
+<p><strong>mike</strong>: Baby goddamn scared me to death!</p>
+<p><strong>kathryn</strong>: They just wanted to say hello.</p>
+<p><strong>mike</strong>: … Friggin’ fish.</p>
+<p><strong>mike</strong>: Let’s head to the gate and work our way
+back.</p>
+<p><strong>kathryn</strong>: That’s a lot of ground to cover.</p>
+<p><strong>mike</strong>: I know, I built it. I’ve just never seen it
+this way.</p>
+<p><strong>sean</strong>: Well, I needed a cold shower.</p>
+<p><strong>kelly</strong>: Come on! Check this out!</p>
+<p><strong>kathryn</strong>: It’s romantic down here.</p>
+<p><strong>mike</strong>: Oh, yeah. Very.</p>
+<p><strong>kathryn</strong>: You know, on our honeymoon, we should go
+scuba diving.</p>
+<p><strong>mike</strong>: Let’s not talk about that now, okay?</p>
+<p><strong>kathryn</strong>: Now I’m getting paranoid!</p>
+<p><strong>woman</strong>: Any luck?</p>
+<p><strong>mike’s voice</strong>: Not yet.</p>
+<p><strong>woman</strong>: We haven’t seen anything either. Not a sign
+of him.</p>
+<p><strong>mike’s voice</strong>: Let us know.</p>
+<p><strong>sean</strong>: This is where to be. High and dry.</p>
+<p><strong>kelly</strong>: And alone.</p>
+<p><strong>mike</strong>: What’s wrong?</p>
+<p><strong>kathryn</strong>: Nothing.</p>
+<p><strong>mike</strong>: … If nothing’s wrong, why are we stopping
+here?</p>
+<p><strong>kathryn</strong>: … Electrical connection malfunctioning.</p>
+<p><strong>mike</strong>: You sound like Houston Mission Control. What
+the hell does it mean?</p>
+<p><strong>kathryn</strong>: That we swim.</p>
+<p><strong>mike</strong>: Swim where? Out there? Oh, no, forget it, not
+me! You go, I’m staying.</p>
+<p><strong>kathryn</strong>: Michael, the sub’s dead.</p>
+<p><strong>mike</strong>: Yeah, and so will I be if I start swimming in
+that blackass jungle.</p>
+<p><strong>kathryn</strong>: Okay, stay. We’ll come back for you.</p>
+<p><strong>mike</strong>: Where are you going?</p>
+<p><strong>kathryn</strong>: Up.</p>
+<p><strong>mike</strong>: And leave me down here???</p>
+<p><strong>kathryn</strong>: Make up your mind.</p>
+<p><strong>mike</strong>: What mind? If I had a mind, I’d never have let
+you talk me into this.</p>
+<p><strong>kathryn</strong>: I talked you into this?</p>
+<p><strong>mike</strong>: I’d have fallen in love with a pilot or a
+mountain climber.</p>
+<p><strong>kathryn</strong>: Are you coming…?</p>
+<p><strong>mike</strong>: No, I don’t want to leave now. I’m having too
+good a time… Of course I’m coming! You’d think you’re gonna leave
+me?</p>
+<p><strong>mike</strong>: You would, wouldn’t you? I’d end up whale
+shit, you wouldn’t care.</p>
+<p><strong>kathryn</strong>: Get your reserve bottle and let’s go.</p>
+<p><strong>kathryn</strong>: You all right?</p>
+<p><strong>mike</strong>: I think so. I’m not sure… Are you?</p>
+<p><strong>kathryn</strong>: I’m okay.</p>
+<p><strong>kathryn</strong>: Michael…</p>
+<p><strong>mike</strong>: It’s all right, baby. We’re safe…</p>
+<p><strong>mike</strong>: Thanks, guys.</p>
+<p><strong>kathryn</strong>: How the hell did it get in here?</p>
+<p><strong>mike</strong>: God, they’re horrible. I hate them. Did you
+see its eyes? How black they are? The look in them?</p>
+<p><strong>kathryn</strong>: Don’t think about it. It’s over.</p>
+<p><strong>mike</strong>: It’s never over… Here comes another six years
+of bad dreams.</p>
+<p><strong>calvin</strong>: What you’re saying is we have a Great White
+shark in the lagoon.</p>
+<p><strong>mike</strong>: And a missing man.</p>
+<p><strong>philip</strong>: Unhappy combination. Most likely one’s
+inside the other.</p>
+<p><strong>kathryn</strong>: Sharks are man-biters, Mister Hutton. Not
+man-eaters –</p>
+<p><strong>philip</strong>: That’s a load of codswopple. A Great White
+doesn’t fear man. It doesn’t fear beast. It’s an orgy of food and
+blood.</p>
+<p><strong>kathryn</strong>: I think we can capture it. I’d like to
+try.</p>
+<p><strong>philip</strong>: That’s preposterous!</p>
+<p><strong>calvin</strong>: Go on, Doctor.</p>
+<p><strong>kathryn</strong>: No one’s ever caught a Great White except
+indirectly in fishing nets. I want to dart it and keep it alive.</p>
+<p><strong>calvin</strong>: It would make a marvelous attraction; the
+only Great White in captivity.</p>
+<p><strong>kathryn</strong>: I can get it.</p>
+<p><strong>philip</strong>: You can get killed!</p>
+<p><strong>kathryn</strong>: I’ve handled sharks before. Bigger than
+this one.</p>
+<p><strong>philip</strong>: Calvin, let me go down there and kill the
+bastard.</p>
+<p><strong>kathryn</strong>: No!</p>
+<p><strong>philip</strong>: It’ll chop up half a million dollars of your
+tropical fish in two minutes.</p>
+<p><strong>kathryn</strong>: Calvin, I insist I be allowed to capture
+it!</p>
+<p><strong>philip</strong>: Three hundred million years of evolution
+have created the greatest butcher the world’s ever known.</p>
+<p><strong>kathryn</strong>: It’s one of the world’s greatest
+creatures.</p>
+<p><strong>philip</strong>: A shark could have a hundred embryos in its
+sack. You know how many are born? Maybe five. They eat each other before
+birth! They’re born killers!</p>
+<p><strong>kathryn</strong>: The only Great White in captivity, Calvin.
+All those people standing in line…</p>
+<p><strong>calvin</strong>: All right, Kathryn. Go ahead and get it.</p>
+<p><strong>kathryn</strong>: I will.</p>
+<p><strong>philip</strong>: Well, then I’m going to film it.</p>
+<p><strong>kathryn</strong>: Like hell!</p>
+<p><strong>philip</strong>: Make a lovely item for “Good Morning,
+America”</p>
+<p><strong>calvin</strong>: Absolutely. Good idea.</p>
+<p><strong>kathryn</strong>: With those camera lights and…</p>
+<p><strong>calvin</strong>: He’s going with you, Doctor.</p>
+<p><strong>kathryn</strong>: No, it will be too much distraction. I
+don’t want that many people in the water. I’ll go in, give it a belly
+shot, and get out.</p>
+<p><strong>calvin</strong>: And Philip will be there to film it. Now
+that’s the end of it!</p>
+<p><strong>kathryn</strong>: I want that shark alive.</p>
+<p><strong>philip</strong>: So do I, love.</p>
+<p><strong>calvin</strong>: Well, you’d better get started!</p>
+<p><strong>mike</strong>: You’re going down there again?</p>
+<p><strong>kathryn</strong>: Yes.</p>
+<p><strong>mike</strong>: After what happened to us?</p>
+<p><strong>kathryn</strong>: I know I can capture it.</p>
+<p><strong>mike</strong>: Kathryn, you’re crazy. Really crazy. A
+suicidal maniac.</p>
+<p><strong>ruth</strong>: Twelve cc’s</p>
+<p><strong>brian</strong>: That should do it.</p>
+<p><strong>philip</strong>: We’ll shoot this with an .18, boys.</p>
+<p><strong>shelly</strong>: That bugger moves fast.</p>
+<p><strong>philip</strong>: Give me a 400-foot magazine; we may be down
+there for a while.</p>
+<p><strong>shelly</strong>: I wouldn’t mind going down with her.</p>
+<p><strong>philip</strong>: She is a lovely bit of crumpet at that.</p>
+<p><strong>ike</strong>: Aren’t you suiting up, mate?</p>
+<p><strong>mike</strong>: No.</p>
+<p><strong>ike</strong>: Well, don’t worry about your fiancee. We’ll
+watch over her.</p>
+<p><strong>mike</strong>: She can take care of herself. She doesn’t need
+you.</p>
+<p><strong>ike</strong>: Never know down there. Helps to have a friend,
+sometimes.</p>
+<p><strong>mike</strong>: How many sharks have you killed?</p>
+<p><strong>ike</strong>: Me? I don’t know. Twenty, thirty. I love them,
+think they’re the greatest.</p>
+<p><strong>kathryn</strong>: Well, how do I look?</p>
+<p><strong>mike</strong>: What?</p>
+<p><strong>kathryn</strong>: Do you like it?</p>
+<p><strong>mike</strong>: Oh, yeah. Really nice. Who’s your designer?
+Sassoon Shark?</p>
+<p><strong>kathryn</strong>: I got it on sale. A real steel.</p>
+<p><strong>mike</strong>: Here.</p>
+<p><strong>kathryn</strong>: What’s that?</p>
+<p><strong>mike</strong>: Bracelets.</p>
+<p><strong>kathryn</strong>: Fine piece of engineering.</p>
+<p><strong>mike</strong>: Should protect you a little, from the
+compression. If that thing gets ahold of you.</p>
+<p><strong>kathryn</strong>: Thank you.</p>
+<p><strong>mike</strong>: Kathryn…</p>
+<p><strong>kathryn</strong>: Yes?</p>
+<p><strong>mike</strong>: … I love you.</p>
+<p><strong>kathryn</strong>: Love you too.</p>
+<p><strong>mike</strong>: Okay, hit it.</p>
+<p><strong>mike</strong>: Let us know as soon as you have anything.</p>
+<p><strong>operator</strong>: Right, Mike.</p>
+<p><strong>mike</strong>: Wouldn’t this whole thing be a little safer in
+the daytime?</p>
+<p><strong>kathryn</strong>: It’s easier to lure sharks at night.</p>
+<p><strong>mike</strong>: Why? ’Cause they’re hungrier?</p>
+<p><strong>philip</strong>: They’re always hungry. They eat
+anything.</p>
+<p><strong>philip</strong>: … even steel.</p>
+<p><strong>kathryn</strong>: You look like an orange worm.</p>
+<p><strong>philip</strong>: Shark bait. Draws them over for
+closeups.</p>
+<p><strong>kathryn</strong>: What in hell is that?</p>
+<p><strong>philip</strong>: Lunch for Whitey. Something to munch on in
+case things get dicey.</p>
+<p><strong>kathryn</strong>: We’re taking that shark alive!</p>
+<p><strong>philip</strong>: Let’s hope he knows that.</p>
+<p><strong>kathryn</strong>: I know it and I will not go down into this
+lagoon as long as you carry that!</p>
+<p><strong>philip</strong>: Why?</p>
+<p><strong>kathryn</strong>: Because I don’t trust you, that’s why.</p>
+<p><strong>mike</strong>: You set that thing off down there, you don’t
+know what will happen.</p>
+<p><strong>philip</strong>: Precisely.</p>
+<p><strong>kathryn</strong>: I insist you get rid of that bomb.</p>
+<p><strong>philip</strong>: Afraid I can’t do that.</p>
+<p><strong>kathryn</strong>: You’re supposed to film it, not turn it to
+hash!</p>
+<p><strong>philip</strong>: Look, Doctor, this isn’t one of your pet
+porpoises we’re after. It’s a torpedo of muscle. Murderous expertise!
+I’ve seen bleeding sharks try to eat themselves! Don’t be so concerned
+about them. Worry about yourself.</p>
+<p><strong>mike</strong>: Hutton!</p>
+<p><strong>mike</strong>: You heard the lady. Take it off.</p>
+<p><strong>operator</strong>: We see him, Mike. Between the stadium and
+the ski show island.</p>
+<p><strong>mike</strong>: All right, hit those lights too.</p>
+<p><strong>mike</strong>: Change your mind?</p>
+<p><strong>kathryn</strong>: No.</p>
+<p><strong>mike</strong>: You amaze me. I’m more scared than you.</p>
+<p><strong>kathryn</strong>: No, you’re not.</p>
+<p><strong>mike</strong>: Here. Don’t let anything happen to her.</p>
+<p><strong>mike</strong>: This is ridiculous. We should blow the
+mother’s head off.</p>
+<p><strong>shelly</strong>: Couldn’t agree more.</p>
+<p><strong>kathryn</strong>: Michael!</p>
+<p><strong>kathryn</strong>: … I told you I’d get it.</p>
+<p><strong>mike</strong>: I can use a shot of what he’s got.</p>
+<p><strong>kathryn</strong>: … Me, too.</p>
+<p><strong>mike</strong>: After this has opened, when everything’s
+settled down, you and I are going away. Just the two of us. No dolphins,
+no sharks, no whales, no penguins. Just you and me.</p>
+<p><strong>kathryn</strong>: Sounds wonderful.</p>
+<p><strong>mike</strong>: We’ll go to Palm Springs, Death Valley,
+Arizona desert, anyplace where there’s no water.</p>
+<p><strong>kathryn</strong>: Don’t be afraid, it’s okay now.</p>
+<p><strong>brian</strong>: We’re ready for you.</p>
+<p><strong>kathryn</strong>: I have to walk him till the drug wears
+off.</p>
+<p><strong>mike</strong>: You want me to stay?</p>
+<p><strong>kathryn</strong>: Get some sleep. And tell Sean I’m
+sorry.</p>
+<p><strong>mike</strong>: Sean, that’s right…</p>
+<p><strong>philip</strong>: Watch it, Brody. You’re ruining the
+shot.</p>
+<p><strong>mike</strong>: Kind of dull in there for you, isn’t it? Why
+don’t you throw in another shark?</p>
+<p><strong>ruth</strong>: He’s a young one.</p>
+<p><strong>kathryn</strong>: And big for his age.</p>
+<p><strong>mike</strong>: Sean. Sean, where are you?</p>
+<p><strong>kelly</strong>: Someone’s looking for you.</p>
+<p><strong>sean</strong>: That’s Mike. Let him look.</p>
+<p><strong>mike</strong>: Sean? You there?</p>
+<p><strong>kelly</strong>: Come on, it’s getting late, and I have an
+early call.</p>
+<p><strong>kathryn</strong>: Why don’t you take a rest, Brian?</p>
+<p><strong>brian</strong>: I’m only walking him. You caught him. You
+have to be exhausted.</p>
+<p><strong>kathryn</strong>: Go on, you’re tired.</p>
+<p><strong>brian</strong>: No, I’m fine, thanks.</p>
+<p><strong>philip</strong>: How’s sleeping beauty?</p>
+<p><strong>kathryn</strong>: Still sleeping.</p>
+<p><strong>philip</strong>: Kiss him, maybe he’ll turn into a frog.</p>
+<p><strong>kathryn</strong>: Should be coming out of it soon.</p>
+<p><strong>philip</strong>: Just watch it when he does.</p>
+<p><strong>philip</strong>: May I cut in?</p>
+<p><strong>brian</strong>: He’s all yours.</p>
+<p><strong>philip</strong>: Could be a new dance… Walking the Shark.</p>
+<p><strong>kathryn</strong>: Thanks for helping.</p>
+<p><strong>philip</strong>: Not at all.</p>
+<p><strong>kathryn</strong>: Why are you?</p>
+<p><strong>philip</strong>: I like it when they wake up.</p>
+<p><strong>kathryn</strong>: So do I. But for different reasons.</p>
+<p><strong>philip</strong>: And I like you.</p>
+<p><strong>philip</strong>: You were quite daring in capturing him. Very
+skillful indeed.</p>
+<p><strong>kathryn</strong>: Skillful? I missed my first shot.</p>
+<p><strong>philip</strong>: Some miss all their shots.</p>
+<p><strong>kathryn</strong>: Somebody could have gotten hurt.</p>
+<p><strong>philip</strong>: That’s what life is, Doctor. Full of chances
+to hurt yourself, or somebody else.</p>
+<p><strong>kathryn</strong>: You’re a strange man, Mr. Hutton.</p>
+<p><strong>philip</strong>: Philip.</p>
+<p><strong>kathryn</strong>: Before, you were ready to feed this shark a
+hand grenade. Now you’re helping to nurse it back to life.</p>
+<p><strong>philip</strong>: That’s because I am the shark.</p>
+<p><strong>kathryn</strong>: We’re all from the sea, Mr. Hutton. Our
+destiny is linked to the fate of the oceans. By continuing to destroy
+fish, man destroys himself.</p>
+<p><strong>philip</strong>: The grenade’s just to intimidate Whitey. He
+knows I have it, so he watches out. Same is true when I film lions,
+tigers, rhinos…</p>
+<p><strong>kathryn</strong>: I think that you and I are natural
+enemies.</p>
+<p><strong>philip</strong>: And here I thought I was charming you.</p>
+<p><strong>philip</strong>: Hello. I think his nap’s over.</p>
+<p><strong>kathryn</strong>: Get ready to go.</p>
+<p><strong>philip</strong>: Believe me, I am.</p>
+<p><strong>kathryn</strong>: Brian, he’s coming around!</p>
+<p><strong>philip</strong>: Well, Doctor. You’ve got your shark.</p>
+<p><strong>kathryn</strong>: Thanks to you.</p>
+<p><strong>philip</strong>: Oh when the shark bites, With his teeth,
+dear, Scarlet billows start to spread…</p>
+<p><strong>mike</strong>: All well in the Kingdom of the Sea?</p>
+<p><strong>kathryn</strong>: Finally.</p>
+<p><strong>mike</strong>: How’s your patient?</p>
+<p><strong>kathryn</strong>: Recovering nicely.</p>
+<p><strong>mike</strong>: Me, too.</p>
+<p><strong>kathryn</strong>: Mmmm… you smell good.</p>
+<p><strong>mike</strong>: You don’t.</p>
+<p><strong>kathryn</strong>: It’s my new perfume. Great White, the
+Man-Eater.</p>
+<p><strong>philip</strong>: Playful bastards, wouldn’t you say?</p>
+<p><strong>ike</strong>: Brings back such pleasant memories.</p>
+<p><strong>philip</strong>: Was a rather enjoyable afternoon, wasn’t
+it?</p>
+<p><strong>shelly</strong>: You want to show this?</p>
+<p><strong>philip</strong>: Absolutely. The audience will stain their
+drawers. I did.</p>
+<p><strong>ike</strong>: Gonna be a beautiful day.</p>
+<p><strong>philip</strong>: And a profitable one.</p>
+<p><strong>philip</strong>: Come on, I’ll buy you breakfast.</p>
+<p><strong>bob</strong>: We’ve been looking all night, Mike. I don’t
+think he’s out there. If he drowned, I think he went down on the bay
+side of the gate and the current pulled him out. It was pretty strong
+when the men were working there.</p>
+<p><strong>mike</strong>: Did you look in the intake passage?</p>
+<p><strong>bob</strong>: You can’t even get in there, the incoming flow
+is so strong. It would wash the body out anyway.</p>
+<p><strong>mike</strong>: Well, I don’t know. Maybe he isn’t down there.
+Keep checking with everyone who knows him. I’ll be at my office.</p>
+<p><strong>kathryn</strong>: Mike!</p>
+<p><strong>kathryn</strong>: They said you’d be here.</p>
+<p><strong>mike</strong>: What’s up?</p>
+<p><strong>kathryn</strong>: I need more pressure in the shark tank.</p>
+<p><strong>mike</strong>: Okay.</p>
+<p><strong>kathryn</strong>: I want to make sure the White is getting
+enough flow. Would you do that for me?</p>
+<p><strong>mike</strong>: Sure. Let’s go.</p>
+<p><strong>kathryn</strong>: No, we’ll go through here.</p>
+<p><strong>mike</strong>: … Mean through the tubes?</p>
+<p><strong>kathryn</strong>: Yes. It’s faster.</p>
+<p><strong>mike</strong>: No, I’m not going through there.</p>
+<p><strong>kathryn</strong>: Michael, come on, don’t be silly. This is
+the quickest way. You’re not going to walk all the way around?</p>
+<p><strong>mike</strong>: I’m not going to walk through that shark
+arcade.</p>
+<p><strong>kathryn</strong>: They’re not going to hurt you. They’re
+encased in plastic.</p>
+<p><strong>mike</strong>: I don’t want to see them, Kathryn.</p>
+<p><strong>kathryn</strong>: Michael, I don’t have time. Please! It’s
+time you dealt with this and got over it. Now come on!</p>
+<p><strong>kathryn</strong>: Calvin wants me to move the White for
+tomorrow.</p>
+<p><strong>mike</strong>: … He ought to put him in here.</p>
+<p><strong>kathryn</strong>: It’s too soon to move him.</p>
+<p><strong>mike</strong>: So tell Calvin.</p>
+<p><strong>kathryn</strong>: I did. He wants it on exhibit.</p>
+<p><strong>mike</strong>: Well, that’s why you got it.</p>
+<p><strong>kathryn</strong>: Mike… you okay?</p>
+<p><strong>mike</strong>: It’s back…</p>
+<p><strong>kathryn</strong>: What’s back?</p>
+<p><strong>kathryn</strong>: Honey, what is it?</p>
+<p><strong>mike</strong>: Hydrophobia…</p>
+<p><strong>kathryn</strong>: Michael, take deep breaths.</p>
+<p><strong>mike</strong>: I have to get out of here.</p>
+<p><strong>kathryn</strong>: Come on.</p>
+<p><strong>mike</strong>: I can’t take water, Kathryn.</p>
+<p><strong>kathryn</strong>: Yes, you can.</p>
+<p><strong>mike</strong>: I can’t! My dad had it, and I don’t know if
+you can inherit it or what, but I got it, and I hate it. I can’t stand
+it!</p>
+<p><strong>p.a. voice</strong>: Welcome to Sea Kingdom, and the
+excitement and discovery of earth’s inner space. For the whale and
+dolphin shows, please stay to the right. The underwater tunnels are
+straight ahead…</p>
+<p><strong>ike</strong>: Hardly like the Falklands.</p>
+<p><strong>philip</strong>: If you’ll all squeeze a bit closer,
+everybody, you can see yourself tonight on the evening news.</p>
+<p><strong>philip</strong>: Well, seems a new whale show has been
+added.</p>
+<p><strong>kelly</strong>: I’m gonna fall, I’m gonna fall!</p>
+<p><strong>skiers</strong>: No, Kelly! Jesus, you can’t!</p>
+<p><strong>kelly</strong>: Ahh— Ohhh—-</p>
+<p><strong>tod</strong>: Back, Kelly. Lean back!</p>
+<p><strong>kelly</strong>: Ohhhhh shhhhiiiit.</p>
+<p><strong>kelly</strong>: I did it, I did it!</p>
+<p><strong>skiers</strong>: Way to go, Kelly! You were great!</p>
+<p><strong>kelly</strong>: I knew I could do it!</p>
+<p><strong>kathryn</strong>: Excuse me, sorry. Let me through, please. I
+have to get through!</p>
+<p><strong>kathryn</strong>: When did this happen?</p>
+<p><strong>ruth</strong>: Ten minutes ago.</p>
+<p><strong>brian</strong>: It hasn’t adjusted.</p>
+<p><strong>kathryn</strong>: Get the hose! We’ve got to force more water
+through the gills and oxygenate him!</p>
+<p><strong>kathryn</strong>: I knew it; it’s my fault. We moved it too
+soon.</p>
+<p><strong>ruth</strong>: Don’t blame yourself.</p>
+<p><strong>kathryn</strong>: I should have never listened to Calvin.</p>
+<p><strong>ruth</strong>: Kathryn…</p>
+<p><strong>ruth</strong>: No one’s ever done it before. It was a good
+try…</p>
+<p><strong>kathryn</strong>: Not good enough.</p>
+<p><strong>ruth</strong>: We got it to live for ten hours. That’s some
+kind of record.</p>
+<p><strong>tourists</strong>: Big deal. Let’s get our money back.</p>
+<p><strong>little girl</strong>: Look, Mommy, the shark’s dead.</p>
+<p><strong>mom</strong>: Yes, dear. Come on.</p>
+<p><strong>brian</strong>: Don’t feel bad.</p>
+<p><strong>kathryn</strong>: Okay… Have them get it out of the tank.</p>
+<p><strong>sean</strong>: Mike, this is fantastic. I mean, you’re
+responsible for building all this. What a job you’ve done! Maybe I’ll
+quit school and come down here and work with you. Brody Brothers
+Construction. We’ve always wanted to do that together. Boat
+building.</p>
+<p><strong>mike</strong>: It’s not that easy. Worked construction every
+summer to get through school. Three years apprentice in the park’s
+engineering department, and two years to build all this. Finish school
+first, Sean. Then make up your mind. If you still want to work with me,
+we’ll have plenty of time.</p>
+<p><strong>sean</strong>: You and Kathryn gonna stay here?</p>
+<p><strong>mike</strong>: This company’s expanding. They got parks in
+Texas, Ohio, California. I think I’m gonna be going to Waco.</p>
+<p><strong>sean</strong>: Well, Dad asked me to ask you this, about the
+wedding. Is there any chance you and Kathryn will get married in
+Amity?</p>
+<p><strong>mike</strong>: Tell Dad we’re getting married in Las Vegas.
+In one of those chapels. He can meet us there.</p>
+<p><strong>sean</strong>: Yeah, he’ll really go for that.</p>
+<p><strong>mike</strong>: It’s all up to Kathryn. Amity’s fine with me
+if it’s fine with her.</p>
+<p><strong>kelly</strong>: Sean!</p>
+<p><strong>mike</strong>: She still talking to you?</p>
+<p><strong>sean</strong>: We’re in love.</p>
+<p><strong>mike</strong>: Sure.</p>
+<p><strong>sean</strong>: No, really. I’ve never met anyone like her
+before. This is it.</p>
+<p><strong>mike</strong>: Yeah, right. That’s what you said about Janet,
+and Beth, and Barbara –</p>
+<p><strong>sean</strong>: Puppy love. This time it’s real! We can have a
+double wedding.</p>
+<p><strong>sean</strong>: You were great out there!</p>
+<p><strong>kelly</strong>: Did you see me?! Wasn’t I terrific?</p>
+<p><strong>sean</strong>: As always.</p>
+<p><strong>kelly</strong>: Hi, Mike.</p>
+<p><strong>mike</strong>: How you doing, Kelly?</p>
+<p><strong>kelly</strong>: I’m Neo-Senephrened out. Think I’m catching a
+cold.</p>
+<p><strong>mike</strong>: Better than catching Sean’s herpes.</p>
+<p><strong>kelly</strong>: Herpes?</p>
+<p><strong>sean</strong>: Why you sonuvabitch…</p>
+<p><strong>mike</strong>: See you tonight.</p>
+<p><strong>kelly</strong>: Sean, do you have herpes?</p>
+<p><strong>sean</strong>: No. Of course not. Don’t listen to him. He’s -
+he’s… … my brother.</p>
+<p><strong>kelly</strong>: I’m not in the next show. What do you want to
+do?</p>
+<p><strong>kelly</strong>: Besides that.</p>
+<p><strong>sean</strong>: I don’t know, what else is there?</p>
+<p><strong>kelly</strong>: I know! We can take the gondola ride!</p>
+<p><strong>sean</strong>: The one that goes underwater?</p>
+<p><strong>kelly</strong>: Yes, it’s great!</p>
+<p><strong>sean</strong>: No, Kelly, I don’t want to…</p>
+<p><strong>kelly</strong>: Come on, it’s fun!</p>
+<p><strong>sean</strong>: Not for me. I don’t go in the water,
+remember?</p>
+<p><strong>kelly</strong>: You’re not in the water. You’re in a
+gondola.</p>
+<p><strong>sean</strong>: No, think of something else.</p>
+<p><strong>kelly</strong>: Sean, this is ridiculous. You’re acting very
+immature.</p>
+<p><strong>sean</strong>: I’m not acting! I don’t want to go in it,
+okay?</p>
+<p><strong>kelly</strong>: Well, I do! Time you got over this wet dream.
+Nothing’s gonna hurt you. Now c’mon, we’re going on it!</p>
+<p><strong>ali</strong>: Is this one scary?</p>
+<p><strong>attendant</strong>: No. This one’s fun. You’ll like it.</p>
+<p><strong>becky</strong>: Oh, good. Because the last one really scared
+us.</p>
+<p><strong>woman</strong>: Did you see that?</p>
+<p><strong>man</strong>: What?</p>
+<p><strong>woman</strong>: On monitor three. Was a glimpse of
+something.</p>
+<p><strong>man</strong>: That?</p>
+<p><strong>woman</strong>: Yes, there is goes.</p>
+<p><strong>man</strong>: It’s disappeared.</p>
+<p><strong>woman</strong>: I’ll have the guard look.</p>
+<p><strong>attendant</strong>: I’ll go check on it.</p>
+<p><strong>becky</strong>: Wow, look at that!</p>
+<p><strong>linda</strong>: Yeah. Reminds me of my date last night.</p>
+<p><strong>ali</strong>: Hey, look at that thing over there. What’s that
+supposed to be?</p>
+<p><strong>becky</strong>: I don’t know. Some kind of crab?</p>
+<p><strong>ali</strong>: It looks like a man.</p>
+<p><strong>linda</strong>: It is!</p>
+<p><strong>philip</strong>: See you later, mates.</p>
+<p><strong>philip</strong>: Your friend Overman picked a hell of a time
+to come back.</p>
+<p><strong>mike</strong>: Yeah, poor bastard.</p>
+<p><strong>philip</strong>: I lost a good cameraman in Australia last
+year. A Great White chopped him in half with one bite.</p>
+<p><strong>mike</strong>: Hey, I don’t want to hear.</p>
+<p><strong>philip</strong>: That’s how they do it, you know. Seizes its
+prey and shakes its body savagely. Teeth gnaw through a man like a buzz
+saw.</p>
+<p><strong>mike</strong>: Buzz off.</p>
+<p><strong>philip</strong>: I will, old boy, tomorrow. Our work is done
+here. Just came to say goodbye, and good luck.</p>
+<p><strong>mike</strong>: Yeah? Well, in that case, have a drink.</p>
+<p><strong>philip</strong>: Thanks. Bullshot.</p>
+<p><strong>mike</strong>: So where you go off to, Hutton? Some
+expedition in New Guinea or Outer Mongolia?</p>
+<p><strong>philip</strong>: No, South Georgia.</p>
+<p><strong>mike</strong>: What the hell’s there?</p>
+<p><strong>philip</strong>: Polar bears.</p>
+<p><strong>mike</strong>: Polar bears in Georgia???</p>
+<p><strong>philip</strong>: South Georgia, Antarctica.</p>
+<p><strong>mike</strong>: Oh…</p>
+<p><strong>philip</strong>: The world’s southern most reaches.</p>
+<p><strong>mike</strong>: How come you’re so brave with all this
+stuff?</p>
+<p><strong>philip</strong>: Tradition. Royal sense of adventure that’s
+been in my family for centuries. Dates back to the Crusades and King
+Richard. What I was born to do.</p>
+<p><strong>mike</strong>: Yeah, tradition’s a bitch, ain’t it?</p>
+<p><strong>philip</strong>: Reach for the limit I always say.</p>
+<p><strong>mike</strong>: I’ll remember that, my Lordship.</p>
+<p><strong>kathryn</strong>: Michael.</p>
+<p><strong>kathryn</strong>: Michael, look at this.</p>
+<p><strong>mike</strong>: Put it under your pillow and sleep on it and
+the tooth fairy will –</p>
+<p><strong>kathryn</strong>: It’s a shark’s tooth!</p>
+<p><strong>mike</strong>: So?</p>
+<p><strong>kathryn</strong>: It was removed from Charlie Overman’s
+body.</p>
+<p><strong>philip</strong>: May I?</p>
+<p><strong>philip</strong>: … The bigger to eat you with.</p>
+<p><strong>mike</strong>: What’s the big deal? A shark got Overman, and
+we got the shark.</p>
+<p><strong>kathryn</strong>: That’s just it, Michael. We don’t!</p>
+<p><strong>mike</strong>: What do you mean, we don’t?</p>
+<p><strong>kathryn</strong>: This tooth is from another shark. A shark
+that could be 30 feet long!</p>
+<p><strong>mike</strong>: Thirty feet???</p>
+<p><strong>philip</strong>: Actually, thirty-five is probably more
+accurate.</p>
+<p><strong>mike</strong>: That’s impossible. If it’s that big, why
+hasn’t anybody seen it? Huh? Tell me that. It’s like not seeing the
+Goodyear blimp in a swimming pool.</p>
+<p><strong>kathryn</strong>: That’s what I’ve come to ask you. Is there
+any large place that has a strong current of water flowing?</p>
+<p><strong>mike</strong>: I don’t understand.</p>
+<p><strong>kathryn</strong>: Sharks have to keep moving. They can never
+stop or they’ll suffocate. If water isn’t always flowing through them,
+they’ll die.</p>
+<p><strong>philip</strong>: Is there such a place? A cave or something
+with such a flow?</p>
+<p><strong>mike</strong>: I don’t know… I can’t think offhand of
+one.</p>
+<p><strong>mike</strong>: Yeah, what is it?</p>
+<p><strong>woman</strong>: Mike, we got a heat build-up in filter system
+number four. We’re running high temperature.</p>
+<p><strong>mike</strong>: Switch to intake three and keep it there.</p>
+<p><strong>woman</strong>: Right, Mike.</p>
+<p><strong>mike</strong>: What did you just say before? About water
+flowing through them?</p>
+<p><strong>kathryn</strong>: That’s why they’re always moving. They have
+to have it.</p>
+<p><strong>mike</strong>: You wanted to know about a cave?</p>
+<p><strong>philip</strong>: Filter system number four. Is it large
+enough?</p>
+<p><strong>mike</strong>: It’s large enough…</p>
+<p><strong>philip</strong>: How far away is filter number four?</p>
+<p><strong>mike</strong>: Five hundred yards.</p>
+<p><strong>philip</strong>: You have a man near it?</p>
+<p><strong>kathryn</strong>: Somebody better get down there!</p>
+<p><strong>mike</strong>: It’s all controlled from the Control Room.</p>
+<p><strong>philip</strong>: I’ve heard of a White that big, in
+Australia…</p>
+<p><strong>kathryn</strong>: How’d it get in here?!</p>
+<p><strong>mike</strong>: Oh, no… not again. A thirty- five-foot fuckin’
+shark… Goddamn… what’s wrong with my family? First my father… now
+me…</p>
+<p><strong>mike</strong>: What the hell…</p>
+<p><strong>kathryn</strong>: Oh, my God!</p>
+<p><strong>philip</strong>: He’s big as a bloody bus!</p>
+<p><strong>kathryn</strong>: The water ski show! We have to get them
+out!</p>
+<p><strong>mike</strong>: Come on!</p>
+<p><strong>kathryn</strong>: You two go! I’ll call Calvin!</p>
+<p><strong>mike</strong>: Watch it! Out of the way!</p>
+<p><strong>mike</strong>: Coming through, please!</p>
+<p><strong>philip</strong>: Move your bloody asses!</p>
+<p><strong>mike</strong>: This is Brody, get the skiers out of the
+water! We got a shark loose! A Great White!</p>
+<p><strong>audience</strong>: Hatfields!</p>
+<p><strong>audience</strong>: McCoys!</p>
+<p><strong>kathryn</strong>: Yes, Calvin, yes! It’s the biggest shark
+I’ve ever seen. A female. I think the other one was hers. You have to
+get the skiers out.</p>
+<p><strong>tourists</strong>: Hey, where the hell you going?! Why
+don’tcha watch it?! Asshole.</p>
+<p><strong>philip</strong>: Oh, Christ.</p>
+<p><strong>mike</strong>: Shark! Shark!</p>
+<p><strong>audience</strong>: Hatfields! McCoys!</p>
+<p><strong>mike</strong>: Get them in! There’s a shark out there!</p>
+<p><strong>manager</strong>: You’re kidding, aren’t you?</p>
+<p><strong>mike</strong>: Get them out of the water!</p>
+<p><strong>manager</strong>: Jesus…</p>
+<p><strong>tod</strong>: Holy shit!</p>
+<p><strong>girl</strong>: Hey, what’d you lose?</p>
+<p><strong>tod</strong>: Huh… nothing… just don’t fall. Just don’t
+fall!</p>
+<p><strong>m.c.</strong>: What are you doing? I’m doing a show. Give me
+that.</p>
+<p><strong>mike</strong>: All skiers in! There’s a shark out there! Get
+out of the water! There’s a shark!</p>
+<p><strong>skier</strong>: Holy shit!</p>
+<p><strong>skier</strong>: God, that was close!</p>
+<p><strong>girl skiers</strong>: I don’t see it. Where is it?</p>
+<p><strong>calvin</strong>: Good God!</p>
+<p><strong>kelly</strong>: Isn’t this fun!</p>
+<p><strong>sean</strong>: Can hardly wait to do it again.</p>
+<p><strong>kelly</strong>: Told you you’d like it.</p>
+<p><strong>sean</strong>: Now what’s this do?</p>
+<p><strong>kelly</strong>: Goes up.</p>
+<p><strong>sean</strong>: No… It can’t be.</p>
+<p><strong>kelly</strong>: What, hon?</p>
+<p><strong>kelly</strong>: Oh, my God!</p>
+<p><strong>sean</strong>: Let’s go, let’s go!</p>
+<p><strong>kelly</strong>: It’s okay, Sean.</p>
+<p><strong>sean</strong>: Take it up.</p>
+<p><strong>kelly</strong>: He’s diving!</p>
+<p><strong>kelly</strong>: We made it. It can’t get us.</p>
+<p><strong>sean</strong>: Take it up!</p>
+<p><strong>kelly</strong>: SEAN!</p>
+<p><strong>sean</strong>: NO!</p>
+<p><strong>mike</strong>: Can I see him now?</p>
+<p><strong>nurse</strong>: He’s very sedated. You can’t talk to him.</p>
+<p><strong>mike</strong>: I just want to see him.</p>
+<p><strong>nurse</strong>: Only for a minute.</p>
+<p><strong>mike</strong>: … Kelly?</p>
+<p><strong>kathryn</strong>: How is he?</p>
+<p><strong>mike</strong>: Couple of fractures, lacerations. They say
+he’s gonna be all right.</p>
+<p><strong>kathryn</strong>: … I have to go, honey. Phillip and I are
+going down together to kill the shark.</p>
+<p><strong>mike</strong>: … Okay.</p>
+<p><strong>philip</strong>: We can assume he’s back in the water intake
+passage.</p>
+<p><strong>kathryn</strong>: She, Mister Hutton.</p>
+<p><strong>philip</strong>: He. She. Let’s blow the bitch up!</p>
+<p><strong>calvin</strong>: You can’t do that. We’re talking millions of
+dollars of filtering system.</p>
+<p><strong>philip</strong>: We’re talking a bloody dinosaur’s down
+there!</p>
+<p><strong>calvin</strong>: You’re not going to blow that equipment
+away.</p>
+<p><strong>philip</strong>: Well, what else do you propose?</p>
+<p><strong>mike</strong>: We net it…</p>
+<p><strong>mike</strong>: After all, that’s how you catch fish, isn’t
+it?</p>
+<p><strong>philip</strong>: You could also try a bamboo pole and a
+worm.</p>
+<p><strong>calvin</strong>: What’s your plan, Brody?</p>
+<p><strong>mike</strong>: It’s easy. Put a net on the derrick. Put the
+net in the water by the intake passage. Turn off the intake passage.
+Shark comes out into the net and is hauled up.</p>
+<p><strong>philip</strong>: A piece of pie on Sunday.</p>
+<p><strong>kathryn</strong>: The net would have to be secured by the
+intake passage.</p>
+<p><strong>mike</strong>: That’s right.</p>
+<p><strong>kathryn</strong>: Who’s going to do it?</p>
+<p><strong>mike</strong>: Me.</p>
+<p><strong>kathryn</strong>: Michael, you’re not going down there.</p>
+<p><strong>mike</strong>: I am. You’re not.</p>
+<p><strong>kathryn</strong>: But you –</p>
+<p><strong>mike</strong>: It’s a construction job. I’m the only one that
+can do it.</p>
+<p><strong>philip</strong>: I’ll go with you.</p>
+<p><strong>mike</strong>: No way.</p>
+<p><strong>philip</strong>: I’ll stay out of your way. I won’t
+interfere.</p>
+<p><strong>mike</strong>: I’m sure you won’t. But you’re going to have
+to wait till we come up. Then you can film all you want.</p>
+<p><strong>kathryn</strong>: Michael, you don’t have to go down
+there.</p>
+<p><strong>mike</strong>: I want that shark, Kathryn.</p>
+<p><strong>kathryn</strong>: You don’t have to prove anything.</p>
+<p><strong>mike</strong>: Only to myself.</p>
+<p><strong>kathryn</strong>: Be careful.</p>
+<p><strong>mike</strong>: Don’t worry. I’ve handled sharks before.</p>
+<p><strong>mike</strong>: Way to go, Bob. Way to go!</p>
+<p><strong>kathryn</strong>: Are you okay?</p>
+<p><strong>mike</strong>: I’m fine.</p>
+<p><strong>philip</strong>: Let’s go.</p>
+<p><strong>mike</strong>: He’s big, Hutton. You never saw anything so
+big. Watch yourself.</p>
+<p><strong>philip</strong>: Always do.</p>
+<p><strong>mike</strong>: Okay, turn them on.</p>
+<p><strong>mike</strong>: Turn off the water.</p>
+<p><strong>operator</strong>: Shark’s backing out.</p>
+<p><strong>mike</strong>: It’s coming out. Get ready.</p>
+<p><strong>operator</strong>: The pins are going!</p>
+<p><strong>mike</strong>: Pull up the rear net lines!</p>
+<p><strong>mike</strong>: Too much, ease off, ease off!</p>
+<p><strong>operator</strong>: The tail’s knocking out the bottom
+lines!</p>
+<p><strong>mike</strong>: Take up the cinch line on tunnel mouth!</p>
+<p><strong>mike</strong>: Harder on the cinch lines!</p>
+<p><strong>crane operator</strong>: It’s full bore now!</p>
+<p><strong>bob</strong>: Mike’s caught in the net lines!</p>
+<p><strong>kathryn</strong>: Pull the cinch lines in! Hurry!</p>
+<p><strong>kathryn</strong>: Where’s Michael? What’s happened to
+him?</p>
+<p><strong>bob</strong>: … I don’t know. The shark got him.</p>
+<p><strong>kathryn</strong>: Can you see Michael?</p>
+<p><strong>man</strong>: We’re not sure.</p>
+<p><strong>kathryn</strong>: Look!</p>
+<p><strong>kathryn</strong>: Well?!</p>
+<p><strong>operator</strong>: We think he’s trapped inside a cave beside
+the glass tunnel. The shark broke up the entrance.</p>
+<p><strong>kathryn</strong>: Where is the shark?</p>
+<p><strong>operator</strong>: Near the bay gate.</p>
+<p><strong>man</strong>: Oh, my God!</p>
+<p><strong>kathryn</strong>: Bobby and Daisy.</p>
+</body>
+</html>

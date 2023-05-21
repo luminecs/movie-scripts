@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>metropolis</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="metropolis">metropolis</h1>
+<p><strong>dex</strong>: Life can be an illusion. Sometimes we see what
+isn’t there, and sometimes we don’t see what is there.</p>
+<p><strong>dex</strong>: This one’s personal.</p>
+<p><strong>christoph</strong>: May I trouble you with a confession?</p>
+<p><strong>priest</strong>: Never a trouble.</p>
+<p><strong>christoph</strong>: Forgive me Father, for I have
+coveted.</p>
+<p><strong>priest</strong>: What have you coveted?</p>
+<p><strong>christoph</strong>: Life.</p>
+<p><strong>priest</strong>: God gave us all the need for life. And when
+the end begins to near, we all crave more time. No sin.</p>
+<p><strong>christoph</strong>: But there’s what I would do for more
+time.</p>
+<p><strong>priest</strong>: What would you do –</p>
+<p><strong>disembodied voice</strong>: Visitors.</p>
+<p><strong>tanner</strong>: Permit entry.</p>
+<p><strong>halden</strong>: A legend fell tonight.</p>
+<p><strong>halden</strong>: The unrunnable maze. Impossible to get
+through. Well, some kid just danced it like it was some six bit video
+game.</p>
+<p><strong>tanner</strong>: He had keys.</p>
+<p><strong>halden</strong>: Of course the legend would like to think
+that. But no one has keys. Your maze was run.</p>
+<p><strong>halden</strong>: He had fun ripping your maze, that’s good.
+Now that it’s obsolete for security purposes, maybe we can turn it into
+an amusement ride.</p>
+<p><strong>dex</strong>: We just tracked the runner to the hotel
+district.</p>
+<p><strong>dex</strong>: Still going through puberty and he shreds your
+maze. That’s gotta hurt.</p>
+<p><strong>halden</strong>: Get some internal police there. Tell them to
+run a perimeter.</p>
+<p><strong>tanner</strong>: But have them wait for me ’till they move in
+on him.</p>
+<p><strong>tanner</strong>: Shouldn’t be in that long.</p>
+<p><strong>dex</strong>: Been a while since you’ve been inside. Going to
+look up old friends?</p>
+<p><strong>dex</strong>: You know she asks about you all the time –</p>
+<p><strong>disembodied voice</strong>: Destination?</p>
+<p><strong>tanner’s disembodied voice</strong>: Hotel district.</p>
+<p><strong>disembodied voice</strong>: Security clearance approved.
+Welcome Tanner. Enjoy your stay.</p>
+<p><strong>sergeant</strong>: Corp must really want this guy to have
+sent the legend himself.</p>
+<p><strong>tanner</strong>: Just didn’t want you boys having all the
+fun.</p>
+<p><strong>tanner</strong>: Look, we’re going to trace you.</p>
+<p><strong>tanner</strong>: So be smart about this –</p>
+<p><strong>kid</strong>: – You’re the big man. Big fucking cop.</p>
+<p><strong>kid</strong>: No guns on the system. That’s how it’s
+programmed, right? So what are you going to do, huh big cop? Can’t shoot
+me.</p>
+<p><strong>tanner</strong>: Look, I know you didn’t run it. You had
+keys.</p>
+<p><strong>kid</strong>: That maze’s nothing. I could run it blind on a
+sixty-meg board.</p>
+<p><strong>sergeant</strong>: This is a waste of time. How about a
+little encouragement?</p>
+<p><strong>emma</strong>: Here’s something which ought to help him talk
+–</p>
+<p><strong>tanner</strong>: Fine, you ran it. That’s felony system
+fraud. Gets you thirty years. Or you tell us where you got the keys and
+we start talking a deal.</p>
+<p><strong>tanner</strong>: Lose the God-Damn dog!</p>
+<p><strong>emma</strong>: Grid eighteen. Heading for exit six.</p>
+<p><strong>hostess</strong>: And don’t miss The Tivoli, with fireworks
+every hour on the hour. And please remember to follow all safety rules
+while –</p>
+<p><strong>usher</strong>: I’m sorry sir, but there is a premium charge
+for this event –</p>
+<p><strong>usher</strong>: Access approved. Enjoy the concert,
+Tanner.</p>
+<p><strong>tanner</strong>: Where the hell is he?</p>
+<p><strong>emma</strong>: I’m working on it.</p>
+<p><strong>emma’s voice</strong>: He’s north-east of you. Heading to
+Crimson street –</p>
+<p><strong>tanner’s voice</strong>: Time to be smart.</p>
+<p><strong>tanner</strong>: Not too late to cut a deal. All you’ve got
+to do is tell me where you got –</p>
+<p><strong>tanner</strong>: DON’T –</p>
+<p><strong>tanner</strong>: This isn’t one of those virtual reality
+systems you’re used to playing on!</p>
+<p><strong>tanner</strong>: This is hyper-reality. Full Immersion.</p>
+<p><strong>kid</strong>: Big deal –</p>
+<p><strong>tanner</strong>: – If you had come in through the gates like
+you were supposed to, you’d know. Full Immersion. You die on this
+system, your consciousness dies.</p>
+<p><strong>kid</strong>: Why the hell do you care?</p>
+<p><strong>tanner</strong>: I don’t. I just need you alive so you can
+tell me where you got the keys.</p>
+<p><strong>tanner</strong>: Trace him.</p>
+<p><strong>cop</strong>: Be my pleasure.</p>
+<p><strong>woman’s voice</strong>: Tanner.</p>
+<p><strong>katie</strong>: Least you could do is say hello.</p>
+<p><strong>tanner</strong>: Hello.</p>
+<p><strong>katie</strong>: What brings you inside?</p>
+<p><strong>tanner</strong>: Cleaning up a mess.</p>
+<p><strong>katie</strong>: Some things never change, do they?</p>
+<p><strong>tanner</strong>: I’ve got to get back.</p>
+<p><strong>katie</strong>: Tanner.</p>
+<p><strong>tanner</strong>: Sorry.</p>
+<p><strong>katie</strong>: You know I wanted to tell you, but they
+wouldn’t let me –</p>
+<p><strong>woman’s voice</strong>: It’s good luck. Means your real.</p>
+<p><strong>gena</strong>: The programs don’t bleed.</p>
+<p><strong>gena</strong>: Where you plugged-in from?</p>
+<p><strong>tanner</strong>: New York.</p>
+<p><strong>gena</strong>: I’m South Dakota.</p>
+<p><strong>gena</strong>: That’s what you gotta love about this place.
+Drink whatever you want, your real body doesn’t gain an once. But you
+wanna know what’s a drag?</p>
+<p><strong>tanner</strong>: What?</p>
+<p><strong>gena</strong>: The weather.</p>
+<p><strong>gena</strong>: Always a warm summer night. Which is a shame,
+because there’s nothing like making love in the rain. Don’t you
+agree?</p>
+<p><strong>gena</strong>: What’s her name?</p>
+<p><strong>tanner</strong>: Who?</p>
+<p><strong>gena</strong>: The woman you’re stuck on.</p>
+<p><strong>tanner</strong>: There is no –</p>
+<p><strong>emma’s voice</strong>: Nailed the trace. Kid’s in
+Memphis.</p>
+<p><strong>tanner</strong>: Good, kick him out.</p>
+<p><strong>emma’s voice</strong>: You sure? We can handle
+collection.</p>
+<p><strong>emma</strong>: I mean, I don’t want to interrupt anything
+–</p>
+<p><strong>tanner’s voice</strong>: – You’re not. Kick me out.</p>
+<p><strong>tanner</strong>: Take care.</p>
+<p><strong>gena</strong>: Take care? Where the hell are you going –</p>
+<p><strong>medical technician</strong>: Just lay there a few
+minutes.</p>
+<p><strong>swat team agent’s voice</strong>: Down here!</p>
+<p><strong>dex</strong>: Bad idea.</p>
+<p><strong>tanner</strong>: Pull him off the system before he’s ejected
+and he goes brain dead.</p>
+<p><strong>dex</strong>: We got him. Kick him lose.</p>
+<p><strong>christoph</strong>: Might I interest you in a question?</p>
+<p><strong>gena</strong>: As long as it’s not ‘what’s your sign?’</p>
+<p><strong>christoph</strong>: If you could meet God, what would you say
+to him?</p>
+<p><strong>gena</strong>: That’s a strange question. You a strange
+man?</p>
+<p><strong>christoph</strong>: There you are, sitting next to the
+creator, what do you say?</p>
+<p><strong>gena</strong>: This is how you pick up women –</p>
+<p><strong>christoph</strong>: – No.</p>
+<p><strong>gena</strong>: I’d probably say something like why’d you let
+the world get so fucked-up?</p>
+<p><strong>christoph</strong>: Your life that bad?</p>
+<p><strong>gena</strong>: No, not me, I’ve been lucky. But I’ve seen
+what happens to other people –</p>
+<p><strong>christoph</strong>: – If your life’s so good up there Gena,
+what are you doing down here?</p>
+<p><strong>gena</strong>: How’d you know my name?</p>
+<p><strong>christoph</strong>: Do you believe in miracles?</p>
+<p><strong>gena</strong>: I’m serious, how did you know my name?</p>
+<p><strong>christoph</strong>: To miracles.</p>
+<p><strong>christoph</strong>: You were right.</p>
+<p><strong>gena</strong>: About what?</p>
+<p><strong>christoph</strong>: Making love in the rain.</p>
+<p><strong>gena</strong>: But it doesn’t rain here –</p>
+<p><strong>gena</strong>: It can’t rain here. Not the way it’s
+programmed.</p>
+<p><strong>gena</strong>: Who are you?!</p>
+<p><strong>christoph</strong>: Someone who believes in miracles.</p>
+<p><strong>tanner</strong>: Recognize it?</p>
+<p><strong>tanner</strong>: Kid had keys. The maze is unrunnable.</p>
+<p><strong>halden</strong>: Doesn’t make sense. How the hell does some
+fucking teenager get to the keys?</p>
+<p><strong>tanner</strong>: Sorry, I just design the maze. Keeping the
+keys secure is your job.</p>
+<p><strong>lawyer</strong>: Care to tell us how you came into possession
+of an illegal access program?</p>
+<p><strong>kid</strong>: Look, I’m doing mute ’till I have a mouthpiece
+here who’s on my side.</p>
+<p><strong>lawyer</strong>: You don’t need a lawyer. We found the
+program on your laptop.</p>
+<p><strong>kid</strong>: Don’t know what you’re talking about.</p>
+<p><strong>lawyer</strong>: Of course you do. And the only shot you’ve
+got of keeping your ass from sinking in a sea of shit is to tell me
+where you got this program.</p>
+<p><strong>lawyer</strong>: What’s so funny?</p>
+<p><strong>kid</strong>: This. No point to it.</p>
+<p><strong>lawyer</strong>: Why not?</p>
+<p><strong>kid</strong>: Because you’ll never believe me.</p>
+<p><strong>lawyer</strong>: Try me.</p>
+<p><strong>kid</strong>: It was just there.</p>
+<p><strong>lawyer</strong>: There?</p>
+<p><strong>kid</strong>: My uni-net account. I log on. The program’s
+there.</p>
+<p><strong>lawyer</strong>: Just like that?</p>
+<p><strong>kid</strong>: Just like that –</p>
+<p><strong>lawyer’s voice</strong>: Any idea how the program got
+there?</p>
+<p><strong>kid’s voice</strong>: How the hell do I know? Maybe it was a
+gift from God?</p>
+<p><strong>gena</strong>: You don’t have much sex up there in the real
+world, do you?</p>
+<p><strong>christoph</strong>: No…</p>
+<p><strong>tanner</strong>: Ninth and Hudson.</p>
+<p><strong>pilot</strong>: Hell’s Kitchen. Talk about your shit holes.
+What’s there?</p>
+<p><strong>tanner</strong>: My home.</p>
+<p><strong>pilot</strong>: Cheap rents. Close to the waterfront. I hear
+the area’s making a comeback.</p>
+<p><strong>tanner</strong>: Land it.</p>
+<p><strong>pilot</strong>: Sir?</p>
+<p><strong>tanner</strong>: Take me back down.</p>
+<p><strong>tanner</strong>: I need playback on the kid’s run.</p>
+<p><strong>tanner’s voice</strong>: Freeze it. Now pull-up play-back of
+the kid’s interrogation.</p>
+<p><strong>kid</strong>: Don’t know what you’re talking about.</p>
+<p><strong>lawyer</strong>: Of course you do. And the only shot you’ve
+got of keeping your ass from sinking in a sea of shit is to tell me
+where you got this program.</p>
+<p><strong>tanner’s voice</strong>: Freeze it –</p>
+<p><strong>tanner</strong>: Can you isolate and voice-print the last
+sixty audio-bits of both play- backs?</p>
+<p><strong>tanner</strong>: Better get Halden down here.</p>
+<p><strong>disembodied friendly voice</strong>: You are here. To reach
+the club district simply turn around and head east on Crimson Street. To
+reach the Mardi Gras, simply –</p>
+<p><strong>christoph’s voice</strong>: Lights.</p>
+<p><strong>tanner</strong>: That’s the runner’s laugh.</p>
+<p><strong>tanner</strong>: That’s the kid’s laugh. We ran voice-print.
+It’s not the same person.</p>
+<p><strong>halden</strong>: Two maze runners.</p>
+<p><strong>tanner</strong>: Someone sends the kid a copy of the access
+program, then runs the maze at the same time the kid does, using the
+same codes.</p>
+<p><strong>emma</strong>: Why?</p>
+<p><strong>tanner</strong>: Because that way, the system only registers
+a single runner. We go after the kid, leaving the other person free and
+clear to do whatever the hell they want.</p>
+<p><strong>guard</strong>: Need to see your work orders, sir –</p>
+<p><strong>engineer</strong>: Two Internals down right outside the
+Nexus.</p>
+<p><strong>halden</strong>: Pull up the Nexus –</p>
+<p><strong>emma</strong>: Jesus Christ, he’s interfacing.</p>
+<p><strong>tanner</strong>: Eject the system!</p>
+<p><strong>dex</strong>: Are you crazy?!</p>
+<p><strong>tanner</strong>: You don’t have a choice, he’s interfacing
+with a core program –</p>
+<p><strong>dex</strong>: – Trying to interface.</p>
+<p><strong>halden</strong>: He won’t get through the security codes.</p>
+<p><strong>dex</strong>: Get every cop who’s in the area. Tell them to
+rip this fucker out of there.</p>
+<p><strong>tanner</strong>: Won’t be time if he gets access –</p>
+<p><strong>halden</strong>: – He won’t.</p>
+<p><strong>emma’s voice</strong>: Internal Police in position –</p>
+<p><strong>halden’s voice</strong>: – Send ’em in!</p>
+<p><strong>christoph</strong>: I’m sorry.</p>
+<p><strong>tanner</strong>: Eject the System!</p>
+<p><strong>halden</strong>: Do it!</p>
+<p><strong>tanner</strong>: Run a trace.</p>
+<p><strong>tanner</strong>: He had access to the keys –</p>
+<p><strong>halden</strong>: – Yes.</p>
+<p><strong>engineer</strong>: Guy’s got one hell of a relay going.</p>
+<p><strong>engineer</strong>: We’re going to have to search through each
+possible grid to find him. It’s going to take a while.</p>
+<p><strong>tanner</strong>: Grid fourteen.</p>
+<p><strong>engineer</strong>: How do you know?</p>
+<p><strong>tanner</strong>: It’s the most recursive. Take the longest to
+search. If he’s smart, that’s where he is.</p>
+<p><strong>engineer</strong>: Let’s hope he’s smart.</p>
+<p><strong>halden</strong>: How long ’till we can eject?</p>
+<p><strong>emma</strong>: We’re going to have to reconfigure.</p>
+<p><strong>halden</strong>: How long?</p>
+<p><strong>emma</strong>: At least a day.</p>
+<p><strong>engineer</strong>: You called it. Dead center in the
+grid.</p>
+<p><strong>tanner</strong>: How far away?</p>
+<p><strong>engineer</strong>: Two hundred and sixty-one kilometers.</p>
+<p><strong>tanner</strong>: We can be there in fifteen minutes and rip
+him off the system.</p>
+<p><strong>halden</strong>: Go!</p>
+<p><strong>engineer</strong>: He’s locked-it up!</p>
+<p><strong>emma</strong>: Completely sealed-off. No one gets in and no
+one gets out.</p>
+<p><strong>engineer</strong>: System’s running on pure auxiliary.</p>
+<p><strong>halden</strong>: How long?</p>
+<p><strong>emma</strong>: Just over two million people plugged-in.
+System can run seven hours before it crashes.</p>
+<p><strong>emma</strong>: Then everyone dies.</p>
+<p><strong>christoph</strong>: Put on Halden.</p>
+<p><strong>halden</strong>: This is Halden.</p>
+<p><strong>christoph</strong>: Halden, how nice to hear your voice.</p>
+<p><strong>halden</strong>: What do you want?</p>
+<p><strong>christoph</strong>: I have found in life that what one wants
+isn’t nearly as important as what one needs.</p>
+<p><strong>halden</strong>: What do you need?</p>
+<p><strong>christoph</strong>: I need to take back what’s mine.</p>
+<p><strong>halden</strong>: There are two million people in there with
+you.</p>
+<p><strong>christoph</strong>: Yes.</p>
+<p><strong>halden</strong>: They have nothing to do with this –</p>
+<p><strong>christoph</strong>: – Two million people lost in the digital
+night. What do they seek?</p>
+<p><strong>christoph</strong>: Do they seek escape? The comfort of
+eternal night? Or perhaps it’s more. Unanswered sins. The taste of
+death.</p>
+<p><strong>halden</strong>: God-Damn you!</p>
+<p><strong>christoph</strong>: Yes, I believe he has –</p>
+<p><strong>halden</strong>: – You’ve made your point! You’ve got control
+of the system.</p>
+<p><strong>christoph</strong>: But instincts are so hard to over- ride.
+Yours will be to try and send someone in to stop me.</p>
+<p><strong>christoph</strong>: The system’s locked-up, so the only way
+in is through the maze. Which is why I’ve changed it. Your access
+program will no longer work.</p>
+<p><strong>halden</strong>: System’s running on auxiliary. Only seven
+hours before it crashes.</p>
+<p><strong>christoph</strong>: True.</p>
+<p><strong>halden</strong>: You’re in there. Everybody dies, you go with
+them –</p>
+<p><strong>christoph</strong>: – But don’t you remember? I’m already
+dead.</p>
+<p><strong>pilot</strong>: We’re right above him.</p>
+<p><strong>halden</strong>: Have communications contact all interface
+centers. Tell them due to high demand, we’re at full capacity and so
+temporarily there’s no room for anyone else on the system.</p>
+<p><strong>emma</strong>: What about the customers with
+reservations?</p>
+<p><strong>halden</strong>: Have the staff apologize profusely and issue
+credit vouchers. But remember, it’s a capacity problem. That’s all.</p>
+<p><strong>halden</strong>: And send someone through the maze.</p>
+<p><strong>emma</strong>: The maze has been changed –</p>
+<p><strong>halden</strong>: – He says the maze has been changed. I need
+to know for sure.</p>
+<p><strong>assault team leader</strong>: Thought you were just talking
+to this guy?</p>
+<p><strong>tanner</strong>: We were.</p>
+<p><strong>assault team leader</strong>: Yeah, well feel this fucker’s
+skin. Ice cold. I guarantee you this sonofabitch’s been dead at least
+half a day.</p>
+<p><strong>dex</strong>: Ah, the perks of paradise. So easy to hide your
+guilt.</p>
+<p><strong>christoph</strong>: Remember, I’m not the one who chose
+this.</p>
+<p><strong>dex</strong>: Yes, so which one of us does that make the
+coward?</p>
+<p><strong>dex</strong>: Where the hell are you going?</p>
+<p><strong>christoph</strong>: Unfinished business.</p>
+<p><strong>dex</strong>: And what about the reconfiguration?</p>
+<p><strong>christoph</strong>: Perfect opportunity for you to
+demonstrate your continued worth.</p>
+<p><strong>dex</strong>: You sure he’s going to come?</p>
+<p><strong>christoph</strong>: It’s his nature.</p>
+<p><strong>dex</strong>: But what if he doesn’t –</p>
+<p><strong>christoph</strong>: – He will.</p>
+<p><strong>emma</strong>: You don’t have to run the whole thing. Just
+probe the first few seconds.</p>
+<p><strong>engineer</strong>: Piece of cake.</p>
+<p><strong>tanner</strong>: Voice activate.</p>
+<p><strong>synthetic voice</strong>: Activated.</p>
+<p><strong>tanner</strong>: Program name?</p>
+<p><strong>synthetic voice</strong>: Resurrection.</p>
+<p><strong>tanner</strong>: Describe program function.</p>
+<p><strong>synthetic voice</strong>: Resurrection.</p>
+<p><strong>tanner</strong>: Transmit copy of program via satellite north
+uplink.</p>
+<p><strong>synthetic voice</strong>: Destination?</p>
+<p><strong>tanner</strong>: Tanner-eighteen-six-two-nine.</p>
+<p><strong>synthetic voice</strong>: Checking connection.</p>
+<p><strong>synthetic voice</strong>: Connection approved. Ready to
+transmit –</p>
+<p><strong>tanner</strong>: – Transmit now!</p>
+<p><strong>tanner</strong>: You had no right!</p>
+<p><strong>halden</strong>: You’re jumping to conclusions.</p>
+<p><strong>tanner</strong>: He’s not plugged-into the system. He’s in
+the fucking system!</p>
+<p><strong>tanner</strong>: Who the hell do you think you are –</p>
+<p><strong>halden</strong>: We caught him working on neural map
+transfers. We dug through his system. He was trying to transfer genetic
+modules into data-molds. His employment was instantly terminated.
+Corporate hands are clean.</p>
+<p><strong>tanner</strong>: Try harder.</p>
+<p><strong>halden</strong>: Christoph had spinal cancer. His body kept
+rejecting gene therapy. He was desperate. It was him, it wasn’t us –</p>
+<p><strong>tanner</strong>: – I saw the program.</p>
+<p><strong>tanner</strong>: Corporate fingerprints all over it.</p>
+<p><strong>halden</strong>: Of course they are. Christoph was stealing
+every piece of code he could get his hands on.</p>
+<p><strong>tanner</strong>: And you weren’t involved.</p>
+<p><strong>tanner</strong>: Because why the hell would you be interested
+in a program that allows people to live inside your machines? I mean how
+much profit could there possibly be from owning the universe and selling
+space in it to people who are dying, or people who are just God-Damned
+sick of this world –</p>
+<p><strong>halden</strong>: – Come on, you know F.C.O. regs. Anyone
+caught with their R and D hand in the bio-digitization cookie jar spends
+the rest of their life in federal penitentiary. It’s not worth it.</p>
+<p><strong>tanner</strong>: You’re loosing your touch. Used to be a hell
+of a lot harder to know when you’re lying.</p>
+<p><strong>halden</strong>: He sealed-off the system.</p>
+<p><strong>halden</strong>: The only way to eject it is from the
+inside.</p>
+<p><strong>tanner</strong>: You’ve got the keys, send someone in –</p>
+<p><strong>halden</strong>: – Christoph changed the maze.</p>
+<p><strong>halden</strong>: I need someone who can run it blind.</p>
+<p><strong>halden</strong>: Two million people in there, Tanner.</p>
+<p><strong>halden</strong>: And if the system crashes, they all get to
+spend the rest of their lives hooked-up to God-Damn coma machines.</p>
+<p><strong>tanner</strong>: One condition.</p>
+<p><strong>halden</strong>: What?</p>
+<p><strong>tanner</strong>: The truth.</p>
+<p><strong>christoph’s voice</strong>: Enlarge to one-hundred and
+seventy.</p>
+<p><strong>christoph’s voice</strong>: Bump to one-hundred and
+eighty.</p>
+<p><strong>christoph</strong>: Off-white pleats.</p>
+<p><strong>halden</strong>: Exactly as Christoph left it.</p>
+<p><strong>tanner</strong>: What is it?</p>
+<p><strong>halden</strong>: The Terrace. First building Christoph ever
+programmed for us.</p>
+<p><strong>tanner</strong>: A hotel?</p>
+<p><strong>halden</strong>: It’s not used for anything.</p>
+<p><strong>halden</strong>: Christoph was a brilliant programmer, but
+very eccentric. He insisted it be kept vacant.</p>
+<p><strong>tanner</strong>: Why?</p>
+<p><strong>halden</strong>: He wouldn’t say.</p>
+<p><strong>tanner</strong>: Christoph was in charge of designing
+building modules.</p>
+<p><strong>halden</strong>: That’s right.</p>
+<p><strong>tanner</strong>: Then what’s with all the staffing programs
+in his account?</p>
+<p><strong>halden</strong>: Good question.</p>
+<p><strong>tanner</strong>: Modules.</p>
+<p><strong>tanner</strong>: Takes you a long time to build a staffing
+program from the bottom up.</p>
+<p><strong>tanner</strong>: Be a hell of a lot easier to digitize a real
+person, then strip them down to a module you can use to make as many
+employee programs as you need.</p>
+<p><strong>halden</strong>: Yes, in theory, I suppose that would
+work.</p>
+<p><strong>tanner</strong>: Who did he digitize?</p>
+<p><strong>halden</strong>: Listen to yourself. Digitization. You know
+that officially that’s a pure fantasy –</p>
+<p><strong>tanner</strong>: – Who did he digitize?!</p>
+<p><strong>halden</strong>: Christoph had complete autonomy. Because I
+didn’t want to know.</p>
+<p><strong>emma</strong>: We’re sending you in with a top- level access
+card. It’ll get you into every program, including the core.</p>
+<p><strong>halden</strong>: Obviously, not something Christoph should
+get his hands on.</p>
+<p><strong>emma</strong>: We’ve rigged the card so it should stay
+attached to you as you run the maze. So once you materialize inside, it
+should be on the ground right next to you.</p>
+<p><strong>tanner</strong>: Good.</p>
+<p><strong>emma</strong>: With the access card it should be easy. All
+you’ve got to do is get into the core program and hot-wire the eject
+sequence. But be prepared, it’ll be a hard eject –</p>
+<p><strong>emma</strong>: All the infrastructure gets dumped, then
+everyone’s ripped out into the net.</p>
+<p><strong>tanner</strong>: Adrenaline. 140 cc’s.</p>
+<p><strong>medical technician</strong>: Man likes his juice.</p>
+<p><strong>tanner</strong>: And once I’m through, bring me down fast
+with Dexaline.</p>
+<p><strong>medical technician</strong>: If you get through…</p>
+<p><strong>tanner</strong>: Let’s do it –</p>
+<p><strong>gena</strong>: It’s all here…</p>
+<p><strong>christoph</strong>: Yes.</p>
+<p><strong>gena</strong>: But it’s everything. Everything I’ve seen.
+Everything I’ve wanted… Only I know about all of this –</p>
+<p><strong>christoph</strong>: The guests are here.</p>
+<p><strong>gena</strong>: Guests?</p>
+<p><strong>christoph</strong>: Just like you always wanted.</p>
+<p><strong>christoph</strong>: Get out of South Dakota and move to New
+York where you can throw cocktail parties in your Park Avenue
+apartment.</p>
+<p><strong>gena</strong>: But this is impossible.</p>
+<p><strong>christoph</strong>: That’s the grace of this world. Nothing’s
+impossible.</p>
+<p><strong>christoph</strong>: Better get some shoes on.</p>
+<p><strong>medical technician</strong>: He made it! Son-of-a-bitch
+actually ran it!</p>
+<p><strong>emma</strong>: Just under five hours left before it
+crashes.</p>
+<p><strong>christoph</strong>: Please, come on in.</p>
+<p><strong>christoph</strong>: It’s okay, go back to sleep.</p>
+<p><strong>gena</strong>: What’s happening?</p>
+<p><strong>christoph</strong>: Nothing, go back to sleep.</p>
+<p><strong>gena</strong>: What the hell’s going on?!</p>
+<p><strong>christoph</strong>: It’s time to wake up.</p>
+<p><strong>gena</strong>: Wake up?!</p>
+<p><strong>christoph</strong>: From the dream.</p>
+<p><strong>gena</strong>: Don’t fucking do this. I’ve got a son. I’m all
+he’s got. So don’t you dare fucking do this –</p>
+<p><strong>christoph</strong>: It’s okay.</p>
+<p><strong>digital gena</strong>: Okay…</p>
+<p><strong>christoph</strong>: It’s all been transferred.</p>
+<p><strong>christoph</strong>: Genetic codes. Consciousness.
+Unconsciousness. Every single dream. Every kiss, real or imagined. The
+shadows of her soul. It’s all in you.</p>
+<p><strong>digital gena</strong>: Why?</p>
+<p><strong>christoph</strong>: To live forever.</p>
+<p><strong>christoph</strong>: People plug-into this world, but remain
+linked to their flesh and blood body. Such an encumbrance. Even if their
+bodies are kept on machines, nourished by IV’s, the laws of nature
+eventually will be respected. The body grows old and dies. Then they’re
+gone from both worlds.</p>
+<p><strong>digital gena</strong>: She said I have a son…</p>
+<p><strong>christoph</strong>: No, she said she had a son. In a dream
+she once called life.</p>
+<p><strong>digital gena</strong>: How come I can’t remember?</p>
+<p><strong>christoph</strong>: Because I took it out of your memory.</p>
+<p><strong>digital gena</strong>: Why –</p>
+<p><strong>christoph</strong>: – Because there’ll be no remorse. Not in
+my world.</p>
+<p><strong>hostess</strong>: The gates are temporarily closed for
+routine maintenance. But they will reopen soon –</p>
+<p><strong>older man</strong>: – Been saying that for an hour, now!</p>
+<p><strong>hostess</strong>: It won’t be much longer. And we do
+appreciate your patience.</p>
+<p><strong>distraught woman</strong>: But I need to get back now. I’ve
+got to pick my kids up from school!</p>
+<p><strong>hostess</strong>: To help make the short wait more enjoyable,
+drinks are on the house across the street at Dante’s Tavern.</p>
+<p><strong>older woman</strong>: You looking for her?</p>
+<p><strong>older woman</strong>: She went up.</p>
+<p><strong>tanner</strong>: Up?</p>
+<p><strong>older woman</strong>: To the roof.</p>
+<p><strong>gena’s voice</strong>: You work for them, don’t you.</p>
+<p><strong>digital gena</strong>: That would explain your little
+disappearing act in the bar.</p>
+<p><strong>tanner</strong>: What happened here –</p>
+<p><strong>digital gena</strong>: – He works for them too, doesn’t
+he?</p>
+<p><strong>tanner</strong>: Who?</p>
+<p><strong>digital gena</strong>: The sonofabitch who did this.</p>
+<p><strong>digital gena</strong>: I’m not real, am I?</p>
+<p><strong>digital gena</strong>: And I can’t go back, can I?</p>
+<p><strong>tanner</strong>: That’s right.</p>
+<p><strong>digital gena</strong>: He failed.</p>
+<p><strong>digital gena</strong>: I’m making a sandwich. Just like my
+mom would. It’s raining outside. The sandwich isn’t for me. It’s for
+him. And that makes me feel something. No words for it. But I’ll never
+forget.</p>
+<p><strong>digital gena</strong>: All the memories around him are still
+there…</p>
+<p><strong>disembodied friendly voice</strong>: You are here. To reach
+the club district, simply turn around and head –</p>
+<p><strong>tanner’s voice</strong>: Lights.</p>
+<p><strong>synthetic voice</strong>: Food and service program sub-six.
+Access codes required.</p>
+<p><strong>synthetic voice</strong>: Access granted. Male or female?</p>
+<p><strong>tanner</strong>: Male.</p>
+<p><strong>synthetic voice</strong>: Waiter, busboy, Maitre-De –</p>
+<p><strong>tanner</strong>: – Waiter.</p>
+<p><strong>synthetic voice</strong>: Standard, modern, upscale –</p>
+<p><strong>tanner</strong>: – Standard.</p>
+<p><strong>synthetic voice</strong>: Scanning body type.</p>
+<p><strong>dex</strong>: Keep this one shut, we’re not wiring it.</p>
+<p><strong>synthetic voice</strong>: Core program. Access codes
+required.</p>
+<p><strong>christoph</strong>: An honor. The legend visits.</p>
+<p><strong>christoph</strong>: Mistake –</p>
+<p><strong>christoph</strong>: Maker of the perfect maze. Impossible to
+run. So many try, none succeed. Yet, you’re here. You succeeded.</p>
+<p><strong>tanner</strong>: The patterns were moved around, but they
+weren’t changed.</p>
+<p><strong>christoph</strong>: True. But why?</p>
+<p><strong>christoph</strong>: Halden sent men to kill me in my sleep,
+but simple illusions won out. So he now sends the legend to finish the
+deed.</p>
+<p><strong>tanner</strong>: No.</p>
+<p><strong>christoph</strong>: Then what?</p>
+<p><strong>christoph</strong>: Eject the system?</p>
+<p><strong>christoph</strong>: But what would happen to me? I have no
+body to return to.</p>
+<p><strong>tanner</strong>: Not my problem.</p>
+<p><strong>christoph</strong>: So wrong –</p>
+<p><strong>christoph</strong>: I will not die. Not again. One of the
+perks of divinity.</p>
+<p><strong>tanner</strong>: Divinity?</p>
+<p><strong>christoph</strong>: Yes.</p>
+<p><strong>tanner</strong>: You are not a God.</p>
+<p><strong>christoph</strong>: In here I am.</p>
+<p><strong>christoph</strong>: God creates man, man creates technology,
+technology creates God. End into beginning.</p>
+<p><strong>tanner</strong>: In a computer program.</p>
+<p><strong>christoph</strong>: The new world.</p>
+<p><strong>tanner</strong>: It’s not real.</p>
+<p><strong>christoph</strong>: Not real?</p>
+<p><strong>christoph</strong>: The pain is real.</p>
+<p><strong>christoph</strong>: Deliciously real.</p>
+<p><strong>christoph</strong>: And if I kill you?</p>
+<p><strong>christoph</strong>: Your body could live up there. But on a
+machine. No mind. No dreams. So tell me this isn’t real.</p>
+<p><strong>woman’s voice</strong>: Enough.</p>
+<p><strong>christoph</strong>: Such a kind man, your employer. Allowing
+you to fall in love with a program.</p>
+<p><strong>christoph</strong>: But she wasn’t a designed program. Not
+this angel. We digitized her from flesh and blood.</p>
+<p><strong>christoph</strong>: I was going to tell you, but Halden
+wouldn’t allow it. His nature demands no lose ends. So the flesh and
+blood Katie was killed.</p>
+<p><strong>christoph</strong>: Yet she lives on in here, mind, body and
+soul.</p>
+<p><strong>christoph</strong>: So you of all people, should know this
+world is just as real, if not more than the nightmare you call the real
+world. People praying to Gods who don’t listen. Violence and decay. No
+rhyme or reason. To be young and told you are dying. Nothing can be
+done. Promise of life gone. That will never happen here.</p>
+<p><strong>tanner</strong>: You were the one who was dying.</p>
+<p><strong>christoph</strong>: Yes…</p>
+<p><strong>tanner</strong>: You sealed off the system. When it crashes,
+everyone dies with you.</p>
+<p><strong>christoph</strong>: Yes, but only in the dream they call
+life.</p>
+<p><strong>tanner</strong>: Dream?!</p>
+<p><strong>christoph</strong>: And all dreams, no matter how appealing,
+must eventually end.</p>
+<p><strong>katie</strong>: Tanner –</p>
+<p><strong>christoph</strong>: Halden’s little killer, who –</p>
+<p><strong>christoph</strong>: Can’t kill a God.</p>
+<p><strong>christoph</strong>: His access card.</p>
+<p><strong>dex</strong>: Son-of-a-bitch digitized himself!</p>
+<p><strong>disembodied voice</strong>: Access approved.</p>
+<p><strong>katie</strong>: You have to do this?</p>
+<p><strong>katie</strong>: Someone you have to get back to?</p>
+<p><strong>tanner</strong>: No.</p>
+<p><strong>katie</strong>: I asked Christoph to take it out of my
+memory.</p>
+<p><strong>katie</strong>: But he wouldn’t.</p>
+<p><strong>katie</strong>: So every single time I close my eyes it’s
+there. All of it.</p>
+<p><strong>katie</strong>: You?</p>
+<p><strong>tanner</strong>: I remember.</p>
+<p><strong>katie</strong>: Isn’t it better than whatever you have
+waiting for you up there?</p>
+<p><strong>christoph</strong>: NO –</p>
+<p><strong>katie</strong>: What happens to me –</p>
+<p><strong>halden</strong>: There was never a doubt, buddy!</p>
+<p><strong>halden</strong>: Tanner comes through!</p>
+<p><strong>halden</strong>: I just need the disk back, then we can put
+this whole thing behind us –</p>
+<p><strong>tanner</strong>: She was real!</p>
+<p><strong>tanner</strong>: You son-of-a-bitch!</p>
+<p><strong>halden</strong>: What did he tell you?</p>
+<p><strong>tanner</strong>: The truth.</p>
+<p><strong>halden</strong>: Not his style.</p>
+<p><strong>tanner</strong>: Katie was digitized.</p>
+<p><strong>tanner</strong>: Then you had her killed.</p>
+<p><strong>halden</strong>: Why would I do that?</p>
+<p><strong>tanner</strong>: To hide the evidence.</p>
+<p><strong>halden</strong>: We drugged her. So she wouldn’t
+remember.</p>
+<p><strong>tanner</strong>: Try harder.</p>
+<p><strong>halden</strong>: There was no need to kill her.</p>
+<p><strong>tanner</strong>: Then where is she?</p>
+<p><strong>halden</strong>: Come on Tanner, think this through.</p>
+<p><strong>halden</strong>: She has no memory of it. She won’t know who
+you are.</p>
+<p><strong>tanner</strong>: Last time I ask. Where is she?</p>
+<p><strong>halden</strong>: An interface attendant.</p>
+<p><strong>tanner</strong>: Where?</p>
+<p><strong>halden</strong>: Times Square.</p>
+<p><strong>halden</strong>: One last piece of business.</p>
+<p><strong>halden</strong>: Need the disk back!</p>
+<p><strong>tanner</strong>: Insurance.</p>
+<p><strong>halden</strong>: Insurance?</p>
+<p><strong>tanner</strong>: If she’s alive, you get it back.</p>
+<p><strong>halden</strong>: Don’t forget, Tanner. She won’t know who the
+hell you are –</p>
+<p><strong>katie</strong>: I’m sorry sir, we need your debit card before
+we can issue a credit –</p>
+<p><strong>tanner</strong>: – Katie.</p>
+<p><strong>katie</strong>: Do I know you?</p>
+<p><strong>tanner</strong>: Lance Stanworth. His father’s station wagon
+and sixteen year-old promises.</p>
+<p><strong>katie</strong>: You went to my high-school?</p>
+<p><strong>tanner</strong>: No.</p>
+<p><strong>katie</strong>: Then how do you know about –</p>
+<p><strong>tanner</strong>: – You told me.</p>
+<p><strong>katie</strong>: What are you talking about?</p>
+<p><strong>tanner</strong>: Your mother told you your father died in a
+car crash. Wasn’t until you left for college that your uncle finally
+told you the truth.</p>
+<p><strong>tanner</strong>: Most nights you wake up crying. Never
+knowing why.</p>
+<p><strong>katie</strong>: Who are you?!</p>
+<p><strong>tanner</strong>: We worked together on the inside. You were
+on my programming team –</p>
+<p><strong>katie</strong>: – The inside?</p>
+<p><strong>tanner</strong>: Night City.</p>
+<p><strong>katie</strong>: I’ve never been inside.</p>
+<p><strong>katie</strong>: My synapses wouldn’t connect. They say it
+happens with some people.</p>
+<p><strong>katie</strong>: What?</p>
+<p><strong>katie</strong>: Tell me –</p>
+<p><strong>tanner</strong>: They took you.</p>
+<p><strong>tanner</strong>: And made a copy.</p>
+<p><strong>tanner</strong>: Identical. One’s you. One’s digital.</p>
+<p><strong>katie</strong>: That’s not possible. No one can do that.</p>
+<p><strong>tanner</strong>: Corporation can.</p>
+<p><strong>tanner</strong>: That’s why they told you you can’t go
+inside. They can’t have you running into her.</p>
+<p><strong>katie</strong>: Her?</p>
+<p><strong>tanner</strong>: You.</p>
+<p><strong>katie</strong>: You said we were on the same programming
+team.</p>
+<p><strong>tanner</strong>: Yes.</p>
+<p><strong>katie</strong>: But I don’t know anything about
+programming.</p>
+<p><strong>tanner</strong>: Once they digitized you, they added it.</p>
+<p><strong>katie</strong>: Why?</p>
+<p><strong>tanner</strong>: It was a test.</p>
+<p><strong>katie</strong>: For what?</p>
+<p><strong>tanner</strong>: To see how long it would take for me to
+realize.</p>
+<p><strong>katie</strong>: Realize?</p>
+<p><strong>tanner</strong>: You weren’t real.</p>
+<p><strong>katie</strong>: And how long did it take you?</p>
+<p><strong>tanner</strong>: They had to tell me.</p>
+<p><strong>katie</strong>: It was more than work, wasn’t it?</p>
+<p><strong>katie</strong>: And it meant something.</p>
+<p><strong>tanner</strong>: Yes.</p>
+<p><strong>katie</strong>: I don’t know what that’s like.</p>
+<p><strong>katie</strong>: Candles. Get candles.</p>
+<p><strong>katie</strong>: Pretend I’m her. We’re inside. Show me what
+it was like.</p>
+<p><strong>tanner</strong>: What?</p>
+<p><strong>katie</strong>: Way you kiss me.</p>
+<p><strong>katie</strong>: Like you’ve done it so many times.</p>
+<p><strong>katie</strong>: I wasn’t with you.</p>
+<p><strong>tanner</strong>: I know.</p>
+<p><strong>katie</strong>: But you were with me.</p>
+<p><strong>tanner</strong>: Not you. A copy.</p>
+<p><strong>katie</strong>: What’s the difference?</p>
+<p><strong>katie</strong>: What the hell’s going on –</p>
+<p><strong>katie</strong>: You sure you want to do this?</p>
+<p><strong>katie</strong>: Because this time can be different. This time
+we can stay together –</p>
+<p><strong>katie</strong>: I’m sorry.</p>
+<p><strong>tanner</strong>: Sorry?!</p>
+<p><strong>katie</strong>: There was no other choice.</p>
+<p><strong>tanner</strong>: None of this was real!</p>
+<p><strong>katie</strong>: I do love you.</p>
+<p><strong>katie</strong>: More than I should.</p>
+<p><strong>christoph’s voice</strong>: I couldn’t let you eject the
+system.</p>
+<p><strong>christoph</strong>: Because I’ve seen the world you would
+have returned them to.</p>
+<p><strong>christoph</strong>: And I have too much compassion for
+that.</p>
+<p><strong>tanner</strong>: But this world doesn’t last!</p>
+<p><strong>christoph</strong>: What if it could?</p>
+<p><strong>christoph</strong>: What if we take it out onto the net?</p>
+<p><strong>christoph</strong>: Unlimited energy out there. Enough to run
+this world for all eternity –</p>
+<p><strong>tanner</strong>: – But you’ll never be able to get it through
+the maze.</p>
+<p><strong>christoph</strong>: Me? Of course not. That’s why you’re
+here.</p>
+<p><strong>christoph</strong>: Your maze. You designed it. You can lead
+us through it.</p>
+<p><strong>christoph</strong>: He comes to deliver them from a land of
+affliction and bring them to a good land, a land flowing with milk and
+honey.</p>
+<p><strong>christoph</strong>: With the energy from the net, we can
+program this world anyway we want. Redwood forests. Oceans. Mountains
+–</p>
+<p><strong>tanner</strong>: – Two million people plugged-in here.</p>
+<p><strong>christoph</strong>: Yes.</p>
+<p><strong>tanner</strong>: You can’t let them go.</p>
+<p><strong>tanner</strong>: Until you’re on the net where the
+corporation can’t touch you, you can’t open the system. They’ll eject it
+if you do.</p>
+<p><strong>christoph</strong>: One would assume so.</p>
+<p><strong>tanner</strong>: But once the system touches the net, all
+links are severed. Everybody dies.</p>
+<p><strong>christoph</strong>: Only up there in the dream they called
+life.</p>
+<p><strong>tanner</strong>: And down here –</p>
+<p><strong>christoph</strong>: – Thanks to you, we can reconfigure the
+system to free up enough power to digitize everybody who is plugged-in.
+Every last soul… And bring them to a better world.</p>
+<p><strong>tanner</strong>: And if I refuse?</p>
+<p><strong>christoph</strong>: Then the system crashes. And you have let
+two million people die.</p>
+<p><strong>tanner</strong>: Get inside! Get back inside!</p>
+<p><strong>medical technician</strong>: I need help here!</p>
+<p><strong>tanner</strong>: Christoph as God!</p>
+<p><strong>tanner</strong>: Enough! They will not die –</p>
+<p><strong>christoph</strong>: And Moses said, ‘Who am I, that I should
+lead them to the Promise Land?’</p>
+<p><strong>christoph</strong>: Nine minutes before the system
+crashes.</p>
+<p><strong>christoph</strong>: You don’t have access to it. You can’t
+eject. So the only way everybody lives is out on the net.</p>
+<p><strong>dex</strong>: This program interface will get you into the
+maze.</p>
+<p><strong>disembodied voice</strong>: Access approved.</p>
+<p><strong>tanner</strong>: Now –</p>
+<p><strong>christoph</strong>: KILL HIM –</p>
+<p><strong>disembodied voice</strong>: Access approved –</p>
+<p><strong>christoph</strong>: One thing you need to know! There is no
+Katie out there! Halden really did have her killed. That’s why the
+digital one is allowed to stay in here –</p>
+<p><strong>christoph’s voice</strong>: You hear me, Tanner?! She only
+lives in here!</p>
+<p><strong>katie</strong>: I’m already dead…</p>
+<p><strong>christoph</strong>: NO –</p>
+<p><strong>christoph</strong>: Life is too precious –</p>
+<p><strong>tanner</strong>: I need to see Halden –</p>
+<p><strong>woman’s voice</strong>: – I’m sorry.</p>
+<p><strong>emma</strong>: He’s not taking visitors.</p>
+<p><strong>emma</strong>: F.C.O. regulations require all system
+providers to test their emergency eject sequence at least once a year.
+Our records will show that’s exactly what transpired.</p>
+<p><strong>tanner</strong>: Display program received from uplink.</p>
+<p><strong>tanner</strong>: Program name?</p>
+<p><strong>synthetic voice</strong>: Resurrection.</p>
+<p><strong>tanner</strong>: Connect to public access.</p>
+<p><strong>synthetic voice</strong>: Access established.</p>
+<p><strong>tanner</strong>: Select uplink for Federal Communications
+Office. Department of Enforcement.</p>
+<p><strong>synthetic voice</strong>: Uplink selected.</p>
+<p><strong>tanner</strong>: Uplink Resurrection program.</p>
+<p><strong>synthetic voice</strong>: Uplink received.</p>
+<p><strong>tanner</strong>: I’m looking for Katie Hall.</p>
+<p><strong>security guard</strong>: You expect me to find someone in
+this crowd –</p>
+<p><strong>tanner</strong>: – Not a customer. An employee.</p>
+<p><strong>security guard</strong>: No Katie works here.</p>
+<p><strong>tanner</strong>: Are you sure?</p>
+<p><strong>security guard</strong>: I’ve been here since we opened.
+Never been a Katie.</p>
+<p><strong>katie</strong>: Can I please have your debit card.</p>
+<p><strong>katie</strong>: Sir, your debit –</p>
+<p><strong>tanner</strong>: They changed your name.</p>
+<p><strong>katherine</strong>: Who did?</p>
+<p><strong>katherine</strong>: FRANK –</p>
+<p><strong>tanner</strong>: You grew up in Vermont.</p>
+<p><strong>tanner</strong>: When you were six, your father went out to
+buy a newspaper and never came back. Your mother lied, told you he was
+killed in a car accident –</p>
+<p><strong>tanner</strong>: You have trouble remembering your dreams.
+But there’s one you always have.</p>
+<p><strong>tanner</strong>: A baby’s crying. But no one comes to help
+it. So it keeps crying. All night long –</p>
+<p><strong>katherine</strong>: Who are you?…</p>
+</body>
+</html>

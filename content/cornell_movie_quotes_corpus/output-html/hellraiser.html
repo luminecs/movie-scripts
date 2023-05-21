@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>hellraiser</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="hellraiser">hellraiser</h1>
+<p><strong>cenobite</strong>: It’s over …</p>
+<p><strong>larry</strong>: It’s one of these.</p>
+<p><strong>julia</strong>: We’re going to freeze to death.</p>
+<p><strong>julia</strong>: Maybe somebody changed the lock.</p>
+<p><strong>larry</strong>: Like who?</p>
+<p><strong>julia</strong>: Just a thought -</p>
+<p><strong>larry</strong>: Ah!</p>
+<p><strong>larry</strong>: Success.</p>
+<p><strong>larry</strong>: Well. This is it.</p>
+<p><strong>julia</strong>: It smells damp.</p>
+<p><strong>larry</strong>: It’s just been empty a while.</p>
+<p><strong>larry</strong>: Besides, it’s an old house.</p>
+<p><strong>julia</strong>: How long since you were here?</p>
+<p><strong>larry</strong>: The best part of ten years.</p>
+<p><strong>larry</strong>: I wanted to sell it off at one point, after
+the old Lady died, but I couldn’t get Frank to agree.</p>
+<p><strong>larry</strong>: Christ. It’s not been touched.</p>
+<p><strong>larry</strong>: Look at this.</p>
+<p><strong>julia</strong>: Why didn’t he want to sell it?</p>
+<p><strong>larry</strong>: I don’t know. Probably wanted a hideaway.</p>
+<p><strong>julia</strong>: Not exactly modern.</p>
+<p><strong>larry</strong>: We’ll sell it. Sell everything.</p>
+<p><strong>julia</strong>: I thought half of it was your brother’s?</p>
+<p><strong>larry</strong>: He won’t complain. He can pay off some of his
+creditors.</p>
+<p><strong>larry</strong>: You know we have to let Kirsty see this
+place, before we do anything to it. She’ll love it.</p>
+<p><strong>julia</strong>: You mean we’re moving in?</p>
+<p><strong>larry</strong>: You don’t like it?</p>
+<p><strong>julia</strong>: It’s better than Brooklyn.</p>
+<p><strong>larry</strong>: You’re still blaming me.</p>
+<p><strong>julia</strong>: No. I’m not.</p>
+<p><strong>larry</strong>: You wanted to come back to London. We came
+back.</p>
+<p><strong>julia</strong>: All right.</p>
+<p><strong>larry</strong>: So what’s the argument?</p>
+<p><strong>julia</strong>: No argument.</p>
+<p><strong>larry</strong>: Oh Christ. Julia …</p>
+<p><strong>larry</strong>: Shit.</p>
+<p><strong>julia</strong>: Larry!</p>
+<p><strong>larry</strong>: I hear you.</p>
+<p><strong>larry</strong>: Where are you?</p>
+<p><strong>julia</strong>: In here.</p>
+<p><strong>julia</strong>: Squatters?</p>
+<p><strong>larry</strong>: Frank.</p>
+<p><strong>julia</strong>: He’s here?</p>
+<p><strong>larry</strong>: He’s been here. There’s stuff in the kitchen.
+He must have made a hasty exit.</p>
+<p><strong>larry</strong>: Hello …?</p>
+<p><strong>larry</strong>: Is there anybody there?</p>
+<p><strong>larry</strong>: There’s nobody there -</p>
+<p><strong>larry</strong>: I’m surprised it’s even connected …</p>
+<p><strong>larry</strong>: Who’s there?</p>
+<p><strong>kirsty</strong>: Daddy?</p>
+<p><strong>larry</strong>: Kirsty?</p>
+<p><strong>kirsty</strong>: I got through.</p>
+<p><strong>larry</strong>: Where are you?</p>
+<p><strong>kirsty</strong>: I found a room.</p>
+<p><strong>larry</strong>: What did you say?</p>
+<p><strong>kirsty</strong>: I said: I found a room.</p>
+<p><strong>larry</strong>: I thought you were going to stay with us for
+awhile?</p>
+<p><strong>kirsty</strong>: No Dad.</p>
+<p><strong>larry</strong>: You’d like the house.</p>
+<p><strong>kirsty</strong>: YOU’D like my room.</p>
+<p><strong>larry</strong>: Do you want me to come over?</p>
+<p><strong>kirsty</strong>: No, no. Not just yet. It needs … er … some
+work.</p>
+<p><strong>larry</strong>: Well I want you to see the house.</p>
+<p><strong>kirsty</strong>: I’m not going to change my mind, Dad.</p>
+<p><strong>kirsty</strong>: Great.</p>
+<p><strong>larry</strong>: Well come over, will you? See the place?</p>
+<p><strong>kirsty</strong>: Maybe tomorrow. I got to go look for a
+job.</p>
+<p><strong>larry</strong>: O.K. Honey. Well you take care. I love
+you.</p>
+<p><strong>kirsty</strong>: I love you too.</p>
+<p><strong>larry</strong>: Well?</p>
+<p><strong>julia</strong>: Why not?</p>
+<p><strong>larry</strong>: We’ll move in Sunday.</p>
+<p><strong>1st man</strong>: We’re not going to get it in.</p>
+<p><strong>2nd man</strong>: Tip it! Tip it!</p>
+<p><strong>larry</strong>: Wait! Wait! Watch the fucking paint work.</p>
+<p><strong>1st man</strong>: Look, do you want the bed in or not?</p>
+<p><strong>larry</strong>: Just take it slowly.</p>
+<p><strong>1st man</strong>: Oh, sod you.</p>
+<p><strong>2nd man</strong>: Eh, Chas, slow it down like the man
+says.</p>
+<p><strong>larry</strong>: It’ll go in.</p>
+<p><strong>1st man</strong>: Famous last fucking words.</p>
+<p><strong>larry</strong>: Alright, let’s give it another try.</p>
+<p><strong>2nd man</strong>: Do you really need this bed, lady?</p>
+<p><strong>larry</strong>: How are you doing through there?</p>
+<p><strong>julia</strong>: It looks like a bomb’s dropped.</p>
+<p><strong>2nd man</strong>: Got any beer?</p>
+<p><strong>julia</strong>: There’s some in the ’fridge.</p>
+<p><strong>larry</strong>: I’ll get it.</p>
+<p><strong>2nd man</strong>: It’s my lucky day.</p>
+<p><strong>kirsty</strong>: Hi.</p>
+<p><strong>2nd man</strong>: Want to buy a bed?</p>
+<p><strong>kirsty</strong>: Not much.</p>
+<p><strong>kirsty</strong>: Dad?</p>
+<p><strong>larry</strong>: Honey!</p>
+<p><strong>kirsty</strong>: Big house.</p>
+<p><strong>larry</strong>: You like?</p>
+<p><strong>kirsty</strong>: Me like.</p>
+<p><strong>larry</strong>: I’ll show you around when we’ve got this damn
+bed moved.</p>
+<p><strong>kirsty</strong>: Is Julia here?</p>
+<p><strong>larry</strong>: Upstairs. Treat her gently, huh? She hates
+moving.</p>
+<p><strong>kirsty</strong>: Suprise.</p>
+<p><strong>larry</strong>: Kirsty.</p>
+<p><strong>kirsty</strong>: O.K. I’ll be nice. You get on with the
+muscle work. I’ll make myself some coffee.</p>
+<p><strong>larry</strong>: Kitchen’s through on your left</p>
+<p><strong>2nd man</strong>: That your daughter?</p>
+<p><strong>larry</strong>: Uh-huh.</p>
+<p><strong>2nd man</strong>: Got her mother’s looks.</p>
+<p><strong>larry</strong>: Her mother’s dead.</p>
+<p><strong>2nd man</strong>: Oh.</p>
+<p><strong>larry</strong>: Julia’s my second wife.</p>
+<p><strong>2nd man</strong>: Lucky man.</p>
+<p><strong>larry</strong>: Damn right. Now are we going to move the bed
+or not?</p>
+<p><strong>frank</strong>: Can I come in?</p>
+<p><strong>frank</strong>: Can I come in?</p>
+<p><strong>kirsty</strong>: Shit! Shit!</p>
+<p><strong>larry</strong>: Are you O.K.?</p>
+<p><strong>kirsty</strong>: Sure.</p>
+<p><strong>frank</strong>: You’re Julia, right?</p>
+<p><strong>julia</strong>: That’s right. Who are you?</p>
+<p><strong>frank</strong>: I’m brother Frank.</p>
+<p><strong>julia</strong>: Oh.</p>
+<p><strong>frank</strong>: I came for the wedding.</p>
+<p><strong>julia</strong>: Oh. Oh yes.</p>
+<p><strong>frank</strong>: Well can I come in or not?</p>
+<p><strong>julia</strong>: I’m sorry. Of course. You’re very
+welcome.</p>
+<p><strong>frank</strong>: That’s nice to know. Have you got a
+towel?</p>
+<p><strong>kirsty</strong>: Have you got a towel?</p>
+<p><strong>julia</strong>: Kirsty.</p>
+<p><strong>kirsty</strong>: Hi. I got soaked.</p>
+<p><strong>julia</strong>: There’s a towel in the bath- room.</p>
+<p><strong>kirsty</strong>: Which is where?</p>
+<p><strong>julia</strong>: Just to your left.</p>
+<p><strong>kirsty</strong>: Did Dad tell you I got a room, by the way?
+Waterloo. Centre of the known universe.</p>
+<p><strong>1st man</strong>: Have you got it?</p>
+<p><strong>2nd man</strong>: I’ve got it. I told you -</p>
+<p><strong>larry</strong>: Wait! Wait!</p>
+<p><strong>julia</strong>: Well?</p>
+<p><strong>frank</strong>: I don’t want to see the dress.</p>
+<p><strong>julia</strong>: But you said -</p>
+<p><strong>frank</strong>: I don’t want to see the dress.</p>
+<p><strong>frank</strong>: You know what I want.</p>
+<p><strong>frank</strong>: I want you.</p>
+<p><strong>frank</strong>: That’s better</p>
+<p><strong>julia</strong>: What about Larry -</p>
+<p><strong>frank</strong>: Forget him.</p>
+<p><strong>larry</strong>: Slowly, will you? Slowly!</p>
+<p><strong>julia</strong>: Oh my God. Oh my God. Oh my God.</p>
+<p><strong>julia</strong>: Oh Frank …</p>
+<p><strong>larry</strong>: Will you take the weight while I take a step
+up?</p>
+<p><strong>larry</strong>: Christ!</p>
+<p><strong>1st man</strong>: What’s the problem?</p>
+<p><strong>larry</strong>: My fucking hand!</p>
+<p><strong>larry</strong>: You fucking ass-holes.</p>
+<p><strong>1st man</strong>: Who are you calling a fucking ass-hole?
+It’s this bastard bed that’s your fucking problem!</p>
+<p><strong>larry</strong>: … Oh Christ …</p>
+<p><strong>larry</strong>: … oh … Christ …</p>
+<p><strong>kirsty</strong>: What’s happening?</p>
+<p><strong>2nd man</strong>: We’re leaving.</p>
+<p><strong>kirsty</strong>: Where’s my father?</p>
+<p><strong>1st man</strong>: He’s fucked off.</p>
+<p><strong>2nd man</strong>: Eh … LANGUAGE.</p>
+<p><strong>1st man</strong>: Sorry. He’s gone upstairs. So we’re fucking
+off too.</p>
+<p><strong>2nd man</strong>: Will you sign for the bed?</p>
+<p><strong>kirsty</strong>: Sure.</p>
+<p><strong>larry</strong>: … Julia …</p>
+<p><strong>julia</strong>: What have you done?</p>
+<p><strong>larry</strong>: I cut myself.</p>
+<p><strong>julia</strong>: Is it deep?</p>
+<p><strong>larry</strong>: I don’t know, I haven’t looked. You know me
+and blood.</p>
+<p><strong>julia</strong>: You’re NOT going to faint.</p>
+<p><strong>larry</strong>: Shit.</p>
+<p><strong>julia</strong>: Let me see.</p>
+<p><strong>julia</strong>: It’s probably going to need stitches.</p>
+<p><strong>larry</strong>: I’m going to throw up.</p>
+<p><strong>julia</strong>: No, you’re not.</p>
+<p><strong>julia</strong>: Take it slowly.</p>
+<p><strong>larry</strong>: So damn stupid.</p>
+<p><strong>julia</strong>: You’re done worse.</p>
+<p><strong>larry</strong>: I’ll be scarred for life.</p>
+<p><strong>julia</strong>: No you won’t.</p>
+<p><strong>kirsty</strong>: What happened?</p>
+<p><strong>julia</strong>: Just an accident. He’s all right. Will you
+drive? He needs stitches.</p>
+<p><strong>kirsty</strong>: Sure.</p>
+<p><strong>julia</strong>: The keys are in the kitchen.</p>
+<p><strong>larry</strong>: - always hated the sight of my own blood. I
+go out like a light. Anybody else’s? no problem. But mine … you know …
+goes straight to my head. Anyhow, this damn doctor’s poking around and
+I’m saying: I’m going to pass out, and he’s saying, no you’re not, no
+you’re not. Next thing I know -</p>
+<p><strong>larry</strong>: - I wake up On the floor.</p>
+<p><strong>bill</strong>: Probably thought you’d sue.</p>
+<p><strong>larry</strong>: I should do it!</p>
+<p><strong>evelyn</strong>: Doctors -</p>
+<p><strong>larry</strong>: I know. And he’s saying: I’m sorry. I’m
+sorry.</p>
+<p><strong>bill</strong>: HE’S sorry.</p>
+<p><strong>larry</strong>: Right … Anyone for more?</p>
+<p><strong>evelyn</strong>: No … no … I …</p>
+<p><strong>larry</strong>: Come on, you’re only young once -</p>
+<p><strong>larry</strong>: What are you drinking, love?</p>
+<p><strong>kirsty</strong>: I’ve forgotten.</p>
+<p><strong>larry</strong>: Steve?</p>
+<p><strong>steve</strong>: We’re on the Cointreau.</p>
+<p><strong>kirsty</strong>: That’s right. Cointreau.</p>
+<p><strong>steve</strong>: I’ll do it.</p>
+<p><strong>kirsty</strong>: I won’t be able to stand.</p>
+<p><strong>steve</strong>: So lie down.</p>
+<p><strong>julia</strong>: Would you excuse me? I think I’m going to go
+to bed.</p>
+<p><strong>larry</strong>: Are you O.K.?</p>
+<p><strong>bill</strong>: Christ. I think it’s time we were away -</p>
+<p><strong>larry</strong>: Bill? Absolutely not. Sit down. We’ve got
+celebrating to do.</p>
+<p><strong>steve</strong>: It was a wonderful meal.</p>
+<p><strong>evelyn</strong>: Oh it was. It was wonderful.</p>
+<p><strong>julia</strong>: I’m glad you enjoyed it.</p>
+<p><strong>evelyn</strong>: See you again soon.</p>
+<p><strong>bill</strong>: You must come round.</p>
+<p><strong>evelyn</strong>: Yes. You must. We’re so happy you’re
+back.</p>
+<p><strong>julia</strong>: That’s nice. Well … goodnight.</p>
+<p><strong>evelyn</strong>: Does it still hurt?</p>
+<p><strong>larry</strong>: Only when I laugh.</p>
+<p><strong>julia</strong>: Who’s there?</p>
+<p><strong>frank</strong>: Julia.</p>
+<p><strong>julia</strong>: Oh my God.</p>
+<p><strong>frank</strong>: Don’t look at me.</p>
+<p><strong>julia</strong>: Who are you?</p>
+<p><strong>frank</strong>: I said: don’t look.</p>
+<p><strong>julia</strong>: Tell me who you are.</p>
+<p><strong>frank</strong>: Frank.</p>
+<p><strong>julia</strong>: No. God no.</p>
+<p><strong>frank</strong>: Believe me. It’s me. It’s really me.</p>
+<p><strong>julia</strong>: What happened to you?</p>
+<p><strong>frank</strong>: His blood … on the floor … It brought me
+back.</p>
+<p><strong>julia</strong>: Back from where?</p>
+<p><strong>frank</strong>: Just help, will you? Please God, help me
+-</p>
+<p><strong>steve</strong>: You’re not going?</p>
+<p><strong>kirsty</strong>: Just upstairs.</p>
+<p><strong>steve</strong>: Need any help?</p>
+<p><strong>kirsty</strong>: I AM house-trained.</p>
+<p><strong>steve</strong>: No … I meant …</p>
+<p><strong>larry</strong>: It’s round on the left -</p>
+<p><strong>kirsty</strong>: I know.</p>
+<p><strong>frank</strong>: … somebody …</p>
+<p><strong>julia</strong>: Ssh!</p>
+<p><strong>frank</strong>: You can’t let me stay like this. Please. You
+can’t.</p>
+<p><strong>julia</strong>: What do you want me to do.</p>
+<p><strong>frank</strong>: The blood brought me this far. I need more of
+the same. Or I’ll slip back …</p>
+<p><strong>frank</strong>: You have to heal me.</p>
+<p><strong>kirsty</strong>: Hello?</p>
+<p><strong>kirsty</strong>: Oh, it’s you.</p>
+<p><strong>steve</strong>: Kirsty?</p>
+<p><strong>kirsty</strong>: I’m here.</p>
+<p><strong>steve</strong>: I thought we’d lost you.</p>
+<p><strong>kirsty</strong>: I’m coming! Sleep well.</p>
+<p><strong>kirsty</strong>: You know I do know the way home.</p>
+<p><strong>steve</strong>: It’s late.</p>
+<p><strong>kirsty</strong>: Not that late.</p>
+<p><strong>steve</strong>: Please. I want to see you home. All
+right?</p>
+<p><strong>kirsty</strong>: All right. No. That’s nice.</p>
+<p><strong>steve</strong>: If there’s a train.</p>
+<p><strong>kirsty</strong>: What do we do if there isn’t?</p>
+<p><strong>steve</strong>: We walk.</p>
+<p><strong>steve</strong>: Why don’t you stay at Larry’s house? There’s
+plenty of room.</p>
+<p><strong>kirsty</strong>: Yeah, there’s room. And there’s Julia.</p>
+<p><strong>steve</strong>: I see.</p>
+<p><strong>kirsty</strong>: She’s so damn … English.</p>
+<p><strong>steve</strong>: Meaning what?</p>
+<p><strong>kirsty</strong>: Oh, I don’t know. Up-tight. Frigid.</p>
+<p><strong>steve</strong>: I beg your pardon?</p>
+<p><strong>kirsty</strong>: There ya go. I beg your pardon?</p>
+<p><strong>steve</strong>: We’re not all frigid.</p>
+<p><strong>kirsty</strong>: Oh no?</p>
+<p><strong>steve</strong>: Oh no.</p>
+<p><strong>kirsty</strong>: It’s not what I heard.</p>
+<p><strong>steve</strong>: Well you’ve just been talking to the wrong
+people.</p>
+<p><strong>frank</strong>: Well?</p>
+<p><strong>julia</strong>: Yes.</p>
+<p><strong>1st customer</strong>: Excuse me, Miss -</p>
+<p><strong>2nd customer</strong>: I’d like some more lager.</p>
+<p><strong>1st customer</strong>: Miss!</p>
+<p><strong>kirsty</strong>: In a moment.</p>
+<p><strong>2nd customer</strong>: Did you hear me?</p>
+<p><strong>steve</strong>: Hey, sex-bomb -</p>
+<p><strong>kirsty</strong>: You keep your - Oh. Hi.</p>
+<p><strong>steve</strong>: I just called in. How about tonight?</p>
+<p><strong>kirsty</strong>: I don’t finish till twelve.</p>
+<p><strong>steve</strong>: I’m a late riser.</p>
+<p><strong>2nd customer</strong>: What do you have to do to get some
+service around here?</p>
+<p><strong>steve</strong>: Catch you later.</p>
+<p><strong>prudhoe</strong>: Not much fun, is it?</p>
+<p><strong>julia</strong>: What?</p>
+<p><strong>prudhoe</strong>: Drinking alone.</p>
+<p><strong>julia</strong>: Not much.</p>
+<p><strong>prudhoe</strong>: I wonder, maybe …</p>
+<p><strong>julia</strong>: Why not?</p>
+<p><strong>prudhoe</strong>: What are you drinking?</p>
+<p><strong>julia</strong>: Just soda.</p>
+<p><strong>prudhoe</strong>: Plain soda?</p>
+<p><strong>julia</strong>: Please.</p>
+<p><strong>prudhoe</strong>: I try not to drink at lunch- time. Makes me
+sleepy in the afternoon. You like to keep a clear head, eh? One soda,
+one whisky. I do it anyway. No will-power. Got a busy afternoon?</p>
+<p><strong>julia</strong>: That depends.</p>
+<p><strong>prudhoe</strong>: Oh?</p>
+<p><strong>prudhoe</strong>: You know it’s not often I … you know …</p>
+<p><strong>julia</strong>: There’s a first time for every- thing.</p>
+<p><strong>prudhoe</strong>: I suppose that’s right.</p>
+<p><strong>julia</strong>: You want something to drink?</p>
+<p><strong>prudhoe</strong>: I’m already way over my usual limit. You
+know, it’s funny. I feel like I’ve known you for years.</p>
+<p><strong>prudhoe</strong>: Oh, come on. It’s what you brought me here
+for, isn’t it?</p>
+<p><strong>julia</strong>: Yes. I just think we’d be better off
+upstairs.</p>
+<p><strong>prudhoe</strong>: Oh. Oh fine.</p>
+<p><strong>prudhoe</strong>: This your place?</p>
+<p><strong>julia</strong>: Let’s not talk about it.</p>
+<p><strong>prudhoe</strong>: No personal details, right?</p>
+<p><strong>julia</strong>: Right.</p>
+<p><strong>prudhoe</strong>: You know, you’re incredible -</p>
+<p><strong>julia</strong>: Come on in. Make yourself at home.</p>
+<p><strong>prudhoe</strong>: There’s no bed.</p>
+<p><strong>julia</strong>: That’s right.</p>
+<p><strong>prudhoe</strong>: Huh?</p>
+<p><strong>julia</strong>: I prefer the floor.</p>
+<p><strong>prudhoe</strong>: First time for everything, right?</p>
+<p><strong>julia</strong>: Right.</p>
+<p><strong>julia</strong>: Why don’t you take off your jacket? You’re
+warm.</p>
+<p><strong>prudhoe</strong>: Yeah, why don’t I?</p>
+<p><strong>prudhoe</strong>: Why don’t you do the same?</p>
+<p><strong>julia</strong>: Maybe I will.</p>
+<p><strong>prudhoe</strong>: You know, you’re very beautiful.</p>
+<p><strong>julia</strong>: Am I?</p>
+<p><strong>prudhoe</strong>: You know you are. Loveliest woman I ever
+set eyes on.</p>
+<p><strong>prudhoe</strong>: Oh Christ.</p>
+<p><strong>julia</strong>: What’s wrong?</p>
+<p><strong>prudhoe</strong>: Too much drink. Better empty my
+bladder.</p>
+<p><strong>prudhoe</strong>: I’ll be a moment.</p>
+<p><strong>prudhoe</strong>: The door’s stuck.</p>
+<p><strong>prudhoe</strong>: Don’t … I … please … I’m sorry …</p>
+<p><strong>julia</strong>: Enough?</p>
+<p><strong>frank</strong>: Don’t look at me.</p>
+<p><strong>julia</strong>: Jesus Christ.</p>
+<p><strong>frank</strong>: Do I disgust you?</p>
+<p><strong>frank</strong>: See? It’s making me whole again.</p>
+<p><strong>frank</strong>: Come to Daddy. I only want to touch …</p>
+<p><strong>larry</strong>: Sweetheart?</p>
+<p><strong>larry</strong>: Where are you?</p>
+<p><strong>larry</strong>: Are you there?</p>
+<p><strong>frank</strong>: Who’s a pretty boy then?</p>
+<p><strong>larry</strong>: Julia?</p>
+<p><strong>larry</strong>: Are you there?</p>
+<p><strong>larry</strong>: Julia?</p>
+<p><strong>julia</strong>: I’m here.</p>
+<p><strong>larry</strong>: Sweetheart … I’ve been calling you.</p>
+<p><strong>julia</strong>: Just feeling a bit sick.</p>
+<p><strong>larry</strong>: Oh, babe …</p>
+<p><strong>julia</strong>: I’ll be O.K. Just leave me be a while.</p>
+<p><strong>larry</strong>: Can I get you anything?</p>
+<p><strong>julia</strong>: Maybe a brandy.</p>
+<p><strong>larry</strong>: Sure.</p>
+<p><strong>julia</strong>: I’ll be down in a minute</p>
+<p><strong>julia</strong>: Frank?</p>
+<p><strong>frank</strong>: I’m hurting</p>
+<p><strong>julia</strong>: Hurting.</p>
+<p><strong>frank</strong>: My nerves … are beginning to work again.</p>
+<p><strong>julia</strong>: Good.</p>
+<p><strong>frank</strong>: One more. Maybe two -</p>
+<p><strong>julia</strong>: Who?</p>
+<p><strong>frank</strong>: The Cenobites. It’s only a matter of time
+before they find I’ve slipped them. I have to get away from here.</p>
+<p><strong>larry</strong>: Julia? Are you all right?</p>
+<p><strong>julia</strong>: Just a moment. Put on some music will you
+babe?</p>
+<p><strong>frank</strong>: Poor Larry. Obedient as ever.</p>
+<p><strong>julia</strong>: Keep your voice down.</p>
+<p><strong>frank</strong>: Ssh. Don’t want babe to hear.</p>
+<p><strong>julia</strong>: You’re hurting.</p>
+<p><strong>frank</strong>: You won’t cheat me will you? You’ll stay with
+me. Help me. Then we can be together, the way we were before. We belong
+to each other now, for better or worse …</p>
+<p><strong>steve</strong>: What are you doing?</p>
+<p><strong>steve</strong>: Christ. What was that about?</p>
+<p><strong>larry’s voice</strong>: Hello?</p>
+<p><strong>larry</strong>: I’m O.K., honey. It’s all right …</p>
+<p><strong>kirsty</strong>: I just wanted to be sure you were O.K.</p>
+<p><strong>larry</strong>: Never better. You sleep well.</p>
+<p><strong>larry</strong>: I love you, honey.</p>
+<p><strong>julia</strong>: Who was it?</p>
+<p><strong>larry</strong>: Kirsty.</p>
+<p><strong>frank</strong>: Kirsty.</p>
+<p><strong>victim</strong>: You’re sure we’re not going to be
+interrupted -</p>
+<p><strong>julia</strong>: Quite sure.</p>
+<p><strong>victim</strong>: Only I like to be careful.</p>
+<p><strong>julia</strong>: Well?</p>
+<p><strong>frank</strong>: Better. Much better. I’d like some clothes.
+And maybe a cigarette.</p>
+<p><strong>julia</strong>: Then you tell me … you explain what happened
+to you?</p>
+<p><strong>frank</strong>: Of course.</p>
+<p><strong>frank</strong>: I wanted access to experiences … pleasures …
+that only they could offer …</p>
+<p><strong>julia</strong>: The Cenobites.</p>
+<p><strong>frank</strong>: That’s what they call themselves. They’re not
+human. Maybe they were once, but they’re not now. They rearrange their
+own flesh for pleasure.</p>
+<p><strong>julia</strong>: And the box?</p>
+<p><strong>frank</strong>: It cost me a fortune. All I had. It’s a
+puzzle you see. You solve it, and the Cenobites come through …</p>
+<p><strong>julia</strong>: Where from?</p>
+<p><strong>frank</strong>: God knows. Sometimes I think they’re just
+behind the walls …</p>
+<p><strong>julia</strong>: So they cheated you</p>
+<p><strong>frank</strong>: Oh no. They kept to their bargain. They gave
+me experiences I’d never forget …</p>
+<p><strong>frank</strong>: But their pleasure was my pain.</p>
+<p><strong>frank</strong>: Terrible pain. Appalling …</p>
+<p><strong>julia</strong>: And the blood let you out?</p>
+<p><strong>frank</strong>: There are ways to resurrection. Blood’s one
+of them. I won’t let them take me back, Julia.</p>
+<p><strong>frank</strong>: I want to be whole, and then get out -</p>
+<p><strong>julia</strong>: You won’t have to. We’ll be gone. Somewhere
+they’ll never find us.</p>
+<p><strong>larry</strong>: Is this upsetting you?</p>
+<p><strong>julia</strong>: I’ve seen worse.</p>
+<p><strong>larry</strong>: Are you all right?</p>
+<p><strong>julia</strong>: Fine.</p>
+<p><strong>larry</strong>: Only I’ll turn it off -</p>
+<p><strong>commentator</strong>: And he’s down! He’s down!</p>
+<p><strong>commentator</strong>: - and now he’s in trouble, he’s really
+in trouble -</p>
+<p><strong>larry</strong>: What was that?</p>
+<p><strong>julia</strong>: Thunder.</p>
+<p><strong>larry</strong>: No. Something else.</p>
+<p><strong>julia</strong>: Maybe I left a window open -</p>
+<p><strong>larry</strong>: No. I’ll do it.</p>
+<p><strong>julia</strong>: It was nothing.</p>
+<p><strong>larry</strong>: What’s wrong with you?</p>
+<p><strong>julia</strong>: I just hate the thunder.</p>
+<p><strong>larry</strong>: I’m here.</p>
+<p><strong>larry</strong>: Oh baby.</p>
+<p><strong>julia</strong>: Don’t go upstairs.</p>
+<p><strong>larry</strong>: Come with me then.</p>
+<p><strong>julia</strong>: Please …</p>
+<p><strong>julia</strong>: Don’t.</p>
+<p><strong>larry</strong>: We must have rats.</p>
+<p><strong>larry</strong>: See? Quite safe.</p>
+<p><strong>larry</strong>: … oh babe …</p>
+<p><strong>larry</strong>: …I love you, honey … let me … oh God … I love
+you …</p>
+<p><strong>larry</strong>: Oh baby … I love you …</p>
+<p><strong>julia</strong>: … no …</p>
+<p><strong>julia</strong>: No. No, you mustn’t. PLEASE. No.</p>
+<p><strong>larry</strong>: Huh?</p>
+<p><strong>julia</strong>: Please …</p>
+<p><strong>larry</strong>: What’s wrong with you?</p>
+<p><strong>julia</strong>: Please. I can’t bear it …</p>
+<p><strong>larry</strong>: I don’t understand you. One moment you’re all
+over me, the next it’s: Don’t touch me.</p>
+<p><strong>larry</strong>: … maybe we should never have come back.</p>
+<p><strong>kirsty</strong>: Maybe you should give it some time.</p>
+<p><strong>larry</strong>: I guess.</p>
+<p><strong>kirsty</strong>: She’s not like Mom. She’s … I don’t know …
+moody. I thought that was what you liked about her.</p>
+<p><strong>larry</strong>: You don’t like her at all do you?</p>
+<p><strong>kirsty</strong>: I don’t know her. She’s so … sealed up.</p>
+<p><strong>larry</strong>: She doesn’t even want to leave the house.</p>
+<p><strong>kirsty</strong>: Really?</p>
+<p><strong>larry</strong>: It’s like she’s waiting for something.</p>
+<p><strong>kirsty</strong>: What?</p>
+<p><strong>larry</strong>: I don’t know. I don’t know. It’s beyond
+me.</p>
+<p><strong>larry</strong>: Would you … maybe call round sometime? Try to
+make friends.</p>
+<p><strong>kirsty</strong>: Sure.</p>
+<p><strong>larry</strong>: Maybe all she needs is some company.</p>
+<p><strong>frank</strong>: You can’t love him.</p>
+<p><strong>julia</strong>: I don’t.</p>
+<p><strong>frank</strong>: So where’s the harm?</p>
+<p><strong>julia</strong>: I said no.</p>
+<p><strong>frank</strong>: Then find me somebody else, before they come
+looking.</p>
+<p><strong>sykes</strong>: I get lonely sometimes.</p>
+<p><strong>julia</strong>: Everybody does.</p>
+<p><strong>julia</strong>: Come in.</p>
+<p><strong>sykes</strong>: What is this? A game?</p>
+<p><strong>sykes</strong>: Christ help me!</p>
+<p><strong>sykes</strong>: Don’t!</p>
+<p><strong>sykes</strong>: No!</p>
+<p><strong>frank</strong>: Get out of here.</p>
+<p><strong>sykes</strong>: Please … don’t let him kill me … please …</p>
+<p><strong>kirsty</strong>: Oh my God.</p>
+<p><strong>kirsty</strong>: Julia!</p>
+<p><strong>frank</strong>: Kirsty?</p>
+<p><strong>kirsty</strong>: Keep your fucking distance. Julia! Where’s
+Julia? Christ, what have you done with her.</p>
+<p><strong>frank</strong>: Kirsty. It’s Frank. It’s Uncle Frank.</p>
+<p><strong>kirsty</strong>: No.</p>
+<p><strong>frank</strong>: You remember.</p>
+<p><strong>kirsty</strong>: No.</p>
+<p><strong>frank</strong>: Come to Daddy.</p>
+<p><strong>kirsty</strong>: No. Get the fuck off me.</p>
+<p><strong>frank</strong>: You’ve grown. You’re beautiful.</p>
+<p><strong>kirsty</strong>: Don’t touch me. Or so help me -</p>
+<p><strong>frank</strong>: What? What will you do? What can you do?
+There’s nothing to be frightened of.</p>
+<p><strong>frank</strong>: I bet you make your Daddy proud, don’t you?
+Beautiful.</p>
+<p><strong>kirsty</strong>: This isn’t happening.</p>
+<p><strong>frank</strong>: I used to tell myself that. Used to try and
+pretend I was dreaming all the pain. But why kid yourself? Some things
+have to be endured. Take it from me. And that makes the pleasures so
+much sweeter …</p>
+<p><strong>frank</strong>: Give that to me.</p>
+<p><strong>kirsty</strong>: No.</p>
+<p><strong>frank</strong>: One last time. Give me the box.</p>
+<p><strong>kirsty</strong>: You want it?</p>
+<p><strong>voice</strong>: Are you all right?</p>
+<p><strong>woman</strong>: Do you need any help?</p>
+<p><strong>frank</strong>: Come to Daddy.</p>
+<p><strong>kirsty</strong>: This isn’t happening.</p>
+<p><strong>frank</strong>: Some things have to be endured …</p>
+<p><strong>nurse</strong>: You’re awake.</p>
+<p><strong>doctor</strong>: So … you’re back with us.</p>
+<p><strong>kirsty</strong>: I think so.</p>
+<p><strong>doctor</strong>: How are you feeling?</p>
+<p><strong>kirsty</strong>: Tender.</p>
+<p><strong>doctor</strong>: You took quite a beating. Do you remember
+what happened?</p>
+<p><strong>kirsty</strong>: I want to speak to my father …</p>
+<p><strong>doctor</strong>: Of course. We’ll bring you a telephone.</p>
+<p><strong>kirsty</strong>: Why not?</p>
+<p><strong>doctor</strong>: Chin up. There’s no serious damage. And
+you’re safe here.</p>
+<p><strong>kirsty</strong>: Um.</p>
+<p><strong>julia</strong>: She’ll tell them everything …</p>
+<p><strong>frank</strong>: I don’t think so. She’ll want Larry
+first.</p>
+<p><strong>julia</strong>: That’s probably her now. Or the police.</p>
+<p><strong>frank</strong>: Maybe.</p>
+<p><strong>julia</strong>: Don’t you care?</p>
+<p><strong>frank</strong>: There’s very little I can do about it.</p>
+<p><strong>julia</strong>: Maybe we should just leave -</p>
+<p><strong>frank</strong>: Like this? Look at me! LIKE</p>
+<p><strong>julia</strong>: Well we can’t just stay here -</p>
+<p><strong>frank</strong>: I need a skin. Then we leave -</p>
+<p><strong>nurse</strong>: Comfortable?</p>
+<p><strong>kirsty</strong>: Sure.</p>
+<p><strong>nurse</strong>: Any luck with your father?</p>
+<p><strong>kirsty</strong>: He’s probably got a meeting. I called a
+friend of mine. He’s coming; is that O.K.?</p>
+<p><strong>nurse</strong>: Of course.</p>
+<p><strong>larry</strong>: Julia?</p>
+<p><strong>larry</strong>: What’s wrong?</p>
+<p><strong>julia</strong>: I don’t know where to begin …</p>
+<p><strong>larry</strong>: What are you talking about?</p>
+<p><strong>julia</strong>: It’s better you see for your- self -</p>
+<p><strong>kirsty</strong>: Where the hell did you come from?</p>
+<p><strong>cenobite</strong>: The box … you opened it. We came.</p>
+<p><strong>kirsty</strong>: It’s just a puzzle box.</p>
+<p><strong>cenobite</strong>: It’s a means to summon us - it’s called
+the Lament Con- figuration.</p>
+<p><strong>kirsty</strong>: Who are you?</p>
+<p><strong>cenobite</strong>: Cenobites. Explorers in the further
+regions of experience. Demons to some. Angels to others.</p>
+<p><strong>kirsty</strong>: Well, I didn’t mean to open that thing. You
+can go back wherever you came from.</p>
+<p><strong>female cenobite</strong>: We can’t. Not alone.</p>
+<p><strong>kirsty</strong>: This isn’t for real.</p>
+<p><strong>cenobite</strong>: You solved the box. We came. Now you must
+come with us. Taste our pleasures.</p>
+<p><strong>kirsty</strong>: Don’t touch me!</p>
+<p><strong>kirsty</strong>: Steve. Thank God you came.</p>
+<p><strong>steve</strong>: What happened to you?</p>
+<p><strong>kirsty</strong>: These THINGS … they want to take me -</p>
+<p><strong>steve</strong>: What things?</p>
+<p><strong>cenobite</strong>: He doesn’t see us, or hear us. We belong
+to you, Kirsty. And you to us.</p>
+<p><strong>kirsty</strong>: No!</p>
+<p><strong>steve</strong>: What’s wrong?</p>
+<p><strong>kirsty</strong>: Don’t let them take me, Steve -</p>
+<p><strong>steve</strong>: I won’t let anybody take you.</p>
+<p><strong>female cenobite</strong>: If he takes another step, we open
+his throat.</p>
+<p><strong>kirsty</strong>: Please go, Steve.</p>
+<p><strong>steve</strong>: What?</p>
+<p><strong>kirsty</strong>: Just go. PLEASE. I’ll be O.K. I’m going to
+go see Dad. He’ll look after me -</p>
+<p><strong>steve</strong>: What did I say?</p>
+<p><strong>kirsty</strong>: Will you GO, damn you?</p>
+<p><strong>steve</strong>: I’ll come back later, huh?</p>
+<p><strong>kirsty</strong>: Sure. Why not?</p>
+<p><strong>steve</strong>: ’Bye.</p>
+<p><strong>kirsty</strong>: ’Bye.</p>
+<p><strong>female cenobite</strong>: Good.</p>
+<p><strong>cenobite</strong>: It’s time we were away.</p>
+<p><strong>kirsty</strong>: Let me alone, will you?</p>
+<p><strong>cenobite</strong>: No tears please. It’s a waste of good
+suffering.</p>
+<p><strong>kirsty</strong>: Wait!</p>
+<p><strong>cenobite</strong>: No time for argument.</p>
+<p><strong>kirsty</strong>: You did this before, right?</p>
+<p><strong>cenobite</strong>: Many times.</p>
+<p><strong>kirsty</strong>: To a man called Frank Cotton?</p>
+<p><strong>female cenobite</strong>: Oh yes.</p>
+<p><strong>kirsty</strong>: But he escaped you.</p>
+<p><strong>cenobite</strong>: Nobody escapes us.</p>
+<p><strong>kirsty</strong>: HE did. I’ve seen him. He’s alive.</p>
+<p><strong>cenobite</strong>: Is that so? And what are you
+proposing?</p>
+<p><strong>kirsty</strong>: I’ll take you to him. Then you take him
+instead of me. Back wherever you come from.</p>
+<p><strong>cenobite</strong>: Perhaps …</p>
+<p><strong>female cenobite</strong>: But if you cheat us …</p>
+<p><strong>cenobite</strong>: We’ll tear your soul apart!</p>
+<p><strong>steve</strong>: She was trembling all over.</p>
+<p><strong>nurse</strong>: I’d better go look for her.</p>
+<p><strong>steve</strong>: Maybe she’s gone back to her -</p>
+<p><strong>steve</strong>: - father.</p>
+<p><strong>kirsty</strong>: Please! Dad! It’s me! It’s Kirsty!</p>
+<p><strong>julia</strong>: Damn her.</p>
+<p><strong>voice</strong>: Answer it.</p>
+<p><strong>kirsty</strong>: Please, answer me! Please -</p>
+<p><strong>julia</strong>: Kirsty? It’s very late.</p>
+<p><strong>kirsty</strong>: Where’s Daddy?</p>
+<p><strong>julia</strong>: What’s the problem?</p>
+<p><strong>kirsty</strong>: I have to see my father.</p>
+<p><strong>julia</strong>: Of course. There’s no need to shout.</p>
+<p><strong>julia</strong>: You look terrible. Have you had an
+accident?</p>
+<p><strong>kirsty</strong>: I was here this afternoon.</p>
+<p><strong>julia</strong>: This afternoon.</p>
+<p><strong>kirsty</strong>: I saw everything.</p>
+<p><strong>julia</strong>: I’m sorry, I don’t follow. What was there to
+see?</p>
+<p><strong>kirsty</strong>: Oh God. Thank God. I thought something might
+have …</p>
+<p><strong>larry</strong>: Of course.</p>
+<p><strong>larry</strong>: It’s all right, sweetheart. Julia’s told me
+everything; and it’s all right …</p>
+<p><strong>kirsty</strong>: No. You don’t understand. Your brother -
+Frank - he’s here in the house. And he’s -</p>
+<p><strong>larry</strong>: Whatever Frank did was his error. And it’s
+finished with now.</p>
+<p><strong>kirsty</strong>: Finished?</p>
+<p><strong>larry</strong>: He’s gone.</p>
+<p><strong>kirsty</strong>: Gone?</p>
+<p><strong>julia</strong>: Dead.</p>
+<p><strong>larry</strong>: He was insane, baby: a mad dog. I put him out
+of his misery -</p>
+<p><strong>cenobite</strong>: … we’ll tear your soul apart …</p>
+<p><strong>larry</strong>: I’ll go to the police, when I’m feeling
+stronger. Try and find some way to make them understand, though God
+knows I don’t really understand myself. Did he hurt you?</p>
+<p><strong>larry</strong>: Poor Frank. He’s better off dead.</p>
+<p><strong>kirsty</strong>: I don’t believe it.</p>
+<p><strong>larry</strong>: I’m afraid it’s true.</p>
+<p><strong>kirsty</strong>: I want to see.</p>
+<p><strong>larry</strong>: No you don’t.</p>
+<p><strong>kirsty</strong>: Yes!</p>
+<p><strong>larry</strong>: Show her.</p>
+<p><strong>julia</strong>: Where are you going?</p>
+<p><strong>julia</strong>: You leave this to us, you hear me? We’ll deal
+with the police -</p>
+<p><strong>larry</strong>: Where are you going?</p>
+<p><strong>kirsty</strong>: I have to get out.</p>
+<p><strong>larry</strong>: Stay with me -</p>
+<p><strong>larry</strong>: - it’s all right. Really it is …</p>
+<p><strong>kirsty</strong>: I can’t stay.</p>
+<p><strong>larry</strong>: Come to Daddy.</p>
+<p><strong>larry</strong>: Come to Daddy.</p>
+<p><strong>julia</strong>: No, damn you -</p>
+<p><strong>kirsty</strong>: Oh my God.</p>
+<p><strong>julia</strong>: Frank!</p>
+<p><strong>frank</strong>: You’re not leaving now -</p>
+<p><strong>julia</strong>: Help me, Frank. For God’s sake.</p>
+<p><strong>julia</strong>: No, Frank -</p>
+<p><strong>frank</strong>: Where are you, beautiful?</p>
+<p><strong>frank</strong>: Where are you, honey?</p>
+<p><strong>frank</strong>: Come to Daddy.</p>
+<p><strong>kirsty</strong>: What are you doing here?</p>
+<p><strong>steve</strong>: Got in downstairs. Looking for you. What’s
+going on?</p>
+<p><strong>steve</strong>: You forgot something -</p>
+<p><strong>steve</strong>: I’ll go first -</p>
+<p><strong>kirsty</strong>: God -</p>
+<p><strong>frank</strong>: Don’t cry for him. He’s dead. He always
+was.</p>
+<p><strong>kirsty</strong>: Go on. Kill me. I don’t care.</p>
+<p><strong>frank</strong>: Poor baby.</p>
+<p><strong>kirsty</strong>: You bastard</p>
+<p><strong>frank</strong>: Hush now. It’s all right. Frank’s here.</p>
+<p><strong>kirsty</strong>: Frank.</p>
+<p><strong>frank</strong>: That’s right. Are you losing your mind, baby?
+This is Frank you’re talking to. FRANK.</p>
+<p><strong>frank</strong>: What’s going on?</p>
+<p><strong>cenobite</strong>: Frank -</p>
+<p><strong>kirsty</strong>: What took you so long?</p>
+<p><strong>female cenobite</strong>: We had to hear it from his own lips
+-</p>
+<p><strong>frank</strong>: You set me up! You bitch. You set me up!</p>
+<p><strong>cenobite</strong>: This isn’t for your eyes.</p>
+<p><strong>cenobite</strong>: Out!</p>
+<p><strong>frank</strong>: Bitch!</p>
+<p><strong>kirsty</strong>: We have to get out of here. They’ll kill us
+for the fun of it.</p>
+<p><strong>female cenobite</strong>: Don’t leave us yet -</p>
+<p><strong>female cenobite</strong>: We’ve got such sights to show you
+-</p>
+<p><strong>female cenobite</strong>: … don’t …</p>
+<p><strong>steve</strong>: Jesus Christ.</p>
+<p><strong>julia</strong>: Kirsty …</p>
+<p><strong>kirsty</strong>: Julia?</p>
+<p><strong>kirsty</strong>: Don’t!</p>
+<p><strong>steve</strong>: Come on! Come on!</p>
+<p><strong>kirsty</strong>: Shit. Shit. Shit.</p>
+<p><strong>frank</strong>: Come to Daddy!</p>
+<p><strong>kirsty</strong>: Not tonight.</p>
+</body>
+</html>

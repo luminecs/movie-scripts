@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sounder</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="sounder">sounder</h1>
+<p><strong>david lee</strong>: There ain’t no possums in this woods
+tonight, Daddy.</p>
+<p><strong>nathan lee</strong>: Looks that way, son. Guess the cold done
+drove most of ’em down to the big water country – but if there’s one
+left out here – we gotta find him.</p>
+<p><strong>david lee</strong>: It’s cold, Daddy!</p>
+<p><strong>nathan lee</strong>: Here, put my jacket over you.</p>
+<p><strong>nathan lee</strong>: You all right, boy?</p>
+<p><strong>nathan lee</strong>: Dammit! And I remember the time when a
+bull couldn’t a stopped him from gettin’ that possum!</p>
+<p><strong>nathan lee</strong>: Come here, son–</p>
+<p><strong>nathan lee</strong>: It’s all right. He did his job – I just
+got foolish for a minute.</p>
+<p><strong>nathan lee</strong>: If anybody’s to blame, it’s me – I
+oughta nailed him when I took that shot.</p>
+<p><strong>david lee</strong>: It was too dark, Daddy.</p>
+<p><strong>nathan lee</strong>: Yeah. We better git back to house
+now.</p>
+<p><strong>nathan lee</strong>: In all the years me and Sounder been
+tracking down possums and coons in these woods – he ain’t tore one of
+‘em up yet… He always brought ’em back whole and healthy… And that’s the
+difference between a hound dog that’s dirty and mean, to one that’s
+great like ol’ Sounder here.</p>
+<p><strong>nathan lee</strong>: We cornered one, but he got away.</p>
+<p><strong>nathan lee</strong>: Bet you’re a tired little fellow, David
+Lee.</p>
+<p><strong>david lee</strong>: Yes, sir…</p>
+<p><strong>nathan lee</strong>: You oughta be tired, too, Sounder. That
+possum shore whipped the hell outta you tonight!</p>
+<p><strong>david lee</strong>: He beat you, too, Daddy, and you had a
+big ol’ shootin’ rifle.</p>
+<p><strong>nathan lee</strong>: Boy, you don’t make funny with your
+daddy like that.</p>
+<p><strong>nathan lee</strong>: David Lee…</p>
+<p><strong>david lee</strong>: Yes, sir…</p>
+<p><strong>nathan lee</strong>: You had a rough time out there tonight –
+so you stay home from that school tomorrow.</p>
+<p><strong>david lee</strong>: I wanna go – the trip don’t bother me
+none.</p>
+<p><strong>nathan lee</strong>: You learnin’ anything at that
+school?</p>
+<p><strong>david lee</strong>: Yes, sir – I learn to write a little bit,
+and I can read a lot–</p>
+<p><strong>nathan lee</strong>: Readin’ must be somethin’ powerful, huh,
+son?</p>
+<p><strong>david lee</strong>: Yes, sir…</p>
+<p><strong>nathan lee</strong>: When the fall comes in these parts, the
+Night moon runs away like a rabbit – you could stay out here lookin’ all
+night, and not see a thing out yonder.</p>
+<p><strong>david lee</strong>: We goin’ huntin’ again tomorrow ?</p>
+<p><strong>nathan lee</strong>: Yep. I guess you must wonder why though,
+what with the luck we havin’, but like I always say–</p>
+<p><strong>david lee</strong>: “You lose some of the time, what you
+always go afta, but you lose all the time what you don’t go afta!”</p>
+<p><strong>nathan lee</strong>: Now who says I didn’t lay my mark on
+you, boy!</p>
+<p><strong>rebecca</strong>: David Lee, it’s time for you to get to
+bed!</p>
+<p><strong>david lee</strong>: Goodnight.</p>
+<p><strong>nathan lee</strong>: Night, son!</p>
+<p><strong>rebecca</strong>: And don’t wake up Josie Mae and Earl!</p>
+<p><strong>nathan lee</strong>: Your bedtime too, hound dog.</p>
+<p><strong>nathan lee</strong>: Off you go, boy!</p>
+<p><strong>rebecca</strong>: I bet you could use a hot cup of coffee,
+Nathan Lee.</p>
+<p><strong>nathan lee</strong>: I shore could, Miss Rebecca.</p>
+<p><strong>rebecca</strong>: The boy done went into my walnuts! I skin
+my fingers to the bone to pick two pounds that’s worth almost nothing at
+the commissary and he done took almost half of what I pick!</p>
+<p><strong>nathan lee</strong>: The boy is hungry, Rebecca.</p>
+<p><strong>nathan lee</strong>: Dammit!</p>
+<p><strong>rebecca</strong>: We been through these off-seasons before –
+we made it.</p>
+<p><strong>nathan lee</strong>: What we make it to? The next season to
+work ourselves to death, share croppin’ for ol’ man Howard, so he can
+get richer and we can’t even eat when the croppin’ time is done?</p>
+<p><strong>rebecca</strong>: . Nathan?</p>
+<p><strong>david lee</strong>: Come on y’all, git up, somethin’s cookin’
+in the kitchen! Come on, Earl!</p>
+<p><strong>earl</strong>: What’s in there, David!?</p>
+<p><strong>david lee</strong>: Sausage and hambones!</p>
+<p><strong>david lee</strong>: Don’t do that!</p>
+<p><strong>josie mae</strong>: Where did it come from?</p>
+<p><strong>david lee</strong>: Come on!</p>
+<p><strong>david lee</strong>: Mama, there’s hot meat on the stove!</p>
+<p><strong>rebecca</strong>: That’s right!</p>
+<p><strong>david lee</strong>: Where did it come from, Mama?</p>
+<p><strong>rebecca</strong>: Where all meat come from – now git yourself
+washed up and be snappy about it – you got six miles ahead of you to
+that school.</p>
+<p><strong>rebecca</strong>: Good mornin’, Nathan.</p>
+<p><strong>nathan lee</strong>: Mornin’…</p>
+<p><strong>rebecca</strong>: You ready to eat?</p>
+<p><strong>nathan lee</strong>: I’ll wait till after the children.</p>
+<p><strong>nathan lee</strong>: How’s the weather out there?</p>
+<p><strong>rebecca</strong>: Little chilly.</p>
+<p><strong>nathan lee</strong>: Hope it don’t freeze out our baseball
+game today!</p>
+<p><strong>children</strong>: Mornin’, Daddy!</p>
+<p><strong>nathan lee</strong>: Mornin’ back atcha!</p>
+<p><strong>nathan lee</strong>: Don’t forget to save me some!</p>
+<p><strong>nathan lee</strong>: Sounder!</p>
+<p><strong>nathan lee</strong>: That oughta put you in good shape for
+tonight!</p>
+<p><strong>rebecca</strong>: Don’t take all day at that table, David
+Lee.</p>
+<p><strong>josie mae</strong>: Mama, when kin me and Earl go to school
+with David Lee?</p>
+<p><strong>rebecca</strong>: Maybe soon–</p>
+<p><strong>nathan lee</strong>: The one thing we got plenty of is
+wood!</p>
+<p><strong>david lee</strong>: Ready to go, Mama!</p>
+<p><strong>rebecca</strong>: Tuck that shirt in, David Lee.</p>
+<p><strong>rebecca</strong>: You got two shirts on?</p>
+<p><strong>david lee</strong>: Yes mam…</p>
+<p><strong>rebecca</strong>: When you get outta that school, you come
+right on back home, y’all gon’ have to take this laundry work I done for
+Miss Boatwright today.</p>
+<p><strong>david lee</strong>: ’Bye, Daddy…</p>
+<p><strong>nathan lee</strong>: ’Bye, son…</p>
+<p><strong>rebecca</strong>: Where was it you went last night,
+Nathan?</p>
+<p><strong>nathan lee</strong>: I went where I had to go, Rebecca. My
+children was hungry.</p>
+<p><strong>david lee</strong>: I’m sorry, Mr Clay…</p>
+<p><strong>mr clay</strong>: You are one hour late…</p>
+<p><strong>david lee</strong>: Yessir…</p>
+<p><strong>mr clay</strong>: Well, take your seat.</p>
+<p><strong>mr clay</strong>: Now where were we before we were
+interrupted– Oh yeah, Huckleberry Finn, chapter thirty-four! This
+chapter is called: WE CHEER UP JIM! Here we go: “Tom says: What’s the
+vittles for? Going to feed the dogs? The colored boy kind of smiled
+around gradually over his face, and says: Yes, Mars Sid, a dog. Cur’us
+dog, too. Does you want to go en look at ’im?”</p>
+<p><strong>david lee</strong>: We brought your laundry, Miss
+Boatwright.</p>
+<p><strong>mrs. boatwright</strong>: Come in, children.</p>
+<p><strong>mrs. boatwright</strong>: Put it right up on this table,
+boys.</p>
+<p><strong>mrs. boatwright</strong>: You tell Rebecca ain’t a Chinaman
+in all this world can beat her ironing.</p>
+<p><strong>mrs. boatwright</strong>: This is for your mama’s work, and
+here’s something for the three of you.</p>
+<p><strong>david lee</strong>: Thank you, Miss Boatwright.</p>
+<p><strong>josie mae &amp; earl</strong>: Thank you, Miss
+Boatwright.</p>
+<p><strong>mrs. boatwright</strong>: Oh, by the way, David, I have the
+book I promised you.</p>
+<p><strong>mrs. boatwright</strong>: It’s about the Three
+Musketeers.</p>
+<p><strong>david lee</strong>: Thank you, Miss Boatwright.</p>
+<p><strong>mrs. boatwright</strong>: When you read it we’ll talk about
+it…</p>
+<p><strong>david lee</strong>: Yes mam… We gotta go, Miss Boatwright..
+.</p>
+<p><strong>mrs. boatwright</strong>: Tell Rebecca I said ‘hi’, now…</p>
+<p><strong>josie mae</strong>: What’s a Chinaman, Miss Boatwright?</p>
+<p><strong>david lee</strong>: Come on, Josie Mae! We gotta hurry!</p>
+<p><strong>david lee</strong>: Look at Daddy throw that ball!</p>
+<p><strong>woman</strong>: Rebecca, your children git bigger by the
+hour!</p>
+<p><strong>rebecca</strong>: It’s the good livin’ that do it,
+Harriet!</p>
+<p><strong>david lee</strong>: Miss Boatwright gave me this book and all
+of us a nickel apiece!</p>
+<p><strong>david lee</strong>: Who’s winning, Mama?</p>
+<p><strong>rebecca</strong>: Nobody yet – it’s all tied up.</p>
+<p><strong>ike</strong>: If they heard me sing like this up North I’d be
+richer than the man I sharecrop for.</p>
+<p><strong>nathan lee</strong>: And if they saw me pitch the way I did
+today – they’d hire me just to strike out Babe Ruth!</p>
+<p><strong>david lee</strong>: What do they do in the white churches,
+Mama?</p>
+<p><strong>rebecca</strong>: Same as we – they pray.</p>
+<p><strong>ike</strong>: You know, one time by mistake I went into a
+white church down in Row County and to this day I don’t know how’n the
+devil I got outta that church alive.</p>
+<p><strong>nathan lee</strong>: They probly thought you was crazy.</p>
+<p><strong>ike</strong>: I guess so – but I went home and did me some
+praying to the Lord. I said, Lord, I went into this white church down in
+Row and all I want you to tell me is how I ever got outta there in one
+piece.</p>
+<p><strong>nathan lee</strong>: What did the Lord tell you, Ike?</p>
+<p><strong>ike</strong>: He said, I don’t know, Ike – you doin’ better’n
+me, I been tryin’ to git in there for 200 years and ain’t make it
+yet!</p>
+<p><strong>rebecca</strong>: If there ever was a devil in this county,
+Ike, you is it!</p>
+<p><strong>nathan lee</strong>: Ike, you could make a song outta
+that!</p>
+<p><strong>ike</strong>: I believe I’ll do just what you say, speed
+ball!</p>
+<p><strong>ike</strong>: Well, this is where I havta say good night to
+y’all – it’s been fun, Miss Rebecca.</p>
+<p><strong>rebecca</strong>: Us too, Ike.</p>
+<p><strong>ike</strong>: It’s a good, warm night comin’ up, Nathan – you
+goin’ to the woods?</p>
+<p><strong>nathan lee</strong>: Oh, yeh – possums and coons better hide
+deep from us tonight!</p>
+<p><strong>david lee</strong>: There’s two men in front of our house,
+Daddy.</p>
+<p><strong>david lee</strong>: Who is they?</p>
+<p><strong>rebecca</strong>: Children, come here…</p>
+<p><strong>nathan lee</strong>: We better see who they is…</p>
+<p><strong>sheriff young</strong>: We been in your house, Nathan–</p>
+<p><strong>sheriff young</strong>: We found what we was lookin’ for.</p>
+<p><strong>sheriff young</strong>: You took some food and stuff from the
+James’ Smoke House last night so me and my deputies here gon’ hafta take
+you to the County Court House.</p>
+<p><strong>sheriff young</strong>: Okay, boys…</p>
+<p><strong>earl</strong>: What they doin’, Mama?</p>
+<p><strong>rebecca</strong>: Be quiet, son…</p>
+<p><strong>sheriff young</strong>: Shut that mongrel up!</p>
+<p><strong>sheriff young</strong>: Git that truck up close here, and
+quick!</p>
+<p><strong>sheriff young</strong>: Now boy, if you love that dog, you
+better keep a good, strong hold on him.</p>
+<p><strong>rebecca</strong>: You been knowin’ Nathan for a long time,
+Sheriff Young, and you know what kind of man he is, and you know the
+trouble we face in these off-seasons.</p>
+<p><strong>sheriff young</strong>: Alright, let’s go!</p>
+<p><strong>david lee</strong>: Don’t take my Daddy! Please don’t take my
+Daddy!</p>
+<p><strong>rebecca</strong>: David, come back here!</p>
+<p><strong>rebecca</strong>: David!</p>
+<p><strong>josie mae</strong>: Mama, why did they take Daddy away?</p>
+<p><strong>rebecca</strong>: Because he cared so damn much about you and
+me, child.</p>
+<p><strong>josie mae</strong>: Is he gon’ be gone long?</p>
+<p><strong>rebecca</strong>: Might be…</p>
+<p><strong>david lee</strong>: Sounder… Sounder…</p>
+<p><strong>rebecca</strong>: Josie Mae, I’m goin’ into town for awhile
+to see about your Daddy – David Lee is gon’ be in charge here, so you
+and Earl do just like he tells you.</p>
+<p><strong>rebecca</strong>: Watch the fire – don’t go too far lookin’
+for Sounder, and warm up some of that corn mush for y’all to eat. If
+anybody comes to the house that’s a stranger to you, don’t say
+nothin’.</p>
+<p><strong>david lee</strong>: ’Bye, Mama…</p>
+<p><strong>rebecca</strong>: ’Bye, son – I won’t be gone long.</p>
+<p><strong>sheriff young</strong>: Howya do, Rebecca. I sorta been
+expectin’ you this mornin’.</p>
+<p><strong>rebecca</strong>: I wanta see Nathan.</p>
+<p><strong>sheriff young</strong>: I wish I could, Rebecca, but I can’t
+let you.</p>
+<p><strong>rebecca</strong>: I don’t understand that, Sheriff Young.</p>
+<p><strong>sheriff young</strong>: It’s the rules and I gotta follow
+‘em. No visitin’ ’cept holidays and Sunday – and no womenfolk
+anytime.</p>
+<p><strong>rebecca</strong>: You mean to tell me I can’t see my own
+husband?</p>
+<p><strong>sheriff young</strong>: That’s the way they do things here in
+Landsdown. I just follow orders.</p>
+<p><strong>rebecca</strong>: I got to see my husband, Sheriff Young!</p>
+<p><strong>sheriff young</strong>: I’d like to help you, Rebecca. But
+all that would do, is git us both in trouble.</p>
+<p><strong>rebecca</strong>: Will they give him a trial?</p>
+<p><strong>sheriff young</strong>: Shore thing – next week sometime, and
+as soon as I git the day, I’ll ride out and let you know ’bout it.</p>
+<p><strong>rebecca</strong>: You gotta low-life job, mister sheriff!</p>
+<p><strong>mr howard</strong>: Rebecca, you jest the one I wanta
+see.</p>
+<p><strong>rebecca</strong>: I brought these walnuts to trade.</p>
+<p><strong>mr howard</strong>: That’s one dollar an’ twenty cents.</p>
+<p><strong>rebecca</strong>: I wanta get some things.</p>
+<p><strong>mr howard</strong>: I hope it ain’t a lot,‘cause I can’t give
+you no more credit till the croppin’ season gits back, that is if
+Na–</p>
+<p><strong>rebecca</strong>: I didn’t say nothin’ ’bout credit,
+Mr. Howard.</p>
+<p><strong>mr howard</strong>: Whatcha wanta order?</p>
+<p><strong>rebecca</strong>: I need some nutmeg, flour, eggs, sugar,
+and…</p>
+<p><strong>mr howard</strong>: Now what I wanta talk to you ‘bout is
+Nathan. He oughtn’ done what he did: sneakin’ into the James’ place and
+takin’ they goods. That looks bad on me. I been good to y’all – didn’t I
+go to all that trouble to get the people of Landsdown to let your David
+Lee go to they school? Didn’t I?</p>
+<p><strong>mr howard</strong>: And another thing; with Nathan stuck in
+jail and all, how you gon’ crop for me when the spring season comes,
+huh?</p>
+<p><strong>mr howard</strong>: Dammit, I’m talkin’ to you, woman! I
+gotta farm to think about and I need answers.</p>
+<p><strong>rebecca</strong>: The season is a long way off, Mr. Howard,
+and by that time, Nathan oughta be home. If he ain’t, believe me – the
+children and me – we will grow the crops. We have to because we owe you
+all that money – Mr. Howard.</p>
+<p><strong>josie mae</strong>: Do you think Sounder is dead, David
+Lee?</p>
+<p><strong>earl</strong>: Will he stay dead?</p>
+<p><strong>david lee</strong>: He ain’t dead, now stop askin’ crazy
+questions!</p>
+<p><strong>josie mae</strong>: You don’t havta get mad ‘cause you didn’t
+find the ol’ dog!</p>
+<p><strong>david lee</strong>: Somebody’s comin’ here…</p>
+<p><strong>david lee</strong>: It’s Mama!</p>
+<p><strong>josie mae &amp; earl</strong>: Hi, Mama!</p>
+<p><strong>rebecca</strong>: Hi, Children – here, take some of these
+packages.</p>
+<p><strong>david lee</strong>: Did you see Daddy?</p>
+<p><strong>rebecca</strong>: No, son. We havta wait ’til the holiday
+comes – anyway, they won’t let womenfolk see their men no time.</p>
+<p><strong>david lee</strong>: Can I go when the holiday comes?</p>
+<p><strong>rebecca</strong>: You sure can, son…</p>
+<p><strong>rebecca</strong>: Any sign of Sounder?</p>
+<p><strong>david lee</strong>: No mam – I looked all over.</p>
+<p><strong>rebecca</strong>: I think maybe he was scraped on the head by
+that shot. I don’t think he’s dead – just gone somewhere to heal
+himself.</p>
+<p><strong>earl</strong>: Nothin’ in here, Mama.</p>
+<p><strong>rebecca</strong>: I’m goin’ use it to put a cake in and I’m
+gon’ let David Lee take it to your daddy!</p>
+<p><strong>david lee</strong>: Mama… Make a chocolate cake… Daddy likes
+things that’s chocolate! .</p>
+<p><strong>court clerk</strong>: Defendant will rise and come before the
+bench.</p>
+<p><strong>judge</strong>: Nathan Lee Morgan, you have been found guilty
+of unlawful trespass and robbery – do you have anything to say before
+sentence is passed?</p>
+<p><strong>nathan lee</strong>: . No, sir…</p>
+<p><strong>judge</strong>: It is the judgment of this court that you be
+remanded to the custody of the sheriff of this county and that you be
+taken forthwith to serve a term of one year at hard labor at such county
+labor camp as shall be hereafter designated. Next case, please…</p>
+<p><strong>rebecca</strong>: Be sure to ask your daddy to tell you what
+camp they goin’ to send him to. And whatever you do in there, David Lee,
+act perkish, and don’t grieve him.</p>
+<p><strong>rebecca</strong>: All right, son, that’s it – now don’t
+forget what I told you.</p>
+<p><strong>david lee</strong>: This where you go visit, mister?</p>
+<p><strong>man</strong>: Yeah…</p>
+<p><strong>guard</strong>: Whatcha got there, boy?</p>
+<p><strong>david</strong>: A cake for my Daddy.</p>
+<p><strong>guard</strong>: Well, you put it on this table here’n wait
+’til I check it.</p>
+<p><strong>guard</strong>: Can’t be too careful, boy, jest might have a
+steel file or hacksaw in it.</p>
+<p><strong>guard</strong>: What’s your daddy’s name?</p>
+<p><strong>david lee</strong>: Nathan Lee Morgan…</p>
+<p><strong>guard</strong>: Okay, boy, fourth cell down there on your
+left.</p>
+<p><strong>nathan lee</strong>: Well, looka here…</p>
+<p><strong>david lee</strong>: Hi, Daddy…</p>
+<p><strong>nathan lee</strong>: Hi to you, son…</p>
+<p><strong>david lee</strong>: Mama is outside with Josie Mae and
+Earl.</p>
+<p><strong>nathan lee</strong>: They is!? It shore is good to see you,
+boy!</p>
+<p><strong>david lee</strong>: This was a real cake before the man at
+the door put all these holes in it.</p>
+<p><strong>nathan lee</strong>: Aw, don’t make no difference, son. If I
+know your mama, a few knife holes ain’t gon’ destroy the soul she put
+into this cake. Come on, have a piece with your daddy.</p>
+<p><strong>david lee</strong>: We didn’t find Sounder yet.</p>
+<p><strong>nathan lee</strong>: He’ll show up one day.</p>
+<p><strong>david lee</strong>: Do you think he’s dead, Daddy?</p>
+<p><strong>nathan lee</strong>: Naww – he’ll come back to you, soon as
+his wounds heal. This cake shore is tasty, son.</p>
+<p><strong>nathan lee</strong>: It’s a shame they won’t let ’em come in
+here. If I had the strength I’d knock down these damn walls – if I could
+just git my arms ’round your mama right now – is they on this side of
+us, son?</p>
+<p><strong>david lee</strong>: I think so…</p>
+<p><strong>nathan lee</strong>: Dammit! I’m gon’ see ’em if I have to
+break my arms!</p>
+<p><strong>nathan lee</strong>: I can see them! I can see them!</p>
+<p><strong>nathan lee</strong>: Son, don’t ever let yourself get caught
+in a place like this.</p>
+<p><strong>david lee</strong>: Can you say what camp they gon’ send you
+to, Daddy?</p>
+<p><strong>nathan lee</strong>: I don’t know, son – they won’t tell us
+things like that – but I don’t want y’all to come here no more.</p>
+<p><strong>david lee</strong>: Why, Daddy; you won’t be here?</p>
+<p><strong>nathan lee</strong>: Just do like I tell you – I’ll get word
+to you through the visitin’ preacher.</p>
+<p><strong>guard’s voice</strong>: Visitin’ over!</p>
+<p><strong>guard’s voice</strong>: Come on, boy!</p>
+<p><strong>nathan lee</strong>: Go, son…</p>
+<p><strong>harriet</strong>: If this wasn’t a church, I’d do me a dance
+to that music she’s playin’.</p>
+<p><strong>rebecca</strong>: Why don’t you try it, Harriet, and just see
+what everybody would do.</p>
+<p><strong>harriet</strong>: Now, Rebecca, I may be a country woman, but
+I ain’t no fool.</p>
+<p><strong>rebecca</strong>: You determined to get that dance in.</p>
+<p><strong>harriet</strong>: Well, you can’t blame a girl for tryin’ if
+the feelin’ hits her.</p>
+<p><strong>rebecca</strong>: If I don’t go over there and butt in, I
+ain’t gon’ ever get to talk to the Preacher about Nathan.</p>
+<p><strong>preacher</strong>: No, I ain’t got no word yet, Rebecca. I
+went to the courthouse yesterday to see ‘bout it, but they just won’t
+tell me nothin’ about what labor camp Nathan was sent to. I’m sorry,
+Rebecca.</p>
+<p><strong>rebecca</strong>: It’s a shame, Reverend. It’s a damn
+shame.</p>
+<p><strong>preacher</strong>: I hope you don’t take to bitterness,
+Sister Morgan. I tell you like I tell all the women in this church who
+got the same trouble you got. No matter what the trial or what the
+misery is, I tell ’em to stay with God.</p>
+<p><strong>rebecca</strong>: Yeah, he’ll crawl into my bed tonight, lie
+close to my body and keep me warm – and rectify the evil in the men who
+live over us in this valley.</p>
+<p><strong>preacher</strong>: It’s not that simple, Sister Rebecca – the
+Lord works in mysterious ways – we come into this life with nothin’ and
+we’ll leave it with nothing.</p>
+<p><strong>rebecca</strong>: Is that a blessing, Reverend?</p>
+<p><strong>david lee</strong>: Mama, did you hear that?!</p>
+<p><strong>rebecca</strong>: What is it, David Lee?</p>
+<p><strong>david lee</strong>: Listen, Mama…</p>
+<p><strong>david lee</strong>: Mama, I hear Sounder!</p>
+<p><strong>david lee</strong>: You come back, boy! I just knowed it! I
+just knowed you’d come back!</p>
+<p><strong>rebecca</strong>: Poor creature…</p>
+<p><strong>david lee</strong>: He’ll be all right, Mama. I’ll make him
+all right.</p>
+<p><strong>david lee</strong>: He eats all right – his throat ain’t
+scarred.</p>
+<p><strong>earl</strong>: Then why don’t he holler like he usta?</p>
+<p><strong>david lee</strong>: He will… Come on, git down and act like a
+possum.</p>
+<p><strong>earl</strong>: I don’t look like no possum!</p>
+<p><strong>david lee</strong>: Act like one!</p>
+<p><strong>david lee</strong>: Git him, boy!</p>
+<p><strong>earl</strong>: Don’t tell that dog to git me!</p>
+<p><strong>david lee</strong>: I guess I’ll havta work harder to git him
+back like he usta be.</p>
+<p><strong>earl</strong>: Why don’t you try and git you a new dog?</p>
+<p><strong>mrs boatwright</strong>: David, you never cease to amaze me
+at how good you are in taking care of my garden.</p>
+<p><strong>david lee</strong>: My father taught me…</p>
+<p><strong>mrs. boatwright</strong>: Would you like to have a cool
+drink, David?</p>
+<p><strong>david lee</strong>: No, thank you – I gotta go do some work
+in the field today.</p>
+<p><strong>david lee</strong>: Miss Boatwright –</p>
+<p><strong>mrs boatwright</strong>: Yes, David…</p>
+<p><strong>david lee</strong>: Will you help me to find out what camp
+they sent my father to?</p>
+<p><strong>mrs. boatwright</strong>: The courthouse has rules about
+things like that, David – but I’ll ask around town about it.</p>
+<p><strong>david lee</strong>: See you tomorrow, Miss Boatwright.</p>
+<p><strong>mrs boatwright</strong>: David!</p>
+<p><strong>david lee</strong>: Yes, ma’am…?</p>
+<p><strong>mrs. boatwright</strong>: I’ll find out where your daddy is
+for you.</p>
+<p><strong>david lee</strong>: Thank you, Miss Boatwright!</p>
+<p><strong>mrs. boatwright</strong>: Don’t mention this to anyone! You
+hear me, David!</p>
+<p><strong>david lee</strong>: Mama! Mama! Miss Boatwright, say she gon’
+help me find where Daddy is!</p>
+<p><strong>rebecca</strong>: Good! But you don’t have to tell the whole
+valley ’bout it! You’ll get that woman in trouble!</p>
+<p><strong>charlie</strong>: I can’t do it, Rita – that’s the policy
+here on colored prisoners, and I ain’t about to change it, not even for
+a friend like you.</p>
+<p><strong>mrs. boatwright</strong>: Charlie, just because a man and his
+family are colored, you–</p>
+<p><strong>charlie</strong>: Now look, Rita, I don’t make the rules –
+you puttin’ yourself on a limb, comin’ here, askin’ me to do a thing
+like this. And I be damn if I’m going to jeopardize my job because you
+are in love with a little colored boy!</p>
+<p><strong>charlie</strong>: County Clerk’s office, Charlie Davis
+speaking… Yes, sir… You bet your life, sir…Yes, sir, I’ll be right
+there.</p>
+<p><strong>charlie</strong>: That was Judge Elliot on the phone and when
+Judge Elliot calls, I jump! Good day, Rita.</p>
+<p><strong>mrs. boatwright</strong>: But, Charlie –</p>
+<p><strong>charlie</strong>: NO! N-O, NO!</p>
+<p><strong>charlie</strong>: I see you found what you was lookin’
+for.</p>
+<p><strong>mrs. boatwright</strong>: I did look, Charlie, but I–</p>
+<p><strong>charlie</strong>: No buts, Rita!</p>
+<p><strong>mrs. boatwright</strong>: Charlie, you have no legal right
+not to let this boy know where his father is! You hear that, you and
+this whole damn court house; what you are doing is wrong!</p>
+<p><strong>charlie</strong>: Don’t tell me about what’s wrong. You come
+into my office as a friend and steal city files! I could have you
+arrested for that – and if you give out that information to anybody,
+that’s exactly what I’m going to do – and I’ll tell everybody in this
+town how you got the information and who you got it for! You won’t have
+a friend left in this county to bring you a piece of candy!</p>
+<p><strong>mrs. boatwright</strong>: You would do that, wouldn’t
+you?</p>
+<p><strong>charlie</strong>: You getting the point, Mrs. Boatwright.</p>
+<p><strong>mrs. boatwright</strong>: Let’s get out of here, David
+Lee.</p>
+<p><strong>david lee</strong>: You know where my father is, don’t you,
+Miss Boatwright?</p>
+<p><strong>mrs. boatwright</strong>: No, he was wrong, David, I didn’t
+find out.</p>
+<p><strong>david lee</strong>: But I saw you – you looked in there, and
+you found out, Miss Boatwright.</p>
+<p><strong>mrs. boatwright</strong>: If I tell you I didn’t, David,
+that’s what I mean.</p>
+<p><strong>david lee</strong>: But, Miss Boatwright, you–</p>
+<p><strong>mrs. boatwright</strong>: I don’t know a damn thing, now stop
+bothering me about it!</p>
+<p><strong>mrs. boatwright</strong>: Come, I’ll take you home.</p>
+<p><strong>david lee</strong>: I’ll walk…</p>
+<p><strong>mrs. boatwright</strong>: Don’t pout now, David, it’s a long
+trip.</p>
+<p><strong>david lee</strong>: I’m used to it.</p>
+<p><strong>mrs boatwright</strong>: Well, you can’t say I didn’t
+try.</p>
+<p><strong>mrs. boatwright</strong>: Hello, David…</p>
+<p><strong>david lee</strong>: Hi, Mrs. Boatwright… I’m sorry ’bout the
+way I acted the other day, Miss Boatwright.</p>
+<p><strong>mrs boatwright</strong>: There’s nothin’ to be sorry about,
+David – where’s your mother?</p>
+<p><strong>rebecca</strong>: Right here, Miss Boatwright.</p>
+<p><strong>mrs. boatwright</strong>: The camp Nathan is at is called
+Wishbone Labor Camp. It’s in Nolan Town!</p>
+<p><strong>rebecca</strong>: Miss Boatwright – you shore is a crazy
+actin’ woman sometime!</p>
+<p><strong>josie mae</strong>: Mama, what was we laughin’ for?</p>
+<p><strong>rebecca</strong>: At the way you ask funny questions, Josie
+Mae!</p>
+<p><strong>mrs. boatwright</strong>: We go from “A-2” – now let me see
+where we go from here…</p>
+<p><strong>rebecca</strong>: Trouble, Miss Boatwright?</p>
+<p><strong>mrs. boatwright</strong>: Oh no, these maps are easy to
+read.</p>
+<p><strong>mrs. boatwright</strong>: There it is, right there!</p>
+<p><strong>david lee</strong>: How do you get there, Miss
+Boatwright?</p>
+<p><strong>mrs. boatwright</strong>: Now they have numbers and letters
+on here to tell you where to look on the map, but Nolan Town is not
+under a number but we know it’s in Northern Landsdown – the number for
+Northern Landsdown is: “h7”, but since Landsdown is the largest county,
+it actually stretches over into “a2” but “a2” is – Am I making myself
+clear?</p>
+<p><strong>rebecca</strong>: It’s clear, Miss Boatwright – it’s so
+clear, you don’t havta go any further – thank you – when the time comes
+for us to find that place, we will – won’t we, children?</p>
+<p><strong>all the children</strong>: RIGHTTTTTT!</p>
+<p><strong>rebecca</strong>: Can’t sleep?</p>
+<p><strong>david lee</strong>: No, ma’am… Mama, I wanted Mrs. Boatwright
+to find out where Daddy is, so me and Sounder can go see him.</p>
+<p><strong>rebecca</strong>: So did I. I figured when the time got
+right, we could all take a day or two and walk up there, but it’s not
+the kind of long trip for a child to take alone.</p>
+<p><strong>david lee</strong>: I can do it, Mama – you know that. In the
+Bible stories you read to us, everybody’s always goin’ on a long
+journey. Jacob goes into a strange land where his uncle is and he don’t
+even know where he lives, but he finds him. Everybody finds what they
+supposed to find.</p>
+<p><strong>rebecca</strong>: But you’ll be away from home for days –
+what will you do when the dark comes, where will you sleep? I can’t send
+you away from here like that!</p>
+<p><strong>david lee</strong>: Mama, don’t I always do what you say –
+every time I go to the fields to plant the corn, to Miss Boatwright’s
+and the woods – you tell me what to do and I do it, and you don’t
+worry.</p>
+<p><strong>rebecca</strong>: No, I don’t and I oughtn’t not to after the
+way you’ve taken over since they took him away – and I would like for
+you to see ’im so you can come back and tell me about ’im. The field’s
+all planted, so I guess I can spare you for a little while. When do you
+wanta leave?</p>
+<p><strong>david lee</strong>: Can I go day after tomorrow?</p>
+<p><strong>rebecca</strong>: Yes, son. You better get back to bed.</p>
+<p><strong>david lee</strong>: Good night, Mama…</p>
+<p><strong>rebecca</strong>: Good night…</p>
+<p><strong>ike</strong>: Now afta you go by Nolan, the first road you
+come to is Jordan road – keep walkin’ on that road and you’ll run right
+into it. It’s a long trip, David Lee, so good luck to you.</p>
+<p><strong>david lee</strong>: Thank you, Mr. Ike…</p>
+<p><strong>rebecca</strong>: I wish you wouldn’t take the dog with you,
+David – he’s likely to be a burden to you.</p>
+<p><strong>david lee</strong>: I got to, Mama. I know Daddy wants to see
+him.</p>
+<p><strong>rebecca</strong>: Here’s your food – now you go straight to
+that place – if you need to rest, go into a church or railroad station –
+but don’t go into nobody’s house, you hear me?</p>
+<p><strong>david lee</strong>: Yes, mam…</p>
+<p><strong>rebecca</strong>: Ask your daddy to give you some word about
+when he’ll be comin’ home – and tell ’im we love him.</p>
+<p><strong>ike</strong>: Tell ’im I said, “Hi”, too, David.</p>
+<p><strong>rebecca</strong>: Good luck to you, son… All right now, get
+movin’, you losin’ daylight.</p>
+<p><strong>truck driver’s voice</strong>: Whatcha got for me today!?</p>
+<p><strong>guard’s voice</strong>: Same bunch you had yesterday!</p>
+<p><strong>truck driver’s voice.</strong>: Well, I’ll take what I kin
+git!</p>
+<p><strong>david lee</strong>: Mister, can you visit anybody here?</p>
+<p><strong>guard</strong>: Gotta wait ‘til visitin’ days.</p>
+<p><strong>david lee</strong>: When’s that?</p>
+<p><strong>guard</strong>: Sunday…</p>
+<p><strong>david lee</strong>: Do you know my daddy, Nathan Lee
+Morgan?</p>
+<p><strong>guard</strong>: Never heard of ’im. We gotta lotta men
+here…</p>
+<p><strong>guard</strong>: All right, boy, outta the way, truck’s
+comin’…</p>
+<p><strong>other guard</strong>: Section J comin’ through!</p>
+<p><strong>guard</strong>: Let ’er roll!</p>
+<p><strong>other guard</strong>: Last one comin’ atcha!</p>
+<p><strong>guard</strong>: Let me have it!</p>
+<p><strong>david lee</strong>: He gotta be on this one, Sounder, it’s
+the last truck.</p>
+<p><strong>david lee</strong>: Mister…?</p>
+<p><strong>convict</strong>: Boy, where did you come from?</p>
+<p><strong>david lee</strong>: I wanta find out ’bout my Daddy. Is he
+here?</p>
+<p><strong>convict</strong>: Can’t you see that guard comin’– git!</p>
+<p><strong>guard</strong>: Whatcha doin’ here, boy, move!</p>
+<p><strong>david lee</strong>: Okay, Sounder, let’s go!</p>
+<p><strong>david lee</strong>: Please tell me, mister! Is Nathan Lee
+Morgan here?</p>
+<p><strong>convict</strong>: There is nobody name Morgan! Now get away
+from here before you git us in trouble!</p>
+<p><strong>david lee</strong>: Sorry, Sounder, but we lost. Better keep
+movin’ though, ’til we find somebody to tell us how to get back
+home.</p>
+<p><strong>#1 child</strong>: You new here?</p>
+<p><strong>#2 child</strong>: You comin’ here to school?</p>
+<p><strong>#1 child</strong>: What’s wrong with that dog?</p>
+<p><strong>camille</strong>: Come on now, get away from here!</p>
+<p><strong>david lee</strong>: I just wanta wash my hand. It’s got blood
+where I hurt it.</p>
+<p><strong>camille</strong>: You don’t live around here, do you?</p>
+<p><strong>david lee</strong>: No, mam… I come from way back there. Me
+and my dog was tryin’ to find my daddy and we got lost.</p>
+<p><strong>camille</strong>: Is he here in Borderdale?</p>
+<p><strong>david lee</strong>: I don’t know, he’s in a prison camp.</p>
+<p><strong>camille</strong>: Here, you put your hand under the water and
+I’ll pump for you.</p>
+<p><strong>camille</strong>: My name is Camille – Camille Johnson and
+I’m the Supervisor of this school. What’s your name?</p>
+<p><strong>david lee</strong>: David Lee Morgan. My dog’s name is
+Sounder. That feels better.</p>
+<p><strong>camille</strong>: Let me see it…</p>
+<p><strong>camille</strong>: Your hand needs medicine on it. You better
+come with me into the school so I can put something on it –</p>
+<p><strong>camille</strong>: You keep looking around, David. Don’t you
+go to school?</p>
+<p><strong>david lee</strong>: Sometime, but not like this.</p>
+<p><strong>camille</strong>: It’s a good thing your hand did not become
+infected – how did you cut it like this?</p>
+<p><strong>david lee</strong>: Me and Sounder went to this prison camp
+to see my Daddy and the police guard runs us away and I fell on some
+glass.</p>
+<p><strong>camille</strong>: Did your mother know you were going to see
+your father?</p>
+<p><strong>david lee</strong>: Uh huh…</p>
+<p><strong>camille</strong>: That does it…</p>
+<p><strong>david lee</strong>: Thank you, Miss Johnson.</p>
+<p><strong>camille</strong>: I don’t live far from here. You and your
+dog can come home with me and have yourself a hot meal and then we’ll
+talk about how to get you back home.</p>
+<p><strong>david lee</strong>: You got a pretty house, Miss Johnson!</p>
+<p><strong>camille</strong>: I try…</p>
+<p><strong>david lee</strong>: You got a lotta books, too. You got any
+books with people in ’em like Huckleberry Finn?</p>
+<p><strong>camille</strong>: Hell, no!</p>
+<p><strong>camille</strong>: Here, let me tell you something about the
+books on this shelf: This one’s about a man whose name was Crispus
+Attucks. He fought in a war to help this country to become the United
+States. And this one is about a woman who helped to free slaves. Her
+name was Harriet Tubman, and…</p>
+<p><strong>david lee</strong>: And you say all them people is dead
+now?</p>
+<p><strong>camille</strong>: That’s right–</p>
+<p><strong>camille</strong>: They lived a long time ago – before you and
+I were born.</p>
+<p><strong>david lee</strong>: Where is Africa, Miss Johnson?</p>
+<p><strong>camille</strong>: Come here and I’ll show you.</p>
+<p><strong>camille</strong>: Here it is, right here.</p>
+<p><strong>david lee</strong>: That’s where we come from first?</p>
+<p><strong>camille</strong>: That’s where we came from first.</p>
+<p><strong>david lee</strong>: And the other people you told me ’bout,
+they is all colored folk?</p>
+<p><strong>camille</strong>: Colored.</p>
+<p><strong>david lee</strong>: Don’t you teach in your school ’bout folk
+who ain’t dead?</p>
+<p><strong>camille</strong>: Sure–</p>
+<p><strong>camille</strong>: Here’s one by a man that’s very much
+alive.</p>
+<p><strong>david lee</strong>: What’s his name?</p>
+<p><strong>camille</strong>: Dr. William E. B. Dubois.</p>
+<p><strong>david lee</strong>: What he talk ’bout?</p>
+<p><strong>camille</strong>: Why don’t you sit and I’ll read you
+something he said.</p>
+<p><strong>camille</strong>: THE LONGING OF BLACK MEN MUST HAVE RESPECT
+– Which means that a man and a woman are human and must be treated that
+way– THE RICH AND BITTER DEPTH OF THEIR EXPERIENCE, THE UNKNOWN
+TREASURES OF THEIR INNER LIFE–</p>
+<p><strong>camille’s voice over</strong>: :–THE STRANGE ENDINGS OF
+NATURE THEY HAVE SEEN, MAY GIVE THE WORLD NEW POINTS OF VIEW AND MAKE
+THEIR LOVING, LIVING, AND DOING PRECIOUS TO ALL HUMAN…</p>
+<p><strong>david’s images</strong>: :The night in the woods with his
+father and SOUNDER. The shouting and laughter after the baseball game
+–</p>
+<p><strong>camille’s voice over</strong>: :…HEARTS. AND TO THEMSELVES IN
+THESE DAYS THAT TRY THEIR SOULS…</p>
+<p><strong>david’s images</strong>: :HE, JOSIE and EARL, running and
+playing in the field.</p>
+<p><strong>camille’s voice over</strong>: :…THE CHANCE TO SOAR IN THE
+DIM BLUE AIR ABOVE SMOKE IS TO THEIR…</p>
+<p><strong>david’s images</strong>: :His visit with his father at the
+County Jail house –</p>
+<p><strong>camille’s voice over</strong>: :…FINER SPIRITS BOON AND
+GUERDON FOR WHAT THEY LOSE ON EARTH BY BEING BLACK.</p>
+<p><strong>david’s images</strong>: :His mother, with her head thrown
+back, her eyes aglitter and laughing.</p>
+<p><strong>david lee</strong>: You’re a friendly lady, Miss Johnson.</p>
+<p><strong>camille</strong>: And you’re a tired little boy. I’ll make up
+the cot and you must get some sleep.</p>
+<p><strong>david lee</strong>: What about Sounder?</p>
+<p><strong>camille</strong>: He’ll get his place too – now off with your
+clothes and into bed.</p>
+<p><strong>camille</strong>: Now don’t you think it’s time you told me
+all about yourself?</p>
+<p><strong>david lee</strong>: I have a mother and her name is Rebecca –
+My father’s name is Nathan Lee Morgan, and…</p>
+<p><strong>camille</strong>: Anyone here know what chapter that story
+was from?</p>
+<p><strong>boy #1</strong>: Chapter twenty-six!</p>
+<p><strong>camille</strong>: Twenty-six? The text has but six
+chapters!</p>
+<p><strong>camille</strong>: Now you know I’m not going to have the
+laughing!</p>
+<p><strong>camille</strong>: I’ll get back to you later, Mr. Twenty-six.
+Let’s not stop now, we have to keep this mood moving. The story has to
+come from one of the text books we’ve already read in class, or it has
+to be a true story of your own. Let’s get it going now – we don’t have
+that much time left…</p>
+<p><strong>clarence</strong>: I got a story, Miss Johnson – It’s a true
+story that happened to me.</p>
+<p><strong>camille</strong>: You know that the class is going to
+challenge your story, don’t you, Clarence?</p>
+<p><strong>clarence</strong>: Yes, Miss Johnson…</p>
+<p><strong>camille</strong>: Go on…</p>
+<p><strong>clarence</strong>: Me and my little sister, went down to the
+water hole, last Saturday–</p>
+<p><strong>girl #1</strong>: You’re doin’ somethin’ wrong already – You
+didn’t tell us the name of your sister…</p>
+<p><strong>clarence</strong>: My sister’s name is… Me and my sister,
+Laura, went down to the water hole last Saturday and we was playin’
+’long the edge of the water and Laura slipped and fell in the water. I
+started to run back home, but I turned around, ran back, dove into the
+water and got her out before she could drown…</p>
+<p><strong>camille</strong>: How was your sister after you pulled her
+out of the water?</p>
+<p><strong>clarence</strong>: She was dirty and wet…</p>
+<p><strong>girl #1</strong>: What were you doin’, runnin’ away from the
+water?!</p>
+<p><strong>clarence</strong>: I was going home to get my daddy.</p>
+<p><strong>boy #1</strong>: What made you stop and go back!?</p>
+<p><strong>clarence</strong>: Cause if I hadda ran home, by the time I
+got back, my sister woulda drowned.</p>
+<p><strong>girl #1</strong>: How come you didn’t know that at first?</p>
+<p><strong>clarence</strong>: I was scared!</p>
+<p><strong>boy #2</strong>: Hold it! Clarence’s story ain’t true! Me and
+Clarence been to the river a lotta times, and I know, he can’t swim!</p>
+<p><strong>camille</strong>: Clarence, would you tell us a story that
+was not true, after telling us it was?</p>
+<p><strong>clarence</strong>: No, Miss Johnson…</p>
+<p><strong>camille</strong>: Can you swim?</p>
+<p><strong>clarence</strong>: Yes mam…</p>
+<p><strong>boy #2</strong>: Clarence, you know you can’t swim! Every
+time I tried to show you, you fell down, and I had to always pull you
+out!</p>
+<p><strong>camille</strong>: Is that true, Clarence?</p>
+<p><strong>clarence</strong>: Yes mam… But when I saw my sister ‘bout to
+drown in the water, I tried because I wasn’t scared no more! I was just
+swimming and kickin’! I don’t know how I was doin’ it! But I was, cause
+my sister was drowning! She was drowning!</p>
+<p><strong>david lee</strong>: I believe Clarence’s story…</p>
+<p><strong>camille</strong>: You want to come forward and tell us why,
+David?</p>
+<p><strong>david lee</strong>: Some people came and took my daddy away
+and other people said we couldn’t work the farm. But we had to,‘cause we
+didn’t wanna lose our farm. We planted the crops and they grew. I
+believe his story ’cause his story is about what he did when he had to
+do somethin’. He didn’t know how to swim but he had to or else his
+sister woulda drowned. That’s how he did it…</p>
+<p><strong>camille</strong>: Well, how did you like the class,
+David?</p>
+<p><strong>david lee</strong>: It was the best thing I ever been to,
+Miss Johnson!</p>
+<p><strong>david lee</strong>: … So me and Sounder, ran right by the men
+that was the prisoners, and crawled under the fence! That’s when I cut
+my hand on the glass. It hurt like mad! But I kept runnin’, and then I
+didn’t feel no more hurtin’ till I stopped runnin’! Why was that, Miss
+Johnson?</p>
+<p><strong>camille</strong>: Because all you could think of was getting
+away from the guard.</p>
+<p><strong>david lee</strong>: Oh… . You right, that’s all that was
+worryin’ me right then…</p>
+<p><strong>camille</strong>: You know, that was a good thing you did for
+Clarence, in class today. I believed his story, but I was afraid the
+other children wouldn’t…</p>
+<p><strong>david lee</strong>: He was real scared nobody would believe
+him – I could tell, even when he first stood up.</p>
+<p><strong>camille</strong>: You could? How?</p>
+<p><strong>david lee</strong>: I been like that myself, when I thought
+nobody was gonna believe me… You wanna hear another story?!</p>
+<p><strong>camille</strong>: Not now, David, it’s time for bed. You have
+a long trip ahead of you in the morning…</p>
+<p><strong>camille</strong>: What are you looking at, out there? There’s
+nothing to see.</p>
+<p><strong>david lee</strong>: My daddy likes to look into the dark,
+even when there ain’t nothin to see – it’s what you hear he say.</p>
+<p><strong>camille</strong>: You think about your father a lot, don’t
+you?</p>
+<p><strong>david lee</strong>: Yes mam…</p>
+<p><strong>camille</strong>: Well, you shouldn’t worry about him too
+much, David.</p>
+<p><strong>david lee</strong>: What do I tell my mama when I get home? I
+didn’t find him and that’s what I wanted to do.</p>
+<p><strong>camille</strong>: But you did all you could, David. Not many
+little boys could’ve gone on such a journey as you did.</p>
+<p><strong>david lee</strong>: But where is my daddy!?</p>
+<p><strong>camille</strong>: I can’t answer that for you – but it’s no
+fault of your own that you don’t know where your father is now. You tell
+me what you did that kept you from finding your father. Come on, tell
+me…</p>
+<p><strong>david lee</strong>: Nothin’…</p>
+<p><strong>camille</strong>: And so you did your job, right?</p>
+<p><strong>david lee</strong>: Yes, mam…</p>
+<p><strong>camille</strong>: Whewwww! You sure keep my mind jumping,
+boy!</p>
+<p><strong>david lee</strong>: What do that mean?</p>
+<p><strong>camille</strong>: Means you keep me using my head, and that’s
+good!</p>
+<p><strong>david lee</strong>: Miss Johnson… Do you think I can come
+back here, and you let me study school with the other children?</p>
+<p><strong>josie mae</strong>: Mama! Mama!</p>
+<p><strong>josie &amp; earl</strong>: Hi, David! Sounder!</p>
+<p><strong>rebecca</strong>: What happened to you? I’ve been worried out
+of my life. What’s wrong with your hand, son?</p>
+<p><strong>david lee</strong>: I cut it on some glass and we got lost,
+Mama.</p>
+<p><strong>rebecca</strong>: Did you find your father?</p>
+<p><strong>david lee</strong>: Didn’t see ’im, Mama. The other men there
+say they didn’t know Daddy.</p>
+<p><strong>rebecca</strong>: I guess they musta sent ’im to another
+camp.</p>
+<p><strong>rebecca</strong>: What’s that you carryin’?</p>
+<p><strong>david lee</strong>: Some books Miss Johnson gave me.</p>
+<p><strong>rebecca</strong>: Who’s Miss Johnson?</p>
+<p><strong>david lee</strong>: Miss Johnson is a teacher, and…</p>
+<p><strong>david lee</strong>: So when I left, she gave me these
+books.</p>
+<p><strong>rebecca</strong>: Miss Johnson must be a real kindly
+lady.</p>
+<p><strong>david lee</strong>: She is, Mama… When the fall comes, she
+wants me to come to her school.</p>
+<p><strong>rebecca</strong>: How can you do that? You don’t live
+anywhere near that school.</p>
+<p><strong>david lee</strong>: She says I can come live with her while
+school goin’ on, and come back home every time there ain’t no
+school.</p>
+<p><strong>rebecca</strong>: But who’s gonna help me here with the house
+and in the field?</p>
+<p><strong>rebecca</strong>: If your father is back by then it’s all
+right with me if it’ll be all right with him…</p>
+<p><strong>david lee</strong>: Whatcha starin’ at?</p>
+<p><strong>josie mae</strong>: Tell us some more ’bout the trip!</p>
+<p><strong>david lee</strong>: “Dear Miss Johnson. How are you? I am
+doing okay. I told my mama, my brother and my sister about you, and they
+like you too. I can’t make this letter too long because I have work to
+do. Bless you, David Lee Morgan”</p>
+<p><strong>rebecca</strong>: Son, you sure write a good fine letter!</p>
+<p><strong>rebecca</strong>: What’s wrong with him, David?</p>
+<p><strong>david lee</strong>: It’s the heat.</p>
+<p><strong>rebecca</strong>: It’s when the heat is so bad, dogs go
+crazy.</p>
+<p><strong>david lee</strong>: He won’t go mad – he’s just lookin’ for a
+cooler spot.</p>
+<p><strong>rebecca</strong>: Who’s that to be fightin’ scorchin’ heat
+out in open land like that?</p>
+<p><strong>rebecca</strong>: He’s gone mad! Stop him, David!</p>
+<p><strong>rebecca</strong>: Oh my God, it’s Nathan! It’s Nathan!!!</p>
+<p><strong>david lee</strong>: What’s wrong with your leg, Daddy?</p>
+<p><strong>nathan lee</strong>: Got it hurt in a dynamite blast, son.
+The dirty dogs had no more use for me, so they let me have time off my
+sentence, and let me come home.</p>
+<p><strong>rebecca</strong>: The most important thing is that you’re
+home! We was gonna have cold eatin’ tonight, ‘cause of the heat, but
+now, I’m goin’ to cook!</p>
+<p><strong>nathan lee</strong>: Well, let’s get to it, Miss
+Rebecca,‘cause I been waitin’ too long a time for your good cookin’!</p>
+<p><strong>nathan lee</strong>: All I can say, Rebecca, is that was some
+meal! Thank you!</p>
+<p><strong>rebecca</strong>: I’m glad you liked it, Nathan.</p>
+<p><strong>rebecca</strong>: Alright, children, it was your bedtime two
+hours ago – let’s get a move on you…</p>
+<p><strong>josie mae</strong>: Goodnight, Daddy…</p>
+<p><strong>nathan lee</strong>: Goodnight to you, little girl.</p>
+<p><strong>earl</strong>: Night, Daddy…</p>
+<p><strong>nathan lee</strong>: Goodnight, son…</p>
+<p><strong>nathan lee</strong>: Son, that was some trip you went on…</p>
+<p><strong>david lee</strong>: Where was you, Daddy?</p>
+<p><strong>nathan lee</strong>: That musta been afta they sent me to
+this place call Clayburn. That was the hardest workin’ camp they sent me
+to. The work was so hard, you had to look for somethin’ to laugh about
+to keep from feelin’ the whole pain in your body. Like one time, it was
+in the middle of the day, and there weren’t no sun – you hear that?</p>
+<p><strong>david lee</strong>: Where did the sun go to, Daddy?</p>
+<p><strong>nathan lee</strong>: Into the clouds and behind the
+mountains.</p>
+<p><strong>david lee</strong>: What happened afta that?</p>
+<p><strong>nathan lee</strong>: The rains started to come, and the
+prisoners were scared to run ‘cause they had to wait for guards to round
+us up, and tell us when to move – but we didn’t mind the rain comin’
+‘cause it meant we would git a little rest – we just stood there,
+watchin’ the guards and they weapons get wet, and that made us all feel
+kinda good for a minute. I was laughin’ all over inside – a minute,
+that’s all, but what a minute it was!</p>
+<p><strong>david lee</strong>: Daddy, I’m so glad you home!</p>
+<p><strong>nathan lee</strong>: And me too, son! You shore done got to
+be such a big little man!</p>
+<p><strong>david lee</strong>: We goin’ huntin’ again, Daddy !?</p>
+<p><strong>nathan lee</strong>: You bet we is!</p>
+<p><strong>david lee</strong>: I cleaned and oiled all your stuff while
+you was gone…</p>
+<p><strong>rebecca</strong>: Your time now, David Lee…</p>
+<p><strong>david lee</strong>: Goodnight, Daddy…</p>
+<p><strong>nathan lee</strong>: Goodnight to you, son…</p>
+<p><strong>david lee</strong>: Daddy, you home now… that’s all I want –
+I don’t want nothin’ else…</p>
+<p><strong>nathan lee</strong>: Come here, son…</p>
+<p><strong>nathan lee</strong>: Mornin’, son…</p>
+<p><strong>david lee</strong>: Mornin’, Daddy…</p>
+<p><strong>nathan lee</strong>: Where’s everybody?</p>
+<p><strong>david lee</strong>: They gone to the field…</p>
+<p><strong>nathan lee</strong>: Guess I can’t just lay here, then.</p>
+<p><strong>nathan lee</strong>: Thank you, son…</p>
+<p><strong>david lee</strong>: You feel alright today, Daddy?</p>
+<p><strong>nathan lee</strong>: Great, son – not like wakin’ up in jail.
+For a minute or two, didn’t quite know where I was, but when I saw your
+face lookin down on me, made me know right away the day was gonna be a
+good one, and it all belonged to me!</p>
+<p><strong>david lee</strong>: Mama left somethin’ for you to eat on the
+stove–</p>
+<p><strong>nathan lee</strong>: Smells good, too!</p>
+<p><strong>nathan lee</strong>: Hi there, big boy!</p>
+<p><strong>nathan lee</strong>: They thought one little ol’ shotgun was
+gonna stop you – you showed huh, boy!</p>
+<p><strong>nathan lee</strong>: Down boy! That’s enough!</p>
+<p><strong>david lee</strong>: Daddy, when is we goin’ huntin’?</p>
+<p><strong>nathan lee</strong>: Soon – but it won’t be too much huntin’
+you’ll be doin’,‘cordin’ to a good little story your mama told me last
+night – you’ll be goin’ away from here, won’t you?</p>
+<p><strong>nathan lee</strong>: You kept my stuff in real good shape,
+son.</p>
+<p><strong>nathan lee</strong>: Come on, son, throw a couple to me!</p>
+<p><strong>nathan lee</strong>: Alright, chunk it to me!</p>
+<p><strong>nathan lee</strong>: Let me have one with a little steam on
+it, now!</p>
+<p><strong>nathan lee</strong>: Boy that was a mean curve you just
+threw!</p>
+<p><strong>nathan lee</strong>: That’s enough for now, son. I better eat
+so we can get out to the field and help your mama before she come
+lookin’ for us, and you know how tough your mama can get!</p>
+<p><strong>mr howard</strong>: Hi ya, Rebecca…</p>
+<p><strong>rebecca</strong>: Tired.</p>
+<p><strong>mr howard</strong>: Somebody told me Nathan was back. How is
+he?</p>
+<p><strong>rebecca</strong>: Why don’t you pay him a visit, Mr. Howard?
+He’ll tell you all about it.</p>
+<p><strong>mr. howard</strong>: I’ll do that, Rebecca… I’ll do that…</p>
+<p><strong>nathan lee</strong>: What did he want?</p>
+<p><strong>rebecca</strong>: To invite you to his house – the two of you
+could just sit under the shade tree, drink ice cold whiskey, and just
+shoot the breeze!</p>
+<p><strong>nathan lee</strong>: Did you tell ’im I was too busy for that
+kinda stuff?</p>
+<p><strong>nathan lee</strong>: Dammit! It shore feels good to be back
+home!</p>
+<p><strong>nathan lee</strong>: Y’all did some good job with the
+crop.</p>
+<p><strong>nathan lee</strong>: Well, let’s get to work!</p>
+<p><strong>rebecca</strong>: You sure you feel up to it, Nathan?</p>
+<p><strong>nathan lee</strong>: Yeah. I feel real up to it right now.
+Come on, David Lee, you and me’ll do the loading.</p>
+<p><strong>nathan lee</strong>: I’m real proud of how you helped your
+mama to keep this place goin’, David Lee.</p>
+<p><strong>david lee</strong>: Thank you, Daddy…</p>
+<p><strong>nathan lee</strong>: I’ll lift up the back end, and you just
+hold on to the front end for me.</p>
+<p><strong>nathan lee</strong>: Wheeew! This is some hard work, but it
+beats goin’ to jail.</p>
+<p><strong>david lee</strong>: You won’t be goin’ to jail again, will
+you, Daddy?</p>
+<p><strong>nathan lee</strong>: No, son – they’d have to kill me before
+I’d let ’em do that to me again!</p>
+<p><strong>nathan lee</strong>: Nobody’s goin’ to jail, and nobody’s
+gittin’ hurt. Come on, let’s get this one up on the wagon.</p>
+<p><strong>david lee</strong>: You hurt, Daddy!?</p>
+<p><strong>nathan lee</strong>: No, no, I’m all right, son… This damn
+leg just won’t act right no more!</p>
+<p><strong>david lee</strong>: Mama! Mama!</p>
+<p><strong>rebecca</strong>: What’s wrong, Nathan?</p>
+<p><strong>david lee</strong>: He can’t get up, Mama!</p>
+<p><strong>nathan lee</strong>: This done happen before. It ain’t
+nothin’ – I just have to wait a minute or two.</p>
+<p><strong>rebecca</strong>: Is there something I can do to help
+you?</p>
+<p><strong>nathan lee</strong>: Yeah, just stay where you is…</p>
+<p><strong>nathan lee</strong>: There, you see?</p>
+<p><strong>rebecca</strong>: I see, all right – It’s time for us to get
+out of this field.</p>
+<p><strong>nathan lee</strong>: I just got out here!</p>
+<p><strong>rebecca</strong>: It’s lunchtime, and I wanna have a talk
+with you, Nathan Lee. Come on, children…</p>
+<p><strong>nathan lee</strong>: Woman worries too much for me.</p>
+<p><strong>nathan lee</strong>: You comin’ with us, son?</p>
+<p><strong>nathan lee</strong>: Hi ya doin’ there, Ike?</p>
+<p><strong>ike</strong>: Any time it’s Saturday and I don’t hafta do any
+work, I’m doin’ okay!</p>
+<p><strong>nathan lee</strong>: Whatcha got there?</p>
+<p><strong>ike</strong>: Seems this piece of mail came to Mr. Howard’s
+place this mornin’ and he had me to bring it over here.</p>
+<p><strong>nathan lee</strong>: Well, let me have it.</p>
+<p><strong>ike</strong>: Don’t belong to you! It’s for the little
+important man, here!</p>
+<p><strong>nathan lee</strong>: Well, son, who is it from?</p>
+<p><strong>david lee</strong>: From Miss Johnson –</p>
+<p><strong>nathan lee</strong>: Well, ain’t you gon’ open and read it
+for us?</p>
+<p><strong>david lee</strong>: Dear David, if you are coming to school
+here, be sure to bring some warm clothes. The school term will begin
+September 8th, but it would be good for you to be here by the 4th or 5th
+of the month. I do hope everything is fine and you will be here. Give my
+“hello” to your family. Yours truly, Miss Camille Johnson…</p>
+<p><strong>nathan lee</strong>: September 4 – how far away is that?</p>
+<p><strong>rebecca</strong>: ’Bout a week…</p>
+<p><strong>nathan lee</strong>: Come on, children, let’s go!</p>
+<p><strong>rebecca</strong>: Where you goin’!?</p>
+<p><strong>nathan lee</strong>: To the commissary to get this boy some
+clothes! I’m gon’ get everybody somethin’!</p>
+<p><strong>rebecca</strong>: But, Nathan–</p>
+<p><strong>nathan lee</strong>: Don’t tell me nothin’ ‘bout what we owe
+ol’ man Howard! I’ll do the owing, and let him worry ’bout the
+collecting! Come on, David Lee!</p>
+<p><strong>nathan lee</strong>: Did you hear me, boy? Come on!</p>
+<p><strong>david lee</strong>: You just came back home, Daddy. I don’t
+wanna leave right now – I wanna stay home and be with you.</p>
+<p><strong>nathan lee</strong>: And I wanta be with you, too, but this
+school is somethin’ that’s good for you – somethin you need, like good
+air to breathe, and I want you to have it, boy, and that’s the way it’s
+gonna be!</p>
+<p><strong>david lee</strong>: But, Daddy, you need me here to help you
+in the field – Daddy, your leg is hurt – you can’t work like you used
+to. Who’s gonna help you!? Who’s gonna do the work, Daddy?!</p>
+<p><strong>nathan lee</strong>: Let me tell you somethin’, boy! I don’t
+care if both of my legs was cut off! I can do more work in that field,
+than you could in a hundred years!</p>
+<p><strong>david lee</strong>: I won’t go, Daddy! I won’t go!</p>
+<p><strong>nathan lee</strong>: Now wait justa minute! You don’t tell me
+what you ain’t gonna do! I tell you! I say, you goin’ to that school,
+you goin’! You hear me!</p>
+<p><strong>david lee</strong>: Daddy, don’t make me go away from
+you.</p>
+<p><strong>nathan lee</strong>: David!</p>
+<p><strong>nathan lee</strong>: David Lee, come back here!</p>
+<p><strong>rebecca</strong>: Nathan!</p>
+<p><strong>rebecca</strong>: Please, leave him be, Nathan! He missed you
+in a grave way while you was gone – he sweated and worried to find out
+where they holdin’ you – went on that long journey – you come home, and
+it’s a natural thing for him to wanta hold on to you now.</p>
+<p><strong>nathan lee</strong>: David! David Lee!</p>
+<p><strong>nathan lee</strong>: David! You hear me callin’ you!?</p>
+<p><strong>nathan lee</strong>: Son, will you listen to me for a
+minute?</p>
+<p><strong>nathan lee</strong>: You know, son, when I got this leg hurt,
+I was down in a rock quarry, and all of a sudden, there was this
+dynamite blast comin’ at me with the kind of force to kill ten men, but
+I got outta the way of most of them rock, quicker’n the lightnin’ in
+God’s mind – ‘cause I made it up in my head, just that quick to beat the
+death that was comin’ at me. And that’s what I’m gonna do with this
+trouble in my leg. I’m gon’ beat it. That’s all that’s left for me to
+do. That’s what I want you to do. I want you to beat the life they got
+laid out for you in this valley.</p>
+<p><strong>nathan lee</strong>: I was watchin’ your sister and brother
+out here the other day, and I said to myself, these is just children –
+they ain’t got no business out here in this hot sun… As for me and your
+mama, we been in this field so long, we ain’t never known anything
+else.</p>
+<p><strong>nathan lee</strong>: There ain’t nothin’ here but people like
+them bastards that sent me away, and tried to kill me. Son, please don’t
+get too used to this place. I’m gonna love you wherever you is. Me, your
+mama, Josie Mae and Earl, we gonna love you even more. We gonna be at
+that school to see you every chance we get.</p>
+<p><strong>nathan lee</strong>: I love you, son! Don’t ever think I
+don’t love you! We gon’ get to be friends?</p>
+<p><strong>david lee</strong>: Yes, Daddy! Yes!</p>
+<p><strong>david lee</strong>: All right, get a move on you, bag
+boy!</p>
+<p><strong>earl</strong>: You carry your own bag!</p>
+<p><strong>josie mae</strong>: I’ll carry it, David…</p>
+<p><strong>earl</strong>: Naw, I’m carryin’ it!</p>
+<p><strong>david lee</strong>: Thank you, Josie Mae.</p>
+<p><strong>josie mae</strong>: For what?</p>
+<p><strong>david lee</strong>: For Earl helpin’ me out with my bag!</p>
+<p><strong>rebecca</strong>: Be good and be smart, little boy.</p>
+<p><strong>david lee</strong>: Yes, ma’m…</p>
+<p><strong>nathan lee</strong>: I oughta be gettin’ back here by
+tomorrow night some time… Gitttt!</p>
+<p><strong>david lee</strong>: BYE…!</p>
+<p><strong>all</strong>: BYE…!</p>
+<p><strong>david lee</strong>: You know somethin’, Daddy?</p>
+<p><strong>nathan lee</strong>: What’s that, son?</p>
+<p><strong>david lee</strong>: I’m gon’ miss this ol’ raggedy place.</p>
+<p><strong>david lee</strong>: But I ain’t gon’ worry ’bout it!</p>
+</body>
+</html>

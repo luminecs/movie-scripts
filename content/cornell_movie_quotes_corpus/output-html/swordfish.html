@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>swordfish</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="swordfish">swordfish</h1>
+<p><strong>swordfish</strong>: by</p>
+<p><strong>gabriel</strong>: You know the problem with Hollywood? They
+make shit. Unbelievable, unremarkable shit. I’m not some grungy
+filmmaker- wannabee searching for existentialism through a haze of
+bong-smoke. It’s easy to pick apart bad acting, short-sighted directing,
+or the purely moronic stringing together of words many of the studios
+term as prose. No, I’m talking the lack of realism. Realism. Not a
+pervasive element in the modern American cinematic vision.</p>
+<p><strong>gabriel</strong>: Take Dog Day Afternoon for example.
+Arguably Pacino’s greatest performance, excepting The Godfather, Part I,
+and Scarface, of course. A masterpiece of directing, easily Lumet’s
+best. The acting, the script, cinematography, all top notch. But, they
+didn’t push the envelope. What if in Dog Day, Sonny really wanted to get
+away with it? What if, and here’s where it gets tricky. What if they’d
+started killing hostages? No mercy, no quarter, meet our demands or the
+cute blonde in the bell bottoms gets one in the back of the head, bam,
+splatter. What? Still no bus?</p>
+<p><strong>gabriel</strong>: How many innocent victims would they let
+get sprayed across the windows before the city reversed its policy on
+hostage situations? And this was 1976. No C.N.N., no C.N.B.C., no M.T.V.
+No Internet. Fast forward to the present, same situation. Can you
+imagine the feeding frenzy of the modern media? In hours it would be the
+top story from Boston to Budapest. All caught in 150 millimeter zoom,
+computer enhanced, and color corrected. You would practically taste the
+brain matter. Six hostages die. Ten. Twelve. Twenty. Thirty. Relentless.
+One after another. All over a bus, a plane, and a couple of million
+dollars that were federally insured.</p>
+<p><strong>gabriel</strong>: Just a thought. I mean it’s not really
+within the realm of conventional cinema, but what if…?</p>
+<p><strong>roberts</strong>: You know, this movie of yours, I don’t
+think it would have worked.</p>
+<p><strong>gabriel</strong>: Really? How come?</p>
+<p><strong>roberts</strong>: Audiences love happy endings.</p>
+<p><strong>gabriel</strong>: Pacino escapes. With the money. Boyfriend
+gets the sex change operation. They live happily ever after.</p>
+<p><strong>gabriel</strong>: No?</p>
+<p><strong>stanley</strong>: No.</p>
+<p><strong>gabriel</strong>: Homophobia?</p>
+<p><strong>stanley</strong>: Bad guy can’t win. It’s a morality tale.
+One way or the other, he’s gotta go down.</p>
+<p><strong>gabriel</strong>: Oh, well. Life does tend to be stranger
+than fiction. Well, guys, gotta jet. This place is kinda dead.</p>
+<p><strong>gabriel</strong>: Thanks for the coffee.</p>
+<p><strong>gabriel</strong>: Rene Descartes is sitting in some bar in
+Paris. Bartender says, ‘Hey, you want another drink?’ Descartes says, ‘I
+think not.’ And disappears.</p>
+<p><strong>gabriel</strong>: Move.</p>
+<p><strong>gabriel</strong>: I won’t ask again.</p>
+<p><strong>gabriel</strong>: Thank you.</p>
+<p><strong>gabriel</strong>: Stanley… you coming?</p>
+<p><strong>gabriel</strong>: How we doin’?</p>
+<p><strong>marco</strong>: Done.</p>
+<p><strong>gabriel</strong>: Good. Take her out.</p>
+<p><strong>a.d. joy</strong>: Is everyone in position?</p>
+<p><strong>swat leader</strong>: Almost, sir.</p>
+<p><strong>roberts</strong>: What are you doing?</p>
+<p><strong>a.d. joy</strong>: Get her at your first opportunity.</p>
+<p><strong>swat leader</strong>: High ground one and two. You have a
+green light.</p>
+<p><strong>roberts</strong>: I’ve seen what this man is capable of –</p>
+<p><strong>a.d. joy</strong>: The F.B.I. does not negotiate with
+terrorists. I assumed you’d be aware of that. Joy.</p>
+<p><strong>gabriel</strong>: Don’t talk, listen… When I made my Dog Day
+Afternoon analogy, I was not speaking metaphorically. We have 22
+hostages. Each has been wrapped with 20 pounds of C-four explosives.</p>
+<p><strong>gabriel</strong>: On top of that we have taped 15 pounds of
+stainless steel ball bearings –</p>
+<p><strong>gabriel</strong>: – making them the world’s largest walking
+Claymore mines.</p>
+<p><strong>gabriel</strong>: Around her neck is a radio- frequency
+electronic dog collar –</p>
+<p><strong>gabriel</strong>: Dog walks out of his yard, he gets the shit
+shocked out of him.</p>
+<p><strong>roberts</strong>: Stop them –</p>
+<p><strong>gabriel</strong>: Same thing –</p>
+<p><strong>gabriel</strong>: – their yard is this bank. So, don’t fuck
+with me.</p>
+<p><strong>a.d. joy</strong>: Hold your –</p>
+<p><strong>stanley</strong>: No! Noooo!!</p>
+<p><strong>torvalds</strong>: Please be careful –</p>
+<p><strong>torvalds</strong>: – that equipment is quite expensive.</p>
+<p><strong>another customs official</strong>: Mr. Torvalds. Could you
+step over here, please.</p>
+<p><strong>torvalds</strong>: How long am I going to be delayed?</p>
+<p><strong>another customs official</strong>: It’ll be just a
+moment.</p>
+<p><strong>dark suit #2</strong>: Axl Torvalds. You are under
+arrest.</p>
+<p><strong>senator reisman</strong>: This better be important, you
+pulled me out of session.</p>
+<p><strong>kaplan</strong>: Senator, I wouldn’t have asked you to come
+here if it wasn’t.</p>
+<p><strong>kaplan</strong>: Senator, we just received a communication
+that Axl Torvalds was intercepted entering the continental U.S.</p>
+<p><strong>senator reisman</strong>: When?</p>
+<p><strong>kaplan</strong>: Within the last two hours. According to our
+source inside the F.B.I., he was nabbed coming through customs at L.A.X.
+Alone…</p>
+<p><strong>senator reisman</strong>: Do they know who they are dealing
+with?</p>
+<p><strong>kaplan</strong>: It is unlikely, sir. It was a routine check
+and Torvalds freaked out. They just got lucky.</p>
+<p><strong>senator reisman</strong>: This ain’t good, boys. The Vortex
+has used Torvalds before. What do the feds know?</p>
+<p><strong>kaplan</strong>: Nothing as of yet. He’s refusing to speak
+English and the Finnish consulate has already contacted the State
+Department…</p>
+<p><strong>senator reisman</strong>: So we haven’t been compromised?</p>
+<p><strong>kaplan</strong>: We’re not sure. We’re working on that right
+now.</p>
+<p><strong>senator reisman</strong>: You better get sure real quick,
+son, ’cause someone’s cock’s liable to end up on the block on this one.
+And I promise you it won’t be mine.</p>
+<p><strong>kaplan</strong>: Senator, I think we’ll be okay here –</p>
+<p><strong>senator reisman</strong>: I don’t fucking pay you to think,
+Kaplan. I pay you to keep me informed. I know the Vortex. That’s why I
+voted against using him on American soil.</p>
+<p><strong>senator reisman</strong>: It’s like using the Ebola virus to
+cure a cancer patient. Son, what do you think’s going to happen if he
+starts tying up loose ends.</p>
+<p><strong>kaplan</strong>: Yessir. I understand.</p>
+<p><strong>stanley</strong>: Who are you supposed to be?</p>
+<p><strong>ginger</strong>: Hello, Stanley.</p>
+<p><strong>ginger</strong>: I’m Ginger.</p>
+<p><strong>stanley</strong>: Is that right?</p>
+<p><strong>ginger</strong>: For someone the N.S.A. has listed as the
+most dangerous hacker in America, you sure don’t look like much.</p>
+<p><strong>ginger</strong>: Don’t look so surprised. I know everything
+there is to know about you, Stan. From your mom’s maiden name to how big
+your…</p>
+<p><strong>ginger</strong>: Bank account is.</p>
+<p><strong>stanley</strong>: How’d you get past my dog?</p>
+<p><strong>ginger</strong>: Boys like me.</p>
+<p><strong>stanley</strong>: Great. What are you selling again?</p>
+<p><strong>ginger</strong>: Did I say I was selling something? I’m here
+to help you, Stan. Look at you, you’re a mess.</p>
+<p><strong>ginger</strong>: My employer wants to meet you.</p>
+<p><strong>ginger</strong>: You’re not very good at this, are you?</p>
+<p><strong>stanley</strong>: You’re fucking up my chi.</p>
+<p><strong>ginger</strong>: Can I see that?</p>
+<p><strong>ginger</strong>: You need to straighten your left arm. You’re
+bending it.</p>
+<p><strong>ginger</strong>: Trust me.</p>
+<p><strong>ginger</strong>: This is not a nice place you have here,
+Stanley.</p>
+<p><strong>ginger</strong>: I’ve only been here a few minutes and I’m
+already starting to feel sorry for myself.</p>
+<p><strong>stanley</strong>: You’re wasting your time. I even touch a
+computer, I go straight to Leavenworth, do not pass go, do not collect
+200 dollars. Whatever I was…</p>
+<p><strong>ginger</strong>: Stanley, think about it, they still teach
+your techniques at</p>
+<p><strong>ginger</strong>: I’m not here to suck your dick, Stanley, you
+can sit around doing the martyr thing as long as you like. He’ll pay you
+just to meet you.</p>
+<p><strong>stanley</strong>: I gotta go to work.</p>
+<p><strong>ginger</strong>: Oh that’s right, and fine work it is, too.
+Stanley… Have you spoken to Holly lately?</p>
+<p><strong>ginger</strong>: Shit…</p>
+<p><strong>melissa</strong>: Hello.</p>
+<p><strong>stanley</strong>: Melissa… Holly home?</p>
+<p><strong>melissa</strong>: invade her accentless</p>
+<p><strong>stanley</strong>: I want to talk with Holly.</p>
+<p><strong>melissa</strong>: It’s… It’s twelve-thirty, Stanley. She’s in
+school. You know it’s illegal for you to talk to her.</p>
+<p><strong>stanley</strong>: Don’t do this, Mel. It’s not good for Holly
+–</p>
+<p><strong>melissa</strong>: How the hell would you know what is or
+isn’t good for my daughter? You’ve spent the last two years in
+prison.</p>
+<p><strong>stanley</strong>: Mel –</p>
+<p><strong>melissa</strong>: Stop calling me that, Stanley.</p>
+<p><strong>stanley</strong>: I just want to see my baby.</p>
+<p><strong>melissa</strong>: Well, she doesn’t want to see you, Stanley,
+and I swear to fucking God, if you contact her, I’ll have Larry’s
+attorney throw you into a hole so deep and dark it’ll make Leavenworth
+seem like two weeks in Vegas; during which I’ll personally pay two
+ball-busting skin-heads to –</p>
+<p><strong>stanley</strong>: Wow, Mel, you can take the girl out of the
+trailer park, but you can’t take the trailer park out of the girl.</p>
+<p><strong>melissa</strong>: I will not let myself be manipulated by
+you, Stanley. Larry’s her father now.</p>
+<p><strong>stanley</strong>: Larry’s the porn king –</p>
+<p><strong>melissa</strong>: Larry’s a film financier, a good husband,
+and an astute businessman. What films he’s involved in are a function of
+profitability and none of your business.</p>
+<p><strong>melissa</strong>: Get help, Stanley, get into a program, get
+a therapist, get a dog, but whatever you do, stay away from my
+child.</p>
+<p><strong>stanley</strong>: Your child? She’s our child.</p>
+<p><strong>melissa</strong>: She will never be your child. You’ll never
+have the kind of money to match Larry’s lawyers in court. Forget
+Holly.</p>
+<p><strong>stanley</strong>: What are you doing here?</p>
+<p><strong>stanley</strong>: Judas.</p>
+<p><strong>ginger</strong>: Hello, Stanley.</p>
+<p><strong>stanley</strong>: Look, I’m beginning to lose my sense of
+humor about –</p>
+<p><strong>ginger</strong>: Let’s cut through the bullshit, Stan. If you
+ever want to have a chance in hell of getting your daughter back you’ll
+shut up and listen. Unless of course you want to stay here in your
+pathetic, loser life while she learns what it’s like to be a fluffer in
+one of her new daddy’s videos.</p>
+<p><strong>stanley</strong>: Do me the courtesy of not confusing your
+own childhood with my daughter’s.</p>
+<p><strong>ginger</strong>: Look at your situation, Stanley. For twenty
+months you’ve been in court six times, each time your custody case has
+been thrown out. Your situation doesn’t look good, sweetheart.</p>
+<p><strong>ginger</strong>: How much would it cost to retain the best
+family lawyer in the country and regain custody of your daughter?</p>
+<p><strong>stanley</strong>: All the way through the jury trial?</p>
+<p><strong>ginger</strong>: Yeah.</p>
+<p><strong>stanley</strong>: A lot.</p>
+<p><strong>ginger</strong>: This should get you started.</p>
+<p><strong>ginger</strong>: Whattaya have to lose? Just meet him. One
+time. That’s it. You don’t like the setup, walk away.</p>
+<p><strong>stanley</strong>: That’s it?</p>
+<p><strong>ginger</strong>: That’s it. And you keep the money.</p>
+<p><strong>agent #1</strong>: What did he say?</p>
+<p><strong>agent #2</strong>: Your client is wanted on 24 counts of
+electronic crimes in seven different countries –</p>
+<p><strong>lawyer</strong>: Finland does not recognize these allegations
+as crimes. Your laws –</p>
+<p><strong>agent #1</strong>: Do you see a Finnish flag hanging on the
+wall, Ikea boy?</p>
+<p><strong>agent #1</strong>: What did he say?</p>
+<p><strong>lawyer</strong>: He said Ikea is Swedish.</p>
+<p><strong>agent #1</strong>: He understands English?</p>
+<p><strong>roberts</strong>: Okay… Guys, why don’t you give me a few
+minutes here?</p>
+<p><strong>agent #2</strong>: Uh, sir…</p>
+<p><strong>roberts</strong>: It’s okay. Just a couple of minutes.</p>
+<p><strong>agent #1</strong>: Yessir.</p>
+<p><strong>agent #2</strong>: You’ve fucked up now, Hamlet.</p>
+<p><strong>roberts</strong>: And Michaels.</p>
+<p><strong>agent #2</strong>: Yessir.</p>
+<p><strong>roberts</strong>: Hamlet was a Dane.</p>
+<p><strong>agent #2</strong>: Adane?</p>
+<p><strong>roberts</strong>: Forget it.</p>
+<p><strong>roberts</strong>: Why would the number one cracker in the
+world risk life imprisonment to enter the continental U.S.?</p>
+<p><strong>lawyer</strong>: My client has repeatedly reserved his right
+not answer any questions at this time.</p>
+<p><strong>lawyer</strong>: He told me to tell Mister Roberts that he is
+quite fond of ‘The X-Files.’</p>
+<p><strong>roberts</strong>: You need another cup of coffee –</p>
+<p><strong>lawyer</strong>: Goddammit!</p>
+<p><strong>roberts</strong>: Until a year ago I was head of the largest
+task force on cyber- criminals in the entire world. But, I burned out.
+It happens. I snapped. I shot a suspect in the fucking hand. Accident.
+Do you know how hard it is to work a keyboard with one hand?</p>
+<p><strong>torvalds</strong>: Whatever you can do to me, he can do
+worse. I’m already dead. The only place I stand a chance is back in my
+country. I have friends there.</p>
+<p><strong>roberts</strong>: I tell you what, you tell me what I want to
+know and I guarantee you’ll be on the next flight to Finland. First
+class. Courtesy of the U.S. Government.</p>
+<p><strong>torvalds</strong>: I’ll tell you what I know.</p>
+<p><strong>bad agent #1</strong>: Yes, this is Assistant Director Joy,
+would you find Agent Roberts. It’s important that I speak with him as
+soon as possible. Thank you.</p>
+<p><strong>roberts</strong>: Who is he?</p>
+<p><strong>torvalds</strong>: He exists in a world beyond your world.
+What we only fantasize, he does. He lives a life where nothing is beyond
+him.</p>
+<p><strong>torvalds</strong>: But it is all an act.</p>
+<p><strong>torvalds</strong>: For all his charisma and charm. For all
+his wealth and expensive toys.</p>
+<p><strong>torvalds</strong>: Beneath it all he is a driven,
+unflinching, calculating machine, who takes what he wants, when he
+wants, then disappears –</p>
+<p><strong>torvalds</strong>: – It works like this.</p>
+<p><strong>torvalds</strong>: I fly to where I am to meet him. He sends
+one of his people to meet me.</p>
+<p><strong>torvalds</strong>: He tells me what he needs. I do my job,
+I’m paid.</p>
+<p><strong>torvalds</strong>: And I leave.</p>
+<p><strong>roberts</strong>: That’s a real nice story. But you haven’t
+given me shit.</p>
+<p><strong>agent #1</strong>: Excuse me, sir… you have a call.</p>
+<p><strong>roberts</strong>: So, take a message.</p>
+<p><strong>agent #1</strong>: It’s Assistant Director Joy, he said it’s
+important.</p>
+<p><strong>roberts</strong>: At least it’s not my wife. You need to
+think about what else you know. Watch him.</p>
+<p><strong>lawyer</strong>: You will be hearing from my gover –</p>
+<p><strong>roberts</strong>: Shut up.</p>
+<p><strong>roberts</strong>: This is Roberts, I have a call from A.D.
+Joy.</p>
+<p><strong>fbi operator</strong>: Hold, sir.</p>
+<p><strong>a.d. joy</strong>: Joy.</p>
+<p><strong>roberts</strong>: Roberts. You needed me.</p>
+<p><strong>a.d. joy</strong>: What do you mean?</p>
+<p><strong>roberts</strong>: You didn’t call me?</p>
+<p><strong>a.d. joy</strong>: You just called me…</p>
+<p><strong>roberts</strong>: Shit!</p>
+<p><strong>ginger</strong>: I wish you’d let me buy you a suit.</p>
+<p><strong>stanley</strong>: I’m happy with what I’m wearing.</p>
+<p><strong>ginger</strong>: You have no self-esteem, Stanley.</p>
+<p><strong>stanley</strong>: I know.</p>
+<p><strong>ginger</strong>: Miss me?</p>
+<p><strong>ginger</strong>: Gabriel, Stanley. Stanley, Gabriel.</p>
+<p><strong>gabriel</strong>: Big Stan. Nice suit.</p>
+<p><strong>stanley</strong>: Thanks.</p>
+<p><strong>gabriel</strong>: You know, they say it’s the clothes that
+make the man…</p>
+<p><strong>stanley</strong>: You buy it?</p>
+<p><strong>gabriel</strong>: Hope not. Buy you a drink?</p>
+<p><strong>stanley</strong>: I flew fifteen hundred miles for this
+meeting, how ’bout we get to the point.</p>
+<p><strong>gabriel</strong>: Actually you flew 1500 miles for 100 grand.
+But that’s not the point.</p>
+<p><strong>gabriel</strong>: I heard this story about this young hacker
+who made a virus that broke the F.B.I.’s Carnivore program that was
+actively reading every subscriber’s E-mail and scrambled the systems. He
+did what the federal judges wouldn’t do and kept the government out of
+our Privacy.</p>
+<p><strong>stanley</strong>: I think I heard that. Story is he went to
+jail and the federal Carnivore program is back in full swing. It was a
+real tragedy. What can I do for you?</p>
+<p><strong>gabriel</strong>: Stanley, meet Helga.</p>
+<p><strong>helga</strong>: Hi, Stanley.</p>
+<p><strong>stanley</strong>: Look, I don’t have a lot of patience for
+this –</p>
+<p><strong>gabriel</strong>: Stanley, we have a problem, maybe you can
+help us out.</p>
+<p><strong>gabriel</strong>: Take a look at this.</p>
+<p><strong>stanley</strong>: faced with a fifth</p>
+<p><strong>helga</strong>: You like tequila, Stanley?</p>
+<p><strong>gabriel</strong>: No need for modesty, we’re all friends
+here, Stanley.</p>
+<p><strong>stanley</strong>: This is bullshit. I came –</p>
+<p><strong>gabriel</strong>: You want something from me, amigo, I want
+something from you. D.O.D. dBase, 128 bit R.S.A. encryption. Whattaya
+think? Impossible?</p>
+<p><strong>stanley</strong>: Nothing’s impossible.</p>
+<p><strong>gabriel</strong>: So it can be done? Maybe slide in a Trojan
+horse hiding a worm?</p>
+<p><strong>stanley</strong>: Something like that. Is this an
+interview?</p>
+<p><strong>gabriel</strong>: Sort of. Marco, let’s give him some
+incentive.</p>
+<p><strong>stanley</strong>: What are you doing?</p>
+<p><strong>gabriel</strong>: Relax, Stanley.</p>
+<p><strong>gabriel</strong>: I’ve been told the best crackers in the
+world could do this in sixty minutes. Unfortunately, I need someone who
+can do it in sixty seconds.</p>
+<p><strong>stanley</strong>: You’re kidding…</p>
+<p><strong>gabriel</strong>: ’Fraid not.</p>
+<p><strong>gabriel</strong>: Forty-five seconds. Time is a wasting, big
+guy.</p>
+<p><strong>gabriel</strong>: You have thirty seconds, Stanley.</p>
+<p><strong>gabriel</strong>: She’s very good, isn’t she, Stanley?</p>
+<p><strong>gabriel</strong>: C’mon, Stanley. 20 seconds.</p>
+<p><strong>gabriel</strong>: Fifteen.</p>
+<p><strong>gabriel</strong>: Ten… Nine…</p>
+<p><strong>gabriel</strong>: Three… Two…</p>
+<p><strong>gabriel</strong>: Too bad, Stanley. Ya gotta die.</p>
+<p><strong>stanley</strong>: Wait… !</p>
+<p><strong>gabriel</strong>: I was just fucking with you, Stan.</p>
+<p><strong>stanley</strong>: So was I.</p>
+<p><strong>stanley</strong>: Shit!</p>
+<p><strong>stanley</strong>: What are you looking at?</p>
+<p><strong>ginger</strong>: Relax, Stanley. You can do this.</p>
+<p><strong>stanley</strong>: Get away from me.</p>
+<p><strong>ginger</strong>: I want to help you.</p>
+<p><strong>stanley</strong>: Help? Help what, squeegee my brain off the
+ceiling?</p>
+<p><strong>ginger</strong>: It was just a test, Stan, you passed.</p>
+<p><strong>stanley</strong>: A test… I don’t know why I let you talk me
+into this. I can’t believe how desperate I am.</p>
+<p><strong>ginger</strong>: I thought you were here saving your
+daughter, Stanley.</p>
+<p><strong>stanley</strong>: Look… I’d do anything to get Holly back.
+But, if I end up in a box or back in jail, then I really can’t help her,
+can I? What I should do, is take my money and go back to court.</p>
+<p><strong>ginger</strong>: Back to court? Back to Melissa’s gladiators?
+You throw a hundred grand at her, she’ll throw five back at you. It’s
+not about Holly, it’s about beating you. You know that. Think,
+Stanley.</p>
+<p><strong>stanley</strong>: What I’m thinking about is that you’re
+willing to put a gun to my head to see if I can hack –</p>
+<p><strong>ginger</strong>: Sorry…</p>
+<p><strong>ginger</strong>: So, let me sum it up for you, Stanley. You
+live in a trailer. You’re a felon, working a dead- end job. You want to
+get Holly back, Gabriel’s your only shot.</p>
+<p><strong>gabriel</strong>: Big Stan. I was afraid we lost you.</p>
+<p><strong>stanley</strong>: Tell me what the deal is.</p>
+<p><strong>gabriel</strong>: Let’s go up to the house. I’m having a
+little get-together. I’ll explain it to you there.</p>
+<p><strong>roberts</strong>: Tell me you have some good news for me.</p>
+<p><strong>fbi computer geek #1</strong>: Actually we have a small ray
+of hope in the vast darkness that is your life, sir. Check this out.</p>
+<p><strong>fbi computer geek #1</strong>: See these two guys?</p>
+<p><strong>fbi computer geek #1</strong>: Now watch this…</p>
+<p><strong>fbi computer geek #1</strong>: Recognize those two, same
+guys, next day. Question is –</p>
+<p><strong>fbi computer geek #1</strong>: – who’s that?</p>
+<p><strong>roberts</strong>: Stanley Jobson…</p>
+<p><strong>fbi computer geek #1</strong>: Wired’s man of the year, 1996.
+Pretty much a burnout but he was the hacker zeitgeist of his day –</p>
+<p><strong>roberts</strong>: I know who Jobson is. I busted him. Why are
+you in L.A.?</p>
+<p><strong>fbi computer geek #1</strong>: His ex-wife lives in
+Malibu.</p>
+<p><strong>fbi computer geek #2</strong>: The new husband owns Backdoor
+Films, a shady porn production house in Chatsworth. Decent production
+value but they only shoot on video. His wife actually starred in a
+couple of his videos. Apparently she’s an ‘actress.’</p>
+<p><strong>roberts</strong>: Who’s the chick?</p>
+<p><strong>fbi computer geek #1</strong>: We don’t know yet, sir.</p>
+<p><strong>fbi computer geek #2</strong>: Serious piece of talent.</p>
+<p><strong>fbi computer geek #3</strong>: Way outta his league.
+Something’s up.</p>
+<p><strong>fbi computer geek #2</strong>: You know he also has a
+ten-year- old daughter, who he’s not supposed to see. Maybe that’s why
+he’s here.</p>
+<p><strong>fbi computer geek #2</strong>: Or maybe not.</p>
+<p><strong>roberts</strong>: I want to know who that girl is.
+Pronto.</p>
+<p><strong>roberts</strong>: And stake out his daughter.</p>
+<p><strong>gabriel</strong>: So Stan, tell me. How’d you do it?</p>
+<p><strong>stanley</strong>: Do what?</p>
+<p><strong>gabriel</strong>: Break the code. At the club. You broke the
+entire encryption, a silencer against your eye and your cock in
+someone’s mouth, all in less than sixty seconds. How?</p>
+<p><strong>stanley</strong>: I used a logic bomb, dropped it through the
+trap door –</p>
+<p><strong>ginger</strong>: No, you didn’t. You didn’t have time.</p>
+<p><strong>gabriel</strong>: C’mon, you can do better than that. How’d
+you do it?</p>
+<p><strong>stanley</strong>: I used a password sniffer.</p>
+<p><strong>ginger</strong>: Uh uh.</p>
+<p><strong>stanley</strong>: Yes, I did –</p>
+<p><strong>gabriel</strong>: C’mon, Stanley. How’d-you-do-it?</p>
+<p><strong>stanley</strong>: I don’t know exactly. I see the numbers. In
+my head. All my life. I don’t answer equations, I just see the answers.
+Same with code. I can’t explain —</p>
+<p><strong>ginger</strong>: Mozart always said he didn’t write music; he
+just wrote down what he heard in his head. So did Faulkner, just with
+words.</p>
+<p><strong>gabriel</strong>: You definitely have a gift, Stan. The most
+powerful people on the planet are like you. With a laptop and a phone
+line you can make God look like a thirteen-year-old with a stack of
+Playboys and a lack of imagination. C’mere, Stan, let me show you
+something.</p>
+<p><strong>gabriel</strong>: Pretty impressive, huh. So…</p>
+<p><strong>stanley</strong>: So?</p>
+<p><strong>gabriel</strong>: Here’s the deal. I need a worm, Stanley. A
+hydra, actually. A multi-headed worm to break an encryption and then
+sniff out latent digital footprints throughout an encrypted network.</p>
+<p><strong>stanley</strong>: What kind of cypher?</p>
+<p><strong>gabriel</strong>: Vernam encryption.</p>
+<p><strong>stanley</strong>: A Vernam’s impossible. Its key code is
+destroyed upon implementation. Not to mention being a true 128 bit
+encryption.</p>
+<p><strong>gabriel</strong>: Actually, we’re talking 512 bit.</p>
+<p><strong>stanley</strong>: It’s impossible.</p>
+<p><strong>gabriel</strong>: Tell ya what, I’ll pay you ten million
+dollars. That should be enough to get your daughter back… … unless of
+course it’s impossible.</p>
+<p><strong>stanley</strong>: Nothing’s impossible.</p>
+<p><strong>stanley</strong>: What?</p>
+<p><strong>ginger</strong>: C’mon, Stan. Let’s get to work.</p>
+<p><strong>ginger</strong>: It won’t bite you, I promise.</p>
+<p><strong>stanley</strong>: I don’t know. It’s gonna be pretty hard
+without a gun to my head.</p>
+<p><strong>ginger</strong>: Well, let’s put a gun to your head.</p>
+<p><strong>ginger</strong>: Tell me about your worm, Stanley.</p>
+<p><strong>ginger</strong>: You surprised that a girl with real breasts
+and an I.Q. over 70 can give you a hard-on?</p>
+<p><strong>stanley</strong>: I thought you were Gabriel’s.</p>
+<p><strong>ginger</strong>: I am not what you think I am.</p>
+<p><strong>ginger</strong>: You’re a smart guy, Stanley. You figure me
+out.</p>
+<p><strong>ginger</strong>: Don’t you have that just-fucked-
+the-neighbor’s-cat look this morning.</p>
+<p><strong>ginger</strong>: Problem?</p>
+<p><strong>stanley</strong>: Pretty impressive.</p>
+<p><strong>ginger</strong>: I thought we went over all that last
+night.</p>
+<p><strong>stanley</strong>: The book, Ginger.</p>
+<p><strong>ginger</strong>: Ohhh. Look, no pictures. Get out of my
+light.</p>
+<p><strong>stanley</strong>: Can I borrow your car? There’s something I
+need to do.</p>
+<p><strong>ginger</strong>: If you’re going to see your daughter, you
+might want to reevaluate the way you look. Just a thought.</p>
+<p><strong>man</strong>: Can I give you a lift?</p>
+<p><strong>holly</strong>: Look, creep, I don’t think so –</p>
+<p><strong>holly</strong>: Daddy? Daddy!</p>
+<p><strong>stanley</strong>: Hey, sweetheart.</p>
+<p><strong>holly</strong>: Daddy… What are you doing here? I missed you
+so much.</p>
+<p><strong>stanley</strong>: Me too, baby. I brought you something.</p>
+<p><strong>holly</strong>: Oh, Daddy. If Mom finds out you’re here she’s
+gonna have you thrown back in jail.</p>
+<p><strong>stanley</strong>: It’s okay, baby. Let me give you a ride
+home.</p>
+<p><strong>stanley</strong>: C’mon.</p>
+<p><strong>stanley</strong>: You believe in me, right?</p>
+<p><strong>holly</strong>: Of course, but –</p>
+<p><strong>stanley</strong>: I’ve found a way to get you back,
+sweetheart. It’s my one shot and I’m taking it. Just give me a couple of
+days.</p>
+<p><strong>holly</strong>: I don’t want anything else to happen to you,
+Dad.</p>
+<p><strong>stanley</strong>: Holly, everything’s going to be okay. You
+just have to trust me.</p>
+<p><strong>holly</strong>: I love you, Daddy.</p>
+<p><strong>stanley</strong>: Who the fuck are you?</p>
+<p><strong>dark suit #1</strong>: Friend of a friend. Let’s take a
+ride.</p>
+<p><strong>stanley</strong>: Shit…</p>
+<p><strong>dark suit #1</strong>: Gotta suck to be you.</p>
+<p><strong>stanley</strong>: Yep.</p>
+<p><strong>roberts</strong>: Cut him off at the bottom.</p>
+<p><strong>roberts</strong>: Fuck this.</p>
+<p><strong>dark suit #2</strong>: Why didn’t you do that earlier,
+sir?</p>
+<p><strong>dark suit #2</strong>: Sorry, sir.</p>
+<p><strong>roberts</strong>: Go get him.</p>
+<p><strong>roberts</strong>: What are you doing in L.A., Stan?</p>
+<p><strong>stanley</strong>: Vacationing…</p>
+<p><strong>roberts</strong>: Why were you running? We just wanted to
+talk.</p>
+<p><strong>stanley</strong>: Are you arresting me?</p>
+<p><strong>roberts</strong>: For violating your parole by leaving Texas
+without permission or for evading a federal agent and almost getting me
+killed in the process?</p>
+<p><strong>roberts</strong>: No, I’m not.</p>
+<p><strong>stanley</strong>: Then why are we talking?</p>
+<p><strong>roberts</strong>: Didn’t know the court lifted the sanction
+preventing you from seeing your daughter.</p>
+<p><strong>stanley</strong>: Fuck you.</p>
+<p><strong>roberts</strong>: You just want to cut through the
+pleasantries and get down to business? Fine. I can help you with your
+daughter, Stan. Help me, I’ll help you.</p>
+<p><strong>stanley</strong>: You’ll have to forgive me, the fact that
+you put me in jail for 18 months doesn’t inspire a lot of trust.</p>
+<p><strong>roberts</strong>: Whether I agreed with what you did or not,
+you broke the law, Stanley.</p>
+<p><strong>stanley</strong>: I guess we were both doing what we had to.
+This was a nice trip down memory lane, but if you’re not arresting
+me…</p>
+<p><strong>roberts</strong>: So, why was it you are in L.A. again?</p>
+<p><strong>stanley</strong>: I told you –</p>
+<p><strong>roberts</strong>: – vacationing. That’s right. Ya know it’s
+funny. Axl Torvalds was just here for a vacation, too. Isn’t it odd that
+the two best hackers in the world are here at the same time.</p>
+<p><strong>stanley</strong>: I’m a sucker for Disneyland. Tell Torvalds
+I said hello.</p>
+<p><strong>roberts</strong>: If you’re not careful you can tell him
+yourself. He’s dead.</p>
+<p><strong>roberts</strong>: Give him a card.</p>
+<p><strong>roberts</strong>: In case you think of anything else you want
+to tell me.</p>
+<p><strong>stanley</strong>: Sorry about your nose.</p>
+<p><strong>roberts</strong>: Hey, Stan.</p>
+<p><strong>roberts</strong>: You know, you’re in way over your head
+here.</p>
+<p><strong>stanley</strong>: I know.</p>
+<p><strong>roberts</strong>: It’s a long walk back up the hill, Stanley.
+You want us to give you a lift?</p>
+<p><strong>roberts</strong>: Follow him.</p>
+<p><strong>random agent</strong>: Yessir.</p>
+<p><strong>stanley</strong>: I have to hand it to you, Ginger. You look
+good wearing anything. Even a wire.</p>
+<p><strong>stanley</strong>: You gonna kill me?</p>
+<p><strong>ginger</strong>: I’m thinking. What are you doing here,
+Stanley?</p>
+<p><strong>stanley</strong>: I should probably ask you the same
+question.</p>
+<p><strong>ginger</strong>: What happened to you?</p>
+<p><strong>stanley</strong>: Little accident. Sorry about your car. I’ve
+had a pretty shitty day so far. Looks like it just got worse. Who are
+you, Ginger?</p>
+<p><strong>ginger</strong>: I can’t tell you.</p>
+<p><strong>stanley</strong>: You can’t tell me? Well, that’s just
+fuckin’ peachy.</p>
+<p><strong>ginger</strong>: Think, Stanley.</p>
+<p><strong>stanley</strong>: Who are you?</p>
+<p><strong>ginger</strong>: He’ll kill me.</p>
+<p><strong>stanley</strong>: That’s not my problem, is it? You’re asking
+for a lot of faith here, Ging, without givin’ me any. You –</p>
+<p><strong>ginger</strong>: – Stanley –</p>
+<p><strong>stanley</strong>: – brought me into this mess –</p>
+<p><strong>ginger</strong>: – Stanley –</p>
+<p><strong>stanley</strong>: – I deserve to know who’s playing me,
+Ginger. Who the fuck are you?</p>
+<p><strong>ginger</strong>: I’m D.E.A., Stanley.</p>
+<p><strong>gabriel</strong>: Ginger…?</p>
+<p><strong>gabriel</strong>: Well, Ging, doesn’t this look friendly.</p>
+<p><strong>ginger</strong>: I’m a friendly girl.</p>
+<p><strong>stanley</strong>: Actually…</p>
+<p><strong>stanley</strong>: Thought maybe you’d like to see me get you
+your hydra.</p>
+<p><strong>gabriel</strong>: Get?</p>
+<p><strong>stanley</strong>: C’mon.</p>
+<p><strong>gabriel</strong>: You look like shit. Ginger kick your
+ass?</p>
+<p><strong>stanley</strong>: Funny.</p>
+<p><strong>ginger</strong>: Miss me?</p>
+<p><strong>stanley</strong>: Terribly.</p>
+<p><strong>stanley</strong>: My senior year at M.I.T., I created the
+source code for the worm that I’ve been using for years.</p>
+<p><strong>stanley</strong>: In the basement and through a file room is
+the only P.D.P.-10 still active and on the internet, although only a few
+people know this. It’s an I.T.S. machine and kept online just for
+historical sake. I hid my worm inside it where no one would ever think
+to look.</p>
+<p><strong>stanley</strong>: Now I just have to modify the code.</p>
+<p><strong>ginger</strong>: He’s fucking amazing.</p>
+<p><strong>gabriel</strong>: Yes he is.</p>
+<p><strong>gabriel</strong>: I see you have a groupie.</p>
+<p><strong>stanley</strong>: You know, it’d be a lot simpler if you
+would tell me exactly what the hydra is going to be used for?</p>
+<p><strong>gabriel</strong>: Have you heard of Operation Swordfish?</p>
+<p><strong>stanley</strong>: Nope.</p>
+<p><strong>gabriel</strong>: You’ll appreciate the irony here –</p>
+<p><strong>gabriel</strong>: – In the early Eighties the D.E.A. set up a
+network of dummy corporations as a government front to launder drug
+money and gather evidence. Problem is, the front companies started
+making money. Lots of money. By 1986, when Operation Swordfish was
+terminated, there was close to 400 million dollars in the D.E.A.’s
+accounts.</p>
+<p><strong>stanley</strong>: Money that just sorta disappeared.</p>
+<p><strong>gabriel</strong>: It didn’t disappear. It just sat in those
+accounts earning interest, it’s been 15 years. You have any concept how
+much money we’d be actually talking about today? Billions, brother.
+That’s nine zeros. Look, this is a sweet deal. We go in over phone
+lines. Pop the firewall, drop in the hydra, and just sit back and wait
+for the money.</p>
+<p><strong>stanley</strong>: Before we can tap into the secure cluster,
+you have to find one of the banks on the backbone of this network. Do
+you know how many banks there are in the U.S.? It could take years.</p>
+<p><strong>gabriel</strong>: No problem. Look behind you, Stan.</p>
+<p><strong>roberts</strong>: Who is he?</p>
+<p><strong>fbi computer geek #1</strong>: We don’t know that yet,
+sir.</p>
+<p><strong>fbi computer geek #2</strong>: There’s definitely something
+going on. There are two T-5 trunks going into the house. That’s serious
+bandwidth. Thermal scopes indicate a huge heat-load in the main living
+area. Could be from mainframes, although they must have a genny ’cause
+power consumption is right on par.</p>
+<p><strong>fbi agent #1</strong>: Some of these fellows might be dressed
+in Armani, but they definitely have the swagger of ex- military. Maybe
+bodyguards but they seem more like mercs to me.</p>
+<p><strong>fbi computer geek #1</strong>: From here we’re having trouble
+pinning any of them down. Sure would be nice to task a satellite,
+sir.</p>
+<p><strong>roberts</strong>: I’m working on it. Send what you have
+up-lines, maybe we’ll have one by the end of the week.</p>
+<p><strong>roberts</strong>: Who the hell is that?</p>
+<p><strong>kaplan</strong>: Senator.</p>
+<p><strong>senator reisman</strong>: Close the door.</p>
+<p><strong>kaplan</strong>: We have a problem. Look at these.</p>
+<p><strong>reisman</strong>: We have him yet?</p>
+<p><strong>communication</strong>: He’s coming online now, sir.
+Ready.</p>
+<p><strong>reisman</strong>: We have a problem –</p>
+<p><strong>reisman</strong>: – Seems you have gotten yourself in a
+predicament.</p>
+<p><strong>gabriel</strong>: I’m not exactly following you.</p>
+<p><strong>reisman</strong>: Transfer the pictures.</p>
+<p><strong>gabriel</strong>: Senator, I sincerely hope you did not
+contact me and jeopardize the safety of me and my men for this.</p>
+<p><strong>reisman</strong>: Goddamn right I did. You know where I got
+that? From the deputy director of the F.B.I. He thought I might be
+interested.</p>
+<p><strong>gabriel</strong>: Sir, with all due respect. Do you think
+there is any aspect of this operation I am not fully aware of?</p>
+<p><strong>reisman</strong>: We are aborting the operation and securing
+alternative means of finance elsewhere.</p>
+<p><strong>gabriel</strong>: What?</p>
+<p><strong>reisman</strong>: We are aborting this operation. Take a
+vacation.</p>
+<p><strong>gabriel</strong>: A vacation? Have I ever failed you,
+sir?</p>
+<p><strong>reisman</strong>: That’s not the point.</p>
+<p><strong>gabriel</strong>: It’s my point. Senator, this operation is
+going forward.</p>
+<p><strong>reisman</strong>: You understand what you are saying?</p>
+<p><strong>gabriel</strong>: Everything is under control.</p>
+<p><strong>reisman</strong>: Do it. Terminate the Vortex.</p>
+<p><strong>kaplan</strong>: Yessir. Sir, he does work for us.</p>
+<p><strong>reisman</strong>: Excuse us. Son, let’s say you have a 200-
+pound Rottweiler. He loves you, and it’s his job to protect you. But if
+he ever bites you, even once, you gotta put him down. You can’t have an
+uncontrollable weapon running unchecked in your back yard. He becomes a
+liability. You never know who he might bite next.</p>
+<p><strong>kaplan</strong>: Yessir, I understand.</p>
+<p><strong>stanley</strong>: Fuck!!</p>
+<p><strong>stanley</strong>: Jesus Christ!</p>
+<p><strong>gabriel</strong>: Stan?</p>
+<p><strong>gabriel</strong>: What’s wrong, Stanley, you look like you’ve
+seen a ghost?</p>
+<p><strong>gabriel</strong>: C’mon, Stanley. Let’s talk.</p>
+<p><strong>stanley</strong>: Okay…</p>
+<p><strong>gabriel</strong>: Let’s go.</p>
+<p><strong>stanley</strong>: Why can’t we talk here?</p>
+<p><strong>gabriel</strong>: ’Cause I don’t want to talk to you in the
+house, Stanley.</p>
+<p><strong>gabriel</strong>: Let’s go.</p>
+<p><strong>gabriel</strong>: How you doing, Stanley?</p>
+<p><strong>stanley</strong>: Fine.</p>
+<p><strong>gabriel</strong>: Something you need to say to me?</p>
+<p><strong>stanley</strong>: What the hell is going on here?</p>
+<p><strong>gabriel</strong>: You know anything about Harry Houdini?</p>
+<p><strong>gabriel</strong>: He used to make an elephant disappear in a
+theater full of people. You know how he did it?</p>
+<p><strong>stanley</strong>: How?</p>
+<p><strong>gabriel</strong>: Misdirection.</p>
+<p><strong>stanley</strong>: What are you doing?</p>
+<p><strong>gabriel</strong>: We have a tail. Hope you had a light lunch,
+Stan.</p>
+<p><strong>gabriel</strong>: Hold the wheel.</p>
+<p><strong>stanley</strong>: Shit, it’s blocked.</p>
+<p><strong>gabriel</strong>: Keep it straight.</p>
+<p><strong>gabriel</strong>: It’s just rough when you grow up lovin’
+James Bond movies. Don’t worry, Stanley, it’ll be over soon.</p>
+<p><strong>gabriel</strong>: Drive, drive!</p>
+<p><strong>gabriel</strong>: Go, go!</p>
+<p><strong>stanley</strong>: I am!</p>
+<p><strong>stanley</strong>: Shit!</p>
+<p><strong>gabriel</strong>: Keep your cool, Stanley.</p>
+<p><strong>gabriel</strong>: Goddamit. I knew it.</p>
+<p><strong>gabriel</strong>: Get in the fucking car, Stanley.</p>
+<p><strong>stanley</strong>: I’m not going anywhere until you tell me
+what’s going on.</p>
+<p><strong>gabriel</strong>: You’re on my good side and you want to stay
+there. Stanley, I like you, but don’t confuse kindness with weakness.
+So, get in the fuckin’ car. I need my hydra.</p>
+<p><strong>ginger</strong>: Stanley? You alright?</p>
+<p><strong>stanley</strong>: What do you think? I just watched that
+maniac murder ten men in the street. I’m just fucking great. It doesn’t
+matter if I get my daughter back if I’m dead. Even if I do survive this,
+who’s gonna keep me out of jail? You?</p>
+<p><strong>ginger</strong>: I won’t let anything happen to you, Stanley.
+You have to trust me.</p>
+<p><strong>stanley</strong>: Trust you? Two hours ago I found out you’re
+D.E.A. The feds are crawling up my ass and there’s a dead body in the
+basement that looks just like Gabriel.</p>
+<p><strong>ginger</strong>: Stanley, if we don’t find out who he’s
+working for then we’re just going to have to do this all over again.</p>
+<p><strong>stanley</strong>: Your little slush fund is not my problem.
+I’m pulling the plug on this rodeo. Roberts may be an asshole, but he is
+definitely the lesser of the two evils.</p>
+<p><strong>ginger</strong>: I’ve been working on this thing for eight
+months, and I will not let some jarhead fed fuck up my operation.
+Please, I know what I’m doing.</p>
+<p><strong>ginger</strong>: C’mon, Stanley. You have twelve hours. Do
+what he wants. Finish the worm.</p>
+<p><strong>stanley</strong>: You’re starting to sound just like him.</p>
+<p><strong>95 omitted 95</strong>: &amp; &amp; 96 96</p>
+<p><strong>gabriel</strong>: Ahh, the great American outdoors. I’ll
+never understand the appeal of fly-fishing, Jim. A little too much like
+masturbation for me, without the payoff.</p>
+<p><strong>gabriel</strong>: This’s a catch-and-release stream, isn’t
+it?</p>
+<p><strong>reisman</strong>: That’s right.</p>
+<p><strong>gabriel</strong>: Oh c’mon, Jim. You gotta see the irony in
+the chairman of the Joint Sub-Committee on Crime, fishing in a
+catch-and-release stream.</p>
+<p><strong>gabriel</strong>: How could you do it, Jim? After all we have
+sacrificed. All the blood, all the death… I’ve changed my identity so
+many times, I don’t even know what I look like anymore. How could you
+turn on me when we are so close?</p>
+<p><strong>reisman</strong>: You did this to yourself.</p>
+<p><strong>gabriel</strong>: You brought me in to get the job done and
+you didn’t want to know about the consequences.</p>
+<p><strong>reisman</strong>: The F.B.I. was watching you –</p>
+<p><strong>gabriel</strong>: I told you there was nothing that I was
+unaware of –</p>
+<p><strong>reisman</strong>: That’s why we’re here. You are too
+arrogant, too aggressive –</p>
+<p><strong>gabriel</strong>: You have misplaced your loyalties, Senator.
+You have sold America out. I am a patriot, and patriotism does not have
+a four-year shelf life. Unfortunately, politicians do.</p>
+<p><strong>reisman</strong>: And what are you going to do with that?</p>
+<p><strong>gabriel</strong>: Thomas Jefferson once shot a man on the
+White House lawn for treason, Senator. You tried to execute me in the
+name of politics, now I execute you in the name of the people.</p>
+<p><strong>marco</strong>: You’re up, mate.</p>
+<p><strong>stanley</strong>: Great.</p>
+<p><strong>marco</strong>: Get your shit, we’re headin’ out.</p>
+<p><strong>100 omitted 100</strong>: thru thru</p>
+<p><strong>gabriel</strong>: Make sure that bus doesn’t top out over
+fifteen-seven.</p>
+<p><strong>merc</strong>: Yessir.</p>
+<p><strong>gabriel</strong>: Stan, how are you?</p>
+<p><strong>stanley</strong>: Fine.</p>
+<p><strong>gabriel</strong>: Have you finished?</p>
+<p><strong>gabriel</strong>: Here.</p>
+<p><strong>stanley</strong>: What? Hello.</p>
+<p><strong>operator</strong>: Hello, Mr. Jobson. This is Kristine
+Jorgenson of Credit Suisse in Grand Cayman.</p>
+<p><strong>operator</strong>: I need to verify your new account
+information and have you choose a personal password.</p>
+<p><strong>stanley</strong>: Why?</p>
+<p><strong>operator</strong>: Mr. Jobson, there has just been a transfer
+of ten million U.S. dollars into your account.</p>
+<p><strong>gabriel</strong>: Just like I promised, Stanley.</p>
+<p><strong>stanley</strong>: Then let me go. I want to see my
+daughter.</p>
+<p><strong>gabriel</strong>: Soon, Stanley. Walk with me.</p>
+<p><strong>gabriel</strong>: I’m about to do something against my better
+judgement. I’m going to tell you something I never tell anyone. I’m
+going to tell you who I am.</p>
+<p><strong>stanley</strong>: Don’t bother. I know who you are.</p>
+<p><strong>gabriel</strong>: Do you? You think I’m a bank robber.
+Really, I’m just like you.</p>
+<p><strong>stanley</strong>: Like me? You’re a murderer.</p>
+<p><strong>gabriel</strong>: That I am. And worse. Much worse. I am
+forced to operate on a different plane than you. But, I have ethics.
+Rules to which I must adhere.</p>
+<p><strong>gabriel</strong>: 200 years ago Thomas Jefferson wrote a
+letter to Madison because he was concerned that the freedoms of the
+constitution would be ignored.</p>
+<p><strong>stanley</strong>: I don’t understand why the fuck you’re
+telling me this.</p>
+<p><strong>gabriel</strong>: Listen to me and you will. In the 1950s,
+armed with this letter, J. Edgar Hoover created an organization to
+protect the freedoms of this country at all costs.</p>
+<p><strong>stanley</strong>: I don’t care about any of this. All I care
+about is my daughter.</p>
+<p><strong>gabriel</strong>: I’m talking about your daughter.</p>
+<p><strong>stanley</strong>: My daughter…</p>
+<p><strong>gabriel</strong>: Yes. You, your daughter and 200 million
+other Americans who take their freedoms for granted. You don’t
+understand what it takes to protect those freedoms. That’s my job,
+Stanley, to protect your way of life at all costs.</p>
+<p><strong>stanley</strong>: So you and your band of lunatics are really
+stealing all this money to protect me.</p>
+<p><strong>gabriel</strong>: That’s right, Stanley –</p>
+<p><strong>gabriel</strong>: – ’cause wars cost money.</p>
+<p><strong>stanley</strong>: You’re going into the fucking bank.</p>
+<p><strong>gabriel</strong>: That’s what I’m telling you, Stanley. We
+are at war.</p>
+<p><strong>stanley</strong>: War? Who are we at war with?</p>
+<p><strong>gabriel</strong>: Anyone who infringes on America’s freedom.
+Terrorists’ states, Stanley. Someone must take their war to them. They
+bomb a church, we bomb ten. They hijack a plane, we take out an airport.
+They execute American tourists, we tactically nuke an entire city. We
+must make terrorism so horrific that it becomes unthinkable to attack
+Americans.</p>
+<p><strong>stanley</strong>: I’m out. I’m not doing this. You’re
+insane.</p>
+<p><strong>gabriel</strong>: Maybe. I wanted you to do this because you
+wanted to, because we need men like you, but our time table’s been moved
+up. Just relax and it will all be over in twenty-four hours. You’re
+rich, Stanley. Pretty soon Holly and you will be basking in the sun on
+the deck of some eighty-foot scarab, eating bon bons and living the good
+life.</p>
+<p><strong>gabriel</strong>: Pretty slick.</p>
+<p><strong>marco</strong>: You want to send a team after him?</p>
+<p><strong>gabriel</strong>: No. He’ll be back. We gotta move. Load
+up.</p>
+<p><strong>gabriel</strong>: Get that son-of-a-bitch on the phone.</p>
+<p><strong>gabriel</strong>: If you need to test my resolve then God
+help you. You have 25 minutes. That plane better be on the runway.</p>
+<p><strong>gabriel</strong>: Get my money, Stanley.</p>
+<p><strong>stanley</strong>: Not until I see my daughter.</p>
+<p><strong>gabriel</strong>: Do you really think I wanted it to come to
+this. Do you? I am not a psychopath, Stanley, but I told you, I will
+sacrifice as many lives as it takes to protect our country, including my
+own. Now get me my money.</p>
+<p><strong>stanley</strong>: Will you let Holly go once you have the
+money?</p>
+<p><strong>gabriel</strong>: Both of you. You have my word, Stanley.
+C’mon.</p>
+<p><strong>gabriel</strong>: We okay?</p>
+<p><strong>marco</strong>: Look at the cover pattern they’ve set up. The
+right hand doesn’t know what the left’s doing.</p>
+<p><strong>marco</strong>: Look at this bozo. If the shit drops, he’s
+gonna cap his buddy in the back of the head. Idiots.</p>
+<p><strong>stanley</strong>: I need the disk.</p>
+<p><strong>stanley</strong>: Almost done.</p>
+<p><strong>stanley</strong>: Whoa! What the hell just happened?</p>
+<p><strong>gabriel</strong>: They just cut the power. Forget it. How
+long to transfer the money?</p>
+<p><strong>stanley</strong>: Couple of minutes. Which accounts?</p>
+<p><strong>gabriel</strong>: National Bank of Zurich. Spread it evenly
+over these accounts. It won’t be there that long.</p>
+<p><strong>stanley</strong>: Great.</p>
+<p><strong>gabriel</strong>: Good job, Stanley, I got someone who wants
+to see you.</p>
+<p><strong>stanley</strong>: Holly!</p>
+<p><strong>stanley</strong>: Are you okay?</p>
+<p><strong>gabriel</strong>: Hold up.</p>
+<p><strong>gabriel</strong>: Told you I was a man of my word,
+Stanley.</p>
+<p><strong>stanley</strong>: It’s okay. I love you, baby.</p>
+<p><strong>marco</strong>: See ya around.</p>
+<p><strong>stanley</strong>: I doubt it.</p>
+<p><strong>cypher merc #3</strong>: Sir, the money just disappeared.</p>
+<p><strong>gabriel</strong>: What?</p>
+<p><strong>cypher merc #3</strong>: The money, it’s gone.</p>
+<p><strong>gabriel</strong>: What do you mean, gone?</p>
+<p><strong>stanley</strong>: Shit! Run, Holly!</p>
+<p><strong>gabriel</strong>: Get her!</p>
+<p><strong>stanley</strong>: Won’t do you any good. The money jumps
+every 60 seconds from one numbered account to another and will for the
+next ten years. ’Course it wasn’t supposed to happen for another six
+hours. The power surge must have scrambled the internal clock. But, you
+kill me and you never get a single dollar.</p>
+<p><strong>stanley</strong>: You let the hostages go and then I’ll tell
+you where and when you can extract the money. We all walk away, nobody
+gets hurt. The accounts are encrypted with a 1024 bit cipher. Even I
+can’t break through the fire wall. It’s my act of God policy. Deal?</p>
+<p><strong>gabriel</strong>: I’m thinking.</p>
+<p><strong>gabriel</strong>: Tell ya what. No deal.</p>
+<p><strong>gabriel</strong>: Marco! Grab Agent Sculley!</p>
+<p><strong>stanley</strong>: No, don’t do this.</p>
+<p><strong>gabriel</strong>: In all reality, Stan, she has you to thank
+for this. That first night in Prague you broke the D.O.D. database that
+contained her true identity. She’s D.E.A., Stan, but without you, I
+never would have known.</p>
+<p><strong>stanley</strong>: What are you doing? Stop!</p>
+<p><strong>gabriel</strong>: String up the D.E.A. bitch.</p>
+<p><strong>stanley</strong>: Just let her down. I’ll do whatever you
+want.</p>
+<p><strong>gabriel</strong>: Then get me my money, Stan.</p>
+<p><strong>stanley</strong>: I’m not doing shit until you bring her
+down. I’m serious. Let her down. Now!</p>
+<p><strong>gabriel</strong>: Okay.</p>
+<p><strong>stanley</strong>: Nooo…</p>
+<p><strong>gabriel</strong>: Take a moment, big guy. Don’t make me put
+you in a wheelchair.</p>
+<p><strong>stanley</strong>: You didn’t have to kill her.</p>
+<p><strong>gabriel</strong>: I didn’t Stan, you did. But we’re not done
+yet. Marco…</p>
+<p><strong>gabriel</strong>: There are a lot of hostages here. I cared
+about Ginger, can you imagine what I could do to someone I don’t care
+about. How long before the money jumps?</p>
+<p><strong>stanley</strong>: Sixty seconds.</p>
+<p><strong>gabriel</strong>: They better hope you installed a back door
+or it could be a long day. Somebody get me a laptop.</p>
+<p><strong>computer merc</strong>: Money just jumped.</p>
+<p><strong>gabriel</strong>: Okay, Stan. Sixty seconds.</p>
+<p><strong>gabriel</strong>: Forty-five seconds, Stanley.</p>
+<p><strong>stanley</strong>: I need another laptop, logged on!</p>
+<p><strong>gabriel</strong>: Twenty seconds, Stan.</p>
+<p><strong>gabriel</strong>: Fifteen. She’s gonna die, Stanley.</p>
+<p><strong>stanley</strong>: Shut up!</p>
+<p><strong>stanley</strong>: C’mon, c’mon.</p>
+<p><strong>gabriel</strong>: Ten.</p>
+<p><strong>gabriel</strong>: Nine… Eight… Seven.</p>
+<p><strong>stanley</strong>: I need your account number.</p>
+<p><strong>gabriel</strong>: Four, three, two…</p>
+<p><strong>gabriel</strong>: One.</p>
+<p><strong>stanley</strong>: Let her go.</p>
+<p><strong>stanley</strong>: Now, goddammit, it’s done. Let her go!</p>
+<p><strong>gabriel</strong>: Well, that was fun.</p>
+<p><strong>merc</strong>: Joy says the plane is ready.</p>
+<p><strong>gabriel</strong>: Well, ’bout time for us to leave.</p>
+<p><strong>stanley</strong>: They’ll never let you escape. You’ve gone
+too far.</p>
+<p><strong>gabriel</strong>: Au contraire. Do you hear that? That’s the
+sound of America watching.</p>
+<p><strong>gabriel</strong>: Let’s roll.</p>
+<p><strong>roberts</strong>: You just gonna let them drive the fuck on
+outta here?</p>
+<p><strong>a.d. joy</strong>: There isn’t a free cop in a hundred miles
+that isn’t on his ass. He wants a plane. He’ll get a plane.</p>
+<p><strong>a.d. joy</strong>: He won’t get away. We’ll take them at the
+airport. Let’s go.</p>
+<p><strong>gabriel</strong>: I don’t think any of us want a repeat of
+this morning. Keep at least a hundred yards from this bus at all times
+and I want the airspace for five miles clear.</p>
+<p><strong>gabriel</strong>: and turning to the</p>
+<p><strong>gabriel</strong>: Whaddaya think, Stanley?</p>
+<p><strong>stanley</strong>: You’ll never get away. Even if they have to
+kill everyone on the bus.</p>
+<p><strong>gabriel</strong>: Really? Five hundred bucks says I do. Tell
+ya what, Stanley, I’ll even spot you the five bills.</p>
+<p><strong>128 omitted 128</strong>: thru thru 132 132</p>
+<p><strong>gabriel</strong>: Stan, c’mere.</p>
+<p><strong>gabriel</strong>: Take a look.</p>
+<p><strong>stanley</strong>: How the fuck can you justify all this?</p>
+<p><strong>gabriel</strong>: You’re not looking at the big picture.</p>
+<p><strong>gabriel</strong>: Stanley, here’s a scenario. You have the
+power to cure all of the world’s diseases. But the price for this is
+that you must kill a single, innocent child. Could you kill that child
+to save the world?</p>
+<p><strong>stanley</strong>: No.</p>
+<p><strong>gabriel</strong>: You disappoint me, Stanley. It’s the
+greatest good.</p>
+<p><strong>stanley</strong>: How about ten innocents?</p>
+<p><strong>gabriel</strong>: Now you’re getting it. How about a
+hundred?</p>
+<p><strong>gabriel</strong>: How about a thousand? Not to save the
+world, but just to preserve our way of life.</p>
+<p><strong>stanley</strong>: No man has the right to make that decision.
+You’re no different than any other terrorist.</p>
+<p><strong>gabriel</strong>: You’re wrong, Stanley. Some men are put
+here to shape destiny, to protect freedom, despite the atrocities they
+must commit. I am one of those men. Thousands die every day for no
+reason at all, where is your bleeding heart for them? You give your
+twenty dollars to Greenpeace every year and think you are changing the
+world. What countries will harbor terrorists, when they realize the
+consequences of what I will do? Did you know I can buy nuclear warheads
+in Minsk for forty million each? I buy half a dozen, I even get a
+discount.</p>
+<p><strong>stanley</strong>: What the fu –</p>
+<p><strong>gabriel</strong>: I saw Sugarland Express, Stan. Didn’t like
+the way it ended.</p>
+<p><strong>stanley</strong>: I thought we were going to the airport.</p>
+<p><strong>gabriel</strong>: Misdirection, Stanley.</p>
+<p><strong>gabriel</strong>: Listen…</p>
+<p><strong>gabriel</strong>: Gentlemen…</p>
+<p><strong>gabriel</strong>: Hold on.</p>
+<p><strong>roberts</strong>: Well why the fuck not.</p>
+<p><strong>a.d. joy</strong>: Everything in place?</p>
+<p><strong>agent torres</strong>: We’re ready, sir.</p>
+<p><strong>a.d. joy</strong>: Good –</p>
+<p><strong>agent thomas</strong>: – sir…</p>
+<p><strong>a.d. joy</strong>: Yeah?</p>
+<p><strong>agent thomas</strong>: I don’t think they’re coming.</p>
+<p><strong>a.d. joy</strong>: What do you mean you don’t think they’re
+coming?</p>
+<p><strong>agent thomas</strong>: The bus was just lifted off the street
+by a giant helicopter.</p>
+<p><strong>a.d. joy</strong>: What?!?</p>
+<p><strong>gabriel</strong>: The only way to fly, huh, Stanley.</p>
+<p><strong>gabriel</strong>: Bank right!</p>
+<p><strong>broker</strong>: Holy sh…</p>
+<p><strong>154 omitted 154</strong>: &amp; &amp; 155 155</p>
+<p><strong>gabriel</strong>: We okay?</p>
+<p><strong>driver</strong>: We’ll make it, sir.</p>
+<p><strong>gabriel</strong>: Well, Stanley, gotta fly. Take care of that
+little girl. Maybe I’ll see you again one day.</p>
+<p><strong>stanley</strong>: It can’t end like this. You can’t get
+away.</p>
+<p><strong>gabriel</strong>: C’mon, Stan. Everything doesn’t always end
+the way you think it will. ’Sides, audiences love happy endings.</p>
+<p><strong>roberts</strong>: I’m F.B.I…</p>
+<p><strong>swat guy</strong>: Check the rest of the hostages, we’ll come
+back for them.</p>
+<p><strong>stanley</strong>: Are we sure this is Gabriel?</p>
+<p><strong>doctor micheals</strong>: The body’s dentals exactly match
+the dentals the Israeli government sent us for an ex-Mossad agent named
+Gabriel Shears.</p>
+<p><strong>roberts</strong>: It sure looks like Gabriel Shear. What the
+hell was he doing in that bank?</p>
+<p><strong>stanley</strong>: What about Ginger?</p>
+<p><strong>torres</strong>: We searched all the hospitals and morgues
+but we haven’t been able to find her body yet.</p>
+<p><strong>stanley</strong>: You can’t find her body?</p>
+<p><strong>torres</strong>: No, sir.</p>
+<p><strong>roberts</strong>: Keep looking. Bodies just don’t fucking
+disappear.</p>
+<p><strong>stanley</strong>: Disappear…</p>
+<p><strong>gabriel</strong>: Houdini made an elephant disappear in a
+room full of people.</p>
+<p><strong>gabriel</strong>: You know how he did it?</p>
+<p><strong>gabriel</strong>: Elephant suit. Filled with his
+assistants.</p>
+<p><strong>gabriel</strong>: Assistants jump out. Blend in with the
+others.</p>
+<p><strong>gabriel</strong>: Voila.</p>
+<p><strong>gabriel</strong>: No more elephant.</p>
+<p><strong>ginger</strong>: I’m D.E.A., Stanley.</p>
+<p><strong>ginger</strong>: Trust me.</p>
+<p><strong>gabriel</strong>: – so advanced nowadays you could probably
+pilot it from your trailer.</p>
+<p><strong>gabriel</strong>: Misdirection…</p>
+<p><strong>roberts</strong>: Cheer up, Stan, we got him. You’re a
+hero.</p>
+<p><strong>stanley</strong>: Yeah that’s me. Hero.</p>
+<p><strong>roberts</strong>: I was wrong about you, Stanley. I wanted
+you to know that. You know, you should take your daughter on vacation.
+Relax a little, you’re lucky to be alive.</p>
+<p><strong>woman</strong>: I would like to transfer money between my
+employer’s accounts.</p>
+<p><strong>bank executive</strong>: Certainly. May I have your
+employer’s account number and password, please?</p>
+<p><strong>bank executive</strong>: account number, realizing who she
+is</p>
+<p><strong>woman</strong>: That’s why I’m here. My employer doesn’t like
+drawing attention to himself. He likes to keep a low profile.</p>
+<p><strong>bank executive</strong>: Of course. Would you feel more
+comfortable dealing with the bank president?</p>
+<p><strong>woman</strong>: Would you?</p>
+<p><strong>bank executive</strong>: Yes…</p>
+<p><strong>woman</strong>: Get him.</p>
+<p><strong>bank executive</strong>: Right away. A glass of Cristal while
+you… Wait a moment…</p>
+<p><strong>woman</strong>: What?</p>
+<p><strong>bank executive</strong>: There seems to have been a series of
+large withdrawals out of this account.</p>
+<p><strong>woman</strong>: That’s impossible.</p>
+<p><strong>holly</strong>: Everything okay, Dad?</p>
+<p><strong>stanley</strong>: Everything’s fine. Just making the last of
+some charitable donations..</p>
+<p><strong>stanley</strong>: How about you, almost done?</p>
+<p><strong>holly</strong>: Yep. Got it all figured out.</p>
+<p><strong>stanley</strong>: Well, let’s do it.</p>
+<p><strong>stanley</strong>: By the way, where exactly are we going?</p>
+<p><strong>holly</strong>: The Petrified Forest.</p>
+<p><strong>stanley</strong>: The Petrified Forest.</p>
+<p><strong>holly</strong>: Right. And I’m driving.</p>
+<p><strong>stanley</strong>: Scoot over, you.</p>
+<p><strong>holly</strong>: Know why they call it the Petrified
+Forest?</p>
+<p><strong>stanley</strong>: No. Why?</p>
+<p><strong>woman from bank</strong>: You’re not fucking gonna believe
+this. Stanley –</p>
+<p><strong>man</strong>: – How much he leave?</p>
+<p><strong>woman from bank</strong>: 500 bucks.</p>
+<p><strong>ginger</strong>: You don’t seem that upset.</p>
+<p><strong>man</strong>: Did you ever see the Maltese Falcon?</p>
+<p><strong>man</strong>: 1941. Nominated for three Academy Awards, lost,
+but what the fuck does the Academy know anyway. John Houston’s first
+film and probably Bogey’s best.</p>
+<p><strong>man</strong>: At the end, when they realize the bird’s a
+fake, and all they had gone through and sacrificed was for nothing,
+Gutman, the bad guy in the movie, says, ‘well, sir, what do you think,
+shall we stand here, shed tears, and call each other names, or shall we
+go to Istanbul?’</p>
+<p><strong>ginger</strong>: Istanbul? What’s in Istanbul?</p>
+<p><strong>man</strong>: The, ah, stuff dreams are made of.</p>
+<p><strong>ginger</strong>: Huh?</p>
+</body>
+</html>
