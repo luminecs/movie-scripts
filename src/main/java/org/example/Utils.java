@@ -19,7 +19,7 @@ public class Utils {
             "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
             "    <title>Movie Scripts</title>\n" +
             "</head>\n" +
-            "<body>";
+            "<body style='font-size: 1.5rem'>";
     public static String htmlEnd = "\n</body>\n" +
             "</html>";
 
@@ -83,9 +83,7 @@ public class Utils {
             String mdToHtmlCmd = String.format("pandoc %s -s -o %s --highlight-style=pygments", mdPath,
                     outputHtml + "/" + md.getName().replace(".md", ".html"));
             Process exec = Runtime.getRuntime().exec(mdToHtmlCmd);
-            while (exec.isAlive()) {
-
-            }
+            while (exec.isAlive()) {}
 //            FileReader reader = new FileReader(System.getProperty("user.dir") + "/index.html");
 //            String result = CharStreams.toString(reader);
 //            Document index = Jsoup.parse(result);
