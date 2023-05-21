@@ -1,5 +1,10 @@
 package org.example;
 
+import com.google.common.io.CharStreams;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -66,9 +71,19 @@ public class Utils {
                     outputHtml + "/" + md.getName().replace(".md", ".html"));
             System.out.println("mdToHtmlCmd = " + mdToHtmlCmd);
             Runtime.getRuntime().exec(mdToHtmlCmd);
+
+            FileReader reader = new FileReader(System.getProperty("user.dir") + "/index.html");
+            String result = CharStreams.toString(reader);
+            Document index = Jsoup.parse(result);
+            Element body = index.body();
+            System.out.println("index.body() = " + body.html());
         }
     }
 
+    public static void parse() {
+        
+    }
+    
     static class Line {
         private String lineId;
         private String movieTitle;
