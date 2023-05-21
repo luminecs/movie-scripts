@@ -11,7 +11,7 @@ public class Utils {
 
     public static String s = " \\+\\+\\+\\$\\+\\+\\+";
 
-    public static void process(String dirPath) throws Exception {
+    public static void generateMd(String dirPath) throws Exception {
         String path = dirPath + "/moviequotes.scripts.txt";
         File file = new File(path);
 
@@ -35,20 +35,37 @@ public class Utils {
                 String replyToLineId = lineArr[4];
                 String sentence = lineArr[5];
                 Line obj = new Line(lineId, movieTitle, movieLineNr, character, replyToLineId, sentence);
-                String txt = output + "/" + obj.movieTitle + ".adoc";
+                String txt = output + "/" + obj.movieTitle + ".md";
                 File outputFile = new File(txt);
 
-                String str = "*" + obj.character.trim() + "*: " + obj.sentence.trim() + "\n\n";
+                String str = "**" + obj.character.trim() + "**: " + obj.sentence.trim() + "\n\n";
                 if (outputFile.exists()) {
                     Files.write(Paths.get(txt), str.getBytes(), StandardOpenOption.APPEND);
                 } else {
                     outputFile.createNewFile();
-                    Files.write(Paths.get(txt), ("= " + obj.movieTitle + "\n\n").getBytes(), StandardOpenOption.APPEND);
+                    Files.write(Paths.get(txt), ("# " + obj.movieTitle + "\n\n").getBytes(), StandardOpenOption.APPEND);
                     Files.write(Paths.get(txt), str.getBytes(), StandardOpenOption.APPEND);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void generateHtml(String dirPath) throws Exception {
+        File output = new File(dirPath + "/output/");
+        File outputHtml = new File(dirPath + "/output-html/");
+        if (!outputHtml.exists()) {
+            outputHtml.mkdir();
+        }
+
+        File[] files = output.listFiles();
+        for (File md : files) {
+            String mdPath = md.getAbsolutePath();
+            String mdToHtmlCmd = String.format("pandoc %s -s -o %s --highlight-style=pygments", mdPath,
+                    outputHtml + "/" + md.getName().replace(".md", ".html"));
+            System.out.println("mdToHtmlCmd = " + mdToHtmlCmd);
+            Runtime.getRuntime().exec(mdToHtmlCmd);
         }
     }
 
