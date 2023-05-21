@@ -1,5 +1,6 @@
 package org.example;
 
+import com.google.common.base.Charsets;
 import com.google.common.io.CharStreams;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -15,6 +16,16 @@ import java.nio.file.StandardOpenOption;
 public class Utils {
 
     public static String s = " \\+\\+\\+\\$\\+\\+\\+";
+    public static String htmlStart = "<!DOCTYPE html>\n" +
+            "<html lang=\"en\">\n" +
+            "<head>\n" +
+            "    <meta charset=\"UTF-8\">\n" +
+            "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+            "    <title>Movie Scripts</title>\n" +
+            "</head>\n" +
+            "<body>";
+    public static String htmlEnd = "\n</body>\n" +
+            "</html>";
 
     public static void generateMd(String dirPath) throws Exception {
         String path = dirPath + "/moviequotes.scripts.txt";
@@ -34,7 +45,8 @@ public class Utils {
             while ((line = reader.readLine()) != null) {
                 String[] lineArr = line.split(s);
                 String lineId = lineArr[0];
-                String movieTitle = lineArr[1].replace("face/off", "face off").trim();
+                String movieTitle = lineArr[1].replace("face/off", "face off").trim()
+                        .replace("\"", "").replace(" ", "-");
                 String movieLineNr = lineArr[2].trim();
                 String character = lineArr[3];
                 String replyToLineId = lineArr[4];
@@ -64,6 +76,7 @@ public class Utils {
             outputHtml.mkdir();
         }
 
+        String html = "\n<ul>";
         File[] files = output.listFiles();
         for (File md : files) {
             String mdPath = md.getAbsolutePath();
@@ -71,19 +84,21 @@ public class Utils {
                     outputHtml + "/" + md.getName().replace(".md", ".html"));
             System.out.println("mdToHtmlCmd = " + mdToHtmlCmd);
             Runtime.getRuntime().exec(mdToHtmlCmd);
+//            FileReader reader = new FileReader(System.getProperty("user.dir") + "/index.html");
+//            String result = CharStreams.toString(reader);
+//            Document index = Jsoup.parse(result);
+//            Element body = index.body();
 
-            FileReader reader = new FileReader(System.getProperty("user.dir") + "/index.html");
-            String result = CharStreams.toString(reader);
-            Document index = Jsoup.parse(result);
-            Element body = index.body();
-            System.out.println("index.body() = " + body.html());
+            html += "\n<li>"
+                    + "\n<a href=\"" + "./content/cornell_movie_quotes_corpus/output-html/"
+                    + md.getName().replace(".md", ".html") + "\">"
+                    + md.getName().replace(".md", "") + "\n</a>" + "\n</li>";
         }
+        html += "\n</ul>";
+        String indexHtml = System.getProperty("user.dir") + "/index.html";
+        com.google.common.io.Files.write(htmlStart + html + htmlEnd, new File(indexHtml), Charsets.UTF_8);
     }
 
-    public static void parse() {
-        
-    }
-    
     static class Line {
         private String lineId;
         private String movieTitle;
